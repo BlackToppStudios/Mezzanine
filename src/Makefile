@@ -42,7 +42,7 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_physgame_OBJECTS = main.$(OBJEXT)
+am_physgame_OBJECTS = userinterface.$(OBJEXT) gamebase.$(OBJEXT)
 physgame_OBJECTS = $(am_physgame_OBJECTS)
 physgame_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.
@@ -154,7 +154,7 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-physgame_SOURCES = main.cpp
+physgame_SOURCES = userinterface.cpp gamebase.cpp
 all: all-am
 
 .SUFFIXES:
@@ -221,7 +221,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/main.Po
+include ./$(DEPDIR)/gamebase.Po
+include ./$(DEPDIR)/userinterface.Po
 
 .cpp.o:
 	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

@@ -42,7 +42,7 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_physgame_OBJECTS = main.$(OBJEXT)
+am_physgame_OBJECTS = userinterface.$(OBJEXT) gamebase.$(OBJEXT)
 physgame_OBJECTS = $(am_physgame_OBJECTS)
 physgame_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -154,7 +154,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-physgame_SOURCES = main.cpp
+physgame_SOURCES = userinterface.cpp gamebase.cpp
 all: all-am
 
 .SUFFIXES:
@@ -221,7 +221,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gamebase.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/userinterface.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

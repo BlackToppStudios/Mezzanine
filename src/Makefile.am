@@ -1,3 +1,3 @@
 bin_PROGRAMS = physgame
 
-physgame_SOURCES = main.cpp
+physgame_SOURCES = userinterface.cpp gamebase.cpp

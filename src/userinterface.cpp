@@ -1,5 +1,11 @@
 #include "wx/wx.h" 
-#include ""
+#include "gamebase.cpp"
+
+#include <iostream>
+
+using namespace std;
+
+char GameName[]="Physgame";
 
 class MyApp: public wxApp
 {
@@ -33,7 +39,7 @@ IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit()
 {
-	MyFrame *frame = new MyFrame( _T("Hello World"), wxPoint(50,50), wxSize(450,340) );
+	MyFrame *frame = new MyFrame( _T("Physgame"), wxPoint(50,50), wxSize(450,340) );
 	frame->Show(TRUE);
 	SetTopWindow(frame);
 	return TRUE;
@@ -48,12 +54,12 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size):
 	menuFile->Append( ID_Quit, _T("E&xit") );
 
 	wxMenuBar *menuBar = new wxMenuBar;
-	menuBar->Append( menuFile, _T("&File") );
+	menuBar->Append( menuFile, _T("&Game") );
 
 	SetMenuBar( menuBar );
 
 	CreateStatusBar();
-	SetStatusText( _T("Welcome to wxWidgets!") );
+	SetStatusText( _T("Physgame") );
 }
 
 void MyFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
@@ -63,7 +69,7 @@ void MyFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
-wxMessageBox(_T("This is a wxWidgets Hello world sample"),
-	_T("About Hello World"), wxOK | wxICON_INFORMATION, this);
+	wxMessageBox(_T("Physgame version 0.01"),
+		_T("About Physgame"), wxOK | wxICON_INFORMATION, this);
 }
 
