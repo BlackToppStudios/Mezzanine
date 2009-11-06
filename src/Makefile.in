@@ -42,7 +42,8 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_physgame_OBJECTS = userinterface.$(OBJEXT) gamebase.$(OBJEXT)
+am_physgame_OBJECTS = userinterface.$(OBJEXT) gamebase.$(OBJEXT) \
+	physworld.$(OBJEXT)
 physgame_OBJECTS = $(am_physgame_OBJECTS)
 physgame_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -90,6 +91,10 @@ LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
 OBJEXT = @OBJEXT@
+OGRE_CFLAGS = @OGRE_CFLAGS@
+OGRE_LIBS = @OGRE_LIBS@
+OIS_CFLAGS = @OIS_CFLAGS@
+OIS_LIBS = @OIS_LIBS@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -97,6 +102,7 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PKG_CONFIG = @PKG_CONFIG@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -154,7 +160,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-physgame_SOURCES = userinterface.cpp gamebase.cpp
+physgame_SOURCES = userinterface.cpp gamebase.cpp physworld.cpp
 all: all-am
 
 .SUFFIXES:
@@ -222,6 +228,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gamebase.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/physworld.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/userinterface.Po@am__quote@
 
 .cpp.o:

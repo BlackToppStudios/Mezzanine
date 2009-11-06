@@ -1,4 +1,4 @@
-gamebase.o: gamebase.cpp gamebase.h physworld.h /usr/include/ode/ode.h \
+physworld.o: physworld.cpp physworld.h /usr/include/ode/ode.h \
   /usr/include/ode/config.h /usr/include/alloca.h /usr/include/features.h \
   /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
   /usr/include/gnu/stubs.h /usr/include/gnu/stubs-32.h \
@@ -34,8 +34,6 @@ gamebase.o: gamebase.cpp gamebase.h physworld.h /usr/include/ode/ode.h \
   /usr/include/ode/odecpp.h /usr/include/ode/collision_space.h \
   /usr/include/ode/collision.h /usr/include/ode/collision_trimesh.h \
   /usr/include/ode/odecpp_collision.h /usr/include/ode/export-dif.h
-
-gamebase.h:
 
 physworld.h:
 

@@ -42,7 +42,8 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_physgame_OBJECTS = userinterface.$(OBJEXT) gamebase.$(OBJEXT)
+am_physgame_OBJECTS = userinterface.$(OBJEXT) gamebase.$(OBJEXT) \
+	physworld.$(OBJEXT)
 physgame_OBJECTS = $(am_physgame_OBJECTS)
 physgame_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.
@@ -66,13 +67,13 @@ AUTOMAKE = ${SHELL} /home/sqeaky/Projects/physgame/missing --run automake-1.10
 AWK = mawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS =  -pthread
+CFLAGS = -g -O2 -pthread
 CPPFLAGS =  -I/usr/lib/wx/include/gtk2-unicode-release-2.8 -I/usr/include/wx-2.8 -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -D__WXGTK__
 CXX = g++
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS =  
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE=\"physgame\" -DVERSION=\"0.1\"
+DEFS = -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE=\"physgame\" -DVERSION=\"0.1\" -DHAVE_LIBODE=1
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -85,11 +86,15 @@ INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LDFLAGS = 
 LIBOBJS = 
-LIBS =  -pthread -Wl,-Bsymbolic-functions  -lwx_gtk2u_richtext-2.8 -lwx_gtk2u_aui-2.8 -lwx_gtk2u_xrc-2.8 -lwx_gtk2u_qa-2.8 -lwx_gtk2u_html-2.8 -lwx_gtk2u_adv-2.8 -lwx_gtk2u_core-2.8 -lwx_baseu_xml-2.8 -lwx_baseu_net-2.8 -lwx_baseu-2.8 
+LIBS = -lode  -pthread -Wl,-Bsymbolic-functions  -lwx_gtk2u_richtext-2.8 -lwx_gtk2u_aui-2.8 -lwx_gtk2u_xrc-2.8 -lwx_gtk2u_qa-2.8 -lwx_gtk2u_html-2.8 -lwx_gtk2u_adv-2.8 -lwx_gtk2u_core-2.8 -lwx_baseu_xml-2.8 -lwx_baseu_net-2.8 -lwx_baseu-2.8 
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /home/sqeaky/Projects/physgame/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
+OGRE_CFLAGS = -DOGRE_GUI_GLX -DOGRE_CONFIG_LITTLE_ENDIAN -I/usr/include/OGRE  
+OGRE_LIBS = -lOgreMain  
+OIS_CFLAGS = -I/usr//include/OIS -I/usr//include  
+OIS_LIBS = -L/usr//lib -lOIS  
 PACKAGE = physgame
 PACKAGE_BUGREPORT = 
 PACKAGE_NAME = 
@@ -97,6 +102,7 @@ PACKAGE_STRING =
 PACKAGE_TARNAME = 
 PACKAGE_VERSION = 
 PATH_SEPARATOR = :
+PKG_CONFIG = /usr/bin/pkg-config
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
@@ -154,7 +160,7 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-physgame_SOURCES = userinterface.cpp gamebase.cpp
+physgame_SOURCES = userinterface.cpp gamebase.cpp physworld.cpp
 all: all-am
 
 .SUFFIXES:
@@ -222,6 +228,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/gamebase.Po
+include ./$(DEPDIR)/physworld.Po
 include ./$(DEPDIR)/userinterface.Po
 
 .cpp.o:

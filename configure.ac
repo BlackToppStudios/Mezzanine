@@ -1,6 +1,22 @@
-AC_INIT(src/main.cpp)
+AC_INIT()
 AM_INIT_AUTOMAKE(physgame,0.1)
 
+
+#ogre specific code
+PKG_CHECK_MODULES(OGRE, [OGRE >= 1.2])
+AC_SUBST(OGRE_CFLAGS)
+AC_SUBST(OGRE_LIBS)
+
+PKG_CHECK_MODULES(OIS, [OIS >= 1.0])
+AC_SUBST(OIS_CFLAGS)
+AC_SUBST(OIS_LIBS)
+
+
+#libode conf code
+AC_CHECK_LIB(ode, [dBodyCreate], [],
+   AC_MSG_ERROR([Couldn't find ODE library.]))
+
+#wxwidgets code
 AM_OPTIONS_WXCONFIG
 reqwx=2.8.0
 AM_PATH_WXCONFIG($reqwx, wxWin=1)
@@ -21,6 +37,7 @@ CXXFLAGS="$CXXFLAGS $WX_CXXFLAGS_ONLY"
 CFLAGS="$CFLAGS $WX_CFLAGS_ONLY"
 LIBS="$LIBS $WX_LIBS"
 
+#other checks
 AM_SANITY_CHECK
 AC_PROG_CC
 AC_PROG_CXX

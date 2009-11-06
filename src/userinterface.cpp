@@ -1,7 +1,7 @@
+#ifndef _userinterface_cpp
+#define _userinterface_cpp
 #include "wx/wx.h" 
-#include "gamebase.cpp"
-
-#include <iostream>
+#include "gamebase.h"
 
 using namespace std;
 
@@ -69,7 +69,6 @@ void MyFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
-	wxMessageBox(_T("Physgame version 0.01"),
-		_T("About Physgame"), wxOK | wxICON_INFORMATION, this);
+	wxMessageBox(_T("Physgame version 0.01"), _T("About Physgame"), wxOK | wxICON_INFORMATION, this);
 }
-
+#endif

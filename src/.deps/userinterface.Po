@@ -182,7 +182,7 @@ userinterface.o: userinterface.cpp /usr/include/wx-2.8/wx/wx.h \
   /usr/include/wx-2.8/wx/gtk/filedlg.h \
   /usr/include/wx-2.8/wx/generic/filedlgg.h \
   /usr/include/wx-2.8/wx/listctrl.h /usr/include/wx-2.8/wx/listbase.h \
-  /usr/include/wx-2.8/wx/generic/listctrl.h gamebase.cpp
+  /usr/include/wx-2.8/wx/generic/listctrl.h gamebase.h
 
 /usr/include/wx-2.8/wx/wx.h:
 
@@ -818,4 +818,4 @@ userinterface.o: userinterface.cpp /usr/include/wx-2.8/wx/wx.h \
 
 /usr/include/wx-2.8/wx/generic/listctrl.h:
 
-gamebase.cpp:
+gamebase.h:
