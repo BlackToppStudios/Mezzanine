@@ -3,8 +3,10 @@
 #ifndef _gamebase_h
 #define _gamebase_h
 
+#include <wx/wx.h>
+
 //entry point to make a phyworld world and start it.
 //will return true if it
-bool GameStart();
+bool GameStart(wxFrame* GameWindow);
 
 #endif
