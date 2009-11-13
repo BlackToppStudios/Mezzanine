@@ -8,39 +8,53 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="WinDebug">
-				<Option output="bin/Debug/physgame" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option output="bin/WinDebug/physgame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/WinDebug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
 			</Target>
-			<Target title="WinRelease">
-				<Option output="bin/Release/physgame" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-O2" />
-				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
-			</Target>
 			<Target title="LinDebug">
-				<Option output="bin/Debug/physgame" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option output="bin/LinDebug/physgame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/LinDebug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="`wx-config --cflags`" />
 					<Add option="`ode-config --cflags`" />
+					<Add option="`pkg-config --cflags OGRE`" />
+					<Add option="-fexceptions" />
 				</Compiler>
 				<Linker>
 					<Add option="`wx-config --libs`" />
 					<Add option="`ode-config --libs`" />
+					<Add option="`pkg-config --libs OGRE`" />
+					<Add library="OgreMain" />
+					<Add library="OIS" />
+				</Linker>
+			</Target>
+			<Target title="LinRelease">
+				<Option output="bin/LinRelease/physgame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/LinRelease/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="`wx-config --cflags`" />
+					<Add option="`ode-config --cflags`" />
+					<Add option="`pkg-config --cflags OGRE`" />
+					<Add option="-fexceptions" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="`wx-config --libs`" />
+					<Add option="`ode-config --libs`" />
+					<Add option="`pkg-config --libs OGRE`" />
+					<Add library="OgreMain" />
+					<Add library="OIS" />
 				</Linker>
 			</Target>
 		</Build>
