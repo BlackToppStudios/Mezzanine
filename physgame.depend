@@ -1,14 +1,18 @@
 # depslib dependency file v1.0
-1257907923 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
+1258174545 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
 	<wx/wx.h>
 	"gamebase.h"
 	"physworld.h"
+	"Ogre.h"
 
 1257907923 /home/sqeaky/Projects/physgame/src/gamebase.h
 	<wx/wx.h>
 
-1257907923 /home/sqeaky/Projects/physgame/src/physworld.h
+1258178796 /home/sqeaky/Projects/physgame/src/physworld.h
+	<sstream>
+	<string>
 	<ode/ode.h>
+	<Ogre.h>
 
 1257907923 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
 	"physworld.h"
@@ -3405,4 +3409,1199 @@
 
 1241250894 /usr/include/ode/export-dif.h
 	<ode/common.h>
+
+1256569201 /usr/include/OGRE/Ogre.h
+	"OgrePrerequisites.h"
+	"OgreAnimation.h"
+	"OgreAnimationState.h"
+	"OgreAnimationTrack.h"
+	"OgreAny.h"
+	"OgreArchive.h"
+	"OgreArchiveManager.h"
+	"OgreAxisAlignedBox.h"
+	"OgreBillboardChain.h"
+	"OgreBillboardSet.h"
+	"OgreBone.h"
+	"OgreCamera.h"
+	"OgreConfigFile.h"
+	"OgreControllerManager.h"
+	"OgreDataStream.h"
+	"OgreEntity.h"
+	"OgreException.h"
+	"OgreFrustum.h"
+	"OgreGpuProgram.h"
+	"OgreGpuProgramManager.h"
+	"OgreHardwareBufferManager.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHardwareOcclusionQuery.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHighLevelGpuProgram.h"
+	"OgreHighLevelGpuProgramManager.h"
+	"OgreKeyFrame.h"
+	"OgreLight.h"
+	"OgreLogManager.h"
+	"OgreManualObject.h"
+	"OgreMaterial.h"
+	"OgreMaterialManager.h"
+	"OgreMaterialSerializer.h"
+	"OgreMath.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreMesh.h"
+	"OgreMeshManager.h"
+	"OgreMeshSerializer.h"
+	"OgreOverlay.h"
+	"OgreOverlayContainer.h"
+	"OgreOverlayElement.h"
+	"OgreOverlayManager.h"
+	"OgreParticleAffector.h"
+	"OgreParticleEmitter.h"
+	"OgreParticleSystemManager.h"
+	"OgrePass.h"
+	"OgrePatchMesh.h"
+	"OgrePatchSurface.h"
+	"OgreProfiler.h"
+	"OgreRadixSort.h"
+	"OgreRenderQueueInvocation.h"
+	"OgreRenderQueueListener.h"
+	"OgreRenderSystem.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderTexture.h"
+	"OgreRenderWindow.h"
+	"OgreResourceBackgroundQueue.h"
+	"OgreResourceGroupManager.h"
+	"OgreRibbonTrail.h"
+	"OgreRoot.h"
+	"OgreSceneManager.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreSceneNode.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreSkeletonManager.h"
+	"OgreSkeletonSerializer.h"
+	"OgreStaticGeometry.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreSubEntity.h"
+	"OgreSubMesh.h"
+	"OgreTechnique.h"
+	"OgreTextureManager.h"
+	"OgreTextureUnitState.h"
+	"OgreUserDefinedObject.h"
+	"OgreVector2.h"
+	"OgreViewport.h"
+	"OgreCompositor.h"
+	"OgreCompositorManager.h"
+	"OgreCompositorChain.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositionTechnique.h"
+	"OgreCompositionPass.h"
+	"OgreCompositionTargetPass.h"
+	"OgreWindowEventUtilities.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowCameraSetupFocused.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+	"OgreShadowCameraSetupPlaneOptimal.h"
+	"OgreShadowCameraSetupPSSM.h"
+
+1256569201 /usr/include/OGRE/OgrePrerequisites.h
+	"OgrePlatform.h"
+	<string>
+	"OgreStdHeaders.h"
+	"OgreMemoryAllocatorConfig.h"
+
+1256569201 /usr/include/OGRE/OgrePlatform.h
+	"OgreConfig.h"
+	<_mingw.h>
+	"config.h"
+
+1256569201 /usr/include/OGRE/OgreConfig.h
+	"config.h"
+
+1256569201 /usr/include/OGRE/OgreStdHeaders.h
+	<cassert>
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<cstring>
+	<cstdarg>
+	<cmath>
+	<vector>
+	<map>
+	<string>
+	<set>
+	<list>
+	<deque>
+	<queue>
+	<bitset>
+	<tr1/unordered_map>
+	<tr1/unordered_set>
+	<ext/hash_map>
+	<ext/hash_set>
+	<hash_set>
+	<hash_map>
+	<algorithm>
+	<functional>
+	<limits>
+	<fstream>
+	<iostream>
+	<iomanip>
+	<sstream>
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<unistd.h>
+	<dlfcn.h>
+	<unistd.h>
+	<sys/param.h>
+	<CoreFoundation/CoreFoundation.h>
+	<boost/thread/tss.hpp>
+	<boost/thread/recursive_mutex.hpp>
+	<boost/thread/condition.hpp>
+	<boost/thread/thread.hpp>
+
+1254905335 /usr/include/dlfcn.h
+	<features.h>
+	<stddef.h>
+	<bits/dlfcn.h>
+
+1254905335 /usr/include/bits/dlfcn.h
+
+1254905352 /usr/include/sys/param.h
+	<limits.h>
+	<linux/limits.h>
+	<linux/param.h>
+	<sys/types.h>
+
+1255719607 /usr/include/linux/param.h
+	<asm/param.h>
+
+1255719609 /usr/include/asm/param.h
+
+1256569201 /usr/include/OGRE/OgreMemoryAllocatorConfig.h
+	"OgrePrerequisites.h"
+	"OgreMemoryAllocatedObject.h"
+	"OgreMemorySTLAllocator.h"
+	"OgreMemoryNedAlloc.h"
+	"OgreMemoryStdAlloc.h"
+
+1256569201 /usr/include/OGRE/OgreMemoryAllocatedObject.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreMemorySTLAllocator.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreMemoryNedAlloc.h
+
+1256569201 /usr/include/OGRE/OgreMemoryStdAlloc.h
+	<memory>
+	<limits>
+	"OgreAlignedAllocator.h"
+	"OgreMemoryTracker.h"
+
+1256569201 /usr/include/OGRE/OgreAlignedAllocator.h
+
+1256569201 /usr/include/OGRE/OgreMemoryTracker.h
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1256569201 /usr/include/OGRE/OgreAnimation.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreIteratorWrappers.h"
+	"OgreAnimable.h"
+	"OgreAnimationTrack.h"
+	"OgreAnimationState.h"
+
+1256569201 /usr/include/OGRE/OgreString.h
+	"OgrePrerequisites.h"
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1256569201 /usr/include/OGRE/OgreIteratorWrappers.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreAnimable.h
+	"OgrePrerequisites.h"
+	"OgreVector2.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	"OgreException.h"
+	"OgreAny.h"
+
+1256569201 /usr/include/OGRE/OgreVector2.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1256569201 /usr/include/OGRE/OgreMath.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreVector3.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+	"OgreQuaternion.h"
+
+1256569201 /usr/include/OGRE/OgreQuaternion.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1256569201 /usr/include/OGRE/OgreVector4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1256569201 /usr/include/OGRE/OgreColourValue.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreSharedPtr.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreStringVector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+
+1256569201 /usr/include/OGRE/OgreException.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	<exception>
+
+1256569201 /usr/include/OGRE/OgreAny.h
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	"OgreString.h"
+	<algorithm>
+	<typeinfo>
+
+1256569201 /usr/include/OGRE/OgreAnimationTrack.h
+	"OgrePrerequisites.h"
+	"OgreSimpleSpline.h"
+	"OgreRotationalSpline.h"
+	"OgreKeyFrame.h"
+	"OgreAnimable.h"
+	"OgrePose.h"
+
+1256569201 /usr/include/OGRE/OgreSimpleSpline.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1256569201 /usr/include/OGRE/OgreMatrix4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix3.h"
+	"OgreVector4.h"
+	"OgrePlane.h"
+
+1256569201 /usr/include/OGRE/OgreMatrix3.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1256569201 /usr/include/OGRE/OgrePlane.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1256569201 /usr/include/OGRE/OgreRotationalSpline.h
+	"OgrePrerequisites.h"
+	"OgreQuaternion.h"
+
+1256569201 /usr/include/OGRE/OgreKeyFrame.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreQuaternion.h"
+	"OgreAny.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreHardwareVertexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgreColourValue.h"
+
+1256569201 /usr/include/OGRE/OgreHardwareBuffer.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgrePose.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreAnimationState.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreController.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreController.h
+	"OgrePrerequisites.h"
+	"OgreSharedPtr.h"
+
+1256569201 /usr/include/OGRE/OgreArchive.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	<ctime>
+
+1256569201 /usr/include/OGRE/OgreDataStream.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	<istream>
+
+1256569201 /usr/include/OGRE/OgreArchiveManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1256569201 /usr/include/OGRE/OgreResourceManager.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreResourceGroupManager.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+	"OgreScriptLoader.h"
+
+1256569201 /usr/include/OGRE/OgreResource.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	"OgreStringInterface.h"
+	"OgreAtomicWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreStringInterface.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreCommon.h"
+
+1256569201 /usr/include/OGRE/OgreCommon.h
+	"OgreString.h"
+	<utility>
+	<vector>
+	<map>
+
+1256569201 /usr/include/OGRE/OgreAtomicWrappers.h
+	<signal.h>
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	<windows.h>
+	<intrin.h>
+
+1256569201 /usr/include/OGRE/OgreResourceGroupManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreResource.h"
+	"OgreArchive.h"
+	"OgreIteratorWrappers.h"
+	<ctime>
+
+1256569201 /usr/include/OGRE/OgreSingleton.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreScriptLoader.h
+	"OgrePrerequisites.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+
+1256569201 /usr/include/OGRE/OgreAxisAlignedBox.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1256569201 /usr/include/OGRE/OgreBillboardChain.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+
+1256569201 /usr/include/OGRE/OgreMovableObject.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreShadowCaster.h"
+	"OgreFactoryObj.h"
+	"OgreAnimable.h"
+	"OgreAny.h"
+	"OgreUserDefinedObject.h"
+
+1256569201 /usr/include/OGRE/OgreRenderQueue.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreSphere.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1256569201 /usr/include/OGRE/OgreShadowCaster.h
+	"OgrePrerequisites.h"
+	"OgreRenderable.h"
+
+1256569201 /usr/include/OGRE/OgreRenderable.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreMatrix4.h"
+	"OgreMaterial.h"
+	"OgrePlane.h"
+	"OgreGpuProgram.h"
+	"OgreVector4.h"
+	"OgreException.h"
+	"OgreAny.h"
+
+1256569201 /usr/include/OGRE/OgreRenderOperation.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+
+1256569201 /usr/include/OGRE/OgreVertexIndexData.h
+	"OgrePrerequisites.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+
+1256569201 /usr/include/OGRE/OgreHardwareIndexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+
+1256569201 /usr/include/OGRE/OgreMaterial.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+
+1256569201 /usr/include/OGRE/OgreBlendMode.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+
+1256569201 /usr/include/OGRE/OgreGpuProgram.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreSharedPtr.h"
+	"OgreIteratorWrappers.h"
+	"OgreSerializer.h"
+	"OgreRenderOperation.h"
+
+1256569201 /usr/include/OGRE/OgreSerializer.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+
+1256569201 /usr/include/OGRE/OgreFactoryObj.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreUserDefinedObject.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreBillboardSet.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreRadixSort.h"
+	"OgreCommon.h"
+
+1256569201 /usr/include/OGRE/OgreRadixSort.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreBone.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+
+1256569201 /usr/include/OGRE/OgreNode.h
+	"OgrePrerequisites.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreQuaternion.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreCamera.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreMatrix4.h"
+	"OgreVector3.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreCommon.h"
+	"OgreFrustum.h"
+	"OgreRay.h"
+	"OgrePlaneBoundedVolume.h"
+
+1256569201 /usr/include/OGRE/OgreFrustum.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexIndexData.h"
+	"OgreMovablePlane.h"
+
+1256569201 /usr/include/OGRE/OgreMovablePlane.h
+	"OgrePrerequisites.h"
+	"OgrePlane.h"
+	"OgreMovableObject.h"
+
+1256569201 /usr/include/OGRE/OgreRay.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgrePlaneBoundedVolume.h"
+
+1256569201 /usr/include/OGRE/OgrePlaneBoundedVolume.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreMath.h"
+	"OgrePlane.h"
+
+1256569201 /usr/include/OGRE/OgreConfigFile.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringVector.h"
+	"OgreIteratorWrappers.h"
+	"OgreDataStream.h"
+
+1256569201 /usr/include/OGRE/OgreControllerManager.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreController.h"
+	"OgrePredefinedControllers.h"
+	"OgreTextureUnitState.h"
+	"OgreSharedPtr.h"
+
+1256569201 /usr/include/OGRE/OgrePredefinedControllers.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreController.h"
+	"OgreFrameListener.h"
+	"OgreGpuProgram.h"
+
+1256569201 /usr/include/OGRE/OgreFrameListener.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreTextureUnitState.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreBlendMode.h"
+	"OgreMatrix4.h"
+	"OgreIteratorWrappers.h"
+	"OgreString.h"
+	"OgreTexture.h"
+
+1256569201 /usr/include/OGRE/OgreTexture.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreResource.h"
+	"OgreImage.h"
+
+1256569201 /usr/include/OGRE/OgreImage.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgrePixelFormat.h"
+	"OgreDataStream.h"
+
+1256569201 /usr/include/OGRE/OgrePixelFormat.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+
+1256569201 /usr/include/OGRE/OgreEntity.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreHardwareBufferManager.h"
+	"OgreMesh.h"
+	"OgreRenderable.h"
+
+1256569201 /usr/include/OGRE/OgreHardwareBufferManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderToVertexBuffer.h"
+
+1256569201 /usr/include/OGRE/OgreRenderToVertexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+
+1256569201 /usr/include/OGRE/OgreMesh.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreVertexIndexData.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreIteratorWrappers.h"
+	"OgreProgressiveMesh.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreSkeleton.h"
+	"OgreAnimationTrack.h"
+	"OgrePose.h"
+	"OgreDataStream.h"
+
+1256569201 /usr/include/OGRE/OgreVertexBoneAssignment.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreProgressiveMesh.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderOperation.h"
+
+1256569201 /usr/include/OGRE/OgreSkeleton.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+	"OgreStringVector.h"
+
+1256569201 /usr/include/OGRE/OgreGpuProgramManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreException.h"
+	"OgreGpuProgram.h"
+	"OgreSingleton.h"
+
+1256569201 /usr/include/OGRE/OgreHardwarePixelBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgrePixelFormat.h"
+	"OgreImage.h"
+
+1256569201 /usr/include/OGRE/OgreHardwareOcclusionQuery.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreHighLevelGpuProgram.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+
+1256569201 /usr/include/OGRE/OgreHighLevelGpuProgramManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreException.h"
+	"OgreHighLevelGpuProgram.h"
+
+1256569201 /usr/include/OGRE/OgreLight.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgrePlaneBoundedVolume.h"
+	"OgreShadowCameraSetup.h"
+
+1256569201 /usr/include/OGRE/OgreShadowCameraSetup.h
+	"OgrePrerequisites.h"
+	"OgreMovablePlane.h"
+	"OgreSharedPtr.h"
+
+1256569201 /usr/include/OGRE/OgreLogManager.h
+	"OgrePrerequisites.h"
+	"OgreLog.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+
+1256569201 /usr/include/OGRE/OgreLog.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+
+1256569201 /usr/include/OGRE/OgreManualObject.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreResourceGroupManager.h"
+
+1256569201 /usr/include/OGRE/OgreMaterialManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreResourceManager.h"
+	"OgreMaterial.h"
+	"OgreStringVector.h"
+	"OgreMaterialSerializer.h"
+
+1256569201 /usr/include/OGRE/OgreMaterialSerializer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreBlendMode.h"
+	"OgreTextureUnitState.h"
+	"OgreGpuProgram.h"
+	"OgreStringVector.h"
+
+1256569201 /usr/include/OGRE/OgreMeshManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreVector3.h"
+	"OgreHardwareBuffer.h"
+	"OgreMesh.h"
+	"OgrePatchMesh.h"
+
+1256569201 /usr/include/OGRE/OgrePatchMesh.h
+	"OgrePrerequisites.h"
+	"OgreMesh.h"
+	"OgrePatchSurface.h"
+
+1256569201 /usr/include/OGRE/OgrePatchSurface.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreRenderOperation.h"
+	"OgreAxisAlignedBox.h"
+
+1256569201 /usr/include/OGRE/OgreMeshSerializer.h
+	"OgrePrerequisites.h"
+	"OgreMeshSerializerImpl.h"
+	"OgreSerializer.h"
+
+1256569201 /usr/include/OGRE/OgreMeshSerializerImpl.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSerializer.h"
+	"OgreMaterial.h"
+	"OgreMesh.h"
+	"OgreEdgeListBuilder.h"
+
+1256569201 /usr/include/OGRE/OgreEdgeListBuilder.h
+	"OgrePrerequisites.h"
+	"OgreVector4.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreRenderOperation.h"
+
+1256569201 /usr/include/OGRE/OgreOverlay.h
+	"OgrePrerequisites.h"
+	"OgreSceneNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreMatrix4.h"
+
+1256569201 /usr/include/OGRE/OgreSceneNode.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreAxisAlignedBox.h"
+
+1256569201 /usr/include/OGRE/OgreOverlayContainer.h
+	"OgrePrerequisites.h"
+	"OgreOverlayElement.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreOverlayElement.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreUTFString.h"
+	"OgreStringInterface.h"
+	"OgreOverlayElementCommands.h"
+	"OgreColourValue.h"
+	"OgreRectangle.h"
+
+1256569201 /usr/include/OGRE/OgreUTFString.h
+	"OgrePrerequisites.h"
+	<iterator>
+	<string>
+	<stdexcept>
+
+1256569201 /usr/include/OGRE/OgreOverlayElementCommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1256569201 /usr/include/OGRE/OgreRectangle.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreOverlayManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreStringVector.h"
+	"OgreOverlay.h"
+	"OgreScriptLoader.h"
+
+1256569201 /usr/include/OGRE/OgreParticleAffector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringInterface.h"
+
+1256569201 /usr/include/OGRE/OgreParticleEmitter.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreStringInterface.h"
+	"OgreParticleEmitterCommands.h"
+	"OgreParticle.h"
+
+1256569201 /usr/include/OGRE/OgreParticleEmitterCommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1256569201 /usr/include/OGRE/OgreParticle.h
+	"OgrePrerequisites.h"
+	"OgreBillboard.h"
+
+1256569201 /usr/include/OGRE/OgreBillboard.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+
+1256569201 /usr/include/OGRE/OgreParticleSystemManager.h
+	"OgrePrerequisites.h"
+	"OgreParticleSystem.h"
+	"OgreFrameListener.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+	"OgreScriptLoader.h"
+	"OgreResourceGroupManager.h"
+
+1256569201 /usr/include/OGRE/OgreParticleSystem.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreParticleIterator.h"
+	"OgreStringInterface.h"
+	"OgreMovableObject.h"
+	"OgreRadixSort.h"
+	"OgreController.h"
+
+1256569201 /usr/include/OGRE/OgreParticleIterator.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgrePass.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgreLight.h"
+	"OgreTextureUnitState.h"
+
+1256569201 /usr/include/OGRE/OgreProfiler.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreOverlay.h"
+
+1256569201 /usr/include/OGRE/OgreRenderQueueInvocation.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreRenderQueueSortingGrouping.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreMaterial.h"
+	"OgreTechnique.h"
+	"OgrePass.h"
+	"OgreRadixSort.h"
+
+1256569201 /usr/include/OGRE/OgreTechnique.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgrePass.h"
+	"OgreIteratorWrappers.h"
+	"OgreRenderSystemCapabilities.h"
+
+1256569201 /usr/include/OGRE/OgreRenderSystemCapabilities.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreResource.h"
+	"OgreLogManager.h"
+
+1256569201 /usr/include/OGRE/OgreStringConverter.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+	"OgreString.h"
+	"OgreStringVector.h"
+
+1256569201 /usr/include/OGRE/OgreRenderQueueListener.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+
+1256569201 /usr/include/OGRE/OgreRenderSystem.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureUnitState.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreRenderSystemCapabilities.h"
+	"OgreRenderTarget.h"
+	"OgreRenderTexture.h"
+	"OgreFrameListener.h"
+	"OgreConfigOptionMap.h"
+	"OgreGpuProgram.h"
+	"OgrePlane.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreRenderTarget.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureManager.h"
+	"OgreViewport.h"
+	"OgreTimer.h"
+
+1256569201 /usr/include/OGRE/OgreTextureManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreTexture.h"
+	"OgreSingleton.h"
+
+1256569201 /usr/include/OGRE/OgreViewport.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+
+1256569201 /usr/include/OGRE/OgreTimer.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	"WIN32/OgreTimerImp.h"
+	"GLX/OgreTimerImp.h"
+	"OSX/OgreTimerImp.h"
+
+1256569201 /usr/include/OGRE/GLX/OgreTimerImp.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreRenderTexture.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1256569201 /usr/include/OGRE/OgreConfigOptionMap.h
+	"OgrePrerequisites.h"
+	"OgreStringVector.h"
+	"OgreString.h"
+
+1256569201 /usr/include/OGRE/OgreRenderTargetListener.h
+	"OgrePrerequisites.h"
+
+1256569201 /usr/include/OGRE/OgreRenderWindow.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1256569201 /usr/include/OGRE/OgreResourceBackgroundQueue.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreResource.h"
+
+1256569201 /usr/include/OGRE/OgreRibbonTrail.h
+	"OgrePrerequisites.h"
+	"OgreBillboardChain.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreFrameListener.h"
+	"OgreControllerManager.h"
+
+1256569201 /usr/include/OGRE/OgreRoot.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreResourceGroupManager.h"
+	<exception>
+
+1256569201 /usr/include/OGRE/OgreSceneManagerEnumerator.h
+	"OgrePrerequisites.h"
+	"OgreSceneManager.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreSceneManager.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSceneNode.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+	"OgreSceneQuery.h"
+	"OgreAutoParamDataSource.h"
+	"OgreAnimationState.h"
+	"OgreRenderQueue.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreRectangle2D.h"
+	"OgrePixelFormat.h"
+	"OgreResourceGroupManager.h"
+	"OgreTexture.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowTextureManager.h"
+	"OgreCamera.h"
+	"OgreInstancedGeometry.h"
+
+1256569201 /usr/include/OGRE/OgreSceneQuery.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreRay.h"
+	"OgreRenderOperation.h"
+	"OgrePlaneBoundedVolume.h"
+
+1256569201 /usr/include/OGRE/OgreAutoParamDataSource.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreMatrix4.h"
+	"OgreVector4.h"
+	"OgreLight.h"
+	"OgreColourValue.h"
+
+1256569201 /usr/include/OGRE/OgreRectangle2D.h
+	"OgrePrerequisites.h"
+	"OgreSimpleRenderable.h"
+
+1256569201 /usr/include/OGRE/OgreSimpleRenderable.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreMaterial.h"
+
+1256569201 /usr/include/OGRE/OgreShadowTextureManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgrePixelFormat.h"
+	"OgreTexture.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreInstancedGeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreAnimationTrack.h"
+	"OgreBone.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreSkeletonInstance.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+
+1256569201 /usr/include/OGRE/OgreSkeletonManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1256569201 /usr/include/OGRE/OgreSkeletonSerializer.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+	"OgreSerializer.h"
+
+1256569201 /usr/include/OGRE/OgreStaticGeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+
+1256569201 /usr/include/OGRE/OgreSubEntity.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreHardwareBufferManager.h"
+
+1256569201 /usr/include/OGRE/OgreSubMesh.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreProgressiveMesh.h"
+	"OgreAnimationTrack.h"
+
+1256569201 /usr/include/OGRE/OgreCompositor.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreResource.h"
+
+1256569201 /usr/include/OGRE/OgreCompositorManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreCompositor.h"
+	"OgreRectangle2D.h"
+	"OgreCompositorSerializer.h"
+	"OgreRenderSystem.h"
+
+1256569201 /usr/include/OGRE/OgreCompositorSerializer.h
+	"OgrePrerequisites.h"
+	"OgreDataStream.h"
+
+1256569201 /usr/include/OGRE/OgreCompositorChain.h
+	"OgrePrerequisites.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderQueueListener.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositor.h"
+
+1256569201 /usr/include/OGRE/OgreCompositorInstance.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreTexture.h"
+	"OgreRenderQueue.h"
+
+1256569201 /usr/include/OGRE/OgreCompositionTechnique.h
+	"OgrePrerequisites.h"
+	"OgrePixelFormat.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreCompositionPass.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderSystem.h"
+	"OgreRenderQueue.h"
+
+1256569201 /usr/include/OGRE/OgreCompositionTargetPass.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+
+1256569201 /usr/include/OGRE/OgreWindowEventUtilities.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	<windows.h>
+
+1256569201 /usr/include/OGRE/OgreShadowCameraSetupFocused.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+	"OgrePolygon.h"
+	"OgreConvexBody.h"
+
+1256569201 /usr/include/OGRE/OgrePolygon.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1256569201 /usr/include/OGRE/OgreConvexBody.h
+	"OgrePrerequisites.h"
+	"OgrePolygon.h"
+
+1256569201 /usr/include/OGRE/OgreShadowCameraSetupLiSPSM.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupFocused.h"
+
+1256569201 /usr/include/OGRE/OgreShadowCameraSetupPlaneOptimal.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+
+1256569201 /usr/include/OGRE/OgreShadowCameraSetupPSSM.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupLiSPSM.h"
 

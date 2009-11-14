@@ -4,16 +4,32 @@
 
 #include "physworld.h"
 
+//using namespace Ogre;
+
 physworld::physworld()
 {
-	//we create the world of physics and remember its locatation
-	this->OdeWorld=dWorldCreate();
+	//first we redirect the cout to our console log
+	this->ConsoleLog = new stringstream;
+	//cout = *(this->ConsoleLog);
+
+	//Then we create our Ogre environment and ODE enviroment
+	this->OgreRoot = new Ogre::Root();
+	this->OdeWorld = dWorldCreate();
 }
 
 physworld::~physworld()
 {
 	//Destroy the physical world that we loved and cherished, until we SIGTERMED
-	dWorldDestroy(this->OdeWorld);	
+	dWorldDestroy(this->OdeWorld);
 }
 
+string physworld::GetLog()
+{
+    return this->ConsoleLog->str();
+}
+
+void GameInit()
+{
+
+}
 #endif
