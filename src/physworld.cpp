@@ -4,8 +4,6 @@
 
 #include "physworld.h"
 
-//using namespace Ogre;
-
 physworld::physworld()
 {
 	//first we redirect the cout to our console log
@@ -28,8 +26,8 @@ string physworld::GetLog()
     return this->ConsoleLog->str();
 }
 
-void GameInit()
+void physworld::GameInit()
 {
-
+	this->OgreRoot->showConfigDialog();
 }
 #endif

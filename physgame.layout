@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="LinDebug" />
-	<File name="src/gamebase.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="151" topLine="12" />
+	<File name="src/gamebase.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="106" topLine="13" />
 	</File>
-	<File name="src/physworld.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="6" topLine="0" />
+	<File name="src/gamebase.h" open="0" top="0" tabpos="0">
+		<Cursor position="106" topLine="0" />
+	</File>
+	<File name="src/menuinterface.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="123" topLine="0" />
+	</File>
+	<File name="src/menuinterface.h" open="1" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="src/physworld.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="116" topLine="13" />
+	</File>
+	<File name="src/physworld.h" open="0" top="0" tabpos="3">
+		<Cursor position="516" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

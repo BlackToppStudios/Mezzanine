@@ -63,9 +63,10 @@
 		</Compiler>
 		<Unit filename="src/gamebase.cpp" />
 		<Unit filename="src/gamebase.h" />
+		<Unit filename="src/menuinterface.cpp" />
+		<Unit filename="src/menuinterface.h" />
 		<Unit filename="src/physworld.cpp" />
 		<Unit filename="src/physworld.h" />
-		<Unit filename="src/userinterface.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
