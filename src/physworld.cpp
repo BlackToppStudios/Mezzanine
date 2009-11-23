@@ -6,12 +6,10 @@
 
 physworld::physworld()
 {
-	//first we redirect the cout to our console log
-	this->ConsoleLog = new stringstream;
-	//cout = *(this->ConsoleLog);
+	//We create our Ogre environment and ODE enviroment
+	this->OgreRoot = new Ogre::Root("/etc/OGRE/plugins.cfg");
+	//this->GameWindow = this->OgreRoot->initialise(true, "Physgame");
 
-	//Then we create our Ogre environment and ODE enviroment
-	this->OgreRoot = new Ogre::Root();
 	this->OdeWorld = dWorldCreate();
 }
 

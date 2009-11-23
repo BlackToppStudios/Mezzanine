@@ -14,13 +14,21 @@ using namespace std;
 class physworld
 {
 	private:
+		//a place to store logs
         stringstream* ConsoleLog;
+
+
 		dWorldID OdeWorld;
+
+		//Ogre objects
         Ogre::Root* OgreRoot;
+        Ogre::RenderSystem* OgreRenderSystem;
+        Ogre::RenderWindow* GameWindow;
 
 	public:
 		physworld();
 		~physworld();
+
         string GetLog();
         void GameInit();
 };

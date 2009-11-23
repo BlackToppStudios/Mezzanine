@@ -1,0 +1,56 @@
+21:27:36: Creating resource group General
+21:27:36: Creating resource group Internal
+21:27:36: Creating resource group Autodetect
+21:27:36: SceneManagerFactory for type 'DefaultSceneManager' registered.
+21:27:36: Registering ResourceManager for type Material
+21:27:36: Registering ResourceManager for type Mesh
+21:27:36: Registering ResourceManager for type Skeleton
+21:27:36: MovableObjectFactory for type 'ParticleSystem' registered.
+21:27:36: OverlayElementFactory for type Panel registered.
+21:27:36: OverlayElementFactory for type BorderPanel registered.
+21:27:36: OverlayElementFactory for type TextArea registered.
+21:27:36: Registering ResourceManager for type Font
+21:27:36: ArchiveFactory for archive type FileSystem registered.
+21:27:36: ArchiveFactory for archive type Zip registered.
+21:27:36: FreeImage version: 3.10.0
+21:27:36: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+21:27:36: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2
+21:27:36: DDS codec registering
+21:27:36: Registering ResourceManager for type HighLevelGpuProgram
+21:27:36: Registering ResourceManager for type Compositor
+21:27:36: MovableObjectFactory for type 'Entity' registered.
+21:27:36: MovableObjectFactory for type 'Light' registered.
+21:27:36: MovableObjectFactory for type 'BillboardSet' registered.
+21:27:36: MovableObjectFactory for type 'ManualObject' registered.
+21:27:36: MovableObjectFactory for type 'BillboardChain' registered.
+21:27:36: MovableObjectFactory for type 'RibbonTrail' registered.
+21:27:36: Loading library /usr/lib/OGRE/RenderSystem_GL.so
+21:27:36: Installing plugin: GL RenderSystem
+21:27:36: OpenGL Rendering Subsystem created.
+21:27:36: Plugin successfully installed
+21:27:36: Loading library /usr/lib/OGRE/Plugin_ParticleFX.so
+21:27:36: Installing plugin: ParticleFX
+21:27:36: Particle Emitter Type 'Point' registered
+21:27:36: Particle Emitter Type 'Box' registered
+21:27:36: Particle Emitter Type 'Ellipsoid' registered
+21:27:36: Particle Emitter Type 'Cylinder' registered
+21:27:36: Particle Emitter Type 'Ring' registered
+21:27:36: Particle Emitter Type 'HollowEllipsoid' registered
+21:27:36: Particle Affector Type 'LinearForce' registered
+21:27:36: Particle Affector Type 'ColourFader' registered
+21:27:36: Particle Affector Type 'ColourFader2' registered
+21:27:36: Particle Affector Type 'ColourImage' registered
+21:27:36: Particle Affector Type 'ColourInterpolator' registered
+21:27:36: Particle Affector Type 'Scaler' registered
+21:27:36: Particle Affector Type 'Rotator' registered
+21:27:36: Particle Affector Type 'DirectionRandomiser' registered
+21:27:36: Particle Affector Type 'DeflectorPlane' registered
+21:27:36: Plugin successfully installed
+21:27:36: Loading library /usr/lib/OGRE/Plugin_BSPSceneManager.so
+21:27:36: Installing plugin: BSP Scene Manager
+21:27:36: Plugin successfully installed
+21:27:36: Loading library /usr/lib/OGRE/Plugin_OctreeSceneManager.so
+21:27:36: Installing plugin: Octree & Terrain Scene Manager
+21:27:36: Plugin successfully installed
+21:27:36: Loading library /usr/lib/OGRE/Plugin_EXRCodec.so
+21:27:36: OGRE EXCEPTION(7:InternalErrorException): Could not load dynamic library /usr/lib/OGRE/Plugin_EXRCodec.so.  System Error: /usr/lib/OGRE/Plugin_EXRCodec.so: cannot open shared object file: No such file or directory in DynLib::load at OgreDynLib.cpp (line 80)

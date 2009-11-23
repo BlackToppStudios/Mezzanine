@@ -9,25 +9,38 @@
 #include "physworld.h"
 #include "Ogre.h"
 
-bool SpawnGameThread(UiFrame* GameWindow)
+bool StartGame(UiFrame* MenuWindow)
 {
-	//int Width=0, Height=0;
-	//wxString Conv;
-	//wxRect Dim = GameWindow->GetRect();
+	//Hide the old window
+	MenuWindow->Hide();
+	MenuWindow->Yield();
 
-	GameWindow->Hide();
-	GameWindow->Yield();
-
-	//GameWindow->GetClientSize(&Width, &Height);
-	//Conv << _T("Client Height:") << Height << _T(" Client Width:") << Width << _T("\nGetTop:") << Dim.GetTop() << _T(" GetLeft:") << Dim.GetLeft() << _T(" GetWidth:") << Dim.GetWidth() << _T(" GetHeight:") << Dim.GetHeight();
-	//wxMessageBox(Conv , _T("About Physgame"), wxOK | wxICON_INFORMATION, GameWindow);
-
+	//make the physworld and set it in motion
 	physworld TestOne;
 	TestOne.GameInit();
 
-	GameWindow->Show();
+	//return to the menu;
+	MenuWindow->Show();
 
 	return true;
 }
 
+/////////////////////////////////////
+// Functions for managing settings
+////
+Settings::Settings()
+{
+	this->Fullscreen=false;
+}
+
+bool Settings::getFullscreen()
+{
+	return this->Fullscreen;
+}
+
+void Settings::setFullscreen(bool _Fullscreen)
+{
+	//wierd checks go here
+	this->Fullscreen = _Fullscreen;
+}
 #endif

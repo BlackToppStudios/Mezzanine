@@ -86,7 +86,7 @@ void UiFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 
 void UiFrame::OnNewGame(wxCommandEvent& WXUNUSED(event))
 {
-	SpawnGameThread(this);
+	StartGame(this);
 }
 
 #endif
