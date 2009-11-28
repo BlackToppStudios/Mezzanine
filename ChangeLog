@@ -1,3 +1,6 @@
+Nov 28
+  Set up cross platform framework... No that implies too, setup some ifdefs for dirty hacks when we need to to things different on mulitple platforms.
+  Mostly it looks like Ogre is going to be the limiting factor in our ability to move forward on multiple platforms. The current solution is to use crossplatform.[h|cpp] to act as a layer so the rest of the source code remains completely platform agnostic. The only change a platform package maintainer should need to make is to remark out the #define for the other platforms and unremark the one for your platform.
 Nov 22
   Brought Hydrowolfy in on the beginings of the projects. We are slowing making ourselves into experts at various development tasks such as linking to external libraries.
 Nov 13, 2009

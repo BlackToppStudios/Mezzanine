@@ -5,4 +5,15 @@
 
 #include "crossplatform.h"
 
+string GetPluginsDotCFG()
+{
+#ifdef UBUNTU
+	return "data/ubuntu/plugins.cfg";
+#endif
+#ifdef WINDOWS
+	return "data/windows/plugins.cfg";
+#endif
+
+}
+
 #endif

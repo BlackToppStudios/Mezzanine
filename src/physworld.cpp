@@ -3,11 +3,12 @@
 #define _physworld_cpp
 
 #include "physworld.h"
+#include "crossplatform.h"
 
 physworld::physworld()
 {
 	//We create our Ogre environment and ODE enviroment
-	this->OgreRoot = new Ogre::Root("/etc/OGRE/plugins.cfg");
+	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG());
 	//this->GameWindow = this->OgreRoot->initialise(true, "Physgame");
 
 	this->OdeWorld = dWorldCreate();

@@ -1,1 +1,3 @@
 This is still in heavy development. if you really must install it, break out your compiler and act like you know what are doing
+
+To compile this from source you will need to compile ogre first and copy the plugins to data/<youyourplatform>/plugins then install code::blocks to open the project then compile it. If it complains about missing libraries, install the appropraite dev package for that library.
