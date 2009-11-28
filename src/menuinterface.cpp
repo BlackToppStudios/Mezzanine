@@ -1,15 +1,19 @@
-//This is where the user interface will reside.
-
 #ifndef _menuinterface_cpp
 #define _menuinterface_cpp
+///////////////////////////////////////////////////////////////////////////////
+//This is where the user interface will reside.
 
+///////////////////////////////////////////////////////////////////////////////
+// Additional includes
 #include <wx/wx.h>
 #include "gamebase.h"
 #include "menuinterface.h"
 
 using namespace std;
 
-//Menu messages
+///////////////////////////////////////////////////////////////////////////////
+// Menu messages
+// 1/5 enumarating game ui message, to help keep them sorted
 enum
 {
 	ID_Quit = 1,
@@ -18,16 +22,19 @@ enum
 };
 
 //This where we state which functions deal with each message
+// 2/5  ties messages to a functions
 BEGIN_EVENT_TABLE(UiFrame, wxFrame)
 EVT_MENU(ID_Quit, UiFrame::OnQuit)
 EVT_MENU(ID_About, UiFrame::OnAbout)
 EVT_MENU(ID_NewGame, UiFrame::OnNewGame)
 END_EVENT_TABLE()
 
-//this is the main loop
+///////////////////////////////////////////////////////////////////////////////
+//This is the main loop, this accepts a pointer to the wxwidget application
 IMPLEMENT_APP(PhysApp)
 
-//These functions are part of the core UI
+///////////////////////////////////////////////////////////////////////////////
+// Start the wxwidget applicaiton
 bool PhysApp::OnInit()
 {
 	SetAppName( _T("Physgame"));
@@ -42,6 +49,9 @@ bool PhysApp::OnInit()
 	return TRUE;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// builds a wxuiframe a the designated coordinates
+// 3/5 for UI messages, they are initiated here
 UiFrame::UiFrame(const wxString& title, const wxPoint& pos, const wxSize& size): wxFrame((wxFrame *)NULL, -1, title, pos, size)
 {
 	wxMenu *menuGame = new wxMenu;
@@ -71,9 +81,10 @@ void UiFrame::Yield()
 	this->ParentApp->Yield();
 }
 
-
+///////////////////////////////////////////////////////////////////////////////
 // These functions are called when the UI throws a command message
-
+//4/5 create the UI function for the message don't forget to declare any new
+//Functions in the header
 void UiFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 {
 	Close(TRUE);

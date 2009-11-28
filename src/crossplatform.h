@@ -1,11 +1,31 @@
 #ifndef _crossplatform_h
 #define _crossplatform_h
-#include <string>
+///////////////////////////////////////////////////////////////////////////////
+// If we did our jobs right this section should be the only place that you
+//need to change to compile this on a supported platform. just remark all the
+//lines that do not have you platform using "//" and unremark your platform.
+//
+// Should you choose to port this to your platform, make sure that all the
+//required libraries are installed, then make sure to write an implementation
+//for each of te functions in crossplatform.cpp
+///////////////////////////////////////////////////////////////////////////////
 
+//#define MACOSX
+#define UBUNTU
+//#define WINDOWS
+
+///////////////////////////////////////////////////////////////////////////////
+//End Choose Your Platform
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+// Includes
+
+#include <string>
 using namespace std;
 
-//#define WINDOWS
-#define UBUNTU
+///////////////////////////////////////////////////////////////////////////////
+// Platform Specific Funcitons get Declared here
 
 string GetPluginsDotCFG();
 
