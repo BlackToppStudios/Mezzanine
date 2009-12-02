@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1258956694 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
+1259400601 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
 	<wx/wx.h>
 	"gamebase.h"
 	"physworld.h"
@@ -9,13 +9,14 @@
 	<wx/wx.h>
 	"menuinterface.h"
 
-1259398866 /home/sqeaky/Projects/physgame/src/physworld.h
+1259734178 /home/sqeaky/Projects/physgame/src/physworld.h
 	<sstream>
 	<string>
 	<ode/ode.h>
 	<Ogre.h>
+	"gamebase.h"
 
-1259399536 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
+1259734871 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
 	"physworld.h"
 	"crossplatform.h"
 

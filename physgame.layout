@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="LinDebug" />
-	<File name="src/gamebase.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="421" topLine="10" />
-	</File>
-	<File name="src/gamebase.h" open="1" top="0" tabpos="4">
-		<Cursor position="297" topLine="0" />
-	</File>
-	<File name="src/menuinterface.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="642" topLine="59" />
-	</File>
-	<File name="src/menuinterface.h" open="0" top="0" tabpos="2">
+	<File name="src/crossplatform.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="src/physworld.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="34" topLine="0" />
+	<File name="src/crossplatform.h" open="0" top="0" tabpos="0">
+		<Cursor position="994" topLine="17" />
 	</File>
-	<File name="src/physworld.h" open="1" top="0" tabpos="1">
-		<Cursor position="646" topLine="3" />
+	<File name="src/gamebase.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="921" topLine="32" />
+	</File>
+	<File name="src/gamebase.h" open="0" top="0" tabpos="5">
+		<Cursor position="738" topLine="0" />
+	</File>
+	<File name="src/menuinterface.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="2395" topLine="71" />
+	</File>
+	<File name="src/menuinterface.h" open="0" top="0" tabpos="2">
+		<Cursor position="1401" topLine="34" />
+	</File>
+	<File name="src/physworld.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="2725" topLine="63" />
+	</File>
+	<File name="src/physworld.h" open="1" top="0" tabpos="2">
+		<Cursor position="982" topLine="31" />
 	</File>
 </CodeBlocks_layout_file>

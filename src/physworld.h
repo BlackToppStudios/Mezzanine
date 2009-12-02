@@ -14,6 +14,8 @@
 #include <ode/ode.h>
 #include <Ogre.h>
 
+#include "gamebase.h"
+
 using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -30,7 +32,13 @@ class physworld
 		//Ogre objects
         Ogre::Root* OgreRoot;
         Ogre::RenderSystem* OgreRenderSystem;
-        Ogre::RenderWindow* GameWindow;
+        Ogre::RenderWindow* OgreGameWindow;
+		Ogre::SceneManager* OgreSceneManager;
+		Ogre::Camera* OgreCamera;
+		Ogre::Viewport* OgreViewport;
+
+		//Players settings
+		Settings* PlayerSettings;
 
 	public:
 		physworld();
