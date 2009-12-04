@@ -1,24 +1,21 @@
 # depslib dependency file v1.0
-1259400601 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
+1259900617 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
 	<wx/wx.h>
 	"gamebase.h"
 	"physworld.h"
 	"Ogre.h"
 
-1259399161 /home/sqeaky/Projects/physgame/src/gamebase.h
-	<wx/wx.h>
+1259909673 /home/sqeaky/Projects/physgame/src/gamebase.h
 	"menuinterface.h"
 
-1259734178 /home/sqeaky/Projects/physgame/src/physworld.h
-	<sstream>
-	<string>
+1259909756 /home/sqeaky/Projects/physgame/src/physworld.h
 	<ode/ode.h>
 	<Ogre.h>
-	"gamebase.h"
 
-1259734871 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
+1259907927 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
 	"physworld.h"
 	"crossplatform.h"
+	"physworldframelistener.h"
 
 1257907924 source:/home/sqeaky/Projects/physgame/src/userinterface.cpp
 	<wx/wx.h>
@@ -4608,18 +4605,20 @@
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupLiSPSM.h"
 
-1259400509 /home/sqeaky/Projects/physgame/src/menuinterface.h
+1259909756 /home/sqeaky/Projects/physgame/src/menuinterface.h
+	<wx/wx.h>
 	"gamebase.h"
 
-1259400509 source:/home/sqeaky/Projects/physgame/src/menuinterface.cpp
+1259904744 source:/home/sqeaky/Projects/physgame/src/menuinterface.cpp
 	<wx/wx.h>
 	"gamebase.h"
 	"menuinterface.h"
+	"physworld.h"
 
-1259399281 source:/home/sqeaky/Projects/physgame/src/crossplatform.cpp
+1259899444 source:/home/sqeaky/Projects/physgame/src/crossplatform.cpp
 	"crossplatform.h"
 
-1259396751 /home/sqeaky/Projects/physgame/src/crossplatform.h
+1259909545 /home/sqeaky/Projects/physgame/src/crossplatform.h
 	<string>
 
 1258946706 /usr/local/include/OGRE/Ogre.h
@@ -5800,4 +5799,12 @@
 1258946706 /usr/local/include/OGRE/OgreShadowCameraSetupPSSM.h
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupLiSPSM.h"
+
+1259909210 /home/sqeaky/Projects/physgame/src/physworldframelistener.h
+	"physworld.h"
+
+1259907462 source:/home/sqeaky/Projects/physgame/src/physworldframelistener.cpp
+	<Ogre.h>
+	"physworld.h"
+	"physworldframelistener.h"
 

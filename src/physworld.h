@@ -7,25 +7,24 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 //Includes
-
-#include <sstream>
-#include <string>
-
 #include <ode/ode.h>
 #include <Ogre.h>
 
-#include "gamebase.h"
+//Not included to prevent infinite loops
+//#include "physworldframelistener.h"
+//#include "gamebase.h"
 
 using namespace std;
+
+//Forward declarations to prevent infite loop of includes
+class physworldFrameListener;
+class Settings;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Physworld Class Declaration
 class physworld
 {
 	private:
-		//a place to store logs
-        stringstream* ConsoleLog;
-
 		//the ODE Physics world
 		dWorldID OdeWorld;
 
@@ -36,6 +35,7 @@ class physworld
 		Ogre::SceneManager* OgreSceneManager;
 		Ogre::Camera* OgreCamera;
 		Ogre::Viewport* OgreViewport;
+		physworldFrameListener* OgreFrameListener;
 
 		//Players settings
 		Settings* PlayerSettings;
@@ -44,9 +44,14 @@ class physworld
 		physworld();
 		~physworld();
 
-		//I plan on implementing a logging system beyond what ogre3d provides
-        string GetLog();
+		//I am just extending what ogre provides for a logging system
+        void Log(string Message);
+        void LogAndThrow(string Message);
+
+        //I plan on deprecating this thing soon and building our own settings system
+        bool ShowSystemSettingDialog();
+
+        //Starts the Game
         void GameInit();
 };
-
 #endif

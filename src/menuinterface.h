@@ -7,8 +7,9 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // Includes
-
+#include <wx/wx.h>
 #include "gamebase.h"
+
 using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -44,6 +45,7 @@ class UiFrame: public wxFrame
 		void OnQuit(wxCommandEvent& event);
 		void OnAbout(wxCommandEvent& event);
 		void OnNewGame(wxCommandEvent& event);
+		void OnGraphicsOptions(wxCommandEvent& event);
 
 		DECLARE_EVENT_TABLE()
 };

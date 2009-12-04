@@ -1,3 +1,11 @@
+Dec 3/4 2009
+  Setup the base of the logging interface in the physworld class.
+  Created frame listeners, this looks like where a great deal of the game logic will go.
+  Cleaned up, added error checking to... 
+     Removed all chance of circuler #include
+     error catching to Ogre Settings Windows.
+     UI to Graphics Settings
+
 Nov 28
   Set up cross platform framework... No that implies too, setup some ifdefs for dirty hacks when we need to to things different on mulitple platforms.
   Mostly it looks like Ogre is going to be the limiting factor in our ability to move forward on multiple platforms. The current solution is to use crossplatform.[h|cpp] to act as a layer so the rest of the source code remains completely platform agnostic. The only change a platform package maintainer should need to make is to remark out the #define for the other platforms and unremark the one for your platform.

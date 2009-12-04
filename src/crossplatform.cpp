@@ -22,4 +22,26 @@ string GetPluginsDotCFG()
 
 }
 
+
+///////////////////////////////////////////////////////////////////////////////
+//returns: The appropriate string, which contains a path, to the correct
+//"settings.cfg" file
+string GetSettingsDotCFG()
+{
+#ifdef UBUNTU
+	return "data/ubuntu/settings.cfg";
+#endif
+#ifdef WINDOWS
+	return "data/windows/settings.cfg";
+#endif
+
+}
+
+
+
+
+
+
+
+
 #endif

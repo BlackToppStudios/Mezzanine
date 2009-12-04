@@ -20,9 +20,9 @@ bool StartGame(UiFrame* MenuWindow)
 	MenuWindow->Hide();
 	MenuWindow->Yield();
 
-	//make the physworld and set it in motion
-	physworld TestOne;
-	TestOne.GameInit();
+	//Set the world in motion
+	physworld TheWorld;
+	TheWorld.GameInit();
 
 	//return to the menu;
 	MenuWindow->Show();

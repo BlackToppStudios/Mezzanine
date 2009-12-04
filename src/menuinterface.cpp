@@ -8,6 +8,7 @@
 #include <wx/wx.h>
 #include "gamebase.h"
 #include "menuinterface.h"
+#include "physworld.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ enum
 	ID_Quit = 1,
  	ID_About = 2,
 	ID_NewGame = 3,
+	ID_GraphicsOptions=4
 };
 
 //This where we state which functions deal with each message
@@ -27,6 +29,8 @@ BEGIN_EVENT_TABLE(UiFrame, wxFrame)
 EVT_MENU(ID_Quit, UiFrame::OnQuit)
 EVT_MENU(ID_About, UiFrame::OnAbout)
 EVT_MENU(ID_NewGame, UiFrame::OnNewGame)
+EVT_MENU(ID_GraphicsOptions, UiFrame::OnGraphicsOptions)
+
 END_EVENT_TABLE()
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -58,6 +62,7 @@ UiFrame::UiFrame(const wxString& title, const wxPoint& pos, const wxSize& size):
 	wxMenu *menuHelp = new wxMenu;
 
 	menuGame->Append( ID_NewGame, _T("&New Game") );
+	menuGame->Append( ID_GraphicsOptions, _T("Graphics &Options") );
 	menuGame->AppendSeparator();
 	menuGame->Append( ID_Quit, _T("E&xit") );
 
@@ -99,5 +104,22 @@ void UiFrame::OnNewGame(wxCommandEvent& WXUNUSED(event))
 {
 	StartGame(this);
 }
+
+void UiFrame::OnGraphicsOptions(wxCommandEvent& event)
+{
+	//Hide the old window
+	this->Hide();
+	this->Yield();
+
+	//Make a physworld, and force some settings out of it.
+	physworld OnlyForSettings;
+	OnlyForSettings.ShowSystemSettingDialog();
+
+	//return to the menu;
+	this->Show();
+
+
+}
+
 
 #endif

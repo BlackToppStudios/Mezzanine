@@ -25,10 +25,12 @@
 using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
-// Platform Specific Funcitons get Declared here
+// Platform Specific Functions get Declared here
 
+//gets thePlugins.cfg filename and location
 string GetPluginsDotCFG();
 
-
+//Gets the Settings.cfg filename and location
+string GetSettingsDotCFG();
 
 #endif

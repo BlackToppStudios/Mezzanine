@@ -48,6 +48,8 @@
 		<Unit filename="src/menuinterface.h" />
 		<Unit filename="src/physworld.cpp" />
 		<Unit filename="src/physworld.h" />
+		<Unit filename="src/physworldframelistener.cpp" />
+		<Unit filename="src/physworldframelistener.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

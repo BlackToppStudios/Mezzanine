@@ -7,6 +7,8 @@
 //additional Includes
 #include "physworld.h"
 #include "crossplatform.h"
+#include "physworldframelistener.h"
+#include "gamebase.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Physworld constructor
@@ -15,13 +17,8 @@
 physworld::physworld()
 {
 	//We create our Ogre environment and ODE enviroment
-	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG());
-
-	//try to load the ogre config
-    if (!this->OgreRoot->restoreConfig())
-      	{throw "Could no setup Ogre.";}
-    //RenderWindow* mWindow = mRoot->initialise(true,"Application");
-
+	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
+	this->OgreFrameListener = new physworldFrameListener(this);
 
 	//instantiate the Physics engine
 	this->OdeWorld = dWorldCreate();
@@ -39,22 +36,52 @@ physworld::~physworld()
 
 	//All the pointers Ogtr made should get taken care of by OGRE
 	delete OgreRoot;
+	delete OgreFrameListener;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//The best access to what is in the gamelog
-//returns a string copy of the game log.
-string physworld::GetLog()
+//appends to the gamelog which is managed by Ogre
+void physworld::Log(string Message)
 {
-    return this->ConsoleLog->str();
+	//Ogre::Log::Stream << Message;
+	Ogre::LogManager::getSingleton().logMessage(Message);
+	//Ogre::LogManager::getSingleton().flush();
+}
+
+void physworld::LogAndThrow(string Message)
+{
+	this->Log(Message);
+	throw(Message);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//Shows the ogre settins Dialog, and allows it to save settings to ogres
+//preset save location
+bool physworld::ShowSystemSettingDialog()
+{
+	try
+	{
+		return this->OgreRoot->showConfigDialog();
+	} catch (exception& e) {
+		this->Log("Ogre settings windows from main UI or mandatory setting failure");
+		this->Log(e.what());
+		return false;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Start the Game already
 void physworld::GameInit()
 {
-	//good for testing
-	//this->OgreRoot->showConfigDialog();
+
+	//try to load the ogre config
+    if (!this->OgreRoot->restoreConfig())
+    {
+    	if (!this->ShowSystemSettingDialog())
+    	{
+    		this->LogAndThrow("Could not setup Ogre.");
+		}
+    }
 
 	//Setup the render window
 	this->OgreGameWindow = this->OgreRoot->initialise(true, "physgame");
@@ -76,6 +103,9 @@ void physworld::GameInit()
 
 	//setting the aspect ratio must be done after we setup the viewport
 	this->OgreCamera->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
+
+	//bind our callbacks to Ogre and the render window
+	OgreRoot->addFrameListener(OgreFrameListener);
 
 	//Start the game rendering
 	this->OgreRoot->startRendering();

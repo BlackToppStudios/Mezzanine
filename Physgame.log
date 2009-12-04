@@ -1,0 +1,45 @@
+01:06:54: Creating resource group General
+01:06:54: Creating resource group Internal
+01:06:54: Creating resource group Autodetect
+01:06:54: SceneManagerFactory for type 'DefaultSceneManager' registered.
+01:06:54: Registering ResourceManager for type Material
+01:06:54: Registering ResourceManager for type Mesh
+01:06:54: Registering ResourceManager for type Skeleton
+01:06:54: MovableObjectFactory for type 'ParticleSystem' registered.
+01:06:54: OverlayElementFactory for type Panel registered.
+01:06:54: OverlayElementFactory for type BorderPanel registered.
+01:06:54: OverlayElementFactory for type TextArea registered.
+01:06:54: Registering ResourceManager for type Font
+01:06:54: ArchiveFactory for archive type FileSystem registered.
+01:06:54: ArchiveFactory for archive type Zip registered.
+01:06:54: FreeImage version: 3.10.0
+01:06:54: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+01:06:54: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2
+01:06:54: DDS codec registering
+01:06:54: Registering ResourceManager for type HighLevelGpuProgram
+01:06:54: Registering ResourceManager for type Compositor
+01:06:54: MovableObjectFactory for type 'Entity' registered.
+01:06:54: MovableObjectFactory for type 'Light' registered.
+01:06:54: MovableObjectFactory for type 'BillboardSet' registered.
+01:06:54: MovableObjectFactory for type 'ManualObject' registered.
+01:06:54: MovableObjectFactory for type 'BillboardChain' registered.
+01:06:54: MovableObjectFactory for type 'RibbonTrail' registered.
+01:06:54: Loading library data/ubuntu/plugins/RenderSystem_GL.so
+01:06:54: Installing plugin: GL RenderSystem
+01:06:54: OpenGL Rendering Subsystem created.
+01:06:55: Plugin successfully installed
+01:06:55: *-*-* OGRE Initialising
+01:06:55: *-*-* Version 1.6.4 (Shoggoth)
+01:07:02: *-*-* OGRE Shutdown
+01:07:02: Unregistering ResourceManager for type Compositor
+01:07:02: Unregistering ResourceManager for type Font
+01:07:02: Unregistering ResourceManager for type Skeleton
+01:07:02: Unregistering ResourceManager for type Mesh
+01:07:02: Unregistering ResourceManager for type HighLevelGpuProgram
+01:07:02: Uninstalling plugin: GL RenderSystem
+01:07:02: ******************************
+*** Stopping GLX Subsystem ***
+******************************
+01:07:02: Plugin successfully uninstalled
+01:07:02: Unloading library data/ubuntu/plugins/RenderSystem_GL.so
+01:07:02: Unregistering ResourceManager for type Material
