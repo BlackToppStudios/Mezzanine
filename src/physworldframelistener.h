@@ -8,7 +8,7 @@
 
 
 //Includes
-//#include <Ogre.h>
+#include <Ogre.h>
 #include "physworld.h"
 
 
@@ -19,7 +19,9 @@ class physworldFrameListener : public Ogre::FrameListener
 {
 	private:
 		Ogre::Real mTime;
+
 		physworld* TheWorldIListenTo;
+		//Ogre::InputReader* OgreInputReader;
 	public:
   		physworldFrameListener(physworld* _Parent);
 

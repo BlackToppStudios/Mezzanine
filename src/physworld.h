@@ -10,6 +10,7 @@
 #include <ode/ode.h>
 #include <Ogre.h>
 
+#include "inputmanager.h"
 //Not included to prevent infinite loops
 //#include "physworldframelistener.h"
 //#include "gamebase.h"
@@ -39,6 +40,9 @@ class physworld
 
 		//Players settings
 		Settings* PlayerSettings;
+
+		//the input manager
+		InputManager* InputSystem;
 
 	public:
 		physworld();

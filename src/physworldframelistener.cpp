@@ -36,5 +36,3 @@ bool physworldFrameListener::frameEnded(const Ogre::FrameEvent& evt)
 	return true;
 }
 #endif
-
-

@@ -8,14 +8,16 @@
 1259909673 /home/sqeaky/Projects/physgame/src/gamebase.h
 	"menuinterface.h"
 
-1259909756 /home/sqeaky/Projects/physgame/src/physworld.h
+1260082991 /home/sqeaky/Projects/physgame/src/physworld.h
 	<ode/ode.h>
 	<Ogre.h>
+	"inputmanager.h"
 
-1259907927 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
+1259909650 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
 	"physworld.h"
 	"crossplatform.h"
 	"physworldframelistener.h"
+	"gamebase.h"
 
 1257907924 source:/home/sqeaky/Projects/physgame/src/userinterface.cpp
 	<wx/wx.h>
@@ -3006,7 +3008,7 @@
 1254905347 /usr/include/bits/local_lim.h
 	<linux/limits.h>
 
-1257882535 /usr/include/linux/limits.h
+1259895194 /usr/include/linux/limits.h
 
 1254905347 /usr/include/bits/posix2_lim.h
 
@@ -3577,10 +3579,10 @@
 	<linux/param.h>
 	<sys/types.h>
 
-1257882536 /usr/include/linux/param.h
+1259895195 /usr/include/linux/param.h
 	<asm/param.h>
 
-1257882537 /usr/include/asm/param.h
+1259895196 /usr/include/asm/param.h
 
 1256569201 /usr/include/OGRE/OgreMemoryAllocatorConfig.h
 	"OgrePrerequisites.h"
@@ -5800,11 +5802,53 @@
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupLiSPSM.h"
 
-1259909210 /home/sqeaky/Projects/physgame/src/physworldframelistener.h
-	"physworld.h"
-
-1259907462 source:/home/sqeaky/Projects/physgame/src/physworldframelistener.cpp
+1259938015 /home/sqeaky/Projects/physgame/src/physworldframelistener.h
 	<Ogre.h>
 	"physworld.h"
+
+1259936182 source:/home/sqeaky/Projects/physgame/src/physworldframelistener.cpp
 	"physworldframelistener.h"
+
+1260080865 source:/home/sqeaky/Projects/physgame/src/inputmanager.cpp
+	"inputmanager.h"
+
+1260082786 /home/sqeaky/Projects/physgame/src/inputmanager.h
+	<OISMouse.h>
+	<OISKeyboard.h>
+	<OISJoyStick.h>
+	<OISInputManager.h>
+	<OgreRenderWindow.h>
+
+1241251066 /usr/include/OIS/OISMouse.h
+	"OISObject.h"
+	"OISEvents.h"
+
+1241251066 /usr/include/OIS/OISObject.h
+	"OISPrereqs.h"
+	"OISInterface.h"
+
+1241251066 /usr/include/OIS/OISPrereqs.h
+	<vector>
+	<string>
+	<map>
+	"OISConfig.h"
+
+1241251066 /usr/include/OIS/OISConfig.h
+
+1241251066 /usr/include/OIS/OISInterface.h
+	"OISPrereqs.h"
+
+1241251066 /usr/include/OIS/OISEvents.h
+	"OISPrereqs.h"
+
+1241251066 /usr/include/OIS/OISKeyboard.h
+	"OISObject.h"
+	"OISEvents.h"
+
+1241251066 /usr/include/OIS/OISJoyStick.h
+	"OISObject.h"
+	"OISEvents.h"
+
+1241251066 /usr/include/OIS/OISInputManager.h
+	"OISPrereqs.h"
 

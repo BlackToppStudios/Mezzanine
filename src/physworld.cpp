@@ -9,6 +9,7 @@
 #include "crossplatform.h"
 #include "physworldframelistener.h"
 #include "gamebase.h"
+#include "inputmanager.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Physworld constructor
@@ -25,6 +26,8 @@ physworld::physworld()
 
 	//initilize the settings
 	PlayerSettings = new Settings();
+
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,6 +40,8 @@ physworld::~physworld()
 	//All the pointers Ogtr made should get taken care of by OGRE
 	delete OgreRoot;
 	delete OgreFrameListener;
+
+	delete InputSystem;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -103,6 +108,9 @@ void physworld::GameInit()
 
 	//setting the aspect ratio must be done after we setup the viewport
 	this->OgreCamera->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
+
+	//initiliase the input System
+	InputSystem = InputManager::getSingletonPtr();
 
 	//bind our callbacks to Ogre and the render window
 	OgreRoot->addFrameListener(OgreFrameListener);

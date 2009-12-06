@@ -44,6 +44,8 @@
 		<Unit filename="src/crossplatform.h" />
 		<Unit filename="src/gamebase.cpp" />
 		<Unit filename="src/gamebase.h" />
+		<Unit filename="src/inputmanager.cpp" />
+		<Unit filename="src/inputmanager.h" />
 		<Unit filename="src/menuinterface.cpp" />
 		<Unit filename="src/menuinterface.h" />
 		<Unit filename="src/physworld.cpp" />
