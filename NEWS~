@@ -1,9 +1,0 @@
-Nov 13, 2009
-  Rearranged codebase to use the code::block IDE and compiler for ease of crossplatform development.
-Nov 9, 2009
-  Projects links and compiles against wxWidgets, libois, ogre3d, and ode, working on basic user interface.
-Nov 2, 2009
-  This projects was first created. We focused primarily on documentation and linking basic libraries.
-
-
-
