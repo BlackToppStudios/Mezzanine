@@ -10,7 +10,8 @@
 #include <ode/ode.h>
 #include <Ogre.h>
 
-#include "inputmanager.h"
+#include "SDL.h"
+
 //Not included to prevent infinite loops
 //#include "physworldframelistener.h"
 //#include "gamebase.h"
@@ -29,6 +30,9 @@ class physworld
 		//the ODE Physics world
 		dWorldID OdeWorld;
 
+		//SDL Objects
+		SDL_Surface* SDLscreen;
+
 		//Ogre objects
         Ogre::Root* OgreRoot;
         Ogre::RenderSystem* OgreRenderSystem;
@@ -41,8 +45,11 @@ class physworld
 		//Players settings
 		Settings* PlayerSettings;
 
-		//the input manager
-		InputManager* InputSystem;
+		//Try to retrieve ogre settinss
+		void LoadOgreSettings();
+
+		//makes the windows all the graphics will be drawn to
+		void CreateRenderWindow();
 
 	public:
 		physworld();
@@ -54,6 +61,9 @@ class physworld
 
         //I plan on deprecating this thing soon and building our own settings system
         bool ShowSystemSettingDialog();
+
+		//Change the camera angle;
+		void MoveCamera(Ogre::Vector3 Position, Ogre::Vector3 LookAt);
 
         //Starts the Game
         void GameInit();

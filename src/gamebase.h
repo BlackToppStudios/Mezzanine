@@ -16,10 +16,21 @@ class Settings
 	private:
 		bool Fullscreen;
 
+		//these refer to the render window
+		int RenderHeight;
+		int RenderWidth;
+
 	public:
 		Settings();
 		bool getFullscreen();
 		bool setFullscreen(bool _Fullscreen);
+
+		//For the renderwindow
+		int getRenderHeight();
+		int getRenderWidth();
+		bool setRenderHeight(int Height);
+		bool setRenderWidth(int Width);
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////

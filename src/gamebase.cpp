@@ -36,6 +36,8 @@ bool StartGame(UiFrame* MenuWindow)
 Settings::Settings()
 {
 	this->Fullscreen=false;
+	this->RenderHeight = 680;
+	this->RenderWidth = 480;
 }
 
 //returns: True if user wants fullscreen
@@ -51,4 +53,30 @@ bool Settings::setFullscreen(bool _Fullscreen)
 	this->Fullscreen = _Fullscreen;
 	return true;
 }
+
+//Returns the height of the render window
+int Settings::getRenderHeight()
+{
+	return this->RenderHeight;
+}
+
+//Returns the width of the render window
+int Settings::getRenderWidth()
+{
+	return this->RenderWidth;
+}
+//returns: false if changes could not be made
+bool Settings::setRenderHeight(int Height)
+{
+	this->RenderHeight = Height;
+	return true;
+}
+
+//returns: false if changes could not be made
+bool Settings::setRenderWidth(int Width)
+{
+	this->RenderWidth = Width;
+	return true;
+}
+
 #endif

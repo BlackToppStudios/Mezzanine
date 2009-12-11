@@ -1,40 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="LinDebug" />
-	<File name="src/crossplatform.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="640" topLine="9" />
+	<File name="src/crossplatform.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="330" topLine="0" />
 	</File>
 	<File name="src/crossplatform.h" open="0" top="0" tabpos="0">
-		<Cursor position="977" topLine="16" />
+		<Cursor position="988" topLine="22" />
 	</File>
 	<File name="src/gamebase.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="818" topLine="12" />
+		<Cursor position="1400" topLine="60" />
 	</File>
 	<File name="src/gamebase.h" open="0" top="0" tabpos="5">
-		<Cursor position="364" topLine="0" />
+		<Cursor position="969" topLine="19" />
 	</File>
-	<File name="src/inputmanager.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="83" topLine="3" />
+	<File name="src/menuinterface.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="564" topLine="6" />
 	</File>
-	<File name="src/inputmanager.h" open="1" top="1" tabpos="3">
-		<Cursor position="1535" topLine="47" />
+	<File name="src/menuinterface.h" open="0" top="0" tabpos="7">
+		<Cursor position="185" topLine="31" />
 	</File>
-	<File name="src/menuinterface.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="286" topLine="0" />
+	<File name="src/physworld.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="2313" topLine="74" />
 	</File>
-	<File name="src/menuinterface.h" open="0" top="0" tabpos="1">
-		<Cursor position="185" topLine="21" />
+	<File name="src/physworld.h" open="1" top="0" tabpos="2">
+		<Cursor position="1541" topLine="49" />
 	</File>
-	<File name="src/physworld.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="1339" topLine="42" />
+	<File name="src/physworldframelistener.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="701" topLine="16" />
 	</File>
-	<File name="src/physworld.h" open="1" top="0" tabpos="6">
-		<Cursor position="447" topLine="6" />
-	</File>
-	<File name="src/physworldframelistener.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="883" topLine="1" />
-	</File>
-	<File name="src/physworldframelistener.h" open="1" top="0" tabpos="2">
-		<Cursor position="688" topLine="13" />
+	<File name="src/physworldframelistener.h" open="0" top="0" tabpos="2">
+		<Cursor position="1016" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

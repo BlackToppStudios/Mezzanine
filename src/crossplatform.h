@@ -21,6 +21,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Includes
 
+#include <Ogre.h>
 #include <string>
 using namespace std;
 
@@ -32,5 +33,12 @@ string GetPluginsDotCFG();
 
 //Gets the Settings.cfg filename and location
 string GetSettingsDotCFG();
+
+//This returns a named parameter list with valid settings to use Ogre rendering
+// on a pre-existing SDL context
+Ogre::NameValuePairList GetSDLOgreBinder();
+
+
+
 
 #endif

@@ -27,6 +27,7 @@
 					<Add option="`ode-config --cflags`" />
 					<Add option="`pkg-config --cflags OGRE`" />
 					<Add option="`pkg-config --cflags OIS`" />
+					<Add option="`sdl-config --cflags`" />
 					<Add option="-fexceptions" />
 				</Compiler>
 				<Linker>
@@ -34,6 +35,7 @@
 					<Add option="`ode-config --libs`" />
 					<Add option="`pkg-config --libs OGRE`" />
 					<Add option="`pkg-config --libs OIS`" />
+					<Add option="`sdl-config --libs`" />
 				</Linker>
 			</Target>
 		</Build>
@@ -44,8 +46,6 @@
 		<Unit filename="src/crossplatform.h" />
 		<Unit filename="src/gamebase.cpp" />
 		<Unit filename="src/gamebase.h" />
-		<Unit filename="src/inputmanager.cpp" />
-		<Unit filename="src/inputmanager.h" />
 		<Unit filename="src/menuinterface.cpp" />
 		<Unit filename="src/menuinterface.h" />
 		<Unit filename="src/physworld.cpp" />

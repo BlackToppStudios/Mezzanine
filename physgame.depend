@@ -1,23 +1,25 @@
 # depslib dependency file v1.0
-1259900617 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
+1260510698 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
 	<wx/wx.h>
 	"gamebase.h"
 	"physworld.h"
 	"Ogre.h"
 
-1259909673 /home/sqeaky/Projects/physgame/src/gamebase.h
+1260510698 /home/sqeaky/Projects/physgame/src/gamebase.h
 	"menuinterface.h"
 
-1260082991 /home/sqeaky/Projects/physgame/src/physworld.h
+1260511377 /home/sqeaky/Projects/physgame/src/physworld.h
 	<ode/ode.h>
 	<Ogre.h>
-	"inputmanager.h"
+	"SDL.h"
 
-1259909650 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
+1260506594 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
 	"physworld.h"
 	"crossplatform.h"
 	"physworldframelistener.h"
 	"gamebase.h"
+	"inputmanager.h"
+	"SDL.h"
 
 1257907924 source:/home/sqeaky/Projects/physgame/src/userinterface.cpp
 	<wx/wx.h>
@@ -3008,7 +3010,7 @@
 1254905347 /usr/include/bits/local_lim.h
 	<linux/limits.h>
 
-1259895194 /usr/include/linux/limits.h
+1260262758 /usr/include/linux/limits.h
 
 1254905347 /usr/include/bits/posix2_lim.h
 
@@ -3579,10 +3581,10 @@
 	<linux/param.h>
 	<sys/types.h>
 
-1259895195 /usr/include/linux/param.h
+1260262758 /usr/include/linux/param.h
 	<asm/param.h>
 
-1259895196 /usr/include/asm/param.h
+1260262760 /usr/include/asm/param.h
 
 1256569201 /usr/include/OGRE/OgreMemoryAllocatorConfig.h
 	"OgrePrerequisites.h"
@@ -4617,10 +4619,11 @@
 	"menuinterface.h"
 	"physworld.h"
 
-1259899444 source:/home/sqeaky/Projects/physgame/src/crossplatform.cpp
+1260508852 source:/home/sqeaky/Projects/physgame/src/crossplatform.cpp
 	"crossplatform.h"
 
-1259909545 /home/sqeaky/Projects/physgame/src/crossplatform.h
+1260508975 /home/sqeaky/Projects/physgame/src/crossplatform.h
+	<Ogre.h>
 	<string>
 
 1258946706 /usr/local/include/OGRE/Ogre.h
@@ -5806,13 +5809,13 @@
 	<Ogre.h>
 	"physworld.h"
 
-1259936182 source:/home/sqeaky/Projects/physgame/src/physworldframelistener.cpp
+1260502487 source:/home/sqeaky/Projects/physgame/src/physworldframelistener.cpp
 	"physworldframelistener.h"
 
 1260080865 source:/home/sqeaky/Projects/physgame/src/inputmanager.cpp
 	"inputmanager.h"
 
-1260082786 /home/sqeaky/Projects/physgame/src/inputmanager.h
+1260151500 /home/sqeaky/Projects/physgame/src/inputmanager.h
 	<OISMouse.h>
 	<OISKeyboard.h>
 	<OISJoyStick.h>
@@ -5851,4 +5854,203 @@
 
 1241251066 /usr/include/OIS/OISInputManager.h
 	"OISPrereqs.h"
+
+1247825454 /usr/include/SDL/SDL.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1247825455 /usr/include/SDL/SDL_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1247825454 /usr/include/SDL/SDL_platform.h
+
+1254905336 /usr/include/malloc.h
+	<features.h>
+	<stddef.h>
+	<stdio.h>
+
+1254905331 /usr/include/inttypes.h
+	<features.h>
+	<stdint.h>
+	<stddef.h>
+
+1254905331 /usr/include/stdint.h
+	<features.h>
+	<bits/wchar.h>
+	<bits/wordsize.h>
+
+1254905292 /usr/include/iconv.h
+	<features.h>
+	<stddef.h>
+
+1247825454 /usr/include/SDL/begin_code.h
+
+1247825454 /usr/include/SDL/close_code.h
+
+1247825454 /usr/include/SDL/SDL_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_keysym.h
+
+1247825454 /usr/include/SDL/SDL_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1247825454 /usr/include/SDL/SDL_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
 

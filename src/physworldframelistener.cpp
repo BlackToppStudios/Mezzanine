@@ -22,9 +22,9 @@ physworldFrameListener::physworldFrameListener(physworld* _Parent) : mTime(0)
 bool physworldFrameListener::frameStarted(const Ogre::FrameEvent& evt)
 {
 	mTime += evt.timeSinceLastFrame;
-	if (mTime > 3)
+	if (mTime > 10)
 	{
-	    TheWorldIListenTo->Log("Quitting after 3 sec.");
+	    TheWorldIListenTo->Log("Quitting after 10 sec.");
 		return false;
 	}
 	return true;
