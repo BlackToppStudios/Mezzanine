@@ -5,30 +5,30 @@
 		<Cursor position="330" topLine="0" />
 	</File>
 	<File name="src/crossplatform.h" open="0" top="0" tabpos="0">
-		<Cursor position="988" topLine="22" />
+		<Cursor position="1478" topLine="20" />
 	</File>
 	<File name="src/gamebase.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1400" topLine="60" />
 	</File>
 	<File name="src/gamebase.h" open="0" top="0" tabpos="5">
-		<Cursor position="969" topLine="19" />
+		<Cursor position="969" topLine="0" />
 	</File>
 	<File name="src/menuinterface.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="564" topLine="6" />
 	</File>
 	<File name="src/menuinterface.h" open="0" top="0" tabpos="7">
-		<Cursor position="185" topLine="31" />
+		<Cursor position="185" topLine="0" />
 	</File>
-	<File name="src/physworld.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="2313" topLine="74" />
+	<File name="src/physworld.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="3258" topLine="101" />
 	</File>
 	<File name="src/physworld.h" open="1" top="0" tabpos="2">
-		<Cursor position="1541" topLine="49" />
+		<Cursor position="2001" topLine="43" />
 	</File>
-	<File name="src/physworldframelistener.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="701" topLine="16" />
+	<File name="src/physworldframelistener.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="1001" topLine="16" />
 	</File>
 	<File name="src/physworldframelistener.h" open="0" top="0" tabpos="2">
-		<Cursor position="1016" topLine="0" />
+		<Cursor position="301" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

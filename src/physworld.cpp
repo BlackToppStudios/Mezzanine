@@ -2,16 +2,17 @@
 #define _physworld_cpp
 ///////////////////////////////////////////////////////////////////////////////
 //The world that integrates everything
-
+//
+//This is where all the calls to the the underlying libraries should be from.
+//physworld is an abstraction layer to all of the non-ui libraries. The ui
+//layers wx and ogre both have their own main loops, so it is almost mandatory
+//for other code to interact with those libraries directly.
 ///////////////////////////////////////////////////////////////////////////////
 //additional Includes
 #include "physworld.h"
 #include "crossplatform.h"
 #include "physworldframelistener.h"
 #include "gamebase.h"
-#include "inputmanager.h"
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // Physworld constructor
@@ -96,6 +97,25 @@ void physworld::MoveCamera(Ogre::Vector3 Position, Ogre::Vector3 LookAt)
 	this->OgreCamera->setPosition(Position);
     this->OgreCamera->lookAt(LookAt);
 }
+
+void physworld::DoMainLoopAllItems()
+{
+	this->DoMainLoopPhysics();
+	this->DoMainLoopInputBuffering();
+}
+
+void physworld::DoMainLoopPhysics()
+{
+	//ode per main loop items
+}
+
+void physworld::DoMainLoopInputBuffering()
+{
+	SDL_PumpEvents();
+}
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Private Functions

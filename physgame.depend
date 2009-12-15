@@ -8,18 +8,16 @@
 1260510698 /home/sqeaky/Projects/physgame/src/gamebase.h
 	"menuinterface.h"
 
-1260511377 /home/sqeaky/Projects/physgame/src/physworld.h
+1260701050 /home/sqeaky/Projects/physgame/src/physworld.h
 	<ode/ode.h>
 	<Ogre.h>
 	"SDL.h"
 
-1260506594 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
+1260701572 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
 	"physworld.h"
 	"crossplatform.h"
 	"physworldframelistener.h"
 	"gamebase.h"
-	"inputmanager.h"
-	"SDL.h"
 
 1257907924 source:/home/sqeaky/Projects/physgame/src/userinterface.cpp
 	<wx/wx.h>
@@ -4622,7 +4620,7 @@
 1260508852 source:/home/sqeaky/Projects/physgame/src/crossplatform.cpp
 	"crossplatform.h"
 
-1260508975 /home/sqeaky/Projects/physgame/src/crossplatform.h
+1260697480 /home/sqeaky/Projects/physgame/src/crossplatform.h
 	<Ogre.h>
 	<string>
 
@@ -5805,7 +5803,7 @@
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupLiSPSM.h"
 
-1259938015 /home/sqeaky/Projects/physgame/src/physworldframelistener.h
+1260742395 /home/sqeaky/Projects/physgame/src/physworldframelistener.h
 	<Ogre.h>
 	"physworld.h"
 

@@ -67,5 +67,12 @@ class physworld
 
         //Starts the Game
         void GameInit();
+
+        //Functions to run during the game loop.
+        void DoMainLoopAllItems();
+        void DoMainLoopPhysics();
+		void DoMainLoopInputBuffering();
+
+
 };
 #endif

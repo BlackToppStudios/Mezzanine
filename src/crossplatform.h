@@ -39,6 +39,4 @@ string GetSettingsDotCFG();
 Ogre::NameValuePairList GetSDLOgreBinder();
 
 
-
-
 #endif
