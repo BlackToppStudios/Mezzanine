@@ -8,11 +8,14 @@
 //layers wx and ogre both have their own main loops, so it is almost mandatory
 //for other code to interact with those libraries directly.
 ///////////////////////////////////////////////////////////////////////////////
-//additional Includes
+//Includes
 #include "physworld.h"
+#include "physvector.h"
 #include "crossplatform.h"
 #include "physworldframelistener.h"
 #include "gamebase.h"
+
+#include "SDL.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Physworld constructor
@@ -25,7 +28,7 @@ physworld::physworld()
 	this->OgreFrameListener = new physworldFrameListener(this);
 
 	//instantiate the Physics engine
-	this->OdeWorld = dWorldCreate();
+	//this->OdeWorld = dWorldCreate();
 
 	//initilize the settings
 	PlayerSettings = new Settings();
@@ -36,7 +39,7 @@ physworld::physworld()
 physworld::~physworld()
 {
 	//Destroy the physical world that we loved and cherished, until we SIGTERMED
-	dWorldDestroy(this->OdeWorld);
+	//dWorldDestroy(this->OdeWorld);
 
 	//All the pointers Ogre made should get taken care of by OGRE
 	delete OgreRoot;
@@ -92,10 +95,10 @@ void physworld::GameInit()
 	this->OgreRoot->startRendering();
 }
 
-void physworld::MoveCamera(Ogre::Vector3 Position, Ogre::Vector3 LookAt)
+void physworld::MoveCamera(PhysVector3 Position, PhysVector3 LookAt)
 {
-	this->OgreCamera->setPosition(Position);
-    this->OgreCamera->lookAt(LookAt);
+	this->OgreCamera->setPosition(Ogre::Vector3(Position.X,Position.Y,Position.Z));
+    this->OgreCamera->lookAt(Ogre::Vector3(LookAt.X,LookAt.Y,LookAt.Z));
 }
 
 void physworld::DoMainLoopAllItems()
@@ -165,7 +168,7 @@ void physworld::CreateRenderWindow()
 	this->OgreCamera->setNearClipDistance(5.0f);
     this->OgreCamera->setFarClipDistance(5000.0f);
 
-	this->MoveCamera(Ogre::Vector3(0.0f,0.0f,500.0f), Ogre::Vector3(0.0f,0.0f,0.0f));
+	this->MoveCamera(PhysVector3(0.0f,0.0f,500.0f), PhysVector3(0.0f,0.0f,0.0f));
 
 	//viewport connects camera and render window
 	this->OgreViewport = this->OgreGameWindow->addViewport(OgreCamera);

@@ -8,16 +8,15 @@
 1260510698 /home/sqeaky/Projects/physgame/src/gamebase.h
 	"menuinterface.h"
 
-1260701050 /home/sqeaky/Projects/physgame/src/physworld.h
-	<ode/ode.h>
-	<Ogre.h>
-	"SDL.h"
+1260942510 /home/sqeaky/Projects/physgame/src/physworld.h
+	<string>
 
-1260701572 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
+1260937375 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
 	"physworld.h"
 	"crossplatform.h"
 	"physworldframelistener.h"
 	"gamebase.h"
+	"SDL.h"
 
 1257907924 source:/home/sqeaky/Projects/physgame/src/userinterface.cpp
 	<wx/wx.h>
@@ -5807,7 +5806,7 @@
 	<Ogre.h>
 	"physworld.h"
 
-1260502487 source:/home/sqeaky/Projects/physgame/src/physworldframelistener.cpp
+1260888672 source:/home/sqeaky/Projects/physgame/src/physworldframelistener.cpp
 	"physworldframelistener.h"
 
 1260080865 source:/home/sqeaky/Projects/physgame/src/inputmanager.cpp
@@ -6051,4 +6050,7 @@
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
+
+1260942451 source:/home/sqeaky/Projects/physgame/src/physvector.cpp
+	<Ogre.h>
 

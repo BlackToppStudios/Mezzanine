@@ -6,32 +6,47 @@
 //world object. This is the
 
 ///////////////////////////////////////////////////////////////////////////////
-//Includes
-#include <ode/ode.h>
-#include <Ogre.h>
+//Includes and Forward Declarations
 
-#include "SDL.h"
+#include <string>
+
+using namespace std;
+
+//#include <Ogre.h>
+namespace Ogre
+{
+	class Root;
+	class RenderSystem;
+	class RenderWindow;
+	class SceneManager;
+	class Camera;
+	class Viewport;
+}
+
+//#include "SDL.h"
+class SDL_Surface;
 
 //Not included to prevent infinite loops
 //#include "physworldframelistener.h"
 //#include "gamebase.h"
-
-using namespace std;
-
+//#include "physvector.h"
 //Forward declarations to prevent infite loop of includes
 class physworldFrameListener;
 class Settings;
+
+//physworld.cpp
+class PhysVector3;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Physworld Class Declaration
 class physworld
 {
 	private:
-		//the ODE Physics world
-		dWorldID OdeWorld;
+		//TODO Add Bullet Physics world
+		//dWorldID OdeWorld;
 
 		//SDL Objects
-		SDL_Surface* SDLscreen;
+		SDL_Surface *SDLscreen;
 
 		//Ogre objects
         Ogre::Root* OgreRoot;
@@ -63,7 +78,7 @@ class physworld
         bool ShowSystemSettingDialog();
 
 		//Change the camera angle;
-		void MoveCamera(Ogre::Vector3 Position, Ogre::Vector3 LookAt);
+		void MoveCamera(PhysVector3 Position, PhysVector3 LookAt);
 
         //Starts the Game
         void GameInit();

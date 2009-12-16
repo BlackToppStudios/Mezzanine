@@ -24,7 +24,6 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="`wx-config --cflags`" />
-					<Add option="`ode-config --cflags`" />
 					<Add option="`pkg-config --cflags OGRE`" />
 					<Add option="`pkg-config --cflags OIS`" />
 					<Add option="`sdl-config --cflags`" />
@@ -32,7 +31,6 @@
 				</Compiler>
 				<Linker>
 					<Add option="`wx-config --libs`" />
-					<Add option="`ode-config --libs`" />
 					<Add option="`pkg-config --libs OGRE`" />
 					<Add option="`pkg-config --libs OIS`" />
 					<Add option="`sdl-config --libs`" />
@@ -48,6 +46,8 @@
 		<Unit filename="src/gamebase.h" />
 		<Unit filename="src/menuinterface.cpp" />
 		<Unit filename="src/menuinterface.h" />
+		<Unit filename="src/physvector.cpp" />
+		<Unit filename="src/physvector.h" />
 		<Unit filename="src/physworld.cpp" />
 		<Unit filename="src/physworld.h" />
 		<Unit filename="src/physworldframelistener.cpp" />
