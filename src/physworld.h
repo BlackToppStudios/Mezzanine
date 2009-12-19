@@ -27,11 +27,11 @@ namespace Ogre
 class SDL_Surface;
 
 //Not included to prevent infinite loops
-//#include "physworldframelistener.h"
+#include "physworldframelistener.h"
 //#include "gamebase.h"
 //#include "physvector.h"
 //Forward declarations to prevent infite loop of includes
-class physworldFrameListener;
+//class physworldFrameListener;
 class Settings;
 
 //physworld.cpp

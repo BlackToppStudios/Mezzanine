@@ -8,7 +8,7 @@
 		<Cursor position="1478" topLine="20" />
 	</File>
 	<File name="src/gamebase.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1400" topLine="60" />
+		<Cursor position="403" topLine="2" />
 	</File>
 	<File name="src/gamebase.h" open="0" top="0" tabpos="5">
 		<Cursor position="969" topLine="0" />
@@ -19,7 +19,7 @@
 	<File name="src/menuinterface.h" open="0" top="0" tabpos="7">
 		<Cursor position="185" topLine="0" />
 	</File>
-	<File name="src/physdatatypes.h" open="1" top="0" tabpos="5">
+	<File name="src/physdatatypes.h" open="1" top="0" tabpos="4">
 		<Cursor position="271" topLine="0" />
 	</File>
 	<File name="src/physvector.cpp" open="0" top="0" tabpos="3">
@@ -28,16 +28,16 @@
 	<File name="src/physvector.h" open="0" top="0" tabpos="4">
 		<Cursor position="45" topLine="0" />
 	</File>
-	<File name="src/physworld.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="1442" topLine="40" />
+	<File name="src/physworld.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="22" topLine="0" />
 	</File>
-	<File name="src/physworld.h" open="1" top="0" tabpos="4">
-		<Cursor position="2303" topLine="75" />
+	<File name="src/physworld.h" open="1" top="0" tabpos="3">
+		<Cursor position="838" topLine="24" />
 	</File>
 	<File name="src/physworldframelistener.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="3110" topLine="72" />
+		<Cursor position="27" topLine="0" />
 	</File>
 	<File name="src/physworldframelistener.h" open="1" top="0" tabpos="1">
-		<Cursor position="830" topLine="7" />
+		<Cursor position="1752" topLine="32" />
 	</File>
 </CodeBlocks_layout_file>

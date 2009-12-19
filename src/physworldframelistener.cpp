@@ -11,6 +11,7 @@
 //Includes
 #include "physworldframelistener.h"
 #include "physdatatypes.h"
+#include "physworld.h"
 
 #include "Ogre.h"
 
@@ -35,13 +36,13 @@ class physworldPrivateFrameListener : public Ogre::FrameListener
   		physworldPrivateFrameListener(physworld* _Parent, physworldFrameListener* _Translator);
 
   		//Called when a frame is about to begin rendering.
-		virtual bool frameStarted(const Ogre::FrameEvent& evt);
+		virtual bool FrameStarted(const Ogre::FrameEvent& evt);
 
 		//Called after all render targets have had their rendering commands issued, but before render windows have been asked to flip their buffers over.
-		virtual bool frameRenderingQueued (const Ogre::FrameEvent &evt);
+		virtual bool FrameRenderingQueued (const Ogre::FrameEvent &evt);
 
 		//Called just after a frame has been rendered.
-		virtual bool frameEnded(const Ogre::FrameEvent& evt);
+		virtual bool FrameEnded(const Ogre::FrameEvent& evt);
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -54,7 +55,7 @@ physworldPrivateFrameListener::physworldPrivateFrameListener(physworld* _Parent,
 }
 
 //Called when a frame is about to begin rendering.
-bool physworldPrivateFrameListener::frameStarted(const Ogre::FrameEvent& evt)
+bool physworldPrivateFrameListener::FrameStarted(const Ogre::FrameEvent& evt)
 {
 	mTime += evt.timeSinceLastFrame;
 	if (mTime > 10)
@@ -63,19 +64,19 @@ bool physworldPrivateFrameListener::frameStarted(const Ogre::FrameEvent& evt)
 		return false;
 	}
 
-	return Translator->frameStarted();
+	return Translator->FrameStarted();
 }
 
 //Called after all render targets have had their rendering commands issued, but before render windows have been asked to flip their buffers over.
-bool physworldPrivateFrameListener::frameRenderingQueued (const Ogre::FrameEvent &evt)
+bool physworldPrivateFrameListener::FrameRenderingQueued (const Ogre::FrameEvent &evt)
 {
-	return Translator->frameStarted();
+	return Translator->FrameStarted();
 }
 
 //Called just after a frame has been rendered.
-bool physworldPrivateFrameListener::frameEnded(const Ogre::FrameEvent& evt)
+bool physworldPrivateFrameListener::FrameEnded(const Ogre::FrameEvent& evt)
 {
-	return Translator->frameStarted();
+	return Translator->FrameStarted();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -84,6 +85,9 @@ bool physworldPrivateFrameListener::frameEnded(const Ogre::FrameEvent& evt)
 physworldFrameListener::physworldFrameListener(physworld* _Parent)
 {
 	PrivateListen = new physworldPrivateFrameListener(_Parent,this);
+	FrameStartCallback = NULL;
+	FrameQueuedCallback = NULL;
+	FrameEndedCallback = NULL;
 }
 
 physworldFrameListener::~physworldFrameListener()
@@ -92,26 +96,70 @@ physworldFrameListener::~physworldFrameListener()
 }
 
 //Called when a frame is about to begin rendering.
-bool physworldFrameListener::frameStarted()
+bool physworldFrameListener::FrameStarted()
 {
-	//TODO execute callback functions
+	//Lets do the bulk; of the work before we render
 	TheWorldIListenTo->DoMainLoopAllItems();
+
+	//If a call back has been set then we use it, otherwise we can
+	//assume that we should just keep execute the main loop
+	if(NULL!=FrameStartCallback)
+	{
+		return (*FrameStartCallback);
+	}
 	return true;
 }
 
+void physworldFrameListener::EraseFrameStartedCallback()
+{
+	this->FrameStartCallback = NULL;
+}
+
+void physworldFrameListener::SetFrameStartedCallback(bool (*Callback)())
+{
+	this->FrameStartCallback = Callback;
+}
+///////////////////////////////////////////////////////////////////////////////
 //Called after all render targets have had their rendering commands issued, but before render windows have been asked to flip their buffers over.
-bool physworldFrameListener::frameRenderingQueued ()
+bool physworldFrameListener::FrameRenderingQueued ()
 {
-	//TODO execute callback functions
+	if(NULL!=FrameQueuedCallback)
+	{
+		return (*FrameQueuedCallback);
+	}
 	return true;
 }
 
+void physworldFrameListener::EraseFrameRenderingQueuedCallback()
+{
+	this->FrameQueuedCallback = NULL;
+}
+
+void physworldFrameListener::SetFrameRenderingQueuedCallback(bool (*Callback)())
+{
+	this->FrameQueuedCallback = Callback;
+}
+///////////////////////////////////////////////////////////////////////////////
 //Called just after a frame has been rendered.
-bool physworldFrameListener::frameEnded()
+bool physworldFrameListener::FrameEnded()
 {
-	//TODO execute callback functions
+	if(NULL!=FrameEndedCallback)
+	{
+		return (*FrameEndedCallback);
+	}
+
 	return true;
 }
 
+void physworldFrameListener::EraseFrameEndedCallback()
+{
+	this->FrameEndedCallback = NULL;
+}
+
+
+void physworldFrameListener::SetFrameEndedCallback(bool (*Callback)())
+{
+	this->FrameEndedCallback = Callback;
+}
 
 #endif

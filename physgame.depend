@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1260510698 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
+1261212129 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
 	<wx/wx.h>
 	"gamebase.h"
 	"physworld.h"
@@ -8,10 +8,11 @@
 1260510698 /home/sqeaky/Projects/physgame/src/gamebase.h
 	"menuinterface.h"
 
-1261200677 /home/sqeaky/Projects/physgame/src/physworld.h
+1261211443 /home/sqeaky/Projects/physgame/src/physworld.h
 	<string>
+	"physworldframelistener.h"
 
-1261199330 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
+1261211265 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
 	"physworld.h"
 	"physvector.h"
 	"crossplatform.h"
@@ -5803,11 +5804,13 @@
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupLiSPSM.h"
 
-1261200230 /home/sqeaky/Projects/physgame/src/physworldframelistener.h
-	"physworld.h"
+1261212425 /home/sqeaky/Projects/physgame/src/physworldframelistener.h
 
-1260888672 source:/home/sqeaky/Projects/physgame/src/physworldframelistener.cpp
+1261211732 source:/home/sqeaky/Projects/physgame/src/physworldframelistener.cpp
 	"physworldframelistener.h"
+	"physdatatypes.h"
+	"physworld.h"
+	"Ogre.h"
 
 1260080865 source:/home/sqeaky/Projects/physgame/src/inputmanager.cpp
 	"inputmanager.h"
@@ -6057,5 +6060,5 @@
 1261198328 /home/sqeaky/Projects/physgame/src/physvector.h
 	"physdatatypes.h"
 
-1261198331 /home/sqeaky/Projects/physgame/src/physdatatypes.h
+1261201358 /home/sqeaky/Projects/physgame/src/physdatatypes.h
 

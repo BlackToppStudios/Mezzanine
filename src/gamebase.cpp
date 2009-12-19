@@ -10,6 +10,13 @@
 #include "physworld.h"
 #include "Ogre.h"
 
+//test foe the callbacks
+bool EachFrame()
+{
+	cout<<"Begin frame \n";
+	return false;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // This function will Hide the game window and launch the appropriate 3d render
 //window and start the game based on the users settings.
@@ -22,6 +29,9 @@ bool StartGame(UiFrame* MenuWindow)
 
 	//Set the world in motion
 	physworld TheWorld;
+
+	//TheWorld.FrameListener->SetFrameStartedCallback(&EachFrame);
+
 	TheWorld.GameInit();
 
 	//return to the menu;
@@ -29,6 +39,10 @@ bool StartGame(UiFrame* MenuWindow)
 
 	return true;
 }
+
+
+
+
 
 /////////////////////////////////////
 // Functions for managing settings

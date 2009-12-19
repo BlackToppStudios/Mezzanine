@@ -45,6 +45,8 @@ physworld::~physworld()
 	delete OgreRoot;
 	delete FrameListener;
 
+	delete PlayerSettings;
+
 	//remove sdl stuff
 	void SDL_Quit(void);
 }
