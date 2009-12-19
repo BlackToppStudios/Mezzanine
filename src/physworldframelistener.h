@@ -1,39 +1,38 @@
 #ifndef PHYSWORLDFRAMELISTENER_H
 #define PHYSWORLDFRAMELISTENER_H
 ///////////////////////////////////////////////////////////////////////////////
-//Ogre framelisteners are classes which contain callback functions for when
-//certain events happen with frame render associated with a specific Ogre root.
+//Framelisteners are classes which contain callback functions for when
+//certain events happen with the Rendering engine
 ///////////////////////////////////////////////////////////////////////////////
 
-
-//Includes
-#include <Ogre.h>
 #include "physworld.h"
-
+//Forward declaring a class to interface with the callbacks from the rendering
+//engine
+class physworldPrivateFrameListener;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Interface of physworldFrameListener
-
-class physworldFrameListener : public Ogre::FrameListener
+class physworldFrameListener
 {
 	private:
-		Ogre::Real mTime;
-
+		physworldPrivateFrameListener* PrivateListen;
 		physworld* TheWorldIListenTo;
-		//Ogre::InputReader* OgreInputReader;
+
 	public:
+	//To build a frame listener we need a world to listen too
   		physworldFrameListener(physworld* _Parent);
+  		~physworldFrameListener();
 
   		//Called when a frame is about to begin rendering.
-		virtual bool frameStarted(const Ogre::FrameEvent& evt);
+		bool frameStarted();
 
 		//Called after all render targets have had their rendering commands issued, but before render windows have been asked to flip their buffers over.
-		virtual bool frameRenderingQueued (const Ogre::FrameEvent &evt);
+		bool frameRenderingQueued ();
 
 		//Called just after a frame has been rendered.
-		virtual bool frameEnded(const Ogre::FrameEvent& evt);
+		bool frameEnded();
+
+		friend void physworld::GameInit();
 };
 
 #endif
-
-

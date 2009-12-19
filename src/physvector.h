@@ -1,7 +1,7 @@
 #ifndef _physvector_h
 #define _physvector_h
 
-typedef float PhysReal;
+#include "physdatatypes.h"
 
 class PhysVector3
 {

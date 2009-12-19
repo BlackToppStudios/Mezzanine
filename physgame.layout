@@ -19,22 +19,25 @@
 	<File name="src/menuinterface.h" open="0" top="0" tabpos="7">
 		<Cursor position="185" topLine="0" />
 	</File>
-	<File name="src/physvector.cpp" open="1" top="0" tabpos="3">
+	<File name="src/physdatatypes.h" open="1" top="0" tabpos="5">
+		<Cursor position="271" topLine="0" />
+	</File>
+	<File name="src/physvector.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="137" topLine="0" />
 	</File>
-	<File name="src/physvector.h" open="1" top="0" tabpos="4">
-		<Cursor position="144" topLine="0" />
+	<File name="src/physvector.h" open="0" top="0" tabpos="4">
+		<Cursor position="45" topLine="0" />
 	</File>
-	<File name="src/physworld.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="5061" topLine="135" />
+	<File name="src/physworld.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="1442" topLine="40" />
 	</File>
-	<File name="src/physworld.h" open="1" top="1" tabpos="2">
-		<Cursor position="463" topLine="29" />
+	<File name="src/physworld.h" open="1" top="0" tabpos="4">
+		<Cursor position="2303" topLine="75" />
 	</File>
-	<File name="src/physworldframelistener.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1001" topLine="16" />
+	<File name="src/physworldframelistener.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="3110" topLine="72" />
 	</File>
-	<File name="src/physworldframelistener.h" open="0" top="0" tabpos="2">
-		<Cursor position="301" topLine="0" />
+	<File name="src/physworldframelistener.h" open="1" top="0" tabpos="1">
+		<Cursor position="830" topLine="7" />
 	</File>
 </CodeBlocks_layout_file>

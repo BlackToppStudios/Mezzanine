@@ -46,6 +46,7 @@
 		<Unit filename="src/gamebase.h" />
 		<Unit filename="src/menuinterface.cpp" />
 		<Unit filename="src/menuinterface.h" />
+		<Unit filename="src/physdatatypes.h" />
 		<Unit filename="src/physvector.cpp" />
 		<Unit filename="src/physvector.h" />
 		<Unit filename="src/physworld.cpp" />

@@ -55,7 +55,6 @@ class physworld
 		Ogre::SceneManager* OgreSceneManager;
 		Ogre::Camera* OgreCamera;
 		Ogre::Viewport* OgreViewport;
-		physworldFrameListener* OgreFrameListener;
 
 		//Players settings
 		Settings* PlayerSettings;
@@ -87,6 +86,9 @@ class physworld
         void DoMainLoopAllItems();
         void DoMainLoopPhysics();
 		void DoMainLoopInputBuffering();
+
+		//used to set callback functions to be run in the main loop
+		physworldFrameListener* FrameListener;
 
 
 };

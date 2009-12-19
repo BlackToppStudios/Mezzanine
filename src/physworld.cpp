@@ -25,7 +25,7 @@ physworld::physworld()
 {
 	//We create our Ogre environment and ODE enviroment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
-	this->OgreFrameListener = new physworldFrameListener(this);
+	this->FrameListener = new physworldFrameListener(this);
 
 	//instantiate the Physics engine
 	//this->OdeWorld = dWorldCreate();
@@ -43,7 +43,7 @@ physworld::~physworld()
 
 	//All the pointers Ogre made should get taken care of by OGRE
 	delete OgreRoot;
-	delete OgreFrameListener;
+	delete FrameListener;
 
 	//remove sdl stuff
 	void SDL_Quit(void);
@@ -89,7 +89,7 @@ void physworld::GameInit()
 	this->CreateRenderWindow();
 
 	//bind our callbacks to Ogre and the render window
-	OgreRoot->addFrameListener(OgreFrameListener);
+	OgreRoot->addFrameListener((Ogre::FrameListener*)FrameListener->PrivateListen);
 
 	//Start the game rendering
 	this->OgreRoot->startRendering();
