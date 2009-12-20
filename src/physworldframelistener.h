@@ -46,7 +46,7 @@ class physworldFrameListener
 		void EraseFrameEndedCallback();
 		void SetFrameEndedCallback(bool (*Callback)());
 
-		friend class physworld;//::GameInit();
+		friend class physworld;
 };
 
 #endif

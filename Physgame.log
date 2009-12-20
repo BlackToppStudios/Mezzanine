@@ -1,126 +1,126 @@
-02:35:57: Creating resource group General
-02:35:57: Creating resource group Internal
-02:35:57: Creating resource group Autodetect
-02:35:57: SceneManagerFactory for type 'DefaultSceneManager' registered.
-02:35:57: Registering ResourceManager for type Material
-02:35:57: Registering ResourceManager for type Mesh
-02:35:57: Registering ResourceManager for type Skeleton
-02:35:57: MovableObjectFactory for type 'ParticleSystem' registered.
-02:35:57: OverlayElementFactory for type Panel registered.
-02:35:57: OverlayElementFactory for type BorderPanel registered.
-02:35:57: OverlayElementFactory for type TextArea registered.
-02:35:57: Registering ResourceManager for type Font
-02:35:57: ArchiveFactory for archive type FileSystem registered.
-02:35:57: ArchiveFactory for archive type Zip registered.
-02:35:57: FreeImage version: 3.10.0
-02:35:57: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
-02:35:57: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2
-02:35:57: DDS codec registering
-02:35:57: Registering ResourceManager for type HighLevelGpuProgram
-02:35:57: Registering ResourceManager for type Compositor
-02:35:57: MovableObjectFactory for type 'Entity' registered.
-02:35:57: MovableObjectFactory for type 'Light' registered.
-02:35:57: MovableObjectFactory for type 'BillboardSet' registered.
-02:35:57: MovableObjectFactory for type 'ManualObject' registered.
-02:35:57: MovableObjectFactory for type 'BillboardChain' registered.
-02:35:57: MovableObjectFactory for type 'RibbonTrail' registered.
-02:35:57: Loading library data/ubuntu/plugins/RenderSystem_GL.so
-02:35:57: Installing plugin: GL RenderSystem
-02:35:57: OpenGL Rendering Subsystem created.
-02:35:58: Plugin successfully installed
-02:35:58: *-*-* OGRE Initialising
-02:35:58: *-*-* Version 1.6.4 (Shoggoth)
-02:35:58: CPU Identifier & Features
-02:35:58: -------------------------
-02:35:58:  *   CPU ID: GenuineIntel: Intel(R) Atom(TM) CPU N270   @ 1.60GHz
-02:35:58:  *      SSE: yes
-02:35:58:  *     SSE2: yes
-02:35:58:  *     SSE3: yes
-02:35:58:  *      MMX: yes
-02:35:58:  *   MMXEXT: yes
-02:35:58:  *    3DNOW: no
-02:35:58:  * 3DNOWEXT: no
-02:35:58:  *     CMOV: yes
-02:35:58:  *      TSC: yes
-02:35:58:  *      FPU: yes
-02:35:58:  *      PRO: yes
-02:35:58:  *       HT: no
-02:35:58: -------------------------
-02:35:58: ******************************
+01:20:32: Creating resource group General
+01:20:32: Creating resource group Internal
+01:20:32: Creating resource group Autodetect
+01:20:32: SceneManagerFactory for type 'DefaultSceneManager' registered.
+01:20:32: Registering ResourceManager for type Material
+01:20:32: Registering ResourceManager for type Mesh
+01:20:32: Registering ResourceManager for type Skeleton
+01:20:32: MovableObjectFactory for type 'ParticleSystem' registered.
+01:20:32: OverlayElementFactory for type Panel registered.
+01:20:32: OverlayElementFactory for type BorderPanel registered.
+01:20:32: OverlayElementFactory for type TextArea registered.
+01:20:32: Registering ResourceManager for type Font
+01:20:32: ArchiveFactory for archive type FileSystem registered.
+01:20:32: ArchiveFactory for archive type Zip registered.
+01:20:32: FreeImage version: 3.10.0
+01:20:32: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+01:20:32: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2
+01:20:32: DDS codec registering
+01:20:32: Registering ResourceManager for type HighLevelGpuProgram
+01:20:32: Registering ResourceManager for type Compositor
+01:20:32: MovableObjectFactory for type 'Entity' registered.
+01:20:32: MovableObjectFactory for type 'Light' registered.
+01:20:32: MovableObjectFactory for type 'BillboardSet' registered.
+01:20:32: MovableObjectFactory for type 'ManualObject' registered.
+01:20:32: MovableObjectFactory for type 'BillboardChain' registered.
+01:20:32: MovableObjectFactory for type 'RibbonTrail' registered.
+01:20:32: Loading library data/ubuntu/plugins/RenderSystem_GL.so
+01:20:32: Installing plugin: GL RenderSystem
+01:20:32: OpenGL Rendering Subsystem created.
+01:20:32: Plugin successfully installed
+01:20:32: *-*-* OGRE Initialising
+01:20:32: *-*-* Version 1.6.4 (Shoggoth)
+01:20:32: CPU Identifier & Features
+01:20:32: -------------------------
+01:20:32:  *   CPU ID: GenuineIntel: Intel(R) Atom(TM) CPU N270   @ 1.60GHz
+01:20:32:  *      SSE: yes
+01:20:32:  *     SSE2: yes
+01:20:32:  *     SSE3: yes
+01:20:32:  *      MMX: yes
+01:20:32:  *   MMXEXT: yes
+01:20:32:  *    3DNOW: no
+01:20:32:  * 3DNOWEXT: no
+01:20:32:  *     CMOV: yes
+01:20:32:  *      TSC: yes
+01:20:32:  *      FPU: yes
+01:20:32:  *      PRO: yes
+01:20:32:  *       HT: no
+01:20:32: -------------------------
+01:20:32: ******************************
 *** Starting GLX Subsystem ***
 ******************************
-02:35:58: GLRenderSystem::_createRenderWindow "physgame", 680x480 windowed  miscParams: currentGLContext=True 
-02:35:58: GLXWindow::create used FBConfigID = 151
-02:35:58: GL_VERSION = 1.4 Mesa 7.6
-02:35:58: GL_VENDOR = Tungsten Graphics, Inc
-02:35:58: GL_RENDERER = Mesa DRI Intel(R) 945GME GEM 20090712 2009Q2 RC3 x86/MMX/SSE2
-02:35:58: GL_EXTENSIONS = GL_ARB_copy_buffer GL_ARB_depth_texture GL_ARB_draw_buffers GL_ARB_fragment_program GL_ARB_half_float_pixel GL_ARB_map_buffer_range GL_ARB_multisample GL_ARB_multitexture GL_ARB_pixel_buffer_object GL_ARB_point_parameters GL_ARB_point_sprite GL_ARB_shadow GL_ARB_sync GL_ARB_texture_border_clamp GL_ARB_texture_compression GL_ARB_texture_cube_map GL_ARB_texture_env_add GL_ARB_texture_env_combine GL_ARB_texture_env_crossbar GL_ARB_texture_env_dot3 GL_ARB_texture_mirrored_repeat GL_ARB_texture_non_power_of_two GL_ARB_texture_rectangle GL_ARB_transpose_matrix GL_ARB_vertex_array_object GL_ARB_vertex_buffer_object GL_ARB_vertex_program GL_ARB_window_pos GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color GL_EXT_blend_equation_separate GL_EXT_blend_func_separate GL_EXT_blend_logic_op GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_cull_vertex GL_EXT_compiled_vertex_array GL_EXT_copy_texture GL_EXT_draw_range_elements GL_EXT_framebuffer_object GL_EXT_framebuffer_blit GL_EXT_fog_coord GL_EXT_gpu_program_parameters GL_EXT_multi_draw_arrays GL_EXT_packed_depth_stencil GL_EXT_packed_pixels GL_EXT_pixel_buffer_object GL_EXT_point_parameters GL_EXT_polygon_offset GL_EXT_provoking_vertex GL_EXT_rescale_normal GL_EXT_secondary_color GL_EXT_separate_specular_color GL_EXT_shadow_funcs GL_EXT_stencil_two_side GL_EXT_stencil_wrap GL_EXT_subtexture GL_EXT_texture GL_EXT_texture3D GL_EXT_texture_edge_clamp GL_EXT_texture_env_add GL_EXT_texture_env_combine GL_EXT_texture_env_dot3 GL_EXT_texture_filter_anisotropic GL_EXT_texture_lod_bias GL_EXT_texture_object GL_EXT_texture_rectangle GL_EXT_vertex_array GL_3DFX_texture_compression_FXT1 GL_APPLE_client_storage GL_APPLE_packed_pixels GL_APPLE_vertex_array_object GL_ATI_blend_equation_separate GL_ATI_texture_env_combine3 GL_ATI_separate_stencil GL_IBM_multimode_draw_arrays GL_IBM_rasterpos_clip GL_IBM_texture_mirrored_repeat GL_INGR_blend_func_separate GL_MESA_pack_invert GL_MESA_ycbcr_texture GL_MESA_window_pos GL_NV_blend_square GL_NV_light_max_exponent GL_NV_point_sprite GL_NV_texture_env_combine4 GL_NV_texture_rectangle GL_NV_texgen_reflection GL_NV_vertex_program GL_NV_vertex_program1_1 GL_OES_read_format GL_SGIS_generate_mipmap GL_SGIS_texture_border_clamp GL_SGIS_texture_edge_clamp GL_SGIS_texture_lod GL_SUN_multi_draw_arrays
-02:35:58: Supported GLX extensions: GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_import_context GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_swap_frame_usage GLX_OML_swap_method GLX_SGI_video_sync GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_visual_select_group GLX_EXT_texture_from_pixmap 
-02:35:58: ***************************
-02:35:58: *** GL Renderer Started ***
-02:35:58: ***************************
-02:35:58: Registering ResourceManager for type GpuProgram
-02:35:58: GL: Using GL_EXT_framebuffer_object for rendering to textures (best)
-02:35:59: FBO PF_UNKNOWN depth/stencil support: D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_R5G6B5 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_B5G6R5 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_A4R4G4B4 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_A1R5G5B5 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_R8G8B8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_B8G8R8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_A8R8G8B8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_B8G8R8A8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_A2R10G10B10 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_A2B10G10R10 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_X8R8G8B8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_X8B8G8R8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_SHORT_RGBA depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_R3G3B2 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: FBO PF_SHORT_RGB depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
-02:35:59: [GL] : Valid FBO targets PF_UNKNOWN PF_R5G6B5 PF_B5G6R5 PF_A4R4G4B4 PF_A1R5G5B5 PF_R8G8B8 PF_B8G8R8 PF_A8R8G8B8 PF_B8G8R8A8 PF_A2R10G10B10 PF_A2B10G10R10 PF_X8R8G8B8 PF_X8B8G8R8 PF_SHORT_RGBA PF_R3G3B2 PF_SHORT_RGB 
-02:35:59: RenderSystem capabilities
-02:35:59: -------------------------
-02:35:59: RenderSystem Name: OpenGL Rendering Subsystem
-02:35:59: GPU Vendor: unknown
-02:35:59: Device Name: Mesa DRI Intel(R) 945GME GEM 20090712 2009Q2 RC3 x86/MMX/SSE2
-02:35:59: Driver Version: 1.4.0.0
-02:35:59:  * Fixed function pipeline: yes
-02:35:59:  * Hardware generation of mipmaps: yes
-02:35:59:  * Texture blending: yes
-02:35:59:  * Anisotropic texture filtering: yes
-02:35:59:  * Dot product texture operation: yes
-02:35:59:  * Cube mapping: yes
-02:35:59:  * Hardware stencil buffer: no
-02:35:59:  * Hardware vertex / index buffers: yes
-02:35:59:  * Vertex programs: yes
-02:35:59:  * Fragment programs: yes
-02:35:59:  * Geometry programs: no
-02:35:59:  * Supported Shader Profiles: arbfp1 arbvp1
-02:35:59:  * Texture Compression: yes
-02:35:59:    - DXT: no
-02:35:59:    - VTC: no
-02:35:59:  * Scissor Rectangle: yes
-02:35:59:  * Hardware Occlusion Query: no
-02:35:59:  * User clip planes: yes
-02:35:59:  * VET_UBYTE4 vertex element type: yes
-02:35:59:  * Infinite far plane projection: yes
-02:35:59:  * Hardware render-to-texture: yes
-02:35:59:  * Floating point textures: no
-02:35:59:  * Non-power-of-two textures: yes
-02:35:59:  * Volume textures: yes
-02:35:59:  * Multiple Render Targets: 1
-02:35:59:    - With different bit depths: yes
-02:35:59:  * Point Sprites: yes
-02:35:59:  * Extended point parameters: yes
-02:35:59:  * Max Point Size: 255
-02:35:59:  * Vertex texture fetch: no
-02:35:59:  * Render to Vertex Buffer : no
-02:35:59:  * GL 1.5 without VBO workaround: no
-02:35:59:  * Frame Buffer objects: yes
-02:35:59:  * Frame Buffer objects (ARB extension): yes
-02:35:59:  * Frame Buffer objects (ATI extension): no
-02:35:59:  * PBuffer suppport: no
-02:35:59:  * GL 1.5 without HW-occlusion workaround: no
-02:35:59: Registering ResourceManager for type Texture
-02:35:59: ResourceBackgroundQueue - threading disabled
-02:35:59: Particle Renderer Type 'billboard' registered
+01:20:32: GLRenderSystem::_createRenderWindow "physgame", 680x480 windowed  miscParams: currentGLContext=True 
+01:20:32: GLXWindow::create used FBConfigID = 151
+01:20:32: GL_VERSION = 1.4 Mesa 7.6
+01:20:32: GL_VENDOR = Tungsten Graphics, Inc
+01:20:32: GL_RENDERER = Mesa DRI Intel(R) 945GME GEM 20090712 2009Q2 RC3 x86/MMX/SSE2
+01:20:32: GL_EXTENSIONS = GL_ARB_copy_buffer GL_ARB_depth_texture GL_ARB_draw_buffers GL_ARB_fragment_program GL_ARB_half_float_pixel GL_ARB_map_buffer_range GL_ARB_multisample GL_ARB_multitexture GL_ARB_pixel_buffer_object GL_ARB_point_parameters GL_ARB_point_sprite GL_ARB_shadow GL_ARB_sync GL_ARB_texture_border_clamp GL_ARB_texture_compression GL_ARB_texture_cube_map GL_ARB_texture_env_add GL_ARB_texture_env_combine GL_ARB_texture_env_crossbar GL_ARB_texture_env_dot3 GL_ARB_texture_mirrored_repeat GL_ARB_texture_non_power_of_two GL_ARB_texture_rectangle GL_ARB_transpose_matrix GL_ARB_vertex_array_object GL_ARB_vertex_buffer_object GL_ARB_vertex_program GL_ARB_window_pos GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color GL_EXT_blend_equation_separate GL_EXT_blend_func_separate GL_EXT_blend_logic_op GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_cull_vertex GL_EXT_compiled_vertex_array GL_EXT_copy_texture GL_EXT_draw_range_elements GL_EXT_framebuffer_object GL_EXT_framebuffer_blit GL_EXT_fog_coord GL_EXT_gpu_program_parameters GL_EXT_multi_draw_arrays GL_EXT_packed_depth_stencil GL_EXT_packed_pixels GL_EXT_pixel_buffer_object GL_EXT_point_parameters GL_EXT_polygon_offset GL_EXT_provoking_vertex GL_EXT_rescale_normal GL_EXT_secondary_color GL_EXT_separate_specular_color GL_EXT_shadow_funcs GL_EXT_stencil_two_side GL_EXT_stencil_wrap GL_EXT_subtexture GL_EXT_texture GL_EXT_texture3D GL_EXT_texture_edge_clamp GL_EXT_texture_env_add GL_EXT_texture_env_combine GL_EXT_texture_env_dot3 GL_EXT_texture_filter_anisotropic GL_EXT_texture_lod_bias GL_EXT_texture_object GL_EXT_texture_rectangle GL_EXT_vertex_array GL_3DFX_texture_compression_FXT1 GL_APPLE_client_storage GL_APPLE_packed_pixels GL_APPLE_vertex_array_object GL_ATI_blend_equation_separate GL_ATI_texture_env_combine3 GL_ATI_separate_stencil GL_IBM_multimode_draw_arrays GL_IBM_rasterpos_clip GL_IBM_texture_mirrored_repeat GL_INGR_blend_func_separate GL_MESA_pack_invert GL_MESA_ycbcr_texture GL_MESA_window_pos GL_NV_blend_square GL_NV_light_max_exponent GL_NV_point_sprite GL_NV_texture_env_combine4 GL_NV_texture_rectangle GL_NV_texgen_reflection GL_NV_vertex_program GL_NV_vertex_program1_1 GL_OES_read_format GL_SGIS_generate_mipmap GL_SGIS_texture_border_clamp GL_SGIS_texture_edge_clamp GL_SGIS_texture_lod GL_SUN_multi_draw_arrays
+01:20:32: Supported GLX extensions: GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_import_context GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_swap_frame_usage GLX_OML_swap_method GLX_SGI_video_sync GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_visual_select_group GLX_EXT_texture_from_pixmap 
+01:20:32: ***************************
+01:20:32: *** GL Renderer Started ***
+01:20:32: ***************************
+01:20:32: Registering ResourceManager for type GpuProgram
+01:20:32: GL: Using GL_EXT_framebuffer_object for rendering to textures (best)
+01:20:32: FBO PF_UNKNOWN depth/stencil support: D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_R5G6B5 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_B5G6R5 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_A4R4G4B4 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_A1R5G5B5 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_R8G8B8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_B8G8R8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_A8R8G8B8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_B8G8R8A8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_A2R10G10B10 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_A2B10G10R10 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_X8R8G8B8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_X8B8G8R8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_SHORT_RGBA depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_R3G3B2 depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: FBO PF_SHORT_RGB depth/stencil support: D0S0 D16S0 D24S0 D32S0 Packed-D24S8 
+01:20:32: [GL] : Valid FBO targets PF_UNKNOWN PF_R5G6B5 PF_B5G6R5 PF_A4R4G4B4 PF_A1R5G5B5 PF_R8G8B8 PF_B8G8R8 PF_A8R8G8B8 PF_B8G8R8A8 PF_A2R10G10B10 PF_A2B10G10R10 PF_X8R8G8B8 PF_X8B8G8R8 PF_SHORT_RGBA PF_R3G3B2 PF_SHORT_RGB 
+01:20:32: RenderSystem capabilities
+01:20:32: -------------------------
+01:20:32: RenderSystem Name: OpenGL Rendering Subsystem
+01:20:32: GPU Vendor: unknown
+01:20:32: Device Name: Mesa DRI Intel(R) 945GME GEM 20090712 2009Q2 RC3 x86/MMX/SSE2
+01:20:32: Driver Version: 1.4.0.0
+01:20:32:  * Fixed function pipeline: yes
+01:20:32:  * Hardware generation of mipmaps: yes
+01:20:32:  * Texture blending: yes
+01:20:32:  * Anisotropic texture filtering: yes
+01:20:32:  * Dot product texture operation: yes
+01:20:32:  * Cube mapping: yes
+01:20:32:  * Hardware stencil buffer: no
+01:20:32:  * Hardware vertex / index buffers: yes
+01:20:32:  * Vertex programs: yes
+01:20:32:  * Fragment programs: yes
+01:20:32:  * Geometry programs: no
+01:20:32:  * Supported Shader Profiles: arbfp1 arbvp1
+01:20:32:  * Texture Compression: yes
+01:20:32:    - DXT: no
+01:20:32:    - VTC: no
+01:20:32:  * Scissor Rectangle: yes
+01:20:32:  * Hardware Occlusion Query: no
+01:20:32:  * User clip planes: yes
+01:20:32:  * VET_UBYTE4 vertex element type: yes
+01:20:32:  * Infinite far plane projection: yes
+01:20:32:  * Hardware render-to-texture: yes
+01:20:32:  * Floating point textures: no
+01:20:32:  * Non-power-of-two textures: yes
+01:20:32:  * Volume textures: yes
+01:20:32:  * Multiple Render Targets: 1
+01:20:32:    - With different bit depths: yes
+01:20:32:  * Point Sprites: yes
+01:20:32:  * Extended point parameters: yes
+01:20:32:  * Max Point Size: 255
+01:20:32:  * Vertex texture fetch: no
+01:20:32:  * Render to Vertex Buffer : no
+01:20:32:  * GL 1.5 without VBO workaround: no
+01:20:32:  * Frame Buffer objects: yes
+01:20:32:  * Frame Buffer objects (ARB extension): yes
+01:20:32:  * Frame Buffer objects (ATI extension): no
+01:20:32:  * PBuffer suppport: no
+01:20:32:  * GL 1.5 without HW-occlusion workaround: no
+01:20:32: Registering ResourceManager for type Texture
+01:20:32: ResourceBackgroundQueue - threading disabled
+01:20:32: Particle Renderer Type 'billboard' registered

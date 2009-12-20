@@ -47,6 +47,8 @@ physworld::~physworld()
 
 	delete PlayerSettings;
 
+	SDL_FreeSurface(SDLscreen);
+
 	//remove sdl stuff
 	void SDL_Quit(void);
 }

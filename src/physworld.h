@@ -90,6 +90,5 @@ class physworld
 		//used to set callback functions to be run in the main loop
 		physworldFrameListener* FrameListener;
 
-
 };
 #endif

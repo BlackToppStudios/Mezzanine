@@ -1,21 +1,22 @@
 #ifndef _gamebase_cpp
 #define _gamebase_cpp
 ///////////////////////////////////////////////////////////////////////////////
-// Gamewide misc features go here
+// Gamewide Logic misc features go here
 
 ///////////////////////////////////////////////////////////////////////////////
-// Additional Includes that are not required by the header
-#include <wx/wx.h>
+// Includes
+//Game Include
 #include "gamebase.h"
-#include "physworld.h"
-#include "Ogre.h"
 
-//test foe the callbacks
-bool EachFrame()
-{
-	cout<<"Begin frame \n";
-	return false;
-}
+//Physengine include
+#include "physworld.h"
+#include "physeventmanager.h"
+
+// Outside libs
+#include <wx/wx.h>
+//#include "Ogre.h"
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // This function will Hide the game window and launch the appropriate 3d render
@@ -27,11 +28,10 @@ bool StartGame(UiFrame* MenuWindow)
 	MenuWindow->Hide();
 	MenuWindow->Yield();
 
+	PhysEventManager TheWorldsEvents;
+
 	//Set the world in motion
 	physworld TheWorld;
-
-	//TheWorld.FrameListener->SetFrameStartedCallback(&EachFrame);
-
 	TheWorld.GameInit();
 
 	//return to the menu;
@@ -39,9 +39,6 @@ bool StartGame(UiFrame* MenuWindow)
 
 	return true;
 }
-
-
-
 
 
 /////////////////////////////////////

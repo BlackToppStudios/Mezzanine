@@ -5,7 +5,7 @@
 //
 //Since Ogre handles the main loop, most of our interactions for the game logic
 //need to interact with this, and the most consistent interface is the ogre
-//frame listener
+//frame listener, so we created this wrapper around that.
 ///////////////////////////////////////////////////////////////////////////////
 
 //Includes
@@ -58,7 +58,7 @@ physworldPrivateFrameListener::physworldPrivateFrameListener(physworld* _Parent,
 bool physworldPrivateFrameListener::FrameStarted(const Ogre::FrameEvent& evt)
 {
 	mTime += evt.timeSinceLastFrame;
-	if (mTime > 10)
+	if (mTime > 1)
 	{
 	    TheWorldIListenTo->Log("Quitting after 10 sec.");
 		return false;
@@ -99,7 +99,7 @@ physworldFrameListener::~physworldFrameListener()
 bool physworldFrameListener::FrameStarted()
 {
 	//Lets do the bulk; of the work before we render
-	TheWorldIListenTo->DoMainLoopAllItems();
+	//TheWorldIListenTo->DoMainLoopAllItems();
 
 	//If a call back has been set then we use it, otherwise we can
 	//assume that we should just keep execute the main loop
