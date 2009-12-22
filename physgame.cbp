@@ -57,8 +57,8 @@
 		<Unit filename="src/physvector.h" />
 		<Unit filename="src/physworld.cpp" />
 		<Unit filename="src/physworld.h" />
-		<Unit filename="src/physworldframelistener.cpp" />
-		<Unit filename="src/physworldframelistener.h" />
+		<Unit filename="src/physworldcallbackmanager.cpp" />
+		<Unit filename="src/physworldcallbackmanager.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

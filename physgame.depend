@@ -8,15 +8,15 @@
 1260510698 /home/sqeaky/Projects/physgame/src/gamebase.h
 	"menuinterface.h"
 
-1261286260 /home/sqeaky/Projects/physgame/src/physworld.h
+1261468223 /home/sqeaky/Projects/physgame/src/physworld.h
 	<string>
-	"physworldframelistener.h"
+	"physworldcallbackmanager.h"
 
-1261458345 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
+1261470732 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
 	"physworld.h"
 	"physvector.h"
 	"crossplatform.h"
-	"physworldframelistener.h"
+	"physworldcallbackmanager.h"
 	"gamebase.h"
 	"SDL.h"
 
@@ -6084,4 +6084,11 @@
 1261454355 /home/sqeaky/Projects/physgame/src/physeventrendertime.h
 	"physevent.h"
 	<string>
+
+1261469849 /home/sqeaky/Projects/physgame/src/physworldcallbackmanager.h
+
+1261470331 source:/home/sqeaky/Projects/physgame/src/physworldcallbackmanager.cpp
+	"physworldcallbackmanager.h"
+	"physdatatypes.h"
+	"physworld.h"
 

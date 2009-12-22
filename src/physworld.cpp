@@ -12,7 +12,7 @@
 #include "physworld.h"
 #include "physvector.h"
 #include "crossplatform.h"
-#include "physworldframelistener.h"
+#include "physworldcallbackmanager.h"
 #include "gamebase.h"
 
 #include "SDL.h"
@@ -43,7 +43,7 @@ physworld::~physworld()
 
 	//All the pointers Ogre made should get taken care of by OGRE
 	delete OgreRoot;
-	delete FrameListener;
+	delete CallBacks;
 
 	delete PlayerSettings;
 
@@ -92,14 +92,31 @@ void physworld::GameInit()
 
 	this->CreateRenderWindow();
 
-	//bind our callbacks to Ogre and the render window
-	this->FrameListener = new physworldFrameListener(this);
-	OgreRoot->addFrameListener((Ogre::FrameListener*)FrameListener->PrivateListen);
+	//bind our callbacks to OurFrameListener
+	this->CallBacks = new physworldCallBackManager(this);
+	//OgreRoot->addFrameListener((Ogre::FrameListener*)FrameListener->PrivateListen);
 
 
 	//Start the game rendering
 	//this->OgreRoot->startRendering();
-	this->OgreRoot->renderOneFrame();
+	bool Callback1 = true;
+	bool Callback2 = true;
+	bool Callback3 = true;
+	bool Callback4 = true;
+	while (Callback1 && Callback2 && Callback3 && Callback4)
+	{
+		Callback1 = this->CallBacks->PreInput();
+		this->DoMainLoopInputBuffering();
+
+		//Flesh this out we need to gather input,
+		Callback2 = this->CallBacks->PrePhysics();
+			//run physics here
+		Callback2=false;
+
+		Callback3 = this->CallBacks->PreRender();
+		this->OgreRoot->renderOneFrame();
+		Callback3 = this->CallBacks->PostRender();
+	}
 }
 
 void physworld::MoveCamera(PhysVector3 Position, PhysVector3 LookAt)

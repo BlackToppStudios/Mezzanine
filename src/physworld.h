@@ -27,7 +27,7 @@ namespace Ogre
 class SDL_Surface;
 
 //Not included to prevent infinite loops
-#include "physworldframelistener.h"
+#include "physworldcallbackmanager.h"
 //#include "gamebase.h"
 //#include "physvector.h"
 //Forward declarations to prevent infite loop of includes
@@ -88,7 +88,7 @@ class physworld
 		void DoMainLoopInputBuffering();
 
 		//used to set callback functions to be run in the main loop
-		physworldFrameListener* FrameListener;
+		physworldCallBackManager* CallBacks;
 
 };
 #endif
