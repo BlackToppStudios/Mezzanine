@@ -11,6 +11,9 @@ class physworld;
 //engine
 class physworldPrivateFrameListener;
 
+//#include "physdatatypes.h"
+#include "Ogre.h"
+
 ///////////////////////////////////////////////////////////////////////////////
 // Interface of physworldFrameListener
 class physworldFrameListener
@@ -45,6 +48,8 @@ class physworldFrameListener
 		bool FrameEnded();
 		void EraseFrameEndedCallback();
 		void SetFrameEndedCallback(bool (*Callback)());
+
+		Ogre::FrameListener* temp;
 
 		friend class physworld;
 };

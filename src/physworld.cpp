@@ -25,7 +25,7 @@ physworld::physworld()
 {
 	//We create our Ogre environment and ODE enviroment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
-	this->FrameListener = new physworldFrameListener(this);
+
 
 	//instantiate the Physics engine
 	//this->OdeWorld = dWorldCreate();
@@ -93,10 +93,13 @@ void physworld::GameInit()
 	this->CreateRenderWindow();
 
 	//bind our callbacks to Ogre and the render window
+	this->FrameListener = new physworldFrameListener(this);
 	OgreRoot->addFrameListener((Ogre::FrameListener*)FrameListener->PrivateListen);
 
+
 	//Start the game rendering
-	this->OgreRoot->startRendering();
+	//this->OgreRoot->startRendering();
+	this->OgreRoot->renderOneFrame();
 }
 
 void physworld::MoveCamera(PhysVector3 Position, PhysVector3 LookAt)
@@ -123,13 +126,15 @@ void physworld::DoMainLoopInputBuffering()
 
 
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // Private Functions
 ///////////////////////////////////////
 
+
+
+
 ///////////////////////////////////////////////////////////////////////////////
-//Lods the Ogre Configuration
+//Loads the Ogre Configuration
 void physworld::LoadOgreSettings()
 {
 	//Try loading from the default location

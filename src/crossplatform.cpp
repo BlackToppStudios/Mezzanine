@@ -13,12 +13,12 @@
 //"plugins.cfg" file
 string GetPluginsDotCFG()
 {
-#ifdef UBUNTU
-	return "data/ubuntu/plugins.cfg";
-#endif
-#ifdef WINDOWS
-	return "data/windows/plugins.cfg";
-#endif
+	#ifdef UBUNTU
+		return "data/ubuntu/plugins.cfg";
+	#endif
+	#ifdef WINDOWS
+		return "data/windows/plugins.cfg";
+	#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -26,12 +26,12 @@ string GetPluginsDotCFG()
 //"settings.cfg" file
 string GetSettingsDotCFG()
 {
-#ifdef UBUNTU
-	return "data/ubuntu/settings.cfg";
-#endif
-#ifdef WINDOWS
-	return "data/windows/settings.cfg";
-#endif
+	#ifdef UBUNTU
+		return "data/ubuntu/settings.cfg";
+	#endif
+	#ifdef WINDOWS
+		return "data/windows/settings.cfg";
+	#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////

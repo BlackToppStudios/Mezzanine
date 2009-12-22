@@ -7,7 +7,7 @@
 //
 // Should you choose to port this to your platform, make sure that all the
 //required libraries are installed, then make sure to write an implementation
-//for each of te functions in crossplatform.cpp
+//for each of the functions in crossplatform.cpp
 ///////////////////////////////////////////////////////////////////////////////
 
 //#define MACOSX

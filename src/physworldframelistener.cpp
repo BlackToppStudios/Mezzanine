@@ -22,6 +22,7 @@ using namespace std;
 ///////////////////////////////////////
 //This Class is internal to the phys world and should be access by users
 // of the library
+
 class physworldPrivateFrameListener : public Ogre::FrameListener
 {
 	private:
@@ -99,7 +100,7 @@ physworldFrameListener::~physworldFrameListener()
 bool physworldFrameListener::FrameStarted()
 {
 	//Lets do the bulk; of the work before we render
-	//TheWorldIListenTo->DoMainLoopAllItems();
+	TheWorldIListenTo->DoMainLoopAllItems();
 
 	//If a call back has been set then we use it, otherwise we can
 	//assume that we should just keep execute the main loop
