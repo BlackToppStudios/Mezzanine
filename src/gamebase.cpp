@@ -1,7 +1,7 @@
 #ifndef _gamebase_cpp
 #define _gamebase_cpp
 ///////////////////////////////////////////////////////////////////////////////
-// Gamewide Logic misc features go here
+// Gamewide Logic misc Features go here
 
 ///////////////////////////////////////////////////////////////////////////////
 // Includes
@@ -12,21 +12,11 @@
 #include "physworld.h"
 #include "physeventmanager.h"
 
-// Outside libs
-#include <wx/wx.h>
-//#include "Ogre.h"
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// This function will Hide the game window and launch the appropriate 3d render
-//window and start the game based on the users settings.
-// returns: True if succeeds, False on Error
-bool StartGame(UiFrame* MenuWindow)
+int main(int argc, char *argv)
 {
-	//Hide the old window
-	MenuWindow->Hide();
-	MenuWindow->Yield();
+
+
 
 	PhysEventManager TheWorldsEvents;
 
@@ -34,10 +24,8 @@ bool StartGame(UiFrame* MenuWindow)
 	physworld TheWorld;
 	TheWorld.GameInit();
 
-	//return to the menu;
-	MenuWindow->Show();
 
-	return true;
+	return 0;
 }
 
 

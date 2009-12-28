@@ -1,12 +1,10 @@
 # depslib dependency file v1.0
-1261291299 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
+1261981941 source:/home/sqeaky/Projects/physgame/src/gamebase.cpp
 	"gamebase.h"
 	"physworld.h"
 	"physeventmanager.h"
-	<wx/wx.h>
 
-1260510698 /home/sqeaky/Projects/physgame/src/gamebase.h
-	"menuinterface.h"
+1261981939 /home/sqeaky/Projects/physgame/src/gamebase.h
 
 1261468223 /home/sqeaky/Projects/physgame/src/physworld.h
 	<string>
@@ -4608,8 +4606,7 @@
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupLiSPSM.h"
 
-1259909756 /home/sqeaky/Projects/physgame/src/menuinterface.h
-	<wx/wx.h>
+1261981945 /home/sqeaky/Projects/physgame/src/menuinterface.h
 	"gamebase.h"
 
 1259904744 source:/home/sqeaky/Projects/physgame/src/menuinterface.cpp

@@ -7,12 +7,16 @@
 //Additional Includes
 
 #include "crossplatform.h"
+#include <Ogre.h>
+#include "SDL.h"
+#include "SDL_syswm.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 //returns: The appropriate string, which contains a path, to the correct
 //"plugins.cfg" file
 string GetPluginsDotCFG()
 {
+
 	#ifdef UBUNTU
 		return "data/ubuntu/plugins.cfg";
 	#endif
@@ -49,8 +53,8 @@ Ogre::NameValuePairList GetSDLOgreBinder()
 		size_t winHandle = reinterpret_cast<size_t>(wmInfo.window);
 		size_t winGlContext = reinterpret_cast<size_t>(wmInfo.hglrc);
 
-		misc["externalWindowHandle"] = StringConverter::toString(winHandle);
-		misc["externalGLContext"] = StringConverter::toString(winGlContext);
+		misc["externalWindowHandle"] = Ogre::StringConverter::toString(winHandle);
+		misc["externalGLContext"] = Ogre::StringConverter::toString(winGlContext);
 	#else
 		misc["currentGLContext"] = Ogre::String("True");
 	#endif

@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="WinDebug" />
-	<File name="src\crossplatform.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="1719" topLine="35" />
+	<File name="src\crossplatform.cpp" open="1" top="1" tabpos="15">
+		<Cursor position="822" topLine="28" />
 	</File>
-	<File name="src\crossplatform.h" open="0" top="0" tabpos="4">
-		<Cursor position="1161" topLine="20" />
+	<File name="src\crossplatform.h" open="1" top="0" tabpos="16">
+		<Cursor position="1271" topLine="20" />
 	</File>
-	<File name="src\gamebase.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="879" topLine="29" />
+	<File name="src\gamebase.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="470" topLine="11" />
 	</File>
-	<File name="src\gamebase.h" open="0" top="0" tabpos="5">
-		<Cursor position="969" topLine="0" />
-	</File>
-	<File name="src\menuinterface.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="564" topLine="6" />
-	</File>
-	<File name="src\menuinterface.h" open="0" top="0" tabpos="7">
-		<Cursor position="185" topLine="0" />
+	<File name="src\gamebase.h" open="1" top="0" tabpos="1">
+		<Cursor position="1111" topLine="17" />
 	</File>
 	<File name="src\physdatatypes.h" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
@@ -43,16 +37,16 @@
 	<File name="src\physvector.h" open="0" top="0" tabpos="4">
 		<Cursor position="45" topLine="0" />
 	</File>
-	<File name="src\physworld.cpp" open="1" top="1" tabpos="5">
-		<Cursor position="5674" topLine="190" />
+	<File name="src\physworld.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="1011" topLine="17" />
 	</File>
-	<File name="src\physworld.h" open="1" top="0" tabpos="2">
-		<Cursor position="2303" topLine="72" />
+	<File name="src\physworld.h" open="1" top="0" tabpos="9">
+		<Cursor position="483" topLine="2" />
 	</File>
-	<File name="src\physworldcallbackmanager.cpp" open="1" top="0" tabpos="3">
+	<File name="src\physworldcallbackmanager.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="383" topLine="0" />
 	</File>
-	<File name="src\physworldcallbackmanager.h" open="1" top="0" tabpos="1">
+	<File name="src\physworldcallbackmanager.h" open="0" top="0" tabpos="1">
 		<Cursor position="1418" topLine="25" />
 	</File>
 </CodeBlocks_layout_file>

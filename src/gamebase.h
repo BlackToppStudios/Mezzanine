@@ -5,8 +5,7 @@
 //Somewhere else we will stuff it here until it is time to refactor again.
 ///////////////////////////////////////////////////////////////////////////////
 
-// Includes
-#include "menuinterface.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // This class will store settings about player preferences, The current plan
@@ -36,6 +35,5 @@ class Settings
 ///////////////////////////////////////////////////////////////////////////////
 //entry point to make a phyworld world and start it.
 //will return true if it works
-bool StartGame(UiFrame* MenuWindow);
 
 #endif
