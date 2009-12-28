@@ -4,8 +4,8 @@
 	<File name="src\crossplatform.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="1719" topLine="35" />
 	</File>
-	<File name="src\crossplatform.h" open="1" top="0" tabpos="6">
-		<Cursor position="1161" topLine="21" />
+	<File name="src\crossplatform.h" open="0" top="0" tabpos="4">
+		<Cursor position="1161" topLine="20" />
 	</File>
 	<File name="src\gamebase.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="879" topLine="29" />
@@ -43,16 +43,16 @@
 	<File name="src\physvector.h" open="0" top="0" tabpos="4">
 		<Cursor position="45" topLine="0" />
 	</File>
-	<File name="src\physworld.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="686" topLine="9" />
+	<File name="src\physworld.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="5984" topLine="192" />
 	</File>
-	<File name="src\physworld.h" open="1" top="0" tabpos="3">
+	<File name="src\physworld.h" open="1" top="0" tabpos="2">
 		<Cursor position="2303" topLine="72" />
 	</File>
-	<File name="src\physworldcallbackmanager.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="36" topLine="0" />
+	<File name="src\physworldcallbackmanager.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="383" topLine="0" />
 	</File>
-	<File name="src\physworldcallbackmanager.h" open="1" top="0" tabpos="2">
+	<File name="src\physworldcallbackmanager.h" open="1" top="0" tabpos="1">
 		<Cursor position="1418" topLine="25" />
 	</File>
 </CodeBlocks_layout_file>

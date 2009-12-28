@@ -14,12 +14,26 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="C:\wxWidgets-2.8.10\include" />
-					<Add directory="C:\OgreSDK\include" />
+					<Add directory="libincludes\windows\wx" />
+					<Add directory="libincludes\windows\ogre" />
+					<Add directory="libincludes\windows\sdl" />
+					<Add directory="C:\WINDOWS\system32" />
 				</Compiler>
 				<Linker>
+					<Add library="data\windows\Kernel32.Lib" />
+					<Add library="C:\WINDOWS\system32\comctl32.dll" />
+					<Add library="wxmsw28" />
+					<Add library="wxpng" />
+					<Add library="wxtiff" />
+					<Add library="wxjpeg" />
+					<Add library="wxzlib" />
+					<Add library="SDL" />
+					<Add library="OgreMain" />
+					<Add library="data\windows\Kernel32.Lib" />
+					<Add directory="data\windows\sdl" />
 					<Add directory="data\windows\ogre" />
-					<Add directory="C:\wxWidgets-2.8.10\lib\gcc_lib" />
+					<Add directory="data\windows\wx" />
+					<Add directory="C:\WINDOWS\system32" />
 				</Linker>
 			</Target>
 			<Target title="LinDebug">

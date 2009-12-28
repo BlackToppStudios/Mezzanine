@@ -203,6 +203,4 @@ void physworld::CreateRenderWindow()
 	this->OgreCamera->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
 }
 
-
-
 #endif
