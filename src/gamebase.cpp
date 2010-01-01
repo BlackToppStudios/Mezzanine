@@ -16,8 +16,6 @@
 int main(int argc, char **argv)
 {
 
-
-
 	PhysEventManager TheWorldsEvents;
 
 	//Set the world in motion

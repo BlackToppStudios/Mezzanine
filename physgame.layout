@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="LinDebug" />
+	<ActiveTarget name="UbuntuDebug" />
 	<File name="src/crossplatform.cpp" open="1" top="0" tabpos="6">
 		<Cursor position="1450" topLine="41" />
 	</File>
@@ -8,7 +8,7 @@
 		<Cursor position="663" topLine="0" />
 	</File>
 	<File name="src/gamebase.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="397" topLine="11" />
+		<Cursor position="405" topLine="17" />
 	</File>
 	<File name="src/gamebase.h" open="1" top="0" tabpos="1">
 		<Cursor position="1111" topLine="12" />
