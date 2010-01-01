@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="UbuntuDebug" />
+	<File name="src/gamebase.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="405" topLine="44" />
+	</File>
+	<File name="src/gamebase.h" open="0" top="0" tabpos="1">
+		<Cursor position="1111" topLine="12" />
+	</File>
+	<File name="src/physcrossplatform.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="1450" topLine="41" />
+	</File>
+	<File name="src/physcrossplatform.h" open="0" top="0" tabpos="3">
+		<Cursor position="663" topLine="0" />
+	</File>
+	<File name="src/physdatatypes.h" open="0" top="0" tabpos="4">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="src/physevent.h" open="0" top="0" tabpos="1">
+		<Cursor position="411" topLine="0" />
+	</File>
+	<File name="src/physeventkeyboardinput.h" open="0" top="0" tabpos="0">
+		<Cursor position="3" topLine="0" />
+	</File>
+	<File name="src/physeventmanager.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="391" topLine="0" />
+	</File>
+	<File name="src/physeventrendertime.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="src/physeventrendertime.h" open="0" top="0" tabpos="2">
+		<Cursor position="287" topLine="0" />
+	</File>
+	<File name="src/physvector.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="137" topLine="0" />
+	</File>
+	<File name="src/physvector.h" open="0" top="0" tabpos="4">
+		<Cursor position="45" topLine="0" />
+	</File>
+	<File name="src/physworld.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="986" topLine="17" />
+	</File>
+	<File name="src/physworld.h" open="0" top="0" tabpos="2">
+		<Cursor position="483" topLine="2" />
+	</File>
+	<File name="src/physworldcallbackmanager.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="383" topLine="0" />
+	</File>
+	<File name="src/physworldcallbackmanager.h" open="0" top="0" tabpos="1">
+		<Cursor position="1418" topLine="25" />
+	</File>
+</CodeBlocks_layout_file>
