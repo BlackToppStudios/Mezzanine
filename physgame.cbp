@@ -8,25 +8,28 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="WinDebug">
-				<Option output="bin/WinDebug/physgame" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/WinDebug/" />
+				<Option output="bin\WinDebug\physgame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\WinDebug\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="libincludes/windows/ogre" />
-					<Add directory="libincludes/windows/sdl" />
+					<Add directory="libincludes\windows\ogre" />
+					<Add directory="libincludes\windows\sdl" />
 				</Compiler>
 				<Linker>
+					<Add option="-Wl,--enable-runtime-pseudo-reloc" />
+					<Add option="-Wl,--enable-auto-image-base" />
+					<Add option="-Wl,--add-stdcall-alias" />
 					<Add library="SDL" />
 					<Add library="OgreMain" />
-					<Add directory="data/windows/sdl" />
-					<Add directory="data/windows/ogre" />
+					<Add directory="data\windows\sdl" />
+					<Add directory="data\windows\ogre" />
 				</Linker>
 			</Target>
 			<Target title="LinDebug">
-				<Option output="bin/LinDebug/physgame" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/LinDebug/" />
+				<Option output="bin\LinDebug\physgame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\LinDebug\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -44,23 +47,23 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="src/crossplatform.cpp" />
-		<Unit filename="src/crossplatform.h" />
-		<Unit filename="src/gamebase.cpp" />
-		<Unit filename="src/gamebase.h" />
-		<Unit filename="src/physdatatypes.h" />
-		<Unit filename="src/physevent.h" />
-		<Unit filename="src/physeventkeyboardinput.h" />
-		<Unit filename="src/physeventmanager.cpp" />
-		<Unit filename="src/physeventmanager.h" />
-		<Unit filename="src/physeventrendertime.cpp" />
-		<Unit filename="src/physeventrendertime.h" />
-		<Unit filename="src/physvector.cpp" />
-		<Unit filename="src/physvector.h" />
-		<Unit filename="src/physworld.cpp" />
-		<Unit filename="src/physworld.h" />
-		<Unit filename="src/physworldcallbackmanager.cpp" />
-		<Unit filename="src/physworldcallbackmanager.h" />
+		<Unit filename="src\crossplatform.cpp" />
+		<Unit filename="src\crossplatform.h" />
+		<Unit filename="src\gamebase.cpp" />
+		<Unit filename="src\gamebase.h" />
+		<Unit filename="src\physdatatypes.h" />
+		<Unit filename="src\physevent.h" />
+		<Unit filename="src\physeventkeyboardinput.h" />
+		<Unit filename="src\physeventmanager.cpp" />
+		<Unit filename="src\physeventmanager.h" />
+		<Unit filename="src\physeventrendertime.cpp" />
+		<Unit filename="src\physeventrendertime.h" />
+		<Unit filename="src\physvector.cpp" />
+		<Unit filename="src\physvector.h" />
+		<Unit filename="src\physworld.cpp" />
+		<Unit filename="src\physworld.h" />
+		<Unit filename="src\physworldcallbackmanager.cpp" />
+		<Unit filename="src\physworldcallbackmanager.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

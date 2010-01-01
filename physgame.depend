@@ -4,13 +4,13 @@
 	"physworld.h"
 	"physeventmanager.h"
 
-1261981939 /home/sqeaky/Projects/physgame/src/gamebase.h
+1262343188 /home/sqeaky/Projects/physgame/src/gamebase.h
 
-1261468223 /home/sqeaky/Projects/physgame/src/physworld.h
+1262343188 /home/sqeaky/Projects/physgame/src/physworld.h
 	<string>
 	"physworldcallbackmanager.h"
 
-1261470732 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
+1262343188 source:/home/sqeaky/Projects/physgame/src/physworld.cpp
 	"physworld.h"
 	"physvector.h"
 	"crossplatform.h"
@@ -4615,10 +4615,13 @@
 	"menuinterface.h"
 	"physworld.h"
 
-1261454116 source:/home/sqeaky/Projects/physgame/src/crossplatform.cpp
+1262343188 source:/home/sqeaky/Projects/physgame/src/crossplatform.cpp
 	"crossplatform.h"
+	<Ogre.h>
+	"SDL.h"
+	"SDL_syswm.h"
 
-1261454116 /home/sqeaky/Projects/physgame/src/crossplatform.h
+1262344062 /home/sqeaky/Projects/physgame/src/crossplatform.h
 	<Ogre.h>
 	<string>
 
@@ -6052,40 +6055,1240 @@
 	"begin_code.h"
 	"close_code.h"
 
-1260943041 source:/home/sqeaky/Projects/physgame/src/physvector.cpp
+1262343188 source:/home/sqeaky/Projects/physgame/src/physvector.cpp
 	"physvector.h"
 
-1261198328 /home/sqeaky/Projects/physgame/src/physvector.h
+1262343188 /home/sqeaky/Projects/physgame/src/physvector.h
 	"physdatatypes.h"
 
-1261201358 /home/sqeaky/Projects/physgame/src/physdatatypes.h
+1262343188 /home/sqeaky/Projects/physgame/src/physdatatypes.h
 
-1261295402 /home/sqeaky/Projects/physgame/src/physeventmanager.h
+1262343188 /home/sqeaky/Projects/physgame/src/physeventmanager.h
 	<vector>
 	"physevent.h"
 	"physeventkeyboardinput.h"
 
-1261288067 /home/sqeaky/Projects/physgame/src/physeventkeyboardinput.h
+1262343188 /home/sqeaky/Projects/physgame/src/physeventkeyboardinput.h
 
-1261291231 source:/home/sqeaky/Projects/physgame/src/physeventmanager.cpp
+1262343188 source:/home/sqeaky/Projects/physgame/src/physeventmanager.cpp
 	"physeventmanager.h"
 
-1261294804 /home/sqeaky/Projects/physgame/src/physevent.h
+1262343188 /home/sqeaky/Projects/physgame/src/physevent.h
 	<string>
 
-1261454233 source:/home/sqeaky/Projects/physgame/src/physeventrendertime.cpp
+1262343188 source:/home/sqeaky/Projects/physgame/src/physeventrendertime.cpp
 	<string>
 	"physdatatypes.h"
 	"physeventrendertime.h"
 
-1261454355 /home/sqeaky/Projects/physgame/src/physeventrendertime.h
+1262343188 /home/sqeaky/Projects/physgame/src/physeventrendertime.h
 	"physevent.h"
 	<string>
 
-1261469849 /home/sqeaky/Projects/physgame/src/physworldcallbackmanager.h
+1262343188 /home/sqeaky/Projects/physgame/src/physworldcallbackmanager.h
 
-1261470331 source:/home/sqeaky/Projects/physgame/src/physworldcallbackmanager.cpp
+1262343188 source:/home/sqeaky/Projects/physgame/src/physworldcallbackmanager.cpp
 	"physworldcallbackmanager.h"
 	"physdatatypes.h"
 	"physworld.h"
+
+1219153864 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/Ogre.h
+	"OgrePrerequisites.h"
+	"OgreAnimation.h"
+	"OgreAnimationState.h"
+	"OgreAnimationTrack.h"
+	"OgreAny.h"
+	"OgreArchive.h"
+	"OgreArchiveManager.h"
+	"OgreAxisAlignedBox.h"
+	"OgreBillboardChain.h"
+	"OgreBillboardSet.h"
+	"OgreBone.h"
+	"OgreCamera.h"
+	"OgreConfigFile.h"
+	"OgreControllerManager.h"
+	"OgreDataStream.h"
+	"OgreEntity.h"
+	"OgreException.h"
+	"OgreFrustum.h"
+	"OgreGpuProgram.h"
+	"OgreGpuProgramManager.h"
+	"OgreHardwareBufferManager.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHardwareOcclusionQuery.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHighLevelGpuProgram.h"
+	"OgreHighLevelGpuProgramManager.h"
+	"OgreKeyFrame.h"
+	"OgreLight.h"
+	"OgreLogManager.h"
+	"OgreManualObject.h"
+	"OgreMaterial.h"
+	"OgreMaterialManager.h"
+	"OgreMaterialSerializer.h"
+	"OgreMath.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreMesh.h"
+	"OgreMeshManager.h"
+	"OgreMeshSerializer.h"
+	"OgreOverlay.h"
+	"OgreOverlayContainer.h"
+	"OgreOverlayElement.h"
+	"OgreOverlayManager.h"
+	"OgreParticleAffector.h"
+	"OgreParticleEmitter.h"
+	"OgreParticleSystemManager.h"
+	"OgrePass.h"
+	"OgrePatchMesh.h"
+	"OgrePatchSurface.h"
+	"OgreProfiler.h"
+	"OgreRadixSort.h"
+	"OgreRenderQueueInvocation.h"
+	"OgreRenderQueueListener.h"
+	"OgreRenderSystem.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderTexture.h"
+	"OgreRenderWindow.h"
+	"OgreResourceBackgroundQueue.h"
+	"OgreResourceGroupManager.h"
+	"OgreRibbonTrail.h"
+	"OgreRoot.h"
+	"OgreSceneManager.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreSceneNode.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreSkeletonManager.h"
+	"OgreSkeletonSerializer.h"
+	"OgreStaticGeometry.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreSubEntity.h"
+	"OgreSubMesh.h"
+	"OgreTechnique.h"
+	"OgreTextureManager.h"
+	"OgreTextureUnitState.h"
+	"OgreUserDefinedObject.h"
+	"OgreVector2.h"
+	"OgreViewport.h"
+	"OgreCompositor.h"
+	"OgreCompositorManager.h"
+	"OgreCompositorChain.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositionTechnique.h"
+	"OgreCompositionPass.h"
+	"OgreCompositionTargetPass.h"
+	"OgreWindowEventUtilities.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowCameraSetupFocused.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+	"OgreShadowCameraSetupPlaneOptimal.h"
+	"OgreShadowCameraSetupPSSM.h"
+
+1261929768 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePrerequisites.h
+	"OgrePlatform.h"
+	<string>
+	"OgreStdHeaders.h"
+	"OgreMemoryAllocatorConfig.h"
+
+1221554340 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePlatform.h
+	"OgreConfig.h"
+	<_mingw.h>
+	"config.h"
+
+1229437565 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreConfig.h
+	"config.h"
+
+1262335579 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/config.h
+
+1243013590 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreStdHeaders.h
+	<cassert>
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<cstring>
+	<cstdarg>
+	<cmath>
+	<vector>
+	<map>
+	<string>
+	<set>
+	<list>
+	<deque>
+	<queue>
+	<bitset>
+	<tr1/unordered_map>
+	<tr1/unordered_set>
+	<ext/hash_map>
+	<ext/hash_set>
+	<unordered_map>
+	<unordered_set>
+	<hash_set>
+	<hash_map>
+	<algorithm>
+	<functional>
+	<limits>
+	<fstream>
+	<iostream>
+	<iomanip>
+	<sstream>
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<unistd.h>
+	<dlfcn.h>
+	<unistd.h>
+	<sys/param.h>
+	<CoreFoundation/CoreFoundation.h>
+	<boost/thread/tss.hpp>
+	<boost/thread/recursive_mutex.hpp>
+	<boost/thread/condition.hpp>
+	<boost/thread/thread.hpp>
+
+1225044457 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMemoryAllocatorConfig.h
+	"OgrePrerequisites.h"
+	"OgreMemoryAllocatedObject.h"
+	"OgreMemorySTLAllocator.h"
+	"OgreMemoryNedAlloc.h"
+	"OgreMemoryStdAlloc.h"
+
+1232038349 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMemoryAllocatedObject.h
+	"OgrePrerequisites.h"
+
+1211547408 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMemorySTLAllocator.h
+	"OgrePrerequisites.h"
+
+1225122177 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMemoryNedAlloc.h
+
+1227301117 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMemoryStdAlloc.h
+	<memory>
+	<limits>
+	"OgreAlignedAllocator.h"
+	"OgreMemoryTracker.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreAlignedAllocator.h
+
+1226590717 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMemoryTracker.h
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1222017952 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreAnimation.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreIteratorWrappers.h"
+	"OgreAnimable.h"
+	"OgreAnimationTrack.h"
+	"OgreAnimationState.h"
+
+1243013590 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreString.h
+	"OgrePrerequisites.h"
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreIteratorWrappers.h
+	"OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreAnimable.h
+	"OgrePrerequisites.h"
+	"OgreVector2.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	"OgreException.h"
+	"OgreAny.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreVector2.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1248378605 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMath.h
+	"OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreVector3.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+	"OgreQuaternion.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreQuaternion.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreVector4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1222859792 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreColourValue.h
+	"OgrePrerequisites.h"
+
+1233076286 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSharedPtr.h
+	"OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreStringVector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreException.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	<exception>
+
+1216851470 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreAny.h
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	"OgreString.h"
+	<algorithm>
+	<typeinfo>
+
+1223056899 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreAnimationTrack.h
+	"OgrePrerequisites.h"
+	"OgreSimpleSpline.h"
+	"OgreRotationalSpline.h"
+	"OgreKeyFrame.h"
+	"OgreAnimable.h"
+	"OgrePose.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSimpleSpline.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMatrix4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix3.h"
+	"OgreVector4.h"
+	"OgrePlane.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMatrix3.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePlane.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRotationalSpline.h
+	"OgrePrerequisites.h"
+	"OgreQuaternion.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreKeyFrame.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreQuaternion.h"
+	"OgreAny.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreIteratorWrappers.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreHardwareVertexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgreColourValue.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreHardwareBuffer.h
+	"OgrePrerequisites.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePose.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreAnimationState.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreController.h"
+	"OgreIteratorWrappers.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreController.h
+	"OgrePrerequisites.h"
+	"OgreSharedPtr.h"
+
+1215209445 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreArchive.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	<ctime>
+
+1214433609 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreDataStream.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	<istream>
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreArchiveManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreResourceManager.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreResourceGroupManager.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+	"OgreScriptLoader.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreResource.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	"OgreStringInterface.h"
+	"OgreAtomicWrappers.h"
+
+1250351841 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreStringInterface.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreCommon.h"
+
+1227983845 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreCommon.h
+	"OgreString.h"
+	<utility>
+	<vector>
+	<map>
+
+1234195908 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreAtomicWrappers.h
+	<signal.h>
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	<windows.h>
+	<intrin.h>
+
+1240676722 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreResourceGroupManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreResource.h"
+	"OgreArchive.h"
+	"OgreIteratorWrappers.h"
+	<ctime>
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSingleton.h
+	"OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreScriptLoader.h
+	"OgrePrerequisites.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreAxisAlignedBox.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreBillboardChain.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+
+1256144038 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMovableObject.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreShadowCaster.h"
+	"OgreFactoryObj.h"
+	"OgreAnimable.h"
+	"OgreAny.h"
+	"OgreUserDefinedObject.h"
+
+1256144038 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderQueue.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSphere.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreShadowCaster.h
+	"OgrePrerequisites.h"
+	"OgreRenderable.h"
+
+1214218380 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderable.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreMatrix4.h"
+	"OgreMaterial.h"
+	"OgrePlane.h"
+	"OgreGpuProgram.h"
+	"OgreVector4.h"
+	"OgreException.h"
+	"OgreAny.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderOperation.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+
+1214167108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreVertexIndexData.h
+	"OgrePrerequisites.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreHardwareIndexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMaterial.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreBlendMode.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+
+1240676361 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreGpuProgram.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreSharedPtr.h"
+	"OgreIteratorWrappers.h"
+	"OgreSerializer.h"
+	"OgreRenderOperation.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSerializer.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreFactoryObj.h
+	"OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreUserDefinedObject.h
+	"OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreBillboardSet.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreRadixSort.h"
+	"OgreCommon.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRadixSort.h
+	"OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreBone.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreNode.h
+	"OgrePrerequisites.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreQuaternion.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreIteratorWrappers.h"
+
+1223738137 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreCamera.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreMatrix4.h"
+	"OgreVector3.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreCommon.h"
+	"OgreFrustum.h"
+	"OgreRay.h"
+	"OgrePlaneBoundedVolume.h"
+
+1219660940 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreFrustum.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexIndexData.h"
+	"OgreMovablePlane.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMovablePlane.h
+	"OgrePrerequisites.h"
+	"OgrePlane.h"
+	"OgreMovableObject.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRay.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgrePlaneBoundedVolume.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePlaneBoundedVolume.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreMath.h"
+	"OgrePlane.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreConfigFile.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringVector.h"
+	"OgreIteratorWrappers.h"
+	"OgreDataStream.h"
+
+1214763868 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreControllerManager.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreController.h"
+	"OgrePredefinedControllers.h"
+	"OgreTextureUnitState.h"
+	"OgreSharedPtr.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePredefinedControllers.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreController.h"
+	"OgreFrameListener.h"
+	"OgreGpuProgram.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreFrameListener.h
+	"OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreTextureUnitState.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreBlendMode.h"
+	"OgreMatrix4.h"
+	"OgreIteratorWrappers.h"
+	"OgreString.h"
+	"OgreTexture.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreTexture.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreResource.h"
+	"OgreImage.h"
+
+1219437716 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreImage.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgrePixelFormat.h"
+	"OgreDataStream.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePixelFormat.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+
+1232279604 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreEntity.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreHardwareBufferManager.h"
+	"OgreMesh.h"
+	"OgreRenderable.h"
+
+1219392954 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreHardwareBufferManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderToVertexBuffer.h"
+
+1220475661 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderToVertexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMesh.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreVertexIndexData.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreIteratorWrappers.h"
+	"OgreProgressiveMesh.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreSkeleton.h"
+	"OgreAnimationTrack.h"
+	"OgrePose.h"
+	"OgreDataStream.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreVertexBoneAssignment.h
+	"OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreProgressiveMesh.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderOperation.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSkeleton.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+	"OgreStringVector.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreGpuProgramManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreException.h"
+	"OgreGpuProgram.h"
+	"OgreSingleton.h"
+
+1250679251 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreHardwarePixelBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgrePixelFormat.h"
+	"OgreImage.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreHardwareOcclusionQuery.h
+	"OgrePrerequisites.h"
+
+1215277545 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreHighLevelGpuProgram.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+
+1214433609 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreHighLevelGpuProgramManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreException.h"
+	"OgreHighLevelGpuProgram.h"
+
+1219254260 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreLight.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgrePlaneBoundedVolume.h"
+	"OgreShadowCameraSetup.h"
+
+1219080565 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreShadowCameraSetup.h
+	"OgrePrerequisites.h"
+	"OgreMovablePlane.h"
+	"OgreSharedPtr.h"
+
+1214763868 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreLogManager.h
+	"OgrePrerequisites.h"
+	"OgreLog.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+
+1214763868 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreLog.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+
+1218188636 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreManualObject.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreResourceGroupManager.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMaterialManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreResourceManager.h"
+	"OgreMaterial.h"
+	"OgreStringVector.h"
+	"OgreMaterialSerializer.h"
+
+1214433609 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMaterialSerializer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreBlendMode.h"
+	"OgreTextureUnitState.h"
+	"OgreGpuProgram.h"
+	"OgreStringVector.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMeshManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreVector3.h"
+	"OgreHardwareBuffer.h"
+	"OgreMesh.h"
+	"OgrePatchMesh.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePatchMesh.h
+	"OgrePrerequisites.h"
+	"OgreMesh.h"
+	"OgrePatchSurface.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePatchSurface.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreRenderOperation.h"
+	"OgreAxisAlignedBox.h"
+
+1223056899 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMeshSerializer.h
+	"OgrePrerequisites.h"
+	"OgreMeshSerializerImpl.h"
+	"OgreSerializer.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreMeshSerializerImpl.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSerializer.h"
+	"OgreMaterial.h"
+	"OgreMesh.h"
+	"OgreEdgeListBuilder.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreEdgeListBuilder.h
+	"OgrePrerequisites.h"
+	"OgreVector4.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreRenderOperation.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreOverlay.h
+	"OgrePrerequisites.h"
+	"OgreSceneNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreMatrix4.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSceneNode.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreAxisAlignedBox.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreOverlayContainer.h
+	"OgrePrerequisites.h"
+	"OgreOverlayElement.h"
+	"OgreIteratorWrappers.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreOverlayElement.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreUTFString.h"
+	"OgreStringInterface.h"
+	"OgreOverlayElementCommands.h"
+	"OgreColourValue.h"
+	"OgreRectangle.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreUTFString.h
+	"OgrePrerequisites.h"
+	<iterator>
+	<string>
+	<stdexcept>
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreOverlayElementCommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRectangle.h
+	"OgrePrerequisites.h"
+
+1227303257 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreOverlayManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreStringVector.h"
+	"OgreOverlay.h"
+	"OgreScriptLoader.h"
+
+1225044457 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreParticleAffector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringInterface.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreParticleEmitter.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreStringInterface.h"
+	"OgreParticleEmitterCommands.h"
+	"OgreParticle.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreParticleEmitterCommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreParticle.h
+	"OgrePrerequisites.h"
+	"OgreBillboard.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreBillboard.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+
+1214763868 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreParticleSystemManager.h
+	"OgrePrerequisites.h"
+	"OgreParticleSystem.h"
+	"OgreFrameListener.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+	"OgreScriptLoader.h"
+	"OgreResourceGroupManager.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreParticleSystem.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreParticleIterator.h"
+	"OgreStringInterface.h"
+	"OgreMovableObject.h"
+	"OgreRadixSort.h"
+	"OgreController.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreParticleIterator.h
+	"OgrePrerequisites.h"
+
+1232970143 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePass.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgreLight.h"
+	"OgreTextureUnitState.h"
+
+1214763868 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreProfiler.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreOverlay.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderQueueInvocation.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreIteratorWrappers.h"
+
+1226769808 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderQueueSortingGrouping.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreMaterial.h"
+	"OgreTechnique.h"
+	"OgrePass.h"
+	"OgreRadixSort.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreTechnique.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgrePass.h"
+	"OgreIteratorWrappers.h"
+	"OgreRenderSystemCapabilities.h"
+
+1240602235 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderSystemCapabilities.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreResource.h"
+	"OgreLogManager.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreStringConverter.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+	"OgreString.h"
+	"OgreStringVector.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderQueueListener.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+
+1219660940 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderSystem.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureUnitState.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreRenderSystemCapabilities.h"
+	"OgreRenderTarget.h"
+	"OgreRenderTexture.h"
+	"OgreFrameListener.h"
+	"OgreConfigOptionMap.h"
+	"OgreGpuProgram.h"
+	"OgrePlane.h"
+	"OgreIteratorWrappers.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderTarget.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureManager.h"
+	"OgreViewport.h"
+	"OgreTimer.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreTextureManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreTexture.h"
+	"OgreSingleton.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreViewport.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreTimer.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	"WIN32/OgreTimerImp.h"
+	"GLX/OgreTimerImp.h"
+	"OSX/OgreTimerImp.h"
+
+1260809227 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/WIN32/OgreTimerImp.h
+	"windows.h"
+
+1249910254 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/GLX/OgreTimerImp.h
+	"../OgrePrerequisites.h"
+
+1249910254 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OSX/OgreTimerImp.h
+	"../OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderTexture.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreConfigOptionMap.h
+	"OgrePrerequisites.h"
+	"OgreStringVector.h"
+	"OgreString.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderTargetListener.h
+	"OgrePrerequisites.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRenderWindow.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1219255304 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreResourceBackgroundQueue.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreResource.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRibbonTrail.h
+	"OgrePrerequisites.h"
+	"OgreBillboardChain.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreFrameListener.h"
+	"OgreControllerManager.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRoot.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreResourceGroupManager.h"
+	<exception>
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSceneManagerEnumerator.h
+	"OgrePrerequisites.h"
+	"OgreSceneManager.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+
+1251049281 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSceneManager.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSceneNode.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+	"OgreSceneQuery.h"
+	"OgreAutoParamDataSource.h"
+	"OgreAnimationState.h"
+	"OgreRenderQueue.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreRectangle2D.h"
+	"OgrePixelFormat.h"
+	"OgreResourceGroupManager.h"
+	"OgreTexture.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowTextureManager.h"
+	"OgreCamera.h"
+	"OgreInstancedGeometry.h"
+
+1214763868 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSceneQuery.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreRay.h"
+	"OgreRenderOperation.h"
+	"OgrePlaneBoundedVolume.h"
+
+1233314197 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreAutoParamDataSource.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreMatrix4.h"
+	"OgreVector4.h"
+	"OgreLight.h"
+	"OgreColourValue.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreRectangle2D.h
+	"OgrePrerequisites.h"
+	"OgreSimpleRenderable.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSimpleRenderable.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreMaterial.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreShadowTextureManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgrePixelFormat.h"
+	"OgreTexture.h"
+	"OgreIteratorWrappers.h"
+
+1261928460 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreInstancedGeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreAnimationTrack.h"
+	"OgreBone.h"
+	"OgreIteratorWrappers.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSkeletonInstance.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSkeletonManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSkeletonSerializer.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+	"OgreSerializer.h"
+
+1239136872 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreStaticGeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+
+1232279604 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSubEntity.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreHardwareBufferManager.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreSubMesh.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreProgressiveMesh.h"
+	"OgreAnimationTrack.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreCompositor.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreResource.h"
+
+1213565108 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreCompositorManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreCompositor.h"
+	"OgreRectangle2D.h"
+	"OgreCompositorSerializer.h"
+	"OgreRenderSystem.h"
+
+1214433609 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreCompositorSerializer.h
+	"OgrePrerequisites.h"
+	"OgreDataStream.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreCompositorChain.h
+	"OgrePrerequisites.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderQueueListener.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositor.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreCompositorInstance.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreTexture.h"
+	"OgreRenderQueue.h"
+
+1213568032 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreCompositionTechnique.h
+	"OgrePrerequisites.h"
+	"OgrePixelFormat.h"
+	"OgreIteratorWrappers.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreCompositionPass.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderSystem.h"
+	"OgreRenderQueue.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreCompositionTargetPass.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+
+1233074121 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreWindowEventUtilities.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	<windows.h>
+
+1219080565 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreShadowCameraSetupFocused.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+	"OgrePolygon.h"
+	"OgreConvexBody.h"
+
+1222952438 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgrePolygon.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1213279857 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreConvexBody.h
+	"OgrePrerequisites.h"
+	"OgrePolygon.h"
+
+1225817154 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreShadowCameraSetupLiSPSM.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupFocused.h"
+
+1219080565 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreShadowCameraSetupPlaneOptimal.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+
+1219873779 /home/sqeaky/Projects/physgame/libincludes/ubuntu/ogre/OgreShadowCameraSetupPSSM.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+
+1247825454 /usr/include/SDL/SDL_syswm.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_version.h"
+	"begin_code.h"
+	<X11/Xlib.h>
+	<X11/Xatom.h>
+	<microwin/nano-X.h>
+	<windows.h>
+	<sys/neutrino.h>
+	<Ph.h>
+	"close_code.h"
 
