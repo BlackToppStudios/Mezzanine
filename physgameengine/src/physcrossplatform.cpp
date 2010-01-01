@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Additional Includes
 
-#include "crossplatform.h"
+#include "physcrossplatform.h"
 #include <Ogre.h>
 #include "SDL.h"
 #include "SDL_syswm.h"

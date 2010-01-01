@@ -7,8 +7,8 @@
 	<File name="src/gamebase.h" open="0" top="0" tabpos="1">
 		<Cursor position="1111" topLine="12" />
 	</File>
-	<File name="src/physcrossplatform.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="1450" topLine="41" />
+	<File name="src/physcrossplatform.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="318" topLine="0" />
 	</File>
 	<File name="src/physcrossplatform.h" open="0" top="0" tabpos="3">
 		<Cursor position="663" topLine="0" />
@@ -37,8 +37,8 @@
 	<File name="src/physvector.h" open="0" top="0" tabpos="4">
 		<Cursor position="45" topLine="0" />
 	</File>
-	<File name="src/physworld.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="986" topLine="17" />
+	<File name="src/physworld.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="612" topLine="2" />
 	</File>
 	<File name="src/physworld.h" open="0" top="0" tabpos="2">
 		<Cursor position="483" topLine="2" />
