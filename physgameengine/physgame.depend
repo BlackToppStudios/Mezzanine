@@ -5856,7 +5856,7 @@
 1241251066 /usr/include/OIS/OISInputManager.h
 	"OISPrereqs.h"
 
-1235099159 /usr/include/SDL/SDL.h
+1247825454 /usr/include/SDL/SDL.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_audio.h"
@@ -5875,14 +5875,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_main.h
+1247825454 /usr/include/SDL/SDL_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_stdinc.h
+1247825454 /usr/include/SDL/SDL_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -5908,11 +5908,11 @@
 	<stdlib.h>
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_config.h
+1247825455 /usr/include/SDL/SDL_config.h
 	"SDL_platform.h"
 	<stdarg.h>
 
-1235099159 /usr/include/SDL/SDL_platform.h
+1247825454 /usr/include/SDL/SDL_platform.h
 
 1254905336 /usr/include/malloc.h
 	<features.h>
@@ -5933,11 +5933,11 @@
 	<features.h>
 	<stddef.h>
 
-1235099159 /usr/include/SDL/begin_code.h
+1247825454 /usr/include/SDL/begin_code.h
 
-1235099159 /usr/include/SDL/close_code.h
+1247825454 /usr/include/SDL/close_code.h
 
-1235099159 /usr/include/SDL/SDL_audio.h
+1247825454 /usr/include/SDL/SDL_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -5947,23 +5947,23 @@
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_error.h
+1247825454 /usr/include/SDL/SDL_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_endian.h
+1247825454 /usr/include/SDL/SDL_endian.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_mutex.h
+1247825454 /usr/include/SDL/SDL_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_thread.h
+1247825454 /usr/include/SDL/SDL_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_mutex.h"
@@ -5971,24 +5971,24 @@
 	<process.h>
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_rwops.h
+1247825454 /usr/include/SDL/SDL_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_cdrom.h
+1247825454 /usr/include/SDL/SDL_cdrom.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_cpuinfo.h
+1247825454 /usr/include/SDL/SDL_cpuinfo.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_events.h
+1247825454 /usr/include/SDL/SDL_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_active.h"
@@ -5999,58 +5999,58 @@
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_active.h
+1247825454 /usr/include/SDL/SDL_active.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_keyboard.h
+1247825454 /usr/include/SDL/SDL_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keysym.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_keysym.h
+1247825454 /usr/include/SDL/SDL_keysym.h
 
-1235099159 /usr/include/SDL/SDL_mouse.h
+1247825454 /usr/include/SDL/SDL_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_video.h
+1247825454 /usr/include/SDL/SDL_video.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_joystick.h
+1247825454 /usr/include/SDL/SDL_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_quit.h
+1247825454 /usr/include/SDL/SDL_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1235099159 /usr/include/SDL/SDL_loadso.h
-	"SDL_stdinc.h"
-	"SDL_error.h"
-	"begin_code.h"
-	"close_code.h"
-
-1235099159 /usr/include/SDL/SDL_timer.h
+1247825454 /usr/include/SDL/SDL_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_version.h
+1247825454 /usr/include/SDL/SDL_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
@@ -7279,7 +7279,7 @@
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupLiSPSM.h"
 
-1235099159 /usr/include/SDL/SDL_syswm.h
+1247825454 /usr/include/SDL/SDL_syswm.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_version.h"
@@ -9719,12 +9719,12 @@
 1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/physvector.h
 	"physdatatypes.h"
 
-1262382980 source:/home/sqeaky/Projects/physgame/physgameengine/src/physworld.cpp
+1262402524 source:/home/sqeaky/Projects/physgame/physgameengine/src/physworld.cpp
 	"physworld.h"
 	"physvector.h"
 	"physcrossplatform.h"
 	"physworldcallbackmanager.h"
-	"gamebase.h"
+	"physgamesettings.h"
 	"SDL.h"
 
 1262382707 source:/home/sqeaky/Projects/physgame/physgameengine/src/physworldcallbackmanager.cpp
@@ -9732,13 +9732,13 @@
 	"physdatatypes.h"
 	"physworld.h"
 
-1262382979 source:/home/sqeaky/Projects/physgame/physgameengine/src/physcrossplatform.cpp
+1262402524 source:/home/sqeaky/Projects/physgame/physgameengine/src/physcrossplatform.cpp
 	"physcrossplatform.h"
 	<Ogre.h>
 	"SDL.h"
 	"SDL_syswm.h"
 
-1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/physcrossplatform.h
+1262402655 /home/sqeaky/Projects/physgame/physgameengine/src/physcrossplatform.h
 	<Ogre.h>
 	<string>
 
@@ -11001,4 +11001,11 @@
 	"physgamesettings.h"
 
 1262396206 /home/sqeaky/physgame/physgameengine/src/physgamesettings.h
+
+1262402524 source:/home/sqeaky/Projects/physgame/physgameengine/src/physgamesettings.cpp
+	"physworld.h"
+	"physeventmanager.h"
+	"physgamesettings.h"
+
+1262402524 /home/sqeaky/Projects/physgame/physgameengine/src/physgamesettings.h
 

@@ -70,9 +70,8 @@
 					<Add directory="../physgameengine/bin/ubuntudebug" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="mkdir bin\ubuntuebug\data\ubuntu\ogre -p" />
-					<Add after="cp ..\physgameengine\bin\ubuntudebug\* .\bin\ubuntudebug -r" />
-					<Add after="cp data\ubuntu\Catch!-start .\bin\ubuntudebug" />
+					<Add after="cp ../physgameengine/bin/ubuntudebug/* ./bin/ubuntudebug/ -r" />
+					<Add after="cp data/ubuntu/Catch!-start bin/ubuntudebug/" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
