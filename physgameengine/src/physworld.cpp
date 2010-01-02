@@ -13,7 +13,7 @@
 #include "physvector.h"
 #include "physcrossplatform.h"
 #include "physworldcallbackmanager.h"
-#include "gamebase.h"
+#include "physgamesettings.h"
 
 #include "SDL.h"
 

@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1262384326 source:c:\users\mako\documents\repository\catch!\src\gamebase.cpp
+	"gamebase.h"
+	"physworld.h"
+	"physeventmanager.h"
+
+1262384326 c:\users\mako\documents\repository\catch!\src\gamebase.h
+
+1262384326 c:\users\mako\documents\repository\physgameengine\src\physworld.h
+	<string>
+	"physworldcallbackmanager.h"
+
+1262384326 c:\users\mako\documents\repository\physgameengine\src\physworldcallbackmanager.h
+
+1262384326 c:\users\mako\documents\repository\physgameengine\src\physeventmanager.h
+	<vector>
+	"physevent.h"
+	"physeventkeyboardinput.h"
+
+1262384326 c:\users\mako\documents\repository\physgameengine\src\physevent.h
+	<string>
+
+1262384326 c:\users\mako\documents\repository\physgameengine\src\physeventkeyboardinput.h
+
