@@ -12,7 +12,8 @@
 
 //#define MACOSX
 //#define UBUNTU
-#define WINDOWS
+//#define WINDOWS
+#define XUBUNTU
 
 ///////////////////////////////////////////////////////////////////////////////
 //End Choose Your Platform

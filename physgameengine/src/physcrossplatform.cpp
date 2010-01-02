@@ -16,12 +16,14 @@
 //"plugins.cfg" file
 string GetPluginsDotCFG()
 {
-
 	#ifdef UBUNTU
 		return "data/ubuntu/plugins.cfg";
 	#endif
 	#ifdef WINDOWS
 		return "data/windows/plugins.cfg";
+	#endif
+	#ifdef XUBUNTU
+		return "data/xubuntu/plugins.cfg";
 	#endif
 }
 
@@ -36,6 +38,10 @@ string GetSettingsDotCFG()
 	#ifdef WINDOWS
 		return "data/windows/settings.cfg";
 	#endif
+    #ifdef XUBUNTU
+		return "data/xubuntu/settings.cfg";
+	#endif
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

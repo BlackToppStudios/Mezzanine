@@ -8,14 +8,14 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="WinDebug">
-				<Option output="bin\WinDebug\physgame" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\WinDebug\" />
+				<Option output="bin/WinDebug/physgame.dll" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/WinDebug/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="libincludes\windows\ogre" />
-					<Add directory="libincludes\windows\sdl" />
+					<Add directory="libincludes/windows/ogre" />
+					<Add directory="libincludes/windows/sdl" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,--enable-runtime-pseudo-reloc" />
@@ -23,8 +23,8 @@
 					<Add option="-Wl,--add-stdcall-alias" />
 					<Add library="SDL" />
 					<Add library="OgreMain" />
-					<Add directory="data\windows\sdl" />
-					<Add directory="data\windows\ogre" />
+					<Add directory="data/windows/sdl" />
+					<Add directory="data/windows/ogre" />
 				</Linker>
 				<ExtraCommands>
 					<Add after="cmd /c copy .\data\windows\ogre\OgreMain.dll .\bin\WinDebug" />
@@ -39,66 +39,82 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="UbuntuDebug">
-				<Option output="bin\LinDebug\physgame" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\LinDebug\" />
-				<Option type="0" />
+				<Option output="bin/ubuntudebug/libphysgame.so" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/ubuntudebug/" />
+				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="`pkg-config --cflags OGRE`" />
 					<Add option="`sdl-config --cflags`" />
 					<Add option="-fexceptions" />
-					<Add directory="libincludes\linux\ogre" />
+					<Add directory="libincludes/linux/ogre" />
 				</Compiler>
 				<Linker>
 					<Add option="-DOGRE_GUI_GLX" />
 					<Add option="-DOGRE_CONFIG_LITTLE_ENDIAN" />
 					<Add option="`sdl-config --libs`" />
 					<Add library="OgreMain" />
-					<Add directory="data\ubuntu\ogre" />
+					<Add directory="data/ubuntu/ogre" />
 				</Linker>
+				<ExtraCommands>
+					<Add after="mkdir bin/ubuntudebug/data/ubuntu/ogre -p" />
+					<Add after="cp data/ubuntu/ogre/libOgreMain-1.6.5.so ./bin/ubuntudebug/" />
+					<Add after="cp data/ubuntu/plugins.cfg bin/ubuntudebug/data/ubuntu" />
+					<Add after="cp data/ubuntu/settings.cfg bin/ubuntudebug/data/ubuntu" />
+					<Add after="cp data/ubuntu/ogre/RenderSystem_GL.so bin/ubuntudebug/data/ubuntu/ogre" />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 			<Target title="XubuntuDebug">
-				<Option output="bin\LinDebug\physgame" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\LinDebug\" />
-				<Option type="0" />
+				<Option output="bin/xubuntudebug/libphysgame.so" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/xubuntudebug/" />
+				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="`pkg-config --cflags OGRE`" />
 					<Add option="`sdl-config --cflags`" />
 					<Add option="-fexceptions" />
-					<Add directory="libincludes\linux\ogre" />
+					<Add directory="libincludes/linux/ogre" />
 				</Compiler>
 				<Linker>
 					<Add option="-DOGRE_GUI_GLX" />
 					<Add option="-DOGRE_CONFIG_LITTLE_ENDIAN" />
 					<Add option="`sdl-config --libs`" />
 					<Add library="OgreMain" />
-					<Add directory="data\xubuntu\ogre" />
+					<Add directory="data/xubuntu/ogre" />
 				</Linker>
+				<ExtraCommands>
+					<Add after="mkdir bin/xubuntudebug/data/xubuntu/ogre -p" />
+					<Add after="cp data/xubuntu/ogre/libOgreMain-1.6.5.so ./bin/xubuntudebug/" />
+					<Add after="cp data/xubuntu/plugins.cfg bin/xubuntudebug/data/xubuntu" />
+					<Add after="cp data/xubuntu/settings.cfg bin/xubuntudebug/data/xubuntu" />
+					<Add after="cp data/xubuntu/ogre/RenderSystem_GL.so bin/xubuntudebug/data/xubuntu/ogre" />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="src\physcrossplatform.cpp" />
-		<Unit filename="src\physcrossplatform.h" />
-		<Unit filename="src\physdatatypes.h" />
-		<Unit filename="src\physevent.h" />
-		<Unit filename="src\physeventkeyboardinput.h" />
-		<Unit filename="src\physeventmanager.cpp" />
-		<Unit filename="src\physeventmanager.h" />
-		<Unit filename="src\physeventrendertime.cpp" />
-		<Unit filename="src\physeventrendertime.h" />
-		<Unit filename="src\physgamesettings.cpp" />
-		<Unit filename="src\physgamesettings.h" />
-		<Unit filename="src\physvector.cpp" />
-		<Unit filename="src\physvector.h" />
-		<Unit filename="src\physworld.cpp" />
-		<Unit filename="src\physworld.h" />
-		<Unit filename="src\physworldcallbackmanager.cpp" />
-		<Unit filename="src\physworldcallbackmanager.h" />
+		<Unit filename="src/physcrossplatform.cpp" />
+		<Unit filename="src/physcrossplatform.h" />
+		<Unit filename="src/physdatatypes.h" />
+		<Unit filename="src/physevent.h" />
+		<Unit filename="src/physeventkeyboardinput.h" />
+		<Unit filename="src/physeventmanager.cpp" />
+		<Unit filename="src/physeventmanager.h" />
+		<Unit filename="src/physeventrendertime.cpp" />
+		<Unit filename="src/physeventrendertime.h" />
+		<Unit filename="src/physgamesettings.cpp" />
+		<Unit filename="src/physgamesettings.h" />
+		<Unit filename="src/physvector.cpp" />
+		<Unit filename="src/physvector.h" />
+		<Unit filename="src/physworld.cpp" />
+		<Unit filename="src/physworld.h" />
+		<Unit filename="src/physworldcallbackmanager.cpp" />
+		<Unit filename="src/physworldcallbackmanager.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
