@@ -4,14 +4,14 @@
 	<File name="src/gamebase.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="405" topLine="44" />
 	</File>
-	<File name="src/gamebase.h" open="0" top="0" tabpos="1">
-		<Cursor position="1111" topLine="12" />
+	<File name="src/gamebase.h" open="1" top="0" tabpos="3">
+		<Cursor position="1111" topLine="0" />
 	</File>
-	<File name="src/physcrossplatform.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="318" topLine="47" />
+	<File name="src/physcrossplatform.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="318" topLine="35" />
 	</File>
-	<File name="src/physcrossplatform.h" open="0" top="0" tabpos="3">
-		<Cursor position="663" topLine="0" />
+	<File name="src/physcrossplatform.h" open="1" top="1" tabpos="4">
+		<Cursor position="663" topLine="18" />
 	</File>
 	<File name="src/physdatatypes.h" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
