@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="UbuntuDebug" />
+	<ActiveTarget name="XubuntuDebug" />
 	<File name="src/physcrossplatform.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1706" topLine="37" />
 	</File>
 	<File name="src/physcrossplatform.h" open="1" top="1" tabpos="1">
-		<Cursor position="663" topLine="0" />
+		<Cursor position="294" topLine="0" />
 	</File>
 	<File name="src/physdatatypes.h" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="0" />
