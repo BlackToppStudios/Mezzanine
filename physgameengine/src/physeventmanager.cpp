@@ -8,11 +8,32 @@
 
 #include "physeventmanager.h"
 
-PhysEventManager::PhysEventManager():EventQueue()
+
+
+PhysEventManager::PhysEventManager()
 {
 
 }
 
+//These functions will give you the next event or help you manage the events
+unsigned int PhysEventManager::GetRemainingEventCount()
+{
 
+}
+
+PhysEvent* PhysEventManager::GetNextEvent()
+{
+
+}
+
+PhysEventRenderTime* PhysEventManager::GetNextRenderTimeEvent()
+{
+
+}
+
+void AddEvent(PhysEvent* EventToAdd)
+{
+
+}
 
 #endif

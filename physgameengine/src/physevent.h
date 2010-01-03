@@ -5,6 +5,10 @@
 //to normalize the output of the event manager class.
 ///////////////////////////////////////
 
+enum EventType{
+    RenderTime
+};
+
 #include <string>
 
 using namespace std;
@@ -12,7 +16,7 @@ using namespace std;
 class PhysEvent
 {
 	public:
-		virtual string getEventType() = 0;
+		virtual EventType getEventType() = 0;
 
 };
 

@@ -28,6 +28,7 @@ class SDL_Surface;
 
 //Not included to prevent infinite loops
 #include "physworldcallbackmanager.h"
+#include "physeventmanager.h"
 //#include "gamebase.h"
 //#include "physvector.h"
 //Forward declarations to prevent infite loop of includes
@@ -89,6 +90,9 @@ class physworld
 
 		//used to set callback functions to be run in the main loop
 		physworldCallBackManager* CallBacks;
+
+		//This will be used to communicate with underlying sybsystems in a clean way
+		PhysEventManager*  Events;
 
 };
 #endif

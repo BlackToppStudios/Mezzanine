@@ -10,6 +10,7 @@
 using namespace std;
 
 #include "physevent.h"
+#include "physeventrendertime.h"
 #include "physeventkeyboardinput.h"
 
 class PhysEventManager
@@ -17,9 +18,18 @@ class PhysEventManager
 	private:
 		vector< PhysEvent* > EventQueue;
 
+
+
 	public:
 		PhysEventManager();
 
+        //These functions will give you the next event or help you manage the events
+        unsigned int GetRemainingEventCount();
+		PhysEvent* GetNextEvent();
+		PhysEventRenderTime* GetNextRenderTimeEvent();
+
+        //By and large the Game won't use this, but there is no reason it shouldn't
+		void AddEvent(PhysEvent* EventToAdd);
 };
 
 #endif

@@ -1,24 +1,27 @@
 #ifndef PHYSEVENTRENDERTIME_CPP
 #define PHYSEVENTRENDERTIME_CPP
 ///////////////////////////////////////////////////////////////////////////////
-// This will store the amount of
+// This will store the amount of time  since key rendering events have occurred
 ///////////////////////////////////////
-
-#include <string>
 
 #include "physdatatypes.h"
 #include "physeventrendertime.h"
 
 using namespace std;
 
-string PhysEventRenderTime::getEventType()
+PhysEventRenderTime::PhysEventRenderTime (unsigned long Milliseconds)
 {
-	return "PhysEventRenderTime";
+    Rendertime=Milliseconds;
 }
 
-PhysReal PhysEventRenderTime::getTimeSinceLastFrame()
+EventType PhysEventRenderTime::getEventType()
 {
-	return 0;
+	return RenderTime;
+}
+
+unsigned long PhysEventRenderTime::getMilliSecondsSinceLastFrame()
+{
+	return Rendertime;
 }
 
 

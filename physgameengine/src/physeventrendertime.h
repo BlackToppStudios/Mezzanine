@@ -6,17 +6,17 @@
 
 #include "physevent.h"
 
-#include <string>
-
 using namespace std;
 
 
 class PhysEventRenderTime : PhysEvent
 {
+    private:
+        unsigned long Rendertime;
 	public:
-		virtual string getEventType();
-		PhysReal getTimeSinceLastFrame();
-
+        PhysEventRenderTime (unsigned long Milliseconds);
+		virtual EventType getEventType();
+		unsigned long getMilliSecondsSinceLastFrame();
 };
 
 #endif

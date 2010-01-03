@@ -26,6 +26,12 @@ physworld::physworld()
 	//We create our Ogre environment and ODE enviroment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
 
+    //Callbacks are the main way that a game using the physworld will be able to have their code run at custom times
+	this->CallBacks = new physworldCallBackManager(this);
+
+    //Events are the main way for the game using the physworld to  get information about the various subsystems
+    this->Events = new PhysEventManager();
+
 
 	//instantiate the Physics engine
 	//this->OdeWorld = dWorldCreate();
@@ -92,10 +98,9 @@ void physworld::GameInit()
 
 	this->CreateRenderWindow();
 
-	//bind our callbacks to OurFrameListener
-	this->CallBacks = new physworldCallBackManager(this);
-	//OgreRoot->addFrameListener((Ogre::FrameListener*)FrameListener->PrivateListen);
 
+    //Create a the RenderTimer
+    Ogre::Timer RenderTimer();
 
 	//Start the game rendering
 	//this->OgreRoot->startRendering();
@@ -103,19 +108,27 @@ void physworld::GameInit()
 	bool Callback2 = true;
 	bool Callback3 = true;
 	bool Callback4 = true;
+
+	//As long as all the CallBacks return true the game continues
 	while (Callback1 && Callback2 && Callback3 && Callback4)
 	{
+	    //To prepare each callback we add an event to the event manager which includes the time sine th last frame render ended
+	    Events.AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
 		Callback1 = this->CallBacks->PreInput();
 		this->DoMainLoopInputBuffering();
 
-		//Flesh this out we need to gather input,
+        Events.AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
 		Callback2 = this->CallBacks->PrePhysics();
-			//run physics here
-		Callback2=false;
+		this->DoMainLoopPhysics();
 
+        Events.AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
 		Callback3 = this->CallBacks->PreRender();
 		this->OgreRoot->renderOneFrame();
-		Callback3 = this->CallBacks->PostRender();
+		RenderTimer.reset();
+		Events.AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
+		Callback4 = this->CallBacks->PostRender();
+
+		//Callback4=false;//This is to force the mainloop to exit af one iteration
 	}
 }
 
@@ -133,12 +146,14 @@ void physworld::DoMainLoopAllItems()
 
 void physworld::DoMainLoopPhysics()
 {
-	//ode per main loop items
+	//TODO: Step the physics world here per main loop items
+	//this->Events->AddsomeEvents
 }
 
 void physworld::DoMainLoopInputBuffering()
 {
 	SDL_PumpEvents();
+	//TODO: add the input gather to the event manager
 }
 
 
