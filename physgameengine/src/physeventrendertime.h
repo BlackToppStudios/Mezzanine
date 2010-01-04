@@ -9,7 +9,7 @@
 using namespace std;
 
 
-class PhysEventRenderTime : PhysEvent
+class PhysEventRenderTime : public PhysEvent
 {
     private:
         unsigned long Rendertime;

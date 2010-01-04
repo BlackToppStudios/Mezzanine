@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="xubuntudebug" />
+	<File name="src/gamebase.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="624" topLine="8" />
+	</File>
+	<File name="src/gamebase.h" open="0" top="0" tabpos="0">
+		<Cursor position="381" topLine="0" />
+	</File>
 </CodeBlocks_layout_file>

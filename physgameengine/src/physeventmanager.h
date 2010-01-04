@@ -5,7 +5,7 @@
 //
 //There will be an instance of this class in the physworld.
 ///////////////////////////////////////
-#include <vector>
+#include <list>
 
 using namespace std;
 
@@ -16,16 +16,18 @@ using namespace std;
 class PhysEventManager
 {
 	private:
-		vector< PhysEvent* > EventQueue;
-
-
+		list<PhysEvent*> EventQueue;
 
 	public:
 		PhysEventManager();
 
         //These functions will give you the next event or help you manage the events
+        //Whenever and event is gotten it is removed form the event queue
+        //any getfunction cannot find an appropriate event it returns a pointer to 0
         unsigned int GetRemainingEventCount();
 		PhysEvent* GetNextEvent();
+
+		//This gets the first/next available PhysEventRenderTime* in the Queue, then removes it.
 		PhysEventRenderTime* GetNextRenderTimeEvent();
 
         //By and large the Game won't use this, but there is no reason it shouldn't

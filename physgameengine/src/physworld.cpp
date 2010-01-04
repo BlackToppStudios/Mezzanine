@@ -9,6 +9,7 @@
 //for other code to interact with those libraries directly.
 ///////////////////////////////////////////////////////////////////////////////
 //Includes
+#include "physevent.h"
 #include "physworld.h"
 #include "physvector.h"
 #include "physcrossplatform.h"
@@ -16,6 +17,7 @@
 #include "physgamesettings.h"
 
 #include "SDL.h"
+#include "btBulletDynamicsCommon.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Physworld constructor
@@ -30,7 +32,7 @@ physworld::physworld()
 	this->CallBacks = new physworldCallBackManager(this);
 
     //Events are the main way for the game using the physworld to  get information about the various subsystems
-    this->Events = new PhysEventManager();
+    this->Events = new PhysEventManager;
 
 
 	//instantiate the Physics engine
@@ -98,9 +100,8 @@ void physworld::GameInit()
 
 	this->CreateRenderWindow();
 
-
-    //Create a the RenderTimer
-    Ogre::Timer RenderTimer();
+    //Create a the RenderTimer, which will be used to measure the time
+    Ogre::Timer RenderTimer;
 
 	//Start the game rendering
 	//this->OgreRoot->startRendering();
@@ -112,23 +113,24 @@ void physworld::GameInit()
 	//As long as all the CallBacks return true the game continues
 	while (Callback1 && Callback2 && Callback3 && Callback4)
 	{
-	    //To prepare each callback we add an event to the event manager which includes the time sine th last frame render ended
-	    Events.AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
+        //To prepare each callback we add an event to the event manager which includes the time sine th last frame render ended
+        //new PhysEventRenderTime(RenderTimer.getMilliseconds);
+	    this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
 		Callback1 = this->CallBacks->PreInput();
 		this->DoMainLoopInputBuffering();
 
-        Events.AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
+        this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
 		Callback2 = this->CallBacks->PrePhysics();
 		this->DoMainLoopPhysics();
 
-        Events.AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
+        this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
 		Callback3 = this->CallBacks->PreRender();
 		this->OgreRoot->renderOneFrame();
 		RenderTimer.reset();
-		Events.AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
+		this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
 		Callback4 = this->CallBacks->PostRender();
 
-		//Callback4=false;//This is to force the mainloop to exit af one iteration
+		Callback4=false;//This is to force the mainloop to exit af one iteration
 	}
 }
 
@@ -191,7 +193,7 @@ void physworld::CreateRenderWindow()
 	}
 
 	//Setup the SDL render window
-	SDLscreen = SDL_SetVideoMode(PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), 0, SDL_OPENGL);
+	this->SDLscreen = SDL_SetVideoMode(PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), 0, SDL_OPENGL);
 
 	//Start Ogre Without a native render window
 	this->OgreGameWindow = this->OgreRoot->initialise(false, "physgame");
