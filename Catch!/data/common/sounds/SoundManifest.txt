@@ -1,0 +1,26 @@
+#This file is tab delimited and generated with the assistance of renameandcomment
+#the first column is the filename without extension
+#the second column is are the formats/extensions the file is available in
+#The third column is comments, and should include voice stressing and how usable we think the sound file is
+oneminuteleft-1	aif,wav,mp3	One MINute Left    One,Needs second One removed
+oneminuteleft-2 aif,wav,mp3	ONE Minute Left
+oneminuteleft-3 aif,wav,mp3	One MINute Left, Good
+secondsleft-1	aif,wav,mp3	Seconds Left,Good
+secondsleft-2	aif,wav,mp3	SEConds Left,Good
+secondsleft-3	aif,wav,mp3	seconds Left,Cautious, Good, sounds like a warning
+thirtysecondsleft-1	aif,wav,mp3	thirty SEConds first
+thirtysecondsleft-2	aif,wav,mp3	Thirty Seconds Left,Good
+thirtysecondsleft-3	aif,wav,mp3	Thirty Seconds Left,Good but not as good as two
+ten-1	aif,wav,mp3	Ten,Good
+nine-1	aif,wav,mp3	nine,Good
+eight-1	aif,wav,mp3	Eight,Good
+seven-1	aif,wav,mp3	Seven,Good
+six-1	aif,wav,mp3	Six,Good
+five-1	aif,wav,mp3	five,Good
+four-1	aif,wav,mp3	Four,Good
+three-1	aif,wav,mp3	Three,Good
+two-1	aif,wav,mp3	Two,Good
+one-1	aif,wav,mp3	one,Good
+catch-1	aif,wav,mp3	Catch,Good
+catch-2	aif,wav,mp3	catch,mellow
+catch-3	aif,wav,mp3	CatCH,Good
