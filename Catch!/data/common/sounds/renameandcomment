@@ -14,17 +14,17 @@ fi
 #If any of the targets exist we need to exit
 if [ -e "$2.aif" ]
 then
-  echo "Target File \""$1.aif"\" already exists."
+  echo "Target File \""$2.aif"\" already exists."
   exit $E_TARGET_EXISTS
 fi
 if [ -e "$2.wav" ]
 then
-  echo "Target File \""$1.wav"\" already exists."
+  echo "Target File \""$2.wav"\" already exists."
   exit $E_TARGET_EXISTS
 fi
 if [ -e "$2.mp3" ]
 then
-  echo "Target File \""$1.mp3"\" already exists."
+  echo "Target File \""$2.mp3"\" already exists."
   exit $E_TARGET_EXISTS
 fi
 
