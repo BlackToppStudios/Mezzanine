@@ -5,7 +5,7 @@
 //Somewhere else we will stuff it here until it is time to refactor again.
 ///////////////////////////////////////////////////////////////////////////////
 
-bool postRenderCallback();
+bool preRenderCallback();
 
 
 #endif

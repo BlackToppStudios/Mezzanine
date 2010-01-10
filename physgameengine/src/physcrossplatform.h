@@ -21,8 +21,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // Includes
+#include "physdatatypes.h"
 
 #include <Ogre.h>
+
 #include <string>
 using namespace std;
 
@@ -39,5 +41,6 @@ string GetSettingsDotCFG();
 // on a pre-existing SDL context
 Ogre::NameValuePairList GetSDLOgreBinder();
 
+void WaitMilliseconds(PhysWhole WaitTime);
 
 #endif

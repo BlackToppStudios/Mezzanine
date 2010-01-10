@@ -5,6 +5,8 @@
 ///////////////////////////////////////
 
 #include "physevent.h"
+#include "physeventrendertime.h"
+#include "physdatatypes.h"
 
 using namespace std;
 
@@ -12,11 +14,11 @@ using namespace std;
 class PhysEventRenderTime : public PhysEvent
 {
     private:
-        unsigned long Rendertime;
+        PhysWhole Rendertime;
 	public:
-        PhysEventRenderTime (unsigned long Milliseconds);
+        PhysEventRenderTime (PhysWhole Milliseconds);
 		virtual EventType getEventType();
-		unsigned long getMilliSecondsSinceLastFrame();
+		PhysWhole getMilliSecondsSinceLastFrame();
 };
 
 #endif

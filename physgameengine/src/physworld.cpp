@@ -19,6 +19,9 @@
 #include "SDL.h"
 #include "btBulletDynamicsCommon.h"
 
+#include <sstream>
+using namespace std;
+
 ///////////////////////////////////////////////////////////////////////////////
 // Physworld constructor
 //this should create the basic objects for stroing and tracking the roots of
@@ -65,12 +68,36 @@ physworld::~physworld()
 //appends to the gamelog which is managed by Ogre
 void physworld::Log(string Message)
 {
-	//Ogre::Log::Stream << Message;
 	Ogre::LogManager::getSingleton().logMessage(Message);
-	//Ogre::LogManager::getSingleton().flush();
+}
+
+void physworld::Log(PhysWhole Message)
+{
+	stringstream temp;
+	temp << Message;
+	Ogre::LogManager::getSingleton().logMessage(temp.str());
+}
+
+void physworld::Log(PhysReal Message)
+{
+	stringstream temp;
+	temp << Message;
+	Ogre::LogManager::getSingleton().logMessage(temp.str());
 }
 
 void physworld::LogAndThrow(string Message)
+{
+	this->Log(Message);
+	throw(Message);
+}
+
+void physworld::LogAndThrow(PhysWhole Message)
+{
+	this->Log(Message);
+	throw(Message);
+}
+
+void physworld::LogAndThrow(PhysReal Message)
 {
 	this->Log(Message);
 	throw(Message);
@@ -105,45 +132,53 @@ void physworld::GameInit()
 
 	//Start the game rendering
 	//this->OgreRoot->startRendering();
-	bool Callback1 = true;
-	bool Callback2 = true;
-	bool Callback3 = true;
-	bool Callback4 = true;
+	bool Callbackbools[] = {true, true, true, true};
 
+	//Used for tracking times to prevent Infinite render loops in graphically simple games
+	PhysWhole Times[] = {0,0,0,0};
 	//This is the beginning of the mainloop
 	//As long as all the CallBacks return true the game continues
-	while (Callback1 && Callback2 && Callback3 && Callback4)
+	while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3])
 	{
+
         //To prepare each callback we add an event to the event manager which includes the time sine th last frame render ended
         //However we will only do this if a callback is set
         //new PhysEventRenderTime(RenderTimer.getMilliseconds);
         if(this->CallBacks->IsPreInputCallbackSet())
         {
-			this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
-			Callback1 = this->CallBacks->PreInput();
+			Times[0]=RenderTimer.getMilliseconds();
+			this->Events->AddEvent(new PhysEventRenderTime(Times[0]));
+			Callbackbools[0] = this->CallBacks->PreInput();
 			this->DoMainLoopInputBuffering();
         }
 
 		if(this->CallBacks->IsPrePhysicsCallbackSet())
         {
-			this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
-			Callback2 = this->CallBacks->PrePhysics();
+			Times[1]=RenderTimer.getMilliseconds();
+			this->Events->AddEvent(new PhysEventRenderTime(Times[1]));
+			Callbackbools[1] = this->CallBacks->PrePhysics();
 			this->DoMainLoopPhysics();
         }
 
 		if(this->CallBacks->IsPreRenderCallbackSet())
         {
-			this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
-			Callback3 = this->CallBacks->PreRender();
+        	Times[2]=RenderTimer.getMilliseconds();
+			this->Events->AddEvent(new PhysEventRenderTime(Times[2]));
+			Callbackbools[2] = this->CallBacks->PreRender();
         }
 
+		//Render the frame and figure the amount of time it took
 		this->OgreRoot->renderOneFrame();
+		PhysReal FrameTime = RenderTimer.getMillisecondsCPU(); //Limit frame rate to 62.5
 		RenderTimer.reset();
+		if(16>FrameTime)			//use 16666 for microseconds
+			{ WaitMilliseconds( 16-FrameTime ); }
 
 		if(this->CallBacks->IsPostRenderCallbackSet())
         {
-			this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
-			Callback4 = this->CallBacks->PostRender();
+        	Times[3]=RenderTimer.getMilliseconds();
+			this->Events->AddEvent(new PhysEventRenderTime(Times[3]));
+			Callbackbools[3] = this->CallBacks->PostRender();
         }
 		//Callback4=false;//This is to force the mainloop to exit af one iteration
 	}//End of main loop

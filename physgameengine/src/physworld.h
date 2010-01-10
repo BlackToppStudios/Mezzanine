@@ -29,6 +29,7 @@ class SDL_Surface;
 //Not included to prevent infinite loops
 #include "physworldcallbackmanager.h"
 #include "physeventmanager.h"
+#include "physdatatypes.h"
 //#include "gamebase.h"
 //#include "physvector.h"
 //Forward declarations to prevent infite loop of includes
@@ -72,7 +73,12 @@ class physworld
 
 		//I am just extending what ogre provides for a logging system
         void Log(string Message);
+        void Log(PhysWhole Message);
+		void Log(PhysReal Message);
         void LogAndThrow(string Message);
+        void LogAndThrow(PhysWhole Message);
+		void LogAndThrow(PhysReal Message);
+
 
         //I plan on deprecating this thing soon and building our own settings system
         bool ShowSystemSettingDialog();

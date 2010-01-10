@@ -8,8 +8,16 @@
 
 #include "physcrossplatform.h"
 #include <Ogre.h>
-#include "SDL.h"
-#include "SDL_syswm.h"
+
+//Selective Includes
+#ifdef WINDOWS
+	#include <cstdlib>//for sleep
+	#include "SDL_syswm.h"
+	#include "SDL.h"
+#else
+	#include <unistd.h>//for sleep
+#endif
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //returns: The appropriate string, which contains a path, to the correct
@@ -69,6 +77,14 @@ Ogre::NameValuePairList GetSDLOgreBinder()
 	return misc;
 }
 
+void WaitMilliseconds(PhysWhole WaitTime)
+{
+	#ifdef WINDOWS
+		sleep(WaitTime);
+	#else
+		usleep(1000*WaitTime);
+	#endif
+}
 
 
 

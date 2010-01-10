@@ -9,7 +9,7 @@
 
 using namespace std;
 
-PhysEventRenderTime::PhysEventRenderTime (unsigned long Milliseconds)
+PhysEventRenderTime::PhysEventRenderTime (PhysWhole Milliseconds)
 {
     Rendertime=Milliseconds;
 }
@@ -19,7 +19,7 @@ EventType PhysEventRenderTime::getEventType()
 	return RenderTime;
 }
 
-unsigned long PhysEventRenderTime::getMilliSecondsSinceLastFrame()
+PhysWhole PhysEventRenderTime::getMilliSecondsSinceLastFrame()
 {
 	return Rendertime;
 }

@@ -5,6 +5,7 @@
 ///////////////////////////////////////
 
 typedef float PhysReal;
+typedef unsigned long PhysWhole;
 
 #endif
 
