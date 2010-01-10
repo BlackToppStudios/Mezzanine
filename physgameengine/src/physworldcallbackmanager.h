@@ -32,18 +32,22 @@ class physworldCallBackManager
 		bool PreInput();
 		void ErasePreInput();
 		void SetPreInput(bool (*Callback)());
+		bool IsPreInputCallbackSet();
 
 		bool PrePhysics();
 		void ErasePrePhysics();
 		void SetPrePhysics(bool (*Callback)());
+		bool IsPrePhysicsCallbackSet();
 
 		bool PreRender();
 		void ErasePreRender();
 		void SetPreRender(bool (*Callback)());
+		bool IsPreRenderCallbackSet();
 
 		bool PostRender();
 		void ErasePostRender();
 		void SetPostRender(bool (*Callback)());
+		bool IsPostRenderCallbackSet();
 
 
 		friend class physworld;

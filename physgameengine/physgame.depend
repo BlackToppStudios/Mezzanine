@@ -5856,7 +5856,7 @@
 1241251066 /usr/include/OIS/OISInputManager.h
 	"OISPrereqs.h"
 
-1235099159 /usr/include/SDL/SDL.h
+1247825454 /usr/include/SDL/SDL.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_audio.h"
@@ -5875,14 +5875,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_main.h
+1247825454 /usr/include/SDL/SDL_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_stdinc.h
+1247825454 /usr/include/SDL/SDL_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -5908,11 +5908,11 @@
 	<stdlib.h>
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_config.h
+1247825455 /usr/include/SDL/SDL_config.h
 	"SDL_platform.h"
 	<stdarg.h>
 
-1235099159 /usr/include/SDL/SDL_platform.h
+1247825454 /usr/include/SDL/SDL_platform.h
 
 1254905336 /usr/include/malloc.h
 	<features.h>
@@ -5933,11 +5933,11 @@
 	<features.h>
 	<stddef.h>
 
-1235099159 /usr/include/SDL/begin_code.h
+1247825454 /usr/include/SDL/begin_code.h
 
-1235099159 /usr/include/SDL/close_code.h
+1247825454 /usr/include/SDL/close_code.h
 
-1235099159 /usr/include/SDL/SDL_audio.h
+1247825454 /usr/include/SDL/SDL_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -5947,23 +5947,23 @@
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_error.h
+1247825454 /usr/include/SDL/SDL_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_endian.h
+1247825454 /usr/include/SDL/SDL_endian.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_mutex.h
+1247825454 /usr/include/SDL/SDL_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_thread.h
+1247825454 /usr/include/SDL/SDL_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_mutex.h"
@@ -5971,24 +5971,24 @@
 	<process.h>
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_rwops.h
+1247825454 /usr/include/SDL/SDL_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_cdrom.h
+1247825454 /usr/include/SDL/SDL_cdrom.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_cpuinfo.h
+1247825454 /usr/include/SDL/SDL_cpuinfo.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_events.h
+1247825454 /usr/include/SDL/SDL_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_active.h"
@@ -5999,58 +5999,58 @@
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_active.h
+1247825454 /usr/include/SDL/SDL_active.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_keyboard.h
+1247825454 /usr/include/SDL/SDL_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keysym.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_keysym.h
+1247825454 /usr/include/SDL/SDL_keysym.h
 
-1235099159 /usr/include/SDL/SDL_mouse.h
+1247825454 /usr/include/SDL/SDL_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_video.h
+1247825454 /usr/include/SDL/SDL_video.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_joystick.h
+1247825454 /usr/include/SDL/SDL_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_quit.h
+1247825454 /usr/include/SDL/SDL_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1235099159 /usr/include/SDL/SDL_loadso.h
-	"SDL_stdinc.h"
-	"SDL_error.h"
-	"begin_code.h"
-	"close_code.h"
-
-1235099159 /usr/include/SDL/SDL_timer.h
+1247825454 /usr/include/SDL/SDL_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1235099159 /usr/include/SDL/SDL_version.h
+1247825454 /usr/include/SDL/SDL_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1247825454 /usr/include/SDL/SDL_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
@@ -7279,7 +7279,7 @@
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupLiSPSM.h"
 
-1235099159 /usr/include/SDL/SDL_syswm.h
+1247825454 /usr/include/SDL/SDL_syswm.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_version.h"
@@ -9683,35 +9683,35 @@
 
 1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/gamebase.h
 
-1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/physworld.h
+1262837212 /home/sqeaky/Projects/physgame/physgameengine/src/physworld.h
 	<string>
 	"physworldcallbackmanager.h"
+	"physeventmanager.h"
 
-1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/physworldcallbackmanager.h
+1263104976 /home/sqeaky/Projects/physgame/physgameengine/src/physworldcallbackmanager.h
 
-1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/physeventmanager.h
-	<vector>
+1262837212 /home/sqeaky/Projects/physgame/physgameengine/src/physeventmanager.h
+	<list>
 	"physevent.h"
+	"physeventrendertime.h"
 	"physeventkeyboardinput.h"
 
-1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/physevent.h
+1262837212 /home/sqeaky/Projects/physgame/physgameengine/src/physevent.h
 	<string>
 
 1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/physeventkeyboardinput.h
 
-1262382707 source:/home/sqeaky/Projects/physgame/physgameengine/src/physeventmanager.cpp
+1262837212 source:/home/sqeaky/Projects/physgame/physgameengine/src/physeventmanager.cpp
 	"physeventmanager.h"
 
-1262382707 source:/home/sqeaky/Projects/physgame/physgameengine/src/physeventrendertime.cpp
-	<string>
+1262837212 source:/home/sqeaky/Projects/physgame/physgameengine/src/physeventrendertime.cpp
 	"physdatatypes.h"
 	"physeventrendertime.h"
 
 1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/physdatatypes.h
 
-1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/physeventrendertime.h
+1262837212 /home/sqeaky/Projects/physgame/physgameengine/src/physeventrendertime.h
 	"physevent.h"
-	<string>
 
 1262382707 source:/home/sqeaky/Projects/physgame/physgameengine/src/physvector.cpp
 	"physvector.h"
@@ -9719,15 +9719,17 @@
 1262382707 /home/sqeaky/Projects/physgame/physgameengine/src/physvector.h
 	"physdatatypes.h"
 
-1262402524 source:/home/sqeaky/Projects/physgame/physgameengine/src/physworld.cpp
+1263105602 source:/home/sqeaky/Projects/physgame/physgameengine/src/physworld.cpp
+	"physevent.h"
 	"physworld.h"
 	"physvector.h"
 	"physcrossplatform.h"
 	"physworldcallbackmanager.h"
 	"physgamesettings.h"
 	"SDL.h"
+	"btBulletDynamicsCommon.h"
 
-1262382707 source:/home/sqeaky/Projects/physgame/physgameengine/src/physworldcallbackmanager.cpp
+1263105051 source:/home/sqeaky/Projects/physgame/physgameengine/src/physworldcallbackmanager.cpp
 	"physworldcallbackmanager.h"
 	"physdatatypes.h"
 	"physworld.h"
@@ -9738,7 +9740,7 @@
 	"SDL.h"
 	"SDL_syswm.h"
 
-1262402655 /home/sqeaky/Projects/physgame/physgameengine/src/physcrossplatform.h
+1263059756 /home/sqeaky/Projects/physgame/physgameengine/src/physcrossplatform.h
 	<Ogre.h>
 	<string>
 
@@ -11503,5 +11505,499 @@
 	"LinearMath/btTransform.h"
 
 1247600602 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btActionInterface.h
+	"LinearMath/btScalar.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/btBulletDynamicsCommon.h
+	"btBulletCollisionCommon.h"
+	"BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
+	"BulletDynamics/Dynamics/btContinuousDynamicsWorld.h"
+	"BulletDynamics/Dynamics/btSimpleDynamicsWorld.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h"
+	"BulletDynamics/ConstraintSolver/btHingeConstraint.h"
+	"BulletDynamics/ConstraintSolver/btConeTwistConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h"
+	"BulletDynamics/ConstraintSolver/btSliderConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h"
+	"BulletDynamics/ConstraintSolver/btUniversalConstraint.h"
+	"BulletDynamics/ConstraintSolver/btHinge2Constraint.h"
+	"BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+	"BulletDynamics/Vehicle/btRaycastVehicle.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/btBulletCollisionCommon.h
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+	"BulletCollision/CollisionShapes/btBoxShape.h"
+	"BulletCollision/CollisionShapes/btSphereShape.h"
+	"BulletCollision/CollisionShapes/btCapsuleShape.h"
+	"BulletCollision/CollisionShapes/btCylinderShape.h"
+	"BulletCollision/CollisionShapes/btConeShape.h"
+	"BulletCollision/CollisionShapes/btStaticPlaneShape.h"
+	"BulletCollision/CollisionShapes/btConvexHullShape.h"
+	"BulletCollision/CollisionShapes/btTriangleMesh.h"
+	"BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h"
+	"BulletCollision/CollisionShapes/btCompoundShape.h"
+	"BulletCollision/CollisionShapes/btTetrahedronShape.h"
+	"BulletCollision/CollisionShapes/btEmptyShape.h"
+	"BulletCollision/CollisionShapes/btMultiSphereShape.h"
+	"BulletCollision/CollisionShapes/btUniformScalingShape.h"
+	"BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.h"
+	"BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h"
+	"BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btSimpleBroadphase.h"
+	"BulletCollision/BroadphaseCollision/btAxisSweep3.h"
+	"BulletCollision/BroadphaseCollision/btMultiSapBroadphase.h"
+	"BulletCollision/BroadphaseCollision/btDbvtBroadphase.h"
+	"LinearMath/btQuaternion.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btDefaultMotionState.h"
+	"LinearMath/btQuickprof.h"
+	"LinearMath/btIDebugDraw.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionWorld.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btCollisionObject.h"
+	"btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btVector3.h
+	"btScalar.h"
+	"btScalar.h"
+	"btMinMax.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btScalar.h
+	<math.h>
+	<stdlib.h>
+	<cstdlib>
+	<cfloat>
+	<float.h>
+	<ppcintrinsics.h>
+	<emmintrin.h>
+	<assert.h>
+	<assert.h>
+	<assert.h>
+	<emmintrin.h>
+	<assert.h>
+	<assert.h>
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btMinMax.h
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btTransform.h
+	"btVector3.h"
+	"btMatrix3x3.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btMatrix3x3.h
+	"btScalar.h"
+	"btVector3.h"
+	"btQuaternion.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btQuaternion.h
+	"btVector3.h"
+	"btQuadWord.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btQuadWord.h
+	"btScalar.h"
+	"btMinMax.h"
+	<altivec.h>
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionObject.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btMotionState.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btMotionState.h
+	"btTransform.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btAlignedAllocator.h
+	"btScalar.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btAlignedObjectArray.h
+	"btScalar.h"
+	"btAlignedAllocator.h"
+	<memory.h>
+	<string.h>
+	<new>
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionDispatcher.h
+	"BulletCollision/BroadphaseCollision/btDispatcher.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/CollisionDispatch/btManifoldResult.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btCollisionCreateFunc.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btDispatcher.h
+	"LinearMath/btScalar.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/NarrowPhaseCollision/btPersistentManifold.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btManifoldPoint.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/NarrowPhaseCollision/btManifoldPoint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransformUtil.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btTransformUtil.h
+	"btTransform.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btManifoldResult.h
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h"
+	"LinearMath/btTransform.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btBroadphaseProxy.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionCreateFunc.h
+	"LinearMath/btAlignedObjectArray.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btOverlappingPairCache.h
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"btOverlappingPairCallback.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btBroadphaseInterface.h
+	"btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btOverlappingPairCallback.h
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btBoxShape.h
+	"btPolyhedralConvexShape.h"
+	"btCollisionMargin.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btMinMax.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btPolyhedralConvexShape.h
+	"LinearMath/btMatrix3x3.h"
+	"btConvexInternalShape.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexInternalShape.h
+	"btConvexShape.h"
+	"LinearMath/btAabbUtil2.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexShape.h
+	"btCollisionShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCollisionShape.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCollisionMargin.h
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btAabbUtil2.h
+	"btTransform.h"
+	"btVector3.h"
+	"btMinMax.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btSphereShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCapsuleShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCylinderShape.h
+	"btBoxShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConeShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btStaticPlaneShape.h
+	"btConcaveShape.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConcaveShape.h
+	"btCollisionShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"btTriangleCallback.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleCallback.h
+	"LinearMath/btVector3.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexHullShape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleMesh.h
+	"btTriangleIndexVertexArray.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h
+	"btStridingMeshInterface.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btScalar.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btStridingMeshInterface.h
+	"LinearMath/btVector3.h"
+	"btTriangleCallback.h"
+	"btConcaveShape.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h
+	"btTriangleMeshShape.h"
+	"btOptimizedBvh.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleMeshShape.h
+	"btConcaveShape.h"
+	"btStridingMeshInterface.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btOptimizedBvh.h
+	"BulletCollision/BroadphaseCollision/btQuantizedBvh.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btQuantizedBvh.h
+	<stdio.h>
+	<stdlib.h>
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCompoundShape.h
+	"btCollisionShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTetrahedronShape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btEmptyShape.h
+	"btConcaveShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btMultiSphereShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btAabbUtil2.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btUniformScalingShape.h
+	"btConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.h
+	"btActivatingCollisionAlgorithm.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionCreateFunc.h"
+	"btCollisionDispatcher.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btActivatingCollisionAlgorithm.h
+	"BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h
+	"btCollisionConfiguration.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionConfiguration.h
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btSimpleBroadphase.h
+	"btOverlappingPairCache.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btAxisSweep3.h
+	"LinearMath/btVector3.h"
+	"btOverlappingPairCache.h"
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"btOverlappingPairCallback.h"
+	"btDbvtBroadphase.h"
+	<stdio.h>
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btDbvtBroadphase.h
+	"BulletCollision/BroadphaseCollision/btDbvt.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"LinearMath/btQuickprof.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btDbvt.h
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btAabbUtil2.h"
+	<emmintrin.h>
+	<memory.h>
+	<string.h>
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btQuickprof.h
+	"btScalar.h"
+	"LinearMath/btAlignedAllocator.h"
+	<new>
+	<sys/sys_time.h>
+	<sys/time_util.h>
+	<stdio.h>
+	<stdio.h>
+	<Xtl.h>
+	<windows.h>
+	<time.h>
+	<sys/time.h>
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btMultiSapBroadphase.h
+	"btBroadphaseInterface.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btOverlappingPairCache.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btDefaultMotionState.h
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btIDebugDraw.h
+	"btVector3.h"
+	"btTransform.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h
+	"btDynamicsWorld.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btDynamicsWorld.h
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btContactSolverInfo.h
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btContinuousDynamicsWorld.h
+	"btDiscreteDynamicsWorld.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btSimpleDynamicsWorld.h
+	"btDynamicsWorld.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btRigidBody.h
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btTransform.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btJacobianEntry.h
+	"LinearMath/btVector3.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btTypedConstraint.h
+	"LinearMath/btScalar.h"
+	"btSolverConstraint.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSolverConstraint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"btJacobianEntry.h"
+	"btSolverBody.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSolverBody.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btTransformUtil.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btHingeConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btConeTwistConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSliderConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofConstraint.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btUniversalConstraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofConstraint.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btHinge2Constraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofSpringConstraint.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h
+	"btConstraintSolver.h"
+	"btContactConstraint.h"
+	"btSolverBody.h"
+	"btSolverConstraint.h"
+	"btTypedConstraint.h"
+	"BulletCollision/NarrowPhaseCollision/btManifoldPoint.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btConstraintSolver.h
+	"LinearMath/btScalar.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btContactConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Vehicle/btRaycastVehicle.h
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"btVehicleRaycaster.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btWheelInfo.h"
+	"BulletDynamics/Dynamics/btActionInterface.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Vehicle/btVehicleRaycaster.h
+	"LinearMath/btVector3.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Vehicle/btWheelInfo.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+
+1262837211 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btActionInterface.h
 	"LinearMath/btScalar.h"
 

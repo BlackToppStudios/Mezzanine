@@ -19,7 +19,7 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////////////////
 // physworldFrameListener
 ///////////////////////////////////////
-physworldCallBackManager::physworldCallBackManager(physworld* _Parent)
+physworldCallBackManager::physworldCallBackManager(physworld* _Parent): PreInputCallback(NULL)
 {
 	TheWorldIListenTo = _Parent;
 
@@ -43,7 +43,7 @@ bool physworldCallBackManager::PreInput()
 	//assume that we should just keep execute the main loop
 	if(NULL!=PreInputCallback)
 	{
-		return (*PreInputCallback);
+		return (*PreInputCallback)();
 	}
 	return true;
 }
@@ -58,34 +58,108 @@ void physworldCallBackManager::SetPreInput(bool (*Callback)())
 	this->PreInputCallback = Callback;
 }
 
+bool physworldCallBackManager::IsPreInputCallbackSet()
+{
+	if(NULL==PreInputCallback)
+	{
+		return false;
+	}
+	return true;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
-//
+// These functions manage the pre physics functions
 ///////////////////////////////////////
 bool physworldCallBackManager::PrePhysics()
-{return true;}
+{
+	if(NULL!=PrePhysicsCallback)
+	{
+		return (*PrePhysicsCallback)();
+	}
+	return true;
+}
 
 void physworldCallBackManager::ErasePrePhysics()
-{}
+{
+	this->PrePhysicsCallback = NULL;
+}
 
 void physworldCallBackManager::SetPrePhysics(bool (*Callback)())
-{}
+{
+	this->PrePhysicsCallback = Callback;
+}
 
+bool physworldCallBackManager::IsPrePhysicsCallbackSet()
+{
+	if(NULL==PrePhysicsCallback)
+	{
+		return false;
+	}
+	return true;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// These functions manage the pre render functions
+///////////////////////////////////////
 bool physworldCallBackManager::PreRender()
-{return true;}
+{
+	if(NULL!=PreRenderCallback)
+	{
+		return (*PreRenderCallback)();
+	}
+	return true;
+}
 
 void physworldCallBackManager::ErasePreRender()
-{}
+{
+	this->PreRenderCallback = NULL;
+}
 
 void physworldCallBackManager::SetPreRender(bool (*Callback)())
-{}
+{
+	this->PreRenderCallback = Callback;
+}
 
+bool physworldCallBackManager::IsPreRenderCallbackSet()
+{
+	if(NULL==PreRenderCallback)
+	{
+		return false;
+	}
+	return true;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// These functions manage the posy render functions
+/////////////////////////////////////// PostRenderCallback
 bool physworldCallBackManager::PostRender()
-{return true;}
+{
+	if(NULL!=PostRenderCallback)
+	{
+		return (*PostRenderCallback)();
+	}
+	return true;
+}
 
 void physworldCallBackManager::ErasePostRender()
-{}
+{
+	this->PostRenderCallback = NULL;
+}
 
 void physworldCallBackManager::SetPostRender(bool (*Callback)())
-{}
+{
+	this->PostRenderCallback = Callback;
+}
+
+bool physworldCallBackManager::IsPostRenderCallbackSet()
+{
+	if(NULL==PostRenderCallback)
+	{
+		return false;
+	}
+	return true;
+}
 
 #endif

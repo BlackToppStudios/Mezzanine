@@ -110,28 +110,43 @@ void physworld::GameInit()
 	bool Callback3 = true;
 	bool Callback4 = true;
 
+	//This is the beginning of the mainloop
 	//As long as all the CallBacks return true the game continues
 	while (Callback1 && Callback2 && Callback3 && Callback4)
 	{
         //To prepare each callback we add an event to the event manager which includes the time sine th last frame render ended
+        //However we will only do this if a callback is set
         //new PhysEventRenderTime(RenderTimer.getMilliseconds);
-	    this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
-		Callback1 = this->CallBacks->PreInput();
-		this->DoMainLoopInputBuffering();
+        if(this->CallBacks->IsPreInputCallbackSet())
+        {
+			this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
+			Callback1 = this->CallBacks->PreInput();
+			this->DoMainLoopInputBuffering();
+        }
 
-        this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
-		Callback2 = this->CallBacks->PrePhysics();
-		this->DoMainLoopPhysics();
+		if(this->CallBacks->IsPrePhysicsCallbackSet())
+        {
+			this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
+			Callback2 = this->CallBacks->PrePhysics();
+			this->DoMainLoopPhysics();
+        }
 
-        this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
-		Callback3 = this->CallBacks->PreRender();
+		if(this->CallBacks->IsPreRenderCallbackSet())
+        {
+			this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
+			Callback3 = this->CallBacks->PreRender();
+        }
+
 		this->OgreRoot->renderOneFrame();
 		RenderTimer.reset();
-		this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
-		Callback4 = this->CallBacks->PostRender();
 
-		Callback4=false;//This is to force the mainloop to exit af one iteration
-	}
+		if(this->CallBacks->IsPostRenderCallbackSet())
+        {
+			this->Events->AddEvent(new PhysEventRenderTime(RenderTimer.getMilliseconds()));
+			Callback4 = this->CallBacks->PostRender();
+        }
+		//Callback4=false;//This is to force the mainloop to exit af one iteration
+	}//End of main loop
 }
 
 void physworld::MoveCamera(PhysVector3 Position, PhysVector3 LookAt)
