@@ -8,10 +8,29 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Includes and Forward Declarations
 
-#include <string>
+#include "physworldcallbackmanager.h"
+#include "physeventmanager.h"
+#include "physdatatypes.h"
 
+#include <string>
 using namespace std;
 
+//Not included to prevent infinite loops
+//#include "physvector.h"
+//#include "gamesettings.h"
+//Forward declarations to prevent infite loop of includes
+class Settings;
+class PhysVector3;
+
+//Other forward declarations
+//#include "SDL.h"
+class SDL_Surface;
+//#include "btBulletDynamicsCommon.h"
+class btAxisSweep3;
+class btDefaultCollisionConfiguration;
+class btCollisionDispatcher;
+class btSequentialImpulseConstraintSolver;
+class btDiscreteDynamicsWorld;
 //#include <Ogre.h>
 namespace Ogre
 {
@@ -23,29 +42,23 @@ namespace Ogre
 	class Viewport;
 }
 
-//#include "SDL.h"
-class SDL_Surface;
-
-//Not included to prevent infinite loops
-#include "physworldcallbackmanager.h"
-#include "physeventmanager.h"
-#include "physdatatypes.h"
-//#include "gamebase.h"
-//#include "physvector.h"
-//Forward declarations to prevent infite loop of includes
-//class physworldFrameListener;
-class Settings;
-
-//physworld.cpp
-class PhysVector3;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Physworld Class Declaration
+///////////////////////////////////////
 class physworld
 {
 	private:
-		//TODO Add Bullet Physics world
-		//dWorldID OdeWorld;
+		//Physics Items
+		PhysVector3* GeographyLowerBounds;
+		PhysVector3* GeographyUpperbounds;
+		unsigned short int  MaxPhysicsProxies;
+
+		btAxisSweep3* BulletBroadphase;
+		btDefaultCollisionConfiguration* BulletCollisionConfiguration;
+		btCollisionDispatcher* BulletDispatcher;
+		btSequentialImpulseConstraintSolver* BulletSolver;
+		btDiscreteDynamicsWorld* BulletDynamicsWorld;
 
 		//SDL Objects
 		SDL_Surface *SDLscreen;
@@ -67,7 +80,11 @@ class physworld
 		//makes the windows all the graphics will be drawn to
 		void CreateRenderWindow();
 
+		//Used by the constructors
+		void Construct(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies);
+
 	public:
+		physworld(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024);
 		physworld();
 		~physworld();
 

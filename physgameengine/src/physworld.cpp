@@ -28,7 +28,23 @@ using namespace std;
 //objects in the game
 physworld::physworld()
 {
-	//We create our Ogre environment and ODE enviroment
+	this->Construct(
+		new PhysVector3(-100.0,-100.0,-100.0),
+		new PhysVector3(100.0, 100.0, 100.0),
+		10
+		);
+}
+
+physworld::physworld(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyUpperbounds_, unsigned short int  MaxPhysicsProxies_)
+{
+	this->Construct(GeographyLowerBounds_, GeographyUpperbounds_, MaxPhysicsProxies_);
+}
+
+void physworld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyUpperbounds_, unsigned short int  MaxPhysicsProxies_)
+{
+	PlayerSettings = new Settings();
+
+	//We create our Ogre environment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
 
     //Callbacks are the main way that a game using the physworld will be able to have their code run at custom times
@@ -37,24 +53,47 @@ physworld::physworld()
     //Events are the main way for the game using the physworld to  get information about the various subsystems
     this->Events = new PhysEventManager;
 
+	//instantiate the Physics engine and related items
+	GeographyLowerBounds = GeographyLowerBounds_;
+	GeographyUpperbounds = GeographyUpperbounds_;
+	MaxPhysicsProxies = MaxPhysicsProxies_;
 
-	//instantiate the Physics engine
-	//this->OdeWorld = dWorldCreate();
+	btVector3 worldAabbMin(GeographyLowerBounds->X, GeographyLowerBounds->Y, GeographyLowerBounds->Z);
+	btVector3 worldAabbMax(GeographyUpperbounds->X, GeographyUpperbounds->Y, GeographyUpperbounds->Z);
 
-	//initilize the settings
-	PlayerSettings = new Settings();
+	this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
+	this->BulletBroadphase = new btAxisSweep3(worldAabbMin, worldAabbMax, MaxPhysicsProxies);
+	this->BulletSolver = new btSequentialImpulseConstraintSolver;
+	this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
+
+	this->BulletDynamicsWorld = new btDiscreteDynamicsWorld(
+												BulletDispatcher,
+												BulletBroadphase,
+												BulletSolver,
+												BulletCollisionConfiguration);
+
 }
-
 ///////////////////////////////////////////////////////////////////////////////
 //tears the world down
 physworld::~physworld()
 {
-	//Destroy the physical world that we loved and cherished, until we SIGTERMED
+	//Destroy the physical world that we loved and cherished
 	//dWorldDestroy(this->OdeWorld);
+	delete GeographyLowerBounds;
+	delete GeographyUpperbounds;
+	delete BulletBroadphase;
+	delete BulletCollisionConfiguration;
+	delete BulletDispatcher;
+	delete BulletSolver;
+	delete BulletDynamicsWorld;
 
 	//All the pointers Ogre made should get taken care of by OGRE
 	delete OgreRoot;
+
+	//clear up our objects
 	delete CallBacks;
+	delete Events;
+
 
 	delete PlayerSettings;
 
@@ -130,20 +169,18 @@ void physworld::GameInit()
     //Create a the RenderTimer, which will be used to measure the time
     Ogre::Timer RenderTimer;
 
-	//Start the game rendering
-	//this->OgreRoot->startRendering();
 	bool Callbackbools[] = {true, true, true, true};
 
 	//Used for tracking times to prevent Infinite render loops in graphically simple games
 	PhysWhole Times[] = {0,0,0,0};
+
 	//This is the beginning of the mainloop
 	//As long as all the CallBacks return true the game continues
 	while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3])
 	{
 
-        //To prepare each callback we add an event to the event manager which includes the time sine th last frame render ended
+        //To prepare each callback we add an event to the event manager which includes the time since th last frame render ended
         //However we will only do this if a callback is set
-        //new PhysEventRenderTime(RenderTimer.getMilliseconds);
         if(this->CallBacks->IsPreInputCallbackSet())
         {
 			Times[0]=RenderTimer.getMilliseconds();
@@ -180,7 +217,7 @@ void physworld::GameInit()
 			this->Events->AddEvent(new PhysEventRenderTime(Times[3]));
 			Callbackbools[3] = this->CallBacks->PostRender();
         }
-		//Callback4=false;//This is to force the mainloop to exit af one iteration
+
 	}//End of main loop
 }
 
