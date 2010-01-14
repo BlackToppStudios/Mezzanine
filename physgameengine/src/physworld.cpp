@@ -61,10 +61,10 @@ void physworld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 	btVector3 worldAabbMin(GeographyLowerBounds->X, GeographyLowerBounds->Y, GeographyLowerBounds->Z);
 	btVector3 worldAabbMax(GeographyUpperbounds->X, GeographyUpperbounds->Y, GeographyUpperbounds->Z);
 
-	this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
 	this->BulletBroadphase = new btAxisSweep3(worldAabbMin, worldAabbMax, MaxPhysicsProxies);
 	this->BulletSolver = new btSequentialImpulseConstraintSolver;
 	this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
+	this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
 
 	this->BulletDynamicsWorld = new btDiscreteDynamicsWorld(
 												BulletDispatcher,
@@ -209,7 +209,10 @@ void physworld::GameInit()
 		PhysReal FrameTime = RenderTimer.getMillisecondsCPU(); //Limit frame rate to 62.5
 		RenderTimer.reset();
 		if(16>FrameTime)			//use 16666 for microseconds
-			{ WaitMilliseconds( 16-FrameTime ); }
+			{
+				 SDL_Delay(16-FrameTime);
+				//WaitMilliseconds( 16-FrameTime );
+			}
 
 		if(this->CallBacks->IsPostRenderCallbackSet())
         {
