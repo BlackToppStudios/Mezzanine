@@ -80,7 +80,7 @@ Ogre::NameValuePairList GetSDLOgreBinder()
 void WaitMilliseconds(PhysWhole WaitTime)
 {
 	#ifdef WINDOWS
-		sleep(WaitTime);
+		Sleep(WaitTime);
 	#else
 		usleep(1000*WaitTime);
 	#endif
