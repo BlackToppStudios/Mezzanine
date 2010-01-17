@@ -68,13 +68,14 @@
 					<Add directory="../physgameengine/src" />
 				</Compiler>
 				<Linker>
+					<Add option="-Wl,-R\\$ORIGIN" />
 					<Add library="physgame" />
-					<Add library="../physgameengine/bin/ubuntudebug/libOgreMain-1.6.5.so" />
 					<Add directory="../physgameengine/bin/ubuntudebug" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="cp ../physgameengine/bin/ubuntudebug/* ./bin/ubuntudebug/ -r" />
-					<Add after="cp data/ubuntu/Catch!-start bin/ubuntudebug/" />
+					<Add before="mkdir bin/ubuntudebug/ -p" />
+					<Add before="cp ../physgameengine/bin/ubuntudebug/* ./bin/ubuntudebug/ -r" />
+					<Add before="cp data/ubuntu/Catch!-start bin/ubuntudebug/" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
