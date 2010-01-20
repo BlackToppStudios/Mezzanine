@@ -68,9 +68,8 @@
 					<Add directory="../physgameengine/src" />
 				</Compiler>
 				<Linker>
-					<Add option="-Wl,-R\\$ORIGIN" />
 					<Add library="physgame" />
-					<Add directory="../physgameengine/bin/ubuntudebug" />
+					<Add directory="bin/ubuntudebug" />
 				</Linker>
 				<ExtraCommands>
 					<Add before="mkdir bin/ubuntudebug/ -p" />
