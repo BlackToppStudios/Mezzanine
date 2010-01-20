@@ -174,6 +174,11 @@ void physworld::GameInit()
 	//Used for tracking times to prevent Infinite render loops in graphically simple games
 	PhysWhole Times[] = {0,0,0,0};
 
+	//TODO finish test code
+	//OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
+	//Entity *ent1 = mSceneMgr->createEntity( "Robot", "robot.mesh" );
+
+
 	//This is the beginning of the mainloop
 	//As long as all the CallBacks return true the game continues
 	while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3])
