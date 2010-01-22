@@ -113,6 +113,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src\physactor.h" />
 		<Unit filename="src\physcrossplatform.cpp" />
 		<Unit filename="src\physcrossplatform.h" />
 		<Unit filename="src\physdatatypes.h" />
