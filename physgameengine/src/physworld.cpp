@@ -227,6 +227,9 @@ void physworld::GameInit()
         }
 
 	}//End of main loop
+
+	//Some after loop cleanup
+	this->DestroyRenderWindow();
 }
 
 void physworld::MoveCamera(PhysVector3 Position, PhysVector3 LookAt)
@@ -315,4 +318,8 @@ void physworld::CreateRenderWindow()
 	this->OgreCamera->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
 }
 
+void physworld::DestroyRenderWindow()
+{
+    this->OgreGameWindow->destroy();
+}
 #endif

@@ -12,7 +12,7 @@
 //Selective Includes
 #ifdef WINDOWS
 	#include <cstdlib>//for sleep
-	#include "SDL_syswm.h"
+	#include "SDL_syswm.h" //for the needed commands
 	#include "SDL.h"
 #else
 	#include <unistd.h>//for sleep
@@ -24,15 +24,13 @@
 //"plugins.cfg" file
 string GetPluginsDotCFG()
 {
-	#ifdef UBUNTU
-		return "data/ubuntu/plugins.cfg";
+	#ifdef LINUX
+		return "data/linux/plugins.cfg";
 	#endif
 	#ifdef WINDOWS
 		return "data/windows/plugins.cfg";
 	#endif
-	#ifdef XUBUNTU
-		return "data/xubuntu/plugins.cfg";
-	#endif
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -40,16 +38,12 @@ string GetPluginsDotCFG()
 //"settings.cfg" file
 string GetSettingsDotCFG()
 {
-	#ifdef UBUNTU
-		return "data/ubuntu/settings.cfg";
+	#ifdef LINUX
+		return "data/linux/settings.cfg";
 	#endif
 	#ifdef WINDOWS
 		return "data/windows/settings.cfg";
 	#endif
-    #ifdef XUBUNTU
-		return "data/xubuntu/settings.cfg";
-	#endif
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////

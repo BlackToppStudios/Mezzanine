@@ -33,10 +33,10 @@
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
-			<Target title="xubuntudebug">
-				<Option output="bin/xubuntudebug/Catch!" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/xubuntudebug/" />
-				<Option object_output="obj/xubuntudebug/" />
+			<Target title="LinuxDebug">
+				<Option output="bin/LinuxDebug/Catch!" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/LinuxDebug/" />
+				<Option object_output="obj/LinuxDebug/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -45,36 +45,12 @@
 				</Compiler>
 				<Linker>
 					<Add library="physgame" />
-					<Add library="../physgameengine/bin/xubuntudebug/libOgreMain-1.6.5.so" />
-					<Add directory="../physgameengine/bin/xubuntudebug" />
+					<Add directory="bin/LinuxDebug" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="cp ../physgameengine/bin/xubuntudebug/* ./bin/xubuntudebug/ -r" />
-					<Add after="cp data/xubuntu/Catch!-start bin/xubuntudebug/" />
-					<Mode after="always" />
-				</ExtraCommands>
-				<Environment>
-					<Variable name="$LD_LIBRARY_PATH" value="../physgame/physgameengine/bin/xubuntudebug" />
-				</Environment>
-			</Target>
-			<Target title="ubuntudebug">
-				<Option output="bin/ubuntudebug/Catch!" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/ubuntudebug/" />
-				<Option object_output="obj/ubuntudebug/" />
-				<Option type="0" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-g" />
-					<Add directory="../physgameengine/src" />
-				</Compiler>
-				<Linker>
-					<Add library="physgame" />
-					<Add directory="bin/ubuntudebug" />
-				</Linker>
-				<ExtraCommands>
-					<Add before="mkdir bin/ubuntudebug/ -p" />
-					<Add before="cp ../physgameengine/bin/ubuntudebug/* ./bin/ubuntudebug/ -r" />
-					<Add before="cp data/ubuntu/Catch!-start bin/ubuntudebug/" />
+					<Add before="mkdir bin/LinuxDebug/ -p" />
+					<Add before="cp ../physgameengine/bin/LinuxDebug/* ./bin/LinuxDebug/ -r" />
+					<Add before="cp data/linux/Catch!-start bin/LinuxDebug/" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>

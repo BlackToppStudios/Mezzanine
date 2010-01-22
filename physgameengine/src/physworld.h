@@ -77,8 +77,9 @@ class physworld
 		//Try to retrieve ogre settinss
 		void LoadOgreSettings();
 
-		//makes the windows all the graphics will be drawn to
+		//Manages the windows all the graphics will be drawn to
 		void CreateRenderWindow();
+		void DestroyRenderWindow();
 
 		//Used by the constructors
 		void Construct(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies);

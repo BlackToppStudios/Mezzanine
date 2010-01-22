@@ -43,9 +43,9 @@
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
-			<Target title="UbuntuDebug">
-				<Option output="bin/ubuntudebug/libphysgame.so" prefix_auto="1" extension_auto="0" />
-				<Option object_output="obj/ubuntudebug/" />
+			<Target title="LinuxDebug">
+				<Option output="bin/LinuxDebug/libphysgame.so" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/LinuxDebug/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -63,44 +63,12 @@
 					<Add option="`pkg-config --libs OGRE`" />
 					<Add library="OgreMain" />
 					<Add library="Bullet" />
-					<Add directory="data/ubuntu/ogre" />
-					<Add directory="data/ubuntu/bullet" />
+					<Add directory="data/linux/bullet" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="mkdir bin/ubuntudebug/data/ubuntu/ogre -p" />
-					<Add after="cp data/ubuntu/plugins.cfg bin/ubuntudebug/data/ubuntu" />
-					<Add after="cp data/ubuntu/settings.cfg bin/ubuntudebug/data/ubuntu" />
-					<Mode after="always" />
-				</ExtraCommands>
-			</Target>
-			<Target title="XubuntuDebug">
-				<Option output="bin/xubuntudebug/libphysgame.so" prefix_auto="1" extension_auto="0" />
-				<Option object_output="obj/xubuntudebug/" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-g" />
-					<Add option="`pkg-config --cflags OGRE`" />
-					<Add option="`sdl-config --cflags`" />
-					<Add option="-fexceptions" />
-					<Add directory="libincludes/linux/ogre" />
-					<Add directory="libincludes/linux/bullet" />
-				</Compiler>
-				<Linker>
-					<Add option="`sdl-config --libs`" />
-					<Add library="OgreMain" />
-					<Add library="BulletCollision" />
-					<Add library="BulletDynamics" />
-					<Add library="LinearMath" />
-					<Add directory="data/xubuntu/ogre" />
-					<Add directory="data/xubuntu/bullet" />
-				</Linker>
-				<ExtraCommands>
-					<Add after="mkdir bin/xubuntudebug/data/xubuntu/ogre -p" />
-					<Add after="cp data/xubuntu/ogre/libOgreMain-1.6.5.so ./bin/xubuntudebug/" />
-					<Add after="cp data/xubuntu/plugins.cfg bin/xubuntudebug/data/xubuntu" />
-					<Add after="cp data/xubuntu/settings.cfg bin/xubuntudebug/data/xubuntu" />
-					<Add after="cp data/xubuntu/ogre/RenderSystem_GL.so bin/xubuntudebug/data/xubuntu/ogre" />
+					<Add after="mkdir bin/LinuxDebug/data/linux -p" />
+					<Add after="cp data/linux/plugins.cfg bin/LinuxDebug/data/linux" />
+					<Add after="cp data/linux/settings.cfg bin/LinuxDebug/data/linux" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
