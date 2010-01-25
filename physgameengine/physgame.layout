@@ -1,52 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="LinuxDebug" />
-	<File name="src/physcrossplatform.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="742" topLine="21" />
+	<ActiveTarget name="WinDebug" />
+	<File name="src\physcrossplatform.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="895" topLine="35" />
 	</File>
-	<File name="src/physcrossplatform.h" open="1" top="1" tabpos="1">
-		<Cursor position="645" topLine="10" />
+	<File name="src\physcrossplatform.h" open="1" top="0" tabpos="1">
+		<Cursor position="712" topLine="12" />
 	</File>
-	<File name="src/physdatatypes.h" open="0" top="0" tabpos="1">
+	<File name="src\physdatatypes.h" open="0" top="0" tabpos="1">
 		<Cursor position="260" topLine="0" />
 	</File>
-	<File name="src/physevent.h" open="0" top="0" tabpos="1">
+	<File name="src\physevent.h" open="0" top="0" tabpos="1">
 		<Cursor position="324" topLine="0" />
 	</File>
-	<File name="src/physeventkeyboardinput.h" open="0" top="0" tabpos="0">
+	<File name="src\physeventkeyboardinput.h" open="0" top="0" tabpos="0">
 		<Cursor position="3" topLine="0" />
 	</File>
-	<File name="src/physeventmanager.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1190" topLine="32" />
+	<File name="src\physeventmanager.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="1190" topLine="21" />
 	</File>
-	<File name="src/physeventmanager.h" open="0" top="0" tabpos="2">
+	<File name="src\physeventmanager.h" open="0" top="0" tabpos="2">
 		<Cursor position="780" topLine="16" />
 	</File>
-	<File name="src/physeventrendertime.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="522" topLine="5" />
+	<File name="src\physeventrendertime.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="522" topLine="0" />
 	</File>
-	<File name="src/physeventrendertime.h" open="0" top="0" tabpos="2">
+	<File name="src\physeventrendertime.h" open="0" top="0" tabpos="2">
 		<Cursor position="336" topLine="0" />
 	</File>
-	<File name="src/physgamesettings.h" open="0" top="0" tabpos="0">
+	<File name="src\physgamesettings.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="1015" topLine="0" />
+	</File>
+	<File name="src\physgamesettings.h" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="9" />
 	</File>
-	<File name="src/physvector.cpp" open="0" top="0" tabpos="3">
+	<File name="src\physvector.cpp" open="1" top="0" tabpos="6">
 		<Cursor position="155" topLine="0" />
 	</File>
-	<File name="src/physvector.h" open="0" top="0" tabpos="4">
+	<File name="src\physvector.h" open="0" top="0" tabpos="4">
 		<Cursor position="45" topLine="0" />
 	</File>
-	<File name="src/physworld.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="7210" topLine="201" />
+	<File name="src\physworld.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="7202" topLine="0" />
 	</File>
-	<File name="src/physworld.h" open="0" top="0" tabpos="3">
+	<File name="src\physworld.h" open="0" top="0" tabpos="3">
 		<Cursor position="800" topLine="23" />
 	</File>
-	<File name="src/physworldcallbackmanager.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1699" topLine="14" />
+	<File name="src\physworldcallbackmanager.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="1100" topLine="128" />
 	</File>
-	<File name="src/physworldcallbackmanager.h" open="0" top="0" tabpos="1">
+	<File name="src\physworldcallbackmanager.h" open="0" top="0" tabpos="1">
 		<Cursor position="1546" topLine="25" />
 	</File>
 </CodeBlocks_layout_file>
