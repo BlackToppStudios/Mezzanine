@@ -46,6 +46,7 @@ void physworld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 
 	//We create our Ogre environment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
+	this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, false);
 
     //Callbacks are the main way that a game using the physworld will be able to have their code run at custom times
 	this->CallBacks = new physworldCallBackManager(this);
@@ -175,9 +176,10 @@ void physworld::GameInit()
 	PhysWhole Times[] = {0,0,0,0};
 
 	//TODO finish test code
-	//OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
-	//Entity *ent1 = mSceneMgr->createEntity( "Robot", "robot.mesh" );
-
+	this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
+	Ogre::Entity *ent1 = this->OgreSceneManager->createEntity( "Robot", "robot.mesh" );
+	Ogre::SceneNode *node1 = this->OgreSceneManager->getRootSceneNode()->createChildSceneNode( "RobotNode" );
+	node1->attachObject( ent1 );
 
 	//This is the beginning of the mainloop
 	//As long as all the CallBacks return true the game continues
@@ -214,10 +216,10 @@ void physworld::GameInit()
 		PhysReal FrameTime = RenderTimer.getMillisecondsCPU(); //Limit frame rate to 62.5
 		RenderTimer.reset();
 		if(16>FrameTime)			//use 16666 for microseconds
-			{
-				 SDL_Delay(16-FrameTime);
-				//WaitMilliseconds( 16-FrameTime );
-			}
+		{
+			 SDL_Delay(16-FrameTime);
+			//WaitMilliseconds( 16-FrameTime );
+		}
 
 		if(this->CallBacks->IsPostRenderCallbackSet())
         {
@@ -255,8 +257,6 @@ void physworld::DoMainLoopInputBuffering()
 	SDL_PumpEvents();
 	//TODO: add the input gather to the event manager
 }
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // Private Functions

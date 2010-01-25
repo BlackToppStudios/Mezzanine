@@ -46,6 +46,11 @@ string GetSettingsDotCFG()
 	#endif
 }
 
+string GetDataDirectory()
+{
+	return "data/common/";
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 //This returns a named parameter list with valid settings to use Ogre rendering
 //on a pre-existing SDL context
