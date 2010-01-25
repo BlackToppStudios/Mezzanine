@@ -1,12 +1,14 @@
 #include "physvector.h"
 
 class actorbase {
+
 	private:
 	PhysVector3 vector;
 	PhysReal coefficient;
 	PhysReal weight;
 	PhysReal density;
 	virtual bool move=true;
+
 	public:
 	actorbase () {};
 	~actorbase () {};
@@ -33,9 +35,11 @@ class actorbase {
 }
 
 class actordyn: public actorbase {
+
 	private:
 	PhysVector3 speed;
 	PhysVector3 accel;
+
 	public:
 	PhysReal GetSpeed () {
 		return (speed.x, speed.y, speed.z);
@@ -54,6 +58,7 @@ class actordyn: public actorbase {
 }
 
 class actorsta: public actorbase {
+
 	private:
 	bool move=false;
 }

@@ -13764,3 +13764,1940 @@
 	"physdatatypes.h"
 	"physworld.h"
 
+1264390055 source:c:\physgame2\physgame\physgameengine\src\physeventmanager.cpp
+	"physeventmanager.h"
+
+1264390055 c:\physgame2\physgame\physgameengine\src\physeventmanager.h
+	<list>
+	"physevent.h"
+	"physeventrendertime.h"
+	"physeventkeyboardinput.h"
+
+1264390055 c:\physgame2\physgame\physgameengine\src\physevent.h
+	<string>
+
+1264390055 c:\physgame2\physgame\physgameengine\src\physeventrendertime.h
+	"physevent.h"
+	"physeventrendertime.h"
+	"physdatatypes.h"
+
+1264390055 c:\physgame2\physgame\physgameengine\src\physdatatypes.h
+
+1264390055 c:\physgame2\physgame\physgameengine\src\physeventkeyboardinput.h
+
+1264390055 source:c:\physgame2\physgame\physgameengine\src\physeventrendertime.cpp
+	"physdatatypes.h"
+	"physeventrendertime.h"
+
+1264390055 source:c:\physgame2\physgame\physgameengine\src\physgamesettings.cpp
+	"physworld.h"
+	"physeventmanager.h"
+	"physgamesettings.h"
+
+1264390055 c:\physgame2\physgame\physgameengine\src\physworld.h
+	"physworldcallbackmanager.h"
+	"physeventmanager.h"
+	"physdatatypes.h"
+	<string>
+
+1264390055 c:\physgame2\physgame\physgameengine\src\physworldcallbackmanager.h
+
+1264390055 c:\physgame2\physgame\physgameengine\src\physgamesettings.h
+
+1264390055 source:c:\physgame2\physgame\physgameengine\src\physvector.cpp
+	"physvector.h"
+
+1264390055 c:\physgame2\physgame\physgameengine\src\physvector.h
+	"physdatatypes.h"
+
+1264390055 source:c:\physgame2\physgame\physgameengine\src\physworld.cpp
+	"physevent.h"
+	"physworld.h"
+	"physvector.h"
+	"physcrossplatform.h"
+	"physworldcallbackmanager.h"
+	"physgamesettings.h"
+	"SDL.h"
+	"btBulletDynamicsCommon.h"
+	<sstream>
+
+1264390373 c:\physgame2\physgame\physgameengine\src\physcrossplatform.h
+	"physdatatypes.h"
+	<Ogre.h>
+	<string>
+
+1264390020 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogre.h
+	"OgrePrerequisites.h"
+	"OgreAnimation.h"
+	"OgreAnimationState.h"
+	"OgreAnimationTrack.h"
+	"OgreAny.h"
+	"OgreArchive.h"
+	"OgreArchiveManager.h"
+	"OgreAxisAlignedBox.h"
+	"OgreBillboardChain.h"
+	"OgreBillboardSet.h"
+	"OgreBone.h"
+	"OgreCamera.h"
+	"OgreConfigFile.h"
+	"OgreControllerManager.h"
+	"OgreDataStream.h"
+	"OgreEntity.h"
+	"OgreException.h"
+	"OgreFrustum.h"
+	"OgreGpuProgram.h"
+	"OgreGpuProgramManager.h"
+	"OgreHardwareBufferManager.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHardwareOcclusionQuery.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHighLevelGpuProgram.h"
+	"OgreHighLevelGpuProgramManager.h"
+	"OgreKeyFrame.h"
+	"OgreLight.h"
+	"OgreLogManager.h"
+	"OgreManualObject.h"
+	"OgreMaterial.h"
+	"OgreMaterialManager.h"
+	"OgreMaterialSerializer.h"
+	"OgreMath.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreMesh.h"
+	"OgreMeshManager.h"
+	"OgreMeshSerializer.h"
+	"OgreOverlay.h"
+	"OgreOverlayContainer.h"
+	"OgreOverlayElement.h"
+	"OgreOverlayManager.h"
+	"OgreParticleAffector.h"
+	"OgreParticleEmitter.h"
+	"OgreParticleSystemManager.h"
+	"OgrePass.h"
+	"OgrePatchMesh.h"
+	"OgrePatchSurface.h"
+	"OgreProfiler.h"
+	"OgreRadixSort.h"
+	"OgreRenderQueueInvocation.h"
+	"OgreRenderQueueListener.h"
+	"OgreRenderSystem.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderTexture.h"
+	"OgreRenderWindow.h"
+	"OgreResourceBackgroundQueue.h"
+	"OgreResourceGroupManager.h"
+	"OgreRibbonTrail.h"
+	"OgreRoot.h"
+	"OgreSceneManager.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreSceneNode.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreSkeletonManager.h"
+	"OgreSkeletonSerializer.h"
+	"OgreStaticGeometry.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreSubEntity.h"
+	"OgreSubMesh.h"
+	"OgreTechnique.h"
+	"OgreTextureManager.h"
+	"OgreTextureUnitState.h"
+	"OgreUserDefinedObject.h"
+	"OgreVector2.h"
+	"OgreViewport.h"
+	"OgreCompositor.h"
+	"OgreCompositorManager.h"
+	"OgreCompositorChain.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositionTechnique.h"
+	"OgreCompositionPass.h"
+	"OgreCompositionTargetPass.h"
+	"OgreWindowEventUtilities.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowCameraSetupFocused.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+	"OgreShadowCameraSetupPlaneOptimal.h"
+	"OgreShadowCameraSetupPSSM.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreprerequisites.h
+	"OgrePlatform.h"
+	<string>
+	"OgreStdHeaders.h"
+	"OgreMemoryAllocatorConfig.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreplatform.h
+	"OgreConfig.h"
+	<_mingw.h>
+	"config.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreconfig.h
+	"config.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrestdheaders.h
+	<cassert>
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<cstring>
+	<cstdarg>
+	<cmath>
+	<vector>
+	<map>
+	<string>
+	<set>
+	<list>
+	<deque>
+	<queue>
+	<bitset>
+	<tr1/unordered_map>
+	<tr1/unordered_set>
+	<ext/hash_map>
+	<ext/hash_set>
+	<hash_set>
+	<hash_map>
+	<algorithm>
+	<functional>
+	<limits>
+	<fstream>
+	<iostream>
+	<iomanip>
+	<sstream>
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<unistd.h>
+	<dlfcn.h>
+	<unistd.h>
+	<sys/param.h>
+	<CoreFoundation/CoreFoundation.h>
+	<boost/thread/tss.hpp>
+	<boost/thread/recursive_mutex.hpp>
+	<boost/thread/condition.hpp>
+	<boost/thread/thread.hpp>
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrememoryallocatorconfig.h
+	"OgrePrerequisites.h"
+	"OgreMemoryAllocatedObject.h"
+	"OgreMemorySTLAllocator.h"
+	"OgreMemoryNedAlloc.h"
+	"OgreMemoryStdAlloc.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrememoryallocatedobject.h
+	"OgrePrerequisites.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrememorystlallocator.h
+	"OgrePrerequisites.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrememorynedalloc.h
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrememorystdalloc.h
+	<memory>
+	<limits>
+	"OgreAlignedAllocator.h"
+	"OgreMemoryTracker.h"
+
+1264390020 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrealignedallocator.h
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrememorytracker.h
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1264390020 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreanimation.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreIteratorWrappers.h"
+	"OgreAnimable.h"
+	"OgreAnimationTrack.h"
+	"OgreAnimationState.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrestring.h
+	"OgrePrerequisites.h"
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreiteratorwrappers.h
+	"OgrePrerequisites.h"
+
+1264390020 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreanimable.h
+	"OgrePrerequisites.h"
+	"OgreVector2.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	"OgreException.h"
+	"OgreAny.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrevector2.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogremath.h
+	"OgrePrerequisites.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrevector3.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+	"OgreQuaternion.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrequaternion.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrevector4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecolourvalue.h
+	"OgrePrerequisites.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogresharedptr.h
+	"OgrePrerequisites.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrestringvector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreexception.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	<exception>
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreany.h
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	"OgreString.h"
+	<algorithm>
+	<typeinfo>
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreanimationtrack.h
+	"OgrePrerequisites.h"
+	"OgreSimpleSpline.h"
+	"OgreRotationalSpline.h"
+	"OgreKeyFrame.h"
+	"OgreAnimable.h"
+	"OgrePose.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogresimplespline.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrematrix4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix3.h"
+	"OgreVector4.h"
+	"OgrePlane.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrematrix3.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreplane.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerotationalspline.h
+	"OgrePrerequisites.h"
+	"OgreQuaternion.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrekeyframe.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreQuaternion.h"
+	"OgreAny.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreIteratorWrappers.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrehardwarevertexbuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgreColourValue.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrehardwarebuffer.h
+	"OgrePrerequisites.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrepose.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreanimationstate.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreController.h"
+	"OgreIteratorWrappers.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecontroller.h
+	"OgrePrerequisites.h"
+	"OgreSharedPtr.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrearchive.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	<ctime>
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogredatastream.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	<istream>
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrearchivemanager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreresourcemanager.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreResourceGroupManager.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+	"OgreScriptLoader.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreresource.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	"OgreStringInterface.h"
+	"OgreAtomicWrappers.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrestringinterface.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreCommon.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecommon.h
+	"OgreString.h"
+	<utility>
+	<vector>
+	<map>
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreatomicwrappers.h
+	<signal.h>
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	<windows.h>
+	<intrin.h>
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreresourcegroupmanager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreResource.h"
+	"OgreArchive.h"
+	"OgreIteratorWrappers.h"
+	<ctime>
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogresingleton.h
+	"OgrePrerequisites.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrescriptloader.h
+	"OgrePrerequisites.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreaxisalignedbox.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrebillboardchain.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogremovableobject.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreShadowCaster.h"
+	"OgreFactoryObj.h"
+	"OgreAnimable.h"
+	"OgreAny.h"
+	"OgreUserDefinedObject.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerenderqueue.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogresphere.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreshadowcaster.h
+	"OgrePrerequisites.h"
+	"OgreRenderable.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerenderable.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreMatrix4.h"
+	"OgreMaterial.h"
+	"OgrePlane.h"
+	"OgreGpuProgram.h"
+	"OgreVector4.h"
+	"OgreException.h"
+	"OgreAny.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerenderoperation.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrevertexindexdata.h
+	"OgrePrerequisites.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrehardwareindexbuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrematerial.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreblendmode.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogregpuprogram.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreSharedPtr.h"
+	"OgreIteratorWrappers.h"
+	"OgreSerializer.h"
+	"OgreRenderOperation.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreserializer.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrefactoryobj.h
+	"OgrePrerequisites.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreuserdefinedobject.h
+	"OgrePrerequisites.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrebillboardset.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreRadixSort.h"
+	"OgreCommon.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreradixsort.h
+	"OgrePrerequisites.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrebone.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrenode.h
+	"OgrePrerequisites.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreQuaternion.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreIteratorWrappers.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecamera.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreMatrix4.h"
+	"OgreVector3.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreCommon.h"
+	"OgreFrustum.h"
+	"OgreRay.h"
+	"OgrePlaneBoundedVolume.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrefrustum.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexIndexData.h"
+	"OgreMovablePlane.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogremovableplane.h
+	"OgrePrerequisites.h"
+	"OgrePlane.h"
+	"OgreMovableObject.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreray.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgrePlaneBoundedVolume.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreplaneboundedvolume.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreMath.h"
+	"OgrePlane.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreconfigfile.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringVector.h"
+	"OgreIteratorWrappers.h"
+	"OgreDataStream.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecontrollermanager.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreController.h"
+	"OgrePredefinedControllers.h"
+	"OgreTextureUnitState.h"
+	"OgreSharedPtr.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrepredefinedcontrollers.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreController.h"
+	"OgreFrameListener.h"
+	"OgreGpuProgram.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreframelistener.h
+	"OgrePrerequisites.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogretextureunitstate.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreBlendMode.h"
+	"OgreMatrix4.h"
+	"OgreIteratorWrappers.h"
+	"OgreString.h"
+	"OgreTexture.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogretexture.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreResource.h"
+	"OgreImage.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreimage.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgrePixelFormat.h"
+	"OgreDataStream.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrepixelformat.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreentity.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreHardwareBufferManager.h"
+	"OgreMesh.h"
+	"OgreRenderable.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrehardwarebuffermanager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderToVertexBuffer.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerendertovertexbuffer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogremesh.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreVertexIndexData.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreIteratorWrappers.h"
+	"OgreProgressiveMesh.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreSkeleton.h"
+	"OgreAnimationTrack.h"
+	"OgrePose.h"
+	"OgreDataStream.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrevertexboneassignment.h
+	"OgrePrerequisites.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreprogressivemesh.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderOperation.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreskeleton.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+	"OgreStringVector.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogregpuprogrammanager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreException.h"
+	"OgreGpuProgram.h"
+	"OgreSingleton.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrehardwarepixelbuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgrePixelFormat.h"
+	"OgreImage.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrehardwareocclusionquery.h
+	"OgrePrerequisites.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrehighlevelgpuprogram.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrehighlevelgpuprogrammanager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreException.h"
+	"OgreHighLevelGpuProgram.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrelight.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgrePlaneBoundedVolume.h"
+	"OgreShadowCameraSetup.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreshadowcamerasetup.h
+	"OgrePrerequisites.h"
+	"OgreMovablePlane.h"
+	"OgreSharedPtr.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrelogmanager.h
+	"OgrePrerequisites.h"
+	"OgreLog.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrelog.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogremanualobject.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreResourceGroupManager.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrematerialmanager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreResourceManager.h"
+	"OgreMaterial.h"
+	"OgreStringVector.h"
+	"OgreMaterialSerializer.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrematerialserializer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreBlendMode.h"
+	"OgreTextureUnitState.h"
+	"OgreGpuProgram.h"
+	"OgreStringVector.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogremeshmanager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreVector3.h"
+	"OgreHardwareBuffer.h"
+	"OgreMesh.h"
+	"OgrePatchMesh.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrepatchmesh.h
+	"OgrePrerequisites.h"
+	"OgreMesh.h"
+	"OgrePatchSurface.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrepatchsurface.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreRenderOperation.h"
+	"OgreAxisAlignedBox.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogremeshserializer.h
+	"OgrePrerequisites.h"
+	"OgreMeshSerializerImpl.h"
+	"OgreSerializer.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogremeshserializerimpl.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSerializer.h"
+	"OgreMaterial.h"
+	"OgreMesh.h"
+	"OgreEdgeListBuilder.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreedgelistbuilder.h
+	"OgrePrerequisites.h"
+	"OgreVector4.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreRenderOperation.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreoverlay.h
+	"OgrePrerequisites.h"
+	"OgreSceneNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreMatrix4.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrescenenode.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreAxisAlignedBox.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreoverlaycontainer.h
+	"OgrePrerequisites.h"
+	"OgreOverlayElement.h"
+	"OgreIteratorWrappers.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreoverlayelement.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreUTFString.h"
+	"OgreStringInterface.h"
+	"OgreOverlayElementCommands.h"
+	"OgreColourValue.h"
+	"OgreRectangle.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreutfstring.h
+	"OgrePrerequisites.h"
+	<iterator>
+	<string>
+	<stdexcept>
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreoverlayelementcommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerectangle.h
+	"OgrePrerequisites.h"
+
+1264390025 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreoverlaymanager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreStringVector.h"
+	"OgreOverlay.h"
+	"OgreScriptLoader.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreparticleaffector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringInterface.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreparticleemitter.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreStringInterface.h"
+	"OgreParticleEmitterCommands.h"
+	"OgreParticle.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreparticleemittercommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreparticle.h
+	"OgrePrerequisites.h"
+	"OgreBillboard.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrebillboard.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreparticlesystemmanager.h
+	"OgrePrerequisites.h"
+	"OgreParticleSystem.h"
+	"OgreFrameListener.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+	"OgreScriptLoader.h"
+	"OgreResourceGroupManager.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreparticlesystem.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreParticleIterator.h"
+	"OgreStringInterface.h"
+	"OgreMovableObject.h"
+	"OgreRadixSort.h"
+	"OgreController.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreparticleiterator.h
+	"OgrePrerequisites.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrepass.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgreLight.h"
+	"OgreTextureUnitState.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreprofiler.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreOverlay.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerenderqueueinvocation.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreIteratorWrappers.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerenderqueuesortinggrouping.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreMaterial.h"
+	"OgreTechnique.h"
+	"OgrePass.h"
+	"OgreRadixSort.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogretechnique.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgrePass.h"
+	"OgreIteratorWrappers.h"
+	"OgreRenderSystemCapabilities.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerendersystemcapabilities.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreResource.h"
+	"OgreLogManager.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrestringconverter.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+	"OgreString.h"
+	"OgreStringVector.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerenderqueuelistener.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerendersystem.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureUnitState.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreRenderSystemCapabilities.h"
+	"OgreRenderTarget.h"
+	"OgreRenderTexture.h"
+	"OgreFrameListener.h"
+	"OgreConfigOptionMap.h"
+	"OgreGpuProgram.h"
+	"OgrePlane.h"
+	"OgreIteratorWrappers.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerendertarget.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureManager.h"
+	"OgreViewport.h"
+	"OgreTimer.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogretexturemanager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreTexture.h"
+	"OgreSingleton.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreviewport.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogretimer.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	"WIN32/OgreTimerImp.h"
+	"GLX/OgreTimerImp.h"
+	"OSX/OgreTimerImp.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\win32\ogretimerimp.h
+	"windows.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerendertexture.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreconfigoptionmap.h
+	"OgrePrerequisites.h"
+	"OgreStringVector.h"
+	"OgreString.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerendertargetlistener.h
+	"OgrePrerequisites.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerenderwindow.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreresourcebackgroundqueue.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreResource.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreribbontrail.h
+	"OgrePrerequisites.h"
+	"OgreBillboardChain.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreFrameListener.h"
+	"OgreControllerManager.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreroot.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreResourceGroupManager.h"
+	<exception>
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrescenemanagerenumerator.h
+	"OgrePrerequisites.h"
+	"OgreSceneManager.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrescenemanager.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSceneNode.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+	"OgreSceneQuery.h"
+	"OgreAutoParamDataSource.h"
+	"OgreAnimationState.h"
+	"OgreRenderQueue.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreRectangle2D.h"
+	"OgrePixelFormat.h"
+	"OgreResourceGroupManager.h"
+	"OgreTexture.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowTextureManager.h"
+	"OgreCamera.h"
+	"OgreInstancedGeometry.h"
+
+1264390027 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrescenequery.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreRay.h"
+	"OgreRenderOperation.h"
+	"OgrePlaneBoundedVolume.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreautoparamdatasource.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreMatrix4.h"
+	"OgreVector4.h"
+	"OgreLight.h"
+	"OgreColourValue.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrerectangle2d.h
+	"OgrePrerequisites.h"
+	"OgreSimpleRenderable.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogresimplerenderable.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreMaterial.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreshadowtexturemanager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgrePixelFormat.h"
+	"OgreTexture.h"
+	"OgreIteratorWrappers.h"
+
+1264390023 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreinstancedgeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreAnimationTrack.h"
+	"OgreBone.h"
+	"OgreIteratorWrappers.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreskeletoninstance.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreskeletonmanager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreskeletonserializer.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+	"OgreSerializer.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrestaticgeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogresubentity.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreHardwareBufferManager.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogresubmesh.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreProgressiveMesh.h"
+	"OgreAnimationTrack.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecompositor.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreResource.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecompositormanager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreCompositor.h"
+	"OgreRectangle2D.h"
+	"OgreCompositorSerializer.h"
+	"OgreRenderSystem.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecompositorserializer.h
+	"OgrePrerequisites.h"
+	"OgreDataStream.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecompositorchain.h
+	"OgrePrerequisites.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderQueueListener.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositor.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecompositorinstance.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreTexture.h"
+	"OgreRenderQueue.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecompositiontechnique.h
+	"OgrePrerequisites.h"
+	"OgrePixelFormat.h"
+	"OgreIteratorWrappers.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecompositionpass.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderSystem.h"
+	"OgreRenderQueue.h"
+
+1264390021 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrecompositiontargetpass.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+
+1264390029 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrewindoweventutilities.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	<windows.h>
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreshadowcamerasetupfocused.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+	"OgrePolygon.h"
+	"OgreConvexBody.h"
+
+1264390026 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogrepolygon.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1264390022 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreconvexbody.h
+	"OgrePrerequisites.h"
+	"OgrePolygon.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreshadowcamerasetuplispsm.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupFocused.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreshadowcamerasetupplaneoptimal.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+
+1264390028 c:\physgame2\physgame\physgameengine\libincludes\windows\ogre\ogreshadowcamerasetuppssm.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_platform.h
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\begin_code.h
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\close_code.h
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_keysym.h
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1264390033 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1264390013 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\btbulletdynamicscommon.h
+	"btBulletCollisionCommon.h"
+	"BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
+	"BulletDynamics/Dynamics/btContinuousDynamicsWorld.h"
+	"BulletDynamics/Dynamics/btSimpleDynamicsWorld.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h"
+	"BulletDynamics/ConstraintSolver/btHingeConstraint.h"
+	"BulletDynamics/ConstraintSolver/btConeTwistConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h"
+	"BulletDynamics/ConstraintSolver/btSliderConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h"
+	"BulletDynamics/ConstraintSolver/btUniversalConstraint.h"
+	"BulletDynamics/ConstraintSolver/btHinge2Constraint.h"
+	"BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+	"BulletDynamics/Vehicle/btRaycastVehicle.h"
+
+1264390013 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\btbulletcollisioncommon.h
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+	"BulletCollision/CollisionShapes/btBoxShape.h"
+	"BulletCollision/CollisionShapes/btSphereShape.h"
+	"BulletCollision/CollisionShapes/btCapsuleShape.h"
+	"BulletCollision/CollisionShapes/btCylinderShape.h"
+	"BulletCollision/CollisionShapes/btConeShape.h"
+	"BulletCollision/CollisionShapes/btStaticPlaneShape.h"
+	"BulletCollision/CollisionShapes/btConvexHullShape.h"
+	"BulletCollision/CollisionShapes/btTriangleMesh.h"
+	"BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h"
+	"BulletCollision/CollisionShapes/btCompoundShape.h"
+	"BulletCollision/CollisionShapes/btTetrahedronShape.h"
+	"BulletCollision/CollisionShapes/btEmptyShape.h"
+	"BulletCollision/CollisionShapes/btMultiSphereShape.h"
+	"BulletCollision/CollisionShapes/btUniformScalingShape.h"
+	"BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.h"
+	"BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h"
+	"BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btSimpleBroadphase.h"
+	"BulletCollision/BroadphaseCollision/btAxisSweep3.h"
+	"BulletCollision/BroadphaseCollision/btMultiSapBroadphase.h"
+	"BulletCollision/BroadphaseCollision/btDbvtBroadphase.h"
+	"LinearMath/btQuaternion.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btDefaultMotionState.h"
+	"LinearMath/btQuickprof.h"
+	"LinearMath/btIDebugDraw.h"
+
+1264389980 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisiondispatch\btcollisionworld.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btCollisionObject.h"
+	"btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btvector3.h
+	"btScalar.h"
+	"btMinMax.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btscalar.h
+	<math.h>
+	<stdlib.h>
+	<cstdlib>
+	<cfloat>
+	<float.h>
+	<ppcintrinsics.h>
+	<emmintrin.h>
+	<assert.h>
+	<assert.h>
+	<assert.h>
+	<emmintrin.h>
+	<assert.h>
+	<assert.h>
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btminmax.h
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\bttransform.h
+	"btMatrix3x3.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btmatrix3x3.h
+	"btVector3.h"
+	"btQuaternion.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btquaternion.h
+	"btVector3.h"
+	"btQuadWord.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btquadword.h
+	"btScalar.h"
+	"btMinMax.h"
+	<altivec.h>
+
+1264389980 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisiondispatch\btcollisionobject.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btMotionState.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btmotionstate.h
+	"btTransform.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btalignedallocator.h
+	"btScalar.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btalignedobjectarray.h
+	"btScalar.h"
+	"btAlignedAllocator.h"
+	<memory.h>
+	<string.h>
+	<new>
+
+1264389980 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisiondispatch\btcollisiondispatcher.h
+	"BulletCollision/BroadphaseCollision/btDispatcher.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/CollisionDispatch/btManifoldResult.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btCollisionCreateFunc.h"
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btdispatcher.h
+	"LinearMath/btScalar.h"
+
+1264389989 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\narrowphasecollision\btpersistentmanifold.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btManifoldPoint.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1264389989 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\narrowphasecollision\btmanifoldpoint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransformUtil.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\bttransformutil.h
+	"btTransform.h"
+
+1264389981 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisiondispatch\btmanifoldresult.h
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h"
+	"LinearMath/btTransform.h"
+
+1264389989 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\narrowphasecollision\btdiscretecollisiondetectorinterface.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btbroadphaseproxy.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1264389980 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisiondispatch\btcollisioncreatefunc.h
+	"LinearMath/btAlignedObjectArray.h"
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btoverlappingpaircache.h
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"btOverlappingPairCallback.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btbroadphaseinterface.h
+	"btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btoverlappingpaircallback.h
+
+1264389987 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btboxshape.h
+	"btPolyhedralConvexShape.h"
+	"btCollisionMargin.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btMinMax.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btpolyhedralconvexshape.h
+	"LinearMath/btMatrix3x3.h"
+	"btConvexInternalShape.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btconvexinternalshape.h
+	"btConvexShape.h"
+	"LinearMath/btAabbUtil2.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btconvexshape.h
+	"btCollisionShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1264389987 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btcollisionshape.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1264389987 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btcollisionmargin.h
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btaabbutil2.h
+	"btTransform.h"
+	"btVector3.h"
+	"btMinMax.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btsphereshape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1264389987 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btcapsuleshape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btcylindershape.h
+	"btBoxShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btconeshape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btstaticplaneshape.h
+	"btConcaveShape.h"
+
+1264389987 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btconcaveshape.h
+	"btCollisionShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"btTriangleCallback.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\bttrianglecallback.h
+	"LinearMath/btVector3.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btconvexhullshape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\bttrianglemesh.h
+	"btTriangleIndexVertexArray.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\bttriangleindexvertexarray.h
+	"btStridingMeshInterface.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btScalar.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btstridingmeshinterface.h
+	"LinearMath/btVector3.h"
+	"btTriangleCallback.h"
+	"btConcaveShape.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btconvextrianglemeshshape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1264389987 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btbvhtrianglemeshshape.h
+	"btTriangleMeshShape.h"
+	"btOptimizedBvh.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\bttrianglemeshshape.h
+	"btConcaveShape.h"
+	"btStridingMeshInterface.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btoptimizedbvh.h
+	"BulletCollision/BroadphaseCollision/btQuantizedBvh.h"
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btquantizedbvh.h
+	<stdio.h>
+	<stdlib.h>
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1264389987 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btcompoundshape.h
+	"btCollisionShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\bttetrahedronshape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btemptyshape.h
+	"btConcaveShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btmultisphereshape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btAabbUtil2.h"
+
+1264389988 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisionshapes\btuniformscalingshape.h
+	"btConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1264389981 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisiondispatch\btspherespherecollisionalgorithm.h
+	"btActivatingCollisionAlgorithm.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionCreateFunc.h"
+	"btCollisionDispatcher.h"
+
+1264389980 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisiondispatch\btactivatingcollisionalgorithm.h
+	"BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btcollisionalgorithm.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1264389981 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisiondispatch\btdefaultcollisionconfiguration.h
+	"btCollisionConfiguration.h"
+
+1264389980 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\collisiondispatch\btcollisionconfiguration.h
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btsimplebroadphase.h
+	"btOverlappingPairCache.h"
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btaxissweep3.h
+	"LinearMath/btVector3.h"
+	"btOverlappingPairCache.h"
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"btOverlappingPairCallback.h"
+	"btDbvtBroadphase.h"
+	<stdio.h>
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btdbvtbroadphase.h
+	"BulletCollision/BroadphaseCollision/btDbvt.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"LinearMath/btQuickprof.h"
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btdbvt.h
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btAabbUtil2.h"
+	<emmintrin.h>
+	<memory.h>
+	<string.h>
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btquickprof.h
+	"btScalar.h"
+	"LinearMath/btAlignedAllocator.h"
+	<new>
+	<sys/sys_time.h>
+	<sys/time_util.h>
+	<stdio.h>
+	<stdio.h>
+	<Xtl.h>
+	<windows.h>
+	<time.h>
+	<sys/time.h>
+
+1264389976 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletcollision\broadphasecollision\btmultisapbroadphase.h
+	"btBroadphaseInterface.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btOverlappingPairCache.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btdefaultmotionstate.h
+	"btMotionState.h"
+
+1264390011 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\linearmath\btidebugdraw.h
+	"btVector3.h"
+	"btTransform.h"
+
+1264389994 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\dynamics\btdiscretedynamicsworld.h
+	"btDynamicsWorld.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1264389994 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\dynamics\btdynamicsworld.h
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+
+1264389992 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btcontactsolverinfo.h
+
+1264389994 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\dynamics\btcontinuousdynamicsworld.h
+	"btDiscreteDynamicsWorld.h"
+
+1264389994 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\dynamics\btsimpledynamicsworld.h
+	"btDynamicsWorld.h"
+
+1264389994 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\dynamics\btrigidbody.h
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btTransform.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btpoint2pointconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btjacobianentry.h
+	"LinearMath/btVector3.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\bttypedconstraint.h
+	"LinearMath/btScalar.h"
+	"btSolverConstraint.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btsolverconstraint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"btJacobianEntry.h"
+	"btSolverBody.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btsolverbody.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btTransformUtil.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\bthingeconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1264389992 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btconetwistconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btgeneric6dofconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btsliderconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btgeneric6dofspringconstraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofConstraint.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btuniversalconstraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofConstraint.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\bthinge2constraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofSpringConstraint.h"
+
+1264389993 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btsequentialimpulseconstraintsolver.h
+	"btConstraintSolver.h"
+	"btContactConstraint.h"
+	"btSolverBody.h"
+	"btSolverConstraint.h"
+	"btTypedConstraint.h"
+	"BulletCollision/NarrowPhaseCollision/btManifoldPoint.h"
+
+1264389992 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btconstraintsolver.h
+	"LinearMath/btScalar.h"
+
+1264389992 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\constraintsolver\btcontactconstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+
+1264389995 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\vehicle\btraycastvehicle.h
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"btVehicleRaycaster.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btWheelInfo.h"
+	"BulletDynamics/Dynamics/btActionInterface.h"
+
+1264389995 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\vehicle\btvehicleraycaster.h
+	"LinearMath/btVector3.h"
+
+1264389995 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\vehicle\btwheelinfo.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+
+1264389994 c:\physgame2\physgame\physgameengine\libincludes\windows\bullet\bulletdynamics\dynamics\btactioninterface.h
+	"LinearMath/btScalar.h"
+
+1264390055 source:c:\physgame2\physgame\physgameengine\src\physworldcallbackmanager.cpp
+	"physworldcallbackmanager.h"
+	"physdatatypes.h"
+	"physworld.h"
+
+1264390054 source:c:\physgame2\physgame\physgameengine\src\physcrossplatform.cpp
+	"physcrossplatform.h"
+	<Ogre.h>
+	<cstdlib>
+	"SDL_syswm.h"
+	"SDL.h"
+	<unistd.h>
+
+1264390034 c:\physgame2\physgame\physgameengine\libincludes\windows\sdl\sdl_syswm.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_version.h"
+	"begin_code.h"
+	<X11/Xlib.h>
+	<X11/Xatom.h>
+	<microwin/nano-X.h>
+	<windows.h>
+	<sys/neutrino.h>
+	<Ph.h>
+	"close_code.h"
+
