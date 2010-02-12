@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef _Material_H__
@@ -37,12 +36,18 @@ Torus Knot Software Ltd.
 #include "OgreColourValue.h"
 #include "OgreBlendMode.h"
 
-
 namespace Ogre {
 
 	// Forward declaration
 	class MaterialPtr;
+    class LodStrategy;
 
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Materials
+	*  @{
+	*/
 	/** Class encapsulates rendering properties of an object.
     @remarks
     Ogre's material class encapsulates ALL aspects of the visual appearance,
@@ -87,8 +92,8 @@ namespace Ogre {
 
     public:
         /// distance list used to specify LOD
-        typedef std::vector<Real> LodDistanceList;
-        typedef ConstVectorIterator<LodDistanceList> LodDistanceIterator;
+		typedef vector<Real>::type LodValueList;
+        typedef ConstVectorIterator<LodValueList> LodValueIterator;
     protected:
 
 
@@ -96,20 +101,22 @@ namespace Ogre {
         */
         void applyDefaults(void);
 
-        typedef std::vector<Technique*> Techniques;
+        typedef vector<Technique*>::type Techniques;
 		/// All techniques, supported and unsupported
         Techniques mTechniques;
 		/// Supported techniques of any sort
         Techniques mSupportedTechniques;
-		typedef std::map<unsigned short, Technique*> LodTechniques;
-        typedef std::map<unsigned short, LodTechniques*> BestTechniquesBySchemeList;
+		typedef map<unsigned short, Technique*>::type LodTechniques;
+        typedef map<unsigned short, LodTechniques*>::type BestTechniquesBySchemeList;
 		/** Map of scheme -> list of LOD techniques. 
 			Current scheme is set on MaterialManager,
 			and can be set per Viewport for auto activation.
 		*/
         BestTechniquesBySchemeList mBestTechniquesBySchemeList;
 
-        LodDistanceList mLodDistances;
+        LodValueList mUserLodValues;
+        LodValueList mLodValues;
+        const LodStrategy *mLodStrategy;
         bool mReceiveShadows;
 		bool mTransparencyCastsShadows;
         /// Does this material require compilation?
@@ -598,25 +605,34 @@ namespace Ogre {
             method to determine the distance at which the lowe levels of detail kick in.
             The decision about what distance is actually used is a combination of this
             and the LOD bias applied to both the current Camera and the current Entity.
-        @param lodDistances A vector of Reals which indicate the distance at which to 
+        @param lodValues A vector of Reals which indicate the lod value at which to 
             switch to lower details. They are listed in LOD index order, starting at index
             1 (ie the first level down from the highest level 0, which automatically applies
-            from a distance of 0).
+            from a value of 0). These are 'user values', before being potentially 
+			transformed by the strategy, so for the distance strategy this is an
+			unsquared distance for example.
         */
-        void setLodLevels(const LodDistanceList& lodDistances);
-        /** Gets an iterator over the list of distances at which each LOD comes into effect. 
+        void setLodLevels(const LodValueList& lodValues);
+        /** Gets an iterator over the list of values at which each LOD comes into effect. 
         @remarks
             Note that the iterator returned from this method is not totally analogous to 
             the one passed in by calling setLodLevels - the list includes a zero
-            entry at the start (since the highest LOD starts at distance 0), and
-            the other distances are held as their squared value for efficiency.
+            entry at the start (since the highest LOD starts at value 0). Also, the
+			values returned are after being transformed by LodStrategy::transformUserValue.
         */
-        LodDistanceIterator getLodDistanceIterator(void) const;
+        LodValueIterator getLodValueIterator(void) const;
 
-        /** Gets the LOD index to use at the given distance. */
-        unsigned short getLodIndex(Real d) const;
-        /** Gets the LOD index to use at the given squared distance. */
-        unsigned short getLodIndexSquaredDepth(Real squaredDepth) const;
+        /** Gets the LOD index to use at the given value. 
+		@note The value passed in is the 'transformed' value. If you are dealing with
+		an original source value (e.g. distance), use LodStrategy::transformUserValue
+		to turn this into a lookup value.
+		*/
+        ushort getLodIndex(Real value) const;
+
+        /** Get lod strategy used by this material. */
+        const LodStrategy *getLodStrategy() const;
+        /** Set the lod strategy used by this material. */
+        void setLodStrategy(LodStrategy *lodStrategy);
 
         /** @copydoc Resource::touch
         */
@@ -707,6 +723,8 @@ namespace Ogre {
 			return *this;
 		}
 	};
+	/** @} */
+	/** @} */
 
 } //namespace 
 

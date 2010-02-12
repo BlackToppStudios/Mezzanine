@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Matrix3_H__
@@ -53,7 +52,13 @@ Torus Knot Software Ltd.
 
 namespace Ogre
 {
-    /** A 3x3 matrix which can represent rotations around axes.
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Math
+	*  @{
+	*/
+	/** A 3x3 matrix which can represent rotations around axes.
         @note
             <b>All the code is adapted from the Wild Magic 0.2 Matrix
             library (http://www.geometrictools.com/).</b>
@@ -89,6 +94,21 @@ namespace Ogre
 			m[2][0] = fEntry20;
 			m[2][1] = fEntry21;
 			m[2][2] = fEntry22;
+		}
+
+		/** Exchange the contents of this matrix with another. 
+		*/
+		inline void swap(Matrix3& other)
+		{
+			std::swap(m[0][0], other.m[0][0]);
+			std::swap(m[0][1], other.m[0][1]);
+			std::swap(m[0][2], other.m[0][2]);
+			std::swap(m[1][0], other.m[1][0]);
+			std::swap(m[1][1], other.m[1][1]);
+			std::swap(m[1][2], other.m[1][2]);
+			std::swap(m[2][0], other.m[2][0]);
+			std::swap(m[2][1], other.m[2][1]);
+			std::swap(m[2][2], other.m[2][2]);
 		}
 
         // member access, allows use of construct mat[r][c]
@@ -198,18 +218,28 @@ namespace Ogre
 		{
 			// check magnitude of column vectors (==local axes)
 			Real t = m[0][0] * m[0][0] + m[1][0] * m[1][0] + m[2][0] * m[2][0];
-			if (!Math::RealEqual(t, 1.0, 1e-04))
+			if (!Math::RealEqual(t, 1.0, (Real)1e-04))
 				return true;
 			t = m[0][1] * m[0][1] + m[1][1] * m[1][1] + m[2][1] * m[2][1];
-			if (!Math::RealEqual(t, 1.0, 1e-04))
+			if (!Math::RealEqual(t, 1.0, (Real)1e-04))
 				return true;
 			t = m[0][2] * m[0][2] + m[1][2] * m[1][2] + m[2][2] * m[2][2];
-			if (!Math::RealEqual(t, 1.0, 1e-04))
+			if (!Math::RealEqual(t, 1.0, (Real)1e-04))
 				return true;
 
 			return false;
 		}
 
+		/** Function for writing to a stream.
+		*/
+		inline _OgreExport friend std::ostream& operator <<
+			( std::ostream& o, const Matrix3& m )
+		{
+			o << "Matrix3(" << m[0][0] << ", " << m[0][1] << ", " << m[0][2] << ", " 
+                            << m[1][0] << ", " << m[1][1] << ", " << m[1][2] << ", " 
+                            << m[2][0] << ", " << m[2][1] << ", " << m[2][2] << ")";
+			return o;
+		}
 
         static const Real EPSILON;
         static const Matrix3 ZERO;
@@ -236,5 +266,7 @@ namespace Ogre
         // for faster access
         friend class Matrix4;
     };
+	/** @} */
+	/** @} */
 }
 #endif

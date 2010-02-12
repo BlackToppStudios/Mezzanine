@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __RenderTarget_H__
@@ -45,7 +44,13 @@ Torus Knot Software Ltd.
 
 namespace Ogre {
 
-    /** A 'canvas' which can receive the results of a rendering
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup RenderSystem
+	*  @{
+	*/
+	/** A 'canvas' which can receive the results of a rendering
         operation.
         @remarks
             This abstract class defines a common root to all targets of rendering operations. A
@@ -145,7 +150,8 @@ namespace Ogre {
                 resulting from flipping buffers when the beam is
                 in the progress of drawing the last frame).
         */
-        virtual void swapBuffers(bool waitForVSync = true) {}
+        virtual void swapBuffers(bool waitForVSync = true)
+        { (void)waitForVSync; }
 
         /** Adds a viewport to the rendering target.
             @remarks
@@ -350,6 +356,9 @@ namespace Ogre {
 		*/
 		virtual uint getFSAA() const { return mFSAA; }
 
+		/** Gets the FSAA hint (@see Root::createRenderWindow)
+		*/
+		virtual const String& getFSAAHint() const { return mFSAAHint; }
 
         /** RenderSystem specific interface for a RenderTarget;
             this should be subclassed by RenderSystems.
@@ -357,11 +366,6 @@ namespace Ogre {
         class Impl
         {
         protected:
-            /** Declared protected as interface is never used for destruction.
-                gcc will issue a warning here: `class Impl' has virtual functions 
-                but non-virtual destructor. This is no problem because this interface 
-                is never used to delete an object.
-            */
             ~Impl() { };
         };
         /** Get rendersystem specific interface for this RenderTarget.
@@ -370,6 +374,71 @@ namespace Ogre {
             and framebuffer objects.
         */
         virtual Impl *_getImpl();
+
+		/** Method for manual management of rendering : fires 'preRenderTargetUpdate'
+			and initialises statistics etc.
+		@remarks 
+		<ul>
+		<li>_beginUpdate resets statistics and fires 'preRenderTargetUpdate'.</li>
+		<li>_updateViewport renders the given viewport (even if it is not autoupdated),
+		fires preViewportUpdate and postViewportUpdate and manages statistics.</li>
+		<li>_updateAutoUpdatedViewports renders only viewports that are auto updated,
+		fires preViewportUpdate and postViewportUpdate and manages statistics.</li>
+		<li>_endUpdate() ends statistics calculation and fires postRenderTargetUpdate.</li>
+		</ul>
+		you can use it like this for example :
+		<pre>
+			renderTarget->_beginUpdate();
+			renderTarget->_updateViewport(1); // which is not auto updated
+			renderTarget->_updateViewport(2); // which is not auto updated
+			renderTarget->_updateAutoUpdatedViewports();
+			renderTarget->_endUpdate();
+			renderTarget->swapBuffers(true);
+		</pre>
+			Please note that in that case, the zorder may not work as you expect,
+			since you are responsible for calling _updateViewport in the correct order.
+        */
+		virtual void _beginUpdate();
+
+		/** Method for manual management of rendering - renders the given 
+		viewport (even if it is not autoupdated)
+		@remarks
+		This also fires preViewportUpdate and postViewportUpdate, and manages statistics.
+		You should call it between _beginUpdate() and _endUpdate().
+		@see _beginUpdate for more details.
+		@param zorder The zorder of the viewport to update.
+		@param updateStatistics Whether you want to update statistics or not.
+		*/
+		virtual void _updateViewport(int zorder, bool updateStatistics = true);
+
+		/** Method for manual management of rendering - renders the given viewport (even if it is not autoupdated)
+		@remarks
+		This also fires preViewportUpdate and postViewportUpdate, and manages statistics
+		if needed. You should call it between _beginUpdate() and _endUpdate().
+		@see _beginUpdate for more details.
+		@param viewport The viewport you want to update, it must be bound to the rendertarget.
+		@param updateStatistics Whether you want to update statistics or not.
+		*/
+		virtual void _updateViewport(Viewport* viewport, bool updateStatistics = true);
+
+		/** Method for manual management of rendering - renders only viewports that are auto updated
+		@remarks
+		This also fires preViewportUpdate and postViewportUpdate, and manages statistics.
+		You should call it between _beginUpdate() and _endUpdate().
+		See _beginUpdate for more details.
+		@param updateStatistics Whether you want to update statistics or not.
+		@see _beginUpdate()
+		*/
+		virtual void _updateAutoUpdatedViewports(bool updateStatistics = true);
+		
+		/** Method for manual management of rendering - finishes statistics calculation 
+			and fires 'postRenderTargetUpdate'.
+		@remarks
+		You should call it after a _beginUpdate
+		@see _beginUpdate for more details.
+		*/
+		virtual void _endUpdate();
+
     protected:
         /// The name of this target.
         String mName;
@@ -395,14 +464,15 @@ namespace Ogre {
 		bool mHwGamma;
 		// FSAA performed?
 		uint mFSAA;
+		String mFSAAHint;
 
         void updateStats(void);
 
-        typedef std::map<int, Viewport*, std::less<int> > ViewportList;
+		typedef map<int, Viewport*>::type ViewportList;
         /// List of viewports, map on Z-order
         ViewportList mViewportList;
 
-        typedef std::vector<RenderTargetListener*> RenderTargetListenerList;
+        typedef vector<RenderTargetListener*>::type RenderTargetListenerList;
         RenderTargetListenerList mListeners;
 	
 
@@ -422,6 +492,8 @@ namespace Ogre {
 		/// Internal implementation of update()
 		virtual void updateImpl();
     };
+	/** @} */
+	/** @} */
 
 } // Namespace
 

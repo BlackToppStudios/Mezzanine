@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Renderable_H__
@@ -39,11 +38,17 @@ Torus Knot Software Ltd.
 #include "OgreGpuProgram.h"
 #include "OgreVector4.h"
 #include "OgreException.h"
-#include "OgreAny.h"
+#include "OgreUserObjectBindings.h"
 
 namespace Ogre {
 
-    /** Abstract class defining the interface all renderable objects must implement.
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Scene
+	*  @{
+	*/
+	/** Abstract class defining the interface all renderable objects must implement.
         @remarks
             This interface abstracts renderable discrete objects which will be queued in the render pipeline,
             grouped by material. Classes implementing this interface must be based on a single material, a single
@@ -64,14 +69,15 @@ namespace Ogre {
 		*/
 		class RenderSystemData {}; 
     public:
-		Renderable() : mPolygonModeOverrideable(true), mUseIdentityProjection(false), mUseIdentityView(false), mRenderSystemData(NULL){}
+		Renderable() : mPolygonModeOverrideable(true), mUseIdentityProjection(false), mUseIdentityView(false), mRenderSystemData(NULL) {}
         /** Virtual destructor needed as class has virtual methods. */
         virtual ~Renderable() 
 		{
 			if (mRenderSystemData)
 			{
 				delete mRenderSystemData;
-			}
+				mRenderSystemData = NULL;
+			}			
 		}
         /** Retrieves a weak reference to the material this renderable object uses.
         @remarks
@@ -113,10 +119,13 @@ namespace Ogre {
 			true if the automatic render should proceed, false to skip it on 
 			the assumption that the Renderable has done it manually.
 		*/
-		virtual bool preRender(SceneManager* sm, RenderSystem* rsys) { return true; }
+		virtual bool preRender(SceneManager* sm, RenderSystem* rsys)
+                { (void)sm; (void)rsys; return true; }
+
 		/** Called immediately after the Renderable has been rendered. 
 		*/
-		virtual void postRender(SceneManager* sm, RenderSystem* rsys) {}
+		virtual void postRender(SceneManager* sm, RenderSystem* rsys)
+                { (void)sm; (void)rsys; }
 
         /** Gets the world transform matrix / matrices for this renderable object.
             @remarks
@@ -306,30 +315,45 @@ namespace Ogre {
 			return mPolygonModeOverrideable;
 		}
 
-		/** Sets any kind of user value on this object.
+		/** @deprecated use UserObjectBindings::setUserAny via getUserObjectBindings() instead.
+			Sets any kind of user value on this object.
 		@remarks
 			This method allows you to associate any user value you like with 
 			this Renderable. This can be a pointer back to one of your own
 			classes for instance.
 		*/
-		virtual void setUserAny(const Any& anything) { mUserAny = anything; }
+		virtual void setUserAny(const Any& anything) { getUserObjectBindings().setUserAny(anything); }
 
-		/** Retrieves the custom user value associated with this object.
+		/** @deprecated use UserObjectBindings::getUserAny via getUserObjectBindings() instead.
+			Retrieves the custom user value associated with this object.
 		*/
-		virtual const Any& getUserAny(void) const { return mUserAny; }
+		virtual const Any& getUserAny(void) const { return getUserObjectBindings().getUserAny(); }
+
+		/** Return an instance of user objects binding associated with this class.
+		You can use it to associate one or more custom objects with this class instance.
+		@see UserObjectBindings::setUserAny.
+		*/
+		UserObjectBindings&	getUserObjectBindings() { return mUserObjectBindings; }
+
+		/** Return an instance of user objects binding associated with this class.
+		You can use it to associate one or more custom objects with this class instance.
+		@see UserObjectBindings::setUserAny.		
+		*/
+		const UserObjectBindings& getUserObjectBindings() const { return mUserObjectBindings; }
+
 
 		/** Visitor object that can be used to iterate over a collection of Renderable
-			instances abstractly.
+		instances abstractly.
 		@remarks
-			Different scene objects use Renderable differently; some will have a 
-			single Renderable, others will have many. This visitor interface allows
-			classes using Renderable to expose a clean way for external code to
-			get access to the contained Renderable instance(s) that it will
-			eventually add to the render queue.
+		Different scene objects use Renderable differently; some will have a 
+		single Renderable, others will have many. This visitor interface allows
+		classes using Renderable to expose a clean way for external code to
+		get access to the contained Renderable instance(s) that it will
+		eventually add to the render queue.
 		@par
-			To actually have this method called, you have to call a method on the
-			class containing the Renderable instances. One example is 
-			MovableObject::visitRenderables.
+		To actually have this method called, you have to call a method on the
+		class containing the Renderable instances. One example is 
+		MovableObject::visitRenderables.
 		*/
 		class Visitor
 		{
@@ -368,15 +392,17 @@ namespace Ogre {
 
 
     protected:
-        typedef std::map<size_t, Vector4> CustomParameterMap;
+        typedef map<size_t, Vector4>::type CustomParameterMap;
         CustomParameterMap mCustomParameters;
 		bool mPolygonModeOverrideable;
         bool mUseIdentityProjection;
         bool mUseIdentityView;
-		Any mUserAny;		
+		UserObjectBindings mUserObjectBindings;		 // User objects binding.
 		mutable RenderSystemData * mRenderSystemData;// this should be used only by a render system for internal use
 	};
 
+	/** @} */
+	/** @} */
 
 
 }

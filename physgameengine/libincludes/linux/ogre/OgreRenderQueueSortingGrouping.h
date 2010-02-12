@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __RenderQueueSortingGrouping_H__
@@ -39,6 +38,12 @@ Torus Knot Software Ltd.
 
 namespace Ogre {
 
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup RenderSystem
+	*  @{
+	*/
 	/** Struct associating a single Pass with a single Renderable. 
 		This is used to for objects sorted by depth and thus not
 		grouped by pass.
@@ -188,10 +193,10 @@ namespace Ogre {
         /** Vector of RenderablePass objects, this is built on the assumption that
          vectors only ever increase in size, so even if we do clear() the memory stays
          allocated, ie fast */
-        typedef std::vector<RenderablePass> RenderablePassList;
-        typedef std::vector<Renderable*> RenderableList;
+        typedef vector<RenderablePass>::type RenderablePassList;
+        typedef vector<Renderable*>::type RenderableList;
         /** Map of pass to renderable lists, this is a grouping by pass. */
-        typedef std::map<Pass*, RenderableList*, PassGroupLess> PassGroupRenderableMap;
+        typedef map<Pass*, RenderableList*, PassGroupLess>::type PassGroupRenderableMap;
 
 		/// Functor for accessing sort value 1 for radix sort (Pass)
 		struct RadixSortFunctorPass
@@ -290,7 +295,10 @@ namespace Ogre {
 			call before any renderables were added.
 		*/
 		void acceptVisitor(QueuedRenderableVisitor* visitor, OrganisationMode om) const;
-		
+
+		/** Merge renderable collection. 
+		*/
+		void merge( const QueuedRenderableCollection& rhs );
 	};
 
 	/** Collection of renderables by priority.
@@ -439,6 +447,9 @@ namespace Ogre {
 			mShadowCastersNotReceivers = ind;
 		}
 
+		/** Merge group of renderables. 
+		*/
+		void merge( const RenderPriorityGroup* rhs );
 
 
     };
@@ -454,8 +465,9 @@ namespace Ogre {
     class _OgreExport RenderQueueGroup : public RenderQueueAlloc
     {
     public:
-        typedef std::map<ushort, RenderPriorityGroup*, std::less<ushort> > PriorityMap;
+        typedef map<ushort, RenderPriorityGroup*, std::less<ushort> >::type PriorityMap;
         typedef MapIterator<PriorityMap> PriorityMapIterator;
+        typedef ConstMapIterator<PriorityMap> ConstPriorityMapIterator;
     protected:
         RenderQueue* mParent;
         bool mSplitPassesByLightingType;
@@ -496,6 +508,12 @@ namespace Ogre {
         PriorityMapIterator getIterator(void)
         {
             return PriorityMapIterator(mPriorityGroups.begin(), mPriorityGroups.end());
+        }
+
+        /** Get a const iterator for browsing through child contents. */
+        ConstPriorityMapIterator getIterator(void) const
+        {
+            return ConstPriorityMapIterator(mPriorityGroups.begin(), mPriorityGroups.end());
         }
 
         /** Add a renderable to this group, with the given priority. */
@@ -664,8 +682,48 @@ namespace Ogre {
 			}
 		}
 
+		/** Merge group of renderables. 
+		*/
+		void merge( const RenderQueueGroup* rhs )
+		{
+			ConstPriorityMapIterator it = rhs->getIterator();
+
+			while( it.hasMoreElements() )
+			{
+				ushort priority = it.peekNextKey();
+				RenderPriorityGroup* pSrcPriorityGrp = it.getNext();
+				RenderPriorityGroup* pDstPriorityGrp;
+
+				// Check if priority group is there
+				PriorityMap::iterator i = mPriorityGroups.find(priority);
+				if (i == mPriorityGroups.end())
+				{
+					// Missing, create
+					pDstPriorityGrp = OGRE_NEW RenderPriorityGroup(this, 
+						mSplitPassesByLightingType,
+						mSplitNoShadowPasses, 
+						mShadowCastersNotReceivers);
+					if (mOrganisationMode)
+					{
+						pDstPriorityGrp->resetOrganisationModes();
+						pDstPriorityGrp->addOrganisationMode((QueuedRenderableCollection::OrganisationMode)mOrganisationMode);
+					}
+
+					mPriorityGroups.insert(PriorityMap::value_type(priority, pDstPriorityGrp));
+				}
+				else
+				{
+					pDstPriorityGrp = i->second;
+				}
+
+				// merge
+				pDstPriorityGrp->merge( pSrcPriorityGrp );
+			}
+		}
     };
 
+	/** @} */
+	/** @} */
 
 
 }

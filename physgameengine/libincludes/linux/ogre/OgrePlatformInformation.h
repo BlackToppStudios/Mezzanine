@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __PlatformInformation_H__
@@ -41,6 +40,7 @@ namespace Ogre {
 #define OGRE_CPU_UNKNOWN    0
 #define OGRE_CPU_X86        1
 #define OGRE_CPU_PPC        2
+#define OGRE_CPU_ARM        3
 
 /* Find CPU type
 */
@@ -52,7 +52,10 @@ namespace Ogre {
 #   define OGRE_CPU OGRE_CPU_PPC
 #elif OGRE_PLATFORM == OGRE_PLATFORM_APPLE
 #	define OGRE_CPU OGRE_CPU_X86
-
+#elif OGRE_PLATFORM == OGRE_PLATFORM_IPHONE && (defined(__i386__) || defined(__x86_64__))
+#	define OGRE_CPU OGRE_CPU_X86
+#elif defined(__arm__)
+#	define OGRE_CPU OGRE_CPU_ARM
 #else
 #   define OGRE_CPU OGRE_CPU_UNKNOWN
 #endif
@@ -90,12 +93,36 @@ namespace Ogre {
 #   define __OGRE_HAVE_SSE  1
 #endif
 
+/* Define whether or not Ogre compiled with VFP supports.
+ */
+#if OGRE_DOUBLE_PRECISION == 0 && OGRE_CPU == OGRE_CPU_ARM && OGRE_COMPILER == OGRE_COMPILER_GNUC && defined(__ARM_ARCH_6K__) && defined(__VFP_FP__)
+#   define __OGRE_HAVE_VFP  1
+#endif
+
+/* Define whether or not Ogre compiled with NEON supports.
+ */
+#if OGRE_DOUBLE_PRECISION == 0 && OGRE_CPU == OGRE_CPU_ARM && OGRE_COMPILER == OGRE_COMPILER_GNUC && defined(__ARM_ARCH_7A__) && defined(__ARM_NEON__)
+#   define __OGRE_HAVE_NEON  1
+#endif
 
 #ifndef __OGRE_HAVE_SSE
 #   define __OGRE_HAVE_SSE  0
 #endif
 
+#ifndef __OGRE_HAVE_VFP
+#   define __OGRE_HAVE_VFP  0
+#endif
 
+#ifndef __OGRE_HAVE_NEON
+#   define __OGRE_HAVE_NEON  0
+#endif
+    
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup General
+	*  @{
+	*/
 
 
     /** Class which provides the run-time platform information Ogre runs on.
@@ -131,6 +158,9 @@ namespace Ogre {
             CPU_FEATURE_FPU         = 1 << 9,
             CPU_FEATURE_PRO         = 1 << 10,
             CPU_FEATURE_HTT         = 1 << 11,
+#elif OGRE_CPU == OGRE_CPU_ARM
+            CPU_FEATURE_VFP         = 1 << 12,
+            CPU_FEATURE_NEON        = 1 << 13,
 #endif
 
             CPU_FEATURE_NONE        = 0
@@ -162,6 +192,8 @@ namespace Ogre {
 		static void log(Log* pLog);
 
     };
+	/** @} */
+	/** @} */
 
 }
 

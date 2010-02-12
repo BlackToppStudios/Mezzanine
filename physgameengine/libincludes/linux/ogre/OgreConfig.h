@@ -4,37 +4,35 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Config_H_
 #define __Config_H_
 
-// Read configuration options; some systems use an auto-generated config.h,
-// other use a manually generated config.h; in any case just define
-// HAVE_CONFIG_H to include the custom config.h file.
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+// Include the CMake-generated build settings.
+// If you get complaints that this file is missing, then you're probably
+// trying to link directly against your source dir. You must then add
+// %BUILD_DIR%/include to your include search path to find OgreBuildSettings.h.
+#include "OgreBuildSettings.h"
 
 /** If set to 1, profiling code will be included in the application. When you
 	are deploying your application you will probably want to set this to 0 */
@@ -84,11 +82,24 @@ Torus Knot Software Ltd.
 
 // define the memory allocator configuration to use
 #define OGRE_MEMORY_ALLOCATOR_STD 1
-#define OGRE_MEMORY_ALLOCATOR_NED 2			 // you need to have nedmalloc on your path for this
+#define OGRE_MEMORY_ALLOCATOR_NED 2
 #define OGRE_MEMORY_ALLOCATOR_USER 3
+#define OGRE_MEMORY_ALLOCATOR_NEDPOOLING 4
 
 #ifndef OGRE_MEMORY_ALLOCATOR
-#  define OGRE_MEMORY_ALLOCATOR OGRE_MEMORY_ALLOCATOR_NED
+#  define OGRE_MEMORY_ALLOCATOR OGRE_MEMORY_ALLOCATOR_NEDPOOLING
+#endif
+
+// Whether to use the custom memory allocator in STL containers
+#ifndef OGRE_CONTAINERS_USE_CUSTOM_MEMORY_ALLOCATOR
+#  define OGRE_CONTAINERS_USE_CUSTOM_MEMORY_ALLOCATOR 1
+#endif
+
+//if you want to make Ogre::String use the custom memory allocator then set:
+//#define OGRE_STRING_USE_CUSTOM_MEMORY_ALLOCATOR 1
+// Doing this will mean Ogre's strings will not be compatible with std::string however
+#ifndef OGRE_STRING_USE_CUSTOM_MEMORY_ALLOCATOR
+#	define OGRE_STRING_USE_CUSTOM_MEMORY_ALLOCATOR 0
 #endif
 
 // enable or disable the memory tracker, recording the memory allocations & tracking leaks
@@ -128,7 +139,22 @@ OGRE_THREAD_SUPPORT = 2
 #define OGRE_THREAD_SUPPORT 0
 #endif
 #if OGRE_THREAD_SUPPORT != 0 && OGRE_THREAD_SUPPORT != 1 && OGRE_THREAD_SUPPORT != 2
-#define OGRE_THREAD_SUPPORT 1
+#define OGRE_THREAD_SUPPORT 0
+#endif
+
+/** Provider for threading functionality, there are 4 options.
+
+OGRE_THREAD_PROVIDER = 0
+	No support for threading.
+OGRE_THREAD_PROVIDER = 1
+	Boost libraries provide threading functionality.
+OGRE_THREAD_PROVIDER = 2
+	Poco libraries provide threading functionality.
+OGRE_THREAD_PROVIDER = 3
+	TBB library provides threading functionality.
+*/
+#ifndef OGRE_THREAD_PROVIDER
+#define OGRE_THREAD_PROVIDER 0
 #endif
 
 /** Disables use of the FreeImage image library for loading images.
@@ -151,6 +177,13 @@ WARNING: Use only when you want to provide your own image loading code via codec
 */
 #ifndef OGRE_NO_DDS_CODEC
 #define OGRE_NO_DDS_CODEC 0
+#endif
+
+/** Disables use of the ZIP archive support.
+WARNING: Disabling this will make the samples unusable.
+*/
+#ifndef OGRE_NO_ZIP_ARCHIVE
+#define OGRE_NO_ZIP_ARCHIVE 0
 #endif
 
 /** Enables the use of the new script compilers when Ogre compiles resource scripts.

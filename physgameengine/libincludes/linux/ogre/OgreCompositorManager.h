@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __CompositorManager_H__
@@ -33,11 +32,17 @@ Torus Knot Software Ltd.
 #include "OgreResourceManager.h"
 #include "OgreCompositor.h"
 #include "OgreRectangle2D.h"
-#include "OgreCompositorSerializer.h"
 #include "OgreRenderSystem.h"
+#include "OgreCompositionTechnique.h"
 
 namespace Ogre {
-    /** Class for managing Compositor settings for Ogre. Compositors provide the means
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Effects
+	*  @{
+	*/
+	/** Class for managing Compositor settings for Ogre. Compositors provide the means
         to flexibly "composite" the final rendering result from multiple scene renders
         and intermediate operations like rendering fullscreen quads. This makes
         it possible to apply postfilter effects, HDRI postprocessing, and shadow
@@ -114,6 +119,42 @@ namespace Ogre {
 		/** Internal method for forcing all active compositors to recreate their resources. */
 		void _reconstructAllCompositorResources();
 
+		typedef set<Texture*>::type UniqueTextureSet;
+
+		/** Utility function to get an existing pooled texture matching a given
+			definition, or creating one if one doesn't exist. It also takes into
+			account whether a pooled texture has already been supplied to this
+			same requester already, in which case it won't give the same texture
+			twice (this is important for example if you request 2 ping-pong textures, 
+			you don't want to get the same texture for both requests!
+		*/
+		TexturePtr getPooledTexture(const String& name, const String& localName, 
+			size_t w, size_t h, 
+			PixelFormat f, uint aa, const String& aaHint, bool srgb, UniqueTextureSet& texturesAlreadyAssigned, 
+			CompositorInstance* inst, CompositionTechnique::TextureScope scope);
+
+		/** Free pooled textures from the shared pool (compositor instances still 
+			using them will keep them in memory though). 
+		*/
+		void freePooledTextures(bool onlyIfUnreferenced = true);
+
+		/** Register a compositor logic for listening in to expecting composition
+			techniques.
+		*/
+		void registerCompositorLogic(const String& name, CompositorLogic* logic);
+		
+		/** Get a compositor logic by its name
+		*/
+		CompositorLogic* getCompositorLogic(const String& name);
+
+		/** Register a custom composition pass.
+		*/
+		void registerCustomCompositionPass(const String& name, CustomCompositionPass* customPass);
+		
+		/** Get a custom composition pass by its name 
+		*/
+		CustomCompositionPass* getCustomCompositionPass(const String& name);
+
 		/** Override standard Singleton retrieval.
 		@remarks
 		Why do we do this? Well, it's because the Singleton
@@ -149,18 +190,98 @@ namespace Ogre {
 
 	
 	private:
-        typedef std::map<Viewport*, CompositorChain*> Chains;
+        typedef map<Viewport*, CompositorChain*>::type Chains;
         Chains mChains;
-
-		/// Serializer - Hold instance per thread if necessary
-		OGRE_THREAD_POINTER(CompositorSerializer, mSerializer);
 
         /** Clear composition chains for all viewports
          */
         void freeChains();
 
 		Rectangle2D *mRectangle;
+
+		/// List of instances
+		typedef vector<CompositorInstance *>::type Instances;
+		Instances mInstances;
+
+		/// Map of registered compositor logics
+		typedef map<String, CompositorLogic*>::type CompositorLogicMap;
+		CompositorLogicMap mCompositorLogics;
+
+		/// Map of registered custom composition passes
+		typedef map<String, CustomCompositionPass*>::type CustomCompositionPassMap;
+		CustomCompositionPassMap mCustomCompositionPasses;
+
+		typedef vector<TexturePtr>::type TextureList;
+		typedef VectorIterator<TextureList> TextureIterator;
+
+		struct TextureDef
+		{
+			size_t width, height;
+			PixelFormat format;
+			uint fsaa;
+			String fsaaHint;
+			bool sRGBwrite;
+
+			TextureDef(size_t w, size_t h, PixelFormat f, uint aa, const String& aaHint, bool srgb)
+				: width(w), height(h), format(f), fsaa(aa), fsaaHint(aaHint), sRGBwrite(srgb)
+			{
+
+			}
+		};
+		struct TextureDefLess
+		{
+			bool _OgreExport operator()(const TextureDef& x, const TextureDef& y) const
+			{
+				if (x.format < y.format)
+					return true;
+				else if (x.format == y.format)
+				{
+					if (x.width < y.width)
+						return true;
+					else if (x.width == y.width)
+					{
+						if (x.height < y.height)
+							return true;
+						else if (x.height == y.height)
+						{
+							if (x.fsaa < y.fsaa)
+								return true;
+							else if (x.fsaa == y.fsaa)
+							{
+								if (x.fsaaHint < y.fsaaHint)
+									return true;
+								else if (x.fsaaHint == y.fsaaHint)
+								{
+									if (!x.sRGBwrite && y.sRGBwrite)
+										return true;
+								}
+
+							}
+						}
+					}
+				}
+				return false;
+			}
+			virtual ~TextureDefLess() {}
+		};
+		typedef map<TextureDef, TextureList*, TextureDefLess>::type TexturesByDef;
+		TexturesByDef mTexturesByDef;
+
+		typedef std::pair<String, String> StringPair;
+		typedef map<TextureDef, TexturePtr, TextureDefLess>::type TextureDefMap;
+		typedef std::map<StringPair, TextureDefMap> ChainTexturesByDef;
+		
+		ChainTexturesByDef mChainTexturesByDef;
+
+		bool isInputPreviousTarget(CompositorInstance* inst, const Ogre::String& localName);
+		bool isInputPreviousTarget(CompositorInstance* inst, TexturePtr tex);
+		bool isInputToOutputTarget(CompositorInstance* inst, const Ogre::String& localName);
+		bool isInputToOutputTarget(CompositorInstance* inst, TexturePtr tex);
+
     };
+	/** @} */
+	/** @} */
+
 }
 
 #endif

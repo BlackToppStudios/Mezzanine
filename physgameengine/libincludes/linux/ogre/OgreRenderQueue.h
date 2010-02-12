@@ -4,31 +4,31 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __RenderQueue_H__
 #define __RenderQueue_H__
 
+#include "OgreHeaderPrefix.h"
 #include "OgrePrerequisites.h"
 #include "OgreIteratorWrappers.h"
 
@@ -38,7 +38,13 @@ namespace Ogre {
 	class MovableObject;
 	struct VisibleObjectsBoundsInfo;
 
-    /** Enumeration of queue groups, by which the application may group queued renderables
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup RenderSystem
+	*  @{
+	*/
+	/** Enumeration of queue groups, by which the application may group queued renderables
         so that they are rendered together with events in between
 	@remarks
 		When passed into methods these are actually passed as a uint8 to allow you
@@ -86,9 +92,10 @@ namespace Ogre {
     class _OgreExport RenderQueue : public RenderQueueAlloc
     {
     public:
-        typedef std::map< uint8, RenderQueueGroup* > RenderQueueGroupMap;
+        typedef map< uint8, RenderQueueGroup* >::type RenderQueueGroupMap;
         /// Iterator over queue groups
         typedef MapIterator<RenderQueueGroupMap> QueueGroupIterator;
+        typedef ConstMapIterator<RenderQueueGroupMap> ConstQueueGroupIterator;
 		/** Class to listen in on items being added to the render queue. 
 		@remarks
 			Use RenderQueue::setRenderableListener to get callbacks when an item
@@ -232,19 +239,39 @@ namespace Ogre {
         
         /** Internal method, returns an iterator for the queue groups. */
         QueueGroupIterator _getQueueGroupIterator(void);
+        ConstQueueGroupIterator _getQueueGroupIterator(void) const;
+
         /** Sets whether or not the queue will split passes by their lighting type,
             ie ambient, per-light and decal. 
         */
         void setSplitPassesByLightingType(bool split);
+
+        /** Gets whether or not the queue will split passes by their lighting type,
+            ie ambient, per-light and decal. 
+        */
+        bool getSplitPassesByLightingType(void) const;
+
         /** Sets whether or not the queue will split passes which have shadow receive
         turned off (in their parent material), which is needed when certain shadow
         techniques are used.
         */
         void setSplitNoShadowPasses(bool split);
+
+        /** Gets whether or not the queue will split passes which have shadow receive
+        turned off (in their parent material), which is needed when certain shadow
+        techniques are used.
+        */
+        bool getSplitNoShadowPasses(void) const;
+
 		/** Sets whether or not objects which cast shadows should be treated as
 		never receiving shadows. 
 		*/
 		void setShadowCastersCannotBeReceivers(bool ind);
+
+		/** Gets whether or not objects which cast shadows should be treated as
+		never receiving shadows. 
+		*/
+		bool getShadowCastersCannotBeReceivers(void) const;
 
 		/** Set a renderable listener on the queue.
 		@remarks
@@ -257,6 +284,9 @@ namespace Ogre {
 		RenderableListener* getRenderableListener(void) const
 		{ return mRenderableListener; }
 
+		/** Merge render queue.
+		*/
+		void merge( const RenderQueue* rhs );
 		/** Utility method to perform the standard actions associated with 
 			getting a visible object to add itself to the queue. This is 
 			a replacement for SceneManager implementations of the associated
@@ -269,8 +299,10 @@ namespace Ogre {
 
     };
 
+	/** @} */
+	/** @} */
 
 }
 
-
+#include "OgreHeaderSuffix.h"
 #endif

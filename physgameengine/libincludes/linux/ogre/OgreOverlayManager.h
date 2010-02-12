@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __OverlayManager_H__
@@ -34,10 +33,17 @@ Torus Knot Software Ltd.
 #include "OgreStringVector.h"
 #include "OgreOverlay.h"
 #include "OgreScriptLoader.h"
+#include "OgreFrustum.h"
 
 namespace Ogre {
 
-    /** Manages Overlay objects, parsing them from .overlay files and
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Overlays
+	*  @{
+	*/
+	/** Manages Overlay objects, parsing them from .overlay files and
         storing a lookup library of them. Alo manages the creation of 
 		OverlayContainers and OverlayElements, used for non-interactive 2D 
 		elements such as HUDs.
@@ -45,9 +51,9 @@ namespace Ogre {
     class _OgreExport OverlayManager : public Singleton<OverlayManager>, public ScriptLoader, public OverlayAlloc
     {
     public:
-        typedef std::map<String, Overlay*> OverlayMap;
-		typedef std::map<String, OverlayElement*> ElementMap;
-		typedef std::map<String, OverlayElementFactory*> FactoryMap;
+        typedef map<String, Overlay*>::type OverlayMap;
+		typedef map<String, OverlayElement*>::type ElementMap;
+		typedef map<String, OverlayElementFactory*>::type FactoryMap;
     protected:
         OverlayMap mOverlayMap;
         StringVector mScriptPatterns;
@@ -61,6 +67,7 @@ namespace Ogre {
         
         int mLastViewportWidth, mLastViewportHeight;
         bool mViewportDimensionsChanged;
+        OrientationMode mLastViewportOrientationMode;
 
 	    bool parseChildren( DataStreamPtr& chunk, const String& line,
             Overlay* pOverlay, bool isTemplate, OverlayContainer* parent = NULL);
@@ -70,7 +77,7 @@ namespace Ogre {
 		ElementMap mInstances;
 		ElementMap mTemplates;
 
-		typedef std::set<String> LoadedScripts;
+		typedef set<String>::type LoadedScripts;
 		LoadedScripts mLoadedScripts;
 
 
@@ -81,6 +88,8 @@ namespace Ogre {
 		OverlayElement* createOverlayElementImpl(const String& typeName, const String& instanceName, ElementMap& elementMap);
 
 		OverlayElement* getOverlayElementImpl(const String& name, ElementMap& elementMap);
+		
+		bool hasOverlayElementImpl(const String& name, ElementMap& elementMap);
 
 		void destroyOverlayElementImpl(const String& instanceName, ElementMap& elementMap);
 
@@ -130,6 +139,8 @@ namespace Ogre {
         int getViewportWidth(void) const;
         Real getViewportAspectRatio(void) const;
 
+        /** Gets the orientation mode of the destination viewport. */
+        OrientationMode getViewportOrientationMode(void) const;
 
 		/** Creates a new OverlayElement of the type requested.
 		@remarks
@@ -143,6 +154,9 @@ namespace Ogre {
 		/** Gets a reference to an existing element. */
 		OverlayElement* getOverlayElement(const String& name, bool isTemplate = false);
 
+		/** Tests if an element exists. */
+		bool hasOverlayElement(const String& name, bool isTemplate = false);
+		
 		/** Destroys a OverlayElement. 
 		@remarks
 		Make sure you're not still using this in an Overlay. If in
@@ -233,6 +247,8 @@ namespace Ogre {
     };
 
 
+	/** @} */
+	/** @} */
 
 }
 

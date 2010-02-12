@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Entity_H__
@@ -39,8 +38,15 @@ Torus Knot Software Ltd.
 #include "OgreHardwareBufferManager.h"
 #include "OgreMesh.h"
 #include "OgreRenderable.h"
+#include "OgreResourceGroupManager.h"
 
 namespace Ogre {
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Scene
+	*  @{
+	*/
 	/** Defines an instance of a discrete, movable object based on a Mesh.
 	@remarks
 	Ogre generally divides renderable objects into 2 groups, discrete
@@ -78,7 +84,7 @@ namespace Ogre {
 		friend class EntityFactory;
 		friend class SubEntity;
 	public:
-		typedef std::set<Entity*> EntitySet;
+		typedef set<Entity*>::type EntitySet;
 
 	protected:
 
@@ -95,7 +101,7 @@ namespace Ogre {
 
 		/** List of SubEntities (point to SubMeshes).
 		*/
-		typedef std::vector<SubEntity*> SubEntityList;
+		typedef vector<SubEntity*>::type SubEntityList;
 		SubEntityList mSubEntityList;
 
 
@@ -188,20 +194,24 @@ namespace Ogre {
         int mSoftwareAnimationRequests;
         /// Counter indicating number of requests for software blended normals.
         int mSoftwareAnimationNormalsRequests;
+		/// Flag indicating whether to skip automatic updating of the Skeleton's AnimationState
+		bool mSkipAnimStateUpdates;
 
 
 		/// The LOD number of the mesh to use, calculated by _notifyCurrentCamera
 		ushort mMeshLodIndex;
 
-		/// LOD bias factor, inverted for optimisation when calculating adjusted depth
-		Real mMeshLodFactorInv;
+		/// LOD bias factor, transformed for optimisation when calculating adjusted lod value
+		Real mMeshLodFactorTransformed;
 		/// Index of minimum detail LOD (NB higher index is lower detail)
 		ushort mMinMeshLodIndex;
 		/// Index of maximum detail LOD (NB lower index is higher detail)
 		ushort mMaxMeshLodIndex;
 
-		/// LOD bias factor, inverted for optimisation when calculating adjusted depth
-		Real mMaterialLodFactorInv;
+        /// LOD bias factor, not transformed
+        Real mMaterialLodFactor;
+		/// LOD bias factor, transformed for optimisation when calculating adjusted lod value
+		Real mMaterialLodFactorTransformed;
 		/// Index of minimum detail LOD (NB higher index is lower detail)
 		ushort mMinMaterialLodIndex;
 		/// Index of maximum detail LOD (NB lower index is higher detail)
@@ -212,7 +222,7 @@ namespace Ogre {
 		same number of SubMeshes, therefore we have to allow a separate Entity list
 		with each alternate one.
 		*/
-		typedef std::vector<Entity*> LODEntityList;
+		typedef vector<Entity*>::type LODEntityList;
 		LODEntityList mLodEntityList;
 
 		/** This Entity's personal copy of the skeleton, if skeletally animated
@@ -255,7 +265,7 @@ namespace Ogre {
 
 	public:
 		/// Contains the child objects (attached to bones) indexed by name
-		typedef std::map<String, MovableObject*> ChildObjectList;
+		typedef map<String, MovableObject*>::type ChildObjectList;
 	protected:
 		ChildObjectList mChildObjectList;
 
@@ -338,7 +348,7 @@ namespace Ogre {
 		is only one. Otherwise call getSubEntity() and call the same
 		method on the individual SubEntity.
 		*/
-		void setMaterialName(const String& name);
+		void setMaterialName( const String& name, const String& groupName = ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME );
 
 		
 		/** Sets the material to use for the whole of this entity.
@@ -749,7 +759,22 @@ namespace Ogre {
 		void visitRenderables(Renderable::Visitor* visitor, 
 			bool debugRenderables = false);
 
-
+        /** Get the lod strategy transformation of the mesh lod factor. */
+        Real _getMeshLodFactorTransformed() const;
+		
+		/** Entity's skeleton's AnimationState will not be automatically updated when set to true.
+			Useful if you wish to handle AnimationState updates manually.
+		*/
+		void setSkipAnimationStateUpdate(bool skip) {
+			mSkipAnimStateUpdates = skip;
+		}
+		
+		/** Entity's skeleton's AnimationState will not be automatically updated when set to true.
+		 Useful if you wish to handle AnimationState updates manually.
+		 */
+		bool getSkipAnimationStateUpdate() const {
+			return mSkipAnimStateUpdates;
+		}
 
 
 	};
@@ -769,6 +794,8 @@ namespace Ogre {
 		void destroyInstance( MovableObject* obj);
 
 	};
+	/** @} */
+	/** @} */
 
 } // namespace
 

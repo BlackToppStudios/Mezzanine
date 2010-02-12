@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
@@ -38,6 +37,12 @@ Torus Knot Software Ltd.
 
 namespace Ogre
 {
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Scene
+	*  @{
+	*/
 	/** Class providing a much simplified interface to generating manual
 	 	objects with custom geometry.
 	@remarks
@@ -145,8 +150,8 @@ namespace Ogre
 			object with.
 		@param opType The type of operation to use to render. 
 		*/
-		virtual void begin(const String& materialName, 
-			RenderOperation::OperationType opType = RenderOperation::OT_TRIANGLE_LIST);
+		virtual void begin(const String& materialName,
+			RenderOperation::OperationType opType = RenderOperation::OT_TRIANGLE_LIST, const String & groupName = ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 		/** Use before defining geometry to indicate that you intend to update the
 			geometry regularly and want the internal structure to reflect that.
@@ -186,6 +191,17 @@ namespace Ogre
 		virtual void normal(const Vector3& norm);
 		/// @copydoc ManualObject::normal(const Vector3&)
 		virtual void normal(Real x, Real y, Real z);
+
+		/** Add a vertex tangent to the current vertex.
+		@remarks
+			Vertex tangents are most often used for dynamic lighting, and 
+			their components should be normalised. 
+			Also, using tangent() you enable VES_TANGENT vertex semantic, which is not
+			supported on old non-SM2 cards.
+		*/
+		virtual void tangent(const Vector3& tan);
+		/// @copydoc ManualObject::tangent(const Vector3&)
+		virtual void tangent(Real x, Real y, Real z);
 
 		/** Add a texture coordinate to the current vertex.
 		@remarks
@@ -263,7 +279,7 @@ namespace Ogre
 		@param subIndex The index of the subsection to alter
 		@param name The name of the new material to use
 		*/
-		virtual void setMaterialName(size_t subindex, const String& name);
+		virtual void setMaterialName(size_t subindex, const String& name, const String & group = ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
 		/** Convert this object to a Mesh. 
 		@remarks
@@ -382,6 +398,7 @@ namespace Ogre
 		protected:
 			ManualObject* mParent;
 			String mMaterialName;
+			String mGroupName;
 			mutable MaterialPtr mMaterial;
 			RenderOperation mRenderOperation;
 			bool m32BitIndices;
@@ -389,15 +406,17 @@ namespace Ogre
 			
 		public:
 			ManualObjectSection(ManualObject* parent, const String& materialName,
-				RenderOperation::OperationType opType);
+				RenderOperation::OperationType opType, const String & groupName = ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 			virtual ~ManualObjectSection();
 			
 			/// Retrieve render operation for manipulation
 			RenderOperation* getRenderOperation(void);
 			/// Retrieve the material name in use
 			const String& getMaterialName(void) const { return mMaterialName; }
+			/// Retrieve the material group in use
+			const String& getMaterialGroup(void) const { return mGroupName; }
 			/// update the material name in use
-			void setMaterialName(const String& name);
+			void setMaterialName(const String& name, const String& groupName = ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME );
 			/// Set whether we need 32-bit indices
 			void set32BitIndices(bool n32) { m32BitIndices = n32; }
 			/// Get whether we need 32-bit indices
@@ -440,7 +459,7 @@ namespace Ogre
 
 		};
 
-		typedef std::vector<ManualObjectSection*> SectionList;
+		typedef vector<ManualObjectSection*>::type SectionList;
 
 		/// @copydoc MovableObject::visitRenderables
 		void visitRenderables(Renderable::Visitor* visitor, 
@@ -461,6 +480,7 @@ namespace Ogre
 		{
 			Vector3 position;
 			Vector3 normal;
+			Vector3 tangent;
 			Vector4 texCoord[OGRE_MAX_TEXTURE_COORD_SETS];
 			ushort texCoordDims[OGRE_MAX_TEXTURE_COORD_SETS];
 			ColourValue colour;
@@ -533,7 +553,10 @@ namespace Ogre
 		void destroyInstance( MovableObject* obj);  
 
 	};
+	/** @} */
+	/** @} */
 }
 
 #endif
+
 

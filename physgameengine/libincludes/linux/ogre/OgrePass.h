@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Pass_H__
@@ -36,9 +35,16 @@ Torus Knot Software Ltd.
 #include "OgreCommon.h"
 #include "OgreLight.h"
 #include "OgreTextureUnitState.h"
+#include "OgreUserObjectBindings.h"
 
 namespace Ogre {
 
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Materials
+	*  @{
+	*/
 	/// Categorisation of passes for the purpose of additive lighting
 	enum IlluminationStage
 	{
@@ -115,6 +121,15 @@ namespace Ogre {
 
 		// Used to determine if separate alpha blending should be used for color and alpha channels
 		bool mSeparateBlend;
+
+		//-------------------------------------------------------------------------
+		// Blending operations
+		SceneBlendOperation mBlendOperation;
+		SceneBlendOperation mAlphaBlendOperation;
+
+		// Determines if we should use separate blending operations for color and alpha channels
+		bool mSeparateBlendOperation;
+
         //-------------------------------------------------------------------------
 
         //-------------------------------------------------------------------------
@@ -136,6 +151,8 @@ namespace Ogre {
 
 		// Transparent depth sorting
 		bool mTransparentSorting;
+		// Transparent depth sorting forced
+		bool mTransparentSortingForced;
         //-------------------------------------------------------------------------
 
         //-------------------------------------------------------------------------
@@ -176,7 +193,7 @@ namespace Ogre {
         //-------------------------------------------------------------------------
 
         /// Storage of texture unit states
-        typedef std::vector<TextureUnitState*> TextureUnitStates;
+        typedef vector<TextureUnitState*>::type TextureUnitStates;
         TextureUnitStates mTextureUnitStates;
 
 		// Vertex program details
@@ -204,7 +221,7 @@ namespace Ogre {
 		// constant, linear, quadratic coeffs
 		Real mPointAttenuationCoeffs[3];
 		// TU Content type lookups
-		typedef std::vector<unsigned short> ContentTypeLookup;
+		typedef vector<unsigned short>::type ContentTypeLookup;
 		mutable ContentTypeLookup mShadowContentTypeLookup;
 		mutable bool mContentTypeLookupBuilt;
 		/// Scissoring for the light?
@@ -213,12 +230,15 @@ namespace Ogre {
 		bool mLightClipPlanes;
 		/// Illumination stage?
 		IlluminationStage mIlluminationStage;
+		// User objects binding.
+		UserObjectBindings	mUserObjectBindings;
+		
 
 		// Used to get scene blending flags from a blending type
 		void _getBlendFlags(SceneBlendType type, SceneBlendFactor& source, SceneBlendFactor& dest);
 
 	public:
-		typedef std::set<Pass*> PassSet;
+		typedef set<Pass*>::type PassSet;
     protected:
 		/// List of Passes whose hashes need recalculating
 		static PassSet msDirtyHashList;
@@ -659,6 +679,42 @@ namespace Ogre {
         */
 		SceneBlendFactor getDestBlendFactorAlpha() const;
 
+		/** Sets the specific operation used to blend source and destination pixels together.
+			@remarks 
+			By default this operation is +, which creates this equation
+			<span align="center">
+			final = (texture * sourceFactor) + (pixel * destFactor)
+			</span>
+			By setting this to something other than SBO_ADD you can change the operation to achieve
+			a different effect.
+			@param op The blending operation mode to use for this pass
+		*/
+		void setSceneBlendingOperation(SceneBlendOperation op);
+
+		/** Sets the specific operation used to blend source and destination pixels together.
+			@remarks 
+			By default this operation is +, which creates this equation
+			<span align="center">
+			final = (texture * sourceFactor) + (pixel * destFactor)
+			</span>
+			By setting this to something other than SBO_ADD you can change the operation to achieve
+			a different effect.
+			This function allows more control over blending since it allows you to select different blending
+			modes for the color and alpha channels
+			@param op The blending operation mode to use for color channels in this pass
+			@param op The blending operation mode to use for alpha channels in this pass
+		*/
+		void setSeparateSceneBlendingOperation(SceneBlendOperation op, SceneBlendOperation alphaOp);
+
+		/** Returns true if this pass uses separate scene blending operations. */
+		bool hasSeparateSceneBlendingOperations() const;
+
+		/** Returns the current blending operation */
+		SceneBlendOperation getSceneBlendingOperation() const;
+
+		/** Returns the current alpha blending operation */
+		SceneBlendOperation getSceneBlendingOperationAlpha() const;
+
 		/** Returns true if this pass has some element of transparency. */
 		bool isTransparent(void) const;
 
@@ -1006,6 +1062,21 @@ namespace Ogre {
         */
 		bool getTransparentSortingEnabled(void) const;
 
+        /** Sets whether or not transparent sorting is forced.
+        @param enabled
+			If true depth sorting of this material will be depend only on the value of
+            getTransparentSortingEnabled().
+        @remarks
+			By default even if transparent sorting is enabled, depth sorting will only be
+            performed when the material is transparent and depth write/check are disabled.
+            This function disables these extra conditions.
+        */
+        void setTransparentSortingForced(bool enabled);
+
+        /** Returns whether or not transparent sorting is forced.
+        */
+		bool getTransparentSortingForced(void) const;
+
 		/** Sets whether or not this pass should iterate per light or number of
 			lights which can affect the object being rendered.
 		@remarks
@@ -1340,10 +1411,11 @@ namespace Ogre {
         /** Tells the pass that it needs recompilation. */
         void _notifyNeedsRecompile(void);
 
-        /** Update any automatic parameters (except lights) on this pass */
-        void _updateAutoParamsNoLights(const AutoParamDataSource* source) const;
-        /** Update any automatic light parameters on this pass */
-        void _updateAutoParamsLightsOnly(const AutoParamDataSource* source) const;
+		/** Update automatic parameters.
+		@param source The source of the parameters
+		@param variabilityMask A mask of GpuParamVariability which identifies which autos will need updating
+		*/
+		void _updateAutoParams(const AutoParamDataSource* source, uint16 variabilityMask) const;
 
 		/** Gets the 'nth' texture which references the given content type.
 		@remarks
@@ -1570,7 +1642,22 @@ namespace Ogre {
 		/** Get the hash function used for all passes.
 		*/
 		static HashFunc* getHashFunction(void) { return msHashFunc; }
-        
+
+		/** Get the builtin hash function.
+		*/
+		static HashFunc* getBuiltinHashFunction(BuiltinHashFunction builtin);
+
+		/** Return an instance of user objects binding associated with this class.
+		You can use it to associate one or more custom objects with this class instance.
+		@see UserObjectBindings::setUserAny.
+		*/
+		UserObjectBindings&	getUserObjectBindings() { return mUserObjectBindings; }
+
+		/** Return an instance of user objects binding associated with this class.
+		You can use it to associate one or more custom objects with this class instance.
+		@see UserObjectBindings::setUserAny.		
+		*/
+		const UserObjectBindings& getUserObjectBindings() const { return mUserObjectBindings; }
     };
 
     /** Struct recording a pass which can be used for a specific illumination stage.
@@ -1595,8 +1682,10 @@ namespace Ogre {
 		IlluminationPass() {}
     };
 
-    typedef std::vector<IlluminationPass*> IlluminationPassList;
+    typedef vector<IlluminationPass*>::type IlluminationPassList;
 
+	/** @} */
+	/** @} */
 
 }
 

@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 /*
@@ -48,22 +47,44 @@ Ogre-dependent is in the visualization/logging routines and the use of the Timer
 #include "OgreOverlay.h"
 
 #if OGRE_PROFILING == 1
-#   if OGRE_COMPILER != OGRE_COMPILER_BORL
-#       define OgreProfile( a ) Ogre::Profile _OgreProfileInstance( (a) )
-#       define OgreProfileBegin( a ) Ogre::Profiler::getSingleton().beginProfile( (a) )
-#       define OgreProfileEnd( a ) Ogre::Profiler::getSingleton().endProfile( (a) )
-#   else
-#	    define OgreProfile( a ) Ogre::Profile _OgreProfileInstance( __FUNC__ )
-#	    define OgreProfileBegin( a ) Ogre::Profiler::getSingleton().beginProfile( __FUNC__ )
-#	    define OgreProfileEnd( a ) Ogre::Profiler::getSingleton().endProfile( __FUNC__ )
-#   endif
+#	define OgreProfile( a ) Ogre::Profile _OgreProfileInstance( (a) )
+#	define OgreProfileBegin( a ) Ogre::Profiler::getSingleton().beginProfile( (a) )
+#	define OgreProfileEnd( a ) Ogre::Profiler::getSingleton().endProfile( (a) )
+#	define OgreProfileGroup( a, g ) Ogre::Profile _OgreProfileInstance( (a), (g) )
+#	define OgreProfileBeginGroup( a, g ) Ogre::Profiler::getSingleton().beginProfile( (a), (g) )
+#	define OgreProfileEndGroup( a, g ) Ogre::Profiler::getSingleton().endProfile( (a), (g) )
 #else
 #   define OgreProfile( a )
 #   define OgreProfileBegin( a )
 #   define OgreProfileEnd( a )
+#	define OgreProfileGroup( a, g ) 
+#	define OgreProfileBeginGroup( a, g ) 
+#	define OgreProfileEndGroup( a, g ) 
 #endif
 
 namespace Ogre {
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup General
+	*  @{
+	*/
+
+	/** List of reserved profiling masks
+	*/
+	enum ProfileGroupMask
+	{
+		/// User default profile
+		OGREPROF_USER_DEFAULT = 0x00000001,
+		/// All in-built Ogre profiling will match this mask
+		OGREPROF_ALL = 0xFF000000,
+		/// General processing
+		OGREPROF_GENERAL = 0x80000000,
+		/// Culling
+		OGREPROF_CULLING = 0x40000000,
+		/// Rendering
+		OGREPROF_RENDERING = 0x20000000
+	};
 
     /** An individual profile that will be processed by the Profiler
         @remarks
@@ -78,13 +99,15 @@ namespace Ogre {
 	class _OgreExport Profile : public ProfilerAlloc {
 
         public:
-            Profile(const String& profileName);
+            Profile(const String& profileName, uint32 groupID = (uint32)OGREPROF_USER_DEFAULT);
             ~Profile();
 
         protected:
 
             /// The name of this profile
             String mName;
+			/// The group ID
+			uint32 mGroupID;
 			
 
     };
@@ -123,8 +146,9 @@ namespace Ogre {
                 OgreProfile(name). This function will be ignored for a profile that has been 
                 disabled or if the profiler is disabled.
             @param profileName Must be unique and must not be an empty string
+			@param groupID A profile group identifier, which can allow you to mask profiles
             */
-            void beginProfile(const String& profileName);
+            void beginProfile(const String& profileName, uint32 groupID = (uint32)OGREPROF_USER_DEFAULT);
 
             /** Ends a profile
             @remarks 
@@ -137,8 +161,10 @@ namespace Ogre {
                 sure the name of this profile matches its corresponding beginProfile name. 
                 This function will be ignored for a profile that has been disabled or if the
                 profiler is disabled.
+			@param profileName Must be unique and must not be an empty string
+			@param groupID A profile group identifier, which can allow you to mask profiles
             */
-            void endProfile(const String& profileName);
+            void endProfile(const String& profileName, uint32 groupID = (uint32)OGREPROF_USER_DEFAULT);
 
             /** Sets whether this profiler is enabled. Only takes effect after the
                 the frame has ended.
@@ -161,6 +187,13 @@ namespace Ogre {
             the profile it is trying to disable.
             */
             void disableProfile(const String& profileName);
+
+			/** Set the mask which all profiles must pass to be enabled. 
+			*/
+			void setProfileGroupMask(uint32 mask) { mProfileMask = mask; }
+			/** Get the mask which all profiles must pass to be enabled. 
+			*/
+			uint32 getProfileGroupMask() const { return mProfileMask; }
 
             /** Returns true if the specified profile reaches a new frame time maximum
             @remarks If this is called during a frame, it will be reading the results
@@ -193,11 +226,37 @@ namespace Ogre {
             /** Clears the profiler statistics */
             void reset();
 
-            /** Sets the Profiler so the display of results are updated ever n frames*/
+			enum DisplayMode
+			{
+				/// Display % frame usage on the overlay
+				DISPLAY_PERCENTAGE,
+				/// Display milliseconds on the overlay
+				DISPLAY_MILLISECONDS
+			};
+
+			/** Set the display mode for the overlay. 
+			*/
+			void setDisplayMode(DisplayMode d) { mDisplayMode = d; }
+			/** Get the display mode for the overlay. 
+			*/
+			DisplayMode getDisplayMode() const { return mDisplayMode; }
+
+            /** Sets the Profiler so the display of results are updated every n frames*/
             void setUpdateDisplayFrequency(uint freq);
 
             /** Gets the frequency that the Profiler display is updated */
             uint getUpdateDisplayFrequency() const;
+
+			/** Set the size of the profiler overlay, in pixels. */
+			void setOverlayDimensions(Real width, Real height);
+
+			/** Set the position of the profiler overlay, in pixels. */
+			void setOverlayPosition(Real left, Real top);
+
+			Real getOverlayWidth() const;
+			Real getOverlayHeight() const;
+			Real getOverlayLeft() const;
+			Real getOverlayTop() const;
 
             /** Override standard Singleton retrieval.
             @remarks
@@ -302,24 +361,31 @@ namespace Ogre {
                 String	name;
 
                 /// The current percentage of frame time this profile has taken
-                Real	currentTime; // %
+                Real	currentTimePercent; 
+				/// The current frame time this profile has taken in milliseconds
+				Real	currentTimeMillisecs;
 
                 /// The maximum percentage of frame time this profile has taken
-                Real	maxTime; // %
+                Real	maxTimePercent; 
+				/// The maximum frame time this profile has taken in milliseconds
+				Real	maxTimeMillisecs; 
 
                 /// The minimum percentage of frame time this profile has taken
-                Real	minTime; // %
+                Real	minTimePercent; 
+				/// The minimum frame time this profile has taken in milliseconds
+				Real	minTimeMillisecs; 
 
                 /// The number of times this profile has been called each frame
                 uint	numCallsThisFrame;
 
                 /// The total percentage of frame time this profile has taken
-                /// (used to calculate average)
-                Real	totalTime; // %
+                Real	totalTimePercent;
+				/// The total frame time this profile has taken in milliseconds
+				Real	totalTimeMillisecs;
 
                 /// The total number of times this profile was called
                 /// (used to calculate average)
-                ulong	totalCalls; // %
+                ulong	totalCalls; 
 
                 /// The hierarchical level of this profile, 0 being the root profile
                 uint	hierarchicalLvl;
@@ -327,13 +393,13 @@ namespace Ogre {
 			};
 
 			
-            typedef std::list<ProfileInstance> ProfileStack;
-            typedef std::list<ProfileFrame> ProfileFrameList;
-            typedef std::list<ProfileHistory> ProfileHistoryList;
-            typedef std::map<String, ProfileHistoryList::iterator> ProfileHistoryMap;
-            typedef std::map<String, bool> DisabledProfileMap;
+            typedef list<ProfileInstance>::type ProfileStack;
+            typedef list<ProfileFrame>::type ProfileFrameList;
+            typedef list<ProfileHistory>::type ProfileHistoryList;
+            typedef map<String, ProfileHistoryList::iterator>::type ProfileHistoryMap;
+            typedef map<String, bool>::type DisabledProfileMap;
 
-            typedef std::list<OverlayElement*> ProfileBarList;
+            typedef list<OverlayElement*>::type ProfileBarList;
 
             /// A stack for each individual profile per frame
             ProfileStack mProfiles;
@@ -358,7 +424,7 @@ namespace Ogre {
             bool mInitialized;
 
             /// The max number of profiles we can display
-            uint maxProfiles;
+            uint mMaxDisplayProfiles;
 
             /// The overlay which contains our profiler results display
             Overlay* mOverlay;
@@ -375,7 +441,13 @@ namespace Ogre {
             /// The width of the stats window
             Real mGuiWidth;
 
-            /// The size of the indent for each profile display bar
+			/// The horz position of the stats window
+			Real mGuiLeft;
+
+			/// The vertical position of the stats window
+			Real mGuiTop;
+
+			/// The size of the indent for each profile display bar
             Real mBarIndent;
 
             /// The width of the border between the profile window and each bar
@@ -383,6 +455,9 @@ namespace Ogre {
 
             /// The width of the min, avg, and max lines in a profile display
             Real mBarLineWidth;
+
+			/// The distance between bars
+			Real mBarSpacing;
 
             /// The number of frames that must elapse before the current
             /// frame display is updated
@@ -408,7 +483,23 @@ namespace Ogre {
             /// which will be applied after the frame ends
             bool mNewEnableState;
 
+			/// Mask to decide whether a type of profile is enabled or not
+			uint32 mProfileMask;
+
+			/// How to display the overlay
+			DisplayMode mDisplayMode;
+
+			/// The max frame time recorded
+			ulong mMaxTotalFrameTime;
+
+			/// Rolling average of millisecs
+			Real mAverageFrameTime;
+			bool mResetExtents;
+
+
     }; // end class
+	/** @} */
+	/** @} */
 
 } // end namespace
 

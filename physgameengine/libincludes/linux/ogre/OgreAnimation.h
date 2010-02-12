@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
@@ -38,6 +37,13 @@ Torus Knot Software Ltd.
 #include "OgreAnimationState.h"
 
 namespace Ogre {
+	/** \addtogroup Core
+	*  @{
+	*/
+
+	/** \addtogroup Animation
+	*  @{
+	*/
 
     /** An animation sequence. 
     @remarks
@@ -199,7 +205,19 @@ namespace Ogre {
         */
         void apply(Real timePos, Real weight = 1.0, Real scale = 1.0f);
 
-        /** Applies all node tracks given a specific time point and weight to a given skeleton.
+        /** Applies all node tracks given a specific time point and weight to the specified node.
+        @remarks
+            It does not consider the actual node tracks are attached to.
+			As such, it resembles the apply method for a given skeleton (see below).
+        @param timePos The time position in the animation to apply.
+        @param weight The influence to give to this track, 1.0 for full influence, less to blend with
+          other animations.
+	    @param scale The scale to apply to translations and scalings, useful for 
+			adapting an animation to a different size target.
+        */
+		void applyToNode(Node* node, Real timePos, Real weight = 1.0, Real scale = 1.0f);
+
+       /** Applies all node tracks given a specific time point and weight to a given skeleton.
         @remarks
         Where you have associated animation tracks with Node objects, you can easily apply
         an animation to those nodes by calling this method.
@@ -238,7 +256,27 @@ namespace Ogre {
 		void apply(Entity* entity, Real timePos, Real weight, bool software, 
 			bool hardware);
 
-        /** Tells the animation how to interpolate between keyframes.
+        /** Applies all numeric tracks given a specific time point and weight to the specified animable value.
+        @remarks
+            It does not applies to actual attached animable values but rather uses all tracks for a single animable value.
+        @param timePos The time position in the animation to apply.
+        @param weight The influence to give to this track, 1.0 for full influence, less to blend with
+          other animations.
+	    @param scale The scale to apply to translations and scalings, useful for 
+			adapting an animation to a different size target.
+        */
+		void applyToAnimable(const AnimableValuePtr& anim, Real timePos, Real weight = 1.0, Real scale = 1.0f);
+
+        /** Applies all vertex tracks given a specific time point and weight to the specified vertex data.
+        @remarks
+            It does not apply to the actual attached vertex data but rather uses all tracks for a given vertex data.
+        @param timePos The time position in the animation to apply.
+        @param weight The influence to give to this track, 1.0 for full influence, less to blend with
+          other animations.
+        */
+        void applyToVertexData(VertexData* data, Real timePos, Real weight = 1.0);
+
+		/** Tells the animation how to interpolate between keyframes.
         @remarks
             By default, animations normally interpolate linearly between keyframes. This is
             fast, but when animations include quick changes in direction it can look a little
@@ -298,13 +336,13 @@ namespace Ogre {
         /** Gets the default rotation interpolation mode for all animations. */
         static RotationInterpolationMode getDefaultRotationInterpolationMode(void);
 
-        typedef std::map<unsigned short, NodeAnimationTrack*> NodeTrackList;
+        typedef map<unsigned short, NodeAnimationTrack*>::type NodeTrackList;
         typedef ConstMapIterator<NodeTrackList> NodeTrackIterator;
 
-		typedef std::map<unsigned short, NumericAnimationTrack*> NumericTrackList;
+		typedef map<unsigned short, NumericAnimationTrack*>::type NumericTrackList;
 		typedef ConstMapIterator<NumericTrackList> NumericTrackIterator;
 
-		typedef std::map<unsigned short, VertexAnimationTrack*> VertexTrackList;
+		typedef map<unsigned short, VertexAnimationTrack*>::type VertexTrackList;
 		typedef ConstMapIterator<VertexTrackList> VertexTrackIterator;
 
 		/// Fast access to NON-UPDATEABLE node track list
@@ -350,7 +388,7 @@ namespace Ogre {
 		void optimise(bool discardIdentityNodeTracks = true);
 
         /// A list of track handles
-        typedef std::set<ushort> TrackHandleList;
+        typedef set<ushort>::type TrackHandleList;
 
         /** Internal method for collecting identity node tracks.
         @remarks
@@ -407,7 +445,7 @@ namespace Ogre {
         static RotationInterpolationMode msDefaultRotationInterpolationMode;
 
         /// Global keyframe time list used to search global keyframe index.
-        typedef std::vector<Real> KeyFrameTimeList;
+        typedef vector<Real>::type KeyFrameTimeList;
         mutable KeyFrameTimeList mKeyFrameTimes;
         /// Dirty flag indicate that keyframe time list need to rebuild
         mutable bool mKeyFrameTimesDirty;
@@ -419,7 +457,8 @@ namespace Ogre {
         void buildKeyFrameTimeList(void) const;
     };
 
-
+	/** @} */
+	/** @} */
 }
 
 

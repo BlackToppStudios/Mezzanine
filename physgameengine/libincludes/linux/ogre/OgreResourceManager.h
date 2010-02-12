@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef _ResourceManager_H__
@@ -41,7 +40,13 @@ Torus Knot Software Ltd.
 
 namespace Ogre {
 
-    /** Defines a generic resource handler.
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Resources
+	*  @{
+	*/
+	/** Defines a generic resource handler.
     @remarks
         A resource manager is responsible for managing a pool of
         resources of a particular type. It must index them, look
@@ -276,9 +281,25 @@ namespace Ogre {
         */
         virtual void removeAll(void);
 
+		/** Remove all resources which are not referenced by any other object.
+		@remarks
+			This method behaves like removeAll, except that it only removes resources
+            which are not in use, ie not referenced by other objects. This allows you
+            to free up some memory selectively whilst still keeping the group around
+            (and the resources present, just not using much memory).
+        @par
+            Some referenced resource may exists 'weak' pointer to their sub-components
+            (e.g. Entity held pointer to SubMesh), in this case, remove or reload that
+            resource will cause dangerous pointer access. Use this function instead of
+            removeAll allows you avoid fail in those situations.
+		@param reloadableOnly If true (the default), only removes resources
+			which can be subsequently automatically reloaded.
+		*/
+		virtual void removeUnreferencedResources(bool reloadableOnly = true);
+
         /** Retrieves a pointer to a resource by name, or null if the resource does not exist.
         */
-        virtual ResourcePtr getByName(const String& name);
+        virtual ResourcePtr getByName(const String& name, const String& groupName = ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME);
         /** Retrieves a pointer to a resource by handle, or null if the resource does not exist.
         */
         virtual ResourcePtr getByHandle(ResourceHandle handle);
@@ -321,10 +342,13 @@ namespace Ogre {
 			for the previous parameter
         @param loadParams Optional pointer to a list of name/value pairs 
             containing loading parameters for this type of resource.
+		@param backgroundThread Optional boolean which lets the load routine know if it
+			is being run on the background resource loading thread
 		*/
 		virtual ResourcePtr prepare(const String& name, 
             const String& group, bool isManual = false, 
-			ManualResourceLoader* loader = 0, const NameValuePairList* loadParams = 0);
+			ManualResourceLoader* loader = 0, const NameValuePairList* loadParams = 0,
+			bool backgroundThread = false);
 
 		/** Generic load method, used to create a Resource specific to this 
 			ResourceManager without using one of the specialised 'load' methods
@@ -338,10 +362,13 @@ namespace Ogre {
 			for the previous parameter
         @param loadParams Optional pointer to a list of name/value pairs 
             containing loading parameters for this type of resource.
+		@param backgroundThread Optional boolean which lets the load routine know if it
+			is being run on the background resource loading thread
 		*/
 		virtual ResourcePtr load(const String& name, 
             const String& group, bool isManual = false, 
-			ManualResourceLoader* loader = 0, const NameValuePairList* loadParams = 0);
+			ManualResourceLoader* loader = 0, const NameValuePairList* loadParams = 0,
+			bool backgroundThread = false);
 
 		/** Gets the file patterns which should be used to find scripts for this
 			ResourceManager.
@@ -373,7 +400,8 @@ namespace Ogre {
 			then the resources discovered in this script will be loaded / unloaded
 			with it.
 		*/
-		virtual void parseScript(DataStreamPtr& stream, const String& groupName) {}
+		virtual void parseScript(DataStreamPtr& stream, const String& groupName)
+                { (void)stream; (void)groupName; }
 
 		/** Gets the relative loading order of resources of this type.
 		@remarks
@@ -391,6 +419,36 @@ namespace Ogre {
 
         /** Gets whether this manager and its resources habitually produce log output */
         virtual bool getVerbose(void) { return mVerbose; }
+
+		/** Definition of a pool of resources, which users can use to reuse similar
+			resources many times without destroying and recreating them.
+		@remarks
+			This is a simple utility class which allows the reuse of resources
+			between code which has a changing need for them. For example, 
+		*/
+		class _OgreExport ResourcePool : public Pool<ResourcePtr>, public ResourceAlloc
+		{
+		protected:
+			String mName;
+		public:
+			ResourcePool(const String& name);
+			~ResourcePool();
+			/// Get the name of the pool
+			const String& getName() const;
+			void clear();
+		};
+		
+		/// Create a resource pool, or reuse one that already exists
+		ResourcePool* getResourcePool(const String& name);
+		/// Destroy a resource pool
+		void destroyResourcePool(ResourcePool* pool);
+		/// Destroy a resource pool
+		void destroyResourcePool(const String& name);
+		/// destroy all pools
+		void destroyAllResourcePools();
+
+
+
 
     protected:
 
@@ -432,10 +490,12 @@ namespace Ogre {
 
     public:
 		typedef HashMap< String, ResourcePtr > ResourceMap;
-		typedef std::map<ResourceHandle, ResourcePtr> ResourceHandleMap;
+		typedef HashMap< String, ResourceMap > ResourceWithGroupMap;
+		typedef map<ResourceHandle, ResourcePtr>::type ResourceHandleMap;
     protected:
         ResourceHandleMap mResourcesByHandle;
         ResourceMap mResources;
+		ResourceWithGroupMap mResourcesWithGroup;
         ResourceHandle mNextHandle;
         size_t mMemoryBudget; // In bytes
         size_t mMemoryUsage; // In bytes
@@ -462,9 +522,16 @@ namespace Ogre {
             return ResourceMapIterator(mResourcesByHandle.begin(), mResourcesByHandle.end());
         }
 
+	protected:
+		typedef map<String, ResourcePool*>::type ResourcePoolMap;
+		ResourcePoolMap mResourcePoolMap;
+
+
     
 
     };
+	/** @} */
+	/** @} */
 
 }
 

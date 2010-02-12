@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __RenderSystemCapabilities__
@@ -52,6 +51,13 @@ Torus Knot Software Ltd.
 
 namespace Ogre 
 {
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup RenderSystem
+	*  @{
+	*/
+
 	/// Enumerates the categories of capabilities
 	enum CapabilitiesCategory
 	{
@@ -82,7 +88,7 @@ namespace Ogre
 		RSC_HWSTENCIL               = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON, 5),
 		/// Supports hardware vertex and index buffers
 		RSC_VBO                     = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON, 7),
-		/// Supports vertex programs (vertex shaders
+		/// Supports vertex programs (vertex shaders)
 		RSC_VERTEX_PROGRAM          = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON, 9),
 		/// Supports fragment programs (pixel shaders)
 		RSC_FRAGMENT_PROGRAM        = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON, 10),
@@ -127,12 +133,16 @@ namespace Ogre
 		RSC_TEXTURE_COMPRESSION_DXT = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON_2, 1),
 		/// Supports compressed textures in the VTC format
 		RSC_TEXTURE_COMPRESSION_VTC = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON_2, 2),
+		/// Supports compressed textures in the PVRTC format
+		RSC_TEXTURE_COMPRESSION_PVRTC = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON_2, 3),
 		/// Supports fixed-function pipeline
-		RSC_FIXED_FUNCTION = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON_2, 3),
+		RSC_FIXED_FUNCTION = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON_2, 4),
 		/// Supports MRTs with different bit depths
-		RSC_MRT_DIFFERENT_BIT_DEPTHS = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON_2, 4),
+		RSC_MRT_DIFFERENT_BIT_DEPTHS = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON_2, 5),
 		/// Supports Alpha to Coverage (A2C)
-		RSC_ALPHA_TO_COVERAGE = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON_2, 5),
+		RSC_ALPHA_TO_COVERAGE = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON_2, 6),
+		/// Supports Blending operations other than +
+		RSC_ADVANCED_BLEND_OPERATIONS = OGRE_CAPS_VALUE(CAPS_CATEGORY_COMMON_2, 7),
 
 		// ***** DirectX specific caps *****
 		/// Is DirectX feature "per stage constants" supported
@@ -208,8 +218,11 @@ namespace Ogre
 		GPU_MATROX = 5,
 		GPU_3DLABS = 6,
 		GPU_SIS = 7,
+        GPU_IMAGINATION_TECHNOLOGIES = 8,
+        GPU_APPLE = 9,  // Apple Software Renderer
+
 		/// placeholder
-		GPU_VENDOR_COUNT = 8
+		GPU_VENDOR_COUNT = 10
 	};
 
 	/** singleton class for storing the capabilities of the graphics card. 
@@ -222,7 +235,7 @@ namespace Ogre
 
 	public:
 
-		typedef std::set<String> ShaderProfiles;
+		typedef set<String>::type ShaderProfiles;
 	private:
 		/// This is used to build a database of RSC's
 		/// if a RSC with same name, but newer version is introduced, the older one 
@@ -257,7 +270,7 @@ namespace Ogre
 		ushort mVertexProgramConstantIntCount;           
 		/// The number of boolean constants vertex programs support
 		ushort mVertexProgramConstantBoolCount;           
-		/// The number of floating-point constats geometry programs support
+		/// The number of floating-point constants geometry programs support
 		ushort mGeometryProgramConstantFloatCount;           
 		/// The number of integer constants vertex geometry support
 		ushort mGeometryProgramConstantIntCount;           
@@ -691,6 +704,8 @@ namespace Ogre
 
 	};
 
+	/** @} */
+	/** @} */
 } // namespace
 
 #endif // __RenderSystemCapabilities__

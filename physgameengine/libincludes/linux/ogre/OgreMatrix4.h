@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Matrix4__
@@ -38,7 +37,13 @@ Torus Knot Software Ltd.
 #include "OgrePlane.h"
 namespace Ogre
 {
-    /** Class encapsulating a standard 4x4 homogeneous matrix.
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Math
+	*  @{
+	*/
+	/** Class encapsulating a standard 4x4 homogeneous matrix.
         @remarks
             OGRE uses column vectors when applying matrix multiplications,
             This means a vector is represented as a single column, 4-row
@@ -46,11 +51,11 @@ namespace Ogre
             by the matrices happens right-to-left e.g. if vector V is to be
             transformed by M1 then M2 then M3, the calculation would be
             M3 * M2 * M1 * V. The order that matrices are concatenated is
-            vital since matrix multiplication is not cummatative, i.e. you
+            vital since matrix multiplication is not commutative, i.e. you
             can get a different result if you concatenate in the wrong order.
         @par
             The use of column vectors and right-to-left ordering is the
-            standard in most mathematical texts, and id the same as used in
+            standard in most mathematical texts, and is the same as used in
             OpenGL. It is, however, the opposite of Direct3D, which has
             inexplicably chosen to differ from the accepted standard and uses
             row vectors and left-to-right matrix multiplication.
@@ -132,13 +137,35 @@ namespace Ogre
         }
         
 
-        inline Real* operator [] ( size_t iRow )
+		/** Exchange the contents of this matrix with another. 
+		*/
+		inline void swap(Matrix4& other)
+		{
+			std::swap(m[0][0], other.m[0][0]);
+			std::swap(m[0][1], other.m[0][1]);
+			std::swap(m[0][2], other.m[0][2]);
+			std::swap(m[0][3], other.m[0][3]);
+			std::swap(m[1][0], other.m[1][0]);
+			std::swap(m[1][1], other.m[1][1]);
+			std::swap(m[1][2], other.m[1][2]);
+			std::swap(m[1][3], other.m[1][3]);
+			std::swap(m[2][0], other.m[2][0]);
+			std::swap(m[2][1], other.m[2][1]);
+			std::swap(m[2][2], other.m[2][2]);
+			std::swap(m[2][3], other.m[2][3]);
+			std::swap(m[3][0], other.m[3][0]);
+			std::swap(m[3][1], other.m[3][1]);
+			std::swap(m[3][2], other.m[3][2]);
+			std::swap(m[3][3], other.m[3][3]);
+		}
+
+		inline Real* operator [] ( size_t iRow )
         {
             assert( iRow < 4 );
             return m[iRow];
         }
 
-        inline const Real *const operator [] ( size_t iRow ) const
+        inline const Real *operator [] ( size_t iRow ) const
         {
             assert( iRow < 4 );
             return m[iRow];
@@ -190,7 +217,7 @@ namespace Ogre
         {
             Vector3 r;
 
-            Real fInvW = 1.0 / ( m[3][0] * v.x + m[3][1] * v.y + m[3][2] * v.z + m[3][3] );
+            Real fInvW = 1.0f / ( m[3][0] * v.x + m[3][1] * v.y + m[3][2] * v.z + m[3][3] );
 
             r.x = ( m[0][0] * v.x + m[0][1] * v.y + m[0][2] * v.z + m[0][3] ) * fInvW;
             r.y = ( m[1][0] * v.x + m[1][1] * v.y + m[1][2] * v.z + m[1][3] ) * fInvW;
@@ -452,13 +479,13 @@ namespace Ogre
 		{
 			// check magnitude of column vectors (==local axes)
 			Real t = m[0][0] * m[0][0] + m[1][0] * m[1][0] + m[2][0] * m[2][0];
-			if (!Math::RealEqual(t, 1.0, 1e-04))
+			if (!Math::RealEqual(t, 1.0, (Real)1e-04))
 				return true;
 			t = m[0][1] * m[0][1] + m[1][1] * m[1][1] + m[2][1] * m[2][1];
-			if (!Math::RealEqual(t, 1.0, 1e-04))
+			if (!Math::RealEqual(t, 1.0, (Real)1e-04))
 				return true;
 			t = m[0][2] * m[0][2] + m[1][2] * m[1][2] + m[2][2] * m[2][2];
-			if (!Math::RealEqual(t, 1.0, 1e-04))
+			if (!Math::RealEqual(t, 1.0, (Real)1e-04))
 				return true;
 
 			return false;
@@ -548,7 +575,7 @@ namespace Ogre
         */
         Matrix4 inverseAffine(void) const;
 
-        /** Concatenate two affine matrix.
+        /** Concatenate two affine matrices.
             @note
                 The matrices must be affine matrix. @see Matrix4::isAffine.
         */
@@ -575,7 +602,7 @@ namespace Ogre
                 0, 0, 0, 1);
         }
 
-        /** 3-D Vector transformation specially for affine matrix.
+        /** 3-D Vector transformation specially for an affine matrix.
             @remarks
                 Transforms the given 3-D vector by the matrix, projecting the 
                 result back into <i>w</i> = 1.
@@ -592,7 +619,7 @@ namespace Ogre
                     m[2][0] * v.x + m[2][1] * v.y + m[2][2] * v.z + m[2][3]);
         }
 
-        /** 4-D Vector transformation specially for affine matrix.
+        /** 4-D Vector transformation specially for an affine matrix.
             @note
                 The matrix must be an affine matrix. @see Matrix4::isAffine.
         */
@@ -621,6 +648,8 @@ namespace Ogre
             v.x*mat[0][3] + v.y*mat[1][3] + v.z*mat[2][3] + v.w*mat[3][3]
             );
     }
+	/** @} */
+	/** @} */
 
 }
 #endif

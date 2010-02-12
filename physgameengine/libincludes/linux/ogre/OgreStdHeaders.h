@@ -95,7 +95,7 @@ extern "C" {
 }
 #endif
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
+#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE || OGRE_PLATFORM == OGRE_PLATFORM_IPHONE
 extern "C" {
 #   include <unistd.h>
 #   include <sys/param.h>
@@ -104,12 +104,10 @@ extern "C" {
 #endif
 
 #if OGRE_THREAD_SUPPORT
-#	undef NOMINMAX
-#	define NOMINMAX
-#	include <boost/thread/tss.hpp>
-#	include <boost/thread/recursive_mutex.hpp>
-#	include <boost/thread/condition.hpp>
-#	include <boost/thread/thread.hpp>
+#	if !defined(NOMINMAX) && defined(_MSC_VER)
+#		define NOMINMAX // required to stop windows.h messing up std::min
+#	endif
+#   include "Threading/OgreThreadHeaders.h"
 #endif
 
 #if defined ( OGRE_GCC_VISIBILITY )

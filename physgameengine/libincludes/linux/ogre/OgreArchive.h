@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef _Archive_H__
@@ -34,10 +33,17 @@ Torus Knot Software Ltd.
 #include "OgreDataStream.h"
 #include "OgreSharedPtr.h"
 #include "OgreStringVector.h"
+#include "OgreException.h"
 #include <ctime>
 
 namespace Ogre {
 
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Resources
+	*  @{
+	*/
     /** Information about a file/directory within the archive will be
     returned using a FileInfo struct.
     @see
@@ -59,7 +65,7 @@ namespace Ogre {
         size_t uncompressedSize;
     };
 
-    typedef std::vector<FileInfo> FileInfoList;
+    typedef vector<FileInfo>::type FileInfoList;
     typedef SharedPtr<FileInfoList> FileInfoListPtr;
 
     /** Archive-handling class.
@@ -85,13 +91,15 @@ namespace Ogre {
         String mName; 
         /// Archive type code
         String mType;
+		/// Read-only flag
+		bool mReadOnly;
     public:
 
 
         /** Constructor - don't call direct, used by ArchiveFactory.
         */
         Archive( const String& name, const String& archType )
-            : mName(name), mType(archType) {}
+            : mName(name), mType(archType), mReadOnly(true) {}
 
         /** Default destructor.
         */
@@ -119,16 +127,49 @@ namespace Ogre {
         */
         virtual void unload() = 0;
 
+		/** Reports whether this Archive is read-only, or whether the contents
+			can be updated. 
+		*/
+		virtual bool isReadOnly() const { return mReadOnly; }
+
         /** Open a stream on a given file. 
         @note
             There is no equivalent 'close' method; the returned stream
             controls the lifecycle of this file operation.
         @param filename The fully qualified name of the file
+		@param readOnly Whether to open the file in read-only mode or not (note, 
+			if the archive is read-only then this cannot be set to false)
         @returns A shared pointer to a DataStream which can be used to 
             read / write the file. If the file is not present, returns a null
 			shared pointer.
         */
-        virtual DataStreamPtr open(const String& filename) const = 0;
+        virtual DataStreamPtr open(const String& filename, bool readOnly = true) const = 0;
+
+		/** Create a new file (or overwrite one already there). 
+		@note If the archive is read-only then this method will fail.
+		@param filename The fully qualified name of the file
+		@returns A shared pointer to a DataStream which can be used to 
+		read / write the file. 
+		*/
+		virtual DataStreamPtr create(const String& filename) const
+		{
+                        (void)filename;
+			OGRE_EXCEPT(Exception::ERR_NOT_IMPLEMENTED, 
+				"This archive does not support creation of files.", 
+				"Archive::create");
+		}
+
+		/** Delete a named file.
+		@remarks Not possible on read-only archives
+		@param filename The fully qualified name of the file
+		*/
+		virtual void remove(const String& filename) const
+		{
+                        (void)filename;
+			OGRE_EXCEPT(Exception::ERR_NOT_IMPLEMENTED, 
+				"This archive does not support removal of files.", 
+				"Archive::remove");
+		}
 
         /** List all file names in the archive.
         @note
@@ -191,6 +232,9 @@ namespace Ogre {
         const String& getType(void) const { return mType; }
         
     };
+	/** @} */
+	/** @} */
+
 }
 
 #endif

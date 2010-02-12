@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __SceneQuery_H__
@@ -40,7 +39,13 @@ namespace Ogre {
 
     // forward declaration
     class SceneQueryListener;
-    /** A class for performing queries on a scene.
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Scene
+	*  @{
+	*/
+	/** A class for performing queries on a scene.
     @remarks
         This is an abstract class for performing a query on a scene, i.e. to retrieve
         a list of objects and/or world geometry sections which are potentially intersecting a
@@ -106,7 +111,7 @@ namespace Ogre {
             /// Single intersection point, only applicable for WFT_SINGLE_INTERSECTION
             Vector3 singleIntersection;
             /// Planes bounding a convex region, only applicable for WFT_PLANE_BOUNDED_REGION
-            std::list<Plane>* planes;
+            list<Plane>::type* planes;
             /// Custom geometry block, only applicable for WFT_CUSTOM_GEOMETRY
             void* geometry;
             /// General render operation structure, fallback if nothing else is available
@@ -117,7 +122,7 @@ namespace Ogre {
         SceneManager* mParentSceneMgr;
         uint32 mQueryMask;
 		uint32 mQueryTypeMask;
-        std::set<WorldFragmentType> mSupportedWorldFragments;
+        set<WorldFragmentType>::type mSupportedWorldFragments;
         WorldFragmentType mWorldFragmentType;
     
     public:
@@ -166,7 +171,7 @@ namespace Ogre {
         virtual WorldFragmentType getWorldFragmentType(void) const;
 
         /** Returns the types of world fragments this query supports. */
-        virtual const std::set<WorldFragmentType>* getSupportedWorldFragmentTypes(void) const
+        virtual const set<WorldFragmentType>::type* getSupportedWorldFragmentTypes(void) const
             {return &mSupportedWorldFragments;}
 
         
@@ -197,8 +202,8 @@ namespace Ogre {
 
     };
 
-    typedef std::list<MovableObject*> SceneQueryResultMovableList;
-    typedef std::list<SceneQuery::WorldFragment*> SceneQueryResultWorldFragmentList;
+    typedef list<MovableObject*>::type SceneQueryResultMovableList;
+    typedef list<SceneQuery::WorldFragment*>::type SceneQueryResultWorldFragmentList;
     /** Holds the results of a scene query. */
 	struct _OgreExport SceneQueryResult : public SceneMgtAlloc
     {
@@ -364,7 +369,7 @@ namespace Ogre {
         }
 
     };
-    typedef std::vector<RaySceneQueryResultEntry> RaySceneQueryResult;
+    typedef vector<RaySceneQueryResultEntry>::type RaySceneQueryResult;
 
     /** Specialises the SceneQuery class for querying along a ray. */
     class _OgreExport RaySceneQuery : public SceneQuery, public RaySceneQueryListener
@@ -481,8 +486,8 @@ namespace Ogre {
         
     typedef std::pair<MovableObject*, MovableObject*> SceneQueryMovableObjectPair;
     typedef std::pair<MovableObject*, SceneQuery::WorldFragment*> SceneQueryMovableObjectWorldFragmentPair;
-    typedef std::list<SceneQueryMovableObjectPair> SceneQueryMovableIntersectionList;
-    typedef std::list<SceneQueryMovableObjectWorldFragmentPair> SceneQueryMovableWorldFragmentIntersectionList;
+    typedef list<SceneQueryMovableObjectPair>::type SceneQueryMovableIntersectionList;
+    typedef list<SceneQueryMovableObjectWorldFragmentPair>::type SceneQueryMovableWorldFragmentIntersectionList;
     /** Holds the results of an intersection scene query (pair values). */
 	struct _OgreExport IntersectionSceneQueryResult : public SceneMgtAlloc
     {
@@ -549,6 +554,8 @@ namespace Ogre {
         bool queryResult(MovableObject* movable, SceneQuery::WorldFragment* fragment);
     };
     
+	/** @} */
+	/** @} */
 
 }
     

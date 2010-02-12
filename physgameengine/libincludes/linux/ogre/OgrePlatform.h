@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Platform_H_
@@ -37,10 +36,14 @@ namespace Ogre {
 #define OGRE_PLATFORM_WIN32 1
 #define OGRE_PLATFORM_LINUX 2
 #define OGRE_PLATFORM_APPLE 3
+#define OGRE_PLATFORM_SYMBIAN 4
+#define OGRE_PLATFORM_IPHONE 5
 
 #define OGRE_COMPILER_MSVC 1
 #define OGRE_COMPILER_GNUC 2
 #define OGRE_COMPILER_BORL 3
+#define OGRE_COMPILER_WINSCW 4
+#define OGRE_COMPILER_GCCE 5
 
 #define OGRE_ENDIAN_LITTLE 1
 #define OGRE_ENDIAN_BIG 2
@@ -50,10 +53,16 @@ namespace Ogre {
 
 /* Finds the compiler type and version.
 */
-#if defined( _MSC_VER )
+#if defined( __GCCE__ )
+#   define OGRE_COMPILER OGRE_COMPILER_GCCE
+#   define OGRE_COMP_VER _MSC_VER
+//#	include <staticlibinit_gcce.h> // This is a GCCE toolchain workaround needed when compiling with GCCE 
+#elif defined( __WINSCW__ )
+#   define OGRE_COMPILER OGRE_COMPILER_WINSCW
+#   define OGRE_COMP_VER _MSC_VER
+#elif defined( _MSC_VER )
 #   define OGRE_COMPILER OGRE_COMPILER_MSVC
 #   define OGRE_COMP_VER _MSC_VER
-
 #elif defined( __GNUC__ )
 #   define OGRE_COMPILER OGRE_COMPILER_GNUC
 #   define OGRE_COMP_VER (((__GNUC__)*100) + \
@@ -84,12 +93,18 @@ namespace Ogre {
 
 /* Finds the current platform */
 
-#if defined( __WIN32__ ) || defined( _WIN32 )
+#if defined( __SYMBIAN32__ ) 
+#   define OGRE_PLATFORM OGRE_PLATFORM_SYMBIAN
+#elif defined( __WIN32__ ) || defined( _WIN32 )
 #   define OGRE_PLATFORM OGRE_PLATFORM_WIN32
-
 #elif defined( __APPLE_CC__)
-#   define OGRE_PLATFORM OGRE_PLATFORM_APPLE
-
+    // Device                                                     Simulator
+    // Both requiring OS version 3.0 or greater
+#   if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 30000 || __IPHONE_OS_VERSION_MIN_REQUIRED >= 30000
+#       define OGRE_PLATFORM OGRE_PLATFORM_IPHONE
+#   else
+#       define OGRE_PLATFORM OGRE_PLATFORM_APPLE
+#   endif
 #else
 #   define OGRE_PLATFORM OGRE_PLATFORM_LINUX
 #endif
@@ -153,10 +168,21 @@ namespace Ogre {
 
 #endif
 //----------------------------------------------------------------------------
-
+// Symbian Settings
+#if OGRE_PLATFORM == OGRE_PLATFORM_SYMBIAN
+#	define OGRE_UNICODE_SUPPORT 1
+#   define OGRE_DEBUG_MODE 0
+#   define _OgreExport
+#   define _OgrePrivate
+#	define CLOCKS_PER_SEC  1000
+// pragma def were found here: http://www.inf.pucrs.br/~eduardob/disciplinas/SistEmbarcados/Mobile/Nokia/Tools/Carbide_vs/WINSCW/Help/PDF/C_Compilers_Reference_3.2.pdf
+#	pragma warn_unusedarg off
+#	pragma warn_emptydecl off
+#	pragma warn_possunwant off
+#endif
 //----------------------------------------------------------------------------
 // Linux/Apple Settings
-#if OGRE_PLATFORM == OGRE_PLATFORM_LINUX || OGRE_PLATFORM == OGRE_PLATFORM_APPLE
+#if OGRE_PLATFORM == OGRE_PLATFORM_LINUX || OGRE_PLATFORM == OGRE_PLATFORM_APPLE || OGRE_PLATFORM == OGRE_PLATFORM_IPHONE
 
 // Enable GCC symbol visibility
 #   if defined( OGRE_GCC_VISIBILITY )
@@ -182,8 +208,9 @@ namespace Ogre {
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
     #define OGRE_PLATFORM_LIB "OgrePlatform.bundle"
-#else
-    //OGRE_PLATFORM_LINUX
+#elif OGRE_PLATFORM == OGRE_PLATFORM_IPHONE
+    #define OGRE_PLATFORM_LIB "OgrePlatform.a"
+#else //OGRE_PLATFORM_LINUX
     #define OGRE_PLATFORM_LIB "libOgrePlatform.so"
 #endif
 
@@ -213,11 +240,16 @@ namespace Ogre {
 typedef unsigned int uint32;
 typedef unsigned short uint16;
 typedef unsigned char uint8;
+typedef int int32;
+typedef short int16;
+typedef char int8;
 // define uint64 type
 #if OGRE_COMPILER == OGRE_COMPILER_MSVC
 	typedef unsigned __int64 uint64;
+	typedef __int64 int64;
 #else
 	typedef unsigned long long uint64;
+	typedef long long int64;
 #endif
 
 
