@@ -45,10 +45,10 @@
 					<Add directory="../physgameengine/src" />
 				</Compiler>
 				<Linker>
-					<Add option="-Wl,-R\\$$ORIGIN" />
 					<Add library="physgame" />
 					<Add library="OgreMain" />
 					<Add directory="bin/LinuxDebug" />
+					<Add directory="." />
 				</Linker>
 				<ExtraCommands>
 					<Add before="mkdir bin/LinuxDebug/ -p" />

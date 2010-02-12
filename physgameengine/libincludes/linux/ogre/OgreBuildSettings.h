@@ -5,7 +5,7 @@
 
 /* #undef OGRE_STATIC_LIB */
 
-#define OGRE_CONFIG_LITTLE_ENDIAN
+//#define OGRE_CONFIG_LITTLE_ENDIAN
 
 /* #undef OGRE_CONFIG_BIG_ENDIAN */
 

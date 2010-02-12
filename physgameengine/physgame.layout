@@ -4,8 +4,8 @@
 	<File name="src/physcrossplatform.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="9" topLine="0" />
 	</File>
-	<File name="src/physcrossplatform.h" open="1" top="1" tabpos="3">
-		<Cursor position="359" topLine="25" />
+	<File name="src/physcrossplatform.h" open="1" top="1" tabpos="1">
+		<Cursor position="359" topLine="22" />
 	</File>
 	<File name="src/physdatatypes.h" open="0" top="0" tabpos="1">
 		<Cursor position="260" topLine="0" />
@@ -37,10 +37,10 @@
 	<File name="src/physvector.h" open="0" top="0" tabpos="4">
 		<Cursor position="45" topLine="0" />
 	</File>
-	<File name="src/physworld.cpp" open="1" top="0" tabpos="1">
+	<File name="src/physworld.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="651" topLine="0" />
 	</File>
-	<File name="src/physworld.h" open="1" top="0" tabpos="2">
+	<File name="src/physworld.h" open="0" top="0" tabpos="2">
 		<Cursor position="800" topLine="60" />
 	</File>
 	<File name="src/physworldcallbackmanager.cpp" open="0" top="0" tabpos="2">
