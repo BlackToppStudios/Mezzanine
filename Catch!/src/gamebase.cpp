@@ -52,6 +52,8 @@ bool preRenderCallback()
 		return false;
 	}
 
+    TheWorld.DoMainLoopAllItems();
+
     return true;
 }
 

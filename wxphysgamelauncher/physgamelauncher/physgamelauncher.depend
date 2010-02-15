@@ -938,3 +938,32 @@
 	"wx/defs.h"
 	"wx/dialog.h"
 
+1266209019 source:/home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/physgamelauncherApp.cpp
+	"physgamelauncherApp.h"
+	<iostream>
+	<fstream>
+	"physgamelauncherMain.h"
+	<wx/image.h>
+
+1266209019 /home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/physgamelauncherApp.h
+	<wx/app.h>
+
+1266209019 /home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/physgamelauncherMain.h
+	<wx/menu.h>
+	<wx/frame.h>
+	<wx/statusbr.h>
+
+1266209019 source:/home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/physgamelauncherMain.cpp
+	"physgamelauncherMain.h"
+	<wx/msgdlg.h>
+	<iostream>
+	<fstream>
+	<string>
+	<wx/intl.h>
+	<wx/string.h>
+
+1266209019 source:/home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/readsconfig.c
+
+1266209019 source:/home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/resource.rc
+	"wx/msw/wx.rc"
+

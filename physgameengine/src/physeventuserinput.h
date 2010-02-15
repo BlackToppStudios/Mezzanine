@@ -1,13 +1,12 @@
-#ifdef _physeventkeyboardinput_h
-#define _physeventkeyboardinput_h
+#ifndef PHYSEVENTUSERINPUT_H
+#define PHYSEVENTUSERINPUT_H
 ///////////////////////////////////////////////////////////////////////////////
-//This is a keyboard mapping that will be exposed to the game programmer. This
-//is
-//
-//most of this code was borrowed from SDL, but since it is GPLed, we just reGPL
-//the code...
+// This will expose all keyboard and mouse, joystick and other userinput events
+// to developers, we are using the SDL keymap to get us started, large portions
+// are directly copy/pasta'd, so we included their license too
 ///////////////////////////////////////
 
+//From SDL
 /*
     SDL - Simple DirectMedia Layer
     Copyright (C) 1997-2009 Sam Lantinga
@@ -30,18 +29,15 @@
     slouken@libsdl.org
 */
 
-/** What we really want is a mapping of every raw key on the keyboard.
- *  To support international keyboards, we use the range 0xA1 - 0xFF
- *  as international virtual keycodes.  We'll follow in the footsteps of X11...
- *  @brief The names of the keys
- */
-typedef enum {
-        /** @name ASCII mapped keysyms
-         *  The keyboard syms have been cleverly chosen to map to ASCII
-         */
-        /*@{*/
+#include <vector>
+#include "physevent.h"
+#include "physdatatypes.h"
+
+using namespace std;
+
+enum InputCode{
 	KEY_UNKNOWN			= 0,
-	KEY_FIRST			= 0,
+	INPUTEVENT_FIRST	= 0,
 	KEY_BACKSPACE		= 8,
 	KEY_TAB				= 9,
 	KEY_CLEAR			= 12,
@@ -289,31 +285,77 @@ typedef enum {
 	KEY_EURO			= 321,		/**< Some european keyboards */
 	KEY_UNDO			= 322,		/**< Atari keyboard has Undo */
 
+    //From here down they do not match directly anymore
+    KEYMOD_NONE  	= 323,
+	KEYMOD_LSHIFT	= 324,
+	KEYMOD_RSHIFT	= 325,
+	KEYMOD_LCTRL 	= 326,
+	KEYMOD_RCTRL 	= 327,
+	KEYMOD_LALT  	= 328,
+	KEYMOD_RALT 	= 329,
+	KEYMOD_LMETA 	= 330,
+	KEYMOD_RMETA 	= 331,
+	KEYMOD_NUM   	= 332,
+	KEYMOD_CAPS  	= 333,
+	KEYMOD_MODE  	= 334,
+	KEYMOD_RESERVED = 335,
+
+    MOUSE1,
+    MOUSE2,
+    MOUSE3,
+    MOUSE4,
+    MOUSE5,
+    MOUSE6,
+    MOUSE7,
+    MOUSE8,
+    MOUSE9,
+    MOUSEWHEELUP,
+    MOUSEWHEELDOWN,
+    MOUSEWHEELLEFT,
+    MOUSEWHEELRIGHT,
+    MOUSEWHEEL2UP,
+    MOUSEWHEEL2DOWN,
+    MOUSEWHEEL2LEFT,
+    MOUSEWHEEL2RIGHT,
+
+    JOYSTICK1,
+    JOYSTICK2,
+    JOYSTICK3,
+    JOYSTICK4,
+    JOYSTICK5,
+    JOYSTICK6,
+    JOYSTICK7,
+    JOYSTICK8,
+    JOYSTICK9,
+    JOYSTICK11,
+    JOYSTICK12,
+    JOYSTICK13,
+    JOYSTICK14,
+    JOYSTICK15,
+    JOYSTICK16,
+    JOYSTICK17,
+    JOYSTICK18,
+    JOYSTICK19,
+    JOYSTICK20,
+
 	/* Add any other keys here */
-	KEY_LAST
-} Key;
+	INPUTEVENT_LAST
+};
 
-/** Enumeration of valid key mods (possibly OR'd together) */
-typedef enum {
-	KEYMOD_NONE  	= 0x0000,
-	KEYMOD_LSHIFT	= 0x0001,
-	KEYMOD_RSHIFT	= 0x0002,
-	KEYMOD_LCTRL 	= 0x0040,
-	KEYMOD_RCTRL 	= 0x0080,
-	KEYMOD_LALT  	= 0x0100,
-	KEYMOD_RALT 	= 0x0200,
-	KEYMOD_LMETA 	= 0x0400,
-	KEYMOD_RMETA 	= 0x0800,
-	KEYMOD_NUM   	= 0x1000,
-	KEYMOD_CAPS  	= 0x2000,
-	KEYMOD_MODE  	= 0x4000,
-	KEYMOD_RESERVED = 0x8000
-} ModifierKey;
+class PhysEventUserInput : public PhysEvent
+{
+    private:
+        vector<InputCode> Code;
 
-#define KEYMOD_CTRL		(KEYMOD_LCTRL|KEYMOD_RCTRL)
-#define KEYMOD_SHIFT	(KEYMOD_LSHIFT|KEYMOD_RSHIFT)
-#define KEYMOD_ALT		(KEYMOD_LALT|KEYMOD_RALT)
-#define KEYMOD_META		(KEYMOD_LMETA|KEYMOD_RMETA)
+	public:
+        //By default codes are off,if they are on the list, they can be considered push
+        InputCode GetInputCode(unsigned short int Index);
+        unsigned short int GetInputCodeCount();
+        void ToggleInputCode(InputCode _Code);
+        void ToggleInputCode(unsigned short int Index);
 
+
+		virtual EventType getEventType();
+};
 
 #endif

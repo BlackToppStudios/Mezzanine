@@ -5,7 +5,6 @@
 ///////////////////////////////////////
 
 #include "physevent.h"
-#include "physeventrendertime.h"
 #include "physdatatypes.h"
 
 using namespace std;

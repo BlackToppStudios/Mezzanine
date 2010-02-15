@@ -6,8 +6,12 @@
 ///////////////////////////////////////
 
 enum EventType{
-    RenderTime
+    RenderTime,
+    UserInput,
+    SystemMessage,
+    Other
 };
+
 
 #include <string>
 

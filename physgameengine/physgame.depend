@@ -9766,13 +9766,13 @@
 
 1263340904 /home/sqeaky/physgame/physgameengine/src/physworldcallbackmanager.h
 
-1262823879 /home/sqeaky/physgame/physgameengine/src/physeventmanager.h
+1266204866 /home/sqeaky/physgame/physgameengine/src/physeventmanager.h
 	<list>
 	"physevent.h"
 	"physeventrendertime.h"
-	"physeventkeyboardinput.h"
+	"physeventuserinput.h"
 
-1262823879 /home/sqeaky/physgame/physgameengine/src/physevent.h
+1266198102 /home/sqeaky/physgame/physgameengine/src/physevent.h
 	<string>
 
 1262823879 /home/sqeaky/physgame/physgameengine/src/physeventkeyboardinput.h
@@ -11021,9 +11021,8 @@
 
 1263340904 /home/sqeaky/physgame/physgameengine/src/physdatatypes.h
 
-1263340904 /home/sqeaky/physgame/physgameengine/src/physeventrendertime.h
+1266199727 /home/sqeaky/physgame/physgameengine/src/physeventrendertime.h
 	"physevent.h"
-	"physeventrendertime.h"
 	"physdatatypes.h"
 
 1262823879 source:/home/sqeaky/physgame/physgameengine/src/physvector.cpp
@@ -15840,4 +15839,9 @@
 	"OgreMesh.h"
 	"OgreMovableObject.h"
 	"OgreCamera.h"
+
+1266211705 /home/sqeaky/physgame/physgameengine/src/physeventuserinput.h
+	<vector>
+	"physevent.h"
+	"physdatatypes.h"
 

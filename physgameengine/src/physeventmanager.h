@@ -11,7 +11,7 @@ using namespace std;
 
 #include "physevent.h"
 #include "physeventrendertime.h"
-#include "physeventkeyboardinput.h"
+#include "physeventuserinput.h"
 
 class PhysEventManager
 {
