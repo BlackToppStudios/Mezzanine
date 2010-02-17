@@ -87,6 +87,7 @@
 		<Unit filename="src/physeventmanager.h" />
 		<Unit filename="src/physeventrendertime.cpp" />
 		<Unit filename="src/physeventrendertime.h" />
+		<Unit filename="src/physeventuserinput.cpp" />
 		<Unit filename="src/physeventuserinput.h" />
 		<Unit filename="src/physgamesettings.cpp" />
 		<Unit filename="src/physgamesettings.h" />

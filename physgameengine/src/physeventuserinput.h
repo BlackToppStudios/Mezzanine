@@ -300,15 +300,15 @@ enum InputCode{
 	KEYMOD_MODE  	= 334,
 	KEYMOD_RESERVED = 335,
 
-    MOUSE1,
-    MOUSE2,
-    MOUSE3,
-    MOUSE4,
-    MOUSE5,
-    MOUSE6,
-    MOUSE7,
-    MOUSE8,
-    MOUSE9,
+    MOUSEBUTTON1,
+    MOUSEBUTTON2,
+    MOUSEBUTTON3,
+    MOUSEBUTTON4,
+    MOUSEBUTTON5,
+    MOUSEBUTTON6,
+    MOUSEBUTTON7,
+    MOUSEBUTTON8,
+    MOUSEBUTTON9,
     MOUSEWHEELUP,
     MOUSEWHEELDOWN,
     MOUSEWHEELLEFT,
@@ -317,43 +317,76 @@ enum InputCode{
     MOUSEWHEEL2DOWN,
     MOUSEWHEEL2LEFT,
     MOUSEWHEEL2RIGHT,
+    MOUSEVERTICAL,
+    MOUSERHORIZONTAL,
 
-    JOYSTICK1,
-    JOYSTICK2,
-    JOYSTICK3,
-    JOYSTICK4,
-    JOYSTICK5,
-    JOYSTICK6,
-    JOYSTICK7,
-    JOYSTICK8,
-    JOYSTICK9,
-    JOYSTICK11,
-    JOYSTICK12,
-    JOYSTICK13,
-    JOYSTICK14,
-    JOYSTICK15,
-    JOYSTICK16,
-    JOYSTICK17,
-    JOYSTICK18,
-    JOYSTICK19,
-    JOYSTICK20,
+    JOYSTICKBUTTON1,
+    JOYSTICKBUTTON2,
+    JOYSTICKBUTTON3,
+    JOYSTICKBUTTON4,
+    JOYSTICKBUTTON5,
+    JOYSTICKBUTTON6,
+    JOYSTICKBUTTON7,
+    JOYSTICKBUTTON8,
+    JOYSTICKBUTTON9,
+    JOYSTICKBUTTON11,
+    JOYSTICKBUTTON12,
+    JOYSTICKBUTTON13,
+    JOYSTICKBUTTON14,
+    JOYSTICKBUTTON15,
+    JOYSTICKBUTTON16,
+    JOYSTICKBUTTON17,
+    JOYSTICKBUTTON18,
+    JOYSTICKBUTTON19,
+    JOYSTICKBUTTON20,
+
+    JOYSTICKAXIS1,
+    JOYSTICKAXIS2,
+    JOYSTICKAXIS3,
+    JOYSTICKAXIS4,
+    JOYSTICKAXIS5,
+    JOYSTICKAXIS6,
+    JOYSTICKAXIS7,
+    JOYSTICKAXIS8,
+    JOYSTICKAXIS9,
+    JOYSTICKAXIS10,
+    JOYSTICKAXIS11,
+    JOYSTICKAXIS12,
+    JOYSTICKAXIS13,
+    JOYSTICKAXIS14,
+    JOYSTICKAXIS15,
+    JOYSTICKAXIS16,
+    JOYSTICKAXIS17,
+    JOYSTICKAXIS18,
+    JOYSTICKAXIS19,
+    JOYSTICKAXIS20,
 
 	/* Add any other keys here */
 	INPUTEVENT_LAST
 };
 
+//This is used to pass information allong with input
+struct MetaCode{
+    int MetaValue;
+    InputCode Code;
+};
+
 class PhysEventUserInput : public PhysEvent
 {
     private:
-        vector<InputCode> Code;
+        vector<MetaCode> Code;
 
 	public:
-        //By default codes are off,if they are on the list, they can be considered push
-        InputCode GetInputCode(unsigned short int Index);
-        unsigned short int GetInputCodeCount();
-        void ToggleInputCode(InputCode _Code);
-        void ToggleInputCode(unsigned short int Index);
+        //By default codes are off,if they are on the list, they can be considered pushed
+        PhysEventUserInput();
+        PhysEventUserInput(MetaCode Code_);
+        PhysEventUserInput(vector<MetaCode> Code_);
 
+        //code managment functions
+        MetaCode GetCode(unsigned int Index);
+        unsigned int GetCodeCount();
+        void ToggleCode(MetaCode _Code);
+        void ToggleCode(unsigned int Index);
 
 		virtual EventType getEventType();
 };
