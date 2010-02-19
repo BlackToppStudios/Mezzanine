@@ -79,6 +79,11 @@ PhysEventUserInput::PhysEventUserInput(vector<MetaCode> Code_)
     }
 }
 
+PhysEventUserInput::~PhysEventUserInput()
+{
+
+}
+
 MetaCode PhysEventUserInput::GetCode(unsigned int Index)
 {
     return Code.at(Index);
@@ -113,6 +118,8 @@ EventType PhysEventUserInput::getEventType()
 {
     return UserInput;
 }
+
+
 
 #endif
 

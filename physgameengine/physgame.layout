@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="LinuxDebug" />
-	<File name="src/physcrossplatform.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="303" topLine="0" />
+	<File name="src/physcrossplatform.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="353" topLine="43" />
 	</File>
-	<File name="src/physcrossplatform.h" open="1" top="1" tabpos="1">
-		<Cursor position="1274" topLine="13" />
+	<File name="src/physcrossplatform.h" open="1" top="0" tabpos="2">
+		<Cursor position="1274" topLine="20" />
 	</File>
 	<File name="src/physdatatypes.h" open="0" top="0" tabpos="1">
-		<Cursor position="260" topLine="0" />
+		<Cursor position="304" topLine="0" />
 	</File>
-	<File name="src/physevent.h" open="0" top="0" tabpos="1">
-		<Cursor position="339" topLine="10" />
+	<File name="src/physevent.h" open="1" top="0" tabpos="6">
+		<Cursor position="339" topLine="0" />
 	</File>
-	<File name="src/physeventmanager.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1010" topLine="0" />
+	<File name="src/physeventmanager.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="1616" topLine="44" />
 	</File>
-	<File name="src/physeventmanager.h" open="0" top="0" tabpos="2">
-		<Cursor position="432" topLine="13" />
+	<File name="src/physeventmanager.h" open="1" top="0" tabpos="3">
+		<Cursor position="1171" topLine="10" />
 	</File>
 	<File name="src/physeventrendertime.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="605" topLine="9" />
@@ -26,10 +26,10 @@
 		<Cursor position="286" topLine="6" />
 	</File>
 	<File name="src/physeventuserinput.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1770" topLine="82" />
+		<Cursor position="2366" topLine="107" />
 	</File>
-	<File name="src/physeventuserinput.h" open="0" top="0" tabpos="0">
-		<Cursor position="8598" topLine="355" />
+	<File name="src/physeventuserinput.h" open="1" top="0" tabpos="1">
+		<Cursor position="8349" topLine="360" />
 	</File>
 	<File name="src/physgamesettings.h" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="9" />
@@ -41,10 +41,10 @@
 		<Cursor position="45" topLine="0" />
 	</File>
 	<File name="src/physworld.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="9251" topLine="293" />
+		<Cursor position="10154" topLine="278" />
 	</File>
 	<File name="src/physworld.h" open="0" top="0" tabpos="2">
-		<Cursor position="1332" topLine="53" />
+		<Cursor position="2215" topLine="71" />
 	</File>
 	<File name="src/physworldcallbackmanager.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="20" topLine="0" />

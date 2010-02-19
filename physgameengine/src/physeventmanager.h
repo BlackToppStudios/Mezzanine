@@ -29,11 +29,11 @@ class PhysEventManager
 
 		//This gets the first/next available PhysEventRenderTime* in the Queue, then removes it.
 		PhysEventRenderTime* GetNextRenderTimeEvent();
+        PhysEventUserInput* GetNextUserInputEvent();
 
         //By and large the Game won't use this, but there is no reason it shouldn't
 		void AddEvent(PhysEvent* EventToAdd);
+
 };
 
 #endif
-
-

@@ -393,6 +393,7 @@ class PhysEventUserInput : public PhysEvent
         PhysEventUserInput();
         PhysEventUserInput(MetaCode Code_);
         PhysEventUserInput(vector<MetaCode> Code_);
+        virtual ~PhysEventUserInput();
 
         //code managment functions
         MetaCode GetCode(unsigned int Index);

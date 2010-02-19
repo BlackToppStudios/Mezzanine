@@ -47,6 +47,21 @@ PhysEventRenderTime* PhysEventManager::GetNextRenderTimeEvent()
     return results;
 }
 
+PhysEventUserInput* PhysEventManager::GetNextUserInputEvent()
+{
+    PhysEventUserInput* results = 0;
+    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+    {
+        if((*Iter)->getEventType()==UserInput)
+        {
+            results = dynamic_cast<PhysEventUserInput*> (*Iter);
+            EventQueue.erase(Iter);
+            return results;
+        }
+    }
+    return results;
+}
+
 void PhysEventManager::AddEvent(PhysEvent* EventToAdd)
 {
     EventQueue.push_back(EventToAdd);

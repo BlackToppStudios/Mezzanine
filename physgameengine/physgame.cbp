@@ -49,6 +49,7 @@
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-Wall" />
 					<Add option="-g" />
 					<Add option="`sdl-config --cflags`" />
 					<Add option="-fexceptions" />

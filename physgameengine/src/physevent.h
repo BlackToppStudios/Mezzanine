@@ -21,7 +21,6 @@ class PhysEvent
 {
 	public:
 		virtual EventType getEventType() = 0;
-
 };
 
 #endif
