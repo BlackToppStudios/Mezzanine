@@ -213,7 +213,7 @@ void physworld::GameInit()
 
 		//Render the frame and figure the amount of time it took
 		this->OgreRoot->renderOneFrame();
-		PhysReal FrameTime = RenderTimer.getMillisecondsCPU(); //Limit frame rate to 62.5
+		PhysWhole FrameTime = RenderTimer.getMillisecondsCPU(); //Limit frame rate to 62.5
 		RenderTimer.reset();
 		if(16>FrameTime)			//use 16666 for microseconds
 		{
@@ -299,7 +299,12 @@ void physworld::CreateRenderWindow()
 	//Configure Ogre to render to the SDL window
 	Ogre::NameValuePairList misc;
 	misc=GetSDLOgreBinder();
+	misc["title"] = Ogre::String("Catch!");
 	this->OgreGameWindow = this->OgreRoot->createRenderWindow("physgame", PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), &misc);
+    //Added following lines to attempt to make the render window visable
+    //this->OgreGameWindow->setVisible(true);
+	//this->OgreGameWindow->setActive(true);
+    //this->OgreGameWindow->setAutoUpdated(true);
 
 	//prepare a scenemanager
 	this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
