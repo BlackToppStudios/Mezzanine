@@ -366,9 +366,21 @@ enum InputCode{
 };
 
 //This is used to pass information allong with input
-struct MetaCode{
-    int MetaValue;
-    InputCode Code;
+class MetaCode
+{
+    private:
+        int MetaValue;
+        InputCode Code;
+    public:
+        MetaCode();
+        MetaCode(int MetaValue_, InputCode Code_);
+
+        int GetMetaValue();
+        InputCode GetCode();
+        void SetMetaValue(int MetaValue_);
+        void SetCode(InputCode Code_);
+
+        bool operator==(const MetaCode &other) const;
 };
 
 class PhysEventUserInput : public PhysEvent

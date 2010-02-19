@@ -5,7 +5,7 @@
 		<Cursor position="303" topLine="0" />
 	</File>
 	<File name="src/physcrossplatform.h" open="1" top="1" tabpos="1">
-		<Cursor position="1274" topLine="32" />
+		<Cursor position="1274" topLine="13" />
 	</File>
 	<File name="src/physdatatypes.h" open="0" top="0" tabpos="1">
 		<Cursor position="260" topLine="0" />
@@ -26,10 +26,10 @@
 		<Cursor position="286" topLine="6" />
 	</File>
 	<File name="src/physeventuserinput.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="958" topLine="43" />
+		<Cursor position="1770" topLine="82" />
 	</File>
 	<File name="src/physeventuserinput.h" open="0" top="0" tabpos="0">
-		<Cursor position="8809" topLine="377" />
+		<Cursor position="8598" topLine="355" />
 	</File>
 	<File name="src/physgamesettings.h" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="9" />
