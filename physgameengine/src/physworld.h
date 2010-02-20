@@ -9,10 +9,13 @@
 //Includes and Forward Declarations
 
 #include "physworldcallbackmanager.h"
+#include "physevent.h"
 #include "physeventmanager.h"
 #include "physdatatypes.h"
 
 #include <string>
+
+#include "SDL.h"
 using namespace std;
 
 //Not included to prevent infinite loops
@@ -23,8 +26,7 @@ class Settings;
 class PhysVector3;
 
 //Other forward declarations
-//#include "SDL.h"
-class SDL_Surface;
+//class SDL_Surface;
 //#include "btBulletDynamicsCommon.h"
 class btAxisSweep3;
 class btDefaultCollisionConfiguration;
@@ -83,6 +85,9 @@ class physworld
 
 		//Used by the constructors
 		void Construct(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies);
+
+		//SDL specific Functions
+		PhysEvent* PreProcessSDLEvents(SDL_Event RawSDLevent);
 
 	public:
 		physworld(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024);

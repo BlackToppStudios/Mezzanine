@@ -13286,16 +13286,16 @@
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupLiSPSM.h"
 
-1266273988 source:/home/joe/Private/physgame/physgameengine/src/physeventmanager.cpp
+1266597496 source:/home/joe/Private/physgame/physgameengine/src/physeventmanager.cpp
 	"physeventmanager.h"
 
-1266273988 /home/joe/Private/physgame/physgameengine/src/physeventmanager.h
+1266597496 /home/joe/Private/physgame/physgameengine/src/physeventmanager.h
 	<list>
 	"physevent.h"
 	"physeventrendertime.h"
 	"physeventuserinput.h"
 
-1266273988 /home/joe/Private/physgame/physgameengine/src/physevent.h
+1266597496 /home/joe/Private/physgame/physgameengine/src/physevent.h
 	<string>
 
 1266273988 /home/joe/Private/physgame/physgameengine/src/physeventrendertime.h
@@ -13313,11 +13313,13 @@
 	"physeventmanager.h"
 	"physgamesettings.h"
 
-1266273988 /home/joe/Private/physgame/physgameengine/src/physworld.h
+1266625387 /home/joe/Private/physgame/physgameengine/src/physworld.h
 	"physworldcallbackmanager.h"
+	"physevent.h"
 	"physeventmanager.h"
 	"physdatatypes.h"
 	<string>
+	"SDL.h"
 
 1266273988 /home/joe/Private/physgame/physgameengine/src/physworldcallbackmanager.h
 
@@ -15977,12 +15979,18 @@
 	"OgreMovableObject.h"
 	"OgreCamera.h"
 
-1266540787 /home/joe/Private/physgame/physgameengine/src/physeventuserinput.h
+1266597496 /home/joe/Private/physgame/physgameengine/src/physeventuserinput.h
 	<vector>
 	"physevent.h"
 	"physdatatypes.h"
 
 1266546873 source:/home/sqeaky/physgame/physgameengine/src/physeventuserinput.cpp
+	"physeventuserinput.h"
+	"physevent.h"
+	<stdarg.h>
+	<vector>
+
+1266597496 source:/home/joe/Private/physgame/physgameengine/src/physeventuserinput.cpp
 	"physeventuserinput.h"
 	"physevent.h"
 	<stdarg.h>
