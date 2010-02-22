@@ -252,6 +252,11 @@ void physworld::DoMainLoopPhysics()
 	//this->Events->AddsomeEvents
 }
 
+void DoMainLoopWindowManagerBuffering()
+{
+    //
+}
+
 void physworld::DoMainLoopInputBuffering()
 {
 	//SDL_PumpEvents();
@@ -337,11 +342,14 @@ void physworld::DestroyRenderWindow()
 ///////////////////////////////////////////////////////////////////////////////
 // Deals with SDL
 
+
+//This function will get all the events from SDL and Sort them into one of two Queues
 PhysEvent* physworld::PreProcessSDLEvents(SDL_Event RawSDLevent)
 {
 
 /*  SDL events we need to handle as per http://www.libsdl.org/cgi/docwiki.cgi/SDL_Event
-    SDL_ACTIVEEVENT    SDL_ActiveEvent //when the window gains focus
+    SDL_ACTIVEEVENT    SDL_ActiveEvent  //when the window gains focus
+    SDL_VIDEORESIZE SDL_ResizeEvent     //when
 
     SDL_KEYDOWN/UP  SDL_KeyboardEvent
     SDL_MOUSEMOTION SDL_MouseMotionEvent
@@ -350,7 +358,7 @@ PhysEvent* physworld::PreProcessSDLEvents(SDL_Event RawSDLevent)
     SDL_JOYBALLMOTION   SDL_JoyBallEvent
     SDL_JOYHATMOTION    SDL_JoyHatEvent
     SDL_JOYBUTTONDOWN/UP    SDL_JoyButtonEvent
-    SDL_VIDEORESIZE SDL_ResizeEvent
+
     SDL_VIDEOEXPOSE SDL_ExposeEvent
     SDL_QUIT    SDL_QuitEvent
     SDL_USEREVENT   SDL_UserEvent

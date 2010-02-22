@@ -87,6 +87,7 @@ class physworld
 		void Construct(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies);
 
 		//SDL specific Functions
+		//This function will get all the events from SDL and Sort them into one of two Queues
 		PhysEvent* PreProcessSDLEvents(SDL_Event RawSDLevent);
 
 	public:
@@ -116,6 +117,7 @@ class physworld
         void DoMainLoopAllItems();
         void DoMainLoopPhysics();
 		void DoMainLoopInputBuffering();
+		void DoMainLoopWindowManagerBuffering();
 
 		//used to set callback functions to be run in the main loop
 		physworldCallBackManager* CallBacks;
