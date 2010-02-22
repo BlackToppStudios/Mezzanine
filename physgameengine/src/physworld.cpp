@@ -254,13 +254,19 @@ void physworld::DoMainLoopPhysics()
 
 void physworld::DoMainLoopInputBuffering()
 {
-	SDL_PumpEvents();
-	//TODO: add the input gather to the event manager
+	//SDL_PumpEvents();
+	SDL_Event FromSDL;
+	while(SDL_PollEvent(&FromSDL))
+	{
+	    PreProcessSDLEvents(FromSDL);
+        //TODO: add the input gather to the event manager
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Private Functions
 ///////////////////////////////////////
+
 
 
 
@@ -327,4 +333,31 @@ void physworld::DestroyRenderWindow()
 {
     this->OgreGameWindow->destroy();
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Deals with SDL
+
+PhysEvent* physworld::PreProcessSDLEvents(SDL_Event RawSDLevent)
+{
+
+/*  SDL events we need to handle as per http://www.libsdl.org/cgi/docwiki.cgi/SDL_Event
+    SDL_ACTIVEEVENT    SDL_ActiveEvent //when the window gains focus
+
+    SDL_KEYDOWN/UP  SDL_KeyboardEvent
+    SDL_MOUSEMOTION SDL_MouseMotionEvent
+    SDL_MOUSEBUTTONDOWN/UP  SDL_MouseButtonEvent
+    SDL_JOYAXISMOTION   SDL_JoyAxisEvent
+    SDL_JOYBALLMOTION   SDL_JoyBallEvent
+    SDL_JOYHATMOTION    SDL_JoyHatEvent
+    SDL_JOYBUTTONDOWN/UP    SDL_JoyButtonEvent
+    SDL_VIDEORESIZE SDL_ResizeEvent
+    SDL_VIDEOEXPOSE SDL_ExposeEvent
+    SDL_QUIT    SDL_QuitEvent
+    SDL_USEREVENT   SDL_UserEvent
+    SDL_SYSWMEVENT  SDL_SysWMEvent
+    */
+    return new PhysEventUserInput();
+}
+
+
 #endif
