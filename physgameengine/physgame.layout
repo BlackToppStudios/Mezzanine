@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="LinuxDebug" />
-	<File name="src/physcrossplatform.cpp" open="1" top="0" tabpos="5">
+	<File name="src/physcrossplatform.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="353" topLine="43" />
 	</File>
 	<File name="src/physcrossplatform.h" open="1" top="0" tabpos="2">
@@ -10,11 +10,11 @@
 	<File name="src/physdatatypes.h" open="0" top="0" tabpos="1">
 		<Cursor position="304" topLine="0" />
 	</File>
-	<File name="src/physevent.h" open="1" top="0" tabpos="6">
+	<File name="src/physevent.h" open="1" top="0" tabpos="5">
 		<Cursor position="339" topLine="0" />
 	</File>
 	<File name="src/physeventmanager.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="1616" topLine="44" />
+		<Cursor position="1616" topLine="0" />
 	</File>
 	<File name="src/physeventmanager.h" open="1" top="0" tabpos="3">
 		<Cursor position="1171" topLine="10" />
