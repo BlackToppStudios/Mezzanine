@@ -35,9 +35,9 @@
 
 using namespace std;
 
-enum InputCode{
+enum KeyboardCodes{
 	KEY_UNKNOWN			= 0,
-	INPUTEVENT_FIRST	= 0,
+    KEY_FIRST			= 0,
 	KEY_BACKSPACE		= 8,
 	KEY_TAB				= 9,
 	KEY_CLEAR			= 12,
@@ -300,68 +300,25 @@ enum InputCode{
 	KEYMOD_MODE  	= 334,
 	KEYMOD_RESERVED = 335,
 
-    MOUSEBUTTON1,
-    MOUSEBUTTON2,
-    MOUSEBUTTON3,
-    MOUSEBUTTON4,
-    MOUSEBUTTON5,
-    MOUSEBUTTON6,
-    MOUSEBUTTON7,
-    MOUSEBUTTON8,
-    MOUSEBUTTON9,
-    MOUSEWHEELUP,
-    MOUSEWHEELDOWN,
-    MOUSEWHEELLEFT,
-    MOUSEWHEELRIGHT,
-    MOUSEWHEEL2UP,
-    MOUSEWHEEL2DOWN,
-    MOUSEWHEEL2LEFT,
-    MOUSEWHEEL2RIGHT,
+    KEYMOD_LAST
+};
+
+enum InputCode{
+	INPUTEVENT_FIRST = 0,
+
+    MOUSEBUTTON,
+    MOUSEABSOLUTEVERTICAL,
+    MOUSEABSOLUTEHORIZONTAL,
     MOUSEVERTICAL,
-    MOUSERHORIZONTAL,
+    MOUSEHORIZONTAL,
+    MOUSEWHEELVERTICAL,
+    MOUSEWHEELHORIZONTAL,
 
-    JOYSTICKBUTTON1,
-    JOYSTICKBUTTON2,
-    JOYSTICKBUTTON3,
-    JOYSTICKBUTTON4,
-    JOYSTICKBUTTON5,
-    JOYSTICKBUTTON6,
-    JOYSTICKBUTTON7,
-    JOYSTICKBUTTON8,
-    JOYSTICKBUTTON9,
-    JOYSTICKBUTTON11,
-    JOYSTICKBUTTON12,
-    JOYSTICKBUTTON13,
-    JOYSTICKBUTTON14,
-    JOYSTICKBUTTON15,
-    JOYSTICKBUTTON16,
-    JOYSTICKBUTTON17,
-    JOYSTICKBUTTON18,
-    JOYSTICKBUTTON19,
-    JOYSTICKBUTTON20,
+    JOYSTICKBUTTON,
+    JOYSTICKAXIS,
+    JOYSTICKBALL,
+    JOYSTICKHAT,
 
-    JOYSTICKAXIS1,
-    JOYSTICKAXIS2,
-    JOYSTICKAXIS3,
-    JOYSTICKAXIS4,
-    JOYSTICKAXIS5,
-    JOYSTICKAXIS6,
-    JOYSTICKAXIS7,
-    JOYSTICKAXIS8,
-    JOYSTICKAXIS9,
-    JOYSTICKAXIS10,
-    JOYSTICKAXIS11,
-    JOYSTICKAXIS12,
-    JOYSTICKAXIS13,
-    JOYSTICKAXIS14,
-    JOYSTICKAXIS15,
-    JOYSTICKAXIS16,
-    JOYSTICKAXIS17,
-    JOYSTICKAXIS18,
-    JOYSTICKAXIS19,
-    JOYSTICKAXIS20,
-
-	/* Add any other keys here */
 	INPUTEVENT_LAST
 };
 
@@ -370,15 +327,23 @@ class MetaCode
 {
     private:
         int MetaValue;
+        short unsigned int ID;
         InputCode Code;
     public:
         MetaCode();
-        MetaCode(int MetaValue_, InputCode Code_);
+        MetaCode(int MetaValue_, short unsigned int ID_, InputCode Code_);
 
-        int GetMetaValue();
-        InputCode GetCode();
-        void SetMetaValue(int MetaValue_);
+        InputCode GetCode();                    //What is being done? This stores which code was generated which should identify the type of input.
         void SetCode(InputCode Code_);
+
+        int GetMetaValue();                     //How much is being done? How far has the mouse moved, how much is the throttle pushed.
+        void SetMetaValue(int MetaValue_);      //For button presses a positive value is pushed and a zero means unpushed
+
+        short unsigned int GetID();             //Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.
+        void SetID(short unsigned int ID_);
+
+
+
 
         bool operator==(const MetaCode &other) const;
 };
@@ -398,6 +363,7 @@ class PhysEventUserInput : public PhysEvent
         //code managment functions
         MetaCode GetCode(unsigned int Index);
         unsigned int GetCodeCount();
+
         void ToggleCode(MetaCode _Code);
         void ToggleCode(unsigned int Index);
 

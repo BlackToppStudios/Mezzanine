@@ -243,6 +243,7 @@ void physworld::MoveCamera(PhysVector3 Position, PhysVector3 LookAt)
 void physworld::DoMainLoopAllItems()
 {
 	this->DoMainLoopPhysics();
+	this->DoMainLoopWindowManagerBuffering();
 	this->DoMainLoopInputBuffering();
 }
 
@@ -252,20 +253,16 @@ void physworld::DoMainLoopPhysics()
 	//this->Events->AddsomeEvents
 }
 
-void DoMainLoopWindowManagerBuffering()
+void physworld::DoMainLoopWindowManagerBuffering()
 {
-    //
+    this->PreProcessSDLEvents();
+    //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
 }
 
 void physworld::DoMainLoopInputBuffering()
 {
-	//SDL_PumpEvents();
-	SDL_Event FromSDL;
-	while(SDL_PollEvent(&FromSDL))
-	{
-	    PreProcessSDLEvents(FromSDL);
-        //TODO: add the input gather to the event manager
-	}
+    this->PreProcessSDLEvents();
+	//TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -344,27 +341,35 @@ void physworld::DestroyRenderWindow()
 
 
 //This function will get all the events from SDL and Sort them into one of two Queues
-PhysEvent* physworld::PreProcessSDLEvents(SDL_Event RawSDLevent)
+void physworld::PreProcessSDLEvents()
 {
 
 /*  SDL events we need to handle as per http://www.libsdl.org/cgi/docwiki.cgi/SDL_Event
     SDL_ACTIVEEVENT    SDL_ActiveEvent  //when the window gains focus
-    SDL_VIDEORESIZE SDL_ResizeEvent     //when
+    SDL_VIDEORESIZE SDL_ResizeEvent     //when the screen is resized
+    SDL_VIDEOEXPOSE SDL_ExposeEvent     //when the windows goes from being hidden to being shown
+    SDL_QUIT    SDL_QuitEvent           //when SDL closese
+    SDL_USEREVENT   SDL_UserEvent       //Never thrown by SDL, but could be added by a user
+    SDL_SYSWMEVENT  SDL_SysWMEvent
+
 
     SDL_KEYDOWN/UP  SDL_KeyboardEvent
     SDL_MOUSEMOTION SDL_MouseMotionEvent
     SDL_MOUSEBUTTONDOWN/UP  SDL_MouseButtonEvent
     SDL_JOYAXISMOTION   SDL_JoyAxisEvent
+    SDL_JOYBUTTONDOWN/UP    SDL_JoyButtonEvent
     SDL_JOYBALLMOTION   SDL_JoyBallEvent
     SDL_JOYHATMOTION    SDL_JoyHatEvent
-    SDL_JOYBUTTONDOWN/UP    SDL_JoyButtonEvent
 
-    SDL_VIDEOEXPOSE SDL_ExposeEvent
-    SDL_QUIT    SDL_QuitEvent
-    SDL_USEREVENT   SDL_UserEvent
-    SDL_SYSWMEVENT  SDL_SysWMEvent
+
     */
-    return new PhysEventUserInput();
+
+    SDL_Event FromSDL;
+	while(SDL_PollEvent(&FromSDL))
+	{
+        //if
+
+	}
 }
 
 

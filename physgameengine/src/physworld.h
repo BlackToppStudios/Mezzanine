@@ -14,6 +14,8 @@
 #include "physdatatypes.h"
 
 #include <string>
+#include <queue>
+
 
 #include "SDL.h"
 using namespace std;
@@ -86,9 +88,11 @@ class physworld
 		//Used by the constructors
 		void Construct(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies);
 
-		//SDL specific Functions
+		//SDL specific Items
 		//This function will get all the events from SDL and Sort them into one of two Queues
-		PhysEvent* PreProcessSDLEvents(SDL_Event RawSDLevent);
+		void PreProcessSDLEvents();
+        queue<SDL_Event> SDL_WmEvents;
+        queue<SDL_Event> SDL_UserInputEvents;
 
 	public:
 		physworld(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024);
@@ -124,6 +128,5 @@ class physworld
 
 		//This will be used to communicate with underlying sybsystems in a clean way
 		PhysEventManager*  Events;
-
 };
 #endif

@@ -22,9 +22,10 @@ using namespace std;
 MetaCode::MetaCode()
 {}
 
-MetaCode::MetaCode(int MetaValue_, InputCode Code_)
+MetaCode::MetaCode(int MetaValue_, short unsigned int ID_, InputCode Code_)
 {
     SetMetaValue(MetaValue_);
+    SetID(ID_);
     SetCode(Code_);
 }
 
@@ -38,6 +39,11 @@ InputCode MetaCode::GetCode()
     return this->Code;
 }
 
+short unsigned int MetaCode::GetID()
+{
+    return this->ID;
+}
+
 void MetaCode::SetMetaValue(int MetaValue_)
 {
     this->MetaValue=MetaValue_;
@@ -46,6 +52,11 @@ void MetaCode::SetMetaValue(int MetaValue_)
 void MetaCode::SetCode(InputCode Code_)
 {
     this->Code=Code_;
+}
+
+void MetaCode::SetID(short unsigned int ID_)
+{
+    this->ID=ID_;
 }
 
 bool MetaCode::operator==(const MetaCode &other) const

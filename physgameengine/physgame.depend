@@ -13313,12 +13313,13 @@
 	"physeventmanager.h"
 	"physgamesettings.h"
 
-1266625387 /home/joe/Private/physgame/physgameengine/src/physworld.h
+1266886212 /home/joe/Private/physgame/physgameengine/src/physworld.h
 	"physworldcallbackmanager.h"
 	"physevent.h"
 	"physeventmanager.h"
 	"physdatatypes.h"
 	<string>
+	<queue>
 	"SDL.h"
 
 1266273988 /home/joe/Private/physgame/physgameengine/src/physworldcallbackmanager.h
@@ -15979,7 +15980,7 @@
 	"OgreMovableObject.h"
 	"OgreCamera.h"
 
-1266597496 /home/joe/Private/physgame/physgameengine/src/physeventuserinput.h
+1266886039 /home/joe/Private/physgame/physgameengine/src/physeventuserinput.h
 	<vector>
 	"physevent.h"
 	"physdatatypes.h"
@@ -15990,7 +15991,7 @@
 	<stdarg.h>
 	<vector>
 
-1266597496 source:/home/joe/Private/physgame/physgameengine/src/physeventuserinput.cpp
+1266886079 source:/home/joe/Private/physgame/physgameengine/src/physeventuserinput.cpp
 	"physeventuserinput.h"
 	"physevent.h"
 	<stdarg.h>
