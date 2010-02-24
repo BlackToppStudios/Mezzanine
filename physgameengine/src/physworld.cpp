@@ -344,31 +344,35 @@ void physworld::DestroyRenderWindow()
 void physworld::PreProcessSDLEvents()
 {
 
-/*  SDL events we need to handle as per http://www.libsdl.org/cgi/docwiki.cgi/SDL_Event
-    SDL_ACTIVEEVENT    SDL_ActiveEvent  //when the window gains focus
-    SDL_VIDEORESIZE SDL_ResizeEvent     //when the screen is resized
-    SDL_VIDEOEXPOSE SDL_ExposeEvent     //when the windows goes from being hidden to being shown
-    SDL_QUIT    SDL_QuitEvent           //when SDL closese
-    SDL_USEREVENT   SDL_UserEvent       //Never thrown by SDL, but could be added by a user
-    SDL_SYSWMEVENT  SDL_SysWMEvent
-
-
-    SDL_KEYDOWN/UP  SDL_KeyboardEvent
-    SDL_MOUSEMOTION SDL_MouseMotionEvent
-    SDL_MOUSEBUTTONDOWN/UP  SDL_MouseButtonEvent
-    SDL_JOYAXISMOTION   SDL_JoyAxisEvent
-    SDL_JOYBUTTONDOWN/UP    SDL_JoyButtonEvent
-    SDL_JOYBALLMOTION   SDL_JoyBallEvent
-    SDL_JOYHATMOTION    SDL_JoyHatEvent
-
-
-    */
-
     SDL_Event FromSDL;
 	while(SDL_PollEvent(&FromSDL))
 	{
-        //if
-
+        switch(FromSDL.type)
+        {
+            case SDL_ACTIVEEVENT:   //when the window gains focus
+            case SDL_VIDEORESIZE:   //when the screen is resized
+            case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
+            case SDL_QUIT:          //when SDL closes
+            case SDL_SYSWMEVENT:
+                SDL_WmEvents.push(FromSDL);
+                break;
+            case SDL_KEYDOWN:
+            case SDL_KEYUP:
+            case SDL_MOUSEMOTION:
+            case SDL_MOUSEBUTTONDOWN:
+            case SDL_MOUSEBUTTONUP:
+            case SDL_JOYAXISMOTION:
+            case SDL_JOYBUTTONDOWN:
+            case SDL_JOYBUTTONUP:
+            case SDL_JOYBALLMOTION:
+            case SDL_JOYHATMOTION:
+                SDL_UserInputEvents.push(FromSDL);
+                break;
+            case SDL_USEREVENT://Never thrown by SDL, but could be added by a user
+            default:
+                throw ("Unknown SDL Event Inserted");
+                break;
+        }
 	}
 }
 

@@ -32,7 +32,6 @@ class PhysVector3;
 class SDL_Surface;
 union SDL_Event;
 
-
 //#include "btBulletDynamicsCommon.h"
 class btAxisSweep3;
 class btDefaultCollisionConfiguration;
@@ -42,6 +41,7 @@ class btDiscreteDynamicsWorld;
 
 
 //#include <Ogre.h>
+
 namespace Ogre
 {
 	class Root;
