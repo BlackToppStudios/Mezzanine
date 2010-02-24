@@ -17,7 +17,7 @@
 #include <queue>
 
 
-#include "SDL.h"
+
 using namespace std;
 
 //Not included to prevent infinite loops
@@ -28,13 +28,19 @@ class Settings;
 class PhysVector3;
 
 //Other forward declarations
-//class SDL_Surface;
+//#include "SDL.h"
+class SDL_Surface;
+union SDL_Event;
+
+
 //#include "btBulletDynamicsCommon.h"
 class btAxisSweep3;
 class btDefaultCollisionConfiguration;
 class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
 class btDiscreteDynamicsWorld;
+
+
 //#include <Ogre.h>
 namespace Ogre
 {

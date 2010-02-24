@@ -40,14 +40,14 @@
 	<File name="src/physvector.h" open="0" top="0" tabpos="4">
 		<Cursor position="45" topLine="0" />
 	</File>
-	<File name="src/physworld.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="11883" topLine="340" />
+	<File name="src/physworld.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="8915" topLine="288" />
 	</File>
-	<File name="src/physworld.h" open="0" top="0" tabpos="3">
-		<Cursor position="2568" topLine="84" />
+	<File name="src/physworld.h" open="1" top="1" tabpos="4">
+		<Cursor position="863" topLine="16" />
 	</File>
-	<File name="src/physworldcallbackmanager.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="20" topLine="0" />
+	<File name="src/physworldcallbackmanager.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="20" topLine="140" />
 	</File>
 	<File name="src/physworldcallbackmanager.h" open="0" top="0" tabpos="1">
 		<Cursor position="1546" topLine="25" />
