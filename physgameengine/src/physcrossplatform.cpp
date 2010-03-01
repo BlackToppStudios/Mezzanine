@@ -7,13 +7,14 @@
 //Additional Includes
 
 #include "physcrossplatform.h"
+#include "physworld.h"
 #include <Ogre.h>
+#include "SDL.h"
 
 //Selective Includes
 #ifdef WINDOWS
 	#include <cstdlib>//for sleep
 	#include "SDL_syswm.h" //for the needed commands
-	#include "SDL.h"
 #else
 	#include <unistd.h>//for sleep
 #endif
@@ -54,8 +55,8 @@ string GetDataDirectory()
 ///////////////////////////////////////////////////////////////////////////////
 //This returns a named parameter list with valid settings to use Ogre rendering
 //on a pre-existing SDL context
-//This has not been tested on windows
-Ogre::NameValuePairList GetSDLOgreBinder()
+//void* is always an ogre NameValuePairList
+void* GetSDLOgreBinder()
 {
 	Ogre::NameValuePairList misc;
 	#ifdef WINDOWS
@@ -73,7 +74,7 @@ Ogre::NameValuePairList GetSDLOgreBinder()
 		misc["currentGLContext"] = Ogre::String("True");
 	#endif
 
-	return misc;
+	return &misc;
 }
 
 void WaitMilliseconds(PhysWhole WaitTime)
@@ -85,6 +86,14 @@ void WaitMilliseconds(PhysWhole WaitTime)
 	#endif
 }
 
-
+void RenderPhysWorld(physworld *TheWorld)
+{
+    #ifndef WINDOWS
+       TheWorld->OgreGameWindow->update(true);
+    #else
+       TheWorld->OgreRoot->renderOneFrame();
+       SDL_GL_SwapBuffers();
+    #endif
+}
 
 #endif

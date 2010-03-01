@@ -18,6 +18,7 @@
 
 #include "SDL.h"
 #include "btBulletDynamicsCommon.h"
+#include <Ogre.h>
 
 #include <sstream>
 using namespace std;
@@ -181,11 +182,11 @@ void physworld::GameInit()
 	Ogre::SceneNode *node1 = this->OgreSceneManager->getRootSceneNode()->createChildSceneNode( "RobotNode" );
 	node1->attachObject( ent1 );
 
+
 	//This is the beginning of the mainloop
 	//As long as all the CallBacks return true the game continues
 	while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3])
 	{
-
         //To prepare each callback we add an event to the event manager which includes the time since th last frame render ended
         //However we will only do this if a callback is set
         if(this->CallBacks->IsPreInputCallbackSet())
@@ -212,7 +213,8 @@ void physworld::GameInit()
         }
 
 		//Render the frame and figure the amount of time it took
-		this->OgreRoot->renderOneFrame();
+		//this->OgreRoot->renderOneFrame();
+		this->DoMainLoopRender();
 		PhysWhole FrameTime = RenderTimer.getMillisecondsCPU(); //Limit frame rate to 62.5
 		RenderTimer.reset();
 		if(16>FrameTime)			//use 16666 for microseconds
@@ -245,6 +247,7 @@ void physworld::DoMainLoopAllItems()
 	this->DoMainLoopPhysics();
 	this->DoMainLoopWindowManagerBuffering();
 	this->DoMainLoopInputBuffering();
+	this->DoMainLoopRender();
 }
 
 void physworld::DoMainLoopPhysics()
@@ -265,6 +268,10 @@ void physworld::DoMainLoopInputBuffering()
 	//TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
 }
 
+void physworld::DoMainLoopRender()
+{
+	RenderPhysWorld(this);
+}
 ///////////////////////////////////////////////////////////////////////////////
 // Private Functions
 ///////////////////////////////////////
@@ -300,15 +307,16 @@ void physworld::CreateRenderWindow()
 
 	//Setup the SDL render window
 	this->SDLscreen = SDL_SetVideoMode(PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), 0, SDL_OPENGL);
+    SDL_WM_SetCaption("Catch!", NULL);
 
 	//Start Ogre Without a native render window
 	this->OgreGameWindow = this->OgreRoot->initialise(false, "physgame");
 
 	//Configure Ogre to render to the SDL window
-	Ogre::NameValuePairList misc;
-	misc=GetSDLOgreBinder();
-	misc["title"] = Ogre::String("Catch!");
-	this->OgreGameWindow = this->OgreRoot->createRenderWindow("physgame", PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), &misc);
+	Ogre::NameValuePairList *misc;
+	misc=(Ogre::NameValuePairList*) GetSDLOgreBinder();
+	(*misc)["title"] = Ogre::String("Catch!");
+	this->OgreGameWindow = this->OgreRoot->createRenderWindow("physgame", PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), misc);
     //Added following lines to attempt to make the render window visable
     //this->OgreGameWindow->setVisible(true);
 	//this->OgreGameWindow->setActive(true);

@@ -100,6 +100,8 @@ class physworld
         queue<SDL_Event> SDL_WmEvents;
         queue<SDL_Event> SDL_UserInputEvents;
 
+        friend void RenderPhysWorld(physworld *TheWorld);
+
 	public:
 		physworld(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024);
 		physworld();
@@ -128,6 +130,8 @@ class physworld
         void DoMainLoopPhysics();
 		void DoMainLoopInputBuffering();
 		void DoMainLoopWindowManagerBuffering();
+		void DoMainLoopRender();
+
 
 		//used to set callback functions to be run in the main loop
 		physworldCallBackManager* CallBacks;

@@ -23,10 +23,13 @@
 // Includes
 #include "physdatatypes.h"
 
-#include <Ogre.h>
-
 #include <string>
+#include <map>
+
 using namespace std;
+
+//Forward Declarations
+class physworld;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Platform Specific Functions get Declared here
@@ -42,8 +45,12 @@ string GetDataDirectory();
 
 //This returns a named parameter list with valid settings to use Ogre rendering
 // on a pre-existing SDL context
-Ogre::NameValuePairList GetSDLOgreBinder();
+void* GetSDLOgreBinder();
 
+//A simple crossplatform sleep function, unused, prefer SDLsleep instead
 void WaitMilliseconds(PhysWhole WaitTime);
+
+//Handles the actual cross platform swapping of buffers.
+void RenderPhysWorld(physworld *TheWorld);
 
 #endif

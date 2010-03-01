@@ -2,10 +2,10 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="LinuxDebug" />
 	<File name="src/physcrossplatform.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="353" topLine="43" />
+		<Cursor position="358" topLine="2" />
 	</File>
 	<File name="src/physcrossplatform.h" open="1" top="1" tabpos="1">
-		<Cursor position="1262" topLine="13" />
+		<Cursor position="1801" topLine="42" />
 	</File>
 	<File name="src/physdatatypes.h" open="0" top="0" tabpos="1">
 		<Cursor position="304" topLine="0" />
@@ -41,13 +41,13 @@
 		<Cursor position="45" topLine="0" />
 	</File>
 	<File name="src/physworld.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="10995" topLine="341" />
+		<Cursor position="9467" topLine="329" />
 	</File>
-	<File name="src/physworld.h" open="1" top="1" tabpos="4">
-		<Cursor position="863" topLine="16" />
+	<File name="src/physworld.h" open="0" top="0" tabpos="3">
+		<Cursor position="1116" topLine="86" />
 	</File>
-	<File name="src/physworldcallbackmanager.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="20" topLine="140" />
+	<File name="src/physworldcallbackmanager.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="823" topLine="9" />
 	</File>
 	<File name="src/physworldcallbackmanager.h" open="0" top="0" tabpos="1">
 		<Cursor position="1546" topLine="25" />
