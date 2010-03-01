@@ -2,10 +2,10 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="LinuxDebug" />
 	<File name="src/physcrossplatform.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="358" topLine="2" />
+		<Cursor position="1590" topLine="55" />
 	</File>
 	<File name="src/physcrossplatform.h" open="1" top="1" tabpos="1">
-		<Cursor position="1801" topLine="42" />
+		<Cursor position="1801" topLine="39" />
 	</File>
 	<File name="src/physdatatypes.h" open="0" top="0" tabpos="1">
 		<Cursor position="304" topLine="0" />
@@ -26,7 +26,7 @@
 		<Cursor position="286" topLine="6" />
 	</File>
 	<File name="src/physeventuserinput.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="851" topLine="60" />
+		<Cursor position="851" topLine="30" />
 	</File>
 	<File name="src/physeventuserinput.h" open="0" top="0" tabpos="1">
 		<Cursor position="7554" topLine="334" />

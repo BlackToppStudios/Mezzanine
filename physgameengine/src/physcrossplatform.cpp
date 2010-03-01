@@ -58,7 +58,7 @@ string GetDataDirectory()
 //void* is always an ogre NameValuePairList
 void* GetSDLOgreBinder()
 {
-	Ogre::NameValuePairList misc;
+	Ogre::NameValuePairList *misc = new Ogre::NameValuePairList();
 	#ifdef WINDOWS
 		SDL_SysWMinfo wmInfo;
 		SDL_VERSION(&wmInfo.version);
@@ -67,14 +67,14 @@ void* GetSDLOgreBinder()
 		size_t winHandle = reinterpret_cast<size_t>(wmInfo.window);
 		size_t winGlContext = reinterpret_cast<size_t>(wmInfo.hglrc);
 
-		misc["externalWindowHandle"] = Ogre::StringConverter::toString(winHandle);
-		misc["externalGLContext"] = Ogre::StringConverter::toString(winGlContext);
-		misc["externalGLControl"] = Ogre::String("True");
+		(*misc)["externalWindowHandle"] = Ogre::StringConverter::toString(winHandle);
+		(*misc)["externalGLContext"] = Ogre::StringConverter::toString(winGlContext);
+		(*misc)["externalGLControl"] = Ogre::String("True");
 	#else
-		misc["currentGLContext"] = Ogre::String("True");
+		(*misc)["currentGLContext"] = Ogre::String("True");
 	#endif
 
-	return &misc;
+	return misc;
 }
 
 void WaitMilliseconds(PhysWhole WaitTime)
