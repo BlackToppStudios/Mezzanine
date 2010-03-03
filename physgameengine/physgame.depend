@@ -9758,39 +9758,42 @@
 
 1262391836 /home/sqeaky/physgame/physgameengine/src/gamebase.h
 
-1266548058 /home/sqeaky/physgame/physgameengine/src/physworld.h
+1267405345 /home/sqeaky/physgame/physgameengine/src/physworld.h
 	"physworldcallbackmanager.h"
+	"physevent.h"
 	"physeventmanager.h"
 	"physdatatypes.h"
 	<string>
+	<queue>
 
-1263340904 /home/sqeaky/physgame/physgameengine/src/physworldcallbackmanager.h
+1267405345 /home/sqeaky/physgame/physgameengine/src/physworldcallbackmanager.h
 
-1266552442 /home/sqeaky/physgame/physgameengine/src/physeventmanager.h
+1267405345 /home/sqeaky/physgame/physgameengine/src/physeventmanager.h
 	<list>
 	"physevent.h"
 	"physeventrendertime.h"
 	"physeventuserinput.h"
 
-1266546874 /home/sqeaky/physgame/physgameengine/src/physevent.h
+1267405345 /home/sqeaky/physgame/physgameengine/src/physevent.h
 	<string>
 
 1262823879 /home/sqeaky/physgame/physgameengine/src/physeventkeyboardinput.h
 
-1264386488 source:/home/sqeaky/physgame/physgameengine/src/physcrossplatform.cpp
+1267585958 source:/home/sqeaky/physgame/physgameengine/src/physcrossplatform.cpp
 	"physcrossplatform.h"
+	"physworld.h"
 	<Ogre.h>
+	"SDL.h"
 	<cstdlib>
 	"SDL_syswm.h"
-	"SDL.h"
 	<unistd.h>
 
-1265167122 /home/sqeaky/physgame/physgameengine/src/physcrossplatform.h
+1267405345 /home/sqeaky/physgame/physgameengine/src/physcrossplatform.h
 	"physdatatypes.h"
-	<Ogre.h>
 	<string>
+	<map>
 
-1255622275 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Ogre.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Ogre.h
 	"OgrePrerequisites.h"
 	"OgreAnimation.h"
 	"OgreAnimationState.h"
@@ -9888,24 +9891,24 @@
 	"OgreShadowCameraSetupPlaneOptimal.h"
 	"OgreShadowCameraSetupPSSM.h"
 
-1262258771 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePrerequisites.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePrerequisites.h
 	"OgrePlatform.h"
 	<string>
 	"Threading/OgreThreadDefines.h"
 	"OgreStdHeaders.h"
 	"OgreMemoryAllocatorConfig.h"
 
-1262116156 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePlatform.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePlatform.h
 	"OgreConfig.h"
 	<_mingw.h>
 	"config.h"
 
-1257363207 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreConfig.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreConfig.h
 	"OgreBuildSettings.h"
 
 1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/config.h
 
-1258036024 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreStdHeaders.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreStdHeaders.h
 	<cassert>
 	<cstdio>
 	<cstdlib>
@@ -9946,7 +9949,7 @@
 	<CoreFoundation/CoreFoundation.h>
 	"Threading/OgreThreadHeaders.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryAllocatorConfig.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryAllocatorConfig.h
 	"OgreMemoryAllocatedObject.h"
 	"OgreMemoryAllocatedObject.h"
 	"OgreMemorySTLAllocator.h"
@@ -9954,29 +9957,29 @@
 	"OgreMemoryNedAlloc.h"
 	"OgreMemoryStdAlloc.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryAllocatedObject.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryAllocatedObject.h
 	"OgrePrerequisites.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemorySTLAllocator.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemorySTLAllocator.h
 	"OgrePrerequisites.h"
 	"OgreHeaderPrefix.h"
 	"OgreHeaderSuffix.h"
 
-1256209231 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryNedAlloc.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryNedAlloc.h
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryStdAlloc.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryStdAlloc.h
 	<memory>
 	<limits>
 	"OgreAlignedAllocator.h"
 	"OgreMemoryTracker.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAlignedAllocator.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAlignedAllocator.h
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryTracker.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryTracker.h
 	<tr1/unordered_map>
 	<ext/hash_map>
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAnimation.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAnimation.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreIteratorWrappers.h"
@@ -9984,17 +9987,17 @@
 	"OgreAnimationTrack.h"
 	"OgreAnimationState.h"
 
-1259314467 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreString.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreString.h
 	"OgrePrerequisites.h"
 	<tr1/unordered_map>
 	<ext/hash_map>
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreIteratorWrappers.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreIteratorWrappers.h
 	"OgrePrerequisites.h"
 	"OgreIteratorWrapper.h"
 	"OgreIteratorRange.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAnimable.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAnimable.h
 	"OgrePrerequisites.h"
 	"OgreVector2.h"
 	"OgreVector3.h"
@@ -10006,52 +10009,52 @@
 	"OgreException.h"
 	"OgreAny.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreVector2.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreVector2.h
 	"OgrePrerequisites.h"
 	"OgreMath.h"
 
-1254252899 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMath.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMath.h
 	"OgrePrerequisites.h"
 
-1261992016 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreVector3.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreVector3.h
 	"OgrePrerequisites.h"
 	"OgreMath.h"
 	"OgreQuaternion.h"
 
-1254252899 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreQuaternion.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreQuaternion.h
 	"OgrePrerequisites.h"
 	"OgreMath.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreVector4.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreVector4.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreColourValue.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreColourValue.h
 	"OgrePrerequisites.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSharedPtr.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSharedPtr.h
 	"OgrePrerequisites.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreStringVector.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreStringVector.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreSharedPtr.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreException.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreException.h
 	"OgrePrerequisites.h"
 	"OgreHeaderPrefix.h"
 	"OgreString.h"
 	<exception>
 	"OgreHeaderSuffix.h"
 
-1259507366 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAny.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAny.h
 	"OgrePrerequisites.h"
 	"OgreException.h"
 	"OgreString.h"
 	<algorithm>
 	<typeinfo>
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAnimationTrack.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAnimationTrack.h
 	"OgrePrerequisites.h"
 	"OgreSimpleSpline.h"
 	"OgreRotationalSpline.h"
@@ -10059,31 +10062,31 @@
 	"OgreAnimable.h"
 	"OgrePose.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSimpleSpline.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSimpleSpline.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 	"OgreMatrix4.h"
 
-1261992016 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMatrix4.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMatrix4.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 	"OgreMatrix3.h"
 	"OgreVector4.h"
 	"OgrePlane.h"
 
-1261992016 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMatrix3.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMatrix3.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePlane.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePlane.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRotationalSpline.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRotationalSpline.h
 	"OgrePrerequisites.h"
 	"OgreQuaternion.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreKeyFrame.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreKeyFrame.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 	"OgreQuaternion.h"
@@ -10091,33 +10094,33 @@
 	"OgreHardwareVertexBuffer.h"
 	"OgreIteratorWrappers.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwareVertexBuffer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwareVertexBuffer.h
 	"OgrePrerequisites.h"
 	"OgreHardwareBuffer.h"
 	"OgreSharedPtr.h"
 	"OgreColourValue.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwareBuffer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwareBuffer.h
 	"OgrePrerequisites.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePose.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePose.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreHardwareVertexBuffer.h"
 	"OgreVector3.h"
 	"OgreIteratorWrappers.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAnimationState.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAnimationState.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreController.h"
 	"OgreIteratorWrappers.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreController.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreController.h
 	"OgrePrerequisites.h"
 	"OgreSharedPtr.h"
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreArchive.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreArchive.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreDataStream.h"
@@ -10126,18 +10129,18 @@
 	"OgreException.h"
 	<ctime>
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreDataStream.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreDataStream.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreSharedPtr.h"
 	<istream>
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreArchiveManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreArchiveManager.h
 	"OgrePrerequisites.h"
 	"OgreResourceManager.h"
 	"OgreSingleton.h"
 
-1259507366 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreResourceManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreResourceManager.h
 	"OgrePrerequisites.h"
 	"OgreResource.h"
 	"OgreResourceGroupManager.h"
@@ -10147,31 +10150,31 @@
 	"OgreStringVector.h"
 	"OgreScriptLoader.h"
 
-1259507366 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreResource.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreResource.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreSharedPtr.h"
 	"OgreStringInterface.h"
 	"OgreAtomicWrappers.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreStringInterface.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreStringInterface.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreCommon.h"
 
-1261241301 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCommon.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCommon.h
 	"OgreString.h"
 	<utility>
 	<sstream>
 
-1258288149 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAtomicWrappers.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAtomicWrappers.h
 	<signal.h>
 	"OgrePrerequisites.h"
 	"OgreException.h"
 	<windows.h>
 	<intrin.h>
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreResourceGroupManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreResourceGroupManager.h
 	"OgrePrerequisites.h"
 	"OgreSingleton.h"
 	"OgreCommon.h"
@@ -10181,28 +10184,28 @@
 	"OgreIteratorWrappers.h"
 	<ctime>
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSingleton.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSingleton.h
 	"OgrePrerequisites.h"
 	"OgreHeaderPrefix.h"
 	"OgreHeaderSuffix.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreScriptLoader.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreScriptLoader.h
 	"OgrePrerequisites.h"
 	"OgreDataStream.h"
 	"OgreStringVector.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAxisAlignedBox.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAxisAlignedBox.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 	"OgreMatrix4.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBillboardChain.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBillboardChain.h
 	"OgrePrerequisites.h"
 	"OgreMovableObject.h"
 	"OgreRenderable.h"
 	"OgreResourceGroupManager.h"
 
-1256146839 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMovableObject.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMovableObject.h
 	"OgrePrerequisites.h"
 	"OgreRenderQueue.h"
 	"OgreAxisAlignedBox.h"
@@ -10213,21 +10216,21 @@
 	"OgreAny.h"
 	"OgreUserObjectBindings.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderQueue.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderQueue.h
 	"OgreHeaderPrefix.h"
 	"OgrePrerequisites.h"
 	"OgreIteratorWrappers.h"
 	"OgreHeaderSuffix.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSphere.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSphere.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCaster.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCaster.h
 	"OgrePrerequisites.h"
 	"OgreRenderable.h"
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderable.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderable.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 	"OgreRenderOperation.h"
@@ -10239,21 +10242,21 @@
 	"OgreException.h"
 	"OgreUserObjectBindings.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderOperation.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderOperation.h
 	"OgrePrerequisites.h"
 	"OgreVertexIndexData.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreVertexIndexData.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreVertexIndexData.h
 	"OgrePrerequisites.h"
 	"OgreHardwareVertexBuffer.h"
 	"OgreHardwareIndexBuffer.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwareIndexBuffer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwareIndexBuffer.h
 	"OgrePrerequisites.h"
 	"OgreHardwareBuffer.h"
 	"OgreSharedPtr.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMaterial.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMaterial.h
 	"OgrePrerequisites.h"
 	"OgreResource.h"
 	"OgreIteratorWrappers.h"
@@ -10261,11 +10264,11 @@
 	"OgreColourValue.h"
 	"OgreBlendMode.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBlendMode.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBlendMode.h
 	"OgrePrerequisites.h"
 	"OgreColourValue.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreGpuProgram.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreGpuProgram.h
 	"OgrePrerequisites.h"
 	"OgreResource.h"
 	"OgreSharedPtr.h"
@@ -10274,18 +10277,18 @@
 	"OgreRenderOperation.h"
 	"OgreGpuProgramParams.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSerializer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSerializer.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreDataStream.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreFactoryObj.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreFactoryObj.h
 	"OgrePrerequisites.h"
 
 1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreUserDefinedObject.h
 	"OgrePrerequisites.h"
 
-1254758939 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBillboardSet.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBillboardSet.h
 	"OgrePrerequisites.h"
 	"OgreMovableObject.h"
 	"OgreRenderable.h"
@@ -10293,14 +10296,14 @@
 	"OgreCommon.h"
 	"OgreResourceGroupManager.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRadixSort.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRadixSort.h
 	"OgrePrerequisites.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBone.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBone.h
 	"OgrePrerequisites.h"
 	"OgreNode.h"
 
-1256122876 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreNode.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreNode.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 	"OgreMatrix3.h"
@@ -10312,7 +10315,7 @@
 	"OgreMesh.h"
 	"OgreUserObjectBindings.h"
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCamera.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCamera.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreMovableObject.h"
@@ -10325,7 +10328,7 @@
 	"OgreRay.h"
 	"OgrePlaneBoundedVolume.h"
 
-1262116156 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreFrustum.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreFrustum.h
 	"OgrePrerequisites.h"
 	"OgreMovableObject.h"
 	"OgreRenderable.h"
@@ -10333,31 +10336,31 @@
 	"OgreVertexIndexData.h"
 	"OgreMovablePlane.h"
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMovablePlane.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMovablePlane.h
 	"OgrePrerequisites.h"
 	"OgrePlane.h"
 	"OgreMovableObject.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRay.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRay.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 	"OgrePlaneBoundedVolume.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePlaneBoundedVolume.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePlaneBoundedVolume.h
 	"OgrePrerequisites.h"
 	"OgreAxisAlignedBox.h"
 	"OgreSphere.h"
 	"OgreMath.h"
 	"OgrePlane.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreConfigFile.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreConfigFile.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreStringVector.h"
 	"OgreIteratorWrappers.h"
 	"OgreDataStream.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreControllerManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreControllerManager.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 	"OgreSingleton.h"
@@ -10366,17 +10369,17 @@
 	"OgreTextureUnitState.h"
 	"OgreSharedPtr.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePredefinedControllers.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePredefinedControllers.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 	"OgreController.h"
 	"OgreFrameListener.h"
 	"OgreGpuProgram.h"
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreFrameListener.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreFrameListener.h
 	"OgrePrerequisites.h"
 
-1258735108 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreTextureUnitState.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreTextureUnitState.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 	"OgreBlendMode.h"
@@ -10385,23 +10388,23 @@
 	"OgreString.h"
 	"OgreTexture.h"
 
-1258052434 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreTexture.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreTexture.h
 	"OgrePrerequisites.h"
 	"OgreHardwareBuffer.h"
 	"OgreResource.h"
 	"OgreImage.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreImage.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreImage.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 	"OgrePixelFormat.h"
 	"OgreDataStream.h"
 
-1258276668 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePixelFormat.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePixelFormat.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreEntity.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreEntity.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 	"OgreString.h"
@@ -10413,19 +10416,19 @@
 	"OgreRenderable.h"
 	"OgreResourceGroupManager.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwareBufferManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwareBufferManager.h
 	"OgrePrerequisites.h"
 	"OgreSingleton.h"
 	"OgreHardwareVertexBuffer.h"
 	"OgreHardwareIndexBuffer.h"
 	"OgreRenderToVertexBuffer.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderToVertexBuffer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderToVertexBuffer.h
 	"OgrePrerequisites.h"
 	"OgreMaterial.h"
 	"OgreRenderOperation.h"
 
-1260877358 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMesh.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMesh.h
 	"OgrePrerequisites.h"
 	"OgreResource.h"
 	"OgreVertexIndexData.h"
@@ -10439,17 +10442,17 @@
 	"OgrePose.h"
 	"OgreDataStream.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreVertexBoneAssignment.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreVertexBoneAssignment.h
 	"OgrePrerequisites.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreProgressiveMesh.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreProgressiveMesh.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 	"OgreHardwareVertexBuffer.h"
 	"OgreHardwareIndexBuffer.h"
 	"OgreRenderOperation.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSkeleton.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSkeleton.h
 	"OgrePrerequisites.h"
 	"OgreResource.h"
 	"OgreQuaternion.h"
@@ -10457,35 +10460,35 @@
 	"OgreIteratorWrappers.h"
 	"OgreStringVector.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreGpuProgramManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreGpuProgramManager.h
 	"OgrePrerequisites.h"
 	"OgreResourceManager.h"
 	"OgreException.h"
 	"OgreGpuProgram.h"
 	"OgreSingleton.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwarePixelBuffer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwarePixelBuffer.h
 	"OgrePrerequisites.h"
 	"OgreHardwareBuffer.h"
 	"OgreSharedPtr.h"
 	"OgrePixelFormat.h"
 	"OgreImage.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwareOcclusionQuery.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHardwareOcclusionQuery.h
 	"OgrePrerequisites.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHighLevelGpuProgram.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHighLevelGpuProgram.h
 	"OgrePrerequisites.h"
 	"OgreGpuProgram.h"
 
-1257183428 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHighLevelGpuProgramManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHighLevelGpuProgramManager.h
 	"OgrePrerequisites.h"
 	"OgreResourceManager.h"
 	"OgreSingleton.h"
 	"OgreException.h"
 	"OgreHighLevelGpuProgram.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLight.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLight.h
 	"OgrePrerequisites.h"
 	"OgreColourValue.h"
 	"OgreVector3.h"
@@ -10495,28 +10498,28 @@
 	"OgrePlaneBoundedVolume.h"
 	"OgreShadowCameraSetup.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCameraSetup.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCameraSetup.h
 	"OgrePrerequisites.h"
 	"OgreMovablePlane.h"
 	"OgreSharedPtr.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLogManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLogManager.h
 	"OgrePrerequisites.h"
 	"OgreLog.h"
 	"OgreSingleton.h"
 	"OgreString.h"
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLog.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLog.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreManualObject.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreManualObject.h
 	"OgrePrerequisites.h"
 	"OgreMovableObject.h"
 	"OgreRenderable.h"
 	"OgreResourceGroupManager.h"
 
-1255524530 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMaterialManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMaterialManager.h
 	"OgrePrerequisites.h"
 	"OgreSingleton.h"
 	"OgreResourceManager.h"
@@ -10524,7 +10527,7 @@
 	"OgreStringVector.h"
 	"OgreMaterialSerializer.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMaterialSerializer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMaterialSerializer.h
 	"OgrePrerequisites.h"
 	"OgreMaterial.h"
 	"OgreBlendMode.h"
@@ -10532,7 +10535,7 @@
 	"OgreGpuProgram.h"
 	"OgreStringVector.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMeshManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMeshManager.h
 	"OgrePrerequisites.h"
 	"OgreResourceManager.h"
 	"OgreSingleton.h"
@@ -10541,24 +10544,24 @@
 	"OgreMesh.h"
 	"OgrePatchMesh.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePatchMesh.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePatchMesh.h
 	"OgrePrerequisites.h"
 	"OgreMesh.h"
 	"OgrePatchSurface.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePatchSurface.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePatchSurface.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 	"OgreString.h"
 	"OgreRenderOperation.h"
 	"OgreAxisAlignedBox.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMeshSerializer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMeshSerializer.h
 	"OgrePrerequisites.h"
 	"OgreMeshSerializerImpl.h"
 	"OgreSerializer.h"
 
-1259858896 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMeshSerializerImpl.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMeshSerializerImpl.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreSerializer.h"
@@ -10566,30 +10569,30 @@
 	"OgreMesh.h"
 	"OgreEdgeListBuilder.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreEdgeListBuilder.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreEdgeListBuilder.h
 	"OgrePrerequisites.h"
 	"OgreVector4.h"
 	"OgreHardwareVertexBuffer.h"
 	"OgreRenderOperation.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreOverlay.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreOverlay.h
 	"OgrePrerequisites.h"
 	"OgreSceneNode.h"
 	"OgreIteratorWrappers.h"
 	"OgreMatrix4.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSceneNode.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSceneNode.h
 	"OgrePrerequisites.h"
 	"OgreNode.h"
 	"OgreIteratorWrappers.h"
 	"OgreAxisAlignedBox.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreOverlayContainer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreOverlayContainer.h
 	"OgrePrerequisites.h"
 	"OgreOverlayElement.h"
 	"OgreIteratorWrappers.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreOverlayElement.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreOverlayElement.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreRenderable.h"
@@ -10599,20 +10602,20 @@
 	"OgreColourValue.h"
 	"OgreRectangle.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreUTFString.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreUTFString.h
 	"OgrePrerequisites.h"
 	<iterator>
 	<string>
 	<stdexcept>
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreOverlayElementCommands.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreOverlayElementCommands.h
 	"OgrePrerequisites.h"
 	"OgreStringInterface.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRectangle.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRectangle.h
 	"OgrePrerequisites.h"
 
-1262121603 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreOverlayManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreOverlayManager.h
 	"OgrePrerequisites.h"
 	"OgreSingleton.h"
 	"OgreStringVector.h"
@@ -10620,12 +10623,12 @@
 	"OgreScriptLoader.h"
 	"OgreFrustum.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleAffector.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleAffector.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreStringInterface.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleEmitter.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleEmitter.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreVector3.h"
@@ -10634,21 +10637,21 @@
 	"OgreParticleEmitterCommands.h"
 	"OgreParticle.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleEmitterCommands.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleEmitterCommands.h
 	"OgrePrerequisites.h"
 	"OgreStringInterface.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticle.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticle.h
 	"OgrePrerequisites.h"
 	"OgreBillboard.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBillboard.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBillboard.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 	"OgreColourValue.h"
 	"OgreCommon.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleSystemManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleSystemManager.h
 	"OgrePrerequisites.h"
 	"OgreParticleSystem.h"
 	"OgreFrameListener.h"
@@ -10657,7 +10660,7 @@
 	"OgreScriptLoader.h"
 	"OgreResourceGroupManager.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleSystem.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleSystem.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 	"OgreString.h"
@@ -10668,10 +10671,10 @@
 	"OgreController.h"
 	"OgreResourceGroupManager.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleIterator.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreParticleIterator.h
 	"OgrePrerequisites.h"
 
-1255622275 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePass.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePass.h
 	"OgrePrerequisites.h"
 	"OgreGpuProgram.h"
 	"OgreColourValue.h"
@@ -10681,18 +10684,18 @@
 	"OgreTextureUnitState.h"
 	"OgreUserObjectBindings.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreProfiler.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreProfiler.h
 	"OgrePrerequisites.h"
 	"OgreSingleton.h"
 	"OgreString.h"
 	"OgreOverlay.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderQueueInvocation.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderQueueInvocation.h
 	"OgrePrerequisites.h"
 	"OgreRenderQueueSortingGrouping.h"
 	"OgreIteratorWrappers.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderQueueSortingGrouping.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderQueueSortingGrouping.h
 	"OgrePrerequisites.h"
 	"OgreIteratorWrappers.h"
 	"OgreMaterial.h"
@@ -10700,7 +10703,7 @@
 	"OgrePass.h"
 	"OgreRadixSort.h"
 
-1255622275 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreTechnique.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreTechnique.h
 	"OgrePrerequisites.h"
 	"OgreIteratorWrappers.h"
 	"OgreBlendMode.h"
@@ -10710,7 +10713,7 @@
 	"OgreRenderSystemCapabilities.h"
 	"OgreUserObjectBindings.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderSystemCapabilities.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderSystemCapabilities.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreStringConverter.h"
@@ -10718,17 +10721,17 @@
 	"OgreResource.h"
 	"OgreLogManager.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreStringConverter.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreStringConverter.h
 	"OgrePrerequisites.h"
 	"OgreMath.h"
 	"OgreString.h"
 	"OgreStringVector.h"
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderQueueListener.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderQueueListener.h
 	"OgrePrerequisites.h"
 	"OgreRenderQueue.h"
 
-1261634032 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderSystem.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderSystem.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreTextureUnitState.h"
@@ -10743,26 +10746,26 @@
 	"OgrePlane.h"
 	"OgreIteratorWrappers.h"
 
-1259604577 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderTarget.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderTarget.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreTextureManager.h"
 	"OgreViewport.h"
 	"OgreTimer.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreTextureManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreTextureManager.h
 	"OgrePrerequisites.h"
 	"OgreResourceManager.h"
 	"OgreTexture.h"
 	"OgreSingleton.h"
 
-1262244581 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreViewport.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreViewport.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 	"OgreColourValue.h"
 	"OgreFrustum.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreTimer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreTimer.h
 	"OgrePrerequisites.h"
 	"OgrePlatform.h"
 	"WIN32/OgreTimerImp.h"
@@ -10770,39 +10773,39 @@
 	"OSX/OgreTimerImp.h"
 	"iPhone/OgreTimerImp.h"
 
-1260815259 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/WIN32/OgreTimerImp.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/WIN32/OgreTimerImp.h
 	"windows.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/GLX/OgreTimerImp.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/GLX/OgreTimerImp.h
 	"../OgrePrerequisites.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OSX/OgreTimerImp.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OSX/OgreTimerImp.h
 	"OgrePrerequisites.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderTexture.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderTexture.h
 	"OgrePrerequisites.h"
 	"OgreRenderTarget.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreConfigOptionMap.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreConfigOptionMap.h
 	"OgrePrerequisites.h"
 	"OgreStringVector.h"
 	"OgreString.h"
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderTargetListener.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderTargetListener.h
 	"OgrePrerequisites.h"
 
-1262116156 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderWindow.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderWindow.h
 	"OgrePrerequisites.h"
 	"OgreRenderTarget.h"
 
-1259507366 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreResourceBackgroundQueue.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreResourceBackgroundQueue.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 	"OgreSingleton.h"
 	"OgreResource.h"
 	"OgreWorkQueue.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRibbonTrail.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRibbonTrail.h
 	"OgrePrerequisites.h"
 	"OgreBillboardChain.h"
 	"OgreNode.h"
@@ -10810,7 +10813,7 @@
 	"OgreFrameListener.h"
 	"OgreControllerManager.h"
 
-1260551889 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRoot.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRoot.h
 	"OgrePrerequisites.h"
 	"OgreSingleton.h"
 	"OgreString.h"
@@ -10820,13 +10823,13 @@
 	"OgreWorkQueue.h"
 	<exception>
 
-1260535074 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSceneManagerEnumerator.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSceneManagerEnumerator.h
 	"OgrePrerequisites.h"
 	"OgreSceneManager.h"
 	"OgreSingleton.h"
 	"OgreIteratorWrappers.h"
 
-1262088525 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSceneManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSceneManager.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreSceneNode.h"
@@ -10850,7 +10853,7 @@
 	"OgreLodListener.h"
 	"OgreRenderSystem.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSceneQuery.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSceneQuery.h
 	"OgrePrerequisites.h"
 	"OgreAxisAlignedBox.h"
 	"OgreSphere.h"
@@ -10858,7 +10861,7 @@
 	"OgreRenderOperation.h"
 	"OgrePlaneBoundedVolume.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAutoParamDataSource.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreAutoParamDataSource.h
 	"OgrePrerequisites.h"
 	"OgreCommon.h"
 	"OgreMatrix4.h"
@@ -10866,25 +10869,25 @@
 	"OgreLight.h"
 	"OgreColourValue.h"
 
-1258976660 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRectangle2D.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRectangle2D.h
 	"OgrePrerequisites.h"
 	"OgreSimpleRenderable.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSimpleRenderable.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSimpleRenderable.h
 	"OgrePrerequisites.h"
 	"OgreMovableObject.h"
 	"OgreRenderable.h"
 	"OgreAxisAlignedBox.h"
 	"OgreMaterial.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowTextureManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowTextureManager.h
 	"OgrePrerequisites.h"
 	"OgreSingleton.h"
 	"OgrePixelFormat.h"
 	"OgreTexture.h"
 	"OgreIteratorWrappers.h"
 
-1261930250 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreInstancedGeometry.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreInstancedGeometry.h
 	"OgrePrerequisites.h"
 	"OgreMovableObject.h"
 	"OgreSimpleRenderable.h"
@@ -10895,35 +10898,35 @@
 	"OgreIteratorWrappers.h"
 	"OgreMesh.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSkeletonInstance.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSkeletonInstance.h
 	"OgrePrerequisites.h"
 	"OgreSkeleton.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSkeletonManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSkeletonManager.h
 	"OgrePrerequisites.h"
 	"OgreResourceManager.h"
 	"OgreSingleton.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSkeletonSerializer.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSkeletonSerializer.h
 	"OgrePrerequisites.h"
 	"OgreSkeleton.h"
 	"OgreSerializer.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreStaticGeometry.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreStaticGeometry.h
 	"OgrePrerequisites.h"
 	"OgreMovableObject.h"
 	"OgreRenderable.h"
 	"OgreMesh.h"
 	"OgreLodStrategy.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSubEntity.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSubEntity.h
 	"OgrePrerequisites.h"
 	"OgreString.h"
 	"OgreRenderable.h"
 	"OgreHardwareBufferManager.h"
 	"OgreResourceGroupManager.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSubMesh.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreSubMesh.h
 	"OgrePrerequisites.h"
 	"OgreVertexIndexData.h"
 	"OgreMaterial.h"
@@ -10933,13 +10936,13 @@
 	"OgreAnimationTrack.h"
 	"OgreResourceGroupManager.h"
 
-1255524530 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositor.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositor.h
 	"OgrePrerequisites.h"
 	"OgreIteratorWrappers.h"
 	"OgreResource.h"
 	"OgreTexture.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositorManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositorManager.h
 	"OgrePrerequisites.h"
 	"OgreResourceManager.h"
 	"OgreCompositor.h"
@@ -10951,87 +10954,87 @@
 	"OgrePrerequisites.h"
 	"OgreDataStream.h"
 
-1259335570 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositorChain.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositorChain.h
 	"OgrePrerequisites.h"
 	"OgreRenderTargetListener.h"
 	"OgreRenderQueueListener.h"
 	"OgreCompositorInstance.h"
 	"OgreCompositor.h"
 
-1255688186 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositorInstance.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositorInstance.h
 	"OgrePrerequisites.h"
 	"OgreMaterial.h"
 	"OgreTexture.h"
 	"OgreRenderQueue.h"
 	"OgreCompositionTechnique.h"
 
-1255524530 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositionTechnique.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositionTechnique.h
 	"OgrePrerequisites.h"
 	"OgrePixelFormat.h"
 	"OgreIteratorWrappers.h"
 
-1259690415 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositionPass.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositionPass.h
 	"OgrePrerequisites.h"
 	"OgreMaterial.h"
 	"OgreRenderSystem.h"
 	"OgreRenderQueue.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositionTargetPass.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreCompositionTargetPass.h
 	"OgrePrerequisites.h"
 	"OgreIteratorWrappers.h"
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreWindowEventUtilities.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreWindowEventUtilities.h
 	"OgrePrerequisites.h"
 	"OgrePlatform.h"
 	<windows.h>
 	<Carbon/Carbon.h>
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCameraSetupFocused.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCameraSetupFocused.h
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetup.h"
 	"OgrePolygon.h"
 	"OgreConvexBody.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePolygon.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgrePolygon.h
 	"OgrePrerequisites.h"
 	"OgreVector3.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreConvexBody.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreConvexBody.h
 	"OgrePrerequisites.h"
 	"OgrePolygon.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCameraSetupLiSPSM.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCameraSetupLiSPSM.h
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupFocused.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCameraSetupPlaneOptimal.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCameraSetupPlaneOptimal.h
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetup.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCameraSetupPSSM.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreShadowCameraSetupPSSM.h
 	"OgrePrerequisites.h"
 	"OgreShadowCameraSetupLiSPSM.h"
 
-1266551036 source:/home/sqeaky/physgame/physgameengine/src/physeventmanager.cpp
+1267405345 source:/home/sqeaky/physgame/physgameengine/src/physeventmanager.cpp
 	"physeventmanager.h"
 
-1263340904 source:/home/sqeaky/physgame/physgameengine/src/physeventrendertime.cpp
+1267405345 source:/home/sqeaky/physgame/physgameengine/src/physeventrendertime.cpp
 	"physdatatypes.h"
 	"physeventrendertime.h"
 
-1263340904 /home/sqeaky/physgame/physgameengine/src/physdatatypes.h
+1267405345 /home/sqeaky/physgame/physgameengine/src/physdatatypes.h
 
-1266199727 /home/sqeaky/physgame/physgameengine/src/physeventrendertime.h
+1267405345 /home/sqeaky/physgame/physgameengine/src/physeventrendertime.h
 	"physevent.h"
 	"physdatatypes.h"
 
-1262823879 source:/home/sqeaky/physgame/physgameengine/src/physvector.cpp
+1267405345 source:/home/sqeaky/physgame/physgameengine/src/physvector.cpp
 	"physvector.h"
 
-1262823879 /home/sqeaky/physgame/physgameengine/src/physvector.h
+1267405345 /home/sqeaky/physgame/physgameengine/src/physvector.h
 	"physdatatypes.h"
 
-1266548047 source:/home/sqeaky/physgame/physgameengine/src/physworld.cpp
+1267588886 source:/home/sqeaky/physgame/physgameengine/src/physworld.cpp
 	"physevent.h"
 	"physworld.h"
 	"physvector.h"
@@ -11040,19 +11043,20 @@
 	"physgamesettings.h"
 	"SDL.h"
 	"btBulletDynamicsCommon.h"
+	<Ogre.h>
 	<sstream>
 
-1263340904 source:/home/sqeaky/physgame/physgameengine/src/physworldcallbackmanager.cpp
+1267405345 source:/home/sqeaky/physgame/physgameengine/src/physworldcallbackmanager.cpp
 	"physworldcallbackmanager.h"
 	"physdatatypes.h"
 	"physworld.h"
 
-1262823879 source:/home/sqeaky/physgame/physgameengine/src/physgamesettings.cpp
+1267405345 source:/home/sqeaky/physgame/physgameengine/src/physgamesettings.cpp
 	"physworld.h"
 	"physeventmanager.h"
 	"physgamesettings.h"
 
-1262823879 /home/sqeaky/physgame/physgameengine/src/physgamesettings.h
+1267405345 /home/sqeaky/physgame/physgameengine/src/physgamesettings.h
 
 1262823879 source:/home/sqeaky/Projects/physgame/physgameengine/src/physgamesettings.cpp
 	"physworld.h"
@@ -11061,7 +11065,7 @@
 
 1262823879 /home/sqeaky/Projects/physgame/physgameengine/src/physgamesettings.h
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/btBulletDynamicsCommon.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/btBulletDynamicsCommon.h
 	"btBulletCollisionCommon.h"
 	"BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
 	"BulletDynamics/Dynamics/btContinuousDynamicsWorld.h"
@@ -11078,7 +11082,7 @@
 	"BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
 	"BulletDynamics/Vehicle/btRaycastVehicle.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/btBulletCollisionCommon.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/btBulletCollisionCommon.h
 	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
 	"BulletCollision/CollisionDispatch/btCollisionObject.h"
 	"BulletCollision/CollisionShapes/btBoxShape.h"
@@ -11111,7 +11115,7 @@
 	"LinearMath/btQuickprof.h"
 	"LinearMath/btIDebugDraw.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionWorld.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionWorld.h
 	"LinearMath/btVector3.h"
 	"LinearMath/btTransform.h"
 	"btCollisionObject.h"
@@ -11119,12 +11123,12 @@
 	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
 	"LinearMath/btAlignedObjectArray.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btVector3.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btVector3.h
 	"btScalar.h"
 	"btScalar.h"
 	"btMinMax.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btScalar.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btScalar.h
 	<math.h>
 	<stdlib.h>
 	<cstdlib>
@@ -11139,46 +11143,46 @@
 	<assert.h>
 	<assert.h>
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btMinMax.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btMinMax.h
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btTransform.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btTransform.h
 	"btVector3.h"
 	"btMatrix3x3.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btMatrix3x3.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btMatrix3x3.h
 	"btScalar.h"
 	"btVector3.h"
 	"btQuaternion.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btQuaternion.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btQuaternion.h
 	"btVector3.h"
 	"btQuadWord.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btQuadWord.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btQuadWord.h
 	"btScalar.h"
 	"btMinMax.h"
 	<altivec.h>
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionObject.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionObject.h
 	"LinearMath/btTransform.h"
 	"LinearMath/btMotionState.h"
 	"LinearMath/btAlignedAllocator.h"
 	"LinearMath/btAlignedObjectArray.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btMotionState.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btMotionState.h
 	"btTransform.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btAlignedAllocator.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btAlignedAllocator.h
 	"btScalar.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btAlignedObjectArray.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btAlignedObjectArray.h
 	"btScalar.h"
 	"btAlignedAllocator.h"
 	<memory.h>
 	<string.h>
 	<new>
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionDispatcher.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionDispatcher.h
 	"BulletCollision/BroadphaseCollision/btDispatcher.h"
 	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
 	"BulletCollision/CollisionDispatch/btManifoldResult.h"
@@ -11186,67 +11190,67 @@
 	"LinearMath/btAlignedObjectArray.h"
 	"btCollisionCreateFunc.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btDispatcher.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btDispatcher.h
 	"LinearMath/btScalar.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/NarrowPhaseCollision/btPersistentManifold.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/NarrowPhaseCollision/btPersistentManifold.h
 	"LinearMath/btVector3.h"
 	"LinearMath/btTransform.h"
 	"btManifoldPoint.h"
 	"LinearMath/btAlignedAllocator.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/NarrowPhaseCollision/btManifoldPoint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/NarrowPhaseCollision/btManifoldPoint.h
 	"LinearMath/btVector3.h"
 	"LinearMath/btTransformUtil.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btTransformUtil.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btTransformUtil.h
 	"btTransform.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btManifoldResult.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btManifoldResult.h
 	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
 	"BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h"
 	"LinearMath/btTransform.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h
 	"LinearMath/btTransform.h"
 	"LinearMath/btVector3.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btBroadphaseProxy.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btBroadphaseProxy.h
 	"LinearMath/btScalar.h"
 	"LinearMath/btVector3.h"
 	"LinearMath/btAlignedAllocator.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionCreateFunc.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionCreateFunc.h
 	"LinearMath/btAlignedObjectArray.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btOverlappingPairCache.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btOverlappingPairCache.h
 	"btBroadphaseInterface.h"
 	"btBroadphaseProxy.h"
 	"btOverlappingPairCallback.h"
 	"LinearMath/btAlignedObjectArray.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btBroadphaseInterface.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btBroadphaseInterface.h
 	"btBroadphaseProxy.h"
 	"LinearMath/btVector3.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btOverlappingPairCallback.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btOverlappingPairCallback.h
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btBoxShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btBoxShape.h
 	"btPolyhedralConvexShape.h"
 	"btCollisionMargin.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 	"LinearMath/btVector3.h"
 	"LinearMath/btMinMax.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btPolyhedralConvexShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btPolyhedralConvexShape.h
 	"LinearMath/btMatrix3x3.h"
 	"btConvexInternalShape.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexInternalShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexInternalShape.h
 	"btConvexShape.h"
 	"LinearMath/btAabbUtil2.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexShape.h
 	"btCollisionShape.h"
 	"LinearMath/btVector3.h"
 	"LinearMath/btTransform.h"
@@ -11254,84 +11258,84 @@
 	"btCollisionMargin.h"
 	"LinearMath/btAlignedAllocator.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCollisionShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCollisionShape.h
 	"LinearMath/btTransform.h"
 	"LinearMath/btVector3.h"
 	"LinearMath/btMatrix3x3.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCollisionMargin.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCollisionMargin.h
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btAabbUtil2.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btAabbUtil2.h
 	"btTransform.h"
 	"btVector3.h"
 	"btMinMax.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btSphereShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btSphereShape.h
 	"btConvexInternalShape.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCapsuleShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCapsuleShape.h
 	"btConvexInternalShape.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCylinderShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCylinderShape.h
 	"btBoxShape.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 	"LinearMath/btVector3.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConeShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConeShape.h
 	"btConvexInternalShape.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btStaticPlaneShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btStaticPlaneShape.h
 	"btConcaveShape.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConcaveShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConcaveShape.h
 	"btCollisionShape.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 	"btTriangleCallback.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleCallback.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleCallback.h
 	"LinearMath/btVector3.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexHullShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexHullShape.h
 	"btPolyhedralConvexShape.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 	"LinearMath/btAlignedObjectArray.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleMesh.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleMesh.h
 	"btTriangleIndexVertexArray.h"
 	"LinearMath/btVector3.h"
 	"LinearMath/btAlignedObjectArray.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h
 	"btStridingMeshInterface.h"
 	"LinearMath/btAlignedObjectArray.h"
 	"LinearMath/btScalar.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btStridingMeshInterface.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btStridingMeshInterface.h
 	"LinearMath/btVector3.h"
 	"btTriangleCallback.h"
 	"btConcaveShape.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h
 	"btPolyhedralConvexShape.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h
 	"btTriangleMeshShape.h"
 	"btOptimizedBvh.h"
 	"LinearMath/btAlignedAllocator.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleMeshShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTriangleMeshShape.h
 	"btConcaveShape.h"
 	"btStridingMeshInterface.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btOptimizedBvh.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btOptimizedBvh.h
 	"BulletCollision/BroadphaseCollision/btQuantizedBvh.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btQuantizedBvh.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btQuantizedBvh.h
 	<stdio.h>
 	<stdlib.h>
 	"LinearMath/btVector3.h"
@@ -11339,7 +11343,7 @@
 	"LinearMath/btAlignedAllocator.h"
 	"LinearMath/btAlignedObjectArray.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCompoundShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btCompoundShape.h
 	"btCollisionShape.h"
 	"LinearMath/btVector3.h"
 	"LinearMath/btTransform.h"
@@ -11347,49 +11351,49 @@
 	"btCollisionMargin.h"
 	"LinearMath/btAlignedObjectArray.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTetrahedronShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btTetrahedronShape.h
 	"btPolyhedralConvexShape.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btEmptyShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btEmptyShape.h
 	"btConcaveShape.h"
 	"LinearMath/btVector3.h"
 	"LinearMath/btTransform.h"
 	"LinearMath/btMatrix3x3.h"
 	"btCollisionMargin.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btMultiSphereShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btMultiSphereShape.h
 	"btConvexInternalShape.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 	"LinearMath/btAlignedObjectArray.h"
 	"LinearMath/btAabbUtil2.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btUniformScalingShape.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionShapes/btUniformScalingShape.h
 	"btConvexShape.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.h
 	"btActivatingCollisionAlgorithm.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 	"BulletCollision/CollisionDispatch/btCollisionCreateFunc.h"
 	"btCollisionDispatcher.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btActivatingCollisionAlgorithm.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btActivatingCollisionAlgorithm.h
 	"BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h
 	"LinearMath/btScalar.h"
 	"LinearMath/btAlignedObjectArray.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h
 	"btCollisionConfiguration.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionConfiguration.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/CollisionDispatch/btCollisionConfiguration.h
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btSimpleBroadphase.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btSimpleBroadphase.h
 	"btOverlappingPairCache.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btAxisSweep3.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btAxisSweep3.h
 	"LinearMath/btVector3.h"
 	"btOverlappingPairCache.h"
 	"btBroadphaseInterface.h"
@@ -11398,12 +11402,12 @@
 	"btDbvtBroadphase.h"
 	<stdio.h>
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btDbvtBroadphase.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btDbvtBroadphase.h
 	"BulletCollision/BroadphaseCollision/btDbvt.h"
 	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
 	"LinearMath/btQuickprof.h"
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btDbvt.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btDbvt.h
 	"LinearMath/btAlignedObjectArray.h"
 	"LinearMath/btVector3.h"
 	"LinearMath/btTransform.h"
@@ -11412,7 +11416,7 @@
 	<memory.h>
 	<string.h>
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btQuickprof.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btQuickprof.h
 	"btScalar.h"
 	"LinearMath/btAlignedAllocator.h"
 	<new>
@@ -11425,102 +11429,102 @@
 	<time.h>
 	<sys/time.h>
 
-1262823874 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btMultiSapBroadphase.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletCollision/BroadphaseCollision/btMultiSapBroadphase.h
 	"btBroadphaseInterface.h"
 	"LinearMath/btAlignedObjectArray.h"
 	"btOverlappingPairCache.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btDefaultMotionState.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btDefaultMotionState.h
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btIDebugDraw.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/LinearMath/btIDebugDraw.h
 	"btVector3.h"
 	"btTransform.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h
 	"btDynamicsWorld.h"
 	"LinearMath/btAlignedObjectArray.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btDynamicsWorld.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btDynamicsWorld.h
 	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
 	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btContactSolverInfo.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btContactSolverInfo.h
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btContinuousDynamicsWorld.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btContinuousDynamicsWorld.h
 	"btDiscreteDynamicsWorld.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btSimpleDynamicsWorld.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btSimpleDynamicsWorld.h
 	"btDynamicsWorld.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btRigidBody.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btRigidBody.h
 	"LinearMath/btAlignedObjectArray.h"
 	"LinearMath/btTransform.h"
 	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 	"BulletCollision/CollisionDispatch/btCollisionObject.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h
 	"LinearMath/btVector3.h"
 	"btJacobianEntry.h"
 	"btTypedConstraint.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btJacobianEntry.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btJacobianEntry.h
 	"LinearMath/btVector3.h"
 	"BulletDynamics/Dynamics/btRigidBody.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btTypedConstraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btTypedConstraint.h
 	"LinearMath/btScalar.h"
 	"btSolverConstraint.h"
 	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSolverConstraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSolverConstraint.h
 	"LinearMath/btVector3.h"
 	"LinearMath/btMatrix3x3.h"
 	"btJacobianEntry.h"
 	"btSolverBody.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSolverBody.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSolverBody.h
 	"LinearMath/btVector3.h"
 	"LinearMath/btMatrix3x3.h"
 	"BulletDynamics/Dynamics/btRigidBody.h"
 	"LinearMath/btAlignedAllocator.h"
 	"LinearMath/btTransformUtil.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btHingeConstraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btHingeConstraint.h
 	"LinearMath/btVector3.h"
 	"btJacobianEntry.h"
 	"btTypedConstraint.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btConeTwistConstraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btConeTwistConstraint.h
 	"LinearMath/btVector3.h"
 	"btJacobianEntry.h"
 	"btTypedConstraint.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h
 	"LinearMath/btVector3.h"
 	"btJacobianEntry.h"
 	"btTypedConstraint.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSliderConstraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSliderConstraint.h
 	"LinearMath/btVector3.h"
 	"btJacobianEntry.h"
 	"btTypedConstraint.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h
 	"LinearMath/btVector3.h"
 	"btTypedConstraint.h"
 	"btGeneric6DofConstraint.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btUniversalConstraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btUniversalConstraint.h
 	"LinearMath/btVector3.h"
 	"btTypedConstraint.h"
 	"btGeneric6DofConstraint.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btHinge2Constraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btHinge2Constraint.h
 	"LinearMath/btVector3.h"
 	"btTypedConstraint.h"
 	"btGeneric6DofSpringConstraint.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h
 	"btConstraintSolver.h"
 	"btContactConstraint.h"
 	"btSolverBody.h"
@@ -11528,16 +11532,16 @@
 	"btTypedConstraint.h"
 	"BulletCollision/NarrowPhaseCollision/btManifoldPoint.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btConstraintSolver.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btConstraintSolver.h
 	"LinearMath/btScalar.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btContactConstraint.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/ConstraintSolver/btContactConstraint.h
 	"LinearMath/btVector3.h"
 	"btJacobianEntry.h"
 	"btTypedConstraint.h"
 	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Vehicle/btRaycastVehicle.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Vehicle/btRaycastVehicle.h
 	"BulletDynamics/Dynamics/btRigidBody.h"
 	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
 	"btVehicleRaycaster.h"
@@ -11545,14 +11549,14 @@
 	"btWheelInfo.h"
 	"BulletDynamics/Dynamics/btActionInterface.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Vehicle/btVehicleRaycaster.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Vehicle/btVehicleRaycaster.h
 	"LinearMath/btVector3.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Vehicle/btWheelInfo.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Vehicle/btWheelInfo.h
 	"LinearMath/btVector3.h"
 	"LinearMath/btTransform.h"
 
-1262823875 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btActionInterface.h
+1267405343 /home/sqeaky/physgame/physgameengine/libincludes/linux/bullet/BulletDynamics/Dynamics/btActionInterface.h
 	"LinearMath/btScalar.h"
 
 1262823875 /home/sqeaky/Projects/physgame/physgameengine/libincludes/linux/bullet/btBulletDynamicsCommon.h
@@ -15778,28 +15782,28 @@
 	<Ph.h>
 	"close_code.h"
 
-1265945115 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBuildSettings.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreBuildSettings.h
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadDefines.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadDefines.h
 	"OgreThreadDefinesNone.h"
 	"OgreThreadDefinesBoost.h"
 	"OgreThreadDefinesPoco.h"
 	"OgreThreadDefinesTBB.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadDefinesNone.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadDefinesNone.h
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadDefinesBoost.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadDefinesBoost.h
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadDefinesPoco.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadDefinesPoco.h
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadDefinesTBB.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadDefinesTBB.h
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadHeaders.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadHeaders.h
 	"OgreThreadHeadersBoost.h"
 	"OgreThreadHeadersPoco.h"
 	"OgreThreadHeadersTBB.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadHeadersBoost.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadHeadersBoost.h
 	<boost/thread/tss.hpp>
 	<boost/thread/recursive_mutex.hpp>
 	<boost/thread/condition.hpp>
@@ -15807,7 +15811,7 @@
 	<boost/thread/shared_mutex.hpp>
 	<boost/thread/locks.hpp>
 
-1261038931 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadHeadersPoco.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadHeadersPoco.h
 	<Poco/ThreadLocal.h>
 	<Poco/Mutex.h>
 	<Poco/Condition.h>
@@ -15815,7 +15819,7 @@
 	<Poco/Runnable.h>
 	<Poco/RWLock.h>
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadHeadersTBB.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/Threading/OgreThreadHeadersTBB.h
 	<tbb/recursive_mutex.h>
 	<tbb/task_group.h>
 	<tbb/task_scheduler_init.h>
@@ -15823,20 +15827,20 @@
 	<tbb/enumerable_thread_specific.h>
 	<tbb/tbb_thread.h>
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHeaderPrefix.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHeaderPrefix.h
 	"OgrePrerequisites.h"
 
-1258313510 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHeaderSuffix.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreHeaderSuffix.h
 	"OgrePrerequisites.h"
 
-1256209231 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryNedPooling.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreMemoryNedPooling.h
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreIteratorWrapper.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreIteratorWrapper.h
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreIteratorRange.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreIteratorRange.h
 	<boost/range.hpp>
 
-1258997932 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreGpuProgramParams.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreGpuProgramParams.h
 	"OgrePrerequisites.h"
 	"OgreSharedPtr.h"
 	"OgreIteratorWrappers.h"
@@ -15844,39 +15848,39 @@
 	"OgreRenderOperation.h"
 	"OgreAny.h"
 
-1256224328 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreUserObjectBindings.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreUserObjectBindings.h
 	"OgrePrerequisites.h"
 	"OgreAny.h"
 
-1253042806 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderObjectListener.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreRenderObjectListener.h
 	"OgrePrerequisites.h"
 	"OgreRenderable.h"
 	"OgrePass.h"
 
-1262256461 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/iPhone/OgreTimerImp.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/iPhone/OgreTimerImp.h
 	"OgrePrerequisites.h"
 
-1261057521 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreWorkQueue.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreWorkQueue.h
 	"OgrePrerequisites.h"
 	"OgreAtomicWrappers.h"
 	"OgreAny.h"
 
-1258296539 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLodListener.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLodListener.h
 	"OgrePrerequisites.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLodStrategyManager.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLodStrategyManager.h
 	"OgrePrerequisites.h"
 	"OgreLodStrategy.h"
 	"OgreSingleton.h"
 	"OgreIteratorWrappers.h"
 
-1253024373 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLodStrategy.h
+1267405344 /home/sqeaky/physgame/physgameengine/libincludes/linux/ogre/OgreLodStrategy.h
 	"OgrePrerequisites.h"
 	"OgreMesh.h"
 	"OgreMovableObject.h"
 	"OgreCamera.h"
 
-1266546875 /home/sqeaky/physgame/physgameengine/src/physeventuserinput.h
+1267405345 /home/sqeaky/physgame/physgameengine/src/physeventuserinput.h
 	<vector>
 	"physevent.h"
 	"physdatatypes.h"
@@ -15984,7 +15988,7 @@
 	"physevent.h"
 	"physdatatypes.h"
 
-1266546873 source:/home/sqeaky/physgame/physgameengine/src/physeventuserinput.cpp
+1267405345 source:/home/sqeaky/physgame/physgameengine/src/physeventuserinput.cpp
 	"physeventuserinput.h"
 	"physevent.h"
 	<stdarg.h>

@@ -88,6 +88,7 @@ void WaitMilliseconds(PhysWhole WaitTime)
 
 void RenderPhysWorld(physworld *TheWorld)
 {
+    //TheWorld->OgreRoot->renderOneFrame();
     #ifndef WINDOWS
        TheWorld->OgreGameWindow->update(true);
     #else
