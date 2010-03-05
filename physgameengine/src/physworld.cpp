@@ -174,7 +174,7 @@ void physworld::GameInit()
 	bool Callbackbools[] = {true, true, true, true};
 
 	//Used for tracking times to prevent Infinite render loops in graphically simple games
-	PhysWhole Times[] = {0,0,0,0};
+	//PhysWhole Times[] = {0,0,0,0};
 
 	//TODO finish test code
 	this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
@@ -182,6 +182,8 @@ void physworld::GameInit()
 	Ogre::SceneNode *node1 = this->OgreSceneManager->getRootSceneNode()->createChildSceneNode( "RobotNode" );
 	node1->attachObject( ent1 );
 
+    PhysWhole FrameDelay = 0;
+    PhysWhole FrameTime = 0;
 
 	//This is the beginning of the mainloop
 	//As long as all the CallBacks return true the game continues
@@ -191,42 +193,43 @@ void physworld::GameInit()
         //However we will only do this if a callback is set
         if(this->CallBacks->IsPreInputCallbackSet())
         {
-			Times[0]=RenderTimer.getMilliseconds();
-			this->Events->AddEvent(new PhysEventRenderTime(Times[0]));
+			this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
 			Callbackbools[0] = this->CallBacks->PreInput();
 			this->DoMainLoopInputBuffering();
         }
 
 		if(this->CallBacks->IsPrePhysicsCallbackSet())
         {
-			Times[1]=RenderTimer.getMilliseconds();
-			this->Events->AddEvent(new PhysEventRenderTime(Times[1]));
+            this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
 			Callbackbools[1] = this->CallBacks->PrePhysics();
 			this->DoMainLoopPhysics();
         }
 
 		if(this->CallBacks->IsPreRenderCallbackSet())
         {
-        	Times[2]=RenderTimer.getMilliseconds();
-			this->Events->AddEvent(new PhysEventRenderTime(Times[2]));
+            this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
 			Callbackbools[2] = this->CallBacks->PreRender();
         }
 
 		//Render the frame and figure the amount of time it took
-		//this->OgreRoot->renderOneFrame();
 		this->DoMainLoopRender();
-		PhysWhole FrameTime = RenderTimer.getMillisecondsCPU(); //Limit frame rate to 62.5
+		FrameTime = RenderTimer.getMilliseconds(); //Limit frame rate to 62.5
 		RenderTimer.reset();
-		if(16>FrameTime)			//use 16666 for microseconds
-		{
-			 SDL_Delay(16-FrameTime);
-			//WaitMilliseconds( 16-FrameTime );
-		}
+		if(16>FrameTime){               		//use 16666 for microseconds
+		    FrameDelay++;
+			WaitMilliseconds( FrameDelay );
+		}else if(16==FrameTime){
+        }else{
+            if (0<FrameDelay){
+                FrameDelay--;
+            }else{
+                FrameDelay=0;
+            }
+        }
 
 		if(this->CallBacks->IsPostRenderCallbackSet())
         {
-        	Times[3]=RenderTimer.getMilliseconds();
-			this->Events->AddEvent(new PhysEventRenderTime(Times[3]));
+			this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
 			Callbackbools[3] = this->CallBacks->PostRender();
         }
 
