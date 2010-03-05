@@ -24,7 +24,6 @@
 #include "physdatatypes.h"
 
 #include <string>
-#include <map>
 
 using namespace std;
 
