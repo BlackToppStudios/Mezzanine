@@ -1,0 +1,12 @@
+<area shape="rect" href="$classOgre_1_1IntersectionSceneQuery.html" title="Separate SceneQuery class to query for pairs of objects which are possibly intersecting..." alt="" coords="357,5,571,32">
+<area shape="rect" href="$classOgre_1_1RaySceneQuery.html" title="Specialises the SceneQuery class for querying along a ray." alt="" coords="384,56,544,83">
+<area shape="rect" href="$classOgre_1_1RegionSceneQuery.html" title="Abstract class defining a query which returns single results from a region." alt="" coords="375,132,553,159">
+<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="7,56,121,83">
+<area shape="rect" href="$classOgre_1_1DefaultIntersectionSceneQuery.html" title="Default implementation of IntersectionSceneQuery." alt="" coords="640,5,899,32">
+<area shape="rect" href="$classOgre_1_1DefaultRaySceneQuery.html" title="Default implementation of RaySceneQuery." alt="" coords="665,56,873,83">
+<area shape="rect" href="$classOgre_1_1AxisAlignedBoxSceneQuery.html" title="Specialises the SceneQuery class for querying within an axis aligned box." alt="" coords="652,107,887,133">
+<area shape="rect" href="$classOgre_1_1PlaneBoundedVolumeListSceneQuery.html" title="Specialises the SceneQuery class for querying within a plane&#45;bounded volume." alt="" coords="620,157,919,184">
+<area shape="rect" href="$classOgre_1_1SphereSceneQuery.html" title="Specialises the SceneQuery class for querying within a sphere." alt="" coords="677,208,861,235">
+<area shape="rect" href="$classOgre_1_1DefaultAxisAlignedBoxSceneQuery.html" title="Default implementation of AxisAlignedBoxSceneQuery." alt="" coords="1001,107,1281,133">
+<area shape="rect" href="$classOgre_1_1DefaultPlaneBoundedVolumeListSceneQuery.html" title="Default implementation of PlaneBoundedVolumeListSceneQuery." alt="" coords="968,157,1315,184">
+<area shape="rect" href="$classOgre_1_1DefaultSphereSceneQuery.html" title="Default implementation of SphereSceneQuery." alt="" coords="1027,208,1256,235">

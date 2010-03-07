@@ -1,0 +1,13 @@
+<area shape="rect" href="$classOgre_1_1SharedPtr.html" title="Reference&#45;counted shared pointer, used for objects where implicit destruction is..." alt="" coords="7,284,167,311">
+<area shape="rect" href="$classOgre_1_1CompositorPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to CompositorPtr." alt="" coords="272,6,424,32">
+<area shape="rect" href="$classOgre_1_1FontPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to FontPtr." alt="" coords="295,56,401,83">
+<area shape="rect" href="$classOgre_1_1GpuProgramPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to GpuProgramPtr." alt="" coords="268,107,428,134">
+<area shape="rect" href="$classOgre_1_1HardwareIndexBufferSharedPtr.html" title="Shared pointer implementation used to share index buffers." alt="" coords="220,158,476,184">
+<area shape="rect" href="$classOgre_1_1HardwarePixelBufferSharedPtr.html" title="Shared pointer implementation used to share pixel buffers." alt="" coords="223,208,473,235">
+<area shape="rect" href="$classOgre_1_1HardwareVertexBufferSharedPtr.html" title="Shared pointer implementation used to share index buffers." alt="" coords="216,259,480,286">
+<area shape="rect" href="$classOgre_1_1HighLevelGpuProgramPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to HighLevelGpuProgramPtr..." alt="" coords="237,310,459,336">
+<area shape="rect" href="$classOgre_1_1MaterialPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to MaterialPtr." alt="" coords="284,360,412,387">
+<area shape="rect" href="$classOgre_1_1MeshPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to MeshPtr." alt="" coords="292,411,404,438">
+<area shape="rect" href="$classOgre_1_1PatchMeshPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to PatchMeshPtr." alt="" coords="275,462,421,488">
+<area shape="rect" href="$classOgre_1_1SkeletonPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to SkeletonPtr." alt="" coords="281,512,415,539">
+<area shape="rect" href="$classOgre_1_1TexturePtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to TexturePtr." alt="" coords="287,563,409,590">

@@ -1,0 +1,12 @@
+<area shape="rect" href="$classOgre_1_1CompositorPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to CompositorPtr." alt="" coords="305,6,601,32">
+<area shape="rect" href="$classOgre_1_1FontPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to FontPtr." alt="" coords="352,56,555,83">
+<area shape="rect" href="$classOgre_1_1GpuProgramPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to GpuProgramPtr." alt="" coords="299,107,608,134">
+<area shape="rect" href="$classOgre_1_1HardwareIndexBufferSharedPtr.html" title="Shared pointer implementation used to share index buffers." alt="" coords="224,158,683,184">
+<area shape="rect" href="$classOgre_1_1HardwarePixelBufferSharedPtr.html" title="Shared pointer implementation used to share pixel buffers." alt="" coords="229,208,677,235">
+<area shape="rect" href="$classOgre_1_1HardwareVertexBufferSharedPtr.html" title="Shared pointer implementation used to share index buffers." alt="" coords="217,259,689,286">
+<area shape="rect" href="$classOgre_1_1HighLevelGpuProgramPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to HighLevelGpuProgramPtr..." alt="" coords="237,310,669,336">
+<area shape="rect" href="$classOgre_1_1MaterialPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to MaterialPtr." alt="" coords="329,360,577,387">
+<area shape="rect" href="$classOgre_1_1MeshPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to MeshPtr." alt="" coords="345,411,561,438">
+<area shape="rect" href="$classOgre_1_1PatchMeshPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to PatchMeshPtr." alt="" coords="311,462,596,488">
+<area shape="rect" href="$classOgre_1_1SkeletonPtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to SkeletonPtr." alt="" coords="324,512,583,539">
+<area shape="rect" href="$classOgre_1_1TexturePtr.html" title="Specialisation of SharedPtr to allow SharedPtr to be assigned to TexturePtr." alt="" coords="333,563,573,590">

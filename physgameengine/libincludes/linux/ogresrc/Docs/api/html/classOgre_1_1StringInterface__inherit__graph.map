@@ -1,0 +1,21 @@
+<area shape="rect" href="$classOgre_1_1ExternalTextureSource.html" title="IMPORTANT: **Plugins must override default dictionary name!** Base class that texture..." alt="" coords="213,6,416,32">
+<area shape="rect" href="$classOgre_1_1OverlayElement.html" title="Abstract definition of a 2D element to be displayed in an Overlay." alt="" coords="235,56,395,83">
+<area shape="rect" href="$classOgre_1_1ParticleAffector.html" title="Abstract class defining the interface to be implemented by particle affectors." alt="" coords="237,107,392,134">
+<area shape="rect" href="$classOgre_1_1ParticleEmitter.html" title="Abstract class defining the interface to be implemented by particle emitters." alt="" coords="239,158,391,184">
+<area shape="rect" href="$classOgre_1_1ParticleSystem.html" title="Class defining particle system based special effects." alt="" coords="237,208,392,235">
+<area shape="rect" href="$classOgre_1_1ParticleSystemRenderer.html" title="Abstract class defining the interface required to be implemented by classes which..." alt="" coords="209,259,420,286">
+<area shape="rect" href="$classOgre_1_1Resource.html" title="Abstract class representing a loadable resource (e.g." alt="" coords="256,335,373,362">
+<area shape="rect" href="$classOgre_1_1OverlayContainer.html" title="A 2D element which contains other OverlayElement instances." alt="" coords="493,43,664,70">
+<area shape="rect" href="$classOgre_1_1TextAreaOverlayElement.html" title="This class implements an overlay element which contains simple unformatted text." alt="" coords="471,94,687,120">
+<area shape="rect" href="$classOgre_1_1PanelOverlayElement.html" title="OverlayElement representing a flat, single&#45;material (or transparent) panel which..." alt="" coords="741,43,936,70">
+<area shape="rect" href="$classOgre_1_1BillboardParticleRenderer.html" title="Specialisation of ParticleSystemRenderer to render particles using a BillboardSet..." alt="" coords="469,144,688,171">
+<area shape="rect" href="$classOgre_1_1Compositor.html" title="Class representing a Compositor object." alt="" coords="512,195,645,222">
+<area shape="rect" href="$classOgre_1_1Font.html" title="Class representing a font in the system." alt="" coords="535,246,623,272">
+<area shape="rect" href="$classOgre_1_1GpuProgram.html" title="Defines a program which runs on the GPU such as a vertex or fragment program." alt="" coords="508,296,649,323">
+<area shape="rect" href="$classOgre_1_1Material.html" title="Class encapsulates rendering properties of an object." alt="" coords="523,347,635,374">
+<area shape="rect" href="$classOgre_1_1Mesh.html" title="Ogre::Mesh" alt="" coords="532,398,625,424">
+<area shape="rect" href="$classOgre_1_1Skeleton.html" title="A collection of Bone objects used to animate a skinned mesh." alt="" coords="521,448,636,475">
+<area shape="rect" href="$classOgre_1_1Texture.html" title="Abstract class representing a Texture resource." alt="" coords="525,499,632,526">
+<area shape="rect" href="$classOgre_1_1HighLevelGpuProgram.html" title="Abstract base class representing a high&#45;level program (a vertex or fragment program)..." alt="" coords="737,296,940,323">
+<area shape="rect" href="$classOgre_1_1PatchMesh.html" title="Patch specialisation of Mesh." alt="" coords="775,398,903,424">
+<area shape="rect" href="$classOgre_1_1SkeletonInstance.html" title="A SkeletonInstance is a single instance of a Skeleton used by a world object." alt="" coords="753,448,924,475">

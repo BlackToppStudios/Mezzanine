@@ -1,0 +1,4 @@
+<area shape="rect" href="$classOgre_1_1RaySceneQuery.html" title="Specialises the SceneQuery class for querying along a ray." alt="" coords="93,161,253,188">
+<area shape="rect" href="$classOgre_1_1SceneQuery.html" title="A class for performing queries on a scene." alt="" coords="5,84,144,111">
+<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="17,7,132,33">
+<area shape="rect" href="$classOgre_1_1RaySceneQueryListener.html" title="Alternative listener class for dealing with RaySceneQuery." alt="" coords="168,84,379,111">

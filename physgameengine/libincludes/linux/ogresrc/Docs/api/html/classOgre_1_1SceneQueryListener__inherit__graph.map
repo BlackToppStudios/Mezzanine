@@ -1,0 +1,8 @@
+<area shape="rect" href="$classOgre_1_1RegionSceneQuery.html" title="Abstract class defining a query which returns single results from a region." alt="" coords="347,56,525,83">
+<area shape="rect" href="$classOgre_1_1SceneManager_1_1ShadowCasterSceneQueryListener.html" title="Inner class to use as callback for shadow caster scene query." alt="" coords="244,107,628,134">
+<area shape="rect" href="$classOgre_1_1AxisAlignedBoxSceneQuery.html" title="Specialises the SceneQuery class for querying within an axis aligned box." alt="" coords="711,6,945,32">
+<area shape="rect" href="$classOgre_1_1PlaneBoundedVolumeListSceneQuery.html" title="Specialises the SceneQuery class for querying within a plane&#45;bounded volume." alt="" coords="679,56,977,83">
+<area shape="rect" href="$classOgre_1_1SphereSceneQuery.html" title="Specialises the SceneQuery class for querying within a sphere." alt="" coords="736,107,920,134">
+<area shape="rect" href="$classOgre_1_1DefaultAxisAlignedBoxSceneQuery.html" title="Default implementation of AxisAlignedBoxSceneQuery." alt="" coords="1060,6,1340,32">
+<area shape="rect" href="$classOgre_1_1DefaultPlaneBoundedVolumeListSceneQuery.html" title="Default implementation of PlaneBoundedVolumeListSceneQuery." alt="" coords="1027,56,1373,83">
+<area shape="rect" href="$classOgre_1_1DefaultSphereSceneQuery.html" title="Default implementation of SphereSceneQuery." alt="" coords="1085,107,1315,134">

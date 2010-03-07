@@ -1,0 +1,6 @@
+<area shape="rect" href="$classOgre_1_1DefaultShadowCameraSetup.html" title="Implements default shadow camera setup." alt="" coords="455,6,700,32">
+<area shape="rect" href="$classOgre_1_1FocusedShadowCameraSetup.html" title="Implements the uniform shadow mapping algorithm in focused mode." alt="" coords="452,56,703,83">
+<area shape="rect" href="$classOgre_1_1PlaneOptimalShadowCameraSetup.html" title="Implements the plane optimal shadow camera algorithm." alt="" coords="436,107,719,134">
+<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="7,56,137,83">
+<area shape="rect" href="$classOgre_1_1LiSPSMShadowCameraSetup.html" title="Implements the Light Space Perspective Shadow Mapping Algorithm." alt="" coords="769,56,1015,83">
+<area shape="rect" href="$classOgre_1_1PSSMShadowCameraSetup.html" title="Parallel Split Shadow Map (PSSM) shadow camera setup." alt="" coords="1065,56,1300,83">

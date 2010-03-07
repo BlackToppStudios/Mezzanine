@@ -1,0 +1,5 @@
+<area shape="rect" href="$classOgre_1_1DefaultPlaneBoundedVolumeListSceneQuery.html" title="Default implementation of PlaneBoundedVolumeListSceneQuery." alt="" coords="5,316,352,342">
+<area shape="rect" href="$classOgre_1_1RegionSceneQuery.html" title="Abstract class defining a query which returns single results from a region." alt="" coords="89,161,268,188">
+<area shape="rect" href="$classOgre_1_1SceneQuery.html" title="A class for performing queries on a scene." alt="" coords="16,84,155,110">
+<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="28,6,143,33">
+<area shape="rect" href="$classOgre_1_1SceneQueryListener.html" title="This optional class allows you to receive per&#45;result callbacks from SceneQuery executions..." alt="" coords="179,84,368,110">

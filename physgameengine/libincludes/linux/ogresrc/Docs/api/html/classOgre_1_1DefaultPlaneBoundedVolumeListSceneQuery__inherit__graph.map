@@ -1,0 +1,4 @@
+<area shape="rect" href="$classOgre_1_1PlaneBoundedVolumeListSceneQuery.html" title="Specialises the SceneQuery class for querying within a plane&#45;bounded volume." alt="" coords="29,161,328,188">
+<area shape="rect" href="$classOgre_1_1RegionSceneQuery.html" title="Abstract class defining a query which returns single results from a region." alt="" coords="89,84,268,111">
+<area shape="rect" href="$classOgre_1_1SceneQuery.html" title="A class for performing queries on a scene." alt="" coords="16,7,155,33">
+<area shape="rect" href="$classOgre_1_1SceneQueryListener.html" title="This optional class allows you to receive per&#45;result callbacks from SceneQuery executions..." alt="" coords="179,7,368,33">

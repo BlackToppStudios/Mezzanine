@@ -1,0 +1,12 @@
+<area shape="rect" href="$classOgre_1_1OverlayManager.html" title="Manages Overlay objects, parsing them from .overlay files and storing a lookup library..." alt="" coords="220,81,383,108">
+<area shape="rect" href="$classOgre_1_1ParticleSystemManager.html" title="Manages particle systems, particle system scripts (templates) and the available emitter..." alt="" coords="196,132,407,159">
+<area shape="rect" href="$classOgre_1_1ResourceManager.html" title="Defines a generic resource handler." alt="" coords="215,183,388,209">
+<area shape="rect" href="$classOgre_1_1ScriptCompilerManager.html" title="Manages threaded compilation of scripts." alt="" coords="196,233,407,260">
+<area shape="rect" href="$classOgre_1_1CompositorManager.html" title="Class for managing Compositor settings for Ogre." alt="" coords="492,5,681,32">
+<area shape="rect" href="$classOgre_1_1FontManager.html" title="Manages Font resources, parsing .fontdef files and generally organising them." alt="" coords="515,56,659,83">
+<area shape="rect" href="$classOgre_1_1GpuProgramManager.html" title="Ogre::GpuProgramManager" alt="" coords="488,107,685,133">
+<area shape="rect" href="$classOgre_1_1HighLevelGpuProgramManager.html" title="This ResourceManager manages high&#45;level vertex and fragment programs." alt="" coords="457,157,716,184">
+<area shape="rect" href="$classOgre_1_1MaterialManager.html" title="Class for managing Material settings for Ogre." alt="" coords="503,208,671,235">
+<area shape="rect" href="$classOgre_1_1MeshManager.html" title="Handles the management of mesh resources." alt="" coords="512,259,661,285">
+<area shape="rect" href="$classOgre_1_1SkeletonManager.html" title="Handles the management of skeleton resources." alt="" coords="501,309,672,336">
+<area shape="rect" href="$classOgre_1_1TextureManager.html" title="Class for loading &amp; managing textures." alt="" coords="505,360,668,387">

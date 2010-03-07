@@ -1,0 +1,4 @@
+<area shape="rect" href="$classOgre_1_1PSSMShadowCameraSetup.html" title="Parallel Split Shadow Map (PSSM) shadow camera setup." alt="" coords="13,316,248,342">
+<area shape="rect" href="$classOgre_1_1FocusedShadowCameraSetup.html" title="Implements the uniform shadow mapping algorithm in focused mode." alt="" coords="5,161,256,188">
+<area shape="rect" href="$classOgre_1_1ShadowCameraSetup.html" title="This class allows you to plug in new ways to define the camera setup when rendering..." alt="" coords="31,84,231,110">
+<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="65,6,196,33">

@@ -1,0 +1,3 @@
+<area shape="rect" href="$classOgre_1_1HighLevelGpuProgram.html" title="Abstract base class representing a high&#45;level program (a vertex or fragment program)..." alt="" coords="28,161,231,188">
+<area shape="rect" href="$classOgre_1_1GpuProgram.html" title="Defines a program which runs on the GPU such as a vertex or fragment program." alt="" coords="59,84,200,111">
+<area shape="rect" href="$classOgre_1_1Resource.html" title="Abstract class representing a loadable resource (e.g." alt="" coords="71,7,188,33">
