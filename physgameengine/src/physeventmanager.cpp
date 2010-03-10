@@ -7,12 +7,16 @@
 ///////////////////////////////////////
 
 #include "physeventmanager.h"
+#include "SDL.h"
 
+int SDLQuitFilter( const SDL_Event *event );
 
+bool PhysEventManager::IgnoreSDLQuitEvents;
 
 PhysEventManager::PhysEventManager()
 {
-
+    SetIgnoreQuitEvents(false);
+    SDL_SetEventFilter( SDLQuitFilter );
 }
 
 //These functions will give you the next event or help you manage the events
@@ -66,5 +70,29 @@ void PhysEventManager::AddEvent(PhysEvent* EventToAdd)
 {
     EventQueue.push_back(EventToAdd);
 }
+
+bool PhysEventManager::DoQuitMessagesExist()
+{
+        return false;//This is system dependent.
+}
+
+bool PhysEventManager::IgnoreQuitEvents()
+{
+    return IgnoreSDLQuitEvents;
+}
+
+void PhysEventManager::SetIgnoreQuitEvents(bool Ignore)
+{
+    IgnoreSDLQuitEvents=Ignore;
+}
+
+int SDLQuitFilter( const SDL_Event *event )
+{
+     if ( PhysEventManager::IgnoreQuitEvents() )
+     { return 1;} // post to queue }
+
+     return 0; // do not post
+}
+
 
 #endif

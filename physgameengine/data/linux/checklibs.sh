@@ -18,7 +18,6 @@ else
 	fi
 fi
 
-#sudo apt-get install libfreetype6-dev libboost-date-time-dev libboost-thread-dev nvidia-cg-toolkit libfreeimage-dev zlib1g-dev libzzip-dev libois-dev libcppunit-dev doxygen libxt-dev libxaw7-dev libxxf86vm-dev libxrandr-dev libglu-dev cmake
 #This should only be run from the root of the prject directory.
 if [ -f "data/linux/ogre/libOgreMain.so" ]
 then

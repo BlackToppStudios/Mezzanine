@@ -17,6 +17,7 @@ class PhysEventManager
 {
 	private:
 		list<PhysEvent*> EventQueue;
+        static bool IgnoreSDLQuitEvents;
 
 	public:
 		PhysEventManager();
@@ -33,6 +34,13 @@ class PhysEventManager
 
         //By and large the Game won't use this, but there is no reason it shouldn't
 		void AddEvent(PhysEvent* EventToAdd);
+
+        //different platforms treat exiting the application differently, to work around that
+        //we can use this to help identify if it comes accross as a normal event, or if we must
+        //quit without generating one
+        bool DoQuitMessagesExist();
+        static bool IgnoreQuitEvents();                //if true, don't exit
+        static void SetIgnoreQuitEvents(bool Ignore);  //if false exit when x is clicked.
 
 };
 

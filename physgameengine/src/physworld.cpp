@@ -262,12 +262,16 @@ void physworld::DoMainLoopPhysics()
 void physworld::DoMainLoopWindowManagerBuffering()
 {
     this->PreProcessSDLEvents();
+    Log("WM EventCount Pending:");
+    Log(SDL_WmEvents.size());
     //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
 }
 
 void physworld::DoMainLoopInputBuffering()
 {
     this->PreProcessSDLEvents();
+    Log("User Input EventCount Pending:");
+    Log(SDL_WmEvents.size());
 	//TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
 }
 

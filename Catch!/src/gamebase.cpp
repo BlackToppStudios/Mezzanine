@@ -47,7 +47,7 @@ bool preRenderCallback()
 	//since we got the event out of the manager, we are now responsible for deleting
 	delete CurrentTime;
 
-	if (3000<gametime)
+	if (10000<gametime)
 	{
 		return false;
 	}
