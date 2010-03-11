@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Viewport_H__
@@ -32,9 +31,16 @@ Torus Knot Software Ltd.
 #include "OgrePrerequisites.h"
 #include "OgreCommon.h"
 #include "OgreColourValue.h"
+#include "OgreFrustum.h"
 
 namespace Ogre {
-    /** An abstraction of a viewport, i.e. a rendering region on a render
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup RenderSystem
+	*  @{
+	*/
+	/** An abstraction of a viewport, i.e. a rendering region on a render
         target.
         @remarks
             A viewport is the meeting of a camera and a rendering surface -
@@ -49,7 +55,7 @@ namespace Ogre {
     */
 	class _OgreExport Viewport : public ViewportAlloc
     {
-    public:
+    public:       
         /** The usual constructor.
             @param
                 cam Pointer to a camera to be the source for the image.
@@ -95,6 +101,22 @@ namespace Ogre {
         /** Instructs the viewport to updates its contents.
         */
         void update(void);
+		
+		/** Instructs the viewport to clear itself, without performing an update.
+		 @remarks
+			You would not normally call this method when updating the viewport, 
+			since the viewport usually clears itself when updating anyway (@see 
+		    Viewport::setClearEveryFrame). However, if you wish you have the
+			option of manually clearing the frame buffer (or elements of it)
+		    using this method.
+		 @param buffers Bitmask identifying which buffer elements to clear
+		 @param colour The colour value to clear to, if FBT_COLOUR is included
+		 @param depth The depth value to clear to, if FBT_DEPTH is included
+		 @param stencil The stencil value to clear to, if FBT_STENCIL is included
+		*/
+		void clear(unsigned int buffers = FBT_COLOUR | FBT_DEPTH,
+				   const ColourValue& colour = ColourValue::Black, 
+				   Real depth = 1.0f, unsigned short stencil = 0);
 
         /** Retrieves a pointer to the render target for this viewport.
         */
@@ -148,7 +170,7 @@ namespace Ogre {
         */
 
         int getActualHeight(void) const;
-
+               
         /** Sets the dimensions (after creation).
             @param
                 left
@@ -162,6 +184,22 @@ namespace Ogre {
                 target area is 0, 0, 1, 1.
         */
         void setDimensions(Real left, Real top, Real width, Real height);
+
+        /** Set the orientation mode of the viewport.
+        */
+        void setOrientationMode(OrientationMode orientationMode, bool setDefault = true);
+
+        /** Get the orientation mode of the viewport.
+        */
+        OrientationMode getOrientationMode() const;
+
+        /** Set the initial orientation mode of viewports.
+        */
+        static void setDefaultOrientationMode(OrientationMode orientationMode);
+
+        /** Get the initial orientation mode of viewports.
+        */
+        static OrientationMode getDefaultOrientationMode();
 
         /** Sets the initial background colour of the viewport (before
             rendering).
@@ -189,6 +227,23 @@ namespace Ogre {
 
 		/** Gets which buffers are to be cleared each frame. */
         unsigned int getClearBuffers(void) const;
+
+		/** Sets whether this viewport should be automatically updated 
+			if Ogre's rendering loop or RenderTarget::update is being used.
+        @remarks
+            By default, if you use Ogre's own rendering loop (Root::startRendering)
+            or call RenderTarget::update, all viewports are updated automatically.
+            This method allows you to control that behaviour, if for example you 
+			have a viewport which you only want to update periodically.
+        @param autoupdate If true, the viewport is updated during the automatic
+            render loop or when RenderTarget::update() is called. If false, the 
+            viewport is only updated when its update() method is called explicitly.
+        */
+		void setAutoUpdated(bool autoupdate);
+		/** Gets whether this viewport is automatically updated if 
+			Ogre's rendering loop or RenderTarget::update is being used.
+        */
+		bool isAutoUpdated() const;
 
 		/** Set the material scheme which the viewport should use.
 		@remarks
@@ -301,6 +356,11 @@ namespace Ogre {
 		/// Get the invocation sequence - will return null if using standard
 		RenderQueueInvocationSequence* _getRenderQueueInvocationSequence(void);
 
+        /** Convert oriented input point coordinates to screen coordinates. */
+        void pointOrientedToScreen(const Vector2 &v, int orientationMode, Vector2 &outv);
+        void pointOrientedToScreen(Real orientedX, Real orientedY, int orientationMode,
+                                   Real &screenX, Real &screenY);
+
     protected:
         Camera* mCamera;
         RenderTarget* mTarget;
@@ -324,7 +384,15 @@ namespace Ogre {
 		RenderQueueInvocationSequence* mRQSequence;
 		/// Material scheme
 		String mMaterialSchemeName;
+        /// Viewport orientation mode
+        OrientationMode mOrientationMode;
+        static OrientationMode mDefaultOrientationMode;
+
+		/// Automatic rendering on/off
+		bool mIsAutoUpdated;
     };
+	/** @} */
+	/** @} */
 
 }
 

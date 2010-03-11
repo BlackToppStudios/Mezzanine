@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __EdgeListBuilder_H__
@@ -35,6 +34,12 @@ Torus Knot Software Ltd.
 #include "OgreRenderOperation.h"
 
 namespace Ogre {
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Math
+	*  @{
+	*/
 
 
     /** This class contains the information required to describe the edge connectivity of a
@@ -56,6 +61,8 @@ namespace Ogre {
             size_t vertIndex[3];/// Vertex indexes, relative to the original buffer
             size_t sharedVertIndex[3]; /// Vertex indexes, relative to a shared vertex buffer with 
                                         // duplicates eliminated (this buffer is not exposed)
+
+			Triangle() :indexSet(0), vertexSet(0) {}
         };
         /** Edge data. */
         struct Edge {
@@ -80,10 +87,10 @@ namespace Ogre {
         // Working vector used when calculating the silhouette.
         // Use std::vector<char> instead of std::vector<bool> which might implemented
         // similar bit-fields causing loss performance.
-        typedef std::vector<char> TriangleLightFacingList;
+        typedef vector<char>::type TriangleLightFacingList;
 
-        typedef std::vector<Triangle> TriangleList;
-        typedef std::vector<Edge> EdgeList;
+        typedef vector<Triangle>::type TriangleList;
+        typedef vector<Edge>::type EdgeList;
 
         /** A group of edges sharing the same vertex data. */
         struct EdgeGroup
@@ -104,7 +111,7 @@ namespace Ogre {
 
         };
 
-        typedef std::vector<EdgeGroup> EdgeGroupList;
+        typedef vector<EdgeGroup>::type EdgeGroupList;
 
         /** Main triangles array, stores all triangles of this edge list. Note that
             triangles are grouping against edge group.
@@ -228,21 +235,21 @@ namespace Ogre {
             }
         };
 
-        typedef std::vector<const VertexData*> VertexDataList;
-        typedef std::vector<Geometry> GeometryList;
-        typedef std::vector<CommonVertex> CommonVertexList;
+        typedef vector<const VertexData*>::type VertexDataList;
+        typedef vector<Geometry>::type GeometryList;
+        typedef vector<CommonVertex>::type CommonVertexList;
 
         GeometryList mGeometryList;
         VertexDataList mVertexDataList;
         CommonVertexList mVertices;
         EdgeData* mEdgeData;
 		/// Map for identifying common vertices
-		typedef std::map<Vector3, size_t, vectorLess> CommonVertexMap;
+		typedef map<Vector3, size_t, vectorLess>::type CommonVertexMap;
 		CommonVertexMap mCommonVertexMap;
         /** Edge map, used to connect edges. Note we allow many triangles on an edge,
         after connected an existing edge, we will remove it and never used again.
         */
-        typedef std::multimap< std::pair<size_t, size_t>, std::pair<size_t, size_t> > EdgeMap;
+        typedef multimap< std::pair<size_t, size_t>, std::pair<size_t, size_t> >::type EdgeMap;
         EdgeMap mEdgeMap;
 
         void buildTrianglesEdges(const Geometry &geometry);
@@ -254,6 +261,8 @@ namespace Ogre {
         void connectOrCreateEdge(size_t vertexSet, size_t triangleIndex, size_t vertIndex0, size_t vertIndex1, 
             size_t sharedVertIndex0, size_t sharedVertIndex1);
     };
+	/** @} */
+	/** @} */
 
 }
 #endif

@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Zip_H__
@@ -40,7 +39,13 @@ typedef struct zzip_file	ZZIP_FILE;
 
 namespace Ogre {
 
-    /** Specialisation of the Archive class to allow reading of files from a zip
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Resources
+	*  @{
+	*/
+	/** Specialisation of the Archive class to allow reading of files from a zip
         format source archive.
     @remarks
         This archive format supports all archives compressed in the standard
@@ -55,6 +60,8 @@ namespace Ogre {
         void checkZzipError(int zzipError, const String& operation) const;
         /// File list (since zziplib seems to only allow scanning of dir tree once)
         FileInfoList mFileList;
+
+		OGRE_AUTO_MUTEX
     public:
         ZipArchive(const String& name, const String& archType );
         ~ZipArchive();
@@ -67,7 +74,13 @@ namespace Ogre {
         void unload();
 
         /// @copydoc Archive::open
-        DataStreamPtr open(const String& filename) const;
+        DataStreamPtr open(const String& filename, bool readOnly = true) const;
+
+		/// @copydoc Archive::create
+		DataStreamPtr create(const String& filename) const;
+
+		/// @copydoc Archive::remove
+		void remove(const String& filename) const;
 
         /// @copydoc Archive::list
         StringVectorPtr list(bool recursive = true, bool dirs = false);
@@ -106,11 +119,143 @@ namespace Ogre {
         void destroyInstance( Archive* arch) { OGRE_DELETE arch; }
     };
 
+	/** Template version of cache based on static array.
+	'cacheSize' defines size of cache in bytes. */
+	template <size_t cacheSize>
+	class StaticCache
+	{
+	protected:
+		/// Static buffer
+		char mBuffer[cacheSize];
+
+		/// Number of bytes valid in cache (written from the beginning of static buffer)
+		size_t mValidBytes;
+		/// Current read position
+		size_t mPos;
+
+	public:
+		/// Constructor
+		StaticCache()
+		{
+			mValidBytes = 0;
+			mPos = 0;
+		}
+
+		/** Cache data pointed by 'buf'. If 'count' is greater than cache size, we cache only last bytes.
+		Returns number of bytes written to cache. */
+		size_t cacheData(const void* buf, size_t count)
+		{
+			assert(avail() == 0 && "It is assumed that you cache data only after you have read everything.");
+
+			if (count < cacheSize)
+			{
+				// number of bytes written is less than total size of cache
+				if (count + mValidBytes <= cacheSize)
+				{
+					// just append
+					memcpy(mBuffer + mValidBytes, buf, count);
+					mValidBytes += count;
+				}
+				else
+				{
+					size_t begOff = count - (cacheSize - mValidBytes);
+					// override old cache content in the beginning
+					memmove(mBuffer, mBuffer + begOff, mValidBytes - begOff);
+					// append new data
+					memcpy(mBuffer + cacheSize - count, buf, count);
+					mValidBytes = cacheSize;
+				}
+				mPos = mValidBytes;
+				return count;
+			}
+			else
+			{
+				// discard all
+				memcpy(mBuffer, (const char*)buf + count - cacheSize, cacheSize);
+				mValidBytes = mPos = cacheSize;
+				return cacheSize;
+			}
+		}
+		/** Read data from cache to 'buf' (maximum 'count' bytes). Returns number of bytes read from cache. */
+		size_t read(void* buf, size_t count)
+		{
+			size_t rb = avail();
+			rb = (rb < count) ? rb : count;
+			memcpy(buf, mBuffer + mPos, rb);
+			mPos += rb;
+			return rb;
+		}
+
+		/** Step back in cached stream by 'count' bytes. Returns 'true' if cache contains resulting position. */
+		bool rewind(size_t count)
+		{
+			if (mPos < count)
+			{
+				clear();
+				return false;
+			}
+			else
+			{
+				mPos -= count;
+				return true;
+			}
+		}
+		/** Step forward in cached stream by 'count' bytes. Returns 'true' if cache contains resulting position. */
+		bool ff(size_t count)
+		{
+			if (avail() < count)
+			{
+				clear();
+				return false;
+			}
+			else
+			{
+				mPos += count;
+				return true;
+			}
+		}
+
+		/** Returns number of bytes available for reading in cache after rewinding. */
+		size_t avail() const
+		{
+			return mValidBytes - mPos;
+		}
+
+		/** Clear the cache */
+		void clear()
+		{
+			mValidBytes = 0;
+			mPos = 0;
+		}
+	};
+
+	/** Dummy version of cache to test no caching. 
+	If you want to test, just uncomment it and add 'No' prefix
+	to type in line 'StaticCache<2 * OGRE_STREAM_TEMP_SIZE> mCache;' of class ZipDataStream */
+	/*template <size_t cacheSize>
+	class NoStaticCache
+	{
+	public:
+		NoStaticCache() { }
+
+		size_t cacheData(const void* buf, size_t count) { return 0; }
+		size_t read(void* buf, size_t count) { return 0; }
+
+		bool rewind(size_t count) { return false; }
+		bool ff(size_t count) { return false; }
+
+		size_t avail() const { return 0; }
+
+		void clear() { }
+	};*/
+
     /** Specialisation of DataStream to handle streaming data from zip archives. */
     class _OgrePrivate ZipDataStream : public DataStream
     {
     protected:
         ZZIP_FILE* mZzipFile;
+		/// We need caching because sometimes serializers step back in data stream and zziplib behaves slow
+		StaticCache<2 * OGRE_STREAM_TEMP_SIZE> mCache;
     public:
         /// Unnamed constructor
         ZipDataStream(ZZIP_FILE* zzipFile, size_t uncompressedSize);
@@ -119,6 +264,8 @@ namespace Ogre {
 		~ZipDataStream();
         /// @copydoc DataStream::read
         size_t read(void* buf, size_t count);
+		/// @copydoc DataStream::write
+		size_t write(void* buf, size_t count);
         /// @copydoc DataStream::skip
         void skip(long count);
         /// @copydoc DataStream::seek
@@ -133,6 +280,8 @@ namespace Ogre {
 
     };
 
+	/** @} */
+	/** @} */
 
 }
 

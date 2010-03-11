@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __RenderSystem_H_
@@ -49,8 +48,15 @@ Torus Knot Software Ltd.
 
 namespace Ogre
 {
-	typedef std::map< String, RenderTarget * > RenderTargetMap;
-	typedef std::multimap<uchar, RenderTarget * > RenderTargetPriorityMap;
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup RenderSystem
+	*  @{
+	*/
+
+	typedef map< String, RenderTarget * >::type RenderTargetMap;
+	typedef multimap<uchar, RenderTarget * >::type RenderTargetPriorityMap;
 
 	class TextureManager;
 	/// Enum describing the ways to generate texture coordinates
@@ -265,7 +271,7 @@ namespace Ogre
 		After creation, this window can be retrieved using getRenderTarget().
 		@param
 		name The name of the window. Used in other methods
-		later like setRenderTarget and getRenderWindow.
+		later like setRenderTarget and getRenderTarget.
 		@param
 		width The width of the new window.
 		@param
@@ -278,106 +284,196 @@ namespace Ogre
 		Options are case sensitive. Unrecognised parameters will be ignored silently.
 		These values might be platform dependent, but these are present for all platforms unless
 		indicated otherwise:
-		**
-		Key: "title"
-		Description: The title of the window that will appear in the title bar
-		Values: string
-		Default: RenderTarget name
-		**
-		Key: "colourDepth"
-		Description: Colour depth of the resulting rendering window; only applies if fullScreen
-		is set.
-		Values: 16 or 32
-		Default: desktop depth
-		Notes: [W32 specific]
-		**
-		Key: "left"
-		Description: screen x coordinate from left
-		Values: positive integers
-		Default: 'center window on screen'
-		Notes: Ignored in case of full screen
-		**
-		Key: "top"
-		Description: screen y coordinate from top
-		Values: positive integers
-		Default: 'center window on screen'
-		Notes: Ignored in case of full screen
-		**
-		Key: "depthBuffer" [DX9 specific]
-		Description: Use depth buffer
-		Values: false or true
-		Default: true
-		**
-		Key: "externalWindowHandle" [API specific]
-		Description: External window handle, for embedding the OGRE context
-		Values: positive integer for W32 (HWND handle)
-		poslong:posint:poslong (display*:screen:windowHandle) or
-		poslong:posint:poslong:poslong (display*:screen:windowHandle:XVisualInfo*) for GLX
-		Default: 0 (None)
-		**
-		Key: "externalGLControl" [Win32 OpenGL specific]
-		Description: Let the external window control OpenGL i.e. don't select a pixel format for the window,
-		do not change v-sync and do not swap buffer. When set to true, the calling application
-		is responsible of OpenGL initialization and buffer swapping. It should also create an
-		OpenGL context for its own rendering, Ogre will create one for its use. Then the calling
-		application must also enable Ogre OpenGL context before calling any Ogre function and
-		restore its OpenGL context after these calls. The Ogre OpenGL context can be retrieved 
-		after Ogre initialisation by calling wglGetCurrentDC() and wglGetCurrentContext().
-		It is only used when the externalWindowHandle parameter is used.
-		Values: true, false
-		Default: false
-		**
-		Key: "externalGLContext" [Win32 OpenGL specific]
-		Description: Use an externally created GL context
-		Values: <Context as Unsigned Long>
-		Default: 0 (create own context)
-		**
-		Key: "parentWindowHandle" [API specific]
-		Description: Parent window handle, for embedding the OGRE context
-		Values: positive integer for W32 (HWND handle)
-		poslong:posint:poslong for GLX (display*:screen:windowHandle)
-		Default: 0 (None)
-		**
-		Key: "FSAA"
-		Description: Full screen antialiasing factor
-		Values: 0,2,4,6,...
-		Default: 0 
-		**
-		Key: "displayFrequency"
-		Description: Display frequency rate, for fullscreen mode
-		Values: 60...?
-		Default: Desktop vsync rate
-		**
-		Key: "vsync"
-		Description: Synchronize buffer swaps to vsync
-		Values: true, false
-		Default: 0
-		** 
-		Key: "border" 
-		Description: The type of window border (in windowed mode)
-		Values: none, fixed, resize
-		Default: resize
-		**
-		Key: "outerDimensions" 
-		Description: Whether the width/height is expressed as the size of the 
-		outer window, rather than the content area
-		Values: true, false
-		Default: false 
-		**
-		Key: "useNVPerfHUD" [DX9 specific]
-		Description: Enable the use of nVidia NVPerfHUD
-		Values: true, false
-		Default: false
-		**
-		Key: "gamma" 
-		Description: Enable hardware conversion from linear colour space to gamma
-			colour space on rendering to the window.
-		Values: true, false
-		Default: false
+		<table>
+		<tr>
+			<td><b>Key</b></td>
+			<td><b>Type/Values</b></td>
+			<td><b>Default</b></td>
+			<td><b>Description</b></td>
+			<td><b>Notes</b></td>
+		</tr>
+		<tr>
+			<td>title</td>
+			<td>Any string</td>
+			<td>RenderTarget name</td>
+			<td>The title of the window that will appear in the title bar</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>colourDepth</td>
+			<td>16, 32</td>
+			<td>Desktop depth</td>
+			<td>Colour depth of the resulting rendering window; only applies if fullScreen</td>
+			<td>Win32 Specific</td>
+		</tr>
+		<tr>
+			<td>left</td>
+			<td>Positive integers</td>
+			<td>Centred</td>
+			<td>Screen x coordinate from left</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>top</td>
+			<td>Positive integers</td>
+			<td>Centred</td>
+			<td>Screen y coordinate from left</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>depthBuffer</td>
+			<td>true, false</td>
+			<td>true</td>
+			<td>Use depth buffer</td>
+			<td>DirectX9 specific</td>
+		</tr>
+		<tr>
+			<td>externalWindowHandle</td>
+			<td>Win32: HWND as integer<br/>
+			    GLX: poslong:posint:poslong (display*:screen:windowHandle) or poslong:posint:poslong:poslong (display*:screen:windowHandle:XVisualInfo*)</td>
+			<td>0 (none)</td>
+			<td>External window handle, for embedding the OGRE render in an existing window</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>externalGLControl</td>
+			<td>true, false</td>
+			<td>false</td>
+			<td>Let the external window control OpenGL i.e. don't select a pixel format for the window,
+			do not change v-sync and do not swap buffer. When set to true, the calling application
+			is responsible of OpenGL initialization and buffer swapping. It should also create an
+			OpenGL context for its own rendering, Ogre will create one for its use. Then the calling
+			application must also enable Ogre OpenGL context before calling any Ogre function and
+			restore its OpenGL context after these calls.</td>
+			<td>OpenGL specific</td>
+		</tr>
+		<tr>
+			<td>externalGLContext</td>
+			<td>Context as Unsigned Long</td>
+			<td>0 (create own context)</td>
+			<td>Use an externally created GL context</td>
+			<td>OpenGL Specific</td>
+		</tr>
+		<tr>
+			<td>parentWindowHandle</td>
+			<td>Win32: HWND as integer<br/>
+			    GLX: poslong:posint:poslong (display*:screen:windowHandle) or poslong:posint:poslong:poslong (display*:screen:windowHandle:XVisualInfo*)</td>
+			<td>0 (none)</td>
+			<td>Parent window handle, for embedding the OGRE in a child of an external window</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>macAPI</td>
+			<td>String: "cocoa" or "carbon"</td>
+			<td>"carbon"</td>
+			<td>Specifies the type of rendering window on the Mac Platform.</td>
+			<td>&nbsp;</td>
+		 </tr>
+		 <tr>
+			<td>macAPICocoaUseNSView</td>
+			<td>bool "true" or "false"</td>
+			<td>"false"</td>
+			<td>On the Mac platform the most diffused method to embed ogre in a custom application is to use the IntefaceBuilder
+				and add to the interface an instance of OgreView.
+				The pointer to this instance is then used as "externalWindowHandle".
+				However, there are cases where you are NOT using the Interface Builder and you get the Cocoa NSView* of an existing interface.
+				For example, this is happens when you want to render into a Java/AWT interface.
+				In short, by setting this flag to "true" the Ogre::Root::createRenderWindow interprets the "externalWindowHandle" as a NSView*
+				instead of an OgreView*. See OgreOSXCocoaView.h/mm.
+			</td>
+			<td>&nbsp;</td>
+		 </tr>
+		<tr>
+			<td>FSAA</td>
+			<td>Positive integer (usually 0, 2, 4, 8, 16)</td>
+			<td>0</td>
+			<td>Full screen antialiasing factor</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>FSAAHint</td>
+			<td>Depends on RenderSystem and hardware. Currently supports:<br/>
+			"Quality": on systems that have an option to prefer higher AA quality over speed, use it</td>
+			<td>Blank</td>
+			<td>Full screen antialiasing hint</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>displayFrequency</td>
+			<td>Refresh rate in Hertz (e.g. 60, 75, 100)</td>
+			<td>Desktop vsync rate</td>
+			<td>Display frequency rate, for fullscreen mode</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>vsync</td>
+			<td>true, false</td>
+			<td>false</td>
+			<td>Synchronize buffer swaps to monitor vsync, eliminating tearing at the expense of a fixed frame rate</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>vsyncInterval</td>
+			<td>1, 2, 3, 4</td>
+			<td>1</td>
+			<td>If vsync is enabled, the minimum number of vertical blanks that should occur between renders. 
+			For example if vsync is enabled, the refresh rate is 60 and this is set to 2, then the
+			frame rate will be locked at 30.</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>border</td>
+			<td>none, fixed, resize</td>
+			<td>resize</td>
+			<td>The type of window border (in windowed mode)</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>outerDimensions</td>
+			<td>true, false</td>
+			<td>false</td>
+			<td>Whether the width/height is expressed as the size of the 
+			outer window, rather than the content area</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>useNVPerfHUD</td>
+			<td>true, false</td>
+			<td>false</td>
+			<td>Enable the use of nVidia NVPerfHUD</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>gamma</td>
+			<td>true, false</td>
+			<td>false</td>
+			<td>Enable hardware conversion from linear colour space to gamma
+			colour space on rendering to the window.</td>
+			<td>&nbsp;</td>
+		</tr>
 		*/
 		virtual RenderWindow* _createRenderWindow(const String &name, unsigned int width, unsigned int height, 
 			bool fullScreen, const NameValuePairList *miscParams = 0) = 0;
 
+		/** Creates multiple rendering windows.		
+		@param
+		renderWindowDescriptions Array of structures containing the descriptions of each render window.
+		The structure's members are the same as the parameters of _createRenderWindow:
+		* name
+		* width
+		* height
+		* fullScreen
+		* miscParams
+		See _createRenderWindow for details about each member.		
+		@param
+		createdWindows This array will hold the created render windows.
+		@returns
+		true on success.		
+		*/
+		virtual bool _createRenderWindows(const RenderWindowDescriptionList& renderWindowDescriptions, 
+			RenderWindowList& createdWindows);
+
+		
 		/**	Create a MultiRenderTarget, which is a render target that renders to multiple RenderTextures
 		at once. Surfaces can be bound and unbound at will.
 		This fails if mCapabilities->getNumMultiRenderTargets() is smaller than 2.
@@ -446,6 +542,9 @@ namespace Ogre
 		up to the number specified (this allows the same list to be used with different
 		count limits) */
 		virtual void _useLights(const LightList& lights, unsigned short limit) = 0;
+		/** Are fixed-function lights provided in view space? Affects optimisation. 
+		*/
+		virtual bool areFixedFunctionLightsInViewSpace() const { return false; }
 		/** Sets the world transform matrix. */
 		virtual void _setWorldMatrix(const Matrix4 &m) = 0;
 		/** Sets multiple world matrices (vertex blending). */
@@ -638,10 +737,12 @@ namespace Ogre
 		<p align="center">final = (texture * sourceFactor) + (pixel * destFactor)</p>
 		Each of the factors is specified as one of a number of options, as specified in the SceneBlendFactor
 		enumerated type.
+		By changing the operation you can change addition between the source and destination pixels to a different operator.
 		@param sourceFactor The source factor in the above calculation, i.e. multiplied by the texture colour components.
 		@param destFactor The destination factor in the above calculation, i.e. multiplied by the pixel colour components.
+		@param op The blend operation mode for combining pixels
 		*/
-		virtual void _setSceneBlending(SceneBlendFactor sourceFactor, SceneBlendFactor destFactor) = 0;
+		virtual void _setSceneBlending(SceneBlendFactor sourceFactor, SceneBlendFactor destFactor, SceneBlendOperation op = SBO_ADD) = 0;
 
 		/** Sets the global blending factors for combining subsequent renders with the existing frame contents.
 		The result of the blending operation is:</p>
@@ -652,8 +753,11 @@ namespace Ogre
 		@param destFactor The destination factor in the above calculation, i.e. multiplied by the pixel colour components.
 		@param sourceFactorAlpha The source factor in the above calculation for the alpha channel, i.e. multiplied by the texture alpha components.
 		@param destFactorAlpha The destination factor in the above calculation for the alpha channel, i.e. multiplied by the pixel alpha components.
+		@param op The blend operation mode for combining pixels
+		@param alphaOp The blend operation mode for combining pixel alpha values
 		*/
-		virtual void _setSeparateSceneBlending(SceneBlendFactor sourceFactor, SceneBlendFactor destFactor, SceneBlendFactor sourceFactorAlpha, SceneBlendFactor destFactorAlpha) = 0;
+		virtual void _setSeparateSceneBlending(SceneBlendFactor sourceFactor, SceneBlendFactor destFactor, SceneBlendFactor sourceFactorAlpha, 
+			SceneBlendFactor destFactorAlpha, SceneBlendOperation op = SBO_ADD, SceneBlendOperation alphaOp = SBO_ADD) = 0;
 
 		/** Sets the global alpha rejection approach for future renders.
 		By default images are rendered regardless of texture alpha. This method lets you change that.
@@ -672,7 +776,23 @@ namespace Ogre
 		* several times per complete frame if multiple viewports exist.
 		*/
 		virtual void _beginFrame(void) = 0;
-
+		
+		//Dummy structure for render system contexts - implementing RenderSystems can extend
+		//as needed
+		struct RenderSystemContext { };
+		/**
+		* Pause rendering for a frame. This has to be called after _beginFrame and before _endFrame.
+		* Will usually be called by the SceneManager, don't use this manually unless you know what
+		* you are doing.
+		*/
+		virtual RenderSystemContext* _pauseFrame(void);
+		/**
+		* Resume rendering for a frame. This has to be called after a _pauseFrame call
+		* Will usually be called by the SceneManager, don't use this manually unless you know what
+		* you are doing.
+		* @param context the render system context, as returned by _pauseFrame
+		*/
+		virtual void _resumeFrame(RenderSystemContext* context);
 
 		/**
 		* Ends rendering of a frame to the current viewport.
@@ -976,8 +1096,13 @@ namespace Ogre
 		virtual void bindGpuProgram(GpuProgram* prg);
 
 		/** Bind Gpu program parameters.
+		@param gptype The type of program to bind the parameters to
+		@param params The parameters to bind
+		@param variabilityMask A mask of GpuParamVariability identifying which params need binding
 		*/
-		virtual void bindGpuProgramParameters(GpuProgramType gptype, GpuProgramParametersSharedPtr params) = 0;
+		virtual void bindGpuProgramParameters(GpuProgramType gptype, 
+			GpuProgramParametersSharedPtr params, uint16 variabilityMask) = 0;
+
 		/** Only binds Gpu program parameters used for passes that have more than one iteration rendering
 		*/
 		virtual void bindGpuProgramPassIterationParameters(GpuProgramType gptype) = 0;
@@ -1017,9 +1142,19 @@ namespace Ogre
 		if _updateAllRenderTargets was called with a 'false' parameter. */
 		virtual void _swapAllRenderTargetBuffers(bool waitForVsync = true);
 
+		/** Gets whether or not vertex windings set should be inverted; this can be important
+		for rendering reflections. */
+		virtual bool getInvertVertexWinding(void);
+
 		/** Sets whether or not vertex windings set should be inverted; this can be important
 		for rendering reflections. */
 		virtual void setInvertVertexWinding(bool invert);
+
+		/** Indicates whether or not the vertex windings set will be inverted for the current render (e.g. reflections)
+		@see RenderSystem::setInvertVertexWinding
+		*/
+		virtual bool getVertexWindingInverted(void) const;
+
 		/** Sets the 'scissor region' ie the region of the target in which rendering can take place.
 		@remarks
 		This method allows you to 'mask off' rendering in all but a given rectangular area
@@ -1108,6 +1243,11 @@ namespace Ogre
 			mDerivedDepthBiasSlopeScale = slopeScale;
 		}
 
+		/**
+         * Set current render target to target, enabling its device context if needed
+         */
+        virtual void _setRenderTarget(RenderTarget *target) = 0;
+
 		/** Defines a listener on the custom events that this render system 
 		can raise.
 		@see RenderSystem::addListener
@@ -1192,6 +1332,12 @@ namespace Ogre
 		@see RenderSystem::registerThread
 		*/
 		virtual void unregisterThread() = 0;
+
+		/**
+		* Gets the number of display monitors.
+		@see Root::getDisplayMonitorCount
+		*/
+		virtual unsigned int getDisplayMonitorCount() const = 0;
 	protected:
 
 
@@ -1218,6 +1364,7 @@ namespace Ogre
 		CullingMode mCullingMode;
 
 		bool mVSync;
+		unsigned int mVSyncInterval;
 		bool mWBuffer;
 
 		size_t mBatchCount;
@@ -1253,10 +1400,10 @@ namespace Ogre
 		/// Internal method for firing a rendersystem event
 		virtual void fireEvent(const String& name, const NameValuePairList* params = 0);
 
-		typedef std::list<Listener*> ListenerList;
+		typedef list<Listener*>::type ListenerList;
 		ListenerList mEventListeners;
 
-		typedef std::list<HardwareOcclusionQuery*> HardwareOcclusionQueryList;
+		typedef list<HardwareOcclusionQuery*>::type HardwareOcclusionQueryList;
 		HardwareOcclusionQueryList mHwOcclusionQueries;
 
 		bool mVertexProgramBound;
@@ -1288,6 +1435,8 @@ namespace Ogre
 
 
 	};
+	/** @} */
+	/** @} */
 }
 
 #endif

@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Vector2_H__
@@ -36,7 +35,13 @@ Torus Knot Software Ltd.
 namespace Ogre
 {
 
-    /** Standard 2-dimensional vector.
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Math
+	*  @{
+	*/
+	/** Standard 2-dimensional vector.
         @remarks
             A direction in 2D space represented as distances along the 2
             orthogonal axes (x, y). Note that positions, directions and
@@ -79,6 +84,14 @@ namespace Ogre
             : x( r[0] ), y( r[1] )
         {
         }
+
+		/** Exchange the contents of this vector with another. 
+		*/
+		inline void swap(Vector2& other)
+		{
+			std::swap(x, other.x);
+			std::swap(y, other.y);
+		}
 
 		inline Real operator [] ( const size_t i ) const
         {
@@ -168,7 +181,7 @@ namespace Ogre
         {
             assert( fScalar != 0.0 );
 
-            Real fInv = 1.0 / fScalar;
+            Real fInv = 1.0f / fScalar;
 
             return Vector2(
                 x * fInv,
@@ -287,7 +300,7 @@ namespace Ogre
         {
             assert( fScalar != 0.0 );
 
-            Real fInv = 1.0 / fScalar;
+            Real fInv = 1.0f / fScalar;
 
             x *= fInv;
             y *= fInv;
@@ -329,6 +342,32 @@ namespace Ogre
         {
             return x * x + y * y;
         }
+        /** Returns the distance to another vector.
+            @warning
+                This operation requires a square root and is expensive in
+                terms of CPU operations. If you don't need to know the exact
+                distance (e.g. for just comparing distances) use squaredDistance()
+                instead.
+        */
+        inline Real distance(const Vector2& rhs) const
+        {
+            return (*this - rhs).length();
+        }
+
+        /** Returns the square of the distance to another vector.
+            @remarks
+                This method is for efficiency - calculating the actual
+                distance to another vector requires a square root, which is
+                expensive in terms of the operations required. This method
+                returns the square of the distance to another vector, i.e.
+                the same as the distance but before the square root is taken.
+                Use this if you want to find the longest / shortest distance
+                without incurring the square root.
+        */
+        inline Real squaredDistance(const Vector2& rhs) const
+        {
+            return (*this - rhs).squaredLength();
+        }
 
         /** Calculates the dot (scalar) product of this vector with another.
             @remarks
@@ -365,7 +404,7 @@ namespace Ogre
             // Will also work for zero-sized vectors, but will change nothing
             if ( fLength > 1e-08 )
             {
-                Real fInvLength = 1.0 / fLength;
+                Real fInvLength = 1.0f / fLength;
                 x *= fInvLength;
                 y *= fInvLength;
             }
@@ -381,8 +420,8 @@ namespace Ogre
         inline Vector2 midPoint( const Vector2& vec ) const
         {
             return Vector2(
-                ( x + vec.x ) * 0.5,
-                ( y + vec.y ) * 0.5 );
+                ( x + vec.x ) * 0.5f,
+                ( y + vec.y ) * 0.5f );
         }
 
         /** Returns true if the vector's scalar components are all greater
@@ -503,6 +542,11 @@ namespace Ogre
         {
             return Vector2( *this - ( 2 * this->dotProduct(normal) * normal ) );
         }
+		/// Check whether this vector contains valid values
+		inline bool isNaN() const
+		{
+			return Math::isNaN(x) || Math::isNaN(y);
+		}
 
         // special points
         static const Vector2 ZERO;
@@ -522,6 +566,8 @@ namespace Ogre
         }
 
     };
+	/** @} */
+	/** @} */
 
 }
 #endif

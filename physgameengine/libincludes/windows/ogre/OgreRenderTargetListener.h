@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __RenderTargetListener_H__
@@ -34,7 +33,13 @@ Torus Knot Software Ltd.
 
 namespace Ogre {
 
-    /** Struct containing information about a RenderTarget event.
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup RenderSystem
+	*  @{
+	*/
+	/** Struct containing information about a RenderTarget event.
     */
     struct RenderTargetEvent
     {
@@ -92,7 +97,9 @@ namespace Ogre {
             clear the viewports yourself in this event handler before doing your rendering
             or just render over the top if you don't need to.
         */
-        virtual void preRenderTargetUpdate(const RenderTargetEvent& evt) { }
+        virtual void preRenderTargetUpdate(const RenderTargetEvent& evt)
+        { (void)evt; }
+
         /** Called just after a RenderTarget has been rendered to.
         @remarks
             This event is called just after all the viewports attached to the target
@@ -101,7 +108,8 @@ namespace Ogre {
             the contents of the target already there (depending on the material settings 
             you use etc).
         */
-        virtual void postRenderTargetUpdate(const RenderTargetEvent& evt) { }
+        virtual void postRenderTargetUpdate(const RenderTargetEvent& evt)
+        { (void)evt; }
 
         /* Called just before a Viewport on a RenderTarget is to be updated.
         @remarks
@@ -109,24 +117,30 @@ namespace Ogre {
             rendered to. You can use this to perform per-viewport settings changes,
             such as showing / hiding particular overlays.
         */
-        virtual void preViewportUpdate(const RenderTargetViewportEvent& evt) { }
+        virtual void preViewportUpdate(const RenderTargetViewportEvent& evt)
+        { (void)evt; }
 
         /* Called just after a Viewport on a RenderTarget is to be updated.
         @remarks
             This method is called after each viewport on the RenderTarget is
             rendered to. 
         */
-        virtual void postViewportUpdate(const RenderTargetViewportEvent& evt) { }
+        virtual void postViewportUpdate(const RenderTargetViewportEvent& evt)
+        { (void)evt; }
 
 		/** Called to notify listener that a Viewport has been added to the 
 			target in question.
 		*/
-		virtual void viewportAdded(const RenderTargetViewportEvent& evt) {}
+		virtual void viewportAdded(const RenderTargetViewportEvent& evt)
+                { (void)evt; }
 		/** Called to notify listener that a Viewport has been removed from the 
 			target in question.
 		*/
-		virtual void viewportRemoved(const RenderTargetViewportEvent& evt) {}
+		virtual void viewportRemoved(const RenderTargetViewportEvent& evt)
+                { (void)evt; }
     };
+	/** @} */
+	/** @} */
 }
 
 #endif

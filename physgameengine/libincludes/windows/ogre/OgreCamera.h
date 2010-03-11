@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Camera_H__
@@ -48,7 +47,12 @@ Torus Knot Software Ltd.
 
 namespace Ogre {
 
-
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Scene
+	*  @{
+	*/
 
     /** A viewpoint from which the scene will be rendered.
         @remarks
@@ -80,6 +84,28 @@ namespace Ogre {
     */
     class _OgreExport Camera : public Frustum
     {
+	public:
+		/** Listener interface so you can be notified of Camera events. 
+		*/
+		class _OgreExport Listener 
+		{
+		public:
+			Listener() {}
+			virtual ~Listener() {}
+
+			/// Called prior to the scene being rendered with this camera
+			virtual void cameraPreRenderScene(Camera* cam)
+                        { (void)cam; }
+
+			/// Called after the scene has been rendered with this camera
+			virtual void cameraPostRenderScene(Camera* cam)
+                        { (void)cam; }
+
+			/// Called when the camera is being destroyed
+			virtual void cameraDestroyed(Camera* cam)
+                        { (void)cam; }
+
+		};
     protected:
         /// Camera name
         String mName;
@@ -136,7 +162,7 @@ namespace Ogre {
         /// Is viewing window used.
         bool mWindowSet;
         /// Windowed viewport clip planes 
-        mutable std::vector<Plane> mWindowClipPlanes;
+        mutable vector<Plane>::type mWindowClipPlanes;
         // Was viewing window changed.
         mutable bool mRecalcWindow;
         /// The last viewport to be added using this camera
@@ -149,8 +175,11 @@ namespace Ogre {
 		Frustum *mCullFrustum;
 		/// Whether or not the rendering distance of objects should take effect for this camera
 		bool mUseRenderingDistance;
-		/// Camera to use for LOD calculation
-		const Camera* mLodCamera;
+        /// Camera to use for LOD calculation
+        const Camera* mLodCamera;
+
+		typedef vector<Listener*>::type ListenerList;
+		ListenerList mListeners;
 
 
         // Internal functions for calcs
@@ -168,7 +197,7 @@ namespace Ogre {
         virtual void setWindowImpl(void) const;
 
 		/** Helper function for forwardIntersect that intersects rays with canonical plane */
-		virtual std::vector<Vector4> getRayForwardIntersect(const Vector3& anchor, const Vector3 *dir, Real planeOffset) const;
+		virtual vector<Vector4>::type getRayForwardIntersect(const Vector3& anchor, const Vector3 *dir, Real planeOffset) const;
 
     public:
         /** Standard constructor.
@@ -179,6 +208,10 @@ namespace Ogre {
         */
         virtual ~Camera();
 
+		/// Add a listener to this camera
+		virtual void addListener(Listener* l);
+		/// Remove a listener to this camera
+		virtual void removeListener(Listener* l);
 
         /** Returns a pointer to the SceneManager this camera is rendering through.
         */
@@ -511,7 +544,7 @@ namespace Ogre {
         /// Returns if a viewport window is being used
         virtual bool isWindowSet(void) const { return mWindowSet; }
         /// Gets the window clip planes, only applicable if isWindowSet == true
-        const std::vector<Plane>& getWindowPlanes(void) const;
+        const vector<Plane>::type& getWindowPlanes(void) const;
 
         /** Overridden from MovableObject */
         Real getBoundingRadius(void) const;
@@ -561,7 +594,7 @@ namespace Ogre {
 		 @remarks
 		    Forward projection may lead to intersections at infinity.
 		*/
-		virtual void forwardIntersect(const Plane& worldPlane, std::vector<Vector4>* intersect3d) const;
+		virtual void forwardIntersect(const Plane& worldPlane, vector<Vector4>::type* intersect3d) const;
 
 		/// @copydoc Frustum::isVisible
 		bool isVisible(const AxisAlignedBox& bound, FrustumPlane* culledBy = 0) const;
@@ -604,8 +637,8 @@ namespace Ogre {
 
 		/** Synchronise core camera settings with another. 
 		@remarks
-			Copies the position, orientation, clip distances, projection type 
-			and aspect ratio from another camera. Other settings like query flags, 
+			Copies the position, orientation, clip distances, projection type, 
+			FOV, focal length and aspect ratio from another camera. Other settings like query flags, 
 			reflection etc are preserved.
 		*/
 		virtual void synchroniseBaseSettingsWith(const Camera* cam);
@@ -615,6 +648,8 @@ namespace Ogre {
 		/** Get the derived orientation of this frustum. */
 		const Quaternion& getOrientationForViewUpdate(void) const;
      };
+	 /** @} */
+	 /** @} */
 
 } // namespace Ogre
 #endif

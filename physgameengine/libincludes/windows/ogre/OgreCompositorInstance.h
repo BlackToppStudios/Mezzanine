@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __CompositorInstance_H__
@@ -33,8 +32,16 @@ Torus Knot Software Ltd.
 #include "OgreMaterial.h"
 #include "OgreTexture.h"
 #include "OgreRenderQueue.h"
+#include "OgreCompositionTechnique.h"
+
 namespace Ogre {
-    const size_t RENDER_QUEUE_COUNT = RENDER_QUEUE_MAX+1;       
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Effects
+	*  @{
+	*/
+	const size_t RENDER_QUEUE_COUNT = RENDER_QUEUE_MAX+1;       
             
     /** An instance of a Compositor object for one Viewport. It is part of the CompositorChain
 		for a Viewport.
@@ -42,7 +49,7 @@ namespace Ogre {
 	class _OgreExport CompositorInstance : public CompositorInstAlloc
     {
     public:
-        CompositorInstance(Compositor *filter, CompositionTechnique *technique, CompositorChain *chain);
+        CompositorInstance(CompositionTechnique *technique, CompositorChain *chain);
         virtual ~CompositorInstance();
 		/** Provides an interface to "listen in" to to render system operations executed by this 
 			CompositorInstance.
@@ -72,21 +79,27 @@ namespace Ogre {
 								it was cloned from.
 			 */
 			virtual void notifyMaterialRender(uint32 pass_id, MaterialPtr &mat);
+
+			/** Notification after resources have been created (or recreated).
+				@param resizeOnly Was the creation because the viewport was resized?
+			 */
+			virtual void notifyResourcesCreated(bool forResizeOnly);
+			
 		};
         /** Specific render system operation. A render target operation does special operations
 		    between render queues like rendering a quad, clearing the frame buffer or 
 			setting stencil state.
 		*/
-		class RenderSystemOperation : public CompositorInstAlloc
+		class _OgreExport RenderSystemOperation : public CompositorInstAlloc
 		{
 		public:
 			virtual ~RenderSystemOperation();
 			/// Set state to SceneManager and RenderSystem
 			virtual void execute(SceneManager *sm, RenderSystem *rs) = 0;
 		};
-		typedef std::map<int, MaterialPtr> QuadMaterialMap;
+		typedef map<int, MaterialPtr>::type QuadMaterialMap;
 		typedef std::pair<int, RenderSystemOperation*> RenderSystemOpPair;
-		typedef std::vector<RenderSystemOpPair> RenderSystemOpPairs;
+		typedef vector<RenderSystemOpPair>::type RenderSystemOpPairs;
         /** Operation setup for a RenderTarget (collected).
         */
         class TargetOperation
@@ -142,7 +155,7 @@ namespace Ogre {
 			/** Whether shadows will be enabled */
 			bool shadowsEnabled;
         };
-        typedef std::vector<TargetOperation> CompiledState;
+        typedef vector<TargetOperation>::type CompiledState;
         
         /** Set enabled flag. The compositor instance will only render if it is
             enabled, otherwise it is pass-through.
@@ -164,6 +177,18 @@ namespace Ogre {
 		@returns The instance name for the texture, corresponds to a real texture
 		*/
 		const String& getTextureInstanceName(const String& name, size_t mrtIndex);
+
+		/** Get the instance of a local texture.
+		@note Textures are only valid when local textures have been loaded, 
+			which in practice means that the compositor instance is active. Calling
+			this method at other times will return null pointers. Note that since textures
+			are cleaned up aggressively, this pointer is not guaranteed to stay the
+			same if you disable and re-enable the compositor instance.
+		@param name The name of the texture in the original compositor definition
+		@param mrtIndex If name identifies a MRT, which texture attachment to retrieve
+		@returns The texture pointer, corresponds to a real texture
+		*/
+		TexturePtr getTextureInstance(const String& name, size_t mrtIndex);
 
 		/** Get the render target for a given render texture name. 
 		@remarks
@@ -192,6 +217,37 @@ namespace Ogre {
         */
         CompositionTechnique *getTechnique();
 
+		/** Change the technique we're using to render this compositor. 
+		@param tech The technique to use (must be supported and from the same Compositor)
+		@param reuseTextures If textures have already been created for the current
+			technique, whether to try to re-use them if sizes & formats match.
+		*/
+		void setTechnique(CompositionTechnique* tech, bool reuseTextures = true);
+
+		/** Pick a technique to use to render this compositor based on a scheme. 
+		@remarks
+			If there is no specific supported technique with this scheme name, 
+			then the first supported technique with no specific scheme will be used.
+			@see CompositionTechnique::setSchemeName
+		@param schemeName The scheme to use 
+		@param reuseTextures If textures have already been created for the current
+			technique, whether to try to re-use them if sizes & formats match.
+			Note that for this feature to be of benefit, the textures must have been created
+			with the 'pooled' option enabled.
+		*/
+		void setScheme(const String& schemeName, bool reuseTextures = true);
+
+		/// Returns the name of the scheme this compositor is using
+		const String& getScheme() const { return mActiveScheme; }
+
+		/** Notify this instance that the primary surface has been resized. 
+		@remarks
+			This will allow the instance to recreate its resources that 
+			are dependent on the size. 
+		*/
+		void notifyResized();
+
+
 		/** Get Chain that this instance is part of
         */
         CompositorChain *getChain();
@@ -215,6 +271,10 @@ namespace Ogre {
 		/** Notify listeners of a material render.
 		*/
 		void _fireNotifyMaterialRender(uint32 pass_id, MaterialPtr &mat);
+
+		/** Notify listeners of a material render.
+		*/
+		void _fireNotifyResourcesCreated(bool forResizeOnly);
 	private:
         /// Compositor of which this is an instance
         Compositor *mCompositor;
@@ -225,18 +285,27 @@ namespace Ogre {
         /// Is this instance enabled?
         bool mEnabled;
         /// Map from name->local texture
-        typedef std::map<String,TexturePtr> LocalTextureMap;
+        typedef map<String,TexturePtr>::type LocalTextureMap;
         LocalTextureMap mLocalTextures;
 		/// Store a list of MRTs we've created
-		typedef std::map<String,MultiRenderTarget*> LocalMRTMap;
+		typedef map<String,MultiRenderTarget*>::type LocalMRTMap;
 		LocalMRTMap mLocalMRTs;
+		typedef map<CompositionTechnique::TextureDefinition*, TexturePtr>::type ReserveTextureMap;
+		/** Textures that are not currently in use, but that we want to keep for now,
+			for example if we switch techniques but want to keep all textures available
+			in case we switch back. 
+		*/
+		ReserveTextureMap mReserveTextures;
 
 		/// Vector of listeners
-		typedef std::vector<Listener*> Listeners;
+		typedef vector<Listener*>::type Listeners;
 		Listeners mListeners;
         
         /// Previous instance (set by chain)
         CompositorInstance *mPreviousInstance;
+
+		/// The scheme which is being used in this instance
+		String mActiveScheme;
 		
 		/** Collect rendering passes. Here, passes are converted into render target operations
 			and queued with queueRenderSystemOp.
@@ -251,11 +320,11 @@ namespace Ogre {
         
         /** Create local rendertextures and other resources. Builds mLocalTextures.
         */
-        void createResources();
+        void createResources(bool forResizeOnly);
         
         /** Destroy local rendertextures and other resources.
         */
-        void freeResources();
+        void freeResources(bool forResizeOnly, bool clearReserveTextures);
 
         /** Get RenderTarget for a named local texture.
         */
@@ -278,11 +347,14 @@ namespace Ogre {
 		/** Search for options like AA and hardware gamma which we may want to 
 			inherit from the main render target to which we're attached. 
 		*/
-		void deriveTextureRenderTargetOptions(const String& texname,
-			bool *hwGammaWrite, uint *fsaa);
+		void deriveTextureRenderTargetOptions(const String& texname, 
+			bool *hwGammaWrite, uint *fsaa, String* fsaaHint);
         
         friend class CompositorChain;
     };
+	/** @} */
+	/** @} */
+
 }
 
 #endif

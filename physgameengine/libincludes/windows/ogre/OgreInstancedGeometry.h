@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __InstancedGeometry_H__
@@ -37,9 +36,16 @@ Torus Knot Software Ltd.
 #include "OgreAnimationTrack.h"
 #include "OgreBone.h"
 #include "OgreIteratorWrappers.h"
+#include "OgreMesh.h"
 
 namespace Ogre {
 
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Scene
+	*  @{
+	*/
 	/** Pre-transforms and batches up meshes for efficient use as instanced geometry
 		in a scene
 	@remarks
@@ -122,7 +128,7 @@ namespace Ogre {
 			VertexData *vertexData;
 			IndexData *indexData;
 		};
-		typedef std::list<OptimisedSubMeshGeometry*> OptimisedSubMeshGeometryList;
+		typedef list<OptimisedSubMeshGeometry*>::type OptimisedSubMeshGeometryList;
 		/// Saved link between SubMesh at a LOD and vertex/index data
 		/// May point to original or optimised geometry
 		struct SubMeshLodGeometryLink
@@ -130,8 +136,8 @@ namespace Ogre {
 			VertexData* vertexData;
 			IndexData* indexData;
 		};
-		typedef std::vector<SubMeshLodGeometryLink> SubMeshLodGeometryLinkList;
-		typedef std::map<SubMesh*, SubMeshLodGeometryLinkList*> SubMeshGeometryLookup;
+		typedef vector<SubMeshLodGeometryLink>::type SubMeshLodGeometryLinkList;
+		typedef map<SubMesh*, SubMeshLodGeometryLinkList*>::type SubMeshGeometryLookup;
 		/// Structure recording a queued submesh for the build
 		struct QueuedSubMesh : public BatchedGeometryAlloc
 		{
@@ -146,8 +152,8 @@ namespace Ogre {
 			AxisAlignedBox worldBounds;
 			unsigned int ID;
 		};
-		typedef std::vector<QueuedSubMesh*> QueuedSubMeshList;
-		typedef std::vector<String> QueuedSubMeshOriginList;
+		typedef vector<QueuedSubMesh*>::type QueuedSubMeshList;
+		typedef vector<String>::type QueuedSubMeshOriginList;
 		/// Structure recording a queued geometry for low level builds
 		struct QueuedGeometry : public BatchedGeometryAlloc
 		{
@@ -157,7 +163,7 @@ namespace Ogre {
 			Vector3 scale;
 			unsigned int ID;
 		};
-		typedef std::vector<QueuedGeometry*> QueuedGeometryList;
+		typedef vector<QueuedGeometry*>::type QueuedGeometryList;
 		
 		// forward declarations
 		class LODBucket;
@@ -258,7 +264,7 @@ namespace Ogre {
             TS_WORLD
         };
 			/// list of Geometry Buckets that contains the instanced object
-			typedef std::vector<GeometryBucket*> GeometryBucketList;
+			typedef vector<GeometryBucket*>::type GeometryBucketList;
 		protected:
 			GeometryBucketList mGeometryBucketList;
 			unsigned short mIndex;
@@ -277,16 +283,17 @@ namespace Ogre {
 			/// Records the last frame in which animation was updated
 			unsigned long mFrameAnimationLastUpdated;
 		public:
-			InstancedObject(int index);
-			InstancedObject(int index,SkeletonInstance *skeleton,AnimationStateSet*animations);
+			InstancedObject(unsigned short index);
+			InstancedObject(unsigned short index,SkeletonInstance *skeleton,AnimationStateSet*animations);
 			~InstancedObject();
 			void setPosition( Vector3  position);
-			Vector3 & getPosition(void);
+			const Vector3& getPosition(void) const;
 			void yaw(const Radian& angle);
 			void pitch(const Radian& angle);
 			void roll(const Radian& angle);
 			void rotate(const Quaternion& q);
 			void setScale(const Vector3& scale);
+			const Vector3& getScale() const;
 	        void setOrientation(const Quaternion& q);
 	        void setPositionAndOrientation(Vector3 p, const Quaternion& q);
             Quaternion & getOrientation(void);
@@ -307,7 +314,7 @@ namespace Ogre {
 		{
 		public:
 			/// list of Geometry Buckets in this BatchInstance
-			typedef std::vector<GeometryBucket*> GeometryBucketList;
+			typedef vector<GeometryBucket*>::type GeometryBucketList;
 		protected:
 			/// Pointer to parent LODBucket
 			LODBucket* mParent;
@@ -321,7 +328,7 @@ namespace Ogre {
 			/// list of Geometry Buckets in this BatchInstance
 			GeometryBucketList mGeometryBucketList;
 			// index to current Geometry Buckets for a given geometry format
-			typedef std::map<String, GeometryBucket*> CurrentGeometryMap;
+			typedef map<String, GeometryBucket*>::type CurrentGeometryMap;
 			CurrentGeometryMap mCurrentGeometryMap;
 			/// Get a packed string identifying the geometry format
 			String getGeometryFormatString(SubMeshLodGeometryLink* geom);
@@ -338,7 +345,7 @@ namespace Ogre {
 			void build();
 			/// Add children to the render queue
 			void addRenderables(RenderQueue* queue, uint8 group, 
-				Real camSquaredDist);
+				Real lodValue);
 			/// Get the material for this bucket
 			const MaterialPtr& getMaterial(void) const { return mMaterial; }
 			/// Iterator over geometry
@@ -370,33 +377,33 @@ namespace Ogre {
 		{
 		public:
 			/// Lookup of Material Buckets in this BatchInstance
-			typedef std::map<String, MaterialBucket*> MaterialBucketMap;
+			typedef map<String, MaterialBucket*>::type MaterialBucketMap;
 		protected:
 			/// Pointer to parent BatchInstance
 			BatchInstance* mParent;
 			/// LOD level (0 == full LOD)
 			unsigned short mLod;
-			/// distance at which this LOD starts to apply (squared)
-			Real mSquaredDistance;
+			/// lod value at which this LOD starts to apply (squared)
+			Real mLodValue;
 			/// Lookup of Material Buckets in this BatchInstance
 			MaterialBucketMap mMaterialBucketMap;
 			/// Geometry queued for a single LOD (deallocated here)
 			QueuedGeometryList mQueuedGeometryList;
 		public:
-			LODBucket(BatchInstance* parent, unsigned short lod, Real lodDist);
+			LODBucket(BatchInstance* parent, unsigned short lod, Real lodValue);
 			virtual ~LODBucket();
 			BatchInstance* getParent(void) { return mParent; }
 			/// Get the lod index
 			ushort getLod(void) const { return mLod; }
-			/// Get the lod squared distance
-			Real getSquaredDistance(void) const { return mSquaredDistance; }
+			/// Get the lod value
+			Real getLodValue(void) const { return mLodValue; }
 			/// Assign a queued submesh to this bucket, using specified mesh LOD
 			void assign(QueuedSubMesh* qsm, ushort atLod);
 			/// Build
 			void build();
 			/// Add children to the render queue
 			void addRenderables(RenderQueue* queue, uint8 group, 
-				Real camSquaredDistance);
+				Real lodValue);
 			/// Iterator over the materials in this LOD
 			typedef MapIterator<MaterialBucketMap> MaterialIterator;
 			/// Get an iterator over the materials in this LOD
@@ -418,12 +425,13 @@ namespace Ogre {
 		*/
 		class _OgreExport  BatchInstance : public MovableObject
 		{
+            friend class MaterialBucket;
 			public:
 		
 
 			/// list of LOD Buckets in this BatchInstance
-			typedef std::vector<LODBucket*> LODBucketList;
-			typedef std::map<int, InstancedObject*> ObjectsMap;
+			typedef vector<LODBucket*>::type LODBucketList;
+			typedef map<unsigned short, InstancedObject*>::type ObjectsMap;
 			typedef MapIterator<ObjectsMap> InstancedObjectIterator;
 		protected:
 			
@@ -440,19 +448,25 @@ namespace Ogre {
 
 			ObjectsMap mInstancesMap;
 		public:
-			/// LOD distances (squared) as built up - use the max at each level
-			std::vector<Real> mLodSquaredDistances;
+			/// Lod values as built up - use the max at each level
+			Mesh::LodValueList mLodValues;
 			/// Local AABB relative to BatchInstance centre
 			AxisAlignedBox mAABB;
 			/// Local bounding radius
 			Real mBoundingRadius;
 			/// The current lod level, as determined from the last camera
 			ushort mCurrentLod;
-			/// Current camera distance, passed on to do material lod later
-			Real mCamDistanceSquared;
+			/// Current lod value, passed on to do material lod later
+			Real mLodValue;
+            /// Current camera, passed on to do material lod later
+            Camera *mCamera;
+            /// Cached squared view depth value to avoid recalculation by GeometryBucket
+            Real mSquaredViewDepth;
 		protected:
 			/// List of LOD buckets			
 			LODBucketList mLodBucketList;
+            /// Lod strategy reference
+            const LodStrategy *mLodStrategy;
 
 		public:
 			BatchInstance(InstancedGeometry* parent, const String& name, SceneManager* mgr, 
@@ -496,8 +510,8 @@ namespace Ogre {
 			void updateContainers(LODBucket* bucket );
 			/// attach the BatchInstance to the scene
 			void attachToScene();
-			void addInstancedObject(int index, InstancedObject* object);
-			InstancedObject*  isInstancedObjectPresent(int index);
+			void addInstancedObject(unsigned short index, InstancedObject* object);
+			InstancedObject*  isInstancedObjectPresent(unsigned short index);
 			InstancedObjectIterator getObjectIterator();
 			SceneNode*getSceneNode(void){return mNode;}
 			ObjectsMap& getInstancesMap(void){return  mInstancesMap;}
@@ -507,13 +521,13 @@ namespace Ogre {
 		/** Indexed BatchInstance map based on packed x/y/z BatchInstance index, 10 bits for
 			each axis.
 		*/
-		typedef std::map<uint32, BatchInstance*> BatchInstanceMap;
+		typedef map<uint32, BatchInstance*>::type BatchInstanceMap;
 		/** Simple vectors where are stored all the renderoperations of the Batch.
 			This vector is used when we want to delete the batch, in order to delete only one time each
 			render operation.
 
 		*/
-		typedef std::vector<RenderOperation*> RenderOperationVector;
+		typedef vector<RenderOperation*>::type RenderOperationVector;
 	protected:
 		// General state & settings
 		SceneManager* mOwner;
@@ -526,6 +540,8 @@ namespace Ogre {
 		Vector3 mHalfBatchInstanceDimensions;
 		Vector3 mOrigin;
 		bool mVisible;
+        /// Flags to indicate whether the World Transform Inverse matrices are passed to the shaders
+        bool mProvideWorldInverses;
         /// The render queue to use when rendering this object
         uint8 mRenderQueueID;
 		/// Flags whether the RenderQueue's default should be used.
@@ -599,7 +615,7 @@ namespace Ogre {
 		void splitGeometry(VertexData* vd, IndexData* id, 
 			SubMeshLodGeometryLink* targetGeomLink);
 
-		typedef std::map<size_t, size_t> IndexRemap;
+		typedef map<size_t, size_t>::type IndexRemap;
 		/** Method for figuring out which vertices are used by an index buffer
 			and calculating a remap lookup for a vertex buffer just containing
 			those vertices. 
@@ -650,6 +666,7 @@ namespace Ogre {
 			this InstancedGeometry if you like. The Entity passed in is simply 
 			used as a definition.
 		@note Must be called before 'build'.
+        @note All added entities must use the same lod strategy.
 		@param ent The Entity to use as a definition (the Mesh and Materials 
 			referenced will be recorded for the build call).
 		@param position The world position at which to add this Entity
@@ -675,6 +692,7 @@ namespace Ogre {
 			versions! We don't do this for you incase you are preparing this 
 			in advance and so don't want the originals detached yet. 
 		@note Must be called before 'build'.
+        @note All added entities must use the same lod strategy.
 		@param node Pointer to the node to use to provide a set of Entity 
 			templates
 		*/
@@ -840,11 +858,25 @@ namespace Ogre {
 		return the total number of object that are in all the batches
 		*/
 		unsigned int getObjectCount(void){return mObjectCount;}
-		                  
 
+        /**
+        @remarks
+        Allows World Transform Inverse matrices to be passed as shader constants along with the world
+        transform matrix list. Reduces the number of usable geometries in an instance to 40 instead of 80.
+		The inverse matrices are interleaved with the world matrices at n+1.
+        */
+        virtual void setProvideWorldInverses(bool flag);
 
+        /**
+        @remarks
+        Returns the toggle state indicating whether the World Transform INVERSE matrices would
+        be passed to the shaders.
+        */
+        virtual bool getProvideWorldInverses(void) const { return mProvideWorldInverses; }
 	};
 
+	/** @} */
+	/** @} */
 }
 
 #endif

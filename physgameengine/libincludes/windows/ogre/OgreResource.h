@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef _Resource_H__
@@ -37,12 +36,18 @@ Torus Knot Software Ltd.
 
 namespace Ogre {
 
-    typedef unsigned long ResourceHandle;
+    typedef unsigned long long int ResourceHandle;
 
 
 	// Forward declaration
 	class ManualResourceLoader;
 
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Resources
+	*  @{
+	*/
 	/** Abstract class representing a loadable resource (e.g. textures, sounds etc)
         @remarks
             Resources are data objects that must be loaded and managed throughout
@@ -80,29 +85,40 @@ namespace Ogre {
 			virtual ~Listener() {}
 
 			/** Callback to indicate that background loading has completed.
-			@remarks
-				This callback is only relevant when a Resource has been
-				marked as background loaded (@see Resource::setBackgroundLoaded)
-				, and occurs when that loading has completed. The call
-				does not itself occur in the thread which is doing the loading;
-				when loading is complete a response indicator is placed with the
-				ResourceGroupManager, which will then be sent back to the 
-				listener as part of the application's primary frame loop thread.
+			@deprecated
+				Use loadingComplete instead.
 			*/
 			virtual void backgroundLoadingComplete(Resource*) {}
 
 			/** Callback to indicate that background preparing has completed.
+			@deprecated
+				Use preparingComplete instead.
+			*/
+			virtual void backgroundPreparingComplete(Resource*) {}
+
+			/** Called whenever the resource finishes loading. 
 			@remarks
-				This callback is only relevant when a Resource has been
-				marked as background loaded (@see Resource::setBackgroundLoaded)
-				, and occurs when that preparing (but not necessarily loading) has completed. The call
-				does not itself occur in the thread which is doing the preparing;
+				If a Resource has been marked as background loaded (@see Resource::setBackgroundLoaded), 
+				the call does not itself occur in the thread which is doing the loading;
+				when loading is complete a response indicator is placed with the
+				ResourceGroupManager, which will then be sent back to the 
+				listener as part of the application's primary frame loop thread.
+			*/
+			virtual void loadingComplete(Resource*) {}
+
+
+			/** called whenever the resource finishes preparing (paging into memory).
+			@remarks
+				If a Resource has been marked as background loaded (@see Resource::setBackgroundLoaded)
+				the call does not itself occur in the thread which is doing the preparing;
 				when preparing is complete a response indicator is placed with the
 				ResourceGroupManager, which will then be sent back to the 
 				listener as part of the application's primary frame loop thread.
 			*/
-			virtual void backgroundPreparingComplete(Resource*) {}
-			
+			virtual void preparingComplete(Resource*) {}
+
+			/** Called whenever the resource has been unloaded. */
+			virtual void unloadingComplete(Resource*) {}
 		};
 		
 		/// Enum identifying the loading state of the resource
@@ -145,7 +161,7 @@ namespace Ogre {
 		/// State count, the number of times this resource has changed state
 		size_t mStateCount;
 
-		typedef std::list<Listener*> ListenerList;
+		typedef list<Listener*>::type ListenerList;
 		ListenerList mListenerList;
 		OGRE_MUTEX(mListenerListMutex)
 
@@ -201,12 +217,6 @@ namespace Ogre {
 		/** Calculate the size of a resource; this will only be called after 'load' */
 		virtual size_t calculateSize(void) const = 0;
 
-		/// Queue the firing of background loading complete event
-		virtual void queueFireBackgroundLoadingComplete(void);
-
-		/// Queue the firing of background preparing complete event
-		virtual void queueFireBackgroundPreparingComplete(void);
-
     public:
 		/** Standard constructor.
 		@param creator Pointer to the ResourceManager that is creating this resource
@@ -244,8 +254,9 @@ namespace Ogre {
             loading a resource between load() and prepare().  It is best to try and
             do as much work in prepare(), however, since this will leave less work for
             the main render thread to do and thus increase FPS.
+			@param backgroundThread Whether this is occurring in a background thread
         */
-        virtual void prepare();
+        virtual void prepare(bool backgroundThread = false);
 
      /** Loads the resource, if it is not already.
 		@remarks
@@ -425,23 +436,35 @@ namespace Ogre {
 		virtual void _dirtyState();
 
 
-		/** Firing of background loading complete event
+		/** Firing of loading complete event
 		@remarks
 			You should call this from the thread that runs the main frame loop 
 			to avoid having to make the receivers of this event thread-safe.
 			If you use Ogre's built in frame loop you don't need to call this
 			yourself.
+			@param wasBackgroundLoaded Whether this was a background loaded event
 		*/
-		virtual void _fireBackgroundLoadingComplete(void);
+		virtual void _fireLoadingComplete(bool wasBackgroundLoaded);
 
-		/** Firing of background preparing complete event
+		/** Firing of preparing complete event
 		@remarks
 			You should call this from the thread that runs the main frame loop 
 			to avoid having to make the receivers of this event thread-safe.
 			If you use Ogre's built in frame loop you don't need to call this
 			yourself.
+			@param wasBackgroundLoaded Whether this was a background loaded event
 		*/
-		virtual void _fireBackgroundPreparingComplete(void);
+		virtual void _firePreparingComplete(bool wasBackgroundLoaded);
+
+		/** Firing of unloading complete event
+		@remarks
+		You should call this from the thread that runs the main frame loop 
+		to avoid having to make the receivers of this event thread-safe.
+		If you use Ogre's built in frame loop you don't need to call this
+		yourself.
+		*/
+		virtual void _fireUnloadingComplete(void);
+
 
     };
 
@@ -498,13 +521,16 @@ namespace Ogre {
          * this callback.  Do that stuff in loadResource.
 		@param resource The resource which wishes to load
 		*/
-		virtual void prepareResource(Resource* resource) { }
+		virtual void prepareResource(Resource* resource)
+                { (void)resource; }
 
 		/** Called when a resource wishes to prepare.
 		@param resource The resource which wishes to prepare
 		*/
 		virtual void loadResource(Resource* resource) = 0;
 	};
+	/** @} */
+	/** @} */
 }
 
 #endif
