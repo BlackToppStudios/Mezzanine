@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __HardwareBufferManager__
@@ -38,6 +37,12 @@ Torus Knot Software Ltd.
 #include "OgreRenderToVertexBuffer.h"
 
 namespace Ogre {
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup RenderSystem
+	*  @{
+	*/
 
     /** Abstract interface representing a 'licensee' of a hardware buffer copy.
     remarks
@@ -90,10 +95,19 @@ namespace Ogre {
     };
 
 
-    /** Abstract singleton class for managing hardware buffers, a concrete instance
-    of this will be created by the RenderSystem. */
-    class _OgreExport HardwareBufferManager : public Singleton<HardwareBufferManager>
-    {
+	/** Base definition of a hardware buffer manager.
+	@remarks
+		This class is deliberately not a Singleton, so that multiple types can 
+		exist at once. The Singleton is wrapped via the Decorator pattern
+		in HardwareBufferManager, below. Each concrete implementation should
+		provide a subclass of HardwareBufferManagerBase, which does the actual
+		work, and also a very simple subclass of HardwareBufferManager which 
+		simply constructs the instance of the HardwareBufferManagerBase subclass 
+		and passes it to the HardwareBufferManager superclass as a delegate. 
+		This subclass must also delete the implementation instance it creates.
+	*/
+	class _OgreExport HardwareBufferManagerBase : public BufferAlloc
+	{
         friend class HardwareVertexBufferSharedPtr;
         friend class HardwareIndexBufferSharedPtr;
     protected:
@@ -102,14 +116,14 @@ namespace Ogre {
             members will cause notify back to this class, and then will access to this
             two members.
         */
-        typedef std::set<HardwareVertexBuffer*> VertexBufferList;
-        typedef std::set<HardwareIndexBuffer*> IndexBufferList;
+        typedef set<HardwareVertexBuffer*>::type VertexBufferList;
+        typedef set<HardwareIndexBuffer*>::type IndexBufferList;
         VertexBufferList mVertexBuffers;
         IndexBufferList mIndexBuffers;
 
 
-        typedef std::set<VertexDeclaration*> VertexDeclarationList;
-		typedef std::set<VertexBufferBinding*> VertexBufferBindingList;
+        typedef set<VertexDeclaration*>::type VertexDeclarationList;
+		typedef set<VertexBufferBinding*>::type VertexBufferBindingList;
         VertexDeclarationList mVertexDeclarations;
 		VertexBufferBindingList mVertexBufferBindings;
 
@@ -170,11 +184,11 @@ namespace Ogre {
         };
 
         /// Map from original buffer to temporary buffers
-        typedef std::multimap<HardwareVertexBuffer*, HardwareVertexBufferSharedPtr> FreeTemporaryVertexBufferMap;
+        typedef multimap<HardwareVertexBuffer*, HardwareVertexBufferSharedPtr>::type FreeTemporaryVertexBufferMap;
         /// Map of current available temp buffers 
         FreeTemporaryVertexBufferMap mFreeTempVertexBufferMap;
         /// Map from temporary buffer to details of a license
-        typedef std::map<HardwareVertexBuffer*, VertexBufferLicense> TemporaryVertexBufferLicenseMap;
+        typedef map<HardwareVertexBuffer*, VertexBufferLicense>::type TemporaryVertexBufferLicenseMap;
         /// Map of currently licensed temporary buffers
         TemporaryVertexBufferLicenseMap mTempVertexBufferLicenses;
         /// Number of frames elapsed since temporary buffers utilization was above half the available
@@ -188,13 +202,13 @@ namespace Ogre {
 
 
         /// Creates  a new buffer as a copy of the source, does not copy data
-        HardwareVertexBufferSharedPtr makeBufferCopy(
+        virtual HardwareVertexBufferSharedPtr makeBufferCopy(
             const HardwareVertexBufferSharedPtr& source, 
             HardwareBuffer::Usage usage, bool useShadowBuffer);
 
     public:
-        HardwareBufferManager();
-        virtual ~HardwareBufferManager();
+        HardwareBufferManagerBase();
+        virtual ~HardwareBufferManagerBase();
 		/** Create a hardware vertex buffer.
         @remarks
             This method creates a new vertex buffer; this will act as a source of geometry
@@ -364,6 +378,124 @@ namespace Ogre {
 		/// Notification that a hardware index buffer has been destroyed
 		void _notifyIndexBufferDestroyed(HardwareIndexBuffer* buf);
 
+	};
+
+    /** Singleton wrapper for hardware buffer manager. */
+    class _OgreExport HardwareBufferManager : public HardwareBufferManagerBase, public Singleton<HardwareBufferManager>
+    {
+        friend class HardwareVertexBufferSharedPtr;
+        friend class HardwareIndexBufferSharedPtr;
+    protected:
+		HardwareBufferManagerBase* mImpl;
+	public:
+		HardwareBufferManager(HardwareBufferManagerBase* imp);
+		~HardwareBufferManager();
+
+		/** @copydoc HardwareBufferManagerInterface::createVertexBuffer */
+		HardwareVertexBufferSharedPtr 
+            createVertexBuffer(size_t vertexSize, size_t numVerts, HardwareBuffer::Usage usage, 
+			bool useShadowBuffer = false)
+		{
+			return mImpl->createVertexBuffer(vertexSize, numVerts, usage, useShadowBuffer);
+		}
+		/** @copydoc HardwareBufferManagerInterface::createIndexBuffer */
+		HardwareIndexBufferSharedPtr 
+            createIndexBuffer(HardwareIndexBuffer::IndexType itype, size_t numIndexes, 
+			HardwareBuffer::Usage usage, bool useShadowBuffer = false)
+		{
+			return mImpl->createIndexBuffer(itype, numIndexes, usage, useShadowBuffer);
+		}
+
+		/** @copydoc HardwareBufferManagerInterface::createRenderToVertexBuffer */
+		RenderToVertexBufferSharedPtr createRenderToVertexBuffer()
+		{
+			return mImpl->createRenderToVertexBuffer();
+		}
+
+		/** @copydoc HardwareBufferManagerInterface::createVertexDeclaration */
+		virtual VertexDeclaration* createVertexDeclaration(void)
+		{
+			return mImpl->createVertexDeclaration();
+		}
+		/** @copydoc HardwareBufferManagerInterface::destroyVertexDeclaration */
+        virtual void destroyVertexDeclaration(VertexDeclaration* decl)
+		{
+			mImpl->destroyVertexDeclaration(decl);
+		}
+
+		/** @copydoc HardwareBufferManagerInterface::createVertexBufferBinding */
+		virtual VertexBufferBinding* createVertexBufferBinding(void)
+		{
+			return mImpl->createVertexBufferBinding();
+		}
+		/** @copydoc HardwareBufferManagerInterface::destroyVertexBufferBinding */
+		virtual void destroyVertexBufferBinding(VertexBufferBinding* binding)
+		{
+			mImpl->destroyVertexBufferBinding(binding);
+		}
+		/** @copydoc HardwareBufferManagerInterface::registerVertexBufferSourceAndCopy */
+		virtual void registerVertexBufferSourceAndCopy(
+			const HardwareVertexBufferSharedPtr& sourceBuffer,
+			const HardwareVertexBufferSharedPtr& copy)
+		{
+			mImpl->registerVertexBufferSourceAndCopy(sourceBuffer, copy);
+		}
+		/** @copydoc HardwareBufferManagerInterface::allocateVertexBufferCopy */
+        virtual HardwareVertexBufferSharedPtr allocateVertexBufferCopy(
+            const HardwareVertexBufferSharedPtr& sourceBuffer, 
+            BufferLicenseType licenseType,
+            HardwareBufferLicensee* licensee,
+            bool copyData = false)
+		{
+			return mImpl->allocateVertexBufferCopy(sourceBuffer, licenseType, licensee, copyData);
+		}
+		/** @copydoc HardwareBufferManagerInterface::releaseVertexBufferCopy */
+        virtual void releaseVertexBufferCopy(
+            const HardwareVertexBufferSharedPtr& bufferCopy)
+		{
+			mImpl->releaseVertexBufferCopy(bufferCopy);
+		}
+
+		/** @copydoc HardwareBufferManagerInterface::touchVertexBufferCopy */
+        virtual void touchVertexBufferCopy(
+            const HardwareVertexBufferSharedPtr& bufferCopy)
+		{
+			mImpl->touchVertexBufferCopy(bufferCopy);
+		}
+
+		/** @copydoc HardwareBufferManagerInterface::_freeUnusedBufferCopies */
+        virtual void _freeUnusedBufferCopies(void)
+		{
+			mImpl->_freeUnusedBufferCopies();
+		}
+		/** @copydoc HardwareBufferManagerInterface::_releaseBufferCopies */
+        virtual void _releaseBufferCopies(bool forceFreeUnused = false)
+		{
+			mImpl->_releaseBufferCopies(forceFreeUnused);
+		}
+		/** @copydoc HardwareBufferManagerInterface::_forceReleaseBufferCopies */
+        virtual void _forceReleaseBufferCopies(
+            const HardwareVertexBufferSharedPtr& sourceBuffer)
+		{
+			mImpl->_forceReleaseBufferCopies(sourceBuffer);
+		}
+		/** @copydoc HardwareBufferManagerInterface::_forceReleaseBufferCopies */
+        virtual void _forceReleaseBufferCopies(HardwareVertexBuffer* sourceBuffer)
+		{
+			mImpl->_forceReleaseBufferCopies(sourceBuffer);
+		}
+		/** @copydoc HardwareBufferManagerInterface::_notifyVertexBufferDestroyed */
+		void _notifyVertexBufferDestroyed(HardwareVertexBuffer* buf)
+		{
+			mImpl->_notifyVertexBufferDestroyed(buf);
+		}
+		/** @copydoc HardwareBufferManagerInterface::_notifyIndexBufferDestroyed */
+		void _notifyIndexBufferDestroyed(HardwareIndexBuffer* buf)
+		{
+			mImpl->_notifyIndexBufferDestroyed(buf);
+		}
+
+
         /** Override standard Singleton retrieval.
         @remarks
         Why do we do this? Well, it's because the Singleton
@@ -399,6 +531,8 @@ namespace Ogre {
             
     };
 
+	/** @} */
+	/** @} */
 }
 
 #endif

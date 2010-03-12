@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
@@ -34,7 +33,13 @@ Torus Knot Software Ltd.
 #include "OgreLight.h"
 
 namespace Ogre {
-    /** Static class containing source for vertex programs for extruding shadow volumes
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Scene
+	*  @{
+	*/
+	/** Static class containing source for vertex programs for extruding shadow volumes
     @remarks
         This exists so we don't have to be dependent on an external media files.
         Assembler is used so we don't have to rely on particular plugins.
@@ -132,23 +137,33 @@ namespace Ogre {
     private:
         static String mPointArbvp1;
         static String mPointVs_1_1;
+		static String mPointVs_4_0;
         static String mDirArbvp1;
         static String mDirVs_1_1;
+		static String mDirVs_4_0;
         // same as above, except the color is set to 1 to enable debug volumes to be seen
         static String mPointArbvp1Debug;
         static String mPointVs_1_1Debug;
+		static String mPointVs_4_0Debug;
         static String mDirArbvp1Debug;
         static String mDirVs_1_1Debug;
+		static String mDirVs_4_0Debug;
 		
         static String mPointArbvp1Finite;
         static String mPointVs_1_1Finite;
+		static String mPointVs_4_0Finite;
         static String mDirArbvp1Finite;
         static String mDirVs_1_1Finite;
+		static String mDirVs_4_0Finite;
         // same as above, except the color is set to 1 to enable debug volumes to be seen
         static String mPointArbvp1FiniteDebug;
         static String mPointVs_1_1FiniteDebug;
+		static String mPointVs_4_0FiniteDebug;
         static String mDirArbvp1FiniteDebug;
         static String mDirVs_1_1FiniteDebug;
+		static String mDirVs_4_0FiniteDebug;
+
+		static String mGeneralFs_4_0;
 
 		static bool mInitialised;
 
@@ -175,6 +190,7 @@ namespace Ogre {
 
         };
         static const String programNames[OGRE_NUM_SHADOW_EXTRUDER_PROGRAMS];
+		static String frgProgramName;
 
         /// Initialise the creation of these vertex programs
         static void initialise(void);
@@ -184,19 +200,27 @@ namespace Ogre {
         static const String& getPointLightExtruderArbvp1(void) { return mPointArbvp1; }
         /// Get extruder program source for point lights, compatible with vs_1_1
         static const String& getPointLightExtruderVs_1_1(void) { return mPointVs_1_1; }
+		/// Get extruder program source for point lights, compatible with vs_4_0
+		static const String& getPointLightExtruderVs_4_0(void) { return mPointVs_4_0; }
         /// Get extruder program source for directional lights, compatible with arbvp1
         static const String& getDirectionalLightExtruderArbvp1(void) { return mDirArbvp1; }
         /// Get extruder program source for directional lights, compatible with vs_1_1
         static const String& getDirectionalLightExtruderVs_1_1(void) { return mDirVs_1_1; }
+		/// Get extruder program source for directional lights, compatible with vs_4_0
+		static const String& getDirectionalLightExtruderVs_4_0(void) { return mDirVs_4_0; }
 
         /// Get extruder program source for debug point lights, compatible with arbvp1
         static const String& getPointLightExtruderArbvp1Debug(void) { return mPointArbvp1Debug; }
         /// Get extruder program source for debug point lights, compatible with vs_1_1
         static const String& getPointLightExtruderVs_1_1Debug(void) { return mPointVs_1_1Debug; }
+		/// Get extruder program source for debug point lights, compatible with vs_4_0
+		static const String& getPointLightExtruderVs_4_0Debug(void) { return mPointVs_4_0Debug; }
         /// Get extruder program source for debug directional lights, compatible with arbvp1
         static const String& getDirectionalLightExtruderArbvp1Debug(void) { return mDirArbvp1Debug; }
         /// Get extruder program source for debug directional lights, compatible with vs_1_1
         static const String& getDirectionalLightExtruderVs_1_1Debug(void) { return mDirVs_1_1Debug; }
+		/// Get extruder program source for debug directional lights, compatible with vs_4_0
+		static const String& getDirectionalLightExtruderVs_4_0Debug(void) { return mDirVs_4_0Debug; }
         /// General purpose method to get any of the program sources
         static const String& getProgramSource(Light::LightTypes lightType, const String syntax, 
             bool finite, bool debug);
@@ -204,30 +228,37 @@ namespace Ogre {
         static const String& getProgramName(Light::LightTypes lightType, bool finite, bool debug);
 
 
-
-
-
         /// Get FINITE extruder program source for point lights, compatible with arbvp1
         static const String& getPointLightExtruderArbvp1Finite(void) { return mPointArbvp1Finite; }
         /// Get FINITE extruder program source for point lights, compatible with vs_1_1
         static const String& getPointLightExtruderVs_1_1Finite(void) { return mPointVs_1_1Finite; }
+		/// Get FINITE extruder program source for point lights, compatible with vs_4_0
+		static const String& getPointLightExtruderVs_4_0Finite(void) { return mPointVs_4_0Finite; }
         /// Get FINITE extruder program source for directional lights, compatible with arbvp1
         static const String& getDirectionalLightExtruderArbvp1Finite(void) { return mDirArbvp1Finite; }
         /// Get FINITE extruder program source for directional lights, compatible with vs_1_1
         static const String& getDirectionalLightExtruderVs_1_1Finite(void) { return mDirVs_1_1Finite; }
+		/// Get FINITE extruder program source for directional lights, compatible with vs_4_0
+		static const String& getDirectionalLightExtruderVs_4_0Finite(void) { return mDirVs_4_0Finite; }
 
         /// Get FINITE extruder program source for debug point lights, compatible with arbvp1
         static const String& getPointLightExtruderArbvp1FiniteDebug(void) { return mPointArbvp1FiniteDebug; }
         /// Get extruder program source for debug point lights, compatible with vs_1_1
         static const String& getPointLightExtruderVs_1_1FiniteDebug(void) { return mPointVs_1_1FiniteDebug; }
+		/// Get extruder program source for debug point lights, compatible with vs_4_0
+		static const String& getPointLightExtruderVs_4_0FiniteDebug(void) { return mPointVs_4_0FiniteDebug; }
         /// Get FINITE extruder program source for debug directional lights, compatible with arbvp1
         static const String& getDirectionalLightExtruderArbvp1FiniteDebug(void) { return mDirArbvp1FiniteDebug; }
         /// Get FINITE extruder program source for debug directional lights, compatible with vs_1_1
         static const String& getDirectionalLightExtruderVs_1_1FiniteDebug(void) { return mDirVs_1_1FiniteDebug; }
+		/// Get FINITE extruder program source for debug directional lights, compatible with vs_4_0
+		static const String& getDirectionalLightExtruderVs_4_0FiniteDebug(void) { return mDirVs_4_0FiniteDebug; }
 
 
 
 		
     };
+	/** @} */
+	/** @} */
 }
 #endif

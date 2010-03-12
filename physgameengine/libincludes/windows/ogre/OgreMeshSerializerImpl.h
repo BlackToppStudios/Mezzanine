@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
@@ -40,8 +39,15 @@ Torus Knot Software Ltd.
 namespace Ogre {
 	
 	class MeshSerializerListener;
+    class LodStrategy;
 
-    /** Internal implementation of Mesh reading / writing for the latest version of the
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Resources
+	*  @{
+	*/
+	/** Internal implementation of Mesh reading / writing for the latest version of the
     .mesh format.
     @remarks
     In order to maintain compatibility with older versions of the .mesh format, there
@@ -86,7 +92,7 @@ namespace Ogre {
         virtual void writeMeshBoneAssignment(const VertexBoneAssignment& assign);
         virtual void writeSubMeshBoneAssignment(const VertexBoneAssignment& assign);
         virtual void writeLodInfo(const Mesh* pMesh);
-        virtual void writeLodSummary(unsigned short numLevels, bool manual);
+        virtual void writeLodSummary(unsigned short numLevels, bool manual, const LodStrategy *strategy);
         virtual void writeLodUsageManual(const MeshLodUsage& usage);
         virtual void writeLodUsageGenerated(const Mesh* pMesh, const MeshLodUsage& usage, unsigned short lodNum);
         virtual void writeBoundsInfo(const Mesh* pMesh);
@@ -170,6 +176,17 @@ namespace Ogre {
 
     };
 
+    /** Class for providing backwards-compatibility for loading version 1.4 of the .mesh format. */
+    class _OgrePrivate MeshSerializerImpl_v1_4 : public MeshSerializerImpl
+    {
+    public:
+        MeshSerializerImpl_v1_4();
+        ~MeshSerializerImpl_v1_4();
+    protected:
+        virtual void writeLodSummary(unsigned short numLevels, bool manual, const LodStrategy *strategy);
+        virtual void readMeshLodInfo(DataStreamPtr& stream, Mesh* pMesh);
+    };
+
     /** Class for providing backwards-compatibility for loading version 1.3 of the .mesh format. */
     class _OgrePrivate MeshSerializerImpl_v1_3 : public MeshSerializerImpl
     {
@@ -213,6 +230,8 @@ namespace Ogre {
             Mesh* pMesh, VertexData* dest, unsigned short set);
     };
 
+	/** @} */
+	/** @} */
 
 }
 

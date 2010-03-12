@@ -4,26 +4,25 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Technique_H__
@@ -36,9 +35,16 @@ Torus Knot Software Ltd.
 #include "OgrePass.h"
 #include "OgreIteratorWrappers.h"
 #include "OgreRenderSystemCapabilities.h"
+#include "OgreUserObjectBindings.h"
 
 namespace Ogre {
-    /** Class representing an approach to rendering this particular Material. 
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Materials
+	*  @{
+	*/
+	/** Class representing an approach to rendering this particular Material. 
     @remarks
         Ogre will attempt to use the best technique supported by the active hardware, 
         unless you specifically request a lower detail technique (say for distant
@@ -55,7 +61,7 @@ namespace Ogre {
             IPS_COMPILED = 1
         };
 
-        typedef std::vector<Pass*> Passes;
+        typedef vector<Pass*>::type Passes;
         /// List of primary passes
         Passes mPasses;
         /// List of derived passes, categorised into IlluminationStage (ordered)
@@ -98,6 +104,9 @@ namespace Ogre {
 		*/
 		String mShadowReceiverMaterialName;	
 
+		// User objects binding.
+		UserObjectBindings	mUserObjectBindings;
+
 	public:
 		/** Directive used to manually control technique support based on the
 			inclusion or exclusion of some factor.
@@ -130,8 +139,8 @@ namespace Ogre {
 			GPUDeviceNameRule(const String& pattern, IncludeOrExclude ie, bool caseSen)
 				: devicePattern(pattern), includeOrExclude(ie), caseSensitive(caseSen) {}
 		};
-		typedef std::vector<GPUVendorRule> GPUVendorRuleList;
-		typedef std::vector<GPUDeviceNameRule> GPUDeviceNameRuleList;
+		typedef vector<GPUVendorRule>::type GPUVendorRuleList;
+		typedef vector<GPUDeviceNameRule>::type GPUDeviceNameRuleList;
 	protected:
 		GPUVendorRuleList mGPUVendorRules;
 		GPUDeviceNameRuleList mGPUDeviceNameRules;
@@ -217,6 +226,13 @@ namespace Ogre {
 			has transparent sorting enabled or not
 		*/
 		bool isTransparentSortingEnabled(void) const;
+
+		/** Returns true if this Technique has transparent sorting forced. 
+		@remarks
+			This basically boils down to whether the first pass
+			has transparent sorting forced or not
+		*/
+		bool isTransparentSortingForced(void) const;
 
         /** Internal prepare method, derived from call to Material::prepare. */
         void _prepare(void);
@@ -677,8 +693,22 @@ namespace Ogre {
 		/// Get an iterator over the currently registered device name rules.
 		GPUDeviceNameRuleIterator getGPUDeviceNameRuleIterator() const;
 
+		/** Return an instance of user objects binding associated with this class.
+		You can use it to associate one or more custom objects with this class instance.
+		@see UserObjectBindings::setUserAny.
+		*/
+		UserObjectBindings&	getUserObjectBindings() { return mUserObjectBindings; }
+
+		/** Return an instance of user objects binding associated with this class.
+		You can use it to associate one or more custom objects with this class instance.
+		@see UserObjectBindings::setUserAny.		
+		*/
+		const UserObjectBindings& getUserObjectBindings() const { return mUserObjectBindings; }
+
     };
 
+	/** @} */
+	/** @} */
 
 }
 #endif

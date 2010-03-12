@@ -47,6 +47,7 @@ namespace Ogre
 	class Root;
 	class RenderSystem;
 	class RenderWindow;
+    class ResourceGroupManager;
 	class SceneManager;
 	class Camera;
 	class Viewport;
@@ -77,6 +78,7 @@ class physworld
         Ogre::Root* OgreRoot;
         Ogre::RenderSystem* OgreRenderSystem;
         Ogre::RenderWindow* OgreGameWindow;
+        Ogre::ResourceGroupManager* OgreResource;
 		Ogre::SceneManager* OgreSceneManager;
 		Ogre::Camera* OgreCamera;
 		Ogre::Viewport* OgreViewport;
@@ -111,6 +113,7 @@ class physworld
         void Log(string Message);
         void Log(PhysWhole Message);
 		void Log(PhysReal Message);
+		void Log(size_t Message);
         void LogAndThrow(string Message);
         void LogAndThrow(PhysWhole Message);
 		void LogAndThrow(PhysReal Message);

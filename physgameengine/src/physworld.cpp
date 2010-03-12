@@ -9,6 +9,7 @@
 //for other code to interact with those libraries directly.
 ///////////////////////////////////////////////////////////////////////////////
 //Includes
+#include "physdatatypes.h"
 #include "physevent.h"
 #include "physworld.h"
 #include "physvector.h"
@@ -48,7 +49,15 @@ void physworld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 
 	//We create our Ogre environment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
-	this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, false);
+	//Ogre resource related code
+	//this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, false);
+    this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", "Robot", false);
+    this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
+    this->OgreResource->declareResource("robot.mesh", "Mesh", "Robot");
+    //this->OgreResource->declareResource("robot.skeleton", "Skeleton", "Robot");
+    this->OgreResource->declareResource("Examples.material", "Material", "Robot");
+    //this->OgreResource->declareResource("r2skin.jpg", "Texture", "Robot");
+    //this->OgreResource->initialiseResourceGroup("Robot");
 
     //Callbacks are the main way that a game using the physworld will be able to have their code run at custom times
 	this->CallBacks = new physworldCallBackManager(this);
@@ -127,6 +136,13 @@ void physworld::Log(PhysReal Message)
 	Ogre::LogManager::getSingleton().logMessage(temp.str());
 }
 
+void physworld::Log(size_t Message)
+{
+	stringstream temp;
+	temp << Message;
+	Ogre::LogManager::getSingleton().logMessage(temp.str());
+}
+
 void physworld::LogAndThrow(string Message)
 {
 	this->Log(Message);
@@ -178,6 +194,7 @@ void physworld::GameInit()
 	//PhysWhole Times[] = {0,0,0,0};
 
 	//TODO finish test code
+	this->OgreResource->initialiseResourceGroup("Robot");
 	this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 	Ogre::Entity *ent1 = this->OgreSceneManager->createEntity( "Robot", "robot.mesh" );
 	Ogre::SceneNode *node1 = this->OgreSceneManager->getRootSceneNode()->createChildSceneNode( "RobotNode" );

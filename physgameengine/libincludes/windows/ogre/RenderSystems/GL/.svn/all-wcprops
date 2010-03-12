@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/ogre/!svn/ver/9777/branches/v1-7/RenderSystems/GL/src/GLSL/include
+END
+OgreGLSLExtSupport.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/ogre/!svn/ver/9527/branches/v1-7/RenderSystems/GL/src/GLSL/include/OgreGLSLExtSupport.h
+END
+OgreGLSLProgramFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svnroot/ogre/!svn/ver/9777/branches/v1-7/RenderSystems/GL/src/GLSL/include/OgreGLSLProgramFactory.h
+END
+OgreGLSLLinkProgramManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svnroot/ogre/!svn/ver/9777/branches/v1-7/RenderSystems/GL/src/GLSL/include/OgreGLSLLinkProgramManager.h
+END
+OgreGLSLGpuProgram.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/ogre/!svn/ver/9777/branches/v1-7/RenderSystems/GL/src/GLSL/include/OgreGLSLGpuProgram.h
+END
+OgreGLSLLinkProgram.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/ogre/!svn/ver/9777/branches/v1-7/RenderSystems/GL/src/GLSL/include/OgreGLSLLinkProgram.h
+END
+OgreGLSLPreprocessor.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/ogre/!svn/ver/9527/branches/v1-7/RenderSystems/GL/src/GLSL/include/OgreGLSLPreprocessor.h
+END
+OgreGLSLProgram.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svnroot/ogre/!svn/ver/9777/branches/v1-7/RenderSystems/GL/src/GLSL/include/OgreGLSLProgram.h
+END

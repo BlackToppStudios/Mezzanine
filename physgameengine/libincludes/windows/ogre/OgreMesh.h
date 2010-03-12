@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __Mesh_H__
@@ -47,7 +46,13 @@ Torus Knot Software Ltd.
 namespace Ogre {
 
 
-    /** Resource holding data about 3D mesh.
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Resources
+	*  @{
+	*/
+	/** Resource holding data about 3D mesh.
         @remarks
             This class holds the data used to represent a discrete
             3-dimensional object. Mesh data usually contains more
@@ -80,23 +85,25 @@ namespace Ogre {
             share the same scene node as the parent.
     */
 
-
     struct MeshLodUsage;
+    class LodStrategy;
 
     class _OgreExport Mesh: public Resource
     {
         friend class SubMesh;
         friend class MeshSerializerImpl;
+        friend class MeshSerializerImpl_v1_4;
         friend class MeshSerializerImpl_v1_2;
         friend class MeshSerializerImpl_v1_1;
 
     public:
-		typedef std::vector<Real> LodDistanceList;
+		typedef vector<Real>::type LodValueList;
+        typedef vector<MeshLodUsage>::type MeshLodUsageList;
         /// Multimap of vertex bone assignments (orders by vertex index)
-        typedef std::multimap<size_t, VertexBoneAssignment> VertexBoneAssignmentList;
+		typedef multimap<size_t, VertexBoneAssignment>::type VertexBoneAssignmentList;
         typedef MapIterator<VertexBoneAssignmentList> BoneAssignmentIterator;
-        typedef std::vector<SubMesh*> SubMeshList;
-        typedef std::vector<unsigned short> IndexMap;
+        typedef vector<SubMesh*>::type SubMeshList;
+        typedef vector<unsigned short>::type IndexMap;
 
     protected:
         /** A list of submeshes which make up this mesh.
@@ -149,9 +156,9 @@ namespace Ogre {
             IndexMap& blendIndexToBoneIndexMap,
             VertexData* targetVertexData);
 
+        const LodStrategy *mLodStrategy;
 		bool mIsLodManual;
 		ushort mNumLods;
-		typedef std::vector<MeshLodUsage> MeshLodUsageList;
 		MeshLodUsageList mMeshLodUsageList;
 
 		HardwareBuffer::Usage mVertexBufferUsage;
@@ -165,7 +172,7 @@ namespace Ogre {
         bool mAutoBuildEdgeLists;
 
 		/// Storage of morph animations, lookup by name
-		typedef std::map<String, Animation*> AnimationList;
+		typedef map<String, Animation*>::type AnimationList;
 		AnimationList mAnimationsList;
 		/// The vertex animation type associated with the shared vertex data
 		mutable VertexAnimationType mSharedVertexDataAnimationType;
@@ -223,6 +230,10 @@ namespace Ogre {
 		/** Gives a name to a SubMesh
 		*/
 		void nameSubMesh(const String& name, ushort index);
+
+		/** Removes a name from a SubMesh
+		*/
+		void unnameSubMesh(const String& name);
 		
 		/** Gets the index of a submesh with a given name.
         @remarks
@@ -242,7 +253,21 @@ namespace Ogre {
 		/** Gets a SubMesh by name
 		*/
 		SubMesh* getSubMesh(const String& name) const ;
+		
+		/** Destroy a SubMesh with the given index. 
+		 @note This will invalidate the contents of any existing Entity, or
+		 any other object that is referring to the SubMesh list. Entity will
+		 detect this and reinitialise, but it is still a disruptive action.
+		*/
+		void destroySubMesh(unsigned short index);
 
+		/** Destroy a SubMesh with the given name. 
+		 @note This will invalidate the contents of any existing Entity, or
+		 any other object that is referring to the SubMesh list. Entity will
+		 detect this and reinitialise, but it is still a disruptive action.
+		 */
+		void destroySubMesh(const String& name);
+		
         typedef VectorIterator<SubMeshList> SubMeshIterator;
         /// Gets an iterator over the available submeshes
         SubMeshIterator getSubMeshIterator(void)
@@ -410,13 +435,15 @@ namespace Ogre {
 			to that level of detail. 
 		@par
 			I recommend calling this method before mesh export, not at runtime.
-		@param lodDistances A list of depth values indicating the distances at which new lods should be
-			generated. 
+		@param lodValues A list of lod values indicating the values at which new lods should be
+		generated. These are 'user values', before being potentially 
+		transformed by the strategy, so for the distance strategy this is an
+		unsquared distance for example.
 		@param reductionMethod The way to determine the number of vertices collapsed per LOD
 		@param reductionValue Meaning depends on reductionMethod, typically either the proportion
 			of remaining vertices to collapse or a fixed number of vertices.
 		*/
-		void generateLodLevels(const LodDistanceList& lodDistances, 
+		void generateLodLevels(const LodValueList& lodValues, 
 			ProgressiveMesh::VertexReductionQuota reductionMethod, Real reductionValue);
 
 		/** Returns the number of levels of detail that this mesh supports. 
@@ -436,10 +463,10 @@ namespace Ogre {
 			this is an animated mesh. Therefore for complex models you are likely to be better off
 			modelling your LODs yourself and using this method, whilst for models with fairly
 			simple materials and no animation you can just use the generateLodLevels method.
-		@param fromDepth The z value from which this Lod will apply.
+		@param value The value from which this Lod will apply.
 		@param meshName The name of the mesh which will be the lower level detail version.
 		*/
-		void createManualLodLevel(Real fromDepth, const String& meshName);
+		void createManualLodLevel(Real value, const String& meshName, const String& groupName = Ogre::String());
 
 		/** Changes the alternate mesh to use as a manual LOD at the given index.
 		@remarks
@@ -450,17 +477,12 @@ namespace Ogre {
 		*/
 		void updateManualLodLevel(ushort index, const String& meshName);
 
-		/** Retrieves the level of detail index for the given depth value. 
+		/** Retrieves the level of detail index for the given lod value. 
+		@note The value passed in is the 'transformed' value. If you are dealing with
+		an original source value (e.g. distance), use LodStrategy::transformUserValue
+		to turn this into a lookup value.
 		*/
-		ushort getLodIndex(Real depth) const;
-
-		/** Retrieves the level of detail index for the given squared depth value. 
-		@remarks
-			Internally the lods are stored at squared depths to avoid having to perform
-			square roots when determining the lod. This method allows you to provide a
-			squared length depth value to avoid having to do your own square roots.
-		*/
-		ushort getLodIndexSquaredDepth(Real squaredDepth) const;
+		ushort getLodIndex(Real value) const;
 
 		/** Returns true if this mesh is using manual LOD.
 		@remarks
@@ -651,7 +673,7 @@ namespace Ogre {
             rendering if you intend to use this information for that purpose.
         @lodIndex The LOD at which to get the edge list, 0 being the highest.
         */
-        EdgeData* getEdgeList(unsigned int lodIndex = 0);
+        EdgeData* getEdgeList(unsigned short lodIndex = 0);
 
         /** Return the edge list for this mesh, building it if required. 
         @remarks
@@ -659,7 +681,7 @@ namespace Ogre {
             rendering if you intend to use this information for that purpose.
         @lodIndex The LOD at which to get the edge list, 0 being the highest.
         */
-        const EdgeData* getEdgeList(unsigned int lodIndex = 0) const;
+        const EdgeData* getEdgeList(unsigned short lodIndex = 0) const;
 
         /** Returns whether this mesh has already had it's geometry prepared for use in 
             rendering shadow volumes. */
@@ -737,7 +759,7 @@ namespace Ogre {
 			number in start and end
 		*/
 		static void softwareVertexPoseBlend(Real weight, 
-			const std::map<size_t, Vector3>& vertexOffsetMap,
+			const map<size_t, Vector3>::type& vertexOffsetMap,
 			VertexData* targetVertexData);
         /** Gets a reference to the optional name assignments of the SubMeshes. */
         const SubMeshNameMap& getSubMeshNameMap(void) const { return mSubMeshNameMap; }
@@ -856,6 +878,11 @@ namespace Ogre {
 		/** Get pose list */
 		const PoseList& getPoseList(void) const;
 
+        /** Get lod strategy used by this mesh. */
+        const LodStrategy *getLodStrategy() const;
+        /** Set the lod strategy used by this mesh. */
+        void setLodStrategy(LodStrategy *lodStrategy);
+
     };
 
     /** Specialisation of SharedPtr to allow SharedPtr to be assigned to MeshPtr 
@@ -881,16 +908,33 @@ namespace Ogre {
 	/** A way of recording the way each LODs is recorded this Mesh. */
 	struct MeshLodUsage
 	{
-		/// squared Z value from which this LOD will apply
-		Real fromDepthSquared;
+        /** User-supplied values used to determine when th is lod applies.
+        @remarks
+            This is required in case the lod strategy changes.
+        */
+        Real userValue;
+
+		/** Value used by to determine when this lod applies.
+		@remarks
+			May be interpretted differently by different strategies.
+            Transformed from user-supplied values with LodStrategy::transformUserValue.
+		*/
+		Real value;
+		
 		/// Only relevant if mIsLodManual is true, the name of the alternative mesh to use
 		String manualName;
+		/// Only relevant if mIsLodManual is true, the name of the group of the alternative mesh
+		String manualGroup;
 		/// Hard link to mesh to avoid looking up each time
 		mutable MeshPtr manualMesh;
         /// Edge list for this LOD level (may be derived from manual mesh)
         mutable EdgeData* edgeData;
+
+		MeshLodUsage() : userValue(0.0), value(0.0), edgeData(0) {}
 	};
 
+	/** @} */
+	/** @} */
 
 
 } // namespace

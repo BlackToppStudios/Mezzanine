@@ -4,34 +4,39 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2008 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd
----------------------------------------------------------------------------
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-----------------------------------------------------------------------------
 */
 
 #ifndef __MemoryAllocatorConfig_H__
 #define __MemoryAllocatorConfig_H__
 
-#include "OgrePrerequisites.h"
+#include "OgreMemoryAllocatedObject.h" 
 
+/** \addtogroup Core
+*  @{
+*/
+/** \addtogroup Memory
+*  @{
+*/
 /** @file
 
 	This file configures Ogre's memory allocators. You can modify this
@@ -129,9 +134,18 @@ Torus Knot Software Ltd
 	int & float. You free the memory using OGRE_FREE, and both variants have SIMD
 	and custom alignment variants.
 */
+/** @} */
+/** @} */
 
 namespace Ogre
 {
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Memory
+	*  @{
+	*/
+
 	/** A set of categories that indicate the purpose of a chunk of memory
 	being allocated. 
 	These categories will be provided at allocation time in order to allow
@@ -164,12 +178,30 @@ namespace Ogre
 		// sentinel value, do not use 
 		MEMCATEGORY_COUNT = 8
 	};
+	/** @} */
+	/** @} */
+
 }
 
 #include "OgreMemoryAllocatedObject.h"
 #include "OgreMemorySTLAllocator.h"
 
-#if OGRE_MEMORY_ALLOCATOR == OGRE_MEMORY_ALLOCATOR_NED
+#if OGRE_MEMORY_ALLOCATOR == OGRE_MEMORY_ALLOCATOR_NEDPOOLING
+
+#  include "OgreMemoryNedPooling.h"
+namespace Ogre
+{
+	// configure default allocators based on the options above
+	// notice how we're not using the memory categories here but still roughing them out
+	// in your allocators you might choose to create different policies per category
+
+	// configurable category, for general malloc
+	// notice how we ignore the category here, you could specialise
+	template <MemoryCategory Cat> class CategorisedAllocPolicy : public NedPoolingPolicy{};
+	template <MemoryCategory Cat, size_t align = 0> class CategorisedAlignAllocPolicy : public NedPoolingAlignedPolicy<align>{};
+}
+
+#elif OGRE_MEMORY_ALLOCATOR == OGRE_MEMORY_ALLOCATOR_NED
 
 #  include "OgreMemoryNedAlloc.h"
 namespace Ogre
@@ -214,14 +246,14 @@ namespace Ogre
 namespace Ogre
 {
 	// Useful shortcuts
-	typedef CategorisedAllocPolicy<MEMCATEGORY_GENERAL> GeneralAllocPolicy;
-	typedef CategorisedAllocPolicy<MEMCATEGORY_GEOMETRY> GeometryAllocPolicy;
-	typedef CategorisedAllocPolicy<MEMCATEGORY_ANIMATION> AnimationAllocPolicy;
-	typedef CategorisedAllocPolicy<MEMCATEGORY_SCENE_CONTROL> SceneCtlAllocPolicy;
-	typedef CategorisedAllocPolicy<MEMCATEGORY_SCENE_OBJECTS> SceneObjAllocPolicy;
-	typedef CategorisedAllocPolicy<MEMCATEGORY_RESOURCE> ResourceAllocPolicy;
-	typedef CategorisedAllocPolicy<MEMCATEGORY_SCRIPTING> ScriptingAllocPolicy;
-	typedef CategorisedAllocPolicy<MEMCATEGORY_RENDERSYS> RenderSysAllocPolicy;
+	typedef CategorisedAllocPolicy<Ogre::MEMCATEGORY_GENERAL> GeneralAllocPolicy;
+	typedef CategorisedAllocPolicy<Ogre::MEMCATEGORY_GEOMETRY> GeometryAllocPolicy;
+	typedef CategorisedAllocPolicy<Ogre::MEMCATEGORY_ANIMATION> AnimationAllocPolicy;
+	typedef CategorisedAllocPolicy<Ogre::MEMCATEGORY_SCENE_CONTROL> SceneCtlAllocPolicy;
+	typedef CategorisedAllocPolicy<Ogre::MEMCATEGORY_SCENE_OBJECTS> SceneObjAllocPolicy;
+	typedef CategorisedAllocPolicy<Ogre::MEMCATEGORY_RESOURCE> ResourceAllocPolicy;
+	typedef CategorisedAllocPolicy<Ogre::MEMCATEGORY_SCRIPTING> ScriptingAllocPolicy;
+	typedef CategorisedAllocPolicy<Ogre::MEMCATEGORY_RENDERSYS> RenderSysAllocPolicy;
 
 	// Now define all the base classes for each allocation
 	typedef AllocatedObject<GeneralAllocPolicy> GeneralAllocatedObject;
@@ -283,11 +315,12 @@ namespace Ogre
 	typedef GeneralAllocatedObject		UtilityAlloc;
 	typedef GeometryAllocatedObject		VertexDataAlloc;
 	typedef RenderSysAllocatedObject	ViewportAlloc;
+	typedef SceneCtlAllocatedObject		LodAlloc;
 
 	// Containers (by-value only)
 	// Will  be of the form:
 	// typedef STLAllocator<T, DefaultAllocPolicy, Category> TAlloc;
-	// for use in std::vector<T, TAlloc> 
+	// for use in vector<T, TAlloc>::type 
 	
 
 
@@ -296,6 +329,13 @@ namespace Ogre
 // Util functions
 namespace Ogre
 {
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Memory
+	*  @{
+	*/
+
 	/** Utility function for constructing an array of objects with placement new,
 		without using new[] (which allocates an undocumented amount of extra memory
 		and so isn't appropriate for custom allocators).
@@ -309,8 +349,18 @@ namespace Ogre
 		}
 		return basePtr;
 	}
+	/** @} */
+	/** @} */
+
 }
 // define macros 
+
+/** \addtogroup Core
+*  @{
+*/
+/** \addtogroup Memory
+*  @{
+*/
 
 #if OGRE_DEBUG_MODE
 
@@ -423,5 +473,21 @@ namespace Ogre
 
 #endif // OGRE_DEBUG_MODE
 
+
+namespace Ogre
+{
+	/** Function which invokes OGRE_DELETE on a given pointer. 
+	@remarks
+		Useful to pass custom deletion policies to external libraries (e. g. boost).
+	*/
+	template<typename T>
+	void deletePtr(T* ptr)
+	{
+		OGRE_DELETE ptr;
+	}
+}
+
+/** @} */
+/** @} */
 
 #endif

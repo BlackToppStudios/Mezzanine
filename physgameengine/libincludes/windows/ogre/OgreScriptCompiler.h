@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
@@ -39,6 +38,12 @@ Torus Knot Software Ltd.
 
 namespace Ogre
 {
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup General
+	*  @{
+	*/
 	/** These enums hold the types of the concrete parsed nodes */
 	enum ConcreteNodeType
 	{
@@ -55,7 +60,7 @@ namespace Ogre
 	/** The ConcreteNode is the struct that holds an un-conditioned sub-tree of parsed input */
 	struct ConcreteNode;
 	typedef SharedPtr<ConcreteNode> ConcreteNodePtr;
-	typedef std::list<ConcreteNodePtr> ConcreteNodeList;
+	typedef list<ConcreteNodePtr>::type ConcreteNodeList;
 	typedef SharedPtr<ConcreteNodeList> ConcreteNodeListPtr;
 	struct ConcreteNode : public ScriptCompilerAlloc
 	{
@@ -79,7 +84,7 @@ namespace Ogre
 	};
 	class AbstractNode;
 	typedef SharedPtr<AbstractNode> AbstractNodePtr;
-	typedef std::list<AbstractNodePtr> AbstractNodeList;
+	typedef list<AbstractNodePtr>::type AbstractNodeList;
 	typedef SharedPtr<AbstractNodeList> AbstractNodeListPtr;
 
 	class _OgreExport AbstractNode : public AbstractNodeAlloc
@@ -117,9 +122,10 @@ namespace Ogre
 	class _OgreExport ObjectAbstractNode : public AbstractNode
 	{
 	private:
-		std::map<String,String> mEnv;
+		map<String,String>::type mEnv;
 	public:
-		String name, cls, base;
+		String name, cls;
+		std::vector<String> bases;
 		uint32 id;
 		bool abstract;
 		AbstractNodeList children;
@@ -133,7 +139,7 @@ namespace Ogre
 		void addVariable(const String &name);
 		void setVariable(const String &name, const String &value);
 		std::pair<bool,String> getVariable(const String &name) const;
-		const std::map<String,String> &getVariables() const;
+		const map<String,String>::type &getVariables() const;
 	};
 
 	/** This abstract node represents a script property */
@@ -171,6 +177,7 @@ namespace Ogre
 		String getValue() const;
 	};
 
+	class ScriptCompilerEvent;
 	class ScriptCompilerListener;
 
 	/** This is the main class for the compiler. It calls the parser
@@ -180,7 +187,7 @@ namespace Ogre
 	class _OgreExport ScriptCompiler : public ScriptCompilerAlloc
 	{
 	public: // Externally accessible types
-		typedef std::map<String,uint32> IdMap;
+		typedef map<String,uint32>::type IdMap;
 
 		// The container for errors
 		struct Error : public ScriptCompilerAlloc
@@ -190,7 +197,7 @@ namespace Ogre
 			uint32 code;
 		};
 		typedef SharedPtr<Error> ErrorPtr;
-		typedef std::list<ErrorPtr> ErrorList;
+		typedef list<ErrorPtr>::type ErrorList;
 
 		// These are the built-in error codes
 		enum{
@@ -222,8 +229,10 @@ namespace Ogre
 		bool compile(const String &str, const String &source, const String &group);
 		/// Compiles resources from the given concrete node list
 		bool compile(const ConcreteNodeListPtr &nodes, const String &group);
+		/// Generates the AST from the given string script
+		AbstractNodeListPtr _generateAST(const String &str, const String &source, bool doImports = false, bool doObjects = false, bool doVariables = false);
 		/// Compiles the given abstract syntax tree
-		bool _compile(AbstractNodeListPtr nodes, const String &group);
+		bool _compile(AbstractNodeListPtr nodes, const String &group, bool doImports = true, bool doObjects = true, bool doVariables = true);
 		/// Adds the given error to the compiler's list of errors
 		void addError(uint32 code, const String &file, int line, const String &msg = "");
 		/// Sets the listener used by the compiler
@@ -242,9 +251,7 @@ namespace Ogre
 		/// Removes a name exclusion
 		void removeNameExclusion(const String &type);
 		/// Internal method for firing the handleEvent method
-		bool _fireEvent(const String &name, const std::vector<Any> &args, Any *retval);
-		/// Internal method for firing the createObject event
-		Any _fireCreateObject(const String &type, const std::vector<Any> &args);
+		bool _fireEvent(ScriptCompilerEvent *evt, void *retval);
 	private: // Tree processing
 		AbstractNodeListPtr convertToAST(const ConcreteNodeListPtr &nodes);
 		/// This built-in function processes import nodes
@@ -269,12 +276,12 @@ namespace Ogre
 		// The word -> id conversion table
 		IdMap mIds;
 		// This is an environment map
-		typedef std::map<String,String> Environment;
+		typedef map<String,String>::type Environment;
 		Environment mEnv;
 
-		typedef std::map<String,AbstractNodeListPtr> ImportCacheMap;
+		typedef map<String,AbstractNodeListPtr>::type ImportCacheMap;
 		ImportCacheMap mImports; // The set of imported scripts to avoid circular dependencies
-		typedef std::multimap<String,String> ImportRequestMap;
+		typedef multimap<String,String>::type ImportRequestMap;
 		ImportRequestMap mImportRequests; // This holds the target objects for each script to be imported
 
 		// This stores the imports of the scripts, so they are separated and can be treated specially
@@ -312,6 +319,23 @@ namespace Ogre
 		};	
 	};
 
+	/**
+	 * This struct is a base class for events which can be thrown by the compilers and caught by
+	 * subscribers. There are a set number of standard events which are used by Ogre's core.
+	 * New event types may be derived for more custom compiler processing.
+	 */
+	class ScriptCompilerEvent
+	{
+	public:
+		String mType;
+
+		ScriptCompilerEvent(const String &type):mType(type){}
+		virtual ~ScriptCompilerEvent(){}
+	private: // Non-copyable
+		ScriptCompilerEvent(const ScriptCompilerEvent&);
+		ScriptCompilerEvent &operator = (const ScriptCompilerEvent&);
+	};
+
 	/** This is a listener for the compiler. The compiler can be customized with
 		this listener. It lets you listen in on events occuring during compilation,
 		hook them, and change the behavior.
@@ -339,74 +363,14 @@ namespace Ogre
 		/// Called when an event occurs during translation, return true if handled
 		/**
 		 @remarks	This function is called from the translators when an event occurs that
-					that can be responded to. Often this is overriding names. The support events are:
-					preApplyTextureAliases - Allows overriding texture aliases before they are set
-						arg1 is a Material*
-						arg2 is an AliasTextureNamePairList* holding the aliases
-					processTextureNames - Allows overriding referenced textures
-						arg1 is a String*
-						arg2 is the size of the array
-						No return value
-					processMaterialName - Allows overriding referenced materials
-						arg1 is a single String*
-						No return value
-					processGpuProgramName - Allows overriding referenced gpu programs
-						arg1 is a single String*
-						No return value
-					processNameExclusion - Allows forcing a name exclusion
-						arg1 is a String of the node object's class ("material", "particle_system", etc.)
-						arg2 is an AbstractNode* which is the object's parent
-						No return value
+					that can be responded to. Often this is overriding names, or it can be a request for
+					custom resource creation.
 		 @arg compiler A reference to the compiler
-		 @arg name The name of the event
-		 @arg args The vector of argument for the event
+		 @arg evt The event object holding information about the event to be processed
 		 @arg retval A possible return value from handlers
 		 @return True if the handler processed the event
 		*/
-		virtual bool handleEvent(ScriptCompiler *compiler, const String &name, const std::vector<Ogre::Any> &args, Ogre::Any *retval);
-		/// Called when a translator requests a concrete object to be created
-		/**
-		 @remarks	This function is called when a translator needs to create an Ogre object
-					during comilation. If a valid object is returned from this function it is
-					used instead of a default object created from Ogre's resource managers.
-					The object types are:
-					Material
-						arg1 is a string holding the file where the object is compiled from
-						arg2 is the name for the material specified in the script file
-						arg3 is the resource group of the compiling script file
-					GpuProgram
-						arg1 is a string holding the file where the object is compiled from
-						arg2 is the name for the material specified in the script file
-						arg3 is the resource group of the compiling script file
-						arg4 is the specified source file
-						arg5 is the GpuProgramType
-						arg6 is the program's syntax code
-					UnifiedGpuProgram
-						arg1 is a string holding the file where the object is compiled from
-						arg2 is the name for the material specified in the script file
-						arg3 is the resource group of the compiling script file
-						arg4 is the GpuProgramType
-					HighLevelGpuProgram
-						arg1 is a string holding the file where the object is compiled from
-						arg2 is the name for the material specified in the script file
-						arg3 is the resource group of the compiling script file
-						arg4 is the specified language
-						arg5 is the GpuProgramType
-						arg6 is the specified source file
-					ParticleSystem
-						arg1 is a string holding the file where the object is compiled from
-						arg2 is the name for the material specified in the script file
-						arg3 is the resource group of the compiling script file
-					Compositor
-						arg1 is a string holding the file where the object is compiled from
-						arg2 is the name for the material specified in the script file
-						arg3 is the resource group of the compiling script file
-		 @arg compiler A reference to the compiler
-		 @arg type The type of the requested object
-		 @arg args Creation arguments for the object
-		 @return A reference (pointer) to the created object wrapped in an Any
-	    */
-		virtual Ogre::Any createObject(ScriptCompiler *compiler, const String &type, const std::vector<Ogre::Any> &args);
+		virtual bool handleEvent(ScriptCompiler *compiler, ScriptCompilerEvent *evt, void *retval);
 	};
 
 	class ScriptTranslator;
@@ -427,7 +391,7 @@ namespace Ogre
 		ScriptCompilerListener *mListener;
 
 		// Stores a map from object types to the translators that handle them
-		std::vector<ScriptTranslatorManager*> mManagers;
+		vector<ScriptTranslatorManager*>::type mManagers;
 
 		// A pointer to the built-in ScriptTranslatorManager
 		ScriptTranslatorManager *mBuiltinTranslatorManager;
@@ -452,6 +416,8 @@ namespace Ogre
 		/// Retrieves a ScriptTranslator from the supported managers
 		ScriptTranslator *getTranslator(const AbstractNodePtr &node);
 
+		/// Adds a script extension that can be handled (e.g. *.material, *.pu, etc.)
+		void addScriptPattern(const String &pattern);
 		/// @copydoc ScriptLoader::getScriptPatterns
         const StringVector& getScriptPatterns(void) const;
         /// @copydoc ScriptLoader::parseScript
@@ -493,6 +459,115 @@ namespace Ogre
         static ScriptCompilerManager* getSingletonPtr(void);
 	};
 
+	// Standard event types
+	class _OgreExport PreApplyTextureAliasesScriptCompilerEvent : public ScriptCompilerEvent
+	{
+	public:
+		Material *mMaterial;
+		AliasTextureNamePairList *mAliases;
+		static String eventType;
+
+		PreApplyTextureAliasesScriptCompilerEvent(Material *material, AliasTextureNamePairList *aliases)
+			:ScriptCompilerEvent(eventType), mMaterial(material), mAliases(aliases){}
+	};
+
+	class _OgreExport ProcessResourceNameScriptCompilerEvent : public ScriptCompilerEvent
+	{
+	public:
+		enum ResourceType
+		{
+			TEXTURE,
+			MATERIAL,
+			GPU_PROGRAM,
+			COMPOSITOR
+		};
+		ResourceType mResourceType;
+		String mName;
+		static String eventType;
+
+		ProcessResourceNameScriptCompilerEvent(ResourceType resourceType, const String &name)
+			:ScriptCompilerEvent(eventType), mResourceType(resourceType), mName(name){}     
+	};
+
+	class _OgreExport ProcessNameExclusionScriptCompilerEvent : public ScriptCompilerEvent
+	{
+	public:
+		String mClass;
+		AbstractNode *mParent;
+		static String eventType;
+
+		ProcessNameExclusionScriptCompilerEvent(const String &cls, AbstractNode *parent)
+			:ScriptCompilerEvent(eventType), mClass(cls), mParent(parent){}     
+	};
+
+	class _OgreExport CreateMaterialScriptCompilerEvent : public ScriptCompilerEvent
+	{
+	public:
+		String mFile, mName, mResourceGroup;
+		static String eventType;
+
+		CreateMaterialScriptCompilerEvent(const String &file, const String &name, const String &resourceGroup)
+			:ScriptCompilerEvent(eventType), mFile(file), mName(name), mResourceGroup(resourceGroup){}  
+	};
+
+	class _OgreExport CreateGpuProgramScriptCompilerEvent : public ScriptCompilerEvent
+	{
+	public:
+		String mFile, mName, mResourceGroup, mSource, mSyntax;
+		GpuProgramType mProgramType;
+		static String eventType;
+
+		CreateGpuProgramScriptCompilerEvent(const String &file, const String &name, const String &resourceGroup, const String &source, 
+			const String &syntax, GpuProgramType programType)
+			:ScriptCompilerEvent(eventType), mFile(file), mName(name), mResourceGroup(resourceGroup), mSource(source), 
+			 mSyntax(syntax), mProgramType(programType)
+		{}  
+	};
+
+	class _OgreExport CreateHighLevelGpuProgramScriptCompilerEvent : public ScriptCompilerEvent
+	{
+	public:
+		String mFile, mName, mResourceGroup, mSource, mLanguage;
+		GpuProgramType mProgramType;
+		static String eventType;
+
+		CreateHighLevelGpuProgramScriptCompilerEvent(const String &file, const String &name, const String &resourceGroup, const String &source, 
+			const String &language, GpuProgramType programType)
+			:ScriptCompilerEvent(eventType), mFile(file), mName(name), mResourceGroup(resourceGroup), mSource(source), 
+			 mLanguage(language), mProgramType(programType)
+		{}  
+	};
+
+	class _OgreExport CreateGpuSharedParametersScriptCompilerEvent : public ScriptCompilerEvent
+	{
+	public:
+		String mFile, mName, mResourceGroup;
+		static String eventType;
+
+		CreateGpuSharedParametersScriptCompilerEvent(const String &file, const String &name, const String &resourceGroup)
+			:ScriptCompilerEvent(eventType), mFile(file), mName(name), mResourceGroup(resourceGroup){}  
+	};
+
+	class _OgreExport CreateParticleSystemScriptCompilerEvent : public ScriptCompilerEvent
+	{
+	public:
+		String mFile, mName, mResourceGroup;
+		static String eventType;
+
+		CreateParticleSystemScriptCompilerEvent(const String &file, const String &name, const String &resourceGroup)
+			:ScriptCompilerEvent(eventType), mFile(file), mName(name), mResourceGroup(resourceGroup){}  
+	};
+
+	class _OgreExport CreateCompositorScriptCompilerEvent : public ScriptCompilerEvent
+	{
+	public:
+		String mFile, mName, mResourceGroup;
+		static String eventType;
+
+		CreateCompositorScriptCompilerEvent(const String &file, const String &name, const String &resourceGroup)
+			:ScriptCompilerEvent(eventType), mFile(file), mName(name), mResourceGroup(resourceGroup){}  
+	};
+
 	/// This enum defines the integer ids for keywords this compiler handles
 	enum
 	{
@@ -512,6 +587,8 @@ namespace Ogre
 		ID_SHADOW_CASTER_MATERIAL,
 		ID_SHADOW_RECEIVER_MATERIAL,
 		
+        ID_LOD_VALUES,
+        ID_LOD_STRATEGY,
 		ID_LOD_DISTANCES,
 		ID_RECEIVE_SHADOWS,
 		ID_TRANSPARENCY_CASTS_SHADOWS,
@@ -550,6 +627,11 @@ namespace Ogre
 			ID_ONE_MINUS_DEST_ALPHA,
 			ID_ONE_MINUS_SRC_ALPHA,
 		ID_SEPARATE_SCENE_BLEND,
+		ID_SCENE_BLEND_OP,
+			ID_REVERSE_SUBTRACT,
+			ID_MIN,
+			ID_MAX,
+		ID_SEPARATE_SCENE_BLEND_OP,
 		ID_DEPTH_CHECK,
 		ID_DEPTH_WRITE,
 		ID_DEPTH_FUNC,
@@ -689,6 +771,9 @@ namespace Ogre
 			ID_NAMED,
 			ID_SHADOW,
 		ID_TEXTURE_SOURCE,
+		ID_SHARED_PARAMS,
+		ID_SHARED_PARAM_NAMED,
+		ID_SHARED_PARAMS_REF,
 
 		ID_PARTICLE_SYSTEM,
 		ID_EMITTER,
@@ -704,6 +789,14 @@ namespace Ogre
 				ID_TARGET_HEIGHT,
 				ID_TARGET_WIDTH_SCALED,
 				ID_TARGET_HEIGHT_SCALED,
+			ID_COMPOSITOR_LOGIC,
+			ID_TEXTURE_REF,
+			ID_SCOPE_LOCAL,
+			ID_SCOPE_CHAIN,
+			ID_SCOPE_GLOBAL,
+			ID_POOLED,
+			//ID_GAMMA, - already registered for material
+			ID_NO_FSAA,
 			ID_ONLY_INITIAL,
 			ID_VISIBILITY_MASK,
 			ID_LOD_BIAS,
@@ -717,6 +810,9 @@ namespace Ogre
 			ID_IDENTIFIER,
 			ID_FIRST_RENDER_QUEUE,
 			ID_LAST_RENDER_QUEUE,
+			ID_QUAD_NORMALS,
+				ID_CAMERA_FAR_CORNERS_VIEW_SPACE,
+				ID_CAMERA_FAR_CORNERS_WORLD_SPACE,
 
 			ID_BUFFERS,
 				ID_COLOUR,
@@ -741,6 +837,8 @@ namespace Ogre
 			ID_TWO_SIDED,
 		ID_END_BUILTIN_IDS
 	};
+	/** @} */
+	/** @} */
 }
 
 #endif

@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __RenderSystemCapabilitiesSerializer_H__
@@ -39,7 +38,13 @@ Torus Knot Software Ltd.
 namespace Ogre {
 
 
-    /** Class for serializing RenderSystemCapabilities to / from a .rendercaps script.*/
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup RenderSystem
+	*  @{
+	*/
+	/** Class for serializing RenderSystemCapabilities to / from a .rendercaps script.*/
 	class _OgreExport RenderSystemCapabilitiesSerializer : public RenderSysAlloc
     {
 
@@ -66,30 +71,30 @@ namespace Ogre {
         // "automipmap" and "pbuffer" are both activated with setCapability (passing RSC_AUTOMIPMAP and RSC_PBUFFER respectivelly)
         // while "max_num_multi_render_targets" is an integer and has it's own method: setMaxMultiNumRenderTargets
         // we need to know these types to automatically parse each capability
-        typedef std::map<String, CapabilityKeywordType> KeywordTypeMap;
+        typedef map<String, CapabilityKeywordType>::type KeywordTypeMap;
         KeywordTypeMap mKeywordTypeMap;
 
         typedef void (RenderSystemCapabilities::*SetStringMethod)(const String&);
         // maps capability keywords to setCapability(String& cap) style methods
-        typedef std::map<String, SetStringMethod> SetStringMethodDispatchTable;
+        typedef map<String, SetStringMethod>::type SetStringMethodDispatchTable;
         SetStringMethodDispatchTable mSetStringMethodDispatchTable;
 
         // SET_INT_METHOD parsing tables
         typedef void (RenderSystemCapabilities::*SetIntMethod)(ushort);
-        typedef std::map<String, SetIntMethod> SetIntMethodDispatchTable;
+        typedef map<String, SetIntMethod>::type SetIntMethodDispatchTable;
         SetIntMethodDispatchTable mSetIntMethodDispatchTable;
 
         // SET_BOOL_METHOD parsing tables
         typedef void (RenderSystemCapabilities::*SetBoolMethod)(bool);
-        typedef std::map<String, SetBoolMethod> SetBoolMethodDispatchTable;
+        typedef map<String, SetBoolMethod>::type SetBoolMethodDispatchTable;
         SetBoolMethodDispatchTable mSetBoolMethodDispatchTable;
 
         // SET_REAL_METHOD parsing tables
         typedef void (RenderSystemCapabilities::*SetRealMethod)(Real);
-        typedef std::map<String, SetRealMethod> SetRealMethodDispatchTable;
+        typedef map<String, SetRealMethod>::type SetRealMethodDispatchTable;
         SetRealMethodDispatchTable mSetRealMethodDispatchTable;
 
-        typedef std::map<String, Capabilities> CapabilitiesMap;
+        typedef map<String, Capabilities>::type CapabilitiesMap;
         CapabilitiesMap mCapabilitiesMap;
 
         inline void addCapabilitiesMapping(String name, Capabilities cap)
@@ -99,7 +104,7 @@ namespace Ogre {
 
 
         // capabilities lines for parsing are collected along with their line numbers for debugging
-        typedef std::vector<std::pair<String, int> > CapabilitiesLinesList;
+        typedef vector<std::pair<String, int> >::type CapabilitiesLinesList;
         // the set of states that the parser can be in
         enum ParseAction {PARSE_HEADER, FIND_OPEN_BRACE, COLLECT_LINES};
 
@@ -151,7 +156,7 @@ namespace Ogre {
             mSetIntMethodDispatchTable.insert(SetIntMethodDispatchTable::value_type(keyword, method));
         }
 
-        inline void callSetIntMethod(String& keyword, int val)
+        inline void callSetIntMethod(String& keyword, ushort val)
         {
             SetIntMethodDispatchTable::iterator methodIter = mSetIntMethodDispatchTable.find(keyword);
             if (methodIter != mSetIntMethodDispatchTable.end())
@@ -233,6 +238,8 @@ namespace Ogre {
         void logParseError(const String& error) const;
 
     };
+	/** @} */
+	/** @} */
 
 }
 #endif

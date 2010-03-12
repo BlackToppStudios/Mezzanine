@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef __HardwareBuffer__
@@ -34,7 +33,13 @@ Torus Knot Software Ltd.
 
 namespace Ogre {
 
-    /** Abstract class defining common features of hardware buffers.
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup RenderSystem
+	*  @{
+	*/
+	/** Abstract class defining common features of hardware buffers.
     @remarks
  	    A 'hardware buffer' is any area of memory held outside of core system ram,
 	    and in our case refers mostly to video ram, although in theory this class
@@ -275,7 +280,18 @@ namespace Ogre {
 				srcBuffer.unlock();
 			}
 
-            /// Updates the real buffer from the shadow buffer, if required
+			/** Copy all data from another buffer into this one. 
+			@remarks
+				Normally these buffers should be of identical size, but if they're
+				not, the routine will use the smallest of the two sizes.
+			*/
+			virtual void copyData(HardwareBuffer& srcBuffer)
+			{
+				size_t sz = std::min(getSizeInBytes(), srcBuffer.getSizeInBytes()); 
+				copyData(srcBuffer, 0, 0, sz, true);
+			}
+			
+			/// Updates the real buffer from the shadow buffer, if required
             virtual void _updateFromShadow(void)
             {
                 if (mUseShadowBuffer && mShadowUpdated && !mSuppressHardwareUpdate)
@@ -324,6 +340,8 @@ namespace Ogre {
 
     		
     };
+	/** @} */
+	/** @} */
 }
 #endif
 

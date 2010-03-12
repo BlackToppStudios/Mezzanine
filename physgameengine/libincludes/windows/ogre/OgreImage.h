@@ -4,26 +4,25 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2006 Torus Knot Software Ltd
-Also see acknowledgements in Readme.html
+Copyright (c) 2000-2009 Torus Knot Software Ltd
 
-This program is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2 of the License, or (at your option) any later
-version.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU Lesser General Public License along with
-this program; if not, write to the Free Software Foundation, Inc., 59 Temple
-Place - Suite 330, Boston, MA 02111-1307, USA, or go to
-http://www.gnu.org/copyleft/lesser.txt.
-
-You may alternatively use this source under the terms of a specific version of
-the OGRE Unrestricted License provided you have obtained such a license from
-Torus Knot Software Ltd.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #ifndef _Image_H__
@@ -35,6 +34,12 @@ Torus Knot Software Ltd.
 #include "OgreDataStream.h"
 
 namespace Ogre {
+	/** \addtogroup Core
+	*  @{
+	*/
+	/** \addtogroup Image
+	*  @{
+	*/
 
     enum ImageFlags
     {
@@ -291,8 +296,59 @@ namespace Ogre {
                 Image::load( const String& strFileName )
         */
 		Image & load(DataStreamPtr& stream, const String& type = StringUtil::BLANK );
+
+		/** Utility method to combine 2 separate images into this one, with the first
+		image source supplying the RGB channels, and the second image supplying the 
+		alpha channel (as luminance or separate alpha). 
+		@param rgbFilename Filename of image supplying the RGB channels (any alpha is ignored)
+		@param alphaFilename Filename of image supplying the alpha channel. If a luminance image the
+			single channel is used directly, if an RGB image then the values are
+			converted to greyscale.
+		@param groupName The resource group from which to load the images
+		@param format The destination format
+		*/
+		Image & loadTwoImagesAsRGBA(const String& rgbFilename, const String& alphaFilename,
+			const String& groupName, PixelFormat format = PF_BYTE_RGBA);
+
+		/** Utility method to combine 2 separate images into this one, with the first
+		image source supplying the RGB channels, and the second image supplying the 
+		alpha channel (as luminance or separate alpha). 
+		@param rgbStream Stream of image supplying the RGB channels (any alpha is ignored)
+		@param alphaStream Stream of image supplying the alpha channel. If a luminance image the
+			single channel is used directly, if an RGB image then the values are
+			converted to greyscale.
+		@param format The destination format
+		@param rgbType The type of the RGB image. Used to decide what decompression
+			codec to use. Can be left blank if the stream data includes
+			a header to identify the data.
+		@param alphaType The type of the alpha image. Used to decide what decompression
+			codec to use. Can be left blank if the stream data includes
+			a header to identify the data.
+		*/
+		Image & loadTwoImagesAsRGBA(DataStreamPtr& rgbStream, DataStreamPtr& alphaStream, PixelFormat = PF_BYTE_RGBA,
+			const String& rgbType = StringUtil::BLANK, const String& alphaType = StringUtil::BLANK);
+
+		/** Utility method to combine 2 separate images into this one, with the first
+			image source supplying the RGB channels, and the second image supplying the 
+			alpha channel (as luminance or separate alpha). 
+		@param rgb Image supplying the RGB channels (any alpha is ignored)
+		@param alpha Image supplying the alpha channel. If a luminance image the
+			single channel is used directly, if an RGB image then the values are
+			converted to greyscale.
+		@param format The destination format
+		*/
+		Image & combineTwoImagesAsRGBA(const Image& rgb, const Image& alpha, PixelFormat format = PF_BYTE_RGBA);
+
         
-        /** Save the image as a file. */
+        /** Save the image as a file. 
+		@remarks
+			Saving and loading are implemented by back end (sometimes third 
+			party) codecs.  Implemented saving functionality is more limited
+			than loading in some cases.	Particulary DDS file format support 
+			is currently limited to true colour or single channel float32, 
+			square, power of two textures with no mipmaps.  Volumetric support
+			is currently limited to DDS files.
+		*/
         void save(const String& filename);
 
 		/** Encode the image and return a stream to the data. 
@@ -381,6 +437,9 @@ namespace Ogre {
          */
         PixelBox getPixelBox(size_t face = 0, size_t mipmap = 0) const;
 
+		/// Delete all the memory held by this image, if owned by this image (not dynamic)
+		void freeMemory();
+
 		enum Filter
 		{
 			FILTER_NEAREST,
@@ -433,9 +492,11 @@ namespace Ogre {
 		bool m_bAutoDelete;
     };
 
-	typedef std::vector<Image*> ImagePtrList;
-	typedef std::vector<const Image*> ConstImagePtrList;
+	typedef vector<Image*>::type ImagePtrList;
+	typedef vector<const Image*>::type ConstImagePtrList;
 
+	/** @} */
+	/** @} */
 
 } // namespace
 
