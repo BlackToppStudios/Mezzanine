@@ -336,6 +336,7 @@ class MetaCode
     public:
         MetaCode();
         MetaCode(int MetaValue_, short unsigned int ID_, InputCode Code_);
+        MetaCode(RawEvent _RawEvent);
 
         InputCode GetCode();                    //What is being done? This stores which code was generated which should identify the type of input.
         void SetCode(InputCode Code_);
@@ -345,9 +346,6 @@ class MetaCode
 
         short unsigned int GetID();             //Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.
         void SetID(short unsigned int ID_);
-
-
-
 
         bool operator==(const MetaCode &other) const;
 };
@@ -368,6 +366,7 @@ class PhysEventUserInput : public PhysEvent
         MetaCode GetCode(unsigned int Index);
         unsigned int GetCodeCount();
 
+        void AddCode(MetaCode _Code);
         void ToggleCode(MetaCode _Code);
         void ToggleCode(unsigned int Index);
 

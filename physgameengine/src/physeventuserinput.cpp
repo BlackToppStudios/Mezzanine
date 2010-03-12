@@ -14,6 +14,8 @@
 #include <stdarg.h>
 #include <vector>
 
+#include "SDL.h"
+
 using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -27,6 +29,37 @@ MetaCode::MetaCode(int MetaValue_, short unsigned int ID_, InputCode Code_)
     SetMetaValue(MetaValue_);
     SetID(ID_);
     SetCode(Code_);
+}
+
+MetaCode::MetaCode(RawEvent _RawEvent)
+{
+    //TODO: Actually process each event
+    switch(_RawEvent.type)
+    {
+        case SDL_KEYDOWN:
+            break;
+        case SDL_KEYUP:
+            break;
+        case SDL_MOUSEMOTION:
+            break;
+        case SDL_MOUSEBUTTONDOWN:
+            break;
+        case SDL_MOUSEBUTTONUP:
+            break;
+        case SDL_JOYAXISMOTION:
+            break;
+        case SDL_JOYBUTTONDOWN:
+            break;
+        case SDL_JOYBUTTONUP:
+            break;
+        case SDL_JOYBALLMOTION:
+            break;
+        case SDL_JOYHATMOTION:
+            break;
+        default:
+            throw ("Unknown SDL Event Inserted");
+            break;
+    }
 }
 
 int MetaCode::GetMetaValue()
@@ -103,6 +136,11 @@ MetaCode PhysEventUserInput::GetCode(unsigned int Index)
 unsigned int PhysEventUserInput::GetCodeCount()
 {
     return Code.size();
+}
+
+void PhysEventUserInput::AddCode(MetaCode _Code)
+{
+    Code.push_back(_Code);
 }
 
 void PhysEventUserInput::ToggleCode(MetaCode _Code)

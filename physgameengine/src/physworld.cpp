@@ -291,8 +291,17 @@ void physworld::DoMainLoopInputBuffering()
 {
     this->PreProcessSDLEvents();
     Log("User Input EventCount Pending:");
-    Log(SDL_WmEvents.size());
-	//TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
+    Log(SDL_UserInputEvents.size());
+
+    PhysEventUserInput FromSDLEvents;
+
+    //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
+    //RawEvent QueueEvent;
+/*    for(;!SDL_UserInputEvents.empty();QueueEvent = SDL_UserInputEvents.pop())
+    {
+
+    }*/
+
 }
 
 void physworld::DoMainLoopRender()
@@ -379,7 +388,7 @@ void physworld::DestroyRenderWindow()
 void physworld::PreProcessSDLEvents()
 {
 
-    SDL_Event FromSDL;
+    RawEvent FromSDL;
 	while(SDL_PollEvent(&FromSDL))
 	{
 	    this->Log(GetNameOfEventFrom(FromSDL));

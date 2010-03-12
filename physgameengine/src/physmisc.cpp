@@ -5,7 +5,7 @@
 #include "physdatatypes.h"
 #include "physmisc.h"
 
-PhysString GetNameOfEventFrom(SDL_Event event)
+PhysString GetNameOfEventFrom( RawEvent event )
 {
         switch(event.type)
         {

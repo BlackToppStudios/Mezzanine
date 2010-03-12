@@ -9,7 +9,7 @@
 #include "physeventmanager.h"
 #include "SDL.h"
 
-int PhysSDLFilter( const SDL_Event *event );
+int PhysSDLFilter( const RawEvent *event );
 
 bool PhysEventManager::IgnoreSDLQuitEvents;
 
@@ -86,7 +86,7 @@ void PhysEventManager::SetIgnoreQuitEvents(bool Ignore)
     IgnoreSDLQuitEvents=Ignore;
 }
 
-int PhysSDLFilter( const SDL_Event *event )
+int PhysSDLFilter( const RawEvent *event )
 {
      if ( !PhysEventManager::IgnoreQuitEvents() && event->type == SDL_QUIT)
         { return 0; }

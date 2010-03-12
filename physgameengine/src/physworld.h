@@ -30,7 +30,6 @@ class PhysVector3;
 //Other forward declarations
 //#include "SDL.h"
 class SDL_Surface;
-union SDL_Event;
 
 //#include "btBulletDynamicsCommon.h"
 class btAxisSweep3;
@@ -99,8 +98,8 @@ class physworld
 		//SDL specific Items
 		//This function will get all the events from SDL and Sort them into one of two Queues
 		void PreProcessSDLEvents();
-        queue<SDL_Event> SDL_WmEvents;
-        queue<SDL_Event> SDL_UserInputEvents;
+        queue<RawEvent> SDL_WmEvents;
+        queue<RawEvent> SDL_UserInputEvents;
 
         friend void RenderPhysWorld(physworld *TheWorld);
 
