@@ -9,14 +9,14 @@
 #include "physeventmanager.h"
 #include "SDL.h"
 
-int SDLQuitFilter( const SDL_Event *event );
+int PhysSDLFilter( const SDL_Event *event );
 
 bool PhysEventManager::IgnoreSDLQuitEvents;
 
 PhysEventManager::PhysEventManager()
 {
     SetIgnoreQuitEvents(false);
-    SDL_SetEventFilter( SDLQuitFilter );
+    SDL_SetEventFilter( PhysSDLFilter );
 }
 
 //These functions will give you the next event or help you manage the events
@@ -86,12 +86,11 @@ void PhysEventManager::SetIgnoreQuitEvents(bool Ignore)
     IgnoreSDLQuitEvents=Ignore;
 }
 
-int SDLQuitFilter( const SDL_Event *event )
+int PhysSDLFilter( const SDL_Event *event )
 {
-     if ( PhysEventManager::IgnoreQuitEvents() )
-     { return 1;} // post to queue }
-
-     return 0; // do not post
+     if ( !PhysEventManager::IgnoreQuitEvents() && event->type == SDL_QUIT)
+        { return 0; }
+     return 1;
 }
 
 

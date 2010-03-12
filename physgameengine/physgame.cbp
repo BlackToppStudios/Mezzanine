@@ -93,6 +93,8 @@
 		<Unit filename="src/physeventuserinput.h" />
 		<Unit filename="src/physgamesettings.cpp" />
 		<Unit filename="src/physgamesettings.h" />
+		<Unit filename="src/physmisc.cpp" />
+		<Unit filename="src/physmisc.h" />
 		<Unit filename="src/physvector.cpp" />
 		<Unit filename="src/physvector.h" />
 		<Unit filename="src/physworld.cpp" />

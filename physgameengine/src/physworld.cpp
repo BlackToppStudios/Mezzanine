@@ -15,6 +15,7 @@
 #include "physcrossplatform.h"
 #include "physworldcallbackmanager.h"
 #include "physgamesettings.h"
+#include "physmisc.h"
 
 #include "SDL.h"
 #include "btBulletDynamicsCommon.h"
@@ -145,7 +146,7 @@ void physworld::LogAndThrow(PhysReal Message)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//Shows the ogre settins Dialog, and allows it to save settings to ogres
+//Shows the ogre settings Dialog, and allows it to save settings to ogres
 //preset save location
 bool physworld::ShowSystemSettingDialog()
 {
@@ -211,9 +212,9 @@ void physworld::GameInit()
 			Callbackbools[2] = this->CallBacks->PreRender();
         }
 
-		//Render the frame and figure the amount of time it took
+		//Render the frame and figure the amount of time it took //Limit frame rate to 62.5
 		this->DoMainLoopRender();
-		FrameTime = RenderTimer.getMilliseconds(); //Limit frame rate to 62.5
+		FrameTime = RenderTimer.getMilliseconds();
 		RenderTimer.reset();
 		if(16>FrameTime){               		//use 16666 for microseconds
 		    FrameDelay++;
@@ -362,6 +363,7 @@ void physworld::PreProcessSDLEvents()
     SDL_Event FromSDL;
 	while(SDL_PollEvent(&FromSDL))
 	{
+	    this->Log(GetNameOfEventFrom(FromSDL));
         switch(FromSDL.type)
         {
             case SDL_ACTIVEEVENT:   //when the window gains focus
@@ -372,6 +374,7 @@ void physworld::PreProcessSDLEvents()
                 SDL_WmEvents.push(FromSDL);
                 break;
             case SDL_KEYDOWN:
+                exit(EXIT_SUCCESS); //remove this as soon as we get the X working
             case SDL_KEYUP:
             case SDL_MOUSEMOTION:
             case SDL_MOUSEBUTTONDOWN:
