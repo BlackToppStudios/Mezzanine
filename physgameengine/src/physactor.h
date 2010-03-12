@@ -1,5 +1,12 @@
 #include "physvector.h"
 
+namespace Ogre
+{
+    class Entity;
+    class SceneManager;
+    class SceneNode;
+}
+
 class actorbase {
 
 	private:
@@ -8,6 +15,11 @@ class actorbase {
 	PhysReal weight;
 	PhysReal density;
 	virtual bool move=true;
+
+	//abstraction for other libraries
+	Ogre::Entity* entity;
+    Ogre::SceneManager* physscenemanager;
+    Ogre::SceneNode* node;
 
 	public:
 	actorbase () {};
@@ -32,6 +44,13 @@ class actorbase {
 	PhysReal GetDensity () {
 		return (density);
 	}
+	void CreateEntity(PhysString name, PhysString file, PhysString group) {
+        entity = this->physscenemanager->createEntity(name, file, group);
+	};
+	void CreateSceneNode() {
+        node = this->physscenemanager->createSceneNode();
+    };
+
 }
 
 class actordyn: public actorbase {
