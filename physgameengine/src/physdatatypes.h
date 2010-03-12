@@ -5,6 +5,8 @@
 ///////////////////////////////////////
 #include <string>
 
+#include <string>
+
 typedef float PhysReal;
 typedef unsigned long PhysWhole;
 typedef const std::string PhysString;
