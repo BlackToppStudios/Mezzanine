@@ -136,12 +136,14 @@ void physworld::Log(PhysReal Message)
 	Ogre::LogManager::getSingleton().logMessage(temp.str());
 }
 
+#ifdef WINDOWS
 void physworld::Log(size_t Message)
 {
 	stringstream temp;
 	temp << Message;
 	Ogre::LogManager::getSingleton().logMessage(temp.str());
 }
+#endif
 
 void physworld::LogAndThrow(string Message)
 {

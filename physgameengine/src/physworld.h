@@ -113,7 +113,9 @@ class physworld
         void Log(string Message);
         void Log(PhysWhole Message);
 		void Log(PhysReal Message);
+#ifdef WINDOWS
 		void Log(size_t Message);
+#endif
         void LogAndThrow(string Message);
         void LogAndThrow(PhysWhole Message);
 		void LogAndThrow(PhysReal Message);
