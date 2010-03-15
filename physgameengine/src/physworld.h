@@ -8,6 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Includes and Forward Declarations
 
+#include "physcrossplatform.h"
 #include "physworldcallbackmanager.h"
 #include "physevent.h"
 #include "physeventmanager.h"
