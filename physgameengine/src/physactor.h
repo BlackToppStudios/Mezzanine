@@ -1,3 +1,6 @@
+#ifndef _physactor_h
+#define _physactor_h
+
 #include "physvector.h"
 
 namespace Ogre
@@ -9,12 +12,12 @@ namespace Ogre
 
 class actorbase {
 
-	private:
+	protected:
 	PhysVector3 vector;
 	PhysReal coefficient;
 	PhysReal weight;
 	PhysReal density;
-	virtual bool move=true;
+    bool move;
 
 	//abstraction for other libraries
 	Ogre::Entity* entity;
@@ -22,36 +25,17 @@ class actorbase {
     Ogre::SceneNode* node;
 
 	public:
-	actorbase () {};
-	~actorbase () {};
-	actorbase (PhysReal x, PhysReal y, PhysReal z, PhysReal c, PhysReal w, PhysReal d) {
-		vector.x = x;
-		vector.y = y;
-		vector.z = z;
-		coefficient = c;
-		weight = w;
-		density = d;
-	}
-	PhysReal GetLocation () {
-		return (vector.x, vector.y, vector.z);
-	}
-	PhysReal GetCoefficient () {
-		return (coefficient);
-	}
-	PhysReal GetWeight () {
-		return (weight);
-	}
-	PhysReal GetDensity () {
-		return (density);
-	}
-	void CreateEntity(PhysString name, PhysString file, PhysString group) {
-        entity = this->physscenemanager->createEntity(name, file, group);
-	};
-	void CreateSceneNode() {
-        node = this->physscenemanager->createSceneNode();
-    };
-
-}
+	~actorbase ();
+	actorbase (PhysReal x, PhysReal y, PhysReal z, PhysReal c, PhysReal w, PhysReal d);
+	PhysVector3 GetLocation ();
+	PhysReal GetCoefficient ();
+	PhysReal GetWeight ();
+	PhysReal GetDensity ();
+	void CreateEntity(PhysString name, PhysString file, PhysString group);
+	void CreateSceneNode();
+    void SetOgreLocation(PhysReal x, PhysReal y, PhysReal z);
+    //void SetOgreOrientation();
+};
 
 class actordyn: public actorbase {
 
@@ -60,24 +44,18 @@ class actordyn: public actorbase {
 	PhysVector3 accel;
 
 	public:
-	PhysReal GetSpeed () {
-		return (speed.x, speed.y, speed.z);
-	}
-	PhysReal GetAccel () {
-		return (accel.x, accel.y, accel.z);
-	}
-	void Halt () {
-		accel.x = 0;
-		accel.y = 0;
-		accel.z = 0;
-		speed.x = 0;
-		speed.y = 0;
-		speed.z = 0;
-	}
-}
+	actordyn();
+	~actordyn();
+	PhysVector3 GetSpeed ();
+	PhysVector3 GetAccel ();
+	void Halt ();
+};
 
 class actorsta: public actorbase {
 
-	private:
-	bool move=false;
-}
+    public:
+    actorsta();
+    ~actorsta();
+};
+
+#endif

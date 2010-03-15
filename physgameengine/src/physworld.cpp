@@ -50,6 +50,7 @@ void physworld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 	//We create our Ogre environment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
 	//Ogre resource related code
+	//TODO: From here to the callbacks should probably be moved to another file
 	//this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, false);
     this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", "Robot", false);
     this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
