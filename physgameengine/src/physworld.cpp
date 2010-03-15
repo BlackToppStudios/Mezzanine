@@ -117,47 +117,14 @@ physworld::~physworld()
 
 ///////////////////////////////////////////////////////////////////////////////
 //appends to the gamelog which is managed by Ogre
-void physworld::Log(string Message)
-{
-	Ogre::LogManager::getSingleton().logMessage(Message);
-}
-
-void physworld::Log(PhysWhole Message)
+template <class T> void physworld::Log(T Message)
 {
 	stringstream temp;
 	temp << Message;
 	Ogre::LogManager::getSingleton().logMessage(temp.str());
 }
 
-void physworld::Log(PhysReal Message)
-{
-	stringstream temp;
-	temp << Message;
-	Ogre::LogManager::getSingleton().logMessage(temp.str());
-}
-
-#ifdef WINDOWS
-void physworld::Log(size_t Message)
-{
-	stringstream temp;
-	temp << Message;
-	Ogre::LogManager::getSingleton().logMessage(temp.str());
-}
-#endif
-
-void physworld::LogAndThrow(string Message)
-{
-	this->Log(Message);
-	throw(Message);
-}
-
-void physworld::LogAndThrow(PhysWhole Message)
-{
-	this->Log(Message);
-	throw(Message);
-}
-
-void physworld::LogAndThrow(PhysReal Message)
+template <class T> void physworld::LogAndThrow(T Message)
 {
 	this->Log(Message);
 	throw(Message);

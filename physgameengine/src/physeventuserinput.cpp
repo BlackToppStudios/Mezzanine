@@ -34,6 +34,7 @@ MetaCode::MetaCode(int MetaValue_, short unsigned int ID_, InputCode Code_)
 MetaCode::MetaCode(RawEvent _RawEvent)
 {
     //TODO: Actually process each event
+    //Make a metacode for each event and return it
     switch(_RawEvent.type)
     {
         case SDL_KEYDOWN:

@@ -109,16 +109,8 @@ class physworld
 		~physworld();
 
 		//I am just extending what ogre provides for a logging system
-        void Log(string Message);
-        void Log(PhysWhole Message);
-		void Log(PhysReal Message);
-#ifdef WINDOWS
-		void Log(size_t Message);
-#endif
-        void LogAndThrow(string Message);
-        void LogAndThrow(PhysWhole Message);
-		void LogAndThrow(PhysReal Message);
-
+		template <class T> void Log(T Message);
+        template <class T> void LogAndThrow(T Message);
 
         //I plan on deprecating this thing soon and building our own settings system
         bool ShowSystemSettingDialog();
@@ -135,7 +127,6 @@ class physworld
 		void DoMainLoopInputBuffering();
 		void DoMainLoopWindowManagerBuffering();
 		void DoMainLoopRender();
-
 
 		//used to set callback functions to be run in the main loop
 		physworldCallBackManager* CallBacks;
