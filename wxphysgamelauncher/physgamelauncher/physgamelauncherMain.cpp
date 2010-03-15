@@ -14,58 +14,16 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "configopener.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 //(*InternalHeaders(physgamelauncherFrame)
 #include <wx/intl.h>
 #include <wx/string.h>
-using namespace std;
-
 //*)
 
 //helper functions
-class ConfigOpener
-{
-
-    ifstream configfile;
-    string ExeName;
-
-
-public:
-
-    void area ()
-    {
-      getline (configfile , ExeName);
-    }
-
-
-
-
-public:
-    ConfigOpener();
-
-};
-
-
-void openConfig (int,int)
-{
-
-
-//    ~ConfigOpener();
-
-
-};
-
-ConfigOpener::ConfigOpener()
-{
-    configfile.open ("config");
-    ExeName = "topless woman";
-}
-
-//ConfigOpener::~ConfigOpener()
-//{
-//    configfile.close();
-//}
-
 
 
 
@@ -97,6 +55,7 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(physgamelauncherFrame)
+const long physgamelauncherFrame::RUN_GAME = wxNewId();
 const long physgamelauncherFrame::idMenuQuit = wxNewId();
 const long physgamelauncherFrame::idMenuAbout = wxNewId();
 const long physgamelauncherFrame::ID_STATUSBAR1 = wxNewId();
@@ -116,9 +75,11 @@ physgamelauncherFrame::physgamelauncherFrame(wxWindow* parent,wxWindowID id)
     wxMenuBar* MenuBar1;
     wxMenu* Menu2;
 
-    Create(parent, id, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
+    Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
+    MenuItem3 = new wxMenuItem(Menu1, RUN_GAME, _("Run\tAlt-R"), _("Runs the program"), wxITEM_NORMAL);
+    Menu1->Append(MenuItem3);
     MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
     Menu1->Append(MenuItem1);
     MenuBar1->Append(Menu1, _("&File"));
@@ -134,6 +95,7 @@ physgamelauncherFrame::physgamelauncherFrame(wxWindow* parent,wxWindowID id)
     StatusBar1->SetStatusStyles(1,__wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
 
+    Connect(RUN_GAME,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&physgamelauncherFrame::RunGame);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&physgamelauncherFrame::OnAbout);
     //*)
@@ -150,8 +112,26 @@ void physgamelauncherFrame::OnQuit(wxCommandEvent& event)
     Close();
 }
 
+void physgamelauncherFrame::RunGame(wxCommandEvent& event)
+{
+    ConfigOpener RunExe;
+    string Exe;
+    Exe = RunExe.GetExeWindows();
+    //system ("cmd");
+    ofstream test;
+    test.open("blah.txt");
+    test << Exe;
+    system(Exe.c_str());
+
+
+}
+
 void physgamelauncherFrame::OnAbout(wxCommandEvent& event)
 {
     wxString msg = wxbuildinfo(long_f);
     wxMessageBox(msg, _("Welcome to..."));
+}
+
+void physgamelauncherFrame::OnButton1Click(wxCommandEvent& event)
+{
 }

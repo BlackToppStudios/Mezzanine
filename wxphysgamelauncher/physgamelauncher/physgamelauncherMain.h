@@ -27,17 +27,20 @@ class physgamelauncherFrame: public wxFrame
 
         //(*Handlers(physgamelauncherFrame)
         void OnQuit(wxCommandEvent& event);
+        void RunGame(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
+        void OnButton1Click(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(physgamelauncherFrame)
+        static const long RUN_GAME;
         static const long idMenuQuit;
         static const long idMenuAbout;
-        static const long ID_MENUITEM1;
         static const long ID_STATUSBAR1;
         //*)
 
         //(*Declarations(physgamelauncherFrame)
+        wxMenuItem* MenuItem3;
         wxStatusBar* StatusBar1;
         //*)
 

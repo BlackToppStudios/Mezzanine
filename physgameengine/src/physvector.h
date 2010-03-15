@@ -10,7 +10,8 @@ class PhysVector3
 		PhysReal Y;
 		PhysReal Z;
 
-		PhysVector3(PhysReal x, PhysReal y, PhysReal z);
+        PhysVector3();
+		PhysVector3(PhysReal X, PhysReal Y, PhysReal Z);
 };
 
 #endif
