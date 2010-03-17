@@ -4,17 +4,28 @@
 	#requires automake freeglut3-dev
 if [ -f "data/linux/bullet/libBullet.a" ]
 then
-	echo Bullet Library present.
+	echo "Bullet Library present."
 else
-	echo "Bullet Missing Checking for compiled lib in bulletsrc"
+	echo "Bullet Missing in data direcectory, Checking for compiled lib in bulletsrc"
 	if [ -f "libincludes/linux/bulletsrc/libBullet.a" ]
 	then
 		echo "Found, copying to correct location in project"
 		cp libincludes/linux/bulletsrc/libBullet.a data/linux/bullet/
 	else
-		echo Bullet Missing, You should use codeblocks to build Bullet.cbp
-		echo libincludes/linux/bulletsrc/BulletWorkspace.cbp
-		exit 1
+		echo "Checking to see if we can compile Bullet"
+		if [ 0 -eq `cat ~/.codeblocks/default.conf |grep "SINGLE_INSTANCE bool=\"0\"" -c` ]
+		then
+			echo "Bullet Cannot be automatically, You should use codeblocks to build Bullet.cbp"
+			echo "libincludes/linux/bulletsrc/BulletWorkspace.cbp"
+			echo "Alternatively you can disable the single instance feature of Code::blocks in the environment settings"
+			exit 1
+		else
+			echo "Bullet Missing and can be built, Beginning Bullet Build."
+			cd libincludes/linux/bulletsrc/
+			codeblocks --build --target=Release BulletWorkspace.workspace
+			cp libincludes/linux/bulletsrc/libBullet.a data/linux/bullet/
+			cd ../../..
+		fi
 	fi
 fi
 
@@ -32,4 +43,3 @@ else
 	cd ../../..
 fi	
 
-	
