@@ -14,4 +14,6 @@ class PhysVector3
 		PhysVector3(PhysReal X, PhysReal Y, PhysReal Z);
 };
 
+std::ostream& operator << (std::ostream& stream, const PhysVector3& x);
+
 #endif

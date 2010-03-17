@@ -14,6 +14,7 @@ enum EventType{
 
 
 #include <string>
+#include <ostream>
 
 using namespace std;
 
@@ -22,5 +23,8 @@ class PhysEvent
 	public:
 		virtual EventType getEventType() = 0;
 };
+
+// Allow the PhysEvent to be sent to a stream, and there sent directly to the log
+//std::ostream& operator<<(std::ostream& stream, const PhysEvent& x);
 
 #endif

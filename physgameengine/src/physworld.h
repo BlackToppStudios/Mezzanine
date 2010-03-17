@@ -95,6 +95,8 @@ class physworld
 
 		//Used by the constructors
 		void Construct(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies);
+        void TestLogger();
+        template <class T> void OneLogTest(T Data, string DataType,string Message1 = "Logging and Throwing a ", string Message2 = "Logging a ");
 
 		//SDL specific Items
 		//This function will get all the events from SDL and Sort them into one of two Queues
@@ -110,16 +112,8 @@ class physworld
 		~physworld();
 
 		//I am just extending what ogre provides for a logging system
-        void Log(string Message);
-        void Log(PhysWhole Message);
-		void Log(PhysReal Message);
-#ifdef WINDOWS
-		void Log(size_t Message);
-#endif
-        void LogAndThrow(string Message);
-        void LogAndThrow(PhysWhole Message);
-		void LogAndThrow(PhysReal Message);
-
+		template <class T> void Log(T Message);
+        template <class T> void LogAndThrow(T Message);
 
         //I plan on deprecating this thing soon and building our own settings system
         bool ShowSystemSettingDialog();
@@ -136,7 +130,6 @@ class physworld
 		void DoMainLoopInputBuffering();
 		void DoMainLoopWindowManagerBuffering();
 		void DoMainLoopRender();
-
 
 		//used to set callback functions to be run in the main loop
 		physworldCallBackManager* CallBacks;
