@@ -18,4 +18,9 @@ PhysVector3::PhysVector3(PhysReal x, PhysReal y, PhysReal z)
 	Z=z;
 }
 
+std::ostream& operator << (std::ostream& stream, const PhysVector3& x)
+{
+    stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
+    return stream;
+}
 #endif

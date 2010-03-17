@@ -7,4 +7,7 @@
 	<File name="src/gamebase.h" open="0" top="0" tabpos="5">
 		<Cursor position="352" topLine="0" />
 	</File>
+	<File name="../physgameengine/src/physevent.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="337" topLine="0" />
+	</File>
 </CodeBlocks_layout_file>

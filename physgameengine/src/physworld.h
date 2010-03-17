@@ -95,6 +95,8 @@ class physworld
 
 		//Used by the constructors
 		void Construct(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies);
+        void TestLogger();
+        template <class T> void OneLogTest(T Data, string DataType,string Message1 = "Logging and Throwing a ", string Message2 = "Logging a ");
 
 		//SDL specific Items
 		//This function will get all the events from SDL and Sort them into one of two Queues

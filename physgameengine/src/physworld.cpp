@@ -23,6 +23,7 @@
 #include <Ogre.h>
 
 #include <sstream>
+#include <string>
 using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -60,6 +61,8 @@ void physworld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
     //this->OgreResource->declareResource("r2skin.jpg", "Texture", "Robot");
     //this->OgreResource->initialiseResourceGroup("Robot");
 
+    TestLogger();
+
     //Callbacks are the main way that a game using the physworld will be able to have their code run at custom times
 	this->CallBacks = new physworldCallBackManager(this);
 
@@ -84,7 +87,61 @@ void physworld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 												BulletBroadphase,
 												BulletSolver,
 												BulletCollisionConfiguration);
+}
 
+void physworld::TestLogger()
+{
+    string temp0("0");
+    char temp1 = 'a';
+    short int temp2 = 2;
+    int temp3 = 3;
+    long int temp4 = 4;
+    unsigned short int temp5 = 5;
+    unsigned int temp6 = 6;
+    unsigned long int temp7 = 7;
+    bool temp8 = true;
+    float temp9 = 0.9;
+    double temp10 = 9.9999;
+    long double temp11 = 11.00011;
+    wchar_t temp12 = 'L';
+    size_t temp13 = 13;
+    PhysReal temp14 = 1.4;
+    PhysWhole temp15 = 15;
+    PhysString temp16("16 or so");
+    PhysVector3 temp17(0,1,7);
+    //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
+    //TODO add each type of event here to make it really wasy to log events
+
+    OneLogTest(temp0, "string");
+    OneLogTest(temp1, "char");
+    OneLogTest(temp2, "short int");
+    OneLogTest(temp3, "int");
+    OneLogTest(temp4, "long int");
+    OneLogTest(temp5, "unsigned short int");
+    OneLogTest(temp6, "unsigned int");
+    OneLogTest(temp7, "unsigned long int");
+    OneLogTest(temp8, "bool");
+    OneLogTest(temp9, "float");
+    OneLogTest(temp10, "double");
+    OneLogTest(temp11, "long double");
+    OneLogTest(temp12, "wchar_t");
+    OneLogTest(temp13, "size_t");
+    OneLogTest(temp14, "PhysReal");
+    OneLogTest(temp15, "PhysWhole");
+    OneLogTest(temp16, "PhysString");
+    OneLogTest(temp17, "PhysVector3");
+}
+
+template <class T> void physworld::OneLogTest(T Data, string DataType, string Message1, string Message2)
+{
+    try
+    {
+        Log(Message1+DataType);
+        LogAndThrow(Data);
+    } catch (T excepted) {
+        Log(Message2+DataType);
+        Log(excepted);
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////
 //tears the world down
