@@ -1,35 +1,12 @@
 # depslib dependency file v1.0
-1261981280 source:c:\physgame\physgamelauncher\physgamelauncher\readsconfig.c
-
-1193987718 source:c:\physgame\physgamelauncher\physgamelauncher\resource.rc
-	"wx/msw/wx.rc"
-
-1186436452 c:\wxwidgets-2.8.10\include\wx\msw\wx.rc
-	<winresrc.h>
-	<windows.h>
-	"wx/msw/wince/wince.rc"
-	"wx/msw/rcdefs.h"
-
-1186436448 c:\wxwidgets-2.8.10\include\wx\msw\wince\wince.rc
-	<commctrl.h>
-	"wx/msw/wince/smartphone.rc"
-
-1186436448 c:\wxwidgets-2.8.10\include\wx\msw\wince\smartphone.rc
-	<aygshell.h>
-	"wx/msw/wince/resources.h"
-
-1186436448 c:\wxwidgets-2.8.10\include\wx\msw\wince\resources.h
-
-1186436452 c:\wxwidgets-2.8.10\include\wx\msw\rcdefs.h
-
-1261983221 source:c:\physgame\physgamelauncher\physgamelauncher\physgamelauncherapp.cpp
+1261986821 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelauncherapp.cpp
 	"physgamelauncherApp.h"
 	<iostream>
 	<fstream>
 	"physgamelauncherMain.h"
 	<wx/image.h>
 
-1261980333 c:\physgame\physgamelauncher\physgamelauncher\physgamelauncherapp.h
+1261983933 c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelauncherapp.h
 	<wx/app.h>
 
 1211205096 c:\wxwidgets-2.8.10\include\wx\app.h
@@ -556,7 +533,7 @@
 1186436394 c:\wxwidgets-2.8.10\include\wx\univ\theme.h
 	"wx/string.h"
 
-1261980333 c:\physgame\physgamelauncher\physgamelauncher\physgamelaunchermain.h
+1268620184 c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelaunchermain.h
 	<wx/menu.h>
 	<wx/frame.h>
 	<wx/statusbr.h>
@@ -859,34 +836,20 @@
 1186436492 c:\wxwidgets-2.8.10\include\wx\imagiff.h
 	"wx/image.h"
 
-1261981280 source:c:\documents and settings\hydrowolfy\desktop\physgamelauncher\readsconfig.c
-
-1193987718 source:c:\documents and settings\hydrowolfy\desktop\physgamelauncher\resource.rc
-	"wx/msw/wx.rc"
-
-1261983221 source:c:\documents and settings\hydrowolfy\desktop\physgamelauncher\physgamelauncherapp.cpp
-	"physgamelauncherApp.h"
-	<iostream>
-	<fstream>
-	"physgamelauncherMain.h"
-	<wx/image.h>
-
-1261980333 c:\documents and settings\hydrowolfy\desktop\physgamelauncher\physgamelauncherapp.h
-	<wx/app.h>
-
-1261980333 c:\documents and settings\hydrowolfy\desktop\physgamelauncher\physgamelaunchermain.h
-	<wx/menu.h>
-	<wx/frame.h>
-	<wx/statusbr.h>
-
-1262340751 source:c:\physgame\physgamelauncher\physgamelauncher\physgamelaunchermain.cpp
+1268893136 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelaunchermain.cpp
 	"physgamelauncherMain.h"
 	<wx/msgdlg.h>
+	<windows.h>
 	<iostream>
 	<fstream>
 	<string>
+	"configopener.h"
+	<stdio.h>
+	<stdlib.h>
 	<wx/intl.h>
 	<wx/string.h>
+	<sys/types.h>
+	<unistd.h>
 
 1195487732 c:\wxwidgets-2.8.10\include\wx\msgdlg.h
 	"wx/defs.h"
@@ -938,72 +901,32 @@
 	"wx/defs.h"
 	"wx/dialog.h"
 
-1266209019 source:/home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/physgamelauncherApp.cpp
-	"physgamelauncherApp.h"
-	<iostream>
-	<fstream>
-	"physgamelauncherMain.h"
-	<wx/image.h>
-
-1266209019 /home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/physgamelauncherApp.h
-	<wx/app.h>
-
-1266209019 /home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/physgamelauncherMain.h
-	<wx/menu.h>
-	<wx/frame.h>
-	<wx/statusbr.h>
-
-1266209019 source:/home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/physgamelauncherMain.cpp
-	"physgamelauncherMain.h"
-	<wx/msgdlg.h>
+1268892219 c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\configopener.h
 	<iostream>
 	<fstream>
 	<string>
-	<wx/intl.h>
-	<wx/string.h>
-
-1266209019 source:/home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/readsconfig.c
-
-1266209019 source:/home/sqeaky/physgame/wxphysgamelauncher/physgamelauncher/resource.rc
-	"wx/msw/wx.rc"
-
-1261984880 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\readsconfig.c
 
 1193991318 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\resource.rc
 	"wx/msw/wx.rc"
 
-1261986821 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelauncherapp.cpp
-	"physgamelauncherApp.h"
-	<iostream>
-	<fstream>
-	"physgamelauncherMain.h"
-	<wx/image.h>
+1186436452 c:\wxwidgets-2.8.10\include\wx\msw\wx.rc
+	<winresrc.h>
+	<windows.h>
+	"wx/msw/wince/wince.rc"
+	"wx/msw/rcdefs.h"
 
-1261983933 c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelauncherapp.h
-	<wx/app.h>
+1186436448 c:\wxwidgets-2.8.10\include\wx\msw\wince\wince.rc
+	<commctrl.h>
+	"wx/msw/wince/smartphone.rc"
 
-1268620184 c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelaunchermain.h
-	<wx/menu.h>
-	<wx/frame.h>
-	<wx/statusbr.h>
+1186436448 c:\wxwidgets-2.8.10\include\wx\msw\wince\smartphone.rc
+	<aygshell.h>
+	"wx/msw/wince/resources.h"
 
-1268624750 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelaunchermain.cpp
-	"physgamelauncherMain.h"
-	<wx/msgdlg.h>
-	<iostream>
-	<fstream>
-	<string>
+1186436448 c:\wxwidgets-2.8.10\include\wx\msw\wince\resources.h
+
+1186436452 c:\wxwidgets-2.8.10\include\wx\msw\rcdefs.h
+
+1268892219 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\configopener.cpp
 	"configopener.h"
-	<stdio.h>
-	<stdlib.h>
-	<wx/intl.h>
-	<wx/string.h>
-
-1268623339 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\configopener.cpp
-	"configopener.h"
-
-1268623339 c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\configopener.h
-	<iostream>
-	<fstream>
-	<string>
 

@@ -119,12 +119,10 @@ void physgamelauncherFrame::RunGame(wxCommandEvent& event)
     ConfigOpener RunExe;
     string Exe;
     Exe = RunExe.GetExeWindows();
-    //system ("cmd");
-    ofstream test;
-    //system(Exe.c_str());
-    string j = "";
 
-    execl(Exe.c_str(),j.c_str());
+    wxString wxexe = wxString::FromAscii(Exe.c_str());
+
+    wxExecute(wxexe);
 
 
 }
