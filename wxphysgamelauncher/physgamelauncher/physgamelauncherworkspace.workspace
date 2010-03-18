@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
-		<Project filename="physgamelauncher.cbp" />
-		<Project filename="..\..\..\Documents and Settings\hydrowolfy\Desktop\physgamelauncher\physgamelauncher.cbp" active="1" />
+		<Project filename="physgamelauncher.cbp" active="1" />
+		<Project filename="..\..\Catch!\Catch!.cbp" />
+		<Project filename="..\..\physgameengine\physgame.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

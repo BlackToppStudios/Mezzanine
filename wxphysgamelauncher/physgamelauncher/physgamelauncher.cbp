@@ -60,13 +60,12 @@
 		<ResourceCompiler>
 			<Add directory="$(#wx)\include" />
 		</ResourceCompiler>
+		<Unit filename="configopener.cpp" />
+		<Unit filename="configopener.h" />
 		<Unit filename="physgamelauncherApp.cpp" />
 		<Unit filename="physgamelauncherApp.h" />
 		<Unit filename="physgamelauncherMain.cpp" />
 		<Unit filename="physgamelauncherMain.h" />
-		<Unit filename="readsconfig.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
