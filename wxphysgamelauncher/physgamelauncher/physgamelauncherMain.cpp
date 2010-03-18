@@ -10,6 +10,9 @@
 #include "physgamelauncherMain.h"
 #include <wx/msgdlg.h>
 #include <windows.h>
+#include "zlib.h"
+
+
 
 #include <iostream>
 #include <fstream>
@@ -123,6 +126,8 @@ void physgamelauncherFrame::RunGame(wxCommandEvent& event)
     wxString wxexe = wxString::FromAscii(Exe.c_str());
 
     wxExecute(wxexe);
+     z_stream strm;
+
 
 
 }

@@ -10,6 +10,7 @@
 #include "physgamelauncherApp.h"
 #include <iostream>
 #include <fstream>
+#include "zlib.h"
 
 //(*AppHeaders
 #include "physgamelauncherMain.h"
