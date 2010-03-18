@@ -101,8 +101,8 @@ class physworld
 		//SDL specific Items
 		//This function will get all the events from SDL and Sort them into one of two Queues
 		void PreProcessSDLEvents();
-        queue<RawEvent> SDL_WmEvents;
-        queue<RawEvent> SDL_UserInputEvents;
+        queue<RawEvent*> SDL_WmEvents;
+        queue<RawEvent*> SDL_UserInputEvents;
 
         friend void RenderPhysWorld(physworld *TheWorld);
 

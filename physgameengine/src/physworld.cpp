@@ -309,7 +309,7 @@ void physworld::DoMainLoopWindowManagerBuffering()
     this->PreProcessSDLEvents();
     Log("WM EventCount Pending:");
     Log(SDL_WmEvents.size());
-    //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
+    //TODO: make Physevents for each of the events in SDL_W1111mEvents(and delete the SDL events)
 }
 
 void physworld::DoMainLoopInputBuffering()
@@ -322,10 +322,13 @@ void physworld::DoMainLoopInputBuffering()
 
     //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
     //RawEvent QueueEvent;
-/*    for(SDL_Event CurrentEvent; !SDL_UserInputEvents.empty(); CurrentEvent = SDL_UserInputEvents.pop())
+    while( !SDL_UserInputEvents.empty() )
     {
+        SDL_Event * CurrentEvent = SDL_UserInputEvents.front();
+        this->Log(GetNameOfEventFrom(*CurrentEvent));
 
-    }*/
+        SDL_UserInputEvents.pop();
+    }//*/
 }
 
 void physworld::DoMainLoopRender()
@@ -415,7 +418,6 @@ void physworld::PreProcessSDLEvents()
     RawEvent FromSDL;
 	while(SDL_PollEvent(&FromSDL))
 	{
-	    this->Log(GetNameOfEventFrom(FromSDL));
         switch(FromSDL.type)
         {
             case SDL_ACTIVEEVENT:   //when the window gains focus
@@ -423,7 +425,7 @@ void physworld::PreProcessSDLEvents()
             case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
             case SDL_QUIT:          //when SDL closes
             case SDL_SYSWMEVENT:
-                SDL_WmEvents.push(FromSDL);
+                SDL_WmEvents.push(&FromSDL);
                 break;
             case SDL_KEYDOWN:
                 exit(EXIT_SUCCESS); //remove this as soon as we get the X working
@@ -436,7 +438,7 @@ void physworld::PreProcessSDLEvents()
             case SDL_JOYBUTTONUP:
             case SDL_JOYBALLMOTION:
             case SDL_JOYHATMOTION:
-                SDL_UserInputEvents.push(FromSDL);
+                SDL_UserInputEvents.push(&FromSDL);
                 break;
             case SDL_USEREVENT://Never thrown by SDL, but could be added by a user
             default:
