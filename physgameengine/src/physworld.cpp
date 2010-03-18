@@ -322,11 +322,10 @@ void physworld::DoMainLoopInputBuffering()
 
     //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
     //RawEvent QueueEvent;
-/*    for(;!SDL_UserInputEvents.empty();QueueEvent = SDL_UserInputEvents.pop())
+/*    for(SDL_Event CurrentEvent; !SDL_UserInputEvents.empty(); CurrentEvent = SDL_UserInputEvents.pop())
     {
 
     }*/
-
 }
 
 void physworld::DoMainLoopRender()
