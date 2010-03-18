@@ -9,7 +9,7 @@
 
 #include "physgamelauncherMain.h"
 #include <wx/msgdlg.h>
-
+#include <windows.h>
 
 #include <iostream>
 #include <fstream>
@@ -21,6 +21,8 @@
 //(*InternalHeaders(physgamelauncherFrame)
 #include <wx/intl.h>
 #include <wx/string.h>
+#include <sys/types.h>
+#include <unistd.h>
 //*)
 
 //helper functions
@@ -117,11 +119,10 @@ void physgamelauncherFrame::RunGame(wxCommandEvent& event)
     ConfigOpener RunExe;
     string Exe;
     Exe = RunExe.GetExeWindows();
-    //system ("cmd");
-    ofstream test;
-    test.open("blah.txt");
-    test << Exe;
-    system(Exe.c_str());
+
+    wxString wxexe = wxString::FromAscii(Exe.c_str());
+
+    wxExecute(wxexe);
 
 
 }
