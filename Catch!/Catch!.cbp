@@ -68,7 +68,6 @@
 		</Compiler>
 		<Unit filename="src/gamebase.cpp" />
 		<Unit filename="src/gamebase.h" />
-		<Unit filename="../physgameengine/src/physevent.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -73,6 +73,7 @@
 					<Add after="cp data/linux/settings.cfg bin/LinuxDebug/data/linux/" />
 					<Add after="cp data/linux/ogre/ bin/LinuxDebug/data/linux/ -r" />
 					<Add after="mv bin/LinuxDebug/data/linux/ogre/*Main* bin/LinuxDebug/" />
+					<Add after="rm bin//LinuxDebug/data/linux/ogre/Readme.txt" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
