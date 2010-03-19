@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1261986821 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelauncherapp.cpp
+1268907668 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelauncherapp.cpp
 	"physgamelauncherApp.h"
 	<iostream>
 	<fstream>
+	"zlib.h"
 	"physgamelauncherMain.h"
 	<wx/image.h>
 
@@ -836,10 +837,11 @@
 1186436492 c:\wxwidgets-2.8.10\include\wx\imagiff.h
 	"wx/image.h"
 
-1268893136 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelaunchermain.cpp
+1268907896 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\physgamelaunchermain.cpp
 	"physgamelauncherMain.h"
 	<wx/msgdlg.h>
 	<windows.h>
+	"zlib.h"
 	<iostream>
 	<fstream>
 	<string>
@@ -929,4 +931,13 @@
 
 1268892219 source:c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\configopener.cpp
 	"configopener.h"
+
+1121653608 c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\zlib.h
+	"zconf.h"
+
+1121874026 c:\physgame2\physgame\wxphysgamelauncher\physgamelauncher\zconf.h
+	<windows.h>
+	<sys/types.h>
+	<unistd.h>
+	<unixio.h>
 
