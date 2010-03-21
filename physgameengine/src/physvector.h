@@ -16,4 +16,16 @@ class PhysVector3
 
 std::ostream& operator << (std::ostream& stream, const PhysVector3& x);
 
+class PhysQuaternion
+{
+    public:
+        PhysReal X;
+        PhysReal Y;
+        PhysReal Z;
+        PhysReal W;
+
+        PhysQuaternion();
+        PhysQuaternion(PhysReal X, PhysReal Y, PhysReal Z, PhysReal W);
+};
+
 #endif

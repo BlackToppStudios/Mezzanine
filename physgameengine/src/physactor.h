@@ -3,6 +3,15 @@
 
 #include "physvector.h"
 
+///////////////////////////////////
+// Forward Declares
+
+class btMotionState;
+class btQuaternion;
+class btRigidBody;
+class btSoftBody;
+class btTransform;
+
 namespace Ogre
 {
     class Entity;
@@ -10,52 +19,69 @@ namespace Ogre
     class SceneNode;
 }
 
-class actorbase {
+///////////////////////////////////
+// Actual code
+
+class ActorBase {
 
 	protected:
-	PhysVector3 vector;
-	PhysReal coefficient;
-	PhysReal weight;
-	PhysReal density;
-    bool move;
 
 	//abstraction for other libraries
 	Ogre::Entity* entity;
     Ogre::SceneManager* physscenemanager;
     Ogre::SceneNode* node;
 
+    btQuaternion* physorientation;
+    btTransform* physlocation;
+
 	public:
-	~actorbase ();
-	actorbase (PhysReal x, PhysReal y, PhysReal z, PhysReal c, PhysReal w, PhysReal d);
-	PhysVector3 GetLocation ();
-	PhysReal GetCoefficient ();
-	PhysReal GetWeight ();
-	PhysReal GetDensity ();
+	~ActorBase ();
+	ActorBase (PhysReal x, PhysReal y, PhysReal z);
 	void CreateEntity(PhysString name, PhysString file, PhysString group);
 	void CreateSceneNode();
     void SetOgreLocation(PhysReal x, PhysReal y, PhysReal z);
     //void SetOgreOrientation();
 };
 
-class actordyn: public actorbase {
+class ActorDynRigid: public ActorBase {
 
 	private:
-	PhysVector3 speed;
-	PhysVector3 accel;
+
+	btRigidBody* physrigidbody;
+	btMotionState* physmotionstate;
 
 	public:
-	actordyn();
-	~actordyn();
-	PhysVector3 GetSpeed ();
-	PhysVector3 GetAccel ();
-	void Halt ();
+	ActorDynRigid();
+	~ActorDynRigid();
+	void CreateRigidObject ();
+	void AddObjectToWorld ();
 };
 
-class actorsta: public actorbase {
+class ActorDynSoft: public ActorBase {
+
+	private:
+
+    btSoftBody* physoftbody;
+    btMotionState* physmotionstate;
+
+	public:
+	ActorDynSoft();
+	~ActorDynSoft();
+    void CreateSoftObject ();
+	void AddObjectToWorld ();
+};
+
+class ActorSta: public ActorBase {
+
+    private:
+
+    btRigidBody* physrigidbody;
 
     public:
-    actorsta();
-    ~actorsta();
+    ActorSta();
+    ~ActorSta();
+    void CreateRigidObject ();
+	void AddObjectToWorld ();
 };
 
 #endif

@@ -5,53 +5,27 @@
 #include "physactor.h"
 
 ///////////////////////////////////
-// Actorbase class fuctions
+// ActorBase class fuctions
 
-actorbase::~actorbase ()
+ActorBase::~ActorBase ()
 {
 }
 
-actorbase::actorbase (PhysReal x=0, PhysReal y=0, PhysReal z=0, PhysReal c=0, PhysReal w=0, PhysReal d=0)
+ActorBase::ActorBase ()
 {
-    vector.X = x;
-    vector.Y = y;
-    vector.Z = z;
-    coefficient = c;
-    weight = w;
-    density = d;
 }
 
-PhysVector3 actorbase::GetLocation ()
-{
-    return (vector);
-}
-
-PhysReal actorbase::GetCoefficient ()
-{
-	return (coefficient);
-}
-
-PhysReal actorbase::GetWeight ()
-{
-	return (weight);
-}
-
-PhysReal actorbase::GetDensity ()
-{
-	return (density);
-}
-
-void actorbase::CreateEntity (PhysString name, PhysString file, PhysString group)
+void ActorBase::CreateEntity (PhysString name, PhysString file, PhysString group)
 {
     entity = this->physscenemanager->createEntity(name, file, group);
 }
 
-void actorbase::CreateSceneNode ()
+void ActorBase::CreateSceneNode ()
 {
     node = this->physscenemanager->createSceneNode();
 }
 
-void actorbase::SetOgreLocation (PhysReal x, PhysReal y, PhysReal z)
+void ActorBase::SetOgreLocation (PhysReal x, PhysReal y, PhysReal z)
 {
     this->node->setPosition(x, y, z);
 }
@@ -62,47 +36,66 @@ void actorbase::SetOgreLocation (PhysReal x, PhysReal y, PhysReal z)
 //}
 
 ///////////////////////////////////
-// Actordyn class functions
+// ActorDynRigid class functions
 
-actordyn::actordyn ()
-{
-    move=true;
-}
-
-actordyn::~actordyn ()
+ActorDynRigid::ActorDynRigid () : ActorBase ()
 {
 }
 
-PhysVector3 actordyn::GetSpeed ()
+ActorDynRigid::~ActorDynRigid ()
 {
-	return (speed);
+    delete physorientation;
 }
 
-PhysVector3 actordyn::GetAccel ()
+void ActorDynRigid::CreateRigidObject ();
 {
-	return (accel);
+    PhysReal x=y=z=w=0;
+    physorientation = new btQuaternion (&x,&y,&z,&w);
 }
 
-void actordyn::Halt ()
+void ActorDynRigid::AddObjectToWorld ();
 {
-    accel.X = 0;
-    accel.Y = 0;
-    accel.Z = 0;
-    speed.X = 0;
-    speed.Y = 0;
-    speed.Z = 0;
+    //TODO: add code for adding object to the physics world
 }
 
 ///////////////////////////////////
-// Actorsta class functions
+// ActordynSoft class functions
 
-actorsta::actorsta ()
+ActorDynSoft::ActorDynSoft () : ActorBase ()
 {
-    move=false;
 }
 
-actorsta::~actorsta ()
+ActorDynSoft::~ActorDynSoft ()
 {
+}
+
+void ActorDynSoft::CreateSoftObject ();
+{
+}
+
+void ActorDynSoft::AddObjectToWorld ();
+{
+    //TODO: add code for adding object to the physics world
+}
+
+///////////////////////////////////
+// ActorSta class functions
+
+ActorSta::ActorSta () : ActorBase ()
+{
+}
+
+ActorSta::~ActorSta ()
+{
+}
+
+void ActorSta::CreateRigidObject ();
+{
+}
+
+void ActorSta::AddObjectToWorld ();
+{
+    //TODO: add code for adding object to the physics world
 }
 
 #endif
