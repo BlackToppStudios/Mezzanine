@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysgameEngine: ActorBase Class Reference</title>
+<title>PhysGameEngine: ActorBase Class Reference</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -20,6 +20,7 @@
     <ul>
       <li><a href="../../annotated.html"><span>Class&nbsp;List</span></a></li>
       <li><a href="../../hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="../../functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
 </div>
@@ -40,15 +41,17 @@ Inheritance diagram for ActorBase:</div>
 <p><a href="../../d9/db0/classActorBase-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a043800519c16444c794f64eb3488a7d2"></a><!-- doxytag: member="ActorBase::ActorBase" ref="a043800519c16444c794f64eb3488a7d2" args="(PhysReal x, PhysReal y, PhysReal z)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorBase</b> (PhysReal x, PhysReal y, PhysReal z)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa87583c47b8653e8ac7d96f1481b57fd"></a><!-- doxytag: member="ActorBase::CreateEntity" ref="aa87583c47b8653e8ac7d96f1481b57fd" args="(PhysString name, PhysString file, PhysString group)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>CreateEntity</b> (PhysString name, PhysString file, PhysString group)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a168cd57e20b2adfc5cae21627ddbae31"></a><!-- doxytag: member="ActorBase::CreateSceneNode" ref="a168cd57e20b2adfc5cae21627ddbae31" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>CreateSceneNode</b> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a624f83ed4265a32db6d816a882a5bebd"></a><!-- doxytag: member="ActorBase::SetOgreLocation" ref="a624f83ed4265a32db6d816a882a5bebd" args="(PhysReal x, PhysReal y, PhysReal z)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetOgreLocation</b> (PhysReal x, PhysReal y, PhysReal z)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64ec1d0987bb32070e0c686db3b06e56"></a><!-- doxytag: member="ActorBase::SetOgreOrientation" ref="a64ec1d0987bb32070e0c686db3b06e56" args="(PhysReal x, PhysReal y, PhysReal z, PhysReal w)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetOgreOrientation</b> (PhysReal x, PhysReal y, PhysReal z, PhysReal w)</td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aececd39ceec6f8843bbc971afe94c1da"></a><!-- doxytag: member="ActorBase::orientation" ref="aececd39ceec6f8843bbc971afe94c1da" args="" -->
+<a class="el" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>orientation</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada6ceb752605b29357b6c5d53c477696"></a><!-- doxytag: member="ActorBase::entity" ref="ada6ceb752605b29357b6c5d53c477696" args="" -->
 Ogre::Entity *&nbsp;</td><td class="memItemRight" valign="bottom"><b>entity</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3739eb7f632f0ceb9397d6c699623cd"></a><!-- doxytag: member="ActorBase::physscenemanager" ref="ad3739eb7f632f0ceb9397d6c699623cd" args="" -->
@@ -68,7 +71,7 @@ btTransform *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physlocation
 <li><a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Mar 21 19:58:59 2010 for PhysgameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Mar 22 00:24:03 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

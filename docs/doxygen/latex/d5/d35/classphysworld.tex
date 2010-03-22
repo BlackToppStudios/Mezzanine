@@ -4,96 +4,14 @@
 }
 
 
-This is the main entry point for the entire library. The \hyperlink{classphysworld}{physworld} coordinates and integrates all the underlying subsystems.  
+This is the main entry point for the entire library. The \hyperlink{classphysworld}{physworld} coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object.  
 
 
-{\ttfamily \#include $<$physworld.h$>$}\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphysworld_a483d29f795fb355d473f860ebc2d9fe1}{
-{\bfseries physworld} (\hyperlink{classPhysVector3}{PhysVector3} $\ast$GeographyLowerBounds, \hyperlink{classPhysVector3}{PhysVector3} $\ast$GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024)}
-\label{d5/d35/classphysworld_a483d29f795fb355d473f860ebc2d9fe1}
-
-\item 
-\hypertarget{classphysworld_aff6ad06f795a4600a2ee8f576dbe651c}{
-{\footnotesize template$<$class T $>$ }\\void {\bfseries Log} (T Message)}
-\label{d5/d35/classphysworld_aff6ad06f795a4600a2ee8f576dbe651c}
-
-\item 
-\hypertarget{classphysworld_a0235f4a1bf4e794ffa7e8ddac89dff0f}{
-{\footnotesize template$<$class T $>$ }\\void {\bfseries LogAndThrow} (T Message)}
-\label{d5/d35/classphysworld_a0235f4a1bf4e794ffa7e8ddac89dff0f}
-
-\item 
-\hypertarget{classphysworld_a5ca73959ad02f2d6c5ba93675548cc6d}{
-bool {\bfseries ShowSystemSettingDialog} ()}
-\label{d5/d35/classphysworld_a5ca73959ad02f2d6c5ba93675548cc6d}
-
-\item 
-\hypertarget{classphysworld_adb378f544fbe318913fe20d25da04f90}{
-void {\bfseries MoveCamera} (\hyperlink{classPhysVector3}{PhysVector3} Position, \hyperlink{classPhysVector3}{PhysVector3} LookAt)}
-\label{d5/d35/classphysworld_adb378f544fbe318913fe20d25da04f90}
-
-\item 
-\hypertarget{classphysworld_afba175927e9e758c00e44b0000e72a64}{
-void {\bfseries GameInit} ()}
-\label{d5/d35/classphysworld_afba175927e9e758c00e44b0000e72a64}
-
-\item 
-\hypertarget{classphysworld_adbfee9bf8194be50e954f68f0d34e713}{
-void {\bfseries DoMainLoopAllItems} ()}
-\label{d5/d35/classphysworld_adbfee9bf8194be50e954f68f0d34e713}
-
-\item 
-\hypertarget{classphysworld_ab620e6e174bfb30ee5f91d4b1988fe80}{
-void {\bfseries DoMainLoopPhysics} ()}
-\label{d5/d35/classphysworld_ab620e6e174bfb30ee5f91d4b1988fe80}
-
-\item 
-\hypertarget{classphysworld_ab2748ae34529065bc45c0437619702a2}{
-void {\bfseries DoMainLoopInputBuffering} ()}
-\label{d5/d35/classphysworld_ab2748ae34529065bc45c0437619702a2}
-
-\item 
-\hypertarget{classphysworld_afc7460b9da2f5b83e2a5a14af364fe5f}{
-void {\bfseries DoMainLoopWindowManagerBuffering} ()}
-\label{d5/d35/classphysworld_afc7460b9da2f5b83e2a5a14af364fe5f}
-
-\item 
-\hypertarget{classphysworld_a645d066ce4733ae7cef4b60a670f47ec}{
-void {\bfseries DoMainLoopRender} ()}
-\label{d5/d35/classphysworld_a645d066ce4733ae7cef4b60a670f47ec}
-
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphysworld_a273ddd0ecdabc8b9b6570e10cf916040}{
-\hyperlink{classphysworldCallBackManager}{physworldCallBackManager} $\ast$ {\bfseries CallBacks}}
-\label{d5/d35/classphysworld_a273ddd0ecdabc8b9b6570e10cf916040}
-
-\item 
-\hypertarget{classphysworld_ae024208c753dead33c37ff0c76a56990}{
-\hyperlink{classPhysEventManager}{PhysEventManager} $\ast$ {\bfseries Events}}
-\label{d5/d35/classphysworld_ae024208c753dead33c37ff0c76a56990}
-
-\end{DoxyCompactItemize}
-\subsection*{Friends}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphysworld_af58ba268fb328e7e5de6c036e259fa92}{
-void {\bfseries RenderPhysWorld} (\hyperlink{classphysworld}{physworld} $\ast$TheWorld)}
-\label{d5/d35/classphysworld_af58ba268fb328e7e5de6c036e259fa92}
-
-\end{DoxyCompactItemize}
-
+{\ttfamily \#include $<$physworld.h$>$}
 
 \subsection{Detailed Description}
-This is the main entry point for the entire library. The \hyperlink{classphysworld}{physworld} coordinates and integrates all the underlying subsystems. 
+This is the main entry point for the entire library. The \hyperlink{classphysworld}{physworld} coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. 
 
-Definition at line 60 of file physworld.h.
-
-The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
 \item 
-physworld.h\item 
-physworld.cpp\end{DoxyCompactItemize}
+physworld.h\end{DoxyCompactItemize}

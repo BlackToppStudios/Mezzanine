@@ -1,10 +1,8 @@
 #ifndef _physworld_h
 #define _physworld_h
 ///////////////////////////////////////////////////////////////////////////////
-// The game will need a container for all the playing pieces, and something to
-//talk tothe screen and the physics engine. It makes sense to call this the
-//world object. This is the
-
+/// @headerfile physworld.h
+///
 ///////////////////////////////////////////////////////////////////////////////
 //Includes and Forward Declarations
 
@@ -36,7 +34,7 @@ class btAxisSweep3;
 class btDefaultCollisionConfiguration;
 class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
-class btDiscreteDynamicsWorld;
+class btSoftRigidDynamicsWorld;
 
 
 //forward Declarations so that we do not need #include <Ogre.h>
@@ -53,12 +51,13 @@ namespace Ogre
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @class physworld
+/// @class PhysWorld
 /// @brief This is the main entry point for the entire library.
 /// The physworld coordinates and integrates all the underlying subsystems,
 /// Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and
-/// SDL is used for user input and window management.
-///
+/// SDL is used for user input and window management. Games will need a
+/// container for all the playing pieces. It makes sense to tie all of this
+/// functionality into one world object.
 ///////////////////////////////////////
 class PhysWorld
 {
@@ -72,7 +71,7 @@ class PhysWorld
 		btDefaultCollisionConfiguration* BulletCollisionConfiguration;
 		btCollisionDispatcher* BulletDispatcher;
 		btSequentialImpulseConstraintSolver* BulletSolver;
-		btDiscreteDynamicsWorld* BulletDynamicsWorld;
+		btSoftRigidDynamicsWorld* BulletDynamicsWorld;
 
 		//SDL Objects
 		SDL_Surface *SDLscreen;
@@ -107,14 +106,25 @@ class PhysWorld
         queue<RawEvent*> SDL_WmEvents;
         queue<RawEvent*> SDL_UserInputEvents;
 
+        /// This should be treated as an internal function, it is \b subject to change without warning \b and could be \b harmful \b to overall stability if used incorrectly
         friend void RenderPhysWorld(PhysWorld *TheWorld);
 
 	public:
+        /// @brief Descriptive constructor
+        /// This constructor allows for an easier way to define the Boundaries of the int
+        /// @param GeographyLowerBounds The lower limits for the size of the physics simulation
+        /// @param GeographyUpperbounds The Upper limits for the size of the physics simulation
+        /// @param MaxPhysicsProxies This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.
 		PhysWorld(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024);
+
+        /// @brief Default constructor
+        /// This simply calls the
+
 		PhysWorld();
 		~PhysWorld();
 
 		//I am just extending what ogre provides for a logging system
+
 		template <class T> void Log(T Message);
         template <class T> void LogAndThrow(T Message);
 

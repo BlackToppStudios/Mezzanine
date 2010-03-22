@@ -4,7 +4,7 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = Physgame Engine
+PROJECT_NAME           = PhysGame Engine
 PROJECT_NUMBER         = .01
 OUTPUT_DIRECTORY       = ../../docs/doxygen
 CREATE_SUBDIRS         = YES

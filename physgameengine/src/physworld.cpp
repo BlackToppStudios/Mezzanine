@@ -20,6 +20,7 @@
 
 #include "SDL.h"
 #include "btBulletDynamicsCommon.h"
+#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 #include <Ogre.h>
 
 #include <sstream>
@@ -82,7 +83,7 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 	this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
 	this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
 
-	this->BulletDynamicsWorld = new btDiscreteDynamicsWorld(
+	this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld(
 												BulletDispatcher,
 												BulletBroadphase,
 												BulletSolver,

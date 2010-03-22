@@ -1,0 +1,116 @@
+\hypertarget{classPhysWorld}{
+\section{PhysWorld Class Reference}
+\label{db/df5/classPhysWorld}\index{PhysWorld@{PhysWorld}}
+}
+
+
+This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object.  
+
+
+{\ttfamily \#include $<$physworld.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPhysWorld_a3228c98369082139722d3c918d735e6c}{PhysWorld} (\hyperlink{classPhysVector3}{PhysVector3} $\ast$GeographyLowerBounds, \hyperlink{classPhysVector3}{PhysVector3} $\ast$GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024)
+\begin{DoxyCompactList}\small\item\em Descriptive constructor This constructor allows for an easier way to define the Boundaries of the int. \item\end{DoxyCompactList}\item 
+\hypertarget{classPhysWorld_a6ded8026b0cd72e7877830698197adf0}{
+\hyperlink{classPhysWorld_a6ded8026b0cd72e7877830698197adf0}{PhysWorld} ()}
+\label{db/df5/classPhysWorld_a6ded8026b0cd72e7877830698197adf0}
+
+\begin{DoxyCompactList}\small\item\em Default constructor This simply calls the. \item\end{DoxyCompactList}\item 
+\hypertarget{classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}{
+{\footnotesize template$<$class T $>$ }\\void {\bfseries Log} (T Message)}
+\label{db/df5/classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}
+
+\item 
+\hypertarget{classPhysWorld_a1c2aeaed2a89821a4545db854da33ab8}{
+{\footnotesize template$<$class T $>$ }\\void {\bfseries LogAndThrow} (T Message)}
+\label{db/df5/classPhysWorld_a1c2aeaed2a89821a4545db854da33ab8}
+
+\item 
+\hypertarget{classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}{
+bool {\bfseries ShowSystemSettingDialog} ()}
+\label{db/df5/classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}
+
+\item 
+\hypertarget{classPhysWorld_a1df24ee06d5881825902b60e0d81174a}{
+void {\bfseries MoveCamera} (\hyperlink{classPhysVector3}{PhysVector3} Position, \hyperlink{classPhysVector3}{PhysVector3} LookAt)}
+\label{db/df5/classPhysWorld_a1df24ee06d5881825902b60e0d81174a}
+
+\item 
+\hypertarget{classPhysWorld_a6d65a7412c1711497fbd1173f879243a}{
+void {\bfseries GameInit} ()}
+\label{db/df5/classPhysWorld_a6d65a7412c1711497fbd1173f879243a}
+
+\item 
+\hypertarget{classPhysWorld_a60b7978b39fc347c2f37077737783da6}{
+void {\bfseries DoMainLoopAllItems} ()}
+\label{db/df5/classPhysWorld_a60b7978b39fc347c2f37077737783da6}
+
+\item 
+\hypertarget{classPhysWorld_a994d7d8c4a9a0c003c3e7d89be7b399b}{
+void {\bfseries DoMainLoopPhysics} ()}
+\label{db/df5/classPhysWorld_a994d7d8c4a9a0c003c3e7d89be7b399b}
+
+\item 
+\hypertarget{classPhysWorld_a81b3f0dcc0a90d039623f696343e6e9c}{
+void {\bfseries DoMainLoopInputBuffering} ()}
+\label{db/df5/classPhysWorld_a81b3f0dcc0a90d039623f696343e6e9c}
+
+\item 
+\hypertarget{classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}{
+void {\bfseries DoMainLoopWindowManagerBuffering} ()}
+\label{db/df5/classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}
+
+\item 
+\hypertarget{classPhysWorld_a8f33541d67164a2452e568443e9905be}{
+void {\bfseries DoMainLoopRender} ()}
+\label{db/df5/classPhysWorld_a8f33541d67164a2452e568443e9905be}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}{
+\hyperlink{classPhysWorldCallBackManager}{PhysWorldCallBackManager} $\ast$ {\bfseries CallBacks}}
+\label{db/df5/classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}
+
+\item 
+\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
+\hyperlink{classPhysEventManager}{PhysEventManager} $\ast$ {\bfseries Events}}
+\label{db/df5/classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{
+void \hyperlink{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{RenderPhysWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TheWorld)}
+\label{db/df5/classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}
+
+\begin{DoxyCompactList}\small\item\em This should be treated as an internal function, it is {\bfseries subject} to change without warning {\bfseries and} could be {\bfseries harmful} {\bfseries to} overall stability if used incorrectly. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. 
+
+Definition at line 62 of file physworld.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classPhysWorld_a3228c98369082139722d3c918d735e6c}{
+\index{PhysWorld@{PhysWorld}!PhysWorld@{PhysWorld}}
+\index{PhysWorld@{PhysWorld}!PhysWorld@{PhysWorld}}
+\subsubsection[{PhysWorld}]{\setlength{\rightskip}{0pt plus 5cm}PhysWorld::PhysWorld ({\bf PhysVector3} $\ast$ {\em GeographyLowerBounds}, \/  {\bf PhysVector3} $\ast$ {\em GeographyUpperbounds}, \/  unsigned short int {\em MaxPhysicsProxies} = {\ttfamily 1024})}}
+\label{db/df5/classPhysWorld_a3228c98369082139722d3c918d735e6c}
+
+
+Descriptive constructor This constructor allows for an easier way to define the Boundaries of the int. 
+\begin{DoxyParams}{Parameters}
+\item[{\em GeographyLowerBounds}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies}]This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation. \end{DoxyParams}
+
+
+Definition at line 43 of file physworld.cpp.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+physworld.h\item 
+physworld.cpp\end{DoxyCompactItemize}

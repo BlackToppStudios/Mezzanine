@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>PhysgameEngine: physactor.h Source File</title>
+<title>PhysGameEngine: physactor.h Source File</title>
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -48,68 +48,69 @@
 <a name="l00025"></a><a class="code" href="../../dd/d7b/classActorBase.html">00025</a> <span class="keyword">class </span><a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> {
 <a name="l00026"></a>00026 
 <a name="l00027"></a>00027         <span class="keyword">protected</span>:
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029         <span class="comment">//abstraction for other libraries</span>
-<a name="l00030"></a>00030         Ogre::Entity* entity;
-<a name="l00031"></a>00031     Ogre::SceneManager* physscenemanager;
-<a name="l00032"></a>00032     Ogre::SceneNode* node;
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034     btQuaternion* physorientation;
-<a name="l00035"></a>00035     btTransform* physlocation;
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037         <span class="keyword">public</span>:
-<a name="l00038"></a>00038         ~<a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> ();
-<a name="l00039"></a>00039         <a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> (PhysReal x, PhysReal y, PhysReal z);
-<a name="l00040"></a>00040         <span class="keywordtype">void</span> CreateEntity(PhysString name, PhysString file, PhysString group);
-<a name="l00041"></a>00041         <span class="keywordtype">void</span> CreateSceneNode();
-<a name="l00042"></a>00042     <span class="keywordtype">void</span> SetOgreLocation(PhysReal x, PhysReal y, PhysReal z);
-<a name="l00043"></a>00043     <span class="comment">//void SetOgreOrientation();</span>
-<a name="l00044"></a>00044 };
-<a name="l00045"></a>00045 
-<a name="l00046"></a><a class="code" href="../../d4/d0e/classActorDynRigid.html">00046</a> <span class="keyword">class </span><a class="code" href="../../d4/d0e/classActorDynRigid.html">ActorDynRigid</a>: <span class="keyword">public</span> <a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> {
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048         <span class="keyword">private</span>:
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050         btRigidBody* physrigidbody;
-<a name="l00051"></a>00051         btMotionState* physmotionstate;
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053         <span class="keyword">public</span>:
-<a name="l00054"></a>00054         <a class="code" href="../../d4/d0e/classActorDynRigid.html">ActorDynRigid</a>();
-<a name="l00055"></a>00055         ~<a class="code" href="../../d4/d0e/classActorDynRigid.html">ActorDynRigid</a>();
-<a name="l00056"></a>00056         <span class="keywordtype">void</span> CreateRigidObject ();
-<a name="l00057"></a>00057         <span class="keywordtype">void</span> AddObjectToWorld ();
-<a name="l00058"></a>00058 };
-<a name="l00059"></a>00059 
-<a name="l00060"></a><a class="code" href="../../dc/de0/classActorDynSoft.html">00060</a> <span class="keyword">class </span><a class="code" href="../../dc/de0/classActorDynSoft.html">ActorDynSoft</a>: <span class="keyword">public</span> <a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> {
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062         <span class="keyword">private</span>:
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064     btSoftBody* physoftbody;
-<a name="l00065"></a>00065     btMotionState* physmotionstate;
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         <span class="keyword">public</span>:
-<a name="l00068"></a>00068         <a class="code" href="../../dc/de0/classActorDynSoft.html">ActorDynSoft</a>();
-<a name="l00069"></a>00069         ~<a class="code" href="../../dc/de0/classActorDynSoft.html">ActorDynSoft</a>();
-<a name="l00070"></a>00070     <span class="keywordtype">void</span> CreateSoftObject ();
-<a name="l00071"></a>00071         <span class="keywordtype">void</span> AddObjectToWorld ();
-<a name="l00072"></a>00072 };
-<a name="l00073"></a>00073 
-<a name="l00074"></a><a class="code" href="../../d3/daf/classActorSta.html">00074</a> <span class="keyword">class </span><a class="code" href="../../d3/daf/classActorSta.html">ActorSta</a>: <span class="keyword">public</span> <a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> {
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076     <span class="keyword">private</span>:
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078     btRigidBody* physrigidbody;
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080     <span class="keyword">public</span>:
-<a name="l00081"></a>00081     <a class="code" href="../../d3/daf/classActorSta.html">ActorSta</a>();
-<a name="l00082"></a>00082     ~<a class="code" href="../../d3/daf/classActorSta.html">ActorSta</a>();
-<a name="l00083"></a>00083     <span class="keywordtype">void</span> CreateRigidObject ();
-<a name="l00084"></a>00084         <span class="keywordtype">void</span> AddObjectToWorld ();
-<a name="l00085"></a>00085 };
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="preprocessor">#endif</span>
+<a name="l00028"></a>00028         <a class="code" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> orientation;
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030         <span class="comment">//abstraction for other libraries</span>
+<a name="l00031"></a>00031         Ogre::Entity* entity;
+<a name="l00032"></a>00032     Ogre::SceneManager* physscenemanager;
+<a name="l00033"></a>00033     Ogre::SceneNode* node;
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035     btQuaternion* physorientation;
+<a name="l00036"></a>00036     btTransform* physlocation;
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038         <span class="keyword">public</span>:
+<a name="l00039"></a>00039         ~<a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> ();
+<a name="l00040"></a>00040         <a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> ();
+<a name="l00041"></a>00041         <span class="keywordtype">void</span> CreateEntity(PhysString name, PhysString file, PhysString group);
+<a name="l00042"></a>00042         <span class="keywordtype">void</span> CreateSceneNode();
+<a name="l00043"></a>00043     <span class="keywordtype">void</span> SetOgreLocation(PhysReal x, PhysReal y, PhysReal z);
+<a name="l00044"></a>00044     <span class="keywordtype">void</span> SetOgreOrientation(PhysReal x, PhysReal y, PhysReal z, PhysReal w);
+<a name="l00045"></a>00045 };
+<a name="l00046"></a>00046 
+<a name="l00047"></a><a class="code" href="../../d4/d0e/classActorDynRigid.html">00047</a> <span class="keyword">class </span><a class="code" href="../../d4/d0e/classActorDynRigid.html">ActorDynRigid</a>: <span class="keyword">public</span> <a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> {
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049         <span class="keyword">protected</span>:
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051         btRigidBody* physrigidbody;
+<a name="l00052"></a>00052         btMotionState* physmotionstate;
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054         <span class="keyword">public</span>:
+<a name="l00055"></a>00055         <a class="code" href="../../d4/d0e/classActorDynRigid.html">ActorDynRigid</a>();
+<a name="l00056"></a>00056         ~<a class="code" href="../../d4/d0e/classActorDynRigid.html">ActorDynRigid</a>();
+<a name="l00057"></a>00057         <span class="keywordtype">void</span> CreateRigidObject ();
+<a name="l00058"></a>00058         <span class="keywordtype">void</span> AddObjectToWorld ();
+<a name="l00059"></a>00059 };
+<a name="l00060"></a>00060 
+<a name="l00061"></a><a class="code" href="../../dc/de0/classActorDynSoft.html">00061</a> <span class="keyword">class </span><a class="code" href="../../dc/de0/classActorDynSoft.html">ActorDynSoft</a>: <span class="keyword">public</span> <a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> {
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063         <span class="keyword">protected</span>:
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065     btSoftBody* physoftbody;
+<a name="l00066"></a>00066     btMotionState* physmotionstate;
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068         <span class="keyword">public</span>:
+<a name="l00069"></a>00069         <a class="code" href="../../dc/de0/classActorDynSoft.html">ActorDynSoft</a>();
+<a name="l00070"></a>00070         ~<a class="code" href="../../dc/de0/classActorDynSoft.html">ActorDynSoft</a>();
+<a name="l00071"></a>00071     <span class="keywordtype">void</span> CreateSoftObject ();
+<a name="l00072"></a>00072         <span class="keywordtype">void</span> AddObjectToWorld ();
+<a name="l00073"></a>00073 };
+<a name="l00074"></a>00074 
+<a name="l00075"></a><a class="code" href="../../d3/daf/classActorSta.html">00075</a> <span class="keyword">class </span><a class="code" href="../../d3/daf/classActorSta.html">ActorSta</a>: <span class="keyword">public</span> <a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a> {
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077     <span class="keyword">protected</span>:
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079     btRigidBody* physrigidbody;
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081     <span class="keyword">public</span>:
+<a name="l00082"></a>00082     <a class="code" href="../../d3/daf/classActorSta.html">ActorSta</a>();
+<a name="l00083"></a>00083     ~<a class="code" href="../../d3/daf/classActorSta.html">ActorSta</a>();
+<a name="l00084"></a>00084     <span class="keywordtype">void</span> CreateRigidObject ();
+<a name="l00085"></a>00085         <span class="keywordtype">void</span> AddObjectToWorld ();
+<a name="l00086"></a>00086 };
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Mar 21 19:58:59 2010 for PhysgameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Mar 22 00:24:03 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

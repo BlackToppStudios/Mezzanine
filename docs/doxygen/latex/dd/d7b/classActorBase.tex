@@ -11,11 +11,6 @@ Inheritance diagram for ActorBase::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classActorBase_a043800519c16444c794f64eb3488a7d2}{
-{\bfseries ActorBase} (PhysReal x, PhysReal y, PhysReal z)}
-\label{dd/d7b/classActorBase_a043800519c16444c794f64eb3488a7d2}
-
-\item 
 \hypertarget{classActorBase_aa87583c47b8653e8ac7d96f1481b57fd}{
 void {\bfseries CreateEntity} (PhysString name, PhysString file, PhysString group)}
 \label{dd/d7b/classActorBase_aa87583c47b8653e8ac7d96f1481b57fd}
@@ -30,9 +25,19 @@ void {\bfseries CreateSceneNode} ()}
 void {\bfseries SetOgreLocation} (PhysReal x, PhysReal y, PhysReal z)}
 \label{dd/d7b/classActorBase_a624f83ed4265a32db6d816a882a5bebd}
 
+\item 
+\hypertarget{classActorBase_a64ec1d0987bb32070e0c686db3b06e56}{
+void {\bfseries SetOgreOrientation} (PhysReal x, PhysReal y, PhysReal z, PhysReal w)}
+\label{dd/d7b/classActorBase_a64ec1d0987bb32070e0c686db3b06e56}
+
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
+\item 
+\hypertarget{classActorBase_aececd39ceec6f8843bbc971afe94c1da}{
+\hyperlink{classPhysQuaternion}{PhysQuaternion} {\bfseries orientation}}
+\label{dd/d7b/classActorBase_aececd39ceec6f8843bbc971afe94c1da}
+
 \item 
 \hypertarget{classActorBase_ada6ceb752605b29357b6c5d53c477696}{
 Ogre::Entity $\ast$ {\bfseries entity}}
