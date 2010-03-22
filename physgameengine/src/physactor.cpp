@@ -2,16 +2,17 @@
 #define _physactor_cpp
 
 #include <Ogre.h>
+#include "btBulletDynamicsCommon.h"
 #include "physactor.h"
 
 ///////////////////////////////////
 // ActorBase class fuctions
 
-ActorBase::~ActorBase ()
+ActorBase::ActorBase ()
 {
 }
 
-ActorBase::ActorBase ()
+ActorBase::~ActorBase ()
 {
 }
 
@@ -30,15 +31,15 @@ void ActorBase::SetOgreLocation (PhysReal x, PhysReal y, PhysReal z)
     this->node->setPosition(x, y, z);
 }
 
-//void actorbase::SetOgreOrientation ()
-//{
-//    this->node->setOrientation();
-//}
+void ActorBase::SetOgreOrientation (PhysReal x, PhysReal y, PhysReal z, PhysReal w)
+{
+    this->node->setOrientation(x, y, z, w);
+}
 
 ///////////////////////////////////
 // ActorDynRigid class functions
 
-ActorDynRigid::ActorDynRigid () : ActorBase ()
+ActorDynRigid::ActorDynRigid ()
 {
 }
 
@@ -47,13 +48,20 @@ ActorDynRigid::~ActorDynRigid ()
     delete physorientation;
 }
 
-void ActorDynRigid::CreateRigidObject ();
+void ActorDynRigid::CreateRigidObject ()
 {
-    PhysReal x=y=z=w=0;
-    physorientation = new btQuaternion (&x,&y,&z,&w);
+    PhysReal X=0;
+    PhysReal Y=0;
+    PhysReal Z=0;
+    PhysReal W=0;
+    const btScalar& x=X;
+    const btScalar& y=Y;
+    const btScalar& z=Z;
+    const btScalar& w=W;
+    physorientation = new btQuaternion(x, y, z, w);
 }
 
-void ActorDynRigid::AddObjectToWorld ();
+void ActorDynRigid::AddObjectToWorld ()
 {
     //TODO: add code for adding object to the physics world
 }
@@ -61,7 +69,7 @@ void ActorDynRigid::AddObjectToWorld ();
 ///////////////////////////////////
 // ActordynSoft class functions
 
-ActorDynSoft::ActorDynSoft () : ActorBase ()
+ActorDynSoft::ActorDynSoft ()
 {
 }
 
@@ -69,11 +77,11 @@ ActorDynSoft::~ActorDynSoft ()
 {
 }
 
-void ActorDynSoft::CreateSoftObject ();
+void ActorDynSoft::CreateSoftObject ()
 {
 }
 
-void ActorDynSoft::AddObjectToWorld ();
+void ActorDynSoft::AddObjectToWorld ()
 {
     //TODO: add code for adding object to the physics world
 }
@@ -81,7 +89,7 @@ void ActorDynSoft::AddObjectToWorld ();
 ///////////////////////////////////
 // ActorSta class functions
 
-ActorSta::ActorSta () : ActorBase ()
+ActorSta::ActorSta ()
 {
 }
 
@@ -89,11 +97,11 @@ ActorSta::~ActorSta ()
 {
 }
 
-void ActorSta::CreateRigidObject ();
+void ActorSta::CreateRigidObject ()
 {
 }
 
-void ActorSta::AddObjectToWorld ();
+void ActorSta::AddObjectToWorld ()
 {
     //TODO: add code for adding object to the physics world
 }

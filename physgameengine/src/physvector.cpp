@@ -32,7 +32,7 @@ PhysQuaternion::PhysQuaternion()
     W=0;
 }
 
-PhysQuaternion::PhysQuaternion(PhysReal X, PhysReal Y, PhysReal Z, PhysReal W)
+PhysQuaternion::PhysQuaternion(PhysReal x, PhysReal y, PhysReal z, PhysReal w)
 {
     X=x;
     Y=y;

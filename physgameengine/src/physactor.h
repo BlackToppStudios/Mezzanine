@@ -25,6 +25,7 @@ namespace Ogre
 class ActorBase {
 
 	protected:
+	PhysQuaternion orientation;
 
 	//abstraction for other libraries
 	Ogre::Entity* entity;
@@ -36,16 +37,16 @@ class ActorBase {
 
 	public:
 	~ActorBase ();
-	ActorBase (PhysReal x, PhysReal y, PhysReal z);
+	ActorBase ();
 	void CreateEntity(PhysString name, PhysString file, PhysString group);
 	void CreateSceneNode();
     void SetOgreLocation(PhysReal x, PhysReal y, PhysReal z);
-    //void SetOgreOrientation();
+    void SetOgreOrientation(PhysReal x, PhysReal y, PhysReal z, PhysReal w);
 };
 
 class ActorDynRigid: public ActorBase {
 
-	private:
+	protected:
 
 	btRigidBody* physrigidbody;
 	btMotionState* physmotionstate;
@@ -59,7 +60,7 @@ class ActorDynRigid: public ActorBase {
 
 class ActorDynSoft: public ActorBase {
 
-	private:
+	protected:
 
     btSoftBody* physoftbody;
     btMotionState* physmotionstate;
@@ -73,7 +74,7 @@ class ActorDynSoft: public ActorBase {
 
 class ActorSta: public ActorBase {
 
-    private:
+    protected:
 
     btRigidBody* physrigidbody;
 
