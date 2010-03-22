@@ -4,7 +4,7 @@
 //The world that integrates everything
 //
 //This is where all the calls to the the underlying libraries should be from.
-//physworld is an abstraction layer to all of the non-ui libraries. The ui
+//PhysWorld is an abstraction layer to all of the non-ui libraries. The ui
 //layers wx and ogre both have their own main loops, so it is almost mandatory
 //for other code to interact with those libraries directly.
 ///////////////////////////////////////////////////////////////////////////////
@@ -30,7 +30,7 @@ using namespace std;
 // Physworld constructor
 //this should create the basic objects for stroing and tracking the roots of
 //objects in the game
-physworld::physworld()
+PhysWorld::PhysWorld()
 {
 	this->Construct(
 		new PhysVector3(-100.0,-100.0,-100.0),
@@ -39,12 +39,12 @@ physworld::physworld()
 		);
 }
 
-physworld::physworld(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyUpperbounds_, unsigned short int  MaxPhysicsProxies_)
+PhysWorld::PhysWorld(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyUpperbounds_, unsigned short int  MaxPhysicsProxies_)
 {
 	this->Construct(GeographyLowerBounds_, GeographyUpperbounds_, MaxPhysicsProxies_);
 }
 
-void physworld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyUpperbounds_, unsigned short int  MaxPhysicsProxies_)
+void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyUpperbounds_, unsigned short int  MaxPhysicsProxies_)
 {
 	PlayerSettings = new Settings();
 
@@ -63,8 +63,8 @@ void physworld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 
     TestLogger();
 
-    //Callbacks are the main way that a game using the physworld will be able to have their code run at custom times
-	this->CallBacks = new physworldCallBackManager(this);
+    //Callbacks are the main way that a game using the PhysWorld will be able to have their code run at custom times
+	this->CallBacks = new PhysWorldCallBackManager(this);
 
     //Events are the main way for the game using the physworld to  get information about the various subsystems
     this->Events = new PhysEventManager;
@@ -89,7 +89,7 @@ void physworld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 												BulletCollisionConfiguration);
 }
 
-void physworld::TestLogger()
+void PhysWorld::TestLogger()
 {
     string temp0("0");
     char temp1 = 'a';
@@ -132,7 +132,7 @@ void physworld::TestLogger()
     OneLogTest(temp17, "PhysVector3");
 }
 
-template <class T> void physworld::OneLogTest(T Data, string DataType, string Message1, string Message2)
+template <class T> void PhysWorld::OneLogTest(T Data, string DataType, string Message1, string Message2)
 {
     try
     {
@@ -145,7 +145,7 @@ template <class T> void physworld::OneLogTest(T Data, string DataType, string Me
 }
 ///////////////////////////////////////////////////////////////////////////////
 //tears the world down
-physworld::~physworld()
+PhysWorld::~PhysWorld()
 {
 	//Destroy the physical world that we loved and cherished
 	//dWorldDestroy(this->OdeWorld);
@@ -175,14 +175,14 @@ physworld::~physworld()
 
 ///////////////////////////////////////////////////////////////////////////////
 //appends to the gamelog which is managed by Ogre
-template <class T> void physworld::Log(T Message)
+template <class T> void PhysWorld::Log(T Message)
 {
 	stringstream temp;
 	temp << Message;
 	Ogre::LogManager::getSingleton().logMessage(temp.str());
 }
 
-template <class T> void physworld::LogAndThrow(T Message)
+template <class T> void PhysWorld::LogAndThrow(T Message)
 {
 	this->Log(Message);
 	throw(Message);
@@ -191,7 +191,7 @@ template <class T> void physworld::LogAndThrow(T Message)
 ///////////////////////////////////////////////////////////////////////////////
 //Shows the ogre settings Dialog, and allows it to save settings to ogres
 //preset save location
-bool physworld::ShowSystemSettingDialog()
+bool PhysWorld::ShowSystemSettingDialog()
 {
 	try
 	{
@@ -205,7 +205,7 @@ bool physworld::ShowSystemSettingDialog()
 
 ///////////////////////////////////////////////////////////////////////////////
 // Start the Game already
-void physworld::GameInit()
+void PhysWorld::GameInit()
 {
 	//try to load the ogre config
 	this->LoadOgreSettings();
@@ -284,13 +284,13 @@ void physworld::GameInit()
 	this->DestroyRenderWindow();
 }
 
-void physworld::MoveCamera(PhysVector3 Position, PhysVector3 LookAt)
+void PhysWorld::MoveCamera(PhysVector3 Position, PhysVector3 LookAt)
 {
 	this->OgreCamera->setPosition(Ogre::Vector3(Position.X,Position.Y,Position.Z));
     this->OgreCamera->lookAt(Ogre::Vector3(LookAt.X,LookAt.Y,LookAt.Z));
 }
 
-void physworld::DoMainLoopAllItems()
+void PhysWorld::DoMainLoopAllItems()
 {
 	this->DoMainLoopPhysics();
 	this->DoMainLoopWindowManagerBuffering();
@@ -298,13 +298,13 @@ void physworld::DoMainLoopAllItems()
 	this->DoMainLoopRender();
 }
 
-void physworld::DoMainLoopPhysics()
+void PhysWorld::DoMainLoopPhysics()
 {
 	//TODO: Step the physics world here per main loop items
 	//this->Events->AddsomeEvents
 }
 
-void physworld::DoMainLoopWindowManagerBuffering()
+void PhysWorld::DoMainLoopWindowManagerBuffering()
 {
     this->PreProcessSDLEvents();
     Log("WM EventCount Pending:");
@@ -312,7 +312,7 @@ void physworld::DoMainLoopWindowManagerBuffering()
     //TODO: make Physevents for each of the events in SDL_W1111mEvents(and delete the SDL events)
 }
 
-void physworld::DoMainLoopInputBuffering()
+void PhysWorld::DoMainLoopInputBuffering()
 {
     this->PreProcessSDLEvents();
     Log("User Input EventCount Pending:");
@@ -331,7 +331,7 @@ void physworld::DoMainLoopInputBuffering()
     }//*/
 }
 
-void physworld::DoMainLoopRender()
+void PhysWorld::DoMainLoopRender()
 {
 	RenderPhysWorld(this);
 }
@@ -345,7 +345,7 @@ void physworld::DoMainLoopRender()
 
 ///////////////////////////////////////////////////////////////////////////////
 //Loads the Ogre Configuration
-void physworld::LoadOgreSettings()
+void PhysWorld::LoadOgreSettings()
 {
 	//Try loading from the default location
 	if (!this->OgreRoot->restoreConfig())
@@ -360,7 +360,7 @@ void physworld::LoadOgreSettings()
 }
 
 //Seriously read the Function Name
-void physworld::CreateRenderWindow()
+void PhysWorld::CreateRenderWindow()
 {
 	//Get what is needed for SDL started
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -402,7 +402,7 @@ void physworld::CreateRenderWindow()
 	this->OgreCamera->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
 }
 
-void physworld::DestroyRenderWindow()
+void PhysWorld::DestroyRenderWindow()
 {
     this->OgreGameWindow->destroy();
 }
@@ -412,7 +412,7 @@ void physworld::DestroyRenderWindow()
 
 
 //This function will get all the events from SDL and Sort them into one of two Queues
-void physworld::PreProcessSDLEvents()
+void PhysWorld::PreProcessSDLEvents()
 {
 
     RawEvent FromSDL;

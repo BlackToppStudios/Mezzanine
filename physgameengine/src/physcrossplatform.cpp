@@ -93,7 +93,7 @@ void WaitMilliseconds(PhysWhole WaitTime)
 	#endif
 }
 
-void RenderPhysWorld(physworld *TheWorld)
+void RenderPhysWorld(PhysWorld *TheWorld)
 {
     //TheWorld->OgreRoot->renderOneFrame();
     #ifndef WINDOWS

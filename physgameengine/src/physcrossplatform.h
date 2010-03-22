@@ -28,7 +28,7 @@
 using namespace std;
 
 //Forward Declarations
-class physworld;
+class PhysWorld;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Platform Specific Functions get Declared here
@@ -50,6 +50,6 @@ void* GetSDLOgreBinder();
 void WaitMilliseconds(PhysWhole WaitTime);
 
 //Handles the actual cross platform swapping of buffers.
-void RenderPhysWorld(physworld *TheWorld);
+void RenderPhysWorld(PhysWorld *TheWorld);
 
 #endif

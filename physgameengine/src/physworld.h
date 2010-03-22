@@ -21,18 +21,17 @@
 
 using namespace std;
 
-//Not included to prevent infinite loops
-//#include "physvector.h"
-//#include "gamesettings.h"
+//forward Declarations so that we do not need #include "physvector.h"
+//forward Declarations so that we do not need #include "gamesettings.h"
 //Forward declarations to prevent infite loop of includes
 class Settings;
 class PhysVector3;
 
 //Other forward declarations
-//#include "SDL.h"
+//forward Declarations so that we do not need #include "SDL.h"
 class SDL_Surface;
 
-//#include "btBulletDynamicsCommon.h"
+//forward Declarations so that we do not need #include "btBulletDynamicsCommon.h"
 class btAxisSweep3;
 class btDefaultCollisionConfiguration;
 class btCollisionDispatcher;
@@ -40,8 +39,7 @@ class btSequentialImpulseConstraintSolver;
 class btDiscreteDynamicsWorld;
 
 
-//#include <Ogre.h>
-
+//forward Declarations so that we do not need #include <Ogre.h>
 namespace Ogre
 {
 	class Root;
@@ -55,9 +53,14 @@ namespace Ogre
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// Physworld Class Declaration
+/// @class physworld
+/// @brief This is the main entry point for the entire library.
+/// The physworld coordinates and integrates all the underlying subsystems,
+/// Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and
+/// SDL is used for user input and window management.
+///
 ///////////////////////////////////////
-class physworld
+class PhysWorld
 {
 	private:
 		//Physics Items
@@ -104,12 +107,12 @@ class physworld
         queue<RawEvent*> SDL_WmEvents;
         queue<RawEvent*> SDL_UserInputEvents;
 
-        friend void RenderPhysWorld(physworld *TheWorld);
+        friend void RenderPhysWorld(PhysWorld *TheWorld);
 
 	public:
-		physworld(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024);
-		physworld();
-		~physworld();
+		PhysWorld(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024);
+		PhysWorld();
+		~PhysWorld();
 
 		//I am just extending what ogre provides for a logging system
 		template <class T> void Log(T Message);
@@ -132,7 +135,7 @@ class physworld
 		void DoMainLoopRender();
 
 		//used to set callback functions to be run in the main loop
-		physworldCallBackManager* CallBacks;
+		PhysWorldCallBackManager* CallBacks;
 
 		//This will be used to communicate with underlying sybsystems in a clean way
 		PhysEventManager*  Events;

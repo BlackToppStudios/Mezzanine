@@ -6,15 +6,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 //#include "physworld.h"
-class physworld;
+class PhysWorld;
 
 ///////////////////////////////////////////////////////////////////////////////
-// Interface of physworldFrameListener
-class physworldCallBackManager
+// Interface of PhysWorldFrameListener
+class PhysWorldCallBackManager
 {
 	private:
 		//pointers to internal structures
-		physworld* TheWorldIListenTo;
+		PhysWorld* TheWorldIListenTo;
 
 		//pointers to callback functions
  		bool (*PreInputCallback)();
@@ -24,8 +24,8 @@ class physworldCallBackManager
 
 	public:
 	//To build a frame listener we need a world to listen too
-  		physworldCallBackManager(physworld* _Parent);
-  		~physworldCallBackManager();
+  		PhysWorldCallBackManager(PhysWorld* _Parent);
+  		~PhysWorldCallBackManager();
 
   		//Called when a frame is about to begin rendering. so is the
   		//Function you passe in with the setFrameStartCallback
@@ -50,7 +50,7 @@ class physworldCallBackManager
 		bool IsPostRenderCallbackSet();
 
 
-		friend class physworld;
+		friend class PhysWorld;
 };
 
 #endif

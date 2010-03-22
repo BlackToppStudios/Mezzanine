@@ -15,7 +15,7 @@
 #include "physeventrendertime.h"
 
 //Create the World Globally!
-physworld TheWorld;
+PhysWorld TheWorld;
 
 int main(int argc, char **argv)
 {
