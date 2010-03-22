@@ -11,12 +11,17 @@ This is the main entry point for the entire library. The physworld coordinates a
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classPhysWorld_a3228c98369082139722d3c918d735e6c}{PhysWorld} (\hyperlink{classPhysVector3}{PhysVector3} $\ast$GeographyLowerBounds, \hyperlink{classPhysVector3}{PhysVector3} $\ast$GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024)
-\begin{DoxyCompactList}\small\item\em Descriptive constructor This constructor allows for an easier way to define the Boundaries of the int. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Descriptive constructor This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. \item\end{DoxyCompactList}\item 
 \hypertarget{classPhysWorld_a6ded8026b0cd72e7877830698197adf0}{
 \hyperlink{classPhysWorld_a6ded8026b0cd72e7877830698197adf0}{PhysWorld} ()}
 \label{db/df5/classPhysWorld_a6ded8026b0cd72e7877830698197adf0}
 
-\begin{DoxyCompactList}\small\item\em Default constructor This simply calls the. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Default constructor This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows. \item\end{DoxyCompactList}\item 
+\hypertarget{classPhysWorld_acdfe3b4c1c236860dc7dff945cfe5b07}{
+\hyperlink{classPhysWorld_acdfe3b4c1c236860dc7dff945cfe5b07}{$\sim$PhysWorld} ()}
+\label{db/df5/classPhysWorld_acdfe3b4c1c236860dc7dff945cfe5b07}
+
+\begin{DoxyCompactList}\small\item\em This Tears. \item\end{DoxyCompactList}\item 
 \hypertarget{classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}{
 {\footnotesize template$<$class T $>$ }\\void {\bfseries Log} (T Message)}
 \label{db/df5/classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}
@@ -83,17 +88,14 @@ void {\bfseries DoMainLoopRender} ()}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{
-void \hyperlink{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{RenderPhysWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TheWorld)}
-\label{db/df5/classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}
-
-\begin{DoxyCompactList}\small\item\em This should be treated as an internal function, it is {\bfseries subject} to change without warning {\bfseries and} could be {\bfseries harmful} {\bfseries to} overall stability if used incorrectly. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{RenderPhysWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TheWorld)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. 
 
-Definition at line 62 of file physworld.h.
+Definition at line 63 of file physworld.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classPhysWorld_a3228c98369082139722d3c918d735e6c}{
@@ -103,12 +105,23 @@ Definition at line 62 of file physworld.h.
 \label{db/df5/classPhysWorld_a3228c98369082139722d3c918d735e6c}
 
 
-Descriptive constructor This constructor allows for an easier way to define the Boundaries of the int. 
+Descriptive constructor This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. 
 \begin{DoxyParams}{Parameters}
 \item[{\em GeographyLowerBounds}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies}]This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation. \end{DoxyParams}
 
 
 Definition at line 43 of file physworld.cpp.
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{
+\index{PhysWorld@{PhysWorld}!RenderPhysWorld@{RenderPhysWorld}}
+\index{RenderPhysWorld@{RenderPhysWorld}!PhysWorld@{PhysWorld}}
+\subsubsection[{RenderPhysWorld}]{\setlength{\rightskip}{0pt plus 5cm}void RenderPhysWorld ({\bf PhysWorld} $\ast$ {\em TheWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
+\label{db/df5/classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}
+Do Not Use this, This should be treated as an internal function, it is {\bfseries subject} {\bfseries to} {\bfseries change} {\bfseries without} {\bfseries warning} and could be {\bfseries harmful} to overall stability if used incorrectly \begin{DoxyWarning}{Warning}
+This should be treated as an internal function, it is {\bfseries subject} {\bfseries to} {\bfseries change} {\bfseries without} {\bfseries warning} and could be {\bfseries harmful} to overall stability if used incorrectly 
+\end{DoxyWarning}
+
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

@@ -10,6 +10,8 @@
 //for each of the functions in crossplatform.cpp
 ///////////////////////////////////////////////////////////////////////////////
 
+/// @todo Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this.
+
 #define LINUX
 //#define MACOSX
 //#define WINDOWS

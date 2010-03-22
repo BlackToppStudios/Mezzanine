@@ -35,10 +35,13 @@
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a3228c98369082139722d3c918d735e6c">PhysWorld</a> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> *GeographyLowerBounds, <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> *GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Descriptive constructor This constructor allows for an easier way to define the Boundaries of the int.  <a href="#a3228c98369082139722d3c918d735e6c"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Descriptive constructor This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.  <a href="#a3228c98369082139722d3c918d735e6c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ded8026b0cd72e7877830698197adf0"></a><!-- doxytag: member="PhysWorld::PhysWorld" ref="a6ded8026b0cd72e7877830698197adf0" args="()" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a6ded8026b0cd72e7877830698197adf0">PhysWorld</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor This simply calls the. <br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdfe3b4c1c236860dc7dff945cfe5b07"></a><!-- doxytag: member="PhysWorld::~PhysWorld" ref="acdfe3b4c1c236860dc7dff945cfe5b07" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#acdfe3b4c1c236860dc7dff945cfe5b07">~PhysWorld</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Tears. <br/></td></tr>
 <tr><td class="memTemplParams" colspan="2"><a class="anchor" id="a5e9fead1c3100f5dbd5ca985b82b85ea"></a><!-- doxytag: member="PhysWorld::Log" ref="a5e9fead1c3100f5dbd5ca985b82b85ea" args="(T Message)" -->
 template&lt;class T &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><b>Log</b> (T Message)</td></tr>
@@ -67,14 +70,12 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>DoMainLoopRender</b> 
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a601b3c6093aaf2a69fcd3311dde9aadc"></a><!-- doxytag: member="PhysWorld::Events" ref="a601b3c6093aaf2a69fcd3311dde9aadc" args="" -->
 <a class="el" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Events</b></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54ca2a75bbccb9b2129f434874f1e693"></a><!-- doxytag: member="PhysWorld::RenderPhysWorld" ref="a54ca2a75bbccb9b2129f434874f1e693" args="(PhysWorld *TheWorld)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a54ca2a75bbccb9b2129f434874f1e693">RenderPhysWorld</a> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TheWorld)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This should be treated as an internal function, it is <b>subject</b> to change without warning <b>and</b> could be <b>harmful</b> <b>to</b> overall stability if used incorrectly. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a54ca2a75bbccb9b2129f434874f1e693">RenderPhysWorld</a> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TheWorld)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. </p>
 
-<p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00062">62</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00063">63</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3228c98369082139722d3c918d735e6c"></a><!-- doxytag: member="PhysWorld::PhysWorld" ref="a3228c98369082139722d3c918d735e6c" args="(PhysVector3 *GeographyLowerBounds, PhysVector3 *GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024)" -->
 <div class="memitem">
@@ -107,7 +108,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../.
 </div>
 <div class="memdoc">
 
-<p>Descriptive constructor This constructor allows for an easier way to define the Boundaries of the int. </p>
+<p>Descriptive constructor This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>GeographyLowerBounds</em>&nbsp;</td><td>The lower limits for the size of the physics simulation </td></tr>
@@ -121,12 +122,33 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../.
 
 </div>
 </div>
+<hr/><h2>Friends And Related Function Documentation</h2>
+<a class="anchor" id="a54ca2a75bbccb9b2129f434874f1e693"></a><!-- doxytag: member="PhysWorld::RenderPhysWorld" ref="a54ca2a75bbccb9b2129f434874f1e693" args="(PhysWorld *TheWorld)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RenderPhysWorld </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *&nbsp;</td>
+          <td class="paramname"> <em>TheWorld</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [friend]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Do Not Use this, This should be treated as an internal function, it is <b>subject</b> <b>to</b> <b>change</b> <b>without</b> <b>warning</b> and could be <b>harmful</b> to overall stability if used incorrectly </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This should be treated as an internal function, it is <b>subject</b> <b>to</b> <b>change</b> <b>without</b> <b>warning</b> and could be <b>harmful</b> to overall stability if used incorrectly </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a></li>
 <li><a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Mar 22 00:24:04 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Mar 22 04:13:24 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

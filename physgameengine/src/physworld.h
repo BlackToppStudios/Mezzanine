@@ -1,7 +1,7 @@
 #ifndef _physworld_h
 #define _physworld_h
 ///////////////////////////////////////////////////////////////////////////////
-/// @headerfile physworld.h
+
 ///
 ///////////////////////////////////////////////////////////////////////////////
 //Includes and Forward Declarations
@@ -52,6 +52,7 @@ namespace Ogre
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @class PhysWorld
+/// @headerfile physworld.h
 /// @brief This is the main entry point for the entire library.
 /// The physworld coordinates and integrates all the underlying subsystems,
 /// Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and
@@ -106,25 +107,27 @@ class PhysWorld
         queue<RawEvent*> SDL_WmEvents;
         queue<RawEvent*> SDL_UserInputEvents;
 
-        /// This should be treated as an internal function, it is \b subject to change without warning \b and could be \b harmful \b to overall stability if used incorrectly
+        /// Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
+        /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
         friend void RenderPhysWorld(PhysWorld *TheWorld);
 
 	public:
         /// @brief Descriptive constructor
-        /// This constructor allows for an easier way to define the Boundaries of the int
+        /// This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
         /// @param GeographyLowerBounds The lower limits for the size of the physics simulation
         /// @param GeographyUpperbounds The Upper limits for the size of the physics simulation
         /// @param MaxPhysicsProxies This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.
 		PhysWorld(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024);
 
         /// @brief Default constructor
-        /// This simply calls the
-
+        /// This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
 		PhysWorld();
+
+        /// @brief
+        /// This Tears
 		~PhysWorld();
 
 		//I am just extending what ogre provides for a logging system
-
 		template <class T> void Log(T Message);
         template <class T> void LogAndThrow(T Message);
 
