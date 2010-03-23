@@ -1,0 +1,18 @@
+#!/bin/bash
+# Appends items at the top of a file
+# Syntax: appUp "cat bob" file.dat
+ 
+E_BADARGS=2
+
+if [ ! -n "$1" ]
+then
+  echo "Usage: `basename $0` LicenseHeaderFile SourceFile1 SourceFile2 SourceFile3 etc."
+  exit $E_BADARGS
+fi  
+
+
+ 
+$1 > temp
+cat $2 >> temp
+#rm -f $2
+#mv temp $2

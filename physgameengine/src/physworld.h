@@ -1,11 +1,11 @@
 #ifndef _physworld_h
 #define _physworld_h
-///////////////////////////////////////////////////////////////////////////////
 
-///
-///////////////////////////////////////////////////////////////////////////////
+
+/// @Todo Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this.
+
+
 //Includes and Forward Declarations
-
 #include "physcrossplatform.h"
 #include "physworldcallbackmanager.h"
 #include "physevent.h"
