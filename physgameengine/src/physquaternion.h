@@ -3,6 +3,12 @@
 
 #include "physdatatypes.h"
 
+class btVector3;
+namespace Ogre
+{
+    class Quaternion;
+}
+
 class PhysQuaternion
 {
     public:
