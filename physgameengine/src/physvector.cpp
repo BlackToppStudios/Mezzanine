@@ -45,25 +45,4 @@ Ogre::Vector3 PhysVector3::GetOgreVector3()
     return Theirs;
 }
 
-
-//////////////////////////////////////////////////////////////////////////////
-// PhysQuaternion
-///////////////////////////////////////
-
-PhysQuaternion::PhysQuaternion()
-{
-    X=0;
-    Y=0;
-    Z=0;
-    W=0;
-}
-
-PhysQuaternion::PhysQuaternion(PhysReal x, PhysReal y, PhysReal z, PhysReal w)
-{
-    X=x;
-    Y=y;
-    Z=z;
-    W=w;
-}
-
 #endif

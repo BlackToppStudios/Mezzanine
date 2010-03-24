@@ -21,24 +21,10 @@ class PhysVector3
 		PhysVector3(PhysReal X, PhysReal Y, PhysReal Z);
 
         //Operators
-        Ogre::Vector3 GetOgreVector3();
         btVector3 GetBulletVector3();
-
+        Ogre::Vector3 GetOgreVector3();
 };
 
 std::ostream& operator << (std::ostream& stream, const PhysVector3& x);
-
-
-class PhysQuaternion
-{
-    public:
-        PhysReal X;
-        PhysReal Y;
-        PhysReal Z;
-        PhysReal W;
-
-        PhysQuaternion();
-        PhysQuaternion(PhysReal X, PhysReal Y, PhysReal Z, PhysReal W);
-};
 
 #endif
