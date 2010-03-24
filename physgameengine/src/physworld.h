@@ -15,8 +15,6 @@
 #include <string>
 #include <queue>
 
-
-
 using namespace std;
 
 //forward Declarations so that we do not need #include "physvector.h"
@@ -24,7 +22,7 @@ using namespace std;
 //Forward declarations to prevent infite loop of includes
 class Settings;
 class PhysVector3;
-
+class ActorBase;
 //Other forward declarations
 //forward Declarations so that we do not need #include "SDL.h"
 class SDL_Surface;
@@ -146,6 +144,9 @@ class PhysWorld
 		void DoMainLoopInputBuffering();
 		void DoMainLoopWindowManagerBuffering();
 		void DoMainLoopRender();
+
+        void AddActor(ActorBase* ActorToAdd);
+
 
 		//used to set callback functions to be run in the main loop
 		PhysWorldCallBackManager* CallBacks;

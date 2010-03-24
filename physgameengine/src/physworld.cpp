@@ -17,6 +17,7 @@
 #include "physworldcallbackmanager.h"
 #include "physgamesettings.h"
 #include "physmisc.h"
+#include "physactor.h"
 
 #include "SDL.h"
 #include "btBulletDynamicsCommon.h"
@@ -449,5 +450,15 @@ void PhysWorld::PreProcessSDLEvents()
 	}
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Bullet Related Public Members
+///////////////////////////////////////
+
+void PhysWorld::AddActor(ActorBase* ActorToAdd)
+{
+    ActorToAdd->AddObjectToWorld(this, this->BulletDynamicsWorld);
+
+
+}
 
 #endif
