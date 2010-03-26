@@ -1,9 +1,29 @@
 #ifndef _physworld_h
 #define _physworld_h
 
+/**
+ @mainpage Physgame
+ The Physgame engine is an abstraction layer between less portable, less user friendly, more sophistciated
+ libraries and the game you want to make. If we do our jobs right this will save time and effort porting
+ games between a variety of platforms. If you link only against this library, not a single line of your
+ Standard compliant C++ code should need to change between platforms. At this early stage we are proving the
+ concept with "Catch!" our first sample game. It Currently runs on Linux and Windows with an Identical
+ codebase, when we are done with "Catch!" We want it to have one codebase, and downloadable in the Iphone
+ app store, the Xbox store, on the PS3, on Steam, and in a variety of linux repositories.
 
-/// @Todo Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this.
+ To get the latest news on development checkout: http://gitorious.org/physgame
+ The wiki Which acts as our current Knowledge base: http://gitorious.org/physgame/pages/Home
 
+ @section Engine Structure
+  @subpage MainLoop "Main Loop Flow"
+
+  @subpage CallbackManager "Call Back Manager"
+
+  @subpage EventManager "Event Manager"
+
+  @subpage Actor "Items in the world - Actor Class"
+
+ */
 
 //Includes and Forward Declarations
 #include "physcrossplatform.h"
@@ -121,25 +141,55 @@ class PhysWorld
         /// This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
 		PhysWorld();
 
-        /// @brief
-        /// This Tears
+        /// @brief Deconstructor
+        /// This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the
+        /// Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager)
 		~PhysWorld();
 
-		//I am just extending what ogre provides for a logging system
-		template <class T> void Log(T Message);
+		/// @brief Runtime Event logging Function
+		/// @param Message This is what will be streamed to the log
+		/// Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is
+		/// Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types
+		/// that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int
+		/// unsigned long int, bool, float, double, long double, wchar_t, size_t, PhysReal, PhysWhole, PhysString, and PhysVector3. If
+		/// compiled statically it should support any data type which supports output streams.
+    	template <class T> void Log(T Message);
+    	/// @brief This is the preffered way to throw an exception currently
+    	/// @param Message This will be streamed to the log, then used in a thrown exception.
+    	/// This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
+    	/// type the Log function supports
         template <class T> void LogAndThrow(T Message);
 
-        //I plan on deprecating this thing soon and building our own settings system
+        /// @brief This Shows an Engine Generated Configuration Screen
+        /// This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration
+        /// options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler
+        /// Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage
+        /// user settings.
         bool ShowSystemSettingDialog();
 
-		//Change the camera angle;
+		/// @brief This moves the camera relative to the world
+		/// @param Position Where should the camera be seated
+		/// @param LookAt Point the camera such that this poin is centered on the screen
+		/// The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.
 		void MoveCamera(PhysVector3 Position, PhysVector3 LookAt);
 
-        //Starts the Game
+        /// @brief This creates the game window and starts the game.
+        /// Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be
+        /// minimal delay from the time you call this and the game actually begins.
+        /// This is also where the Main Loop for the game is housed.
         void GameInit();
 
-        //Functions to run during the game loop.
+        /// @brief Performs all the items that would normally be performed during the game loop
+        /// This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is
+        /// useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items
+        /// each iteration of the main loop.
         void DoMainLoopAllItems();
+
+        /// @brief Increments physics by one step
+        /// Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre-Physics Callback is
+        /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our colision events to come
+        /// from although it is concievable that a game could manually insert those manually.
+
         void DoMainLoopPhysics();
 		void DoMainLoopInputBuffering();
 		void DoMainLoopWindowManagerBuffering();

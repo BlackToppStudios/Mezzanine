@@ -53,7 +53,7 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 	//We create our Ogre environment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
 	//Ogre resource related code
-	//TODO: From here to the callbacks should probably be moved to another file
+	/// @todo : From here to the callbacks should probably be moved to another file
 	//this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, false);
     this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", "Robot", false);
     this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
@@ -232,7 +232,11 @@ void PhysWorld::GameInit()
     PhysWhole FrameDelay = 0;
     PhysWhole FrameTime = 0;
 
-	//This is the beginning of the mainloop
+    /// @page MainLoop
+    /// The MainLoop does stuffs that needs to be documented
+    /// @todo actually document the gameloop
+	/// The Main loop begins in PhysGame.GameInit(). Once started it runs the callbacks present in the callback manager until one of them
+	/// Returns false. It has a pretty specific work flow
 	//As long as all the CallBacks return true the game continues
 	while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3])
 	{
