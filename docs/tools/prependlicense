@@ -1,0 +1,52 @@
+#!/bin/bash
+# Appends items at the top of a file
+ 
+E_BADARGS=1
+E_NEWHEADERFAIL=2
+
+Hardstring="This should not be found on any lineasdfasdfasdfasdf"
+NewFile=0
+OldHeader=0
+
+if [ ! -n "$2" ]
+then
+	echo "Usage: `basename $0` NewHeaderFile OldHeaderFile SourceFile1 SourceFile2 SourceFile3 etc."
+	exit $E_BADARGS
+fi 
+
+if [ ! -e "$1" ]
+then
+	echo "$1 - NewHeaderFile - Does not exist"
+	exit E_NEWHEADERFAIL
+else
+	NewFile=$1
+fi	
+
+OldHeaderLength=0
+if [ ! -e "$2" ]
+then
+	echo "$2 - OldHeaderFile - Does not exist assuming old header had 0 length"
+else
+	OldHeader=$2
+	OldHeaderLength=`grep "$Hardstring" $2 -vc`
+fi
+
+for a in `seq 3 $#`
+do
+	if [ ! -e "$3" ]
+	then
+		echo "$3 - File Does not Exist, skipping"
+	else
+		#figure out how much of each file to grab
+		CurrentFileLength=`grep "$Hardstring" $3 -vc`
+		TailAmount=$[CurrentFileLength-OldHeaderLength]
+		cat $NewFile > temp
+		#echo "tail -n $TailAmount >> temp"
+		tail $3 -n $TailAmount >> temp
+		mv temp $3
+		#rm temp
+		echo "$3 - Header Prepended Successfully"
+	fi
+	shift
+done 
+

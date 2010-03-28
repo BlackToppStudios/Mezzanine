@@ -91,7 +91,7 @@ void \hyperlink{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{RenderPhysWorl
 \subsection{Detailed Description}
 This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. 
 
-Definition at line 81 of file physworld.h.
+Definition at line 120 of file physworld.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classPhysWorld_a3228c98369082139722d3c918d735e6c}{
@@ -106,7 +106,7 @@ Descriptive constructor This constructor allows for an easier way to define the 
 \item[{\em GeographyLowerBounds}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies}]This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation. \end{DoxyParams}
 
 
-Definition at line 44 of file physworld.cpp.
+Definition at line 83 of file physworld.cpp.
 
 \subsection{Member Function Documentation}
 \hypertarget{classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}{
@@ -121,7 +121,7 @@ Runtime Event logging Function.
 \item[{\em Message}]This is what will be streamed to the log Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int unsigned long int, bool, float, double, long double, wchar\_\-t, size\_\-t, PhysReal, PhysWhole, PhysString, and \hyperlink{classPhysVector3}{PhysVector3}. If compiled statically it should support any data type which supports output streams. \end{DoxyParams}
 
 
-Definition at line 180 of file physworld.cpp.\hypertarget{classPhysWorld_a1c2aeaed2a89821a4545db854da33ab8}{
+Definition at line 219 of file physworld.cpp.\hypertarget{classPhysWorld_a1c2aeaed2a89821a4545db854da33ab8}{
 \index{PhysWorld@{PhysWorld}!LogAndThrow@{LogAndThrow}}
 \index{LogAndThrow@{LogAndThrow}!PhysWorld@{PhysWorld}}
 \subsubsection[{LogAndThrow}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void PhysWorld::LogAndThrow (T {\em Message})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
@@ -133,7 +133,7 @@ This is the preffered way to throw an exception currently.
 \item[{\em Message}]This will be streamed to the log, then used in a thrown exception. This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data type the Log function supports \end{DoxyParams}
 
 
-Definition at line 187 of file physworld.cpp.\hypertarget{classPhysWorld_a1df24ee06d5881825902b60e0d81174a}{
+Definition at line 226 of file physworld.cpp.\hypertarget{classPhysWorld_a1df24ee06d5881825902b60e0d81174a}{
 \index{PhysWorld@{PhysWorld}!MoveCamera@{MoveCamera}}
 \index{MoveCamera@{MoveCamera}!PhysWorld@{PhysWorld}}
 \subsubsection[{MoveCamera}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::MoveCamera ({\bf PhysVector3} {\em Position}, \/  {\bf PhysVector3} {\em LookAt})}}
@@ -145,7 +145,7 @@ This moves the camera relative to the world.
 \item[{\em Position}]Where should the camera be seated \item[{\em LookAt}]Point the camera such that this poin is centered on the screen The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point. \end{DoxyParams}
 
 
-Definition at line 293 of file physworld.cpp.
+Definition at line 332 of file physworld.cpp.
 
 \subsection{Friends And Related Function Documentation}
 \hypertarget{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{
