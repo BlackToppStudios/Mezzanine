@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.3.13)  21 MAR 2010 22:34
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.3.13)  26 MAR 2010 03:10
 entering extended mode
  %&-line parsing enabled.
 **refman.tex
@@ -643,12 +643,12 @@ File: lstmisc.sty 2004/09/07 1.3 (Carsten Heinz)
 
 
 Writing index file refman.idx
-(./refman.aux (./d4/d0e/classActorDynRigid.aux) (./dc/de0/classActorDynSoft.aux
-) (./d3/daf/classActorSta.aux) (./d7/d72/classMetaCode.aux)
-(./d9/dc2/classPhysEvent.aux) (./d5/dd7/classPhysEventManager.aux)
-(./d4/d83/classPhysEventRenderTime.aux) (./dc/d0e/classPhysEventUserInput.aux)
-(./d5/d19/classPhysQuaternion.aux) (./da/d11/classPhysVector3.aux)
-(./db/df5/classPhysWorld.aux) (./d5/d35/classphysworld.aux)
+(./refman.aux (./MainLoop.aux) (./todo.aux) (./d4/d0e/classActorDynRigid.aux)
+(./dc/de0/classActorDynSoft.aux) (./d3/daf/classActorSta.aux)
+(./d7/d72/classMetaCode.aux) (./d9/dc2/classPhysEvent.aux)
+(./d5/dd7/classPhysEventManager.aux) (./d4/d83/classPhysEventRenderTime.aux)
+(./dc/d0e/classPhysEventUserInput.aux) (./d5/d19/classPhysQuaternion.aux)
+(./da/d11/classPhysVector3.aux) (./db/df5/classPhysWorld.aux)
 (./d4/d84/classPhysWorldCallBackManager.aux) (./df/d9a/classSettings.aux
 
 LaTeX Warning: Label `df/d9a/classSettings_a9c2f80cb87b5b3e8f2da0b6056c2cad6' m
@@ -752,9 +752,13 @@ Package hyperref Info: Option `pageanchor' set `true' on input line 52.
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <20.74> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 53.
-(./hierarchy.tex
+(./index.tex
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 3.
+ (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 1.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 3.
 ) [1
 
 
@@ -762,12 +766,36 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
 
 ]
 Chapter 2.
-(./annotated.tex) [3] [4
+[3]
+\openout2 = `MainLoop.aux'.
+
+ (./MainLoop.tex) [4
 
 ]
 Chapter 3.
+[5
+
+
+]
+\openout2 = `todo.aux'.
+
+ (./todo.tex) [6
+
+]
+Chapter 4.
+(./hierarchy.tex) [7
+
+
+] [8
+
+]
+Chapter 5.
+(./annotated.tex) [9] [10
+
+]
+Chapter 6.
 (./dd/d7b/classActorBase.tex
-<dd/d7b/classActorBase.pdf, id=276, 501.875pt x 131.2102pt>
+<dd/d7b/classActorBase.pdf, id=357, 501.875pt x 131.2102pt>
 File: dd/d7b/classActorBase.pdf Graphic file (type pdf)
 
 <use dd/d7b/classActorBase.pdf>
@@ -777,59 +805,85 @@ LaTeX Font Info:    Try loading font information for TS1+ptm on input line 14.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)) [5 <./dd/d7b/classActorBase.pdf>]
+)
+Underfull \hbox (badness 10000) in paragraph at lines 48--50
+[]\T1/ptm/m/n/10 virtual void \T1/ptm/b/n/10 Ad-dOb-ject-ToWorld \T1/ptm/m/n/10
+ ([][]Phys-World[][] $\OMS/cmsy/m/n/10 ^^C$\T1/ptm/m/n/10 TargetWorld, bt-Dis-c
+ret-e-Dy-nam-icsWorld
+ []
+
+[11 <./dd/d7b/classActorBase.pdf>]) [12]
 \openout2 = `d4/d0e/classActorDynRigid.aux'.
 
  (./d4/d0e/classActorDynRigid.tex
-<d4/d0e/classActorDynRigid.pdf, id=299, 501.875pt x 393.6306pt>
+<d4/d0e/classActorDynRigid.pdf, id=399, 501.875pt x 393.6306pt>
 File: d4/d0e/classActorDynRigid.pdf Graphic file (type pdf)
 
-<use d4/d0e/classActorDynRigid.pdf>) [6
+<use d4/d0e/classActorDynRigid.pdf>
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
+[]\T1/ptm/m/n/10 void \T1/ptm/b/n/10 Ad-dOb-ject-ToWorld \T1/ptm/m/n/10 ([][]Ph
+ys-World[][] $\OMS/cmsy/m/n/10 ^^C$\T1/ptm/m/n/10 TargetWorld, bt-Dis-cret-e-Dy
+-nam-icsWorld
+ []
+
+) [13
 
  <./d4/d0e/classActorDynRigid.pdf>]
 \openout2 = `dc/de0/classActorDynSoft.aux'.
 
-
-(./dc/de0/classActorDynSoft.tex
-<dc/de0/classActorDynSoft.pdf, id=314, 501.875pt x 418.23253pt>
+ (./dc/de0/classActorDynSoft.tex
+<dc/de0/classActorDynSoft.pdf, id=416, 501.875pt x 418.23253pt>
 File: dc/de0/classActorDynSoft.pdf Graphic file (type pdf)
 
-<use dc/de0/classActorDynSoft.pdf>) [7
+<use dc/de0/classActorDynSoft.pdf>
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
+[]\T1/ptm/m/n/10 void \T1/ptm/b/n/10 Ad-dOb-ject-ToWorld \T1/ptm/m/n/10 ([][]Ph
+ys-World[][] $\OMS/cmsy/m/n/10 ^^C$\T1/ptm/m/n/10 TargetWorld, bt-Dis-cret-e-Dy
+-nam-icsWorld
+ []
+
+) [14
 
 
  <./dc/de0/classActorDynSoft.pdf>]
 \openout2 = `d3/daf/classActorSta.aux'.
 
-
-(./d3/daf/classActorSta.tex
-<d3/daf/classActorSta.pdf, id=329, 501.875pt x 508.22873pt>
+ (./d3/daf/classActorSta.tex
+<d3/daf/classActorSta.pdf, id=433, 501.875pt x 508.22873pt>
 File: d3/daf/classActorSta.pdf Graphic file (type pdf)
 
-<use d3/daf/classActorSta.pdf>) [8
+<use d3/daf/classActorSta.pdf>
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
+[]\T1/ptm/m/n/10 void \T1/ptm/b/n/10 Ad-dOb-ject-ToWorld \T1/ptm/m/n/10 ([][]Ph
+ys-World[][] $\OMS/cmsy/m/n/10 ^^C$\T1/ptm/m/n/10 TargetWorld, bt-Dis-cret-e-Dy
+-nam-icsWorld
+ []
+
+) [15
 
 
  <./d3/daf/classActorSta.pdf>]
 \openout2 = `d7/d72/classMetaCode.aux'.
 
-
-(./d7/d72/classMetaCode.tex) [9
+ (./d7/d72/classMetaCode.tex) [16
 
 
 ]
 \openout2 = `d9/dc2/classPhysEvent.aux'.
 
- (./d9/dc2/classPhysEvent.tex
-<d9/dc2/classPhysEvent.pdf, id=359, 501.875pt x 136.5602pt>
+
+(./d9/dc2/classPhysEvent.tex
+<d9/dc2/classPhysEvent.pdf, id=465, 501.875pt x 136.5602pt>
 File: d9/dc2/classPhysEvent.pdf Graphic file (type pdf)
 
-<use d9/dc2/classPhysEvent.pdf>) [10
+<use d9/dc2/classPhysEvent.pdf>) [17
 
 
  <./d9/dc2/classPhysEvent.pdf>]
 \openout2 = `d5/dd7/classPhysEventManager.aux'.
 
 
-(./d5/dd7/classPhysEventManager.tex) [11
+(./d5/dd7/classPhysEventManager.tex) [18
 
 
 ]
@@ -837,33 +891,33 @@ File: d9/dc2/classPhysEvent.pdf Graphic file (type pdf)
 
 
 (./d4/d83/classPhysEventRenderTime.tex
-<d4/d83/classPhysEventRenderTime.pdf, id=388, 501.875pt x 273.1304pt>
+<d4/d83/classPhysEventRenderTime.pdf, id=494, 501.875pt x 273.1304pt>
 File: d4/d83/classPhysEventRenderTime.pdf Graphic file (type pdf)
 
-<use d4/d83/classPhysEventRenderTime.pdf>) [12
+<use d4/d83/classPhysEventRenderTime.pdf>) [19
 
 
  <./d4/d83/classPhysEventRenderTime.pdf>]
 \openout2 = `dc/d0e/classPhysEventUserInput.aux'.
 
  (./dc/d0e/classPhysEventUserInput.tex
-<dc/d0e/classPhysEventUserInput.pdf, id=401, 501.875pt x 301.8778pt>
+<dc/d0e/classPhysEventUserInput.pdf, id=507, 501.875pt x 301.8778pt>
 File: dc/d0e/classPhysEventUserInput.pdf Graphic file (type pdf)
 
-<use dc/d0e/classPhysEventUserInput.pdf>) [13
+<use dc/d0e/classPhysEventUserInput.pdf>) [20
 
 
  <./dc/d0e/classPhysEventUserInput.pdf>]
 \openout2 = `d5/d19/classPhysQuaternion.aux'.
 
- (./d5/d19/classPhysQuaternion.tex) [14
+ (./d5/d19/classPhysQuaternion.tex) [21
 
 
 ]
 \openout2 = `da/d11/classPhysVector3.aux'.
 
  (./da/d11/classPhysVector3.tex)
-[15
+[22
 
 
 ]
@@ -871,105 +925,101 @@ File: dc/d0e/classPhysEventUserInput.pdf Graphic file (type pdf)
 
  (./db/df5/classPhysWorld.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 14.
+(Font)              <8> on input line 25.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 14.
-) [16
+(Font)              <6> on input line 25.
+ [23
 
 
 ]
-\openout2 = `d5/d35/classphysworld.aux'.
-
- (./d5/d35/classphysworld.tex
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 10.
-
-(/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)) [17
-
-
-]
+LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 100.
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 100.
+ [24] [25]) [26]
 \openout2 = `d4/d84/classPhysWorldCallBackManager.aux'.
 
 
-(./d4/d84/classPhysWorldCallBackManager.tex) [18
+(./d4/d84/classPhysWorldCallBackManager.tex) [27
 
 
 ]
 \openout2 = `df/d9a/classSettings.aux'.
 
  (./df/d9a/classSettings.tex)
-[19
+[28
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{classSettings
 _a9c2f80cb87b5b3e8f2da0b6056c2cad6}) has been already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.72 \include{df/d9a/classSettings}
+l.81 \include{df/d9a/classSettings}
                                    pdfTeX warning (ext4): destination with the 
 same identifier (name{classSettings_a7227367aa824b71d1366eddce9a94e3f}) has bee
 n already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.72 \include{df/d9a/classSettings}
+l.81 \include{df/d9a/classSettings}
                                    pdfTeX warning (ext4): destination with the 
 same identifier (name{classSettings_a0d620300e6eb872e6914cabad3035641}) has bee
 n already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.72 \include{df/d9a/classSettings}
+l.81 \include{df/d9a/classSettings}
                                    pdfTeX warning (ext4): destination with the 
 same identifier (name{classSettings_aea6ac481630cf986acf3853939c6bdf3}) has bee
 n already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.72 \include{df/d9a/classSettings}
+l.81 \include{df/d9a/classSettings}
                                    pdfTeX warning (ext4): destination with the 
 same identifier (name{classSettings_a0381303bcccf944c77b8f88dcb4ffa96}) has bee
 n already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.72 \include{df/d9a/classSettings}
+l.81 \include{df/d9a/classSettings}
                                    pdfTeX warning (ext4): destination with the 
 same identifier (name{classSettings_abb497fd25c4184054c1bb89a7e58b5d3}) has bee
 n already used, duplicate ignored
 <to be read again> 
                    \endgroup \set@typeset@protect 
-l.72 \include{df/d9a/classSettings}
-                                   ] (./refman.ind [20
+l.81 \include{df/d9a/classSettings}
+                                   ] (./refman.ind [29
 
 
 
 ]) (./refman.aux
-(./d4/d0e/classActorDynRigid.aux) (./dc/de0/classActorDynSoft.aux)
-(./d3/daf/classActorSta.aux) (./d7/d72/classMetaCode.aux)
-(./d9/dc2/classPhysEvent.aux) (./d5/dd7/classPhysEventManager.aux)
-(./d4/d83/classPhysEventRenderTime.aux) (./dc/d0e/classPhysEventUserInput.aux)
-(./d5/d19/classPhysQuaternion.aux) (./da/d11/classPhysVector3.aux)
-(./db/df5/classPhysWorld.aux) (./d5/d35/classphysworld.aux)
+(./MainLoop.aux) (./todo.aux) (./d4/d0e/classActorDynRigid.aux)
+(./dc/de0/classActorDynSoft.aux) (./d3/daf/classActorSta.aux)
+(./d7/d72/classMetaCode.aux) (./d9/dc2/classPhysEvent.aux)
+(./d5/dd7/classPhysEventManager.aux) (./d4/d83/classPhysEventRenderTime.aux)
+(./dc/d0e/classPhysEventUserInput.aux) (./d5/d19/classPhysQuaternion.aux)
+(./da/d11/classPhysVector3.aux) (./db/df5/classPhysWorld.aux)
 (./d4/d84/classPhysWorldCallBackManager.aux) (./df/d9a/classSettings.aux))
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6769 strings out of 95086
- 100131 string characters out of 1183255
- 149500 words of memory out of 1500000
- 9516 multiletter control sequences out of 10000+50000
- 40877 words of font info for 48 fonts, out of 1200000 for 2000
+ 6861 strings out of 95086
+ 102365 string characters out of 1183255
+ 150816 words of memory out of 1500000
+ 9551 multiletter control sequences out of 10000+50000
+ 47114 words of font info for 54 fonts, out of 1200000 for 2000
  28 hyphenation exceptions out of 8191
- 33i,12n,58p,435b,379s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 33i,12n,58p,813b,512s stack positions out of 5000i,500n,6000p,200000b,5000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texli
 ve/fonts/type1/bluesky/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/blue
 sky/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsy10.pfb></
-usr/share/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-te
-xlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/ur
-w/times/utmr8a.pfb>
-Output written on refman.pdf (24 pages, 147832 bytes).
+usr/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-te
+xlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/
+urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmbi8a.pf
+b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-
+texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on refman.pdf (33 pages, 215429 bytes).
 PDF statistics:
- 602 PDF objects out of 1000 (max. 8388607)
- 193 named destinations out of 1000 (max. 131072)
- 332 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 764 PDF objects out of 1000 (max. 8388607)
+ 236 named destinations out of 1000 (max. 131072)
+ 412 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -11,6 +11,44 @@ Inheritance diagram for ActorBase::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classActorBase_aa69b59aa7a71b16549907adfcd4c1858}{
+{\bfseries ActorBase} (PhysString name, PhysString file)}
+\label{dd/d7b/classActorBase_aa69b59aa7a71b16549907adfcd4c1858}
+
+\item 
+\hypertarget{classActorBase_a34848d620c5d9d2796999edbdcb77c9a}{
+void {\bfseries SetLocation} (PhysReal x, PhysReal y, PhysReal z)}
+\label{dd/d7b/classActorBase_a34848d620c5d9d2796999edbdcb77c9a}
+
+\item 
+\hypertarget{classActorBase_a2a204add0b036de441ebd59d14939000}{
+void {\bfseries SetLocation} (\hyperlink{classPhysVector3}{PhysVector3} Place)}
+\label{dd/d7b/classActorBase_a2a204add0b036de441ebd59d14939000}
+
+\item 
+\hypertarget{classActorBase_a9777506815a9840552b30c65d5d70f8d}{
+void {\bfseries SetOrientation} (PhysReal x, PhysReal y, PhysReal z, PhysReal w)}
+\label{dd/d7b/classActorBase_a9777506815a9840552b30c65d5d70f8d}
+
+\item 
+\hypertarget{classActorBase_a5fe558ca0a88061615cda52a4dc5bf66}{
+void {\bfseries SetOrientation} (\hyperlink{classPhysQuaternion}{PhysQuaternion} Rotation)}
+\label{dd/d7b/classActorBase_a5fe558ca0a88061615cda52a4dc5bf66}
+
+\item 
+\hypertarget{classActorBase_afab604970fede16ccde0c6b8e72d9ee0}{
+void {\bfseries AttachToGraphics} ()}
+\label{dd/d7b/classActorBase_afab604970fede16ccde0c6b8e72d9ee0}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classActorBase_afa6cc1d348a62856ac4550aa3d4b5605}{
+virtual void {\bfseries AddObjectToWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TargetWorld, btDiscreteDynamicsWorld $\ast$TargetPhysicsWorld)=0}
+\label{dd/d7b/classActorBase_afa6cc1d348a62856ac4550aa3d4b5605}
+
+\item 
 \hypertarget{classActorBase_aa87583c47b8653e8ac7d96f1481b57fd}{
 void {\bfseries CreateEntity} (PhysString name, PhysString file, PhysString group)}
 \label{dd/d7b/classActorBase_aa87583c47b8653e8ac7d96f1481b57fd}
@@ -21,23 +59,23 @@ void {\bfseries CreateSceneNode} ()}
 \label{dd/d7b/classActorBase_a168cd57e20b2adfc5cae21627ddbae31}
 
 \item 
-\hypertarget{classActorBase_a624f83ed4265a32db6d816a882a5bebd}{
-void {\bfseries SetOgreLocation} (PhysReal x, PhysReal y, PhysReal z)}
-\label{dd/d7b/classActorBase_a624f83ed4265a32db6d816a882a5bebd}
+\hypertarget{classActorBase_a3140cc5c1c630efc1c04c20ada319b8b}{
+void {\bfseries SetOgreLocation} (\hyperlink{classPhysVector3}{PhysVector3} Place)}
+\label{dd/d7b/classActorBase_a3140cc5c1c630efc1c04c20ada319b8b}
 
 \item 
 \hypertarget{classActorBase_a64ec1d0987bb32070e0c686db3b06e56}{
 void {\bfseries SetOgreOrientation} (PhysReal x, PhysReal y, PhysReal z, PhysReal w)}
 \label{dd/d7b/classActorBase_a64ec1d0987bb32070e0c686db3b06e56}
 
+\item 
+\hypertarget{classActorBase_af64a57138bbd32c52581a5c8d0d29a76}{
+void {\bfseries SetBulletLocation} (\hyperlink{classPhysVector3}{PhysVector3} Location)}
+\label{dd/d7b/classActorBase_af64a57138bbd32c52581a5c8d0d29a76}
+
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classActorBase_aececd39ceec6f8843bbc971afe94c1da}{
-\hyperlink{classPhysQuaternion}{PhysQuaternion} {\bfseries orientation}}
-\label{dd/d7b/classActorBase_aececd39ceec6f8843bbc971afe94c1da}
-
 \item 
 \hypertarget{classActorBase_ada6ceb752605b29357b6c5d53c477696}{
 Ogre::Entity $\ast$ {\bfseries entity}}
@@ -54,14 +92,22 @@ Ogre::SceneNode $\ast$ {\bfseries node}}
 \label{dd/d7b/classActorBase_affa8851ae622e1d420afa4770ab89ea4}
 
 \item 
-\hypertarget{classActorBase_aa7c1bfbc3c985ce98ac780b537097c12}{
-btQuaternion $\ast$ {\bfseries physorientation}}
-\label{dd/d7b/classActorBase_aa7c1bfbc3c985ce98ac780b537097c12}
+\hypertarget{classActorBase_a3b03d2763602bfa24af9626181bb67db}{
+btDefaultMotionState $\ast$ {\bfseries MotionState}}
+\label{dd/d7b/classActorBase_a3b03d2763602bfa24af9626181bb67db}
 
 \item 
-\hypertarget{classActorBase_af0323e5bfc6d189ee09abc915d4b4ca5}{
-btTransform $\ast$ {\bfseries physlocation}}
-\label{dd/d7b/classActorBase_af0323e5bfc6d189ee09abc915d4b4ca5}
+\hypertarget{classActorBase_aff0d385bc9d30cf053838fd61b32ebad}{
+btCollisionShape $\ast$ {\bfseries Shape}}
+\label{dd/d7b/classActorBase_aff0d385bc9d30cf053838fd61b32ebad}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classActorBase_a375fd37c70c941f0442997a60fdb05c7}{
+class \hyperlink{classActorBase_a375fd37c70c941f0442997a60fdb05c7}{PhysWorld}}
+\label{dd/d7b/classActorBase_a375fd37c70c941f0442997a60fdb05c7}
 
 \end{DoxyCompactItemize}
 
@@ -69,7 +115,7 @@ btTransform $\ast$ {\bfseries physlocation}}
 \subsection{Detailed Description}
 
 
-Definition at line 25 of file physactor.h.
+Definition at line 30 of file physactor.h.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

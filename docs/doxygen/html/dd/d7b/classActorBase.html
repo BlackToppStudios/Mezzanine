@@ -12,6 +12,7 @@
   <div class="tabs">
     <ul>
       <li><a href="../../index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="../../pages.html"><span>Related&nbsp;Pages</span></a></li>
       <li class="current"><a href="../../annotated.html"><span>Classes</span></a></li>
       <li><a href="../../files.html"><span>Files</span></a></li>
     </ul>
@@ -41,37 +42,55 @@ Inheritance diagram for ActorBase:</div>
 <p><a href="../../d9/db0/classActorBase-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa69b59aa7a71b16549907adfcd4c1858"></a><!-- doxytag: member="ActorBase::ActorBase" ref="aa69b59aa7a71b16549907adfcd4c1858" args="(PhysString name, PhysString file)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorBase</b> (PhysString name, PhysString file)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34848d620c5d9d2796999edbdcb77c9a"></a><!-- doxytag: member="ActorBase::SetLocation" ref="a34848d620c5d9d2796999edbdcb77c9a" args="(PhysReal x, PhysReal y, PhysReal z)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetLocation</b> (PhysReal x, PhysReal y, PhysReal z)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a204add0b036de441ebd59d14939000"></a><!-- doxytag: member="ActorBase::SetLocation" ref="a2a204add0b036de441ebd59d14939000" args="(PhysVector3 Place)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetLocation</b> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Place)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9777506815a9840552b30c65d5d70f8d"></a><!-- doxytag: member="ActorBase::SetOrientation" ref="a9777506815a9840552b30c65d5d70f8d" args="(PhysReal x, PhysReal y, PhysReal z, PhysReal w)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetOrientation</b> (PhysReal x, PhysReal y, PhysReal z, PhysReal w)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fe558ca0a88061615cda52a4dc5bf66"></a><!-- doxytag: member="ActorBase::SetOrientation" ref="a5fe558ca0a88061615cda52a4dc5bf66" args="(PhysQuaternion Rotation)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetOrientation</b> (<a class="el" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> Rotation)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afab604970fede16ccde0c6b8e72d9ee0"></a><!-- doxytag: member="ActorBase::AttachToGraphics" ref="afab604970fede16ccde0c6b8e72d9ee0" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>AttachToGraphics</b> ()</td></tr>
+<tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa6cc1d348a62856ac4550aa3d4b5605"></a><!-- doxytag: member="ActorBase::AddObjectToWorld" ref="afa6cc1d348a62856ac4550aa3d4b5605" args="(PhysWorld *TargetWorld, btDiscreteDynamicsWorld *TargetPhysicsWorld)=0" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>AddObjectToWorld</b> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TargetWorld, btDiscreteDynamicsWorld *TargetPhysicsWorld)=0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa87583c47b8653e8ac7d96f1481b57fd"></a><!-- doxytag: member="ActorBase::CreateEntity" ref="aa87583c47b8653e8ac7d96f1481b57fd" args="(PhysString name, PhysString file, PhysString group)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>CreateEntity</b> (PhysString name, PhysString file, PhysString group)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a168cd57e20b2adfc5cae21627ddbae31"></a><!-- doxytag: member="ActorBase::CreateSceneNode" ref="a168cd57e20b2adfc5cae21627ddbae31" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>CreateSceneNode</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a624f83ed4265a32db6d816a882a5bebd"></a><!-- doxytag: member="ActorBase::SetOgreLocation" ref="a624f83ed4265a32db6d816a882a5bebd" args="(PhysReal x, PhysReal y, PhysReal z)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetOgreLocation</b> (PhysReal x, PhysReal y, PhysReal z)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3140cc5c1c630efc1c04c20ada319b8b"></a><!-- doxytag: member="ActorBase::SetOgreLocation" ref="a3140cc5c1c630efc1c04c20ada319b8b" args="(PhysVector3 Place)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetOgreLocation</b> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Place)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64ec1d0987bb32070e0c686db3b06e56"></a><!-- doxytag: member="ActorBase::SetOgreOrientation" ref="a64ec1d0987bb32070e0c686db3b06e56" args="(PhysReal x, PhysReal y, PhysReal z, PhysReal w)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetOgreOrientation</b> (PhysReal x, PhysReal y, PhysReal z, PhysReal w)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af64a57138bbd32c52581a5c8d0d29a76"></a><!-- doxytag: member="ActorBase::SetBulletLocation" ref="af64a57138bbd32c52581a5c8d0d29a76" args="(PhysVector3 Location)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetBulletLocation</b> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Location)</td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aececd39ceec6f8843bbc971afe94c1da"></a><!-- doxytag: member="ActorBase::orientation" ref="aececd39ceec6f8843bbc971afe94c1da" args="" -->
-<a class="el" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>orientation</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada6ceb752605b29357b6c5d53c477696"></a><!-- doxytag: member="ActorBase::entity" ref="ada6ceb752605b29357b6c5d53c477696" args="" -->
 Ogre::Entity *&nbsp;</td><td class="memItemRight" valign="bottom"><b>entity</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3739eb7f632f0ceb9397d6c699623cd"></a><!-- doxytag: member="ActorBase::physscenemanager" ref="ad3739eb7f632f0ceb9397d6c699623cd" args="" -->
 Ogre::SceneManager *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physscenemanager</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affa8851ae622e1d420afa4770ab89ea4"></a><!-- doxytag: member="ActorBase::node" ref="affa8851ae622e1d420afa4770ab89ea4" args="" -->
 Ogre::SceneNode *&nbsp;</td><td class="memItemRight" valign="bottom"><b>node</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7c1bfbc3c985ce98ac780b537097c12"></a><!-- doxytag: member="ActorBase::physorientation" ref="aa7c1bfbc3c985ce98ac780b537097c12" args="" -->
-btQuaternion *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physorientation</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0323e5bfc6d189ee09abc915d4b4ca5"></a><!-- doxytag: member="ActorBase::physlocation" ref="af0323e5bfc6d189ee09abc915d4b4ca5" args="" -->
-btTransform *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physlocation</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b03d2763602bfa24af9626181bb67db"></a><!-- doxytag: member="ActorBase::MotionState" ref="a3b03d2763602bfa24af9626181bb67db" args="" -->
+btDefaultMotionState *&nbsp;</td><td class="memItemRight" valign="bottom"><b>MotionState</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff0d385bc9d30cf053838fd61b32ebad"></a><!-- doxytag: member="ActorBase::Shape" ref="aff0d385bc9d30cf053838fd61b32ebad" args="" -->
+btCollisionShape *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Shape</b></td></tr>
+<tr><td colspan="2"><h2>Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a375fd37c70c941f0442997a60fdb05c7"></a><!-- doxytag: member="ActorBase::PhysWorld" ref="a375fd37c70c941f0442997a60fdb05c7" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a375fd37c70c941f0442997a60fdb05c7">PhysWorld</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="../../d9/dc7/physactor_8h_source.html#l00025">25</a> of file <a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/dc7/physactor_8h_source.html#l00030">30</a> of file <a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a>.</p>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a></li>
 <li><a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Mar 22 04:13:23 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Mar 26 03:09:55 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

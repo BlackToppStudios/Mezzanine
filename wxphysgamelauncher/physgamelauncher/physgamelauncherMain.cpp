@@ -9,7 +9,7 @@
 
 #include "physgamelauncherMain.h"
 #include <wx/msgdlg.h>
-#include <windows.h>
+//#include <windows.h>
 #include "zlib.h"
 
 

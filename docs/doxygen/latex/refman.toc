@@ -1,35 +1,45 @@
-\contentsline {chapter}{\numberline {1}Class Index}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Class Hierarchy}{1}{section.1.1}
-\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}
-\contentsline {chapter}{\numberline {3}Class Documentation}{5}{chapter.3}
-\contentsline {section}{\numberline {3.1}ActorBase Class Reference}{5}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Detailed Description}{5}{subsection.3.1.1}
-\contentsline {section}{\numberline {3.2}ActorDynRigid Class Reference}{6}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Detailed Description}{6}{subsection.3.2.1}
-\contentsline {section}{\numberline {3.3}ActorDynSoft Class Reference}{7}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Detailed Description}{7}{subsection.3.3.1}
-\contentsline {section}{\numberline {3.4}ActorSta Class Reference}{8}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Detailed Description}{8}{subsection.3.4.1}
-\contentsline {section}{\numberline {3.5}MetaCode Class Reference}{9}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Detailed Description}{9}{subsection.3.5.1}
-\contentsline {section}{\numberline {3.6}PhysEvent Class Reference}{10}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Detailed Description}{10}{subsection.3.6.1}
-\contentsline {section}{\numberline {3.7}PhysEventManager Class Reference}{11}{section.3.7}
-\contentsline {subsection}{\numberline {3.7.1}Detailed Description}{11}{subsection.3.7.1}
-\contentsline {section}{\numberline {3.8}PhysEventRenderTime Class Reference}{12}{section.3.8}
-\contentsline {subsection}{\numberline {3.8.1}Detailed Description}{12}{subsection.3.8.1}
-\contentsline {section}{\numberline {3.9}PhysEventUserInput Class Reference}{13}{section.3.9}
-\contentsline {subsection}{\numberline {3.9.1}Detailed Description}{13}{subsection.3.9.1}
-\contentsline {section}{\numberline {3.10}PhysQuaternion Class Reference}{14}{section.3.10}
-\contentsline {subsection}{\numberline {3.10.1}Detailed Description}{14}{subsection.3.10.1}
-\contentsline {section}{\numberline {3.11}PhysVector3 Class Reference}{15}{section.3.11}
-\contentsline {subsection}{\numberline {3.11.1}Detailed Description}{15}{subsection.3.11.1}
-\contentsline {section}{\numberline {3.12}PhysWorld Class Reference}{16}{section.3.12}
-\contentsline {subsection}{\numberline {3.12.1}Detailed Description}{16}{subsection.3.12.1}
-\contentsline {section}{\numberline {3.13}physworld Class Reference}{17}{section.3.13}
-\contentsline {subsection}{\numberline {3.13.1}Detailed Description}{17}{subsection.3.13.1}
-\contentsline {section}{\numberline {3.14}PhysWorldCallBackManager Class Reference}{18}{section.3.14}
-\contentsline {subsection}{\numberline {3.14.1}Detailed Description}{18}{subsection.3.14.1}
-\contentsline {section}{\numberline {3.15}Settings Class Reference}{19}{section.3.15}
-\contentsline {subsection}{\numberline {3.15.1}Detailed Description}{19}{subsection.3.15.1}
+\contentsline {chapter}{\numberline {1}Physgame}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Structure}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}MainLoop}{3}{chapter.2}
+\contentsline {chapter}{\numberline {3}Todo List}{5}{chapter.3}
+\contentsline {chapter}{\numberline {4}Class Index}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}Class Hierarchy}{7}{section.4.1}
+\contentsline {chapter}{\numberline {5}Class Index}{9}{chapter.5}
+\contentsline {section}{\numberline {5.1}Class List}{9}{section.5.1}
+\contentsline {chapter}{\numberline {6}Class Documentation}{11}{chapter.6}
+\contentsline {section}{\numberline {6.1}ActorBase Class Reference}{11}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Detailed Description}{12}{subsection.6.1.1}
+\contentsline {section}{\numberline {6.2}ActorDynRigid Class Reference}{13}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{13}{subsection.6.2.1}
+\contentsline {section}{\numberline {6.3}ActorDynSoft Class Reference}{14}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Detailed Description}{14}{subsection.6.3.1}
+\contentsline {section}{\numberline {6.4}ActorSta Class Reference}{15}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Detailed Description}{15}{subsection.6.4.1}
+\contentsline {section}{\numberline {6.5}MetaCode Class Reference}{16}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Detailed Description}{16}{subsection.6.5.1}
+\contentsline {section}{\numberline {6.6}PhysEvent Class Reference}{17}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Detailed Description}{17}{subsection.6.6.1}
+\contentsline {section}{\numberline {6.7}PhysEventManager Class Reference}{18}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Detailed Description}{18}{subsection.6.7.1}
+\contentsline {section}{\numberline {6.8}PhysEventRenderTime Class Reference}{19}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Detailed Description}{19}{subsection.6.8.1}
+\contentsline {section}{\numberline {6.9}PhysEventUserInput Class Reference}{20}{section.6.9}
+\contentsline {subsection}{\numberline {6.9.1}Detailed Description}{20}{subsection.6.9.1}
+\contentsline {section}{\numberline {6.10}PhysQuaternion Class Reference}{21}{section.6.10}
+\contentsline {subsection}{\numberline {6.10.1}Detailed Description}{21}{subsection.6.10.1}
+\contentsline {section}{\numberline {6.11}PhysVector3 Class Reference}{22}{section.6.11}
+\contentsline {subsection}{\numberline {6.11.1}Detailed Description}{22}{subsection.6.11.1}
+\contentsline {section}{\numberline {6.12}PhysWorld Class Reference}{23}{section.6.12}
+\contentsline {subsection}{\numberline {6.12.1}Detailed Description}{24}{subsection.6.12.1}
+\contentsline {subsection}{\numberline {6.12.2}Constructor \& Destructor Documentation}{24}{subsection.6.12.2}
+\contentsline {subsubsection}{\numberline {6.12.2.1}PhysWorld}{24}{subsubsection.6.12.2.1}
+\contentsline {subsection}{\numberline {6.12.3}Member Function Documentation}{25}{subsection.6.12.3}
+\contentsline {subsubsection}{\numberline {6.12.3.1}Log}{25}{subsubsection.6.12.3.1}
+\contentsline {subsubsection}{\numberline {6.12.3.2}LogAndThrow}{25}{subsubsection.6.12.3.2}
+\contentsline {subsubsection}{\numberline {6.12.3.3}MoveCamera}{25}{subsubsection.6.12.3.3}
+\contentsline {subsection}{\numberline {6.12.4}Friends And Related Function Documentation}{25}{subsection.6.12.4}
+\contentsline {subsubsection}{\numberline {6.12.4.1}RenderPhysWorld}{25}{subsubsection.6.12.4.1}
+\contentsline {section}{\numberline {6.13}PhysWorldCallBackManager Class Reference}{27}{section.6.13}
+\contentsline {subsection}{\numberline {6.13.1}Detailed Description}{27}{subsection.6.13.1}
+\contentsline {section}{\numberline {6.14}Settings Class Reference}{28}{section.6.14}
+\contentsline {subsection}{\numberline {6.14.1}Detailed Description}{28}{subsection.6.14.1}
