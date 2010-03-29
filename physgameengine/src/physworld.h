@@ -111,7 +111,7 @@ namespace Ogre
 /// @class PhysWorld
 /// @headerfile physworld.h
 /// @brief This is the main entry point for the entire library.
-/// The physworld coordinates and integrates all the underlying subsystems,
+/// @details The physworld coordinates and integrates all the underlying subsystems,
 /// Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and
 /// SDL is used for user input and window management. Games will need a
 /// container for all the playing pieces. It makes sense to tie all of this

@@ -2,14 +2,18 @@
 \section{MetaCode Class Reference}
 \label{d7/d72/classMetaCode}\index{MetaCode@{MetaCode}}
 }
-\subsection*{Public Member Functions}
+
+
+This is the main entry point for the entire library.  
+
+
+{\ttfamily \#include $<$physeventuserinput.h$>$}\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classMetaCode_a76bba215580768ab22c505ea18b2ec6d}{
-{\bfseries MetaCode} (int MetaValue\_\-, short unsigned int ID\_\-, InputCode Code\_\-)}
-\label{d7/d72/classMetaCode_a76bba215580768ab22c505ea18b2ec6d}
-
-\item 
+\hyperlink{classMetaCode_a6d4637b2894e5a2d46577c08259a2416}{MetaCode} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMetaCode_a76bba215580768ab22c505ea18b2ec6d}{MetaCode} (int MetaValue\_\-, short unsigned int ID\_\-, InputCode Code\_\-)
+\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classMetaCode_ad0a739796fa1de2991c196d8ee7b19b2}{
 {\bfseries MetaCode} (RawEvent \_\-RawEvent)}
 \label{d7/d72/classMetaCode_ad0a739796fa1de2991c196d8ee7b19b2}
@@ -53,9 +57,33 @@ bool {\bfseries operator==} (const \hyperlink{classMetaCode}{MetaCode} \&other) 
 
 
 \subsection{Detailed Description}
+This is the main entry point for the entire library. A Metacode contains the data that is passed around with an input event. It stores one type of button press or analog representation (Mouse move, joystick tilt, wheel spin, etc...). If it is an analog representation it will also store how far or how it is pushed, pressed, rotated, or whatever. Several of these can be used in combination to represent button combinations, or complex input combination (like portions of fighter game moves). 
+
+Definition at line 379 of file physeventuserinput.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classMetaCode_a6d4637b2894e5a2d46577c08259a2416}{
+\index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
+\index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
+\subsubsection[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}MetaCode::MetaCode ()}}
+\label{d7/d72/classMetaCode_a6d4637b2894e5a2d46577c08259a2416}
 
 
-Definition at line 369 of file physeventuserinput.h.
+Default constructor. This sets nothing on the \hyperlink{classMetaCode}{MetaCode} and leaves it completely unassigned. Accessing a data member could cause problems 
+
+Definition at line 63 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a76bba215580768ab22c505ea18b2ec6d}{
+\index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
+\index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
+\subsubsection[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}MetaCode::MetaCode (int {\em MetaValue\_\-}, \/  short unsigned int {\em ID\_\-}, \/  InputCode {\em Code\_\-})}}
+\label{d7/d72/classMetaCode_a76bba215580768ab22c505ea18b2ec6d}
+
+
+Descriptive Constructor. This sets all values in the \hyperlink{classMetaCode}{MetaCode}, leaving it in completely ready state. 
+\begin{DoxyParams}{Parameters}
+\item[{\em MetaValue\_\-}]How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed. \item[{\em ID\_\-}]Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item. \item[{\em Code\_\-}]Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support. \end{DoxyParams}
+
+
+Definition at line 66 of file physeventuserinput.cpp.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

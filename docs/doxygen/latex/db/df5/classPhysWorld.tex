@@ -4,7 +4,7 @@
 }
 
 
-This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object.  
+This is the main entry point for the entire library.  
 
 
 {\ttfamily \#include $<$physworld.h$>$}\subsection*{Public Member Functions}
@@ -55,7 +55,7 @@ void \hyperlink{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{RenderPhysWorl
 \subsection{Detailed Description}
 This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. 
 
-Definition at line 119 of file physworld.h.
+Definition at line 120 of file physworld.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classPhysWorld_a3228c98369082139722d3c918d735e6c}{
@@ -103,7 +103,7 @@ The adds and Actor to the physworld. The takes over for manager an Actor, and ma
 \item[{\em ActorToAdd}]This is a pointer to the actor to be added \end{DoxyParams}
 
 
-Definition at line 500 of file physworld.cpp.\hypertarget{classPhysWorld_a60b7978b39fc347c2f37077737783da6}{
+Definition at line 501 of file physworld.cpp.\hypertarget{classPhysWorld_a60b7978b39fc347c2f37077737783da6}{
 \index{PhysWorld@{PhysWorld}!DoMainLoopAllItems@{DoMainLoopAllItems}}
 \index{DoMainLoopAllItems@{DoMainLoopAllItems}!PhysWorld@{PhysWorld}}
 \subsubsection[{DoMainLoopAllItems}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopAllItems ()}}
@@ -120,6 +120,10 @@ Definition at line 338 of file physworld.cpp.\hypertarget{classPhysWorld_a81b3f0
 
 
 Gathers user input from the OS and places events in the event manager. This this is automatically called during the mainloop if you have set a PreInput callback. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000005}{Todo}]TODO: make Physevents for each of the events in SDL\_\-WmEvents(and delete the SDL events) \end{Desc}
+
 
 Definition at line 360 of file physworld.cpp.\hypertarget{classPhysWorld_a994d7d8c4a9a0c003c3e7d89be7b399b}{
 \index{PhysWorld@{PhysWorld}!DoMainLoopPhysics@{DoMainLoopPhysics}}
@@ -225,7 +229,7 @@ This should be treated as an internal function, it is {\bfseries subject} {\bfse
 
 This is a point to the default Call BackManager. All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. 
 
-Definition at line 256 of file physworld.h.\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
+Definition at line 257 of file physworld.h.\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
 \index{PhysWorld@{PhysWorld}!Events@{Events}}
 \index{Events@{Events}!PhysWorld@{PhysWorld}}
 \subsubsection[{Events}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventManager}$\ast$ {\bf PhysWorld::Events}}}
@@ -234,7 +238,7 @@ Definition at line 256 of file physworld.h.\hypertarget{classPhysWorld_a601b3c60
 
 This is the default pointer to the Event Manager. This is the Event manager that all physworld members will place any events into. 
 
-Definition at line 260 of file physworld.h.
+Definition at line 261 of file physworld.h.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

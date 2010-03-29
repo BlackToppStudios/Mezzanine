@@ -12,12 +12,12 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>. 
+    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to 
+/* We welcome the use of The PhysGame anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -27,12 +27,12 @@
     - Software Patents You Do Not Wish to Freely License
     - Any Kind of Linking to Non-GPL licensed Works
     - Are Currently In Violation of Another Copyright Holder's GPL License
-    - If You want to change our code and not add a few hundred MB of stuff to 
+    - If You want to change our code and not add a few hundred MB of stuff to
         your distribution
 
    These and other limitations could cause serious legal problems if you ignore
    them, so it is best to simply contact us or the Free Software Foundation, if
-   you have any questions. 
+   you have any questions.
 
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
@@ -74,7 +74,7 @@
 
 using namespace std;
 
-enum KeyboardCodes{
+enum InputCode{
 	KEY_UNKNOWN			= 0,
     KEY_FIRST			= 0,
 	KEY_BACKSPACE		= 8,
@@ -339,11 +339,9 @@ enum KeyboardCodes{
 	KEYMOD_MODE  	= 334,
 	KEYMOD_RESERVED = 335,
 
-    KEYMOD_LAST
-};
+    KEYMOD_LAST,
 
-enum InputCode{
-	INPUTEVENT_FIRST = 0,
+	INPUTEVENT_FIRST = 512,
 
     KEYBOARD,
 
@@ -366,14 +364,35 @@ enum InputCode{
 };
 
 //This is used to pass information allong with input
+///////////////////////////////////////////////////////////////////////////////
+/// @class MetaCode
+/// @headerfile physeventuserinput.h
+/// @brief This is the main entry point for the entire library.
+/// @details A Metacode contains the data that is passed around with an input
+/// event. It stores one type of button press or analog representation (Mouse
+/// move, joystick tilt, wheel spin, etc...). If it is an analog representation
+/// it will also store how far or how it is pushed, pressed, rotated, or
+/// whatever. Several of these can be used in combination to represent button
+/// combinations, or complex input combination (like portions of fighter game
+/// moves).
+///////////////////////////////////////
 class MetaCode
 {
     private:
         int MetaValue;
         short unsigned int ID;
         InputCode Code;
+        void Construct(int MetaValue_, short unsigned int ID_, InputCode Code_);
     public:
+        /// @brief Default constructor
+        /// @details This sets nothing on the MetaCode and leaves it completely unassigned. Accessing a data member could cause problems
         MetaCode();
+
+        /// @brief Descriptive Constructor
+        /// @details This sets all values in the MetaCode, leaving it in completely ready state.
+        /// @param MetaValue_ How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed.
+        /// @param ID_ Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item.
+        /// @param Code_ Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support.
         MetaCode(int MetaValue_, short unsigned int ID_, InputCode Code_);
         MetaCode(RawEvent _RawEvent);
 

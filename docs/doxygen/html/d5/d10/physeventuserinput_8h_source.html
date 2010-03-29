@@ -36,12 +36,12 @@
 <a name="l00012"></a>00012 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;. </span>
+<a name="l00015"></a>00015 <span class="comment">    along with The PhysGame Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00016"></a>00016 <span class="comment">*/</span>
 <a name="l00017"></a>00017 <span class="comment">/* The original authors have included a copy of the license specified above in the</span>
 <a name="l00018"></a>00018 <span class="comment">   &apos;Docs&apos; folder. See &apos;gpl.txt&apos;</span>
 <a name="l00019"></a>00019 <span class="comment">*/</span>
-<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to </span>
+<a name="l00020"></a>00020 <span class="comment">/* We welcome the use of The PhysGame anyone, including companies who wish to</span>
 <a name="l00021"></a>00021 <span class="comment">   Build professional software and charge for their product.</span>
 <a name="l00022"></a>00022 <span class="comment"></span>
 <a name="l00023"></a>00023 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
@@ -51,12 +51,12 @@
 <a name="l00027"></a>00027 <span class="comment">    - Software Patents You Do Not Wish to Freely License</span>
 <a name="l00028"></a>00028 <span class="comment">    - Any Kind of Linking to Non-GPL licensed Works</span>
 <a name="l00029"></a>00029 <span class="comment">    - Are Currently In Violation of Another Copyright Holder&apos;s GPL License</span>
-<a name="l00030"></a>00030 <span class="comment">    - If You want to change our code and not add a few hundred MB of stuff to </span>
+<a name="l00030"></a>00030 <span class="comment">    - If You want to change our code and not add a few hundred MB of stuff to</span>
 <a name="l00031"></a>00031 <span class="comment">        your distribution</span>
 <a name="l00032"></a>00032 <span class="comment"></span>
 <a name="l00033"></a>00033 <span class="comment">   These and other limitations could cause serious legal problems if you ignore</span>
 <a name="l00034"></a>00034 <span class="comment">   them, so it is best to simply contact us or the Free Software Foundation, if</span>
-<a name="l00035"></a>00035 <span class="comment">   you have any questions. </span>
+<a name="l00035"></a>00035 <span class="comment">   you have any questions.</span>
 <a name="l00036"></a>00036 <span class="comment"></span>
 <a name="l00037"></a>00037 <span class="comment">   Joseph Toppi - toppij@gmail.com</span>
 <a name="l00038"></a>00038 <span class="comment">   John Blackwood - makoenergy02@gmail.com</span>
@@ -98,7 +98,7 @@
 <a name="l00074"></a>00074 
 <a name="l00075"></a>00075 <span class="keyword">using namespace </span>std;
 <a name="l00076"></a>00076 
-<a name="l00077"></a>00077 <span class="keyword">enum</span> KeyboardCodes{
+<a name="l00077"></a>00077 <span class="keyword">enum</span> InputCode{
 <a name="l00078"></a>00078         KEY_UNKNOWN                     = 0,
 <a name="l00079"></a>00079     KEY_FIRST                   = 0,
 <a name="l00080"></a>00080         KEY_BACKSPACE           = 8,
@@ -363,82 +363,101 @@
 <a name="l00339"></a>00339         KEYMOD_MODE     = 334,
 <a name="l00340"></a>00340         KEYMOD_RESERVED = 335,
 <a name="l00341"></a>00341 
-<a name="l00342"></a>00342     KEYMOD_LAST
-<a name="l00343"></a>00343 };
-<a name="l00344"></a>00344 
-<a name="l00345"></a>00345 <span class="keyword">enum</span> InputCode{
-<a name="l00346"></a>00346         INPUTEVENT_FIRST = 0,
+<a name="l00342"></a>00342     KEYMOD_LAST,
+<a name="l00343"></a>00343 
+<a name="l00344"></a>00344         INPUTEVENT_FIRST = 512,
+<a name="l00345"></a>00345 
+<a name="l00346"></a>00346     KEYBOARD,
 <a name="l00347"></a>00347 
-<a name="l00348"></a>00348     KEYBOARD,
-<a name="l00349"></a>00349 
-<a name="l00350"></a>00350     MOUSEBUTTON,
-<a name="l00351"></a>00351     MOUSEABSOLUTEVERTICAL,
-<a name="l00352"></a>00352     MOUSEABSOLUTEHORIZONTAL,
-<a name="l00353"></a>00353     MOUSEVERTICAL,
-<a name="l00354"></a>00354     MOUSEHORIZONTAL,
-<a name="l00355"></a>00355     MOUSEWHEELVERTICAL,
-<a name="l00356"></a>00356     MOUSEWHEELHORIZONTAL,
-<a name="l00357"></a>00357 
-<a name="l00358"></a>00358     JOYSTICKBUTTON,
-<a name="l00359"></a>00359     JOYSTICKMOTIONAXIS,
-<a name="l00360"></a>00360     JOYSTICKBALLVERTICAL,
-<a name="l00361"></a>00361     JOYSTICKBALLHORIZONTAL,
-<a name="l00362"></a>00362     JOYSTICKHATVERTICAL,
-<a name="l00363"></a>00363     JOYSTICKHATHORIZONTAL,
-<a name="l00364"></a>00364 
-<a name="l00365"></a>00365         INPUTEVENT_LAST
-<a name="l00366"></a>00366 };
-<a name="l00367"></a>00367 
-<a name="l00368"></a>00368 <span class="comment">//This is used to pass information allong with input</span>
-<a name="l00369"></a><a class="code" href="../../d7/d72/classMetaCode.html">00369</a> <span class="keyword">class </span><a class="code" href="../../d7/d72/classMetaCode.html">MetaCode</a>
-<a name="l00370"></a>00370 {
-<a name="l00371"></a>00371     <span class="keyword">private</span>:
-<a name="l00372"></a>00372         <span class="keywordtype">int</span> MetaValue;
-<a name="l00373"></a>00373         <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID;
-<a name="l00374"></a>00374         InputCode Code;
-<a name="l00375"></a>00375     <span class="keyword">public</span>:
-<a name="l00376"></a>00376         <a class="code" href="../../d7/d72/classMetaCode.html">MetaCode</a>();
-<a name="l00377"></a>00377         <a class="code" href="../../d7/d72/classMetaCode.html">MetaCode</a>(<span class="keywordtype">int</span> MetaValue_, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID_, InputCode Code_);
-<a name="l00378"></a>00378         <a class="code" href="../../d7/d72/classMetaCode.html">MetaCode</a>(RawEvent _RawEvent);
-<a name="l00379"></a>00379 
-<a name="l00380"></a>00380         InputCode GetCode();                    <span class="comment">//What is being done? This stores which code was generated which should identify the type of input.</span>
-<a name="l00381"></a>00381         <span class="keywordtype">void</span> SetCode(InputCode Code_);
-<a name="l00382"></a>00382 
-<a name="l00383"></a>00383         <span class="keywordtype">int</span> GetMetaValue();                     <span class="comment">//How much is being done? How far has the mouse moved, how much is the throttle pushed.</span>
-<a name="l00384"></a>00384         <span class="keywordtype">void</span> SetMetaValue(<span class="keywordtype">int</span> MetaValue_);      <span class="comment">//For button presses a positive value is pushed and a zero means unpushed</span>
-<a name="l00385"></a>00385 
-<a name="l00386"></a>00386         <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> GetID();             <span class="comment">//Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.</span>
-<a name="l00387"></a>00387         <span class="keywordtype">void</span> SetID(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID_);
-<a name="l00388"></a>00388 
-<a name="l00389"></a>00389         <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;other) <span class="keyword">const</span>;
-<a name="l00390"></a>00390 };
-<a name="l00391"></a>00391 
-<a name="l00392"></a><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">00392</a> <span class="keyword">class </span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> : <span class="keyword">public</span> <a class="code" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>
-<a name="l00393"></a>00393 {
-<a name="l00394"></a>00394     <span class="keyword">private</span>:
-<a name="l00395"></a>00395         vector&lt;MetaCode&gt; Code;
-<a name="l00396"></a>00396 
-<a name="l00397"></a>00397         <span class="keyword">public</span>:
-<a name="l00398"></a>00398         <span class="comment">//By default codes are off,if they are on the list, they can be considered pushed</span>
-<a name="l00399"></a>00399         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>();
-<a name="l00400"></a>00400         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>(<a class="code" href="../../d7/d72/classMetaCode.html">MetaCode</a> Code_);
-<a name="l00401"></a>00401         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>(vector&lt;MetaCode&gt; Code_);
-<a name="l00402"></a>00402         <span class="keyword">virtual</span> ~<a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>();
-<a name="l00403"></a>00403 
-<a name="l00404"></a>00404         <span class="comment">//code managment functions</span>
-<a name="l00405"></a>00405         <a class="code" href="../../d7/d72/classMetaCode.html">MetaCode</a> GetCode(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Index);
-<a name="l00406"></a>00406         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> GetCodeCount();
+<a name="l00348"></a>00348     MOUSEBUTTON,
+<a name="l00349"></a>00349     MOUSEABSOLUTEVERTICAL,
+<a name="l00350"></a>00350     MOUSEABSOLUTEHORIZONTAL,
+<a name="l00351"></a>00351     MOUSEVERTICAL,
+<a name="l00352"></a>00352     MOUSEHORIZONTAL,
+<a name="l00353"></a>00353     MOUSEWHEELVERTICAL,
+<a name="l00354"></a>00354     MOUSEWHEELHORIZONTAL,
+<a name="l00355"></a>00355 
+<a name="l00356"></a>00356     JOYSTICKBUTTON,
+<a name="l00357"></a>00357     JOYSTICKMOTIONAXIS,
+<a name="l00358"></a>00358     JOYSTICKBALLVERTICAL,
+<a name="l00359"></a>00359     JOYSTICKBALLHORIZONTAL,
+<a name="l00360"></a>00360     JOYSTICKHATVERTICAL,
+<a name="l00361"></a>00361     JOYSTICKHATHORIZONTAL,
+<a name="l00362"></a>00362 
+<a name="l00363"></a>00363         INPUTEVENT_LAST
+<a name="l00364"></a>00364 };
+<a name="l00365"></a>00365 
+<a name="l00366"></a>00366 <span class="comment">//This is used to pass information allong with input</span><span class="comment"></span>
+<a name="l00367"></a>00367 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00368"></a>00368 <span class="comment">/// @class MetaCode</span>
+<a name="l00369"></a>00369 <span class="comment">/// @headerfile physeventuserinput.h</span>
+<a name="l00370"></a>00370 <span class="comment">/// @brief This is the main entry point for the entire library.</span>
+<a name="l00371"></a>00371 <span class="comment">/// @details A Metacode contains the data that is passed around with an input</span>
+<a name="l00372"></a>00372 <span class="comment">/// event. It stores one type of button press or analog representation (Mouse</span>
+<a name="l00373"></a>00373 <span class="comment">/// move, joystick tilt, wheel spin, etc...). If it is an analog representation</span>
+<a name="l00374"></a>00374 <span class="comment">/// it will also store how far or how it is pushed, pressed, rotated, or</span>
+<a name="l00375"></a>00375 <span class="comment">/// whatever. Several of these can be used in combination to represent button</span>
+<a name="l00376"></a>00376 <span class="comment">/// combinations, or complex input combination (like portions of fighter game</span>
+<a name="l00377"></a>00377 <span class="comment">/// moves).</span>
+<a name="l00378"></a>00378 <span class="comment">///////////////////////////////////////</span>
+<a name="l00379"></a><a class="code" href="../../d7/d72/classMetaCode.html">00379</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="../../d7/d72/classMetaCode.html" title="This is the main entry point for the entire library.">MetaCode</a>
+<a name="l00380"></a>00380 {
+<a name="l00381"></a>00381     <span class="keyword">private</span>:
+<a name="l00382"></a>00382         <span class="keywordtype">int</span> MetaValue;
+<a name="l00383"></a>00383         <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID;
+<a name="l00384"></a>00384         InputCode Code;
+<a name="l00385"></a>00385         <span class="keywordtype">void</span> Construct(<span class="keywordtype">int</span> MetaValue_, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID_, InputCode Code_);
+<a name="l00386"></a>00386     <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00387"></a>00387 <span class="comment">        /// @brief Default constructor</span>
+<a name="l00388"></a>00388 <span class="comment">        /// @details This sets nothing on the MetaCode and leaves it completely unassigned. Accessing a data member could cause problems</span>
+<a name="l00389"></a>00389 <span class="comment"></span>        <a class="code" href="../../d7/d72/classMetaCode.html#a6d4637b2894e5a2d46577c08259a2416" title="Default constructor.">MetaCode</a>();
+<a name="l00390"></a>00390 <span class="comment"></span>
+<a name="l00391"></a>00391 <span class="comment">        /// @brief Descriptive Constructor</span>
+<a name="l00392"></a>00392 <span class="comment">        /// @details This sets all values in the MetaCode, leaving it in completely ready state.</span>
+<a name="l00393"></a>00393 <span class="comment">        /// @param MetaValue_ How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed.</span>
+<a name="l00394"></a>00394 <span class="comment">        /// @param ID_ Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item.</span>
+<a name="l00395"></a>00395 <span class="comment">        /// @param Code_ Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support.</span>
+<a name="l00396"></a>00396 <span class="comment"></span>        <a class="code" href="../../d7/d72/classMetaCode.html#a6d4637b2894e5a2d46577c08259a2416" title="Default constructor.">MetaCode</a>(<span class="keywordtype">int</span> MetaValue_, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID_, InputCode Code_);
+<a name="l00397"></a>00397         <a class="code" href="../../d7/d72/classMetaCode.html#a6d4637b2894e5a2d46577c08259a2416" title="Default constructor.">MetaCode</a>(RawEvent _RawEvent);
+<a name="l00398"></a>00398 
+<a name="l00399"></a>00399         InputCode GetCode();                    <span class="comment">//What is being done? This stores which code was generated which should identify the type of input.</span>
+<a name="l00400"></a>00400         <span class="keywordtype">void</span> SetCode(InputCode Code_);
+<a name="l00401"></a>00401 
+<a name="l00402"></a>00402         <span class="keywordtype">int</span> GetMetaValue();                     <span class="comment">//How much is being done? How far has the mouse moved, how much is the throttle pushed.</span>
+<a name="l00403"></a>00403         <span class="keywordtype">void</span> SetMetaValue(<span class="keywordtype">int</span> MetaValue_);      <span class="comment">//For button presses a positive value is pushed and a zero means unpushed</span>
+<a name="l00404"></a>00404 
+<a name="l00405"></a>00405         <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> GetID();             <span class="comment">//Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.</span>
+<a name="l00406"></a>00406         <span class="keywordtype">void</span> SetID(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID_);
 <a name="l00407"></a>00407 
-<a name="l00408"></a>00408         <span class="keywordtype">void</span> AddCode(<a class="code" href="../../d7/d72/classMetaCode.html">MetaCode</a> _Code);
-<a name="l00409"></a>00409         <span class="keywordtype">void</span> ToggleCode(<a class="code" href="../../d7/d72/classMetaCode.html">MetaCode</a> _Code);
-<a name="l00410"></a>00410         <span class="keywordtype">void</span> ToggleCode(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Index);
-<a name="l00411"></a>00411 
-<a name="l00412"></a>00412                 <span class="keyword">virtual</span> EventType getEventType();
-<a name="l00413"></a>00413 };
-<a name="l00414"></a>00414 
-<a name="l00415"></a>00415 <span class="preprocessor">#endif</span>
+<a name="l00408"></a>00408         <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This is the main entry point for the entire library.">MetaCode</a> &amp;other) <span class="keyword">const</span>;
+<a name="l00409"></a>00409 };
+<a name="l00410"></a>00410 
+<a name="l00411"></a><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">00411</a> <span class="keyword">class </span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> : <span class="keyword">public</span> <a class="code" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>
+<a name="l00412"></a>00412 {
+<a name="l00413"></a>00413     <span class="keyword">private</span>:
+<a name="l00414"></a>00414         vector&lt;MetaCode&gt; Code;
+<a name="l00415"></a>00415 
+<a name="l00416"></a>00416         <span class="keyword">public</span>:
+<a name="l00417"></a>00417         <span class="comment">//By default codes are off,if they are on the list, they can be considered pushed</span>
+<a name="l00418"></a>00418         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>();
+<a name="l00419"></a>00419         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>(<a class="code" href="../../d7/d72/classMetaCode.html" title="This is the main entry point for the entire library.">MetaCode</a> Code_);
+<a name="l00420"></a>00420         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>(vector&lt;MetaCode&gt; Code_);
+<a name="l00421"></a>00421         <span class="keyword">virtual</span> ~<a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>();
+<a name="l00422"></a>00422 
+<a name="l00423"></a>00423         <span class="comment">//code managment functions</span>
+<a name="l00424"></a>00424         <a class="code" href="../../d7/d72/classMetaCode.html" title="This is the main entry point for the entire library.">MetaCode</a> GetCode(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Index);
+<a name="l00425"></a>00425         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> GetCodeCount();
+<a name="l00426"></a>00426 
+<a name="l00427"></a>00427         <span class="keywordtype">void</span> AddCode(<a class="code" href="../../d7/d72/classMetaCode.html" title="This is the main entry point for the entire library.">MetaCode</a> _Code);
+<a name="l00428"></a>00428         <span class="keywordtype">void</span> ToggleCode(<a class="code" href="../../d7/d72/classMetaCode.html" title="This is the main entry point for the entire library.">MetaCode</a> _Code);
+<a name="l00429"></a>00429         <span class="keywordtype">void</span> ToggleCode(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Index);
+<a name="l00430"></a>00430 
+<a name="l00431"></a>00431                 <span class="keyword">virtual</span> EventType getEventType();
+<a name="l00432"></a>00432 };
+<a name="l00433"></a>00433 
+<a name="l00434"></a>00434 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Mar 28 19:34:13 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Mar 29 00:04:54 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
