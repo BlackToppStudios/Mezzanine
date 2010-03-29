@@ -365,12 +365,12 @@ void PhysWorld::DoMainLoopInputBuffering()
 
     PhysEventUserInput FromSDLEvents;
 
-    //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
+    /// @todo TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
     //RawEvent QueueEvent;
     while( !SDL_UserInputEvents.empty() )
     {
         SDL_Event * CurrentEvent = SDL_UserInputEvents.front();
-        this->Log(GetNameOfEventFrom(*CurrentEvent));
+        this->Log(GetNameOfEventFrom(CurrentEvent));
 
         SDL_UserInputEvents.pop();
     }//*/
@@ -459,21 +459,22 @@ void PhysWorld::DestroyRenderWindow()
 //This function will get all the events from SDL and Sort them into one of two Queues
 void PhysWorld::PreProcessSDLEvents()
 {
-
-    RawEvent FromSDL;
-	while(SDL_PollEvent(&FromSDL))
+    RawEvent temp;
+    RawEvent* FromSDL=&temp;
+	while(SDL_PollEvent(FromSDL))
 	{
-        switch(FromSDL.type)
+	    RawEvent* ScopeHolder = new RawEvent;
+	    *ScopeHolder = temp;
+        switch(FromSDL->type)
         {
             case SDL_ACTIVEEVENT:   //when the window gains focus
             case SDL_VIDEORESIZE:   //when the screen is resized
             case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
             case SDL_QUIT:          //when SDL closes
             case SDL_SYSWMEVENT:
-                SDL_WmEvents.push(&FromSDL);
+                SDL_WmEvents.push(ScopeHolder);
                 break;
             case SDL_KEYDOWN:
-                exit(EXIT_SUCCESS); //remove this as soon as we get the X working
             case SDL_KEYUP:
             case SDL_MOUSEMOTION:
             case SDL_MOUSEBUTTONDOWN:
@@ -483,7 +484,7 @@ void PhysWorld::PreProcessSDLEvents()
             case SDL_JOYBUTTONUP:
             case SDL_JOYBALLMOTION:
             case SDL_JOYHATMOTION:
-                SDL_UserInputEvents.push(&FromSDL);
+                SDL_UserInputEvents.push(ScopeHolder);
                 break;
             case SDL_USEREVENT://Never thrown by SDL, but could be added by a user
             default:
