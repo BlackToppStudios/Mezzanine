@@ -12,12 +12,12 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>. 
+    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to 
+/* We welcome the use of The PhysGame anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -27,12 +27,12 @@
     - Software Patents You Do Not Wish to Freely License
     - Any Kind of Linking to Non-GPL licensed Works
     - Are Currently In Violation of Another Copyright Holder's GPL License
-    - If You want to change our code and not add a few hundred MB of stuff to 
+    - If You want to change our code and not add a few hundred MB of stuff to
         your distribution
 
    These and other limitations could cause serious legal problems if you ignore
    them, so it is best to simply contact us or the Free Software Foundation, if
-   you have any questions. 
+   you have any questions.
 
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
@@ -61,8 +61,7 @@
   @subpage EventManager "Event Manager"
 
   @subpage Actor "Items in the world - Actor Class"
-
- */
+*/
 
 //Includes and Forward Declarations
 #include "physcrossplatform.h"
@@ -164,83 +163,100 @@ class PhysWorld
         queue<RawEvent*> SDL_WmEvents;
         queue<RawEvent*> SDL_UserInputEvents;
 
-        /// Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
+        /// @brief Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
         /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
         friend void RenderPhysWorld(PhysWorld *TheWorld);
 
 	public:
         /// @brief Descriptive constructor
-        /// This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
+        /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
         /// @param GeographyLowerBounds The lower limits for the size of the physics simulation
         /// @param GeographyUpperbounds The Upper limits for the size of the physics simulation
         /// @param MaxPhysicsProxies This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.
 		PhysWorld(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024);
 
         /// @brief Default constructor
-        /// This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
+        /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
 		PhysWorld();
 
         /// @brief Deconstructor
-        /// This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the
+        /// @details This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the
         /// Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager)
 		~PhysWorld();
 
 		/// @brief Runtime Event logging Function
-		/// @param Message This is what will be streamed to the log
-		/// Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is
+		/// @details Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is
 		/// Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types
 		/// that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int
 		/// unsigned long int, bool, float, double, long double, wchar_t, size_t, PhysReal, PhysWhole, PhysString, and PhysVector3. If
 		/// compiled statically it should support any data type which supports output streams.
+		/// @param Message This is what will be streamed to the log
     	template <class T> void Log(T Message);
     	/// @brief This is the preffered way to throw an exception currently
-    	/// @param Message This will be streamed to the log, then used in a thrown exception.
-    	/// This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
+    	/// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
     	/// type the Log function supports
+    	/// @param Message This will be streamed to the log, then used in a thrown exception.
         template <class T> void LogAndThrow(T Message);
 
         /// @brief This Shows an Engine Generated Configuration Screen
-        /// This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration
+        /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration
         /// options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler
         /// Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage
         /// user settings.
         bool ShowSystemSettingDialog();
 
 		/// @brief This moves the camera relative to the world
-		/// @param Position Where should the camera be seated
+		/// @details The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.
+        /// @param Position Where should the camera be seated
 		/// @param LookAt Point the camera such that this poin is centered on the screen
-		/// The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.
 		void MoveCamera(PhysVector3 Position, PhysVector3 LookAt);
 
         /// @brief This creates the game window and starts the game.
-        /// Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be
+        /// @details Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be
         /// minimal delay from the time you call this and the game actually begins.
         /// This is also where the Main Loop for the game is housed.
         void GameInit();
 
         /// @brief Performs all the items that would normally be performed during the game loop
-        /// This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is
+        /// @details This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is
         /// useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items
         /// each iteration of the main loop.
         void DoMainLoopAllItems();
 
         /// @brief Increments physics by one step
-        /// Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre-Physics Callback is
-        /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our colision events to come
-        /// from although it is concievable that a game could manually insert those manually.
-
+        /// @details Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre-Physics Callback is
+        /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come
+        /// from although it is concievable that a game could manually insert those manually. This will not delete events it places
+        /// in the event manager, that is the responsibility of the code that pulls out the event out.
         void DoMainLoopPhysics();
+
+        /// @brief Gathers user input from the OS and places events in the event manager
+        /// @details This this is automatically called during the mainloop if you have set a PreInput callback. This will not delete events it places
+        /// in the event manager, that is the responsibility of the code that pulls out the event out.
 		void DoMainLoopInputBuffering();
+
+		/// @brief Creates events for each Window manger
+		/// @details This gather information from system/windows manager events, such as windows  minimization, maximization, program exit, window hidden
+		/// window shown, and a few other similar types of events. This makes events out of the information and places them in the event manager
+		/// This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out.
 		void DoMainLoopWindowManagerBuffering();
+
+        /// @brief This forces the screen to be re-rendered
+        /// @details This renders the screen based on the status of all in game actors. This is automatically called in the main loop.
 		void DoMainLoopRender();
 
+        /// @brief The adds and Actor to the physworld.
+        /// @details The takes over for manager an Actor, and makes sure that it's physics status and 3d graphics status are properly handled. Once an
+        /// actor has been passed into the Physworld using this, the physworld handle deleting it.
+        /// @param ActorToAdd This is a pointer to the actor to be added
         void AddActor(ActorBase* ActorToAdd);
 
-
-		//used to set callback functions to be run in the main loop
+		/// @brief This is a point to the default Call BackManager
+        /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.
 		PhysWorldCallBackManager* CallBacks;
 
-		//This will be used to communicate with underlying sybsystems in a clean way
-		PhysEventManager*  Events;
+        /// @brief This is the default pointer to the Event Manager.
+        /// @details This is the Event manager that all physworld members will place any events into.
+		PhysEventManager* Events;
 };
 #endif

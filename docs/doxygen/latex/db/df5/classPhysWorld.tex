@@ -11,87 +11,51 @@ This is the main entry point for the entire library. The physworld coordinates a
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classPhysWorld_a3228c98369082139722d3c918d735e6c}{PhysWorld} (\hyperlink{classPhysVector3}{PhysVector3} $\ast$GeographyLowerBounds, \hyperlink{classPhysVector3}{PhysVector3} $\ast$GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024)
-\begin{DoxyCompactList}\small\item\em Descriptive constructor This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. \item\end{DoxyCompactList}\item 
-\hypertarget{classPhysWorld_a6ded8026b0cd72e7877830698197adf0}{
-\hyperlink{classPhysWorld_a6ded8026b0cd72e7877830698197adf0}{PhysWorld} ()}
-\label{db/df5/classPhysWorld_a6ded8026b0cd72e7877830698197adf0}
-
-\begin{DoxyCompactList}\small\item\em Default constructor This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows. \item\end{DoxyCompactList}\item 
-\hypertarget{classPhysWorld_acdfe3b4c1c236860dc7dff945cfe5b07}{
-\hyperlink{classPhysWorld_acdfe3b4c1c236860dc7dff945cfe5b07}{$\sim$PhysWorld} ()}
-\label{db/df5/classPhysWorld_acdfe3b4c1c236860dc7dff945cfe5b07}
-
-\begin{DoxyCompactList}\small\item\em Deconstructor This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager). \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classPhysWorld_a6ded8026b0cd72e7877830698197adf0}{PhysWorld} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classPhysWorld_acdfe3b4c1c236860dc7dff945cfe5b07}{$\sim$PhysWorld} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\void \hyperlink{classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}{Log} (T Message)
 \begin{DoxyCompactList}\small\item\em Runtime Event logging Function. \item\end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\void \hyperlink{classPhysWorld_a1c2aeaed2a89821a4545db854da33ab8}{LogAndThrow} (T Message)
 \begin{DoxyCompactList}\small\item\em This is the preffered way to throw an exception currently. \item\end{DoxyCompactList}\item 
-\hypertarget{classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}{
-bool \hyperlink{classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}{ShowSystemSettingDialog} ()}
-\label{db/df5/classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}
-
-\begin{DoxyCompactList}\small\item\em This Shows an Engine Generated Configuration Screen This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}{ShowSystemSettingDialog} ()
+\begin{DoxyCompactList}\small\item\em This Shows an Engine Generated Configuration Screen. \item\end{DoxyCompactList}\item 
 void \hyperlink{classPhysWorld_a1df24ee06d5881825902b60e0d81174a}{MoveCamera} (\hyperlink{classPhysVector3}{PhysVector3} Position, \hyperlink{classPhysVector3}{PhysVector3} LookAt)
 \begin{DoxyCompactList}\small\item\em This moves the camera relative to the world. \item\end{DoxyCompactList}\item 
-\hypertarget{classPhysWorld_a6d65a7412c1711497fbd1173f879243a}{
-void \hyperlink{classPhysWorld_a6d65a7412c1711497fbd1173f879243a}{GameInit} ()}
-\label{db/df5/classPhysWorld_a6d65a7412c1711497fbd1173f879243a}
-
-\begin{DoxyCompactList}\small\item\em This creates the game window and starts the game. Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be minimal delay from the time you call this and the game actually begins. This is also where the Main Loop for the game is housed. \item\end{DoxyCompactList}\item 
-\hypertarget{classPhysWorld_a60b7978b39fc347c2f37077737783da6}{
-void \hyperlink{classPhysWorld_a60b7978b39fc347c2f37077737783da6}{DoMainLoopAllItems} ()}
-\label{db/df5/classPhysWorld_a60b7978b39fc347c2f37077737783da6}
-
-\begin{DoxyCompactList}\small\item\em Performs all the items that would normally be performed during the game loop This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items each iteration of the main loop. \item\end{DoxyCompactList}\item 
-\hypertarget{classPhysWorld_a994d7d8c4a9a0c003c3e7d89be7b399b}{
-void \hyperlink{classPhysWorld_a994d7d8c4a9a0c003c3e7d89be7b399b}{DoMainLoopPhysics} ()}
-\label{db/df5/classPhysWorld_a994d7d8c4a9a0c003c3e7d89be7b399b}
-
-\begin{DoxyCompactList}\small\item\em Increments physics by one step Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre-\/Physics Callback is set. This is the second step in the main loop chain of events. This is where we expect the majority of our colision events to come from although it is concievable that a game could manually insert those manually. \item\end{DoxyCompactList}\item 
-\hypertarget{classPhysWorld_a81b3f0dcc0a90d039623f696343e6e9c}{
-void {\bfseries DoMainLoopInputBuffering} ()}
-\label{db/df5/classPhysWorld_a81b3f0dcc0a90d039623f696343e6e9c}
-
-\item 
-\hypertarget{classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}{
-void {\bfseries DoMainLoopWindowManagerBuffering} ()}
-\label{db/df5/classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}
-
-\item 
-\hypertarget{classPhysWorld_a8f33541d67164a2452e568443e9905be}{
-void {\bfseries DoMainLoopRender} ()}
-\label{db/df5/classPhysWorld_a8f33541d67164a2452e568443e9905be}
-
-\item 
-\hypertarget{classPhysWorld_ae490054b3e1c4c5aa69cb8e3b7bd2f29}{
-void {\bfseries AddActor} (\hyperlink{classActorBase}{ActorBase} $\ast$ActorToAdd)}
-\label{db/df5/classPhysWorld_ae490054b3e1c4c5aa69cb8e3b7bd2f29}
-
-\end{DoxyCompactItemize}
+void \hyperlink{classPhysWorld_a6d65a7412c1711497fbd1173f879243a}{GameInit} ()
+\begin{DoxyCompactList}\small\item\em This creates the game window and starts the game. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysWorld_a60b7978b39fc347c2f37077737783da6}{DoMainLoopAllItems} ()
+\begin{DoxyCompactList}\small\item\em Performs all the items that would normally be performed during the game loop. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysWorld_a994d7d8c4a9a0c003c3e7d89be7b399b}{DoMainLoopPhysics} ()
+\begin{DoxyCompactList}\small\item\em Increments physics by one step. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysWorld_a81b3f0dcc0a90d039623f696343e6e9c}{DoMainLoopInputBuffering} ()
+\begin{DoxyCompactList}\small\item\em Gathers user input from the OS and places events in the event manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}{DoMainLoopWindowManagerBuffering} ()
+\begin{DoxyCompactList}\small\item\em Creates events for each Window manger. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysWorld_a8f33541d67164a2452e568443e9905be}{DoMainLoopRender} ()
+\begin{DoxyCompactList}\small\item\em This forces the screen to be re-\/rendered. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysWorld_ae490054b3e1c4c5aa69cb8e3b7bd2f29}{AddActor} (\hyperlink{classActorBase}{ActorBase} $\ast$ActorToAdd)
+\begin{DoxyCompactList}\small\item\em The adds and Actor to the physworld. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}{
-\hyperlink{classPhysWorldCallBackManager}{PhysWorldCallBackManager} $\ast$ {\bfseries CallBacks}}
-\label{db/df5/classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}
-
-\item 
-\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
-\hyperlink{classPhysEventManager}{PhysEventManager} $\ast$ {\bfseries Events}}
-\label{db/df5/classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}
-
-\end{DoxyCompactItemize}
+\hyperlink{classPhysWorldCallBackManager}{PhysWorldCallBackManager} $\ast$ \hyperlink{classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}{CallBacks}
+\begin{DoxyCompactList}\small\item\em This is a point to the default Call BackManager. \item\end{DoxyCompactList}\item 
+\hyperlink{classPhysEventManager}{PhysEventManager} $\ast$ \hyperlink{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{Events}
+\begin{DoxyCompactList}\small\item\em This is the default pointer to the Event Manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{RenderPhysWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TheWorld)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Do Not Use this, This should be treated as an internal function, it is {\bfseries subject} {\bfseries to} {\bfseries change} {\bfseries without} {\bfseries warning} and could be {\bfseries harmful} to overall stability if used incorrectly. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. 
 
-Definition at line 120 of file physworld.h.
+Definition at line 119 of file physworld.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classPhysWorld_a3228c98369082139722d3c918d735e6c}{
@@ -101,24 +65,106 @@ Definition at line 120 of file physworld.h.
 \label{db/df5/classPhysWorld_a3228c98369082139722d3c918d735e6c}
 
 
-Descriptive constructor This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. 
+Descriptive constructor. This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. 
 \begin{DoxyParams}{Parameters}
 \item[{\em GeographyLowerBounds}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies}]This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation. \end{DoxyParams}
 
 
-Definition at line 83 of file physworld.cpp.
+Definition at line 83 of file physworld.cpp.\hypertarget{classPhysWorld_a6ded8026b0cd72e7877830698197adf0}{
+\index{PhysWorld@{PhysWorld}!PhysWorld@{PhysWorld}}
+\index{PhysWorld@{PhysWorld}!PhysWorld@{PhysWorld}}
+\subsubsection[{PhysWorld}]{\setlength{\rightskip}{0pt plus 5cm}PhysWorld::PhysWorld ()}}
+\label{db/df5/classPhysWorld_a6ded8026b0cd72e7877830698197adf0}
+
+
+Default constructor. This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows. 
+
+Definition at line 74 of file physworld.cpp.\hypertarget{classPhysWorld_acdfe3b4c1c236860dc7dff945cfe5b07}{
+\index{PhysWorld@{PhysWorld}!$\sim$PhysWorld@{$\sim$PhysWorld}}
+\index{$\sim$PhysWorld@{$\sim$PhysWorld}!PhysWorld@{PhysWorld}}
+\subsubsection[{$\sim$PhysWorld}]{\setlength{\rightskip}{0pt plus 5cm}PhysWorld::$\sim$PhysWorld ()}}
+\label{db/df5/classPhysWorld_acdfe3b4c1c236860dc7dff945cfe5b07}
+
+
+Deconstructor. This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager) 
+
+Definition at line 189 of file physworld.cpp.
 
 \subsection{Member Function Documentation}
-\hypertarget{classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}{
+\hypertarget{classPhysWorld_ae490054b3e1c4c5aa69cb8e3b7bd2f29}{
+\index{PhysWorld@{PhysWorld}!AddActor@{AddActor}}
+\index{AddActor@{AddActor}!PhysWorld@{PhysWorld}}
+\subsubsection[{AddActor}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::AddActor ({\bf ActorBase} $\ast$ {\em ActorToAdd})}}
+\label{db/df5/classPhysWorld_ae490054b3e1c4c5aa69cb8e3b7bd2f29}
+
+
+The adds and Actor to the physworld. The takes over for manager an Actor, and makes sure that it's physics status and 3d graphics status are properly handled. Once an actor has been passed into the Physworld using this, the physworld handle deleting it. 
+\begin{DoxyParams}{Parameters}
+\item[{\em ActorToAdd}]This is a pointer to the actor to be added \end{DoxyParams}
+
+
+Definition at line 500 of file physworld.cpp.\hypertarget{classPhysWorld_a60b7978b39fc347c2f37077737783da6}{
+\index{PhysWorld@{PhysWorld}!DoMainLoopAllItems@{DoMainLoopAllItems}}
+\index{DoMainLoopAllItems@{DoMainLoopAllItems}!PhysWorld@{PhysWorld}}
+\subsubsection[{DoMainLoopAllItems}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopAllItems ()}}
+\label{db/df5/classPhysWorld_a60b7978b39fc347c2f37077737783da6}
+
+
+Performs all the items that would normally be performed during the game loop. This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items each iteration of the main loop. 
+
+Definition at line 338 of file physworld.cpp.\hypertarget{classPhysWorld_a81b3f0dcc0a90d039623f696343e6e9c}{
+\index{PhysWorld@{PhysWorld}!DoMainLoopInputBuffering@{DoMainLoopInputBuffering}}
+\index{DoMainLoopInputBuffering@{DoMainLoopInputBuffering}!PhysWorld@{PhysWorld}}
+\subsubsection[{DoMainLoopInputBuffering}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopInputBuffering ()}}
+\label{db/df5/classPhysWorld_a81b3f0dcc0a90d039623f696343e6e9c}
+
+
+Gathers user input from the OS and places events in the event manager. This this is automatically called during the mainloop if you have set a PreInput callback. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
+
+Definition at line 360 of file physworld.cpp.\hypertarget{classPhysWorld_a994d7d8c4a9a0c003c3e7d89be7b399b}{
+\index{PhysWorld@{PhysWorld}!DoMainLoopPhysics@{DoMainLoopPhysics}}
+\index{DoMainLoopPhysics@{DoMainLoopPhysics}!PhysWorld@{PhysWorld}}
+\subsubsection[{DoMainLoopPhysics}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopPhysics ()}}
+\label{db/df5/classPhysWorld_a994d7d8c4a9a0c003c3e7d89be7b399b}
+
+
+Increments physics by one step. Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre-\/Physics Callback is set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come from although it is concievable that a game could manually insert those manually. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
+
+Definition at line 346 of file physworld.cpp.\hypertarget{classPhysWorld_a8f33541d67164a2452e568443e9905be}{
+\index{PhysWorld@{PhysWorld}!DoMainLoopRender@{DoMainLoopRender}}
+\index{DoMainLoopRender@{DoMainLoopRender}!PhysWorld@{PhysWorld}}
+\subsubsection[{DoMainLoopRender}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopRender ()}}
+\label{db/df5/classPhysWorld_a8f33541d67164a2452e568443e9905be}
+
+
+This forces the screen to be re-\/rendered. This renders the screen based on the status of all in game actors. This is automatically called in the main loop. 
+
+Definition at line 379 of file physworld.cpp.\hypertarget{classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}{
+\index{PhysWorld@{PhysWorld}!DoMainLoopWindowManagerBuffering@{DoMainLoopWindowManagerBuffering}}
+\index{DoMainLoopWindowManagerBuffering@{DoMainLoopWindowManagerBuffering}!PhysWorld@{PhysWorld}}
+\subsubsection[{DoMainLoopWindowManagerBuffering}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopWindowManagerBuffering ()}}
+\label{db/df5/classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}
+
+
+Creates events for each Window manger. This gather information from system/windows manager events, such as windows minimization, maximization, program exit, window hidden window shown, and a few other similar types of events. This makes events out of the information and places them in the event manager This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
+
+Definition at line 352 of file physworld.cpp.\hypertarget{classPhysWorld_a6d65a7412c1711497fbd1173f879243a}{
+\index{PhysWorld@{PhysWorld}!GameInit@{GameInit}}
+\index{GameInit@{GameInit}!PhysWorld@{PhysWorld}}
+\subsubsection[{GameInit}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::GameInit ()}}
+\label{db/df5/classPhysWorld_a6d65a7412c1711497fbd1173f879243a}
+
+
+This creates the game window and starts the game. Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be minimal delay from the time you call this and the game actually begins. This is also where the Main Loop for the game is housed. \hypertarget{classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}{
 \index{PhysWorld@{PhysWorld}!Log@{Log}}
 \index{Log@{Log}!PhysWorld@{PhysWorld}}
 \subsubsection[{Log}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void PhysWorld::Log (T {\em Message})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
 \label{db/df5/classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}
 
 
-Runtime Event logging Function. 
+Runtime Event logging Function. Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int unsigned long int, bool, float, double, long double, wchar\_\-t, size\_\-t, PhysReal, PhysWhole, PhysString, and \hyperlink{classPhysVector3}{PhysVector3}. If compiled statically it should support any data type which supports output streams. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Message}]This is what will be streamed to the log Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int unsigned long int, bool, float, double, long double, wchar\_\-t, size\_\-t, PhysReal, PhysWhole, PhysString, and \hyperlink{classPhysVector3}{PhysVector3}. If compiled statically it should support any data type which supports output streams. \end{DoxyParams}
+\item[{\em Message}]This is what will be streamed to the log \end{DoxyParams}
 
 
 Definition at line 219 of file physworld.cpp.\hypertarget{classPhysWorld_a1c2aeaed2a89821a4545db854da33ab8}{
@@ -128,9 +174,9 @@ Definition at line 219 of file physworld.cpp.\hypertarget{classPhysWorld_a1c2aea
 \label{db/df5/classPhysWorld_a1c2aeaed2a89821a4545db854da33ab8}
 
 
-This is the preffered way to throw an exception currently. 
+This is the preffered way to throw an exception currently. This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data type the Log function supports 
 \begin{DoxyParams}{Parameters}
-\item[{\em Message}]This will be streamed to the log, then used in a thrown exception. This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data type the Log function supports \end{DoxyParams}
+\item[{\em Message}]This will be streamed to the log, then used in a thrown exception. \end{DoxyParams}
 
 
 Definition at line 226 of file physworld.cpp.\hypertarget{classPhysWorld_a1df24ee06d5881825902b60e0d81174a}{
@@ -140,12 +186,21 @@ Definition at line 226 of file physworld.cpp.\hypertarget{classPhysWorld_a1df24e
 \label{db/df5/classPhysWorld_a1df24ee06d5881825902b60e0d81174a}
 
 
-This moves the camera relative to the world. 
+This moves the camera relative to the world. The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]Where should the camera be seated \item[{\em LookAt}]Point the camera such that this poin is centered on the screen The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point. \end{DoxyParams}
+\item[{\em Position}]Where should the camera be seated \item[{\em LookAt}]Point the camera such that this poin is centered on the screen \end{DoxyParams}
 
 
-Definition at line 332 of file physworld.cpp.
+Definition at line 332 of file physworld.cpp.\hypertarget{classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}{
+\index{PhysWorld@{PhysWorld}!ShowSystemSettingDialog@{ShowSystemSettingDialog}}
+\index{ShowSystemSettingDialog@{ShowSystemSettingDialog}!PhysWorld@{PhysWorld}}
+\subsubsection[{ShowSystemSettingDialog}]{\setlength{\rightskip}{0pt plus 5cm}bool PhysWorld::ShowSystemSettingDialog ()}}
+\label{db/df5/classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}
+
+
+This Shows an Engine Generated Configuration Screen. This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. 
+
+Definition at line 235 of file physworld.cpp.
 
 \subsection{Friends And Related Function Documentation}
 \hypertarget{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{
@@ -153,10 +208,33 @@ Definition at line 332 of file physworld.cpp.
 \index{RenderPhysWorld@{RenderPhysWorld}!PhysWorld@{PhysWorld}}
 \subsubsection[{RenderPhysWorld}]{\setlength{\rightskip}{0pt plus 5cm}void RenderPhysWorld ({\bf PhysWorld} $\ast$ {\em TheWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
 \label{db/df5/classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}
-Do Not Use this, This should be treated as an internal function, it is {\bfseries subject} {\bfseries to} {\bfseries change} {\bfseries without} {\bfseries warning} and could be {\bfseries harmful} to overall stability if used incorrectly \begin{DoxyWarning}{Warning}
+
+
+Do Not Use this, This should be treated as an internal function, it is {\bfseries subject} {\bfseries to} {\bfseries change} {\bfseries without} {\bfseries warning} and could be {\bfseries harmful} to overall stability if used incorrectly. \begin{DoxyWarning}{Warning}
 This should be treated as an internal function, it is {\bfseries subject} {\bfseries to} {\bfseries change} {\bfseries without} {\bfseries warning} and could be {\bfseries harmful} to overall stability if used incorrectly 
 \end{DoxyWarning}
 
+
+\subsection{Member Data Documentation}
+\hypertarget{classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}{
+\index{PhysWorld@{PhysWorld}!CallBacks@{CallBacks}}
+\index{CallBacks@{CallBacks}!PhysWorld@{PhysWorld}}
+\subsubsection[{CallBacks}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysWorldCallBackManager}$\ast$ {\bf PhysWorld::CallBacks}}}
+\label{db/df5/classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}
+
+
+This is a point to the default Call BackManager. All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. 
+
+Definition at line 256 of file physworld.h.\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
+\index{PhysWorld@{PhysWorld}!Events@{Events}}
+\index{Events@{Events}!PhysWorld@{PhysWorld}}
+\subsubsection[{Events}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventManager}$\ast$ {\bf PhysWorld::Events}}}
+\label{db/df5/classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}
+
+
+This is the default pointer to the Event Manager. This is the Event manager that all physworld members will place any events into. 
+
+Definition at line 260 of file physworld.h.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

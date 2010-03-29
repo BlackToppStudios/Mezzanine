@@ -12,12 +12,12 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>. 
+    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to 
+/* We welcome the use of The PhysGame anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -27,12 +27,12 @@
     - Software Patents You Do Not Wish to Freely License
     - Any Kind of Linking to Non-GPL licensed Works
     - Are Currently In Violation of Another Copyright Holder's GPL License
-    - If You want to change our code and not add a few hundred MB of stuff to 
+    - If You want to change our code and not add a few hundred MB of stuff to
         your distribution
 
    These and other limitations could cause serious legal problems if you ignore
    them, so it is best to simply contact us or the Free Software Foundation, if
-   you have any questions. 
+   you have any questions.
 
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
@@ -250,7 +250,6 @@ void PhysWorld::GameInit()
 {
 	//try to load the ogre config
 	this->LoadOgreSettings();
-
 	this->CreateRenderWindow();
 
     //Create a the RenderTimer, which will be used to measure the time
@@ -261,7 +260,7 @@ void PhysWorld::GameInit()
 	//Used for tracking times to prevent Infinite render loops in graphically simple games
 	//PhysWhole Times[] = {0,0,0,0};
 
-	//TODO finish test code
+	/// @todo TODO finish test code, there is a bunch of sloppy test code for the robot in the gameinit
 	this->OgreResource->initialiseResourceGroup("Robot");
 	this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 	Ogre::Entity *ent1 = this->OgreSceneManager->createEntity( "Robot", "robot.mesh" );
@@ -299,6 +298,7 @@ void PhysWorld::GameInit()
         {
             this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
 			Callbackbools[2] = this->CallBacks->PreRender();
+			this->DoMainLoopWindowManagerBuffering();
         }
 
 		//Render the frame and figure the amount of time it took //Limit frame rate to 62.5
