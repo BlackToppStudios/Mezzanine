@@ -63,14 +63,14 @@ using namespace std;
 MetaCode::MetaCode()
 {}
 
-MetaCode::MetaCode(int MetaValue_, short unsigned int ID_, InputCode Code_)
+MetaCode::MetaCode(int MetaValue_, short unsigned int ID_, MetaCode::InputCode Code_)
 {
     Construct(MetaValue_, ID_, Code_);
 }
 
 MetaCode::MetaCode(RawEvent _RawEvent)
 {
-    //TODO: Actually process each event
+    /// @todo TODO: Actually process each event
     //Make a metacode for each event and return it
     switch(_RawEvent.type)
     {
@@ -100,7 +100,7 @@ MetaCode::MetaCode(RawEvent _RawEvent)
     }
 }
 
-void MetaCode::Construct(int MetaValue_, short unsigned int ID_, InputCode Code_)
+void MetaCode::Construct(int MetaValue_, short unsigned int ID_, MetaCode::MetaCode::InputCode Code_)
 {
     SetMetaValue(MetaValue_);
     SetID(ID_);
@@ -112,7 +112,7 @@ int MetaCode::GetMetaValue()
     return this->MetaValue;
 }
 
-InputCode MetaCode::GetCode()
+MetaCode::InputCode MetaCode::GetCode()
 {
     return this->Code;
 }
@@ -127,7 +127,7 @@ void MetaCode::SetMetaValue(int MetaValue_)
     this->MetaValue=MetaValue_;
 }
 
-void MetaCode::SetCode(InputCode Code_)
+void MetaCode::SetCode(MetaCode::InputCode Code_)
 {
     this->Code=Code_;
 }
@@ -216,4 +216,3 @@ EventType PhysEventUserInput::getEventType()
 
 
 #endif
-

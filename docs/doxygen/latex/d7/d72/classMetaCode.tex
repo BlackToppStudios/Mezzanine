@@ -4,31 +4,360 @@
 }
 
 
-This is the main entry point for the entire library.  
+This stores details about one portion of user input.  
 
 
-{\ttfamily \#include $<$physeventuserinput.h$>$}\subsection*{Public Member Functions}
+{\ttfamily \#include $<$physeventuserinput.h$>$}\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{InputCode} \{ \par
+{\bfseries KEY\_\-UNKNOWN} =  0, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24af7c19e29f8e1299858f9a9a0e2e0df32}{KEY\_\-FIRST} =  0, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a11be427f22c538fc5682e0b7fa3e1e6d}{KEY\_\-BACKSPACE} =  8, 
+{\bfseries KEY\_\-TAB} =  9, 
+\par
+{\bfseries KEY\_\-CLEAR} =  12, 
+{\bfseries KEY\_\-RETURN} =  13, 
+{\bfseries KEY\_\-PAUSE} =  19, 
+{\bfseries KEY\_\-ESCAPE} =  27, 
+\par
+{\bfseries KEY\_\-SPACE} =  32, 
+{\bfseries KEY\_\-EXCLAIM} =  33, 
+{\bfseries KEY\_\-QUOTEDBL} =  34, 
+{\bfseries KEY\_\-HASH} =  35, 
+\par
+{\bfseries KEY\_\-DOLLAR} =  36, 
+{\bfseries KEY\_\-AMPERSAND} =  38, 
+{\bfseries KEY\_\-QUOTE} =  39, 
+{\bfseries KEY\_\-LEFTPAREN} =  40, 
+\par
+{\bfseries KEY\_\-RIGHTPAREN} =  41, 
+{\bfseries KEY\_\-ASTERISK} =  42, 
+{\bfseries KEY\_\-PLUS} =  43, 
+{\bfseries KEY\_\-COMMA} =  44, 
+\par
+{\bfseries KEY\_\-MINUS} =  45, 
+{\bfseries KEY\_\-PERIOD} =  46, 
+{\bfseries KEY\_\-SLASH} =  47, 
+{\bfseries KEY\_\-0} =  48, 
+\par
+{\bfseries KEY\_\-1} =  49, 
+{\bfseries KEY\_\-2} =  50, 
+{\bfseries KEY\_\-3} =  51, 
+{\bfseries KEY\_\-4} =  52, 
+\par
+{\bfseries KEY\_\-5} =  53, 
+{\bfseries KEY\_\-6} =  54, 
+{\bfseries KEY\_\-7} =  55, 
+{\bfseries KEY\_\-8} =  56, 
+\par
+{\bfseries KEY\_\-9} =  57, 
+{\bfseries KEY\_\-COLON} =  58, 
+{\bfseries KEY\_\-SEMICOLON} =  59, 
+{\bfseries KEY\_\-LESS} =  60, 
+\par
+{\bfseries KEY\_\-EQUALS} =  61, 
+{\bfseries KEY\_\-GREATER} =  62, 
+{\bfseries KEY\_\-QUESTION} =  63, 
+{\bfseries KEY\_\-AT} =  64, 
+\par
+{\bfseries KEY\_\-LEFTBRACKET} =  91, 
+{\bfseries KEY\_\-BACKSLASH} =  92, 
+{\bfseries KEY\_\-RIGHTBRACKET} =  93, 
+{\bfseries KEY\_\-CARET} =  94, 
+\par
+{\bfseries KEY\_\-UNDERSCORE} =  95, 
+{\bfseries KEY\_\-BACKQUOTE} =  96, 
+{\bfseries KEY\_\-a} =  97, 
+{\bfseries KEY\_\-b} =  98, 
+\par
+{\bfseries KEY\_\-c} =  99, 
+{\bfseries KEY\_\-d} =  100, 
+{\bfseries KEY\_\-e} =  101, 
+{\bfseries KEY\_\-f} =  102, 
+\par
+{\bfseries KEY\_\-g} =  103, 
+{\bfseries KEY\_\-h} =  104, 
+{\bfseries KEY\_\-i} =  105, 
+{\bfseries KEY\_\-j} =  106, 
+\par
+{\bfseries KEY\_\-k} =  107, 
+{\bfseries KEY\_\-l} =  108, 
+{\bfseries KEY\_\-m} =  109, 
+{\bfseries KEY\_\-n} =  110, 
+\par
+{\bfseries KEY\_\-o} =  111, 
+{\bfseries KEY\_\-p} =  112, 
+{\bfseries KEY\_\-q} =  113, 
+{\bfseries KEY\_\-r} =  114, 
+\par
+{\bfseries KEY\_\-s} =  115, 
+{\bfseries KEY\_\-t} =  116, 
+{\bfseries KEY\_\-u} =  117, 
+{\bfseries KEY\_\-v} =  118, 
+\par
+{\bfseries KEY\_\-w} =  119, 
+{\bfseries KEY\_\-x} =  120, 
+{\bfseries KEY\_\-y} =  121, 
+{\bfseries KEY\_\-z} =  122, 
+\par
+{\bfseries KEY\_\-DELETE} =  127, 
+{\bfseries KEY\_\-WORLD\_\-0} =  160, 
+{\bfseries KEY\_\-WORLD\_\-1} =  161, 
+{\bfseries KEY\_\-WORLD\_\-2} =  162, 
+\par
+{\bfseries KEY\_\-WORLD\_\-3} =  163, 
+{\bfseries KEY\_\-WORLD\_\-4} =  164, 
+{\bfseries KEY\_\-WORLD\_\-5} =  165, 
+{\bfseries KEY\_\-WORLD\_\-6} =  166, 
+\par
+{\bfseries KEY\_\-WORLD\_\-7} =  167, 
+{\bfseries KEY\_\-WORLD\_\-8} =  168, 
+{\bfseries KEY\_\-WORLD\_\-9} =  169, 
+{\bfseries KEY\_\-WORLD\_\-10} =  170, 
+\par
+{\bfseries KEY\_\-WORLD\_\-11} =  171, 
+{\bfseries KEY\_\-WORLD\_\-12} =  172, 
+{\bfseries KEY\_\-WORLD\_\-13} =  173, 
+{\bfseries KEY\_\-WORLD\_\-14} =  174, 
+\par
+{\bfseries KEY\_\-WORLD\_\-15} =  175, 
+{\bfseries KEY\_\-WORLD\_\-16} =  176, 
+{\bfseries KEY\_\-WORLD\_\-17} =  177, 
+{\bfseries KEY\_\-WORLD\_\-18} =  178, 
+\par
+{\bfseries KEY\_\-WORLD\_\-19} =  179, 
+{\bfseries KEY\_\-WORLD\_\-20} =  180, 
+{\bfseries KEY\_\-WORLD\_\-21} =  181, 
+{\bfseries KEY\_\-WORLD\_\-22} =  182, 
+\par
+{\bfseries KEY\_\-WORLD\_\-23} =  183, 
+{\bfseries KEY\_\-WORLD\_\-24} =  184, 
+{\bfseries KEY\_\-WORLD\_\-25} =  185, 
+{\bfseries KEY\_\-WORLD\_\-26} =  186, 
+\par
+{\bfseries KEY\_\-WORLD\_\-27} =  187, 
+{\bfseries KEY\_\-WORLD\_\-28} =  188, 
+{\bfseries KEY\_\-WORLD\_\-29} =  189, 
+{\bfseries KEY\_\-WORLD\_\-30} =  190, 
+\par
+{\bfseries KEY\_\-WORLD\_\-31} =  191, 
+{\bfseries KEY\_\-WORLD\_\-32} =  192, 
+{\bfseries KEY\_\-WORLD\_\-33} =  193, 
+{\bfseries KEY\_\-WORLD\_\-34} =  194, 
+\par
+{\bfseries KEY\_\-WORLD\_\-35} =  195, 
+{\bfseries KEY\_\-WORLD\_\-36} =  196, 
+{\bfseries KEY\_\-WORLD\_\-37} =  197, 
+{\bfseries KEY\_\-WORLD\_\-38} =  198, 
+\par
+{\bfseries KEY\_\-WORLD\_\-39} =  199, 
+{\bfseries KEY\_\-WORLD\_\-40} =  200, 
+{\bfseries KEY\_\-WORLD\_\-41} =  201, 
+{\bfseries KEY\_\-WORLD\_\-42} =  202, 
+\par
+{\bfseries KEY\_\-WORLD\_\-43} =  203, 
+{\bfseries KEY\_\-WORLD\_\-44} =  204, 
+{\bfseries KEY\_\-WORLD\_\-45} =  205, 
+{\bfseries KEY\_\-WORLD\_\-46} =  206, 
+\par
+{\bfseries KEY\_\-WORLD\_\-47} =  207, 
+{\bfseries KEY\_\-WORLD\_\-48} =  208, 
+{\bfseries KEY\_\-WORLD\_\-49} =  209, 
+{\bfseries KEY\_\-WORLD\_\-50} =  210, 
+\par
+{\bfseries KEY\_\-WORLD\_\-51} =  211, 
+{\bfseries KEY\_\-WORLD\_\-52} =  212, 
+{\bfseries KEY\_\-WORLD\_\-53} =  213, 
+{\bfseries KEY\_\-WORLD\_\-54} =  214, 
+\par
+{\bfseries KEY\_\-WORLD\_\-55} =  215, 
+{\bfseries KEY\_\-WORLD\_\-56} =  216, 
+{\bfseries KEY\_\-WORLD\_\-57} =  217, 
+{\bfseries KEY\_\-WORLD\_\-58} =  218, 
+\par
+{\bfseries KEY\_\-WORLD\_\-59} =  219, 
+{\bfseries KEY\_\-WORLD\_\-60} =  220, 
+{\bfseries KEY\_\-WORLD\_\-61} =  221, 
+{\bfseries KEY\_\-WORLD\_\-62} =  222, 
+\par
+{\bfseries KEY\_\-WORLD\_\-63} =  223, 
+{\bfseries KEY\_\-WORLD\_\-64} =  224, 
+{\bfseries KEY\_\-WORLD\_\-65} =  225, 
+{\bfseries KEY\_\-WORLD\_\-66} =  226, 
+\par
+{\bfseries KEY\_\-WORLD\_\-67} =  227, 
+{\bfseries KEY\_\-WORLD\_\-68} =  228, 
+{\bfseries KEY\_\-WORLD\_\-69} =  229, 
+{\bfseries KEY\_\-WORLD\_\-70} =  230, 
+\par
+{\bfseries KEY\_\-WORLD\_\-71} =  231, 
+{\bfseries KEY\_\-WORLD\_\-72} =  232, 
+{\bfseries KEY\_\-WORLD\_\-73} =  233, 
+{\bfseries KEY\_\-WORLD\_\-74} =  234, 
+\par
+{\bfseries KEY\_\-WORLD\_\-75} =  235, 
+{\bfseries KEY\_\-WORLD\_\-76} =  236, 
+{\bfseries KEY\_\-WORLD\_\-77} =  237, 
+{\bfseries KEY\_\-WORLD\_\-78} =  238, 
+\par
+{\bfseries KEY\_\-WORLD\_\-79} =  239, 
+{\bfseries KEY\_\-WORLD\_\-80} =  240, 
+{\bfseries KEY\_\-WORLD\_\-81} =  241, 
+{\bfseries KEY\_\-WORLD\_\-82} =  242, 
+\par
+{\bfseries KEY\_\-WORLD\_\-83} =  243, 
+{\bfseries KEY\_\-WORLD\_\-84} =  244, 
+{\bfseries KEY\_\-WORLD\_\-85} =  245, 
+{\bfseries KEY\_\-WORLD\_\-86} =  246, 
+\par
+{\bfseries KEY\_\-WORLD\_\-87} =  247, 
+{\bfseries KEY\_\-WORLD\_\-88} =  248, 
+{\bfseries KEY\_\-WORLD\_\-89} =  249, 
+{\bfseries KEY\_\-WORLD\_\-90} =  250, 
+\par
+{\bfseries KEY\_\-WORLD\_\-91} =  251, 
+{\bfseries KEY\_\-WORLD\_\-92} =  252, 
+{\bfseries KEY\_\-WORLD\_\-93} =  253, 
+{\bfseries KEY\_\-WORLD\_\-94} =  254, 
+\par
+{\bfseries KEY\_\-WORLD\_\-95} =  255, 
+{\bfseries KEY\_\-KP0} =  256, 
+{\bfseries KEY\_\-KP1} =  257, 
+{\bfseries KEY\_\-KP2} =  258, 
+\par
+{\bfseries KEY\_\-KP3} =  259, 
+{\bfseries KEY\_\-KP4} =  260, 
+{\bfseries KEY\_\-KP5} =  261, 
+{\bfseries KEY\_\-KP6} =  262, 
+\par
+{\bfseries KEY\_\-KP7} =  263, 
+{\bfseries KEY\_\-KP8} =  264, 
+{\bfseries KEY\_\-KP9} =  265, 
+{\bfseries KEY\_\-KP\_\-PERIOD} =  266, 
+\par
+{\bfseries KEY\_\-KP\_\-DIVIDE} =  267, 
+{\bfseries KEY\_\-KP\_\-MULTIPLY} =  268, 
+{\bfseries KEY\_\-KP\_\-MINUS} =  269, 
+{\bfseries KEY\_\-KP\_\-PLUS} =  270, 
+\par
+{\bfseries KEY\_\-KP\_\-ENTER} =  271, 
+{\bfseries KEY\_\-KP\_\-EQUALS} =  272, 
+{\bfseries KEY\_\-UP} =  273, 
+{\bfseries KEY\_\-DOWN} =  274, 
+\par
+{\bfseries KEY\_\-RIGHT} =  275, 
+{\bfseries KEY\_\-LEFT} =  276, 
+{\bfseries KEY\_\-INSERT} =  277, 
+{\bfseries KEY\_\-HOME} =  278, 
+\par
+{\bfseries KEY\_\-END} =  279, 
+{\bfseries KEY\_\-PAGEUP} =  280, 
+{\bfseries KEY\_\-PAGEDOWN} =  281, 
+{\bfseries KEY\_\-F1} =  282, 
+\par
+{\bfseries KEY\_\-F2} =  283, 
+{\bfseries KEY\_\-F3} =  284, 
+{\bfseries KEY\_\-F4} =  285, 
+{\bfseries KEY\_\-F5} =  286, 
+\par
+{\bfseries KEY\_\-F6} =  287, 
+{\bfseries KEY\_\-F7} =  288, 
+{\bfseries KEY\_\-F8} =  289, 
+{\bfseries KEY\_\-F9} =  290, 
+\par
+{\bfseries KEY\_\-F10} =  291, 
+{\bfseries KEY\_\-F11} =  292, 
+{\bfseries KEY\_\-F12} =  293, 
+{\bfseries KEY\_\-F13} =  294, 
+\par
+{\bfseries KEY\_\-F14} =  295, 
+{\bfseries KEY\_\-F15} =  296, 
+{\bfseries KEY\_\-NUMLOCK} =  300, 
+{\bfseries KEY\_\-CAPSLOCK} =  301, 
+\par
+{\bfseries KEY\_\-SCROLLOCK} =  302, 
+{\bfseries KEY\_\-RSHIFT} =  303, 
+{\bfseries KEY\_\-LSHIFT} =  304, 
+{\bfseries KEY\_\-RCTRL} =  305, 
+\par
+{\bfseries KEY\_\-LCTRL} =  306, 
+{\bfseries KEY\_\-RALT} =  307, 
+{\bfseries KEY\_\-LALT} =  308, 
+{\bfseries KEY\_\-RMETA} =  309, 
+\par
+{\bfseries KEY\_\-LMETA} =  310, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a6404942e1d26f745d17c7a508c0ffa55}{KEY\_\-LSUPER} =  311, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a729875d449534841cde46b53777f7753}{KEY\_\-RSUPER} =  312, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a79956c29fd4e16e82532643471b79aaa}{KEY\_\-MODE} =  313, 
+\par
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a386e42ccb1fbb297d9b672ed8064871c}{KEY\_\-COMPOSE} =  314, 
+{\bfseries KEY\_\-HELP} =  315, 
+{\bfseries KEY\_\-PRINT} =  316, 
+{\bfseries KEY\_\-SYSREQ} =  317, 
+\par
+{\bfseries KEY\_\-BREAK} =  318, 
+{\bfseries KEY\_\-MENU} =  319, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24ad546e765e064929fb89556bd5f581756}{KEY\_\-POWER} =  320, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a9c203a1b83ec1bb0a29bbcd71fcc6363}{KEY\_\-EURO} =  321, 
+\par
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a0bbef750535825d14bef6d8369dfe61f}{KEY\_\-UNDO} =  322, 
+{\bfseries KEYMOD\_\-NONE} =  323, 
+{\bfseries KEYMOD\_\-LSHIFT} =  324, 
+{\bfseries KEYMOD\_\-RSHIFT} =  325, 
+\par
+{\bfseries KEYMOD\_\-LCTRL} =  326, 
+{\bfseries KEYMOD\_\-RCTRL} =  327, 
+{\bfseries KEYMOD\_\-LALT} =  328, 
+{\bfseries KEYMOD\_\-RALT} =  329, 
+\par
+{\bfseries KEYMOD\_\-LMETA} =  330, 
+{\bfseries KEYMOD\_\-RMETA} =  331, 
+{\bfseries KEYMOD\_\-NUM} =  332, 
+{\bfseries KEYMOD\_\-CAPS} =  333, 
+\par
+{\bfseries KEYMOD\_\-MODE} =  334, 
+{\bfseries KEYMOD\_\-RESERVED} =  335, 
+{\bfseries KEY\_\-LAST} =  479, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c}{INPUTEVENT\_\-FIRST} =  480, 
+\par
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a98454cf025e1b11ac8978c4b493582c4}{MOUSE\_\-FIRST} =  480, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a90e6bf109b0decae5cc828ebc5934dfa}{MOUSEBUTTON} =  481, 
+{\bfseries MOUSEABSOLUTEVERTICAL} =  482, 
+{\bfseries MOUSEABSOLUTEHORIZONTAL} =  483, 
+\par
+{\bfseries MOUSEVERTICAL} =  484, 
+{\bfseries MOUSEHORIZONTAL} =  485, 
+{\bfseries MOUSEWHEELVERTICAL} =  485, 
+{\bfseries MOUSEWHEELHORIZONTAL} =  489, 
+\par
+{\bfseries MOUSE\_\-LAST} =  490, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aa3222db6ab303f525a1a0c87603d806c}{JOYSTICK\_\-FIRST} =  499, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24ab52ae2c161faf882271ec71ded86501f}{JOYSTICKBUTTON} =  500, 
+{\bfseries JOYSTICKMOTIONAXIS} =  501, 
+\par
+{\bfseries JOYSTICKBALLVERTICAL} =  502, 
+{\bfseries JOYSTICKBALLHORIZONTAL} =  503, 
+{\bfseries JOYSTICKHATVERTICAL} =  504, 
+{\bfseries JOYSTICKHATHORIZONTAL} =  505, 
+\par
+{\bfseries JOYSTICK\_\-LAST} =  506, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24ad1ca5de26bcaae04a631fdaa13e5749f}{INPUTEVENT\_\-LAST} =  512
+ \}
+\begin{DoxyCompactList}\small\item\em The InputCode enum defines all the posible types of inputs. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classMetaCode_a6d4637b2894e5a2d46577c08259a2416}{MetaCode} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMetaCode_a76bba215580768ab22c505ea18b2ec6d}{MetaCode} (int MetaValue\_\-, short unsigned int ID\_\-, InputCode Code\_\-)
+\hyperlink{classMetaCode_a8f333b3a35badcda068fa44c7ee1f572}{MetaCode} (int MetaValue\_\-, short unsigned int ID\_\-, \hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{MetaCode::InputCode} Code\_\-)
 \begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classMetaCode_ad0a739796fa1de2991c196d8ee7b19b2}{
-{\bfseries MetaCode} (RawEvent \_\-RawEvent)}
-\label{d7/d72/classMetaCode_ad0a739796fa1de2991c196d8ee7b19b2}
-
-\item 
-\hypertarget{classMetaCode_a9438d04aa38086baa1c5ccd79510c0fb}{
-InputCode {\bfseries GetCode} ()}
-\label{d7/d72/classMetaCode_a9438d04aa38086baa1c5ccd79510c0fb}
-
-\item 
-\hypertarget{classMetaCode_a24f0c5469a12ccc59fcf3b830e6cfc27}{
-void {\bfseries SetCode} (InputCode Code\_\-)}
-\label{d7/d72/classMetaCode_a24f0c5469a12ccc59fcf3b830e6cfc27}
-
-\item 
+\hyperlink{classMetaCode_ad0a739796fa1de2991c196d8ee7b19b2}{MetaCode} (RawEvent \_\-RawEvent)
+\begin{DoxyCompactList}\small\item\em The Heavy Lifting Consctructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{MetaCode::InputCode} \hyperlink{classMetaCode_a862b35146ab4aa24f78bf951cfa21aa8}{GetCode} ()
+\begin{DoxyCompactList}\small\item\em This Returns the Inputcode. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMetaCode_acfc73f0b06c9a727f59681779caed03d}{SetCode} (\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{MetaCode::InputCode} Code\_\-)
+\begin{DoxyCompactList}\small\item\em This Sets The InputCode. \item\end{DoxyCompactList}\item 
 \hypertarget{classMetaCode_a6a33ef9b7e2414ecfd97aadb14eca2de}{
 int {\bfseries GetMetaValue} ()}
 \label{d7/d72/classMetaCode_a6a33ef9b7e2414ecfd97aadb14eca2de}
@@ -57,9 +386,87 @@ bool {\bfseries operator==} (const \hyperlink{classMetaCode}{MetaCode} \&other) 
 
 
 \subsection{Detailed Description}
-This is the main entry point for the entire library. A Metacode contains the data that is passed around with an input event. It stores one type of button press or analog representation (Mouse move, joystick tilt, wheel spin, etc...). If it is an analog representation it will also store how far or how it is pushed, pressed, rotated, or whatever. Several of these can be used in combination to represent button combinations, or complex input combination (like portions of fighter game moves). 
+This stores details about one portion of user input. A Metacode contains the data that is passed around with an input event. It stores one type of button press or analog representation (Mouse move, joystick tilt, wheel spin, etc...). If it is an analog representation it will also store how far or how it is pushed, pressed, rotated, or whatever. Several of these can be used in combination to represent button combinations, or complex input combination (like portions of fighter game moves). 
 
-Definition at line 379 of file physeventuserinput.h.
+Definition at line 92 of file physeventuserinput.h.
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{
+\index{MetaCode@{MetaCode}!InputCode@{InputCode}}
+\index{InputCode@{InputCode}!MetaCode@{MetaCode}}
+\subsubsection[{InputCode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf MetaCode::InputCode}}}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}
+
+
+The InputCode enum defines all the posible types of inputs. It has one entry for each key on a most keyboards. Then it has an entry for most mouse and joystick input methods. \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{KEY\_\-FIRST@{KEY\_\-FIRST}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!KEY\_\-FIRST@{KEY\_\-FIRST}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24af7c19e29f8e1299858f9a9a0e2e0df32}{
+KEY\_\-FIRST}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24af7c19e29f8e1299858f9a9a0e2e0df32}
+}]KEY\_\-UNKNOWN This is used for unsupported keys or keys that are not in Unicode. \index{KEY\_\-BACKSPACE@{KEY\_\-BACKSPACE}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!KEY\_\-BACKSPACE@{KEY\_\-BACKSPACE}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a11be427f22c538fc5682e0b7fa3e1e6d}{
+KEY\_\-BACKSPACE}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a11be427f22c538fc5682e0b7fa3e1e6d}
+}]KEY\_\-FIRST Same Value as KEY\_\-UNKOWN, is Guaranteed to be the lowest value of any key. \index{KEY\_\-LSUPER@{KEY\_\-LSUPER}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!KEY\_\-LSUPER@{KEY\_\-LSUPER}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a6404942e1d26f745d17c7a508c0ffa55}{
+KEY\_\-LSUPER}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a6404942e1d26f745d17c7a508c0ffa55}
+}]Left \char`\"{}Windows\char`\"{} key \index{KEY\_\-RSUPER@{KEY\_\-RSUPER}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!KEY\_\-RSUPER@{KEY\_\-RSUPER}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a729875d449534841cde46b53777f7753}{
+KEY\_\-RSUPER}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a729875d449534841cde46b53777f7753}
+}]Right \char`\"{}Windows\char`\"{} key \index{KEY\_\-MODE@{KEY\_\-MODE}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!KEY\_\-MODE@{KEY\_\-MODE}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a79956c29fd4e16e82532643471b79aaa}{
+KEY\_\-MODE}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a79956c29fd4e16e82532643471b79aaa}
+}]\char`\"{}Alt Gr\char`\"{} key \index{KEY\_\-COMPOSE@{KEY\_\-COMPOSE}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!KEY\_\-COMPOSE@{KEY\_\-COMPOSE}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a386e42ccb1fbb297d9b672ed8064871c}{
+KEY\_\-COMPOSE}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a386e42ccb1fbb297d9b672ed8064871c}
+}]Multi-\/key compose key \index{KEY\_\-POWER@{KEY\_\-POWER}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!KEY\_\-POWER@{KEY\_\-POWER}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24ad546e765e064929fb89556bd5f581756}{
+KEY\_\-POWER}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24ad546e765e064929fb89556bd5f581756}
+}]Power Macintosh power key \index{KEY\_\-EURO@{KEY\_\-EURO}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!KEY\_\-EURO@{KEY\_\-EURO}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a9c203a1b83ec1bb0a29bbcd71fcc6363}{
+KEY\_\-EURO}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a9c203a1b83ec1bb0a29bbcd71fcc6363}
+}]Some European keyboards \index{KEY\_\-UNDO@{KEY\_\-UNDO}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!KEY\_\-UNDO@{KEY\_\-UNDO}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a0bbef750535825d14bef6d8369dfe61f}{
+KEY\_\-UNDO}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a0bbef750535825d14bef6d8369dfe61f}
+}]Atari keyboard has Undo \index{INPUTEVENT\_\-FIRST@{INPUTEVENT\_\-FIRST}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!INPUTEVENT\_\-FIRST@{INPUTEVENT\_\-FIRST}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c}{
+INPUTEVENT\_\-FIRST}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c}
+}]The last KeyCode, all Keys values will be less than this, and all Events will be larger than that. \index{MOUSE\_\-FIRST@{MOUSE\_\-FIRST}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!MOUSE\_\-FIRST@{MOUSE\_\-FIRST}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a98454cf025e1b11ac8978c4b493582c4}{
+MOUSE\_\-FIRST}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a98454cf025e1b11ac8978c4b493582c4}
+}]The First non-\/event, all Keys values will be more than this. \index{MOUSEBUTTON@{MOUSEBUTTON}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!MOUSEBUTTON@{MOUSEBUTTON}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a90e6bf109b0decae5cc828ebc5934dfa}{
+MOUSEBUTTON}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a90e6bf109b0decae5cc828ebc5934dfa}
+}]The First Mouse event, all Mouse Event values will be more than this. \index{JOYSTICK\_\-FIRST@{JOYSTICK\_\-FIRST}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!JOYSTICK\_\-FIRST@{JOYSTICK\_\-FIRST}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aa3222db6ab303f525a1a0c87603d806c}{
+JOYSTICK\_\-FIRST}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aa3222db6ab303f525a1a0c87603d806c}
+}]The last MouseEvent Code, all Mouse events will be less than this. \index{JOYSTICKBUTTON@{JOYSTICKBUTTON}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!JOYSTICKBUTTON@{JOYSTICKBUTTON}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24ab52ae2c161faf882271ec71ded86501f}{
+JOYSTICKBUTTON}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24ab52ae2c161faf882271ec71ded86501f}
+}]The First JoyStick event, all Joystick Event values will be more than this. \index{INPUTEVENT\_\-LAST@{INPUTEVENT\_\-LAST}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!INPUTEVENT\_\-LAST@{INPUTEVENT\_\-LAST}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24ad1ca5de26bcaae04a631fdaa13e5749f}{
+INPUTEVENT\_\-LAST}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24ad1ca5de26bcaae04a631fdaa13e5749f}
+}]The last JoyStick Event Code, all JoyStick events will be less than this. \end{description}
+\end{Desc}
+
+
+
+Definition at line 99 of file physeventuserinput.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classMetaCode_a6d4637b2894e5a2d46577c08259a2416}{
@@ -71,19 +478,62 @@ Definition at line 379 of file physeventuserinput.h.
 
 Default constructor. This sets nothing on the \hyperlink{classMetaCode}{MetaCode} and leaves it completely unassigned. Accessing a data member could cause problems 
 
-Definition at line 63 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a76bba215580768ab22c505ea18b2ec6d}{
+Definition at line 63 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a8f333b3a35badcda068fa44c7ee1f572}{
 \index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
 \index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
-\subsubsection[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}MetaCode::MetaCode (int {\em MetaValue\_\-}, \/  short unsigned int {\em ID\_\-}, \/  InputCode {\em Code\_\-})}}
-\label{d7/d72/classMetaCode_a76bba215580768ab22c505ea18b2ec6d}
+\subsubsection[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}MetaCode::MetaCode (int {\em MetaValue\_\-}, \/  short unsigned int {\em ID\_\-}, \/  {\bf MetaCode::InputCode} {\em Code\_\-})}}
+\label{d7/d72/classMetaCode_a8f333b3a35badcda068fa44c7ee1f572}
 
 
-Descriptive Constructor. This sets all values in the \hyperlink{classMetaCode}{MetaCode}, leaving it in completely ready state. 
+Descriptive Constructor. This sets all values in the \hyperlink{classMetaCode}{MetaCode}, leaving it in completely ready state. This is the ideal constructor for simulating user input. 
 \begin{DoxyParams}{Parameters}
 \item[{\em MetaValue\_\-}]How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed. \item[{\em ID\_\-}]Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item. \item[{\em Code\_\-}]Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support. \end{DoxyParams}
 
 
-Definition at line 66 of file physeventuserinput.cpp.
+Definition at line 66 of file physeventuserinput.cpp.\hypertarget{classMetaCode_ad0a739796fa1de2991c196d8ee7b19b2}{
+\index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
+\index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
+\subsubsection[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}MetaCode::MetaCode (RawEvent {\em \_\-RawEvent})}}
+\label{d7/d72/classMetaCode_ad0a739796fa1de2991c196d8ee7b19b2}
+
+
+The Heavy Lifting Consctructor. This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. \begin{DoxyWarning}{Warning}
+We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In that event you would have to recompile your application to get it working with a new version of physgame. 
+\end{DoxyWarning}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000002}{Todo}]TODO: Actually process each event \end{Desc}
+
+
+Definition at line 71 of file physeventuserinput.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classMetaCode_a862b35146ab4aa24f78bf951cfa21aa8}{
+\index{MetaCode@{MetaCode}!GetCode@{GetCode}}
+\index{GetCode@{GetCode}!MetaCode@{MetaCode}}
+\subsubsection[{GetCode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::InputCode} MetaCode::GetCode ()}}
+\label{d7/d72/classMetaCode_a862b35146ab4aa24f78bf951cfa21aa8}
+
+
+This Returns the Inputcode. This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with \hyperlink{classMetaCode_acfc73f0b06c9a727f59681779caed03d}{SetCode} . \begin{DoxyReturn}{Returns}
+This returns the input code for this \hyperlink{classMetaCode}{MetaCode} 
+\end{DoxyReturn}
+
+
+Definition at line 115 of file physeventuserinput.cpp.\hypertarget{classMetaCode_acfc73f0b06c9a727f59681779caed03d}{
+\index{MetaCode@{MetaCode}!SetCode@{SetCode}}
+\index{SetCode@{SetCode}!MetaCode@{MetaCode}}
+\subsubsection[{SetCode}]{\setlength{\rightskip}{0pt plus 5cm}void MetaCode::SetCode ({\bf MetaCode::InputCode} {\em Code\_\-})}}
+\label{d7/d72/classMetaCode_acfc73f0b06c9a727f59681779caed03d}
+
+
+This Sets The InputCode. See \hyperlink{classMetaCode_a862b35146ab4aa24f78bf951cfa21aa8}{GetCode} to see exactly what the Code is. This will Set the code stored in this \hyperlink{classMetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classMetaCode_a862b35146ab4aa24f78bf951cfa21aa8}{GetCode} . 
+\begin{DoxyParams}{Parameters}
+\item[{\em Code\_\-}]Teh value you want the stored code to become. \end{DoxyParams}
+
+
+Definition at line 130 of file physeventuserinput.cpp.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 
