@@ -103,6 +103,12 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
     //this->OgreResource->initialiseResourceGroup("Robot");
 
     TestLogger();
+    Log("Verifying size of userinput events:");
+    Log(sizeof(MetaCode::InputCode));
+    Log(sizeof(SDLKey));
+    if(sizeof(MetaCode::InputCode) != sizeof(SDLKey))
+        {LogAndThrow("They Don't match userinput subsystem will go down faster than 'that' girl on prom night.");}
+    Log("They match, the User Input subsystem won't crash instantly");
 
     //Callbacks are the main way that a game using the PhysWorld will be able to have their code run at custom times
 	this->CallBacks = new PhysWorldCallBackManager(this);
@@ -150,6 +156,7 @@ void PhysWorld::TestLogger()
     PhysWhole temp15 = 15;
     PhysString temp16("16 or so");
     PhysVector3 temp17(0,1,7);
+
     //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
     //TODO add each type of event here to make it really wasy to log events
 

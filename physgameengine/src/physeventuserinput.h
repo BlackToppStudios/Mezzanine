@@ -390,7 +390,10 @@ class MetaCode
         int MetaValue;
         short unsigned int ID;
         MetaCode::InputCode Code;
-        void Construct(int MetaValue_, short unsigned int ID_, MetaCode::InputCode Code_);
+        void Construct(const RawEvent &RawEvent_);
+        void Construct(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_);
+
+        static MetaCode::InputCode GetInputCodeFromRawEvent(const RawEvent &RawEvent_);
 
     public:
         /// @brief Default constructor
@@ -402,14 +405,14 @@ class MetaCode
         /// @param MetaValue_ How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed.
         /// @param ID_ Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item.
         /// @param Code_ Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support.
-        MetaCode(int MetaValue_, short unsigned int ID_, MetaCode::InputCode Code_);
+        MetaCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_);
 
         /// @brief The Heavy Lifting Consctructor
         /// @details This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information
         /// from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals.
         /// @warning We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In
         /// that event you would have to recompile your application to get it working with a new version of physgame.
-        MetaCode(RawEvent _RawEvent);
+        MetaCode(const RawEvent &RawEvent_);
 
         /// @brief This Returns the Inputcode
         /// @details This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred.
@@ -420,14 +423,37 @@ class MetaCode
         /// @brief This Sets The InputCode
         /// @details See @ref GetCode to see exactly what the Code is. This will Set the code stored in this MetaCode. This value can be retrieved with @ref GetCode .
         /// @param Code_ Teh value you want the stored code to become.
-        void SetCode(MetaCode::InputCode Code_);
+        void SetCode(const MetaCode::InputCode &Code_);
 
+        /// @brief This Returns the MetaValue
+        /// @details The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value.
+        /// This value can be set with @ref SetMetaValue .
+        /// @return This returns the input code for this MetaCode. For keyboard Buttons this will be
+        /// 0 if not pressed, 1 if pressed, and -1 if it was pressed and just released. This could return any number inside a range (depending on hardware and configuration)
+        /// to represent how tilted a joystick or how much a mouse moved.
         int GetMetaValue();                     //How much is being done? How far has the mouse moved, how much is the throttle pushed.
-        void SetMetaValue(int MetaValue_);      //For button presses a positive value is pushed and a zero means unpushed
 
+        /// @brief This Sets The MetaValue
+        /// @details See @ref GetMetaValue to see exactly what the MetaValue is. This will set the MetaValue stored in this MetaCode. This value can be retrieved with @ref GetMetaValue .
+        /// @param MetaValue_ Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
+        void SetMetaValue(const int &MetaValue_);      //For button presses a positive value is pushed and a zero means unpushed
+
+        /// @brief This Returns the Input ID
+        /// @details The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed.
+        /// On systems that support multiple keyboards this will even differentiate between those.
+        /// This value can be set with @ref SetID .
+        /// @return This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis,
+        /// JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this
+        /// can identify from unique input sources and InputCode.
         short unsigned int GetID();             //Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.
-        void SetID(short unsigned int ID_);
 
+        /// @brief This Sets The input ID
+        /// @details See @ref GetID to see exactly what the input ID is. This will set the ID stored in this MetaCode. This value can be retrieved with @ref GetID .
+        /// @param ID_ Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
+        void SetID(const short unsigned int &ID_);
+
+        /// @brief Compares two MetaCodes for equality
+        /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.
         bool operator==(const MetaCode &other) const;
 };
 

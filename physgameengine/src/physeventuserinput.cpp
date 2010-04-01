@@ -63,18 +63,25 @@ using namespace std;
 MetaCode::MetaCode()
 {}
 
-MetaCode::MetaCode(int MetaValue_, short unsigned int ID_, MetaCode::InputCode Code_)
+MetaCode::MetaCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
 {
     Construct(MetaValue_, ID_, Code_);
 }
 
-MetaCode::MetaCode(RawEvent _RawEvent)
+MetaCode::MetaCode(const RawEvent &RawEvent_)
+{
+    Construct(RawEvent_);
+}
+
+void MetaCode::Construct(const RawEvent &RawEvent_)
 {
     /// @todo TODO: Actually process each event
-    //Make a metacode for each event and return it
-    switch(_RawEvent.type)
+    switch(RawEvent_.type)
     {
         case SDL_KEYDOWN:
+            //    Construct(MetaValue_, ID_, Code_);
+
+            Construct(1, 0, GetInputCodeFromRawEvent(RawEvent_));
             break;
         case SDL_KEYUP:
             break;
@@ -100,7 +107,17 @@ MetaCode::MetaCode(RawEvent _RawEvent)
     }
 }
 
-void MetaCode::Construct(int MetaValue_, short unsigned int ID_, MetaCode::MetaCode::InputCode Code_)
+MetaCode::InputCode MetaCode::GetInputCodeFromRawEvent(const RawEvent &RawEvent_)
+{
+
+    //if(RawEvent_.key.keysym < SDLK_UNDO && RawEvent_.key.keysym >SDLK_FIRST)
+    //{
+       // return 0;//(InputCode)RawEvent_.key.keysym;
+    //}
+    return KEY_UNKNOWN;
+}
+
+void MetaCode::Construct(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::MetaCode::InputCode &Code_)
 {
     SetMetaValue(MetaValue_);
     SetID(ID_);
@@ -122,17 +139,17 @@ short unsigned int MetaCode::GetID()
     return this->ID;
 }
 
-void MetaCode::SetMetaValue(int MetaValue_)
+void MetaCode::SetMetaValue(const int &MetaValue_)
 {
     this->MetaValue=MetaValue_;
 }
 
-void MetaCode::SetCode(MetaCode::InputCode Code_)
+void MetaCode::SetCode(const MetaCode::InputCode &Code_)
 {
     this->Code=Code_;
 }
 
-void MetaCode::SetID(short unsigned int ID_)
+void MetaCode::SetID(const short unsigned int &ID_)
 {
     this->ID=ID_;
 }
