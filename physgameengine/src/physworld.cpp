@@ -91,23 +91,24 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 
 	//We create our Ogre environment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
+
 	//Ogre resource related code
-	/// @todo : From here to the callbacks should probably be moved to another file
-	//this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, false);
+	/// @todo : From here to the logger tests should probably be moved to another file
     this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", "Robot", false);
     this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-    this->OgreResource->declareResource("robot.mesh", "Mesh", "Robot");
-    //this->OgreResource->declareResource("robot.skeleton", "Skeleton", "Robot");
-    this->OgreResource->declareResource("Examples.material", "Material", "Robot");
-    //this->OgreResource->declareResource("r2skin.jpg", "Texture", "Robot");
-    //this->OgreResource->initialiseResourceGroup("Robot");
 
+    /// @todo TODO remove Robot test code
+    this->OgreResource->declareResource("robot.mesh", "Mesh", "Robot");
+    this->OgreResource->declareResource("Examples.material", "Material", "Robot");
+
+    // This Tests the Logger and Logs a few critical Items.
     TestLogger();
+    //Perform a Test that only needs to be done once for the SDL/Physuserinputevent system.
     Log("Verifying size of userinput events:");
     Log(sizeof(MetaCode::InputCode));
     Log(sizeof(SDLKey));
     if(sizeof(MetaCode::InputCode) != sizeof(SDLKey))
-        {LogAndThrow("They Don't match userinput subsystem will go down faster than 'that' girl on prom night.");}
+        {LogAndThrow("User input subsystem Event Sizes  Don't match, userinput subsystem will go down faster than 'that' girl on prom night.");}
     Log("They match, the User Input subsystem won't crash instantly");
 
     //Callbacks are the main way that a game using the PhysWorld will be able to have their code run at custom times

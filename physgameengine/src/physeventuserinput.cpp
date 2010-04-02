@@ -80,7 +80,6 @@ void MetaCode::Construct(const RawEvent &RawEvent_)
     {
         case SDL_KEYDOWN:
             //    Construct(MetaValue_, ID_, Code_);
-
             Construct(1, 0, GetInputCodeFromRawEvent(RawEvent_));
             break;
         case SDL_KEYUP:
@@ -109,12 +108,17 @@ void MetaCode::Construct(const RawEvent &RawEvent_)
 
 MetaCode::InputCode MetaCode::GetInputCodeFromRawEvent(const RawEvent &RawEvent_)
 {
+    //This Whole thing will only work with SDL events. If we switch out event subsystems this is one of those that must change.
+    MetaCode::InputCode To;
+    SDL_KeyboardEvent TempEvent;
 
-    //if(RawEvent_.key.keysym < SDLK_UNDO && RawEvent_.key.keysym >SDLK_FIRST)
-    //{
-       // return 0;//(InputCode)RawEvent_.key.keysym;
-    //}
-    return KEY_UNKNOWN;
+    //Copy the RawEvent so it looks like a SDL_KeyboardEvent
+    memcpy( &TempEvent, &RawEvent_, sizeof(RawEvent));
+
+    //SDLKey From = ((SDL_KeyboardEvent)RawEvent_).keysym.sym;
+    memcpy( &To, &(TempEvent.keysym.sym), sizeof(SDLKey));
+
+    return To;
 }
 
 void MetaCode::Construct(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::MetaCode::InputCode &Code_)

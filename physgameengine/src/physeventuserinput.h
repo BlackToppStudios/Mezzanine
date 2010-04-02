@@ -80,7 +80,7 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////////////////
 /// @class MetaCode
 /// @headerfile physeventuserinput.h
-/// @brief This stores details about one portion of user input.
+/// @brief This Determines the kind of user input.
 /// @details A Metacode contains the data that is passed around with an input
 /// event. It stores one type of button press or analog representation (Mouse
 /// move, joystick tilt, wheel spin, etc...). If it is an analog representation
@@ -88,6 +88,8 @@ using namespace std;
 /// whatever. Several of these can be used in combination to represent button
 /// combinations, or complex input combination (like portions of fighter game
 /// moves).
+/// The first 127 character line up with Ascii, Currently upper lase are
+/// omitted for brevity.
 ///////////////////////////////////////
 class MetaCode
 {

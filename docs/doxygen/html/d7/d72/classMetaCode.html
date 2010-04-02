@@ -27,7 +27,7 @@
 </div>
 <div class="contents">
 <h1>MetaCode Class Reference</h1><!-- doxytag: class="MetaCode" -->
-<p>This stores details about one portion of user input.  
+<p>This Determines the kind of user input.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d5/d10/physeventuserinput_8h_source.html">physeventuserinput.h</a>&gt;</code></p>
@@ -375,30 +375,30 @@
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a6d4637b2894e5a2d46577c08259a2416">MetaCode</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#a6d4637b2894e5a2d46577c08259a2416"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a8f333b3a35badcda068fa44c7ee1f572">MetaCode</a> (int MetaValue_, short unsigned int ID_, <a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a> Code_)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Descriptive Constructor.  <a href="#a8f333b3a35badcda068fa44c7ee1f572"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#ad0a739796fa1de2991c196d8ee7b19b2">MetaCode</a> (RawEvent _RawEvent)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The Heavy Lifting Consctructor.  <a href="#ad0a739796fa1de2991c196d8ee7b19b2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#aaa5c96e46212847295db722a8253e86a">MetaCode</a> (const int &amp;MetaValue_, const short unsigned int &amp;ID_, const <a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a> &amp;Code_)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Descriptive Constructor.  <a href="#aaa5c96e46212847295db722a8253e86a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a87b260ce7ee3a66c75320c0fc37cdc0a">MetaCode</a> (const RawEvent &amp;RawEvent_)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The Heavy Lifting Consctructor.  <a href="#a87b260ce7ee3a66c75320c0fc37cdc0a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a862b35146ab4aa24f78bf951cfa21aa8">GetCode</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Returns the Inputcode.  <a href="#a862b35146ab4aa24f78bf951cfa21aa8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#acfc73f0b06c9a727f59681779caed03d">SetCode</a> (<a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a> Code_)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Sets The InputCode.  <a href="#acfc73f0b06c9a727f59681779caed03d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a33ef9b7e2414ecfd97aadb14eca2de"></a><!-- doxytag: member="MetaCode::GetMetaValue" ref="a6a33ef9b7e2414ecfd97aadb14eca2de" args="()" -->
-int&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMetaValue</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a308404d4eb64627d02ab41dd5029c9c8"></a><!-- doxytag: member="MetaCode::SetMetaValue" ref="a308404d4eb64627d02ab41dd5029c9c8" args="(int MetaValue_)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetMetaValue</b> (int MetaValue_)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4556130570fdc8bf531be7f15519fafe"></a><!-- doxytag: member="MetaCode::GetID" ref="a4556130570fdc8bf531be7f15519fafe" args="()" -->
-short unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetID</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae39bd781449cc01d7bce48c1e9da089d"></a><!-- doxytag: member="MetaCode::SetID" ref="ae39bd781449cc01d7bce48c1e9da089d" args="(short unsigned int ID_)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetID</b> (short unsigned int ID_)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a296b774682a9326494e0c2d1b357ec2a"></a><!-- doxytag: member="MetaCode::operator==" ref="a296b774682a9326494e0c2d1b357ec2a" args="(const MetaCode &amp;other) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;other) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a9be5fcad22449c12b649801ab97bbf20">SetCode</a> (const <a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a> &amp;Code_)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Sets The InputCode.  <a href="#a9be5fcad22449c12b649801ab97bbf20"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a6a33ef9b7e2414ecfd97aadb14eca2de">GetMetaValue</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Returns the MetaValue.  <a href="#a6a33ef9b7e2414ecfd97aadb14eca2de"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a1e410df95815b4d7e94b971bb1b8ba1e">SetMetaValue</a> (const int &amp;MetaValue_)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Sets The MetaValue.  <a href="#a1e410df95815b4d7e94b971bb1b8ba1e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a4556130570fdc8bf531be7f15519fafe">GetID</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Returns the Input ID.  <a href="#a4556130570fdc8bf531be7f15519fafe"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a0eb10030320a1fcfdda3b867b90e629f">SetID</a> (const short unsigned int &amp;ID_)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Sets The input ID.  <a href="#a0eb10030320a1fcfdda3b867b90e629f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a296b774682a9326494e0c2d1b357ec2a">operator==</a> (const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;other) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares two MetaCodes for equality.  <a href="#a296b774682a9326494e0c2d1b357ec2a"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>This stores details about one portion of user input. </p>
-<p>A Metacode contains the data that is passed around with an input event. It stores one type of button press or analog representation (Mouse move, joystick tilt, wheel spin, etc...). If it is an analog representation it will also store how far or how it is pushed, pressed, rotated, or whatever. Several of these can be used in combination to represent button combinations, or complex input combination (like portions of fighter game moves). </p>
+<p>This Determines the kind of user input. </p>
+<p>A Metacode contains the data that is passed around with an input event. It stores one type of button press or analog representation (Mouse move, joystick tilt, wheel spin, etc...). If it is an analog representation it will also store how far or how it is pushed, pressed, rotated, or whatever. Several of these can be used in combination to represent button combinations, or complex input combination (like portions of fighter game moves). The first 127 character line up with Ascii, Currently upper lase are omitted for brevity. </p>
 
-<p>Definition at line <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html#l00092">92</a> of file <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html">physeventuserinput.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html#l00094">94</a> of file <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html">physeventuserinput.h</a>.</p>
 <hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a7390e6f58e25c0ce377bba4e63081b24"></a><!-- doxytag: member="MetaCode::InputCode" ref="a7390e6f58e25c0ce377bba4e63081b24" args="" -->
 <div class="memitem">
@@ -463,7 +463,7 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html#l00099">99</a> of file <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html">physeventuserinput.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html#l00101">101</a> of file <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html">physeventuserinput.h</a>.</p>
 
 </div>
 </div>
@@ -484,32 +484,32 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 <div class="memdoc">
 
 <p>Default constructor. </p>
-<p>This sets nothing on the <a class="el" href="../../d7/d72/classMetaCode.html" title="This stores details about one portion of user input.">MetaCode</a> and leaves it completely unassigned. Accessing a data member could cause problems </p>
+<p>This sets nothing on the <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> and leaves it completely unassigned. Accessing a data member could cause problems </p>
 
 <p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00063">63</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8f333b3a35badcda068fa44c7ee1f572"></a><!-- doxytag: member="MetaCode::MetaCode" ref="a8f333b3a35badcda068fa44c7ee1f572" args="(int MetaValue_, short unsigned int ID_, MetaCode::InputCode Code_)" -->
+<a class="anchor" id="aaa5c96e46212847295db722a8253e86a"></a><!-- doxytag: member="MetaCode::MetaCode" ref="aaa5c96e46212847295db722a8253e86a" args="(const int &amp;MetaValue_, const short unsigned int &amp;ID_, const MetaCode::InputCode &amp;Code_)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">MetaCode::MetaCode </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
+          <td class="paramtype">const int &amp;&nbsp;</td>
           <td class="paramname"> <em>MetaValue_</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">short unsigned int&nbsp;</td>
+          <td class="paramtype">const short unsigned int &amp;&nbsp;</td>
           <td class="paramname"> <em>ID_</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>Code_</em></td><td>&nbsp;</td>
         </tr>
         <tr>
@@ -522,7 +522,7 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 <div class="memdoc">
 
 <p>Descriptive Constructor. </p>
-<p>This sets all values in the <a class="el" href="../../d7/d72/classMetaCode.html" title="This stores details about one portion of user input.">MetaCode</a>, leaving it in completely ready state. This is the ideal constructor for simulating user input. </p>
+<p>This sets all values in the <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>, leaving it in completely ready state. This is the ideal constructor for simulating user input. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>MetaValue_</em>&nbsp;</td><td>How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed. </td></tr>
@@ -536,15 +536,15 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 
 </div>
 </div>
-<a class="anchor" id="ad0a739796fa1de2991c196d8ee7b19b2"></a><!-- doxytag: member="MetaCode::MetaCode" ref="ad0a739796fa1de2991c196d8ee7b19b2" args="(RawEvent _RawEvent)" -->
+<a class="anchor" id="a87b260ce7ee3a66c75320c0fc37cdc0a"></a><!-- doxytag: member="MetaCode::MetaCode" ref="a87b260ce7ee3a66c75320c0fc37cdc0a" args="(const RawEvent &amp;RawEvent_)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">MetaCode::MetaCode </td>
           <td>(</td>
-          <td class="paramtype">RawEvent&nbsp;</td>
-          <td class="paramname"> <em>_RawEvent</em></td>
+          <td class="paramtype">const RawEvent &amp;&nbsp;</td>
+          <td class="paramname"> <em>RawEvent_</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -555,9 +555,6 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 <p>The Heavy Lifting Consctructor. </p>
 <p>This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. </p>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In that event you would have to recompile your application to get it working with a new version of physgame. </dd></dl>
-
-<p><dl class="todo"><dt><b><a class="el" href="../../todo.html#_todo000002">Todo:</a></b></dt><dd>TODO: Actually process each event </dd></dl>
-</p>
 
 <p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
@@ -580,21 +577,90 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 <div class="memdoc">
 
 <p>This Returns the Inputcode. </p>
-<p>This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with <a class="el" href="../../d7/d72/classMetaCode.html#acfc73f0b06c9a727f59681779caed03d">SetCode</a> . </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>This returns the input code for this <a class="el" href="../../d7/d72/classMetaCode.html" title="This stores details about one portion of user input.">MetaCode</a> </dd></dl>
+<p>This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with <a class="el" href="../../d7/d72/classMetaCode.html#a9be5fcad22449c12b649801ab97bbf20">SetCode</a> . </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns the input code for this <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00115">115</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00136">136</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acfc73f0b06c9a727f59681779caed03d"></a><!-- doxytag: member="MetaCode::SetCode" ref="acfc73f0b06c9a727f59681779caed03d" args="(MetaCode::InputCode Code_)" -->
+<a class="anchor" id="a4556130570fdc8bf531be7f15519fafe"></a><!-- doxytag: member="MetaCode::GetID" ref="a4556130570fdc8bf531be7f15519fafe" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short unsigned int MetaCode::GetID </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This Returns the Input ID. </p>
+<p>The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed. On systems that support multiple keyboards this will even differentiate between those. This value can be set with <a class="el" href="../../d7/d72/classMetaCode.html#a0eb10030320a1fcfdda3b867b90e629f">SetID</a> . </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis, JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this can identify from unique input sources and InputCode. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00141">141</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6a33ef9b7e2414ecfd97aadb14eca2de"></a><!-- doxytag: member="MetaCode::GetMetaValue" ref="a6a33ef9b7e2414ecfd97aadb14eca2de" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MetaCode::GetMetaValue </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This Returns the MetaValue. </p>
+<p>The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value. This value can be set with <a class="el" href="../../d7/d72/classMetaCode.html#a1e410df95815b4d7e94b971bb1b8ba1e">SetMetaValue</a> . </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns the input code for this <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>. For keyboard Buttons this will be 0 if not pressed, 1 if pressed, and -1 if it was pressed and just released. This could return any number inside a range (depending on hardware and configuration) to represent how tilted a joystick or how much a mouse moved. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a296b774682a9326494e0c2d1b357ec2a"></a><!-- doxytag: member="MetaCode::operator==" ref="a296b774682a9326494e0c2d1b357ec2a" args="(const MetaCode &amp;other) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MetaCode::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>other</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compares two MetaCodes for equality. </p>
+<p>This returns true if the MetaValue and Code are the Same, this ignores ID. </p>
+
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00161">161</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9be5fcad22449c12b649801ab97bbf20"></a><!-- doxytag: member="MetaCode::SetCode" ref="a9be5fcad22449c12b649801ab97bbf20" args="(const MetaCode::InputCode &amp;Code_)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void MetaCode::SetCode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>Code_</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -604,7 +670,7 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 <div class="memdoc">
 
 <p>This Sets The InputCode. </p>
-<p>See <a class="el" href="../../d7/d72/classMetaCode.html#a862b35146ab4aa24f78bf951cfa21aa8">GetCode</a> to see exactly what the Code is. This will Set the code stored in this <a class="el" href="../../d7/d72/classMetaCode.html" title="This stores details about one portion of user input.">MetaCode</a>. This value can be retrieved with <a class="el" href="../../d7/d72/classMetaCode.html#a862b35146ab4aa24f78bf951cfa21aa8">GetCode</a> . </p>
+<p>See <a class="el" href="../../d7/d72/classMetaCode.html#a862b35146ab4aa24f78bf951cfa21aa8">GetCode</a> to see exactly what the Code is. This will Set the code stored in this <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>. This value can be retrieved with <a class="el" href="../../d7/d72/classMetaCode.html#a862b35146ab4aa24f78bf951cfa21aa8">GetCode</a> . </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Code_</em>&nbsp;</td><td>Teh value you want the stored code to become. </td></tr>
@@ -612,7 +678,65 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00130">130</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00151">151</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0eb10030320a1fcfdda3b867b90e629f"></a><!-- doxytag: member="MetaCode::SetID" ref="a0eb10030320a1fcfdda3b867b90e629f" args="(const short unsigned int &amp;ID_)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MetaCode::SetID </td>
+          <td>(</td>
+          <td class="paramtype">const short unsigned int &amp;&nbsp;</td>
+          <td class="paramname"> <em>ID_</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This Sets The input ID. </p>
+<p>See <a class="el" href="../../d7/d72/classMetaCode.html#a4556130570fdc8bf531be7f15519fafe">GetID</a> to see exactly what the input ID is. This will set the ID stored in this <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>. This value can be retrieved with <a class="el" href="../../d7/d72/classMetaCode.html#a4556130570fdc8bf531be7f15519fafe">GetID</a> . </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>ID_</em>&nbsp;</td><td>Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00156">156</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1e410df95815b4d7e94b971bb1b8ba1e"></a><!-- doxytag: member="MetaCode::SetMetaValue" ref="a1e410df95815b4d7e94b971bb1b8ba1e" args="(const int &amp;MetaValue_)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MetaCode::SetMetaValue </td>
+          <td>(</td>
+          <td class="paramtype">const int &amp;&nbsp;</td>
+          <td class="paramname"> <em>MetaValue_</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This Sets The MetaValue. </p>
+<p>See <a class="el" href="../../d7/d72/classMetaCode.html#a6a33ef9b7e2414ecfd97aadb14eca2de">GetMetaValue</a> to see exactly what the MetaValue is. This will set the MetaValue stored in this <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>. This value can be retrieved with <a class="el" href="../../d7/d72/classMetaCode.html#a6a33ef9b7e2414ecfd97aadb14eca2de">GetMetaValue</a> . </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>MetaValue_</em>&nbsp;</td><td>Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00146">146</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -621,7 +745,7 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const
 <li><a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Mar 31 00:50:07 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Apr 1 19:06:47 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
