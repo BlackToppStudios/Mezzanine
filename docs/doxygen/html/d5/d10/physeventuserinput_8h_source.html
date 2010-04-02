@@ -419,7 +419,7 @@
 <a name="l00395"></a>00395         <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
 <a name="l00396"></a>00396         <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_, <span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;ID_, <span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_);
 <a name="l00397"></a>00397 
-<a name="l00398"></a>00398         <span class="keyword">static</span> <a class="code" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> GetInputCodeFromRawEvent(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00398"></a>00398         <span class="keyword">static</span> <a class="code" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> GetInputCodeFromSDL_KEY(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
 <a name="l00399"></a>00399 
 <a name="l00400"></a>00400     <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00401"></a>00401 <span class="comment">        /// @brief Default constructor</span>
@@ -444,7 +444,7 @@
 <a name="l00420"></a>00420 <span class="comment">        /// @details This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred.</span>
 <a name="l00421"></a>00421 <span class="comment">        /// This value can be set with @ref SetCode .</span>
 <a name="l00422"></a>00422 <span class="comment">        /// @return This returns the input code for this MetaCode</span>
-<a name="l00423"></a>00423 <span class="comment"></span>        <a class="code" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> <a class="code" href="../../d7/d72/classMetaCode.html#a862b35146ab4aa24f78bf951cfa21aa8" title="This Returns the Inputcode.">GetCode</a>();
+<a name="l00423"></a>00423 <span class="comment"></span>        <a class="code" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> <a class="code" href="../../d7/d72/classMetaCode.html#a94532fc103d95f3de53eeccbadd6f17b" title="This Returns the Inputcode.">GetCode</a>() <span class="keyword">const</span>;
 <a name="l00424"></a>00424 <span class="comment"></span>
 <a name="l00425"></a>00425 <span class="comment">        /// @brief This Sets The InputCode</span>
 <a name="l00426"></a>00426 <span class="comment">        /// @details See @ref GetCode to see exactly what the Code is. This will Set the code stored in this MetaCode. This value can be retrieved with @ref GetCode .</span>
@@ -457,7 +457,7 @@
 <a name="l00433"></a>00433 <span class="comment">        /// @return This returns the input code for this MetaCode. For keyboard Buttons this will be</span>
 <a name="l00434"></a>00434 <span class="comment">        /// 0 if not pressed, 1 if pressed, and -1 if it was pressed and just released. This could return any number inside a range (depending on hardware and configuration)</span>
 <a name="l00435"></a>00435 <span class="comment">        /// to represent how tilted a joystick or how much a mouse moved.</span>
-<a name="l00436"></a>00436 <span class="comment"></span>        <span class="keywordtype">int</span> <a class="code" href="../../d7/d72/classMetaCode.html#a6a33ef9b7e2414ecfd97aadb14eca2de" title="This Returns the MetaValue.">GetMetaValue</a>();                     <span class="comment">//How much is being done? How far has the mouse moved, how much is the throttle pushed.</span>
+<a name="l00436"></a>00436 <span class="comment"></span>        <span class="keywordtype">int</span> <a class="code" href="../../d7/d72/classMetaCode.html#a8d9cd9709ab51323d7061cf7b0ea4ee2" title="This Returns the MetaValue.">GetMetaValue</a>() <span class="keyword">const</span>;                     <span class="comment">//How much is being done? How far has the mouse moved, how much is the throttle pushed.</span>
 <a name="l00437"></a>00437 <span class="comment"></span>
 <a name="l00438"></a>00438 <span class="comment">        /// @brief This Sets The MetaValue</span>
 <a name="l00439"></a>00439 <span class="comment">        /// @details See @ref GetMetaValue to see exactly what the MetaValue is. This will set the MetaValue stored in this MetaCode. This value can be retrieved with @ref GetMetaValue .</span>
@@ -471,7 +471,7 @@
 <a name="l00447"></a>00447 <span class="comment">        /// @return This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis,</span>
 <a name="l00448"></a>00448 <span class="comment">        /// JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this</span>
 <a name="l00449"></a>00449 <span class="comment">        /// can identify from unique input sources and InputCode.</span>
-<a name="l00450"></a>00450 <span class="comment"></span>        <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/d72/classMetaCode.html#a4556130570fdc8bf531be7f15519fafe" title="This Returns the Input ID.">GetID</a>();             <span class="comment">//Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.</span>
+<a name="l00450"></a>00450 <span class="comment"></span>        <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/d72/classMetaCode.html#a680b5e1c2ce8d8d08d00f10187728547" title="This Returns the Input ID.">GetID</a>() <span class="keyword">const</span>;             <span class="comment">//Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.</span>
 <a name="l00451"></a>00451 <span class="comment"></span>
 <a name="l00452"></a>00452 <span class="comment">        /// @brief This Sets The input ID</span>
 <a name="l00453"></a>00453 <span class="comment">        /// @details See @ref GetID to see exactly what the input ID is. This will set the ID stored in this MetaCode. This value can be retrieved with @ref GetID .</span>
@@ -481,34 +481,39 @@
 <a name="l00457"></a>00457 <span class="comment">        /// @brief Compares two MetaCodes for equality</span>
 <a name="l00458"></a>00458 <span class="comment">        /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.</span>
 <a name="l00459"></a>00459 <span class="comment"></span>        <span class="keywordtype">bool</span> <a class="code" href="../../d7/d72/classMetaCode.html#a296b774682a9326494e0c2d1b357ec2a" title="Compares two MetaCodes for equality.">operator==</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;other) <span class="keyword">const</span>;
-<a name="l00460"></a>00460 };
-<a name="l00461"></a>00461 
-<a name="l00462"></a><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">00462</a> <span class="keyword">class </span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> : <span class="keyword">public</span> <a class="code" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>
-<a name="l00463"></a>00463 {
-<a name="l00464"></a>00464     <span class="keyword">private</span>:
-<a name="l00465"></a>00465         vector&lt;MetaCode&gt; Code;
-<a name="l00466"></a>00466 
-<a name="l00467"></a>00467         <span class="keyword">public</span>:
-<a name="l00468"></a>00468         <span class="comment">//By default codes are off,if they are on the list, they can be considered pushed</span>
-<a name="l00469"></a>00469         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>();
-<a name="l00470"></a>00470         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>(<a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> Code_);
-<a name="l00471"></a>00471         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>(vector&lt;MetaCode&gt; Code_);
-<a name="l00472"></a>00472         <span class="keyword">virtual</span> ~<a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>();
-<a name="l00473"></a>00473 
-<a name="l00474"></a>00474         <span class="comment">//code managment functions</span>
-<a name="l00475"></a>00475         <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> GetCode(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Index);
-<a name="l00476"></a>00476         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> GetCodeCount();
-<a name="l00477"></a>00477 
-<a name="l00478"></a>00478         <span class="keywordtype">void</span> AddCode(<a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> _Code);
-<a name="l00479"></a>00479         <span class="keywordtype">void</span> ToggleCode(<a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> _Code);
-<a name="l00480"></a>00480         <span class="keywordtype">void</span> ToggleCode(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Index);
-<a name="l00481"></a>00481 
-<a name="l00482"></a>00482                 <span class="keyword">virtual</span> EventType getEventType();
-<a name="l00483"></a>00483 };
-<a name="l00484"></a>00484 
-<a name="l00485"></a>00485 <span class="preprocessor">#endif</span>
+<a name="l00460"></a>00460 };<span class="comment"></span>
+<a name="l00461"></a>00461 <span class="comment">/// Not Sure how to document this one in doxygen</span>
+<a name="l00462"></a>00462 <span class="comment"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>&amp; x);
+<a name="l00463"></a>00463 
+<a name="l00464"></a>00464 
+<a name="l00465"></a><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">00465</a> <span class="keyword">class </span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> : <span class="keyword">public</span> <a class="code" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>
+<a name="l00466"></a>00466 {
+<a name="l00467"></a>00467     <span class="keyword">private</span>:
+<a name="l00468"></a>00468         vector&lt;MetaCode&gt; Code;
+<a name="l00469"></a>00469 
+<a name="l00470"></a>00470         <span class="keyword">public</span>:
+<a name="l00471"></a>00471         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>();
+<a name="l00472"></a>00472         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
+<a name="l00473"></a>00473         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>(<span class="keyword">const</span> vector&lt;MetaCode&gt; &amp;Code_);
+<a name="l00474"></a>00474         <span class="keyword">virtual</span> ~<a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>();
+<a name="l00475"></a>00475 
+<a name="l00476"></a>00476         <span class="comment">//code managment functions</span>
+<a name="l00477"></a>00477         <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> GetCode(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;Index);
+<a name="l00478"></a>00478         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> GetCodeCount();
+<a name="l00479"></a>00479 
+<a name="l00480"></a>00480         <span class="keywordtype">void</span> AddCode(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
+<a name="l00481"></a>00481         <span class="keywordtype">void</span> EraseCode(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
+<a name="l00482"></a>00482         <span class="keywordtype">void</span> EraseCode(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;Index);
+<a name="l00483"></a>00483         <span class="keywordtype">void</span> ToggleCode(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
+<a name="l00484"></a>00484         <span class="keywordtype">void</span> ToggleCode(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;Index);
+<a name="l00485"></a>00485 
+<a name="l00486"></a>00486                 <span class="keyword">virtual</span> EventType getEventType();
+<a name="l00487"></a>00487 };
+<a name="l00488"></a>00488 
+<a name="l00489"></a>00489 
+<a name="l00490"></a>00490 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Apr 1 19:06:44 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 2 00:02:14 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

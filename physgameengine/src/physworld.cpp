@@ -57,6 +57,7 @@
 #include "physgamesettings.h"
 #include "physmisc.h"
 #include "physactor.h"
+#include "physeventuserinput.h"
 
 #include "SDL.h"
 #include "btBulletDynamicsCommon.h"
@@ -101,8 +102,6 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
     this->OgreResource->declareResource("robot.mesh", "Mesh", "Robot");
     this->OgreResource->declareResource("Examples.material", "Material", "Robot");
 
-    // This Tests the Logger and Logs a few critical Items.
-    TestLogger();
     //Perform a Test that only needs to be done once for the SDL/Physuserinputevent system.
     Log("Verifying size of userinput events:");
     Log(sizeof(MetaCode::InputCode));
@@ -110,6 +109,10 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
     if(sizeof(MetaCode::InputCode) != sizeof(SDLKey))
         {LogAndThrow("User input subsystem Event Sizes  Don't match, userinput subsystem will go down faster than 'that' girl on prom night.");}
     Log("They match, the User Input subsystem won't crash instantly");
+
+    // This Tests the Logger and Logs a few critical Items.
+    TestLogger();
+
 
     //Callbacks are the main way that a game using the PhysWorld will be able to have their code run at custom times
 	this->CallBacks = new PhysWorldCallBackManager(this);
@@ -157,9 +160,12 @@ void PhysWorld::TestLogger()
     PhysWhole temp15 = 15;
     PhysString temp16("16 or so");
     PhysVector3 temp17(0,1,7);
-
+    RawEvent temp18;
+        temp18.type = SDL_KEYDOWN;
+        temp18.key.keysym.sym = SDLK_BACKSPACE;
+    MetaCode temp19(temp18);
     //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
-    //TODO add each type of event here to make it really wasy to log events
+    /// @todo TODO add each type of event here (logtest) to make it really wasy to log events
 
     OneLogTest(temp0, "string");
     OneLogTest(temp1, "char");
@@ -179,6 +185,8 @@ void PhysWorld::TestLogger()
     OneLogTest(temp15, "PhysWhole");
     OneLogTest(temp16, "PhysString");
     OneLogTest(temp17, "PhysVector3");
+    OneLogTest(temp18, "RawEvent"); /// @todo TODO Figure out How does this calle= the same streaming function as MetaCode ?!?!?
+    OneLogTest(temp19, "MetaCode");
 }
 
 template <class T> void PhysWorld::OneLogTest(T Data, string DataType, string Message1, string Message2)
@@ -362,7 +370,7 @@ void PhysWorld::DoMainLoopWindowManagerBuffering()
     this->PreProcessSDLEvents();
     Log("WM EventCount Pending:");
     Log(SDL_WmEvents.size());
-    //TODO: make Physevents for each of the events in SDL_W1111mEvents(and delete the SDL events)
+    //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
 }
 
 void PhysWorld::DoMainLoopInputBuffering()
@@ -371,17 +379,24 @@ void PhysWorld::DoMainLoopInputBuffering()
     Log("User Input EventCount Pending:");
     Log(SDL_UserInputEvents.size());
 
-    PhysEventUserInput FromSDLEvents;
+    PhysEventUserInput* FromSDLEvent = new PhysEventUserInput();
 
     /// @todo TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
-    //RawEvent QueueEvent;
     while( !SDL_UserInputEvents.empty() )
     {
-        SDL_Event * CurrentEvent = SDL_UserInputEvents.front();
-        this->Log(GetNameOfEventFrom(CurrentEvent));
+        MetaCode CurrentMetaCode( *(SDL_UserInputEvents.front()) );
+        FromSDLEvent->AddCode(CurrentMetaCode);         //This relies on the fact that the constructor copies the data
+        SDL_UserInputEvents.pop(); //NEXT!!!
+    }
 
-        SDL_UserInputEvents.pop();
-    }//*/
+    //temp code
+    /// @todo Delete the even temp logging code
+    for(unsigned int c=0; c<FromSDLEvent->GetCodeCount(); c++)
+    {
+        Log(FromSDLEvent->GetCode(c));
+    }
+
+    this->Events->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
 }
 
 void PhysWorld::DoMainLoopRender()
@@ -391,10 +406,6 @@ void PhysWorld::DoMainLoopRender()
 ///////////////////////////////////////////////////////////////////////////////
 // Private Functions
 ///////////////////////////////////////
-
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////
 //Loads the Ogre Configuration
@@ -433,7 +444,7 @@ void PhysWorld::CreateRenderWindow()
 	misc=(Ogre::NameValuePairList*) GetSDLOgreBinder();
 	(*misc)["title"] = Ogre::String("Catch!");
 	this->OgreGameWindow = this->OgreRoot->createRenderWindow("physgame", PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), misc);
-    //Added following lines to attempt to make the render window visable
+    //Added following lines to attempt to make the render window visible
     //this->OgreGameWindow->setVisible(true);
 	//this->OgreGameWindow->setActive(true);
     //this->OgreGameWindow->setAutoUpdated(true);
@@ -462,7 +473,6 @@ void PhysWorld::DestroyRenderWindow()
 
 ///////////////////////////////////////////////////////////////////////////////
 // Deals with SDL
-
 
 //This function will get all the events from SDL and Sort them into one of two Queues
 void PhysWorld::PreProcessSDLEvents()
@@ -509,8 +519,6 @@ void PhysWorld::PreProcessSDLEvents()
 void PhysWorld::AddActor(ActorBase* ActorToAdd)
 {
     ActorToAdd->AddObjectToWorld(this, this->BulletDynamicsWorld);
-
-
 }
 
 #endif

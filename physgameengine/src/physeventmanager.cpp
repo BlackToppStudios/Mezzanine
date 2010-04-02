@@ -12,12 +12,12 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>. 
+    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to 
+/* We welcome the use of The PhysGame anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -27,12 +27,12 @@
     - Software Patents You Do Not Wish to Freely License
     - Any Kind of Linking to Non-GPL licensed Works
     - Are Currently In Violation of Another Copyright Holder's GPL License
-    - If You want to change our code and not add a few hundred MB of stuff to 
+    - If You want to change our code and not add a few hundred MB of stuff to
         your distribution
 
    These and other limitations could cause serious legal problems if you ignore
    them, so it is best to simply contact us or the Free Software Foundation, if
-   you have any questions. 
+   you have any questions.
 
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
@@ -51,6 +51,9 @@
 int PhysSDLFilter( const RawEvent *event );
 
 bool PhysEventManager::IgnoreSDLQuitEvents;
+
+/// @todo TODO: Make the PhysEventManager completely thread safe. IF this is completely thread, we can spawn numerous individual thread each accessing this and
+/// and the performance gain would almost scale directly with cpu core count increases.
 
 PhysEventManager::PhysEventManager()
 {
@@ -131,6 +134,5 @@ int PhysSDLFilter( const RawEvent *event )
         { return 0; }
      return 1;
 }
-
 
 #endif

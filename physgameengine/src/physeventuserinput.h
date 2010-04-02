@@ -395,7 +395,7 @@ class MetaCode
         void Construct(const RawEvent &RawEvent_);
         void Construct(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_);
 
-        static MetaCode::InputCode GetInputCodeFromRawEvent(const RawEvent &RawEvent_);
+        static MetaCode::InputCode GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_);
 
     public:
         /// @brief Default constructor
@@ -420,7 +420,7 @@ class MetaCode
         /// @details This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred.
         /// This value can be set with @ref SetCode .
         /// @return This returns the input code for this MetaCode
-        MetaCode::InputCode GetCode();
+        MetaCode::InputCode GetCode() const;
 
         /// @brief This Sets The InputCode
         /// @details See @ref GetCode to see exactly what the Code is. This will Set the code stored in this MetaCode. This value can be retrieved with @ref GetCode .
@@ -433,7 +433,7 @@ class MetaCode
         /// @return This returns the input code for this MetaCode. For keyboard Buttons this will be
         /// 0 if not pressed, 1 if pressed, and -1 if it was pressed and just released. This could return any number inside a range (depending on hardware and configuration)
         /// to represent how tilted a joystick or how much a mouse moved.
-        int GetMetaValue();                     //How much is being done? How far has the mouse moved, how much is the throttle pushed.
+        int GetMetaValue() const;                     //How much is being done? How far has the mouse moved, how much is the throttle pushed.
 
         /// @brief This Sets The MetaValue
         /// @details See @ref GetMetaValue to see exactly what the MetaValue is. This will set the MetaValue stored in this MetaCode. This value can be retrieved with @ref GetMetaValue .
@@ -447,7 +447,7 @@ class MetaCode
         /// @return This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis,
         /// JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this
         /// can identify from unique input sources and InputCode.
-        short unsigned int GetID();             //Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.
+        short unsigned int GetID() const;             //Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.
 
         /// @brief This Sets The input ID
         /// @details See @ref GetID to see exactly what the input ID is. This will set the ID stored in this MetaCode. This value can be retrieved with @ref GetID .
@@ -458,6 +458,9 @@ class MetaCode
         /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.
         bool operator==(const MetaCode &other) const;
 };
+/// Not Sure how to document this one in doxygen
+std::ostream& operator << (std::ostream& stream, const MetaCode& x);
+
 
 class PhysEventUserInput : public PhysEvent
 {
@@ -465,21 +468,23 @@ class PhysEventUserInput : public PhysEvent
         vector<MetaCode> Code;
 
 	public:
-        //By default codes are off,if they are on the list, they can be considered pushed
         PhysEventUserInput();
-        PhysEventUserInput(MetaCode Code_);
-        PhysEventUserInput(vector<MetaCode> Code_);
+        PhysEventUserInput(const MetaCode &Code_);
+        PhysEventUserInput(const vector<MetaCode> &Code_);
         virtual ~PhysEventUserInput();
 
         //code managment functions
-        MetaCode GetCode(unsigned int Index);
+        MetaCode GetCode(const unsigned int &Index);
         unsigned int GetCodeCount();
 
-        void AddCode(MetaCode _Code);
-        void ToggleCode(MetaCode _Code);
-        void ToggleCode(unsigned int Index);
+        void AddCode(const MetaCode &Code_);
+        void EraseCode(const MetaCode &Code_);
+        void EraseCode(const unsigned int &Index);
+        void ToggleCode(const MetaCode &Code_);
+        void ToggleCode(const unsigned int &Index);
 
 		virtual EventType getEventType();
 };
+
 
 #endif

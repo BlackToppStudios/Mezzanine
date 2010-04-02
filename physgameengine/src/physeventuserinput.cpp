@@ -80,9 +80,10 @@ void MetaCode::Construct(const RawEvent &RawEvent_)
     {
         case SDL_KEYDOWN:
             //    Construct(MetaValue_, ID_, Code_);
-            Construct(1, 0, GetInputCodeFromRawEvent(RawEvent_));
+            Construct(1, 0, GetInputCodeFromSDL_KEY(RawEvent_));
             break;
         case SDL_KEYUP:
+            Construct(-1, 0, GetInputCodeFromSDL_KEY(RawEvent_));
             break;
         case SDL_MOUSEMOTION:
             break;
@@ -106,17 +107,20 @@ void MetaCode::Construct(const RawEvent &RawEvent_)
     }
 }
 
-MetaCode::InputCode MetaCode::GetInputCodeFromRawEvent(const RawEvent &RawEvent_)
+//This function assumes the RawEvent is a valid SDL Keyevent
+MetaCode::InputCode MetaCode::GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_)
 {
     //This Whole thing will only work with SDL events. If we switch out event subsystems this is one of those that must change.
     MetaCode::InputCode To;
-    SDL_KeyboardEvent TempEvent;
+    //SDL_KeyboardEvent TempEvent;
 
     //Copy the RawEvent so it looks like a SDL_KeyboardEvent
-    memcpy( &TempEvent, &RawEvent_, sizeof(RawEvent));
+    //memcpy( &TempEvent, &RawEvent_, sizeof(RawEvent));
 
     //SDLKey From = ((SDL_KeyboardEvent)RawEvent_).keysym.sym;
-    memcpy( &To, &(TempEvent.keysym.sym), sizeof(SDLKey));
+    //memcpy( &To, &(TempEvent.keysym.sym), sizeof(SDLKey));
+
+    memcpy( &To, &(RawEvent_.key.keysym.sym), sizeof(SDLKey));
 
     return To;
 }
@@ -128,17 +132,17 @@ void MetaCode::Construct(const int &MetaValue_, const short unsigned int &ID_, c
     SetCode(Code_);
 }
 
-int MetaCode::GetMetaValue()
+int MetaCode::GetMetaValue() const
 {
     return this->MetaValue;
 }
 
-MetaCode::InputCode MetaCode::GetCode()
+MetaCode::InputCode MetaCode::GetCode() const
 {
     return this->Code;
 }
 
-short unsigned int MetaCode::GetID()
+short unsigned int MetaCode::GetID() const
 {
     return this->ID;
 }
@@ -168,6 +172,13 @@ bool MetaCode::operator==(const MetaCode &other) const
     }
 }
 
+std::ostream& operator << (std::ostream& stream, const MetaCode& x)
+{
+    stream << "( Code:" << x.GetCode() << ", MetaValue:" << x.GetMetaValue() << ", ID:" << x.GetID() << " )";
+    return stream;
+}
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // PhysEventUserInput
@@ -176,12 +187,12 @@ PhysEventUserInput::PhysEventUserInput()
 
 }
 
-PhysEventUserInput::PhysEventUserInput(MetaCode Code_)
+PhysEventUserInput::PhysEventUserInput(const MetaCode &Code_)
 {
     Code.push_back(Code_);
 }
 
-PhysEventUserInput::PhysEventUserInput(vector<MetaCode> Code_)
+PhysEventUserInput::PhysEventUserInput(const vector<MetaCode> &Code_)
 {
     for(unsigned int c=0; Code_.size()>c ; c++)
     {
@@ -194,7 +205,7 @@ PhysEventUserInput::~PhysEventUserInput()
 
 }
 
-MetaCode PhysEventUserInput::GetCode(unsigned int Index)
+MetaCode PhysEventUserInput::GetCode(const unsigned int &Index)
 {
     return Code.at(Index);
 }
@@ -204,36 +215,47 @@ unsigned int PhysEventUserInput::GetCodeCount()
     return Code.size();
 }
 
-void PhysEventUserInput::AddCode(MetaCode _Code)
+void PhysEventUserInput::AddCode(const MetaCode &Code_)
 {
-    Code.push_back(_Code);
+    Code.push_back(Code_);
 }
 
-void PhysEventUserInput::ToggleCode(MetaCode _Code)
+void PhysEventUserInput::EraseCode(const MetaCode &Code_)
 {
     vector<MetaCode>::iterator iter;
 
     for(iter=Code.begin(); Code.end()!=iter ; iter++)
     {
-        if(*iter == _Code)
+        if(*iter == Code_)
         {
             Code.erase(iter);
-        }else{
-            Code.push_back(_Code);
         }
     }
 }
 
-void PhysEventUserInput::ToggleCode(unsigned int Index)
+void PhysEventUserInput::EraseCode(const unsigned int &Index)
 {
     Code.erase(Code.begin()+Index);
+}
+
+void PhysEventUserInput::ToggleCode(const MetaCode &Code_)
+{
+    vector<MetaCode>::iterator iter;
+
+    for(iter=Code.begin(); Code.end()!=iter ; iter++)
+    {
+        if(*iter == Code_)
+        {
+            Code.erase(iter);
+        }else{
+            Code.push_back(Code_);
+        }
+    }
 }
 
 EventType PhysEventUserInput::getEventType()
 {
     return UserInput;
 }
-
-
 
 #endif

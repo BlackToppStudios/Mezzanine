@@ -354,15 +354,15 @@ enum \hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{InputCode} \{ \
 \begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMetaCode_a87b260ce7ee3a66c75320c0fc37cdc0a}{MetaCode} (const RawEvent \&RawEvent\_\-)
 \begin{DoxyCompactList}\small\item\em The Heavy Lifting Consctructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{MetaCode::InputCode} \hyperlink{classMetaCode_a862b35146ab4aa24f78bf951cfa21aa8}{GetCode} ()
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{MetaCode::InputCode} \hyperlink{classMetaCode_a94532fc103d95f3de53eeccbadd6f17b}{GetCode} () const 
 \begin{DoxyCompactList}\small\item\em This Returns the Inputcode. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMetaCode_a9be5fcad22449c12b649801ab97bbf20}{SetCode} (const \hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{MetaCode::InputCode} \&Code\_\-)
 \begin{DoxyCompactList}\small\item\em This Sets The InputCode. \item\end{DoxyCompactList}\item 
-int \hyperlink{classMetaCode_a6a33ef9b7e2414ecfd97aadb14eca2de}{GetMetaValue} ()
+int \hyperlink{classMetaCode_a8d9cd9709ab51323d7061cf7b0ea4ee2}{GetMetaValue} () const 
 \begin{DoxyCompactList}\small\item\em This Returns the MetaValue. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMetaCode_a1e410df95815b4d7e94b971bb1b8ba1e}{SetMetaValue} (const int \&MetaValue\_\-)
 \begin{DoxyCompactList}\small\item\em This Sets The MetaValue. \item\end{DoxyCompactList}\item 
-short unsigned int \hyperlink{classMetaCode_a4556130570fdc8bf531be7f15519fafe}{GetID} ()
+short unsigned int \hyperlink{classMetaCode_a680b5e1c2ce8d8d08d00f10187728547}{GetID} () const 
 \begin{DoxyCompactList}\small\item\em This Returns the Input ID. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMetaCode_a0eb10030320a1fcfdda3b867b90e629f}{SetID} (const short unsigned int \&ID\_\-)
 \begin{DoxyCompactList}\small\item\em This Sets The input ID. \item\end{DoxyCompactList}\item 
@@ -490,11 +490,11 @@ We recomend against using this Constructor, because the binary format of RawEven
 Definition at line 71 of file physeventuserinput.cpp.
 
 \subsection{Member Function Documentation}
-\hypertarget{classMetaCode_a862b35146ab4aa24f78bf951cfa21aa8}{
+\hypertarget{classMetaCode_a94532fc103d95f3de53eeccbadd6f17b}{
 \index{MetaCode@{MetaCode}!GetCode@{GetCode}}
 \index{GetCode@{GetCode}!MetaCode@{MetaCode}}
-\subsubsection[{GetCode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::InputCode} MetaCode::GetCode ()}}
-\label{d7/d72/classMetaCode_a862b35146ab4aa24f78bf951cfa21aa8}
+\subsubsection[{GetCode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::InputCode} MetaCode::GetCode () const}}
+\label{d7/d72/classMetaCode_a94532fc103d95f3de53eeccbadd6f17b}
 
 
 This Returns the Inputcode. This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with \hyperlink{classMetaCode_a9be5fcad22449c12b649801ab97bbf20}{SetCode} . \begin{DoxyReturn}{Returns}
@@ -502,11 +502,11 @@ This returns the input code for this \hyperlink{classMetaCode}{MetaCode}
 \end{DoxyReturn}
 
 
-Definition at line 136 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a4556130570fdc8bf531be7f15519fafe}{
+Definition at line 140 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a680b5e1c2ce8d8d08d00f10187728547}{
 \index{MetaCode@{MetaCode}!GetID@{GetID}}
 \index{GetID@{GetID}!MetaCode@{MetaCode}}
-\subsubsection[{GetID}]{\setlength{\rightskip}{0pt plus 5cm}short unsigned int MetaCode::GetID ()}}
-\label{d7/d72/classMetaCode_a4556130570fdc8bf531be7f15519fafe}
+\subsubsection[{GetID}]{\setlength{\rightskip}{0pt plus 5cm}short unsigned int MetaCode::GetID () const}}
+\label{d7/d72/classMetaCode_a680b5e1c2ce8d8d08d00f10187728547}
 
 
 This Returns the Input ID. The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed. On systems that support multiple keyboards this will even differentiate between those. This value can be set with \hyperlink{classMetaCode_a0eb10030320a1fcfdda3b867b90e629f}{SetID} . \begin{DoxyReturn}{Returns}
@@ -514,11 +514,11 @@ This returns the input ID, which (on a normal system) can help Identify which Mo
 \end{DoxyReturn}
 
 
-Definition at line 141 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a6a33ef9b7e2414ecfd97aadb14eca2de}{
+Definition at line 145 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a8d9cd9709ab51323d7061cf7b0ea4ee2}{
 \index{MetaCode@{MetaCode}!GetMetaValue@{GetMetaValue}}
 \index{GetMetaValue@{GetMetaValue}!MetaCode@{MetaCode}}
-\subsubsection[{GetMetaValue}]{\setlength{\rightskip}{0pt plus 5cm}int MetaCode::GetMetaValue ()}}
-\label{d7/d72/classMetaCode_a6a33ef9b7e2414ecfd97aadb14eca2de}
+\subsubsection[{GetMetaValue}]{\setlength{\rightskip}{0pt plus 5cm}int MetaCode::GetMetaValue () const}}
+\label{d7/d72/classMetaCode_a8d9cd9709ab51323d7061cf7b0ea4ee2}
 
 
 This Returns the MetaValue. The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value. This value can be set with \hyperlink{classMetaCode_a1e410df95815b4d7e94b971bb1b8ba1e}{SetMetaValue} . \begin{DoxyReturn}{Returns}
@@ -526,7 +526,7 @@ This returns the input code for this \hyperlink{classMetaCode}{MetaCode}. For ke
 \end{DoxyReturn}
 
 
-Definition at line 131 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a296b774682a9326494e0c2d1b357ec2a}{
+Definition at line 135 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a296b774682a9326494e0c2d1b357ec2a}{
 \index{MetaCode@{MetaCode}!operator==@{operator==}}
 \index{operator==@{operator==}!MetaCode@{MetaCode}}
 \subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool MetaCode::operator== (const {\bf MetaCode} \& {\em other}) const}}
@@ -535,43 +535,43 @@ Definition at line 131 of file physeventuserinput.cpp.\hypertarget{classMetaCode
 
 Compares two MetaCodes for equality. This returns true if the MetaValue and Code are the Same, this ignores ID. 
 
-Definition at line 161 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a9be5fcad22449c12b649801ab97bbf20}{
+Definition at line 165 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a9be5fcad22449c12b649801ab97bbf20}{
 \index{MetaCode@{MetaCode}!SetCode@{SetCode}}
 \index{SetCode@{SetCode}!MetaCode@{MetaCode}}
 \subsubsection[{SetCode}]{\setlength{\rightskip}{0pt plus 5cm}void MetaCode::SetCode (const {\bf MetaCode::InputCode} \& {\em Code\_\-})}}
 \label{d7/d72/classMetaCode_a9be5fcad22449c12b649801ab97bbf20}
 
 
-This Sets The InputCode. See \hyperlink{classMetaCode_a862b35146ab4aa24f78bf951cfa21aa8}{GetCode} to see exactly what the Code is. This will Set the code stored in this \hyperlink{classMetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classMetaCode_a862b35146ab4aa24f78bf951cfa21aa8}{GetCode} . 
+This Sets The InputCode. See \hyperlink{classMetaCode_a94532fc103d95f3de53eeccbadd6f17b}{GetCode} to see exactly what the Code is. This will Set the code stored in this \hyperlink{classMetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classMetaCode_a94532fc103d95f3de53eeccbadd6f17b}{GetCode} . 
 \begin{DoxyParams}{Parameters}
 \item[{\em Code\_\-}]Teh value you want the stored code to become. \end{DoxyParams}
 
 
-Definition at line 151 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a0eb10030320a1fcfdda3b867b90e629f}{
+Definition at line 155 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a0eb10030320a1fcfdda3b867b90e629f}{
 \index{MetaCode@{MetaCode}!SetID@{SetID}}
 \index{SetID@{SetID}!MetaCode@{MetaCode}}
 \subsubsection[{SetID}]{\setlength{\rightskip}{0pt plus 5cm}void MetaCode::SetID (const short unsigned int \& {\em ID\_\-})}}
 \label{d7/d72/classMetaCode_a0eb10030320a1fcfdda3b867b90e629f}
 
 
-This Sets The input ID. See \hyperlink{classMetaCode_a4556130570fdc8bf531be7f15519fafe}{GetID} to see exactly what the input ID is. This will set the ID stored in this \hyperlink{classMetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classMetaCode_a4556130570fdc8bf531be7f15519fafe}{GetID} . 
+This Sets The input ID. See \hyperlink{classMetaCode_a680b5e1c2ce8d8d08d00f10187728547}{GetID} to see exactly what the input ID is. This will set the ID stored in this \hyperlink{classMetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classMetaCode_a680b5e1c2ce8d8d08d00f10187728547}{GetID} . 
 \begin{DoxyParams}{Parameters}
 \item[{\em ID\_\-}]Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. \end{DoxyParams}
 
 
-Definition at line 156 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a1e410df95815b4d7e94b971bb1b8ba1e}{
+Definition at line 160 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a1e410df95815b4d7e94b971bb1b8ba1e}{
 \index{MetaCode@{MetaCode}!SetMetaValue@{SetMetaValue}}
 \index{SetMetaValue@{SetMetaValue}!MetaCode@{MetaCode}}
 \subsubsection[{SetMetaValue}]{\setlength{\rightskip}{0pt plus 5cm}void MetaCode::SetMetaValue (const int \& {\em MetaValue\_\-})}}
 \label{d7/d72/classMetaCode_a1e410df95815b4d7e94b971bb1b8ba1e}
 
 
-This Sets The MetaValue. See \hyperlink{classMetaCode_a6a33ef9b7e2414ecfd97aadb14eca2de}{GetMetaValue} to see exactly what the MetaValue is. This will set the MetaValue stored in this \hyperlink{classMetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classMetaCode_a6a33ef9b7e2414ecfd97aadb14eca2de}{GetMetaValue} . 
+This Sets The MetaValue. See \hyperlink{classMetaCode_a8d9cd9709ab51323d7061cf7b0ea4ee2}{GetMetaValue} to see exactly what the MetaValue is. This will set the MetaValue stored in this \hyperlink{classMetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classMetaCode_a8d9cd9709ab51323d7061cf7b0ea4ee2}{GetMetaValue} . 
 \begin{DoxyParams}{Parameters}
 \item[{\em MetaValue\_\-}]Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. \end{DoxyParams}
 
 
-Definition at line 146 of file physeventuserinput.cpp.
+Definition at line 150 of file physeventuserinput.cpp.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

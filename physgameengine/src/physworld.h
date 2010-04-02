@@ -189,8 +189,8 @@ class PhysWorld
 		/// @details Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is
 		/// Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types
 		/// that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int
-		/// unsigned long int, bool, float, double, long double, wchar_t, size_t, PhysReal, PhysWhole, PhysString, and PhysVector3. If
-		/// compiled statically it should support any data type which supports output streams.
+		/// unsigned long int, bool, float, double, long double, wchar_t, size_t, PhysReal, PhysWhole, PhysString, PhysVector3, RawEvent and MetaCode.
+		/// If compiled statically it should support any data type which supports output streams.
 		/// @param Message This is what will be streamed to the log
     	template <class T> void Log(T Message);
     	/// @brief This is the preffered way to throw an exception currently
