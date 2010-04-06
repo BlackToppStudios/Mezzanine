@@ -50,7 +50,9 @@
 // Includes
 #include "physeventuserinput.h"
 #include "physevent.h"
-#include <stdarg.h>
+
+//#include <stdarg.h>
+#include <assert.h>
 #include <vector>
 
 #include "SDL.h"
@@ -110,17 +112,11 @@ void MetaCode::Construct(const RawEvent &RawEvent_)
 //This function assumes the RawEvent is a valid SDL Keyevent
 MetaCode::InputCode MetaCode::GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_)
 {
-    //This Whole thing will only work with SDL events. If we switch out event subsystems this is one of those that must change.
+    //This Whole thing will only work with SDL events. If we switch out event subsystems this is one of those that must change it.
     MetaCode::InputCode To;
-    //SDL_KeyboardEvent TempEvent;
 
-    //Copy the RawEvent so it looks like a SDL_KeyboardEvent
-    //memcpy( &TempEvent, &RawEvent_, sizeof(RawEvent));
-
-    //SDLKey From = ((SDL_KeyboardEvent)RawEvent_).keysym.sym;
-    //memcpy( &To, &(TempEvent.keysym.sym), sizeof(SDLKey));
-
-    memcpy( &To, &(RawEvent_.key.keysym.sym), sizeof(SDLKey));
+    assert( sizeof(To)==sizeof(RawEvent_.key.keysym.sym) );
+    memcpy( &To, &(RawEvent_.key.keysym.sym), sizeof(RawEvent_.key.keysym.sym));
 
     return To;
 }
@@ -174,7 +170,10 @@ bool MetaCode::operator==(const MetaCode &other) const
 
 std::ostream& operator << (std::ostream& stream, const MetaCode& x)
 {
-    stream << "( Code:" << x.GetCode() << ", MetaValue:" << x.GetMetaValue() << ", ID:" << x.GetID() << " )";
+    stream << "(  MetaValue:" << x.GetMetaValue()
+            << ", ID:" << x.GetID()
+            << ", Code:" << x.GetCode()
+            <<  " )";
     return stream;
 }
 
