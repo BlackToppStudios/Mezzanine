@@ -388,6 +388,17 @@ class MetaCode
         INPUTEVENT_LAST = 512           /// The last Event Code, all event codes will be less than this.
     };
 
+    /// @enum ButtonState
+    /// @brief An Optional listing of value that can be used in a metacode to represent the information of a button press
+    /// @details This is optional set of values that can make working with buttons easier. The values the engine pass
+    /// via the the event manager will all use these whereever appropriate.
+    enum ButtonState{
+        BUTTON_LIFTING = -1,    /**< Used when the key stops being pressed. */
+        BUTTON_UP = 0,          /**< The default state of a key. */
+        BUTTON_PRESSING = 1,    /**< This is used at the exact point in time that a key goes from unpressed to pressed. */
+        BUTTON_DOWN = 2         /**< This is used the entire time a key is down.  */
+    };
+
     private:
         int MetaValue;
         short unsigned int ID;
@@ -451,31 +462,47 @@ class MetaCode
 
         /// @brief This Sets The input ID
         /// @details See @ref GetID to see exactly what the input ID is. This will set the ID stored in this MetaCode. This value can be retrieved with @ref GetID .
-        /// @param ID_ Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
+        /// @param ID_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
         void SetID(const short unsigned int &ID_);
 
         /// @brief Compares two MetaCodes for equality
         /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.
         bool operator==(const MetaCode &other) const;
 };
-/// Not Sure how to document this one in doxygen
+
+/// @brief Allows for streaming of MetaCodes
+/// @details If it can be streamed, then it can be logged" Holds true for the MetaCode.
 std::ostream& operator << (std::ostream& stream, const MetaCode& x);
 
 
+///////////////////////////////////////////////////////////////////////////////
+/// @class PhysEventUserInput
+/// @headerfile physeventuserinput.h
+/// @brief This is a container for MetaCodes that is used in the physEventManager
+/// @details The PhysEventUserInput is the container for information about how a
+/// user enters data and commands into a program. By Default one is inserted into
+/// event manager the with all the user input from the last run of the main loop.
+/// These can be manually inserted into the EventManager to simulate input from
+/// other sources. If setup properly this can allow computer controlled
+/// characters to use the same interface players, allowing for more realistic
+/// response from them. This is not limited to the tricks discussed here.
+///////////////////////////////////////////////////////////////////////////////
 class PhysEventUserInput : public PhysEvent
 {
     private:
         vector<MetaCode> Code;
 
 	public:
+        /// @brief Default constructor
+        /// @details This creates a perfectly functional, but empty physevent.
         PhysEventUserInput();
         PhysEventUserInput(const MetaCode &Code_);
         PhysEventUserInput(const vector<MetaCode> &Code_);
         virtual ~PhysEventUserInput();
 
         //code managment functions
-        MetaCode GetCode(const unsigned int &Index);
-        unsigned int GetCodeCount();
+        const MetaCode GetMetaCode(const unsigned int &Index);
+        unsigned int GetMetaCodeCount();
 
         void AddCode(const MetaCode &Code_);
         void EraseCode(const MetaCode &Code_);

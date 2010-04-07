@@ -2,7 +2,12 @@
 \section{PhysEventUserInput Class Reference}
 \label{dc/d0e/classPhysEventUserInput}\index{PhysEventUserInput@{PhysEventUserInput}}
 }
-Inheritance diagram for PhysEventUserInput::\begin{figure}[H]
+
+
+This is a container for MetaCodes that is used in the physEventManager.  
+
+
+{\ttfamily \#include $<$physeventuserinput.h$>$}Inheritance diagram for PhysEventUserInput::\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2cm]{dc/d0e/classPhysEventUserInput}
@@ -11,6 +16,8 @@ Inheritance diagram for PhysEventUserInput::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classPhysEventUserInput_a6f8eaf698e8109d5cb30f2f17044f1ba}{PhysEventUserInput} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classPhysEventUserInput_ae13b1b02bfa3ef64dc4205478a68810f}{
 {\bfseries PhysEventUserInput} (const \hyperlink{classMetaCode}{MetaCode} \&Code\_\-)}
 \label{dc/d0e/classPhysEventUserInput_ae13b1b02bfa3ef64dc4205478a68810f}
@@ -21,14 +28,14 @@ Inheritance diagram for PhysEventUserInput::\begin{figure}[H]
 \label{dc/d0e/classPhysEventUserInput_a8b1c0e36d39075dffa4f88d10f2376d9}
 
 \item 
-\hypertarget{classPhysEventUserInput_a98b12510b96dea0d660355898fa69cad}{
-\hyperlink{classMetaCode}{MetaCode} {\bfseries GetCode} (const unsigned int \&Index)}
-\label{dc/d0e/classPhysEventUserInput_a98b12510b96dea0d660355898fa69cad}
+\hypertarget{classPhysEventUserInput_aa564530c27f6983bb412e46c2c7ed086}{
+const \hyperlink{classMetaCode}{MetaCode} {\bfseries GetMetaCode} (const unsigned int \&Index)}
+\label{dc/d0e/classPhysEventUserInput_aa564530c27f6983bb412e46c2c7ed086}
 
 \item 
-\hypertarget{classPhysEventUserInput_a8232572283b9dc85c96a2b28479123a8}{
-unsigned int {\bfseries GetCodeCount} ()}
-\label{dc/d0e/classPhysEventUserInput_a8232572283b9dc85c96a2b28479123a8}
+\hypertarget{classPhysEventUserInput_a86df812a38566a572134100a422a8799}{
+unsigned int {\bfseries GetMetaCodeCount} ()}
+\label{dc/d0e/classPhysEventUserInput_a86df812a38566a572134100a422a8799}
 
 \item 
 \hypertarget{classPhysEventUserInput_a4f5b94c64cd08c15b480e441d25a385d}{
@@ -64,9 +71,21 @@ virtual EventType {\bfseries getEventType} ()}
 
 
 \subsection{Detailed Description}
+This is a container for MetaCodes that is used in the physEventManager. The \hyperlink{classPhysEventUserInput}{PhysEventUserInput} is the container for information about how a user enters data and commands into a program. By Default one is inserted into event manager the with all the user input from the last run of the main loop. These can be manually inserted into the EventManager to simulate input from other sources. If setup properly this can allow computer controlled characters to use the same interface players, allowing for more realistic response from them. This is not limited to the tricks discussed here. 
+
+Definition at line 490 of file physeventuserinput.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classPhysEventUserInput_a6f8eaf698e8109d5cb30f2f17044f1ba}{
+\index{PhysEventUserInput@{PhysEventUserInput}!PhysEventUserInput@{PhysEventUserInput}}
+\index{PhysEventUserInput@{PhysEventUserInput}!PhysEventUserInput@{PhysEventUserInput}}
+\subsubsection[{PhysEventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}PhysEventUserInput::PhysEventUserInput ()}}
+\label{dc/d0e/classPhysEventUserInput_a6f8eaf698e8109d5cb30f2f17044f1ba}
 
 
-Definition at line 465 of file physeventuserinput.h.
+Default constructor. This creates a perfectly functional, but empty physevent. 
+
+Definition at line 186 of file physeventuserinput.cpp.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

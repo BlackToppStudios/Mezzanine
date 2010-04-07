@@ -344,7 +344,13 @@ enum \hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{InputCode} \{ \
 {\bfseries JOYSTICK\_\-LAST} =  506, 
 \hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24ad1ca5de26bcaae04a631fdaa13e5749f}{INPUTEVENT\_\-LAST} =  512
  \}
-\begin{DoxyCompactList}\small\item\em The InputCode enum defines all the posible types of inputs. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The InputCode enum defines all the posible types of inputs. \item\end{DoxyCompactList}\item 
+enum \hyperlink{classMetaCode_a8bcce67af20f4f779ba6f5387e438077}{ButtonState} \{ \hyperlink{classMetaCode_a8bcce67af20f4f779ba6f5387e438077aa16bc921174974d9e30752eff7af8336}{BUTTON\_\-LIFTING} =  -\/1, 
+\hyperlink{classMetaCode_a8bcce67af20f4f779ba6f5387e438077a87e2c9bdb3c969158f85543759dce244}{BUTTON\_\-UP} =  0, 
+\hyperlink{classMetaCode_a8bcce67af20f4f779ba6f5387e438077a1113791ce46932b93099ba765116b0d7}{BUTTON\_\-PRESSING} =  1, 
+\hyperlink{classMetaCode_a8bcce67af20f4f779ba6f5387e438077a73ef49474af25ad4c503fe27420c6448}{BUTTON\_\-DOWN} =  2
+ \}
+\begin{DoxyCompactList}\small\item\em An Optional listing of value that can be used in a metacode to represent the information of a button press. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -376,7 +382,38 @@ This Determines the kind of user input. A Metacode contains the data that is pas
 Definition at line 94 of file physeventuserinput.h.
 
 \subsection{Member Enumeration Documentation}
-\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{
+\hypertarget{classMetaCode_a8bcce67af20f4f779ba6f5387e438077}{
+\index{MetaCode@{MetaCode}!ButtonState@{ButtonState}}
+\index{ButtonState@{ButtonState}!MetaCode@{MetaCode}}
+\subsubsection[{ButtonState}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf MetaCode::ButtonState}}}
+\label{d7/d72/classMetaCode_a8bcce67af20f4f779ba6f5387e438077}
+
+
+An Optional listing of value that can be used in a metacode to represent the information of a button press. This is optional set of values that can make working with buttons easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{BUTTON\_\-LIFTING@{BUTTON\_\-LIFTING}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!BUTTON\_\-LIFTING@{BUTTON\_\-LIFTING}}\item[{\em 
+\hypertarget{classMetaCode_a8bcce67af20f4f779ba6f5387e438077aa16bc921174974d9e30752eff7af8336}{
+BUTTON\_\-LIFTING}
+\label{d7/d72/classMetaCode_a8bcce67af20f4f779ba6f5387e438077aa16bc921174974d9e30752eff7af8336}
+}]Used when the key stops being pressed. \index{BUTTON\_\-UP@{BUTTON\_\-UP}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!BUTTON\_\-UP@{BUTTON\_\-UP}}\item[{\em 
+\hypertarget{classMetaCode_a8bcce67af20f4f779ba6f5387e438077a87e2c9bdb3c969158f85543759dce244}{
+BUTTON\_\-UP}
+\label{d7/d72/classMetaCode_a8bcce67af20f4f779ba6f5387e438077a87e2c9bdb3c969158f85543759dce244}
+}]The default state of a key. \index{BUTTON\_\-PRESSING@{BUTTON\_\-PRESSING}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!BUTTON\_\-PRESSING@{BUTTON\_\-PRESSING}}\item[{\em 
+\hypertarget{classMetaCode_a8bcce67af20f4f779ba6f5387e438077a1113791ce46932b93099ba765116b0d7}{
+BUTTON\_\-PRESSING}
+\label{d7/d72/classMetaCode_a8bcce67af20f4f779ba6f5387e438077a1113791ce46932b93099ba765116b0d7}
+}]This is used at the exact point in time that a key goes from unpressed to pressed. \index{BUTTON\_\-DOWN@{BUTTON\_\-DOWN}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!BUTTON\_\-DOWN@{BUTTON\_\-DOWN}}\item[{\em 
+\hypertarget{classMetaCode_a8bcce67af20f4f779ba6f5387e438077a73ef49474af25ad4c503fe27420c6448}{
+BUTTON\_\-DOWN}
+\label{d7/d72/classMetaCode_a8bcce67af20f4f779ba6f5387e438077a73ef49474af25ad4c503fe27420c6448}
+}]This is used the entire time a key is down. \end{description}
+\end{Desc}
+
+
+
+Definition at line 395 of file physeventuserinput.h.\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{
 \index{MetaCode@{MetaCode}!InputCode@{InputCode}}
 \index{InputCode@{InputCode}!MetaCode@{MetaCode}}
 \subsubsection[{InputCode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf MetaCode::InputCode}}}
@@ -463,7 +500,7 @@ Definition at line 101 of file physeventuserinput.h.
 
 Default constructor. This sets nothing on the \hyperlink{classMetaCode}{MetaCode} and leaves it completely unassigned. Accessing a data member could cause problems 
 
-Definition at line 63 of file physeventuserinput.cpp.\hypertarget{classMetaCode_aaa5c96e46212847295db722a8253e86a}{
+Definition at line 65 of file physeventuserinput.cpp.\hypertarget{classMetaCode_aaa5c96e46212847295db722a8253e86a}{
 \index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
 \index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
 \subsubsection[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}MetaCode::MetaCode (const int \& {\em MetaValue\_\-}, \/  const short unsigned int \& {\em ID\_\-}, \/  const {\bf MetaCode::InputCode} \& {\em Code\_\-})}}
@@ -475,7 +512,7 @@ Descriptive Constructor. This sets all values in the \hyperlink{classMetaCode}{M
 \item[{\em MetaValue\_\-}]How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed. \item[{\em ID\_\-}]Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item. \item[{\em Code\_\-}]Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support. \end{DoxyParams}
 
 
-Definition at line 66 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a87b260ce7ee3a66c75320c0fc37cdc0a}{
+Definition at line 68 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a87b260ce7ee3a66c75320c0fc37cdc0a}{
 \index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
 \index{MetaCode@{MetaCode}!MetaCode@{MetaCode}}
 \subsubsection[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}MetaCode::MetaCode (const RawEvent \& {\em RawEvent\_\-})}}
@@ -487,7 +524,7 @@ We recomend against using this Constructor, because the binary format of RawEven
 \end{DoxyWarning}
 
 
-Definition at line 71 of file physeventuserinput.cpp.
+Definition at line 73 of file physeventuserinput.cpp.
 
 \subsection{Member Function Documentation}
 \hypertarget{classMetaCode_a94532fc103d95f3de53eeccbadd6f17b}{
@@ -502,7 +539,7 @@ This returns the input code for this \hyperlink{classMetaCode}{MetaCode}
 \end{DoxyReturn}
 
 
-Definition at line 140 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a680b5e1c2ce8d8d08d00f10187728547}{
+Definition at line 138 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a680b5e1c2ce8d8d08d00f10187728547}{
 \index{MetaCode@{MetaCode}!GetID@{GetID}}
 \index{GetID@{GetID}!MetaCode@{MetaCode}}
 \subsubsection[{GetID}]{\setlength{\rightskip}{0pt plus 5cm}short unsigned int MetaCode::GetID () const}}
@@ -514,7 +551,7 @@ This returns the input ID, which (on a normal system) can help Identify which Mo
 \end{DoxyReturn}
 
 
-Definition at line 145 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a8d9cd9709ab51323d7061cf7b0ea4ee2}{
+Definition at line 143 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a8d9cd9709ab51323d7061cf7b0ea4ee2}{
 \index{MetaCode@{MetaCode}!GetMetaValue@{GetMetaValue}}
 \index{GetMetaValue@{GetMetaValue}!MetaCode@{MetaCode}}
 \subsubsection[{GetMetaValue}]{\setlength{\rightskip}{0pt plus 5cm}int MetaCode::GetMetaValue () const}}
@@ -526,7 +563,7 @@ This returns the input code for this \hyperlink{classMetaCode}{MetaCode}. For ke
 \end{DoxyReturn}
 
 
-Definition at line 135 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a296b774682a9326494e0c2d1b357ec2a}{
+Definition at line 133 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a296b774682a9326494e0c2d1b357ec2a}{
 \index{MetaCode@{MetaCode}!operator==@{operator==}}
 \index{operator==@{operator==}!MetaCode@{MetaCode}}
 \subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool MetaCode::operator== (const {\bf MetaCode} \& {\em other}) const}}
@@ -535,7 +572,7 @@ Definition at line 135 of file physeventuserinput.cpp.\hypertarget{classMetaCode
 
 Compares two MetaCodes for equality. This returns true if the MetaValue and Code are the Same, this ignores ID. 
 
-Definition at line 165 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a9be5fcad22449c12b649801ab97bbf20}{
+Definition at line 163 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a9be5fcad22449c12b649801ab97bbf20}{
 \index{MetaCode@{MetaCode}!SetCode@{SetCode}}
 \index{SetCode@{SetCode}!MetaCode@{MetaCode}}
 \subsubsection[{SetCode}]{\setlength{\rightskip}{0pt plus 5cm}void MetaCode::SetCode (const {\bf MetaCode::InputCode} \& {\em Code\_\-})}}
@@ -547,7 +584,7 @@ This Sets The InputCode. See \hyperlink{classMetaCode_a94532fc103d95f3de53eeccba
 \item[{\em Code\_\-}]Teh value you want the stored code to become. \end{DoxyParams}
 
 
-Definition at line 155 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a0eb10030320a1fcfdda3b867b90e629f}{
+Definition at line 153 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a0eb10030320a1fcfdda3b867b90e629f}{
 \index{MetaCode@{MetaCode}!SetID@{SetID}}
 \index{SetID@{SetID}!MetaCode@{MetaCode}}
 \subsubsection[{SetID}]{\setlength{\rightskip}{0pt plus 5cm}void MetaCode::SetID (const short unsigned int \& {\em ID\_\-})}}
@@ -556,10 +593,10 @@ Definition at line 155 of file physeventuserinput.cpp.\hypertarget{classMetaCode
 
 This Sets The input ID. See \hyperlink{classMetaCode_a680b5e1c2ce8d8d08d00f10187728547}{GetID} to see exactly what the input ID is. This will set the ID stored in this \hyperlink{classMetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classMetaCode_a680b5e1c2ce8d8d08d00f10187728547}{GetID} . 
 \begin{DoxyParams}{Parameters}
-\item[{\em ID\_\-}]Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. \end{DoxyParams}
+\item[{\em ID\_\-}]The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. \end{DoxyParams}
 
 
-Definition at line 160 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a1e410df95815b4d7e94b971bb1b8ba1e}{
+Definition at line 158 of file physeventuserinput.cpp.\hypertarget{classMetaCode_a1e410df95815b4d7e94b971bb1b8ba1e}{
 \index{MetaCode@{MetaCode}!SetMetaValue@{SetMetaValue}}
 \index{SetMetaValue@{SetMetaValue}!MetaCode@{MetaCode}}
 \subsubsection[{SetMetaValue}]{\setlength{\rightskip}{0pt plus 5cm}void MetaCode::SetMetaValue (const int \& {\em MetaValue\_\-})}}
@@ -571,7 +608,7 @@ This Sets The MetaValue. See \hyperlink{classMetaCode_a8d9cd9709ab51323d7061cf7b
 \item[{\em MetaValue\_\-}]Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. \end{DoxyParams}
 
 
-Definition at line 150 of file physeventuserinput.cpp.
+Definition at line 148 of file physeventuserinput.cpp.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

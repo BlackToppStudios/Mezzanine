@@ -77,15 +77,17 @@ MetaCode::MetaCode(const RawEvent &RawEvent_)
 
 void MetaCode::Construct(const RawEvent &RawEvent_)
 {
+    //create a safe but gibberish default
+    Construct(BUTTON_UP, 0, KEY_FIRST);
     /// @todo TODO: Actually process each event
     switch(RawEvent_.type)
     {
         case SDL_KEYDOWN:
             //    Construct(MetaValue_, ID_, Code_);
-            Construct(1, 0, GetInputCodeFromSDL_KEY(RawEvent_));
+            Construct(BUTTON_PRESSING, 0, GetInputCodeFromSDL_KEY(RawEvent_));
             break;
         case SDL_KEYUP:
-            Construct(-1, 0, GetInputCodeFromSDL_KEY(RawEvent_));
+            Construct(BUTTON_LIFTING, 0, GetInputCodeFromSDL_KEY(RawEvent_));
             break;
         case SDL_MOUSEMOTION:
             break;
@@ -170,10 +172,10 @@ bool MetaCode::operator==(const MetaCode &other) const
 
 std::ostream& operator << (std::ostream& stream, const MetaCode& x)
 {
-    stream << "(  MetaValue:" << x.GetMetaValue()
-            << ", ID:" << x.GetID()
-            << ", Code:" << x.GetCode()
-            <<  " )";
+    stream << "( MetaValue:" << x.GetMetaValue()
+           << ", ID:" << x.GetID()
+           << ", Code:" << x.GetCode()
+           <<  " )";
     return stream;
 }
 
@@ -204,12 +206,12 @@ PhysEventUserInput::~PhysEventUserInput()
 
 }
 
-MetaCode PhysEventUserInput::GetCode(const unsigned int &Index)
+const MetaCode PhysEventUserInput::GetMetaCode(const unsigned int &Index)
 {
     return Code.at(Index);
 }
 
-unsigned int PhysEventUserInput::GetCodeCount()
+unsigned int PhysEventUserInput::GetMetaCodeCount()
 {
     return Code.size();
 }

@@ -72,6 +72,7 @@ using namespace std;
 // Physworld constructor
 //this should create the basic objects for stroing and tracking the roots of
 //objects in the game
+/// @todo TODO Fix the `const`ness of all methods to be as const as allowable
 PhysWorld::PhysWorld()
 {
 	this->Construct(
@@ -298,6 +299,7 @@ void PhysWorld::GameInit()
         //However we will only do this if a callback is set
         if(this->CallBacks->IsPreInputCallbackSet())
         {
+            /// @todo TODO add a postinput and a postphysics callback to the call back manager and integrate them seamlessly
 			this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
 			Callbackbools[0] = this->CallBacks->PreInput();
 			this->DoMainLoopInputBuffering();
@@ -390,13 +392,19 @@ void PhysWorld::DoMainLoopInputBuffering()
     }
 
     //temp code
-    /// @todo Delete the even temp logging code
-    for(unsigned int c=0; c<FromSDLEvent->GetCodeCount(); c++)
+    /// @todo TODO Delete the even temp logging code
+    for(unsigned int c=0; c<FromSDLEvent->GetMetaCodeCount(); c++)
     {
-        Log(FromSDLEvent->GetCode(c));
+        Log(FromSDLEvent->GetMetaCode(c));
     }
+    // /tempcode
 
-    this->Events->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
+    if (0 < FromSDLEvent->GetMetaCodeCount())
+    {
+        this->Events->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
+    }else{
+        delete FromSDLEvent;
+    }
 }
 
 void PhysWorld::DoMainLoopRender()

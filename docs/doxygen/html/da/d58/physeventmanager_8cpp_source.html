@@ -76,8 +76,8 @@
 <a name="l00052"></a>00052 
 <a name="l00053"></a>00053 <span class="keywordtype">bool</span> PhysEventManager::IgnoreSDLQuitEvents;
 <a name="l00054"></a>00054 <span class="comment"></span>
-<a name="l00055"></a>00055 <span class="comment">/// @todo TODO: Make the PhysEventManager completely thread safe. IF this is completely thread, we can spawn numerous individual thread each accessing this and</span>
-<a name="l00056"></a>00056 <span class="comment">/// and the performance gain would almost scale directly with cpu core count increases.</span>
+<a name="l00055"></a>00055 <span class="comment">/// @todo TODO: Make the PhysEventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and</span>
+<a name="l00056"></a>00056 <span class="comment">/// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock</span>
 <a name="l00057"></a>00057 <span class="comment"></span>
 <a name="l00058"></a><a class="code" href="../../d5/dd7/classPhysEventManager.html#a217e7f6006aaf5e08e2872fa4d66e5e2">00058</a> <a class="code" href="../../d5/dd7/classPhysEventManager.html#a217e7f6006aaf5e08e2872fa4d66e5e2">PhysEventManager::PhysEventManager</a>()
 <a name="l00059"></a>00059 {
@@ -117,14 +117,14 @@
 <a name="l00093"></a>00093     <span class="keywordflow">return</span> results;
 <a name="l00094"></a>00094 }
 <a name="l00095"></a>00095 
-<a name="l00096"></a>00096 <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>* PhysEventManager::GetNextUserInputEvent()
+<a name="l00096"></a>00096 <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* PhysEventManager::GetNextUserInputEvent()
 <a name="l00097"></a>00097 {
-<a name="l00098"></a>00098     <a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>* results = 0;
+<a name="l00098"></a>00098     <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* results = 0;
 <a name="l00099"></a>00099     <span class="keywordflow">for</span>(list&lt;PhysEvent*&gt;::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
 <a name="l00100"></a>00100     {
 <a name="l00101"></a>00101         <span class="keywordflow">if</span>((*Iter)-&gt;getEventType()==UserInput)
 <a name="l00102"></a>00102         {
-<a name="l00103"></a>00103             results = <span class="keyword">dynamic_cast&lt;</span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a>*<span class="keyword">&gt;</span> (*Iter);
+<a name="l00103"></a>00103             results = <span class="keyword">dynamic_cast&lt;</span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>*<span class="keyword">&gt;</span> (*Iter);
 <a name="l00104"></a>00104             EventQueue.erase(Iter);
 <a name="l00105"></a>00105             <span class="keywordflow">return</span> results;
 <a name="l00106"></a>00106         }
@@ -161,7 +161,7 @@
 <a name="l00137"></a>00137 
 <a name="l00138"></a>00138 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 2 00:02:14 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 7 00:15:43 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

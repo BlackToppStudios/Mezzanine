@@ -5,7 +5,9 @@
 //Somewhere else we will stuff it here until it is time to refactor again.
 ///////////////////////////////////////////////////////////////////////////////
 
-bool preRenderCallback();
+bool preRender();
+bool preInput();
 
+bool CheckForEsc();
 
 #endif
