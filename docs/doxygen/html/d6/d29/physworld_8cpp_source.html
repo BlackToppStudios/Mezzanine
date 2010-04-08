@@ -296,7 +296,7 @@
 <a name="l00272"></a>00272     <span class="comment">//Create a the RenderTimer, which will be used to measure the time</span>
 <a name="l00273"></a>00273     Ogre::Timer RenderTimer;
 <a name="l00274"></a>00274 
-<a name="l00275"></a>00275         <span class="keywordtype">bool</span> Callbackbools[] = {<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>};
+<a name="l00275"></a>00275         <span class="keywordtype">bool</span> Callbackbools[] = {<span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">true</span>};
 <a name="l00276"></a>00276 
 <a name="l00277"></a>00277         <span class="comment">//Used for tracking times to prevent Infinite render loops in graphically simple games</span>
 <a name="l00278"></a>00278         <span class="comment">//PhysWhole Times[] = {0,0,0,0};</span>
@@ -311,251 +311,257 @@
 <a name="l00287"></a>00287     PhysWhole FrameDelay = 0;
 <a name="l00288"></a>00288     PhysWhole FrameTime = 0;
 <a name="l00289"></a>00289 <span class="comment"></span>
-<a name="l00290"></a>00290 <span class="comment">    /// @page MainLoop</span>
-<a name="l00291"></a>00291 <span class="comment">    /// The MainLoop does stuffs that needs to be documented</span>
-<a name="l00292"></a>00292 <span class="comment">    /// @todo actually document the gameloop</span>
+<a name="l00290"></a>00290 <span class="comment">    /// @page MainLoop Main Loop Structure and Flow</span>
+<a name="l00291"></a>00291 <span class="comment">    /// The MainLoop is heart of most vidoeo games an simulations.</span>
+<a name="l00292"></a>00292 <span class="comment">    /// @section whymainloop Why a Main loop</span>
 <a name="l00293"></a>00293 <span class="comment">        /// The Main loop begins in PhysGame.GameInit(). Once started it runs the callbacks present in the callback manager until one of them</span>
-<a name="l00294"></a>00294 <span class="comment">        /// Returns false. It has a pretty specific work flow</span>
-<a name="l00295"></a>00295 <span class="comment"></span>        <span class="comment">//As long as all the CallBacks return true the game continues</span>
-<a name="l00296"></a>00296         <span class="keywordflow">while</span> (Callbackbools[0] &amp;&amp; Callbackbools[1] &amp;&amp; Callbackbools[2] &amp;&amp; Callbackbools[3])
-<a name="l00297"></a>00297         {
-<a name="l00298"></a>00298         <span class="comment">//To prepare each callback we add an event to the event manager which includes the time since th last frame render ended</span>
-<a name="l00299"></a>00299         <span class="comment">//However we will only do this if a callback is set</span>
-<a name="l00300"></a>00300         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPreInputCallbackSet())
-<a name="l00301"></a>00301         {<span class="comment"></span>
-<a name="l00302"></a>00302 <span class="comment">            /// @todo TODO add a postinput and a postphysics callback to the call back manager and integrate them seamlessly</span>
-<a name="l00303"></a>00303 <span class="comment"></span>                        this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>-&gt;AddEvent(<span class="keyword">new</span> <a class="code" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a>(FrameTime));
-<a name="l00304"></a>00304                         Callbackbools[0] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PreInput();
-<a name="l00305"></a>00305                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c" title="Gathers user input from the OS and places events in the event manager.">DoMainLoopInputBuffering</a>();
-<a name="l00306"></a>00306         }
-<a name="l00307"></a>00307 
-<a name="l00308"></a>00308                 <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPrePhysicsCallbackSet())
-<a name="l00309"></a>00309         {
-<a name="l00310"></a>00310             this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>-&gt;AddEvent(<span class="keyword">new</span> <a class="code" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a>(FrameTime));
-<a name="l00311"></a>00311                         Callbackbools[1] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PrePhysics();
-<a name="l00312"></a>00312                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a994d7d8c4a9a0c003c3e7d89be7b399b" title="Increments physics by one step.">DoMainLoopPhysics</a>();
-<a name="l00313"></a>00313         }
-<a name="l00314"></a>00314 
-<a name="l00315"></a>00315                 <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPreRenderCallbackSet())
-<a name="l00316"></a>00316         {
-<a name="l00317"></a>00317             this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>-&gt;AddEvent(<span class="keyword">new</span> <a class="code" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a>(FrameTime));
-<a name="l00318"></a>00318                         Callbackbools[2] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PreRender();
-<a name="l00319"></a>00319                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a" title="Creates events for each Window manger.">DoMainLoopWindowManagerBuffering</a>();
-<a name="l00320"></a>00320         }
-<a name="l00321"></a>00321 
-<a name="l00322"></a>00322                 <span class="comment">//Render the frame and figure the amount of time it took //Limit frame rate to 62.5</span>
-<a name="l00323"></a>00323                 this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a8f33541d67164a2452e568443e9905be" title="This forces the screen to be re-rendered.">DoMainLoopRender</a>();
-<a name="l00324"></a>00324                 FrameTime = RenderTimer.getMilliseconds();
-<a name="l00325"></a>00325                 RenderTimer.reset();
-<a name="l00326"></a>00326                 <span class="keywordflow">if</span>(16&gt;FrameTime){                               <span class="comment">//use 16666 for microseconds</span>
-<a name="l00327"></a>00327                     FrameDelay++;
-<a name="l00328"></a>00328                         WaitMilliseconds( FrameDelay );
-<a name="l00329"></a>00329                 }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(16==FrameTime){
-<a name="l00330"></a>00330         }<span class="keywordflow">else</span>{
-<a name="l00331"></a>00331             <span class="keywordflow">if</span> (0&lt;FrameDelay){
-<a name="l00332"></a>00332                 FrameDelay--;
-<a name="l00333"></a>00333             }<span class="keywordflow">else</span>{
-<a name="l00334"></a>00334                 FrameDelay=0;
-<a name="l00335"></a>00335             }
-<a name="l00336"></a>00336         }
-<a name="l00337"></a>00337 
-<a name="l00338"></a>00338                 <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostRenderCallbackSet())
-<a name="l00339"></a>00339         {
-<a name="l00340"></a>00340                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>-&gt;AddEvent(<span class="keyword">new</span> <a class="code" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a>(FrameTime));
-<a name="l00341"></a>00341                         Callbackbools[3] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PostRender();
+<a name="l00294"></a>00294 <span class="comment">        /// Returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback before</span>
+<a name="l00295"></a>00295 <span class="comment">        /// and after each of them.</span>
+<a name="l00296"></a>00296 <span class="comment"></span>        <span class="comment">//As long as all the CallBacks return true the game continues</span>
+<a name="l00297"></a>00297         <span class="keywordflow">while</span> (Callbackbools[0] &amp;&amp; Callbackbools[1] &amp;&amp; Callbackbools[2] &amp;&amp; Callbackbools[3] &amp;&amp; Callbackbools[4] &amp;&amp; Callbackbools[5])
+<a name="l00298"></a>00298         {
+<a name="l00299"></a>00299         <span class="comment">//To prepare each callback we add an event to the event manager which includes the time since th last frame render ended</span>
+<a name="l00300"></a>00300         <span class="comment">//However we will only do this if a callback is set</span>
+<a name="l00301"></a>00301         <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPreInputCallbackSet() || this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostInputCallbackSet() )
+<a name="l00302"></a>00302         {
+<a name="l00303"></a>00303             <span class="comment">//this-&gt;Events-&gt;AddEvent(new PhysEventRenderTime(FrameTime));</span>
+<a name="l00304"></a>00304                         <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPreInputCallbackSet() )
+<a name="l00305"></a>00305                 { Callbackbools[0] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PreInput(); }
+<a name="l00306"></a>00306                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c" title="Gathers user input from the OS and places events in the event manager.">DoMainLoopInputBuffering</a>();
+<a name="l00307"></a>00307                         <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostInputCallbackSet() )
+<a name="l00308"></a>00308                 { Callbackbools[1] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PostInput(); }
+<a name="l00309"></a>00309         }<span class="comment"></span>
+<a name="l00310"></a>00310 <span class="comment"> /// @todo actually document the gameloop</span>
+<a name="l00311"></a>00311 <span class="comment"></span>                <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPrePhysicsCallbackSet() || this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostPhysicsCallbackSet() )
+<a name="l00312"></a>00312         {
+<a name="l00313"></a>00313             <span class="comment">//this-&gt;Events-&gt;AddEvent(new PhysEventRenderTime(FrameTime));</span>
+<a name="l00314"></a>00314             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPrePhysicsCallbackSet() )
+<a name="l00315"></a>00315                 { Callbackbools[2] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PrePhysics(); }
+<a name="l00316"></a>00316                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a994d7d8c4a9a0c003c3e7d89be7b399b" title="Increments physics by one step.">DoMainLoopPhysics</a>();
+<a name="l00317"></a>00317             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostPhysicsCallbackSet() )
+<a name="l00318"></a>00318                 { Callbackbools[3] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PostPhysics(); }
+<a name="l00319"></a>00319         }
+<a name="l00320"></a>00320 
+<a name="l00321"></a>00321                 <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPreRenderCallbackSet())
+<a name="l00322"></a>00322         {
+<a name="l00323"></a>00323             <span class="comment">//this-&gt;Events-&gt;AddEvent(new PhysEventRenderTime(FrameTime));</span>
+<a name="l00324"></a>00324                         Callbackbools[4] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PreRender();
+<a name="l00325"></a>00325                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a" title="Creates events for each Window manger.">DoMainLoopWindowManagerBuffering</a>();
+<a name="l00326"></a>00326         }
+<a name="l00327"></a>00327 
+<a name="l00328"></a>00328                 <span class="comment">//Render the frame and figure the amount of time it took //Limit frame rate to 62.5</span>
+<a name="l00329"></a>00329                 this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a8f33541d67164a2452e568443e9905be" title="This forces the screen to be re-rendered.">DoMainLoopRender</a>();
+<a name="l00330"></a>00330                 FrameTime = RenderTimer.getMilliseconds();
+<a name="l00331"></a>00331                 RenderTimer.reset();
+<a name="l00332"></a>00332                 <span class="keywordflow">if</span>(16&gt;FrameTime){                               <span class="comment">//use 16666 for microseconds</span>
+<a name="l00333"></a>00333                     FrameDelay++;
+<a name="l00334"></a>00334                         WaitMilliseconds( FrameDelay );
+<a name="l00335"></a>00335                 }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(16==FrameTime){
+<a name="l00336"></a>00336         }<span class="keywordflow">else</span>{
+<a name="l00337"></a>00337             <span class="keywordflow">if</span> (0&lt;FrameDelay){
+<a name="l00338"></a>00338                 FrameDelay--;
+<a name="l00339"></a>00339             }<span class="keywordflow">else</span>{
+<a name="l00340"></a>00340                 FrameDelay=0;
+<a name="l00341"></a>00341             }
 <a name="l00342"></a>00342         }
 <a name="l00343"></a>00343 
-<a name="l00344"></a>00344         }<span class="comment">//End of main loop</span>
-<a name="l00345"></a>00345 
-<a name="l00346"></a>00346         <span class="comment">//Some after loop cleanup</span>
-<a name="l00347"></a>00347         this-&gt;DestroyRenderWindow();
-<a name="l00348"></a>00348 }
+<a name="l00344"></a>00344                 <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostRenderCallbackSet())
+<a name="l00345"></a>00345         {
+<a name="l00346"></a>00346                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>-&gt;AddEvent(<span class="keyword">new</span> <a class="code" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a>(FrameTime));
+<a name="l00347"></a>00347                         Callbackbools[5] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PostRender();
+<a name="l00348"></a>00348         }
 <a name="l00349"></a>00349 
-<a name="l00350"></a><a class="code" href="../../db/df5/classPhysWorld.html#a1df24ee06d5881825902b60e0d81174a">00350</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a1df24ee06d5881825902b60e0d81174a" title="This moves the camera relative to the world.">PhysWorld::MoveCamera</a>(<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Position, <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> LookAt)
-<a name="l00351"></a>00351 {
-<a name="l00352"></a>00352         this-&gt;OgreCamera-&gt;setPosition(Ogre::Vector3(Position.X,Position.Y,Position.Z));
-<a name="l00353"></a>00353     this-&gt;OgreCamera-&gt;lookAt(Ogre::Vector3(LookAt.X,LookAt.Y,LookAt.Z));
+<a name="l00350"></a>00350         }<span class="comment">//End of main loop</span>
+<a name="l00351"></a>00351 
+<a name="l00352"></a>00352         <span class="comment">//Some after loop cleanup</span>
+<a name="l00353"></a>00353         this-&gt;DestroyRenderWindow();
 <a name="l00354"></a>00354 }
 <a name="l00355"></a>00355 
-<a name="l00356"></a><a class="code" href="../../db/df5/classPhysWorld.html#a60b7978b39fc347c2f37077737783da6">00356</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a60b7978b39fc347c2f37077737783da6" title="Performs all the items that would normally be performed during the game loop.">PhysWorld::DoMainLoopAllItems</a>()
+<a name="l00356"></a><a class="code" href="../../db/df5/classPhysWorld.html#a1df24ee06d5881825902b60e0d81174a">00356</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a1df24ee06d5881825902b60e0d81174a" title="This moves the camera relative to the world.">PhysWorld::MoveCamera</a>(<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Position, <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> LookAt)
 <a name="l00357"></a>00357 {
-<a name="l00358"></a>00358         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a994d7d8c4a9a0c003c3e7d89be7b399b" title="Increments physics by one step.">DoMainLoopPhysics</a>();
-<a name="l00359"></a>00359         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a" title="Creates events for each Window manger.">DoMainLoopWindowManagerBuffering</a>();
-<a name="l00360"></a>00360         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c" title="Gathers user input from the OS and places events in the event manager.">DoMainLoopInputBuffering</a>();
-<a name="l00361"></a>00361         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a8f33541d67164a2452e568443e9905be" title="This forces the screen to be re-rendered.">DoMainLoopRender</a>();
-<a name="l00362"></a>00362 }
-<a name="l00363"></a>00363 
-<a name="l00364"></a><a class="code" href="../../db/df5/classPhysWorld.html#a994d7d8c4a9a0c003c3e7d89be7b399b">00364</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a994d7d8c4a9a0c003c3e7d89be7b399b" title="Increments physics by one step.">PhysWorld::DoMainLoopPhysics</a>()
-<a name="l00365"></a>00365 {
-<a name="l00366"></a>00366         <span class="comment">//TODO: Step the physics world here per main loop items</span>
-<a name="l00367"></a>00367         <span class="comment">//this-&gt;Events-&gt;AddsomeEvents</span>
+<a name="l00358"></a>00358         this-&gt;OgreCamera-&gt;setPosition(Ogre::Vector3(Position.X,Position.Y,Position.Z));
+<a name="l00359"></a>00359     this-&gt;OgreCamera-&gt;lookAt(Ogre::Vector3(LookAt.X,LookAt.Y,LookAt.Z));
+<a name="l00360"></a>00360 }
+<a name="l00361"></a>00361 
+<a name="l00362"></a><a class="code" href="../../db/df5/classPhysWorld.html#a60b7978b39fc347c2f37077737783da6">00362</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a60b7978b39fc347c2f37077737783da6" title="Performs all the items that would normally be performed during the game loop.">PhysWorld::DoMainLoopAllItems</a>()
+<a name="l00363"></a>00363 {
+<a name="l00364"></a>00364         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a994d7d8c4a9a0c003c3e7d89be7b399b" title="Increments physics by one step.">DoMainLoopPhysics</a>();
+<a name="l00365"></a>00365         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a" title="Creates events for each Window manger.">DoMainLoopWindowManagerBuffering</a>();
+<a name="l00366"></a>00366         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c" title="Gathers user input from the OS and places events in the event manager.">DoMainLoopInputBuffering</a>();
+<a name="l00367"></a>00367         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a8f33541d67164a2452e568443e9905be" title="This forces the screen to be re-rendered.">DoMainLoopRender</a>();
 <a name="l00368"></a>00368 }
 <a name="l00369"></a>00369 
-<a name="l00370"></a><a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a">00370</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a" title="Creates events for each Window manger.">PhysWorld::DoMainLoopWindowManagerBuffering</a>()
+<a name="l00370"></a><a class="code" href="../../db/df5/classPhysWorld.html#a994d7d8c4a9a0c003c3e7d89be7b399b">00370</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a994d7d8c4a9a0c003c3e7d89be7b399b" title="Increments physics by one step.">PhysWorld::DoMainLoopPhysics</a>()
 <a name="l00371"></a>00371 {
-<a name="l00372"></a>00372     this-&gt;PreProcessSDLEvents();
-<a name="l00373"></a>00373     <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;WM EventCount Pending:&quot;</span>);
-<a name="l00374"></a>00374     <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(SDL_WmEvents.size());
-<a name="l00375"></a>00375     <span class="comment">//TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)</span>
-<a name="l00376"></a>00376 }
-<a name="l00377"></a>00377 
-<a name="l00378"></a><a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c">00378</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c" title="Gathers user input from the OS and places events in the event manager.">PhysWorld::DoMainLoopInputBuffering</a>()
-<a name="l00379"></a>00379 {
-<a name="l00380"></a>00380     this-&gt;PreProcessSDLEvents();
-<a name="l00381"></a>00381     <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;User Input EventCount Pending:&quot;</span>);
-<a name="l00382"></a>00382     <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(SDL_UserInputEvents.size());
+<a name="l00372"></a>00372         <span class="comment">//TODO: Step the physics world here per main loop items</span>
+<a name="l00373"></a>00373         <span class="comment">//this-&gt;Events-&gt;AddsomeEvents</span>
+<a name="l00374"></a>00374 }
+<a name="l00375"></a>00375 
+<a name="l00376"></a><a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a">00376</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a" title="Creates events for each Window manger.">PhysWorld::DoMainLoopWindowManagerBuffering</a>()
+<a name="l00377"></a>00377 {
+<a name="l00378"></a>00378     this-&gt;PreProcessSDLEvents();
+<a name="l00379"></a>00379     <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;WM EventCount Pending:&quot;</span>);
+<a name="l00380"></a>00380     <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(SDL_WmEvents.size());
+<a name="l00381"></a>00381     <span class="comment">//TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)</span>
+<a name="l00382"></a>00382 }
 <a name="l00383"></a>00383 
-<a name="l00384"></a>00384     <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* FromSDLEvent = <span class="keyword">new</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>();
-<a name="l00385"></a>00385 <span class="comment"></span>
-<a name="l00386"></a>00386 <span class="comment">    /// @todo TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)</span>
-<a name="l00387"></a>00387 <span class="comment"></span>    <span class="keywordflow">while</span>( !SDL_UserInputEvents.empty() )
-<a name="l00388"></a>00388     {
-<a name="l00389"></a>00389         <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> CurrentMetaCode( *(SDL_UserInputEvents.front()) );
-<a name="l00390"></a>00390         FromSDLEvent-&gt;AddCode(CurrentMetaCode);         <span class="comment">//This relies on the fact that the constructor copies the data</span>
-<a name="l00391"></a>00391         SDL_UserInputEvents.pop(); <span class="comment">//NEXT!!!</span>
-<a name="l00392"></a>00392     }
-<a name="l00393"></a>00393 
-<a name="l00394"></a>00394     <span class="comment">//temp code</span><span class="comment"></span>
-<a name="l00395"></a>00395 <span class="comment">    /// @todo Delete the even temp logging code</span>
-<a name="l00396"></a>00396 <span class="comment"></span>    <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> c=0; c&lt;FromSDLEvent-&gt;GetMetaCodeCount(); c++)
-<a name="l00397"></a>00397     {
-<a name="l00398"></a>00398         <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(FromSDLEvent-&gt;GetMetaCode(c));
-<a name="l00399"></a>00399     }
-<a name="l00400"></a>00400     <span class="comment">// /tempcode</span>
-<a name="l00401"></a>00401 
-<a name="l00402"></a>00402     <span class="keywordflow">if</span> (0 &lt; FromSDLEvent-&gt;GetMetaCodeCount())
+<a name="l00384"></a><a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c">00384</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c" title="Gathers user input from the OS and places events in the event manager.">PhysWorld::DoMainLoopInputBuffering</a>()
+<a name="l00385"></a>00385 {
+<a name="l00386"></a>00386     this-&gt;PreProcessSDLEvents();
+<a name="l00387"></a>00387     <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;User Input EventCount Pending:&quot;</span>);
+<a name="l00388"></a>00388     <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(SDL_UserInputEvents.size());
+<a name="l00389"></a>00389 
+<a name="l00390"></a>00390     <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* FromSDLEvent = <span class="keyword">new</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>();
+<a name="l00391"></a>00391 <span class="comment"></span>
+<a name="l00392"></a>00392 <span class="comment">    /// @todo TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)</span>
+<a name="l00393"></a>00393 <span class="comment"></span>    <span class="keywordflow">while</span>( !SDL_UserInputEvents.empty() )
+<a name="l00394"></a>00394     {
+<a name="l00395"></a>00395         <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> CurrentMetaCode( *(SDL_UserInputEvents.front()) );
+<a name="l00396"></a>00396         FromSDLEvent-&gt;AddCode(CurrentMetaCode);         <span class="comment">//This relies on the fact that the constructor copies the data</span>
+<a name="l00397"></a>00397         SDL_UserInputEvents.pop(); <span class="comment">//NEXT!!!</span>
+<a name="l00398"></a>00398     }
+<a name="l00399"></a>00399 
+<a name="l00400"></a>00400     <span class="comment">//temp code</span><span class="comment"></span>
+<a name="l00401"></a>00401 <span class="comment">    /// @todo TODO Delete the even temp logging code</span>
+<a name="l00402"></a>00402 <span class="comment"></span>    <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> c=0; c&lt;FromSDLEvent-&gt;GetMetaCodeCount(); c++)
 <a name="l00403"></a>00403     {
-<a name="l00404"></a>00404         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>-&gt;AddEvent(FromSDLEvent); <span class="comment">//Now FromSDL is some else&apos;s responsibility</span>
-<a name="l00405"></a>00405     }<span class="keywordflow">else</span>{
-<a name="l00406"></a>00406         <span class="keyword">delete</span> FromSDLEvent;
-<a name="l00407"></a>00407     }
-<a name="l00408"></a>00408 }
-<a name="l00409"></a>00409 
-<a name="l00410"></a><a class="code" href="../../db/df5/classPhysWorld.html#a8f33541d67164a2452e568443e9905be">00410</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a8f33541d67164a2452e568443e9905be" title="This forces the screen to be re-rendered.">PhysWorld::DoMainLoopRender</a>()
-<a name="l00411"></a>00411 {
-<a name="l00412"></a>00412         <a class="code" href="../../db/df5/classPhysWorld.html#a54ca2a75bbccb9b2129f434874f1e693" title="Do Not Use this, This should be treated as an internal function, it is subject to...">RenderPhysWorld</a>(<span class="keyword">this</span>);
-<a name="l00413"></a>00413 }<span class="comment"></span>
-<a name="l00414"></a>00414 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00415"></a>00415 <span class="comment"></span><span class="comment">// Private Functions</span><span class="comment"></span>
-<a name="l00416"></a>00416 <span class="comment">///////////////////////////////////////</span>
-<a name="l00417"></a>00417 <span class="comment"></span><span class="comment"></span>
-<a name="l00418"></a>00418 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00419"></a>00419 <span class="comment"></span><span class="comment">//Loads the Ogre Configuration</span>
-<a name="l00420"></a>00420 <span class="keywordtype">void</span> PhysWorld::LoadOgreSettings()
-<a name="l00421"></a>00421 {
-<a name="l00422"></a>00422         <span class="comment">//Try loading from the default location</span>
-<a name="l00423"></a>00423         <span class="keywordflow">if</span> (!this-&gt;OgreRoot-&gt;restoreConfig())
-<a name="l00424"></a>00424     {
-<a name="l00425"></a>00425         <span class="comment">//if we can&apos;t do that then lets make new settings</span>
-<a name="l00426"></a>00426         <span class="keywordflow">if</span> (!this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a9b83f04907443c6307956a3c4089e3ca" title="This Shows an Engine Generated Configuration Screen.">ShowSystemSettingDialog</a>())
-<a name="l00427"></a>00427         {
-<a name="l00428"></a>00428                 this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1c2aeaed2a89821a4545db854da33ab8" title="This is the preffered way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Error 1: Could not setup Ogre.&quot;</span>);
-<a name="l00429"></a>00429                 }
-<a name="l00430"></a>00430     }
-<a name="l00431"></a>00431 
-<a name="l00432"></a>00432 }
-<a name="l00433"></a>00433 
-<a name="l00434"></a>00434 <span class="comment">//Seriously read the Function Name</span>
-<a name="l00435"></a>00435 <span class="keywordtype">void</span> PhysWorld::CreateRenderWindow()
-<a name="l00436"></a>00436 {
-<a name="l00437"></a>00437         <span class="comment">//Get what is needed for SDL started</span>
-<a name="l00438"></a>00438         <span class="keywordflow">if</span> (SDL_Init(SDL_INIT_VIDEO) &lt; 0) {
-<a name="l00439"></a>00439                 this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;Error 2: Unable to init SDL, SDL Error Follows:&quot;</span>);
-<a name="l00440"></a>00440                 this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1c2aeaed2a89821a4545db854da33ab8" title="This is the preffered way to throw an exception currently.">LogAndThrow</a>(SDL_GetError());
-<a name="l00441"></a>00441         }
-<a name="l00442"></a>00442 
-<a name="l00443"></a>00443         <span class="comment">//Setup the SDL render window</span>
-<a name="l00444"></a>00444         this-&gt;SDLscreen = SDL_SetVideoMode(PlayerSettings-&gt;getRenderHeight(), PlayerSettings-&gt;getRenderWidth(), 0, SDL_OPENGL);
-<a name="l00445"></a>00445     SDL_WM_SetCaption(<span class="stringliteral">&quot;Catch!&quot;</span>, NULL);
-<a name="l00446"></a>00446 
-<a name="l00447"></a>00447         <span class="comment">//Start Ogre Without a native render window</span>
-<a name="l00448"></a>00448         this-&gt;OgreGameWindow = this-&gt;OgreRoot-&gt;initialise(<span class="keyword">false</span>, <span class="stringliteral">&quot;physgame&quot;</span>);
-<a name="l00449"></a>00449 
-<a name="l00450"></a>00450         <span class="comment">//Configure Ogre to render to the SDL window</span>
-<a name="l00451"></a>00451         Ogre::NameValuePairList *misc;
-<a name="l00452"></a>00452         misc=(Ogre::NameValuePairList*) GetSDLOgreBinder();
-<a name="l00453"></a>00453         (*misc)[<span class="stringliteral">&quot;title&quot;</span>] = Ogre::String(<span class="stringliteral">&quot;Catch!&quot;</span>);
-<a name="l00454"></a>00454         this-&gt;OgreGameWindow = this-&gt;OgreRoot-&gt;createRenderWindow(<span class="stringliteral">&quot;physgame&quot;</span>, PlayerSettings-&gt;getRenderHeight(), PlayerSettings-&gt;getRenderWidth(), PlayerSettings-&gt;getFullscreen(), misc);
-<a name="l00455"></a>00455     <span class="comment">//Added following lines to attempt to make the render window visible</span>
-<a name="l00456"></a>00456     <span class="comment">//this-&gt;OgreGameWindow-&gt;setVisible(true);</span>
-<a name="l00457"></a>00457         <span class="comment">//this-&gt;OgreGameWindow-&gt;setActive(true);</span>
-<a name="l00458"></a>00458     <span class="comment">//this-&gt;OgreGameWindow-&gt;setAutoUpdated(true);</span>
-<a name="l00459"></a>00459 
-<a name="l00460"></a>00460         <span class="comment">//prepare a scenemanager</span>
-<a name="l00461"></a>00461         this-&gt;OgreSceneManager = this-&gt;OgreRoot-&gt;createSceneManager(Ogre::ST_GENERIC,<span class="stringliteral">&quot;SceneManager&quot;</span>);
-<a name="l00462"></a>00462 
-<a name="l00463"></a>00463         <span class="comment">//setup a default camera</span>
-<a name="l00464"></a>00464         this-&gt;OgreCamera = this-&gt;OgreSceneManager-&gt;createCamera(<span class="stringliteral">&quot;Camera&quot;</span>);
-<a name="l00465"></a>00465         this-&gt;OgreCamera-&gt;setNearClipDistance(5.0f);
-<a name="l00466"></a>00466     this-&gt;OgreCamera-&gt;setFarClipDistance(5000.0f);
-<a name="l00467"></a>00467 
-<a name="l00468"></a>00468         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1df24ee06d5881825902b60e0d81174a" title="This moves the camera relative to the world.">MoveCamera</a>(<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>(0.0f,0.0f,500.0f), <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>(0.0f,0.0f,0.0f));
-<a name="l00469"></a>00469 
-<a name="l00470"></a>00470         <span class="comment">//viewport connects camera and render window</span>
-<a name="l00471"></a>00471         this-&gt;OgreViewport = this-&gt;OgreGameWindow-&gt;addViewport(OgreCamera);
-<a name="l00472"></a>00472 
-<a name="l00473"></a>00473         <span class="comment">//setting the aspect ratio must be done after we setup the viewport</span>
-<a name="l00474"></a>00474         this-&gt;OgreCamera-&gt;setAspectRatio( Ogre::Real(OgreViewport-&gt;getActualWidth()) / Ogre::Real(OgreViewport-&gt;getActualHeight()) );
-<a name="l00475"></a>00475 }
-<a name="l00476"></a>00476 
-<a name="l00477"></a>00477 <span class="keywordtype">void</span> PhysWorld::DestroyRenderWindow()
-<a name="l00478"></a>00478 {
-<a name="l00479"></a>00479     this-&gt;OgreGameWindow-&gt;destroy();
-<a name="l00480"></a>00480 }
-<a name="l00481"></a>00481 <span class="comment"></span>
-<a name="l00482"></a>00482 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00483"></a>00483 <span class="comment"></span><span class="comment">// Deals with SDL</span>
-<a name="l00484"></a>00484 
-<a name="l00485"></a>00485 <span class="comment">//This function will get all the events from SDL and Sort them into one of two Queues</span>
-<a name="l00486"></a>00486 <span class="keywordtype">void</span> PhysWorld::PreProcessSDLEvents()
-<a name="l00487"></a>00487 {
-<a name="l00488"></a>00488     RawEvent temp;
-<a name="l00489"></a>00489     RawEvent* FromSDL=&amp;temp;
-<a name="l00490"></a>00490         <span class="keywordflow">while</span>(SDL_PollEvent(FromSDL))
-<a name="l00491"></a>00491         {
-<a name="l00492"></a>00492             RawEvent* ScopeHolder = <span class="keyword">new</span> RawEvent;
-<a name="l00493"></a>00493             *ScopeHolder = temp;
-<a name="l00494"></a>00494         <span class="keywordflow">switch</span>(FromSDL-&gt;type)
-<a name="l00495"></a>00495         {
-<a name="l00496"></a>00496             <span class="keywordflow">case</span> SDL_ACTIVEEVENT:   <span class="comment">//when the window gains focus</span>
-<a name="l00497"></a>00497             <span class="keywordflow">case</span> SDL_VIDEORESIZE:   <span class="comment">//when the screen is resized</span>
-<a name="l00498"></a>00498             <span class="keywordflow">case</span> SDL_VIDEOEXPOSE:   <span class="comment">//when the windows goes from being hidden to being shown</span>
-<a name="l00499"></a>00499             <span class="keywordflow">case</span> SDL_QUIT:          <span class="comment">//when SDL closes</span>
-<a name="l00500"></a>00500             <span class="keywordflow">case</span> SDL_SYSWMEVENT:
-<a name="l00501"></a>00501                 SDL_WmEvents.push(ScopeHolder);
-<a name="l00502"></a>00502                 <span class="keywordflow">break</span>;
-<a name="l00503"></a>00503             <span class="keywordflow">case</span> SDL_KEYDOWN:
-<a name="l00504"></a>00504             <span class="keywordflow">case</span> SDL_KEYUP:
-<a name="l00505"></a>00505             <span class="keywordflow">case</span> SDL_MOUSEMOTION:
-<a name="l00506"></a>00506             <span class="keywordflow">case</span> SDL_MOUSEBUTTONDOWN:
-<a name="l00507"></a>00507             <span class="keywordflow">case</span> SDL_MOUSEBUTTONUP:
-<a name="l00508"></a>00508             <span class="keywordflow">case</span> SDL_JOYAXISMOTION:
-<a name="l00509"></a>00509             <span class="keywordflow">case</span> SDL_JOYBUTTONDOWN:
-<a name="l00510"></a>00510             <span class="keywordflow">case</span> SDL_JOYBUTTONUP:
-<a name="l00511"></a>00511             <span class="keywordflow">case</span> SDL_JOYBALLMOTION:
-<a name="l00512"></a>00512             <span class="keywordflow">case</span> SDL_JOYHATMOTION:
-<a name="l00513"></a>00513                 SDL_UserInputEvents.push(ScopeHolder);
-<a name="l00514"></a>00514                 <span class="keywordflow">break</span>;
-<a name="l00515"></a>00515             <span class="keywordflow">case</span> SDL_USEREVENT:<span class="comment">//Never thrown by SDL, but could be added by a user</span>
-<a name="l00516"></a>00516             <span class="keywordflow">default</span>:
-<a name="l00517"></a>00517                 <span class="keywordflow">throw</span> (<span class="stringliteral">&quot;Unknown SDL Event Inserted&quot;</span>);
-<a name="l00518"></a>00518                 <span class="keywordflow">break</span>;
-<a name="l00519"></a>00519         }
-<a name="l00520"></a>00520         }
-<a name="l00521"></a>00521 }
-<a name="l00522"></a>00522 <span class="comment"></span>
-<a name="l00523"></a>00523 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00524"></a>00524 <span class="comment"></span><span class="comment">// Bullet Related Public Members</span><span class="comment"></span>
-<a name="l00525"></a>00525 <span class="comment">///////////////////////////////////////</span>
-<a name="l00526"></a>00526 <span class="comment"></span>
-<a name="l00527"></a><a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29">00527</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29" title="The adds and Actor to the physworld.">PhysWorld::AddActor</a>(<a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a>* ActorToAdd)
-<a name="l00528"></a>00528 {
-<a name="l00529"></a>00529     ActorToAdd-&gt;AddObjectToWorld(<span class="keyword">this</span>, this-&gt;BulletDynamicsWorld);
-<a name="l00530"></a>00530 }
-<a name="l00531"></a>00531 
-<a name="l00532"></a>00532 <span class="preprocessor">#endif</span>
+<a name="l00404"></a>00404         <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(FromSDLEvent-&gt;GetMetaCode(c));
+<a name="l00405"></a>00405     }
+<a name="l00406"></a>00406     <span class="comment">// /tempcode</span>
+<a name="l00407"></a>00407 
+<a name="l00408"></a>00408     <span class="keywordflow">if</span> (0 &lt; FromSDLEvent-&gt;GetMetaCodeCount())
+<a name="l00409"></a>00409     {
+<a name="l00410"></a>00410         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>-&gt;AddEvent(FromSDLEvent); <span class="comment">//Now FromSDL is some else&apos;s responsibility</span>
+<a name="l00411"></a>00411     }<span class="keywordflow">else</span>{
+<a name="l00412"></a>00412         <span class="keyword">delete</span> FromSDLEvent;
+<a name="l00413"></a>00413     }
+<a name="l00414"></a>00414 }
+<a name="l00415"></a>00415 
+<a name="l00416"></a><a class="code" href="../../db/df5/classPhysWorld.html#a8f33541d67164a2452e568443e9905be">00416</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a8f33541d67164a2452e568443e9905be" title="This forces the screen to be re-rendered.">PhysWorld::DoMainLoopRender</a>()
+<a name="l00417"></a>00417 {
+<a name="l00418"></a>00418         <a class="code" href="../../db/df5/classPhysWorld.html#a54ca2a75bbccb9b2129f434874f1e693" title="Do Not Use this, This should be treated as an internal function, it is subject to...">RenderPhysWorld</a>(<span class="keyword">this</span>);
+<a name="l00419"></a>00419 }<span class="comment"></span>
+<a name="l00420"></a>00420 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00421"></a>00421 <span class="comment"></span><span class="comment">// Private Functions</span><span class="comment"></span>
+<a name="l00422"></a>00422 <span class="comment">///////////////////////////////////////</span>
+<a name="l00423"></a>00423 <span class="comment"></span><span class="comment"></span>
+<a name="l00424"></a>00424 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00425"></a>00425 <span class="comment"></span><span class="comment">//Loads the Ogre Configuration</span>
+<a name="l00426"></a>00426 <span class="keywordtype">void</span> PhysWorld::LoadOgreSettings()
+<a name="l00427"></a>00427 {
+<a name="l00428"></a>00428         <span class="comment">//Try loading from the default location</span>
+<a name="l00429"></a>00429         <span class="keywordflow">if</span> (!this-&gt;OgreRoot-&gt;restoreConfig())
+<a name="l00430"></a>00430     {
+<a name="l00431"></a>00431         <span class="comment">//if we can&apos;t do that then lets make new settings</span>
+<a name="l00432"></a>00432         <span class="keywordflow">if</span> (!this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a9b83f04907443c6307956a3c4089e3ca" title="This Shows an Engine Generated Configuration Screen.">ShowSystemSettingDialog</a>())
+<a name="l00433"></a>00433         {
+<a name="l00434"></a>00434                 this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1c2aeaed2a89821a4545db854da33ab8" title="This is the preffered way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Error 1: Could not setup Ogre.&quot;</span>);
+<a name="l00435"></a>00435                 }
+<a name="l00436"></a>00436     }
+<a name="l00437"></a>00437 
+<a name="l00438"></a>00438 }
+<a name="l00439"></a>00439 
+<a name="l00440"></a>00440 <span class="comment">//Seriously read the Function Name</span>
+<a name="l00441"></a>00441 <span class="keywordtype">void</span> PhysWorld::CreateRenderWindow()
+<a name="l00442"></a>00442 {
+<a name="l00443"></a>00443         <span class="comment">//Get what is needed for SDL started</span>
+<a name="l00444"></a>00444         <span class="keywordflow">if</span> (SDL_Init(SDL_INIT_VIDEO) &lt; 0) {
+<a name="l00445"></a>00445                 this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;Error 2: Unable to init SDL, SDL Error Follows:&quot;</span>);
+<a name="l00446"></a>00446                 this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1c2aeaed2a89821a4545db854da33ab8" title="This is the preffered way to throw an exception currently.">LogAndThrow</a>(SDL_GetError());
+<a name="l00447"></a>00447         }
+<a name="l00448"></a>00448 
+<a name="l00449"></a>00449         <span class="comment">//Setup the SDL render window</span>
+<a name="l00450"></a>00450         this-&gt;SDLscreen = SDL_SetVideoMode(PlayerSettings-&gt;getRenderHeight(), PlayerSettings-&gt;getRenderWidth(), 0, SDL_OPENGL);
+<a name="l00451"></a>00451     SDL_WM_SetCaption(<span class="stringliteral">&quot;Catch!&quot;</span>, NULL);
+<a name="l00452"></a>00452 
+<a name="l00453"></a>00453         <span class="comment">//Start Ogre Without a native render window</span>
+<a name="l00454"></a>00454         this-&gt;OgreGameWindow = this-&gt;OgreRoot-&gt;initialise(<span class="keyword">false</span>, <span class="stringliteral">&quot;physgame&quot;</span>);
+<a name="l00455"></a>00455 
+<a name="l00456"></a>00456         <span class="comment">//Configure Ogre to render to the SDL window</span>
+<a name="l00457"></a>00457         Ogre::NameValuePairList *misc;
+<a name="l00458"></a>00458         misc=(Ogre::NameValuePairList*) GetSDLOgreBinder();
+<a name="l00459"></a>00459         (*misc)[<span class="stringliteral">&quot;title&quot;</span>] = Ogre::String(<span class="stringliteral">&quot;Catch!&quot;</span>);
+<a name="l00460"></a>00460         this-&gt;OgreGameWindow = this-&gt;OgreRoot-&gt;createRenderWindow(<span class="stringliteral">&quot;physgame&quot;</span>, PlayerSettings-&gt;getRenderHeight(), PlayerSettings-&gt;getRenderWidth(), PlayerSettings-&gt;getFullscreen(), misc);
+<a name="l00461"></a>00461     <span class="comment">//Added following lines to attempt to make the render window visible</span>
+<a name="l00462"></a>00462     <span class="comment">//this-&gt;OgreGameWindow-&gt;setVisible(true);</span>
+<a name="l00463"></a>00463         <span class="comment">//this-&gt;OgreGameWindow-&gt;setActive(true);</span>
+<a name="l00464"></a>00464     <span class="comment">//this-&gt;OgreGameWindow-&gt;setAutoUpdated(true);</span>
+<a name="l00465"></a>00465 
+<a name="l00466"></a>00466         <span class="comment">//prepare a scenemanager</span>
+<a name="l00467"></a>00467         this-&gt;OgreSceneManager = this-&gt;OgreRoot-&gt;createSceneManager(Ogre::ST_GENERIC,<span class="stringliteral">&quot;SceneManager&quot;</span>);
+<a name="l00468"></a>00468 
+<a name="l00469"></a>00469         <span class="comment">//setup a default camera</span>
+<a name="l00470"></a>00470         this-&gt;OgreCamera = this-&gt;OgreSceneManager-&gt;createCamera(<span class="stringliteral">&quot;Camera&quot;</span>);
+<a name="l00471"></a>00471         this-&gt;OgreCamera-&gt;setNearClipDistance(5.0f);
+<a name="l00472"></a>00472     this-&gt;OgreCamera-&gt;setFarClipDistance(5000.0f);
+<a name="l00473"></a>00473 
+<a name="l00474"></a>00474         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1df24ee06d5881825902b60e0d81174a" title="This moves the camera relative to the world.">MoveCamera</a>(<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>(0.0f,0.0f,500.0f), <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>(0.0f,0.0f,0.0f));
+<a name="l00475"></a>00475 
+<a name="l00476"></a>00476         <span class="comment">//viewport connects camera and render window</span>
+<a name="l00477"></a>00477         this-&gt;OgreViewport = this-&gt;OgreGameWindow-&gt;addViewport(OgreCamera);
+<a name="l00478"></a>00478 
+<a name="l00479"></a>00479         <span class="comment">//setting the aspect ratio must be done after we setup the viewport</span>
+<a name="l00480"></a>00480         this-&gt;OgreCamera-&gt;setAspectRatio( Ogre::Real(OgreViewport-&gt;getActualWidth()) / Ogre::Real(OgreViewport-&gt;getActualHeight()) );
+<a name="l00481"></a>00481 }
+<a name="l00482"></a>00482 
+<a name="l00483"></a>00483 <span class="keywordtype">void</span> PhysWorld::DestroyRenderWindow()
+<a name="l00484"></a>00484 {
+<a name="l00485"></a>00485     this-&gt;OgreGameWindow-&gt;destroy();
+<a name="l00486"></a>00486 }
+<a name="l00487"></a>00487 <span class="comment"></span>
+<a name="l00488"></a>00488 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00489"></a>00489 <span class="comment"></span><span class="comment">// Deals with SDL</span>
+<a name="l00490"></a>00490 
+<a name="l00491"></a>00491 <span class="comment">//This function will get all the events from SDL and Sort them into one of two Queues</span>
+<a name="l00492"></a>00492 <span class="keywordtype">void</span> PhysWorld::PreProcessSDLEvents()
+<a name="l00493"></a>00493 {
+<a name="l00494"></a>00494     RawEvent temp;
+<a name="l00495"></a>00495     RawEvent* FromSDL=&amp;temp;
+<a name="l00496"></a>00496         <span class="keywordflow">while</span>(SDL_PollEvent(FromSDL))
+<a name="l00497"></a>00497         {
+<a name="l00498"></a>00498             RawEvent* ScopeHolder = <span class="keyword">new</span> RawEvent;
+<a name="l00499"></a>00499             *ScopeHolder = temp;
+<a name="l00500"></a>00500         <span class="keywordflow">switch</span>(FromSDL-&gt;type)
+<a name="l00501"></a>00501         {
+<a name="l00502"></a>00502             <span class="keywordflow">case</span> SDL_ACTIVEEVENT:   <span class="comment">//when the window gains focus</span>
+<a name="l00503"></a>00503             <span class="keywordflow">case</span> SDL_VIDEORESIZE:   <span class="comment">//when the screen is resized</span>
+<a name="l00504"></a>00504             <span class="keywordflow">case</span> SDL_VIDEOEXPOSE:   <span class="comment">//when the windows goes from being hidden to being shown</span>
+<a name="l00505"></a>00505             <span class="keywordflow">case</span> SDL_QUIT:          <span class="comment">//when SDL closes</span>
+<a name="l00506"></a>00506             <span class="keywordflow">case</span> SDL_SYSWMEVENT:
+<a name="l00507"></a>00507                 SDL_WmEvents.push(ScopeHolder);
+<a name="l00508"></a>00508                 <span class="keywordflow">break</span>;
+<a name="l00509"></a>00509             <span class="keywordflow">case</span> SDL_KEYDOWN:
+<a name="l00510"></a>00510             <span class="keywordflow">case</span> SDL_KEYUP:
+<a name="l00511"></a>00511             <span class="keywordflow">case</span> SDL_MOUSEMOTION:
+<a name="l00512"></a>00512             <span class="keywordflow">case</span> SDL_MOUSEBUTTONDOWN:
+<a name="l00513"></a>00513             <span class="keywordflow">case</span> SDL_MOUSEBUTTONUP:
+<a name="l00514"></a>00514             <span class="keywordflow">case</span> SDL_JOYAXISMOTION:
+<a name="l00515"></a>00515             <span class="keywordflow">case</span> SDL_JOYBUTTONDOWN:
+<a name="l00516"></a>00516             <span class="keywordflow">case</span> SDL_JOYBUTTONUP:
+<a name="l00517"></a>00517             <span class="keywordflow">case</span> SDL_JOYBALLMOTION:
+<a name="l00518"></a>00518             <span class="keywordflow">case</span> SDL_JOYHATMOTION:
+<a name="l00519"></a>00519                 SDL_UserInputEvents.push(ScopeHolder);
+<a name="l00520"></a>00520                 <span class="keywordflow">break</span>;
+<a name="l00521"></a>00521             <span class="keywordflow">case</span> SDL_USEREVENT:<span class="comment">//Never thrown by SDL, but could be added by a user</span>
+<a name="l00522"></a>00522             <span class="keywordflow">default</span>:
+<a name="l00523"></a>00523                 <span class="keywordflow">throw</span> (<span class="stringliteral">&quot;Unknown SDL Event Inserted&quot;</span>);
+<a name="l00524"></a>00524                 <span class="keywordflow">break</span>;
+<a name="l00525"></a>00525         }
+<a name="l00526"></a>00526         }
+<a name="l00527"></a>00527 }
+<a name="l00528"></a>00528 <span class="comment"></span>
+<a name="l00529"></a>00529 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00530"></a>00530 <span class="comment"></span><span class="comment">// Bullet Related Public Members</span><span class="comment"></span>
+<a name="l00531"></a>00531 <span class="comment">///////////////////////////////////////</span>
+<a name="l00532"></a>00532 <span class="comment"></span>
+<a name="l00533"></a><a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29">00533</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29" title="The adds and Actor to the physworld.">PhysWorld::AddActor</a>(<a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a>* ActorToAdd)
+<a name="l00534"></a>00534 {
+<a name="l00535"></a>00535     ActorToAdd-&gt;AddObjectToWorld(<span class="keyword">this</span>, this-&gt;BulletDynamicsWorld);
+<a name="l00536"></a>00536 }
+<a name="l00537"></a>00537 
+<a name="l00538"></a>00538 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 7 00:15:43 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 7 23:29:56 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

@@ -272,7 +272,7 @@ void PhysWorld::GameInit()
     //Create a the RenderTimer, which will be used to measure the time
     Ogre::Timer RenderTimer;
 
-	bool Callbackbools[] = {true, true, true, true};
+	bool Callbackbools[] = {true, true, true, true, true, true};
 
 	//Used for tracking times to prevent Infinite render loops in graphically simple games
 	//PhysWhole Times[] = {0,0,0,0};
@@ -287,35 +287,41 @@ void PhysWorld::GameInit()
     PhysWhole FrameDelay = 0;
     PhysWhole FrameTime = 0;
 
-    /// @page MainLoop
-    /// The MainLoop does stuffs that needs to be documented
-    /// @todo actually document the gameloop
+    /// @page MainLoop Main Loop Structure and Flow
+    /// The MainLoop is heart of most vidoeo games an simulations.
+    /// @section whymainloop Why a Main loop
 	/// The Main loop begins in PhysGame.GameInit(). Once started it runs the callbacks present in the callback manager until one of them
-	/// Returns false. It has a pretty specific work flow
+	/// Returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback before
+	/// and after each of them.
 	//As long as all the CallBacks return true the game continues
-	while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3])
+	while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3] && Callbackbools[4] && Callbackbools[5])
 	{
         //To prepare each callback we add an event to the event manager which includes the time since th last frame render ended
         //However we will only do this if a callback is set
-        if(this->CallBacks->IsPreInputCallbackSet())
+        if( this->CallBacks->IsPreInputCallbackSet() || this->CallBacks->IsPostInputCallbackSet() )
         {
-            /// @todo TODO add a postinput and a postphysics callback to the call back manager and integrate them seamlessly
-			this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
-			Callbackbools[0] = this->CallBacks->PreInput();
+            //this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
+			if( this->CallBacks->IsPreInputCallbackSet() )
+                { Callbackbools[0] = this->CallBacks->PreInput(); }
 			this->DoMainLoopInputBuffering();
+			if( this->CallBacks->IsPostInputCallbackSet() )
+                { Callbackbools[1] = this->CallBacks->PostInput(); }
         }
-
-		if(this->CallBacks->IsPrePhysicsCallbackSet())
+ /// @todo actually document the gameloop
+		if( this->CallBacks->IsPrePhysicsCallbackSet() || this->CallBacks->IsPostPhysicsCallbackSet() )
         {
-            this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
-			Callbackbools[1] = this->CallBacks->PrePhysics();
+            //this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
+            if( this->CallBacks->IsPrePhysicsCallbackSet() )
+                { Callbackbools[2] = this->CallBacks->PrePhysics(); }
 			this->DoMainLoopPhysics();
+            if( this->CallBacks->IsPostPhysicsCallbackSet() )
+                { Callbackbools[3] = this->CallBacks->PostPhysics(); }
         }
 
 		if(this->CallBacks->IsPreRenderCallbackSet())
         {
-            this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
-			Callbackbools[2] = this->CallBacks->PreRender();
+            //this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
+			Callbackbools[4] = this->CallBacks->PreRender();
 			this->DoMainLoopWindowManagerBuffering();
         }
 
@@ -338,7 +344,7 @@ void PhysWorld::GameInit()
 		if(this->CallBacks->IsPostRenderCallbackSet())
         {
 			this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
-			Callbackbools[3] = this->CallBacks->PostRender();
+			Callbackbools[5] = this->CallBacks->PostRender();
         }
 
 	}//End of main loop

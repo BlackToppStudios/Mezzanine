@@ -21,11 +21,12 @@ PhysWorld TheWorld;
 int main(int argc, char **argv)
 {
 
-    //Give the world a function to run before user input
-    TheWorld.CallBacks->SetPreInput(&preInput);
+    //Give the world functions to run before and after input
+    TheWorld.CallBacks->SetPreInput(&PreInput);
+    TheWorld.CallBacks->SetPostInput(&PostInput);
 
     //give the World our function to execute after rendering
-    TheWorld.CallBacks->SetPreRender(&preRender);
+    TheWorld.CallBacks->SetPostRender(&PostRender);
 
     //Set the world in motion
 	TheWorld.GameInit();
@@ -33,28 +34,33 @@ int main(int argc, char **argv)
 	return 0;
 }
 
-bool preRender()
+bool PostRender()
 {
 
-    if( !CheckForEsc() )
-        return false;
 
 	//Lets set a variable for the time
 	static PhysWhole gametime = 0;
 
 	TheWorld.Log("---------- Starting CallBack -------------");
+    TheWorld.Log("Current Game Time ");
+
+
 	//getting a message from the event manager
 	PhysEventRenderTime* CurrentTime = TheWorld.Events->GetNextRenderTimeEvent();
 
-    //TheWorld.Log("Time since last frame ");
-    //TheWorld.Log(CurrentTime->getMilliSecondsSinceLastFrame());
-    TheWorld.Log("Current Game Time ");
-    TheWorld.Log(gametime);
-	gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
+    // Is currentTime a valid event?
+    while(0 != CurrentTime)
+    {
+        //TheWorld.Log("Time since last frame ");
+        //TheWorld.Log(CurrentTime->getMilliSecondsSinceLastFrame());
+        TheWorld.Log(gametime);
+        gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
 
-	//since we got the event out of the manager, we are now responsible for deleting
-	delete CurrentTime;
+        delete CurrentTime;
+        CurrentTime = TheWorld.Events->GetNextRenderTimeEvent();
+    }
 
+    //IF the game has gone on for 10 or more seconds close it.
 	if (10000<gametime)
 	{
 		return false;
@@ -68,10 +74,17 @@ bool preRender()
     return true;
 }
 
-bool preInput()
+bool PreInput()
+{
+    return true;
+}
+
+bool PostInput()
 {
     //Do nothing this just guarantees that the main loop will run checks for user input.
-
+    if( !CheckForEsc() )
+        return false;
+    return true;
 }
 
 ///////////////////

@@ -5,8 +5,11 @@
 //Somewhere else we will stuff it here until it is time to refactor again.
 ///////////////////////////////////////////////////////////////////////////////
 
-bool preRender();
-bool preInput();
+bool PreInput();
+bool PostInput();
+
+bool PostRender();
+
 
 bool CheckForEsc();
 

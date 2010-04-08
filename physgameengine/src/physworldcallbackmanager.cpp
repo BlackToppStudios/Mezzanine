@@ -12,12 +12,12 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>. 
+    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to 
+/* We welcome the use of The PhysGame anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -27,12 +27,12 @@
     - Software Patents You Do Not Wish to Freely License
     - Any Kind of Linking to Non-GPL licensed Works
     - Are Currently In Violation of Another Copyright Holder's GPL License
-    - If You want to change our code and not add a few hundred MB of stuff to 
+    - If You want to change our code and not add a few hundred MB of stuff to
         your distribution
 
    These and other limitations could cause serious legal problems if you ignore
    them, so it is best to simply contact us or the Free Software Foundation, if
-   you have any questions. 
+   you have any questions.
 
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
@@ -63,7 +63,11 @@ PhysWorldCallBackManager::PhysWorldCallBackManager(PhysWorld* _Parent): PreInput
 	TheWorldIListenTo = _Parent;
 
 	PreInputCallback = NULL;
+	PostInputCallback = NULL;
+
 	PrePhysicsCallback = NULL;
+	PostPhysicsCallback = NULL;
+
 	PreRenderCallback = NULL;
  	PostRenderCallback = NULL;
 }
@@ -107,6 +111,39 @@ bool PhysWorldCallBackManager::IsPreInputCallbackSet()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+//Postinput callback will be called in the main loop right after input
+///////////////////////////////////////
+bool PhysWorldCallBackManager::PostInput()
+{
+	//If a call back has been set then we use it, otherwise we can
+	//assume that we should just keep execute the main loop
+	if(NULL!=PostInputCallback)
+	{
+		return (*PostInputCallback)();
+	}
+	return true;
+}
+
+void PhysWorldCallBackManager::ErasePostInput()
+{
+	this->PostInputCallback = NULL;
+}
+
+void PhysWorldCallBackManager::SetPostInput(bool (*Callback)())
+{
+	this->PostInputCallback = Callback;
+}
+
+bool PhysWorldCallBackManager::IsPostInputCallbackSet()
+{
+	if(NULL==PostInputCallback)
+	{
+		return false;
+	}
+	return true;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // These functions manage the pre physics functions
 ///////////////////////////////////////
 bool PhysWorldCallBackManager::PrePhysics()
@@ -131,6 +168,37 @@ void PhysWorldCallBackManager::SetPrePhysics(bool (*Callback)())
 bool PhysWorldCallBackManager::IsPrePhysicsCallbackSet()
 {
 	if(NULL==PrePhysicsCallback)
+	{
+		return false;
+	}
+	return true;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// These functions manage the Post physics functions
+///////////////////////////////////////
+bool PhysWorldCallBackManager::PostPhysics()
+{
+	if(NULL!=PostPhysicsCallback)
+	{
+		return (*PostPhysicsCallback)();
+	}
+	return true;
+}
+
+void PhysWorldCallBackManager::ErasePostPhysics()
+{
+	this->PostPhysicsCallback = NULL;
+}
+
+void PhysWorldCallBackManager::SetPostPhysics(bool (*Callback)())
+{
+	this->PostPhysicsCallback = Callback;
+}
+
+bool PhysWorldCallBackManager::IsPostPhysicsCallbackSet()
+{
+	if(NULL==PostPhysicsCallback)
 	{
 		return false;
 	}
