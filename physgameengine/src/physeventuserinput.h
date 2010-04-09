@@ -471,7 +471,7 @@ class MetaCode
 };
 
 /// @brief Allows for streaming of MetaCodes
-/// @details If it can be streamed, then it can be logged" Holds true for the MetaCode.
+/// @details If it can be streamed, then it can be logged Holds true for the MetaCode.
 std::ostream& operator << (std::ostream& stream, const MetaCode& x);
 
 

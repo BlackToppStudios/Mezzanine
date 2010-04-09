@@ -123,7 +123,7 @@ MetaCode::InputCode MetaCode::GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_)
     return To;
 }
 
-void MetaCode::Construct(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::MetaCode::InputCode &Code_)
+void MetaCode::Construct(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
 {
     SetMetaValue(MetaValue_);
     SetID(ID_);

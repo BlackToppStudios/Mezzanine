@@ -222,12 +222,11 @@ PhysWorld::~PhysWorld()
 	delete CallBacks;
 	delete Events;
 
-
 	delete PlayerSettings;
 
-	SDL_FreeSurface(SDLscreen);
-
 	//remove sdl stuff
+
+	SDL_FreeSurface(SDLscreen);
 	void SDL_Quit(void);
 }
 
@@ -287,21 +286,66 @@ void PhysWorld::GameInit()
     PhysWhole FrameDelay = 0;
     PhysWhole FrameTime = 0;
 
-    /// @page MainLoop Main Loop Structure and Flow
-    /// The MainLoop is heart of most vidoeo games an simulations.
-    /// @section whymainloop Why a Main loop
-	/// The Main loop begins in PhysGame.GameInit(). Once started it runs the callbacks present in the callback manager until one of them
-	/// Returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback before
-	/// and after each of them.
+    /*! @page mainloop1 Main Loop Structure and Flow
+     The MainLoop is heart of most vidoe games and simulations.
+
+     @section overview1 Main loop Overview
+	 The Main loop runs in @ref PhysWorld.GameInit(). By default this Method also starts the render, the physics andthe input systems. It does very little
+	 on it's own. It uses the default callback manager (which you can swap out if you want), which is the callback manager point to by PhysWorld::CallBacks . Once started it runs the
+	 callbacks present in the callback manager until one of them returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback
+	 before and after each of these tasks.
+     \n \n The user input task is never started if there is no Pre or Post callback set. It won't crash or throw any weird error condtions, it was specifically designed this way. This
+     allows the input buffering to be turned off by simply removing the callbacks. This might not sound like much, but if you simply don't need input this can be a little performance bump.
+     It sounds even better when we say it works the same way for physics. If you do not have a pre or post physic callback set physics simply is not run. This allows for easy control over
+     the state of motion  in a world. Currently Rendering is performed each iteration of the main loop, regardless of what Callbacks are set. This may be changed at some point in the future,
+     but no immediate plans to change it are in the works.
+     \n \n One iteration of the main loops is about 1/60 of a second and will render 1 frame and step physics about 1/60 (1/62.5 usually) of a second. Currently there is no way to uncap
+     the framerate, we did not see a need for more (we may change this in the future). Situations with low performance should automatically be handled but increasing the size of physics
+     steps and automatically not rendering frames when not appropriate. There will be fewer calls on callbacks, but the engine will not inhibit gameplay below the the target framerate.
+    \n
+     @section callbacks1 1) Input Callbacks and Buffering
+     User input is the first task performed each main loop. This was done because in most games and simulations everything depends on the user input.
+     @subsection input1 1.A) PreInputCallback
+     This can be set using the function in PhysWorldCallBackManager that have "PreInput" in their names. This is a great place to to do begining of loop items, like gathering data for
+     computer controlled characters, checking if game goals are met, and other items that needs to be done it iteration of the game loop and don't directly relate to physics or Rendering.
+     @subsection input2 1.B) Input Buffering
+     During this step Input events are gathered fromt the input Subsystem (which could be any of a number of user input libraries), which are ultimately made by the Operating System and
+     processed into PhysEventUserInput objects, and placed in the Default event manager ( check the pointer PhysWorld::Events ).
+     @subsection input3 1.C) PostInputCallback
+     This callback is your first chance to access the userinput Events and try to use them. This callback can be managed by using methods in PhysWorldCallBackManager that have "PostInput"
+     in their names. The functionality of this Callback slightly overlaps with the Prephysics Callbacks due to the timing of using them both. If both are used, one will be called
+     immediately after the other.
+    \n
+     @section callbacks2 2) Physics callbacks and Event Buffering
+     This step runs between user input and rendering to allow for change to be immediately visible to the user.
+     @subsection physics1 2.A) PrePhysicsCallback
+     The funtionality of this callback overlaps a great deal with the PostInputCallBack, but they both still exist to make organization easier when needed. You probably should have figured
+     out by now how the Callbackmanager functions are named, the ones for this are ituitively named with "PrePhysics" in their name.
+     @subsection physics2 2.B) Physics calculations and Event Buffering
+     Physics will be run here, but currently is not fully implemented. But eventually physics event will be generated here. Including a system for checking for certain types of collisions.
+     @subsection physics3 2.C) PostPhysicsCallback
+     This Callback is you first chance to work with the physics events just generated. This is a good place to check if you want items to adjust hitpoints, explode, die or take some other
+     action based on physics.
+    \n
+     @section callbacks3 3) Rendering
+     asdf
+     @subsection rendering1 3.A)
+     asdf
+     @subsection rendering2 3.B)
+     asdf
+     @subsection rendering3 3.C)
+     fdgsdfs
+    \n
+     @section endingmainloop1 Ending the Main Loop
+     ffgdfdfg
+	*/
 	//As long as all the CallBacks return true the game continues
 	while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3] && Callbackbools[4] && Callbackbools[5])
 	{
-        //To prepare each callback we add an event to the event manager which includes the time since th last frame render ended
-        //However we will only do this if a callback is set
+        //Input buffering Callbacks
         if( this->CallBacks->IsPreInputCallbackSet() || this->CallBacks->IsPostInputCallbackSet() )
         {
-            //this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
-			if( this->CallBacks->IsPreInputCallbackSet() )
+     		if( this->CallBacks->IsPreInputCallbackSet() )
                 { Callbackbools[0] = this->CallBacks->PreInput(); }
 			this->DoMainLoopInputBuffering();
 			if( this->CallBacks->IsPostInputCallbackSet() )
