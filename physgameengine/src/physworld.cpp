@@ -317,7 +317,7 @@ void PhysWorld::GameInit()
      immediately after the other.
     \n
      @section callbacks2 2) Physics callbacks and Event Buffering
-     This step runs between user input and rendering to allow for change to be immediately visible to the user.
+     This step runs between user input and rendering to allow for changes caused by user input to be immediately visible to the user.
      @subsection physics1 2.A) PrePhysicsCallback
      The funtionality of this callback overlaps a great deal with the PostInputCallBack, but they both still exist to make organization easier when needed. You probably should have figured
      out by now how the Callbackmanager functions are named, the ones for this are ituitively named with "PrePhysics" in their name.
@@ -328,16 +328,25 @@ void PhysWorld::GameInit()
      action based on physics.
     \n
      @section callbacks3 3) Rendering
-     asdf
-     @subsection rendering1 3.A)
-     asdf
-     @subsection rendering2 3.B)
-     asdf
-     @subsection rendering3 3.C)
-     fdgsdfs
+     Unlike Input and Physics this rendering will be performed each Frame regardless of what callbacks are set. Rendering is done
+     last so that any changes to the game world physics makes are made visible in the same loop iteration.
+     @subsection rendering1 3.A) PerRenderCallback
+     Any tasks that could not be complete in the PostPhysics Callback can be performed here or you use this to make last minute
+     preparations for rendering.
+     @subsection rendering2 3.B) Rendering
+     This is where the rendering actually occurs. The state of all the items in the world is grabbed from the physics subsystem
+     and rendered. Additionally this is where the \ref FrameDelay is calculated and acted on, so the frame rate can stay consistent.
+     @subsection rendering3 3.C) PostRenderCallback
+     This is a great place to switch out the Callback Manager, for accomplishing tasks like switching between in game menus and
+     actual gameplay. This is also a decent place to get a head start on anything that would be run in the PreInputCallback.
     \n
      @section endingmainloop1 Ending the Main Loop
-     ffgdfdfg
+     The main loop stores the return values of each of the 6 callbacks. If they are all true the mainloop continues to it's
+     next iteration. If one or more of any of the callbacks returns false then the main loop ends, and the game engine exits
+     gracefully, cleanly up the physics, graphics and any others subsystems it opened.
+     No attempt will be made by the engine to clean up data in the callback manager. If the game code does not free these items
+     the operating system had better do it automatically. On most PC platform this is not an issue, but it could be disastrous
+     on a mobile, or underperforming gaming platform.
 	*/
 	//As long as all the CallBacks return true the game continues
 	while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3] && Callbackbools[4] && Callbackbools[5])
@@ -351,10 +360,10 @@ void PhysWorld::GameInit()
 			if( this->CallBacks->IsPostInputCallbackSet() )
                 { Callbackbools[1] = this->CallBacks->PostInput(); }
         }
- /// @todo actually document the gameloop
+
+        //Physics & Physics Callbacks
 		if( this->CallBacks->IsPrePhysicsCallbackSet() || this->CallBacks->IsPostPhysicsCallbackSet() )
         {
-            //this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
             if( this->CallBacks->IsPrePhysicsCallbackSet() )
                 { Callbackbools[2] = this->CallBacks->PrePhysics(); }
 			this->DoMainLoopPhysics();
@@ -362,10 +371,10 @@ void PhysWorld::GameInit()
                 { Callbackbools[3] = this->CallBacks->PostPhysics(); }
         }
 
+        //PreRender callback
 		if(this->CallBacks->IsPreRenderCallbackSet())
         {
-            //this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
-			Callbackbools[4] = this->CallBacks->PreRender();
+            Callbackbools[4] = this->CallBacks->PreRender();
 			this->DoMainLoopWindowManagerBuffering();
         }
 
@@ -375,7 +384,6 @@ void PhysWorld::GameInit()
 		RenderTimer.reset();
 		if(16>FrameTime){               		//use 16666 for microseconds
 		    FrameDelay++;
-			WaitMilliseconds( FrameDelay );
 		}else if(16==FrameTime){
         }else{
             if (0<FrameDelay){
@@ -384,7 +392,9 @@ void PhysWorld::GameInit()
                 FrameDelay=0;
             }
         }
+        WaitMilliseconds( FrameDelay );
 
+        //PostRender Callback
 		if(this->CallBacks->IsPostRenderCallbackSet())
         {
 			this->Events->AddEvent(new PhysEventRenderTime(FrameTime));

@@ -48,7 +48,7 @@ Main loop Overview</a></h2>
  </p>
 <h2><a class="anchor" id="callbacks2">
 2) Physics callbacks and Event Buffering</a></h2>
-<p>This step runs between user input and rendering to allow for change to be immediately visible to the user. </p>
+<p>This step runs between user input and rendering to allow for changes caused by user input to be immediately visible to the user. </p>
 <h3><a class="anchor" id="physics1">
 2.A) PrePhysicsCallback</a></h3>
 <p>The funtionality of this callback overlaps a great deal with the PostInputCallBack, but they both still exist to make organization easier when needed. You probably should have figured out by now how the Callbackmanager functions are named, the ones for this are ituitively named with "PrePhysics" in their name. </p>
@@ -61,22 +61,22 @@ Main loop Overview</a></h2>
  </p>
 <h2><a class="anchor" id="callbacks3">
 3) Rendering</a></h2>
-<p>asdf </p>
+<p>Unlike Input and Physics this rendering will be performed each Frame regardless of what callbacks are set. Rendering is done last so that any changes to the game world physics makes are made visible in the same loop iteration. </p>
 <h3><a class="anchor" id="rendering1">
-3.A)</a></h3>
-<p>asdf </p>
+3.A) PerRenderCallback</a></h3>
+<p>Any tasks that could not be complete in the PostPhysics Callback can be performed here or you use this to make last minute preparations for rendering. </p>
 <h3><a class="anchor" id="rendering2">
-3.B)</a></h3>
-<p>asdf </p>
+3.B) Rendering</a></h3>
+<p>This is where the rendering actually occurs. The state of all the items in the world is grabbed from the physics subsystem and rendered. Additionally this is where the FrameDelay is calculated and acted on, so the frame rate can stay consistent. </p>
 <h3><a class="anchor" id="rendering3">
-3.C)</a></h3>
-<p>fdgsdfs <br/>
+3.C) PostRenderCallback</a></h3>
+<p>This is a great place to switch out the Callback Manager, for accomplishing tasks like switching between in game menus and actual gameplay. This is also a decent place to get a head start on anything that would be run in the PreInputCallback. <br/>
  </p>
 <h2><a class="anchor" id="endingmainloop1">
 Ending the Main Loop</a></h2>
-<p>ffgdfdfg </p>
+<p>The main loop stores the return values of each of the 6 callbacks. If they are all true the mainloop continues to it's next iteration. If one or more of any of the callbacks returns false then the main loop ends, and the game engine exits gracefully, cleanly up the physics, graphics and any others subsystems it opened. No attempt will be made by the engine to clean up data in the callback manager. If the game code does not free these items the operating system had better do it automatically. On most PC platform this is not an issue, but it could be disastrous on a mobile, or underperforming gaming platform. </p>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 9 01:46:16 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 11 13:17:18 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
