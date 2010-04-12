@@ -12,20 +12,21 @@
 //#include <windows.h>
 #include "zlib.h"
 
-
-
 #include <iostream>
 #include <fstream>
 #include <string>
 #include "configopener.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "unzip.h"
 //(*InternalHeaders(physgamelauncherFrame)
 #include <wx/intl.h>
 #include <wx/string.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include "crossplatform.h"
+#
+
 //*)
 
 //helper functions
@@ -127,6 +128,8 @@ void physgamelauncherFrame::RunGame(wxCommandEvent& event)
 
     wxExecute(wxexe);
      z_stream strm;
+
+    zzip_dir_open steddddd;
 
 
 

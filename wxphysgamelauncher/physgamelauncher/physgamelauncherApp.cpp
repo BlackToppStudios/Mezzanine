@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include "zlib.h"
+#include "crossplatform.h"
 
 //(*AppHeaders
 #include "physgamelauncherMain.h"

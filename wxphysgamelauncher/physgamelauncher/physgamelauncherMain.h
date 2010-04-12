@@ -14,6 +14,8 @@
 #include <wx/menu.h>
 #include <wx/frame.h>
 #include <wx/statusbr.h>
+#include "zzip.h"
+
 //*)
 
 class physgamelauncherFrame: public wxFrame
