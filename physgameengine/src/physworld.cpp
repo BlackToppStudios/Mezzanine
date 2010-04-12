@@ -89,6 +89,12 @@ PhysWorld::PhysWorld(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyU
 
 void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyUpperbounds_, unsigned short int  MaxPhysicsProxies_)
 {
+    //Set some sane Defaults for some values
+    this->SetWindowName("AppName");
+    this->TargetFrameLength=16;
+
+    this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
+
 	PlayerSettings = new Settings();
 
 	//We create our Ogre environment
@@ -113,7 +119,6 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 
     // This Tests the Logger and Logs a few critical Items.
     TestLogger();
-
 
     //Callbacks are the main way that a game using the PhysWorld will be able to have their code run at custom times
 	this->CallBacks = new PhysWorldCallBackManager(this);
@@ -201,6 +206,7 @@ template <class T> void PhysWorld::OneLogTest(T Data, string DataType, string Me
         Log(excepted);
     }
 }
+
 ///////////////////////////////////////////////////////////////////////////////
 //tears the world down
 PhysWorld::~PhysWorld()
@@ -386,13 +392,13 @@ void PhysWorld::MainLoop()
 			this->DoMainLoopWindowManagerBuffering();
         }
 
-		//Render the frame and figure the amount of time it took //Limit frame rate to 62.5
+		//Render the frame and figure the amount of time it took //By default Limit frame rate to 62.5
 		this->DoMainLoopRender();
 		FrameTime = RenderTimer.getMilliseconds();
 		RenderTimer.reset();
-		if(16>FrameTime){               		//use 16666 for microseconds
+		if(this->TargetFrameLength>FrameTime){
 		    FrameDelay++;
-		}else if(16==FrameTime){
+		}else if(this->TargetFrameLength==FrameTime){
         }else{
             if (0<FrameDelay){
                 FrameDelay--;
@@ -431,6 +437,7 @@ void PhysWorld::DoMainLoopAllItems()
 
 void PhysWorld::DoMainLoopPhysics()
 {
+   // btSoftRigidDynamicsWorld->stepSimulation(btScalar(1.)/btScalar(60.))
 	//TODO: Step the physics world here per main loop items
 	//this->Events->AddsomeEvents
 }
@@ -503,7 +510,7 @@ void PhysWorld::CreateRenderWindow()
 
 	//Setup the SDL render window
 	this->SDLscreen = SDL_SetVideoMode(PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), 0, SDL_OPENGL);
-    SDL_WM_SetCaption("Catch!", NULL);
+    SDL_WM_SetCaption(this->WindowName.c_str(), NULL);
 
 	//Start Ogre Without a native render window
 	this->OgreGameWindow = this->OgreRoot->initialise(false, "physgame");
@@ -511,7 +518,7 @@ void PhysWorld::CreateRenderWindow()
 	//Configure Ogre to render to the SDL window
 	Ogre::NameValuePairList *misc;
 	misc=(Ogre::NameValuePairList*) GetSDLOgreBinder();
-	(*misc)["title"] = Ogre::String("Catch!");
+	(*misc)["title"] = Ogre::String(this->WindowName);
 	this->OgreGameWindow = this->OgreRoot->createRenderWindow("physgame", PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), misc);
     //Added following lines to attempt to make the render window visible
     //this->OgreGameWindow->setVisible(true);
@@ -589,5 +596,36 @@ void PhysWorld::AddActor(ActorBase* ActorToAdd)
 {
     ActorToAdd->AddObjectToWorld(this, this->BulletDynamicsWorld);
 }
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Simple get and Set functions
+///////////////////////////////////////
+std::string PhysWorld::GetWindowName()
+{
+    return this->WindowName;
+}
+
+void PhysWorld::SetWindowName(std::string NewName)
+{
+    /// @todo TODO Change the name of an application once it is running
+    WindowName = NewName;
+}
+
+PhysWhole PhysWorld::GetTargetFrameTime()
+{
+    return this->TargetFrameLength;
+}
+
+void PhysWorld::SetTargetFrameTime(PhysWhole NewTargetTime)
+{
+    this->TargetFrameLength = NewTargetTime;
+}
+
+void PhysWorld::SetTargetFrameRate(PhysWhole NewFrameRate)
+{
+    this->SetTargetFrameTime( 1000/NewFrameRate );
+}
+
 
 #endif

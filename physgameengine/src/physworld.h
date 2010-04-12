@@ -164,13 +164,19 @@ class PhysWorld
         queue<RawEvent*> SDL_WmEvents;
         queue<RawEvent*> SDL_UserInputEvents;
 
+        ///Settings for Engine Functionality
+        string WindowName;
+        PhysWhole TargetFrameLength;
+
+        PhysReal PhysicsStepsize;
+
         /// @brief Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
         /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
         friend void RenderPhysWorld(PhysWorld *TheWorld);
 
 	public:
 
-        /// @todo TODO: Create a data member and access functions for Window name, FrameDelay, and a any other Phys game variables still be hardset
+        /// @todo TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset
 
         /// @brief Descriptive constructor
         /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
@@ -196,11 +202,40 @@ class PhysWorld
 		/// If compiled statically it should support any data type which supports output streams.
 		/// @param Message This is what will be streamed to the log
     	template <class T> void Log(T Message);
-    	/// @brief This is the preffered way to throw an exception currently
+    	/// @brief This is the preferred way to throw an exception currently
     	/// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
     	/// type the Log function supports
     	/// @param Message This will be streamed to the log, then used in a thrown exception.
         template <class T> void LogAndThrow(T Message);
+
+        /// @brief Retrieves the Current Window Title
+    	/// @details This gets the texts that the engine has stored for use in the title bar
+    	/// @return This returns a String Containing the Window Title
+        std::string GetWindowName();
+        /// @brief This can set the the Text in the titlebar
+    	/// @details This changes the text in the bar at the top of the game window in windowed mode. Currently the changes only
+    	/// works if this function is called before PhysWorld.GameInit but it is our TODO list to fix so it can be changed at anytime.
+    	/// @param NewName This is the new text to be used in the titlebar.
+        void SetWindowName(std::string NewName);
+
+        /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be
+    	/// @details In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. However, the mainloop will always reduce
+    	/// the actual amount of time to 0 when the hardware is overburdened.
+    	/// @return This returns a PhysWhole with the current Value
+        PhysWhole GetTargetFrameTime();
+        /// @brief This sets a new Target Time
+    	/// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value
+        /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but
+        /// set it too high, and system resources could becom completely taxed and power will be wasted.
+    	/// @param NewTargetTime The new length of time, in milliseconds.
+    	/// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
+        void SetTargetFrameTime(PhysWhole NewTargetTime);
+        /// @brief This sets a new Target Frame Rate
+    	/// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to
+    	/// PhysWorld::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms
+    	/// @param NewTargetTime The new desired frame rate.
+    	/// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
+        void SetTargetFrameRate(PhysWhole NewFrameRate);
 
         /// @brief This Shows an Engine Generated Configuration Screen
         /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration
@@ -222,6 +257,8 @@ class PhysWorld
         /// This will automatically call the Main Loop unless passed falsed.
         void GameInit( bool CallMainLoop=true );
 
+        /// @brief This Function house the main loop
+        /// @details By default this is called from the function PhysWorld.GameInit() this is were the bulk of the simulation is ran from, see @ref mainloop1
         void MainLoop();
 
         /// @brief Performs all the items that would normally be performed during the game loop
@@ -231,14 +268,14 @@ class PhysWorld
         void DoMainLoopAllItems();
 
         /// @brief Increments physics by one step
-        /// @details Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre-Physics Callback is
+        /// @details Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre/Post-Physics Callback is
         /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come
         /// from although it is concievable that a game could manually insert those manually. This will not delete events it places
         /// in the event manager, that is the responsibility of the code that pulls out the event out.
         void DoMainLoopPhysics();
 
         /// @brief Gathers user input from the OS and places events in the event manager
-        /// @details This this is automatically called during the mainloop if you have set a PreInput callback. This will not delete events it places
+        /// @details This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places
         /// in the event manager, that is the responsibility of the code that pulls out the event out.
 		void DoMainLoopInputBuffering();
 

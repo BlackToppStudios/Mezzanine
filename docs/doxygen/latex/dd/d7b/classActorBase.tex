@@ -44,9 +44,14 @@ void {\bfseries AttachToGraphics} ()}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classActorBase_afa6cc1d348a62856ac4550aa3d4b5605}{
-virtual void {\bfseries AddObjectToWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TargetWorld, btDiscreteDynamicsWorld $\ast$TargetPhysicsWorld)=0}
-\label{dd/d7b/classActorBase_afa6cc1d348a62856ac4550aa3d4b5605}
+\hypertarget{classActorBase_a1af82a2ed960fd114518fdf84d5ff146}{
+virtual void {\bfseries AddObjectToWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$World)=0}
+\label{dd/d7b/classActorBase_a1af82a2ed960fd114518fdf84d5ff146}
+
+\item 
+\hypertarget{classActorBase_ab9b40cbd820b3b16237f8036994d49c3}{
+void {\bfseries CreateShapeFromMesh} ()}
+\label{dd/d7b/classActorBase_ab9b40cbd820b3b16237f8036994d49c3}
 
 \item 
 \hypertarget{classActorBase_aa87583c47b8653e8ac7d96f1481b57fd}{
@@ -69,9 +74,24 @@ void {\bfseries SetOgreOrientation} (PhysReal x, PhysReal y, PhysReal z, PhysRea
 \label{dd/d7b/classActorBase_a64ec1d0987bb32070e0c686db3b06e56}
 
 \item 
+\hypertarget{classActorBase_a55f45703e3d9b8de0cd07b23bd9460bf}{
+void {\bfseries SetOgreOrientation} (\hyperlink{classPhysQuaternion}{PhysQuaternion} Rotation)}
+\label{dd/d7b/classActorBase_a55f45703e3d9b8de0cd07b23bd9460bf}
+
+\item 
 \hypertarget{classActorBase_af64a57138bbd32c52581a5c8d0d29a76}{
-void {\bfseries SetBulletLocation} (\hyperlink{classPhysVector3}{PhysVector3} Location)}
+virtual void {\bfseries SetBulletLocation} (\hyperlink{classPhysVector3}{PhysVector3} Location)}
 \label{dd/d7b/classActorBase_af64a57138bbd32c52581a5c8d0d29a76}
+
+\item 
+\hypertarget{classActorBase_af52177760d530df2b0987ed8626a656d}{
+void {\bfseries SetBulletInitLocation} (\hyperlink{classPhysVector3}{PhysVector3} Location)}
+\label{dd/d7b/classActorBase_af52177760d530df2b0987ed8626a656d}
+
+\item 
+\hypertarget{classActorBase_adf817bd5a7c562f31f6724a06a3a0f79}{
+void {\bfseries SetBulletOrientation} (\hyperlink{classPhysQuaternion}{PhysQuaternion} Rotation)}
+\label{dd/d7b/classActorBase_adf817bd5a7c562f31f6724a06a3a0f79}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}

@@ -20,6 +20,8 @@ PhysWorld TheWorld;
 
 int main(int argc, char **argv)
 {
+    TheWorld.SetWindowName("Catch!... The Game!");
+    TheWorld.SetTargetFrameRate(60);
 
     //Give the world functions to run before and after input
     TheWorld.CallBacks->SetPreInput(&PreInput);
