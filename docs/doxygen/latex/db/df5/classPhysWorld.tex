@@ -65,7 +65,11 @@ Definition at line 120 of file physworld.h.
 \label{db/df5/classPhysWorld_a3228c98369082139722d3c918d735e6c}
 
 
-Descriptive constructor. This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. 
+Descriptive constructor. \begin{Desc}
+\item[\hyperlink{todo__todo000011}{Todo}]TODO: Create a data member and access functions for Window name, FrameDelay, and a any other Phys game variables still be hardset \end{Desc}
+
+
+This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. 
 \begin{DoxyParams}{Parameters}
 \item[{\em GeographyLowerBounds}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies}]This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation. \end{DoxyParams}
 
@@ -107,7 +111,7 @@ The adds and Actor to the physworld. The takes over for manager an Actor, and ma
 \item[{\em ActorToAdd}]This is a pointer to the actor to be added \end{DoxyParams}
 
 
-Definition at line 587 of file physworld.cpp.\hypertarget{classPhysWorld_a60b7978b39fc347c2f37077737783da6}{
+Definition at line 580 of file physworld.cpp.\hypertarget{classPhysWorld_a60b7978b39fc347c2f37077737783da6}{
 \index{PhysWorld@{PhysWorld}!DoMainLoopAllItems@{DoMainLoopAllItems}}
 \index{DoMainLoopAllItems@{DoMainLoopAllItems}!PhysWorld@{PhysWorld}}
 \subsubsection[{DoMainLoopAllItems}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopAllItems ()}}
@@ -124,14 +128,6 @@ Definition at line 416 of file physworld.cpp.\hypertarget{classPhysWorld_a81b3f0
 
 
 Gathers user input from the OS and places events in the event manager. This this is automatically called during the mainloop if you have set a PreInput callback. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000011}{Todo}]TODO: make Physevents for each of the events in SDL\_\-WmEvents(and delete the SDL events) \end{Desc}
-
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000012}{Todo}]TODO Delete the even temp logging code \end{Desc}
-
 
 Definition at line 438 of file physworld.cpp.\hypertarget{classPhysWorld_a994d7d8c4a9a0c003c3e7d89be7b399b}{
 \index{PhysWorld@{PhysWorld}!DoMainLoopPhysics@{DoMainLoopPhysics}}
@@ -151,7 +147,7 @@ Definition at line 424 of file physworld.cpp.\hypertarget{classPhysWorld_a8f3354
 
 This forces the screen to be re-\/rendered. This renders the screen based on the status of all in game actors. This is automatically called in the main loop. 
 
-Definition at line 470 of file physworld.cpp.\hypertarget{classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}{
+Definition at line 463 of file physworld.cpp.\hypertarget{classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}{
 \index{PhysWorld@{PhysWorld}!DoMainLoopWindowManagerBuffering@{DoMainLoopWindowManagerBuffering}}
 \index{DoMainLoopWindowManagerBuffering@{DoMainLoopWindowManagerBuffering}!PhysWorld@{PhysWorld}}
 \subsubsection[{DoMainLoopWindowManagerBuffering}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopWindowManagerBuffering ()}}
@@ -237,7 +233,7 @@ This should be treated as an internal function, it is {\bfseries subject} {\bfse
 
 This is a point to the default Call BackManager. All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. 
 
-Definition at line 257 of file physworld.h.\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
+Definition at line 260 of file physworld.h.\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
 \index{PhysWorld@{PhysWorld}!Events@{Events}}
 \index{Events@{Events}!PhysWorld@{PhysWorld}}
 \subsubsection[{Events}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventManager}$\ast$ {\bf PhysWorld::Events}}}
@@ -246,7 +242,7 @@ Definition at line 257 of file physworld.h.\hypertarget{classPhysWorld_a601b3c60
 
 This is the default pointer to the Event Manager. This is the Event manager that all physworld members will place any events into. 
 
-Definition at line 261 of file physworld.h.
+Definition at line 264 of file physworld.h.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

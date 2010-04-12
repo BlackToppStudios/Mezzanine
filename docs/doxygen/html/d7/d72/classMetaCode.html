@@ -379,13 +379,19 @@
  }</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>An Optional listing of value that can be used in a metacode to represent the information of a button press. </p>
  <a href="../../d7/d72/classMetaCode.html#a8bcce67af20f4f779ba6f5387e438077">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a31155465656363d4ecdf9ce7ae5d7227">MouseWheelState</a> { <a class="el" href="../../d7/d72/classMetaCode.html#a31155465656363d4ecdf9ce7ae5d7227af0b2479902511454e2018979ee5e39e5">MOUSEWHEEL_UP</a> =  1, 
+<a class="el" href="../../d7/d72/classMetaCode.html#a31155465656363d4ecdf9ce7ae5d7227a70b73f42dccd13d9652d83c5f24cd966">MOUSEWHEEL_UNCHANGED</a> =  0, 
+<a class="el" href="../../d7/d72/classMetaCode.html#a31155465656363d4ecdf9ce7ae5d7227a912c43d8503790ded562c0c4a6a62ca7">MOUSEWHEEL_DOWN</a> =  -1
+ }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel. </p>
+ <a href="../../d7/d72/classMetaCode.html#a31155465656363d4ecdf9ce7ae5d7227">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a6d4637b2894e5a2d46577c08259a2416">MetaCode</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#a6d4637b2894e5a2d46577c08259a2416"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#aaa5c96e46212847295db722a8253e86a">MetaCode</a> (const int &amp;MetaValue_, const short unsigned int &amp;ID_, const <a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a> &amp;Code_)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Descriptive Constructor.  <a href="#aaa5c96e46212847295db722a8253e86a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a87b260ce7ee3a66c75320c0fc37cdc0a">MetaCode</a> (const RawEvent &amp;RawEvent_)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The Heavy Lifting Consctructor.  <a href="#a87b260ce7ee3a66c75320c0fc37cdc0a"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The Heavy Lifting Constructor.  <a href="#a87b260ce7ee3a66c75320c0fc37cdc0a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a94532fc103d95f3de53eeccbadd6f17b">GetCode</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Returns the Inputcode.  <a href="#a94532fc103d95f3de53eeccbadd6f17b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d72/classMetaCode.html#a9be5fcad22449c12b649801ab97bbf20">SetCode</a> (const <a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a> &amp;Code_)</td></tr>
@@ -508,6 +514,37 @@
 
 </div>
 </div>
+<a class="anchor" id="a31155465656363d4ecdf9ce7ae5d7227"></a><!-- doxytag: member="MetaCode::MouseWheelState" ref="a31155465656363d4ecdf9ce7ae5d7227" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d7/d72/classMetaCode.html#a31155465656363d4ecdf9ce7ae5d7227">MetaCode::MouseWheelState</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel. </p>
+<p>This is optional set of values that can make working with the MouseWheel easier. The values the engine pass via the the event manager will all use these whereever appropriate. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a31155465656363d4ecdf9ce7ae5d7227af0b2479902511454e2018979ee5e39e5"></a><!-- doxytag: member="MOUSEWHEEL_UP" ref="a31155465656363d4ecdf9ce7ae5d7227af0b2479902511454e2018979ee5e39e5" args="" -->MOUSEWHEEL_UP</em>&nbsp;</td><td>
+<p>Optionally Used when the MouseWheel is spun up as a Meta Code </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a31155465656363d4ecdf9ce7ae5d7227a70b73f42dccd13d9652d83c5f24cd966"></a><!-- doxytag: member="MOUSEWHEEL_UNCHANGED" ref="a31155465656363d4ecdf9ce7ae5d7227a70b73f42dccd13d9652d83c5f24cd966" args="" -->MOUSEWHEEL_UNCHANGED</em>&nbsp;</td><td>
+<p>This really isn't used in normal situations, but if a mousewheel event is ever needed when the MouseWheel is unspun </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a31155465656363d4ecdf9ce7ae5d7227a912c43d8503790ded562c0c4a6a62ca7"></a><!-- doxytag: member="MOUSEWHEEL_DOWN" ref="a31155465656363d4ecdf9ce7ae5d7227a912c43d8503790ded562c0c4a6a62ca7" args="" -->MOUSEWHEEL_DOWN</em>&nbsp;</td><td>
+<p>Optionally Used when the MouseWheel is spun Down as a Meta Code </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html#l00406">406</a> of file <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html">physeventuserinput.h</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6d4637b2894e5a2d46577c08259a2416"></a><!-- doxytag: member="MetaCode::MetaCode" ref="a6d4637b2894e5a2d46577c08259a2416" args="()" -->
 <div class="memitem">
@@ -527,7 +564,7 @@
 <p>Default constructor. </p>
 <p>This sets nothing on the <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> and leaves it completely unassigned. Accessing a data member could cause problems </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -573,7 +610,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -593,11 +630,19 @@
 </div>
 <div class="memdoc">
 
-<p>The Heavy Lifting Consctructor. </p>
-<p>This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. </p>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In that event you would have to recompile your application to get it working with a new version of physgame. </dd></dl>
+<p>The Heavy Lifting Constructor. </p>
+<p>This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. <br/>
+ This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of Metacode. Depending on the User input subsystem, this could be all RawEvents, or even just some RawEvents. </p>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>RawEvent which creates Multiple Metacodes inserted into Metacode</em>&nbsp;</td><td>- Thrown when passed a certain (system dependant) incorrect type of RawEvent. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Unknown User Input Inserted into Metacode</em>&nbsp;</td><td>- Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In that event you would have to recompile your application to get it working with a new version of physgame. Using this function in Game code removes any gaurantees of Game Code Portability. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00073">73</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -621,7 +666,7 @@
 <p>This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with <a class="el" href="../../d7/d72/classMetaCode.html#a9be5fcad22449c12b649801ab97bbf20">SetCode</a> . </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns the input code for this <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00138">138</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00141">141</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -644,7 +689,7 @@
 <p>The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed. On systems that support multiple keyboards this will even differentiate between those. This value can be set with <a class="el" href="../../d7/d72/classMetaCode.html#a0eb10030320a1fcfdda3b867b90e629f">SetID</a> . </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis, JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this can identify from unique input sources and InputCode. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00143">143</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00146">146</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -667,7 +712,7 @@
 <p>The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value. This value can be set with <a class="el" href="../../d7/d72/classMetaCode.html#a1e410df95815b4d7e94b971bb1b8ba1e">SetMetaValue</a> . </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns the input code for this <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>. For keyboard Buttons this will be 0 if not pressed, 1 if pressed, and -1 if it was pressed and just released. This could return any number inside a range (depending on hardware and configuration) to represent how tilted a joystick or how much a mouse moved. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00133">133</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00136">136</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -690,7 +735,7 @@
 <p>Compares two MetaCodes for equality. </p>
 <p>This returns true if the MetaValue and Code are the Same, this ignores ID. </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00163">163</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00166">166</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -714,12 +759,12 @@
 <p>See <a class="el" href="../../d7/d72/classMetaCode.html#a94532fc103d95f3de53eeccbadd6f17b">GetCode</a> to see exactly what the Code is. This will Set the code stored in this <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>. This value can be retrieved with <a class="el" href="../../d7/d72/classMetaCode.html#a94532fc103d95f3de53eeccbadd6f17b">GetCode</a> . </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Code_</em>&nbsp;</td><td>Teh value you want the stored code to become. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Code_</em>&nbsp;</td><td>The value you want the stored code to become. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00153">153</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00156">156</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -748,7 +793,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00158">158</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00161">161</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -777,7 +822,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00148">148</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00151">151</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -786,7 +831,7 @@
 <li><a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 11 13:17:20 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 11 21:51:50 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

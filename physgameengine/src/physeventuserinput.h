@@ -399,6 +399,16 @@ class MetaCode
         BUTTON_DOWN = 2         /**< This is used the entire time a key is down.  */
     };
 
+    /// @enum MouseWheelState
+    /// @brief An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel
+    /// @details This is optional set of values that can make working with the MouseWheel easier. The values the engine pass
+    /// via the the event manager will all use these whereever appropriate.
+    enum MouseWheelState{
+        MOUSEWHEEL_UP = 1,          /**< Optionally Used when the MouseWheel is spun up as a Meta Code */
+        MOUSEWHEEL_UNCHANGED = 0,   /**< This really isn't used in normal situations, but if a mousewheel event is ever needed when the MouseWheel is unspun */
+        MOUSEWHEEL_DOWN = -1        /**< Optionally Used when the MouseWheel is spun Down as a Meta Code */
+    };
+
     private:
         int MetaValue;
         short unsigned int ID;
@@ -420,11 +430,16 @@ class MetaCode
         /// @param Code_ Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support.
         MetaCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_);
 
-        /// @brief The Heavy Lifting Consctructor
+        /// @brief The Heavy Lifting Constructor
         /// @details This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information
-        /// from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals.
+        /// from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. \n
+        /// This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of Metacode. Depending on the
+        /// User input subsystem, this could be all RawEvents, or even just some RawEvents.
+        /// @exception "RawEvent which creates Multiple Metacodes inserted into Metacode" - Thrown when passed a certain (system dependant) incorrect type of RawEvent.
+        /// @exception "Unknown User Input Inserted into Metacode" - Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent.
         /// @warning We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In
-        /// that event you would have to recompile your application to get it working with a new version of physgame.
+        /// that event you would have to recompile your application to get it working with a new version of physgame. Using this function in Game code removes any gaurantees of Game Code
+        /// Portability.
         MetaCode(const RawEvent &RawEvent_);
 
         /// @brief This Returns the Inputcode
@@ -435,7 +450,7 @@ class MetaCode
 
         /// @brief This Sets The InputCode
         /// @details See @ref GetCode to see exactly what the Code is. This will Set the code stored in this MetaCode. This value can be retrieved with @ref GetCode .
-        /// @param Code_ Teh value you want the stored code to become.
+        /// @param Code_ The value you want the stored code to become.
         void SetCode(const MetaCode::InputCode &Code_);
 
         /// @brief This Returns the MetaValue
@@ -492,10 +507,16 @@ class PhysEventUserInput : public PhysEvent
     private:
         vector<MetaCode> Code;
 
+        //Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if
+        //passed any other kind of data.
+        void AddCodesFromSDLMouseButton(const RawEvent &RawEvent_);
+        void AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_);
+
 	public:
         /// @brief Default constructor
-        /// @details This creates a perfectly functional, but empty physevent.
+        /// @details This creates a perfectly functional, but empty PhysEventUserInput.
         PhysEventUserInput();
+
         PhysEventUserInput(const MetaCode &Code_);
         PhysEventUserInput(const vector<MetaCode> &Code_);
         virtual ~PhysEventUserInput();
@@ -504,7 +525,21 @@ class PhysEventUserInput : public PhysEvent
         const MetaCode GetMetaCode(const unsigned int &Index);
         unsigned int GetMetaCodeCount();
 
+        /// @brief Adds a MetaCode
+        /// @param Code_ The User Input MetaCode tobe added
+        /// @details This adds an existing metacode to this event.
         void AddCode(const MetaCode &Code_);
+
+        /// @brief Adds a MetaCode created from a RawEvent
+        /// @param RawEvent_ The RawEvent which will be translated into exactly One MetaCode
+        /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is
+        /// recommended to not use this in game code.
+        /// @warning Do not use this without reading and fully understanding the warnings on MetaCode::MetaCode(const RawEvent &RawEvent_) . This function has all the same
+        /// Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must it should use
+        /// PhysEventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.
+        void AddCode(const RawEvent &RawEvent_);
+
+        void AddCodesFromRawEvent(const RawEvent &RawEvent_);
         void EraseCode(const MetaCode &Code_);
         void EraseCode(const unsigned int &Index);
         void ToggleCode(const MetaCode &Code_);

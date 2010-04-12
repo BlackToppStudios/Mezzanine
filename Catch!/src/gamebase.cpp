@@ -97,9 +97,12 @@ bool CheckForEsc()
     //We check each Event
     while(0 != OneInput)
     {
+        TheWorld.Log("Input Events Processed");
+
         //we check each MetaCode in each Event
         for (int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
+            TheWorld.Log(OneInput->GetMetaCode(c));
             //Is the key we just pulled ESCAPE
             if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode())
             {
