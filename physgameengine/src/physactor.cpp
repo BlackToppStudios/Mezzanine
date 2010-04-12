@@ -57,6 +57,7 @@ class PhysMotionState : public btMotionState {
         PhysMotionState(Ogre::SceneNode* scenenode);
         virtual ~PhysMotionState();
         void SetNode(Ogre::SceneNode* scenenode);
+        void SetPosition(PhysVector3 position);
 
         virtual void getWorldTransform(btTransform &worldTrans) const;
         virtual void setWorldTransform(const btTransform &worldTrans);
@@ -78,6 +79,115 @@ ActorBase::~ActorBase ()
     delete Shape;
 }
 
+void ActorBase::CreateShapeFromMesh()
+{
+    // Get the mesh from the entity
+    Ogre::MeshPtr myMesh = entity->getMesh();
+
+    // Get the submesh and associated data
+    Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+
+    Ogre::IndexData*  indexData = subMesh->indexData;
+    Ogre::VertexData* vertexData = subMesh->vertexData;
+
+    // Get the position element
+    const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+
+    // Get a pointer to the vertex buffer
+    Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+
+    // Get a pointer to the index buffer
+    Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
+
+    // --------------------------
+
+    // Get the number of triangles
+    unsigned int triCount = indexData->indexCount/3;
+
+    // Allocate space for the vertices and indices
+    Ogre::Vector3* vertices = new Ogre::Vector3[vertexData->vertexCount];
+    unsigned long* indices  = new unsigned long[indexData->indexCount];
+
+    // --------------------
+
+    // Lock the vertex buffer (READ ONLY)
+    unsigned char* vertex =   static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+
+    //
+    float* pReal = NULL;
+
+    for (size_t j = 0; j < vertexData->vertexCount; ++j, vertex += vBuffer->getVertexSize() )
+    {
+        posElem->baseVertexPointerToElement(vertex, &pReal);
+        Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);
+        vertices[j] = pt;
+    }
+
+    vBuffer->unlock();
+
+    // --------------------
+
+    size_t index_offset = 0;
+
+    bool use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
+
+    // Lock the index buffer (READ ONLY)
+    unsigned long* pLong = static_cast<unsigned long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+    unsigned short* pShort = reinterpret_cast<unsigned short*>(pLong);
+
+    if (use32bitindexes)
+    {
+        for (size_t k = 0; k < triCount*3; ++k)
+        {
+            indices[index_offset++] = pLong[k];
+        }
+    }
+    else
+    {
+        for (size_t k = 0; k < triCount*3; ++k)
+        {
+         indices[index_offset++] = static_cast<unsigned long>(pShort[k]);
+        }
+    }
+
+    iBuffer->unlock();
+
+    // We now have vertices and indices ready to go
+
+    // The Bullet triangle mesh
+    //Shape = static_cast<btTriangleMesh*>(Shape);
+    btTriangleMesh* trimesh = new btTriangleMesh(use32bitindexes);
+
+    // Setup the tri mesh
+    btVector3 vert0, vert1, vert2;
+    int i=0;
+
+    // For every triangle
+    for (unsigned int y=0; y<triCount; y++)
+    {
+        // Set each vertex
+
+        vert0.setValue(vertices[indices[i]].x, vertices[indices[i]].y, vertices[indices[i]].z);
+
+        vert1.setValue(vertices[indices[i+1]].x, vertices[indices[i+1]].y, vertices[indices[i+1]].z);
+
+        vert2.setValue(vertices[indices[i+2]].x, vertices[indices[i+2]].y, vertices[indices[i+2]].z);
+
+        // Add it into the trimesh
+        trimesh->addTriangle(vert0, vert1, vert2);
+
+        // Increase index count
+        i+=3;
+    }
+
+    // --------------- Cleanup
+
+    delete[] vertices;
+    delete[] indices;
+
+    Shape = new btBvhTriangleMeshShape(trimesh, true);
+}
+
 void ActorBase::CreateEntity (PhysString name, PhysString file, PhysString group)
 {
     this->entity = this->physscenemanager->createEntity(name, file, group);
@@ -88,46 +198,62 @@ void ActorBase::CreateSceneNode ()
     this->node = this->physscenemanager->createSceneNode();
 }
 
-void ActorBase::SetOgreLocation (PhysVector3 Place)
+void ActorBase::SetOgreLocation (PhysVector3 Location)
 {
-    this->node->setPosition(Place.GetOgreVector3());
+    this->node->setPosition(Location.GetOgreVector3());
 }
 
 void ActorBase::SetBulletLocation (PhysVector3 Location)
 {
+    //empty function to be redifined in subclasses
+}
+
+void ActorBase::SetBulletInitLocation (PhysVector3 Location)
+{
     this->MotionState->initposition.setOrigin(Location.GetBulletVector3());
 }
 
-void ActorBase::SetOgreOrientation (PhysReal x, PhysReal y, PhysReal z, PhysReal w)
+void ActorBase::SetOgreOrientation (PhysQuaternion Rotation)
 {
-    this->node->setOrientation(x, y, z, w);
+    this->node->setOrientation(Rotation.GetOgreQuaternion());
 }
 
-void ActorBase::SetLocation(PhysReal x, PhysReal y, PhysReal z)
+void ActorBase::SetBulletOrientation (PhysQuaternion Rotation)
+{
+
+}
+
+void ActorBase::SetLocation (PhysReal x, PhysReal y, PhysReal z)
 {
     PhysVector3 temp(x,y,z);
     this->SetLocation(temp);
 }
 
-void ActorBase::SetLocation(PhysVector3 Place)
+void ActorBase::SetLocation (PhysVector3 Place)
 {
     this->SetBulletLocation(Place);
     this->SetOgreLocation(Place);
 }
 
-void ActorBase::SetOrientation(PhysReal x, PhysReal y, PhysReal z, PhysReal w)
+void ActorBase::SetOrientation (PhysReal x, PhysReal y, PhysReal z, PhysReal w)
 {
-
+    PhysQuaternion temp(x,y,z,w);
+    this->SetOrientation(temp);
 }
 
-void ActorBase::SetOrientation(PhysQuaternion Rotation)
+void ActorBase::SetOrientation (PhysQuaternion Rotation)
 {
-
+    this->SetBulletOrientation(Rotation);
+    this->SetOgreOrientation(Rotation);
 }
 
-void ActorBase::AttachToGraphics()
+void ActorBase::AttachToGraphics ()
 {
-    CreateSceneNode ();
+    PhysVector3 temp;
+    temp.ExtractBulletVector3(this->MotionState->initposition.getOrigin());
+    this->node = this->physscenemanager->createSceneNode();
+    this->node->setPosition(temp.GetOgreVector3());
+    this->node->attachObject(this->entity);
 }
 
 
@@ -142,7 +268,6 @@ ActorDynRigid::ActorDynRigid (PhysReal mass, PhysString name, PhysString file) :
 
 ActorDynRigid::~ActorDynRigid ()
 {
-    //delete physorientation;
     delete physrigidbody;
 }
 
@@ -152,9 +277,16 @@ void ActorDynRigid::CreateRigidObject (PhysReal pmass)
     this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
 }
 
-void ActorDynRigid::AddObjectToWorld (PhysWorld *TargetWorld, btDiscreteDynamicsWorld* TargetPhysicsWorld)
+void ActorDynRigid::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
 {
-    //TODO: add code for adding object to the physics world
+    World->addRigidBody(this->physrigidbody);
+    AttachToGraphics();
+}
+
+void ActorDynRigid::SetBulletLocation (PhysVector3 Location)
+{
+    btTransform temp = this->physrigidbody->getWorldTransform();
+    temp.setOrigin(Location.GetBulletVector3());
 }
 
 ///////////////////////////////////
@@ -172,9 +304,14 @@ void ActorDynSoft::CreateSoftObject ()
 {
 }
 
-void ActorDynSoft::AddObjectToWorld (PhysWorld *TargetWorld, btDiscreteDynamicsWorld* TargetPhysicsWorld)
+void ActorDynSoft::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
 {
     //TODO: add code for adding object to the physics world
+}
+
+void ActorDynSoft::SetBulletLocation (PhysVector3 Location)
+{
+    //TODO: add something useful
 }
 
 ///////////////////////////////////
@@ -196,10 +333,16 @@ void ActorSta::CreateRigidObject ()
     this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
 }
 
-void ActorSta::AddObjectToWorld (PhysWorld *TargetWorld, btDiscreteDynamicsWorld* TargetPhysicsWorld)
+void ActorSta::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
 {
-    //TargetPhysicsWorld->addRigidBody(
+    World->addRigidBody(this->physrigidbody);
+    AttachToGraphics();
+}
 
+void ActorSta::SetBulletLocation (PhysVector3 Location)
+{
+    btTransform temp = this->physrigidbody->getWorldTransform();
+    temp.setOrigin(Location.GetBulletVector3());
 }
 
 ///////////////////////////////////
@@ -207,12 +350,13 @@ void ActorSta::AddObjectToWorld (PhysWorld *TargetWorld, btDiscreteDynamicsWorld
 
 PhysMotionState::PhysMotionState()
 {
+    this->initposition.getIdentity();
 }
 
 PhysMotionState::PhysMotionState(Ogre::SceneNode* scenenode)
 {
-    snode=scenenode;
-    initposition.getIdentity();
+    this->snode=scenenode;
+    this->initposition.getIdentity();
 }
 
 PhysMotionState::~PhysMotionState()
@@ -225,7 +369,12 @@ PhysMotionState::~PhysMotionState()
 
 void PhysMotionState::SetNode(Ogre::SceneNode* scenenode)
 {
-    snode=scenenode;
+    this->snode=scenenode;
+}
+
+void PhysMotionState::SetPosition(PhysVector3 position)
+{
+    this->initposition.setOrigin(position.GetBulletVector3());
 }
 
 void PhysMotionState::getWorldTransform(btTransform &worldTrans) const
@@ -236,9 +385,9 @@ void PhysMotionState::getWorldTransform(btTransform &worldTrans) const
 void PhysMotionState::setWorldTransform(const btTransform &worldTrans)
 {
     btQuaternion rotation = worldTrans.getRotation();
-    snode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
+    this->snode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
     btVector3 position = worldTrans.getOrigin();
-    snode->setPosition(position.x(), position.y(), position.z());
+    this->snode->setPosition(position.x(), position.y(), position.z());
 }
 
 #endif

@@ -82,16 +82,20 @@ class ActorBase {
 
         PhysMotionState* MotionState;
 
-        virtual void AddObjectToWorld (PhysWorld *TargetWorld, btDiscreteDynamicsWorld* TargetPhysicsWorld) = 0;
+        virtual void AddObjectToWorld(PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World) = 0;
+        void CreateShapeFromMesh();
 
         //Ogre Management Functions
         void CreateEntity(PhysString name, PhysString file, PhysString group);
         void CreateSceneNode();
         void SetOgreLocation(PhysVector3 Place);
         void SetOgreOrientation(PhysReal x, PhysReal y, PhysReal z, PhysReal w);
+        void SetOgreOrientation (PhysQuaternion Rotation);
 
         //Bullet Management
-        void SetBulletLocation (PhysVector3 Location);
+        virtual void SetBulletLocation (PhysVector3 Location);
+        void SetBulletInitLocation (PhysVector3 Location);
+        void SetBulletOrientation (PhysQuaternion Rotation);
 
 	public:
         ~ActorBase ();
@@ -111,7 +115,8 @@ class ActorDynRigid: public ActorBase {
 	protected:
         btRigidBody* physrigidbody;
         //btMotionState* physmotionstate;
-        void AddObjectToWorld (PhysWorld *TargetWorld, btDiscreteDynamicsWorld* TargetPhysicsWorld);
+        void AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World);
+        virtual void SetBulletLocation (PhysVector3 Location);
 
 	public:
         ActorDynRigid(PhysReal mass, PhysString name, PhysString file);
@@ -124,7 +129,8 @@ class ActorDynSoft: public ActorBase {
 	protected:
         btSoftBody* physoftbody;
         //btMotionState* physmotionstate;
-        void AddObjectToWorld (PhysWorld *TargetWorld, btDiscreteDynamicsWorld* TargetPhysicsWorld);
+        void AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World);
+        virtual void SetBulletLocation (PhysVector3 Location);
 
 	public:
         ActorDynSoft();
@@ -136,7 +142,8 @@ class ActorSta: public ActorBase {
 
     protected:
         btRigidBody* physrigidbody;
-        void AddObjectToWorld (PhysWorld *TargetWorld, btDiscreteDynamicsWorld* TargetPhysicsWorld);
+        void AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World);
+        virtual void SetBulletLocation (PhysVector3 Location);
 
     public:
         ActorSta(PhysString name, PhysString file);
