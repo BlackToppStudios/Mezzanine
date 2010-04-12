@@ -55,8 +55,12 @@ Inheritance diagram for PhysEventUserInput:</div>
 const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMetaCode</b> (const unsigned int &amp;Index)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86df812a38566a572134100a422a8799"></a><!-- doxytag: member="PhysEventUserInput::GetMetaCodeCount" ref="a86df812a38566a572134100a422a8799" args="()" -->
 unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMetaCodeCount</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f5b94c64cd08c15b480e441d25a385d"></a><!-- doxytag: member="PhysEventUserInput::AddCode" ref="a4f5b94c64cd08c15b480e441d25a385d" args="(const MetaCode &amp;Code_)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>AddCode</b> (const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;Code_)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d">AddCode</a> (const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;Code_)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds a <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>.  <a href="#a4f5b94c64cd08c15b480e441d25a385d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html#a385a4f7a6e88be43b6ba1ffc2a1bb5e3">AddCode</a> (const RawEvent &amp;RawEvent_)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds a <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> created from a RawEvent.  <a href="#a385a4f7a6e88be43b6ba1ffc2a1bb5e3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e42f42f9a4a42f792e5cf95856669c0"></a><!-- doxytag: member="PhysEventUserInput::AddCodesFromRawEvent" ref="a9e42f42f9a4a42f792e5cf95856669c0" args="(const RawEvent &amp;RawEvent_)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>AddCodesFromRawEvent</b> (const RawEvent &amp;RawEvent_)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1dbd2996770df334fba9f67d9bb4ffa0"></a><!-- doxytag: member="PhysEventUserInput::EraseCode" ref="a1dbd2996770df334fba9f67d9bb4ffa0" args="(const MetaCode &amp;Code_)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>EraseCode</b> (const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;Code_)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cbbee3c2be3bd12746ad442fce526e4"></a><!-- doxytag: member="PhysEventUserInput::EraseCode" ref="a8cbbee3c2be3bd12746ad442fce526e4" args="(const unsigned int &amp;Index)" -->
@@ -72,7 +76,7 @@ virtual EventType&nbsp;</td><td class="memItemRight" valign="bottom"><b>getEvent
 <p>This is a container for MetaCodes that is used in the physEventManager. </p>
 <p>The <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> is the container for information about how a user enters data and commands into a program. By Default one is inserted into event manager the with all the user input from the last run of the main loop. These can be manually inserted into the EventManager to simulate input from other sources. If setup properly this can allow computer controlled characters to use the same interface players, allowing for more realistic response from them. This is not limited to the tricks discussed here. </p>
 
-<p>Definition at line <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html#l00490">490</a> of file <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html">physeventuserinput.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html#l00505">505</a> of file <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html">physeventuserinput.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6f8eaf698e8109d5cb30f2f17044f1ba"></a><!-- doxytag: member="PhysEventUserInput::PhysEventUserInput" ref="a6f8eaf698e8109d5cb30f2f17044f1ba" args="()" -->
 <div class="memitem">
@@ -90,9 +94,69 @@ virtual EventType&nbsp;</td><td class="memItemRight" valign="bottom"><b>getEvent
 <div class="memdoc">
 
 <p>Default constructor. </p>
-<p>This creates a perfectly functional, but empty physevent. </p>
+<p>This creates a perfectly functional, but empty <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>. </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00186">186</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00188">188</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a385a4f7a6e88be43b6ba1ffc2a1bb5e3"></a><!-- doxytag: member="PhysEventUserInput::AddCode" ref="a385a4f7a6e88be43b6ba1ffc2a1bb5e3" args="(const RawEvent &amp;RawEvent_)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PhysEventUserInput::AddCode </td>
+          <td>(</td>
+          <td class="paramtype">const RawEvent &amp;&nbsp;</td>
+          <td class="paramname"> <em>RawEvent_</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Adds a <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> created from a RawEvent. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>RawEvent_</em>&nbsp;</td><td>The RawEvent which will be translated into exactly One <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This will add <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> to this event which will be create from a RawEvent which can produce Exactly one <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>. This is used by engine internals, it is recommended to not use this in game code. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Do not use this without reading and fully understanding the warnings on <a class="el" href="../../d7/d72/classMetaCode.html#a87b260ce7ee3a66c75320c0fc37cdc0a" title="The Heavy Lifting Constructor.">MetaCode::MetaCode(const RawEvent &amp;RawEvent_)</a> . This function has all the same Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must it should use PhysEventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00226">226</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4f5b94c64cd08c15b480e441d25a385d"></a><!-- doxytag: member="PhysEventUserInput::AddCode" ref="a4f5b94c64cd08c15b480e441d25a385d" args="(const MetaCode &amp;Code_)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PhysEventUserInput::AddCode </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Code_</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Adds a <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Code_</em>&nbsp;</td><td>The User Input <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> tobe added</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This adds an existing metacode to this event. </p>
+
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00221">221</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -101,7 +165,7 @@ virtual EventType&nbsp;</td><td class="memItemRight" valign="bottom"><b>getEvent
 <li><a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 11 13:17:21 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 11 21:51:51 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

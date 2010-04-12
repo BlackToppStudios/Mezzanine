@@ -43,7 +43,7 @@
 /**
  @mainpage Physgame
  The Physgame engine is an abstraction layer between less portable, less user friendly, more sophistciated
- libraries and the game you want to make. If we do our jobs right this will save time and effort porting
+ libraries and the game you want to make. If we do our jobs right this will save time and effort making and porting
  games between a variety of platforms. If you link only against this library, not a single line of your
  Standard compliant C++ code should need to change between platforms. At this early stage we are proving the
  concept with "Catch!" our first sample game. It Currently runs on Linux and Windows with an Identical
@@ -169,6 +169,9 @@ class PhysWorld
         friend void RenderPhysWorld(PhysWorld *TheWorld);
 
 	public:
+
+        /// @todo TODO: Create a data member and access functions for Window name, FrameDelay, and a any other Phys game variables still be hardset
+
         /// @brief Descriptive constructor
         /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
         /// @param GeographyLowerBounds The lower limits for the size of the physics simulation

@@ -443,21 +443,14 @@ void PhysWorld::DoMainLoopInputBuffering()
 
     PhysEventUserInput* FromSDLEvent = new PhysEventUserInput();
 
-    /// @todo TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
     while( !SDL_UserInputEvents.empty() )
     {
-        MetaCode CurrentMetaCode( *(SDL_UserInputEvents.front()) );
-        FromSDLEvent->AddCode(CurrentMetaCode);         //This relies on the fact that the constructor copies the data
+        RawEvent* CurrentRawEvent = SDL_UserInputEvents.front();
+
+        FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
+        delete CurrentRawEvent;
         SDL_UserInputEvents.pop(); //NEXT!!!
     }
-
-    //temp code
-    /// @todo TODO Delete the even temp logging code
-    for(unsigned int c=0; c<FromSDLEvent->GetMetaCodeCount(); c++)
-    {
-        Log(FromSDLEvent->GetMetaCode(c));
-    }
-    // /tempcode
 
     if (0 < FromSDLEvent->GetMetaCodeCount())
     {
