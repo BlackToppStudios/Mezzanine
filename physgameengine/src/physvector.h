@@ -60,9 +60,9 @@ class PhysVector3
 		PhysVector3(PhysReal X, PhysReal Y, PhysReal Z);
 
         btVector3 GetBulletVector3();
-        PhysVector3 ExtractBulletVector3(btVector3 temp);
+        void ExtractBulletVector3(btVector3 temp);
         Ogre::Vector3 GetOgreVector3();
-        PhysVector3 ExtractOgreVector3(Ogre::Vector3 temp);
+        void ExtractOgreVector3(Ogre::Vector3 temp);
 };
 
 std::ostream& operator << (std::ostream& stream, const PhysVector3& x);

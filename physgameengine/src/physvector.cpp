@@ -75,7 +75,7 @@ btVector3 PhysVector3::GetBulletVector3()
     return Theirs;
 }
 
-PhysVector3 PhysVector3::ExtractBulletVector3(btVector3 Ours)
+void PhysVector3::ExtractBulletVector3(btVector3 Ours)
 {
     this->X=Ours.getX();
     this->Y=Ours.getY();
@@ -91,7 +91,7 @@ Ogre::Vector3 PhysVector3::GetOgreVector3()
     return Theirs;
 }
 
-PhysVector3 PhysVector3::ExtractOgreVector3(Ogre::Vector3 Ours)
+void PhysVector3::ExtractOgreVector3(Ogre::Vector3 Ours)
 {
     this->X=Ours.x;
     this->Y=Ours.y;

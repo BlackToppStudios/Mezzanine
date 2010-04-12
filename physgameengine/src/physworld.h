@@ -216,10 +216,13 @@ class PhysWorld
 		void MoveCamera(PhysVector3 Position, PhysVector3 LookAt);
 
         /// @brief This creates the game window and starts the game.
+        /// @param CallMainLoop should the main loop be called
         /// @details Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be
         /// minimal delay from the time you call this and the game actually begins.
-        /// This is also where the Main Loop for the game is housed.
-        void GameInit();
+        /// This will automatically call the Main Loop unless passed falsed.
+        void GameInit( bool CallMainLoop=true );
+
+        void MainLoop();
 
         /// @brief Performs all the items that would normally be performed during the game loop
         /// @details This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is

@@ -262,12 +262,20 @@ bool PhysWorld::ShowSystemSettingDialog()
 
 ///////////////////////////////////////////////////////////////////////////////
 // Start the Game already
-void PhysWorld::GameInit()
+void PhysWorld::GameInit( bool CallMainLoop )
 {
 	//try to load the ogre config
 	this->LoadOgreSettings();
 	this->CreateRenderWindow();
 
+    if(CallMainLoop)
+    {
+        MainLoop();
+    }
+}
+
+void PhysWorld::MainLoop()
+{
     //Create a the RenderTimer, which will be used to measure the time
     Ogre::Timer RenderTimer;
 
@@ -290,7 +298,7 @@ void PhysWorld::GameInit()
      The MainLoop is heart of most vidoe games and simulations.
 
      @section overview1 Main loop Overview
-	 The Main loop runs in @ref PhysWorld.GameInit(). By default this Method also starts the render, the physics andthe input systems. It does very little
+	 The Main loop runs in PhysWorld.MainLoop() which is called by default from @ref PhysWorld.GameInit(). By default this Method also starts the render, the physics andthe input systems. It does very little
 	 on it's own. It uses the default callback manager (which you can swap out if you want), which is the callback manager point to by PhysWorld::CallBacks . Once started it runs the
 	 callbacks present in the callback manager until one of them returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback
 	 before and after each of these tasks.

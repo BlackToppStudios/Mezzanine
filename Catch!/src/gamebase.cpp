@@ -28,8 +28,12 @@ int main(int argc, char **argv)
     //give the World our function to execute after rendering
     TheWorld.CallBacks->SetPostRender(&PostRender);
 
-    //Set the world in motion
-	TheWorld.GameInit();
+    //Set the Make the RenderWindow and load system stuff
+	TheWorld.GameInit(false);
+
+	//Start the Main Loop
+	TheWorld.MainLoop();
+
 
 	return 0;
 }
