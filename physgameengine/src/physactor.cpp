@@ -224,7 +224,7 @@ void ActorBase::SetOgreOrientation (PhysQuaternion Rotation)
 
 void ActorBase::SetBulletOrientation (PhysQuaternion Rotation)
 {
-
+    //empty function to be redifined in subclasses
 }
 
 void ActorBase::SetLocation (PhysReal x, PhysReal y, PhysReal z)
@@ -297,6 +297,12 @@ void ActorDynRigid::SetBulletLocation (PhysVector3 Location)
     temp.setOrigin(Location.GetBulletVector3());
 }
 
+void ActorDynRigid::SetBulletOrientation (PhysQuaternion Rotation)
+{
+    btTransform temp = this->physrigidbody->getWorldTransform();
+    temp.setRotation(Rotation.GetBulletQuaternion());
+}
+
 void ActorDynRigid::CreateShapeFromMesh()
 {
     this->CreateTrimesh();
@@ -325,7 +331,14 @@ void ActorDynSoft::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamics
 
 void ActorDynSoft::SetBulletLocation (PhysVector3 Location)
 {
-    //TODO: add something useful
+    btTransform temp = this->physsoftbody->getWorldTransform();
+    temp.setOrigin(Location.GetBulletVector3());
+}
+
+void ActorDynSoft::SetBulletOrientation (PhysQuaternion Rotation)
+{
+    btTransform temp = this->physsoftbody->getWorldTransform();
+    temp.setRotation(Rotation.GetBulletQuaternion());
 }
 
 void ActorDynSoft::CreateShapeFromMesh()
@@ -363,6 +376,12 @@ void ActorSta::SetBulletLocation (PhysVector3 Location)
 {
     btTransform temp = this->physrigidbody->getWorldTransform();
     temp.setOrigin(Location.GetBulletVector3());
+}
+
+void ActorSta::SetBulletOrientation (PhysQuaternion Rotation)
+{
+    btTransform temp = this->physrigidbody->getWorldTransform();
+    temp.setRotation(Rotation.GetBulletQuaternion());
 }
 
 void ActorSta::CreateShapeFromMesh()
