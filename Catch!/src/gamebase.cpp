@@ -83,6 +83,11 @@ bool PostRender()
     return true;
 }
 
+bool PrePhysics()
+{
+    return true;
+}
+
 bool PreInput()
 {
     return true;

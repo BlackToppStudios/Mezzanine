@@ -263,17 +263,19 @@ class PhysWorld
         void MainLoop();
 
         /// @brief Performs all the items that would normally be performed during the game loop
+        /// @param PreviousFrameTime This is the amount of time that has elapsed since this function was last called, so that physics can be done properly.
         /// @details This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is
         /// useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items
         /// each iteration of the main loop.
-        void DoMainLoopAllItems();
+        void DoMainLoopAllItems(PhysReal PreviousFrameTime);
 
         /// @brief Increments physics by one step
+        /// @param TimeElapsed This is the amount of time that has elapsed since this function was last called, required for proper physics
         /// @details Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre/Post-Physics Callback is
         /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come
         /// from although it is concievable that a game could manually insert those manually. This will not delete events it places
         /// in the event manager, that is the responsibility of the code that pulls out the event out.
-        void DoMainLoopPhysics();
+        void DoMainLoopPhysics(PhysWhole TimeElapsed);
 
         /// @brief Gathers user input from the OS and places events in the event manager
         /// @details This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places

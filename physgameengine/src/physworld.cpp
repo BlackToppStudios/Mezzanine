@@ -285,7 +285,7 @@ void PhysWorld::MainLoop()
 	//Used for tracking times to prevent Infinite render loops in graphically simple games
 	//PhysWhole Times[] = {0,0,0,0};
 
-	/// @todo TODO finish test code, there is a bunch of sloppy test code for the robot in the gameinit
+	/// @todo TODO finish test code, there is a sloppy line of test code for the robot in the main loop
 	this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 
     PhysWhole FrameDelay = 0;
@@ -371,7 +371,7 @@ void PhysWorld::MainLoop()
         {
             if( this->CallBacks->IsPrePhysicsCallbackSet() )
                 { Callbackbools[2] = this->CallBacks->PrePhysics(); }
-			this->DoMainLoopPhysics();
+			this->DoMainLoopPhysics(FrameTime);
             if( this->CallBacks->IsPostPhysicsCallbackSet() )
                 { Callbackbools[3] = this->CallBacks->PostPhysics(); }
         }
@@ -418,19 +418,25 @@ void PhysWorld::MoveCamera(PhysVector3 Position, PhysVector3 LookAt)
     this->OgreCamera->lookAt(Ogre::Vector3(LookAt.X,LookAt.Y,LookAt.Z));
 }
 
-void PhysWorld::DoMainLoopAllItems()
+void PhysWorld::DoMainLoopAllItems(PhysReal PreviousFrameTime)
 {
-	this->DoMainLoopPhysics();
+	this->DoMainLoopPhysics(PreviousFrameTime);
 	this->DoMainLoopWindowManagerBuffering();
 	this->DoMainLoopInputBuffering();
 	this->DoMainLoopRender();
 }
 
-void PhysWorld::DoMainLoopPhysics()
+void PhysWorld::DoMainLoopPhysics(PhysWhole TimeElapsed)
 {
-   // btSoftRigidDynamicsWorld->stepSimulation(btScalar(1.)/btScalar(60.))
-	//TODO: Step the physics world here per main loop items
-	//this->Events->AddsomeEvents
+    PhysReal FloatTime = TimeElapsed;
+    FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
+
+    PhysReal IdealStep = this->TargetFrameLength;
+    IdealStep *= 0.0001;
+
+    int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
+    this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
+
 }
 
 void PhysWorld::DoMainLoopWindowManagerBuffering()
