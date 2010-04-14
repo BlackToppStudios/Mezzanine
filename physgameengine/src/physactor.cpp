@@ -239,6 +239,11 @@ void ActorBase::SetLocation (PhysVector3 Place)
     this->SetOgreLocation(Place);
 }
 
+void ActorBase::SetInitLocation(PhysVector3 Location)
+{
+    this->SetBulletInitLocation(Location);
+}
+
 void ActorBase::SetOrientation (PhysReal x, PhysReal y, PhysReal z, PhysReal w)
 {
     PhysQuaternion temp(x,y,z,w);

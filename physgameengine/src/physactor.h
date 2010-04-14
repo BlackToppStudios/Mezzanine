@@ -106,6 +106,8 @@ class ActorBase {
         void SetLocation(PhysReal x, PhysReal y, PhysReal z);
         void SetLocation(PhysVector3 Place);
 
+        void SetInitLocation(PhysVector3 Location);
+
         void SetOrientation(PhysReal x, PhysReal y, PhysReal z, PhysReal w);
         void SetOrientation(PhysQuaternion Rotation);
 

@@ -18,6 +18,10 @@
 
 //Create the World Globally!
 PhysWorld TheWorld;
+ActorDynRigid* object1;
+PhysReal x=0;
+PhysReal y=0;
+PhysReal z=0;
 
 int main(int argc, char **argv)
 {
@@ -80,6 +84,9 @@ bool PostRender()
     //if the callbacks for the exists.
     //TheWorld.DoMainLoopAllItems();
 
+    x+=0.5;
+    object1->SetLocation(x,y,z);
+
     return true;
 }
 
@@ -138,7 +145,7 @@ void LoadContent()
     TheWorld.InitResourceGroup(groupname);
 
     //Actor Init Code
-    ActorDynRigid* object1 = new ActorDynRigid (mass,groupname,filename,groupname,&TheWorld);
+    object1 = new ActorDynRigid (mass,groupname,filename,groupname,&TheWorld);
     object1->CreateShapeFromMesh();
 
     //Final Steps
