@@ -97,7 +97,7 @@ class ActorBase {
         //Bullet Management
         virtual void SetBulletLocation (PhysVector3 Location);
         void SetBulletInitLocation (PhysVector3 Location);
-        void SetBulletOrientation (PhysQuaternion Rotation);
+        virtual void SetBulletOrientation (PhysQuaternion Rotation);
 
 	public:
         virtual ~ActorBase ();
@@ -105,6 +105,8 @@ class ActorBase {
 
         void SetLocation(PhysReal x, PhysReal y, PhysReal z);
         void SetLocation(PhysVector3 Place);
+
+        void SetInitLocation(PhysVector3 Location);
 
         void SetOrientation(PhysReal x, PhysReal y, PhysReal z, PhysReal w);
         void SetOrientation(PhysQuaternion Rotation);
@@ -119,6 +121,7 @@ class ActorDynRigid: public ActorBase {
         //btMotionState* physmotionstate;
         void AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World);
         virtual void SetBulletLocation (PhysVector3 Location);
+        virtual void SetBulletOrientation (PhysQuaternion Rotation);
 
 	public:
         ActorDynRigid(PhysReal mass, PhysString name, PhysString file, PhysString group, PhysWorld* World);
@@ -134,6 +137,7 @@ class ActorDynSoft: public ActorBase {
         //btMotionState* physmotionstate;
         void AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World);
         virtual void SetBulletLocation (PhysVector3 Location);
+        virtual void SetBulletOrientation (PhysQuaternion Rotation);
 
 	public:
         ActorDynSoft();
@@ -148,6 +152,7 @@ class ActorSta: public ActorBase {
         btRigidBody* physrigidbody;
         void AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World);
         virtual void SetBulletLocation (PhysVector3 Location);
+        virtual void SetBulletOrientation (PhysQuaternion Rotation);
 
     public:
         ActorSta(PhysString name, PhysString file, PhysString group, PhysWorld* World);
