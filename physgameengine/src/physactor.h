@@ -73,9 +73,11 @@ class ActorBase {
         friend class PhysWorld;
 
 	protected:
+        PhysWorld* GameWorld;
+
         //abstraction for other libraries
         Ogre::Entity* entity;
-        Ogre::SceneManager* physscenemanager;
+        //Ogre::SceneManager* physscenemanager;
         Ogre::SceneNode* node;
 
         btCollisionShape* Shape;
@@ -83,7 +85,7 @@ class ActorBase {
         PhysMotionState* MotionState;
 
         virtual void AddObjectToWorld(PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World) = 0;
-        void CreateShapeFromMesh();
+        void CreateTrimesh();
 
         //Ogre Management Functions
         void CreateEntity(PhysString name, PhysString file, PhysString group);
@@ -98,8 +100,8 @@ class ActorBase {
         void SetBulletOrientation (PhysQuaternion Rotation);
 
 	public:
-        ~ActorBase ();
-        ActorBase (PhysString name, PhysString file);
+        virtual ~ActorBase ();
+        ActorBase (PhysString name, PhysString file, PhysString group, PhysWorld* World);
 
         void SetLocation(PhysReal x, PhysReal y, PhysReal z);
         void SetLocation(PhysVector3 Place);
@@ -119,15 +121,16 @@ class ActorDynRigid: public ActorBase {
         virtual void SetBulletLocation (PhysVector3 Location);
 
 	public:
-        ActorDynRigid(PhysReal mass, PhysString name, PhysString file);
+        ActorDynRigid(PhysReal mass, PhysString name, PhysString file, PhysString group, PhysWorld* World);
         virtual ~ActorDynRigid();
         void CreateRigidObject (PhysReal pmass);
+        void CreateShapeFromMesh();
 };
 
 class ActorDynSoft: public ActorBase {
 
 	protected:
-        btSoftBody* physoftbody;
+        btSoftBody* physsoftbody;
         //btMotionState* physmotionstate;
         void AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World);
         virtual void SetBulletLocation (PhysVector3 Location);
@@ -136,6 +139,7 @@ class ActorDynSoft: public ActorBase {
         ActorDynSoft();
         virtual ~ActorDynSoft();
         void CreateSoftObject ();
+        void CreateShapeFromMesh();
 };
 
 class ActorSta: public ActorBase {
@@ -146,9 +150,10 @@ class ActorSta: public ActorBase {
         virtual void SetBulletLocation (PhysVector3 Location);
 
     public:
-        ActorSta(PhysString name, PhysString file);
+        ActorSta(PhysString name, PhysString file, PhysString group, PhysWorld* World);
         virtual ~ActorSta();
         void CreateRigidObject ();
+        void CreateShapeFromMesh();
 };
 
 #endif

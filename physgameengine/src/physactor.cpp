@@ -66,11 +66,14 @@ class PhysMotionState : public btMotionState {
 ///////////////////////////////////
 // ActorBase class fuctions
 
-ActorBase::ActorBase (PhysString name, PhysString file)
+ActorBase::ActorBase (PhysString name, PhysString file, PhysString group, PhysWorld* World)
 {
-    this->MotionState = new PhysMotionState();
+    this->GameWorld = World;
+    this->node = this->GameWorld->OgreSceneManager->createSceneNode();
+    this->GameWorld->OgreSceneManager->getRootSceneNode()->addChild(this->node);
+    this->MotionState = new PhysMotionState(this->node);
     this->Shape = new btEmptyShape();
-    this->CreateEntity(name, file, "Default");
+    this->CreateEntity(name, file, group);
 }
 
 ActorBase::~ActorBase ()
@@ -79,7 +82,7 @@ ActorBase::~ActorBase ()
     delete Shape;
 }
 
-void ActorBase::CreateShapeFromMesh()
+void ActorBase::CreateTrimesh()
 {
     // Get the mesh from the entity
     Ogre::MeshPtr myMesh = entity->getMesh();
@@ -185,17 +188,18 @@ void ActorBase::CreateShapeFromMesh()
     delete[] vertices;
     delete[] indices;
 
+    ///TODO - Check for thread safety
     Shape = new btBvhTriangleMeshShape(trimesh, true);
 }
 
 void ActorBase::CreateEntity (PhysString name, PhysString file, PhysString group)
 {
-    this->entity = this->physscenemanager->createEntity(name, file, group);
+    this->entity = this->GameWorld->OgreSceneManager->createEntity(name, file, group);
 }
 
 void ActorBase::CreateSceneNode ()
 {
-    this->node = this->physscenemanager->createSceneNode();
+    this->node = this->GameWorld->OgreSceneManager->createSceneNode();
 }
 
 void ActorBase::SetOgreLocation (PhysVector3 Location)
@@ -251,7 +255,6 @@ void ActorBase::AttachToGraphics ()
 {
     PhysVector3 temp;
     temp.ExtractBulletVector3(this->MotionState->initposition.getOrigin());
-    this->node = this->physscenemanager->createSceneNode();
     this->node->setPosition(temp.GetOgreVector3());
     this->node->attachObject(this->entity);
 }
@@ -261,7 +264,7 @@ void ActorBase::AttachToGraphics ()
 ///////////////////////////////////
 // ActorDynRigid class functions
 
-ActorDynRigid::ActorDynRigid (PhysReal mass, PhysString name, PhysString file) : ActorBase (name, file)
+ActorDynRigid::ActorDynRigid (PhysReal mass, PhysString name, PhysString file, PhysString group, PhysWorld* World) : ActorBase (name, file, group, World)
 {
     this->CreateRigidObject(mass);
 }
@@ -289,6 +292,12 @@ void ActorDynRigid::SetBulletLocation (PhysVector3 Location)
     temp.setOrigin(Location.GetBulletVector3());
 }
 
+void ActorDynRigid::CreateShapeFromMesh()
+{
+    this->CreateTrimesh();
+    this->physrigidbody->setCollisionShape(this->Shape);
+}
+
 ///////////////////////////////////
 // ActordynSoft class functions
 
@@ -314,10 +323,16 @@ void ActorDynSoft::SetBulletLocation (PhysVector3 Location)
     //TODO: add something useful
 }
 
+void ActorDynSoft::CreateShapeFromMesh()
+{
+    this->CreateTrimesh();
+    this->physsoftbody->setCollisionShape(this->Shape);
+}
+
 ///////////////////////////////////
 // ActorSta class functions
 
-ActorSta::ActorSta (PhysString name, PhysString file) : ActorBase (name, file)
+ActorSta::ActorSta (PhysString name, PhysString file, PhysString group, PhysWorld* World) : ActorBase (name, file, group, World)
 {
     CreateRigidObject();
 }
@@ -345,18 +360,24 @@ void ActorSta::SetBulletLocation (PhysVector3 Location)
     temp.setOrigin(Location.GetBulletVector3());
 }
 
+void ActorSta::CreateShapeFromMesh()
+{
+    this->CreateTrimesh();
+    this->physrigidbody->setCollisionShape(this->Shape);
+}
+
 ///////////////////////////////////
 // PhysMotionState
 
 PhysMotionState::PhysMotionState()
 {
-    this->initposition.getIdentity();
+    this->initposition.setIdentity();
 }
 
 PhysMotionState::PhysMotionState(Ogre::SceneNode* scenenode)
 {
     this->snode=scenenode;
-    this->initposition.getIdentity();
+    this->initposition.setIdentity();
 }
 
 PhysMotionState::~PhysMotionState()

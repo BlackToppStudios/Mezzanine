@@ -1,4 +1,4 @@
-//Â© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -102,12 +102,7 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 
 	//Ogre resource related code
 	/// @todo : From here to the logger tests should probably be moved to another file
-    this->OgreRoot->addResourceLocation(GetDataDirectory(), "FileSystem", "Robot", false);
     this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-
-    /// @todo TODO remove Robot test code
-    this->OgreResource->declareResource("robot.mesh", "Mesh", "Robot");
-    this->OgreResource->declareResource("Examples.material", "Material", "Robot");
 
     //Perform a Test that only needs to be done once for the SDL/Physuserinputevent system.
     Log("Verifying size of userinput events:");
@@ -291,11 +286,7 @@ void PhysWorld::MainLoop()
 	//PhysWhole Times[] = {0,0,0,0};
 
 	/// @todo TODO finish test code, there is a bunch of sloppy test code for the robot in the gameinit
-	this->OgreResource->initialiseResourceGroup("Robot");
 	this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
-	Ogre::Entity *ent1 = this->OgreSceneManager->createEntity( "Robot", "robot.mesh" );
-	Ogre::SceneNode *node1 = this->OgreSceneManager->getRootSceneNode()->createChildSceneNode( "RobotNode" );
-	node1->attachObject( ent1 );
 
     PhysWhole FrameDelay = 0;
     PhysWhole FrameTime = 0;
@@ -627,5 +618,23 @@ void PhysWorld::SetTargetFrameRate(PhysWhole NewFrameRate)
     this->SetTargetFrameTime( 1000/NewFrameRate );
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Ogre Resource Related Public Members
+///////////////////////////////////////
+
+void PhysWorld::AddResourceLocation(PhysString Location, PhysString Type, PhysString Group, bool recursive=false)
+{
+    this->OgreRoot->addResourceLocation(Location, Type, Group, recursive);
+}
+
+void PhysWorld::DeclareResource(PhysString Name, PhysString Type, PhysString Group)
+{
+    this->OgreResource->declareResource(Name, Type, Group);
+}
+
+void PhysWorld::InitResourceGroup(PhysString Group)
+{
+    this->OgreResource->initialiseResourceGroup(Group);
+}
 
 #endif

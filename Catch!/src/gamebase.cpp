@@ -9,6 +9,7 @@
 #include "gamebase.h"
 
 //Physengine include
+#include "physactor.h"
 #include "physworld.h"
 #include "physeventmanager.h"
 #include "physdatatypes.h"
@@ -32,6 +33,8 @@ int main(int argc, char **argv)
 
     //Set the Make the RenderWindow and load system stuff
 	TheWorld.GameInit(false);
+
+    LoadContent();
 
 	//Start the Main Loop
 	TheWorld.MainLoop();
@@ -123,6 +126,27 @@ bool CheckForEsc()
     return true;
 }
 
+void LoadContent()
+{
+    //Ogre Setup Code
+    PhysString groupname="Robot";
+    PhysString filename="robot.mesh";
+    PhysReal mass=0.001;
+    TheWorld.AddResourceLocation(GetDataDirectory(), "FileSystem", groupname, false);
+    TheWorld.DeclareResource(filename, "Mesh", groupname);
+    TheWorld.DeclareResource("Examples.material", "Material", groupname);
+    TheWorld.InitResourceGroup(groupname);
 
+    //Actor Init Code
+    ActorDynRigid* object1 = new ActorDynRigid (mass,groupname,filename,groupname,&TheWorld);
+    object1->CreateShapeFromMesh();
+
+    //Final Steps
+    TheWorld.AddActor(object1);
+
+	//Ogre::Entity *ent1 = this->OgreSceneManager->createEntity( "Robot", "robot.mesh" );
+	//Ogre::SceneNode *node1 = this->OgreSceneManager->getRootSceneNode()->createChildSceneNode( "RobotNode" );
+	//node1->attachObject( ent1 );
+}
 
 #endif

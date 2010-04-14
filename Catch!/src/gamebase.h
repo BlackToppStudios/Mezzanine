@@ -10,7 +10,8 @@ bool PostInput();
 
 bool PostRender();
 
-
 bool CheckForEsc();
+
+void LoadContent();
 
 #endif

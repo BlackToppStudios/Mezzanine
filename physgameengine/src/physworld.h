@@ -1,4 +1,4 @@
-//Â© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -174,6 +174,7 @@ class PhysWorld
         /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
         friend void RenderPhysWorld(PhysWorld *TheWorld);
 
+        friend class ActorBase;
 	public:
 
         /// @todo TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset
@@ -294,6 +295,12 @@ class PhysWorld
         /// actor has been passed into the Physworld using this, the physworld handle deleting it.
         /// @param ActorToAdd This is a pointer to the actor to be added
         void AddActor(ActorBase* ActorToAdd);
+
+        void AddResourceLocation(PhysString Location, PhysString Type, PhysString Group, bool recursive);
+
+        void DeclareResource(PhysString Name, PhysString Type, PhysString Group);
+
+        void InitResourceGroup(PhysString Name);
 
 		/// @brief This is a point to the default Call BackManager
         /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.
