@@ -11,14 +11,19 @@ Inheritance diagram for ActorSta::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classActorSta_a970ee3677eca8f69f6d25684d72c6c8c}{
-{\bfseries ActorSta} (PhysString name, PhysString file)}
-\label{d3/daf/classActorSta_a970ee3677eca8f69f6d25684d72c6c8c}
+\hypertarget{classActorSta_a00185fe588416c236f491b65f16dd145}{
+{\bfseries ActorSta} (PhysString name, PhysString file, PhysString group, \hyperlink{classPhysWorld}{PhysWorld} $\ast$World)}
+\label{d3/daf/classActorSta_a00185fe588416c236f491b65f16dd145}
 
 \item 
 \hypertarget{classActorSta_ae856b69de748541606649d21d2e6c270}{
 void {\bfseries CreateRigidObject} ()}
 \label{d3/daf/classActorSta_ae856b69de748541606649d21d2e6c270}
+
+\item 
+\hypertarget{classActorSta_a12e78aa21e50e6964330e25affa421c9}{
+void {\bfseries CreateShapeFromMesh} ()}
+\label{d3/daf/classActorSta_a12e78aa21e50e6964330e25affa421c9}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
@@ -32,6 +37,11 @@ void {\bfseries AddObjectToWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$T
 \hypertarget{classActorSta_a472768e39d3ac67f35b9f74e5a679b99}{
 virtual void {\bfseries SetBulletLocation} (\hyperlink{classPhysVector3}{PhysVector3} Location)}
 \label{d3/daf/classActorSta_a472768e39d3ac67f35b9f74e5a679b99}
+
+\item 
+\hypertarget{classActorSta_ab038b2ce4e25fa3441e9b081cef7879e}{
+virtual void {\bfseries SetBulletOrientation} (\hyperlink{classPhysQuaternion}{PhysQuaternion} Rotation)}
+\label{d3/daf/classActorSta_ab038b2ce4e25fa3441e9b081cef7879e}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
@@ -47,7 +57,7 @@ btRigidBody $\ast$ {\bfseries physrigidbody}}
 \subsection{Detailed Description}
 
 
-Definition at line 141 of file physactor.h.
+Definition at line 149 of file physactor.h.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

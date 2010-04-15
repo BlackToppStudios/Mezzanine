@@ -11,9 +11,9 @@ Inheritance diagram for ActorBase::\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classActorBase_aa69b59aa7a71b16549907adfcd4c1858}{
-{\bfseries ActorBase} (PhysString name, PhysString file)}
-\label{dd/d7b/classActorBase_aa69b59aa7a71b16549907adfcd4c1858}
+\hypertarget{classActorBase_a673d963aa7a99475cb03250c010dfa15}{
+{\bfseries ActorBase} (PhysString name, PhysString file, PhysString group, \hyperlink{classPhysWorld}{PhysWorld} $\ast$World)}
+\label{dd/d7b/classActorBase_a673d963aa7a99475cb03250c010dfa15}
 
 \item 
 \hypertarget{classActorBase_a34848d620c5d9d2796999edbdcb77c9a}{
@@ -24,6 +24,11 @@ void {\bfseries SetLocation} (PhysReal x, PhysReal y, PhysReal z)}
 \hypertarget{classActorBase_a2a204add0b036de441ebd59d14939000}{
 void {\bfseries SetLocation} (\hyperlink{classPhysVector3}{PhysVector3} Place)}
 \label{dd/d7b/classActorBase_a2a204add0b036de441ebd59d14939000}
+
+\item 
+\hypertarget{classActorBase_ac118fc21f89d067d987d511b444f7d55}{
+void {\bfseries SetInitLocation} (\hyperlink{classPhysVector3}{PhysVector3} Location)}
+\label{dd/d7b/classActorBase_ac118fc21f89d067d987d511b444f7d55}
 
 \item 
 \hypertarget{classActorBase_a9777506815a9840552b30c65d5d70f8d}{
@@ -49,10 +54,7 @@ virtual void {\bfseries AddObjectToWorld} (\hyperlink{classPhysWorld}{PhysWorld}
 \label{dd/d7b/classActorBase_a1af82a2ed960fd114518fdf84d5ff146}
 
 \item 
-\hypertarget{classActorBase_ab9b40cbd820b3b16237f8036994d49c3}{
-void {\bfseries CreateShapeFromMesh} ()}
-\label{dd/d7b/classActorBase_ab9b40cbd820b3b16237f8036994d49c3}
-
+void \hyperlink{classActorBase_af7f0806222c79b5d5120dccefd93715e}{CreateTrimesh} ()
 \item 
 \hypertarget{classActorBase_aa87583c47b8653e8ac7d96f1481b57fd}{
 void {\bfseries CreateEntity} (PhysString name, PhysString file, PhysString group)}
@@ -90,21 +92,21 @@ void {\bfseries SetBulletInitLocation} (\hyperlink{classPhysVector3}{PhysVector3
 
 \item 
 \hypertarget{classActorBase_adf817bd5a7c562f31f6724a06a3a0f79}{
-void {\bfseries SetBulletOrientation} (\hyperlink{classPhysQuaternion}{PhysQuaternion} Rotation)}
+virtual void {\bfseries SetBulletOrientation} (\hyperlink{classPhysQuaternion}{PhysQuaternion} Rotation)}
 \label{dd/d7b/classActorBase_adf817bd5a7c562f31f6724a06a3a0f79}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classActorBase_a02a4306818777f7c2e5853e8babd485e}{
+\hyperlink{classPhysWorld}{PhysWorld} $\ast$ {\bfseries GameWorld}}
+\label{dd/d7b/classActorBase_a02a4306818777f7c2e5853e8babd485e}
+
+\item 
 \hypertarget{classActorBase_ada6ceb752605b29357b6c5d53c477696}{
 Ogre::Entity $\ast$ {\bfseries entity}}
 \label{dd/d7b/classActorBase_ada6ceb752605b29357b6c5d53c477696}
-
-\item 
-\hypertarget{classActorBase_ad3739eb7f632f0ceb9397d6c699623cd}{
-Ogre::SceneManager $\ast$ {\bfseries physscenemanager}}
-\label{dd/d7b/classActorBase_ad3739eb7f632f0ceb9397d6c699623cd}
 
 \item 
 \hypertarget{classActorBase_affa8851ae622e1d420afa4770ab89ea4}{
@@ -136,6 +138,18 @@ class \hyperlink{classActorBase_a375fd37c70c941f0442997a60fdb05c7}{PhysWorld}}
 
 
 Definition at line 71 of file physactor.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classActorBase_af7f0806222c79b5d5120dccefd93715e}{
+\index{ActorBase@{ActorBase}!CreateTrimesh@{CreateTrimesh}}
+\index{CreateTrimesh@{CreateTrimesh}!ActorBase@{ActorBase}}
+\subsubsection[{CreateTrimesh}]{\setlength{\rightskip}{0pt plus 5cm}void ActorBase::CreateTrimesh ()\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{dd/d7b/classActorBase_af7f0806222c79b5d5120dccefd93715e}
+
+
+TODO -\/ Check for thread safety 
+
+Definition at line 85 of file physactor.cpp.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

@@ -65,10 +65,10 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This creates the game window and starts the game.  <a href="#afc5116f97cc1e91e899d1a1ca7e14e9b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#ad41cad0347b6f5ba7ec05568aaffa514">MainLoop</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Function house the main loop.  <a href="#ad41cad0347b6f5ba7ec05568aaffa514"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a60b7978b39fc347c2f37077737783da6">DoMainLoopAllItems</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Performs all the items that would normally be performed during the game loop.  <a href="#a60b7978b39fc347c2f37077737783da6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a994d7d8c4a9a0c003c3e7d89be7b399b">DoMainLoopPhysics</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Increments physics by one step.  <a href="#a994d7d8c4a9a0c003c3e7d89be7b399b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a174da29a119080c44ba628cb25918f8c">DoMainLoopAllItems</a> (PhysReal PreviousFrameTime)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Performs all the items that would normally be performed during the game loop.  <a href="#a174da29a119080c44ba628cb25918f8c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a4d8e06d2f8459a286eb01e68df2d1828">DoMainLoopPhysics</a> (PhysWhole TimeElapsed)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Increments physics by one step.  <a href="#a4d8e06d2f8459a286eb01e68df2d1828"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c">DoMainLoopInputBuffering</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gathers user input from the OS and places events in the event manager.  <a href="#a81b3f0dcc0a90d039623f696343e6e9c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a">DoMainLoopWindowManagerBuffering</a> ()</td></tr>
@@ -77,12 +77,20 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This forces the screen to be re-rendered.  <a href="#a8f33541d67164a2452e568443e9905be"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29">AddActor</a> (<a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a> *ActorToAdd)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The adds and Actor to the physworld.  <a href="#ae490054b3e1c4c5aa69cb8e3b7bd2f29"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a757783fa596bda8ebdbc24234c6b621a"></a><!-- doxytag: member="PhysWorld::AddResourceLocation" ref="a757783fa596bda8ebdbc24234c6b621a" args="(PhysString Location, PhysString Type, PhysString Group, bool recursive)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>AddResourceLocation</b> (PhysString Location, PhysString Type, PhysString Group, bool recursive)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a908c21f7f5452f8d7c6d4b5b2308ba5e"></a><!-- doxytag: member="PhysWorld::DeclareResource" ref="a908c21f7f5452f8d7c6d4b5b2308ba5e" args="(PhysString Name, PhysString Type, PhysString Group)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>DeclareResource</b> (PhysString Name, PhysString Type, PhysString Group)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b67df4c76c32b9b2bdcafdc51f6aba7"></a><!-- doxytag: member="PhysWorld::InitResourceGroup" ref="a0b67df4c76c32b9b2bdcafdc51f6aba7" args="(PhysString Name)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>InitResourceGroup</b> (PhysString Name)</td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d84/classPhysWorldCallBackManager.html">PhysWorldCallBackManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df">CallBacks</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is a point to the default Call BackManager.  <a href="#a080ea6f1584374b07d3c1f29c7ed64df"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc">Events</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the default pointer to the Event Manager.  <a href="#a601b3c6093aaf2a69fcd3311dde9aadc"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac09063d4b0192680ba3aa0bd4003a274"></a><!-- doxytag: member="PhysWorld::ActorBase" ref="ac09063d4b0192680ba3aa0bd4003a274" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#ac09063d4b0192680ba3aa0bd4003a274">ActorBase</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a54ca2a75bbccb9b2129f434874f1e693">RenderPhysWorld</a> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TheWorld)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Do Not Use this, This should be treated as an internal function, it is <b>subject</b> <b>to</b> <b>change</b> <b>without</b> <b>warning</b> and could be <b>harmful</b> to overall stability if used incorrectly.  <a href="#a54ca2a75bbccb9b2129f434874f1e693"></a><br/></td></tr>
 </table>
@@ -124,7 +132,7 @@
 <div class="memdoc">
 
 <p>Descriptive constructor. </p>
-<dl class="todo"><dt><b><a class="el" href="../../todo.html#_todo000012">Todo:</a></b></dt><dd>TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../todo.html#_todo000011">Todo:</a></b></dt><dd>TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset </dd></dl>
 <p>This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -180,7 +188,7 @@
 <p>Deconstructor. </p>
 <p>This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager) </p>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00212">212</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00207">207</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -210,18 +218,19 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00595">595</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00592">592</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a60b7978b39fc347c2f37077737783da6"></a><!-- doxytag: member="PhysWorld::DoMainLoopAllItems" ref="a60b7978b39fc347c2f37077737783da6" args="()" -->
+<a class="anchor" id="a174da29a119080c44ba628cb25918f8c"></a><!-- doxytag: member="PhysWorld::DoMainLoopAllItems" ref="a174da29a119080c44ba628cb25918f8c" args="(PhysReal PreviousFrameTime)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void PhysWorld::DoMainLoopAllItems </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">PhysReal&nbsp;</td>
+          <td class="paramname"> <em>PreviousFrameTime</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -230,9 +239,15 @@
 <div class="memdoc">
 
 <p>Performs all the items that would normally be performed during the game loop. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>PreviousFrameTime</em>&nbsp;</td><td>This is the amount of time that has elapsed since this function was last called, so that physics can be done properly.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items each iteration of the main loop. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00430">430</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00421">421</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,18 +269,19 @@
 <p>Gathers user input from the OS and places events in the event manager. </p>
 <p>This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00453">453</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00450">450</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a994d7d8c4a9a0c003c3e7d89be7b399b"></a><!-- doxytag: member="PhysWorld::DoMainLoopPhysics" ref="a994d7d8c4a9a0c003c3e7d89be7b399b" args="()" -->
+<a class="anchor" id="a4d8e06d2f8459a286eb01e68df2d1828"></a><!-- doxytag: member="PhysWorld::DoMainLoopPhysics" ref="a4d8e06d2f8459a286eb01e68df2d1828" args="(PhysWhole TimeElapsed)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void PhysWorld::DoMainLoopPhysics </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">PhysWhole&nbsp;</td>
+          <td class="paramname"> <em>TimeElapsed</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -274,9 +290,15 @@
 <div class="memdoc">
 
 <p>Increments physics by one step. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>TimeElapsed</em>&nbsp;</td><td>This is the amount of time that has elapsed since this function was last called, required for proper physics</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre/Post-Physics Callback is set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come from although it is concievable that a game could manually insert those manually. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00438">438</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00429">429</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -298,7 +320,7 @@
 <p>This forces the screen to be re-rendered. </p>
 <p>This renders the screen based on the status of all in game actors. This is automatically called in the main loop. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00478">478</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00475">475</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -320,7 +342,7 @@
 <p>Creates events for each Window manger. </p>
 <p>This gather information from system/windows manager events, such as windows minimization, maximization, program exit, window hidden window shown, and a few other similar types of events. This makes events out of the information and places them in the event manager This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00445">445</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00442">442</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -349,7 +371,7 @@
 </dl>
 <p>Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be minimal delay from the time you call this and the game actually begins. This will automatically call the Main Loop unless passed falsed. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00271">271</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00266">266</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,7 +394,7 @@
 <p>In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. However, the mainloop will always reduce the actual amount of time to 0 when the hardware is overburdened. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a PhysWhole with the current Value </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00615">615</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00612">612</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -395,7 +417,7 @@
 <p>This gets the texts that the engine has stored for use in the title bar </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a String Containing the Window Title </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00604">604</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00601">601</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -426,7 +448,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00241">241</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00236">236</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,7 +479,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00248">248</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00243">243</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -516,7 +538,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00424">424</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00415">415</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -546,7 +568,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00625">625</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00622">622</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -576,7 +598,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00620">620</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00617">617</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -605,10 +627,10 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../todo.html#_todo000011">Todo:</a></b></dt><dd>TODO Change the name of an application once it is running </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../todo.html#_todo000010">Todo:</a></b></dt><dd>TODO Change the name of an application once it is running </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00609">609</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00606">606</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -630,7 +652,7 @@ template&lt;class T &gt; </div>
 <p>This Shows an Engine Generated Configuration Screen. </p>
 <p>This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00257">257</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00252">252</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
 </div>
 </div>
@@ -671,7 +693,7 @@ template&lt;class T &gt; </div>
 <p>This is a point to the default Call BackManager. </p>
 <p>All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. </p>
 
-<p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00300">300</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00309">309</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
 
 </div>
 </div>
@@ -689,7 +711,7 @@ template&lt;class T &gt; </div>
 <p>This is the default pointer to the Event Manager. </p>
 <p>This is the Event manager that all physworld members will place any events into. </p>
 
-<p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00304">304</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00313">313</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
 
 </div>
 </div>
@@ -698,7 +720,7 @@ template&lt;class T &gt; </div>
 <li><a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Mon Apr 12 02:51:42 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 14 20:33:40 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

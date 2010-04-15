@@ -15,6 +15,11 @@ Inheritance diagram for ActorDynSoft::\begin{figure}[H]
 void {\bfseries CreateSoftObject} ()}
 \label{dc/de0/classActorDynSoft_a249bc0621b1d55ea0a9c7787605078d6}
 
+\item 
+\hypertarget{classActorDynSoft_a979620b4ac447eb9875fb769d61a8092}{
+void {\bfseries CreateShapeFromMesh} ()}
+\label{dc/de0/classActorDynSoft_a979620b4ac447eb9875fb769d61a8092}
+
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -28,13 +33,18 @@ void {\bfseries AddObjectToWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$T
 virtual void {\bfseries SetBulletLocation} (\hyperlink{classPhysVector3}{PhysVector3} Location)}
 \label{dc/de0/classActorDynSoft_aaf548f7849f59956c10d79420efafffb}
 
+\item 
+\hypertarget{classActorDynSoft_abbb2c795bd07b014239f157b440bc53d}{
+virtual void {\bfseries SetBulletOrientation} (\hyperlink{classPhysQuaternion}{PhysQuaternion} Rotation)}
+\label{dc/de0/classActorDynSoft_abbb2c795bd07b014239f157b440bc53d}
+
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classActorDynSoft_a9f5b3e1cfa400bb6095f77feb81e76d8}{
-btSoftBody $\ast$ {\bfseries physoftbody}}
-\label{dc/de0/classActorDynSoft_a9f5b3e1cfa400bb6095f77feb81e76d8}
+\hypertarget{classActorDynSoft_a59e1b9ae866bfd9af4bc2eebaf11a2d9}{
+btSoftBody $\ast$ {\bfseries physsoftbody}}
+\label{dc/de0/classActorDynSoft_a59e1b9ae866bfd9af4bc2eebaf11a2d9}
 
 \end{DoxyCompactItemize}
 
@@ -42,7 +52,7 @@ btSoftBody $\ast$ {\bfseries physoftbody}}
 \subsection{Detailed Description}
 
 
-Definition at line 127 of file physactor.h.
+Definition at line 133 of file physactor.h.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 
