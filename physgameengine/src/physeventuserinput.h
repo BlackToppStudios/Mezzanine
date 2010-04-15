@@ -517,18 +517,41 @@ class PhysEventUserInput : public PhysEvent
         /// @details This creates a perfectly functional, but empty PhysEventUserInput.
         PhysEventUserInput();
 
+        /// @brief Single Data Point constructor
+        /// @param Code_ This MetaCode will be added to the PhysEventUserInput during creation.
+        /// @details This creates a functional PhysEventUserInput which already contains one metacode.
         PhysEventUserInput(const MetaCode &Code_);
+
+        /// @brief Multi Data Point constructor
+        /// @param Code_ The MetaCodes in this vecotor will be added to the PhysEventUserInput during creation.
+        /// @details This creates a ready to use PhysEventUserInput which already contains all the metacodes included.
         PhysEventUserInput(const vector<MetaCode> &Code_);
         virtual ~PhysEventUserInput();
 
         //code managment functions
+        /// @brief Single Data Point constructor
+        /// @param Code_ which Metacode to return.
+        /// @return Index The requested MetaCode
+        /// @details This function simply retrieves the requested MetaCode. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists
+        /// \n This is useful for accessing each MetaCode stored in this physUserInputEvent.
         const MetaCode GetMetaCode(const unsigned int &Index);
+
+        /// @brief Retrieves a count of the stored Metacodes
+        /// @return The amount of codes stored in this physEventUserInput.
+        /// @details
         unsigned int GetMetaCodeCount();
 
         /// @brief Adds a MetaCode
         /// @param Code_ The User Input MetaCode tobe added
         /// @details This adds an existing metacode to this event.
         void AddCode(const MetaCode &Code_);
+
+        /// @brief Adds a Created From Raw Values
+        /// @param MetaValue_ The MetaValue that will be in the MetaCode
+        /// @param ID_ The ID that will be in the MetaCode
+        /// @param Code_ The InputCode that will be in the MetaCode
+        /// @details This creates metacode a metacode and adds it to this event.
+        void AddCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_);
 
         /// @brief Adds a MetaCode created from a RawEvent
         /// @param RawEvent_ The RawEvent which will be translated into exactly One MetaCode
@@ -539,12 +562,33 @@ class PhysEventUserInput : public PhysEvent
         /// PhysEventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.
         void AddCode(const RawEvent &RawEvent_);
 
+        /// @brief Adds all possible MetaCodes that can be created from the given RawEvent
+        /// @param RawEvent_ The RawEvent which will be translated into a group of metacodes and added to this
+        /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is
+        /// recommended to not use this in game code.
+        /// @warning If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must them this is the correct
+        /// function to use. This will work same on a all platforms. However, the binary format of the Rawevent could chnage meaning you would have to recompile the game code to work
+        /// with new version of the engine
+        /// \n This Function is currently incomplete, and does not yet process all events such as joysticks events and some mouse events.
         void AddCodesFromRawEvent(const RawEvent &RawEvent_);
-        void EraseCode(const MetaCode &Code_);
-        void EraseCode(const unsigned int &Index);
-        void ToggleCode(const MetaCode &Code_);
-        void ToggleCode(const unsigned int &Index);
 
+        /// @brief Removes a specific code from storage.
+        /// @param Code_ This will search for all matching copies of this
+        /// @details All MetaCodes that are equal to Code_ will simply be erased.
+        void EraseCode(const MetaCode &Code_);
+
+        /// @brief Removes a specific code from storage.
+        /// @param Index This is the location to removed from
+        /// @details The MetaCode at and only at the given Index will be deleted.
+        void EraseCode(const unsigned int &Index);
+
+        /// @brief Removes a specific code or Adds it if not present.
+        /// @param Code_ This will search for all matching copies of this.
+        /// @details All MetaCodes that are equal to Code_ will simply be erased.
+        void ToggleCode(const MetaCode &Code_);
+
+        /// @brief Returns the type of this event
+        /// @return Returns EventType::UserInput
 		virtual EventType getEventType();
 };
 

@@ -434,9 +434,10 @@ void PhysWorld::DoMainLoopPhysics(PhysWhole TimeElapsed)
     PhysReal IdealStep = this->TargetFrameLength;
     IdealStep *= 0.0001;
 
-    int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
+    //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
+    int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+2);  //used 2 simply to be extra safe
     this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
-
+    Log("Updated Physics");
 }
 
 void PhysWorld::DoMainLoopWindowManagerBuffering()

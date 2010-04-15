@@ -91,7 +91,7 @@ void MetaCode::Construct(const RawEvent &RawEvent_)
             Construct(BUTTON_LIFTING, 0, GetInputCodeFromSDL_KEY(RawEvent_));
             break;
 
-        case SDL_JOYAXISMOTION:
+        case SDL_JOYAXISMOTION:/// @todo TODO determine if Joystick RawEvents will emit 1 or multiple Metacodes
             break;
         case SDL_JOYBUTTONDOWN:
             break;
@@ -229,6 +229,12 @@ void PhysEventUserInput::AddCode(const RawEvent &RawEvent_)
     this->AddCode(CurrentMetaCode);
 }
 
+void PhysEventUserInput::AddCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
+{
+    MetaCode CurrentMetaCode( MetaValue_, ID_, Code_ );
+    this->AddCode(CurrentMetaCode);
+}
+
 void PhysEventUserInput::EraseCode(const MetaCode &Code_)
 {
     vector<MetaCode>::iterator iter;
@@ -251,15 +257,19 @@ void PhysEventUserInput::ToggleCode(const MetaCode &Code_)
 {
     vector<MetaCode>::iterator iter;
 
+    bool ErasedOne= false;
+
     for(iter=Code.begin(); Code.end()!=iter ; iter++)
     {
         if(*iter == Code_)
         {
             Code.erase(iter);
-        }else{
-            Code.push_back(Code_);
+            ErasedOne=true;
         }
     }
+
+    if(!ErasedOne)
+        {Code.push_back(Code_);}
 }
 
 EventType PhysEventUserInput::getEventType()
@@ -279,6 +289,7 @@ void PhysEventUserInput::AddCodesFromRawEvent(const RawEvent &RawEvent_)
             break;
 
         case SDL_MOUSEMOTION:       //Can contain Multiple Metacodes
+            this->AddCodesFromSDLMouseMotion(RawEvent_);
             break;
         case SDL_MOUSEBUTTONDOWN:
         case SDL_MOUSEBUTTONUP:
@@ -308,33 +319,38 @@ void PhysEventUserInput::AddCodesFromRawEvent(const RawEvent &RawEvent_)
 
 void PhysEventUserInput::AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_)
 {
+    this->AddCode(RawEvent_.motion.x,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
+    this->AddCode(RawEvent_.motion.y,0,MetaCode::MOUSEABSOLUTEVERTICAL);
 
+    if(0 != RawEvent_.motion.xrel)
+        {this->AddCode(RawEvent_.motion.xrel,0,MetaCode::MOUSEVERTICAL);}
+
+    if(0 != RawEvent_.motion.yrel)
+        {this->AddCode(RawEvent_.motion.yrel,0,MetaCode::MOUSEHORIZONTAL);}
+
+/*1
+    //MOUSEBUTTON from the button state   //Button Polling
+*/
 }
 
 void PhysEventUserInput::AddCodesFromSDLMouseButton(const RawEvent &RawEvent_)
 {
     //MetaCode::MetaCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
-    MetaCode CodeMouseHor(RawEvent_.button.x,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
-    this->AddCode(CodeMouseHor);
+    this->AddCode(RawEvent_.button.x,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
 
-    MetaCode CodeMouseVert(RawEvent_.button.y,0,MetaCode::MOUSEABSOLUTEVERTICAL);
-    this->AddCode(CodeMouseVert);
+    this->AddCode(RawEvent_.button.y,0,MetaCode::MOUSEABSOLUTEVERTICAL);
 
     if ( SDL_BUTTON_WHEELUP==RawEvent_.button.button)
     {
-        MetaCode CodeMouseWheel(MetaCode::MOUSEWHEEL_UP,0,MetaCode::MOUSEWHEELVERTICAL);
-        this->AddCode(CodeMouseWheel);
+        this->AddCode(MetaCode::MOUSEWHEEL_UP,0,MetaCode::MOUSEWHEELVERTICAL);
     }else if( SDL_BUTTON_WHEELDOWN==RawEvent_.button.button ){
-        MetaCode CodeMouseWheel(MetaCode::MOUSEWHEEL_DOWN,0,MetaCode::MOUSEWHEELVERTICAL);
-        this->AddCode(CodeMouseWheel);
+        this->AddCode(MetaCode::MOUSEWHEEL_DOWN,0,MetaCode::MOUSEWHEELVERTICAL);
     }else{
         if(RawEvent_.button.state==SDL_PRESSED)
         {
-            MetaCode CodeMouseButton(MetaCode::BUTTON_PRESSING, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
-            this->AddCode(CodeMouseButton);
+            this->AddCode(MetaCode::BUTTON_PRESSING, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
         }else{
-            MetaCode CodeMouseButton(MetaCode::BUTTON_LIFTING, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
-            this->AddCode(CodeMouseButton);
+            this->AddCode(MetaCode::BUTTON_LIFTING, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
         }
     }
 
