@@ -12,12 +12,12 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>. 
+    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to 
+/* We welcome the use of The PhysGame anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -27,12 +27,12 @@
     - Software Patents You Do Not Wish to Freely License
     - Any Kind of Linking to Non-GPL licensed Works
     - Are Currently In Violation of Another Copyright Holder's GPL License
-    - If You want to change our code and not add a few hundred MB of stuff to 
+    - If You want to change our code and not add a few hundred MB of stuff to
         your distribution
 
    These and other limitations could cause serious legal problems if you ignore
    them, so it is best to simply contact us or the Free Software Foundation, if
-   you have any questions. 
+   you have any questions.
 
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
@@ -52,8 +52,24 @@ using namespace std;
 #include "physeventrendertime.h"
 #include "physeventuserinput.h"
 
+
 class PhysEventManager
 {
+    public:
+        // @enum Pollable
+        // @brief This Represents Items that can be Polled to Generate additional events
+        // @details This list is the
+        enum Pollable{
+            MOUSE1 = 1,
+            MOUSE2 = 2,
+            MOUSE3 = 3,
+            MOUSE4 = 4,
+            MOUSE5 = 5,
+            MOUSE6 = 6,
+            MOUSE7 = 7,
+            MOUSE8 = 8
+        };
+
 	private:
 		list<PhysEvent*> EventQueue;
         static bool IgnoreSDLQuitEvents;
@@ -73,6 +89,12 @@ class PhysEventManager
 
         //By and large the Game won't use this, but there is no reason it shouldn't
 		void AddEvent(PhysEvent* EventToAdd);
+
+        // @brief Generates extra events each iteration of the main loop, based on user input polling
+        // @param WhatToCheckFor By default this accepts a Pollable Member to decide what to generate
+        // @param isKeyCode If this is set to true then WhatToCheckForFor will accepts KeyCodes instead of
+        // @details All MetaCodes that are equal to Code_ will simply be erased.
+        void AddPollingCheck(int WhatToCheckFor, bool isKeyCode=false);
 
         //different platforms treat exiting the application differently, to work around that
         //we can use this to help identify if it comes accross as a normal event, or if we must

@@ -298,10 +298,24 @@ class PhysWorld
         /// @param ActorToAdd This is a pointer to the actor to be added
         void AddActor(ActorBase* ActorToAdd);
 
+        /// @brief
+        /// @param Location
+        /// @param Type
+        /// @param Group
+        /// @param recursive
+        /// @details
         void AddResourceLocation(PhysString Location, PhysString Type, PhysString Group, bool recursive);
 
+        /// @brief
+        /// @param Name
+        /// @param Type
+        /// @param Group
+        /// @details
         void DeclareResource(PhysString Name, PhysString Type, PhysString Group);
 
+        /// @brief
+        /// @param Name
+        /// @details
         void InitResourceGroup(PhysString Name);
 
 		/// @brief This is a point to the default Call BackManager
