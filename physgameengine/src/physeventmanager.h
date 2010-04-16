@@ -55,24 +55,12 @@ using namespace std;
 
 class PhysEventManager
 {
-    public:
-        // @enum Pollable
-        // @brief This Represents Items that can be Polled to Generate additional events
-        // @details This list is the
-        enum Pollable{
-            MOUSE1 = 1,
-            MOUSE2 = 2,
-            MOUSE3 = 3,
-            MOUSE4 = 4,
-            MOUSE5 = 5,
-            MOUSE6 = 6,
-            MOUSE7 = 7,
-            MOUSE8 = 8
-        };
-
 	private:
 		list<PhysEvent*> EventQueue;
         static bool IgnoreSDLQuitEvents;
+
+        // A list of the Mouse buttons being watched
+        vector<int> WatchMouseKeys;
 
 	public:
 		PhysEventManager();
@@ -90,11 +78,11 @@ class PhysEventManager
         //By and large the Game won't use this, but there is no reason it shouldn't
 		void AddEvent(PhysEvent* EventToAdd);
 
-        // @brief Generates extra events each iteration of the main loop, based on user input polling
-        // @param WhatToCheckFor By default this accepts a Pollable Member to decide what to generate
-        // @param isKeyCode If this is set to true then WhatToCheckForFor will accepts KeyCodes instead of
-        // @details All MetaCodes that are equal to Code_ will simply be erased.
-        void AddPollingCheck(int WhatToCheckFor, bool isKeyCode=false);
+        /// @brief Generates extra events each iteration of the main loop, based on user input polling
+        /// @param InputToTryPolling By default this accepts a MetaCode and will try to watch for occurences like this one
+        /// @details This will trigger the input system to generate an event when it would be appropriate to poll for the given kind of event. The MetaValue is
+        /// ignored,
+        void AddPollingCheck(MetaCode InputToTryPolling);
 
         //different platforms treat exiting the application differently, to work around that
         //we can use this to help identify if it comes accross as a normal event, or if we must
