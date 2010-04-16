@@ -158,7 +158,6 @@ void ActorBase::CreateTrimesh()
     // We now have vertices and indices ready to go
 
     // The Bullet triangle mesh
-    //Shape = static_cast<btTriangleMesh*>(Shape);
     btTriangleMesh* trimesh = new btTriangleMesh(use32bitindexes);
 
     // Setup the tri mesh
@@ -263,8 +262,6 @@ void ActorBase::AttachToGraphics ()
     this->node->setPosition(temp.GetOgreVector3());
     this->node->attachObject(this->entity);
 }
-
-
 
 ///////////////////////////////////
 // ActorDynRigid class functions
