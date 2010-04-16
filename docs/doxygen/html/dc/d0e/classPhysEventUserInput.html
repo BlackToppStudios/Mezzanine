@@ -57,6 +57,8 @@ Inheritance diagram for PhysEventUserInput:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves a count of the stored Metacodes.  <a href="#a86df812a38566a572134100a422a8799"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d">AddCode</a> (const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;Code_)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds a <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>.  <a href="#a4f5b94c64cd08c15b480e441d25a385d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html#ace3b98a502b8e784b58bc5dc599fc0c4">AddCode</a> (const int &amp;MetaValue_, const short unsigned int &amp;ID_, const <a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a> &amp;Code_)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds a Created From Raw Values.  <a href="#ace3b98a502b8e784b58bc5dc599fc0c4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html#a385a4f7a6e88be43b6ba1ffc2a1bb5e3">AddCode</a> (const RawEvent &amp;RawEvent_)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds a <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> created from a RawEvent.  <a href="#a385a4f7a6e88be43b6ba1ffc2a1bb5e3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html#a9e42f42f9a4a42f792e5cf95856669c0">AddCodesFromRawEvent</a> (const RawEvent &amp;RawEvent_)</td></tr>
@@ -74,7 +76,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 <p>This is a container for MetaCodes that is used in the physEventManager. </p>
 <p>The <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> is the container for information about how a user enters data and commands into a program. By Default one is inserted into event manager the with all the user input from the last run of the main loop. These can be manually inserted into the EventManager to simulate input from other sources. If setup properly this can allow computer controlled characters to use the same interface players, allowing for more realistic response from them. This is not limited to the tricks discussed here. </p>
 
-<p>Definition at line <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html#l00505">505</a> of file <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html">physeventuserinput.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html#l00093">93</a> of file <a class="el" href="../../d5/d10/physeventuserinput_8h_source.html">physeventuserinput.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6f8eaf698e8109d5cb30f2f17044f1ba"></a><!-- doxytag: member="PhysEventUserInput::PhysEventUserInput" ref="a6f8eaf698e8109d5cb30f2f17044f1ba" args="()" -->
 <div class="memitem">
@@ -94,7 +96,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 <p>Default constructor. </p>
 <p>This creates a perfectly functional, but empty <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>. </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00188">188</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -123,7 +125,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 </dl>
 <p>This creates a functional <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> which already contains one metacode. </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00193">193</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -152,7 +154,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 </dl>
 <p>This creates a ready to use <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> which already contains all the metacodes included. </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00198">198</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -183,7 +185,53 @@ Inheritance diagram for PhysEventUserInput:</div>
 <p>This will add <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> to this event which will be create from a RawEvent which can produce Exactly one <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>. This is used by engine internals, it is recommended to not use this in game code. </p>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Do not use this without reading and fully understanding the warnings on <a class="el" href="../../d7/d72/classMetaCode.html#a87b260ce7ee3a66c75320c0fc37cdc0a" title="The Heavy Lifting Constructor.">MetaCode::MetaCode(const RawEvent &amp;RawEvent_)</a> . This function has all the same Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must it should use <a class="el" href="../../dc/d0e/classPhysEventUserInput.html#a9e42f42f9a4a42f792e5cf95856669c0" title="Adds all possible MetaCodes that can be created from the given RawEvent.">PhysEventUserInput::AddCodesFromRawEvent</a> instead, as it can make the needed determinations automatically and in a platform agnostic way. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00226">226</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00102">102</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ace3b98a502b8e784b58bc5dc599fc0c4"></a><!-- doxytag: member="PhysEventUserInput::AddCode" ref="ace3b98a502b8e784b58bc5dc599fc0c4" args="(const int &amp;MetaValue_, const short unsigned int &amp;ID_, const MetaCode::InputCode &amp;Code_)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PhysEventUserInput::AddCode </td>
+          <td>(</td>
+          <td class="paramtype">const int &amp;&nbsp;</td>
+          <td class="paramname"> <em>MetaValue_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const short unsigned int &amp;&nbsp;</td>
+          <td class="paramname"> <em>ID_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24">MetaCode::InputCode</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Code_</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Adds a Created From Raw Values. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>MetaValue_</em>&nbsp;</td><td>The MetaValue that will be in the <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ID_</em>&nbsp;</td><td>The ID that will be in the <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Code_</em>&nbsp;</td><td>The InputCode that will be in the <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This creates metacode a metacode and adds it to this event. </p>
+
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00108">108</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -212,7 +260,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 </dl>
 <p>This adds an existing metacode to this event. </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00221">221</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00097">97</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -243,7 +291,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must them this is the correct function to use. This will work same on a all platforms. However, the binary format of the Rawevent could chnage meaning you would have to recompile the game code to work with new version of the engine <br/>
  This Function is currently incomplete, and does not yet process all events such as joysticks events and some mouse events. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00274">274</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00156">156</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -272,7 +320,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 </dl>
 <p>The <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> at and only at the given Index will be deleted. </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00245">245</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00127">127</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -301,7 +349,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 </dl>
 <p>All MetaCodes that are equal to Code_ will simply be erased. </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00232">232</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00114">114</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -325,7 +373,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 
 <p>Implements <a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00269">269</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00151">151</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -356,7 +404,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 <p>This function simply retrieves the requested <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a>. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists <br/>
  This is useful for accessing each <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> stored in this physUserInputEvent. </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00211">211</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00087">87</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -378,7 +426,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 <p>Retrieves a count of the stored Metacodes. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The amount of codes stored in this physEventUserInput. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00216">216</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00092">92</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -407,7 +455,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 </dl>
 <p>All MetaCodes that are equal to Code_ will simply be erased. </p>
 
-<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00250">250</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html#l00132">132</a> of file <a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -416,7 +464,7 @@ Inheritance diagram for PhysEventUserInput:</div>
 <li><a class="el" href="../../d1/d53/physeventuserinput_8cpp_source.html">physeventuserinput.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 14 20:33:40 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 16 01:58:26 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

@@ -32,6 +32,8 @@ void {\bfseries AddEvent} (\hyperlink{classPhysEvent}{PhysEvent} $\ast$EventToAd
 \label{d5/dd7/classPhysEventManager_a7c9bb46b17f6d9245817a402dc6a2f6f}
 
 \item 
+void \hyperlink{classPhysEventManager_a1e99385441c5377a741561db581ef3ae}{AddPollingCheck} (const \hyperlink{classMetaCode}{MetaCode} \&InputToTryPolling)
+\begin{DoxyCompactList}\small\item\em Generates extra events each iteration of the main loop, based on user input polling. \item\end{DoxyCompactList}\item 
 \hypertarget{classPhysEventManager_a77b22f706d22914602982cbcaf05bba9}{
 bool {\bfseries DoQuitMessagesExist} ()}
 \label{d5/dd7/classPhysEventManager_a77b22f706d22914602982cbcaf05bba9}
@@ -55,7 +57,7 @@ static void {\bfseries SetIgnoreQuitEvents} (bool Ignore)}
 \subsection{Detailed Description}
 
 
-Definition at line 55 of file physeventmanager.h.
+Definition at line 56 of file physeventmanager.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classPhysEventManager_a217e7f6006aaf5e08e2872fa4d66e5e2}{
@@ -64,10 +66,23 @@ Definition at line 55 of file physeventmanager.h.
 \subsubsection[{PhysEventManager}]{\setlength{\rightskip}{0pt plus 5cm}PhysEventManager::PhysEventManager ()}}
 \label{d5/dd7/classPhysEventManager_a217e7f6006aaf5e08e2872fa4d66e5e2}
 \begin{Desc}
-\item[\hyperlink{todo__todo000003}{Todo}]TODO: Make the \hyperlink{classPhysEventManager}{PhysEventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
+\item[\hyperlink{todo__todo000005}{Todo}]TODO: Make the \hyperlink{classPhysEventManager}{PhysEventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
 
 
 Definition at line 58 of file physeventmanager.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classPhysEventManager_a1e99385441c5377a741561db581ef3ae}{
+\index{PhysEventManager@{PhysEventManager}!AddPollingCheck@{AddPollingCheck}}
+\index{AddPollingCheck@{AddPollingCheck}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{AddPollingCheck}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::AddPollingCheck (const {\bf MetaCode} \& {\em InputToTryPolling})}}
+\label{d5/dd7/classPhysEventManager_a1e99385441c5377a741561db581ef3ae}
+
+
+Generates extra events each iteration of the main loop, based on user input polling. 
+\begin{DoxyParams}{Parameters}
+\item[{\em InputToTryPolling}]By default this accepts a \hyperlink{classMetaCode}{MetaCode} and will try to watch for occurences like this one\end{DoxyParams}
+This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each Iteration of the main loop there will be a \hyperlink{classPhysEventUserInput}{PhysEventUserInput} that created. That Event will Include all the normal metacodes for user input that happened, and it will also have a meta code for each time this function was called. The added metacode 
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

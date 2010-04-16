@@ -321,24 +321,38 @@
 <a name="l00297"></a>00297 <span class="comment">        /// actor has been passed into the Physworld using this, the physworld handle deleting it.</span>
 <a name="l00298"></a>00298 <span class="comment">        /// @param ActorToAdd This is a pointer to the actor to be added</span>
 <a name="l00299"></a>00299 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29" title="The adds and Actor to the physworld.">AddActor</a>(<a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a>* ActorToAdd);
-<a name="l00300"></a>00300 
-<a name="l00301"></a>00301         <span class="keywordtype">void</span> AddResourceLocation(PhysString Location, PhysString Type, PhysString Group, <span class="keywordtype">bool</span> recursive);
-<a name="l00302"></a>00302 
-<a name="l00303"></a>00303         <span class="keywordtype">void</span> DeclareResource(PhysString Name, PhysString Type, PhysString Group);
-<a name="l00304"></a>00304 
-<a name="l00305"></a>00305         <span class="keywordtype">void</span> InitResourceGroup(PhysString Name);
-<a name="l00306"></a>00306 <span class="comment"></span>
-<a name="l00307"></a>00307 <span class="comment">                /// @brief This is a point to the default Call BackManager</span>
-<a name="l00308"></a>00308 <span class="comment">        /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.</span>
-<a name="l00309"></a><a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df">00309</a> <span class="comment"></span>                <a class="code" href="../../d4/d84/classPhysWorldCallBackManager.html">PhysWorldCallBackManager</a>* <a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>;
-<a name="l00310"></a>00310 <span class="comment"></span>
-<a name="l00311"></a>00311 <span class="comment">        /// @brief This is the default pointer to the Event Manager.</span>
-<a name="l00312"></a>00312 <span class="comment">        /// @details This is the Event manager that all physworld members will place any events into.</span>
-<a name="l00313"></a><a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc">00313</a> <span class="comment"></span>                <a class="code" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a>* <a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>;
-<a name="l00314"></a>00314 };
-<a name="l00315"></a>00315 <span class="preprocessor">#endif</span>
+<a name="l00300"></a>00300 <span class="comment"></span>
+<a name="l00301"></a>00301 <span class="comment">        /// @brief</span>
+<a name="l00302"></a>00302 <span class="comment">        /// @param Location</span>
+<a name="l00303"></a>00303 <span class="comment">        /// @param Type</span>
+<a name="l00304"></a>00304 <span class="comment">        /// @param Group</span>
+<a name="l00305"></a>00305 <span class="comment">        /// @param recursive</span>
+<a name="l00306"></a>00306 <span class="comment">        /// @details</span>
+<a name="l00307"></a>00307 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a757783fa596bda8ebdbc24234c6b621a">AddResourceLocation</a>(PhysString Location, PhysString Type, PhysString Group, <span class="keywordtype">bool</span> recursive);
+<a name="l00308"></a>00308 <span class="comment"></span>
+<a name="l00309"></a>00309 <span class="comment">        /// @brief</span>
+<a name="l00310"></a>00310 <span class="comment">        /// @param Name</span>
+<a name="l00311"></a>00311 <span class="comment">        /// @param Type</span>
+<a name="l00312"></a>00312 <span class="comment">        /// @param Group</span>
+<a name="l00313"></a>00313 <span class="comment">        /// @details</span>
+<a name="l00314"></a>00314 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a908c21f7f5452f8d7c6d4b5b2308ba5e">DeclareResource</a>(PhysString Name, PhysString Type, PhysString Group);
+<a name="l00315"></a>00315 <span class="comment"></span>
+<a name="l00316"></a>00316 <span class="comment">        /// @brief</span>
+<a name="l00317"></a>00317 <span class="comment">        /// @param Name</span>
+<a name="l00318"></a>00318 <span class="comment">        /// @details</span>
+<a name="l00319"></a>00319 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a0b67df4c76c32b9b2bdcafdc51f6aba7">InitResourceGroup</a>(PhysString Name);
+<a name="l00320"></a>00320 <span class="comment"></span>
+<a name="l00321"></a>00321 <span class="comment">                /// @brief This is a point to the default Call BackManager</span>
+<a name="l00322"></a>00322 <span class="comment">        /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.</span>
+<a name="l00323"></a><a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df">00323</a> <span class="comment"></span>                <a class="code" href="../../d4/d84/classPhysWorldCallBackManager.html">PhysWorldCallBackManager</a>* <a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>;
+<a name="l00324"></a>00324 <span class="comment"></span>
+<a name="l00325"></a>00325 <span class="comment">        /// @brief This is the default pointer to the Event Manager.</span>
+<a name="l00326"></a>00326 <span class="comment">        /// @details This is the Event manager that all physworld members will place any events into.</span>
+<a name="l00327"></a><a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc">00327</a> <span class="comment"></span>                <a class="code" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a>* <a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>;
+<a name="l00328"></a>00328 };
+<a name="l00329"></a>00329 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 14 20:33:38 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 16 01:58:24 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

@@ -41,6 +41,8 @@ unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetRemainingE
 <a class="el" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetNextUserInputEvent</b> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c9bb46b17f6d9245817a402dc6a2f6f"></a><!-- doxytag: member="PhysEventManager::AddEvent" ref="a7c9bb46b17f6d9245817a402dc6a2f6f" args="(PhysEvent *EventToAdd)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>AddEvent</b> (<a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a> *EventToAdd)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd7/classPhysEventManager.html#a1e99385441c5377a741561db581ef3ae">AddPollingCheck</a> (const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;InputToTryPolling)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generates extra events each iteration of the main loop, based on user input polling.  <a href="#a1e99385441c5377a741561db581ef3ae"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77b22f706d22914602982cbcaf05bba9"></a><!-- doxytag: member="PhysEventManager::DoQuitMessagesExist" ref="a77b22f706d22914602982cbcaf05bba9" args="()" -->
 bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>DoQuitMessagesExist</b> ()</td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
@@ -51,7 +53,7 @@ static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetIgnoreQuitE
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="../../d2/d73/physeventmanager_8h_source.html#l00055">55</a> of file <a class="el" href="../../d2/d73/physeventmanager_8h_source.html">physeventmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/d73/physeventmanager_8h_source.html#l00056">56</a> of file <a class="el" href="../../d2/d73/physeventmanager_8h_source.html">physeventmanager.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a217e7f6006aaf5e08e2872fa4d66e5e2"></a><!-- doxytag: member="PhysEventManager::PhysEventManager" ref="a217e7f6006aaf5e08e2872fa4d66e5e2" args="()" -->
 <div class="memitem">
@@ -67,9 +69,37 @@ static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetIgnoreQuitE
       </table>
 </div>
 <div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="../../todo.html#_todo000003">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../todo.html#_todo000005">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
 
 <p>Definition at line <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a1e99385441c5377a741561db581ef3ae"></a><!-- doxytag: member="PhysEventManager::AddPollingCheck" ref="a1e99385441c5377a741561db581ef3ae" args="(const MetaCode &amp;InputToTryPolling)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PhysEventManager::AddPollingCheck </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>InputToTryPolling</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Generates extra events each iteration of the main loop, based on user input polling. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>InputToTryPolling</em>&nbsp;</td><td>By default this accepts a <a class="el" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> and will try to watch for occurences like this one</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each Iteration of the main loop there will be a <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> that created. That Event will Include all the normal metacodes for user input that happened, and it will also have a meta code for each time this function was called. The added metacode </p>
 
 </div>
 </div>
@@ -78,7 +108,7 @@ static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetIgnoreQuitE
 <li><a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Wed Apr 14 20:33:40 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 16 01:58:25 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

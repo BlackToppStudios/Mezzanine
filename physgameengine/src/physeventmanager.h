@@ -62,6 +62,9 @@ class PhysEventManager
         // A list of the Mouse buttons being watched
         vector<int> WatchMouseKeys;
 
+        //a List of the
+        vector<int> WatchKeyboardKeys;
+
 	public:
 		PhysEventManager();
 
@@ -80,9 +83,10 @@ class PhysEventManager
 
         /// @brief Generates extra events each iteration of the main loop, based on user input polling
         /// @param InputToTryPolling By default this accepts a MetaCode and will try to watch for occurences like this one
-        /// @details This will trigger the input system to generate an event when it would be appropriate to poll for the given kind of event. The MetaValue is
-        /// ignored,
-        void AddPollingCheck(MetaCode InputToTryPolling);
+        /// @details This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each
+        /// Iteration of the main loop there will be a PhysEventUserInput that created. That Event will Include all the normal metacodes for user input
+        /// that happened, and it will also have a meta code for each time this function was called. The added metacode
+        void AddPollingCheck(const MetaCode &InputToTryPolling);
 
         //different platforms treat exiting the application differently, to work around that
         //we can use this to help identify if it comes accross as a normal event, or if we must
