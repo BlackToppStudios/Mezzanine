@@ -59,7 +59,7 @@ bool PostRender()
 
 
 	//getting a message from the event manager
-	PhysEventRenderTime* CurrentTime = TheWorld.Events->GetNextRenderTimeEvent();
+	PhysEventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
 
     // Is currentTime a valid event?
     while(0 != CurrentTime)
@@ -113,7 +113,7 @@ bool PostInput()
 bool CheckForEsc()
 {
     //this will either set the pointer to 0 or return a valid pointer to work with.
-    PhysEventUserInput* OneInput = TheWorld.Events->GetNextUserInputEvent();
+    PhysEventUserInput* OneInput = TheWorld.Events->PopNextUserInputEvent();
 
     //We check each Event
     while(0 != OneInput)
@@ -132,7 +132,7 @@ bool CheckForEsc()
         }
 
         delete OneInput;
-        OneInput = TheWorld.Events->GetNextUserInputEvent();
+        OneInput = TheWorld.Events->PopNextUserInputEvent();
     }
 
     return true;

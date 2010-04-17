@@ -61,7 +61,9 @@ PhysEventManager::PhysEventManager()
     SDL_SetEventFilter( PhysSDLFilter );
 }
 
+///////////////////////////////////////////////////////////////////////////////
 //These functions will give you the next event or help you manage the events
+///////////////////////////////////////
 unsigned int PhysEventManager::GetRemainingEventCount()
 {
     return EventQueue.size();
@@ -74,16 +76,54 @@ PhysEvent* PhysEventManager::GetNextEvent()
             return 0;
     }
     PhysEvent* results = EventQueue.front();
+    return results;
+}
+
+PhysEvent* PhysEventManager::PopNextEvent()
+{
+    if(EventQueue.size()==0)
+    {
+            return 0;
+    }
+    PhysEvent* results = EventQueue.front();
     EventQueue.pop_front();
     return results;
 }
 
+void PhysEventManager::RemoveNextEvent()
+{
+    EventQueue.pop_front();
+}
+
+void PhysEventManager::AddEvent(PhysEvent* EventToAdd)
+{
+    EventQueue.push_back(EventToAdd);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Filtered management functions - RenderTime Events
+///////////////////////////////////////
 PhysEventRenderTime* PhysEventManager::GetNextRenderTimeEvent()
 {
     PhysEventRenderTime* results = 0;
     for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
     {
-        if((*Iter)->getEventType()==RenderTime)
+        if((*Iter)->getEventType()==PhysEvent::RenderTime)
+        {
+            results = dynamic_cast<PhysEventRenderTime*> (*Iter);
+            return results;
+        }
+    }
+    return results;
+}
+
+PhysEventRenderTime* PhysEventManager::PopNextRenderTimeEvent()
+{
+    PhysEventRenderTime* results = 0;
+    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+    {
+        if((*Iter)->getEventType()==PhysEvent::RenderTime)
         {
             results = dynamic_cast<PhysEventRenderTime*> (*Iter);
             EventQueue.erase(Iter);
@@ -93,12 +133,41 @@ PhysEventRenderTime* PhysEventManager::GetNextRenderTimeEvent()
     return results;
 }
 
+void PhysEventManager::RemoveNextRenderTimeEvent()
+{
+    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+    {
+        if((*Iter)->getEventType()==PhysEvent::RenderTime)
+        {
+            EventQueue.erase(Iter);
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Filtered management functions - User Input Events
+///////////////////////////////////////
+
 PhysEventUserInput* PhysEventManager::GetNextUserInputEvent()
 {
     PhysEventUserInput* results = 0;
     for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
     {
-        if((*Iter)->getEventType()==UserInput)
+        if((*Iter)->getEventType()==PhysEvent::UserInput)
+        {
+            results = dynamic_cast<PhysEventUserInput*> (*Iter);
+            return results;
+        }
+    }
+    return results;
+}
+
+PhysEventUserInput* PhysEventManager::PopNextUserInputEvent()
+{
+    PhysEventUserInput* results = 0;
+    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+    {
+        if((*Iter)->getEventType()==PhysEvent::UserInput)
         {
             results = dynamic_cast<PhysEventUserInput*> (*Iter);
             EventQueue.erase(Iter);
@@ -108,14 +177,24 @@ PhysEventUserInput* PhysEventManager::GetNextUserInputEvent()
     return results;
 }
 
-void PhysEventManager::AddEvent(PhysEvent* EventToAdd)
+void PhysEventManager::RemoveNextUserInputEvent()
 {
-    EventQueue.push_back(EventToAdd);
+    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+    {
+        if((*Iter)->getEventType()==PhysEvent::UserInput)
+        {
+            EventQueue.erase(Iter);
+        }
+    }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Other functions
+///////////////////////////////////////
 
 bool PhysEventManager::DoQuitMessagesExist()
 {
-        return false;//This is system dependent.
+        return false;//This is system dependent. since we are using SDL, There is no real quit message
 }
 
 bool PhysEventManager::IgnoreQuitEvents()

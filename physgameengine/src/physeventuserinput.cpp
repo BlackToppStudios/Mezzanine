@@ -148,7 +148,7 @@ void PhysEventUserInput::ToggleCode(const MetaCode &Code_)
         {Code.push_back(Code_);}
 }
 
-EventType PhysEventUserInput::getEventType()
+PhysEvent::EventType PhysEventUserInput::getEventType()
 {
     return UserInput;
 }

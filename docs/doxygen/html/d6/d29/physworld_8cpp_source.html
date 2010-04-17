@@ -143,7 +143,7 @@
 <a name="l00119"></a>00119         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a> = <span class="keyword">new</span> <a class="code" href="../../d4/d84/classPhysWorldCallBackManager.html">PhysWorldCallBackManager</a>(<span class="keyword">this</span>);
 <a name="l00120"></a>00120 
 <a name="l00121"></a>00121     <span class="comment">//Events are the main way for the game using the physworld to  get information about the various subsystems</span>
-<a name="l00122"></a>00122     this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a> = <span class="keyword">new</span> <a class="code" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a>;
+<a name="l00122"></a>00122     this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a> = <span class="keyword">new</span> <a class="code" href="../../d5/dd7/classPhysEventManager.html" title="This is a container for Events and facilitates the transfer of data.">PhysEventManager</a>;
 <a name="l00123"></a>00123 
 <a name="l00124"></a>00124         <span class="comment">//instantiate the Physics engine and related items</span>
 <a name="l00125"></a>00125         GeographyLowerBounds = GeographyLowerBounds_;
@@ -614,9 +614,9 @@
 <a name="l00590"></a>00590 <span class="comment"></span><span class="comment">// Bullet Related Public Members</span><span class="comment"></span>
 <a name="l00591"></a>00591 <span class="comment">///////////////////////////////////////</span>
 <a name="l00592"></a>00592 <span class="comment"></span>
-<a name="l00593"></a><a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29">00593</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29" title="The adds and Actor to the physworld.">PhysWorld::AddActor</a>(<a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a>* ActorToAdd)
+<a name="l00593"></a><a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29">00593</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29" title="The adds and Actor to the physworld.">PhysWorld::AddActor</a>(<a class="code" href="../../dd/d7b/classActorBase.html" title="This is the header file for the Actor class hierarchy.">ActorBase</a>* ActorToAdd)
 <a name="l00594"></a>00594 {
-<a name="l00595"></a>00595     ActorToAdd-&gt;AddObjectToWorld(<span class="keyword">this</span>, this-&gt;BulletDynamicsWorld);
+<a name="l00595"></a>00595     ActorToAdd-&gt;<a class="code" href="../../dd/d7b/classActorBase.html#a1af82a2ed960fd114518fdf84d5ff146" title="Adds the actor to the physics world.">AddObjectToWorld</a>(<span class="keyword">this</span>, this-&gt;BulletDynamicsWorld);
 <a name="l00596"></a>00596 }
 <a name="l00597"></a>00597 
 <a name="l00598"></a>00598 <span class="comment"></span>
@@ -670,7 +670,7 @@
 <a name="l00646"></a>00646 
 <a name="l00647"></a>00647 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 16 01:58:24 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Apr 17 17:25:05 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

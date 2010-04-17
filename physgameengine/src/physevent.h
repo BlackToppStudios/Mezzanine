@@ -47,7 +47,13 @@
 #include <string>
 #include <ostream>
 
-enum EventType
+
+using namespace std;
+
+class PhysEvent
+{
+	public:
+        enum EventType
         {
             RenderTime,
             UserInput,
@@ -55,13 +61,7 @@ enum EventType
             Other
         };
 
-using namespace std;
-
-class PhysEvent
-{
-	public:
-
-		virtual EventType getEventType() = 0;
+		virtual PhysEvent::EventType getEventType() = 0;
 
 
 };

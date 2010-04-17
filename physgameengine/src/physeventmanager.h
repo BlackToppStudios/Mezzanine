@@ -52,7 +52,29 @@ using namespace std;
 #include "physeventrendertime.h"
 #include "physeventuserinput.h"
 
-
+///////////////////////////////////////////////////////////////////////////////
+/// @class PhysEventManager
+/// @headerfile physeventmanager.h
+/// @brief This is a container for Events and facilitates the transfer of data.
+/// @details The Event Manager Exists to passed important information about
+/// Gamestate from where it is generated to where it is needed. It is the Game
+/// Developers option whether they want to grab events directly using the get
+/// functions that have filters, or if they want to get all the events at once
+/// from a central location and dispatch form there. \n
+/// Since all User input comes in the form of events, this is also where user
+/// input Polling and optional input sources like Joysticks are controlled
+/// from. \n
+/// All of these event are stored in an internal Queue and order is preserved.
+/// So the First item In will be the First Out (FIFO). This is not strictly a
+/// FIFO buffer, there are a number of functions for getting of managing
+/// specific kinds of events. Generally these 'Filtered' management functions
+/// Still return the first of those kinds of event.
+/// @warning Delete pointers you get from this. Anything can create events and
+/// Put them here, and anything can get them out, This means the simple way to
+/// not cause memory leaks is to have the routines extracting the events delete
+/// the events.
+/// @warning Currently thi is not thread safe, even though it should be.
+///////////////////////////////////////////////////////////////////////////////
 class PhysEventManager
 {
 	private:
@@ -66,20 +88,83 @@ class PhysEventManager
         vector<int> WatchKeyboardKeys;
 
 	public:
+        /// @brief Default constructor
+        /// @details This creates an empty PhysEventManger
 		PhysEventManager();
 
         //These functions will give you the next event or help you manage the events
         //Whenever and event is gotten it is removed form the event queue
         //any getfunction cannot find an appropriate event it returns a pointer to 0
+
+        /// @brief Gets a count of events
+        /// @details This returns a total count of all events stored in this PhysEventManager.
+		/// @return This returns an unsigned integer with the amount of of total events
         unsigned int GetRemainingEventCount();
+
+        /// @brief Return a pointer to the Next event
+        /// @details This returns a pointer to the next PhysEvent. It is advisable to use this for performance reasons
+        /// because it runs in constant time. However it does not return a specific kind of event, and must be cast
+        /// in order to use the true content. This returns a pointer to 0 if there are no events in the que.
+        /// @return A pointer to a PhysEvent, that still needs to be removed from the event manager and deleted.
 		PhysEvent* GetNextEvent();
 
-		//This gets the first/next available PhysEventRenderTime* in the Queue, then removes it.
+        /// @brief Return a pointer to the Next event, and removes the Event from storage
+        /// @details This functions just like GetNextEvent , except that it also removes the item from the internal storage
+        /// of the PhysEventManager. This returns a pointer to 0 if there are no events in the que.
+        /// @return A pointer to a PhysEvent, that will need to be deleted once it has been used.
+        PhysEvent* PopNextEvent();
+
+        /// @brief Removes an Event From the que without looking at it.
+        /// @details This together with GetNextEvent() are the same as call PopNextEvent().
+        /// @warning If you did not call GetNextEvent() and haven't delete or stored, or somehow dealt with this pointer, then this is a memory leak.
+        /// Don't use this unless you are certain you have taken care of the pointer appropriately
+        /// @exception This can throw any STL exception a que could. Any with likely throw some kind of except if called when there are no Events in the Que.
+        void RemoveNextEvent();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Filtered management functions - RenderTime Events
+        ///////////////////////////////////////
+        /// @brief Returns a pointer to the Next Rendertime event
+        /// @details This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use
+        /// this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately
+        /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no redertime
+        /// events in the que.
+        /// @return A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted.
 		PhysEventRenderTime* GetNextRenderTimeEvent();
+
+
+        /// @brief Returns a pointer to the Next Rendertime event and removes it from the Que
+        /// @details This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use
+        /// this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately
+        /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no redertime
+        /// events in the que.
+        /// @return A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted.
+		PhysEventRenderTime* PopNextRenderTimeEvent();
+
+		/// @brief Removes the First Rendertime Event From the que without looking at it.
+        /// @details This together with GetNextRenderTimeEvent() are the pretty much same as call PopNextRenderTimeEvent().
+        /// @warning If you did not call GetNextRenderTimeEvent() and haven't delete or stored, or somehow dealt with this pointer, then this is a memory leak.
+        /// Don't use this unless you are certain you have taken care of the pointer appropriately
+        /// @exception This can throw any STL exception a que could. Any with likely throw some kind of except if called when there are no Events in the Que.
+        void RemoveNextRenderTimeEvent();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Filtered management functions - User Input Events
+        ///////////////////////////////////////
+
         PhysEventUserInput* GetNextUserInputEvent();
+        PhysEventUserInput* PopNextUserInputEvent();
+        void RemoveNextUserInputEvent();
 
         //By and large the Game won't use this, but there is no reason it shouldn't
 		void AddEvent(PhysEvent* EventToAdd);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Filtered management functions - You choose YAYYYY!!!
+        ///////////////////////////////////////
+        PhysEvent* GetNextSpecificEvent();
+        PhysEvent* PopNextSpecificEvent();
+        PhysEvent* RemoveNextSpecificEvent();
 
         /// @brief Generates extra events each iteration of the main loop, based on user input polling
         /// @param InputToTryPolling By default this accepts a MetaCode and will try to watch for occurences like this one

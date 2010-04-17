@@ -26,7 +26,12 @@
   </div>
 </div>
 <div class="contents">
-<h1>ActorDynSoft Class Reference</h1><!-- doxytag: class="ActorDynSoft" --><!-- doxytag: inherits="ActorBase" --><div class="dynheader">
+<h1>ActorDynSoft Class Reference</h1><!-- doxytag: class="ActorDynSoft" --><!-- doxytag: inherits="ActorBase" -->
+<p>This is the actor class for Dynamic Soft Objects.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for ActorDynSoft:</div>
 <div class="dynsection">
  <div class="center">
@@ -40,30 +45,203 @@ Inheritance diagram for ActorDynSoft:</div>
 <p><a href="../../d8/dae/classActorDynSoft-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a249bc0621b1d55ea0a9c7787605078d6"></a><!-- doxytag: member="ActorDynSoft::CreateSoftObject" ref="a249bc0621b1d55ea0a9c7787605078d6" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>CreateSoftObject</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a979620b4ac447eb9875fb769d61a8092"></a><!-- doxytag: member="ActorDynSoft::CreateShapeFromMesh" ref="a979620b4ac447eb9875fb769d61a8092" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>CreateShapeFromMesh</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/de0/classActorDynSoft.html#a8d2941aee946c14ce616d4d856ddf758">~ActorDynSoft</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a8d2941aee946c14ce616d4d856ddf758"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/de0/classActorDynSoft.html#a979620b4ac447eb9875fb769d61a8092">CreateShapeFromMesh</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a collision shape from mesh file.  <a href="#a979620b4ac447eb9875fb769d61a8092"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab56b961689401e16962d653b977e5fd6"></a><!-- doxytag: member="ActorDynSoft::AddObjectToWorld" ref="ab56b961689401e16962d653b977e5fd6" args="(PhysWorld *TargetWorld, btSoftRigidDynamicsWorld *World)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>AddObjectToWorld</b> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TargetWorld, btSoftRigidDynamicsWorld *World)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf548f7849f59956c10d79420efafffb"></a><!-- doxytag: member="ActorDynSoft::SetBulletLocation" ref="aaf548f7849f59956c10d79420efafffb" args="(PhysVector3 Location)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetBulletLocation</b> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Location)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbb2c795bd07b014239f157b440bc53d"></a><!-- doxytag: member="ActorDynSoft::SetBulletOrientation" ref="abbb2c795bd07b014239f157b440bc53d" args="(PhysQuaternion Rotation)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetBulletOrientation</b> (<a class="el" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> Rotation)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/de0/classActorDynSoft.html#a249bc0621b1d55ea0a9c7787605078d6">CreateSoftObject</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a soft object for the actor.  <a href="#a249bc0621b1d55ea0a9c7787605078d6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/de0/classActorDynSoft.html#ab56b961689401e16962d653b977e5fd6">AddObjectToWorld</a> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TargetWorld, btSoftRigidDynamicsWorld *World)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#ab56b961689401e16962d653b977e5fd6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/de0/classActorDynSoft.html#aaf548f7849f59956c10d79420efafffb">SetBulletLocation</a> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Location)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the location of the physics body.  <a href="#aaf548f7849f59956c10d79420efafffb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/de0/classActorDynSoft.html#abbb2c795bd07b014239f157b440bc53d">SetBulletOrientation</a> (<a class="el" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> Rotation)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the orientation of the physics body.  <a href="#abbb2c795bd07b014239f157b440bc53d"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59e1b9ae866bfd9af4bc2eebaf11a2d9"></a><!-- doxytag: member="ActorDynSoft::physsoftbody" ref="a59e1b9ae866bfd9af4bc2eebaf11a2d9" args="" -->
 btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physsoftbody</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>This is the actor class for Dynamic Soft Objects. </p>
+<p>This class should be used to make any soft object that, like <a class="el" href="../../d4/d0e/classActorDynRigid.html" title="This is the actor class for Dynamic Rigid Objects.">ActorDynRigid</a>, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. </p>
 
-<p>Definition at line <a class="el" href="../../d9/dc7/physactor_8h_source.html#l00133">133</a> of file <a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/dc7/physactor_8h_source.html#l00259">259</a> of file <a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a8d2941aee946c14ce616d4d856ddf758"></a><!-- doxytag: member="ActorDynSoft::~ActorDynSoft" ref="a8d2941aee946c14ce616d4d856ddf758" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActorDynSoft::~ActorDynSoft </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Destructor. </p>
+<p>The class destructor. </p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00316">316</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ab56b961689401e16962d653b977e5fd6"></a><!-- doxytag: member="ActorDynSoft::AddObjectToWorld" ref="ab56b961689401e16962d653b977e5fd6" args="(PhysWorld *TargetWorld, btSoftRigidDynamicsWorld *World)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActorDynSoft::AddObjectToWorld </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *&nbsp;</td>
+          <td class="paramname"> <em>TargetWorld</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">btSoftRigidDynamicsWorld *&nbsp;</td>
+          <td class="paramname"> <em>World</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Adds the actor to the physics world. </p>
+<p>Adds the actor to the physics world. <br/>
+ This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> class. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>World</em>&nbsp;</td><td>Pointer to the physics world. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="../../dd/d7b/classActorBase.html#a1af82a2ed960fd114518fdf84d5ff146">ActorBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00324">324</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a979620b4ac447eb9875fb769d61a8092"></a><!-- doxytag: member="ActorDynSoft::CreateShapeFromMesh" ref="a979620b4ac447eb9875fb769d61a8092" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActorDynSoft::CreateShapeFromMesh </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Creates a collision shape from mesh file. </p>
+<p>This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. </p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00341">341</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a249bc0621b1d55ea0a9c7787605078d6"></a><!-- doxytag: member="ActorDynSoft::CreateSoftObject" ref="a249bc0621b1d55ea0a9c7787605078d6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActorDynSoft::CreateSoftObject </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Creates a soft object for the actor. </p>
+<p>Creates a soft object to be placed in the physics world later. <br/>
+ This is automaticly called by the Constructor and shouldn't be called manually. </p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00320">320</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaf548f7849f59956c10d79420efafffb"></a><!-- doxytag: member="ActorDynSoft::SetBulletLocation" ref="aaf548f7849f59956c10d79420efafffb" args="(PhysVector3 Location)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActorDynSoft::SetBulletLocation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&nbsp;</td>
+          <td class="paramname"> <em>Location</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the location of the physics body. </p>
+<p>This will take a <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> and set the location of the actor within the physics world. <br/>
+ This function is called on by the SetLocation function, and shouldn't be called manually. </p>
+
+<p>Reimplemented from <a class="el" href="../../dd/d7b/classActorBase.html#af64a57138bbd32c52581a5c8d0d29a76">ActorBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00329">329</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abbb2c795bd07b014239f157b440bc53d"></a><!-- doxytag: member="ActorDynSoft::SetBulletOrientation" ref="abbb2c795bd07b014239f157b440bc53d" args="(PhysQuaternion Rotation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActorDynSoft::SetBulletOrientation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a>&nbsp;</td>
+          <td class="paramname"> <em>Rotation</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the orientation of the physics body. </p>
+<p>This will take a <a class="el" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> and set the orientation of the actor within the physics world. <br/>
+ This function is called on by the SetOrientation function, and shouldn't be called manually. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Rotation</em>&nbsp;</td><td>The quaternion representing the rotation of the actor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="../../dd/d7b/classActorBase.html#adf817bd5a7c562f31f6724a06a3a0f79">ActorBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00335">335</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a></li>
 <li><a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 16 01:58:25 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Apr 17 17:25:05 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

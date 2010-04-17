@@ -105,7 +105,7 @@
 <a name="l00081"></a>00081 <span class="comment">//Forward declarations to prevent infite loop of includes</span>
 <a name="l00082"></a>00082 <span class="keyword">class </span><a class="code" href="../../df/d9a/classSettings.html">Settings</a>;
 <a name="l00083"></a>00083 <span class="keyword">class </span><a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>;
-<a name="l00084"></a>00084 <span class="keyword">class </span><a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a>;
+<a name="l00084"></a>00084 <span class="keyword">class </span><a class="code" href="../../dd/d7b/classActorBase.html" title="This is the header file for the Actor class hierarchy.">ActorBase</a>;
 <a name="l00085"></a>00085 <span class="comment">//Other forward declarations</span>
 <a name="l00086"></a>00086 <span class="comment">//forward Declarations so that we do not need #include &quot;SDL.h&quot;</span>
 <a name="l00087"></a>00087 <span class="keyword">class </span>SDL_Surface;
@@ -198,7 +198,7 @@
 <a name="l00174"></a>00174 <span class="comment">        /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly</span>
 <a name="l00175"></a>00175 <span class="comment"></span>        <span class="keyword">friend</span> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a54ca2a75bbccb9b2129f434874f1e693" title="Do Not Use this, This should be treated as an internal function, it is subject to...">RenderPhysWorld</a>(<a class="code" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> *TheWorld);
 <a name="l00176"></a>00176 
-<a name="l00177"></a>00177         <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a>;
+<a name="l00177"></a>00177         <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../dd/d7b/classActorBase.html" title="This is the header file for the Actor class hierarchy.">ActorBase</a>;
 <a name="l00178"></a>00178         <span class="keyword">public</span>:
 <a name="l00179"></a>00179 <span class="comment"></span>
 <a name="l00180"></a>00180 <span class="comment">        /// @todo TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset</span>
@@ -320,7 +320,7 @@
 <a name="l00296"></a>00296 <span class="comment">        /// @details The takes over for manager an Actor, and makes sure that it&apos;s physics status and 3d graphics status are properly handled. Once an</span>
 <a name="l00297"></a>00297 <span class="comment">        /// actor has been passed into the Physworld using this, the physworld handle deleting it.</span>
 <a name="l00298"></a>00298 <span class="comment">        /// @param ActorToAdd This is a pointer to the actor to be added</span>
-<a name="l00299"></a>00299 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29" title="The adds and Actor to the physworld.">AddActor</a>(<a class="code" href="../../dd/d7b/classActorBase.html">ActorBase</a>* ActorToAdd);
+<a name="l00299"></a>00299 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29" title="The adds and Actor to the physworld.">AddActor</a>(<a class="code" href="../../dd/d7b/classActorBase.html" title="This is the header file for the Actor class hierarchy.">ActorBase</a>* ActorToAdd);
 <a name="l00300"></a>00300 <span class="comment"></span>
 <a name="l00301"></a>00301 <span class="comment">        /// @brief</span>
 <a name="l00302"></a>00302 <span class="comment">        /// @param Location</span>
@@ -348,11 +348,11 @@
 <a name="l00324"></a>00324 <span class="comment"></span>
 <a name="l00325"></a>00325 <span class="comment">        /// @brief This is the default pointer to the Event Manager.</span>
 <a name="l00326"></a>00326 <span class="comment">        /// @details This is the Event manager that all physworld members will place any events into.</span>
-<a name="l00327"></a><a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc">00327</a> <span class="comment"></span>                <a class="code" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a>* <a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>;
+<a name="l00327"></a><a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc">00327</a> <span class="comment"></span>                <a class="code" href="../../d5/dd7/classPhysEventManager.html" title="This is a container for Events and facilitates the transfer of data.">PhysEventManager</a>* <a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>;
 <a name="l00328"></a>00328 };
 <a name="l00329"></a>00329 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 16 01:58:24 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Apr 17 17:25:05 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

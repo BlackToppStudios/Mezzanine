@@ -27,20 +27,44 @@
 </div>
 <div class="contents">
 <h1>PhysEventManager Class Reference</h1><!-- doxytag: class="PhysEventManager" -->
+<p>This is a container for Events and facilitates the transfer of data.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d2/d73/physeventmanager_8h_source.html">physeventmanager.h</a>&gt;</code></p>
+
 <p><a href="../../d4/d79/classPhysEventManager-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd7/classPhysEventManager.html#a217e7f6006aaf5e08e2872fa4d66e5e2">PhysEventManager</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab14d238e7abe9919be8e2d9eef388b64"></a><!-- doxytag: member="PhysEventManager::GetRemainingEventCount" ref="ab14d238e7abe9919be8e2d9eef388b64" args="()" -->
-unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetRemainingEventCount</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6de94bc6c23dcbd7e15785cadee2e80b"></a><!-- doxytag: member="PhysEventManager::GetNextEvent" ref="a6de94bc6c23dcbd7e15785cadee2e80b" args="()" -->
-<a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetNextEvent</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f2d0506ce816176913e5bdfaa9fd724"></a><!-- doxytag: member="PhysEventManager::GetNextRenderTimeEvent" ref="a1f2d0506ce816176913e5bdfaa9fd724" args="()" -->
-<a class="el" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetNextRenderTimeEvent</b> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#a217e7f6006aaf5e08e2872fa4d66e5e2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd7/classPhysEventManager.html#ab14d238e7abe9919be8e2d9eef388b64">GetRemainingEventCount</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets a count of events.  <a href="#ab14d238e7abe9919be8e2d9eef388b64"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd7/classPhysEventManager.html#a6de94bc6c23dcbd7e15785cadee2e80b">GetNextEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Return a pointer to the Next event.  <a href="#a6de94bc6c23dcbd7e15785cadee2e80b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd7/classPhysEventManager.html#a3122b32172326ac32cfecc828b820977">PopNextEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Return a pointer to the Next event, and removes the Event from storage.  <a href="#a3122b32172326ac32cfecc828b820977"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd7/classPhysEventManager.html#ad040054bd9018ff0fd27ad78ec1e87fa">RemoveNextEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes an Event From the que without looking at it.  <a href="#ad040054bd9018ff0fd27ad78ec1e87fa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd7/classPhysEventManager.html#a1f2d0506ce816176913e5bdfaa9fd724">GetNextRenderTimeEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the Next Rendertime event.  <a href="#a1f2d0506ce816176913e5bdfaa9fd724"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd7/classPhysEventManager.html#ad627925363fdbcff98e0faef204e81e2">PopNextRenderTimeEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the Next Rendertime event and removes it from the Que.  <a href="#ad627925363fdbcff98e0faef204e81e2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd7/classPhysEventManager.html#a56acc075e743921e27284c023b3298ce">RemoveNextRenderTimeEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes the First Rendertime Event From the que without looking at it.  <a href="#a56acc075e743921e27284c023b3298ce"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4874a9b1138d2351bf28e527a66c02b8"></a><!-- doxytag: member="PhysEventManager::GetNextUserInputEvent" ref="a4874a9b1138d2351bf28e527a66c02b8" args="()" -->
 <a class="el" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetNextUserInputEvent</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6612a6e1c728941e2c467e7f136ca51"></a><!-- doxytag: member="PhysEventManager::PopNextUserInputEvent" ref="ad6612a6e1c728941e2c467e7f136ca51" args="()" -->
+<a class="el" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>PopNextUserInputEvent</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c6f5296c9961fa469ebe06d7599283a"></a><!-- doxytag: member="PhysEventManager::RemoveNextUserInputEvent" ref="a9c6f5296c9961fa469ebe06d7599283a" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>RemoveNextUserInputEvent</b> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c9bb46b17f6d9245817a402dc6a2f6f"></a><!-- doxytag: member="PhysEventManager::AddEvent" ref="a7c9bb46b17f6d9245817a402dc6a2f6f" args="(PhysEvent *EventToAdd)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>AddEvent</b> (<a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a> *EventToAdd)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69b417024fd68d0a92c4e72f513f1476"></a><!-- doxytag: member="PhysEventManager::GetNextSpecificEvent" ref="a69b417024fd68d0a92c4e72f513f1476" args="()" -->
+<a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetNextSpecificEvent</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4d9d04e2ec108527865cdde4264932e"></a><!-- doxytag: member="PhysEventManager::PopNextSpecificEvent" ref="aa4d9d04e2ec108527865cdde4264932e" args="()" -->
+<a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>PopNextSpecificEvent</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5cb3e925f4d2183650e3fd71dbcc4bb"></a><!-- doxytag: member="PhysEventManager::RemoveNextSpecificEvent" ref="ac5cb3e925f4d2183650e3fd71dbcc4bb" args="()" -->
+<a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RemoveNextSpecificEvent</b> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dd7/classPhysEventManager.html#a1e99385441c5377a741561db581ef3ae">AddPollingCheck</a> (const <a class="el" href="../../d7/d72/classMetaCode.html">MetaCode</a> &amp;InputToTryPolling)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generates extra events each iteration of the main loop, based on user input polling.  <a href="#a1e99385441c5377a741561db581ef3ae"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77b22f706d22914602982cbcaf05bba9"></a><!-- doxytag: member="PhysEventManager::DoQuitMessagesExist" ref="a77b22f706d22914602982cbcaf05bba9" args="()" -->
@@ -52,8 +76,15 @@ static bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>IgnoreQuitEven
 static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetIgnoreQuitEvents</b> (bool Ignore)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>This is a container for Events and facilitates the transfer of data. </p>
+<p>The Event Manager Exists to passed important information about Gamestate from where it is generated to where it is needed. It is the Game Developers option whether they want to grab events directly using the get functions that have filters, or if they want to get all the events at once from a central location and dispatch form there. <br/>
+ Since all User input comes in the form of events, this is also where user input Polling and optional input sources like Joysticks are controlled from. <br/>
+ All of these event are stored in an internal Queue and order is preserved. So the First item In will be the First Out (FIFO). This is not strictly a FIFO buffer, there are a number of functions for getting of managing specific kinds of events. Generally these 'Filtered' management functions Still return the first of those kinds of event. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Delete pointers you get from this. Anything can create events and Put them here, and anything can get them out, This means the simple way to not cause memory leaks is to have the routines extracting the events delete the events. </dd>
+<dd>
+Currently thi is not thread safe, even though it should be. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d2/d73/physeventmanager_8h_source.html#l00056">56</a> of file <a class="el" href="../../d2/d73/physeventmanager_8h_source.html">physeventmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/d73/physeventmanager_8h_source.html#l00078">78</a> of file <a class="el" href="../../d2/d73/physeventmanager_8h_source.html">physeventmanager.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a217e7f6006aaf5e08e2872fa4d66e5e2"></a><!-- doxytag: member="PhysEventManager::PhysEventManager" ref="a217e7f6006aaf5e08e2872fa4d66e5e2" args="()" -->
 <div class="memitem">
@@ -69,7 +100,10 @@ static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetIgnoreQuitE
       </table>
 </div>
 <div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="../../todo.html#_todo000005">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
+
+<p>Default constructor. </p>
+<p>This creates an empty PhysEventManger</p>
+<dl class="todo"><dt><b><a class="el" href="../../todo.html#_todo000005">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="../../d5/dd7/classPhysEventManager.html" title="This is a container for Events and facilitates the transfer of data.">PhysEventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
 
 <p>Definition at line <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a>.</p>
 
@@ -103,12 +137,185 @@ static void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetIgnoreQuitE
 
 </div>
 </div>
+<a class="anchor" id="a6de94bc6c23dcbd7e15785cadee2e80b"></a><!-- doxytag: member="PhysEventManager::GetNextEvent" ref="a6de94bc6c23dcbd7e15785cadee2e80b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a> * PhysEventManager::GetNextEvent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Return a pointer to the Next event. </p>
+<p>This returns a pointer to the next <a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>. It is advisable to use this for performance reasons because it runs in constant time. However it does not return a specific kind of event, and must be cast in order to use the true content. This returns a pointer to 0 if there are no events in the que. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html#l00072">72</a> of file <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1f2d0506ce816176913e5bdfaa9fd724"></a><!-- doxytag: member="PhysEventManager::GetNextRenderTimeEvent" ref="a1f2d0506ce816176913e5bdfaa9fd724" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a> * PhysEventManager::GetNextRenderTimeEvent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns a pointer to the Next Rendertime event. </p>
+<p>This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no redertime events in the que. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html#l00107">107</a> of file <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab14d238e7abe9919be8e2d9eef388b64"></a><!-- doxytag: member="PhysEventManager::GetRemainingEventCount" ref="ab14d238e7abe9919be8e2d9eef388b64" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int PhysEventManager::GetRemainingEventCount </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets a count of events. </p>
+<p>This returns a total count of all events stored in this <a class="el" href="../../d5/dd7/classPhysEventManager.html" title="This is a container for Events and facilitates the transfer of data.">PhysEventManager</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns an unsigned integer with the amount of of total events </dd></dl>
+
+<p>Definition at line <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html#l00067">67</a> of file <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3122b32172326ac32cfecc828b820977"></a><!-- doxytag: member="PhysEventManager::PopNextEvent" ref="a3122b32172326ac32cfecc828b820977" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a> * PhysEventManager::PopNextEvent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Return a pointer to the Next event, and removes the Event from storage. </p>
+<p>This functions just like GetNextEvent , except that it also removes the item from the internal storage of the <a class="el" href="../../d5/dd7/classPhysEventManager.html" title="This is a container for Events and facilitates the transfer of data.">PhysEventManager</a>. This returns a pointer to 0 if there are no events in the que. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>, that will need to be deleted once it has been used. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html#l00082">82</a> of file <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad627925363fdbcff98e0faef204e81e2"></a><!-- doxytag: member="PhysEventManager::PopNextRenderTimeEvent" ref="ad627925363fdbcff98e0faef204e81e2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a> * PhysEventManager::PopNextRenderTimeEvent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns a pointer to the Next Rendertime event and removes it from the Que. </p>
+<p>This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no redertime events in the que. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html#l00121">121</a> of file <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad040054bd9018ff0fd27ad78ec1e87fa"></a><!-- doxytag: member="PhysEventManager::RemoveNextEvent" ref="ad040054bd9018ff0fd27ad78ec1e87fa" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PhysEventManager::RemoveNextEvent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removes an Event From the que without looking at it. </p>
+<p>This together with <a class="el" href="../../d5/dd7/classPhysEventManager.html#a6de94bc6c23dcbd7e15785cadee2e80b" title="Return a pointer to the Next event.">GetNextEvent()</a> are the same as call <a class="el" href="../../d5/dd7/classPhysEventManager.html#a3122b32172326ac32cfecc828b820977" title="Return a pointer to the Next event, and removes the Event from storage.">PopNextEvent()</a>. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>If you did not call <a class="el" href="../../d5/dd7/classPhysEventManager.html#a6de94bc6c23dcbd7e15785cadee2e80b" title="Return a pointer to the Next event.">GetNextEvent()</a> and haven't delete or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>This</em>&nbsp;</td><td>can throw any STL exception a que could. Any with likely throw some kind of except if called when there are no Events in the Que. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html#l00093">93</a> of file <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a56acc075e743921e27284c023b3298ce"></a><!-- doxytag: member="PhysEventManager::RemoveNextRenderTimeEvent" ref="a56acc075e743921e27284c023b3298ce" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PhysEventManager::RemoveNextRenderTimeEvent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removes the First Rendertime Event From the que without looking at it. </p>
+<p>This together with <a class="el" href="../../d5/dd7/classPhysEventManager.html#a1f2d0506ce816176913e5bdfaa9fd724" title="Returns a pointer to the Next Rendertime event.">GetNextRenderTimeEvent()</a> are the pretty much same as call <a class="el" href="../../d5/dd7/classPhysEventManager.html#ad627925363fdbcff98e0faef204e81e2" title="Returns a pointer to the Next Rendertime event and removes it from the Que.">PopNextRenderTimeEvent()</a>. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>If you did not call <a class="el" href="../../d5/dd7/classPhysEventManager.html#a1f2d0506ce816176913e5bdfaa9fd724" title="Returns a pointer to the Next Rendertime event.">GetNextRenderTimeEvent()</a> and haven't delete or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>This</em>&nbsp;</td><td>can throw any STL exception a que could. Any with likely throw some kind of except if called when there are no Events in the Que. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html#l00136">136</a> of file <a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d2/d73/physeventmanager_8h_source.html">physeventmanager.h</a></li>
 <li><a class="el" href="../../da/d58/physeventmanager_8cpp_source.html">physeventmanager.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Fri Apr 16 01:58:25 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Apr 17 17:25:06 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
