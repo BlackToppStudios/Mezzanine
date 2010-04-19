@@ -318,8 +318,18 @@ enum \hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{InputCode} \{ \
 \par
 {\bfseries KEYMOD\_\-MODE} =  334, 
 {\bfseries KEYMOD\_\-RESERVED} =  335, 
-{\bfseries KEY\_\-LAST} =  479, 
-\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c}{INPUTEVENT\_\-FIRST} =  480, 
+{\bfseries KEY\_\-LAST} =  379, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c}{INPUTEVENT\_\-FIRST} =  380, 
+\par
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a21ee5ef5ddcbacbb4a90990ca56ee0a3}{MOTION\_\-FIRST} =  460, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a1311c6065d4176f097d494bc33001b45}{MOTION\_\-LAST} =  469, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aae6fbdfa76ec071a3b86d3eec35efa3b}{MULTITOUCH\_\-FIRST} =  470, 
+\hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a424167ec6d1df3c1d8ebf5d8fc458387}{MULTITOUCH\_\-ACTION} =  471, 
+\par
+{\bfseries MULTITOUCH\_\-GESTURE} =  472, 
+{\bfseries MULTITOUCH\_\-PINCH} =  473, 
+{\bfseries MULTITOUCH\_\-STRETCH} =  474, 
+{\bfseries MULTITOUCH\_\-LAST} =  479, 
 \par
 \hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a98454cf025e1b11ac8978c4b493582c4}{MOUSE\_\-FIRST} =  480, 
 \hyperlink{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a90e6bf109b0decae5cc828ebc5934dfa}{MOUSEBUTTON} =  481, 
@@ -418,7 +428,7 @@ BUTTON\_\-DOWN}
 
 
 
-Definition at line 388 of file metacode.h.\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{
+Definition at line 398 of file metacode.h.\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24}{
 \index{MetaCode@{MetaCode}!InputCode@{InputCode}}
 \index{InputCode@{InputCode}!MetaCode@{MetaCode}}
 \subsubsection[{InputCode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf MetaCode::InputCode}}}
@@ -468,11 +478,27 @@ KEY\_\-UNDO}
 \hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c}{
 INPUTEVENT\_\-FIRST}
 \label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c}
-}]The last KeyCode, all Keys values will be less than this, and all Events will be larger than that. \index{MOUSE\_\-FIRST@{MOUSE\_\-FIRST}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!MOUSE\_\-FIRST@{MOUSE\_\-FIRST}}\item[{\em 
+}]The last KeyCode, all Keys values will be less than this, and all Events will be larger than that. \index{MOTION\_\-FIRST@{MOTION\_\-FIRST}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!MOTION\_\-FIRST@{MOTION\_\-FIRST}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a21ee5ef5ddcbacbb4a90990ca56ee0a3}{
+MOTION\_\-FIRST}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a21ee5ef5ddcbacbb4a90990ca56ee0a3}
+}]The First non-\/event, all Keys values will be Less than this. \index{MOTION\_\-LAST@{MOTION\_\-LAST}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!MOTION\_\-LAST@{MOTION\_\-LAST}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a1311c6065d4176f097d494bc33001b45}{
+MOTION\_\-LAST}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a1311c6065d4176f097d494bc33001b45}
+}]The first Motion event. \index{MULTITOUCH\_\-FIRST@{MULTITOUCH\_\-FIRST}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!MULTITOUCH\_\-FIRST@{MULTITOUCH\_\-FIRST}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aae6fbdfa76ec071a3b86d3eec35efa3b}{
+MULTITOUCH\_\-FIRST}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24aae6fbdfa76ec071a3b86d3eec35efa3b}
+}]The last Motion event. \index{MULTITOUCH\_\-ACTION@{MULTITOUCH\_\-ACTION}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!MULTITOUCH\_\-ACTION@{MULTITOUCH\_\-ACTION}}\item[{\em 
+\hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a424167ec6d1df3c1d8ebf5d8fc458387}{
+MULTITOUCH\_\-ACTION}
+\label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a424167ec6d1df3c1d8ebf5d8fc458387}
+}]The first Multi Touch event. \index{MOUSE\_\-FIRST@{MOUSE\_\-FIRST}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!MOUSE\_\-FIRST@{MOUSE\_\-FIRST}}\item[{\em 
 \hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a98454cf025e1b11ac8978c4b493582c4}{
 MOUSE\_\-FIRST}
 \label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a98454cf025e1b11ac8978c4b493582c4}
-}]The First non-\/event, all Keys values will be more than this. \index{MOUSEBUTTON@{MOUSEBUTTON}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!MOUSEBUTTON@{MOUSEBUTTON}}\item[{\em 
+}]The last Multi Touch event. \index{MOUSEBUTTON@{MOUSEBUTTON}!MetaCode@{MetaCode}}\index{MetaCode@{MetaCode}!MOUSEBUTTON@{MOUSEBUTTON}}\item[{\em 
 \hypertarget{classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a90e6bf109b0decae5cc828ebc5934dfa}{
 MOUSEBUTTON}
 \label{d7/d72/classMetaCode_a7390e6f58e25c0ce377bba4e63081b24a90e6bf109b0decae5cc828ebc5934dfa}
@@ -520,7 +546,7 @@ MOUSEWHEEL\_\-DOWN}
 
 
 
-Definition at line 399 of file metacode.h.
+Definition at line 409 of file metacode.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classMetaCode_a6d4637b2894e5a2d46577c08259a2416}{

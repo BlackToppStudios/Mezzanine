@@ -41,9 +41,9 @@
 #define _physeventmanager_h
 ///////////////////////////////////////////////////////////////////////////////
 //This will capture all event and store them for easy dispatching.
-//
 //There will be an instance of this class in the physworld.
 ///////////////////////////////////////
+
 #include <list>
 
 using namespace std;
@@ -51,6 +51,8 @@ using namespace std;
 #include "physevent.h"
 #include "physeventrendertime.h"
 #include "physeventuserinput.h"
+
+class PhysWorld;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @class PhysEventManager
@@ -73,7 +75,7 @@ using namespace std;
 /// Put them here, and anything can get them out, This means the simple way to
 /// not cause memory leaks is to have the routines extracting the events delete
 /// the events.
-/// @warning Currently thi is not thread safe, even though it should be.
+/// @warning Currently this is not thread safe, even though it should be.
 ///////////////////////////////////////////////////////////////////////////////
 class PhysEventManager
 {
@@ -87,10 +89,13 @@ class PhysEventManager
         //a List of the
         vector<int> WatchKeyboardKeys;
 
+        PhysWorld* ParentWorld;
+
 	public:
         /// @brief Default constructor
+        /// @param ParentWorld_ A pointer to the world that this physworld is working with Primarily
         /// @details This creates an empty PhysEventManger
-		PhysEventManager();
+		PhysEventManager(PhysWorld* ParentWorld_);
 
         //These functions will give you the next event or help you manage the events
         //Whenever and event is gotten it is removed form the event queue
@@ -116,10 +121,16 @@ class PhysEventManager
 
         /// @brief Removes an Event From the que without looking at it.
         /// @details This together with GetNextEvent() are the same as call PopNextEvent().
-        /// @warning If you did not call GetNextEvent() and haven't delete or stored, or somehow dealt with this pointer, then this is a memory leak.
+        /// @warning If you did not call GetNextEvent() and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak.
         /// Don't use this unless you are certain you have taken care of the pointer appropriately
         /// @exception This can throw any STL exception a que could. Any with likely throw some kind of except if called when there are no Events in the Que.
         void RemoveNextEvent();
+
+        /// @brief Adds an event of any kind to the end of the Event Queue
+        /// @param EventToAdd This is a pointer to an Event.
+        /// @details This adds the existing event to the Queue. Be careful this is not delete, and does not go out of scope. Deleting the Event is now the
+        /// responsibilty of the code that pulls it out of Event Manager.
+        void AddEvent(PhysEvent* EventToAdd);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - RenderTime Events
@@ -127,44 +138,86 @@ class PhysEventManager
         /// @brief Returns a pointer to the Next Rendertime event
         /// @details This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use
         /// this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately
-        /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no redertime
+        /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no rendertime
         /// events in the que.
         /// @return A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted.
 		PhysEventRenderTime* GetNextRenderTimeEvent();
 
-
         /// @brief Returns a pointer to the Next Rendertime event and removes it from the Que
         /// @details This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use
         /// this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately
-        /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no redertime
-        /// events in the que.
+        /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no rendertime
+        /// events in the que. This also removes the returned pointer form the Que.
         /// @return A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted.
 		PhysEventRenderTime* PopNextRenderTimeEvent();
 
 		/// @brief Removes the First Rendertime Event From the que without looking at it.
         /// @details This together with GetNextRenderTimeEvent() are the pretty much same as call PopNextRenderTimeEvent().
-        /// @warning If you did not call GetNextRenderTimeEvent() and haven't delete or stored, or somehow dealt with this pointer, then this is a memory leak.
+        /// @warning If you did not call GetNextRenderTimeEvent() and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak.
         /// Don't use this unless you are certain you have taken care of the pointer appropriately
-        /// @exception This can throw any STL exception a que could. Any with likely throw some kind of except if called when there are no Events in the Que.
+        /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
         void RemoveNextRenderTimeEvent();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - User Input Events
         ///////////////////////////////////////
-
+        /// @brief Returns a pointer to the Next User Input event
+        /// @details This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use
+        /// this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately
+        /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input
+        /// events in the que.
+        /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
         PhysEventUserInput* GetNextUserInputEvent();
-        PhysEventUserInput* PopNextUserInputEvent();
-        void RemoveNextUserInputEvent();
 
-        //By and large the Game won't use this, but there is no reason it shouldn't
-		void AddEvent(PhysEvent* EventToAdd);
+        /// @brief Returns a pointer to the Next User Input event and removes it from the Que
+        /// @details This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use
+        /// this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately
+        /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input
+        /// events in the que. This also removes the returned pointer form the Que.
+        /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
+        PhysEventUserInput* PopNextUserInputEvent();
+
+        /// @brief Removes the First User Input Event From the que without looking at it.
+        /// @details This together with GetNextUserInputEvent() are the pretty much same as call PopNextUserInputEvent().
+        /// @warning If you did not call GetNextUserInputEvent() and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak.
+        /// Don't use this unless you are certain you have taken care of the pointer appropriately
+        /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
+        void RemoveNextUserInputEvent();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - You choose YAYYYY!!!
         ///////////////////////////////////////
-        PhysEvent* GetNextSpecificEvent();
-        PhysEvent* PopNextSpecificEvent();
-        PhysEvent* RemoveNextSpecificEvent();
+        /// @brief Returns a pointer to the Next kind event of the Specified type
+        /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with
+        /// @details This and the other NextSpecificEvent functions are the core of the Event Filtering System. In general the other filtering
+        /// functions call one of these and does very little work on their own. \n This performs a linear search starting with the oldest (first entered
+        /// Events) and simply checks if it the of the correct type. Then this returns a pointer to the next event of the specified type, or returns
+        /// a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use
+        /// this for performance reasons becuase it runs in linear time relative to the amount of events.
+        /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
+        PhysEvent* GetNextSpecificEvent(PhysEvent::EventType SpecificType);
+
+        /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que
+        /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with
+        /// @details This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que.
+        /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
+        PhysEvent* PopNextSpecificEvent(PhysEvent::EventType SpecificType);
+
+        /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que
+        /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with
+        /// @details This is just like PopNextSpecificEvent(PhysEvent::EventType SpecificType) but exept it doesn't bother with any of the needed
+        /// structure involved with returning data, and just removes the specific evetn from the Que.
+        /// @warning If you did not call GetNextSpecificEvent(PhysEvent::EventType SpecificType) and haven't deleted or stored, or somehow dealt with
+        /// this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately.
+        /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
+        void RemoveNextSpecificEvent(PhysEvent::EventType SpecificType);
+
+        //different platforms treat exiting the application differently, to work around that
+        //we can use this to help identify if it comes accross as a normal event, or if we must
+        //quit without generating one
+        bool DoQuitMessagesExist();
+        static bool IgnoreQuitEvents();                //if true, don't exit
+        static void SetIgnoreQuitEvents(bool Ignore);  //if false exit when x is clicked.
 
         /// @brief Generates extra events each iteration of the main loop, based on user input polling
         /// @param InputToTryPolling By default this accepts a MetaCode and will try to watch for occurences like this one
@@ -173,12 +226,11 @@ class PhysEventManager
         /// that happened, and it will also have a meta code for each time this function was called. The added metacode
         void AddPollingCheck(const MetaCode &InputToTryPolling);
 
-        //different platforms treat exiting the application differently, to work around that
-        //we can use this to help identify if it comes accross as a normal event, or if we must
-        //quit without generating one
-        bool DoQuitMessagesExist();
-        static bool IgnoreQuitEvents();                //if true, don't exit
-        static void SetIgnoreQuitEvents(bool Ignore);  //if false exit when x is clicked.
+        /// @brief This activates the polling routines of the user input subsystems
+        /// @details This checks the current state of user input devices that have been added by AddPollingCheck(const MetaCode &InputToTryPolling).
+        /// This is called automatically by main loop processing, but there is no harm in calling it several times.
+        /// @return This returns a pointer to a PhysEventUserInput that contains the desired metacodes
+        PhysEventUserInput* PollForUserInputEvents();
 
 };
 

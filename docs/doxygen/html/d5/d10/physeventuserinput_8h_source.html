@@ -117,97 +117,111 @@
 <a name="l00093"></a><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">00093</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> : <span class="keyword">public</span> <a class="code" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>
 <a name="l00094"></a>00094 {
 <a name="l00095"></a>00095     <span class="keyword">private</span>:
-<a name="l00096"></a>00096         vector&lt;MetaCode&gt; Code;
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098         <span class="comment">//Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if</span>
-<a name="l00099"></a>00099         <span class="comment">//passed any other kind of data.</span>
-<a name="l00100"></a>00100         <span class="keywordtype">void</span> AddCodesFromSDLMouseButton(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
-<a name="l00101"></a>00101         <span class="keywordtype">void</span> AddCodesFromSDLMouseMotion(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00104"></a>00104 <span class="comment">        /// @brief Default constructor</span>
-<a name="l00105"></a>00105 <span class="comment">        /// @details This creates a perfectly functional, but empty PhysEventUserInput.</span>
-<a name="l00106"></a>00106 <span class="comment"></span>        <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a6f8eaf698e8109d5cb30f2f17044f1ba" title="Default constructor.">PhysEventUserInput</a>();
-<a name="l00107"></a>00107 <span class="comment"></span>
-<a name="l00108"></a>00108 <span class="comment">        /// @brief Single Data Point constructor</span>
-<a name="l00109"></a>00109 <span class="comment">        /// @param Code_ This MetaCode will be added to the PhysEventUserInput during creation.</span>
-<a name="l00110"></a>00110 <span class="comment">        /// @details This creates a functional PhysEventUserInput which already contains one metacode.</span>
-<a name="l00111"></a>00111 <span class="comment"></span>        <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a6f8eaf698e8109d5cb30f2f17044f1ba" title="Default constructor.">PhysEventUserInput</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
-<a name="l00112"></a>00112 <span class="comment"></span>
-<a name="l00113"></a>00113 <span class="comment">        /// @brief Multi Data Point constructor</span>
-<a name="l00114"></a>00114 <span class="comment">        /// @param Code_ The MetaCodes in this vecotor will be added to the PhysEventUserInput during creation.</span>
-<a name="l00115"></a>00115 <span class="comment">        /// @details This creates a ready to use PhysEventUserInput which already contains all the metacodes included.</span>
-<a name="l00116"></a>00116 <span class="comment"></span>        <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a6f8eaf698e8109d5cb30f2f17044f1ba" title="Default constructor.">PhysEventUserInput</a>(<span class="keyword">const</span> vector&lt;MetaCode&gt; &amp;Code_);
-<a name="l00117"></a>00117         <span class="keyword">virtual</span> ~<a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>();
+<a name="l00096"></a>00096         <span class="comment">//Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if</span>
+<a name="l00097"></a>00097         <span class="comment">//passed any other kind of data.</span>
+<a name="l00098"></a>00098         <span class="keywordtype">void</span> AddCodesFromSDLMouseButton(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00099"></a>00099         <span class="keywordtype">void</span> AddCodesFromSDLMouseMotion(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101     <span class="keyword">protected</span>:
+<a name="l00102"></a>00102         vector&lt;MetaCode&gt; Code;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">        /// @brief Default constructor</span>
+<a name="l00106"></a>00106 <span class="comment">        /// @details This creates a perfectly functional, but empty PhysEventUserInput.</span>
+<a name="l00107"></a>00107 <span class="comment"></span>        <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a6f8eaf698e8109d5cb30f2f17044f1ba" title="Default constructor.">PhysEventUserInput</a>();
+<a name="l00108"></a>00108 <span class="comment"></span>
+<a name="l00109"></a>00109 <span class="comment">        /// @brief Single Data Point constructor</span>
+<a name="l00110"></a>00110 <span class="comment">        /// @param Code_ This MetaCode will be added to the PhysEventUserInput during creation.</span>
+<a name="l00111"></a>00111 <span class="comment">        /// @details This creates a functional PhysEventUserInput which already contains one metacode.</span>
+<a name="l00112"></a>00112 <span class="comment"></span>        <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a6f8eaf698e8109d5cb30f2f17044f1ba" title="Default constructor.">PhysEventUserInput</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
+<a name="l00113"></a>00113 <span class="comment"></span>
+<a name="l00114"></a>00114 <span class="comment">        /// @brief Multi Data Point constructor</span>
+<a name="l00115"></a>00115 <span class="comment">        /// @param Code_ The MetaCodes in this vecotor will be added to the PhysEventUserInput during creation.</span>
+<a name="l00116"></a>00116 <span class="comment">        /// @details This creates a ready to use PhysEventUserInput which already contains all the metacodes included.</span>
+<a name="l00117"></a>00117 <span class="comment"></span>        <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a6f8eaf698e8109d5cb30f2f17044f1ba" title="Default constructor.">PhysEventUserInput</a>(<span class="keyword">const</span> vector&lt;MetaCode&gt; &amp;Codes_);
 <a name="l00118"></a>00118 
-<a name="l00119"></a>00119         <span class="comment">//code managment functions</span><span class="comment"></span>
-<a name="l00120"></a>00120 <span class="comment">        /// @brief Single Data Point constructor</span>
-<a name="l00121"></a>00121 <span class="comment">        /// @param Code_ which Metacode to return.</span>
-<a name="l00122"></a>00122 <span class="comment">        /// @return Index The requested MetaCode</span>
-<a name="l00123"></a>00123 <span class="comment">        /// @details This function simply retrieves the requested MetaCode. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists</span>
-<a name="l00124"></a>00124 <span class="comment">        /// \n This is useful for accessing each MetaCode stored in this physUserInputEvent.</span>
-<a name="l00125"></a>00125 <span class="comment"></span>        <span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#aa564530c27f6983bb412e46c2c7ed086" title="Single Data Point constructor.">GetMetaCode</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;Index);
-<a name="l00126"></a>00126 <span class="comment"></span>
-<a name="l00127"></a>00127 <span class="comment">        /// @brief Retrieves a count of the stored Metacodes</span>
-<a name="l00128"></a>00128 <span class="comment">        /// @return The amount of codes stored in this physEventUserInput.</span>
-<a name="l00129"></a>00129 <span class="comment">        /// @details</span>
-<a name="l00130"></a>00130 <span class="comment"></span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a86df812a38566a572134100a422a8799" title="Retrieves a count of the stored Metacodes.">GetMetaCodeCount</a>();
-<a name="l00131"></a>00131 <span class="comment"></span>
-<a name="l00132"></a>00132 <span class="comment">        /// @brief Adds a MetaCode</span>
-<a name="l00133"></a>00133 <span class="comment">        /// @param Code_ The User Input MetaCode tobe added</span>
-<a name="l00134"></a>00134 <span class="comment">        /// @details This adds an existing metacode to this event.</span>
-<a name="l00135"></a>00135 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d" title="Adds a MetaCode.">AddCode</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
-<a name="l00136"></a>00136 <span class="comment"></span>
-<a name="l00137"></a>00137 <span class="comment">        /// @brief Adds a Created From Raw Values</span>
-<a name="l00138"></a>00138 <span class="comment">        /// @param MetaValue_ The MetaValue that will be in the MetaCode</span>
-<a name="l00139"></a>00139 <span class="comment">        /// @param ID_ The ID that will be in the MetaCode</span>
-<a name="l00140"></a>00140 <span class="comment">        /// @param Code_ The InputCode that will be in the MetaCode</span>
-<a name="l00141"></a>00141 <span class="comment">        /// @details This creates metacode a metacode and adds it to this event.</span>
-<a name="l00142"></a>00142 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d" title="Adds a MetaCode.">AddCode</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_, <span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;ID_, <span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_);
-<a name="l00143"></a>00143 <span class="comment"></span>
-<a name="l00144"></a>00144 <span class="comment">        /// @brief Adds a MetaCode created from a RawEvent</span>
-<a name="l00145"></a>00145 <span class="comment">        /// @param RawEvent_ The RawEvent which will be translated into exactly One MetaCode</span>
-<a name="l00146"></a>00146 <span class="comment">        /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is</span>
-<a name="l00147"></a>00147 <span class="comment">        /// recommended to not use this in game code.</span>
-<a name="l00148"></a>00148 <span class="comment">        /// @warning Do not use this without reading and fully understanding the warnings on MetaCode::MetaCode(const RawEvent &amp;RawEvent_) . This function has all the same</span>
-<a name="l00149"></a>00149 <span class="comment">        /// Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must it should use</span>
-<a name="l00150"></a>00150 <span class="comment">        /// PhysEventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.</span>
-<a name="l00151"></a>00151 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d" title="Adds a MetaCode.">AddCode</a>(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
-<a name="l00152"></a>00152 <span class="comment"></span>
-<a name="l00153"></a>00153 <span class="comment">        /// @brief Adds all possible MetaCodes that can be created from the given RawEvent</span>
-<a name="l00154"></a>00154 <span class="comment">        /// @param RawEvent_ The RawEvent which will be translated into a group of metacodes and added to this</span>
-<a name="l00155"></a>00155 <span class="comment">        /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is</span>
-<a name="l00156"></a>00156 <span class="comment">        /// recommended to not use this in game code.</span>
-<a name="l00157"></a>00157 <span class="comment">        /// @warning If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must them this is the correct</span>
-<a name="l00158"></a>00158 <span class="comment">        /// function to use. This will work same on a all platforms. However, the binary format of the Rawevent could chnage meaning you would have to recompile the game code to work</span>
-<a name="l00159"></a>00159 <span class="comment">        /// with new version of the engine</span>
-<a name="l00160"></a>00160 <span class="comment">        /// \n This Function is currently incomplete, and does not yet process all events such as joysticks events and some mouse events.</span>
-<a name="l00161"></a>00161 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a9e42f42f9a4a42f792e5cf95856669c0" title="Adds all possible MetaCodes that can be created from the given RawEvent.">AddCodesFromRawEvent</a>(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
-<a name="l00162"></a>00162 <span class="comment"></span>
-<a name="l00163"></a>00163 <span class="comment">        /// @brief Removes a specific code from storage.</span>
-<a name="l00164"></a>00164 <span class="comment">        /// @param Code_ This will search for all matching copies of this</span>
-<a name="l00165"></a>00165 <span class="comment">        /// @details All MetaCodes that are equal to Code_ will simply be erased.</span>
-<a name="l00166"></a>00166 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a1dbd2996770df334fba9f67d9bb4ffa0" title="Removes a specific code from storage.">EraseCode</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
-<a name="l00167"></a>00167 <span class="comment"></span>
-<a name="l00168"></a>00168 <span class="comment">        /// @brief Removes a specific code from storage.</span>
-<a name="l00169"></a>00169 <span class="comment">        /// @param Index This is the location to removed from</span>
-<a name="l00170"></a>00170 <span class="comment">        /// @details The MetaCode at and only at the given Index will be deleted.</span>
-<a name="l00171"></a>00171 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a1dbd2996770df334fba9f67d9bb4ffa0" title="Removes a specific code from storage.">EraseCode</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;Index);
-<a name="l00172"></a>00172 <span class="comment"></span>
-<a name="l00173"></a>00173 <span class="comment">        /// @brief Removes a specific code or Adds it if not present.</span>
-<a name="l00174"></a>00174 <span class="comment">        /// @param Code_ This will search for all matching copies of this.</span>
-<a name="l00175"></a>00175 <span class="comment">        /// @details All MetaCodes that are equal to Code_ will simply be erased.</span>
-<a name="l00176"></a>00176 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a8325bb0172db6ea02fd06f4a5d1a7378" title="Removes a specific code or Adds it if not present.">ToggleCode</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
-<a name="l00177"></a>00177 <span class="comment"></span>
-<a name="l00178"></a>00178 <span class="comment">        /// @brief Returns the type of this event</span>
-<a name="l00179"></a>00179 <span class="comment">        /// @return Returns EventType::UserInput</span>
-<a name="l00180"></a>00180 <span class="comment"></span>                <span class="keyword">virtual</span> EventType <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#ab89b06b8f7aa148cad453ca9fcae5b89" title="Returns the type of this event.">getEventType</a>();
-<a name="l00181"></a>00181 };
-<a name="l00182"></a>00182 
-<a name="l00183"></a>00183 
-<a name="l00184"></a>00184 <span class="preprocessor">#endif</span>
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120         <span class="keyword">virtual</span> ~<a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>();
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122         <span class="comment">//code managment functions</span><span class="comment"></span>
+<a name="l00123"></a>00123 <span class="comment">        /// @brief Single Data Point constructor</span>
+<a name="l00124"></a>00124 <span class="comment">        /// @param Code_ which Metacode to return.</span>
+<a name="l00125"></a>00125 <span class="comment">        /// @return Index The requested MetaCode</span>
+<a name="l00126"></a>00126 <span class="comment">        /// @details This function simply retrieves the requested MetaCode. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists</span>
+<a name="l00127"></a>00127 <span class="comment">        /// \n This is useful for accessing each MetaCode stored in this physUserInputEvent.</span>
+<a name="l00128"></a>00128 <span class="comment"></span>        <span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#aa564530c27f6983bb412e46c2c7ed086" title="Single Data Point constructor.">GetMetaCode</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;Index);
+<a name="l00129"></a>00129 <span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">        /// @brief Retrieves a count of the stored Metacodes</span>
+<a name="l00131"></a>00131 <span class="comment">        /// @return The amount of codes stored in this physEventUserInput.</span>
+<a name="l00132"></a>00132 <span class="comment">        /// @details</span>
+<a name="l00133"></a>00133 <span class="comment"></span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a86df812a38566a572134100a422a8799" title="Retrieves a count of the stored Metacodes.">GetMetaCodeCount</a>();
+<a name="l00134"></a>00134 <span class="comment"></span>
+<a name="l00135"></a>00135 <span class="comment">        /// @brief Adds a MetaCode</span>
+<a name="l00136"></a>00136 <span class="comment">        /// @param Code_ The User Input MetaCode tobe added</span>
+<a name="l00137"></a>00137 <span class="comment">        /// @details This adds an existing metacode to this event.</span>
+<a name="l00138"></a>00138 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d" title="Adds a MetaCode.">AddCode</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
+<a name="l00139"></a>00139 <span class="comment"></span>
+<a name="l00140"></a>00140 <span class="comment">        /// @brief Adds a Created From Raw Values</span>
+<a name="l00141"></a>00141 <span class="comment">        /// @param MetaValue_ The MetaValue that will be in the MetaCode</span>
+<a name="l00142"></a>00142 <span class="comment">        /// @param ID_ The ID that will be in the MetaCode</span>
+<a name="l00143"></a>00143 <span class="comment">        /// @param Code_ The InputCode that will be in the MetaCode</span>
+<a name="l00144"></a>00144 <span class="comment">        /// @details This creates metacode a metacode and adds it to this event.</span>
+<a name="l00145"></a>00145 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d" title="Adds a MetaCode.">AddCode</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_, <span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;ID_, <span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_);
+<a name="l00146"></a>00146 <span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">        /// @brief Adds a MetaCode created from a RawEvent</span>
+<a name="l00148"></a>00148 <span class="comment">        /// @param RawEvent_ The RawEvent which will be translated into exactly One MetaCode</span>
+<a name="l00149"></a>00149 <span class="comment">        /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is</span>
+<a name="l00150"></a>00150 <span class="comment">        /// recommended to not use this in game code.</span>
+<a name="l00151"></a>00151 <span class="comment">        /// @warning Do not use this without reading and fully understanding the warnings on MetaCode::MetaCode(const RawEvent &amp;RawEvent_) . This function has all the same</span>
+<a name="l00152"></a>00152 <span class="comment">        /// Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must it should use</span>
+<a name="l00153"></a>00153 <span class="comment">        /// PhysEventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.</span>
+<a name="l00154"></a>00154 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d" title="Adds a MetaCode.">AddCode</a>(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00155"></a>00155 <span class="comment"></span>
+<a name="l00156"></a>00156 <span class="comment">        /// @brief Add Several MetaCodes from a vector</span>
+<a name="l00157"></a>00157 <span class="comment">        /// @param Codes_ A vector of MetaCodes to be added to this event</span>
+<a name="l00158"></a>00158 <span class="comment">        /// @details This adds several existing metacodes to this event.</span>
+<a name="l00159"></a>00159 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d" title="Adds a MetaCode.">AddCode</a>(<span class="keyword">const</span> vector&lt;MetaCode&gt; &amp;Codes);
+<a name="l00160"></a>00160 <span class="comment"></span>
+<a name="l00161"></a>00161 <span class="comment">        /// @brief Adds all possible MetaCodes that can be created from the given RawEvent</span>
+<a name="l00162"></a>00162 <span class="comment">        /// @param RawEvent_ The RawEvent which will be translated into a group of metacodes and added to this</span>
+<a name="l00163"></a>00163 <span class="comment">        /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is</span>
+<a name="l00164"></a>00164 <span class="comment">        /// recommended to not use this in game code.</span>
+<a name="l00165"></a>00165 <span class="comment">        /// @warning If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must them this is the correct</span>
+<a name="l00166"></a>00166 <span class="comment">        /// function to use. This will work same on a all platforms. However, the binary format of the Rawevent could chnage meaning you would have to recompile the game code to work</span>
+<a name="l00167"></a>00167 <span class="comment">        /// with new version of the engine</span>
+<a name="l00168"></a>00168 <span class="comment">        /// \n This Function is currently incomplete, and does not yet process all events such as joysticks events and some mouse events.</span>
+<a name="l00169"></a>00169 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a9e42f42f9a4a42f792e5cf95856669c0" title="Adds all possible MetaCodes that can be created from the given RawEvent.">AddCodesFromRawEvent</a>(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00170"></a>00170 <span class="comment"></span>
+<a name="l00171"></a>00171 <span class="comment">        /// @brief Removes a specific code from storage.</span>
+<a name="l00172"></a>00172 <span class="comment">        /// @param Code_ This will search for all matching copies of this</span>
+<a name="l00173"></a>00173 <span class="comment">        /// @details All MetaCodes that are equal to Code_ will simply be erased.</span>
+<a name="l00174"></a>00174 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a1dbd2996770df334fba9f67d9bb4ffa0" title="Removes a specific code from storage.">EraseCode</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
+<a name="l00175"></a>00175 <span class="comment"></span>
+<a name="l00176"></a>00176 <span class="comment">        /// @brief Removes a specific code from storage.</span>
+<a name="l00177"></a>00177 <span class="comment">        /// @param Index This is the location to removed from</span>
+<a name="l00178"></a>00178 <span class="comment">        /// @details The MetaCode at and only at the given Index will be deleted.</span>
+<a name="l00179"></a>00179 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a1dbd2996770df334fba9f67d9bb4ffa0" title="Removes a specific code from storage.">EraseCode</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;Index);
+<a name="l00180"></a>00180 <span class="comment"></span>
+<a name="l00181"></a>00181 <span class="comment">        /// @brief Removes a specific code or Adds it if not present.</span>
+<a name="l00182"></a>00182 <span class="comment">        /// @param Code_ This will search for all matching copies of this.</span>
+<a name="l00183"></a>00183 <span class="comment">        /// @details All MetaCodes that are equal to Code_ will simply be erased.</span>
+<a name="l00184"></a>00184 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a8325bb0172db6ea02fd06f4a5d1a7378" title="Removes a specific code or Adds it if not present.">ToggleCode</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d72/classMetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_);
+<a name="l00185"></a>00185 <span class="comment"></span>
+<a name="l00186"></a>00186 <span class="comment">        /// @brief This add all of one PhysEventUserInput to another</span>
+<a name="l00187"></a>00187 <span class="comment">        /// @param Add is the PhysEventUserInput on the right hand side of +=</span>
+<a name="l00188"></a>00188 <span class="comment">        /// @details This simply copies all the MetaCodes from one PhysEventUserInput to the other.</span>
+<a name="l00189"></a>00189 <span class="comment">        /// @return The PhysEventUserInput on the left ahnd side will now contain a set of both items MetaCodes</span>
+<a name="l00190"></a>00190 <span class="comment"></span>        <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>&amp; <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a257c2e093b5736324e39d5fac0d6de2a" title="This add all of one PhysEventUserInput to another.">operator += </a>(<span class="keyword">const</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>&amp; Add);
+<a name="l00191"></a>00191 <span class="comment"></span>
+<a name="l00192"></a>00192 <span class="comment">        /// @brief Returns the type of this event</span>
+<a name="l00193"></a>00193 <span class="comment">        /// @return Returns EventType::UserInput</span>
+<a name="l00194"></a>00194 <span class="comment"></span>                <span class="keyword">virtual</span> EventType <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#ab89b06b8f7aa148cad453ca9fcae5b89" title="Returns the type of this event.">getEventType</a>();
+<a name="l00195"></a>00195 };
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197 
+<a name="l00198"></a>00198 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Apr 17 17:25:05 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 18 22:40:39 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

@@ -155,6 +155,7 @@ class PhysWorld
 
 		//Used by the constructors
 		void Construct(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies);
+        void SanityChecks();
         void TestLogger();
         template <class T> void OneLogTest(T Data, string DataType,string Message1 = "Logging and Throwing a ", string Message2 = "Logging a ");
 

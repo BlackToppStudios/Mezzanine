@@ -82,6 +82,8 @@ PhysWorld::PhysWorld()
 		);
 }
 
+/// @todo TODO: adjust the constructors to allow for pointers to a callback manager and event manager
+
 PhysWorld::PhysWorld(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyUpperbounds_, unsigned short int  MaxPhysicsProxies_)
 {
 	this->Construct(GeographyLowerBounds_, GeographyUpperbounds_, MaxPhysicsProxies_);
@@ -101,25 +103,16 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
 
 	//Ogre resource related code
-	/// @todo : From here to the logger tests should probably be moved to another file
     this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
 
-    //Perform a Test that only needs to be done once for the SDL/Physuserinputevent system.
-    Log("Verifying size of userinput events:");
-    Log(sizeof(MetaCode::InputCode));
-    Log(sizeof(SDLKey));
-    if(sizeof(MetaCode::InputCode) != sizeof(SDLKey))
-        {LogAndThrow("User input subsystem Event Sizes  Don't match, userinput subsystem will go down faster than 'that' girl on prom night.");}
-    Log("They match, the User Input subsystem won't crash instantly");
-
-    // This Tests the Logger and Logs a few critical Items.
-    TestLogger();
+    // This Tests various assumptions about the wa ythe platform works, and will not akk
+    SanityChecks();
 
     //Callbacks are the main way that a game using the PhysWorld will be able to have their code run at custom times
 	this->CallBacks = new PhysWorldCallBackManager(this);
 
     //Events are the main way for the game using the physworld to  get information about the various subsystems
-    this->Events = new PhysEventManager;
+    this->Events = new PhysEventManager(this);
 
 	//instantiate the Physics engine and related items
 	GeographyLowerBounds = GeographyLowerBounds_;
@@ -141,8 +134,33 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 												BulletCollisionConfiguration);
 }
 
+void PhysWorld::SanityChecks()
+{
+    //Perform a Test that only needs to be done once for the SDL/Physuserinputevent system.
+    Log("Verifying size of userinput events:");
+    Log(sizeof(MetaCode::InputCode));
+    Log(sizeof(SDLKey));
+    Log(sizeof(int));
+    if(sizeof(MetaCode::InputCode) != sizeof(SDLKey))
+    {
+        LogAndThrow("User input subsystem Event Sizes  Don't match, userinput subsystem will go down faster than 'that' girl on prom night.");
+    }else{
+        Log("External User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
+    }
+
+    if(sizeof(MetaCode::InputCode) != sizeof(int))
+    {
+        LogAndThrow("Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
+    }else{
+        Log("Internal User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
+    }
+
+    TestLogger();
+}
+
 void PhysWorld::TestLogger()
 {
+    Log("Testing Logger with all data types");
     string temp0("0");
     char temp1 = 'a';
     short int temp2 = 2;
@@ -455,6 +473,7 @@ void PhysWorld::DoMainLoopInputBuffering()
     Log(SDL_UserInputEvents.size());
 
     PhysEventUserInput* FromSDLEvent = new PhysEventUserInput();
+    PhysEventUserInput* FromSDLPolling = this->Events->PollForUserInputEvents();
 
     while( !SDL_UserInputEvents.empty() )
     {
@@ -464,6 +483,9 @@ void PhysWorld::DoMainLoopInputBuffering()
         delete CurrentRawEvent;
         SDL_UserInputEvents.pop(); //NEXT!!!
     }
+
+    *FromSDLEvent += *FromSDLPolling;
+    delete FromSDLPolling;
 
     if (0 < FromSDLEvent->GetMetaCodeCount())
     {
@@ -494,7 +516,6 @@ void PhysWorld::LoadOgreSettings()
     		this->LogAndThrow("Error 1: Could not setup Ogre.");
 		}
     }
-
 }
 
 //Seriously read the Function Name

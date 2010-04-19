@@ -73,10 +73,7 @@ PhysEventUserInput::PhysEventUserInput(const MetaCode &Code_)
 
 PhysEventUserInput::PhysEventUserInput(const vector<MetaCode> &Code_)
 {
-    for(unsigned int c=0; Code_.size()>c ; c++)
-    {
-        Code.push_back(Code_.at(c));
-    }
+    AddCode(Code_);
 }
 
 PhysEventUserInput::~PhysEventUserInput()
@@ -110,6 +107,15 @@ void PhysEventUserInput::AddCode(const int &MetaValue_, const short unsigned int
     MetaCode CurrentMetaCode( MetaValue_, ID_, Code_ );
     this->AddCode(CurrentMetaCode);
 }
+
+void PhysEventUserInput::AddCode(const vector<MetaCode> &Codes)
+{
+    for(unsigned int c=0; Codes.size()>c ; c++)
+    {
+        Code.push_back(Codes.at(c));
+    }
+}
+
 
 void PhysEventUserInput::EraseCode(const MetaCode &Code_)
 {
@@ -155,8 +161,6 @@ PhysEvent::EventType PhysEventUserInput::getEventType()
 
 void PhysEventUserInput::AddCodesFromRawEvent(const RawEvent &RawEvent_)
 {
-
-
     switch(RawEvent_.type)
     {
         case SDL_KEYDOWN:   //Only contains one metacode
@@ -188,6 +192,14 @@ void PhysEventUserInput::AddCodesFromRawEvent(const RawEvent &RawEvent_)
     }
 }
 
+PhysEventUserInput& PhysEventUserInput::operator += (const PhysEventUserInput& Add)
+{
+    for(unsigned int c=0; Add.Code.size()>c ; c++)
+    {
+        Code.push_back(Add.Code.at(c));
+    }
+    return *this;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // PhysEventUserInput Private Methods
@@ -203,10 +215,6 @@ void PhysEventUserInput::AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_)
 
     if(0 != RawEvent_.motion.yrel)
         {this->AddCode(RawEvent_.motion.yrel,0,MetaCode::MOUSEHORIZONTAL);}
-
-/*1
-    //MOUSEBUTTON from the button state   //Button Polling
-*/
 }
 
 void PhysEventUserInput::AddCodesFromSDLMouseButton(const RawEvent &RawEvent_)
@@ -229,7 +237,6 @@ void PhysEventUserInput::AddCodesFromSDLMouseButton(const RawEvent &RawEvent_)
             this->AddCode(MetaCode::BUTTON_LIFTING, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
         }
     }
-
 }
 
 

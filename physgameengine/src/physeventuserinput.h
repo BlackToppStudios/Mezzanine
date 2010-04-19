@@ -93,12 +93,13 @@ using namespace std;
 class PhysEventUserInput : public PhysEvent
 {
     private:
-        vector<MetaCode> Code;
-
         //Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if
         //passed any other kind of data.
         void AddCodesFromSDLMouseButton(const RawEvent &RawEvent_);
         void AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_);
+
+    protected:
+        vector<MetaCode> Code;
 
 	public:
         /// @brief Default constructor
@@ -113,7 +114,9 @@ class PhysEventUserInput : public PhysEvent
         /// @brief Multi Data Point constructor
         /// @param Code_ The MetaCodes in this vecotor will be added to the PhysEventUserInput during creation.
         /// @details This creates a ready to use PhysEventUserInput which already contains all the metacodes included.
-        PhysEventUserInput(const vector<MetaCode> &Code_);
+        PhysEventUserInput(const vector<MetaCode> &Codes_);
+
+
         virtual ~PhysEventUserInput();
 
         //code managment functions
@@ -150,6 +153,11 @@ class PhysEventUserInput : public PhysEvent
         /// PhysEventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.
         void AddCode(const RawEvent &RawEvent_);
 
+        /// @brief Add Several MetaCodes from a vector
+        /// @param Codes_ A vector of MetaCodes to be added to this event
+        /// @details This adds several existing metacodes to this event.
+        void AddCode(const vector<MetaCode> &Codes);
+
         /// @brief Adds all possible MetaCodes that can be created from the given RawEvent
         /// @param RawEvent_ The RawEvent which will be translated into a group of metacodes and added to this
         /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is
@@ -174,6 +182,12 @@ class PhysEventUserInput : public PhysEvent
         /// @param Code_ This will search for all matching copies of this.
         /// @details All MetaCodes that are equal to Code_ will simply be erased.
         void ToggleCode(const MetaCode &Code_);
+
+        /// @brief This add all of one PhysEventUserInput to another
+        /// @param Add is the PhysEventUserInput on the right hand side of +=
+        /// @details This simply copies all the MetaCodes from one PhysEventUserInput to the other.
+        /// @return The PhysEventUserInput on the left ahnd side will now contain a set of both items MetaCodes
+        PhysEventUserInput& operator += (const PhysEventUserInput& Add);
 
         /// @brief Returns the type of this event
         /// @return Returns EventType::UserInput

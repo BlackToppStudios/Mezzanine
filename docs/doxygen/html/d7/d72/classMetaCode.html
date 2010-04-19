@@ -343,8 +343,18 @@
 <br/>
 &nbsp;&nbsp;<b>KEYMOD_MODE</b> =  334, 
 <b>KEYMOD_RESERVED</b> =  335, 
-<b>KEY_LAST</b> =  479, 
-<a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c">INPUTEVENT_FIRST</a> =  480, 
+<b>KEY_LAST</b> =  379, 
+<a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c">INPUTEVENT_FIRST</a> =  380, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24a21ee5ef5ddcbacbb4a90990ca56ee0a3">MOTION_FIRST</a> =  460, 
+<a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24a1311c6065d4176f097d494bc33001b45">MOTION_LAST</a> =  469, 
+<a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24aae6fbdfa76ec071a3b86d3eec35efa3b">MULTITOUCH_FIRST</a> =  470, 
+<a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24a424167ec6d1df3c1d8ebf5d8fc458387">MULTITOUCH_ACTION</a> =  471, 
+<br/>
+&nbsp;&nbsp;<b>MULTITOUCH_GESTURE</b> =  472, 
+<b>MULTITOUCH_PINCH</b> =  473, 
+<b>MULTITOUCH_STRETCH</b> =  474, 
+<b>MULTITOUCH_LAST</b> =  479, 
 <br/>
 &nbsp;&nbsp;<a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24a98454cf025e1b11ac8978c4b493582c4">MOUSE_FIRST</a> =  480, 
 <a class="el" href="../../d7/d72/classMetaCode.html#a7390e6f58e25c0ce377bba4e63081b24a90e6bf109b0decae5cc828ebc5934dfa">MOUSEBUTTON</a> =  481, 
@@ -443,7 +453,7 @@
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d61/metacode_8h_source.html#l00388">388</a> of file <a class="el" href="../../d1/d61/metacode_8h_source.html">metacode.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d61/metacode_8h_source.html#l00398">398</a> of file <a class="el" href="../../d1/d61/metacode_8h_source.html">metacode.h</a>.</p>
 
 </div>
 </div>
@@ -491,8 +501,20 @@
 <tr><td valign="top"><em><a class="anchor" id="a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c"></a><!-- doxytag: member="INPUTEVENT_FIRST" ref="a7390e6f58e25c0ce377bba4e63081b24aa27e8c7d5dc3cc1d726ae82aef44d21c" args="" -->INPUTEVENT_FIRST</em>&nbsp;</td><td>
 <p>The last KeyCode, all Keys values will be less than this, and all Events will be larger than that. </p>
 </td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a7390e6f58e25c0ce377bba4e63081b24a21ee5ef5ddcbacbb4a90990ca56ee0a3"></a><!-- doxytag: member="MOTION_FIRST" ref="a7390e6f58e25c0ce377bba4e63081b24a21ee5ef5ddcbacbb4a90990ca56ee0a3" args="" -->MOTION_FIRST</em>&nbsp;</td><td>
+<p>The First non-event, all Keys values will be Less than this. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a7390e6f58e25c0ce377bba4e63081b24a1311c6065d4176f097d494bc33001b45"></a><!-- doxytag: member="MOTION_LAST" ref="a7390e6f58e25c0ce377bba4e63081b24a1311c6065d4176f097d494bc33001b45" args="" -->MOTION_LAST</em>&nbsp;</td><td>
+<p>The first Motion event. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a7390e6f58e25c0ce377bba4e63081b24aae6fbdfa76ec071a3b86d3eec35efa3b"></a><!-- doxytag: member="MULTITOUCH_FIRST" ref="a7390e6f58e25c0ce377bba4e63081b24aae6fbdfa76ec071a3b86d3eec35efa3b" args="" -->MULTITOUCH_FIRST</em>&nbsp;</td><td>
+<p>The last Motion event. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a7390e6f58e25c0ce377bba4e63081b24a424167ec6d1df3c1d8ebf5d8fc458387"></a><!-- doxytag: member="MULTITOUCH_ACTION" ref="a7390e6f58e25c0ce377bba4e63081b24a424167ec6d1df3c1d8ebf5d8fc458387" args="" -->MULTITOUCH_ACTION</em>&nbsp;</td><td>
+<p>The first Multi Touch event. </p>
+</td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a7390e6f58e25c0ce377bba4e63081b24a98454cf025e1b11ac8978c4b493582c4"></a><!-- doxytag: member="MOUSE_FIRST" ref="a7390e6f58e25c0ce377bba4e63081b24a98454cf025e1b11ac8978c4b493582c4" args="" -->MOUSE_FIRST</em>&nbsp;</td><td>
-<p>The First non-event, all Keys values will be more than this. </p>
+<p>The last Multi Touch event. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a7390e6f58e25c0ce377bba4e63081b24a90e6bf109b0decae5cc828ebc5934dfa"></a><!-- doxytag: member="MOUSEBUTTON" ref="a7390e6f58e25c0ce377bba4e63081b24a90e6bf109b0decae5cc828ebc5934dfa" args="" -->MOUSEBUTTON</em>&nbsp;</td><td>
 <p>The First Mouse event, all Mouse Event values will be more than this. </p>
@@ -541,7 +563,7 @@
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d61/metacode_8h_source.html#l00399">399</a> of file <a class="el" href="../../d1/d61/metacode_8h_source.html">metacode.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d61/metacode_8h_source.html#l00409">409</a> of file <a class="el" href="../../d1/d61/metacode_8h_source.html">metacode.h</a>.</p>
 
 </div>
 </div>
@@ -831,7 +853,7 @@
 <li><a class="el" href="../../d1/dae/metacode_8cpp_source.html">metacode.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Apr 17 17:25:05 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 18 22:40:40 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

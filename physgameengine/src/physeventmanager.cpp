@@ -45,6 +45,7 @@
 //There will be an instance of this class in the physworld.
 ///////////////////////////////////////
 
+#include "physworld.h"
 #include "physeventmanager.h"
 #include "SDL.h"
 
@@ -55,8 +56,9 @@ bool PhysEventManager::IgnoreSDLQuitEvents;
 /// @todo TODO: Make the PhysEventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
 /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
 
-PhysEventManager::PhysEventManager()
+PhysEventManager::PhysEventManager(PhysWorld* ParentWorld_)
 {
+    ParentWorld = ParentWorld_;
     SetIgnoreQuitEvents(false);
     SDL_SetEventFilter( PhysSDLFilter );
 }
@@ -100,48 +102,65 @@ void PhysEventManager::AddEvent(PhysEvent* EventToAdd)
     EventQueue.push_back(EventToAdd);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Filtered management functions - You choose YAYYYY!!!
+///////////////////////////////////////
+PhysEvent* PhysEventManager::GetNextSpecificEvent(PhysEvent::EventType SpecificType)
+{
+    PhysEvent* results = 0;
+    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+    {
+        if((*Iter)->getEventType()==SpecificType)
+        {
+            results = (*Iter);
+            return results;
+        }
+    }
+    return results;
+}
+
+PhysEvent* PhysEventManager::PopNextSpecificEvent(PhysEvent::EventType SpecificType)
+{
+    PhysEvent* results = 0;
+    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+    {
+        if((*Iter)->getEventType()==SpecificType)
+        {
+            results = (*Iter);
+            EventQueue.erase(Iter);
+            return results;
+        }
+    }
+    return results;
+}
+
+void PhysEventManager::RemoveNextSpecificEvent(PhysEvent::EventType SpecificType)
+{
+    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+    {
+        if((*Iter)->getEventType()==SpecificType)
+        {
+            EventQueue.erase(Iter);
+        }
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Filtered management functions - RenderTime Events
 ///////////////////////////////////////
 PhysEventRenderTime* PhysEventManager::GetNextRenderTimeEvent()
 {
-    PhysEventRenderTime* results = 0;
-    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
-    {
-        if((*Iter)->getEventType()==PhysEvent::RenderTime)
-        {
-            results = dynamic_cast<PhysEventRenderTime*> (*Iter);
-            return results;
-        }
-    }
-    return results;
+    return dynamic_cast<PhysEventRenderTime*> (this->GetNextSpecificEvent(PhysEvent::RenderTime));
 }
 
 PhysEventRenderTime* PhysEventManager::PopNextRenderTimeEvent()
 {
-    PhysEventRenderTime* results = 0;
-    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
-    {
-        if((*Iter)->getEventType()==PhysEvent::RenderTime)
-        {
-            results = dynamic_cast<PhysEventRenderTime*> (*Iter);
-            EventQueue.erase(Iter);
-            return results;
-        }
-    }
-    return results;
+    return dynamic_cast<PhysEventRenderTime*> (this->PopNextSpecificEvent(PhysEvent::RenderTime));
 }
 
 void PhysEventManager::RemoveNextRenderTimeEvent()
 {
-    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
-    {
-        if((*Iter)->getEventType()==PhysEvent::RenderTime)
-        {
-            EventQueue.erase(Iter);
-        }
-    }
+    this->RemoveNextSpecificEvent(PhysEvent::RenderTime);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -150,51 +169,56 @@ void PhysEventManager::RemoveNextRenderTimeEvent()
 
 PhysEventUserInput* PhysEventManager::GetNextUserInputEvent()
 {
-    PhysEventUserInput* results = 0;
-    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
-    {
-        if((*Iter)->getEventType()==PhysEvent::UserInput)
-        {
-            results = dynamic_cast<PhysEventUserInput*> (*Iter);
-            return results;
-        }
-    }
-    return results;
+    return dynamic_cast<PhysEventUserInput*> (this->GetNextSpecificEvent(PhysEvent::UserInput));
 }
 
 PhysEventUserInput* PhysEventManager::PopNextUserInputEvent()
 {
-    PhysEventUserInput* results = 0;
-    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
-    {
-        if((*Iter)->getEventType()==PhysEvent::UserInput)
-        {
-            results = dynamic_cast<PhysEventUserInput*> (*Iter);
-            EventQueue.erase(Iter);
-            return results;
-        }
-    }
-    return results;
+    return dynamic_cast<PhysEventUserInput*> (this->PopNextSpecificEvent(PhysEvent::UserInput));
 }
 
 void PhysEventManager::RemoveNextUserInputEvent()
 {
-    for(list<PhysEvent*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
-    {
-        if((*Iter)->getEventType()==PhysEvent::UserInput)
-        {
-            EventQueue.erase(Iter);
-        }
-    }
+    this->RemoveNextSpecificEvent(PhysEvent::UserInput);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Other functions
 ///////////////////////////////////////
 
+void PhysEventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
+{
+        bool ItFailed = true;
+        int Code = InputToTryPolling.GetCode();
+
+        //Check for keyboard code
+        if ( MetaCode::KEY_LAST > Code && Code > MetaCode::KEY_FIRST)
+        {
+            this->WatchKeyboardKeys.push_back(Code);
+            ItFailed=false;
+        }
+
+        //if it is a specific mouse button, then
+        if ( MetaCode::MOUSEBUTTON == Code)
+        {
+            this->WatchMouseKeys.push_back(InputToTryPolling.GetID());
+            ItFailed=false;
+        }
+
+        if (ItFailed)
+            this->ParentWorld->LogAndThrow("Unsupported Polling Check on this Platform");
+}
+
+PhysEventUserInput* PhysEventManager::PollForUserInputEvents()
+{
+        this->ParentWorld->Log("Polling logic not writted yet");
+        PhysEventUserInput* test = new PhysEventUserInput();
+        return test;
+}
+
 bool PhysEventManager::DoQuitMessagesExist()
 {
-        return false;//This is system dependent. since we are using SDL, There is no real quit message
+        return false;//This is system dependent. since we are using SDL, There is no real quit message.
 }
 
 bool PhysEventManager::IgnoreQuitEvents()

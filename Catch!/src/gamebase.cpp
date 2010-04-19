@@ -35,6 +35,12 @@ int main(int argc, char **argv)
     //give the World our function to execute after rendering
     TheWorld.CallBacks->SetPostRender(&PostRender);
 
+    //Set up polling for the letter Q and middle mouse button
+    MetaCode PollForQ(0, 1, MetaCode::KEY_q);
+    MetaCode PollForMiddleClick(0, 2, MetaCode::MOUSEBUTTON);
+    TheWorld.Events->AddPollingCheck(PollForQ);
+    TheWorld.Events->AddPollingCheck(PollForMiddleClick);
+
     //Set the Make the RenderWindow and load system stuff
 	TheWorld.GameInit(false);
 
@@ -49,8 +55,6 @@ int main(int argc, char **argv)
 
 bool PostRender()
 {
-
-
 	//Lets set a variable for the time
 	static PhysWhole gametime = 0;
 
@@ -155,10 +159,6 @@ void LoadContent()
 
     //Final Steps
     TheWorld.AddActor(object1);
-
-	//Ogre::Entity *ent1 = this->OgreSceneManager->createEntity( "Robot", "robot.mesh" );
-	//Ogre::SceneNode *node1 = this->OgreSceneManager->getRootSceneNode()->createChildSceneNode( "RobotNode" );
-	//node1->attachObject( ent1 );
 }
 
 #endif

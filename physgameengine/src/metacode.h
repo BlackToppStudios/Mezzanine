@@ -356,9 +356,19 @@ class MetaCode
             KEYMOD_MODE  	= 334,
             KEYMOD_RESERVED = 335,
 
-            KEY_LAST        = 479,  /// The last KeyCode, all Keys values will be less than this, and all Events will be larger than that
+            KEY_LAST        = 379,  /// The last KeyCode, all Keys values will be less than this, and all Events will be larger than that
 
-            INPUTEVENT_FIRST = 480, /// The First non-event, all Keys values will be more than this
+            INPUTEVENT_FIRST        = 380, /// The First non-event, all Keys values will be Less than this
+
+            MOTION_FIRST            = 460,  /// The first Motion event
+            MOTION_LAST             = 469,  /// The last Motion event
+
+            MULTITOUCH_FIRST        = 470,  /// The first Multi Touch event
+            MULTITOUCH_ACTION       = 471,
+            MULTITOUCH_GESTURE      = 472,
+            MULTITOUCH_PINCH        = 473,
+            MULTITOUCH_STRETCH      = 474,
+            MULTITOUCH_LAST         = 479,  /// The last Multi Touch event
 
             MOUSE_FIRST             = 480,  /// The First Mouse event, all Mouse Event values will be more than this
             MOUSEBUTTON             = 481,
@@ -487,6 +497,5 @@ class MetaCode
 /// @brief Allows for streaming of MetaCodes
 /// @details If it can be streamed, then it can be logged Holds true for the MetaCode.
 std::ostream& operator << (std::ostream& stream, const MetaCode& x);
-
 
 #endif

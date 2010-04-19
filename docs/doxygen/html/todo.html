@@ -28,13 +28,14 @@
 </dl>
 <p><a class="anchor" id="_todo000005"></a> </p>
 <dl>
-<dt>Member <a class="el" href="d5/dd7/classPhysEventManager.html#a217e7f6006aaf5e08e2872fa4d66e5e2">PhysEventManager::PhysEventManager</a> () </dt>
+<dt>Member <a class="el" href="d5/dd7/classPhysEventManager.html#a1355f36d99de303cec6f3b27cadaa9ff">PhysEventManager::PhysEventManager</a> (<a class="el" href="db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> *ParentWorld_) </dt>
 <dd>TODO: Make the <a class="el" href="d5/dd7/classPhysEventManager.html" title="This is a container for Events and facilitates the transfer of data.">PhysEventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd>
 </dl>
 <p><a class="anchor" id="_todo000012"></a> </p>
 <dl>
 <dt>Member <a class="el" href="db/df5/classPhysWorld.html#a3228c98369082139722d3c918d735e6c">PhysWorld::PhysWorld</a> (<a class="el" href="da/d11/classPhysVector3.html">PhysVector3</a> *GeographyLowerBounds, <a class="el" href="da/d11/classPhysVector3.html">PhysVector3</a> *GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024) </dt>
 <dd><p class="startdd">TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset </p>
+<p>TODO: adjust the constructors to allow for pointers to a callback manager and event manager </p>
 <p class="enddd">TODO Fix the `const`ness of all methods to be as const as allowable </p>
 </dd>
 </dl>
@@ -44,7 +45,7 @@
 <dd>TODO Change the name of an application once it is running </dd>
 </dl>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sat Apr 17 17:25:05 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 18 22:40:39 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
