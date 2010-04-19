@@ -212,14 +212,15 @@ PhysEventUserInput* PhysEventManager::PollForUserInputEvents()
 {
         vector<MetaCode> MetaBag;
 
-
+        //Call the private Polling routines
         PollKeyboard(MetaBag);
-        //void PollMouse(vector<MetaCode> &CodeBag);
+        PollMouse(MetaBag);
 
         PhysEventUserInput* test = new PhysEventUserInput(MetaBag);
         return test;
 }
 
+//Internal private Polling routine
 void PhysEventManager::PollKeyboard(vector<MetaCode> &CodeBag)
 {
     if(this->WatchKeyboardKeys.size()>0)
@@ -245,8 +246,24 @@ void PhysEventManager::PollKeyboard(vector<MetaCode> &CodeBag)
     }
 }
 
+//Internal private Polling routine
 void PhysEventManager::PollMouse(vector<MetaCode> &CodeBag)
 {
+    if(this->WatchMouseKeys.size()>0)
+    {
+        vector<int>::iterator iter;
+        for(iter = this->WatchMouseKeys.begin(); iter != (this->WatchMouseKeys.end()) ; iter++)
+        {
+            if(SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(*iter))
+            {
+                    MetaCode temp(MetaCode::BUTTON_DOWN,*iter,MetaCode::MOUSEBUTTON);
+                    CodeBag.push_back(temp);
+            }else{
+                    MetaCode temp(MetaCode::BUTTON_UP,*iter,MetaCode::MOUSEBUTTON);
+                    CodeBag.push_back(temp);
+            }
+        }
+    }
 
 }
 

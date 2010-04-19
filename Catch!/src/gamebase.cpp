@@ -37,9 +37,9 @@ int main(int argc, char **argv)
 
     //Set up polling for the letter Q and middle mouse button
     MetaCode PollForQ(0, 1, MetaCode::KEY_q);
-    MetaCode PollForMiddleClick(0, 2, MetaCode::MOUSEBUTTON);
+    MetaCode PollForRightClick(0, 3, MetaCode::MOUSEBUTTON);
     TheWorld.Events->AddPollingCheck(PollForQ);
-    TheWorld.Events->AddPollingCheck(PollForMiddleClick);
+    TheWorld.Events->AddPollingCheck(PollForRightClick);
 
     //Set the Make the RenderWindow and load system stuff
 	TheWorld.GameInit(false);
