@@ -521,6 +521,7 @@ void PhysWorld::LoadOgreSettings()
 //Seriously read the Function Name
 void PhysWorld::CreateRenderWindow()
 {
+    /// @todo TODO multithreaded SDL willthe run event manager in another thread
 	//Get what is needed for SDL started
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		this->Log("Error 2: Unable to init SDL, SDL Error Follows:");

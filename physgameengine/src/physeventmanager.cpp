@@ -183,23 +183,22 @@ void PhysEventManager::RemoveNextUserInputEvent()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Other functions
+// Polling Functions
 ///////////////////////////////////////
 
 void PhysEventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
 {
         bool ItFailed = true;
-        int Code = InputToTryPolling.GetCode();
 
         //Check for keyboard code
-        if ( MetaCode::KEY_LAST > Code && Code > MetaCode::KEY_FIRST)
+        if ( MetaCode::KEY_LAST > InputToTryPolling.GetCode() && InputToTryPolling.GetCode() > MetaCode::KEY_FIRST)
         {
-            this->WatchKeyboardKeys.push_back(Code);
+            this->WatchKeyboardKeys.push_back(InputToTryPolling.GetCode());
             ItFailed=false;
         }
 
         //if it is a specific mouse button, then
-        if ( MetaCode::MOUSEBUTTON == Code)
+        if ( MetaCode::MOUSEBUTTON == InputToTryPolling.GetCode())
         {
             this->WatchMouseKeys.push_back(InputToTryPolling.GetID());
             ItFailed=false;
@@ -211,10 +210,49 @@ void PhysEventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
 
 PhysEventUserInput* PhysEventManager::PollForUserInputEvents()
 {
-        this->ParentWorld->Log("Polling logic not writted yet");
-        PhysEventUserInput* test = new PhysEventUserInput();
+        vector<MetaCode> MetaBag;
+
+
+        PollKeyboard(MetaBag);
+        //void PollMouse(vector<MetaCode> &CodeBag);
+
+        PhysEventUserInput* test = new PhysEventUserInput(MetaBag);
         return test;
 }
+
+void PhysEventManager::PollKeyboard(vector<MetaCode> &CodeBag)
+{
+    if(this->WatchKeyboardKeys.size()>0)
+    {
+        int* KeyCount = 0;
+        Uint8* KeyboardSnapshot = SDL_GetKeyState(KeyCount);
+
+        vector<MetaCode::InputCode>::iterator iter;
+        for(iter = this->WatchKeyboardKeys.begin(); iter != (this->WatchKeyboardKeys.end()) ; iter++)
+        {
+            if( *iter < MetaCode::KEY_LAST )//Is it a valid keycode
+            {
+                if(KeyboardSnapshot[*iter]) // is it up or down
+                {//down
+                    MetaCode temp(MetaCode::BUTTON_DOWN,0,*iter);
+                    CodeBag.push_back(temp);
+                }else{//up
+                    MetaCode temp(MetaCode::BUTTON_UP,0,*iter);
+                    CodeBag.push_back(temp);
+                }
+            }
+        }
+    }
+}
+
+void PhysEventManager::PollMouse(vector<MetaCode> &CodeBag)
+{
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Quit handling functions
+///////////////////////////////////////
 
 bool PhysEventManager::DoQuitMessagesExist()
 {

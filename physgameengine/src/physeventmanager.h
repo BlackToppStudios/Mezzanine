@@ -87,9 +87,14 @@ class PhysEventManager
         vector<int> WatchMouseKeys;
 
         //a List of the
-        vector<int> WatchKeyboardKeys;
+        vector<MetaCode::InputCode> WatchKeyboardKeys;
 
         PhysWorld* ParentWorld;
+
+        //These does the heavy lifting during the polling operation
+        //Both of these poll the input subsystem and add MetaCodes to the vector they are passed.
+        void PollKeyboard(vector<MetaCode> &CodeBag);
+        void PollMouse(vector<MetaCode> &CodeBag);
 
 	public:
         /// @brief Default constructor
@@ -97,10 +102,9 @@ class PhysEventManager
         /// @details This creates an empty PhysEventManger
 		PhysEventManager(PhysWorld* ParentWorld_);
 
-        //These functions will give you the next event or help you manage the events
-        //Whenever and event is gotten it is removed form the event queue
-        //any getfunction cannot find an appropriate event it returns a pointer to 0
-
+        ///////////////////////////////////////////////////////////////////////////////
+        // Management functions - Work with all events
+        ///////////////////////////////////////
         /// @brief Gets a count of events
         /// @details This returns a total count of all events stored in this PhysEventManager.
 		/// @return This returns an unsigned integer with the amount of of total events
