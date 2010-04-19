@@ -444,7 +444,7 @@ void PhysWorld::DoMainLoopAllItems(PhysReal PreviousFrameTime)
 	this->DoMainLoopRender();
 }
 
-void PhysWorld::DoMainLoopPhysics(PhysWhole TimeElapsed)
+void PhysWorld::DoMainLoopPhysics(PhysReal TimeElapsed)
 {
     PhysReal FloatTime = TimeElapsed;
     FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
