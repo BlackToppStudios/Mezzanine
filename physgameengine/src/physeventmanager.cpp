@@ -47,11 +47,11 @@
 
 #include "physworld.h"
 #include "physeventmanager.h"
+
 #include "SDL.h"
+#include <boost/thread/thread.hpp>
 
 int PhysSDLFilter( const RawEvent *event );
-
-bool PhysEventManager::IgnoreSDLQuitEvents;
 
 /// @todo TODO: Make the PhysEventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
 /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
@@ -59,8 +59,9 @@ bool PhysEventManager::IgnoreSDLQuitEvents;
 PhysEventManager::PhysEventManager(PhysWorld* ParentWorld_)
 {
     ParentWorld = ParentWorld_;
-    SetIgnoreQuitEvents(false);
     SDL_SetEventFilter( PhysSDLFilter );
+    PollMouseHor = false;
+    PollMouseVert = false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -188,36 +189,45 @@ void PhysEventManager::RemoveNextUserInputEvent()
 
 void PhysEventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
 {
-        bool ItFailed = true;
+    bool ItFailed = true;
 
-        //Check for keyboard code
-        if ( MetaCode::KEY_LAST > InputToTryPolling.GetCode() && InputToTryPolling.GetCode() > MetaCode::KEY_FIRST)
-        {
-            this->WatchKeyboardKeys.push_back(InputToTryPolling.GetCode());
-            ItFailed=false;
-        }
+    //Check for keyboard code
+    if ( MetaCode::KEY_LAST > InputToTryPolling.GetCode() && InputToTryPolling.GetCode() > MetaCode::KEY_FIRST)
+    {
+        this->WatchKeyboardKeys.push_back(InputToTryPolling.GetCode());
+        ItFailed=false;
+    }
 
-        //if it is a specific mouse button, then
-        if ( MetaCode::MOUSEBUTTON == InputToTryPolling.GetCode())
-        {
-            this->WatchMouseKeys.push_back(InputToTryPolling.GetID());
-            ItFailed=false;
-        }
+    //if it is a specific mouse button, then
+    if ( MetaCode::MOUSEBUTTON == InputToTryPolling.GetCode())
+    {
+        this->WatchMouseKeys.push_back(InputToTryPolling.GetID());
+        ItFailed=false;
+    }
 
-        if (ItFailed)
-            this->ParentWorld->LogAndThrow("Unsupported Polling Check on this Platform");
+    /// @todo add mouse position for polling checks
+    PollMouseHor = false;
+    PollMouseVert = false;
+
+
+    if (ItFailed)
+        this->ParentWorld->LogAndThrow("Unsupported Polling Check on this Platform");
 }
 
 PhysEventUserInput* PhysEventManager::PollForUserInputEvents()
 {
-        vector<MetaCode> MetaBag;
+    vector<MetaCode> MetaBag;
 
-        //Call the private Polling routines
-        PollKeyboard(MetaBag);
-        PollMouse(MetaBag);
+    //Call the private Polling routines
+    PollKeyboard(MetaBag);
+    PollMouse(MetaBag);
 
-        PhysEventUserInput* test = new PhysEventUserInput(MetaBag);
-        return test;
+    /// @todo TODO Add Mouse location polling
+    //PollMouseHor = false;
+    //PollMouseVert = false;
+
+    PhysEventUserInput* test = new PhysEventUserInput(MetaBag);
+    return test;
 }
 
 //Internal private Polling routine
@@ -271,26 +281,15 @@ void PhysEventManager::PollMouse(vector<MetaCode> &CodeBag)
 // Quit handling functions
 ///////////////////////////////////////
 
-bool PhysEventManager::DoQuitMessagesExist()
-{
-        return false;//This is system dependent. since we are using SDL, There is no real quit message.
-}
-
-bool PhysEventManager::IgnoreQuitEvents()
-{
-    return IgnoreSDLQuitEvents;
-}
-
-void PhysEventManager::SetIgnoreQuitEvents(bool Ignore)
-{
-    IgnoreSDLQuitEvents=Ignore;
-}
-
+// this will replace the SDL quit with a
 int PhysSDLFilter( const RawEvent *event )
 {
-     if ( !PhysEventManager::IgnoreQuitEvents() && event->type == SDL_QUIT)
-        { return 0; }
-     return 1;
+    /*if ( event->type == SDL_QUIT )
+    {
+        /// @todo TODO Create a quit event and put it into the event manager in a thread safe way.
+        return 0;
+    }*/
+    return 0;
 }
 
 #endif

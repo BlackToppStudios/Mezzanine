@@ -2,7 +2,6 @@
 #define _gamebase_cpp
 ///////////////////////////////////////////////////////////////////////////////
 // Gamewide Logic misc Features go here
-
 ///////////////////////////////////////////////////////////////////////////////
 // Includes
 //Game Include
@@ -26,7 +25,7 @@ PhysReal z=0;
 int main(int argc, char **argv)
 {
     TheWorld.SetWindowName("Catch!... The Game!");
-    TheWorld.SetTargetFrameRate(60);
+    TheWorld.SetTargetFrameRate(40);
 
     //Give the world functions to run before and after input
     TheWorld.CallBacks->SetPreInput(&PreInput);

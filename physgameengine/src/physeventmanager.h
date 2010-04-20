@@ -95,6 +95,8 @@ class PhysEventManager
         //Both of these poll the input subsystem and add MetaCodes to the vector they are passed.
         void PollKeyboard(vector<MetaCode> &CodeBag);
         void PollMouse(vector<MetaCode> &CodeBag);
+        bool PollMouseHor;
+        bool PollMouseVert;
 
 	public:
         /// @brief Default constructor
@@ -215,13 +217,6 @@ class PhysEventManager
         /// this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately.
         /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
         void RemoveNextSpecificEvent(PhysEvent::EventType SpecificType);
-
-        //different platforms treat exiting the application differently, to work around that
-        //we can use this to help identify if it comes accross as a normal event, or if we must
-        //quit without generating one
-        bool DoQuitMessagesExist();
-        static bool IgnoreQuitEvents();                //if true, don't exit
-        static void SetIgnoreQuitEvents(bool Ignore);  //if false exit when x is clicked.
 
         /// @brief Generates extra events each iteration of the main loop, based on user input polling
         /// @param InputToTryPolling By default this accepts a MetaCode and will try to watch for occurences like this one
