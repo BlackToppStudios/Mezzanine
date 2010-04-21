@@ -80,23 +80,28 @@ class PhysWorld;
 class PhysEventManager
 {
 	private:
+        //The Default Physics worlds that this Eventmanager is expected to interact with
+        PhysWorld* ParentWorld;
+
+        //The Queue that all the events get stored in
 		list<PhysEvent*> EventQueue;
-        static bool IgnoreSDLQuitEvents;
 
         // A list of the Mouse buttons being watched
         vector<int> WatchMouseKeys;
 
-        //a List of the
+        //a List of the Keyboard keys being watch
         vector<MetaCode::InputCode> WatchKeyboardKeys;
 
-        PhysWorld* ParentWorld;
-
-        //These does the heavy lifting during the polling operation
-        //Both of these poll the input subsystem and add MetaCodes to the vector they are passed.
-        void PollKeyboard(vector<MetaCode> &CodeBag);
-        void PollMouse(vector<MetaCode> &CodeBag);
+        //These are use to decide if mouse location should be polled.
         bool PollMouseHor;
         bool PollMouseVert;
+
+        //These does the heavy lifting during the polling operation
+        //All of these poll the input subsystem and add MetaCodes to the vector they are passed.
+        void PollKeyboard(vector<MetaCode> &CodeBag);
+        void PollMouseButtons(vector<MetaCode> &CodeBag);
+        void PollMouseLocation(vector<MetaCode> &CodeBag);
+
 
 	public:
         /// @brief Default constructor
@@ -219,18 +224,25 @@ class PhysEventManager
         void RemoveNextSpecificEvent(PhysEvent::EventType SpecificType);
 
         /// @brief Generates extra events each iteration of the main loop, based on user input polling
-        /// @param InputToTryPolling By default this accepts a MetaCode and will try to watch for occurences like this one
+        /// @param InputToTryPolling This accepts a MetaCode and will try to watch for occurences like this one
         /// @details This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each
         /// Iteration of the main loop there will be a PhysEventUserInput that created. That Event will Include all the normal metacodes for user input
-        /// that happened, and it will also have a meta code for each time this function was called. The added metacode
+        /// that happened, and it will also have a meta code for each time this function was called. The added metacode may be partialky ignored, the
+        /// Metavalue is almost always ignored, and in a situation where the can only be one of a given input on a system, the ID is ignore and 0 is assumed.
+        /// @exception "Unsupported Polling Check on this Platform" When the metacode passed cannot be polled on this platform
         void AddPollingCheck(const MetaCode &InputToTryPolling);
+
+        /// @brief Removes Events from the list(s) of what needs to be polled
+        /// @param InputToStopPolling This accepts a MetaCode and will try to Remove Watches like this one
+        /// @details This will remove any checkings for polling of uset input that share the same inputcode and ID, except in
+        /// @exception
+        void RemovePollingCheck(const MetaCode &InputToStopPolling);
 
         /// @brief This activates the polling routines of the user input subsystems
         /// @details This checks the current state of user input devices that have been added by AddPollingCheck(const MetaCode &InputToTryPolling).
         /// This is called automatically by main loop processing, but there is no harm in calling it several times.
         /// @return This returns a pointer to a PhysEventUserInput that contains the desired metacodes
         PhysEventUserInput* PollForUserInputEvents();
-
 };
 
 #endif

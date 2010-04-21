@@ -372,7 +372,7 @@ class MetaCode
 
             MOUSE_FIRST             = 480,  /// The First Mouse event, all Mouse Event values will be more than this
             MOUSEBUTTON             = 481,
-            MOUSEABSOLUTEVERTICAL   = 482,
+            MOUSEABSOLUTEVERTICAL   = 482,  /// @todo remove some of these extra mouse events
             MOUSEABSOLUTEHORIZONTAL = 483,
             MOUSEVERTICAL           = 484,
             MOUSEHORIZONTAL         = 485,

@@ -34,14 +34,19 @@ int main(int argc, char **argv)
     //give the World our function to execute after rendering
     TheWorld.CallBacks->SetPostRender(&PostRender);
 
-    //Set up polling for the letter Q and middle mouse button
-    MetaCode PollForQ(0, 1, MetaCode::KEY_q);
-    MetaCode PollForRightClick(0, 3, MetaCode::MOUSEBUTTON);
-    TheWorld.Events->AddPollingCheck(PollForQ);
-    TheWorld.Events->AddPollingCheck(PollForRightClick);
-
     //Set the Make the RenderWindow and load system stuff
 	TheWorld.GameInit(false);
+
+    //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
+    MetaCode PollForQ(0, 1, MetaCode::KEY_q);
+    MetaCode PollForRightClick(0, 3, MetaCode::MOUSEBUTTON);
+    MetaCode PollForX(0,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+    MetaCode PollForY(0,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+    TheWorld.Events->AddPollingCheck(PollForQ);
+    TheWorld.Events->AddPollingCheck(PollForRightClick);
+    //TheWorld.Events->AddPollingCheck(PollForX);
+    //TheWorld.Events->AddPollingCheck(PollForY);
+
 
     LoadContent();
 

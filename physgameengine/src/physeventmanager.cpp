@@ -205,14 +205,21 @@ void PhysEventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
         ItFailed=false;
     }
 
-    /// @todo add mouse position for polling checks
-    PollMouseHor = false;
-    PollMouseVert = false;
-
+    //Mouse Movement
+    if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToTryPolling.GetCode())
+        { PollMouseVert = true; }
+    if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToTryPolling.GetCode())
+        { PollMouseHor = true; }
 
     if (ItFailed)
         this->ParentWorld->LogAndThrow("Unsupported Polling Check on this Platform");
 }
+
+void RemovePollingCheck(const MetaCode &InputToStopPolling)
+{
+
+}
+
 
 PhysEventUserInput* PhysEventManager::PollForUserInputEvents()
 {
@@ -220,11 +227,8 @@ PhysEventUserInput* PhysEventManager::PollForUserInputEvents()
 
     //Call the private Polling routines
     PollKeyboard(MetaBag);
-    PollMouse(MetaBag);
-
-    /// @todo TODO Add Mouse location polling
-    //PollMouseHor = false;
-    //PollMouseVert = false;
+    PollMouseButtons(MetaBag);
+    PollMouseLocation(MetaBag);
 
     PhysEventUserInput* test = new PhysEventUserInput(MetaBag);
     return test;
@@ -257,7 +261,7 @@ void PhysEventManager::PollKeyboard(vector<MetaCode> &CodeBag)
 }
 
 //Internal private Polling routine
-void PhysEventManager::PollMouse(vector<MetaCode> &CodeBag)
+void PhysEventManager::PollMouseButtons(vector<MetaCode> &CodeBag)
 {
     if(this->WatchMouseKeys.size()>0)
     {
@@ -275,6 +279,26 @@ void PhysEventManager::PollMouse(vector<MetaCode> &CodeBag)
         }
     }
 
+}
+
+void PhysEventManager::PollMouseLocation(vector<MetaCode> &CodeBag)
+{
+    if( PollMouseHor || PollMouseVert)
+    {
+        int Vert=0;
+        int Hor=0;
+        SDL_GetMouseState(&Hor, &Vert);
+        if( PollMouseVert )
+        {
+            MetaCode temp(Vert,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+            CodeBag.push_back(temp);
+        }
+        if( PollMouseHor )
+        {
+            MetaCode temp(Hor,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
+            CodeBag.push_back(temp);
+        }
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
