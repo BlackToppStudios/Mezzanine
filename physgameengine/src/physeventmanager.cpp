@@ -207,9 +207,15 @@ void PhysEventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
 
     //Mouse Movement
     if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToTryPolling.GetCode())
-        { PollMouseVert = true; }
-    if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToTryPolling.GetCode())
-        { PollMouseHor = true; }
+    {
+        PollMouseVert = true;
+        ItFailed=false;
+    }
+    if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == InputToTryPolling.GetCode())
+    {
+        PollMouseHor = true;
+        ItFailed=false;
+    }
 
     if (ItFailed)
         this->ParentWorld->LogAndThrow("Unsupported Polling Check on this Platform");

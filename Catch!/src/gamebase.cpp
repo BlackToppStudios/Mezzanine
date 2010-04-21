@@ -40,12 +40,12 @@ int main(int argc, char **argv)
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
     MetaCode PollForQ(0, 1, MetaCode::KEY_q);
     MetaCode PollForRightClick(0, 3, MetaCode::MOUSEBUTTON);
-    MetaCode PollForX(0,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+    MetaCode PollForX(0,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
     MetaCode PollForY(0,0,MetaCode::MOUSEABSOLUTEVERTICAL);
     TheWorld.Events->AddPollingCheck(PollForQ);
     TheWorld.Events->AddPollingCheck(PollForRightClick);
-    //TheWorld.Events->AddPollingCheck(PollForX);
-    //TheWorld.Events->AddPollingCheck(PollForY);
+    TheWorld.Events->AddPollingCheck(PollForX);
+    TheWorld.Events->AddPollingCheck(PollForY);
 
 
     LoadContent();
