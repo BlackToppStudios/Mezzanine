@@ -102,8 +102,6 @@ void ActorBase::CreateTrimesh()
     // Get a pointer to the index buffer
     Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
 
-    // --------------------------
-
     // Get the number of triangles
     unsigned int triCount = indexData->indexCount/3;
 
@@ -111,12 +109,9 @@ void ActorBase::CreateTrimesh()
     Ogre::Vector3* vertices = new Ogre::Vector3[vertexData->vertexCount];
     unsigned long* indices  = new unsigned long[indexData->indexCount];
 
-    // --------------------
-
     // Lock the vertex buffer (READ ONLY)
     unsigned char* vertex =   static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
 
-    //
     float* pReal = NULL;
 
     for (size_t j = 0; j < vertexData->vertexCount; ++j, vertex += vBuffer->getVertexSize() )
@@ -127,8 +122,6 @@ void ActorBase::CreateTrimesh()
     }
 
     vBuffer->unlock();
-
-    // --------------------
 
     size_t index_offset = 0;
 
@@ -206,9 +199,22 @@ void ActorBase::SetOgreLocation (PhysVector3 Location)
     this->node->setPosition(Location.GetOgreVector3());
 }
 
+PhysVector3 ActorBase::GetOgreLocation()
+{
+    PhysVector3 temp;
+    temp.ExtractOgreVector3(this->node->getPosition());
+    return temp;
+}
+
 void ActorBase::SetBulletLocation (PhysVector3 Location)
 {
     //empty function to be redifined in subclasses
+}
+
+PhysVector3 ActorBase::GetBulletLocation()
+{
+    PhysVector3 temp;
+    return temp;
 }
 
 void ActorBase::SetBulletInitLocation (PhysVector3 Location)
@@ -236,6 +242,11 @@ void ActorBase::SetLocation (PhysVector3 Place)
 {
     this->SetBulletLocation(Place);
     this->SetOgreLocation(Place);
+}
+
+PhysVector3 ActorBase::GetLocation()
+{
+    return this->GetBulletLocation();
 }
 
 void ActorBase::SetInitLocation(PhysVector3 Location)
@@ -294,6 +305,13 @@ void ActorDynRigid::SetBulletLocation (PhysVector3 Location)
     temp.setOrigin(Location.GetBulletVector3());
 }
 
+PhysVector3 ActorDynRigid::GetBulletLocation()
+{
+    PhysVector3 temp;
+    temp.ExtractBulletVector3(this->physrigidbody->getCenterOfMassPosition());
+    return temp;
+}
+
 void ActorDynRigid::SetBulletOrientation (PhysQuaternion Rotation)
 {
     btTransform temp = this->physrigidbody->getWorldTransform();
@@ -315,15 +333,17 @@ void ActorDynRigid::CreateShapeFromMesh()
 
 ActorDynSoft::~ActorDynSoft ()
 {
+    delete physsoftbody;
 }
 
-void ActorDynSoft::CreateSoftObject ()
+void ActorDynSoft::CreateSoftObject (btSoftBodyWorldInfo* softworldinfo, int nodecount, btVector3* nodearray, btScalar* massarray)
 {
+    this->physsoftbody = new btSoftBody (softworldinfo, nodecount, nodearray, massarray);
 }
 
 void ActorDynSoft::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
 {
-    //TODO: add code for adding object to the physics world
+    World->addSoftBody(this->physsoftbody);
 }
 
 void ActorDynSoft::SetBulletLocation (PhysVector3 Location)
@@ -331,6 +351,12 @@ void ActorDynSoft::SetBulletLocation (PhysVector3 Location)
     btTransform temp = this->physsoftbody->getWorldTransform();
     temp.setOrigin(Location.GetBulletVector3());
 }
+
+/*PhysVector3 ActorDynSoft::GetBulletLocation()
+{
+    PhysVector3 temp;
+    return temp.ExtractBulletVector3(this->physsoftbody->getCenterOfMassPosition());
+}*/
 
 void ActorDynSoft::SetBulletOrientation (PhysQuaternion Rotation)
 {
@@ -373,6 +399,13 @@ void ActorSta::SetBulletLocation (PhysVector3 Location)
 {
     btTransform temp = this->physrigidbody->getWorldTransform();
     temp.setOrigin(Location.GetBulletVector3());
+}
+
+PhysVector3 ActorSta::GetBulletLocation()
+{
+    PhysVector3 temp;
+    temp.ExtractBulletVector3(this->physrigidbody->getCenterOfMassPosition());
+    return temp;
 }
 
 void ActorSta::SetBulletOrientation (PhysQuaternion Rotation)

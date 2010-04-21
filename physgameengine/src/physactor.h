@@ -49,12 +49,15 @@
 
 class btMotionState;
 class btQuaternion;
+class btVector3;
 class btRigidBody;
 class btSoftBody;
 class btTransform;
 class btDiscreteDynamicsWorld;
 class btDefaultMotionState;
 class btCollisionShape;
+class btSoftBodyWorldInfo;
+typedef float btScalar;
 
 namespace Ogre
 {
@@ -68,7 +71,7 @@ class PhysMotionState;
 ///////////////////////////////////////////////////////////////////////////////
 /// @class ActorBase
 /// @headerfile physactor.h
-/// @brief This is the header file for the Actor class hierarchy.
+/// @brief This is the base class from which all the actors inherit.
 /// @details The actor classes store and manage all the relevant data regarding
 /// objects inside the PhysWorld.  They serve as a binder between the physics and
 /// graphics for objects and have functions that allow the manipulation of objects
@@ -125,6 +128,9 @@ class ActorBase {
         /// This function is called on by the SetLocation function, and shouldn't be called manually.
         /// @param Location The PhysVector3 representing the location.
         void SetOgreLocation(PhysVector3 Place);
+        /// @brief Retrieves the location of the graphical body.
+        /// @details This function will retrieve the location of the object within the graphical world.
+        PhysVector3 GetOgreLocation();
         /// @brief Sets the orientation of the graphical body.
         /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n
         /// This function is called on by the SetOrientation function, and shouldn't be called manually.
@@ -141,6 +147,9 @@ class ActorBase {
         /// This function is called on by the SetLocation function, and shouldn't be called manually.
         /// @param Location The PhysVector3 representing the location.
         virtual void SetBulletLocation (PhysVector3 Location);
+        /// @brief Retrieves the location of the physics body.
+        /// @details This function will retrieve the location of the object within the physics world.
+        virtual PhysVector3 GetBulletLocation();
         /// @brief Sets the starting location of the physics body within the PhysMotionState.
         /// @details Sets the starting location of the physics body within the PhysMotionState. @n
         /// This function is called on by the SetInitLocation function, and shouldn't be called manually.
@@ -176,6 +185,9 @@ class ActorBase {
         /// In most situations you won't want to use this function, and instead produce movement through physics functions.
         /// @param Place The PhysVector3 representing the location.
         void SetLocation(PhysVector3 Place);
+        /// @brief Retrieves the location of the object.
+        /// @details This function will retrieve the location of the object within the world.
+        PhysVector3 GetLocation();
 
         /// @brief Sets the starting location of the actor.
         /// @details Calling this function after adding it to the PhysWorld will have no effect. @n
@@ -221,6 +233,9 @@ class ActorDynRigid: public ActorBase {
         /// @details This will take a PhysVector3 and set the location of the actor within the physics world. @n
         /// This function is called on by the SetLocation function, and shouldn't be called manually.
         virtual void SetBulletLocation (PhysVector3 Location);
+        /// @brief Retrieves the location of the physics body.
+        /// @details This function will retrieve the location of the object within the physics world.
+        virtual PhysVector3 GetBulletLocation();
         /// @brief Sets the orientation of the physics body.
         /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
         /// This function is called on by the SetOrientation function, and shouldn't be called manually.
@@ -263,7 +278,7 @@ class ActorDynSoft: public ActorBase {
         /// @brief Creates a soft object for the actor.
         /// @details Creates a soft object to be placed in the physics world later. @n
         /// This is automaticly called by the Constructor and shouldn't be called manually.
-        void CreateSoftObject ();
+        void CreateSoftObject (btSoftBodyWorldInfo* softworldinfo, int nodecount, btVector3* nodearray, btScalar* massarray);
         /// @brief Adds the actor to the physics world.
         /// @details Adds the actor to the physics world. @n
         /// This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually.
@@ -274,6 +289,9 @@ class ActorDynSoft: public ActorBase {
         /// @details This will take a PhysVector3 and set the location of the actor within the physics world. @n
         /// This function is called on by the SetLocation function, and shouldn't be called manually.
         virtual void SetBulletLocation (PhysVector3 Location);
+        /*/// @brief Retrieves the location of the physics body.
+        /// @details This function will retrieve the location of the object within the physics world.
+        virtual PhysVector3 GetBulletLocation();*/
         /// @brief Sets the orientation of the physics body.
         /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
         /// This function is called on by the SetOrientation function, and shouldn't be called manually.
@@ -320,6 +338,9 @@ class ActorSta: public ActorBase {
         /// @details This will take a PhysVector3 and set the location of the actor within the physics world. @n
         /// This function is called on by the SetLocation function, and shouldn't be called manually.
         virtual void SetBulletLocation (PhysVector3 Location);
+        /// @brief Retrieves the location of the physics body.
+        /// @details This function will retrieve the location of the object within the physics world.
+        virtual PhysVector3 GetBulletLocation();
         /// @brief Sets the orientation of the physics body.
         /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
         /// This function is called on by the SetOrientation function, and shouldn't be called manually.
