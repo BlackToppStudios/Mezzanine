@@ -306,7 +306,8 @@ ActorRigid::~ActorRigid ()
 void ActorRigid::CreateRigidObject (PhysReal pmass)
 {
     btScalar bmass=pmass;
-    this->CollisionObject = new btRigidBody (bmass, this->MotionState, this->Shape);
+    this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
+    CollisionObject=physrigidbody;
 }
 
 void ActorRigid::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
@@ -318,7 +319,7 @@ void ActorRigid::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWo
 void ActorRigid::CreateShapeFromMesh()
 {
     this->CreateTrimesh();
-    this->CollisionObject->setCollisionShape(this->Shape);
+    this->physrigidbody->setCollisionShape(this->Shape);
 }
 
 ///////////////////////////////////
@@ -335,7 +336,8 @@ ActorSoft::~ActorSoft ()
 
 void ActorSoft::CreateSoftObject (btSoftBodyWorldInfo* softworldinfo, int nodecount, btVector3* nodearray, btScalar* massarray)
 {
-    this->CollisionObject = new btSoftBody (softworldinfo, nodecount, nodearray, massarray);
+    this->physsoftbody = new btSoftBody (softworldinfo, nodecount, nodearray, massarray);
+    CollisionObject=physsoftbody;
 }
 
 void ActorSoft::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
@@ -346,7 +348,7 @@ void ActorSoft::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWor
 void ActorSoft::CreateShapeFromMesh()
 {
     this->CreateTrimesh();
-    this->CollisionObject->setCollisionShape(this->Shape);
+    this->physsoftbody->setCollisionShape(this->Shape);
 }
 
 ///////////////////////////////////
