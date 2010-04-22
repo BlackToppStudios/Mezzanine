@@ -666,4 +666,18 @@ void PhysWorld::InitResourceGroup(PhysString Group)
     this->OgreResource->initialiseResourceGroup(Group);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Bullet World Management Functions
+///////////////////////////////////////
+
+void PhysWorld::SetGravity(PhysVector3 pgrav)
+{
+    this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
+}
+
+void PhysWorld::ApplyGravity()
+{
+    this->BulletDynamicsWorld->applyGravity();
+}
+
 #endif
