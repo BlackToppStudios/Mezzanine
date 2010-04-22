@@ -82,6 +82,7 @@ bool PostRender()
     }
 
     //IF the game has gone on for 10 or more seconds close it.
+
 	if (10000<gametime)
 	{
 		return false;

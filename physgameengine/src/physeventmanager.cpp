@@ -289,7 +289,7 @@ void PhysEventManager::PollMouseButtons(vector<MetaCode> &CodeBag)
 
 void PhysEventManager::PollMouseLocation(vector<MetaCode> &CodeBag)
 {
-    if( PollMouseHor || PollMouseVert)
+    if( PollMouseHor || PollMouseVert )
     {
         int Vert=0;
         int Hor=0;
@@ -311,14 +311,18 @@ void PhysEventManager::PollMouseLocation(vector<MetaCode> &CodeBag)
 // Quit handling functions
 ///////////////////////////////////////
 
-// this will replace the SDL quit with a
+// this will replace the SDL quit with a Phys quit event
+
+//If this is passed an event that points to 0 it will function as a method to tell us if an SDL_QUIT message has been thrown
+//this will return 2 if it has not seen an SDL_quit, and a 4 if it has
 int PhysSDLFilter( const RawEvent *event )
 {
-    /*if ( event->type == SDL_QUIT )
+    if ( event->type == SDL_QUIT )
     {
         /// @todo TODO Create a quit event and put it into the event manager in a thread safe way.
+
         return 0;
-    }*/
+    }
     return 0;
 }
 

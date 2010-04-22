@@ -195,6 +195,8 @@ class PhysEventManager
         /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
         void RemoveNextUserInputEvent();
 
+        /// @todo add support for quit event
+
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - You choose YAYYYY!!!
         ///////////////////////////////////////
@@ -234,8 +236,8 @@ class PhysEventManager
 
         /// @brief Removes Events from the list(s) of what needs to be polled
         /// @param InputToStopPolling This accepts a MetaCode and will try to Remove Watches like this one
-        /// @details This will remove any checkings for polling of uset input that share the same inputcode and ID, except in
-        /// @exception
+        /// @details This will remove any check for polling that share the same inputcode and ID. This
+        /// @exception "Polling check not present" Is thrown
         void RemovePollingCheck(const MetaCode &InputToStopPolling);
 
         /// @brief This activates the polling routines of the user input subsystems

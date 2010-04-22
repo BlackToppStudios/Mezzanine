@@ -57,6 +57,7 @@ class PhysEvent
         {
             RenderTime,
             UserInput,
+            QuitMessage,
             SystemMessage,
             Other
         };

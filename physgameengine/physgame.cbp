@@ -81,6 +81,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/eventquit.cpp" />
+		<Unit filename="src/eventquit.h" />
 		<Unit filename="src/metacode.cpp" />
 		<Unit filename="src/metacode.h" />
 		<Unit filename="src/physactor.cpp" />
