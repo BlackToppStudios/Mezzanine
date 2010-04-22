@@ -1,4 +1,4 @@
-//Â© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -208,12 +208,15 @@ PhysVector3 ActorBase::GetOgreLocation()
 
 void ActorBase::SetBulletLocation (PhysVector3 Location)
 {
-    //empty function to be redifined in subclasses
+    btTransform temp = this->CollisionObject->getWorldTransform();
+    temp.setOrigin(Location.GetBulletVector3());
 }
 
 PhysVector3 ActorBase::GetBulletLocation()
 {
     PhysVector3 temp;
+    btTransform trans = this->CollisionObject->getWorldTransform();
+    temp.ExtractBulletVector3(trans.getOrigin());
     return temp;
 }
 
@@ -229,7 +232,8 @@ void ActorBase::SetOgreOrientation (PhysQuaternion Rotation)
 
 void ActorBase::SetBulletOrientation (PhysQuaternion Rotation)
 {
-    //empty function to be redifined in subclasses
+    btTransform temp = this->CollisionObject->getWorldTransform();
+    temp.setRotation(Rotation.GetBulletQuaternion());
 }
 
 void ActorBase::SetLocation (PhysReal x, PhysReal y, PhysReal z)
@@ -274,150 +278,75 @@ void ActorBase::AttachToGraphics ()
     this->node->attachObject(this->entity);
 }
 
-///////////////////////////////////
-// ActorDynRigid class functions
+void ActorBase::SetKinematic()
+{
+    int x=2;
+    this->CollisionObject->setCollisionFlags(x);
+}
 
-ActorDynRigid::ActorDynRigid (PhysReal mass, PhysString name, PhysString file, PhysString group, PhysWorld* World) : ActorBase (name, file, group, World)
+void ActorBase::SetStatic()
+{
+    int x=1;
+    this->CollisionObject->setCollisionFlags(x);
+}
+
+///////////////////////////////////
+// ActorRigid class functions
+
+ActorRigid::ActorRigid (PhysReal mass, PhysString name, PhysString file, PhysString group, PhysWorld* World) : ActorBase (name, file, group, World)
 {
     this->CreateRigidObject(mass);
 }
 
-ActorDynRigid::~ActorDynRigid ()
+ActorRigid::~ActorRigid ()
 {
     delete physrigidbody;
 }
 
-void ActorDynRigid::CreateRigidObject (PhysReal pmass)
+void ActorRigid::CreateRigidObject (PhysReal pmass)
 {
     btScalar bmass=pmass;
-    this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
+    this->CollisionObject = new btRigidBody (bmass, this->MotionState, this->Shape);
 }
 
-void ActorDynRigid::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
+void ActorRigid::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
 {
     World->addRigidBody(this->physrigidbody);
     AttachToGraphics();
 }
 
-void ActorDynRigid::SetBulletLocation (PhysVector3 Location)
-{
-    btTransform temp = this->physrigidbody->getWorldTransform();
-    temp.setOrigin(Location.GetBulletVector3());
-}
-
-PhysVector3 ActorDynRigid::GetBulletLocation()
-{
-    PhysVector3 temp;
-    temp.ExtractBulletVector3(this->physrigidbody->getCenterOfMassPosition());
-    return temp;
-}
-
-void ActorDynRigid::SetBulletOrientation (PhysQuaternion Rotation)
-{
-    btTransform temp = this->physrigidbody->getWorldTransform();
-    temp.setRotation(Rotation.GetBulletQuaternion());
-}
-
-void ActorDynRigid::CreateShapeFromMesh()
+void ActorRigid::CreateShapeFromMesh()
 {
     this->CreateTrimesh();
-    this->physrigidbody->setCollisionShape(this->Shape);
+    this->CollisionObject->setCollisionShape(this->Shape);
 }
 
 ///////////////////////////////////
-// ActordynSoft class functions
+// ActorSoft class functions
 
-/*ActorDynSoft::ActorDynSoft ()
+/*ActorSoft::ActorSoft ()
 {
 }*/
 
-ActorDynSoft::~ActorDynSoft ()
+ActorSoft::~ActorSoft ()
 {
     delete physsoftbody;
 }
 
-void ActorDynSoft::CreateSoftObject (btSoftBodyWorldInfo* softworldinfo, int nodecount, btVector3* nodearray, btScalar* massarray)
+void ActorSoft::CreateSoftObject (btSoftBodyWorldInfo* softworldinfo, int nodecount, btVector3* nodearray, btScalar* massarray)
 {
-    this->physsoftbody = new btSoftBody (softworldinfo, nodecount, nodearray, massarray);
+    this->CollisionObject = new btSoftBody (softworldinfo, nodecount, nodearray, massarray);
 }
 
-void ActorDynSoft::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
+void ActorSoft::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
 {
     World->addSoftBody(this->physsoftbody);
 }
 
-void ActorDynSoft::SetBulletLocation (PhysVector3 Location)
-{
-    btTransform temp = this->physsoftbody->getWorldTransform();
-    temp.setOrigin(Location.GetBulletVector3());
-}
-
-/*PhysVector3 ActorDynSoft::GetBulletLocation()
-{
-    PhysVector3 temp;
-    return temp.ExtractBulletVector3(this->physsoftbody->getCenterOfMassPosition());
-}*/
-
-void ActorDynSoft::SetBulletOrientation (PhysQuaternion Rotation)
-{
-    btTransform temp = this->physsoftbody->getWorldTransform();
-    temp.setRotation(Rotation.GetBulletQuaternion());
-}
-
-void ActorDynSoft::CreateShapeFromMesh()
+void ActorSoft::CreateShapeFromMesh()
 {
     this->CreateTrimesh();
-    this->physsoftbody->setCollisionShape(this->Shape);
-}
-
-///////////////////////////////////
-// ActorSta class functions
-
-ActorSta::ActorSta (PhysString name, PhysString file, PhysString group, PhysWorld* World) : ActorBase (name, file, group, World)
-{
-    CreateRigidObject();
-}
-
-ActorSta::~ActorSta ()
-{
-    delete physrigidbody;
-}
-
-void ActorSta::CreateRigidObject ()
-{
-    btScalar bmass=0;
-    this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
-}
-
-void ActorSta::AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World)
-{
-    World->addRigidBody(this->physrigidbody);
-    AttachToGraphics();
-}
-
-void ActorSta::SetBulletLocation (PhysVector3 Location)
-{
-    btTransform temp = this->physrigidbody->getWorldTransform();
-    temp.setOrigin(Location.GetBulletVector3());
-}
-
-PhysVector3 ActorSta::GetBulletLocation()
-{
-    PhysVector3 temp;
-    temp.ExtractBulletVector3(this->physrigidbody->getCenterOfMassPosition());
-    return temp;
-}
-
-void ActorSta::SetBulletOrientation (PhysQuaternion Rotation)
-{
-    btTransform temp = this->physrigidbody->getWorldTransform();
-    temp.setRotation(Rotation.GetBulletQuaternion());
-}
-
-void ActorSta::CreateShapeFromMesh()
-{
-    this->CreateTrimesh();
-    this->physrigidbody->setCollisionShape(this->Shape);
+    this->CollisionObject->setCollisionShape(this->Shape);
 }
 
 ///////////////////////////////////
