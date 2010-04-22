@@ -319,6 +319,10 @@ class PhysWorld
         /// @details
         void InitResourceGroup(PhysString Name);
 
+        void SetGravity(PhysVector3 pgrav);
+
+        void ApplyGravity();
+
 		/// @brief This is a point to the default Call BackManager
         /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.
 		PhysWorldCallBackManager* CallBacks;
