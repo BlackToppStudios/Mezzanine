@@ -51,7 +51,7 @@
 #include "SDL.h"
 #include <boost/thread/thread.hpp>
 
-int PhysSDLFilter( const RawEvent *event );
+int PhysSDLFilter( const SDL_Event *event );
 
 /// @todo TODO: Make the PhysEventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
 /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
@@ -315,7 +315,7 @@ void PhysEventManager::PollMouseLocation(vector<MetaCode> &CodeBag)
 
 //If this is passed an event that points to 0 it will function as a method to tell us if an SDL_QUIT message has been thrown
 //this will return 2 if it has not seen an SDL_quit, and a 4 if it has
-int PhysSDLFilter( const RawEvent *event )
+int PhysSDLFilter( const SDL_Event *event )
 {
     if ( event->type == SDL_QUIT )
     {

@@ -17,7 +17,7 @@
 
 //Create the World Globally!
 PhysWorld TheWorld;
-ActorDynRigid* object1;
+ActorRigid* object1;
 PhysReal x=0;
 PhysReal y=0;
 PhysReal z=0;
@@ -159,7 +159,7 @@ void LoadContent()
     TheWorld.InitResourceGroup(groupname);
 
     //Actor Init Code
-    object1 = new ActorDynRigid (mass,groupname,filename,groupname,&TheWorld);
+    object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
     object1->CreateShapeFromMesh();
 
     //Final Steps
