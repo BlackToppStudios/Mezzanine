@@ -95,8 +95,8 @@ bool PostRender()
     //if the callbacks for the exists.
     //TheWorld.DoMainLoopAllItems();
 
-    x+=0.5;
-    object1->SetLocation(x,y,z);
+    //x+=0.5;
+    //object1->SetLocation(x,y,z);
 
     return true;
 }
@@ -154,7 +154,7 @@ void LoadContent()
     //Ogre Setup Code
     PhysString groupname="Robot";
     PhysString filename="robot.mesh";
-    PhysReal mass=0.001;
+    PhysReal mass=5.0;
     TheWorld.AddResourceLocation(GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld.DeclareResource(filename, "Mesh", groupname);
     TheWorld.DeclareResource("Examples.material", "Material", groupname);
@@ -165,7 +165,12 @@ void LoadContent()
     object1->CreateShapeFromMesh();
 
     //Final Steps
+    PhysVector3 grav;
+    grav.X=0.0;
+    grav.Y=-1000.0;
+    grav.Z=0.0;
     TheWorld.AddActor(object1);
+    TheWorld.SetGravity(grav);
 }
 
 #endif
