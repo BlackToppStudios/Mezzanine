@@ -83,10 +83,12 @@ bool PostRender()
 
     //IF the game has gone on for 10 or more seconds close it.
 
-	if (10000<gametime)
+	if (10000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
 	{
 		return false;
 	}
+
+
 
     //If we wanted to we could unremark the following line and call all the main loop items right here, but
     //that is not needed, nor is it the prefered way to do things. All these Items will be called automatically

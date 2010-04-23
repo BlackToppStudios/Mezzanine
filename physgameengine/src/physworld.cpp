@@ -55,7 +55,6 @@
 #include "physcrossplatform.h"
 #include "physworldcallbackmanager.h"
 #include "physgamesettings.h"
-#include "physmisc.h"
 #include "physactor.h"
 #include "physeventuserinput.h"
 
@@ -232,7 +231,7 @@ PhysWorld::~PhysWorld()
 	delete BulletCollisionConfiguration;
 	delete BulletDispatcher;
 	delete BulletSolver;
-	delete BulletDynamicsWorld;
+	delete this->BulletDynamicsWorld; /// @todo TODO Fix the error when deleting the bullets worlds
 
 	//All the pointers Ogre made should get taken care of by OGRE
 	delete OgreRoot;
@@ -460,39 +459,12 @@ void PhysWorld::DoMainLoopPhysics(PhysReal TimeElapsed)
 
 void PhysWorld::DoMainLoopWindowManagerBuffering()
 {
-    this->PreProcessSDLEvents();
-    Log("WM EventCount Pending:");
-    Log(SDL_WmEvents.size());
-    //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
+    this->Events->UpdateSystemEvents();
 }
 
 void PhysWorld::DoMainLoopInputBuffering()
 {
-    this->PreProcessSDLEvents();
-    Log("User Input EventCount Pending:");
-    Log(SDL_UserInputEvents.size());
-
-    PhysEventUserInput* FromSDLEvent = new PhysEventUserInput();
-    PhysEventUserInput* FromSDLPolling = this->Events->PollForUserInputEvents();
-
-    while( !SDL_UserInputEvents.empty() )
-    {
-        RawEvent* CurrentRawEvent = SDL_UserInputEvents.front();
-
-        FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
-        delete CurrentRawEvent;
-        SDL_UserInputEvents.pop(); //NEXT!!!
-    }
-
-    *FromSDLEvent += *FromSDLPolling;
-    delete FromSDLPolling;
-
-    if (0 < FromSDLEvent->GetMetaCodeCount())
-    {
-        this->Events->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
-    }else{
-        delete FromSDLEvent;
-    }
+    this->Events->UpdateUserInputEvents();
 }
 
 void PhysWorld::DoMainLoopRender()
@@ -567,46 +539,7 @@ void PhysWorld::DestroyRenderWindow()
     this->OgreGameWindow->destroy();
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// Deals with SDL
 
-//This function will get all the events from SDL and Sort them into one of two Queues
-void PhysWorld::PreProcessSDLEvents()
-{
-    RawEvent temp;
-    RawEvent* FromSDL=&temp;
-	while(SDL_PollEvent(FromSDL))
-	{
-	    RawEvent* ScopeHolder = new RawEvent;
-	    *ScopeHolder = temp;
-        switch(FromSDL->type)
-        {
-            case SDL_ACTIVEEVENT:   //when the window gains focus
-            case SDL_VIDEORESIZE:   //when the screen is resized
-            case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
-            case SDL_QUIT:          //when SDL closes
-            case SDL_SYSWMEVENT:
-                SDL_WmEvents.push(ScopeHolder);
-                break;
-            case SDL_KEYDOWN:
-            case SDL_KEYUP:
-            case SDL_MOUSEMOTION:
-            case SDL_MOUSEBUTTONDOWN:
-            case SDL_MOUSEBUTTONUP:
-            case SDL_JOYAXISMOTION:
-            case SDL_JOYBUTTONDOWN:
-            case SDL_JOYBUTTONUP:
-            case SDL_JOYBALLMOTION:
-            case SDL_JOYHATMOTION:
-                SDL_UserInputEvents.push(ScopeHolder);
-                break;
-            case SDL_USEREVENT://Never thrown by SDL, but could be added by a user
-            default:
-                throw ("Unknown SDL Event Inserted");
-                break;
-        }
-	}
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Bullet Related Public Members
