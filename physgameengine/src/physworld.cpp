@@ -454,7 +454,11 @@ void PhysWorld::DoMainLoopPhysics(PhysReal TimeElapsed)
 
     //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
     int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+2);  //used 2 simply to be extra safe
+    this->BulletDynamicsWorld->applyGravity();
     this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
+    this->BulletDynamicsWorld->clearForces();
+    //this->BulletDynamicsWorld->applyGravity();
+    //this->BulletDynamicsWorld->synchronizeMotionStates();
     Log("Updated Physics");
 }
 

@@ -376,7 +376,7 @@ class MetaCode
             MOUSEABSOLUTEHORIZONTAL = 483,
             MOUSEVERTICAL           = 484,
             MOUSEHORIZONTAL         = 485,
-            MOUSEWHEELVERTICAL      = 485,
+            MOUSEWHEELVERTICAL      = 486,
             MOUSEWHEELHORIZONTAL    = 489,
             MOUSE_LAST              = 490,  /// The last MouseEvent Code, all Mouse events will be less than this
 
