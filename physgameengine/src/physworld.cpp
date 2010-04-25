@@ -224,14 +224,14 @@ template <class T> void PhysWorld::OneLogTest(T Data, string DataType, string Me
 PhysWorld::~PhysWorld()
 {
 	//Destroy the physical world that we loved and cherished
-	//dWorldDestroy(this->OdeWorld);
 	delete GeographyLowerBounds;
 	delete GeographyUpperbounds;
-	delete BulletBroadphase;
-	delete BulletCollisionConfiguration;
+
+    delete this->BulletDynamicsWorld; /// @todo TODO Fix the error when deleting the bullets worlds
 	delete BulletDispatcher;
-	delete BulletSolver;
-	delete this->BulletDynamicsWorld; /// @todo TODO Fix the error when deleting the bullets worlds
+	delete BulletCollisionConfiguration;
+    delete BulletSolver;
+	delete BulletBroadphase;
 
 	//All the pointers Ogre made should get taken care of by OGRE
 	delete OgreRoot;
