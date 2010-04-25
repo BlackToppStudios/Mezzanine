@@ -27,9 +27,11 @@ int main(int argc, char **argv)
     TheWorld.SetWindowName("Catch!... The Game!");
     TheWorld.SetTargetFrameRate(40);
 
-    //Give the world functions to run before and after input
+    //Give the world functions to run before and after input and physics
     TheWorld.CallBacks->SetPreInput(&PreInput);
     TheWorld.CallBacks->SetPostInput(&PostInput);
+    TheWorld.CallBacks->SetPrePhysics(&PrePhysics);
+
 
     //give the World our function to execute after rendering
     TheWorld.CallBacks->SetPostRender(&PostRender);
