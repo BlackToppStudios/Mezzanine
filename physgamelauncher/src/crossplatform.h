@@ -1,7 +1,7 @@
 
-//#define LINUX
+#define LINUX
 //#define MACOSX
-#define WINDOWS
+//#define WINDOWS
 
 
 #if defined(MSDOS) || defined(OS2) || defined(WINDOWS) || defined(__CYGWIN__)
