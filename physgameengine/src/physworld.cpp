@@ -74,8 +74,8 @@ using namespace std;
 /// @todo TODO Fix the `const`ness of all methods to be as const as allowable
 PhysWorld::PhysWorld()
 {
-    PhysVector3 Lbounds(-100.0,-100.0,-100.0);
-    PhysVector3 Ubounds(-100.0,-100.0,-100.0);
+    PhysVector3 Lbounds(-1000.0,-1000.0,-1000.0);
+    PhysVector3 Ubounds(1000.0,1000.0,1000.0);
 
 	this->Construct(
 		Lbounds,
@@ -88,7 +88,7 @@ PhysWorld::PhysWorld()
 
 PhysWorld::PhysWorld(   const PhysVector3 &GeographyLowerBounds_,
                         const PhysVector3 &GeographyUpperbounds_,
-                        const unsigned short int  &MaxPhysicsProxies_ )
+                        const unsigned short int  &MaxPhysicsProxies_)
 {
 	this->Construct(GeographyLowerBounds_,
                     GeographyUpperbounds_,
@@ -212,7 +212,7 @@ void PhysWorld::TestLogger()
     OneLogTest(temp15, "PhysWhole");
     OneLogTest(temp16, "PhysString");
     OneLogTest(temp17, "PhysVector3");
-    OneLogTest(temp18, "RawEvent"); /// @todo TODO Figure out How does this calle= the same streaming function as MetaCode ?!?!?
+    OneLogTest(temp18, "RawEvent"); /// @todo TODO Figure out How does this called the same streaming function as MetaCode ?!?!?
     OneLogTest(temp19, "MetaCode");
     OneLogTest(temp20, "btVector3");
     OneLogTest(temp21, "Ogre::Vector3");
@@ -257,14 +257,14 @@ PhysWorld::~PhysWorld()
 
 ///////////////////////////////////////////////////////////////////////////////
 //appends to the gamelog which is managed by Ogre
-template <class T> void PhysWorld::Log(T Message)
+template <class T> void PhysWorld::Log(const T &Message)
 {
 	stringstream temp;
 	temp << Message;
 	Ogre::LogManager::getSingleton().logMessage(temp.str());
 }
 
-template <class T> void PhysWorld::LogAndThrow(T Message)
+template <class T> void PhysWorld::LogAndThrow(const T &Message)
 {
 	this->Log(Message);
 	throw(Message);
@@ -287,7 +287,7 @@ bool PhysWorld::ShowSystemSettingDialog()
 
 ///////////////////////////////////////////////////////////////////////////////
 // Start the Game already
-void PhysWorld::GameInit( bool CallMainLoop )
+void PhysWorld::GameInit(const bool &CallMainLoop )
 {
 	//try to load the ogre config
 	this->LoadOgreSettings();
@@ -436,13 +436,13 @@ void PhysWorld::MainLoop()
 	this->DestroyRenderWindow();
 }
 
-void PhysWorld::MoveCamera(PhysVector3 Position, PhysVector3 LookAt)
+void PhysWorld::MoveCamera(const PhysVector3 &Position, const PhysVector3 &LookAt)
 {
 	this->OgreCamera->setPosition(Ogre::Vector3(Position.X,Position.Y,Position.Z));
     this->OgreCamera->lookAt(Ogre::Vector3(LookAt.X,LookAt.Y,LookAt.Z));
 }
 
-void PhysWorld::DoMainLoopAllItems(PhysReal PreviousFrameTime)
+void PhysWorld::DoMainLoopAllItems(const PhysReal &PreviousFrameTime)
 {
 	this->DoMainLoopPhysics(PreviousFrameTime);
 	this->DoMainLoopWindowManagerBuffering();
@@ -450,7 +450,7 @@ void PhysWorld::DoMainLoopAllItems(PhysReal PreviousFrameTime)
 	this->DoMainLoopRender();
 }
 
-void PhysWorld::DoMainLoopPhysics(PhysReal TimeElapsed)
+void PhysWorld::DoMainLoopPhysics(const PhysReal &TimeElapsed)
 {
     PhysReal FloatTime = TimeElapsed;
     FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
@@ -560,7 +560,7 @@ std::string PhysWorld::GetWindowName()
     return this->WindowName;
 }
 
-void PhysWorld::SetWindowName(std::string NewName)
+void PhysWorld::SetWindowName(const PhysString &NewName)
 {
     /// @todo TODO Change the name of an application once it is running
     WindowName = NewName;
@@ -575,12 +575,12 @@ PhysWhole PhysWorld::GetTargetFrameTime()
     return this->TargetFrameLength;
 }
 
-void PhysWorld::SetTargetFrameTime(PhysWhole NewTargetTime)
+void PhysWorld::SetTargetFrameTime(const PhysWhole &NewTargetTime)
 {
     this->TargetFrameLength = NewTargetTime;
 }
 
-void PhysWorld::SetTargetFrameRate(PhysWhole NewFrameRate)
+void PhysWorld::SetTargetFrameRate(const PhysWhole &NewFrameRate)
 {
     this->SetTargetFrameTime( 1000/NewFrameRate );
 }
@@ -589,7 +589,7 @@ void PhysWorld::SetTargetFrameRate(PhysWhole NewFrameRate)
 // Ogre Resource Related Public Members
 ///////////////////////////////////////
 
-void PhysWorld::AddResourceLocation(PhysString Location, PhysString Type, PhysString Group, bool recursive=false)
+void PhysWorld::AddResourceLocation(const PhysString &Location, const PhysString &Type, const PhysString &Group, const bool &recursive)
 {
     this->OgreRoot->addResourceLocation(Location, Type, Group, recursive);
 }

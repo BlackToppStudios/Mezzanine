@@ -204,12 +204,12 @@ class PhysWorld
 		/// unsigned long int, bool, float, double, long double, wchar_t, size_t, PhysReal, PhysWhole, PhysString, PhysVector3, RawEvent and MetaCode.
 		/// If compiled statically it should support any data type which supports output streams.
 		/// @param Message This is what will be streamed to the log
-    	template <class T> void Log(T Message);
+    	template <class T> void Log(const T &Message);
     	/// @brief This is the preferred way to throw an exception currently
     	/// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
     	/// type the Log function supports
     	/// @param Message This will be streamed to the log, then used in a thrown exception.
-        template <class T> void LogAndThrow(T Message);
+        template <class T> void LogAndThrow(const T &Message);
 
         /// @brief Retrieves the Current Window Title
     	/// @details This gets the texts that the engine has stored for use in the title bar
@@ -219,7 +219,7 @@ class PhysWorld
     	/// @details This changes the text in the bar at the top of the game window in windowed mode. Currently the changes only
     	/// works if this function is called before PhysWorld.GameInit but it is our TODO list to fix so it can be changed at anytime.
     	/// @param NewName This is the new text to be used in the titlebar.
-        void SetWindowName(std::string NewName);
+        void SetWindowName(const PhysString &NewName);
 
         /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be
     	/// @details In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. However, the mainloop will always reduce
@@ -232,13 +232,13 @@ class PhysWorld
         /// set it too high, and system resources could becom completely taxed and power will be wasted.
     	/// @param NewTargetTime The new length of time, in milliseconds.
     	/// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-        void SetTargetFrameTime(PhysWhole NewTargetTime);
+        void SetTargetFrameTime(const PhysWhole &NewTargetTime);
         /// @brief This sets a new Target Frame Rate
     	/// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to
     	/// PhysWorld::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms
     	/// @param NewTargetTime The new desired frame rate.
     	/// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-        void SetTargetFrameRate(PhysWhole NewFrameRate);
+        void SetTargetFrameRate(const PhysWhole &NewFrameRate);
 
         /// @brief This Shows an Engine Generated Configuration Screen
         /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration
@@ -251,14 +251,14 @@ class PhysWorld
 		/// @details The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.
         /// @param Position Where should the camera be seated
 		/// @param LookAt Point the camera such that this poin is centered on the screen
-		void MoveCamera(PhysVector3 Position, PhysVector3 LookAt);
+		void MoveCamera(const PhysVector3 &Position, const PhysVector3 &LookAt);
 
         /// @brief This creates the game window and starts the game.
         /// @param CallMainLoop should the main loop be called
         /// @details Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be
         /// minimal delay from the time you call this and the game actually begins.
         /// This will automatically call the Main Loop unless passed falsed.
-        void GameInit( bool CallMainLoop=true );
+        void GameInit(const bool &CallMainLoop=true );
 
         /// @brief This Function house the main loop
         /// @details By default this is called from the function PhysWorld.GameInit() this is were the bulk of the simulation is ran from, see @ref mainloop1
@@ -269,7 +269,7 @@ class PhysWorld
         /// @details This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is
         /// useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items
         /// each iteration of the main loop.
-        void DoMainLoopAllItems(PhysReal PreviousFrameTime);
+        void DoMainLoopAllItems(const PhysReal &PreviousFrameTime);
 
         /// @brief Increments physics by one step
         /// @param TimeElapsed This is the amount of time that has elapsed since this function was last called, required for proper physics
@@ -277,7 +277,7 @@ class PhysWorld
         /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come
         /// from although it is concievable that a game could manually insert those manually. This will not delete events it places
         /// in the event manager, that is the responsibility of the code that pulls out the event out.
-        void DoMainLoopPhysics(PhysReal TimeElapsed);
+        void DoMainLoopPhysics(const PhysReal &TimeElapsed);
 
         /// @brief Gathers user input from the OS and places events in the event manager
         /// @details This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places
@@ -306,7 +306,7 @@ class PhysWorld
         /// @param Group
         /// @param recursive
         /// @details
-        void AddResourceLocation(PhysString Location, PhysString Type, PhysString Group, bool recursive);
+        void AddResourceLocation(const PhysString &Location, const PhysString &Type, const PhysString &Group, const bool &recursive=false);
 
         /// @brief
         /// @param Name
@@ -320,7 +320,10 @@ class PhysWorld
         /// @details
         void InitResourceGroup(PhysString Name);
 
-        void SetGravity(PhysVector3 pgrav);
+        /// @brief
+        /// @param pgrav
+        /// @details
+        void SetGravity(const PhysVector3 &pgrav);
 
 		/// @brief This is a point to the default Call BackManager
         /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.
