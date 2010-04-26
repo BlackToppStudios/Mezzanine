@@ -129,7 +129,7 @@ void physgamelauncherFrame::RunGame(wxCommandEvent& event)
     wxExecute(wxexe);
      z_stream strm;
 
-    zzip_dir_open steddddd;
+ //   zzip_dir_open steddddd;
 
 
 
