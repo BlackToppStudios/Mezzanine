@@ -99,7 +99,7 @@ Definition at line 119 of file physworld.h.
 
 
 Descriptive constructor. \begin{Desc}
-\item[\hyperlink{todo__todo000015}{Todo}]TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset \end{Desc}
+\item[\hyperlink{todo__todo000013}{Todo}]TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset \end{Desc}
 
 
 This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. 
@@ -131,11 +131,7 @@ Definition at line 75 of file physworld.cpp.\hypertarget{classPhysWorld_acdfe3b4
 
 Deconstructor. This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager) 
 
-\begin{Desc}
-\item[\hyperlink{todo__todo000011}{Todo}]TODO Fix the error when deleting the bullets worlds \end{Desc}
-
-
-Definition at line 224 of file physworld.cpp.
+Definition at line 220 of file physworld.cpp.
 
 \subsection{Member Function Documentation}
 \hypertarget{classPhysWorld_ae490054b3e1c4c5aa69cb8e3b7bd2f29}{
@@ -150,7 +146,7 @@ The adds and Actor to the physworld. The takes over for manager an Actor, and ma
 \item[{\em ActorToAdd}]This is a pointer to the actor to be added \end{DoxyParams}
 
 
-Definition at line 548 of file physworld.cpp.\hypertarget{classPhysWorld_a757783fa596bda8ebdbc24234c6b621a}{
+Definition at line 538 of file physworld.cpp.\hypertarget{classPhysWorld_a757783fa596bda8ebdbc24234c6b621a}{
 \index{PhysWorld@{PhysWorld}!AddResourceLocation@{AddResourceLocation}}
 \index{AddResourceLocation@{AddResourceLocation}!PhysWorld@{PhysWorld}}
 \subsubsection[{AddResourceLocation}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::AddResourceLocation (PhysString {\em Location}, \/  PhysString {\em Type}, \/  PhysString {\em Group}, \/  bool {\em recursive} = {\ttfamily false})}}
@@ -160,7 +156,7 @@ Definition at line 548 of file physworld.cpp.\hypertarget{classPhysWorld_a757783
 \item[{\em Location}]\item[{\em Type}]\item[{\em Group}]\item[{\em recursive}]\end{DoxyParams}
 
 
-Definition at line 587 of file physworld.cpp.\hypertarget{classPhysWorld_a908c21f7f5452f8d7c6d4b5b2308ba5e}{
+Definition at line 580 of file physworld.cpp.\hypertarget{classPhysWorld_a908c21f7f5452f8d7c6d4b5b2308ba5e}{
 \index{PhysWorld@{PhysWorld}!DeclareResource@{DeclareResource}}
 \index{DeclareResource@{DeclareResource}!PhysWorld@{PhysWorld}}
 \subsubsection[{DeclareResource}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DeclareResource (PhysString {\em Name}, \/  PhysString {\em Type}, \/  PhysString {\em Group})}}
@@ -170,7 +166,7 @@ Definition at line 587 of file physworld.cpp.\hypertarget{classPhysWorld_a908c21
 \item[{\em Name}]\item[{\em Type}]\item[{\em Group}]\end{DoxyParams}
 
 
-Definition at line 592 of file physworld.cpp.\hypertarget{classPhysWorld_a174da29a119080c44ba628cb25918f8c}{
+Definition at line 585 of file physworld.cpp.\hypertarget{classPhysWorld_a174da29a119080c44ba628cb25918f8c}{
 \index{PhysWorld@{PhysWorld}!DoMainLoopAllItems@{DoMainLoopAllItems}}
 \index{DoMainLoopAllItems@{DoMainLoopAllItems}!PhysWorld@{PhysWorld}}
 \subsubsection[{DoMainLoopAllItems}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopAllItems (PhysReal {\em PreviousFrameTime})}}
@@ -182,7 +178,7 @@ Performs all the items that would normally be performed during the game loop.
 \item[{\em PreviousFrameTime}]This is the amount of time that has elapsed since this function was last called, so that physics can be done properly.\end{DoxyParams}
 This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items each iteration of the main loop. 
 
-Definition at line 438 of file physworld.cpp.\hypertarget{classPhysWorld_a81b3f0dcc0a90d039623f696343e6e9c}{
+Definition at line 433 of file physworld.cpp.\hypertarget{classPhysWorld_a81b3f0dcc0a90d039623f696343e6e9c}{
 \index{PhysWorld@{PhysWorld}!DoMainLoopInputBuffering@{DoMainLoopInputBuffering}}
 \index{DoMainLoopInputBuffering@{DoMainLoopInputBuffering}!PhysWorld@{PhysWorld}}
 \subsubsection[{DoMainLoopInputBuffering}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopInputBuffering ()}}
@@ -191,7 +187,7 @@ Definition at line 438 of file physworld.cpp.\hypertarget{classPhysWorld_a81b3f0
 
 Gathers user input from the OS and places events in the event manager. This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
 
-Definition at line 465 of file physworld.cpp.\hypertarget{classPhysWorld_ad7455b4f54e8bac0aab090033cff59d4}{
+Definition at line 460 of file physworld.cpp.\hypertarget{classPhysWorld_ad7455b4f54e8bac0aab090033cff59d4}{
 \index{PhysWorld@{PhysWorld}!DoMainLoopPhysics@{DoMainLoopPhysics}}
 \index{DoMainLoopPhysics@{DoMainLoopPhysics}!PhysWorld@{PhysWorld}}
 \subsubsection[{DoMainLoopPhysics}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopPhysics (PhysReal {\em TimeElapsed})}}
@@ -203,7 +199,7 @@ Increments physics by one step.
 \item[{\em TimeElapsed}]This is the amount of time that has elapsed since this function was last called, required for proper physics\end{DoxyParams}
 Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre/Post-\/Physics Callback is set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come from although it is concievable that a game could manually insert those manually. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
 
-Definition at line 446 of file physworld.cpp.\hypertarget{classPhysWorld_a8f33541d67164a2452e568443e9905be}{
+Definition at line 441 of file physworld.cpp.\hypertarget{classPhysWorld_a8f33541d67164a2452e568443e9905be}{
 \index{PhysWorld@{PhysWorld}!DoMainLoopRender@{DoMainLoopRender}}
 \index{DoMainLoopRender@{DoMainLoopRender}!PhysWorld@{PhysWorld}}
 \subsubsection[{DoMainLoopRender}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopRender ()}}
@@ -212,7 +208,7 @@ Definition at line 446 of file physworld.cpp.\hypertarget{classPhysWorld_a8f3354
 
 This forces the screen to be re-\/rendered. This renders the screen based on the status of all in game actors. This is automatically called in the main loop. 
 
-Definition at line 470 of file physworld.cpp.\hypertarget{classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}{
+Definition at line 465 of file physworld.cpp.\hypertarget{classPhysWorld_ae81bab7f314d98f7b787c508e60c9c9a}{
 \index{PhysWorld@{PhysWorld}!DoMainLoopWindowManagerBuffering@{DoMainLoopWindowManagerBuffering}}
 \index{DoMainLoopWindowManagerBuffering@{DoMainLoopWindowManagerBuffering}!PhysWorld@{PhysWorld}}
 \subsubsection[{DoMainLoopWindowManagerBuffering}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::DoMainLoopWindowManagerBuffering ()}}
@@ -221,7 +217,7 @@ Definition at line 470 of file physworld.cpp.\hypertarget{classPhysWorld_ae81bab
 
 Creates events for each Window manger. This gather information from system/windows manager events, such as windows minimization, maximization, program exit, window hidden window shown, and a few other similar types of events. This makes events out of the information and places them in the event manager This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
 
-Definition at line 460 of file physworld.cpp.\hypertarget{classPhysWorld_afc5116f97cc1e91e899d1a1ca7e14e9b}{
+Definition at line 455 of file physworld.cpp.\hypertarget{classPhysWorld_afc5116f97cc1e91e899d1a1ca7e14e9b}{
 \index{PhysWorld@{PhysWorld}!GameInit@{GameInit}}
 \index{GameInit@{GameInit}!PhysWorld@{PhysWorld}}
 \subsubsection[{GameInit}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::GameInit (bool {\em CallMainLoop} = {\ttfamily true})}}
@@ -233,7 +229,7 @@ This creates the game window and starts the game.
 \item[{\em CallMainLoop}]should the main loop be called\end{DoxyParams}
 Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be minimal delay from the time you call this and the game actually begins. This will automatically call the Main Loop unless passed falsed. 
 
-Definition at line 283 of file physworld.cpp.\hypertarget{classPhysWorld_a33e8430ed43897276ca55fbb47e54bcf}{
+Definition at line 279 of file physworld.cpp.\hypertarget{classPhysWorld_a33e8430ed43897276ca55fbb47e54bcf}{
 \index{PhysWorld@{PhysWorld}!GetTargetFrameTime@{GetTargetFrameTime}}
 \index{GetTargetFrameTime@{GetTargetFrameTime}!PhysWorld@{PhysWorld}}
 \subsubsection[{GetTargetFrameTime}]{\setlength{\rightskip}{0pt plus 5cm}PhysWhole PhysWorld::GetTargetFrameTime ()}}
@@ -245,7 +241,7 @@ This returns a PhysWhole with the current Value
 \end{DoxyReturn}
 
 
-Definition at line 568 of file physworld.cpp.\hypertarget{classPhysWorld_a09163480a549b39a945ee97415eabdc0}{
+Definition at line 561 of file physworld.cpp.\hypertarget{classPhysWorld_a09163480a549b39a945ee97415eabdc0}{
 \index{PhysWorld@{PhysWorld}!GetWindowName@{GetWindowName}}
 \index{GetWindowName@{GetWindowName}!PhysWorld@{PhysWorld}}
 \subsubsection[{GetWindowName}]{\setlength{\rightskip}{0pt plus 5cm}std::string PhysWorld::GetWindowName ()}}
@@ -257,7 +253,7 @@ This returns a String Containing the Window Title
 \end{DoxyReturn}
 
 
-Definition at line 557 of file physworld.cpp.\hypertarget{classPhysWorld_a0b67df4c76c32b9b2bdcafdc51f6aba7}{
+Definition at line 546 of file physworld.cpp.\hypertarget{classPhysWorld_a0b67df4c76c32b9b2bdcafdc51f6aba7}{
 \index{PhysWorld@{PhysWorld}!InitResourceGroup@{InitResourceGroup}}
 \index{InitResourceGroup@{InitResourceGroup}!PhysWorld@{PhysWorld}}
 \subsubsection[{InitResourceGroup}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::InitResourceGroup (PhysString {\em Name})}}
@@ -267,7 +263,7 @@ Definition at line 557 of file physworld.cpp.\hypertarget{classPhysWorld_a0b67df
 \item[{\em Name}]\end{DoxyParams}
 
 
-Definition at line 597 of file physworld.cpp.\hypertarget{classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}{
+Definition at line 590 of file physworld.cpp.\hypertarget{classPhysWorld_a5e9fead1c3100f5dbd5ca985b82b85ea}{
 \index{PhysWorld@{PhysWorld}!Log@{Log}}
 \index{Log@{Log}!PhysWorld@{PhysWorld}}
 \subsubsection[{Log}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void PhysWorld::Log (T {\em Message})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
@@ -279,7 +275,7 @@ Runtime Event logging Function. Be careful with this function, even though it ap
 \item[{\em Message}]This is what will be streamed to the log \end{DoxyParams}
 
 
-Definition at line 253 of file physworld.cpp.\hypertarget{classPhysWorld_a1c2aeaed2a89821a4545db854da33ab8}{
+Definition at line 249 of file physworld.cpp.\hypertarget{classPhysWorld_a1c2aeaed2a89821a4545db854da33ab8}{
 \index{PhysWorld@{PhysWorld}!LogAndThrow@{LogAndThrow}}
 \index{LogAndThrow@{LogAndThrow}!PhysWorld@{PhysWorld}}
 \subsubsection[{LogAndThrow}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void PhysWorld::LogAndThrow (T {\em Message})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
@@ -291,7 +287,7 @@ This is the preferred way to throw an exception currently. This will log the Mes
 \item[{\em Message}]This will be streamed to the log, then used in a thrown exception. \end{DoxyParams}
 
 
-Definition at line 260 of file physworld.cpp.\hypertarget{classPhysWorld_ad41cad0347b6f5ba7ec05568aaffa514}{
+Definition at line 256 of file physworld.cpp.\hypertarget{classPhysWorld_ad41cad0347b6f5ba7ec05568aaffa514}{
 \index{PhysWorld@{PhysWorld}!MainLoop@{MainLoop}}
 \index{MainLoop@{MainLoop}!PhysWorld@{PhysWorld}}
 \subsubsection[{MainLoop}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::MainLoop ()}}
@@ -310,7 +306,7 @@ This moves the camera relative to the world. The parameters really do explain it
 \item[{\em Position}]Where should the camera be seated \item[{\em LookAt}]Point the camera such that this poin is centered on the screen \end{DoxyParams}
 
 
-Definition at line 432 of file physworld.cpp.\hypertarget{classPhysWorld_af68a05d6ee84d901bb3ed0e175daa662}{
+Definition at line 427 of file physworld.cpp.\hypertarget{classPhysWorld_af68a05d6ee84d901bb3ed0e175daa662}{
 \index{PhysWorld@{PhysWorld}!SetTargetFrameRate@{SetTargetFrameRate}}
 \index{SetTargetFrameRate@{SetTargetFrameRate}!PhysWorld@{PhysWorld}}
 \subsubsection[{SetTargetFrameRate}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::SetTargetFrameRate (PhysWhole {\em NewFrameRate})}}
@@ -325,7 +321,7 @@ Setting vary low or very High values could cause unknown errors, This is on our 
 \end{DoxyWarning}
 
 
-Definition at line 578 of file physworld.cpp.\hypertarget{classPhysWorld_ab1c6f9286bd97eb502d8b0ddc4954566}{
+Definition at line 571 of file physworld.cpp.\hypertarget{classPhysWorld_ab1c6f9286bd97eb502d8b0ddc4954566}{
 \index{PhysWorld@{PhysWorld}!SetTargetFrameTime@{SetTargetFrameTime}}
 \index{SetTargetFrameTime@{SetTargetFrameTime}!PhysWorld@{PhysWorld}}
 \subsubsection[{SetTargetFrameTime}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::SetTargetFrameTime (PhysWhole {\em NewTargetTime})}}
@@ -340,7 +336,7 @@ Setting vary low or very High values could cause unknown errors, This is on our 
 \end{DoxyWarning}
 
 
-Definition at line 573 of file physworld.cpp.\hypertarget{classPhysWorld_adb5ba2b5a3140c5d7033d3180e3f7342}{
+Definition at line 566 of file physworld.cpp.\hypertarget{classPhysWorld_adb5ba2b5a3140c5d7033d3180e3f7342}{
 \index{PhysWorld@{PhysWorld}!SetWindowName@{SetWindowName}}
 \index{SetWindowName@{SetWindowName}!PhysWorld@{PhysWorld}}
 \subsubsection[{SetWindowName}]{\setlength{\rightskip}{0pt plus 5cm}void PhysWorld::SetWindowName (std::string {\em NewName})}}
@@ -353,10 +349,10 @@ This can set the the Text in the titlebar. This changes the text in the bar at t
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000014}{Todo}]TODO Change the name of an application once it is running \end{Desc}
+\item[\hyperlink{todo__todo000012}{Todo}]TODO Change the name of an application once it is running \end{Desc}
 
 
-Definition at line 562 of file physworld.cpp.\hypertarget{classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}{
+Definition at line 551 of file physworld.cpp.\hypertarget{classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}{
 \index{PhysWorld@{PhysWorld}!ShowSystemSettingDialog@{ShowSystemSettingDialog}}
 \index{ShowSystemSettingDialog@{ShowSystemSettingDialog}!PhysWorld@{PhysWorld}}
 \subsubsection[{ShowSystemSettingDialog}]{\setlength{\rightskip}{0pt plus 5cm}bool PhysWorld::ShowSystemSettingDialog ()}}
@@ -365,7 +361,7 @@ Definition at line 562 of file physworld.cpp.\hypertarget{classPhysWorld_a9b83f0
 
 This Shows an Engine Generated Configuration Screen. This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. 
 
-Definition at line 269 of file physworld.cpp.
+Definition at line 265 of file physworld.cpp.
 
 \subsection{Friends And Related Function Documentation}
 \hypertarget{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{
@@ -390,7 +386,7 @@ This should be treated as an internal function, it is {\bfseries subject} {\bfse
 
 This is a point to the default Call BackManager. All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. 
 
-Definition at line 323 of file physworld.h.\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
+Definition at line 322 of file physworld.h.\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
 \index{PhysWorld@{PhysWorld}!Events@{Events}}
 \index{Events@{Events}!PhysWorld@{PhysWorld}}
 \subsubsection[{Events}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventManager}$\ast$ {\bf PhysWorld::Events}}}
@@ -399,7 +395,7 @@ Definition at line 323 of file physworld.h.\hypertarget{classPhysWorld_a601b3c60
 
 This is the default pointer to the Event Manager. This is the Event manager that all physworld members will place any events into. 
 
-Definition at line 327 of file physworld.h.
+Definition at line 326 of file physworld.h.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

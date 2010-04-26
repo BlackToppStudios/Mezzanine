@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physgamesettings_h
-#define _physgamesettings_h
+#ifndef _gamesettings_h
+#define _gamesettings_h
 ///////////////////////////////////////////////////////////////////////////////
 // This is where all the gamewide features will go. If it has no better home
 //Somewhere else we will stuff it here until it is time to refactor again.
@@ -47,6 +47,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // This class will store settings about player preferences, The current plan
 //plan is to use only one, but we can make more for multiplayer situations
+
 class Settings
 {
 	private:
@@ -66,7 +67,6 @@ class Settings
 		int getRenderWidth();
 		bool setRenderHeight(int Height);
 		bool setRenderWidth(int Width);
-
 };
 
 #endif

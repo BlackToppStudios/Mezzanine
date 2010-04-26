@@ -54,7 +54,7 @@
 #include "physvector.h"
 #include "physcrossplatform.h"
 #include "physworldcallbackmanager.h"
-#include "physgamesettings.h"
+#include "gamesettings.h"
 #include "physactor.h"
 #include "physeventuserinput.h"
 
@@ -501,13 +501,13 @@ void PhysWorld::CreateRenderWindow()
     SDL_WM_SetCaption(this->WindowName.c_str(), NULL);
 
 	//Start Ogre Without a native render window
-	this->OgreGameWindow = this->OgreRoot->initialise(false, "physgame");
+	this->OgreGameWindow = this->OgreRoot->initialise(false, this->WindowName);
 
 	//Configure Ogre to render to the SDL window
 	Ogre::NameValuePairList *misc;
 	misc=(Ogre::NameValuePairList*) GetSDLOgreBinder();
 	(*misc)["title"] = Ogre::String(this->WindowName);
-	this->OgreGameWindow = this->OgreRoot->createRenderWindow("physgame", PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), misc);
+	this->OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), misc);
 
 	//prepare a scenemanager
 	this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");

@@ -81,8 +81,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/Doxyfile" />
 		<Unit filename="src/eventquit.cpp" />
 		<Unit filename="src/eventquit.h" />
+		<Unit filename="src/gamesettings.cpp" />
+		<Unit filename="src/gamesettings.h" />
 		<Unit filename="src/metacode.cpp" />
 		<Unit filename="src/metacode.h" />
 		<Unit filename="src/physactor.cpp" />
@@ -98,8 +101,6 @@
 		<Unit filename="src/physeventrendertime.h" />
 		<Unit filename="src/physeventuserinput.cpp" />
 		<Unit filename="src/physeventuserinput.h" />
-		<Unit filename="src/physgamesettings.cpp" />
-		<Unit filename="src/physgamesettings.h" />
 		<Unit filename="src/physmisc.cpp" />
 		<Unit filename="src/physmisc.h" />
 		<Unit filename="src/physquaternion.cpp" />

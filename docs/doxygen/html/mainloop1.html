@@ -23,8 +23,7 @@
 <div class="contents">
 
 
-<h1><a class="anchor" id="mainloop1">Main Loop Structure and Flow </a></h1><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>TODO finish test code, there is a sloppy line of test code for the robot in the main loop </dd></dl>
-<p>The MainLoop is heart of most vidoe games and simulations.</p>
+<h1><a class="anchor" id="mainloop1">Main Loop Structure and Flow </a></h1><p>The MainLoop is heart of most vidoe games and simulations.</p>
 <h2><a class="anchor" id="overview1">
 Main loop Overview</a></h2>
 <p>The Main loop runs in <a class="el" href="db/df5/classPhysWorld.html#ad41cad0347b6f5ba7ec05568aaffa514" title="This Function house the main loop.">PhysWorld.MainLoop()</a> which is called by default from <a class="el" href="db/df5/classPhysWorld.html#afc5116f97cc1e91e899d1a1ca7e14e9b">PhysWorld::GameInit()</a>. By default this Method also starts the render, the physics andthe input systems. It does very little on it's own. It uses the default callback manager (which you can swap out if you want), which is the callback manager point to by <a class="el" href="db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">PhysWorld::CallBacks</a> . Once started it runs the callbacks present in the callback manager until one of them returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback before and after each of these tasks. <br/>
@@ -76,7 +75,7 @@ Main loop Overview</a></h2>
 Ending the Main Loop</a></h2>
 <p>The main loop stores the return values of each of the 6 callbacks. If they are all true the mainloop continues to it's next iteration. If one or more of any of the callbacks returns false then the main loop ends, and the game engine exits gracefully, cleanly up the physics, graphics and any others subsystems it opened. No attempt will be made by the engine to clean up data in the callback manager. If the game code does not free these items the operating system had better do it automatically. On most PC platform this is not an issue, but it could be disastrous on a mobile, or underperforming gaming platform. </p>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 25 17:41:35 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 25 20:19:20 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

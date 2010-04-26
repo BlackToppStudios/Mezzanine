@@ -1,7 +1,3 @@
-\begin{Desc}
-\item[\hyperlink{todo__todo000012}{Todo}]TODO finish test code, there is a sloppy line of test code for the robot in the main loop \end{Desc}
-
-
 The MainLoop is heart of most vidoe games and simulations.\hypertarget{mainloop1_overview1}{}\section{Main loop Overview}\label{mainloop1_overview1}
 The Main loop runs in \hyperlink{classPhysWorld_ad41cad0347b6f5ba7ec05568aaffa514}{PhysWorld.MainLoop()} which is called by default from \hyperlink{classPhysWorld_afc5116f97cc1e91e899d1a1ca7e14e9b}{PhysWorld::GameInit()}. By default this Method also starts the render, the physics andthe input systems. It does very little on it's own. It uses the default callback manager (which you can swap out if you want), which is the callback manager point to by \hyperlink{classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}{PhysWorld::CallBacks} . Once started it runs the callbacks present in the callback manager until one of them returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback before and after each of these tasks. \par
  \par

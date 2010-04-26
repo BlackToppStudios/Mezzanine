@@ -12,12 +12,12 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>. 
+    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
 */
-/* We welcome the use of The PhysGame anyone, including companies who wish to 
+/* We welcome the use of The PhysGame anyone, including companies who wish to
    Build professional software and charge for their product.
 
    However there are some practical restrictions, so if your project involves
@@ -27,22 +27,22 @@
     - Software Patents You Do Not Wish to Freely License
     - Any Kind of Linking to Non-GPL licensed Works
     - Are Currently In Violation of Another Copyright Holder's GPL License
-    - If You want to change our code and not add a few hundred MB of stuff to 
+    - If You want to change our code and not add a few hundred MB of stuff to
         your distribution
 
    These and other limitations could cause serious legal problems if you ignore
    them, so it is best to simply contact us or the Free Software Foundation, if
-   you have any questions. 
+   you have any questions.
 
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physgamesettings_cpp
-#define _physgamesettings_cpp
+#ifndef _gamesettings_cpp
+#define _gamesettings_cpp
 
 #include "physworld.h"
 #include "physeventmanager.h"
-#include "physgamesettings.h"
+#include "gamesettings.h"
 
 /////////////////////////////////////
 // Functions for managing settings
