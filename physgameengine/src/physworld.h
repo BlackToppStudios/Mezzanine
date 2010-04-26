@@ -78,9 +78,13 @@ using namespace std;
 //forward Declarations so that we do not need #include "physvector.h"
 //forward Declarations so that we do not need #include "gamesettings.h"
 //Forward declarations to prevent infite loop of includes
-class Settings;
+namespace phys
+{
+    class GraphicsSettings;
+}
 class PhysVector3;
 class ActorBase;
+
 //Other forward declarations
 //forward Declarations so that we do not need #include "SDL.h"
 class SDL_Surface;
@@ -144,7 +148,7 @@ class PhysWorld
 		Ogre::Viewport* OgreViewport;
 
 		//Players settings
-		Settings* PlayerSettings;
+		phys::GraphicsSettings* PlayerSettings;
 
 		//Try to retrieve ogre settinss
 		void LoadOgreSettings();
@@ -314,8 +318,6 @@ class PhysWorld
         void InitResourceGroup(PhysString Name);
 
         void SetGravity(PhysVector3 pgrav);
-
-        void ApplyGravity();
 
 		/// @brief This is a point to the default Call BackManager
         /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.

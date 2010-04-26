@@ -39,34 +39,79 @@
 */
 #ifndef _gamesettings_h
 #define _gamesettings_h
-///////////////////////////////////////////////////////////////////////////////
-// This is where all the gamewide features will go. If it has no better home
-//Somewhere else we will stuff it here until it is time to refactor again.
-///////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////
-// This class will store settings about player preferences, The current plan
-//plan is to use only one, but we can make more for multiplayer situations
-
-class Settings
+namespace phys
 {
-	private:
-		bool Fullscreen;
+    ///////////////////////////////////////////////////////////////////////////////
+    // This class will store settings about player preferences, The current plan
+    //plan is to use only one, but we can make more for multiplayer situations
 
-		//these refer to the render window
-		int RenderHeight;
-		int RenderWidth;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class GraphicsSettings
+    /// @headerfile gamesettings.h
+    /// @brief This is intended to store basic graphics setting for the user
+    /// @details This stores x/y resolution, fullscreen and in the future other
+    /// settings. This is intended to be easy for developers to pass/move around
+    /// complex graphics settings. We hope to eventually include other items like
+    /// shader, rendering API, and maybe other settings too.
+    class GraphicsSettings
+    {
+        private:
+            bool Fullscreen;
 
-	public:
-		Settings();
-		bool getFullscreen();
-		bool setFullscreen(bool _Fullscreen);
+            //these refer to the render window
+            PhysWhole RenderHeight;
+            PhysWhole RenderWidth;
 
-		//For the renderwindow
-		int getRenderHeight();
-		int getRenderWidth();
-		bool setRenderHeight(int Height);
-		bool setRenderWidth(int Width);
-};
+        public:
+            /// @brief Default constructor
+            /// @details This creates a default Graphics Settings with resolution 640x480 with fullscreen set to false
+            GraphicsSettings();
 
+            /// @brief Versatile Constructor
+            /// @param Width_ The desired width.
+            /// @param Height_ The desired height.
+            /// @param FullScreen_ True if fullscreen, false if not.
+            /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the
+            /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support
+            /// arbitrary resolutions in fullscreen mode.
+            GraphicsSettings(const PhysWhole &Width_, const PhysWhole &Height_, const bool &FullScreen_);
+
+            /// @brief Adjust all Settings
+            /// @param Width_ The desired width.
+            /// @param Height_ The desired height.
+            /// @param FullScreen_ True if fullscreen, false if not.
+            /// @details This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be
+            /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens
+            /// do not support arbitrary resolutions in fullscreen mode.
+            void Construct(const PhysWhole &Width_, const PhysWhole &Height_, const bool &FullScreen_);
+
+            /// @brief Gets the Fullscreen Setting
+            /// @details Gets the Fullscreen Setting
+            /// @return This returns a bool, true if fullscreen is set, false otherwise
+            bool getFullscreen();
+            /// @brief Set the Fullscreen Setting
+            /// @details Set the Fullscreen Setting
+            /// @param Fullscreen_ This accepts a bool. True for fullscreen, false for windowed
+            void setFullscreen(const bool &Fullscreen_);
+
+            /// @brief Gets the Height of the Rendering Area
+            /// @details Gets the Height of the Rendering Area
+            /// @return This returns the Height of the Rendering Area
+            PhysWhole getRenderHeight();
+            /// @brief Sets the Height.
+            /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
+            /// @param Height_ This accepts a PhysWhole.
+            void setRenderHeight(const PhysWhole &Height_);
+
+            /// @brief Gets the Width of the Rendering Area
+            /// @details Gets the Width of the Rendering Area
+            /// @return This returns the Width of the Rendering Area
+            PhysWhole getRenderWidth();
+            /// @brief Sets the Width.
+            /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
+            /// @param Width_ This accepts a PhysWhole.
+            void setRenderWidth(const PhysWhole &Width_);
+    };
+}
 #endif

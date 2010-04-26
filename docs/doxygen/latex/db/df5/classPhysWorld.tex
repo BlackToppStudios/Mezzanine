@@ -60,11 +60,6 @@ void \hyperlink{classPhysWorld_a0b67df4c76c32b9b2bdcafdc51f6aba7}{InitResourceGr
 void {\bfseries SetGravity} (\hyperlink{classPhysVector3}{PhysVector3} pgrav)}
 \label{db/df5/classPhysWorld_ab03e39a70b915d0b5a590e9e2cfbb522}
 
-\item 
-\hypertarget{classPhysWorld_a6a4bcf61bd02c3863f13110c2eea3ec6}{
-void {\bfseries ApplyGravity} ()}
-\label{db/df5/classPhysWorld_a6a4bcf61bd02c3863f13110c2eea3ec6}
-
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -88,7 +83,7 @@ void \hyperlink{classPhysWorld_a54ca2a75bbccb9b2129f434874f1e693}{RenderPhysWorl
 \subsection{Detailed Description}
 This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. 
 
-Definition at line 119 of file physworld.h.
+Definition at line 123 of file physworld.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classPhysWorld_a3228c98369082139722d3c918d735e6c}{
@@ -328,7 +323,7 @@ Definition at line 571 of file physworld.cpp.\hypertarget{classPhysWorld_ab1c6f9
 \label{db/df5/classPhysWorld_ab1c6f9286bd97eb502d8b0ddc4954566}
 
 
-This sets a new Target Time. This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value Higher can results in power savings (battery life), but setting it too High can cause choppiness. \hyperlink{classSettings}{Settings} this value higher can result in smoother gameplay, but set it too high, and system resources could becom completely taxed and power will be wasted. 
+This sets a new Target Time. This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but set it too high, and system resources could becom completely taxed and power will be wasted. 
 \begin{DoxyParams}{Parameters}
 \item[{\em NewTargetTime}]The new length of time, in milliseconds. \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
@@ -386,7 +381,7 @@ This should be treated as an internal function, it is {\bfseries subject} {\bfse
 
 This is a point to the default Call BackManager. All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. 
 
-Definition at line 322 of file physworld.h.\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
+Definition at line 324 of file physworld.h.\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
 \index{PhysWorld@{PhysWorld}!Events@{Events}}
 \index{Events@{Events}!PhysWorld@{PhysWorld}}
 \subsubsection[{Events}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventManager}$\ast$ {\bf PhysWorld::Events}}}
@@ -395,7 +390,7 @@ Definition at line 322 of file physworld.h.\hypertarget{classPhysWorld_a601b3c60
 
 This is the default pointer to the Event Manager. This is the Event manager that all physworld members will place any events into. 
 
-Definition at line 326 of file physworld.h.
+Definition at line 328 of file physworld.h.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

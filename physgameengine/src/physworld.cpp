@@ -95,7 +95,7 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
     this->TargetFrameLength=16;
     this->HasSDLBeenInitialized=false;    this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
 
-	PlayerSettings = new Settings();
+	PlayerSettings = new phys::GraphicsSettings();
 
 	//We create our Ogre environment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
@@ -497,7 +497,7 @@ void PhysWorld::CreateRenderWindow()
     this->HasSDLBeenInitialized=true;
 
 	//Setup the SDL render window
-	this->SDLscreen = SDL_SetVideoMode(PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), 0, SDL_OPENGL);
+	this->SDLscreen = SDL_SetVideoMode( PlayerSettings->getRenderWidth(), PlayerSettings->getRenderHeight(),0, SDL_OPENGL);
     SDL_WM_SetCaption(this->WindowName.c_str(), NULL);
 
 	//Start Ogre Without a native render window
@@ -599,11 +599,6 @@ void PhysWorld::InitResourceGroup(PhysString Group)
 void PhysWorld::SetGravity(PhysVector3 pgrav)
 {
     this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
-}
-
-void PhysWorld::ApplyGravity()
-{
-    this->BulletDynamicsWorld->applyGravity();
 }
 
 #endif

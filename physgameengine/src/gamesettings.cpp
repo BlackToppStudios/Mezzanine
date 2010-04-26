@@ -44,53 +44,65 @@
 #include "physeventmanager.h"
 #include "gamesettings.h"
 
-/////////////////////////////////////
-// Functions for managing settings
-////
-Settings::Settings()
+namespace phys
 {
-	this->Fullscreen=false;
-	this->RenderHeight = 680;
-	this->RenderWidth = 480;
-}
 
-//returns: True if user wants fullscreen
-bool Settings::getFullscreen()
-{
-	return this->Fullscreen;
-}
+    /////////////////////////////////////
+    // Functions for managing settings
+    ////
+    GraphicsSettings::GraphicsSettings()
+    {
+        Construct(640,480,false);
+    }
 
-//returns: false if changes could not be made
-bool Settings::setFullscreen(bool _Fullscreen)
-{
-	//wierd checks go here to make sure it worked
-	this->Fullscreen = _Fullscreen;
-	return true;
-}
+    GraphicsSettings::GraphicsSettings( const PhysWhole &Width_, const PhysWhole &Height_, const bool &FullScreen_ )
+    {
+        Construct( Width_, Height_, FullScreen_ );
+    }
 
-//Returns the height of the render window
-int Settings::getRenderHeight()
-{
-	return this->RenderHeight;
-}
+    void GraphicsSettings::Construct( const PhysWhole &Width_, const PhysWhole &Height_, const bool &FullScreen_ )
+    {
+        this->Fullscreen = FullScreen_;
+        this->RenderHeight = Height_;
+        this->RenderWidth = Width_;
+    }
 
-//Returns the width of the render window
-int Settings::getRenderWidth()
-{
-	return this->RenderWidth;
-}
-//returns: false if changes could not be made
-bool Settings::setRenderHeight(int Height)
-{
-	this->RenderHeight = Height;
-	return true;
-}
+    //returns: True if user wants fullscreen
+    bool GraphicsSettings::getFullscreen()
+    {
+        return this->Fullscreen;
+    }
 
-//returns: false if changes could not be made
-bool Settings::setRenderWidth(int Width)
-{
-	this->RenderWidth = Width;
-	return true;
-}
+    //returns: false if changes could not be made
+    void GraphicsSettings::setFullscreen(const bool &Fullscreen_)
+    {
+        //wierd checks go here to make sure it worked
+        this->Fullscreen = Fullscreen_;
+    }
+
+    //Returns the height of the render window
+    PhysWhole GraphicsSettings::getRenderHeight()
+    {
+        return this->RenderHeight;
+    }
+
+    //Returns the width of the render window
+    PhysWhole GraphicsSettings::getRenderWidth()
+    {
+        return this->RenderWidth;
+    }
+    //returns: false if changes could not be made
+    void GraphicsSettings::setRenderHeight(const PhysWhole &Height_)
+    {
+        this->RenderHeight = Height_;
+    }
+
+    //returns: false if changes could not be made
+    void GraphicsSettings::setRenderWidth(const PhysWhole &Width_)
+    {
+        this->RenderWidth = Width_;
+    }
+
+}//namespace phys
 
 #endif

@@ -119,7 +119,7 @@
 <a name="l00095"></a>00095     this-&gt;TargetFrameLength=16;
 <a name="l00096"></a>00096     this-&gt;HasSDLBeenInitialized=<span class="keyword">false</span>;    this-&gt;PhysicsStepsize = btScalar(1.)/btScalar(60.);
 <a name="l00097"></a>00097 
-<a name="l00098"></a>00098         PlayerSettings = <span class="keyword">new</span> <a class="code" href="../../df/d9a/classSettings.html">Settings</a>();
+<a name="l00098"></a>00098         PlayerSettings = <span class="keyword">new</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html" title="This is intended to store basic graphics setting for the user.">phys::GraphicsSettings</a>();
 <a name="l00099"></a>00099 
 <a name="l00100"></a>00100         <span class="comment">//We create our Ogre environment</span>
 <a name="l00101"></a>00101         this-&gt;OgreRoot = <span class="keyword">new</span> Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),<span class="stringliteral">&quot;Physgame.log&quot;</span>);
@@ -521,7 +521,7 @@
 <a name="l00497"></a>00497     this-&gt;HasSDLBeenInitialized=<span class="keyword">true</span>;
 <a name="l00498"></a>00498 
 <a name="l00499"></a>00499         <span class="comment">//Setup the SDL render window</span>
-<a name="l00500"></a>00500         this-&gt;SDLscreen = SDL_SetVideoMode(PlayerSettings-&gt;getRenderHeight(), PlayerSettings-&gt;getRenderWidth(), 0, SDL_OPENGL);
+<a name="l00500"></a>00500         this-&gt;SDLscreen = SDL_SetVideoMode( PlayerSettings-&gt;<a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a7e66859d70c88cd263c3bd6e9814069d" title="Gets the Width of the Rendering Area.">getRenderWidth</a>(), PlayerSettings-&gt;<a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a3f44f36cf226bfff2f80bc6edf577cab" title="Gets the Height of the Rendering Area.">getRenderHeight</a>(),0, SDL_OPENGL);
 <a name="l00501"></a>00501     SDL_WM_SetCaption(this-&gt;WindowName.c_str(), NULL);
 <a name="l00502"></a>00502 
 <a name="l00503"></a>00503         <span class="comment">//Start Ogre Without a native render window</span>
@@ -531,7 +531,7 @@
 <a name="l00507"></a>00507         Ogre::NameValuePairList *misc;
 <a name="l00508"></a>00508         misc=(Ogre::NameValuePairList*) GetSDLOgreBinder();
 <a name="l00509"></a>00509         (*misc)[<span class="stringliteral">&quot;title&quot;</span>] = Ogre::String(this-&gt;WindowName);
-<a name="l00510"></a>00510         this-&gt;OgreGameWindow = this-&gt;OgreRoot-&gt;createRenderWindow(WindowName, PlayerSettings-&gt;getRenderHeight(), PlayerSettings-&gt;getRenderWidth(), PlayerSettings-&gt;getFullscreen(), misc);
+<a name="l00510"></a>00510         this-&gt;OgreGameWindow = this-&gt;OgreRoot-&gt;createRenderWindow(WindowName, PlayerSettings-&gt;<a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a3f44f36cf226bfff2f80bc6edf577cab" title="Gets the Height of the Rendering Area.">getRenderHeight</a>(), PlayerSettings-&gt;<a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a7e66859d70c88cd263c3bd6e9814069d" title="Gets the Width of the Rendering Area.">getRenderWidth</a>(), PlayerSettings-&gt;<a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#ab158ef7c277f354e71088f3e69c511d0" title="Gets the Fullscreen Setting.">getFullscreen</a>(), misc);
 <a name="l00511"></a>00511 
 <a name="l00512"></a>00512         <span class="comment">//prepare a scenemanager</span>
 <a name="l00513"></a>00513         this-&gt;OgreSceneManager = this-&gt;OgreRoot-&gt;createSceneManager(Ogre::ST_GENERIC,<span class="stringliteral">&quot;SceneManager&quot;</span>);
@@ -625,14 +625,9 @@
 <a name="l00601"></a>00601     this-&gt;BulletDynamicsWorld-&gt;setGravity(pgrav.GetBulletVector3());
 <a name="l00602"></a>00602 }
 <a name="l00603"></a>00603 
-<a name="l00604"></a>00604 <span class="keywordtype">void</span> PhysWorld::ApplyGravity()
-<a name="l00605"></a>00605 {
-<a name="l00606"></a>00606     this-&gt;BulletDynamicsWorld-&gt;applyGravity();
-<a name="l00607"></a>00607 }
-<a name="l00608"></a>00608 
-<a name="l00609"></a>00609 <span class="preprocessor">#endif</span>
+<a name="l00604"></a>00604 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 25 20:55:49 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 25 23:43:07 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>
