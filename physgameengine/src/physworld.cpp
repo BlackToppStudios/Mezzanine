@@ -54,7 +54,7 @@
 #include "physvector.h"
 #include "physcrossplatform.h"
 #include "physworldcallbackmanager.h"
-#include "gamesettings.h"
+#include "graphicsettings.h"
 #include "physactor.h"
 #include "physeventuserinput.h"
 
@@ -74,26 +74,37 @@ using namespace std;
 /// @todo TODO Fix the `const`ness of all methods to be as const as allowable
 PhysWorld::PhysWorld()
 {
+    PhysVector3 Lbounds(-100.0,-100.0,-100.0);
+    PhysVector3 Ubounds(-100.0,-100.0,-100.0);
+
 	this->Construct(
-		new PhysVector3(-100.0,-100.0,-100.0),
-		new PhysVector3(100.0, 100.0, 100.0),
+		Lbounds,
+		Ubounds,
 		10
 		);
 }
 
 /// @todo TODO: adjust the constructors to allow for pointers to a callback manager and event manager
 
-PhysWorld::PhysWorld(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyUpperbounds_, unsigned short int  MaxPhysicsProxies_)
+PhysWorld::PhysWorld(   const PhysVector3 &GeographyLowerBounds_,
+                        const PhysVector3 &GeographyUpperbounds_,
+                        const unsigned short int  &MaxPhysicsProxies_ )
 {
-	this->Construct(GeographyLowerBounds_, GeographyUpperbounds_, MaxPhysicsProxies_);
+	this->Construct(GeographyLowerBounds_,
+                    GeographyUpperbounds_,
+                    MaxPhysicsProxies_
+                    );
 }
 
-void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* GeographyUpperbounds_, unsigned short int  MaxPhysicsProxies_)
+void PhysWorld::Construct(  const PhysVector3 &GeographyLowerBounds_,
+                            const PhysVector3 &GeographyUpperbounds_,
+                            const unsigned short int &MaxPhysicsProxies_)
 {
     //Set some sane Defaults for some values
     this->SetWindowName("AppName");
     this->TargetFrameLength=16;
-    this->HasSDLBeenInitialized=false;    this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
+    this->HasSDLBeenInitialized=false;
+    this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
 
 	PlayerSettings = new phys::GraphicsSettings();
 
@@ -114,8 +125,8 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 	GeographyUpperbounds = GeographyUpperbounds_;
 	MaxPhysicsProxies = MaxPhysicsProxies_;
 
-	btVector3 worldAabbMin(GeographyLowerBounds->X, GeographyLowerBounds->Y, GeographyLowerBounds->Z);
-	btVector3 worldAabbMax(GeographyUpperbounds->X, GeographyUpperbounds->Y, GeographyUpperbounds->Z);
+	btVector3 worldAabbMin(GeographyLowerBounds.X, GeographyLowerBounds.Y, GeographyLowerBounds.Z);
+	btVector3 worldAabbMax(GeographyUpperbounds.X, GeographyUpperbounds.Y, GeographyUpperbounds.Z);
 
 	this->BulletBroadphase = new btAxisSweep3(worldAabbMin, worldAabbMax, MaxPhysicsProxies);
 	this->BulletSolver = new btSequentialImpulseConstraintSolver;
@@ -178,8 +189,10 @@ void PhysWorld::TestLogger()
         temp18.type = SDL_KEYDOWN;
         temp18.key.keysym.sym = SDLK_BACKSPACE;
     MetaCode temp19(temp18);
+    btVector3 temp20(1,1,1);
+    Ogre::Vector3 temp21(2,2,2);
     //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
-    /// @todo TODO add each type of event here (logtest) to make it really wasy to log events
+    /// @todo TODO add each type of event here (logtest) to make it really easy to log events
 
     OneLogTest(temp0, "string");
     OneLogTest(temp1, "char");
@@ -201,6 +214,8 @@ void PhysWorld::TestLogger()
     OneLogTest(temp17, "PhysVector3");
     OneLogTest(temp18, "RawEvent"); /// @todo TODO Figure out How does this calle= the same streaming function as MetaCode ?!?!?
     OneLogTest(temp19, "MetaCode");
+    OneLogTest(temp20, "btVector3");
+    OneLogTest(temp21, "Ogre::Vector3");
 }
 
 template <class T> void PhysWorld::OneLogTest(T Data, string DataType, string Message1, string Message2)
@@ -220,9 +235,6 @@ template <class T> void PhysWorld::OneLogTest(T Data, string DataType, string Me
 PhysWorld::~PhysWorld()
 {
 	//Destroy the physical world that we loved and cherished
-	delete GeographyLowerBounds;
-	delete GeographyUpperbounds;
-
     delete BulletDynamicsWorld;
 	delete BulletDispatcher;
 	delete BulletCollisionConfiguration;
@@ -237,7 +249,6 @@ PhysWorld::~PhysWorld()
 	delete Events;
 
 	delete PlayerSettings;
-
 
 	//remove sdl stuff
 	SDL_FreeSurface(SDLscreen);

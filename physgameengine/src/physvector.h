@@ -61,10 +61,24 @@ class PhysVector3
 
         btVector3 GetBulletVector3();
         void ExtractBulletVector3(btVector3 temp);
+
         Ogre::Vector3 GetOgreVector3();
         void ExtractOgreVector3(Ogre::Vector3 temp);
+
+        void operator= (const btVector3 &bt3);
+        void operator= (const Ogre::Vector3 &OVec3);
+
 };
 
 std::ostream& operator << (std::ostream& stream, const PhysVector3& x);
+
+Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const PhysVector3& VecFrom);
+Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom);
+
+btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom);
+btVector3& operator << (btVector3& VecTo, const PhysVector3& VecFrom);
+
+PhysVector3& operator << (PhysVector3& VecTo, const Ogre::Vector3& VecFrom);
+PhysVector3& operator << (PhysVector3& VecTo, const btVector3& VecFrom);
 
 #endif

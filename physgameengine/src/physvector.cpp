@@ -45,6 +45,8 @@
 
 #include "physvector.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// Constructors
 PhysVector3::PhysVector3()
 {
     X=0;
@@ -59,12 +61,76 @@ PhysVector3::PhysVector3(PhysReal x, PhysReal y, PhysReal z)
 	Z=z;
 }
 
+/////////////////////////////////////////////////////////////////////
+// Operators
 std::ostream& operator << (std::ostream& stream, const PhysVector3& x)
 {
     stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
     return stream;
 }
 
+void PhysVector3::operator= (const btVector3 &bt3)
+{
+    (*this)<<bt3;
+}
+
+void PhysVector3::operator=(const Ogre::Vector3 &OVec3)
+{
+    (*this)<<OVec3;
+}
+
+Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const PhysVector3& VecFrom)
+{
+    VecTo.x=VecFrom.X;
+    VecTo.y=VecFrom.Y;
+    VecTo.z=VecFrom.Z;
+    return VecTo;
+}
+
+Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom)
+{
+    VecTo.x=VecFrom.getX();
+    VecTo.y=VecFrom.getY();
+    VecTo.z=VecFrom.getZ();
+    return VecTo;
+}
+
+btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom)
+{
+    VecTo.setX(VecFrom.x);
+    VecTo.setY(VecFrom.y);
+    VecTo.setZ(VecFrom.z);
+    VecTo.setW(0);
+    return VecTo;
+}
+
+btVector3& operator << (btVector3& VecTo, const PhysVector3& VecFrom)
+{
+    VecTo.setX(VecFrom.X);
+    VecTo.setY(VecFrom.Y);
+    VecTo.setZ(VecFrom.Z);
+    VecTo.setW(0);
+    return VecTo;
+}
+
+PhysVector3& operator << (PhysVector3& VecTo, const Ogre::Vector3& VecFrom)
+{
+    VecTo.X=VecFrom.x;
+    VecTo.Y=VecFrom.y;
+    VecTo.Z=VecFrom.z;
+    return VecTo;
+}
+
+PhysVector3& operator << (PhysVector3& VecTo, const btVector3& VecFrom)
+{
+    VecTo.X=VecFrom.getX();
+    VecTo.Y=VecFrom.getY();
+    VecTo.Z=VecFrom.getZ();
+    return VecTo;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Manual Conversions
 btVector3 PhysVector3::GetBulletVector3()
 {
     btVector3 Theirs;

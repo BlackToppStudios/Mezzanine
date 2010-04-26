@@ -73,6 +73,7 @@
 #include "physevent.h"
 #include "physeventmanager.h"
 #include "physdatatypes.h"
+#include "physvector.h"
 
 #include <string>
 
@@ -85,7 +86,6 @@ namespace phys
 {
     class GraphicsSettings;
 }
-class PhysVector3;
 class ActorBase;
 
 //Other forward declarations
@@ -127,8 +127,8 @@ class PhysWorld
 {
 	private:
 		//Physics Items
-		PhysVector3* GeographyLowerBounds;
-		PhysVector3* GeographyUpperbounds;
+		PhysVector3 GeographyLowerBounds;
+		PhysVector3 GeographyUpperbounds;
 		unsigned short int  MaxPhysicsProxies;
 
 		btAxisSweep3* BulletBroadphase;
@@ -161,7 +161,7 @@ class PhysWorld
 		void DestroyRenderWindow();
 
 		//Used by the constructors
-		void Construct(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies);
+		void Construct(const PhysVector3 &GeographyLowerBounds, const PhysVector3 &GeographyUpperbounds, const unsigned short int &MaxPhysicsProxies);
         void SanityChecks();
         void TestLogger();
         template <class T> void OneLogTest(T Data, string DataType,string Message1 = "Logging and Throwing a ", string Message2 = "Logging a ");
@@ -186,7 +186,7 @@ class PhysWorld
         /// @param GeographyLowerBounds The lower limits for the size of the physics simulation
         /// @param GeographyUpperbounds The Upper limits for the size of the physics simulation
         /// @param MaxPhysicsProxies This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.
-		PhysWorld(PhysVector3* GeographyLowerBounds, PhysVector3* GeographyUpperbounds, unsigned short int MaxPhysicsProxies=1024);
+		PhysWorld( const PhysVector3 &GeographyLowerBounds, const PhysVector3 &GeographyUpperbounds, const unsigned short int &MaxPhysicsProxies=1024);
 
         /// @brief Default constructor
         /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
