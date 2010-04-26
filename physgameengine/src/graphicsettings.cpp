@@ -37,12 +37,12 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _gamesettings_cpp
-#define _gamesettings_cpp
+#ifndef _graphicsettings_cpp
+#define _graphicsettings_cpp
 
 #include "physworld.h"
 #include "physeventmanager.h"
-#include "gamesettings.h"
+#include "graphicsettings.h"
 
 namespace phys
 {

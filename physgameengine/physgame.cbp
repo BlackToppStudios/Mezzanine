@@ -83,8 +83,8 @@
 		</Compiler>
 		<Unit filename="src/eventquit.cpp" />
 		<Unit filename="src/eventquit.h" />
-		<Unit filename="src/gamesettings.cpp" />
-		<Unit filename="src/gamesettings.h" />
+		<Unit filename="src/graphicsettings.cpp" />
+		<Unit filename="src/graphicsettings.h" />
 		<Unit filename="src/metacode.cpp" />
 		<Unit filename="src/metacode.h" />
 		<Unit filename="src/physactor.cpp" />

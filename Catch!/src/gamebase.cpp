@@ -170,9 +170,9 @@ void LoadContent()
     //Actor Init Code
     object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
     object1->CreateShapeFromMesh();
-    //object2 = new ActorRigid (0, "Robot2",filename,groupname,&TheWorld);
-    //object2->CreateShapeFromMesh();
-    //object2->SetInitLocation(PhysVector3(0,-99,0));
+    object2 = new ActorRigid (0, "Robot2",filename,groupname,&TheWorld);
+    object2->CreateShapeFromMesh();
+    object2->SetInitLocation(PhysVector3(0,-130.0,0));
 
     //Final Steps
     PhysVector3 grav;
@@ -180,7 +180,7 @@ void LoadContent()
     grav.Y=-1000.0;
     grav.Z=0.0;
     TheWorld.AddActor(object1);
-    //TheWorld.AddActor(object2);
+    TheWorld.AddActor(object2);
     TheWorld.SetGravity(grav);
 }
 

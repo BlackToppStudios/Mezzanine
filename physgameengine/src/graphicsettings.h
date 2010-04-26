@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _gamesettings_h
-#define _gamesettings_h
+#ifndef _graphicsettings_h
+#define _graphicsettings_h
 
 namespace phys
 {
