@@ -15,6 +15,8 @@
 #include "physeventrendertime.h"
 #include "physeventuserinput.h"
 
+#include "sstream"
+
 //Create the World Globally!
 PhysWorld TheWorld;
 ActorRigid* object1;
@@ -49,7 +51,6 @@ int main(int argc, char **argv)
     TheWorld.Events->AddPollingCheck(PollForX);
     TheWorld.Events->AddPollingCheck(PollForY);
 
-
     LoadContent();
 
 	//Start the Main Loop
@@ -67,6 +68,9 @@ bool PostRender()
 	TheWorld.Log("---------- Starting CallBack -------------");
     TheWorld.Log("Current Game Time ");
 
+    std::stringstream timestream;
+    timestream << "Catch!... " << gametime;
+    TheWorld.SetWindowName( timestream.str() );
 
 	//getting a message from the event manager
 	PhysEventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();

@@ -93,15 +93,12 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
     //Set some sane Defaults for some values
     this->SetWindowName("AppName");
     this->TargetFrameLength=16;
-
-    this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
+    this->HasSDLBeenInitialized=false;    this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
 
 	PlayerSettings = new Settings();
 
 	//We create our Ogre environment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
-
-	//Ogre resource related code
     this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
 
     // This Tests various assumptions about the wa ythe platform works, and will not akk
@@ -109,7 +106,6 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 
     //Callbacks are the main way that a game using the PhysWorld will be able to have their code run at custom times
 	this->CallBacks = new PhysWorldCallBackManager(this);
-
     //Events are the main way for the game using the physworld to  get information about the various subsystems
     this->Events = new PhysEventManager(this);
 
@@ -227,7 +223,7 @@ PhysWorld::~PhysWorld()
 	delete GeographyLowerBounds;
 	delete GeographyUpperbounds;
 
-    delete this->BulletDynamicsWorld; /// @todo TODO Fix the error when deleting the bullets worlds
+    delete BulletDynamicsWorld;
 	delete BulletDispatcher;
 	delete BulletCollisionConfiguration;
     delete BulletSolver;
@@ -242,10 +238,10 @@ PhysWorld::~PhysWorld()
 
 	delete PlayerSettings;
 
-	//remove sdl stuff
 
+	//remove sdl stuff
 	SDL_FreeSurface(SDLscreen);
-	void SDL_Quit(void);
+	SDL_Quit();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -302,7 +298,6 @@ void PhysWorld::MainLoop()
 	//Used for tracking times to prevent Infinite render loops in graphically simple games
 	//PhysWhole Times[] = {0,0,0,0};
 
-	/// @todo TODO finish test code, there is a sloppy line of test code for the robot in the main loop
 	this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 
     PhysWhole FrameDelay = 0;
@@ -493,12 +488,13 @@ void PhysWorld::LoadOgreSettings()
 //Seriously read the Function Name
 void PhysWorld::CreateRenderWindow()
 {
-    /// @todo TODO multithreaded SDL willthe run event manager in another thread
+    /// @todo TODO set multithreaded SDL so it will the run event manager in another thread
 	//Get what is needed for SDL started
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		this->Log("Error 2: Unable to init SDL, SDL Error Follows:");
 		this->LogAndThrow(SDL_GetError());
 	}
+    this->HasSDLBeenInitialized=true;
 
 	//Setup the SDL render window
 	this->SDLscreen = SDL_SetVideoMode(PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), 0, SDL_OPENGL);
@@ -512,10 +508,6 @@ void PhysWorld::CreateRenderWindow()
 	misc=(Ogre::NameValuePairList*) GetSDLOgreBinder();
 	(*misc)["title"] = Ogre::String(this->WindowName);
 	this->OgreGameWindow = this->OgreRoot->createRenderWindow("physgame", PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), misc);
-    //Added following lines to attempt to make the render window visible
-    //this->OgreGameWindow->setVisible(true);
-	//this->OgreGameWindow->setActive(true);
-    //this->OgreGameWindow->setAutoUpdated(true);
 
 	//prepare a scenemanager
 	this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
@@ -539,8 +531,6 @@ void PhysWorld::DestroyRenderWindow()
     this->OgreGameWindow->destroy();
 }
 
-
-
 ///////////////////////////////////////////////////////////////////////////////
 // Bullet Related Public Members
 ///////////////////////////////////////
@@ -549,7 +539,6 @@ void PhysWorld::AddActor(ActorBase* ActorToAdd)
 {
     ActorToAdd->AddObjectToWorld(this, this->BulletDynamicsWorld);
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // Simple get and Set functions
@@ -563,6 +552,10 @@ void PhysWorld::SetWindowName(std::string NewName)
 {
     /// @todo TODO Change the name of an application once it is running
     WindowName = NewName;
+    if(this->HasSDLBeenInitialized)
+    {
+        SDL_WM_SetCaption(WindowName.c_str(),WindowName.c_str());
+    }
 }
 
 PhysWhole PhysWorld::GetTargetFrameTime()
