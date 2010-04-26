@@ -72,7 +72,6 @@
 #include "physdatatypes.h"
 
 #include <string>
-#include <queue>
 
 using namespace std;
 
@@ -133,6 +132,7 @@ class PhysWorld
 
 		//SDL Objects
 		SDL_Surface *SDLscreen;
+		bool HasSDLBeenInitialized;
 
 		//Ogre objects
         Ogre::Root* OgreRoot;
@@ -159,13 +159,7 @@ class PhysWorld
         void TestLogger();
         template <class T> void OneLogTest(T Data, string DataType,string Message1 = "Logging and Throwing a ", string Message2 = "Logging a ");
 
-		//SDL specific Items
-		//This function will get all the events from SDL and Sort them into one of two Queues
-		void PreProcessSDLEvents();
-        queue<RawEvent*> SDL_WmEvents;
-        queue<RawEvent*> SDL_UserInputEvents;
-
-        ///Settings for Engine Functionality
+        //Settings for Engine Functionality
         string WindowName;
         PhysWhole TargetFrameLength;
 
@@ -318,6 +312,10 @@ class PhysWorld
         /// @param Name
         /// @details
         void InitResourceGroup(PhysString Name);
+
+        void SetGravity(PhysVector3 pgrav);
+
+        void ApplyGravity();
 
 		/// @brief This is a point to the default Call BackManager
         /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.

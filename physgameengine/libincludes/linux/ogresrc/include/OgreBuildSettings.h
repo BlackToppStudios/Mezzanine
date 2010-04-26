@@ -3,7 +3,7 @@
 
 // CMake auto-generated configuration options
 
-/* #undef OGRE_STATIC_LIB */
+#define OGRE_STATIC_LIB
 
 /* #undef OGRE_BUILD_RENDERSYSTEM_D3D9 */
 /* #undef OGRE_BUILD_RENDERSYSTEM_D3D10 */
@@ -14,7 +14,7 @@
 #define OGRE_BUILD_PLUGIN_OCTREE
 #define OGRE_BUILD_PLUGIN_PCZ
 #define OGRE_BUILD_PLUGIN_PFX
-/* #undef OGRE_BUILD_PLUGIN_CG */
+#define OGRE_BUILD_PLUGIN_CG
 
 //#define OGRE_CONFIG_LITTLE_ENDIAN
 /* #undef OGRE_CONFIG_BIG_ENDIAN */

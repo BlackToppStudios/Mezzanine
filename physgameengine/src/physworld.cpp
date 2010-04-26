@@ -55,7 +55,6 @@
 #include "physcrossplatform.h"
 #include "physworldcallbackmanager.h"
 #include "physgamesettings.h"
-#include "physmisc.h"
 #include "physactor.h"
 #include "physeventuserinput.h"
 
@@ -94,15 +93,12 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
     //Set some sane Defaults for some values
     this->SetWindowName("AppName");
     this->TargetFrameLength=16;
-
-    this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
+    this->HasSDLBeenInitialized=false;    this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
 
 	PlayerSettings = new Settings();
 
 	//We create our Ogre environment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
-
-	//Ogre resource related code
     this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
 
     // This Tests various assumptions about the wa ythe platform works, and will not akk
@@ -110,7 +106,6 @@ void PhysWorld::Construct(PhysVector3* GeographyLowerBounds_, PhysVector3* Geogr
 
     //Callbacks are the main way that a game using the PhysWorld will be able to have their code run at custom times
 	this->CallBacks = new PhysWorldCallBackManager(this);
-
     //Events are the main way for the game using the physworld to  get information about the various subsystems
     this->Events = new PhysEventManager(this);
 
@@ -225,14 +220,14 @@ template <class T> void PhysWorld::OneLogTest(T Data, string DataType, string Me
 PhysWorld::~PhysWorld()
 {
 	//Destroy the physical world that we loved and cherished
-	//dWorldDestroy(this->OdeWorld);
 	delete GeographyLowerBounds;
 	delete GeographyUpperbounds;
-	delete BulletBroadphase;
-	delete BulletCollisionConfiguration;
+
+    delete BulletDynamicsWorld;
 	delete BulletDispatcher;
-	delete BulletSolver;
-	delete BulletDynamicsWorld;
+	delete BulletCollisionConfiguration;
+    delete BulletSolver;
+	delete BulletBroadphase;
 
 	//All the pointers Ogre made should get taken care of by OGRE
 	delete OgreRoot;
@@ -243,10 +238,10 @@ PhysWorld::~PhysWorld()
 
 	delete PlayerSettings;
 
-	//remove sdl stuff
 
+	//remove sdl stuff
 	SDL_FreeSurface(SDLscreen);
-	void SDL_Quit(void);
+	SDL_Quit();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -303,7 +298,6 @@ void PhysWorld::MainLoop()
 	//Used for tracking times to prevent Infinite render loops in graphically simple games
 	//PhysWhole Times[] = {0,0,0,0};
 
-	/// @todo TODO finish test code, there is a sloppy line of test code for the robot in the main loop
 	this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 
     PhysWhole FrameDelay = 0;
@@ -460,39 +454,12 @@ void PhysWorld::DoMainLoopPhysics(PhysReal TimeElapsed)
 
 void PhysWorld::DoMainLoopWindowManagerBuffering()
 {
-    this->PreProcessSDLEvents();
-    Log("WM EventCount Pending:");
-    Log(SDL_WmEvents.size());
-    //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
+    this->Events->UpdateSystemEvents();
 }
 
 void PhysWorld::DoMainLoopInputBuffering()
 {
-    this->PreProcessSDLEvents();
-    Log("User Input EventCount Pending:");
-    Log(SDL_UserInputEvents.size());
-
-    PhysEventUserInput* FromSDLEvent = new PhysEventUserInput();
-    PhysEventUserInput* FromSDLPolling = this->Events->PollForUserInputEvents();
-
-    while( !SDL_UserInputEvents.empty() )
-    {
-        RawEvent* CurrentRawEvent = SDL_UserInputEvents.front();
-
-        FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
-        delete CurrentRawEvent;
-        SDL_UserInputEvents.pop(); //NEXT!!!
-    }
-
-    *FromSDLEvent += *FromSDLPolling;
-    delete FromSDLPolling;
-
-    if (0 < FromSDLEvent->GetMetaCodeCount())
-    {
-        this->Events->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
-    }else{
-        delete FromSDLEvent;
-    }
+    this->Events->UpdateUserInputEvents();
 }
 
 void PhysWorld::DoMainLoopRender()
@@ -521,12 +488,13 @@ void PhysWorld::LoadOgreSettings()
 //Seriously read the Function Name
 void PhysWorld::CreateRenderWindow()
 {
-    /// @todo TODO multithreaded SDL willthe run event manager in another thread
+    /// @todo TODO set multithreaded SDL so it will the run event manager in another thread
 	//Get what is needed for SDL started
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		this->Log("Error 2: Unable to init SDL, SDL Error Follows:");
 		this->LogAndThrow(SDL_GetError());
 	}
+    this->HasSDLBeenInitialized=true;
 
 	//Setup the SDL render window
 	this->SDLscreen = SDL_SetVideoMode(PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), 0, SDL_OPENGL);
@@ -540,10 +508,6 @@ void PhysWorld::CreateRenderWindow()
 	misc=(Ogre::NameValuePairList*) GetSDLOgreBinder();
 	(*misc)["title"] = Ogre::String(this->WindowName);
 	this->OgreGameWindow = this->OgreRoot->createRenderWindow("physgame", PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), misc);
-    //Added following lines to attempt to make the render window visible
-    //this->OgreGameWindow->setVisible(true);
-	//this->OgreGameWindow->setActive(true);
-    //this->OgreGameWindow->setAutoUpdated(true);
 
 	//prepare a scenemanager
 	this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
@@ -568,47 +532,6 @@ void PhysWorld::DestroyRenderWindow()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Deals with SDL
-
-//This function will get all the events from SDL and Sort them into one of two Queues
-void PhysWorld::PreProcessSDLEvents()
-{
-    RawEvent temp;
-    RawEvent* FromSDL=&temp;
-	while(SDL_PollEvent(FromSDL))
-	{
-	    RawEvent* ScopeHolder = new RawEvent;
-	    *ScopeHolder = temp;
-        switch(FromSDL->type)
-        {
-            case SDL_ACTIVEEVENT:   //when the window gains focus
-            case SDL_VIDEORESIZE:   //when the screen is resized
-            case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
-            case SDL_QUIT:          //when SDL closes
-            case SDL_SYSWMEVENT:
-                SDL_WmEvents.push(ScopeHolder);
-                break;
-            case SDL_KEYDOWN:
-            case SDL_KEYUP:
-            case SDL_MOUSEMOTION:
-            case SDL_MOUSEBUTTONDOWN:
-            case SDL_MOUSEBUTTONUP:
-            case SDL_JOYAXISMOTION:
-            case SDL_JOYBUTTONDOWN:
-            case SDL_JOYBUTTONUP:
-            case SDL_JOYBALLMOTION:
-            case SDL_JOYHATMOTION:
-                SDL_UserInputEvents.push(ScopeHolder);
-                break;
-            case SDL_USEREVENT://Never thrown by SDL, but could be added by a user
-            default:
-                throw ("Unknown SDL Event Inserted");
-                break;
-        }
-	}
-}
-
-///////////////////////////////////////////////////////////////////////////////
 // Bullet Related Public Members
 ///////////////////////////////////////
 
@@ -616,7 +539,6 @@ void PhysWorld::AddActor(ActorBase* ActorToAdd)
 {
     ActorToAdd->AddObjectToWorld(this, this->BulletDynamicsWorld);
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // Simple get and Set functions
@@ -630,6 +552,10 @@ void PhysWorld::SetWindowName(std::string NewName)
 {
     /// @todo TODO Change the name of an application once it is running
     WindowName = NewName;
+    if(this->HasSDLBeenInitialized)
+    {
+        SDL_WM_SetCaption(WindowName.c_str(),WindowName.c_str());
+    }
 }
 
 PhysWhole PhysWorld::GetTargetFrameTime()
@@ -664,6 +590,20 @@ void PhysWorld::DeclareResource(PhysString Name, PhysString Type, PhysString Gro
 void PhysWorld::InitResourceGroup(PhysString Group)
 {
     this->OgreResource->initialiseResourceGroup(Group);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Bullet World Management Functions
+///////////////////////////////////////
+
+void PhysWorld::SetGravity(PhysVector3 pgrav)
+{
+    this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
+}
+
+void PhysWorld::ApplyGravity()
+{
+    this->BulletDynamicsWorld->applyGravity();
 }
 
 #endif

@@ -45,12 +45,15 @@
 ///////////////////////////////////////
 
 #include <list>
+#include <queue>
 
 using namespace std;
 
 #include "physevent.h"
 #include "physeventrendertime.h"
 #include "physeventuserinput.h"
+#include "eventquit.h"
+
 
 class PhysWorld;
 
@@ -86,6 +89,9 @@ class PhysEventManager
         //The Queue that all the events get stored in
 		list<PhysEvent*> EventQueue;
 
+        //Checks for quit messages and adds them to the queue
+        void UpdateQuitEvents();
+
         // A list of the Mouse buttons being watched
         vector<int> WatchMouseKeys;
 
@@ -102,8 +108,15 @@ class PhysEventManager
         void PollMouseButtons(vector<MetaCode> &CodeBag);
         void PollMouseLocation(vector<MetaCode> &CodeBag);
 
+        //SDL event specific Items
+		//This function will get all the events from SDL and Sort them into one of two Queues
+		void PreProcessSDLEvents();
+        queue<RawEvent*> SDL_WmEvents;
+        queue<RawEvent*> SDL_UserInputEvents;
 
 	public:
+        /// @todo TODO build a deconstructor that deletes all the events still int the queue
+
         /// @brief Default constructor
         /// @param ParentWorld_ A pointer to the world that this physworld is working with Primarily
         /// @details This creates an empty PhysEventManger
@@ -142,6 +155,10 @@ class PhysEventManager
         /// @details This adds the existing event to the Queue. Be careful this is not delete, and does not go out of scope. Deleting the Event is now the
         /// responsibilty of the code that pulls it out of Event Manager.
         void AddEvent(PhysEvent* EventToAdd);
+
+        void UpdateEvents();
+        void UpdateSystemEvents();
+        void UpdateUserInputEvents();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - RenderTime Events
@@ -195,6 +212,10 @@ class PhysEventManager
         /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
         void RemoveNextUserInputEvent();
 
+        EventQuit* GetNextQuitEvent();
+        EventQuit* PopNextQuitEvent();
+        void RemoveNextQuitEvent();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - You choose YAYYYY!!!
         ///////////////////////////////////////
@@ -234,8 +255,8 @@ class PhysEventManager
 
         /// @brief Removes Events from the list(s) of what needs to be polled
         /// @param InputToStopPolling This accepts a MetaCode and will try to Remove Watches like this one
-        /// @details This will remove any checkings for polling of uset input that share the same inputcode and ID, except in
-        /// @exception
+        /// @details This will remove any check for polling that share the same inputcode and ID. This
+        /// @exception "Polling check not present" Is thrown
         void RemovePollingCheck(const MetaCode &InputToStopPolling);
 
         /// @brief This activates the polling routines of the user input subsystems

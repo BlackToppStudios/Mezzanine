@@ -27,7 +27,7 @@
 </div>
 <div class="contents">
 <h1>ActorBase Class Reference</h1><!-- doxytag: class="ActorBase" -->
-<p>This is the header file for the Actor class hierarchy.  
+<p>This is the base class from which all the actors inherit.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a>&gt;</code></p>
@@ -37,9 +37,8 @@ Inheritance diagram for ActorBase:</div>
  <div class="center">
   <img src="../../dd/d7b/classActorBase.gif" usemap="#ActorBase_map" alt=""/>
   <map id="ActorBase_map" name="ActorBase_map">
-<area href="../../d4/d0e/classActorDynRigid.html" alt="ActorDynRigid" shape="rect" coords="0,56,94,80"/>
-<area href="../../dc/de0/classActorDynSoft.html" alt="ActorDynSoft" shape="rect" coords="104,56,198,80"/>
-<area href="../../d3/daf/classActorSta.html" alt="ActorSta" shape="rect" coords="208,56,302,80"/>
+<area href="../../d5/d10/classActorRigid.html" alt="ActorRigid" shape="rect" coords="0,56,71,80"/>
+<area href="../../d5/da4/classActorSoft.html" alt="ActorSoft" shape="rect" coords="81,56,152,80"/>
 </map>
  </div>
 </div>
@@ -55,12 +54,18 @@ Inheritance diagram for ActorBase:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Manually sets the location of the actor.  <a href="#a34848d620c5d9d2796999edbdcb77c9a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a2a204add0b036de441ebd59d14939000">SetLocation</a> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Place)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Manually sets the location of the actor.  <a href="#a2a204add0b036de441ebd59d14939000"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a9dfdaf0304e4a462b3b033fb254116af">GetLocation</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves the location of the object.  <a href="#a9dfdaf0304e4a462b3b033fb254116af"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#ac118fc21f89d067d987d511b444f7d55">SetInitLocation</a> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Location)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the starting location of the actor.  <a href="#ac118fc21f89d067d987d511b444f7d55"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a9777506815a9840552b30c65d5d70f8d">SetOrientation</a> (PhysReal x, PhysReal y, PhysReal z, PhysReal w)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the orientation of the actor.  <a href="#a9777506815a9840552b30c65d5d70f8d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a5fe558ca0a88061615cda52a4dc5bf66">SetOrientation</a> (<a class="el" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> Rotation)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the orientation of the actor.  <a href="#a5fe558ca0a88061615cda52a4dc5bf66"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a2d5f990e8c6925b7e44e9ec85f379e6a">SetKinematic</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the state of the object to Kinematic.  <a href="#a2d5f990e8c6925b7e44e9ec85f379e6a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a97f55e5fff5d69483ebb0b9042a50bb0">SetStatic</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the state of the object to Static.  <a href="#a97f55e5fff5d69483ebb0b9042a50bb0"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a1af82a2ed960fd114518fdf84d5ff146">AddObjectToWorld</a> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TargetWorld, btSoftRigidDynamicsWorld *World)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#a1af82a2ed960fd114518fdf84d5ff146"></a><br/></td></tr>
@@ -72,12 +77,16 @@ Inheritance diagram for ActorBase:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a node for the entity in the graphical world.  <a href="#a168cd57e20b2adfc5cae21627ddbae31"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a3140cc5c1c630efc1c04c20ada319b8b">SetOgreLocation</a> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Place)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the location of the graphical body.  <a href="#a3140cc5c1c630efc1c04c20ada319b8b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a73ee03084b2ca78659b6e6439cafa75f">GetOgreLocation</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves the location of the graphical body.  <a href="#a73ee03084b2ca78659b6e6439cafa75f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a55f45703e3d9b8de0cd07b23bd9460bf">SetOgreOrientation</a> (<a class="el" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> Rotation)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the orientation of the graphical body.  <a href="#a55f45703e3d9b8de0cd07b23bd9460bf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#afab604970fede16ccde0c6b8e72d9ee0">AttachToGraphics</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Makes the actor visable.  <a href="#afab604970fede16ccde0c6b8e72d9ee0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#af64a57138bbd32c52581a5c8d0d29a76">SetBulletLocation</a> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Location)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the location of the physics body.  <a href="#af64a57138bbd32c52581a5c8d0d29a76"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#ae84ff822d2f962360bf291bb2c88eb3e">GetBulletLocation</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieves the location of the physics body.  <a href="#ae84ff822d2f962360bf291bb2c88eb3e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#af52177760d530df2b0987ed8626a656d">SetBulletInitLocation</a> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Location)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the starting location of the physics body within the <a class="el" href="../../d2/d14/classPhysMotionState.html">PhysMotionState</a>.  <a href="#af52177760d530df2b0987ed8626a656d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#adf817bd5a7c562f31f6724a06a3a0f79">SetBulletOrientation</a> (<a class="el" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> Rotation)</td></tr>
@@ -91,6 +100,8 @@ Ogre::Entity *&nbsp;</td><td class="memItemRight" valign="bottom"><b>entity</b><
 Ogre::SceneNode *&nbsp;</td><td class="memItemRight" valign="bottom"><b>node</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff0d385bc9d30cf053838fd61b32ebad"></a><!-- doxytag: member="ActorBase::Shape" ref="aff0d385bc9d30cf053838fd61b32ebad" args="" -->
 btCollisionShape *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Shape</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4a1c0b5b5cd04f288f9614bfacb4fbe"></a><!-- doxytag: member="ActorBase::CollisionObject" ref="ac4a1c0b5b5cd04f288f9614bfacb4fbe" args="" -->
+btCollisionObject *&nbsp;</td><td class="memItemRight" valign="bottom"><b>CollisionObject</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ae7c4fd3b9449771e1c1bbd09cf103e"></a><!-- doxytag: member="ActorBase::MotionState" ref="a4ae7c4fd3b9449771e1c1bbd09cf103e" args="" -->
 <a class="el" href="../../d2/d14/classPhysMotionState.html">PhysMotionState</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>MotionState</b></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
@@ -98,12 +109,12 @@ btCollisionShape *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Shape</
 class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a375fd37c70c941f0442997a60fdb05c7">PhysWorld</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>This is the header file for the Actor class hierarchy. </p>
-<p>The actor classes store and manage all the relevant data regarding objects inside the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>. They serve as a binder between the physics and graphics for objects and have functions that allow the manipulation of objects loaded into the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>. Currently there are 4 actor classes: <a class="el" href="../../dd/d7b/classActorBase.html" title="This is the header file for the Actor class hierarchy.">ActorBase</a>, <a class="el" href="../../d4/d0e/classActorDynRigid.html" title="This is the actor class for Dynamic Rigid Objects.">ActorDynRigid</a>, <a class="el" href="../../dc/de0/classActorDynSoft.html" title="This is the actor class for Dynamic Soft Objects.">ActorDynSoft</a>, and <a class="el" href="../../d3/daf/classActorSta.html" title="This is the actor class for Static and Kinematic Objects.">ActorSta</a>. <br/>
- <a class="el" href="../../dd/d7b/classActorBase.html" title="This is the header file for the Actor class hierarchy.">ActorBase</a> is a base class that serves as a template for the other three actor classes. <br/>
- <a class="el" href="../../dd/d7b/classActorBase.html" title="This is the header file for the Actor class hierarchy.">ActorBase</a> should never be created, as it lacks the functionality needed for most objects. </p>
+<p>This is the base class from which all the actors inherit. </p>
+<p>The actor classes store and manage all the relevant data regarding objects inside the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>. They serve as a binder between the physics and graphics for objects and have functions that allow the manipulation of objects loaded into the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>. Currently there are 4 actor classes: <a class="el" href="../../dd/d7b/classActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>, ActorDynRigid, ActorDynSoft, and ActorSta. <br/>
+ <a class="el" href="../../dd/d7b/classActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> is a base class that serves as a template for the other three actor classes. <br/>
+ <a class="el" href="../../dd/d7b/classActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> should never be created, as it lacks the functionality needed for most objects. </p>
 
-<p>Definition at line <a class="el" href="../../d9/dc7/physactor_8h_source.html#l00084">84</a> of file <a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/dc7/physactor_8h_source.html#l00088">88</a> of file <a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6fd984c46b3232c2522adb44be4dedb7"></a><!-- doxytag: member="ActorBase::~ActorBase" ref="a6fd984c46b3232c2522adb44be4dedb7" args="()" -->
 <div class="memitem">
@@ -217,7 +228,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="../../d4/d0e/classActorDynRigid.html#a45c054918362b86d829398384e316ed8">ActorDynRigid</a>, <a class="el" href="../../dc/de0/classActorDynSoft.html#ab56b961689401e16962d653b977e5fd6">ActorDynSoft</a>, and <a class="el" href="../../d3/daf/classActorSta.html#acd11f1ee404ab71d49d8fd4a810f2931">ActorSta</a>.</p>
+<p>Implemented in <a class="el" href="../../d5/d10/classActorRigid.html#ac6d7e05944623329f0c2140c19e2c49e">ActorRigid</a>, and <a class="el" href="../../d5/da4/classActorSoft.html#a0def29f28ed4d126a0634ddc97e33e2f">ActorSoft</a>.</p>
 
 </div>
 </div>
@@ -240,7 +251,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <p>Adds the actor to all the nessessary graphics elements to make it visable on screen. <br/>
  This is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually. </p>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00258">258</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00273">273</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -287,7 +298,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00194">194</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00187">187</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -310,7 +321,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <p>Creates a node in the scene manager to attach the actor's entity to within the graphical world. <br/>
  This function is called on by the Constructor, and shouldn't be called manually. </p>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00199">199</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00192">192</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -340,6 +351,72 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 
 </div>
 </div>
+<a class="anchor" id="ae84ff822d2f962360bf291bb2c88eb3e"></a><!-- doxytag: member="ActorBase::GetBulletLocation" ref="ae84ff822d2f962360bf291bb2c88eb3e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> ActorBase::GetBulletLocation </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Retrieves the location of the physics body. </p>
+<p>This function will retrieve the location of the object within the physics world. </p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00215">215</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9dfdaf0304e4a462b3b033fb254116af"></a><!-- doxytag: member="ActorBase::GetLocation" ref="a9dfdaf0304e4a462b3b033fb254116af" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> ActorBase::GetLocation </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Retrieves the location of the object. </p>
+<p>This function will retrieve the location of the object within the world. </p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00251">251</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a73ee03084b2ca78659b6e6439cafa75f"></a><!-- doxytag: member="ActorBase::GetOgreLocation" ref="a73ee03084b2ca78659b6e6439cafa75f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> ActorBase::GetOgreLocation </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Retrieves the location of the graphical body. </p>
+<p>This function will retrieve the location of the object within the graphical world. </p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00202">202</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="af52177760d530df2b0987ed8626a656d"></a><!-- doxytag: member="ActorBase::SetBulletInitLocation" ref="af52177760d530df2b0987ed8626a656d" args="(PhysVector3 Location)" -->
 <div class="memitem">
 <div class="memproto">
@@ -366,7 +443,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00214">214</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00223">223</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -395,8 +472,6 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </table>
   </dd>
 </dl>
-
-<p>Reimplemented in <a class="el" href="../../d4/d0e/classActorDynRigid.html#a3f0720ca18d04a1084207d474c3d7834">ActorDynRigid</a>, <a class="el" href="../../dc/de0/classActorDynSoft.html#aaf548f7849f59956c10d79420efafffb">ActorDynSoft</a>, and <a class="el" href="../../d3/daf/classActorSta.html#a472768e39d3ac67f35b9f74e5a679b99">ActorSta</a>.</p>
 
 <p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00209">209</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
@@ -428,9 +503,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="../../d4/d0e/classActorDynRigid.html#ae471894081ae956dd79844a2f14fb1d9">ActorDynRigid</a>, <a class="el" href="../../dc/de0/classActorDynSoft.html#abbb2c795bd07b014239f157b440bc53d">ActorDynSoft</a>, and <a class="el" href="../../d3/daf/classActorSta.html#ab038b2ce4e25fa3441e9b081cef7879e">ActorSta</a>.</p>
-
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00224">224</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00233">233</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -460,7 +533,30 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00241">241</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00256">256</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2d5f990e8c6925b7e44e9ec85f379e6a"></a><!-- doxytag: member="ActorBase::SetKinematic" ref="a2d5f990e8c6925b7e44e9ec85f379e6a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActorBase::SetKinematic </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the state of the object to Kinematic. </p>
+<p>This function will set the object to a Kinematic Object. <br/>
+ Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. </p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00281">281</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -490,7 +586,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00235">235</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00245">245</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -537,7 +633,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00229">229</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00239">239</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -567,7 +663,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00204">204</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00197">197</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -597,7 +693,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00219">219</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00228">228</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -626,7 +722,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00252">252</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00267">267</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -670,7 +766,30 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <p>Sets the orientation of the actor. </p>
 <p>Sets the orientation of the actor via Quaternion parameters. </p>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00246">246</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00261">261</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a97f55e5fff5d69483ebb0b9042a50bb0"></a><!-- doxytag: member="ActorBase::SetStatic" ref="a97f55e5fff5d69483ebb0b9042a50bb0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActorBase::SetStatic </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the state of the object to Static. </p>
+<p>This function will set the object to a Static Object. <br/>
+ Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. </p>
+
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00287">287</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -679,7 +798,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <li><a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 18 22:40:40 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 25 17:41:36 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

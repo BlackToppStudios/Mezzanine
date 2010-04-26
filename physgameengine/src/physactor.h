@@ -1,4 +1,4 @@
-//Â© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -57,6 +57,7 @@ class btDiscreteDynamicsWorld;
 class btDefaultMotionState;
 class btCollisionShape;
 class btSoftBodyWorldInfo;
+class btCollisionObject;
 typedef float btScalar;
 
 namespace Ogre
@@ -93,10 +94,10 @@ class ActorBase {
 
         //abstraction for other libraries
         Ogre::Entity* entity;
-        //Ogre::SceneManager* physscenemanager;
         Ogre::SceneNode* node;
 
         btCollisionShape* Shape;
+        btCollisionObject* CollisionObject;
 
         PhysMotionState* MotionState;
 
@@ -202,19 +203,28 @@ class ActorBase {
         /// @details Sets the orientation of the actor via a Quaternion.
         /// @param Rotation The Quaternion representing the Rotation.
         void SetOrientation(PhysQuaternion Rotation);
+
+        /// @brief Sets the state of the object to Kinematic.
+        /// @details This function will set the object to a Kinematic Object. @n
+        /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.
+        void SetKinematic();
+        /// @brief Sets the state of the object to Static.
+        /// @details This function will set the object to a Static Object. @n
+        /// Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects.
+        void SetStatic();
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @class ActorDynRigid
+/// @class ActorRigid
 /// @headerfile physactor.h
-/// @brief This is the actor class for Dynamic Rigid Objects.
+/// @brief This is the actor class for Rigid Objects.
 /// @details This class should be used to make any rigid object that can be moved as a
 /// result of force.  Most objects will fall into this catagory.  A few examples of a
 /// Rigid Object: Boxes, Car Frames, Chairs, etc.  For Semi Rigid bodies that are
-/// deformable, like jello, it is better to use ActorDynSoft.
+/// deformable, like jello, it is better to use ActorSoft.
 ///////////////////////////////////////
 
-class ActorDynRigid: public ActorBase {
+class ActorRigid: public ActorBase {
 
 	protected:
         btRigidBody* physrigidbody;
@@ -232,15 +242,6 @@ class ActorDynRigid: public ActorBase {
         /// @brief Sets the location of the physics body.
         /// @details This will take a PhysVector3 and set the location of the actor within the physics world. @n
         /// This function is called on by the SetLocation function, and shouldn't be called manually.
-        virtual void SetBulletLocation (PhysVector3 Location);
-        /// @brief Retrieves the location of the physics body.
-        /// @details This function will retrieve the location of the object within the physics world.
-        virtual PhysVector3 GetBulletLocation();
-        /// @brief Sets the orientation of the physics body.
-        /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
-        /// This function is called on by the SetOrientation function, and shouldn't be called manually.
-        /// @param Rotation The quaternion representing the rotation of the actor.
-        virtual void SetBulletOrientation (PhysQuaternion Rotation);
 
 	public:
         /// @brief Descriptive constructor.
@@ -251,10 +252,10 @@ class ActorDynRigid: public ActorBase {
         /// @param File The 3d mesh file that contains the 3d model the actor will use.
         /// @param Group The resource group where the 3d mesh and other related files can be found.
         /// @param World Pointer to the PhysWorld this object will be added to.
-        ActorDynRigid(PhysReal mass, PhysString name, PhysString file, PhysString group, PhysWorld* World);
+        ActorRigid(PhysReal mass, PhysString name, PhysString file, PhysString group, PhysWorld* World);
         /// @brief Destructor.
         /// @details The class destructor.
-        virtual ~ActorDynRigid();
+        virtual ~ActorRigid();
         /// @brief Creates a collision shape from mesh file.
         /// @details This function will read the location of every verticy in the mesh file and use that to
         /// construct a triangle mesh shape and attach it to this objects collision shape.
@@ -262,16 +263,16 @@ class ActorDynRigid: public ActorBase {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @class ActorDynSoft
+/// @class ActorSoft
 /// @headerfile physactor.h
-/// @brief This is the actor class for Dynamic Soft Objects.
-/// @details This class should be used to make any soft object that, like ActorDynRigid,
+/// @brief This is the actor class for Soft Objects.
+/// @details This class should be used to make any soft object that, like ActorRigid,
 /// can be moved or manipulated as a result of force.  Examples of soft objects are: Paper,
 /// Rope, and Cloth.  Semi Rigid bodies that are still somewhat deformable, like Jello,
 /// should be made as a soft object.
 ///////////////////////////////////////
 
-class ActorDynSoft: public ActorBase {
+class ActorSoft: public ActorBase {
 
 	protected:
         btSoftBody* physsoftbody;
@@ -285,80 +286,12 @@ class ActorDynSoft: public ActorBase {
         /// @param TargetWorld Pointer to the PhysWorld class.
         /// @param World Pointer to the physics world.
         void AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World);
-        /// @brief Sets the location of the physics body.
-        /// @details This will take a PhysVector3 and set the location of the actor within the physics world. @n
-        /// This function is called on by the SetLocation function, and shouldn't be called manually.
-        virtual void SetBulletLocation (PhysVector3 Location);
-        /*/// @brief Retrieves the location of the physics body.
-        /// @details This function will retrieve the location of the object within the physics world.
-        virtual PhysVector3 GetBulletLocation();*/
-        /// @brief Sets the orientation of the physics body.
-        /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
-        /// This function is called on by the SetOrientation function, and shouldn't be called manually.
-        /// @param Rotation The quaternion representing the rotation of the actor.
-        virtual void SetBulletOrientation (PhysQuaternion Rotation);
 
 	public:
-        ActorDynSoft();
+        ActorSoft();
         /// @brief Destructor.
         /// @details The class destructor.
-        virtual ~ActorDynSoft();
-        /// @brief Creates a collision shape from mesh file.
-        /// @details This function will read the location of every verticy in the mesh file and use that to
-        /// construct a triangle mesh shape and attach it to this objects collision shape.
-        void CreateShapeFromMesh();
-};
-
-///////////////////////////////////////////////////////////////////////////////
-/// @class ActorSta
-/// @headerfile physactor.h
-/// @brief This is the actor class for Static and Kinematic Objects
-/// @details This class should be used to make any object that you do not want to have move as
-/// a result of force from another object, or any other physics related force.  A basic static
-/// object is an object that sits in one location exerting force on others that collide with it
-/// but don't move themselves.  Kinematic objects are the same as static objects but also have
-/// functions to allow it to be moved around manually by the game or programmer.
-///////////////////////////////////////
-
-class ActorSta: public ActorBase {
-
-    protected:
-        btRigidBody* physrigidbody;
-        /// @brief Creates a rigid object for the actor.
-        /// @details Creates a rigid object to be placed in the physics world later. @n
-        /// This is automaticly called by the Constructor and shouldn't be called manually.
-        void CreateRigidObject ();
-        /// @brief Adds the actor to the physics world.
-        /// @details Adds the actor to the physics world. @n
-        /// This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually.
-        /// @param TargetWorld Pointer to the PhysWorld class.
-        /// @param World Pointer to the physics world.
-        void AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World);
-        /// @brief Sets the location of the physics body.
-        /// @details This will take a PhysVector3 and set the location of the actor within the physics world. @n
-        /// This function is called on by the SetLocation function, and shouldn't be called manually.
-        virtual void SetBulletLocation (PhysVector3 Location);
-        /// @brief Retrieves the location of the physics body.
-        /// @details This function will retrieve the location of the object within the physics world.
-        virtual PhysVector3 GetBulletLocation();
-        /// @brief Sets the orientation of the physics body.
-        /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
-        /// This function is called on by the SetOrientation function, and shouldn't be called manually.
-        /// @param Rotation The quaternion representing the rotation of the actor.
-        virtual void SetBulletOrientation (PhysQuaternion Rotation);
-
-    public:
-        /// @brief Descriptive constructor.
-        /// @details This constructor contains the basic information needed to make a Static or Kinematic Rigid Object. @n
-        /// This class inherits from ActorBase.  Mass is always zero for Static/Kinematic Objects.`
-        /// @param Name The name of the actor.
-        /// @param File The 3d mesh file that contains the 3d model the actor will use.
-        /// @param Group The resource group where the 3d mesh and other related files can be found.
-        /// @param World Pointer to the PhysWorld this object will be added to.
-        ActorSta(PhysString name, PhysString file, PhysString group, PhysWorld* World);
-        /// @brief Destructor.
-        /// @details The class destructor.
-        virtual ~ActorSta();
+        virtual ~ActorSoft();
         /// @brief Creates a collision shape from mesh file.
         /// @details This function will read the location of every verticy in the mesh file and use that to
         /// construct a triangle mesh shape and attach it to this objects collision shape.

@@ -15,9 +15,11 @@
 #include "physeventrendertime.h"
 #include "physeventuserinput.h"
 
+#include "sstream"
+
 //Create the World Globally!
 PhysWorld TheWorld;
-ActorDynRigid* object1;
+ActorRigid* object1;
 PhysReal x=0;
 PhysReal y=0;
 PhysReal z=0;
@@ -27,9 +29,11 @@ int main(int argc, char **argv)
     TheWorld.SetWindowName("Catch!... The Game!");
     TheWorld.SetTargetFrameRate(40);
 
-    //Give the world functions to run before and after input
+    //Give the world functions to run before and after input and physics
     TheWorld.CallBacks->SetPreInput(&PreInput);
     TheWorld.CallBacks->SetPostInput(&PostInput);
+    TheWorld.CallBacks->SetPrePhysics(&PrePhysics);
+
 
     //give the World our function to execute after rendering
     TheWorld.CallBacks->SetPostRender(&PostRender);
@@ -40,13 +44,12 @@ int main(int argc, char **argv)
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
     MetaCode PollForQ(0, 1, MetaCode::KEY_q);
     MetaCode PollForRightClick(0, 3, MetaCode::MOUSEBUTTON);
-    MetaCode PollForX(0,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+    MetaCode PollForX(0,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
     MetaCode PollForY(0,0,MetaCode::MOUSEABSOLUTEVERTICAL);
     TheWorld.Events->AddPollingCheck(PollForQ);
     TheWorld.Events->AddPollingCheck(PollForRightClick);
-    //TheWorld.Events->AddPollingCheck(PollForX);
-    //TheWorld.Events->AddPollingCheck(PollForY);
-
+    TheWorld.Events->AddPollingCheck(PollForX);
+    TheWorld.Events->AddPollingCheck(PollForY);
 
     LoadContent();
 
@@ -65,6 +68,9 @@ bool PostRender()
 	TheWorld.Log("---------- Starting CallBack -------------");
     TheWorld.Log("Current Game Time ");
 
+    std::stringstream timestream;
+    timestream << "Catch!... " << gametime;
+    TheWorld.SetWindowName( timestream.str() );
 
 	//getting a message from the event manager
 	PhysEventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
@@ -82,18 +88,21 @@ bool PostRender()
     }
 
     //IF the game has gone on for 10 or more seconds close it.
-	if (10000<gametime)
+
+	if (10000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
 	{
 		return false;
 	}
+
+
 
     //If we wanted to we could unremark the following line and call all the main loop items right here, but
     //that is not needed, nor is it the prefered way to do things. All these Items will be called automatically
     //if the callbacks for the exists.
     //TheWorld.DoMainLoopAllItems();
 
-    x+=0.5;
-    object1->SetLocation(x,y,z);
+    //x+=0.5;
+    //object1->SetLocation(x,y,z);
 
     return true;
 }
@@ -151,18 +160,23 @@ void LoadContent()
     //Ogre Setup Code
     PhysString groupname="Robot";
     PhysString filename="robot.mesh";
-    PhysReal mass=0.001;
+    PhysReal mass=5.0;
     TheWorld.AddResourceLocation(GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld.DeclareResource(filename, "Mesh", groupname);
     TheWorld.DeclareResource("Examples.material", "Material", groupname);
     TheWorld.InitResourceGroup(groupname);
 
     //Actor Init Code
-    object1 = new ActorDynRigid (mass,groupname,filename,groupname,&TheWorld);
+    object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
     object1->CreateShapeFromMesh();
 
     //Final Steps
+    PhysVector3 grav;
+    grav.X=0.0;
+    grav.Y=-1000.0;
+    grav.Z=0.0;
     TheWorld.AddActor(object1);
+    TheWorld.SetGravity(grav);
 }
 
 #endif

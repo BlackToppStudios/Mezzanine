@@ -51,15 +51,44 @@
 #include "SDL.h"
 #include <boost/thread/thread.hpp>
 
+///////////////////////////////////////////////////////////////////////////////
+// Internal C style functions
+
+
 int PhysSDLFilter( const RawEvent *event );
+
+//If this is passed an event that points to 0 it will function as a method to tell us if an SDL_QUIT message has been thrown
+//this will return 2 if it has not seen an SDL_quit, and a 4 if it has
+int PhysSDLFilter( const SDL_Event *event )
+{
+    static bool DroppedQuit=false;
+
+    if(event!=0)                //if this is a real event
+    {
+        if ( event->type == SDL_QUIT )
+        {
+            DroppedQuit=true;   //Drop all quit events, and track that we dropped them
+            return 0;
+        }
+        return 1;
+    }else{
+        if(DroppedQuit)         //4 if we need to make a quit event
+        {
+            DroppedQuit=false;  //Reset this so we don't add more in the future by accident
+            return 4;
+        }
+        return 2;
+    }
+}
+
 
 /// @todo TODO: Make the PhysEventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
 /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
 
+
 PhysEventManager::PhysEventManager(PhysWorld* ParentWorld_)
 {
     ParentWorld = ParentWorld_;
-    SDL_SetEventFilter( PhysSDLFilter );
     PollMouseHor = false;
     PollMouseVert = false;
 }
@@ -101,6 +130,51 @@ void PhysEventManager::RemoveNextEvent()
 void PhysEventManager::AddEvent(PhysEvent* EventToAdd)
 {
     EventQueue.push_back(EventToAdd);
+}
+
+void PhysEventManager::UpdateEvents()
+{
+
+//        ParentWorld->LogAndThrow("Event Filter Not Correctly Setting");
+
+}
+
+void PhysEventManager::UpdateSystemEvents()
+{
+
+    this->PreProcessSDLEvents();
+    ParentWorld->Log("WM EventCount Pending:");
+    ParentWorld->Log(SDL_WmEvents.size());
+    //TODO: make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
+}
+
+void PhysEventManager::UpdateUserInputEvents()
+{
+    this->PreProcessSDLEvents();
+    ParentWorld->Log("User Input EventCount Pending:");
+    ParentWorld->Log(SDL_UserInputEvents.size());
+
+    PhysEventUserInput* FromSDLEvent = new PhysEventUserInput();
+    PhysEventUserInput* FromSDLPolling = this->PollForUserInputEvents();
+
+    while( !SDL_UserInputEvents.empty() )
+    {
+        RawEvent* CurrentRawEvent = SDL_UserInputEvents.front();
+
+        FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
+        delete CurrentRawEvent;
+        SDL_UserInputEvents.pop(); //NEXT!!!
+    }
+
+    *FromSDLEvent += *FromSDLPolling;
+    delete FromSDLPolling;
+
+    if (0 < FromSDLEvent->GetMetaCodeCount())
+    {
+        this->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
+    }else{
+        delete FromSDLEvent;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -184,6 +258,25 @@ void PhysEventManager::RemoveNextUserInputEvent()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// Filtered management functions - Quit Event
+///////////////////////////////////////
+
+EventQuit* PhysEventManager::GetNextQuitEvent()
+{
+    return dynamic_cast<EventQuit*> (this->GetNextSpecificEvent(PhysEvent::QuitMessage));
+}
+
+EventQuit* PhysEventManager::PopNextQuitEvent()
+{
+    return dynamic_cast<EventQuit*> (this->PopNextSpecificEvent(PhysEvent::QuitMessage));
+}
+
+void PhysEventManager::RemoveNextQuitEvent()
+{
+    this->RemoveNextSpecificEvent(PhysEvent::QuitMessage);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // Polling Functions
 ///////////////////////////////////////
 
@@ -207,9 +300,15 @@ void PhysEventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
 
     //Mouse Movement
     if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToTryPolling.GetCode())
-        { PollMouseVert = true; }
-    if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToTryPolling.GetCode())
-        { PollMouseHor = true; }
+    {
+        PollMouseVert = true;
+        ItFailed=false;
+    }
+    if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == InputToTryPolling.GetCode())
+    {
+        PollMouseHor = true;
+        ItFailed=false;
+    }
 
     if (ItFailed)
         this->ParentWorld->LogAndThrow("Unsupported Polling Check on this Platform");
@@ -283,7 +382,7 @@ void PhysEventManager::PollMouseButtons(vector<MetaCode> &CodeBag)
 
 void PhysEventManager::PollMouseLocation(vector<MetaCode> &CodeBag)
 {
-    if( PollMouseHor || PollMouseVert)
+    if( PollMouseHor || PollMouseVert )
     {
         int Vert=0;
         int Hor=0;
@@ -302,18 +401,61 @@ void PhysEventManager::PollMouseLocation(vector<MetaCode> &CodeBag)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Quit handling functions
-///////////////////////////////////////
+// Standard interupt basd user input
 
-// this will replace the SDL quit with a
-int PhysSDLFilter( const RawEvent *event )
+//This function will get all the events from SDL and Sort them into one of two Queues
+void PhysEventManager::PreProcessSDLEvents()
 {
-    /*if ( event->type == SDL_QUIT )
+    UpdateQuitEvents(); //quit skips the preprocessing Queue and goes straight into the the main Queue
+
+    RawEvent temp;
+    RawEvent* FromSDL=&temp;
+	while(SDL_PollEvent(FromSDL))
+	{
+	    RawEvent* ScopeHolder = new RawEvent;
+	    *ScopeHolder = temp;
+        switch(FromSDL->type)
+        {
+            case SDL_ACTIVEEVENT:   //when the window gains focus
+            case SDL_VIDEORESIZE:   //when the screen is resized
+            case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
+            case SDL_QUIT:          //when SDL closes
+            case SDL_SYSWMEVENT:
+                SDL_WmEvents.push(ScopeHolder);
+                break;
+            case SDL_KEYDOWN:
+            case SDL_KEYUP:
+            case SDL_MOUSEMOTION:
+            case SDL_MOUSEBUTTONDOWN:
+            case SDL_MOUSEBUTTONUP:
+            case SDL_JOYAXISMOTION:
+            case SDL_JOYBUTTONDOWN:
+            case SDL_JOYBUTTONUP:
+            case SDL_JOYBALLMOTION:
+            case SDL_JOYHATMOTION:
+                SDL_UserInputEvents.push(ScopeHolder);
+                break;
+            case SDL_USEREVENT://Never thrown by SDL, but could be added by a user
+            default:
+                throw ("Unknown SDL Event Inserted");
+                break;
+        }
+	}
+}
+
+void PhysEventManager::UpdateQuitEvents()
+{
+    if (NULL == SDL_GetEventFilter())           //Verify the Event filter is installed, if not, then install it.
     {
-        /// @todo TODO Create a quit event and put it into the event manager in a thread safe way.
-        return 0;
-    }*/
-    return 0;
+        SDL_SetEventFilter( PhysSDLFilter );
+    }else{
+        if(4==PhysSDLFilter(0))                 //Pass it a null pointer to get it to "Not Callback Mode"
+        {
+            this->AddEvent(new EventQuit());    //We need to make a quit event
+        }else{
+            //all clear
+        }
+    }
 }
 
 #endif

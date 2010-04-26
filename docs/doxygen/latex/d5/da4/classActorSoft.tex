@@ -1,0 +1,97 @@
+\hypertarget{classActorSoft}{
+\section{ActorSoft Class Reference}
+\label{d5/da4/classActorSoft}\index{ActorSoft@{ActorSoft}}
+}
+
+
+This is the actor class for Soft Objects.  
+
+
+{\ttfamily \#include $<$physactor.h$>$}Inheritance diagram for ActorSoft::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d5/da4/classActorSoft}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classActorSoft_af58881c064fa2182a2347eb8755696b0}{$\sim$ActorSoft} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classActorSoft_a55ac461f317aed2b812f07eb384b2a6d}{CreateShapeFromMesh} ()
+\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classActorSoft_a01a570c728d6cb96d1a40003d6b17e22}{CreateSoftObject} (btSoftBodyWorldInfo $\ast$softworldinfo, int nodecount, btVector3 $\ast$nodearray, btScalar $\ast$massarray)
+\begin{DoxyCompactList}\small\item\em Creates a soft object for the actor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classActorSoft_a0def29f28ed4d126a0634ddc97e33e2f}{AddObjectToWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$World)
+\begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classActorSoft_aa7d4efd5150008eecc54e070be075700}{
+btSoftBody $\ast$ {\bfseries physsoftbody}}
+\label{d5/da4/classActorSoft_aa7d4efd5150008eecc54e070be075700}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the actor class for Soft Objects. This class should be used to make any soft object that, like \hyperlink{classActorRigid}{ActorRigid}, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. 
+
+Definition at line 275 of file physactor.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classActorSoft_af58881c064fa2182a2347eb8755696b0}{
+\index{ActorSoft@{ActorSoft}!$\sim$ActorSoft@{$\sim$ActorSoft}}
+\index{$\sim$ActorSoft@{$\sim$ActorSoft}!ActorSoft@{ActorSoft}}
+\subsubsection[{$\sim$ActorSoft}]{\setlength{\rightskip}{0pt plus 5cm}ActorSoft::$\sim$ActorSoft ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d5/da4/classActorSoft_af58881c064fa2182a2347eb8755696b0}
+
+
+Destructor. The class destructor. 
+
+Definition at line 332 of file physactor.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classActorSoft_a0def29f28ed4d126a0634ddc97e33e2f}{
+\index{ActorSoft@{ActorSoft}!AddObjectToWorld@{AddObjectToWorld}}
+\index{AddObjectToWorld@{AddObjectToWorld}!ActorSoft@{ActorSoft}}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void ActorSoft::AddObjectToWorld ({\bf PhysWorld} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em World})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\label{d5/da4/classActorSoft_a0def29f28ed4d126a0634ddc97e33e2f}
+
+
+Adds the actor to the physics world. Adds the actor to the physics world. \par
+ This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em TargetWorld}]Pointer to the \hyperlink{classPhysWorld}{PhysWorld} class. \item[{\em World}]Pointer to the physics world. \end{DoxyParams}
+
+
+Implements \hyperlink{classActorBase_a1af82a2ed960fd114518fdf84d5ff146}{ActorBase}.
+
+Definition at line 343 of file physactor.cpp.\hypertarget{classActorSoft_a55ac461f317aed2b812f07eb384b2a6d}{
+\index{ActorSoft@{ActorSoft}!CreateShapeFromMesh@{CreateShapeFromMesh}}
+\index{CreateShapeFromMesh@{CreateShapeFromMesh}!ActorSoft@{ActorSoft}}
+\subsubsection[{CreateShapeFromMesh}]{\setlength{\rightskip}{0pt plus 5cm}void ActorSoft::CreateShapeFromMesh ()}}
+\label{d5/da4/classActorSoft_a55ac461f317aed2b812f07eb384b2a6d}
+
+
+Creates a collision shape from mesh file. This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. 
+
+Definition at line 348 of file physactor.cpp.\hypertarget{classActorSoft_a01a570c728d6cb96d1a40003d6b17e22}{
+\index{ActorSoft@{ActorSoft}!CreateSoftObject@{CreateSoftObject}}
+\index{CreateSoftObject@{CreateSoftObject}!ActorSoft@{ActorSoft}}
+\subsubsection[{CreateSoftObject}]{\setlength{\rightskip}{0pt plus 5cm}void ActorSoft::CreateSoftObject (btSoftBodyWorldInfo $\ast$ {\em softworldinfo}, \/  int {\em nodecount}, \/  btVector3 $\ast$ {\em nodearray}, \/  btScalar $\ast$ {\em massarray})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d5/da4/classActorSoft_a01a570c728d6cb96d1a40003d6b17e22}
+
+
+Creates a soft object for the actor. Creates a soft object to be placed in the physics world later. \par
+ This is automaticly called by the Constructor and shouldn't be called manually. 
+
+Definition at line 337 of file physactor.cpp.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+physactor.h\item 
+physactor.cpp\end{DoxyCompactItemize}
