@@ -987,3 +987,56 @@
 
 1261981013 c:\wxwidgets-2.8.10\lib\gcc_dll\mswud\wx\msw\rcdefs.h
 
+1268892219 source:c:\physgame2\physgame\physgamelauncher\src\configopener.cpp
+	"configopener.h"
+
+1268892219 c:\physgame2\physgame\physgamelauncher\src\configopener.h
+	<iostream>
+	<fstream>
+	<string>
+
+1269828512 source:c:\physgame2\physgame\physgamelauncher\src\crossplatform.cpp
+
+1269828424 source:c:\physgame2\physgame\physgamelauncher\src\physgamelauncherapp.cpp
+	"physgamelauncherApp.h"
+	<iostream>
+	<fstream>
+	"zlib.h"
+	"crossplatform.h"
+	"physgamelauncherMain.h"
+	<wx/image.h>
+
+1271904138 c:\physgame2\physgame\physgamelauncher\src\physgamelauncherapp.h
+	<wx/app.h>
+	"zzip.h"
+
+1269828258 c:\physgame2\physgame\physgamelauncher\src\crossplatform.h
+	<fcntl.h>
+	<io.h>
+
+1271044856 c:\physgame2\physgame\physgamelauncher\src\physgamelaunchermain.h
+	<wx/menu.h>
+	<wx/frame.h>
+	<wx/statusbr.h>
+	"zzip.h"
+
+1271904327 source:c:\physgame2\physgame\physgamelauncher\src\physgamelaunchermain.cpp
+	"physgamelauncherMain.h"
+	<wx/msgdlg.h>
+	"zlib.h"
+	<iostream>
+	<fstream>
+	<string>
+	"configopener.h"
+	<stdio.h>
+	<stdlib.h>
+	"unzip.h"
+	<wx/intl.h>
+	<wx/string.h>
+	<sys/types.h>
+	<unistd.h>
+	"crossplatform.h"
+
+1193991318 source:c:\physgame2\physgame\physgamelauncher\resource.rc
+	"wx/msw/wx.rc"
+
