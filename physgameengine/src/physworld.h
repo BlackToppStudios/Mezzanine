@@ -61,7 +61,10 @@
   //@subpage EventManager "Event Manager"
 
   //@subpage Actor "Items in the world - Actor Class"
+ @section Data Types
+  @ref PhysVector3
 
+  @ref PhysEvent
 */
 
 //Includes and Forward Declarations

@@ -51,7 +51,7 @@ namespace phys
     /// @headerfile gamesettings.h
     /// @brief This is intended to store basic graphics setting for the user
     /// @details This stores x/y resolution, fullscreen and in the future other
-    /// settings. This is intended to be easy for developers to pass/move around
+    /// settings. This is intended to make it easy for developers to pass/move around
     /// complex graphics settings. We hope to eventually include other items like
     /// shader, rendering API, and maybe other settings too.
     class GraphicsSettings

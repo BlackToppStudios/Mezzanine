@@ -316,8 +316,9 @@ void PhysWorld::MainLoop()
      It sounds even better when we say it works the same way for physics. If you do not have a pre or post physic callback set physics simply is not run. This allows for easy control over
      the state of motion  in a world. Currently Rendering is performed each iteration of the main loop, regardless of what Callbacks are set. This may be changed at some point in the future,
      but no immediate plans to change it are in the works.
-     \n \n One iteration of the main loops is about 1/60 of a second and will render 1 frame and step physics about 1/60 (1/62.5 usually) of a second. Currently there is no way to uncap
-     the framerate, we did not see a need for more (we may change this in the future). Situations with low performance should automatically be handled but increasing the size of physics
+     \n \n One iteration of the main loops is about 1/60 of a second (by default) and will render 1 frame and step physics about 1/60 (1/62.5 usually) of a second. Currently there is no way to uncap
+     the framerate, we did not see a need for more (but the cap can be adjusted using PhysWorld::SetTargetFrameTime or PhysWorld::SetTargetFrameRate ). Situations with low performance should
+     automatically be handled but increasing the size of physics
      steps and automatically not rendering frames when not appropriate. There will be fewer calls on callbacks, but the engine will not inhibit gameplay below the the target framerate.
     \n
      @section callbacks1 1) Input Callbacks and Buffering
