@@ -20,6 +20,7 @@
 //Create the World Globally!
 PhysWorld TheWorld;
 ActorRigid* object1;
+ActorRigid* object2;
 PhysReal x=0;
 PhysReal y=0;
 PhysReal z=0;
@@ -169,6 +170,9 @@ void LoadContent()
     //Actor Init Code
     object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
     object1->CreateShapeFromMesh();
+    //object2 = new ActorRigid (0, "Robot2",filename,groupname,&TheWorld);
+    //object2->CreateShapeFromMesh();
+    //object2->SetInitLocation(PhysVector3(0,-99,0));
 
     //Final Steps
     PhysVector3 grav;
@@ -176,6 +180,7 @@ void LoadContent()
     grav.Y=-1000.0;
     grav.Z=0.0;
     TheWorld.AddActor(object1);
+    //TheWorld.AddActor(object2);
     TheWorld.SetGravity(grav);
 }
 
