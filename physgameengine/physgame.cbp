@@ -81,7 +81,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="src/Doxyfile" />
 		<Unit filename="src/eventquit.cpp" />
 		<Unit filename="src/eventquit.h" />
 		<Unit filename="src/gamesettings.cpp" />
