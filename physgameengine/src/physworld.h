@@ -204,12 +204,12 @@ class PhysWorld
 		/// unsigned long int, bool, float, double, long double, wchar_t, size_t, PhysReal, PhysWhole, PhysString, PhysVector3, RawEvent and MetaCode.
 		/// If compiled statically it should support any data type which supports output streams.
 		/// @param Message This is what will be streamed to the log
-    	template <class T> void Log(const T &Message);
+    	template <class T> void Log(T Message);
     	/// @brief This is the preferred way to throw an exception currently
     	/// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
     	/// type the Log function supports
     	/// @param Message This will be streamed to the log, then used in a thrown exception.
-        template <class T> void LogAndThrow(const T &Message);
+        template <class T> void LogAndThrow(T Message);
 
         /// @brief Retrieves the Current Window Title
     	/// @details This gets the texts that the engine has stored for use in the title bar
@@ -323,7 +323,7 @@ class PhysWorld
         /// @brief
         /// @param pgrav
         /// @details
-        void SetGravity(const PhysVector3 &pgrav);
+        void SetGravity(PhysVector3 pgrav);
 
 		/// @brief This is a point to the default Call BackManager
         /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.

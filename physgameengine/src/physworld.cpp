@@ -257,14 +257,14 @@ PhysWorld::~PhysWorld()
 
 ///////////////////////////////////////////////////////////////////////////////
 //appends to the gamelog which is managed by Ogre
-template <class T> void PhysWorld::Log(const T &Message)
+template <class T> void PhysWorld::Log(T Message)
 {
 	stringstream temp;
 	temp << Message;
 	Ogre::LogManager::getSingleton().logMessage(temp.str());
 }
 
-template <class T> void PhysWorld::LogAndThrow(const T &Message)
+template <class T> void PhysWorld::LogAndThrow(T Message)
 {
 	this->Log(Message);
 	throw(Message);
