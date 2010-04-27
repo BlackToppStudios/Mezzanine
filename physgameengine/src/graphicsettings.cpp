@@ -68,7 +68,7 @@ namespace phys
     }
 
     //returns: True if user wants fullscreen
-    bool GraphicsSettings::getFullscreen()
+    bool GraphicsSettings::getFullscreen() const
     {
         return this->Fullscreen;
     }
@@ -81,13 +81,13 @@ namespace phys
     }
 
     //Returns the height of the render window
-    PhysWhole GraphicsSettings::getRenderHeight()
+    PhysWhole GraphicsSettings::getRenderHeight() const
     {
         return this->RenderHeight;
     }
 
     //Returns the width of the render window
-    PhysWhole GraphicsSettings::getRenderWidth()
+    PhysWhole GraphicsSettings::getRenderWidth() const
     {
         return this->RenderWidth;
     }

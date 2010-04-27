@@ -89,7 +89,7 @@ namespace phys
             /// @brief Gets the Fullscreen Setting
             /// @details Gets the Fullscreen Setting
             /// @return This returns a bool, true if fullscreen is set, false otherwise
-            bool getFullscreen();
+            bool getFullscreen() const;
             /// @brief Set the Fullscreen Setting
             /// @details Set the Fullscreen Setting
             /// @param Fullscreen_ This accepts a bool. True for fullscreen, false for windowed
@@ -98,7 +98,7 @@ namespace phys
             /// @brief Gets the Height of the Rendering Area
             /// @details Gets the Height of the Rendering Area
             /// @return This returns the Height of the Rendering Area
-            PhysWhole getRenderHeight();
+            PhysWhole getRenderHeight() const;
             /// @brief Sets the Height.
             /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
             /// @param Height_ This accepts a PhysWhole.
@@ -107,7 +107,7 @@ namespace phys
             /// @brief Gets the Width of the Rendering Area
             /// @details Gets the Width of the Rendering Area
             /// @return This returns the Width of the Rendering Area
-            PhysWhole getRenderWidth();
+            PhysWhole getRenderWidth() const;
             /// @brief Sets the Width.
             /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
             /// @param Width_ This accepts a PhysWhole.
