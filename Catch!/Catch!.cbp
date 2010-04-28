@@ -21,20 +21,18 @@
 					<Add directory="../physgameengine/bin/WinDebug" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="cmd /c copy ..\physgameengine\bin\WinDebug\physgame.dll .\bin\WinDebug" />
-					<Add after="cmd /c copy ..\physgameengine\data\windows\ogre\OgreMain.dll .\bin\WinDebug" />
-					<Add after="cmd /c copy ..\physgameengine\data\windows\sdl\SDL.dll .\bin\WinDebug" />
-					<Add after="cmd /c mkdir .\bin\WinDebug\data" />
-					<Add after="cmd /c mkdir .\bin\WinDebug\data\windows" />
-					<Add after="cmd /c copy ..\physgameengine\data\windows\plugins.cfg .\bin\WinDebug\data\windows" />
-					<Add after="cmd /c copy ..\physgameengine\data\windows\settings.cfg .\bin\WinDebug\data\windows" />
-					<Add after="cmd /c mkdir .\bin\WinDebug\data\windows\ogre" />
-					<Add after="cmd /c copy ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
-					<Add after="cmd /c mkdir .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy ..\physgameengine\data\common\robot.mesh .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy ..\physgameengine\data\common\robot.skeleton .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy ..\physgameengine\data\common\Examples.material .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy ..\physgameengine\data\common\r2skin.jpg .\bin\WinDebug\data\common" />
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\windows\ogre\&quot; mkdir .\bin\WinDebug\data\windows\ogre' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\common&quot; mkdir .\bin\WinDebug\data\common' />
+					<Add after="cmd /c copy /y /v ..\physgameengine\bin\WinDebug\physgame.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\OgreMain.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\sdl\SDL.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\plugins.cfg .\bin\WinDebug\data\windows" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\settings.cfg .\bin\WinDebug\data\windows" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\common\robot.mesh .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\common\robot.skeleton .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\common\Examples.material .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\common\r2skin.jpg .\bin\WinDebug\data\common" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>

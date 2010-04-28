@@ -30,14 +30,12 @@
 					<Add directory="data/windows/bullet" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="cmd /c copy .\data\windows\ogre\OgreMain.dll .\bin\WinDebug" />
-					<Add after="cmd /c copy .\data\windows\sdl\SDL.dll .\bin\WinDebug" />
-					<Add after="cmd /c mkdir .\bin\WinDebug\data" />
-					<Add after="cmd /c mkdir .\bin\WinDebug\data\windows" />
-					<Add after="cmd /c copy .\data\windows\plugins.cfg .\bin\WinDebug\data\windows" />
-					<Add after="cmd /c copy .\data\windows\settings.cfg .\bin\WinDebug\data\windows" />
-					<Add after="cmd /c mkdir .\bin\WinDebug\data\windows\ogre" />
-					<Add after="cmd /c copy .\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\windows\ogre&quot; mkdir .\bin\WinDebug\data\windows\ogre' />
+					<Add after="cmd /c copy /y /v .\data\windows\ogre\OgreMain.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v .\data\windows\sdl\SDL.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v .\data\windows\plugins.cfg .\bin\WinDebug\data\windows" />
+					<Add after="cmd /c copy /y /v .\data\windows\settings.cfg .\bin\WinDebug\data\windows" />
+					<Add after="cmd /c copy /y /v .\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
