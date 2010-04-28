@@ -14,6 +14,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-DWINDOWS" />
 					<Add directory="libincludes/windows/ogre" />
 					<Add directory="libincludes/windows/sdl" />
 					<Add directory="libincludes/windows/bullet" />
@@ -52,6 +53,7 @@
 					<Add option="-fPIC" />
 					<Add option="-DOGRE_GUI_GLX" />
 					<Add option="-DOGRE_CONFIG_LITTLE_ENDIAN" />
+					<Add option="-DLINUX" />
 					<Add directory="libincludes/linux/ogresrc/OgreMain/include" />
 					<Add directory="libincludes/linux/ogresrc/include" />
 					<Add directory="libincludes/linux/bulletsrc/bullet-2.76/src" />

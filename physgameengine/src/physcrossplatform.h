@@ -40,18 +40,22 @@
 #ifndef _crossplatform_h
 #define _crossplatform_h
 ///////////////////////////////////////////////////////////////////////////////
-// If we did our jobs right this section should be the only place that you
-//need to change to compile this on a supported platform. Just remark all the
-//lines that are not your platform using "//" and unremark your platform.
+// If we did our jobs right You not need to change anything to compile on
+// different platforms exvept the build target. If you want, the platform can
+// be manually defined in this section and this should be the only place that you
+// need to change to compile this on a supported platform. Just remark all the
+// lines that are not your platform using "//" and unremark your platform.
 //
 // Should you choose to port this to your platform, make sure that all the
-//required libraries are installed, then make sure to write an implementation
-//for each of the functions in crossplatform.cpp
+// required libraries are installed, then make sure to write an implementation
+// for each of the functions in crossplatform.cpp, then you should get to the
+// nitty gritty of making the minor platforms inconsistencies work.
 ///////////////////////////////////////////////////////////////////////////////
 
 /// @todo Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this.
 
-#define LINUX
+//Unremark one of these when
+//#define LINUX
 //#define MACOSX
 //#define WINDOWS
 
