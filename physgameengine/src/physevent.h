@@ -62,7 +62,7 @@ class PhysEvent
             Other
         };
 
-		virtual PhysEvent::EventType getEventType() = 0;
+		virtual PhysEvent::EventType getEventType() const = 0;
 
 
 };

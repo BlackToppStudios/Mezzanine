@@ -68,63 +68,129 @@
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;btBulletDynamicsCommon.h&quot;</span>
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;physvector.h&quot;</span>
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048 PhysVector3::PhysVector3()
-<a name="l00049"></a>00049 {
-<a name="l00050"></a>00050     X=0;
-<a name="l00051"></a>00051     Y=0;
-<a name="l00052"></a>00052     Z=0;
-<a name="l00053"></a>00053 }
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055 PhysVector3::PhysVector3(PhysReal x, PhysReal y, PhysReal z)
-<a name="l00056"></a>00056 {
-<a name="l00057"></a>00057         X=x;
-<a name="l00058"></a>00058         Y=y;
-<a name="l00059"></a>00059         Z=z;
-<a name="l00060"></a>00060 }
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; x)
-<a name="l00063"></a>00063 {
-<a name="l00064"></a>00064     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.X &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.Y &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.Z &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
-<a name="l00065"></a>00065     <span class="keywordflow">return</span> stream;
-<a name="l00066"></a>00066 }
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068 btVector3 PhysVector3::GetBulletVector3()
-<a name="l00069"></a>00069 {
-<a name="l00070"></a>00070     btVector3 Theirs;
-<a name="l00071"></a>00071     Theirs.setX(this-&gt;X);
-<a name="l00072"></a>00072     Theirs.setY(this-&gt;Y);
-<a name="l00073"></a>00073     Theirs.setZ(this-&gt;Z);
-<a name="l00074"></a>00074     Theirs.setW(0);
-<a name="l00075"></a>00075     <span class="keywordflow">return</span> Theirs;
-<a name="l00076"></a>00076 }
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 <span class="keywordtype">void</span> PhysVector3::ExtractBulletVector3(btVector3 Ours)
-<a name="l00079"></a>00079 {
-<a name="l00080"></a>00080     this-&gt;X=Ours.getX();
-<a name="l00081"></a>00081     this-&gt;Y=Ours.getY();
-<a name="l00082"></a>00082     this-&gt;Z=Ours.getZ();
-<a name="l00083"></a>00083 }
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 Ogre::Vector3 PhysVector3::GetOgreVector3()
-<a name="l00086"></a>00086 {
-<a name="l00087"></a>00087     Ogre::Vector3 Theirs;
-<a name="l00088"></a>00088     Theirs.x=this-&gt;X;
-<a name="l00089"></a>00089     Theirs.y=this-&gt;Y;
-<a name="l00090"></a>00090     Theirs.z=this-&gt;Z;
-<a name="l00091"></a>00091     <span class="keywordflow">return</span> Theirs;
-<a name="l00092"></a>00092 }
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 <span class="keywordtype">void</span> PhysVector3::ExtractOgreVector3(Ogre::Vector3 Ours)
-<a name="l00095"></a>00095 {
-<a name="l00096"></a>00096     this-&gt;X=Ours.x;
-<a name="l00097"></a>00097     this-&gt;Y=Ours.y;
-<a name="l00098"></a>00098     this-&gt;Z=Ours.z;
-<a name="l00099"></a>00099 }
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101 <span class="preprocessor">#endif</span>
+<a name="l00047"></a>00047 <span class="comment"></span>
+<a name="l00048"></a>00048 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00049"></a>00049 <span class="comment"></span><span class="comment">// Constructors</span>
+<a name="l00050"></a>00050 PhysVector3::PhysVector3()
+<a name="l00051"></a>00051 {
+<a name="l00052"></a>00052     X=0;
+<a name="l00053"></a>00053     Y=0;
+<a name="l00054"></a>00054     Z=0;
+<a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 PhysVector3::PhysVector3(PhysReal x, PhysReal y, PhysReal z)
+<a name="l00058"></a>00058 {
+<a name="l00059"></a>00059         X=x;
+<a name="l00060"></a>00060         Y=y;
+<a name="l00061"></a>00061         Z=z;
+<a name="l00062"></a>00062 }
+<a name="l00063"></a>00063 <span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">/////////////////////////////////////////////////////////////////////</span>
+<a name="l00065"></a>00065 <span class="comment"></span><span class="comment">// Operators</span>
+<a name="l00066"></a>00066 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; x)
+<a name="l00067"></a>00067 {
+<a name="l00068"></a>00068     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.X &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.Y &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.Z &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00069"></a>00069     <span class="keywordflow">return</span> stream;
+<a name="l00070"></a>00070 }
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="keywordtype">void</span> PhysVector3::operator= (<span class="keyword">const</span> btVector3 &amp;bt3)
+<a name="l00073"></a>00073 {
+<a name="l00074"></a>00074     (*this)&lt;&lt;bt3;
+<a name="l00075"></a>00075 }
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 <span class="keywordtype">void</span> PhysVector3::operator=(<span class="keyword">const</span> Ogre::Vector3 &amp;OVec3)
+<a name="l00078"></a>00078 {
+<a name="l00079"></a>00079     (*this)&lt;&lt;OVec3;
+<a name="l00080"></a>00080 }
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecFrom)
+<a name="l00083"></a>00083 {
+<a name="l00084"></a>00084     VecTo.x=VecFrom.X;
+<a name="l00085"></a>00085     VecTo.y=VecFrom.Y;
+<a name="l00086"></a>00086     VecTo.z=VecFrom.Z;
+<a name="l00087"></a>00087     <span class="keywordflow">return</span> VecTo;
+<a name="l00088"></a>00088 }
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom)
+<a name="l00091"></a>00091 {
+<a name="l00092"></a>00092     VecTo.x=VecFrom.getX();
+<a name="l00093"></a>00093     VecTo.y=VecFrom.getY();
+<a name="l00094"></a>00094     VecTo.z=VecFrom.getZ();
+<a name="l00095"></a>00095     <span class="keywordflow">return</span> VecTo;
+<a name="l00096"></a>00096 }
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom)
+<a name="l00099"></a>00099 {
+<a name="l00100"></a>00100     VecTo.setX(VecFrom.x);
+<a name="l00101"></a>00101     VecTo.setY(VecFrom.y);
+<a name="l00102"></a>00102     VecTo.setZ(VecFrom.z);
+<a name="l00103"></a>00103     VecTo.setW(0);
+<a name="l00104"></a>00104     <span class="keywordflow">return</span> VecTo;
+<a name="l00105"></a>00105 }
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecFrom)
+<a name="l00108"></a>00108 {
+<a name="l00109"></a>00109     VecTo.setX(VecFrom.X);
+<a name="l00110"></a>00110     VecTo.setY(VecFrom.Y);
+<a name="l00111"></a>00111     VecTo.setZ(VecFrom.Z);
+<a name="l00112"></a>00112     VecTo.setW(0);
+<a name="l00113"></a>00113     <span class="keywordflow">return</span> VecTo;
+<a name="l00114"></a>00114 }
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116 <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom)
+<a name="l00117"></a>00117 {
+<a name="l00118"></a>00118     VecTo.X=VecFrom.x;
+<a name="l00119"></a>00119     VecTo.Y=VecFrom.y;
+<a name="l00120"></a>00120     VecTo.Z=VecFrom.z;
+<a name="l00121"></a>00121     <span class="keywordflow">return</span> VecTo;
+<a name="l00122"></a>00122 }
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom)
+<a name="l00125"></a>00125 {
+<a name="l00126"></a>00126     VecTo.X=VecFrom.getX();
+<a name="l00127"></a>00127     VecTo.Y=VecFrom.getY();
+<a name="l00128"></a>00128     VecTo.Z=VecFrom.getZ();
+<a name="l00129"></a>00129     <span class="keywordflow">return</span> VecTo;
+<a name="l00130"></a>00130 }
+<a name="l00131"></a>00131 <span class="comment"></span>
+<a name="l00132"></a>00132 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00133"></a>00133 <span class="comment"></span><span class="comment">// Manual Conversions</span>
+<a name="l00134"></a>00134 btVector3 PhysVector3::GetBulletVector3()
+<a name="l00135"></a>00135 {
+<a name="l00136"></a>00136     btVector3 Theirs;
+<a name="l00137"></a>00137     Theirs.setX(this-&gt;X);
+<a name="l00138"></a>00138     Theirs.setY(this-&gt;Y);
+<a name="l00139"></a>00139     Theirs.setZ(this-&gt;Z);
+<a name="l00140"></a>00140     Theirs.setW(0);
+<a name="l00141"></a>00141     <span class="keywordflow">return</span> Theirs;
+<a name="l00142"></a>00142 }
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144 <span class="keywordtype">void</span> PhysVector3::ExtractBulletVector3(btVector3 Ours)
+<a name="l00145"></a>00145 {
+<a name="l00146"></a>00146     this-&gt;X=Ours.getX();
+<a name="l00147"></a>00147     this-&gt;Y=Ours.getY();
+<a name="l00148"></a>00148     this-&gt;Z=Ours.getZ();
+<a name="l00149"></a>00149 }
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 Ogre::Vector3 PhysVector3::GetOgreVector3()
+<a name="l00152"></a>00152 {
+<a name="l00153"></a>00153     Ogre::Vector3 Theirs;
+<a name="l00154"></a>00154     Theirs.x=this-&gt;X;
+<a name="l00155"></a>00155     Theirs.y=this-&gt;Y;
+<a name="l00156"></a>00156     Theirs.z=this-&gt;Z;
+<a name="l00157"></a>00157     <span class="keywordflow">return</span> Theirs;
+<a name="l00158"></a>00158 }
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160 <span class="keywordtype">void</span> PhysVector3::ExtractOgreVector3(Ogre::Vector3 Ours)
+<a name="l00161"></a>00161 {
+<a name="l00162"></a>00162     this-&gt;X=Ours.x;
+<a name="l00163"></a>00163     this-&gt;Y=Ours.y;
+<a name="l00164"></a>00164     this-&gt;Z=Ours.z;
+<a name="l00165"></a>00165 }
+<a name="l00166"></a>00166 
+<a name="l00167"></a>00167 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 25 23:53:57 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Apr 27 23:20:30 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

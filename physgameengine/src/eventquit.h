@@ -47,16 +47,28 @@
 
 using namespace std;
 
-
-
-class EventQuit : public PhysEvent
+namespace phys
 {
-    private:
 
-	public:
-		virtual EventType getEventType();
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class EventQuit
+    /// @headerfile eventquit.h
+    /// @brief This is intended to convey the message that quitting needs to happen
+    /// @details This stores not data other than the fact that this is a Quit
+    /// event. This means that either an underlying system like the OS or a service
+    /// has requested a quit, or the application has manually put a quit message in
+    /// the queue to signal that a graceful shutdown needs to occur.
+    class EventQuit : public PhysEvent
+    {
+        private:
 
-};
+        public:
+            /// @brief This returns EventType::QuitMessage
+            /// @details  This returns the kind of message this is, specifcally EventType::QuitMessage
+            virtual EventType getEventType() const;
+
+    };
+}
 
 #endif
 

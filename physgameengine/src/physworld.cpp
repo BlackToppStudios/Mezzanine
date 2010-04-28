@@ -106,7 +106,7 @@ void PhysWorld::Construct(  const PhysVector3 &GeographyLowerBounds_,
     this->HasSDLBeenInitialized=false;
     this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
 
-	PlayerSettings = new phys::GraphicsSettings();
+	PlayerSettings = new GraphicsSettings();
 
 	//We create our Ogre environment
 	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");

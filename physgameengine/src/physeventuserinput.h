@@ -77,6 +77,7 @@ using namespace std;
 #include "physdatatypes.h"
 #include "metacode.h"
 
+using namespace phys;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @class PhysEventUserInput
@@ -191,7 +192,7 @@ class PhysEventUserInput : public PhysEvent
 
         /// @brief Returns the type of this event
         /// @return Returns EventType::UserInput
-		virtual EventType getEventType();
+		virtual EventType getEventType() const;
 };
 
 

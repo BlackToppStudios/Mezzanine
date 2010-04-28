@@ -75,6 +75,8 @@
 #include "physdatatypes.h"
 #include "physvector.h"
 
+using namespace phys;
+
 #include <string>
 
 using namespace std;
@@ -151,7 +153,7 @@ class PhysWorld
 		Ogre::Viewport* OgreViewport;
 
 		//Players settings
-		phys::GraphicsSettings* PlayerSettings;
+		GraphicsSettings* PlayerSettings;
 
 		//Try to retrieve ogre settinss
 		void LoadOgreSettings();

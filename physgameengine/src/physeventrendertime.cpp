@@ -53,7 +53,7 @@ PhysEventRenderTime::PhysEventRenderTime (PhysWhole Milliseconds)
     Rendertime=Milliseconds;
 }
 
-PhysEvent::EventType PhysEventRenderTime::getEventType()
+PhysEvent::EventType PhysEventRenderTime::getEventType() const
 {
 	return RenderTime;
 }

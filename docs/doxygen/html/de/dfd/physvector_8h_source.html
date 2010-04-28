@@ -85,15 +85,29 @@
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062         btVector3 GetBulletVector3();
 <a name="l00063"></a>00063         <span class="keywordtype">void</span> ExtractBulletVector3(btVector3 temp);
-<a name="l00064"></a>00064         Ogre::Vector3 GetOgreVector3();
-<a name="l00065"></a>00065         <span class="keywordtype">void</span> ExtractOgreVector3(Ogre::Vector3 temp);
-<a name="l00066"></a>00066 };
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065         Ogre::Vector3 GetOgreVector3();
+<a name="l00066"></a>00066         <span class="keywordtype">void</span> ExtractOgreVector3(Ogre::Vector3 temp);
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; x);
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="preprocessor">#endif</span>
+<a name="l00068"></a>00068         <span class="keywordtype">void</span> operator= (<span class="keyword">const</span> btVector3 &amp;bt3);
+<a name="l00069"></a>00069         <span class="keywordtype">void</span> operator= (<span class="keyword">const</span> Ogre::Vector3 &amp;OVec3);
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 };
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; x);
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecFrom);
+<a name="l00076"></a>00076 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
+<a name="l00079"></a>00079 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecFrom);
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
+<a name="l00082"></a>00082 <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 25 23:53:57 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Apr 27 23:20:30 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

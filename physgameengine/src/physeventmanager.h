@@ -54,6 +54,8 @@ using namespace std;
 #include "physeventuserinput.h"
 #include "eventquit.h"
 
+using namespace phys;
+
 
 class PhysWorld;
 

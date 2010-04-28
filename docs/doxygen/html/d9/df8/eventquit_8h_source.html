@@ -71,21 +71,33 @@
 <a name="l00047"></a>00047 
 <a name="l00048"></a>00048 <span class="keyword">using namespace </span>std;
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 
-<a name="l00052"></a><a class="code" href="../../d4/da9/classEventQuit.html">00052</a> <span class="keyword">class </span><a class="code" href="../../d4/da9/classEventQuit.html">EventQuit</a> : <span class="keyword">public</span> <a class="code" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>
-<a name="l00053"></a>00053 {
-<a name="l00054"></a>00054     <span class="keyword">private</span>:
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056         <span class="keyword">public</span>:
-<a name="l00057"></a>00057                 <span class="keyword">virtual</span> EventType getEventType();
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 };
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061 <span class="preprocessor">#endif</span>
-<a name="l00062"></a>00062 <span class="preprocessor"></span>
+<a name="l00050"></a>00050 <span class="keyword">namespace </span>phys
+<a name="l00051"></a>00051 {
+<a name="l00052"></a>00052 <span class="comment"></span>
+<a name="l00053"></a>00053 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00054"></a>00054 <span class="comment">    /// @class EventQuit</span>
+<a name="l00055"></a>00055 <span class="comment">    /// @headerfile eventquit.h</span>
+<a name="l00056"></a>00056 <span class="comment">    /// @brief This is intended to convey the message that quitting needs to happen</span>
+<a name="l00057"></a>00057 <span class="comment">    /// @details This stores not data other than the fact that this is a Quit</span>
+<a name="l00058"></a>00058 <span class="comment">    /// event. This means that either an underlying system like the OS or a service</span>
+<a name="l00059"></a>00059 <span class="comment">    /// has requested a quit, or the application has manually put a quit message in</span>
+<a name="l00060"></a>00060 <span class="comment">    /// the queue to signal that a graceful shutdown needs to occur.</span>
+<a name="l00061"></a><a class="code" href="../../dd/dea/classphys_1_1EventQuit.html">00061</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a> : <span class="keyword">public</span> <a class="code" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>
+<a name="l00062"></a>00062     {
+<a name="l00063"></a>00063         <span class="keyword">private</span>:
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00066"></a>00066 <span class="comment">            /// @brief This returns EventType::QuitMessage</span>
+<a name="l00067"></a>00067 <span class="comment">            /// @details  This returns the kind of message this is, specifcally EventType::QuitMessage</span>
+<a name="l00068"></a>00068 <span class="comment"></span>            <span class="keyword">virtual</span> EventType <a class="code" href="../../dd/dea/classphys_1_1EventQuit.html#a602a189d70441fdfaaae6aa29761ea43" title="This returns EventType::QuitMessage.">getEventType</a>() <span class="keyword">const</span>;
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070     };
+<a name="l00071"></a>00071 }
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 <span class="preprocessor">#endif</span>
+<a name="l00074"></a>00074 <span class="preprocessor"></span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Sun Apr 25 23:53:57 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Apr 27 23:20:30 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

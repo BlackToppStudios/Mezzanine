@@ -44,12 +44,15 @@
 
 using namespace std;
 
-PhysEvent::EventType EventQuit::getEventType()
+namespace phys
 {
-	return PhysEvent::QuitMessage;
+
+    PhysEvent::EventType EventQuit::getEventType() const
+    {
+        return PhysEvent::QuitMessage;
+    }
+
 }
-
-
 
 #endif
 

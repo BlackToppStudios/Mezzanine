@@ -1,0 +1,45 @@
+\hypertarget{classphys_1_1EventQuit}{
+\section{phys::EventQuit Class Reference}
+\label{dd/dea/classphys_1_1EventQuit}\index{phys::EventQuit@{phys::EventQuit}}
+}
+
+
+This is intended to convey the message that quitting needs to happen.  
+
+
+{\ttfamily \#include $<$eventquit.h$>$}Inheritance diagram for phys::EventQuit::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{dd/dea/classphys_1_1EventQuit}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual EventType \hyperlink{classphys_1_1EventQuit_a602a189d70441fdfaaae6aa29761ea43}{getEventType} () const 
+\begin{DoxyCompactList}\small\item\em This returns EventType::QuitMessage. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is intended to convey the message that quitting needs to happen. This stores not data other than the fact that this is a Quit event. This means that either an underlying system like the OS or a service has requested a quit, or the application has manually put a quit message in the queue to signal that a graceful shutdown needs to occur. 
+
+Definition at line 61 of file eventquit.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1EventQuit_a602a189d70441fdfaaae6aa29761ea43}{
+\index{phys::EventQuit@{phys::EventQuit}!getEventType@{getEventType}}
+\index{getEventType@{getEventType}!phys::EventQuit@{phys::EventQuit}}
+\subsubsection[{getEventType}]{\setlength{\rightskip}{0pt plus 5cm}PhysEvent::EventType phys::EventQuit::getEventType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/dea/classphys_1_1EventQuit_a602a189d70441fdfaaae6aa29761ea43}
+
+
+This returns EventType::QuitMessage. This returns the kind of message this is, specifcally EventType::QuitMessage 
+
+Implements \hyperlink{classPhysEvent}{PhysEvent}.
+
+Definition at line 50 of file eventquit.cpp.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+eventquit.h\item 
+eventquit.cpp\end{DoxyCompactItemize}
