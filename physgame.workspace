@@ -3,5 +3,6 @@
 	<Workspace title="Workspace">
 		<Project filename="Catch!\Catch!.cbp" active="1" />
 		<Project filename="physgameengine\physgame.cbp" />
+		<Project filename="physgameengine\libincludes\linux\bulletsrc\Bullet.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

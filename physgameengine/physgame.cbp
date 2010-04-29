@@ -14,7 +14,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add option="--enable-auto-import" />
 					<Add option="-DWINDOWS" />
 					<Add directory="libincludes\windows\ogre" />
 					<Add directory="libincludes\windows\sdl" />
@@ -24,6 +23,7 @@
 					<Add option="-Wl,--enable-runtime-pseudo-reloc" />
 					<Add option="-Wl,--enable-auto-image-base" />
 					<Add option="-Wl,--add-stdcall-alias" />
+					<Add option="-Wl,--enable-auto-import" />
 					<Add library="SDL" />
 					<Add library="OgreMain" />
 					<Add library="data\windows\bullet\libBulletDebug.a" />
