@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="LinuxDebug" />
-	<File name="src/gamebase.cpp" open="0" top="0" tabpos="2">
+	<ActiveTarget name="WinDebug" />
+	<File name="src\gamebase.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="4887" topLine="159" />
 	</File>
-	<File name="src/gamebase.h" open="0" top="0" tabpos="5">
+	<File name="src\gamebase.h" open="0" top="0" tabpos="5">
 		<Cursor position="444" topLine="1" />
 	</File>
 </CodeBlocks_layout_file>
