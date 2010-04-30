@@ -81,6 +81,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/event.cpp" />
+		<Unit filename="src/event.h" />
 		<Unit filename="src/eventquit.cpp" />
 		<Unit filename="src/eventquit.h" />
 		<Unit filename="src/graphicsettings.cpp" />
@@ -93,7 +95,6 @@
 		<Unit filename="src/physcrossplatform.h" />
 		<Unit filename="src/physdatatypes.cpp" />
 		<Unit filename="src/physdatatypes.h" />
-		<Unit filename="src/physevent.h" />
 		<Unit filename="src/physeventmanager.cpp" />
 		<Unit filename="src/physeventmanager.h" />
 		<Unit filename="src/physeventrendertime.cpp" />

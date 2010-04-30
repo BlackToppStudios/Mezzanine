@@ -26,13 +26,13 @@
   </div>
 </div>
 <div class="contents">
-<h1>PhysEventRenderTime Class Reference</h1><!-- doxytag: class="PhysEventRenderTime" --><!-- doxytag: inherits="PhysEvent" --><div class="dynheader">
+<h1>PhysEventRenderTime Class Reference</h1><!-- doxytag: class="PhysEventRenderTime" --><!-- doxytag: inherits="phys::Event" --><div class="dynheader">
 Inheritance diagram for PhysEventRenderTime:</div>
 <div class="dynsection">
  <div class="center">
   <img src="../../d4/d83/classPhysEventRenderTime.gif" usemap="#PhysEventRenderTime_map" alt=""/>
   <map id="PhysEventRenderTime_map" name="PhysEventRenderTime_map">
-<area href="../../d9/dc2/classPhysEvent.html" alt="PhysEvent" shape="rect" coords="0,0,139,24"/>
+<area href="../../d5/dcb/classphys_1_1Event.html" alt="phys::Event" shape="rect" coords="0,0,139,24"/>
 </map>
  </div>
 </div>
@@ -42,20 +42,46 @@ Inheritance diagram for PhysEventRenderTime:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6ad859225b0c869af9145844ac5a248"></a><!-- doxytag: member="PhysEventRenderTime::PhysEventRenderTime" ref="af6ad859225b0c869af9145844ac5a248" args="(PhysWhole Milliseconds)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysEventRenderTime</b> (PhysWhole Milliseconds)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7e65fb318872368d16d304266a74650"></a><!-- doxytag: member="PhysEventRenderTime::getEventType" ref="af7e65fb318872368d16d304266a74650" args="() const " -->
-virtual EventType&nbsp;</td><td class="memItemRight" valign="bottom"><b>getEventType</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d5/dcb/classphys_1_1Event.html#af5fdbb3e08d8e578d58770fbc606fda7">EventType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d83/classPhysEventRenderTime.html#a96b0569f8b1cd459383318c9437130d4">getEventType</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will aid in identifying all classes that inherit from this class.  <a href="#a96b0569f8b1cd459383318c9437130d4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaba6aa77d58877dc8b3784c1ebcfe7b6"></a><!-- doxytag: member="PhysEventRenderTime::getMilliSecondsSinceLastFrame" ref="aaba6aa77d58877dc8b3784c1ebcfe7b6" args="()" -->
 PhysWhole&nbsp;</td><td class="memItemRight" valign="bottom"><b>getMilliSecondsSinceLastFrame</b> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="../../d7/dbf/physeventrendertime_8h_source.html#l00052">52</a> of file <a class="el" href="../../d7/dbf/physeventrendertime_8h_source.html">physeventrendertime.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/dbf/physeventrendertime_8h_source.html#l00053">53</a> of file <a class="el" href="../../d7/dbf/physeventrendertime_8h_source.html">physeventrendertime.h</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a96b0569f8b1cd459383318c9437130d4"></a><!-- doxytag: member="PhysEventRenderTime::getEventType" ref="a96b0569f8b1cd459383318c9437130d4" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/dcb/classphys_1_1Event.html#af5fdbb3e08d8e578d58770fbc606fda7">Event::EventType</a> PhysEventRenderTime::getEventType </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This will aid in identifying all classes that inherit from this class. </p>
+<p>All Classes derived form this calls will return an Event::EventType that correspond the the data/class type they actually are. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns an eventype that will correspend with the actual event type. This can be used on all Phys game provided class to safely cast a pointer to the correct event type. </dd></dl>
+
+<p>Implements <a class="el" href="../../d5/dcb/classphys_1_1Event.html#ac2c0623a6bc399e62f4b9fb2c022ea73">phys::Event</a>.</p>
+
+<p>Definition at line <a class="el" href="../../dc/df6/physeventrendertime_8cpp_source.html#l00056">56</a> of file <a class="el" href="../../dc/df6/physeventrendertime_8cpp_source.html">physeventrendertime.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d7/dbf/physeventrendertime_8h_source.html">physeventrendertime.h</a></li>
 <li><a class="el" href="../../dc/df6/physeventrendertime_8cpp_source.html">physeventrendertime.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Apr 27 23:20:31 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Apr 29 23:49:14 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

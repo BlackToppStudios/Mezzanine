@@ -49,7 +49,7 @@
 
 using namespace std;
 
-#include "physevent.h"
+#include "event.h"
 #include "physeventrendertime.h"
 #include "physeventuserinput.h"
 #include "eventquit.h"
@@ -89,7 +89,7 @@ class PhysEventManager
         PhysWorld* ParentWorld;
 
         //The Queue that all the events get stored in
-		list<PhysEvent*> EventQueue;
+		list<Event*> EventQueue;
 
         //Checks for quit messages and adds them to the queue
         void UpdateQuitEvents();
@@ -137,13 +137,13 @@ class PhysEventManager
         /// because it runs in constant time. However it does not return a specific kind of event, and must be cast
         /// in order to use the true content. This returns a pointer to 0 if there are no events in the que.
         /// @return A pointer to a PhysEvent, that still needs to be removed from the event manager and deleted.
-		PhysEvent* GetNextEvent();
+		Event* GetNextEvent();
 
         /// @brief Return a pointer to the Next event, and removes the Event from storage
         /// @details This functions just like GetNextEvent , except that it also removes the item from the internal storage
         /// of the PhysEventManager. This returns a pointer to 0 if there are no events in the que.
         /// @return A pointer to a PhysEvent, that will need to be deleted once it has been used.
-        PhysEvent* PopNextEvent();
+        Event* PopNextEvent();
 
         /// @brief Removes an Event From the que without looking at it.
         /// @details This together with GetNextEvent() are the same as call PopNextEvent().
@@ -156,7 +156,7 @@ class PhysEventManager
         /// @param EventToAdd This is a pointer to an Event.
         /// @details This adds the existing event to the Queue. Be careful this is not delete, and does not go out of scope. Deleting the Event is now the
         /// responsibilty of the code that pulls it out of Event Manager.
-        void AddEvent(PhysEvent* EventToAdd);
+        void AddEvent(Event* EventToAdd);
 
         void UpdateEvents();
         void UpdateSystemEvents();
@@ -229,13 +229,13 @@ class PhysEventManager
         /// a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use
         /// this for performance reasons becuase it runs in linear time relative to the amount of events.
         /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
-        PhysEvent* GetNextSpecificEvent(PhysEvent::EventType SpecificType);
+        Event* GetNextSpecificEvent(Event::EventType SpecificType);
 
         /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que
         /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with
         /// @details This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que.
         /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
-        PhysEvent* PopNextSpecificEvent(PhysEvent::EventType SpecificType);
+        Event* PopNextSpecificEvent(Event::EventType SpecificType);
 
         /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que
         /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with
@@ -244,7 +244,7 @@ class PhysEventManager
         /// @warning If you did not call GetNextSpecificEvent(PhysEvent::EventType SpecificType) and haven't deleted or stored, or somehow dealt with
         /// this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately.
         /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
-        void RemoveNextSpecificEvent(PhysEvent::EventType SpecificType);
+        void RemoveNextSpecificEvent(Event::EventType SpecificType);
 
         /// @brief Generates extra events each iteration of the main loop, based on user input polling
         /// @param InputToTryPolling This accepts a MetaCode and will try to watch for occurences like this one

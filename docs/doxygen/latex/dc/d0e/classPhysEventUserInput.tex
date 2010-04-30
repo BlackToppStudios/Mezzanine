@@ -44,7 +44,7 @@ void \hyperlink{classPhysEventUserInput_a8325bb0172db6ea02fd06f4a5d1a7378}{Toggl
 \begin{DoxyCompactList}\small\item\em Removes a specific code or Adds it if not present. \item\end{DoxyCompactList}\item 
 \hyperlink{classPhysEventUserInput}{PhysEventUserInput} \& \hyperlink{classPhysEventUserInput_a257c2e093b5736324e39d5fac0d6de2a}{operator+=} (const \hyperlink{classPhysEventUserInput}{PhysEventUserInput} \&Add)
 \begin{DoxyCompactList}\small\item\em This add all of one \hyperlink{classPhysEventUserInput}{PhysEventUserInput} to another. \item\end{DoxyCompactList}\item 
-virtual EventType \hyperlink{classPhysEventUserInput_a886530fc5d51bb30bb45a9d43011f32a}{getEventType} () const 
+virtual \hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{EventType} \hyperlink{classPhysEventUserInput_a2a39643cd222f7af0db7b087e0441582}{getEventType} () const 
 \begin{DoxyCompactList}\small\item\em Returns the type of this event. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -189,11 +189,11 @@ Removes a specific code from storage.
 \item[{\em Code\_\-}]This will search for all matching copies of this\end{DoxyParams}
 All MetaCodes that are equal to Code\_\- will simply be erased. 
 
-Definition at line 120 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a886530fc5d51bb30bb45a9d43011f32a}{
+Definition at line 120 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a2a39643cd222f7af0db7b087e0441582}{
 \index{PhysEventUserInput@{PhysEventUserInput}!getEventType@{getEventType}}
 \index{getEventType@{getEventType}!PhysEventUserInput@{PhysEventUserInput}}
-\subsubsection[{getEventType}]{\setlength{\rightskip}{0pt plus 5cm}PhysEvent::EventType PhysEventUserInput::getEventType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{dc/d0e/classPhysEventUserInput_a886530fc5d51bb30bb45a9d43011f32a}
+\subsubsection[{getEventType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event::EventType} PhysEventUserInput::getEventType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dc/d0e/classPhysEventUserInput_a2a39643cd222f7af0db7b087e0441582}
 
 
 Returns the type of this event. \begin{DoxyReturn}{Returns}
@@ -201,7 +201,7 @@ Returns EventType::UserInput
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classPhysEvent}{PhysEvent}.
+Implements \hyperlink{classphys_1_1Event_ac2c0623a6bc399e62f4b9fb2c022ea73}{phys::Event}.
 
 Definition at line 157 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_aa564530c27f6983bb412e46c2c7ed086}{
 \index{PhysEventUserInput@{PhysEventUserInput}!GetMetaCode@{GetMetaCode}}

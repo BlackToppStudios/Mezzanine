@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef PHYSEVENT_H
-#define PHYSEVENT_H
+#ifndef EVENT_H
+#define EVENT_H
 ///////////////////////////////////////////////////////////////////////////////
 // This is a parent class that all events must derive from. This exists solely
 //to normalize the output of the event manager class.
@@ -50,22 +50,43 @@
 
 using namespace std;
 
-class PhysEvent
+namespace phys
 {
-	public:
-        enum EventType
-        {
-            RenderTime,
-            UserInput,
-            QuitMessage,
-            SystemMessage,
-            Other
-        };
 
-		virtual PhysEvent::EventType getEventType() const = 0;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class Event
+    /// @headerfile event.h
+    /// @brief The base class for all events.
+    /// @details All Events used in the Event Manager, will inherit from this. While
+    /// not absolutely required by the game programmer to write their own events, it
+    /// it could be useful. Instances of this class cannot be made, and all classes
+    /// that inherit from this are expected to implement getEventType().
+    class Event
+    {
+        public:
+
+            /// @enum EventType
+            /// @brief A listing of values that can be used to identify Events.
+            /// @details A listing of values that can be used to identify Events.
+            enum EventType
+            {
+                RenderTime,     /**< Indicates the Event is a PhysEventRenderTime */
+                UserInput,      /**< Indicates the Event is a PhysEventUserInput */
+                QuitMessage,    /**< Indicates the Event is a phys::EventQuit */
+                SystemMessage,  /**< Indicates the Event has not been coded yet */
+                Other
+            };
+
+            /// @brief This will aid in identifying all classes that inherit from this class.
+            /// @details All Classes derived form this calls will return an Event::EventType that correspond the
+            /// the data/class type they actually are.
+            /// @return This returns an eventype that will correspend with the actual event type. This can be used on all
+            /// Phys game provided class to safely cast a pointer to the correct event type.
+            virtual Event::EventType getEventType() const = 0;
 
 
-};
+    };
+}
 
 // Allow the PhysEvent to be sent to a stream, and there sent directly to the log
 //std::ostream& operator<<(std::ostream& stream, const PhysEvent& x);

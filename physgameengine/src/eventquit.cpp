@@ -47,9 +47,9 @@ using namespace std;
 namespace phys
 {
 
-    PhysEvent::EventType EventQuit::getEventType() const
+    Event::EventType EventQuit::getEventType() const
     {
-        return PhysEvent::QuitMessage;
+        return Event::QuitMessage;
     }
 
 }

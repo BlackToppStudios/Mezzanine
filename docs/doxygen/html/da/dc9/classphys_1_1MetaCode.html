@@ -38,9 +38,9 @@
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">InputCode</a> { <br/>
-&nbsp;&nbsp;<b>KEY_UNKNOWN</b> =  0, 
+&nbsp;&nbsp;<a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f">KEY_UNKNOWN</a> =  0, 
 <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5">KEY_FIRST</a> =  0, 
-<a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a4d638427d434a0b52d2740ed66c2d1e2">KEY_BACKSPACE</a> =  8, 
+<b>KEY_BACKSPACE</b> =  8, 
 <b>KEY_TAB</b> =  9, 
 <br/>
 &nbsp;&nbsp;<b>KEY_CLEAR</b> =  12, 
@@ -473,10 +473,10 @@
 <p>The InputCode enum defines all the posible types of inputs. </p>
 <p>It has one entry for each key on a most keyboards. Then it has an entry for most mouse and joystick input methods. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5"></a><!-- doxytag: member="KEY_FIRST" ref="a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5" args="" -->KEY_FIRST</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f"></a><!-- doxytag: member="KEY_UNKNOWN" ref="a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f" args="" -->KEY_UNKNOWN</em>&nbsp;</td><td>
 <p>KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. </p>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a3e501cbb5bf0f6f1fdb7211465bda8d8a4d638427d434a0b52d2740ed66c2d1e2"></a><!-- doxytag: member="KEY_BACKSPACE" ref="a3e501cbb5bf0f6f1fdb7211465bda8d8a4d638427d434a0b52d2740ed66c2d1e2" args="" -->KEY_BACKSPACE</em>&nbsp;</td><td>
+<tr><td valign="top"><em><a class="anchor" id="a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5"></a><!-- doxytag: member="KEY_FIRST" ref="a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5" args="" -->KEY_FIRST</em>&nbsp;</td><td>
 <p>KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a3e501cbb5bf0f6f1fdb7211465bda8d8aab77afaba4fc97faa9b9fe40d3a9ebbb"></a><!-- doxytag: member="KEY_LSUPER" ref="a3e501cbb5bf0f6f1fdb7211465bda8d8aab77afaba4fc97faa9b9fe40d3a9ebbb" args="" -->KEY_LSUPER</em>&nbsp;</td><td>
@@ -519,16 +519,16 @@
 <p>The last Multi Touch event. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a"></a><!-- doxytag: member="MOUSEBUTTON" ref="a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a" args="" -->MOUSEBUTTON</em>&nbsp;</td><td>
-<p>The First Mouse event, all Mouse Event values will be more than this. </p>
+<p>The First Mouse event, all Mouse <a class="el" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a> values will be more than this. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a3e501cbb5bf0f6f1fdb7211465bda8d8a666e564cae666de739b9b3cf047ec578"></a><!-- doxytag: member="JOYSTICK_FIRST" ref="a3e501cbb5bf0f6f1fdb7211465bda8d8a666e564cae666de739b9b3cf047ec578" args="" -->JOYSTICK_FIRST</em>&nbsp;</td><td>
 <p>The last MouseEvent Code, all Mouse events will be less than this. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a3e501cbb5bf0f6f1fdb7211465bda8d8aaaa2af6a60a9cd7403aa4786ef1ea389"></a><!-- doxytag: member="JOYSTICKBUTTON" ref="a3e501cbb5bf0f6f1fdb7211465bda8d8aaaa2af6a60a9cd7403aa4786ef1ea389" args="" -->JOYSTICKBUTTON</em>&nbsp;</td><td>
-<p>The First JoyStick event, all Joystick Event values will be more than this. </p>
+<p>The First JoyStick event, all Joystick <a class="el" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a> values will be more than this. </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a3e501cbb5bf0f6f1fdb7211465bda8d8adc78bfd04a85c4bbe39718f9acacbbe3"></a><!-- doxytag: member="INPUTEVENT_LAST" ref="a3e501cbb5bf0f6f1fdb7211465bda8d8adc78bfd04a85c4bbe39718f9acacbbe3" args="" -->INPUTEVENT_LAST</em>&nbsp;</td><td>
-<p>The last JoyStick Event Code, all JoyStick events will be less than this. </p>
+<p>The last JoyStick <a class="el" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a> Code, all JoyStick events will be less than this. </p>
 </td></tr>
 </table>
 </dd>
@@ -855,7 +855,7 @@
 <li><a class="el" href="../../d1/dae/metacode_8cpp_source.html">metacode.cpp</a></li>
 </ul>
 </div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Apr 27 23:20:31 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Apr 29 23:49:15 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

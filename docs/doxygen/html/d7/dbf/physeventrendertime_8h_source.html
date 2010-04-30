@@ -67,25 +67,26 @@
 <a name="l00043"></a>00043 <span class="comment"></span>// This will store the amount of time since rendering events that occured recently<span class="comment"></span>
 <a name="l00044"></a>00044 <span class="comment">///////////////////////////////////////</span>
 <a name="l00045"></a>00045 <span class="comment"></span>
-<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;physevent.h&quot;</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;event.h&quot;</span>
 <a name="l00047"></a>00047 <span class="preprocessor">#include &quot;physdatatypes.h&quot;</span>
 <a name="l00048"></a>00048 
 <a name="l00049"></a>00049 <span class="keyword">using namespace </span>std;
 <a name="l00050"></a>00050 
-<a name="l00051"></a>00051 
-<a name="l00052"></a><a class="code" href="../../d4/d83/classPhysEventRenderTime.html">00052</a> <span class="keyword">class </span><a class="code" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a> : <span class="keyword">public</span> <a class="code" href="../../d9/dc2/classPhysEvent.html">PhysEvent</a>
-<a name="l00053"></a>00053 {
-<a name="l00054"></a>00054     <span class="keyword">private</span>:
-<a name="l00055"></a>00055         PhysWhole Rendertime;
-<a name="l00056"></a>00056         <span class="keyword">public</span>:
-<a name="l00057"></a>00057         <a class="code" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a> (PhysWhole Milliseconds);
-<a name="l00058"></a>00058                 <span class="keyword">virtual</span> EventType getEventType() <span class="keyword">const</span>;
-<a name="l00059"></a>00059                 PhysWhole getMilliSecondsSinceLastFrame();
-<a name="l00060"></a>00060 };
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062 <span class="preprocessor">#endif</span>
+<a name="l00051"></a>00051 <span class="keyword">using namespace </span>phys;
+<a name="l00052"></a>00052 
+<a name="l00053"></a><a class="code" href="../../d4/d83/classPhysEventRenderTime.html">00053</a> <span class="keyword">class </span><a class="code" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a> : <span class="keyword">public</span> <a class="code" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a>
+<a name="l00054"></a>00054 {
+<a name="l00055"></a>00055     <span class="keyword">private</span>:
+<a name="l00056"></a>00056         PhysWhole Rendertime;
+<a name="l00057"></a>00057         <span class="keyword">public</span>:
+<a name="l00058"></a>00058         <a class="code" href="../../d4/d83/classPhysEventRenderTime.html">PhysEventRenderTime</a> (PhysWhole Milliseconds);
+<a name="l00059"></a>00059                 <span class="keyword">virtual</span> <a class="code" href="../../d5/dcb/classphys_1_1Event.html#af5fdbb3e08d8e578d58770fbc606fda7">EventType</a> <a class="code" href="../../d4/d83/classPhysEventRenderTime.html#a96b0569f8b1cd459383318c9437130d4" title="This will aid in identifying all classes that inherit from this class.">getEventType</a>() <span class="keyword">const</span>;
+<a name="l00060"></a>00060                 PhysWhole getMilliSecondsSinceLastFrame();
+<a name="l00061"></a>00061 };
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Apr 27 23:20:30 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Apr 29 23:49:13 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

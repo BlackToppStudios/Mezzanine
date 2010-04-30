@@ -64,62 +64,66 @@
 <a name="l00040"></a>00040 <span class="preprocessor">#ifndef _crossplatform_h</span>
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _crossplatform_h</span><span class="comment"></span>
 <a name="l00042"></a>00042 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00043"></a>00043 <span class="comment"></span>// If we did our jobs right this section should be the only place that you
-<a name="l00044"></a>00044 <span class="comment">//need to change to compile this on a supported platform. Just remark all the</span>
-<a name="l00045"></a>00045 <span class="comment">//lines that are not your platform using &quot;//&quot; and unremark your platform.</span>
-<a name="l00046"></a>00046 <span class="comment">//</span>
-<a name="l00047"></a>00047 <span class="comment">// Should you choose to port this to your platform, make sure that all the</span>
-<a name="l00048"></a>00048 <span class="comment">//required libraries are installed, then make sure to write an implementation</span>
-<a name="l00049"></a>00049 <span class="comment">//for each of the functions in crossplatform.cpp</span><span class="comment"></span>
-<a name="l00050"></a>00050 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00051"></a>00051 <span class="comment"></span><span class="comment"></span>
-<a name="l00052"></a>00052 <span class="comment">/// @todo Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this.</span>
-<a name="l00053"></a>00053 <span class="comment"></span>
-<a name="l00054"></a>00054 <span class="preprocessor">#define LINUX</span>
-<a name="l00055"></a>00055 <span class="preprocessor"></span><span class="comment">//#define MACOSX</span>
-<a name="l00056"></a>00056 <span class="comment">//#define WINDOWS</span>
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058 <span class="comment"></span>
-<a name="l00059"></a>00059 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00060"></a>00060 <span class="comment"></span><span class="comment">//End Choose Your Platform</span><span class="comment"></span>
-<a name="l00061"></a>00061 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00062"></a>00062 <span class="comment"></span><span class="comment"></span>
+<a name="l00043"></a>00043 <span class="comment"></span>// If we did our jobs right You not need to change anything to compile on
+<a name="l00044"></a>00044 <span class="comment">// different platforms exvept the build target. If you want, the platform can</span>
+<a name="l00045"></a>00045 <span class="comment">// be manually defined in this section and this should be the only place that you</span>
+<a name="l00046"></a>00046 <span class="comment">// need to change to compile this on a supported platform. Just remark all the</span>
+<a name="l00047"></a>00047 <span class="comment">// lines that are not your platform using &quot;//&quot; and unremark your platform.</span>
+<a name="l00048"></a>00048 <span class="comment">//</span>
+<a name="l00049"></a>00049 <span class="comment">// Should you choose to port this to your platform, make sure that all the</span>
+<a name="l00050"></a>00050 <span class="comment">// required libraries are installed, then make sure to write an implementation</span>
+<a name="l00051"></a>00051 <span class="comment">// for each of the functions in crossplatform.cpp, then you should get to the</span>
+<a name="l00052"></a>00052 <span class="comment">// nitty gritty of making the minor platforms inconsistencies work.</span><span class="comment"></span>
+<a name="l00053"></a>00053 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00054"></a>00054 <span class="comment"></span><span class="comment"></span>
+<a name="l00055"></a>00055 <span class="comment">/// @todo Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this.</span>
+<a name="l00056"></a>00056 <span class="comment"></span>
+<a name="l00057"></a>00057 <span class="comment">//Unremark one of these when</span>
+<a name="l00058"></a>00058 <span class="comment">//#define LINUX</span>
+<a name="l00059"></a>00059 <span class="comment">//#define MACOSX</span>
+<a name="l00060"></a>00060 <span class="comment">//#define WINDOWS</span>
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="comment"></span>
 <a name="l00063"></a>00063 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00064"></a>00064 <span class="comment"></span><span class="comment">// Includes</span>
-<a name="l00065"></a>00065 <span class="preprocessor">#include &quot;physdatatypes.h&quot;</span>
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 <span class="preprocessor">#include &lt;string&gt;</span>
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="keyword">using namespace </span>std;
+<a name="l00064"></a>00064 <span class="comment"></span><span class="comment">//End Choose Your Platform</span><span class="comment"></span>
+<a name="l00065"></a>00065 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00066"></a>00066 <span class="comment"></span><span class="comment"></span>
+<a name="l00067"></a>00067 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00068"></a>00068 <span class="comment"></span><span class="comment">// Includes</span>
+<a name="l00069"></a>00069 <span class="preprocessor">#include &quot;physdatatypes.h&quot;</span>
 <a name="l00070"></a>00070 
-<a name="l00071"></a>00071 <span class="comment">//Forward Declarations</span>
-<a name="l00072"></a>00072 <span class="keyword">class </span><a class="code" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>;
-<a name="l00073"></a>00073 <span class="comment"></span>
-<a name="l00074"></a>00074 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00075"></a>00075 <span class="comment"></span><span class="comment">// Platform Specific Functions get Declared here</span>
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 <span class="comment">//gets thePlugins.cfg filename and location</span>
-<a name="l00078"></a>00078 <span class="keywordtype">string</span> GetPluginsDotCFG();
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080 <span class="comment">//Gets the Settings.cfg filename and location</span>
-<a name="l00081"></a>00081 <span class="keywordtype">string</span> GetSettingsDotCFG();
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="comment">//Gets the default locatio for Game Data</span>
-<a name="l00084"></a>00084 <span class="keywordtype">string</span> GetDataDirectory();
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="comment">//This returns a named parameter list with valid settings to use Ogre rendering</span>
-<a name="l00087"></a>00087 <span class="comment">// on a pre-existing SDL context</span>
-<a name="l00088"></a>00088 <span class="keywordtype">void</span>* GetSDLOgreBinder();
+<a name="l00071"></a>00071 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 <span class="keyword">using namespace </span>std;
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 <span class="comment">//Forward Declarations</span>
+<a name="l00076"></a>00076 <span class="keyword">class </span><a class="code" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>;
+<a name="l00077"></a>00077 <span class="comment"></span>
+<a name="l00078"></a>00078 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00079"></a>00079 <span class="comment"></span><span class="comment">// Platform Specific Functions get Declared here</span>
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <span class="comment">//gets thePlugins.cfg filename and location</span>
+<a name="l00082"></a>00082 <span class="keywordtype">string</span> GetPluginsDotCFG();
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 <span class="comment">//Gets the Settings.cfg filename and location</span>
+<a name="l00085"></a>00085 <span class="keywordtype">string</span> GetSettingsDotCFG();
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 <span class="comment">//Gets the default locatio for Game Data</span>
+<a name="l00088"></a>00088 <span class="keywordtype">string</span> GetDataDirectory();
 <a name="l00089"></a>00089 
-<a name="l00090"></a>00090 <span class="comment">//A simple crossplatform sleep function, unused, prefer SDLsleep instead</span>
-<a name="l00091"></a>00091 <span class="keywordtype">void</span> WaitMilliseconds(PhysWhole WaitTime);
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093 <span class="comment">//Handles the actual cross platform swapping of buffers.</span>
-<a name="l00094"></a>00094 <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a54ca2a75bbccb9b2129f434874f1e693" title="Do Not Use this, This should be treated as an internal function, it is subject to...">RenderPhysWorld</a>(<a class="code" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> *TheWorld);
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096 <span class="preprocessor">#endif</span>
+<a name="l00090"></a>00090 <span class="comment">//This returns a named parameter list with valid settings to use Ogre rendering</span>
+<a name="l00091"></a>00091 <span class="comment">// on a pre-existing SDL context</span>
+<a name="l00092"></a>00092 <span class="keywordtype">void</span>* GetSDLOgreBinder();
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 <span class="comment">//A simple crossplatform sleep function, unused, prefer SDLsleep instead</span>
+<a name="l00095"></a>00095 <span class="keywordtype">void</span> WaitMilliseconds(PhysWhole WaitTime);
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097 <span class="comment">//Handles the actual cross platform swapping of buffers.</span>
+<a name="l00098"></a>00098 <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a54ca2a75bbccb9b2129f434874f1e693" title="Do Not Use this, This should be treated as an internal function, it is subject to...">RenderPhysWorld</a>(<a class="code" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> *TheWorld);
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr size="1"/><address style="text-align: right;"><small>Generated on Tue Apr 27 23:20:30 2010 for PhysGameEngine by&nbsp;
+<hr size="1"/><address style="text-align: right;"><small>Generated on Thu Apr 29 23:49:13 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.1 </small></address>
 </body>

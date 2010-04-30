@@ -43,13 +43,14 @@
 // This will store the amount of time since rendering events that occured recently
 ///////////////////////////////////////
 
-#include "physevent.h"
+#include "event.h"
 #include "physdatatypes.h"
 
 using namespace std;
 
+using namespace phys;
 
-class PhysEventRenderTime : public PhysEvent
+class PhysEventRenderTime : public Event
 {
     private:
         PhysWhole Rendertime;

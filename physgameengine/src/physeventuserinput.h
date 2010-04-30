@@ -73,7 +73,7 @@
 
 using namespace std;
 
-#include "physevent.h"
+#include "event.h"
 #include "physdatatypes.h"
 #include "metacode.h"
 
@@ -91,7 +91,7 @@ using namespace phys;
 /// characters to use the same interface players, allowing for more realistic
 /// response from them. This is not limited to the tricks discussed here.
 ///////////////////////////////////////////////////////////////////////////////
-class PhysEventUserInput : public PhysEvent
+class PhysEventUserInput : public Event
 {
     private:
         //Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if

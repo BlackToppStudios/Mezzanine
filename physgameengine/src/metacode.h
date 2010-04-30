@@ -94,8 +94,8 @@ namespace phys
             /// @details It has one entry for each key on a most keyboards. Then it
             /// has an entry for most mouse and joystick input methods.
             enum InputCode{
-                KEY_UNKNOWN			= 0,    ///KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode.
-                KEY_FIRST			= 0,    ///KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key.
+                KEY_UNKNOWN			= 0,    /**< KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */
+                KEY_FIRST			= 0,    /**< KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key. */
                 KEY_BACKSPACE		= 8,
                 KEY_TAB				= 9,
                 KEY_CLEAR			= 12,

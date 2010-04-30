@@ -14,13 +14,13 @@ This is a container for Events and facilitates the transfer of data.
 \begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 unsigned int \hyperlink{classPhysEventManager_ab14d238e7abe9919be8e2d9eef388b64}{GetRemainingEventCount} ()
 \begin{DoxyCompactList}\small\item\em Gets a count of events. \item\end{DoxyCompactList}\item 
-\hyperlink{classPhysEvent}{PhysEvent} $\ast$ \hyperlink{classPhysEventManager_a6de94bc6c23dcbd7e15785cadee2e80b}{GetNextEvent} ()
+\hyperlink{classphys_1_1Event}{Event} $\ast$ \hyperlink{classPhysEventManager_a1ab0da9e37f43c2c0d5af1dae26dcaf2}{GetNextEvent} ()
 \begin{DoxyCompactList}\small\item\em Return a pointer to the Next event. \item\end{DoxyCompactList}\item 
-\hyperlink{classPhysEvent}{PhysEvent} $\ast$ \hyperlink{classPhysEventManager_a3122b32172326ac32cfecc828b820977}{PopNextEvent} ()
+\hyperlink{classphys_1_1Event}{Event} $\ast$ \hyperlink{classPhysEventManager_a23091695829acad90c499f6724fe048c}{PopNextEvent} ()
 \begin{DoxyCompactList}\small\item\em Return a pointer to the Next event, and removes the Event from storage. \item\end{DoxyCompactList}\item 
 void \hyperlink{classPhysEventManager_ad040054bd9018ff0fd27ad78ec1e87fa}{RemoveNextEvent} ()
 \begin{DoxyCompactList}\small\item\em Removes an Event From the que without looking at it. \item\end{DoxyCompactList}\item 
-void \hyperlink{classPhysEventManager_a7c9bb46b17f6d9245817a402dc6a2f6f}{AddEvent} (\hyperlink{classPhysEvent}{PhysEvent} $\ast$EventToAdd)
+void \hyperlink{classPhysEventManager_a6f51657b66d214942aed0e832ee558ef}{AddEvent} (\hyperlink{classphys_1_1Event}{Event} $\ast$EventToAdd)
 \begin{DoxyCompactList}\small\item\em Adds an event of any kind to the end of the Event Queue. \item\end{DoxyCompactList}\item 
 \hypertarget{classPhysEventManager_a34b4b8d35fee0f593fbb32b83843abba}{
 void {\bfseries UpdateEvents} ()}
@@ -64,11 +64,11 @@ void {\bfseries RemoveNextQuitEvent} ()}
 \label{d5/dd7/classPhysEventManager_accdd3b4047b05b721f77ca68e016baf5}
 
 \item 
-\hyperlink{classPhysEvent}{PhysEvent} $\ast$ \hyperlink{classPhysEventManager_a56e45572c2fb84131f7d55c060c7ac21}{GetNextSpecificEvent} (PhysEvent::EventType SpecificType)
+\hyperlink{classphys_1_1Event}{Event} $\ast$ \hyperlink{classPhysEventManager_abf1dd378082dde44e9bcebc900f7edf6}{GetNextSpecificEvent} (\hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{Event::EventType} SpecificType)
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type. \item\end{DoxyCompactList}\item 
-\hyperlink{classPhysEvent}{PhysEvent} $\ast$ \hyperlink{classPhysEventManager_abce156f7ad7ab145b8b05740b48e6073}{PopNextSpecificEvent} (PhysEvent::EventType SpecificType)
+\hyperlink{classphys_1_1Event}{Event} $\ast$ \hyperlink{classPhysEventManager_ae1a12ccef3435f164472e6f8c38c77fe}{PopNextSpecificEvent} (\hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{Event::EventType} SpecificType)
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
-void \hyperlink{classPhysEventManager_a2d0c21e369d16cd2de97eb4c69003323}{RemoveNextSpecificEvent} (PhysEvent::EventType SpecificType)
+void \hyperlink{classPhysEventManager_a0984ae7ac0cc0db9fb24e50156497de4}{RemoveNextSpecificEvent} (\hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{Event::EventType} SpecificType)
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
 void \hyperlink{classPhysEventManager_a1e99385441c5377a741561db581ef3ae}{AddPollingCheck} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&InputToTryPolling)
 \begin{DoxyCompactList}\small\item\em Generates extra events each iteration of the main loop, based on user input polling. \item\end{DoxyCompactList}\item 
@@ -112,11 +112,11 @@ This creates an empty PhysEventManger
 Definition at line 91 of file physeventmanager.cpp.
 
 \subsection{Member Function Documentation}
-\hypertarget{classPhysEventManager_a7c9bb46b17f6d9245817a402dc6a2f6f}{
+\hypertarget{classPhysEventManager_a6f51657b66d214942aed0e832ee558ef}{
 \index{PhysEventManager@{PhysEventManager}!AddEvent@{AddEvent}}
 \index{AddEvent@{AddEvent}!PhysEventManager@{PhysEventManager}}
-\subsubsection[{AddEvent}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::AddEvent ({\bf PhysEvent} $\ast$ {\em EventToAdd})}}
-\label{d5/dd7/classPhysEventManager_a7c9bb46b17f6d9245817a402dc6a2f6f}
+\subsubsection[{AddEvent}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::AddEvent ({\bf Event} $\ast$ {\em EventToAdd})}}
+\label{d5/dd7/classPhysEventManager_a6f51657b66d214942aed0e832ee558ef}
 
 
 Adds an event of any kind to the end of the Event Queue. 
@@ -139,15 +139,15 @@ This will trigger the input system to generate an event (or add to an exiting ev
 \item[{\em Unsupported Polling Check on this Platform}]When the metacode passed cannot be polled on this platform \end{DoxyExceptions}
 
 
-Definition at line 285 of file physeventmanager.cpp.\hypertarget{classPhysEventManager_a6de94bc6c23dcbd7e15785cadee2e80b}{
+Definition at line 285 of file physeventmanager.cpp.\hypertarget{classPhysEventManager_a1ab0da9e37f43c2c0d5af1dae26dcaf2}{
 \index{PhysEventManager@{PhysEventManager}!GetNextEvent@{GetNextEvent}}
 \index{GetNextEvent@{GetNextEvent}!PhysEventManager@{PhysEventManager}}
-\subsubsection[{GetNextEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEvent} $\ast$ PhysEventManager::GetNextEvent ()}}
-\label{d5/dd7/classPhysEventManager_a6de94bc6c23dcbd7e15785cadee2e80b}
+\subsubsection[{GetNextEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event} $\ast$ PhysEventManager::GetNextEvent ()}}
+\label{d5/dd7/classPhysEventManager_a1ab0da9e37f43c2c0d5af1dae26dcaf2}
 
 
-Return a pointer to the Next event. This returns a pointer to the next \hyperlink{classPhysEvent}{PhysEvent}. It is advisable to use this for performance reasons because it runs in constant time. However it does not return a specific kind of event, and must be cast in order to use the true content. This returns a pointer to 0 if there are no events in the que. \begin{DoxyReturn}{Returns}
-A pointer to a \hyperlink{classPhysEvent}{PhysEvent}, that still needs to be removed from the event manager and deleted. 
+Return a pointer to the Next event. This returns a pointer to the next PhysEvent. It is advisable to use this for performance reasons because it runs in constant time. However it does not return a specific kind of event, and must be cast in order to use the true content. This returns a pointer to 0 if there are no events in the que. \begin{DoxyReturn}{Returns}
+A pointer to a PhysEvent, that still needs to be removed from the event manager and deleted. 
 \end{DoxyReturn}
 
 
@@ -163,11 +163,11 @@ A pointer to a \hyperlink{classPhysEventRenderTime}{PhysEventRenderTime}, that s
 \end{DoxyReturn}
 
 
-Definition at line 228 of file physeventmanager.cpp.\hypertarget{classPhysEventManager_a56e45572c2fb84131f7d55c060c7ac21}{
+Definition at line 228 of file physeventmanager.cpp.\hypertarget{classPhysEventManager_abf1dd378082dde44e9bcebc900f7edf6}{
 \index{PhysEventManager@{PhysEventManager}!GetNextSpecificEvent@{GetNextSpecificEvent}}
 \index{GetNextSpecificEvent@{GetNextSpecificEvent}!PhysEventManager@{PhysEventManager}}
-\subsubsection[{GetNextSpecificEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEvent} $\ast$ PhysEventManager::GetNextSpecificEvent (PhysEvent::EventType {\em SpecificType})}}
-\label{d5/dd7/classPhysEventManager_a56e45572c2fb84131f7d55c060c7ac21}
+\subsubsection[{GetNextSpecificEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event} $\ast$ PhysEventManager::GetNextSpecificEvent ({\bf Event::EventType} {\em SpecificType})}}
+\label{d5/dd7/classPhysEventManager_abf1dd378082dde44e9bcebc900f7edf6}
 
 
 Returns a pointer to the Next kind event of the Specified type. 
@@ -215,15 +215,15 @@ This returns a pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInp
 \end{DoxyReturn}
 
 
-Definition at line 325 of file physeventmanager.cpp.\hypertarget{classPhysEventManager_a3122b32172326ac32cfecc828b820977}{
+Definition at line 325 of file physeventmanager.cpp.\hypertarget{classPhysEventManager_a23091695829acad90c499f6724fe048c}{
 \index{PhysEventManager@{PhysEventManager}!PopNextEvent@{PopNextEvent}}
 \index{PopNextEvent@{PopNextEvent}!PhysEventManager@{PhysEventManager}}
-\subsubsection[{PopNextEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEvent} $\ast$ PhysEventManager::PopNextEvent ()}}
-\label{d5/dd7/classPhysEventManager_a3122b32172326ac32cfecc828b820977}
+\subsubsection[{PopNextEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event} $\ast$ PhysEventManager::PopNextEvent ()}}
+\label{d5/dd7/classPhysEventManager_a23091695829acad90c499f6724fe048c}
 
 
 Return a pointer to the Next event, and removes the Event from storage. This functions just like GetNextEvent , except that it also removes the item from the internal storage of the \hyperlink{classPhysEventManager}{PhysEventManager}. This returns a pointer to 0 if there are no events in the que. \begin{DoxyReturn}{Returns}
-A pointer to a \hyperlink{classPhysEvent}{PhysEvent}, that will need to be deleted once it has been used. 
+A pointer to a PhysEvent, that will need to be deleted once it has been used. 
 \end{DoxyReturn}
 
 
@@ -239,17 +239,17 @@ A pointer to a \hyperlink{classPhysEventRenderTime}{PhysEventRenderTime}, that s
 \end{DoxyReturn}
 
 
-Definition at line 233 of file physeventmanager.cpp.\hypertarget{classPhysEventManager_abce156f7ad7ab145b8b05740b48e6073}{
+Definition at line 233 of file physeventmanager.cpp.\hypertarget{classPhysEventManager_ae1a12ccef3435f164472e6f8c38c77fe}{
 \index{PhysEventManager@{PhysEventManager}!PopNextSpecificEvent@{PopNextSpecificEvent}}
 \index{PopNextSpecificEvent@{PopNextSpecificEvent}!PhysEventManager@{PhysEventManager}}
-\subsubsection[{PopNextSpecificEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEvent} $\ast$ PhysEventManager::PopNextSpecificEvent (PhysEvent::EventType {\em SpecificType})}}
-\label{d5/dd7/classPhysEventManager_abce156f7ad7ab145b8b05740b48e6073}
+\subsubsection[{PopNextSpecificEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event} $\ast$ PhysEventManager::PopNextSpecificEvent ({\bf Event::EventType} {\em SpecificType})}}
+\label{d5/dd7/classPhysEventManager_ae1a12ccef3435f164472e6f8c38c77fe}
 
 
 Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. 
 \begin{DoxyParams}{Parameters}
 \item[{\em SpecificType}]This is a PhysEvent::EventType that defines the type you want this to work with\end{DoxyParams}
-This is just like \hyperlink{classPhysEventManager_a56e45572c2fb84131f7d55c060c7ac21}{GetNextSpecificEvent(PhysEvent::EventType SpecificType)} but it also removes the item from the Que. \begin{DoxyReturn}{Returns}
+This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que. \begin{DoxyReturn}{Returns}
 A pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput}, that still needs to be removed from the event manager and deleted. 
 \end{DoxyReturn}
 
@@ -273,8 +273,8 @@ Definition at line 252 of file physeventmanager.cpp.\hypertarget{classPhysEventM
 \label{d5/dd7/classPhysEventManager_ad040054bd9018ff0fd27ad78ec1e87fa}
 
 
-Removes an Event From the que without looking at it. This together with \hyperlink{classPhysEventManager_a6de94bc6c23dcbd7e15785cadee2e80b}{GetNextEvent()} are the same as call \hyperlink{classPhysEventManager_a3122b32172326ac32cfecc828b820977}{PopNextEvent()}. \begin{DoxyWarning}{Warning}
-If you did not call \hyperlink{classPhysEventManager_a6de94bc6c23dcbd7e15785cadee2e80b}{GetNextEvent()} and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately 
+Removes an Event From the que without looking at it. This together with \hyperlink{classPhysEventManager_a1ab0da9e37f43c2c0d5af1dae26dcaf2}{GetNextEvent()} are the same as call \hyperlink{classPhysEventManager_a23091695829acad90c499f6724fe048c}{PopNextEvent()}. \begin{DoxyWarning}{Warning}
+If you did not call \hyperlink{classPhysEventManager_a1ab0da9e37f43c2c0d5af1dae26dcaf2}{GetNextEvent()} and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately 
 \end{DoxyWarning}
 
 \begin{DoxyExceptions}{Exceptions}
@@ -296,18 +296,18 @@ If you did not call \hyperlink{classPhysEventManager_a1f2d0506ce816176913e5bdfaa
 \item[{\em This}]can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que. \end{DoxyExceptions}
 
 
-Definition at line 238 of file physeventmanager.cpp.\hypertarget{classPhysEventManager_a2d0c21e369d16cd2de97eb4c69003323}{
+Definition at line 238 of file physeventmanager.cpp.\hypertarget{classPhysEventManager_a0984ae7ac0cc0db9fb24e50156497de4}{
 \index{PhysEventManager@{PhysEventManager}!RemoveNextSpecificEvent@{RemoveNextSpecificEvent}}
 \index{RemoveNextSpecificEvent@{RemoveNextSpecificEvent}!PhysEventManager@{PhysEventManager}}
-\subsubsection[{RemoveNextSpecificEvent}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::RemoveNextSpecificEvent (PhysEvent::EventType {\em SpecificType})}}
-\label{d5/dd7/classPhysEventManager_a2d0c21e369d16cd2de97eb4c69003323}
+\subsubsection[{RemoveNextSpecificEvent}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::RemoveNextSpecificEvent ({\bf Event::EventType} {\em SpecificType})}}
+\label{d5/dd7/classPhysEventManager_a0984ae7ac0cc0db9fb24e50156497de4}
 
 
 Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. 
 \begin{DoxyParams}{Parameters}
 \item[{\em SpecificType}]This is a PhysEvent::EventType that defines the type you want this to work with\end{DoxyParams}
-This is just like \hyperlink{classPhysEventManager_abce156f7ad7ab145b8b05740b48e6073}{PopNextSpecificEvent(PhysEvent::EventType SpecificType)} but exept it doesn't bother with any of the needed structure involved with returning data, and just removes the specific evetn from the Que. \begin{DoxyWarning}{Warning}
-If you did not call \hyperlink{classPhysEventManager_a56e45572c2fb84131f7d55c060c7ac21}{GetNextSpecificEvent(PhysEvent::EventType SpecificType)} and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately. 
+This is just like PopNextSpecificEvent(PhysEvent::EventType SpecificType) but exept it doesn't bother with any of the needed structure involved with returning data, and just removes the specific evetn from the Que. \begin{DoxyWarning}{Warning}
+If you did not call GetNextSpecificEvent(PhysEvent::EventType SpecificType) and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately. 
 \end{DoxyWarning}
 
 \begin{DoxyExceptions}{Exceptions}

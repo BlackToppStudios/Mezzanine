@@ -11,9 +11,9 @@ This Determines the kind of user input.
 \begin{DoxyCompactItemize}
 \item 
 enum \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{InputCode} \{ \par
-{\bfseries KEY\_\-UNKNOWN} =  0, 
+\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f}{KEY\_\-UNKNOWN} =  0, 
 \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5}{KEY\_\-FIRST} =  0, 
-\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a4d638427d434a0b52d2740ed66c2d1e2}{KEY\_\-BACKSPACE} =  8, 
+{\bfseries KEY\_\-BACKSPACE} =  8, 
 {\bfseries KEY\_\-TAB} =  9, 
 \par
 {\bfseries KEY\_\-CLEAR} =  12, 
@@ -438,14 +438,14 @@ Definition at line 400 of file metacode.h.\hypertarget{classphys_1_1MetaCode_a3e
 The InputCode enum defines all the posible types of inputs. It has one entry for each key on a most keyboards. Then it has an entry for most mouse and joystick input methods. \begin{Desc}
 \item[Enumerator: ]\par
 \begin{description}
-\index{KEY\_\-FIRST@{KEY\_\-FIRST}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!KEY\_\-FIRST@{KEY\_\-FIRST}}\item[{\em 
+\index{KEY\_\-UNKNOWN@{KEY\_\-UNKNOWN}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!KEY\_\-UNKNOWN@{KEY\_\-UNKNOWN}}\item[{\em 
+\hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f}{
+KEY\_\-UNKNOWN}
+\label{da/dc9/classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f}
+}]KEY\_\-UNKNOWN This is used for unsupported keys or keys that are not in Unicode. \index{KEY\_\-FIRST@{KEY\_\-FIRST}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!KEY\_\-FIRST@{KEY\_\-FIRST}}\item[{\em 
 \hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5}{
 KEY\_\-FIRST}
 \label{da/dc9/classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5}
-}]KEY\_\-UNKNOWN This is used for unsupported keys or keys that are not in Unicode. \index{KEY\_\-BACKSPACE@{KEY\_\-BACKSPACE}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!KEY\_\-BACKSPACE@{KEY\_\-BACKSPACE}}\item[{\em 
-\hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a4d638427d434a0b52d2740ed66c2d1e2}{
-KEY\_\-BACKSPACE}
-\label{da/dc9/classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a4d638427d434a0b52d2740ed66c2d1e2}
 }]KEY\_\-FIRST Same Value as KEY\_\-UNKOWN, is Guaranteed to be the lowest value of any key. \index{KEY\_\-LSUPER@{KEY\_\-LSUPER}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!KEY\_\-LSUPER@{KEY\_\-LSUPER}}\item[{\em 
 \hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8aab77afaba4fc97faa9b9fe40d3a9ebbb}{
 KEY\_\-LSUPER}
@@ -502,7 +502,7 @@ MOUSE\_\-FIRST}
 \hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a}{
 MOUSEBUTTON}
 \label{da/dc9/classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a}
-}]The First Mouse event, all Mouse Event values will be more than this. \index{JOYSTICK\_\-FIRST@{JOYSTICK\_\-FIRST}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!JOYSTICK\_\-FIRST@{JOYSTICK\_\-FIRST}}\item[{\em 
+}]The First Mouse event, all Mouse \hyperlink{classphys_1_1Event}{Event} values will be more than this. \index{JOYSTICK\_\-FIRST@{JOYSTICK\_\-FIRST}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!JOYSTICK\_\-FIRST@{JOYSTICK\_\-FIRST}}\item[{\em 
 \hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a666e564cae666de739b9b3cf047ec578}{
 JOYSTICK\_\-FIRST}
 \label{da/dc9/classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a666e564cae666de739b9b3cf047ec578}
@@ -510,11 +510,11 @@ JOYSTICK\_\-FIRST}
 \hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8aaaa2af6a60a9cd7403aa4786ef1ea389}{
 JOYSTICKBUTTON}
 \label{da/dc9/classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8aaaa2af6a60a9cd7403aa4786ef1ea389}
-}]The First JoyStick event, all Joystick Event values will be more than this. \index{INPUTEVENT\_\-LAST@{INPUTEVENT\_\-LAST}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!INPUTEVENT\_\-LAST@{INPUTEVENT\_\-LAST}}\item[{\em 
+}]The First JoyStick event, all Joystick \hyperlink{classphys_1_1Event}{Event} values will be more than this. \index{INPUTEVENT\_\-LAST@{INPUTEVENT\_\-LAST}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!INPUTEVENT\_\-LAST@{INPUTEVENT\_\-LAST}}\item[{\em 
 \hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8adc78bfd04a85c4bbe39718f9acacbbe3}{
 INPUTEVENT\_\-LAST}
 \label{da/dc9/classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8adc78bfd04a85c4bbe39718f9acacbbe3}
-}]The last JoyStick Event Code, all JoyStick events will be less than this. \end{description}
+}]The last JoyStick \hyperlink{classphys_1_1Event}{Event} Code, all JoyStick events will be less than this. \end{description}
 \end{Desc}
 
 
