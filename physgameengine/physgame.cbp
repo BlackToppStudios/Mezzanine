@@ -8,27 +8,28 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="WinDebug">
-				<Option output="bin/WinDebug/physgame.dll" prefix_auto="1" extension_auto="0" />
-				<Option object_output="obj/WinDebug/" />
+				<Option output="bin\WinDebug\physgame.dll" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj\WinDebug\" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DWINDOWS" />
-					<Add directory="libincludes/windows/ogre" />
-					<Add directory="libincludes/windows/sdl" />
-					<Add directory="libincludes/windows/bullet" />
+					<Add directory="libincludes\windows\ogre" />
+					<Add directory="libincludes\windows\sdl" />
+					<Add directory="libincludes\windows\bullet" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,--enable-runtime-pseudo-reloc" />
 					<Add option="-Wl,--enable-auto-image-base" />
 					<Add option="-Wl,--add-stdcall-alias" />
+					<Add option="-Wl,--enable-auto-import" />
 					<Add library="SDL" />
 					<Add library="OgreMain" />
-					<Add library="data/windows/bullet/libLibbullet.a" />
-					<Add directory="data/windows/sdl" />
-					<Add directory="data/windows/ogre" />
-					<Add directory="data/windows/bullet" />
+					<Add library="data\windows\bullet\libBulletDebug.a" />
+					<Add directory="data\windows\sdl" />
+					<Add directory="data\windows\ogre" />
+					<Add directory="data\windows\bullet" />
 				</Linker>
 				<ExtraCommands>
 					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\windows\ogre&quot; mkdir .\bin\WinDebug\data\windows\ogre' />
@@ -41,8 +42,8 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="LinuxDebug">
-				<Option output="bin/LinuxDebug/libphysgame.so" prefix_auto="1" extension_auto="0" />
-				<Option object_output="obj/LinuxDebug/" />
+				<Option output="bin\LinuxDebug\libphysgame.so" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj\LinuxDebug\" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -54,16 +55,16 @@
 					<Add option="-DOGRE_GUI_GLX" />
 					<Add option="-DOGRE_CONFIG_LITTLE_ENDIAN" />
 					<Add option="-DLINUX" />
-					<Add directory="libincludes/linux/ogresrc/OgreMain/include" />
-					<Add directory="libincludes/linux/ogresrc/include" />
-					<Add directory="libincludes/linux/bulletsrc/bullet-2.76/src" />
+					<Add directory="libincludes\linux\ogresrc\OgreMain\include" />
+					<Add directory="libincludes\linux\ogresrc\include" />
+					<Add directory="libincludes\linux\bulletsrc\bullet-2.76\src" />
 				</Compiler>
 				<Linker>
 					<Add option="`sdl-config --libs`" />
 					<Add library="OgreMain" />
 					<Add library="Bullet" />
-					<Add directory="data/linux/bullet" />
-					<Add directory="data/linux/ogre" />
+					<Add directory="data\linux\bullet" />
+					<Add directory="data\linux\ogre" />
 				</Linker>
 				<ExtraCommands>
 					<Add before="data/linux/checklibs.sh" />

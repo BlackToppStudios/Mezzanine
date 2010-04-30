@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
+<<<<<<< HEAD:physgame.workspace
 		<Project filename="Catch!/Catch!.cbp" active="1" />
 		<Project filename="physgameengine/physgame.cbp" />
+=======
+		<Project filename="Catch!\Catch!.cbp" active="1" />
+		<Project filename="physgameengine\physgame.cbp" />
+		<Project filename="physgameengine\libincludes\linux\bulletsrc\Bullet.cbp" />
+>>>>>>> 56ded3a4304cdf72c830d3c4723367a143123152:physgame.workspace
 	</Workspace>
 </CodeBlocks_workspace_file>
