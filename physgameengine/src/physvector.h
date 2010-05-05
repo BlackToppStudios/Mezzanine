@@ -52,22 +52,43 @@ namespace Ogre
 class PhysVector3
 {
 	public:
+        /// @brief Coordinate on the X vector.
 		PhysReal X;
+		/// @brief Coordinate on the Y vector.
 		PhysReal Y;
+		/// @brief Coordinate on the Z vector.
 		PhysReal Z;
 
+        /// @brief Blank Constructor.
+        /// @details Basic no-initialization constructor.
         PhysVector3();
+        /// @brief Constructor.
+        /// @details Constructor that sets all three vectors.
+        /// @param X Coordinate on the X vector.
+        /// @param Y Coordinate on the Y vector.
+        /// @param Z Coordinate on the Z vector.
 		PhysVector3(PhysReal X, PhysReal Y, PhysReal Z);
 
+        /// @brief Gets a Bullet vector3.
+        /// @details Creates a Bullet vector3 with values equal to this class and returns it.
         btVector3 GetBulletVector3();
+        /// @brief Copies an existing Bullet vector3.
+        /// @details This function will copy the values stored in an existing Bullet vector3
+        /// and set the values of this class to be the same.
+        /// @param Temp The vector3 to be extracted.
         void ExtractBulletVector3(btVector3 temp);
 
+        /// @brief Gets a Ogre vector3.
+        /// @details Creates a Ogre vector3 with values equal to this class and returns it.
         Ogre::Vector3 GetOgreVector3();
+        /// @brief Copies an existing Ogre vector3.
+        /// @details This function will copy the values stored in an existing Ogre vector3
+        /// and set the values of this class to be the same.
+        /// @param Temp The vector3 to be extracted.
         void ExtractOgreVector3(Ogre::Vector3 temp);
 
         void operator= (const btVector3 &bt3);
         void operator= (const Ogre::Vector3 &OVec3);
-
 };
 
 std::ostream& operator << (std::ostream& stream, const PhysVector3& x);

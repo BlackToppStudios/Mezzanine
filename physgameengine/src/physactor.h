@@ -193,8 +193,13 @@ class ActorBase {
         /// @brief Sets the starting location of the actor.
         /// @details Calling this function after adding it to the PhysWorld will have no effect. @n
         /// This function will set where the actor will be located in the PhysWorld when it is first placed inside the world.
-        /// @param Place The PhysVector3 representing the location.
+        /// @param Location The PhysVector3 representing the location.
         void SetInitLocation(PhysVector3 Location);
+        /// @brief Sets the starting orientation of the actor.
+        /// @details Calling this function after adding it to the PhysWorld will have no effect. @n
+        /// This function will set where the actor is facing in the PhysWorld when it is first placed inside the world.
+        /// @param Orientation The PhysQuaternion representing the Orientation.
+        void SetInitOrientation(PhysQuaternion Orientation);
 
         /// @brief Sets the orientation of the actor.
         /// @details Sets the orientation of the actor via Quaternion parameters.
