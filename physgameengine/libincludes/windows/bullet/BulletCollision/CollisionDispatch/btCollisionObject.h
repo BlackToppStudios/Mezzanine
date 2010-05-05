@@ -34,6 +34,14 @@ struct btCollisionShapeData;
 
 typedef btAlignedObjectArray<class btCollisionObject*> btCollisionObjectArray;
 
+#ifdef BT_USE_DOUBLE_PRECISION
+#define btCollisionObjectData btCollisionObjectDoubleData
+#define btCollisionObjectDataName "btCollisionObjectDoubleData"
+#else
+#define btCollisionObjectData btCollisionObjectFloatData
+#define btCollisionObjectDataName "btCollisionObjectFloatData"
+#endif
+
 
 /// btCollisionObject can be used to manage collision detection objects. 
 /// btCollisionObject maintains all information that is needed for a collision detection: Shape, Transform and AABB proxy.
@@ -110,7 +118,9 @@ public:
 		CF_KINEMATIC_OBJECT= 2,
 		CF_NO_CONTACT_RESPONSE = 4,
 		CF_CUSTOM_MATERIAL_CALLBACK = 8,//this allows per-triangle material (friction/restitution)
-		CF_CHARACTER_OBJECT = 16
+		CF_CHARACTER_OBJECT = 16,
+		CF_DISABLE_VISUALIZE_OBJECT = 32, //disable debug drawing
+		CF_DISABLE_SPU_COLLISION_PROCESSING = 64//disable parallel/SPU processing
 	};
 
 	enum	CollisionObjectTypes
@@ -418,79 +428,79 @@ public:
 	virtual	int	calculateSerializeBufferSize()	const;
 
 	///fills the dataBuffer and returns the struct name (and 0 on failure)
-	virtual	const char*	serialize(void* dataBuffer) const;
+	virtual	const char*	serialize(void* dataBuffer, class btSerializer* serializer) const;
 
+	virtual void serializeSingleObject(class btSerializer* serializer) const;
 
 };
 
-///using offsetof for m_vtablePadding might break some compilers, in that case define m_vtablePadding manually
-
-///for serialization
-struct	btCollisionObjectData
+///do not change those serialization structures, it requires an updated sBulletDNAstr/sBulletDNAstr64
+struct	btCollisionObjectDoubleData
 {
-	btTransformData			m_worldTransform;
-	btTransformData			m_interpolationWorldTransform;
-	btVector3Data			m_interpolationLinearVelocity;
-	btVector3Data			m_interpolationAngularVelocity;
-	btVector3Data			m_anisotropicFriction;
-	int						m_hasAnisotropicFriction;
-	btScalar				m_contactProcessingThreshold;	
 	void					*m_broadphaseHandle;
 	void					*m_collisionShape;
 	btCollisionShapeData	*m_rootCollisionShape;
+	char					*m_name;
+
+	btTransformDoubleData	m_worldTransform;
+	btTransformDoubleData	m_interpolationWorldTransform;
+	btVector3DoubleData		m_interpolationLinearVelocity;
+	btVector3DoubleData		m_interpolationAngularVelocity;
+	btVector3DoubleData		m_anisotropicFriction;
+	double					m_contactProcessingThreshold;	
+	double					m_deactivationTime;
+	double					m_friction;
+	double					m_restitution;
+	double					m_hitFraction; 
+	double					m_ccdSweptSphereRadius;
+	double					m_ccdMotionThreshold;
+
+	int						m_hasAnisotropicFriction;
 	int						m_collisionFlags;
 	int						m_islandTag1;
 	int						m_companionId;
 	int						m_activationState1;
-	btScalar				m_deactivationTime;
-	btScalar				m_friction;
-	btScalar				m_restitution;
 	int						m_internalType;
-	void					*m_userObjectPointer;
-	btScalar				m_hitFraction; 
-	btScalar				m_ccdSweptSphereRadius;
-	btScalar				m_ccdMotionThreshold;
+	int						m_checkCollideWith;
+
+	char	m_padding[4];
+};
+
+///do not change those serialization structures, it requires an updated sBulletDNAstr/sBulletDNAstr64
+struct	btCollisionObjectFloatData
+{
+	void					*m_broadphaseHandle;
+	void					*m_collisionShape;
+	btCollisionShapeData	*m_rootCollisionShape;
+	char					*m_name;
+
+	btTransformFloatData	m_worldTransform;
+	btTransformFloatData	m_interpolationWorldTransform;
+	btVector3FloatData		m_interpolationLinearVelocity;
+	btVector3FloatData		m_interpolationAngularVelocity;
+	btVector3FloatData		m_anisotropicFriction;
+	float					m_contactProcessingThreshold;	
+	float					m_deactivationTime;
+	float					m_friction;
+	float					m_restitution;
+	float					m_hitFraction; 
+	float					m_ccdSweptSphereRadius;
+	float					m_ccdMotionThreshold;
+
+	int						m_hasAnisotropicFriction;
+	int						m_collisionFlags;
+	int						m_islandTag1;
+	int						m_companionId;
+	int						m_activationState1;
+	int						m_internalType;
 	int						m_checkCollideWith;
 };
+
 
 
 SIMD_FORCE_INLINE	int	btCollisionObject::calculateSerializeBufferSize() const
 {
 	return sizeof(btCollisionObjectData);
-}
-
-SIMD_FORCE_INLINE	const char* btCollisionObject::serialize(void* dataBuffer) const
-{
-
-	btCollisionObjectData* dataOut = (btCollisionObjectData*)dataBuffer;
-
-	m_worldTransform.serialize(dataOut->m_worldTransform);
-	m_interpolationWorldTransform.serialize(dataOut->m_interpolationWorldTransform);
-	m_interpolationLinearVelocity.serialize(dataOut->m_interpolationLinearVelocity);
-	m_interpolationAngularVelocity.serialize(dataOut->m_interpolationAngularVelocity);
-	m_anisotropicFriction.serialize(dataOut->m_anisotropicFriction);
-	dataOut->m_hasAnisotropicFriction = m_hasAnisotropicFriction;
-	dataOut->m_contactProcessingThreshold = m_contactProcessingThreshold;
-	dataOut->m_broadphaseHandle = 0;
-	dataOut->m_collisionShape = m_collisionShape; //@todo
-	dataOut->m_rootCollisionShape = 0;//@todo
-	dataOut->m_collisionFlags = m_collisionFlags;
-	dataOut->m_islandTag1 = m_islandTag1;
-	dataOut->m_companionId = m_companionId;
-	dataOut->m_activationState1 = m_activationState1;
-	dataOut->m_activationState1 = m_activationState1;
-	dataOut->m_deactivationTime = m_deactivationTime;
-	dataOut->m_friction = m_friction;
-	dataOut->m_restitution = m_restitution;
-	dataOut->m_internalType = m_internalType;
-	dataOut->m_userObjectPointer = m_userObjectPointer;
-	dataOut->m_hitFraction = m_hitFraction;
-	dataOut->m_ccdSweptSphereRadius = m_ccdSweptSphereRadius;
-	dataOut->m_ccdMotionThreshold = m_ccdMotionThreshold;
-	dataOut->m_ccdMotionThreshold = m_ccdMotionThreshold;
-	dataOut->m_checkCollideWith = m_checkCollideWith;
-
-	return "btCollisionObjectData";
 }
 
 

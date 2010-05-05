@@ -20,7 +20,7 @@ subject to the following restrictions:
 #include "LinearMath/btVector3.h"
 #include "LinearMath/btMatrix3x3.h"
 #include "BulletCollision/BroadphaseCollision/btBroadphaseProxy.h" //for the shape types
-
+class btSerializer;
 
 
 ///The btCollisionShape class provides an interface for collision shapes that can be shared among btCollisionObjects.
@@ -71,6 +71,10 @@ public:
 	{
 		return btBroadphaseProxy::isConvex(getShapeType());
 	}
+	SIMD_FORCE_INLINE bool	isNonMoving() const
+	{
+		return btBroadphaseProxy::isNonMoving(getShapeType());
+	}
 	SIMD_FORCE_INLINE bool	isConcave() const
 	{
 		return btBroadphaseProxy::isConcave(getShapeType());
@@ -78,6 +82,11 @@ public:
 	SIMD_FORCE_INLINE bool	isCompound() const
 	{
 		return btBroadphaseProxy::isCompound(getShapeType());
+	}
+
+	SIMD_FORCE_INLINE bool	isSoftBody() const
+	{
+		return btBroadphaseProxy::isSoftBody(getShapeType());
 	}
 
 	///isInfinite is used to catch simulation error (aabb check)
@@ -113,15 +122,28 @@ public:
 		return m_userPointer;
 	}
 
+	virtual	int	calculateSerializeBufferSize() const;
+
+	///fills the dataBuffer and returns the struct name (and 0 on failure)
+	virtual	const char*	serialize(void* dataBuffer, btSerializer* serializer) const;
+
+	virtual void	serializeSingleShape(btSerializer* serializer) const;
+
 };	
 
-///for serialization
+///do not change those serialization structures, it requires an updated sBulletDNAstr/sBulletDNAstr64
 struct	btCollisionShapeData
 {
-	void	*m_userPointer;
+	char	*m_name;
 	int		m_shapeType;
 	char	m_padding[4];
 };
+
+SIMD_FORCE_INLINE	int	btCollisionShape::calculateSerializeBufferSize() const
+{
+	return sizeof(btCollisionShapeData);
+}
+
 
 
 #endif //COLLISION_SHAPE_H

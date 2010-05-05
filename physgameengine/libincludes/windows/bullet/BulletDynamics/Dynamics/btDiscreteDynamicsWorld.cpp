@@ -19,6 +19,7 @@ subject to the following restrictions:
 //collision detection
 #include "BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
 #include "BulletCollision/BroadphaseCollision/btSimpleBroadphase.h"
+#include "BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
 #include "BulletCollision/CollisionShapes/btCollisionShape.h"
 #include "BulletCollision/CollisionDispatch/btSimulationIslandManager.h"
 #include "LinearMath/btTransformUtil.h"
@@ -43,7 +44,7 @@ subject to the following restrictions:
 #include "LinearMath/btQuickprof.h"
 #include "LinearMath/btMotionState.h"
 
-
+#include "LinearMath/btSerializer.h"
 
 
 
@@ -266,12 +267,14 @@ int	btDiscreteDynamicsWorld::stepSimulation( btScalar timeStep,int maxSubSteps, 
 	if (numSimulationSubSteps)
 	{
 
-		saveKinematicState(fixedTimeStep);
+		//clamp the number of substeps, to prevent simulation grinding spiralling down to a halt
+		int clampedSimulationSteps = (numSimulationSubSteps > maxSubSteps)? maxSubSteps : numSimulationSubSteps;
+
+		saveKinematicState(fixedTimeStep*clampedSimulationSteps);
 
 		applyGravity();
 
-		//clamp the number of substeps, to prevent simulation grinding spiralling down to a halt
-		int clampedSimulationSteps = (numSimulationSubSteps > maxSubSteps)? maxSubSteps : numSimulationSubSteps;
+		
 
 		for (int i=0;i<clampedSimulationSteps;i++)
 		{
@@ -345,7 +348,7 @@ void	btDiscreteDynamicsWorld::setGravity(const btVector3& gravity)
 	for ( int i=0;i<m_nonStaticRigidBodies.size();i++)
 	{
 		btRigidBody* body = m_nonStaticRigidBodies[i];
-		if (body->isActive())
+		if (body->isActive() && !(body->getFlags() &BT_DISABLE_WORLD_GRAVITY))
 		{
 			body->setGravity(gravity);
 		}
@@ -380,7 +383,7 @@ void	btDiscreteDynamicsWorld::removeRigidBody(btRigidBody* body)
 
 void	btDiscreteDynamicsWorld::addRigidBody(btRigidBody* body)
 {
-	if (!body->isStaticOrKinematicObject())
+	if (!body->isStaticOrKinematicObject() && !(body->getFlags() &BT_DISABLE_WORLD_GRAVITY))
 	{
 		body->setGravity(m_gravity);
 	}
@@ -405,7 +408,7 @@ void	btDiscreteDynamicsWorld::addRigidBody(btRigidBody* body)
 
 void	btDiscreteDynamicsWorld::addRigidBody(btRigidBody* body, short group, short mask)
 {
-	if (!body->isStaticOrKinematicObject())
+	if (!body->isStaticOrKinematicObject() && !(body->getFlags() &BT_DISABLE_WORLD_GRAVITY))
 	{
 		body->setGravity(m_gravity);
 	}
@@ -548,7 +551,6 @@ class btSortConstraintOnIslandPredicate
 
 
 
-
 void	btDiscreteDynamicsWorld::solveConstraints(btContactSolverInfo& solverInfo)
 {
 	BT_PROFILE("solveConstraints");
@@ -563,6 +565,11 @@ void	btDiscreteDynamicsWorld::solveConstraints(btContactSolverInfo& solverInfo)
 		btIDebugDraw*			m_debugDrawer;
 		btStackAlloc*			m_stackAlloc;
 		btDispatcher*			m_dispatcher;
+		
+		btAlignedObjectArray<btCollisionObject*> m_bodies;
+		btAlignedObjectArray<btPersistentManifold*> m_manifolds;
+		btAlignedObjectArray<btTypedConstraint*> m_constraints;
+
 
 		InplaceSolverIslandCallback(
 			btContactSolverInfo& solverInfo,
@@ -582,6 +589,7 @@ void	btDiscreteDynamicsWorld::solveConstraints(btContactSolverInfo& solverInfo)
 		{
 
 		}
+
 
 		InplaceSolverIslandCallback& operator=(InplaceSolverIslandCallback& other)
 		{
@@ -623,16 +631,47 @@ void	btDiscreteDynamicsWorld::solveConstraints(btContactSolverInfo& solverInfo)
 					}
 				}
 
-				///only call solveGroup if there is some work: avoid virtual function call, its overhead can be excessive
-				if (numManifolds + numCurConstraints)
+				if (m_solverInfo.m_minimumSolverBatchSize<=1)
 				{
-					m_solver->solveGroup( bodies,numBodies,manifolds, numManifolds,startConstraint,numCurConstraints,m_solverInfo,m_debugDrawer,m_stackAlloc,m_dispatcher);
+					///only call solveGroup if there is some work: avoid virtual function call, its overhead can be excessive
+					if (numManifolds + numCurConstraints)
+					{
+						m_solver->solveGroup( bodies,numBodies,manifolds, numManifolds,startConstraint,numCurConstraints,m_solverInfo,m_debugDrawer,m_stackAlloc,m_dispatcher);
+					}
+				} else
+				{
+					
+					for (i=0;i<numBodies;i++)
+						m_bodies.push_back(bodies[i]);
+					for (i=0;i<numManifolds;i++)
+						m_manifolds.push_back(manifolds[i]);
+					for (i=0;i<numCurConstraints;i++)
+						m_constraints.push_back(startConstraint[i]);
+					if ((m_constraints.size()+m_manifolds.size())>m_solverInfo.m_minimumSolverBatchSize)
+					{
+						processConstraints();
+					} else
+					{
+						//printf("deferred\n");
+					}
 				}
-		
 			}
+		}
+		void	processConstraints()
+		{
+			if (m_manifolds.size() + m_constraints.size()>0)
+			{
+				m_solver->solveGroup( &m_bodies[0],m_bodies.size(), &m_manifolds[0], m_manifolds.size(), &m_constraints[0], m_constraints.size() ,m_solverInfo,m_debugDrawer,m_stackAlloc,m_dispatcher);
+			}
+			m_bodies.resize(0);
+			m_manifolds.resize(0);
+			m_constraints.resize(0);
+
 		}
 
 	};
+
+	
 
 	//sorted version of all btTypedConstraint, based on islandId
 	btAlignedObjectArray<btTypedConstraint*>	sortedConstraints;
@@ -657,6 +696,8 @@ void	btDiscreteDynamicsWorld::solveConstraints(btContactSolverInfo& solverInfo)
 	
 	/// solve all the constraints for this island
 	m_islandManager->buildAndProcessIslands(getCollisionWorld()->getDispatcher(),getCollisionWorld(),&solverCallback);
+
+	solverCallback.processConstraints();
 
 	m_constraintSolver->allSolved(solverInfo, m_debugDrawer, m_stackAlloc);
 }
@@ -700,7 +741,7 @@ void	btDiscreteDynamicsWorld::calculateSimulationIslands()
 }
 
 
-#include "BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
+
 
 class btClosestNotMeConvexResultCallback : public btCollisionWorld::ClosestConvexResultCallback
 {
@@ -713,8 +754,8 @@ class btClosestNotMeConvexResultCallback : public btCollisionWorld::ClosestConve
 public:
 	btClosestNotMeConvexResultCallback (btCollisionObject* me,const btVector3& fromA,const btVector3& toA,btOverlappingPairCache* pairCache,btDispatcher* dispatcher) : 
 	  btCollisionWorld::ClosestConvexResultCallback(fromA,toA),
-		m_allowedPenetration(0.0f),
 		m_me(me),
+		m_allowedPenetration(0.0f),
 		m_pairCache(pairCache),
 		m_dispatcher(dispatcher)
 	{
@@ -1025,7 +1066,7 @@ void btDiscreteDynamicsWorld::debugDrawConstraint(btTypedConstraint* constraint)
 				if(drawFrames) getDebugDrawer()->drawTransform(tr, dbgDrawSize);
 				if(drawLimits)
 				{
-					btTransform tr = pSlider->getCalculatedTransformA();
+					btTransform tr = pSlider->getUseLinearReferenceFrameA() ? pSlider->getCalculatedTransformA() : pSlider->getCalculatedTransformB();
 					btVector3 li_min = tr * btVector3(pSlider->getLowerLinLimit(), 0.f, 0.f);
 					btVector3 li_max = tr * btVector3(pSlider->getUpperLinLimit(), 0.f, 0.f);
 					getDebugDrawer()->drawLine(li_min, li_max, btVector3(0, 0, 0));
@@ -1077,4 +1118,44 @@ const btTypedConstraint* btDiscreteDynamicsWorld::getConstraint(int index) const
 	return m_constraints[index];
 }
 
+
+
+void	btDiscreteDynamicsWorld::serializeRigidBodies(btSerializer* serializer)
+{
+	int i;
+	//serialize all collision objects
+	for (i=0;i<m_collisionObjects.size();i++)
+	{
+		btCollisionObject* colObj = m_collisionObjects[i];
+		if (colObj->getInternalType() == btCollisionObject::CO_RIGID_BODY)
+		{
+			int len = colObj->calculateSerializeBufferSize();
+			btChunk* chunk = serializer->allocate(len,1);
+			const char* structType = colObj->serialize(chunk->m_oldPtr, serializer);
+			serializer->finalizeChunk(chunk,structType,BT_RIGIDBODY_CODE,colObj);
+		}
+	}
+
+	for (i=0;i<m_constraints.size();i++)
+	{
+		btTypedConstraint* constraint = m_constraints[i];
+		int size = constraint->calculateSerializeBufferSize();
+		btChunk* chunk = serializer->allocate(size,1);
+		const char* structType = constraint->serialize(chunk->m_oldPtr,serializer);
+		serializer->finalizeChunk(chunk,structType,BT_CONSTRAINT_CODE,constraint);
+	}
+}
+
+
+void	btDiscreteDynamicsWorld::serialize(btSerializer* serializer)
+{
+
+	serializer->startSerialization();
+
+	serializeRigidBodies(serializer);
+
+	serializeCollisionObjects(serializer);
+
+	serializer->finishSerialization();
+}
 

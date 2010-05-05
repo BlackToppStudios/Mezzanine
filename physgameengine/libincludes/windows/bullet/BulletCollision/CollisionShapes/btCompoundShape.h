@@ -62,6 +62,11 @@ ATTRIBUTE_ALIGNED16(class) btCompoundShape	: public btCollisionShape
 	///increment m_updateRevision when adding/removing/replacing child shapes, so that some caches can be updated
 	int								m_updateRevision;
 
+	btScalar	m_collisionMargin;
+
+protected:
+	btVector3	m_localScaling;
+
 public:
 	BT_DECLARE_ALIGNED_ALLOCATOR();
 
@@ -138,8 +143,6 @@ public:
 		return "Compound";
 	}
 
-	//this is optional, but should make collision queries faster, by culling non-overlapping nodes
-	void	createAabbTreeFromChildren();
 
 	btDbvt*							getDynamicAabbTree()
 	{
@@ -158,12 +161,45 @@ public:
 		return m_updateRevision;
 	}
 
-private:
-	btScalar	m_collisionMargin;
-protected:
-	btVector3	m_localScaling;
+	virtual	int	calculateSerializeBufferSize() const;
+
+	///fills the dataBuffer and returns the struct name (and 0 on failure)
+	virtual	const char*	serialize(void* dataBuffer, btSerializer* serializer) const;
+
 
 };
+
+///do not change those serialization structures, it requires an updated sBulletDNAstr/sBulletDNAstr64
+struct btCompoundShapeChildData
+{
+	btTransformFloatData	m_transform;
+	btCollisionShapeData	*m_childShape;
+	int						m_childShapeType;
+	float					m_childMargin;
+};
+
+///do not change those serialization structures, it requires an updated sBulletDNAstr/sBulletDNAstr64
+struct	btCompoundShapeData
+{
+	btCollisionShapeData		m_collisionShapeData;
+
+	btCompoundShapeChildData	*m_childShapePtr;
+
+	int							m_numChildShapes;
+
+	float	m_collisionMargin;
+
+};
+
+
+SIMD_FORCE_INLINE	int	btCompoundShape::calculateSerializeBufferSize() const
+{
+	return sizeof(btCompoundShapeData);
+}
+
+
+
+
 
 
 

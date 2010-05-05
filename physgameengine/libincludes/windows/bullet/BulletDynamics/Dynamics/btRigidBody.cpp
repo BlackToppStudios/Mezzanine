@@ -19,6 +19,7 @@ subject to the following restrictions:
 #include "LinearMath/btTransformUtil.h"
 #include "LinearMath/btMotionState.h"
 #include "BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+#include "LinearMath/btSerializer.h"
 
 //'temporarily' global variables
 btScalar	gDeactivationTime = btScalar(2.);
@@ -85,6 +86,17 @@ void	btRigidBody::setupRigidBody(const btRigidBody::btRigidBodyConstructionInfo&
 	setMassProps(constructionInfo.m_mass, constructionInfo.m_localInertia);
     setDamping(constructionInfo.m_linearDamping, constructionInfo.m_angularDamping);
 	updateInertiaTensor();
+
+	m_rigidbodyFlags = 0;
+
+
+	m_deltaLinearVelocity.setZero();
+	m_deltaAngularVelocity.setZero();
+	m_invMass = m_inverseMass*m_linearFactor;
+	m_pushVelocity.setZero();
+	m_turnVelocity.setZero();
+
+	
 
 }
 
@@ -232,6 +244,7 @@ void btRigidBody::setMassProps(btScalar mass, const btVector3& inertia)
 				   inertia.y() != btScalar(0.0) ? btScalar(1.0) / inertia.y(): btScalar(0.0),
 				   inertia.z() != btScalar(0.0) ? btScalar(1.0) / inertia.z(): btScalar(0.0));
 
+	m_invMass = m_linearFactor*m_inverseMass;
 }
 
 	
@@ -301,6 +314,28 @@ bool btRigidBody::checkCollideWithOverride(btCollisionObject* co)
 	return true;
 }
 
+void	btRigidBody::internalWritebackVelocity(btScalar timeStep)
+{
+    (void) timeStep;
+	if (m_inverseMass)
+	{
+		setLinearVelocity(getLinearVelocity()+ m_deltaLinearVelocity);
+		setAngularVelocity(getAngularVelocity()+m_deltaAngularVelocity);
+		
+		//correct the position/orientation based on push/turn recovery
+		btTransform newTransform;
+		btTransformUtil::integrateTransform(getWorldTransform(),m_pushVelocity,m_turnVelocity,timeStep,newTransform);
+		setWorldTransform(newTransform);
+		//m_originalBody->setCompanionId(-1);
+	}
+	m_deltaLinearVelocity.setZero();
+	m_deltaAngularVelocity .setZero();
+	m_pushVelocity.setZero();
+	m_turnVelocity.setZero();
+}
+
+
+
 void btRigidBody::addConstraintRef(btTypedConstraint* c)
 {
 	int index = m_constraintRefs.findLinearSearch(c);
@@ -323,9 +358,12 @@ int	btRigidBody::calculateSerializeBufferSize()	const
 }
 
 	///fills the dataBuffer and returns the struct name (and 0 on failure)
-const char*	btRigidBody::serialize(void* dataBuffer) const
+const char*	btRigidBody::serialize(void* dataBuffer, class btSerializer* serializer) const
 {
 	btRigidBodyData* rbd = (btRigidBodyData*) dataBuffer;
+
+	btCollisionObject::serialize(&rbd->m_collisionObjectData, serializer);
+
 	m_invInertiaTensorWorld.serialize(rbd->m_invInertiaTensorWorld);
 	m_linearVelocity.serialize(rbd->m_linearVelocity);
 	m_angularVelocity.serialize(rbd->m_angularVelocity);
@@ -347,7 +385,16 @@ const char*	btRigidBody::serialize(void* dataBuffer) const
 	rbd->m_linearSleepingThreshold=m_linearSleepingThreshold;
 	rbd->m_angularSleepingThreshold = m_angularSleepingThreshold;
 
-	btCollisionObject::serialize(&rbd->m_collisionObjectData);
-
-	return "btRigidBodyData";
+	return btRigidBodyDataName;
 }
+
+
+
+void btRigidBody::serializeSingleObject(class btSerializer* serializer) const
+{
+	btChunk* chunk = serializer->allocate(calculateSerializeBufferSize(),1);
+	const char* structType = serialize(chunk->m_oldPtr, serializer);
+	serializer->finalizeChunk(chunk,structType,BT_RIGIDBODY_CODE,(void*)this);
+}
+
+

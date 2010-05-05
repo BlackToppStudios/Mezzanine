@@ -26,11 +26,12 @@ subject to the following restrictions:
 #include "BulletCollision/NarrowPhaseCollision/btSubSimplexConvexCast.h"
 #include "BulletCollision/NarrowPhaseCollision/btGjkConvexCast.h"
 #include "BulletCollision/NarrowPhaseCollision/btContinuousConvexCollision.h"
-
+#include "BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
 #include "BulletCollision/BroadphaseCollision/btBroadphaseInterface.h"
 #include "LinearMath/btAabbUtil2.h"
 #include "LinearMath/btQuickprof.h"
 #include "LinearMath/btStackAlloc.h"
+#include "LinearMath/btSerializer.h"
 
 //#define USE_BRUTEFORCE_RAYBROADPHASE 1
 //RECALCULATE_AABB is slower, but benefit is that you don't need to call 'stepSimulation'  or 'updateAabbs' before using a rayTest
@@ -432,11 +433,33 @@ void	btCollisionWorld::rayTestSingle(const btTransform& rayFromTrans,const btTra
 					// replace collision shape so that callback can determine the triangle
 					btCollisionShape* saveCollisionShape = collisionObject->getCollisionShape();
 					collisionObject->internalSetTemporaryCollisionShape((btCollisionShape*)childCollisionShape);
+                    struct LocalInfoAdder2 : public RayResultCallback {
+						int m_i;
+						RayResultCallback* m_userCallback;
+                        LocalInfoAdder2 (int i, RayResultCallback *user)
+							: m_i(i), m_userCallback(user) 
+						{ 
+						}
+						virtual btScalar addSingleResult (btCollisionWorld::LocalRayResult &r, bool b)
+                            {
+                                    btCollisionWorld::LocalShapeInfo	shapeInfo;
+                                    shapeInfo.m_shapePart = -1;
+                                    shapeInfo.m_triangleIndex = m_i;
+                                    if (r.m_localShapeInfo == NULL)
+                                        r.m_localShapeInfo = &shapeInfo;
+                                    return m_userCallback->addSingleResult(r, b);
+                            }
+                    };
+
+                    LocalInfoAdder2 my_cb(i, &resultCallback);
+					my_cb.m_closestHitFraction = resultCallback.m_closestHitFraction;
+					
+
 					rayTestSingle(rayFromTrans,rayToTrans,
 						collisionObject,
 						childCollisionShape,
 						childWorldTrans,
-						resultCallback);
+						my_cb);
 					// restore
 					collisionObject->internalSetTemporaryCollisionShape(saveCollisionShape);
 				}
@@ -632,11 +655,31 @@ void	btCollisionWorld::objectQuerySingle(const btConvexShape* castShape,const bt
 					// replace collision shape so that callback can determine the triangle
 					btCollisionShape* saveCollisionShape = collisionObject->getCollisionShape();
 					collisionObject->internalSetTemporaryCollisionShape((btCollisionShape*)childCollisionShape);
+                    struct	LocalInfoAdder : public ConvexResultCallback {
+                            ConvexResultCallback* m_userCallback;
+							int m_i;
+
+                            LocalInfoAdder (int i, ConvexResultCallback *user)
+                                : m_userCallback(user),m_i(i) { }
+                            virtual btScalar addSingleResult (btCollisionWorld::LocalConvexResult&	r,	bool b)
+                            {
+                                    btCollisionWorld::LocalShapeInfo	shapeInfo;
+                                    shapeInfo.m_shapePart = -1;
+                                    shapeInfo.m_triangleIndex = m_i;
+                                    if (r.m_localShapeInfo == NULL)
+                                        r.m_localShapeInfo = &shapeInfo;
+                                    return m_userCallback->addSingleResult(r, b);
+                            }
+                    };
+
+                    LocalInfoAdder my_cb(i, &resultCallback);
+					my_cb.m_closestHitFraction = resultCallback.m_closestHitFraction;
+
 					objectQuerySingle(castShape, convexFromTrans,convexToTrans,
 						collisionObject,
 						childCollisionShape,
 						childWorldTrans,
-						resultCallback, allowedPenetration);
+						my_cb, allowedPenetration);
 					// restore
 					collisionObject->internalSetTemporaryCollisionShape(saveCollisionShape);
 				}
@@ -865,6 +908,134 @@ void	btCollisionWorld::convexSweepTest(const btConvexShape* castShape, const btT
 
 
 
+struct btBridgedManifoldResult : public btManifoldResult
+{
+
+	btCollisionWorld::ContactResultCallback&	m_resultCallback;
+
+	btBridgedManifoldResult( btCollisionObject* obj0,btCollisionObject* obj1,btCollisionWorld::ContactResultCallback& resultCallback )
+		:btManifoldResult(obj0,obj1),
+		m_resultCallback(resultCallback)
+	{
+	}
+
+	virtual void addContactPoint(const btVector3& normalOnBInWorld,const btVector3& pointInWorld,btScalar depth)
+	{
+		bool isSwapped = m_manifoldPtr->getBody0() != m_body0;
+		btVector3 pointA = pointInWorld + normalOnBInWorld * depth;
+		btVector3 localA;
+		btVector3 localB;
+		if (isSwapped)
+		{
+			localA = m_rootTransB.invXform(pointA );
+			localB = m_rootTransA.invXform(pointInWorld);
+		} else
+		{
+			localA = m_rootTransA.invXform(pointA );
+			localB = m_rootTransB.invXform(pointInWorld);
+		}
+		
+		btManifoldPoint newPt(localA,localB,normalOnBInWorld,depth);
+		newPt.m_positionWorldOnA = pointA;
+		newPt.m_positionWorldOnB = pointInWorld;
+		
+	   //BP mod, store contact triangles.
+		if (isSwapped)
+		{
+			newPt.m_partId0 = m_partId1;
+			newPt.m_partId1 = m_partId0;
+			newPt.m_index0  = m_index1;
+			newPt.m_index1  = m_index0;
+		} else
+		{
+			newPt.m_partId0 = m_partId0;
+			newPt.m_partId1 = m_partId1;
+			newPt.m_index0  = m_index0;
+			newPt.m_index1  = m_index1;
+		}
+
+		//experimental feature info, for per-triangle material etc.
+		btCollisionObject* obj0 = isSwapped? m_body1 : m_body0;
+		btCollisionObject* obj1 = isSwapped? m_body0 : m_body1;
+		m_resultCallback.addSingleResult(newPt,obj0,newPt.m_partId0,newPt.m_index0,obj1,newPt.m_partId1,newPt.m_index1);
+
+	}
+	
+};
+
+
+
+struct btSingleContactCallback : public btBroadphaseAabbCallback
+{
+
+	btCollisionObject* m_collisionObject;
+	btCollisionWorld*	m_world;
+	btCollisionWorld::ContactResultCallback&	m_resultCallback;
+	
+	
+	btSingleContactCallback(btCollisionObject* collisionObject, btCollisionWorld* world,btCollisionWorld::ContactResultCallback& resultCallback)
+		:m_collisionObject(collisionObject),
+		m_world(world),
+		m_resultCallback(resultCallback)
+	{
+	}
+
+	virtual bool	process(const btBroadphaseProxy* proxy)
+	{
+		btCollisionObject*	collisionObject = (btCollisionObject*)proxy->m_clientObject;
+		if (collisionObject == m_collisionObject)
+			return true;
+
+		//only perform raycast if filterMask matches
+		if(m_resultCallback.needsCollision(collisionObject->getBroadphaseHandle())) 
+		{
+			btCollisionAlgorithm* algorithm = m_world->getDispatcher()->findAlgorithm(m_collisionObject,collisionObject);
+			if (algorithm)
+			{
+				btBridgedManifoldResult contactPointResult(m_collisionObject,collisionObject, m_resultCallback);
+				//discrete collision detection query
+				algorithm->processCollision(m_collisionObject,collisionObject, m_world->getDispatchInfo(),&contactPointResult);
+
+				algorithm->~btCollisionAlgorithm();
+				m_world->getDispatcher()->freeCollisionAlgorithm(algorithm);
+			}
+		}
+		return true;
+	}
+};
+
+
+///contactTest performs a discrete collision test against all objects in the btCollisionWorld, and calls the resultCallback.
+///it reports one or more contact points for every overlapping object (including the one with deepest penetration)
+void	btCollisionWorld::contactTest( btCollisionObject* colObj, ContactResultCallback& resultCallback)
+{
+	btVector3 aabbMin,aabbMax;
+	colObj->getCollisionShape()->getAabb(colObj->getWorldTransform(),aabbMin,aabbMax);
+	btSingleContactCallback	contactCB(colObj,this,resultCallback);
+	
+	m_broadphasePairCache->aabbTest(aabbMin,aabbMax,contactCB);
+}
+
+
+///contactTest performs a discrete collision test between two collision objects and calls the resultCallback if overlap if detected.
+///it reports one or more contact points (including the one with deepest penetration)
+void	btCollisionWorld::contactPairTest(btCollisionObject* colObjA, btCollisionObject* colObjB, ContactResultCallback& resultCallback)
+{
+	btCollisionAlgorithm* algorithm = getDispatcher()->findAlgorithm(colObjA,colObjB);
+	if (algorithm)
+	{
+		btBridgedManifoldResult contactPointResult(colObjA,colObjB, resultCallback);
+		//discrete collision detection query
+		algorithm->processCollision(colObjA,colObjB, getDispatchInfo(),&contactPointResult);
+
+		algorithm->~btCollisionAlgorithm();
+		getDispatcher()->freeCollisionAlgorithm(algorithm);
+	}
+
+}
+
+
+
 
 class DebugDrawcallback : public btTriangleCallback, public btInternalTriangleIndexCallback
 {
@@ -895,38 +1066,22 @@ public:
 		  wv0 = m_worldTrans*triangle[0];
 		  wv1 = m_worldTrans*triangle[1];
 		  wv2 = m_worldTrans*triangle[2];
+		  btVector3 center = (wv0+wv1+wv2)*btScalar(1./3.);
+
+		  btVector3 normal = (wv1-wv0).cross(wv2-wv0);
+		  normal.normalize();
+		  btVector3 normalColor(1,1,0);
+		  m_debugDrawer->drawLine(center,center+normal,normalColor);
+
+
+
+		 
 		  m_debugDrawer->drawLine(wv0,wv1,m_color);
 		  m_debugDrawer->drawLine(wv1,wv2,m_color);
 		  m_debugDrawer->drawLine(wv2,wv0,m_color);
 	  }
 };
 
-void btCollisionWorld::debugDrawSphere(btScalar radius, const btTransform& transform, const btVector3& color)
-{
-	btVector3 start = transform.getOrigin();
-
-	const btVector3 xoffs = transform.getBasis() * btVector3(radius,0,0);
-	const btVector3 yoffs = transform.getBasis() * btVector3(0,radius,0);
-	const btVector3 zoffs = transform.getBasis() * btVector3(0,0,radius);
-
-	// XY 
-	getDebugDrawer()->drawLine(start-xoffs, start+yoffs, color);
-	getDebugDrawer()->drawLine(start+yoffs, start+xoffs, color);
-	getDebugDrawer()->drawLine(start+xoffs, start-yoffs, color);
-	getDebugDrawer()->drawLine(start-yoffs, start-xoffs, color);
-
-	// XZ
-	getDebugDrawer()->drawLine(start-xoffs, start+zoffs, color);
-	getDebugDrawer()->drawLine(start+zoffs, start+xoffs, color);
-	getDebugDrawer()->drawLine(start+xoffs, start-zoffs, color);
-	getDebugDrawer()->drawLine(start-zoffs, start-xoffs, color);
-
-	// YZ
-	getDebugDrawer()->drawLine(start-yoffs, start+zoffs, color);
-	getDebugDrawer()->drawLine(start+zoffs, start+yoffs, color);
-	getDebugDrawer()->drawLine(start+yoffs, start-zoffs, color);
-	getDebugDrawer()->drawLine(start-zoffs, start-yoffs, color);
-}
 
 void btCollisionWorld::debugDrawObject(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color)
 {
@@ -953,12 +1108,20 @@ void btCollisionWorld::debugDrawObject(const btTransform& worldTransform, const 
 		switch (shape->getShapeType())
 		{
 
+		case BOX_SHAPE_PROXYTYPE:
+			{
+				const btBoxShape* boxShape = static_cast<const btBoxShape*>(shape);
+				btVector3 halfExtents = boxShape->getHalfExtentsWithMargin();
+				getDebugDrawer()->drawBox(-halfExtents,halfExtents,worldTransform,color);
+				break;
+			}
+
 		case SPHERE_SHAPE_PROXYTYPE:
 			{
 				const btSphereShape* sphereShape = static_cast<const btSphereShape*>(shape);
 				btScalar radius = sphereShape->getMargin();//radius doesn't include the margin, so draw with margin
 
-				debugDrawSphere(radius, worldTransform, color);
+				getDebugDrawer()->drawSphere(radius, worldTransform, color);
 				break;
 			}
 		case MULTI_SPHERE_SHAPE_PROXYTYPE:
@@ -971,7 +1134,7 @@ void btCollisionWorld::debugDrawObject(const btTransform& worldTransform, const 
 				for (int i = multiSphereShape->getSphereCount()-1; i>=0;i--)
 				{
 					childTransform.setOrigin(multiSphereShape->getSpherePosition(i));
-					debugDrawSphere(multiSphereShape->getSphereRadius(i), worldTransform*childTransform, color);
+					getDebugDrawer()->drawSphere(multiSphereShape->getSphereRadius(i), worldTransform*childTransform, color);
 				}
 
 				break;
@@ -997,13 +1160,13 @@ void btCollisionWorld::debugDrawObject(const btTransform& worldTransform, const 
 
 					btTransform childTransform = worldTransform;
 					childTransform.getOrigin() = worldTransform * capStart;
-					debugDrawSphere(radius, childTransform, color);
+					getDebugDrawer()->drawSphere(radius, childTransform, color);
 				}
 
 				{
 					btTransform childTransform = worldTransform;
 					childTransform.getOrigin() = worldTransform * capEnd;
-					debugDrawSphere(radius, childTransform, color);
+					getDebugDrawer()->drawSphere(radius, childTransform, color);
 				}
 
 				// Draw some additional lines
@@ -1171,37 +1334,83 @@ void	btCollisionWorld::debugDrawWorld()
 		for (  i=0;i<m_collisionObjects.size();i++)
 		{
 			btCollisionObject* colObj = m_collisionObjects[i];
-			if (getDebugDrawer() && getDebugDrawer()->getDebugMode() & btIDebugDraw::DBG_DrawWireframe)
+			if ((colObj->getCollisionFlags() & btCollisionObject::CF_DISABLE_VISUALIZE_OBJECT)==0)
 			{
-				btVector3 color(btScalar(255.),btScalar(255.),btScalar(255.));
-				switch(colObj->getActivationState())
+				if (getDebugDrawer() && getDebugDrawer()->getDebugMode() & btIDebugDraw::DBG_DrawWireframe)
 				{
-				case  ACTIVE_TAG:
-					color = btVector3(btScalar(255.),btScalar(255.),btScalar(255.)); break;
-				case ISLAND_SLEEPING:
-					color =  btVector3(btScalar(0.),btScalar(255.),btScalar(0.));break;
-				case WANTS_DEACTIVATION:
-					color = btVector3(btScalar(0.),btScalar(255.),btScalar(255.));break;
-				case DISABLE_DEACTIVATION:
-					color = btVector3(btScalar(255.),btScalar(0.),btScalar(0.));break;
-				case DISABLE_SIMULATION:
-					color = btVector3(btScalar(255.),btScalar(255.),btScalar(0.));break;
-				default:
+					btVector3 color(btScalar(1.),btScalar(1.),btScalar(1.));
+					switch(colObj->getActivationState())
 					{
-						color = btVector3(btScalar(255.),btScalar(0.),btScalar(0.));
-					}
-				};
+					case  ACTIVE_TAG:
+						color = btVector3(btScalar(1.),btScalar(1.),btScalar(1.)); break;
+					case ISLAND_SLEEPING:
+						color =  btVector3(btScalar(0.),btScalar(1.),btScalar(0.));break;
+					case WANTS_DEACTIVATION:
+						color = btVector3(btScalar(0.),btScalar(1.),btScalar(1.));break;
+					case DISABLE_DEACTIVATION:
+						color = btVector3(btScalar(1.),btScalar(0.),btScalar(0.));break;
+					case DISABLE_SIMULATION:
+						color = btVector3(btScalar(1.),btScalar(1.),btScalar(0.));break;
+					default:
+						{
+							color = btVector3(btScalar(1),btScalar(0.),btScalar(0.));
+						}
+					};
 
-				debugDrawObject(colObj->getWorldTransform(),colObj->getCollisionShape(),color);
-			}
-			if (m_debugDrawer && (m_debugDrawer->getDebugMode() & btIDebugDraw::DBG_DrawAabb))
-			{
-				btVector3 minAabb,maxAabb;
-				btVector3 colorvec(1,0,0);
-				colObj->getCollisionShape()->getAabb(colObj->getWorldTransform(), minAabb,maxAabb);
-				m_debugDrawer->drawAabb(minAabb,maxAabb,colorvec);
+					debugDrawObject(colObj->getWorldTransform(),colObj->getCollisionShape(),color);
+				}
+				if (m_debugDrawer && (m_debugDrawer->getDebugMode() & btIDebugDraw::DBG_DrawAabb))
+				{
+					btVector3 minAabb,maxAabb;
+					btVector3 colorvec(1,0,0);
+					colObj->getCollisionShape()->getAabb(colObj->getWorldTransform(), minAabb,maxAabb);
+					m_debugDrawer->drawAabb(minAabb,maxAabb,colorvec);
+				}
 			}
 
 		}
 	}
 }
+
+
+void	btCollisionWorld::serializeCollisionObjects(btSerializer* serializer)
+{
+	int i;
+	//serialize all collision objects
+	for (i=0;i<m_collisionObjects.size();i++)
+	{
+		btCollisionObject* colObj = m_collisionObjects[i];
+		if (colObj->getInternalType() == btCollisionObject::CO_COLLISION_OBJECT)
+		{
+			colObj->serializeSingleObject(serializer);
+		}
+	}
+
+	///keep track of shapes already serialized
+	btHashMap<btHashPtr,btCollisionShape*>	serializedShapes;
+
+	for (i=0;i<m_collisionObjects.size();i++)
+	{
+		btCollisionObject* colObj = m_collisionObjects[i];
+		btCollisionShape* shape = colObj->getCollisionShape();
+
+		if (!serializedShapes.find(shape))
+		{
+			serializedShapes.insert(shape,shape);
+			shape->serializeSingleShape(serializer);
+		}
+	}
+
+}
+
+
+void	btCollisionWorld::serialize(btSerializer* serializer)
+{
+
+	serializer->startSerialization();
+	
+	serializeCollisionObjects(serializer);
+	
+	serializer->finishSerialization();
+}
+
