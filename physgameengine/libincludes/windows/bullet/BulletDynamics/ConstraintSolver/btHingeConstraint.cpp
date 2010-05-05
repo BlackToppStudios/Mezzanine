@@ -30,15 +30,7 @@ subject to the following restrictions:
 
 #ifndef __SPU__
 
-btHingeConstraint::btHingeConstraint()
-: btTypedConstraint (HINGE_CONSTRAINT_TYPE),
-m_enableAngularMotor(false),
-m_useSolveConstraintObsolete(HINGE_USE_OBSOLETE_SOLVER),
-m_useOffsetForConstraintFrame(HINGE_USE_FRAME_OFFSET),
-m_useReferenceFrameA(false)
-{
-	m_referenceSign = m_useReferenceFrameA ? btScalar(-1.f) : btScalar(1.f);
-}
+
 
 
 
@@ -49,7 +41,8 @@ btHingeConstraint::btHingeConstraint(btRigidBody& rbA,btRigidBody& rbB, const bt
 									 m_enableAngularMotor(false),
 									 m_useSolveConstraintObsolete(HINGE_USE_OBSOLETE_SOLVER),
 									 m_useOffsetForConstraintFrame(HINGE_USE_FRAME_OFFSET),
-									 m_useReferenceFrameA(useReferenceFrameA)
+									 m_useReferenceFrameA(useReferenceFrameA),
+									 m_flags(0)
 {
 	m_rbAFrame.getOrigin() = pivotInA;
 	
@@ -98,7 +91,8 @@ btHingeConstraint::btHingeConstraint(btRigidBody& rbA,const btVector3& pivotInA,
 :btTypedConstraint(HINGE_CONSTRAINT_TYPE, rbA), m_angularOnly(false), m_enableAngularMotor(false), 
 m_useSolveConstraintObsolete(HINGE_USE_OBSOLETE_SOLVER),
 m_useOffsetForConstraintFrame(HINGE_USE_FRAME_OFFSET),
-m_useReferenceFrameA(useReferenceFrameA)
+m_useReferenceFrameA(useReferenceFrameA),
+m_flags(0)
 {
 
 	// since no frame is given, assume this to be zero angle and just pick rb transform axis
@@ -142,7 +136,8 @@ m_angularOnly(false),
 m_enableAngularMotor(false),
 m_useSolveConstraintObsolete(HINGE_USE_OBSOLETE_SOLVER),
 m_useOffsetForConstraintFrame(HINGE_USE_FRAME_OFFSET),
-m_useReferenceFrameA(useReferenceFrameA)
+m_useReferenceFrameA(useReferenceFrameA),
+m_flags(0)
 {
 	//start with free
 	m_lowerLimit = btScalar(1.0f);
@@ -162,7 +157,8 @@ m_angularOnly(false),
 m_enableAngularMotor(false),
 m_useSolveConstraintObsolete(HINGE_USE_OBSOLETE_SOLVER),
 m_useOffsetForConstraintFrame(HINGE_USE_FRAME_OFFSET),
-m_useReferenceFrameA(useReferenceFrameA)
+m_useReferenceFrameA(useReferenceFrameA),
+m_flags(0)
 {
 	///not providing rigidbody B means implicitly using worldspace for body B
 
@@ -263,164 +259,6 @@ void	btHingeConstraint::buildJacobian()
 							 getRigidBodyB().computeAngularImpulseDenominator(axisA));
 
 	}
-}
-
-void	btHingeConstraint::solveConstraintObsolete(btSolverBody& bodyA,btSolverBody& bodyB,btScalar	timeStep)
-{
-
-	///for backwards compatibility during the transition to 'getInfo/getInfo2'
-	if (m_useSolveConstraintObsolete)
-	{
-
-		btVector3 pivotAInW = m_rbA.getCenterOfMassTransform()*m_rbAFrame.getOrigin();
-		btVector3 pivotBInW = m_rbB.getCenterOfMassTransform()*m_rbBFrame.getOrigin();
-
-		btScalar tau = btScalar(0.3);
-
-		//linear part
-		if (!m_angularOnly)
-		{
-			btVector3 rel_pos1 = pivotAInW - m_rbA.getCenterOfMassPosition(); 
-			btVector3 rel_pos2 = pivotBInW - m_rbB.getCenterOfMassPosition();
-
-			btVector3 vel1,vel2;
-			bodyA.getVelocityInLocalPointObsolete(rel_pos1,vel1);
-			bodyB.getVelocityInLocalPointObsolete(rel_pos2,vel2);
-			btVector3 vel = vel1 - vel2;
-
-			for (int i=0;i<3;i++)
-			{		
-				const btVector3& normal = m_jac[i].m_linearJointAxis;
-				btScalar jacDiagABInv = btScalar(1.) / m_jac[i].getDiagonal();
-
-				btScalar rel_vel;
-				rel_vel = normal.dot(vel);
-				//positional error (zeroth order error)
-				btScalar depth = -(pivotAInW - pivotBInW).dot(normal); //this is the error projected on the normal
-				btScalar impulse = depth*tau/timeStep  * jacDiagABInv -  rel_vel * jacDiagABInv;
-				m_appliedImpulse += impulse;
-				btVector3 impulse_vector = normal * impulse;
-				btVector3 ftorqueAxis1 = rel_pos1.cross(normal);
-				btVector3 ftorqueAxis2 = rel_pos2.cross(normal);
-				bodyA.applyImpulse(normal*m_rbA.getInvMass(), m_rbA.getInvInertiaTensorWorld()*ftorqueAxis1,impulse);
-				bodyB.applyImpulse(normal*m_rbB.getInvMass(), m_rbB.getInvInertiaTensorWorld()*ftorqueAxis2,-impulse);
-			}
-		}
-
-		
-		{
-			///solve angular part
-
-			// get axes in world space
-			btVector3 axisA =  getRigidBodyA().getCenterOfMassTransform().getBasis() *  m_rbAFrame.getBasis().getColumn(2);
-			btVector3 axisB =  getRigidBodyB().getCenterOfMassTransform().getBasis() *  m_rbBFrame.getBasis().getColumn(2);
-
-			btVector3 angVelA;
-			bodyA.getAngularVelocity(angVelA);
-			btVector3 angVelB;
-			bodyB.getAngularVelocity(angVelB);
-
-			btVector3 angVelAroundHingeAxisA = axisA * axisA.dot(angVelA);
-			btVector3 angVelAroundHingeAxisB = axisB * axisB.dot(angVelB);
-
-			btVector3 angAorthog = angVelA - angVelAroundHingeAxisA;
-			btVector3 angBorthog = angVelB - angVelAroundHingeAxisB;
-			btVector3 velrelOrthog = angAorthog-angBorthog;
-			{
-				
-
-				//solve orthogonal angular velocity correction
-				//btScalar relaxation = btScalar(1.);
-				btScalar len = velrelOrthog.length();
-				if (len > btScalar(0.00001))
-				{
-					btVector3 normal = velrelOrthog.normalized();
-					btScalar denom = getRigidBodyA().computeAngularImpulseDenominator(normal) +
-						getRigidBodyB().computeAngularImpulseDenominator(normal);
-					// scale for mass and relaxation
-					//velrelOrthog *= (btScalar(1.)/denom) * m_relaxationFactor;
-
-					bodyA.applyImpulse(btVector3(0,0,0), m_rbA.getInvInertiaTensorWorld()*velrelOrthog,-(btScalar(1.)/denom));
-					bodyB.applyImpulse(btVector3(0,0,0), m_rbB.getInvInertiaTensorWorld()*velrelOrthog,(btScalar(1.)/denom));
-
-				}
-
-				//solve angular positional correction
-				btVector3 angularError =  axisA.cross(axisB) *(btScalar(1.)/timeStep);
-				btScalar len2 = angularError.length();
-				if (len2>btScalar(0.00001))
-				{
-					btVector3 normal2 = angularError.normalized();
-					btScalar denom2 = getRigidBodyA().computeAngularImpulseDenominator(normal2) +
-							getRigidBodyB().computeAngularImpulseDenominator(normal2);
-					//angularError *= (btScalar(1.)/denom2) * relaxation;
-					
-					bodyA.applyImpulse(btVector3(0,0,0), m_rbA.getInvInertiaTensorWorld()*angularError,(btScalar(1.)/denom2));
-					bodyB.applyImpulse(btVector3(0,0,0), m_rbB.getInvInertiaTensorWorld()*angularError,-(btScalar(1.)/denom2));
-
-				}
-				
-				
-
-
-
-				// solve limit
-				if (m_solveLimit)
-				{
-					btScalar amplitude = ( (angVelB - angVelA).dot( axisA )*m_relaxationFactor + m_correction* (btScalar(1.)/timeStep)*m_biasFactor  ) * m_limitSign;
-
-					btScalar impulseMag = amplitude * m_kHinge;
-
-					// Clamp the accumulated impulse
-					btScalar temp = m_accLimitImpulse;
-					m_accLimitImpulse = btMax(m_accLimitImpulse + impulseMag, btScalar(0) );
-					impulseMag = m_accLimitImpulse - temp;
-
-
-					
-					bodyA.applyImpulse(btVector3(0,0,0), m_rbA.getInvInertiaTensorWorld()*axisA,impulseMag * m_limitSign);
-					bodyB.applyImpulse(btVector3(0,0,0), m_rbB.getInvInertiaTensorWorld()*axisA,-(impulseMag * m_limitSign));
-
-				}
-			}
-
-			//apply motor
-			if (m_enableAngularMotor) 
-			{
-				//todo: add limits too
-				btVector3 angularLimit(0,0,0);
-
-				btVector3 velrel = angVelAroundHingeAxisA - angVelAroundHingeAxisB;
-				btScalar projRelVel = velrel.dot(axisA);
-
-				btScalar desiredMotorVel = m_motorTargetVelocity;
-				btScalar motor_relvel = desiredMotorVel - projRelVel;
-
-				btScalar unclippedMotorImpulse = m_kHinge * motor_relvel;;
-
-				// accumulated impulse clipping:
-				btScalar fMaxImpulse = m_maxMotorImpulse;
-				btScalar newAccImpulse = m_accMotorImpulse + unclippedMotorImpulse;
-				btScalar clippedMotorImpulse = unclippedMotorImpulse;
-				if (newAccImpulse > fMaxImpulse)
-				{
-					newAccImpulse = fMaxImpulse;
-					clippedMotorImpulse = newAccImpulse - m_accMotorImpulse;
-				}
-				else if (newAccImpulse < -fMaxImpulse)
-				{
-					newAccImpulse = -fMaxImpulse;
-					clippedMotorImpulse = newAccImpulse - m_accMotorImpulse;
-				}
-				m_accMotorImpulse += clippedMotorImpulse;
-			
-				bodyA.applyImpulse(btVector3(0,0,0), m_rbA.getInvInertiaTensorWorld()*axisA,clippedMotorImpulse);
-				bodyB.applyImpulse(btVector3(0,0,0), m_rbB.getInvInertiaTensorWorld()*axisA,-clippedMotorImpulse);
-				
-			}
-		}
-	}
-
 }
 
 
@@ -633,19 +471,26 @@ void btHingeConstraint::getInfo2Internal(btConstraintInfo2* info, const btTransf
 			powered = 0;
 		}
 		info->m_constraintError[srow] = btScalar(0.0f);
+		btScalar currERP = (m_flags & BT_HINGE_FLAGS_ERP_STOP) ? m_stopERP : info->erp;
 		if(powered)
 		{
-            info->cfm[srow] = btScalar(0.0); 
-			btScalar mot_fact = getMotorFactor(m_hingeAngle, lostop, histop, m_motorTargetVelocity, info->fps * info->erp);
+			if(m_flags & BT_HINGE_FLAGS_CFM_NORM)
+			{
+				info->cfm[srow] = m_normalCFM;
+			}
+			btScalar mot_fact = getMotorFactor(m_hingeAngle, lostop, histop, m_motorTargetVelocity, info->fps * currERP);
 			info->m_constraintError[srow] += mot_fact * m_motorTargetVelocity * m_referenceSign;
 			info->m_lowerLimit[srow] = - m_maxMotorImpulse;
 			info->m_upperLimit[srow] =   m_maxMotorImpulse;
 		}
 		if(limit)
 		{
-			k = info->fps * info->erp;
+			k = info->fps * currERP;
 			info->m_constraintError[srow] += k * limit_err;
-			info->cfm[srow] = btScalar(0.0);
+			if(m_flags & BT_HINGE_FLAGS_CFM_STOP)
+			{
+				info->cfm[srow] = m_stopCFM;
+			}
 			if(lostop == histop) 
 			{
 				// limited low and high simultaneously
@@ -1010,19 +855,26 @@ void btHingeConstraint::getInfo2InternalUsingFrameOffset(btConstraintInfo2* info
 			powered = 0;
 		}
 		info->m_constraintError[srow] = btScalar(0.0f);
+		btScalar currERP = (m_flags & BT_HINGE_FLAGS_ERP_STOP) ? m_stopERP : info->erp;
 		if(powered)
 		{
-            info->cfm[srow] = btScalar(0.0); 
-			btScalar mot_fact = getMotorFactor(m_hingeAngle, lostop, histop, m_motorTargetVelocity, info->fps * info->erp);
+			if(m_flags & BT_HINGE_FLAGS_CFM_NORM)
+			{
+				info->cfm[srow] = m_normalCFM;
+			}
+			btScalar mot_fact = getMotorFactor(m_hingeAngle, lostop, histop, m_motorTargetVelocity, info->fps * currERP);
 			info->m_constraintError[srow] += mot_fact * m_motorTargetVelocity * m_referenceSign;
 			info->m_lowerLimit[srow] = - m_maxMotorImpulse;
 			info->m_upperLimit[srow] =   m_maxMotorImpulse;
 		}
 		if(limit)
 		{
-			k = info->fps * info->erp;
+			k = info->fps * currERP;
 			info->m_constraintError[srow] += k * limit_err;
-			info->cfm[srow] = btScalar(0.0);
+			if(m_flags & BT_HINGE_FLAGS_CFM_STOP)
+			{
+				info->cfm[srow] = m_stopCFM;
+			}
 			if(lostop == histop) 
 			{
 				// limited low and high simultaneously
@@ -1074,4 +926,67 @@ void btHingeConstraint::getInfo2InternalUsingFrameOffset(btConstraintInfo2* info
 		} // if(limit)
 	} // if angular limit or powered
 }
+
+
+///override the default global value of a parameter (such as ERP or CFM), optionally provide the axis (0..5). 
+///If no axis is provided, it uses the default axis for this constraint.
+void btHingeConstraint::setParam(int num, btScalar value, int axis)
+{
+	if((axis == -1) || (axis == 5))
+	{
+		switch(num)
+		{	
+			case BT_CONSTRAINT_STOP_ERP :
+				m_stopERP = value;
+				m_flags |= BT_HINGE_FLAGS_ERP_STOP;
+				break;
+			case BT_CONSTRAINT_STOP_CFM :
+				m_stopCFM = value;
+				m_flags |= BT_HINGE_FLAGS_CFM_STOP;
+				break;
+			case BT_CONSTRAINT_CFM :
+				m_normalCFM = value;
+				m_flags |= BT_HINGE_FLAGS_CFM_NORM;
+				break;
+			default : 
+				btAssertConstrParams(0);
+		}
+	}
+	else
+	{
+		btAssertConstrParams(0);
+	}
+}
+
+///return the local value of parameter
+btScalar btHingeConstraint::getParam(int num, int axis) const 
+{
+	btScalar retVal = 0;
+	if((axis == -1) || (axis == 5))
+	{
+		switch(num)
+		{	
+			case BT_CONSTRAINT_STOP_ERP :
+				btAssertConstrParams(m_flags & BT_HINGE_FLAGS_ERP_STOP);
+				retVal = m_stopERP;
+				break;
+			case BT_CONSTRAINT_STOP_CFM :
+				btAssertConstrParams(m_flags & BT_HINGE_FLAGS_CFM_STOP);
+				retVal = m_stopCFM;
+				break;
+			case BT_CONSTRAINT_CFM :
+				btAssertConstrParams(m_flags & BT_HINGE_FLAGS_CFM_NORM);
+				retVal = m_normalCFM;
+				break;
+			default : 
+				btAssertConstrParams(0);
+		}
+	}
+	else
+	{
+		btAssertConstrParams(0);
+	}
+	return retVal;
+}
+
 

@@ -22,7 +22,7 @@
 #include "LinearMath/btIDebugDraw.h"
 #include "BulletDynamics/ConstraintSolver/btContactConstraint.h"
 
-static btRigidBody s_fixedObject( 0,0,0);
+
 
 btRaycastVehicle::btRaycastVehicle(const btVehicleTuning& tuning,btRigidBody* chassis,	btVehicleRaycaster* raycaster )
 :m_vehicleRaycaster(raycaster),
@@ -187,7 +187,7 @@ btScalar btRaycastVehicle::rayCast(btWheelInfo& wheel)
 		wheel.m_raycastInfo.m_contactNormalWS  = rayResults.m_hitNormalInWorld;
 		wheel.m_raycastInfo.m_isInContact = true;
 		
-		wheel.m_raycastInfo.m_groundObject = &s_fixedObject;///@todo for driving on dynamic/movable objects!;
+		wheel.m_raycastInfo.m_groundObject = &getFixedBody();///@todo for driving on dynamic/movable objects!;
 		//wheel.m_raycastInfo.m_groundObject = object;
 
 
@@ -708,13 +708,13 @@ void	btRaycastVehicle::debugDraw(btIDebugDraw* debugDrawer)
 
 	for (int v=0;v<this->getNumWheels();v++)
 	{
-		btVector3 wheelColor(0,255,255);
+		btVector3 wheelColor(0,1,1);
 		if (getWheelInfo(v).m_raycastInfo.m_isInContact)
 		{
-			wheelColor.setValue(0,0,255);
+			wheelColor.setValue(0,0,1);
 		} else
 		{
-			wheelColor.setValue(255,0,255);
+			wheelColor.setValue(1,0,1);
 		}
 
 		btVector3 wheelPosWS = getWheelInfo(v).m_worldTransform.getOrigin();

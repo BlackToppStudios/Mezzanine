@@ -72,6 +72,11 @@ public:
 		return m_uid;
 	}
 
+	void	setUid1(int uid)
+	{
+		m_uid = uid;
+	}
+
 	bool equals(const btHashInt& other) const
 	{
 		return getUid1() == other.getUid1();
@@ -90,10 +95,16 @@ public:
 
 class btHashPtr
 {
-	void*	m_pointer;
+
+	union
+	{
+		const void*	m_pointer;
+		int	m_hashValues[2];
+	};
+
 public:
 
-	btHashPtr(void* ptr)
+	btHashPtr(const void* ptr)
 		:m_pointer(ptr)
 	{
 	}
@@ -112,9 +123,8 @@ public:
 	SIMD_FORCE_INLINE	unsigned int getHash()const
 	{
 		const bool VOID_IS_8 = ((sizeof(void*)==8));
-		int* intPtr = (int*)&m_pointer;
-
-		int key = VOID_IS_8? intPtr[0]+intPtr[1] : intPtr[0];
+		
+		int key = VOID_IS_8? m_hashValues[0]+m_hashValues[1] : m_hashValues[0];
 	
 		// Thomas Wang's hash
 		key += ~(key << 15);	key ^=  (key >> 10);	key +=  (key << 3);	key ^=  (key >> 6);	key += ~(key << 11);	key ^=  (key >> 16);
@@ -194,6 +204,7 @@ template <class Key, class Value>
 class btHashMap
 {
 
+protected:
 	btAlignedObjectArray<int>		m_hashTable;
 	btAlignedObjectArray<int>		m_next;
 	

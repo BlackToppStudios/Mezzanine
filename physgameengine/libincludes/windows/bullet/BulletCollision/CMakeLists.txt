@@ -26,6 +26,8 @@ SET(BulletCollision_SRCS
 	CollisionDispatch/btDefaultCollisionConfiguration.cpp
 	CollisionDispatch/btEmptyCollisionAlgorithm.cpp
 	CollisionDispatch/btGhostObject.cpp
+	CollisionDispatch/btInternalEdgeUtility.cpp
+	CollisionDispatch/btInternalEdgeUtility.h
 	CollisionDispatch/btManifoldResult.cpp
 	CollisionDispatch/btSimulationIslandManager.cpp
 	CollisionDispatch/btSphereBoxCollisionAlgorithm.cpp
@@ -170,6 +172,7 @@ SET(CollisionShapes_HDRS
 	CollisionShapes/btTriangleCallback.h
 	CollisionShapes/btTriangleIndexVertexArray.h
 	CollisionShapes/btTriangleIndexVertexMaterialArray.h
+	CollisionShapes/btTriangleInfoMap.h
 	CollisionShapes/btTriangleMesh.h
 	CollisionShapes/btTriangleMeshShape.h
 	CollisionShapes/btTriangleShape.h
@@ -241,28 +244,30 @@ IF (BUILD_SHARED_LIBS)
 ENDIF (BUILD_SHARED_LIBS)
 
 
-
-
-#INSTALL of other files requires CMake 2.6
-IF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 2.5)
-	IF (APPLE AND BUILD_SHARED_LIBS AND FRAMEWORK)
-		INSTALL(TARGETS BulletCollision DESTINATION .)
-	ELSE (APPLE AND BUILD_SHARED_LIBS AND FRAMEWORK)
-		INSTALL(TARGETS BulletCollision DESTINATION lib${LIB_SUFFIX})
-		INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} DESTINATION include FILES_MATCHING PATTERN "*.h")
-		INSTALL(FILES ../btBulletCollisionCommon.h DESTINATION include/BulletCollision)
-	ENDIF (APPLE AND BUILD_SHARED_LIBS AND FRAMEWORK)
-ENDIF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 2.5)
-
-IF (APPLE AND BUILD_SHARED_LIBS AND FRAMEWORK)
-	SET_TARGET_PROPERTIES(BulletCollision PROPERTIES FRAMEWORK true)
-
-	SET_TARGET_PROPERTIES(BulletCollision PROPERTIES PUBLIC_HEADER ${Root_HDRS})
-	# Have to list out sub-directories manually:
-	SET_PROPERTY(SOURCE ${BroadphaseCollision_HDRS} PROPERTY MACOSX_PACKAGE_LOCATION Headers/BroadphaseCollision)
-	SET_PROPERTY(SOURCE ${CollisionDispatch_HDRS} PROPERTY MACOSX_PACKAGE_LOCATION Headers/CollisionDispatch)
-	SET_PROPERTY(SOURCE ${CollisionShapes_HDRS} PROPERTY MACOSX_PACKAGE_LOCATION Headers/CollisionShapes)
-	SET_PROPERTY(SOURCE ${Gimpact_HDRS} PROPERTY MACOSX_PACKAGE_LOCATION Headers/Gimpact)
-	SET_PROPERTY(SOURCE ${NarrowPhaseCollision_HDRS} PROPERTY MACOSX_PACKAGE_LOCATION Headers/NarrowPhaseCollision)
-
-ENDIF (APPLE AND BUILD_SHARED_LIBS AND FRAMEWORK)
+IF (INSTALL_LIBS)
+	IF (NOT INTERNAL_CREATE_DISTRIBUTABLE_MSVC_PROJECTFILES)
+		#INSTALL of other files requires CMake 2.6
+		IF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 2.5)
+			IF (APPLE AND BUILD_SHARED_LIBS AND FRAMEWORK)
+				INSTALL(TARGETS BulletCollision DESTINATION .)
+			ELSE (APPLE AND BUILD_SHARED_LIBS AND FRAMEWORK)
+				INSTALL(TARGETS BulletCollision DESTINATION lib${LIB_SUFFIX})
+				INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} DESTINATION include FILES_MATCHING PATTERN "*.h")
+				INSTALL(FILES ../btBulletCollisionCommon.h DESTINATION include/BulletCollision)
+			ENDIF (APPLE AND BUILD_SHARED_LIBS AND FRAMEWORK)
+		ENDIF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 2.5)
+		
+		IF (APPLE AND BUILD_SHARED_LIBS AND FRAMEWORK)
+			SET_TARGET_PROPERTIES(BulletCollision PROPERTIES FRAMEWORK true)
+		
+			SET_TARGET_PROPERTIES(BulletCollision PROPERTIES PUBLIC_HEADER ${Root_HDRS})
+			# Have to list out sub-directories manually:
+			SET_PROPERTY(SOURCE ${BroadphaseCollision_HDRS} PROPERTY MACOSX_PACKAGE_LOCATION Headers/BroadphaseCollision)
+			SET_PROPERTY(SOURCE ${CollisionDispatch_HDRS} PROPERTY MACOSX_PACKAGE_LOCATION Headers/CollisionDispatch)
+			SET_PROPERTY(SOURCE ${CollisionShapes_HDRS} PROPERTY MACOSX_PACKAGE_LOCATION Headers/CollisionShapes)
+			SET_PROPERTY(SOURCE ${Gimpact_HDRS} PROPERTY MACOSX_PACKAGE_LOCATION Headers/Gimpact)
+			SET_PROPERTY(SOURCE ${NarrowPhaseCollision_HDRS} PROPERTY MACOSX_PACKAGE_LOCATION Headers/NarrowPhaseCollision)
+		
+		ENDIF (APPLE AND BUILD_SHARED_LIBS AND FRAMEWORK)
+	ENDIF (NOT INTERNAL_CREATE_DISTRIBUTABLE_MSVC_PROJECTFILES)
+ENDIF (INSTALL_LIBS)

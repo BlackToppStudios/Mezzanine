@@ -48,6 +48,7 @@ bool	SpuGatheringCollisionDispatcher::supportsDispatchPairOnSpu(int proxyType0,i
 //		(proxyType0 == CONE_SHAPE_PROXYTYPE) ||
 		(proxyType0 == TRIANGLE_MESH_SHAPE_PROXYTYPE) ||
 		(proxyType0 == CONVEX_HULL_SHAPE_PROXYTYPE)||
+		(proxyType0 == STATIC_PLANE_PROXYTYPE)||
 		(proxyType0 == COMPOUND_SHAPE_PROXYTYPE)
 		);
 
@@ -60,9 +61,11 @@ bool	SpuGatheringCollisionDispatcher::supportsDispatchPairOnSpu(int proxyType0,i
 //		(proxyType1 == CONE_SHAPE_PROXYTYPE) ||
 		(proxyType1 == TRIANGLE_MESH_SHAPE_PROXYTYPE) ||
 		(proxyType1 == CONVEX_HULL_SHAPE_PROXYTYPE) ||
+		(proxyType1 == STATIC_PLANE_PROXYTYPE) ||
 		(proxyType1 == COMPOUND_SHAPE_PROXYTYPE)
 		);
 
+	
 	return supported0 && supported1;
 }
 
@@ -124,7 +127,10 @@ public:
 				{
 					int	proxyType0 = colObj0->getCollisionShape()->getShapeType();
 					int	proxyType1 = colObj1->getCollisionShape()->getShapeType();
-					if (m_dispatcher->supportsDispatchPairOnSpu(proxyType0,proxyType1))
+					if (m_dispatcher->supportsDispatchPairOnSpu(proxyType0,proxyType1) 
+						&& (colObj0->getCollisionFlags() != btCollisionObject::CF_DISABLE_SPU_COLLISION_PROCESSING) 
+						&& (colObj1->getCollisionFlags() != btCollisionObject::CF_DISABLE_SPU_COLLISION_PROCESSING) 
+						)
 					{
 						int so = sizeof(SpuContactManifoldCollisionAlgorithm);
 #ifdef ALLOCATE_SEPARATELY
@@ -175,14 +181,21 @@ void	SpuGatheringCollisionDispatcher::dispatchAllCollisionPairs(btOverlappingPai
 
 		//send one big batch
 		int numTotalPairs = pairCache->getNumOverlappingPairs();
+		
 		btBroadphasePair* pairPtr = pairCache->getOverlappingPairArrayPtr();
 		int i;
 		{
+			int pairRange =	SPU_BATCHSIZE_BROADPHASE_PAIRS;
+			if (numTotalPairs < (m_spuCollisionTaskProcess->getNumTasks()*SPU_BATCHSIZE_BROADPHASE_PAIRS))
+			{
+				pairRange = (numTotalPairs/m_spuCollisionTaskProcess->getNumTasks())+1;
+			}
+
 			BT_PROFILE("addWorkToTask");
 			for (i=0;i<numTotalPairs;)
 			{
 				//Performance Hint: tweak this number during benchmarking
-				static const int pairRange = SPU_BATCHSIZE_BROADPHASE_PAIRS;
+				
 				int endIndex = (i+pairRange) < numTotalPairs ? i+pairRange : numTotalPairs;
 				m_spuCollisionTaskProcess->addWorkToTask(pairPtr,i,endIndex);
 				i = endIndex;

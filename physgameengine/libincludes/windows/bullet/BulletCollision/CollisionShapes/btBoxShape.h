@@ -41,7 +41,7 @@ public:
 	
 	const btVector3& getHalfExtentsWithoutMargin() const
 	{
-		return m_implicitShapeDimensions;//changed in Bullet 2.63: assume the scaling and margin are included
+		return m_implicitShapeDimensions;//scaling is included, margin is not
 	}
 	
 
@@ -310,39 +310,7 @@ public:
 		}
 	}
 
-	virtual	int	calculateSerializeBufferSize();
-
-	///fills the dataBuffer and returns the struct name (and 0 on failure)
-	virtual	const char*	serialize(void* dataBuffer) const;
-
-	
-	
-
 };
-
-
-struct	btBoxShapeData
-{
-	btVector3Data	m_halfExtents;
-	btVector3Data	m_localScaling;
-};
-
-
-
-SIMD_FORCE_INLINE	int	btBoxShape::calculateSerializeBufferSize()
-{
-	return sizeof(btBoxShapeData);
-}
-
-///fills the dataBuffer and returns the struct name (and 0 on failure)
-SIMD_FORCE_INLINE	const char*	btBoxShape::serialize(void* dataBuffer) const
-{
-	btBoxShapeData* boxData = (btBoxShapeData*) dataBuffer;
-
-	m_implicitShapeDimensions.serialize(boxData->m_halfExtents);
-	m_localScaling.serialize(boxData->m_localScaling);
-	return "btBoxShapeData";
-}
 
 
 #endif //OBB_BOX_MINKOWSKI_H
