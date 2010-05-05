@@ -40,7 +40,7 @@ btSoftBody $\ast$ {\bfseries physsoftbody}}
 \subsection{Detailed Description}
 This is the actor class for Soft Objects. This class should be used to make any soft object that, like \hyperlink{classActorRigid}{ActorRigid}, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. 
 
-Definition at line 275 of file physactor.h.
+Definition at line 280 of file physactor.h.
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classActorSoft_af58881c064fa2182a2347eb8755696b0}{
@@ -52,7 +52,7 @@ Definition at line 275 of file physactor.h.
 
 Destructor. The class destructor. 
 
-Definition at line 332 of file physactor.cpp.
+Definition at line 372 of file physactor.cpp.
 
 \subsection{Member Function Documentation}
 \hypertarget{classActorSoft_a0def29f28ed4d126a0634ddc97e33e2f}{
@@ -70,7 +70,7 @@ Adds the actor to the physics world. Adds the actor to the physics world. \par
 
 Implements \hyperlink{classActorBase_a1af82a2ed960fd114518fdf84d5ff146}{ActorBase}.
 
-Definition at line 343 of file physactor.cpp.\hypertarget{classActorSoft_a55ac461f317aed2b812f07eb384b2a6d}{
+Definition at line 383 of file physactor.cpp.\hypertarget{classActorSoft_a55ac461f317aed2b812f07eb384b2a6d}{
 \index{ActorSoft@{ActorSoft}!CreateShapeFromMesh@{CreateShapeFromMesh}}
 \index{CreateShapeFromMesh@{CreateShapeFromMesh}!ActorSoft@{ActorSoft}}
 \subsubsection[{CreateShapeFromMesh}]{\setlength{\rightskip}{0pt plus 5cm}void ActorSoft::CreateShapeFromMesh ()}}
@@ -79,7 +79,7 @@ Definition at line 343 of file physactor.cpp.\hypertarget{classActorSoft_a55ac46
 
 Creates a collision shape from mesh file. This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. 
 
-Definition at line 348 of file physactor.cpp.\hypertarget{classActorSoft_a01a570c728d6cb96d1a40003d6b17e22}{
+Definition at line 388 of file physactor.cpp.\hypertarget{classActorSoft_a01a570c728d6cb96d1a40003d6b17e22}{
 \index{ActorSoft@{ActorSoft}!CreateSoftObject@{CreateSoftObject}}
 \index{CreateSoftObject@{CreateSoftObject}!ActorSoft@{ActorSoft}}
 \subsubsection[{CreateSoftObject}]{\setlength{\rightskip}{0pt plus 5cm}void ActorSoft::CreateSoftObject (btSoftBodyWorldInfo $\ast$ {\em softworldinfo}, \/  int {\em nodecount}, \/  btVector3 $\ast$ {\em nodearray}, \/  btScalar $\ast$ {\em massarray})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
@@ -89,7 +89,7 @@ Definition at line 348 of file physactor.cpp.\hypertarget{classActorSoft_a01a570
 Creates a soft object for the actor. Creates a soft object to be placed in the physics world later. \par
  This is automaticly called by the Constructor and shouldn't be called manually. 
 
-Definition at line 337 of file physactor.cpp.
+Definition at line 377 of file physactor.cpp.
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 
