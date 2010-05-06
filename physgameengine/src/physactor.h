@@ -244,9 +244,6 @@ class ActorRigid: public ActorBase {
         /// @param TargetWorld Pointer to the PhysWorld class.
         /// @param World Pointer to the physics world.
         void AddObjectToWorld (PhysWorld *TargetWorld, btSoftRigidDynamicsWorld* World);
-        /// @brief Sets the location of the physics body.
-        /// @details This will take a PhysVector3 and set the location of the actor within the physics world. @n
-        /// This function is called on by the SetLocation function, and shouldn't be called manually.
 
 	public:
         /// @brief Descriptive constructor.

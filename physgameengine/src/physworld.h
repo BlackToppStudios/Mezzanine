@@ -302,29 +302,36 @@ class PhysWorld
         /// @param ActorToAdd This is a pointer to the actor to be added
         void AddActor(ActorBase* ActorToAdd);
 
-        /// @brief
-        /// @param Location
-        /// @param Type
-        /// @param Group
-        /// @param recursive
-        /// @details
+        /// @brief Adds a location for graphical resources.
+        /// @details This function will add a location on the disk to find files needed to create and
+        /// manipulate graphical objects.
+        /// @param Location The location on the file system the resource can be found.
+        /// @param Type The kind of file system the location can be found in. @n
+        /// Options are: filesystem, zip.
+        /// @param Group The name of the group the resources at this location belong to.
+        /// @param recursive Whether or not to search sub-directories.
         void AddResourceLocation(const PhysString &Location, const PhysString &Type, const PhysString &Group, const bool &recursive=false);
 
-        /// @brief
-        /// @param Name
-        /// @param Type
-        /// @param Group
-        /// @details
+        /// @brief Prepares the resource for use.
+        /// @details This function can be thought of as a preloader.  This will prepare the defined
+        /// resource located on the disk for use.
+        /// @param Name Name of the file/resource to be 'prepared'.
+        /// @param Type The type of resource that the file is. @n
+        /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.
+        /// @param Group Name of the group the resource belongs to.
         void DeclareResource(PhysString Name, PhysString Type, PhysString Group);
 
-        /// @brief
-        /// @param Name
-        /// @details
+        /// @brief Makes a resource group ready to use.
+        /// @details After adding all of your resources and declaring them as nessessary, this function
+        /// is the final step.  After calling this function any and all resources within the defined group
+        /// will be ready to use.  Do not initialize any more groups then you need to however, as that will
+        /// take up memory and drop performance.
+        /// @param Name Name of the resource group.
         void InitResourceGroup(PhysString Name);
 
-        /// @brief
-        /// @param pgrav
-        /// @details
+        /// @brief Sets the gravity.
+        /// @details Sets the strength and direction of gravity within the world.
+        /// @param pgrav Vector3 representing the strength and direction of gravity.
         void SetGravity(PhysVector3 pgrav);
 
 		/// @brief This is a point to the default Call BackManager
