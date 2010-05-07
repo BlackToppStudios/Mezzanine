@@ -7,7 +7,11 @@
 The base class for all events.  
 
 
-{\ttfamily \#include $<$event.h$>$}Inheritance diagram for phys::Event::\begin{figure}[H]
+
+
+{\ttfamily \#include $<$event.h$>$}
+
+Inheritance diagram for phys::Event:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2cm]{d5/dcb/classphys_1_1Event}
@@ -36,6 +40,8 @@ virtual \hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{Event::
 The base class for all events. All Events used in the \hyperlink{classphys_1_1Event}{Event} Manager, will inherit from this. While not absolutely required by the game programmer to write their own events, it it could be useful. Instances of this class cannot be made, and all classes that inherit from this are expected to implement \hyperlink{classphys_1_1Event_ac2c0623a6bc399e62f4b9fb2c022ea73}{getEventType()}. 
 
 Definition at line 64 of file event.h.
+
+
 
 \subsection{Member Enumeration Documentation}
 \hypertarget{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{
@@ -69,6 +75,8 @@ SystemMessage}
 
 Definition at line 71 of file event.h.
 
+
+
 \subsection{Member Function Documentation}
 \hypertarget{classphys_1_1Event_ac2c0623a6bc399e62f4b9fb2c022ea73}{
 \index{phys::Event@{phys::Event}!getEventType@{getEventType}}
@@ -77,12 +85,16 @@ Definition at line 71 of file event.h.
 \label{d5/dcb/classphys_1_1Event_ac2c0623a6bc399e62f4b9fb2c022ea73}
 
 
-This will aid in identifying all classes that inherit from this class. All Classes derived form this calls will return an \hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{Event::EventType} that correspond the the data/class type they actually are. \begin{DoxyReturn}{Returns}
+This will aid in identifying all classes that inherit from this class. 
+
+All Classes derived form this calls will return an \hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{Event::EventType} that correspond the the data/class type they actually are. \begin{DoxyReturn}{Returns}
 This returns an eventype that will correspend with the actual event type. This can be used on all Phys game provided class to safely cast a pointer to the correct event type. 
 \end{DoxyReturn}
 
 
 Implemented in \hyperlink{classphys_1_1EventQuit_a4df44098d0ef838db55a8e2a016d0724}{phys::EventQuit}, \hyperlink{classPhysEventRenderTime_a96b0569f8b1cd459383318c9437130d4}{PhysEventRenderTime}, and \hyperlink{classPhysEventUserInput_a2a39643cd222f7af0db7b087e0441582}{PhysEventUserInput}.
+
+
 
 The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
 \item 

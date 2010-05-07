@@ -25,6 +25,8 @@ PhysReal x=0;
 PhysReal y=0;
 PhysReal z=0;
 
+
+
 int main(int argc, char **argv)
 {
     TheWorld.SetWindowName("Catch!... The Game!");
@@ -162,7 +164,7 @@ void LoadContent()
     PhysString groupname="Robot";
     PhysString filename="robot.mesh";
     PhysReal mass=5.0;
-    TheWorld.AddResourceLocation(GetDataDirectory(), "FileSystem", groupname, false);
+    TheWorld.AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld.DeclareResource(filename, "Mesh", groupname);
     TheWorld.DeclareResource("Examples.material", "Material", groupname);
     TheWorld.InitResourceGroup(groupname);

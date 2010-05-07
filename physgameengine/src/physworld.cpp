@@ -52,15 +52,15 @@
 #include "event.h"
 #include "physworld.h"
 #include "physvector.h"
-#include "physcrossplatform.h"
+#include "crossplatform.h"
 #include "physworldcallbackmanager.h"
 #include "graphicsettings.h"
 #include "physactor.h"
 #include "physeventuserinput.h"
 
-#include "SDL.h"
-#include "btBulletDynamicsCommon.h"
-#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+#include <SDL.h>
+#include <btBulletDynamicsCommon.h>
+#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 #include <Ogre.h>
 
 #include <sstream>
@@ -109,7 +109,7 @@ void PhysWorld::Construct(  const PhysVector3 &GeographyLowerBounds_,
 	PlayerSettings = new GraphicsSettings();
 
 	//We create our Ogre environment
-	this->OgreRoot = new Ogre::Root(GetPluginsDotCFG(),GetSettingsDotCFG(),"Physgame.log");
+	this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
     this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
 
     // This Tests various assumptions about the wa ythe platform works, and will not akk
@@ -421,7 +421,7 @@ void PhysWorld::MainLoop()
                 FrameDelay=0;
             }
         }
-        WaitMilliseconds( FrameDelay );
+        crossplatform::WaitMilliseconds( FrameDelay );
 
         //PostRender Callback
 		if(this->CallBacks->IsPostRenderCallbackSet())
@@ -476,7 +476,7 @@ void PhysWorld::DoMainLoopInputBuffering()
 
 void PhysWorld::DoMainLoopRender()
 {
-	RenderPhysWorld(this);
+	crossplatform::RenderPhysWorld(this);
 }
 ///////////////////////////////////////////////////////////////////////////////
 // Private Functions
@@ -517,7 +517,7 @@ void PhysWorld::CreateRenderWindow()
 
 	//Configure Ogre to render to the SDL window
 	Ogre::NameValuePairList *misc;
-	misc=(Ogre::NameValuePairList*) GetSDLOgreBinder();
+	misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
 	(*misc)["title"] = Ogre::String(this->WindowName);
 	this->OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), misc);
 

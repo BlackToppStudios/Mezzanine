@@ -7,7 +7,11 @@
 This is a container for MetaCodes that is used in the physEventManager.  
 
 
-{\ttfamily \#include $<$physeventuserinput.h$>$}Inheritance diagram for PhysEventUserInput::\begin{figure}[H]
+
+
+{\ttfamily \#include $<$physeventuserinput.h$>$}
+
+Inheritance diagram for PhysEventUserInput:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2cm]{dc/d0e/classPhysEventUserInput}
@@ -61,6 +65,8 @@ This is a container for MetaCodes that is used in the physEventManager. The \hyp
 
 Definition at line 94 of file physeventuserinput.h.
 
+
+
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classPhysEventUserInput_a6f8eaf698e8109d5cb30f2f17044f1ba}{
 \index{PhysEventUserInput@{PhysEventUserInput}!PhysEventUserInput@{PhysEventUserInput}}
@@ -69,9 +75,13 @@ Definition at line 94 of file physeventuserinput.h.
 \label{dc/d0e/classPhysEventUserInput_a6f8eaf698e8109d5cb30f2f17044f1ba}
 
 
-Default constructor. This creates a perfectly functional, but empty \hyperlink{classPhysEventUserInput}{PhysEventUserInput}. 
+Default constructor. 
 
-Definition at line 64 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_ae13b1b02bfa3ef64dc4205478a68810f}{
+This creates a perfectly functional, but empty \hyperlink{classPhysEventUserInput}{PhysEventUserInput}. 
+
+Definition at line 64 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_ae13b1b02bfa3ef64dc4205478a68810f}{
 \index{PhysEventUserInput@{PhysEventUserInput}!PhysEventUserInput@{PhysEventUserInput}}
 \index{PhysEventUserInput@{PhysEventUserInput}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{PhysEventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}PhysEventUserInput::PhysEventUserInput (const {\bf MetaCode} \& {\em Code\_\-})}}
@@ -79,11 +89,15 @@ Definition at line 64 of file physeventuserinput.cpp.\hypertarget{classPhysEvent
 
 
 Single Data Point constructor. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Code\_\-}]This MetaCode will be added to the \hyperlink{classPhysEventUserInput}{PhysEventUserInput} during creation.\end{DoxyParams}
 This creates a functional \hyperlink{classPhysEventUserInput}{PhysEventUserInput} which already contains one metacode. 
 
-Definition at line 69 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a0a9bd99d8db6f171ef3c87bd417ccc4a}{
+Definition at line 69 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_a0a9bd99d8db6f171ef3c87bd417ccc4a}{
 \index{PhysEventUserInput@{PhysEventUserInput}!PhysEventUserInput@{PhysEventUserInput}}
 \index{PhysEventUserInput@{PhysEventUserInput}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{PhysEventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}PhysEventUserInput::PhysEventUserInput (const vector$<$ {\bf MetaCode} $>$ \& {\em Codes\_\-})}}
@@ -91,11 +105,15 @@ Definition at line 69 of file physeventuserinput.cpp.\hypertarget{classPhysEvent
 
 
 Multi Data Point constructor. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Code\_\-}]The MetaCodes in this vecotor will be added to the \hyperlink{classPhysEventUserInput}{PhysEventUserInput} during creation.\end{DoxyParams}
 This creates a ready to use \hyperlink{classPhysEventUserInput}{PhysEventUserInput} which already contains all the metacodes included. 
 
 Definition at line 74 of file physeventuserinput.cpp.
+
+
 
 \subsection{Member Function Documentation}
 \hypertarget{classPhysEventUserInput_aecac02073d3296c71e0ae4534daf8dce}{
@@ -106,11 +124,15 @@ Definition at line 74 of file physeventuserinput.cpp.
 
 
 Add Several MetaCodes from a vector. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Codes\_\-}]A vector of MetaCodes to be added to this event\end{DoxyParams}
 This adds several existing metacodes to this event. 
 
-Definition at line 111 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a385a4f7a6e88be43b6ba1ffc2a1bb5e3}{
+Definition at line 111 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_a385a4f7a6e88be43b6ba1ffc2a1bb5e3}{
 \index{PhysEventUserInput@{PhysEventUserInput}!AddCode@{AddCode}}
 \index{AddCode@{AddCode}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventUserInput::AddCode (const RawEvent \& {\em RawEvent\_\-})}}
@@ -118,6 +140,8 @@ Definition at line 111 of file physeventuserinput.cpp.\hypertarget{classPhysEven
 
 
 Adds a MetaCode created from a RawEvent. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em RawEvent\_\-}]The RawEvent which will be translated into exactly One MetaCode\end{DoxyParams}
 This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is recommended to not use this in game code. \begin{DoxyWarning}{Warning}
@@ -125,7 +149,9 @@ Do not use this without reading and fully understanding the warnings on MetaCode
 \end{DoxyWarning}
 
 
-Definition at line 99 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_ace3b98a502b8e784b58bc5dc599fc0c4}{
+Definition at line 99 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_ace3b98a502b8e784b58bc5dc599fc0c4}{
 \index{PhysEventUserInput@{PhysEventUserInput}!AddCode@{AddCode}}
 \index{AddCode@{AddCode}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventUserInput::AddCode (const int \& {\em MetaValue\_\-}, \/  const short unsigned int \& {\em ID\_\-}, \/  const {\bf MetaCode::InputCode} \& {\em Code\_\-})}}
@@ -133,11 +159,15 @@ Definition at line 99 of file physeventuserinput.cpp.\hypertarget{classPhysEvent
 
 
 Adds a Created From Raw Values. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em MetaValue\_\-}]The MetaValue that will be in the MetaCode \item[{\em ID\_\-}]The ID that will be in the MetaCode \item[{\em Code\_\-}]The InputCode that will be in the MetaCode\end{DoxyParams}
 This creates metacode a metacode and adds it to this event. 
 
-Definition at line 105 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a4f5b94c64cd08c15b480e441d25a385d}{
+Definition at line 105 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_a4f5b94c64cd08c15b480e441d25a385d}{
 \index{PhysEventUserInput@{PhysEventUserInput}!AddCode@{AddCode}}
 \index{AddCode@{AddCode}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventUserInput::AddCode (const {\bf MetaCode} \& {\em Code\_\-})}}
@@ -145,11 +175,15 @@ Definition at line 105 of file physeventuserinput.cpp.\hypertarget{classPhysEven
 
 
 Adds a MetaCode. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Code\_\-}]The User Input MetaCode tobe added\end{DoxyParams}
 This adds an existing metacode to this event. 
 
-Definition at line 94 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a9e42f42f9a4a42f792e5cf95856669c0}{
+Definition at line 94 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_a9e42f42f9a4a42f792e5cf95856669c0}{
 \index{PhysEventUserInput@{PhysEventUserInput}!AddCodesFromRawEvent@{AddCodesFromRawEvent}}
 \index{AddCodesFromRawEvent@{AddCodesFromRawEvent}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{AddCodesFromRawEvent}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventUserInput::AddCodesFromRawEvent (const RawEvent \& {\em RawEvent\_\-})}}
@@ -157,6 +191,8 @@ Definition at line 94 of file physeventuserinput.cpp.\hypertarget{classPhysEvent
 
 
 Adds all possible MetaCodes that can be created from the given RawEvent. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em RawEvent\_\-}]The RawEvent which will be translated into a group of metacodes and added to this\end{DoxyParams}
 This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is recommended to not use this in game code. \begin{DoxyWarning}{Warning}
@@ -165,7 +201,9 @@ If game code is using RawEvents at all, the game logic should be scrutinized car
 \end{DoxyWarning}
 
 
-Definition at line 162 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a8cbbee3c2be3bd12746ad442fce526e4}{
+Definition at line 162 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_a8cbbee3c2be3bd12746ad442fce526e4}{
 \index{PhysEventUserInput@{PhysEventUserInput}!EraseCode@{EraseCode}}
 \index{EraseCode@{EraseCode}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{EraseCode}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventUserInput::EraseCode (const unsigned int \& {\em Index})}}
@@ -173,11 +211,15 @@ Definition at line 162 of file physeventuserinput.cpp.\hypertarget{classPhysEven
 
 
 Removes a specific code from storage. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Index}]This is the location to removed from\end{DoxyParams}
 The MetaCode at and only at the given Index will be deleted. 
 
-Definition at line 133 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a1dbd2996770df334fba9f67d9bb4ffa0}{
+Definition at line 133 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_a1dbd2996770df334fba9f67d9bb4ffa0}{
 \index{PhysEventUserInput@{PhysEventUserInput}!EraseCode@{EraseCode}}
 \index{EraseCode@{EraseCode}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{EraseCode}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventUserInput::EraseCode (const {\bf MetaCode} \& {\em Code\_\-})}}
@@ -185,25 +227,35 @@ Definition at line 133 of file physeventuserinput.cpp.\hypertarget{classPhysEven
 
 
 Removes a specific code from storage. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Code\_\-}]This will search for all matching copies of this\end{DoxyParams}
 All MetaCodes that are equal to Code\_\- will simply be erased. 
 
-Definition at line 120 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a2a39643cd222f7af0db7b087e0441582}{
+Definition at line 120 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_a2a39643cd222f7af0db7b087e0441582}{
 \index{PhysEventUserInput@{PhysEventUserInput}!getEventType@{getEventType}}
 \index{getEventType@{getEventType}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{getEventType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event::EventType} PhysEventUserInput::getEventType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{dc/d0e/classPhysEventUserInput_a2a39643cd222f7af0db7b087e0441582}
 
 
-Returns the type of this event. \begin{DoxyReturn}{Returns}
+Returns the type of this event. 
+
+\begin{DoxyReturn}{Returns}
 Returns EventType::UserInput 
 \end{DoxyReturn}
 
 
 Implements \hyperlink{classphys_1_1Event_ac2c0623a6bc399e62f4b9fb2c022ea73}{phys::Event}.
 
-Definition at line 157 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_aa564530c27f6983bb412e46c2c7ed086}{
+
+
+Definition at line 157 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_aa564530c27f6983bb412e46c2c7ed086}{
 \index{PhysEventUserInput@{PhysEventUserInput}!GetMetaCode@{GetMetaCode}}
 \index{GetMetaCode@{GetMetaCode}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{GetMetaCode}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf MetaCode} PhysEventUserInput::GetMetaCode (const unsigned int \& {\em Index})}}
@@ -211,6 +263,8 @@ Definition at line 157 of file physeventuserinput.cpp.\hypertarget{classPhysEven
 
 
 Single Data Point constructor. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Code\_\-}]which Metacode to return. \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -219,19 +273,25 @@ Index The requested MetaCode
 This function simply retrieves the requested MetaCode. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists \par
  This is useful for accessing each MetaCode stored in this physUserInputEvent. 
 
-Definition at line 84 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a86df812a38566a572134100a422a8799}{
+Definition at line 84 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_a86df812a38566a572134100a422a8799}{
 \index{PhysEventUserInput@{PhysEventUserInput}!GetMetaCodeCount@{GetMetaCodeCount}}
 \index{GetMetaCodeCount@{GetMetaCodeCount}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{GetMetaCodeCount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int PhysEventUserInput::GetMetaCodeCount ()}}
 \label{dc/d0e/classPhysEventUserInput_a86df812a38566a572134100a422a8799}
 
 
-Retrieves a count of the stored Metacodes. \begin{DoxyReturn}{Returns}
+Retrieves a count of the stored Metacodes. 
+
+\begin{DoxyReturn}{Returns}
 The amount of codes stored in this physEventUserInput. 
 \end{DoxyReturn}
 
 
-Definition at line 89 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a257c2e093b5736324e39d5fac0d6de2a}{
+Definition at line 89 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_a257c2e093b5736324e39d5fac0d6de2a}{
 \index{PhysEventUserInput@{PhysEventUserInput}!operator+=@{operator+=}}
 \index{operator+=@{operator+=}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventUserInput} \& PhysEventUserInput::operator+= (const {\bf PhysEventUserInput} \& {\em Add})}}
@@ -239,6 +299,8 @@ Definition at line 89 of file physeventuserinput.cpp.\hypertarget{classPhysEvent
 
 
 This add all of one \hyperlink{classPhysEventUserInput}{PhysEventUserInput} to another. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Add}]is the \hyperlink{classPhysEventUserInput}{PhysEventUserInput} on the right hand side of +=\end{DoxyParams}
 This simply copies all the MetaCodes from one \hyperlink{classPhysEventUserInput}{PhysEventUserInput} to the other. \begin{DoxyReturn}{Returns}
@@ -246,7 +308,9 @@ The \hyperlink{classPhysEventUserInput}{PhysEventUserInput} on the left ahnd sid
 \end{DoxyReturn}
 
 
-Definition at line 195 of file physeventuserinput.cpp.\hypertarget{classPhysEventUserInput_a8325bb0172db6ea02fd06f4a5d1a7378}{
+Definition at line 195 of file physeventuserinput.cpp.
+
+\hypertarget{classPhysEventUserInput_a8325bb0172db6ea02fd06f4a5d1a7378}{
 \index{PhysEventUserInput@{PhysEventUserInput}!ToggleCode@{ToggleCode}}
 \index{ToggleCode@{ToggleCode}!PhysEventUserInput@{PhysEventUserInput}}
 \subsubsection[{ToggleCode}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventUserInput::ToggleCode (const {\bf MetaCode} \& {\em Code\_\-})}}
@@ -254,11 +318,15 @@ Definition at line 195 of file physeventuserinput.cpp.\hypertarget{classPhysEven
 
 
 Removes a specific code or Adds it if not present. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Code\_\-}]This will search for all matching copies of this.\end{DoxyParams}
 All MetaCodes that are equal to Code\_\- will simply be erased. 
 
 Definition at line 138 of file physeventuserinput.cpp.
+
+
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

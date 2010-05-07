@@ -68,7 +68,7 @@
 */
 
 //Includes and Forward Declarations
-#include "physcrossplatform.h"
+#include "crossplatform.h"
 #include "physworldcallbackmanager.h"
 #include "event.h"
 #include "physeventmanager.h"
@@ -176,7 +176,7 @@ class PhysWorld
 
         /// @brief Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
         /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
-        friend void RenderPhysWorld(PhysWorld *TheWorld);
+        friend void crossplatform::RenderPhysWorld(PhysWorld *TheWorld);
 
         friend class ActorBase;
 	public:

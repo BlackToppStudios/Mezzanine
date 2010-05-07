@@ -5,6 +5,8 @@
 
 
 This is intended to store basic graphics setting for the user.  
+
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,6 +35,8 @@ This is intended to store basic graphics setting for the user. This stores x/y r
 
 Definition at line 57 of file graphicsettings.h.
 
+
+
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classphys_1_1GraphicsSettings_aceaaf53585413067adbf271e2c1e48fa}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!GraphicsSettings@{GraphicsSettings}}
@@ -41,9 +45,13 @@ Definition at line 57 of file graphicsettings.h.
 \label{dc/df1/classphys_1_1GraphicsSettings_aceaaf53585413067adbf271e2c1e48fa}
 
 
-Default constructor. This creates a default Graphics Settings with resolution 640x480 with fullscreen set to false 
+Default constructor. 
 
-Definition at line 53 of file graphicsettings.cpp.\hypertarget{classphys_1_1GraphicsSettings_a58d20902f41ddf10db9f9a810a3910cc}{
+This creates a default Graphics Settings with resolution 640x480 with fullscreen set to false 
+
+Definition at line 51 of file graphicsettings.cpp.
+
+\hypertarget{classphys_1_1GraphicsSettings_a58d20902f41ddf10db9f9a810a3910cc}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!GraphicsSettings@{GraphicsSettings}}
 \index{GraphicsSettings@{GraphicsSettings}!phys::GraphicsSettings@{phys::GraphicsSettings}}
 \subsubsection[{GraphicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}phys::GraphicsSettings::GraphicsSettings (const PhysWhole \& {\em Width\_\-}, \/  const PhysWhole \& {\em Height\_\-}, \/  const bool \& {\em FullScreen\_\-})}}
@@ -51,11 +59,15 @@ Definition at line 53 of file graphicsettings.cpp.\hypertarget{classphys_1_1Grap
 
 
 Versatile Constructor. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Width\_\-}]The desired width. \item[{\em Height\_\-}]The desired height. \item[{\em FullScreen\_\-}]True if fullscreen, false if not.\end{DoxyParams}
 This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support arbitrary resolutions in fullscreen mode. 
 
-Definition at line 58 of file graphicsettings.cpp.
+Definition at line 56 of file graphicsettings.cpp.
+
+
 
 \subsection{Member Function Documentation}
 \hypertarget{classphys_1_1GraphicsSettings_aa8107167a2094f757f409db36e088171}{
@@ -66,83 +78,111 @@ Definition at line 58 of file graphicsettings.cpp.
 
 
 Adjust all Settings. 
+
+
 \begin{DoxyParams}{Parameters}
 \item[{\em Width\_\-}]The desired width. \item[{\em Height\_\-}]The desired height. \item[{\em FullScreen\_\-}]True if fullscreen, false if not.\end{DoxyParams}
 This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support arbitrary resolutions in fullscreen mode. 
 
-Definition at line 63 of file graphicsettings.cpp.\hypertarget{classphys_1_1GraphicsSettings_a8871ea7d5c65c3b59d1d34b59531743f}{
+Definition at line 61 of file graphicsettings.cpp.
+
+\hypertarget{classphys_1_1GraphicsSettings_a8871ea7d5c65c3b59d1d34b59531743f}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!getFullscreen@{getFullscreen}}
 \index{getFullscreen@{getFullscreen}!phys::GraphicsSettings@{phys::GraphicsSettings}}
 \subsubsection[{getFullscreen}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::GraphicsSettings::getFullscreen () const}}
 \label{dc/df1/classphys_1_1GraphicsSettings_a8871ea7d5c65c3b59d1d34b59531743f}
 
 
-Gets the Fullscreen Setting. Gets the Fullscreen Setting \begin{DoxyReturn}{Returns}
+Gets the Fullscreen Setting. 
+
+Gets the Fullscreen Setting \begin{DoxyReturn}{Returns}
 This returns a bool, true if fullscreen is set, false otherwise 
 \end{DoxyReturn}
 
 
-Definition at line 71 of file graphicsettings.cpp.\hypertarget{classphys_1_1GraphicsSettings_a4e9df38f338a0b660f68c716a6b4a223}{
+Definition at line 69 of file graphicsettings.cpp.
+
+\hypertarget{classphys_1_1GraphicsSettings_a4e9df38f338a0b660f68c716a6b4a223}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!getRenderHeight@{getRenderHeight}}
 \index{getRenderHeight@{getRenderHeight}!phys::GraphicsSettings@{phys::GraphicsSettings}}
 \subsubsection[{getRenderHeight}]{\setlength{\rightskip}{0pt plus 5cm}PhysWhole phys::GraphicsSettings::getRenderHeight () const}}
 \label{dc/df1/classphys_1_1GraphicsSettings_a4e9df38f338a0b660f68c716a6b4a223}
 
 
-Gets the Height of the Rendering Area. Gets the Height of the Rendering Area \begin{DoxyReturn}{Returns}
+Gets the Height of the Rendering Area. 
+
+Gets the Height of the Rendering Area \begin{DoxyReturn}{Returns}
 This returns the Height of the Rendering Area 
 \end{DoxyReturn}
 
 
-Definition at line 84 of file graphicsettings.cpp.\hypertarget{classphys_1_1GraphicsSettings_aca019a830353f95f69c27c147c52dd03}{
+Definition at line 82 of file graphicsettings.cpp.
+
+\hypertarget{classphys_1_1GraphicsSettings_aca019a830353f95f69c27c147c52dd03}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!getRenderWidth@{getRenderWidth}}
 \index{getRenderWidth@{getRenderWidth}!phys::GraphicsSettings@{phys::GraphicsSettings}}
 \subsubsection[{getRenderWidth}]{\setlength{\rightskip}{0pt plus 5cm}PhysWhole phys::GraphicsSettings::getRenderWidth () const}}
 \label{dc/df1/classphys_1_1GraphicsSettings_aca019a830353f95f69c27c147c52dd03}
 
 
-Gets the Width of the Rendering Area. Gets the Width of the Rendering Area \begin{DoxyReturn}{Returns}
+Gets the Width of the Rendering Area. 
+
+Gets the Width of the Rendering Area \begin{DoxyReturn}{Returns}
 This returns the Width of the Rendering Area 
 \end{DoxyReturn}
 
 
-Definition at line 90 of file graphicsettings.cpp.\hypertarget{classphys_1_1GraphicsSettings_aba9e127ab2cf3f20604313e39d32f7a8}{
+Definition at line 88 of file graphicsettings.cpp.
+
+\hypertarget{classphys_1_1GraphicsSettings_aba9e127ab2cf3f20604313e39d32f7a8}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!setFullscreen@{setFullscreen}}
 \index{setFullscreen@{setFullscreen}!phys::GraphicsSettings@{phys::GraphicsSettings}}
 \subsubsection[{setFullscreen}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsSettings::setFullscreen (const bool \& {\em Fullscreen\_\-})}}
 \label{dc/df1/classphys_1_1GraphicsSettings_aba9e127ab2cf3f20604313e39d32f7a8}
 
 
-Set the Fullscreen Setting. Set the Fullscreen Setting 
+Set the Fullscreen Setting. 
+
+Set the Fullscreen Setting 
 \begin{DoxyParams}{Parameters}
 \item[{\em Fullscreen\_\-}]This accepts a bool. True for fullscreen, false for windowed \end{DoxyParams}
 
 
-Definition at line 77 of file graphicsettings.cpp.\hypertarget{classphys_1_1GraphicsSettings_ace1f9f0f9c29a0c82524ce0bcffd16fa}{
+Definition at line 75 of file graphicsettings.cpp.
+
+\hypertarget{classphys_1_1GraphicsSettings_ace1f9f0f9c29a0c82524ce0bcffd16fa}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!setRenderHeight@{setRenderHeight}}
 \index{setRenderHeight@{setRenderHeight}!phys::GraphicsSettings@{phys::GraphicsSettings}}
 \subsubsection[{setRenderHeight}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsSettings::setRenderHeight (const PhysWhole \& {\em Height\_\-})}}
 \label{dc/df1/classphys_1_1GraphicsSettings_ace1f9f0f9c29a0c82524ce0bcffd16fa}
 
 
-Sets the Height. Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen 
+Sets the Height. 
+
+Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen 
 \begin{DoxyParams}{Parameters}
 \item[{\em Height\_\-}]This accepts a PhysWhole. \end{DoxyParams}
 
 
-Definition at line 95 of file graphicsettings.cpp.\hypertarget{classphys_1_1GraphicsSettings_a4d74a7f2f880a5d556f43bcdbedc5e27}{
+Definition at line 93 of file graphicsettings.cpp.
+
+\hypertarget{classphys_1_1GraphicsSettings_a4d74a7f2f880a5d556f43bcdbedc5e27}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!setRenderWidth@{setRenderWidth}}
 \index{setRenderWidth@{setRenderWidth}!phys::GraphicsSettings@{phys::GraphicsSettings}}
 \subsubsection[{setRenderWidth}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsSettings::setRenderWidth (const PhysWhole \& {\em Width\_\-})}}
 \label{dc/df1/classphys_1_1GraphicsSettings_a4d74a7f2f880a5d556f43bcdbedc5e27}
 
 
-Sets the Width. Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen 
+Sets the Width. 
+
+Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen 
 \begin{DoxyParams}{Parameters}
 \item[{\em Width\_\-}]This accepts a PhysWhole. \end{DoxyParams}
 
 
-Definition at line 101 of file graphicsettings.cpp.
+Definition at line 99 of file graphicsettings.cpp.
+
+
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

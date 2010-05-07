@@ -47,6 +47,8 @@ PhysReal \hyperlink{classPhysQuaternion_a5569a775ccde5755ffa4a12a0a31c555}{W}}
 
 Definition at line 51 of file physquaternion.h.
 
+
+
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classPhysQuaternion_afa90934d42b3a55d4b06bcf4c076123b}{
 \index{PhysQuaternion@{PhysQuaternion}!PhysQuaternion@{PhysQuaternion}}
@@ -55,21 +57,29 @@ Definition at line 51 of file physquaternion.h.
 \label{d5/d19/classPhysQuaternion_afa90934d42b3a55d4b06bcf4c076123b}
 
 
-Blank Constructor. Basic no-\/initialization constructor. 
+Blank Constructor. 
 
-Definition at line 48 of file physquaternion.cpp.\hypertarget{classPhysQuaternion_aa0cbd53e7a9e624a3f0f22aa94618e17}{
+Basic no-\/initialization constructor. 
+
+Definition at line 48 of file physquaternion.cpp.
+
+\hypertarget{classPhysQuaternion_aa0cbd53e7a9e624a3f0f22aa94618e17}{
 \index{PhysQuaternion@{PhysQuaternion}!PhysQuaternion@{PhysQuaternion}}
 \index{PhysQuaternion@{PhysQuaternion}!PhysQuaternion@{PhysQuaternion}}
 \subsubsection[{PhysQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}PhysQuaternion::PhysQuaternion (PhysReal {\em X}, \/  PhysReal {\em Y}, \/  PhysReal {\em Z}, \/  PhysReal {\em W})}}
 \label{d5/d19/classPhysQuaternion_aa0cbd53e7a9e624a3f0f22aa94618e17}
 
 
-Constructor. Constructor that sets all four axis' of rotation. 
+Constructor. 
+
+Constructor that sets all four axis' of rotation. 
 \begin{DoxyParams}{Parameters}
 \item[{\em X}]Rotation on the X Axis. \item[{\em Y}]Rotation on the Y Axis. \item[{\em Z}]Rotation on the Z Axis. \item[{\em W}]Rotation on the W Axis. \end{DoxyParams}
 
 
 Definition at line 56 of file physquaternion.cpp.
+
+
 
 \subsection{Member Function Documentation}
 \hypertarget{classPhysQuaternion_a112b979d18c915cb719781949d74ff83}{
@@ -79,42 +89,58 @@ Definition at line 56 of file physquaternion.cpp.
 \label{d5/d19/classPhysQuaternion_a112b979d18c915cb719781949d74ff83}
 
 
-Copies an existing Bullet quaternion. This function will copy the values stored in an existing Bullet quaternion and set the values of this class to be the same. 
+Copies an existing Bullet quaternion. 
+
+This function will copy the values stored in an existing Bullet quaternion and set the values of this class to be the same. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Ours}]The quaternion to be extracted. \end{DoxyParams}
 
 
-Definition at line 74 of file physquaternion.cpp.\hypertarget{classPhysQuaternion_a63dd5036c86a5353094ad7b089ede3ab}{
+Definition at line 74 of file physquaternion.cpp.
+
+\hypertarget{classPhysQuaternion_a63dd5036c86a5353094ad7b089ede3ab}{
 \index{PhysQuaternion@{PhysQuaternion}!ExtractOgreQuaternion@{ExtractOgreQuaternion}}
 \index{ExtractOgreQuaternion@{ExtractOgreQuaternion}!PhysQuaternion@{PhysQuaternion}}
 \subsubsection[{ExtractOgreQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}void PhysQuaternion::ExtractOgreQuaternion (Ogre::Quaternion {\em Ours})}}
 \label{d5/d19/classPhysQuaternion_a63dd5036c86a5353094ad7b089ede3ab}
 
 
-Copies an existing Ogre quaternion. This function will copy the values stored in an existing Ogre quaternion and set the values of this class to be the same. 
+Copies an existing Ogre quaternion. 
+
+This function will copy the values stored in an existing Ogre quaternion and set the values of this class to be the same. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Ours}]The quaternion to be extracted. \end{DoxyParams}
 
 
-Definition at line 92 of file physquaternion.cpp.\hypertarget{classPhysQuaternion_a63ed0cf13cd77d8e89af9748db2e4893}{
+Definition at line 92 of file physquaternion.cpp.
+
+\hypertarget{classPhysQuaternion_a63ed0cf13cd77d8e89af9748db2e4893}{
 \index{PhysQuaternion@{PhysQuaternion}!GetBulletQuaternion@{GetBulletQuaternion}}
 \index{GetBulletQuaternion@{GetBulletQuaternion}!PhysQuaternion@{PhysQuaternion}}
 \subsubsection[{GetBulletQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}btQuaternion PhysQuaternion::GetBulletQuaternion ()}}
 \label{d5/d19/classPhysQuaternion_a63ed0cf13cd77d8e89af9748db2e4893}
 
 
-Gets a Bullet quaternion. Creates a Bullet quaternion with values equal to this class and returns it. 
+Gets a Bullet quaternion. 
 
-Definition at line 64 of file physquaternion.cpp.\hypertarget{classPhysQuaternion_a30adc9ec3604da6ac9df49dc25b6fd31}{
+Creates a Bullet quaternion with values equal to this class and returns it. 
+
+Definition at line 64 of file physquaternion.cpp.
+
+\hypertarget{classPhysQuaternion_a30adc9ec3604da6ac9df49dc25b6fd31}{
 \index{PhysQuaternion@{PhysQuaternion}!GetOgreQuaternion@{GetOgreQuaternion}}
 \index{GetOgreQuaternion@{GetOgreQuaternion}!PhysQuaternion@{PhysQuaternion}}
 \subsubsection[{GetOgreQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Quaternion PhysQuaternion::GetOgreQuaternion ()}}
 \label{d5/d19/classPhysQuaternion_a30adc9ec3604da6ac9df49dc25b6fd31}
 
 
-Gets a Ogre quaternion. Creates a Ogre quaternion with values equal to this class and returns it. 
+Gets a Ogre quaternion. 
+
+Creates a Ogre quaternion with values equal to this class and returns it. 
 
 Definition at line 82 of file physquaternion.cpp.
+
+
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 

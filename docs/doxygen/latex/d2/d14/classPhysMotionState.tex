@@ -7,7 +7,11 @@
 This class is used by the actor class to sync between the physics world and the graphical world.  
 
 
-{\ttfamily \#include $<$physactor.h$>$}\subsection*{Public Member Functions}
+
+
+{\ttfamily \#include $<$physactor.h$>$}
+
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classPhysMotionState_a8439c3835b9d96b0b1b285126df41a42}{PhysMotionState} ()
@@ -41,6 +45,8 @@ This class is used by the actor class to sync between the physics world and the 
 
 Definition at line 57 of file physactor.cpp.
 
+
+
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classPhysMotionState_a8439c3835b9d96b0b1b285126df41a42}{
 \index{PhysMotionState@{PhysMotionState}!PhysMotionState@{PhysMotionState}}
@@ -49,30 +55,42 @@ Definition at line 57 of file physactor.cpp.
 \label{d2/d14/classPhysMotionState_a8439c3835b9d96b0b1b285126df41a42}
 
 
-Blank Constructor. Basic no-\/initialization constructor. 
+Blank Constructor. 
 
-Definition at line 397 of file physactor.cpp.\hypertarget{classPhysMotionState_a9c315b85bc405a36a6bd9d9a9f68c34a}{
+Basic no-\/initialization constructor. 
+
+Definition at line 397 of file physactor.cpp.
+
+\hypertarget{classPhysMotionState_a9c315b85bc405a36a6bd9d9a9f68c34a}{
 \index{PhysMotionState@{PhysMotionState}!PhysMotionState@{PhysMotionState}}
 \index{PhysMotionState@{PhysMotionState}!PhysMotionState@{PhysMotionState}}
 \subsubsection[{PhysMotionState}]{\setlength{\rightskip}{0pt plus 5cm}PhysMotionState::PhysMotionState (Ogre::SceneNode $\ast$ {\em scenenode})}}
 \label{d2/d14/classPhysMotionState_a9c315b85bc405a36a6bd9d9a9f68c34a}
 
 
-Constructor. The class constructor. 
+Constructor. 
+
+The class constructor. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Scenenode}]The scenenode belonging to the actor. \end{DoxyParams}
 
 
-Definition at line 402 of file physactor.cpp.\hypertarget{classPhysMotionState_a74441aa0ba9a1b99ee1662b2eee9db3c}{
+Definition at line 402 of file physactor.cpp.
+
+\hypertarget{classPhysMotionState_a74441aa0ba9a1b99ee1662b2eee9db3c}{
 \index{PhysMotionState@{PhysMotionState}!$\sim$PhysMotionState@{$\sim$PhysMotionState}}
 \index{$\sim$PhysMotionState@{$\sim$PhysMotionState}!PhysMotionState@{PhysMotionState}}
 \subsubsection[{$\sim$PhysMotionState}]{\setlength{\rightskip}{0pt plus 5cm}PhysMotionState::$\sim$PhysMotionState ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/d14/classPhysMotionState_a74441aa0ba9a1b99ee1662b2eee9db3c}
 
 
-Destructor. The class destructor. 
+Destructor. 
+
+The class destructor. 
 
 Definition at line 408 of file physactor.cpp.
+
+
 
 \subsection{Member Function Documentation}
 \hypertarget{classPhysMotionState_ad7f6fc932da90cc2a718fbe809d95287}{
@@ -82,61 +100,81 @@ Definition at line 408 of file physactor.cpp.
 \label{d2/d14/classPhysMotionState_ad7f6fc932da90cc2a718fbe809d95287}
 
 
-Sets the initial position. This function is called on by the physics world upon adding the actor to the world. This function uses the previous set vector3 that was set with SetInitPosition(). \par
+Sets the initial position. 
+
+This function is called on by the physics world upon adding the actor to the world. This function uses the previous set vector3 that was set with SetInitPosition(). \par
  Default position is (0,0,0). 
 \begin{DoxyParams}{Parameters}
 \item[{\em WorldTrans}]The location and orientation data. \end{DoxyParams}
 
 
-Definition at line 431 of file physactor.cpp.\hypertarget{classPhysMotionState_a4ba21f0b58f33197b61cf1a9754027bc}{
+Definition at line 431 of file physactor.cpp.
+
+\hypertarget{classPhysMotionState_a4ba21f0b58f33197b61cf1a9754027bc}{
 \index{PhysMotionState@{PhysMotionState}!SetNode@{SetNode}}
 \index{SetNode@{SetNode}!PhysMotionState@{PhysMotionState}}
 \subsubsection[{SetNode}]{\setlength{\rightskip}{0pt plus 5cm}void PhysMotionState::SetNode (Ogre::SceneNode $\ast$ {\em scenenode})}}
 \label{d2/d14/classPhysMotionState_a4ba21f0b58f33197b61cf1a9754027bc}
 
 
-Sets the scenenode. Sets the scenenode to be sync'd every step. 
+Sets the scenenode. 
+
+Sets the scenenode to be sync'd every step. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Scenenode}]The scenenode belonging to the actor. \end{DoxyParams}
 
 
-Definition at line 416 of file physactor.cpp.\hypertarget{classPhysMotionState_a1f8510490f7b4dfb0c85f4ffb6823305}{
+Definition at line 416 of file physactor.cpp.
+
+\hypertarget{classPhysMotionState_a1f8510490f7b4dfb0c85f4ffb6823305}{
 \index{PhysMotionState@{PhysMotionState}!SetOrientation@{SetOrientation}}
 \index{SetOrientation@{SetOrientation}!PhysMotionState@{PhysMotionState}}
 \subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void PhysMotionState::SetOrientation ({\bf PhysQuaternion} {\em orientation})}}
 \label{d2/d14/classPhysMotionState_a1f8510490f7b4dfb0c85f4ffb6823305}
 
 
-Sets the initial orientation. Sets the orientation the actor will have when it is added to the world. This function is called on by the \hyperlink{classActorBase}{ActorBase} function SetInitOrientation(). 
+Sets the initial orientation. 
+
+Sets the orientation the actor will have when it is added to the world. This function is called on by the \hyperlink{classActorBase}{ActorBase} function SetInitOrientation(). 
 \begin{DoxyParams}{Parameters}
 \item[{\em Orientation}]The vector3 representing the orientation to be used. \end{DoxyParams}
 
 
-Definition at line 426 of file physactor.cpp.\hypertarget{classPhysMotionState_aa2fa4f107147626cd33d42fd3fbe178b}{
+Definition at line 426 of file physactor.cpp.
+
+\hypertarget{classPhysMotionState_aa2fa4f107147626cd33d42fd3fbe178b}{
 \index{PhysMotionState@{PhysMotionState}!SetPosition@{SetPosition}}
 \index{SetPosition@{SetPosition}!PhysMotionState@{PhysMotionState}}
 \subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void PhysMotionState::SetPosition ({\bf PhysVector3} {\em position})}}
 \label{d2/d14/classPhysMotionState_aa2fa4f107147626cd33d42fd3fbe178b}
 
 
-Sets the initial position. Sets the position the actor will be placed in when it is added to the world. This function is called on by the \hyperlink{classActorBase}{ActorBase} function SetInitPosition(). 
+Sets the initial position. 
+
+Sets the position the actor will be placed in when it is added to the world. This function is called on by the \hyperlink{classActorBase}{ActorBase} function SetInitPosition(). 
 \begin{DoxyParams}{Parameters}
 \item[{\em Position}]The vector3 representing the location to be used. \end{DoxyParams}
 
 
-Definition at line 421 of file physactor.cpp.\hypertarget{classPhysMotionState_a57c23b922e2c5e8af87dc1318796ec8b}{
+Definition at line 421 of file physactor.cpp.
+
+\hypertarget{classPhysMotionState_a57c23b922e2c5e8af87dc1318796ec8b}{
 \index{PhysMotionState@{PhysMotionState}!setWorldTransform@{setWorldTransform}}
 \index{setWorldTransform@{setWorldTransform}!PhysMotionState@{PhysMotionState}}
 \subsubsection[{setWorldTransform}]{\setlength{\rightskip}{0pt plus 5cm}void PhysMotionState::setWorldTransform (const btTransform \& {\em worldTrans})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/d14/classPhysMotionState_a57c23b922e2c5e8af87dc1318796ec8b}
 
 
-Updates the position and orientation. This function is called each step(frame) by the physics world to sync the physics and graphical worlds. 
+Updates the position and orientation. 
+
+This function is called each step(frame) by the physics world to sync the physics and graphical worlds. 
 \begin{DoxyParams}{Parameters}
 \item[{\em WorldTrans}]The location and orientation data. \end{DoxyParams}
 
 
 Definition at line 436 of file physactor.cpp.
+
+
 
 The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
 \item 

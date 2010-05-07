@@ -7,7 +7,11 @@
 This Determines the kind of user input.  
 
 
-{\ttfamily \#include $<$metacode.h$>$}\subsection*{Public Types}
+
+
+{\ttfamily \#include $<$metacode.h$>$}
+
+\subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
 enum \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{InputCode} \{ \par
@@ -396,6 +400,8 @@ This Determines the kind of user input. A Metacode contains the data that is pas
 
 Definition at line 89 of file metacode.h.
 
+
+
 \subsection{Member Enumeration Documentation}
 \hypertarget{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{
 \index{phys::MetaCode@{phys::MetaCode}!ButtonState@{ButtonState}}
@@ -404,7 +410,9 @@ Definition at line 89 of file metacode.h.
 \label{da/dc9/classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}
 
 
-An Optional listing of value that can be used in a metacode to represent the information of a button press. This is optional set of values that can make working with buttons easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
+An Optional listing of value that can be used in a metacode to represent the information of a button press. 
+
+This is optional set of values that can make working with buttons easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
 \item[Enumerator: ]\par
 \begin{description}
 \index{BUTTON\_\-LIFTING@{BUTTON\_\-LIFTING}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!BUTTON\_\-LIFTING@{BUTTON\_\-LIFTING}}\item[{\em 
@@ -428,14 +436,18 @@ BUTTON\_\-DOWN}
 
 
 
-Definition at line 400 of file metacode.h.\hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{
+Definition at line 400 of file metacode.h.
+
+\hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{
 \index{phys::MetaCode@{phys::MetaCode}!InputCode@{InputCode}}
 \index{InputCode@{InputCode}!phys::MetaCode@{phys::MetaCode}}
 \subsubsection[{InputCode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::MetaCode::InputCode}}}
 \label{da/dc9/classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}
 
 
-The InputCode enum defines all the posible types of inputs. It has one entry for each key on a most keyboards. Then it has an entry for most mouse and joystick input methods. \begin{Desc}
+The InputCode enum defines all the posible types of inputs. 
+
+It has one entry for each key on a most keyboards. Then it has an entry for most mouse and joystick input methods. \begin{Desc}
 \item[Enumerator: ]\par
 \begin{description}
 \index{KEY\_\-UNKNOWN@{KEY\_\-UNKNOWN}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!KEY\_\-UNKNOWN@{KEY\_\-UNKNOWN}}\item[{\em 
@@ -519,14 +531,18 @@ INPUTEVENT\_\-LAST}
 
 
 
-Definition at line 96 of file metacode.h.\hypertarget{classphys_1_1MetaCode_af9ba277d1ef071be8861e35c2b7d82d6}{
+Definition at line 96 of file metacode.h.
+
+\hypertarget{classphys_1_1MetaCode_af9ba277d1ef071be8861e35c2b7d82d6}{
 \index{phys::MetaCode@{phys::MetaCode}!MouseWheelState@{MouseWheelState}}
 \index{MouseWheelState@{MouseWheelState}!phys::MetaCode@{phys::MetaCode}}
 \subsubsection[{MouseWheelState}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::MetaCode::MouseWheelState}}}
 \label{da/dc9/classphys_1_1MetaCode_af9ba277d1ef071be8861e35c2b7d82d6}
 
 
-An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel. This is optional set of values that can make working with the MouseWheel easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
+An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel. 
+
+This is optional set of values that can make working with the MouseWheel easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
 \item[Enumerator: ]\par
 \begin{description}
 \index{MOUSEWHEEL\_\-UP@{MOUSEWHEEL\_\-UP}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!MOUSEWHEEL\_\-UP@{MOUSEWHEEL\_\-UP}}\item[{\em 
@@ -548,6 +564,8 @@ MOUSEWHEEL\_\-DOWN}
 
 Definition at line 411 of file metacode.h.
 
+
+
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classphys_1_1MetaCode_ae2c80c84f924ddfd880f46ffe6a1746e}{
 \index{phys::MetaCode@{phys::MetaCode}!MetaCode@{MetaCode}}
@@ -556,28 +574,38 @@ Definition at line 411 of file metacode.h.
 \label{da/dc9/classphys_1_1MetaCode_ae2c80c84f924ddfd880f46ffe6a1746e}
 
 
-Default constructor. This sets nothing on the \hyperlink{classphys_1_1MetaCode}{MetaCode} and leaves it completely unassigned. Accessing a data member could cause problems 
+Default constructor. 
 
-Definition at line 68 of file metacode.cpp.\hypertarget{classphys_1_1MetaCode_a05bcc50a09a9a5d19520dc258841f117}{
+This sets nothing on the \hyperlink{classphys_1_1MetaCode}{MetaCode} and leaves it completely unassigned. Accessing a data member could cause problems 
+
+Definition at line 68 of file metacode.cpp.
+
+\hypertarget{classphys_1_1MetaCode_a05bcc50a09a9a5d19520dc258841f117}{
 \index{phys::MetaCode@{phys::MetaCode}!MetaCode@{MetaCode}}
 \index{MetaCode@{MetaCode}!phys::MetaCode@{phys::MetaCode}}
 \subsubsection[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}phys::MetaCode::MetaCode (const int \& {\em MetaValue\_\-}, \/  const short unsigned int \& {\em ID\_\-}, \/  const {\bf MetaCode::InputCode} \& {\em Code\_\-})}}
 \label{da/dc9/classphys_1_1MetaCode_a05bcc50a09a9a5d19520dc258841f117}
 
 
-Descriptive Constructor. This sets all values in the \hyperlink{classphys_1_1MetaCode}{MetaCode}, leaving it in completely ready state. This is the ideal constructor for simulating user input. 
+Descriptive Constructor. 
+
+This sets all values in the \hyperlink{classphys_1_1MetaCode}{MetaCode}, leaving it in completely ready state. This is the ideal constructor for simulating user input. 
 \begin{DoxyParams}{Parameters}
 \item[{\em MetaValue\_\-}]How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed. \item[{\em ID\_\-}]Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item. \item[{\em Code\_\-}]Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support. \end{DoxyParams}
 
 
-Definition at line 71 of file metacode.cpp.\hypertarget{classphys_1_1MetaCode_ad9a618b5cc6f9d0cf0a4bc4f47bf98e8}{
+Definition at line 71 of file metacode.cpp.
+
+\hypertarget{classphys_1_1MetaCode_ad9a618b5cc6f9d0cf0a4bc4f47bf98e8}{
 \index{phys::MetaCode@{phys::MetaCode}!MetaCode@{MetaCode}}
 \index{MetaCode@{MetaCode}!phys::MetaCode@{phys::MetaCode}}
 \subsubsection[{MetaCode}]{\setlength{\rightskip}{0pt plus 5cm}phys::MetaCode::MetaCode (const RawEvent \& {\em RawEvent\_\-})}}
 \label{da/dc9/classphys_1_1MetaCode_ad9a618b5cc6f9d0cf0a4bc4f47bf98e8}
 
 
-The Heavy Lifting Constructor. This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. \par
+The Heavy Lifting Constructor. 
+
+This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. \par
  This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of Metacode. Depending on the User input subsystem, this could be all RawEvents, or even just some RawEvents. 
 \begin{DoxyExceptions}{Exceptions}
 \item[{\em RawEvent which creates Multiple Metacodes inserted into Metacode}]-\/ Thrown when passed a certain (system dependant) incorrect type of RawEvent. \item[{\em Unknown User Input Inserted into Metacode}]-\/ Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent. \end{DoxyExceptions}
@@ -588,6 +616,8 @@ We recomend against using this Constructor, because the binary format of RawEven
 
 Definition at line 76 of file metacode.cpp.
 
+
+
 \subsection{Member Function Documentation}
 \hypertarget{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{
 \index{phys::MetaCode@{phys::MetaCode}!GetCode@{GetCode}}
@@ -596,81 +626,109 @@ Definition at line 76 of file metacode.cpp.
 \label{da/dc9/classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}
 
 
-This Returns the Inputcode. This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with \hyperlink{classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}{SetCode} . \begin{DoxyReturn}{Returns}
+This Returns the Inputcode. 
+
+This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with \hyperlink{classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}{SetCode} . \begin{DoxyReturn}{Returns}
 This returns the input code for this \hyperlink{classphys_1_1MetaCode}{MetaCode} 
 \end{DoxyReturn}
 
 
-Definition at line 143 of file metacode.cpp.\hypertarget{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{
+Definition at line 143 of file metacode.cpp.
+
+\hypertarget{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{
 \index{phys::MetaCode@{phys::MetaCode}!GetID@{GetID}}
 \index{GetID@{GetID}!phys::MetaCode@{phys::MetaCode}}
 \subsubsection[{GetID}]{\setlength{\rightskip}{0pt plus 5cm}short unsigned int phys::MetaCode::GetID () const}}
 \label{da/dc9/classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}
 
 
-This Returns the Input ID. The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed. On systems that support multiple keyboards this will even differentiate between those. This value can be set with \hyperlink{classphys_1_1MetaCode_a0ef70c11c06f0e3015121985cb1b6153}{SetID} . \begin{DoxyReturn}{Returns}
+This Returns the Input ID. 
+
+The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed. On systems that support multiple keyboards this will even differentiate between those. This value can be set with \hyperlink{classphys_1_1MetaCode_a0ef70c11c06f0e3015121985cb1b6153}{SetID} . \begin{DoxyReturn}{Returns}
 This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis, JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this can identify from unique input sources and InputCode. 
 \end{DoxyReturn}
 
 
-Definition at line 148 of file metacode.cpp.\hypertarget{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{
+Definition at line 148 of file metacode.cpp.
+
+\hypertarget{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{
 \index{phys::MetaCode@{phys::MetaCode}!GetMetaValue@{GetMetaValue}}
 \index{GetMetaValue@{GetMetaValue}!phys::MetaCode@{phys::MetaCode}}
 \subsubsection[{GetMetaValue}]{\setlength{\rightskip}{0pt plus 5cm}int phys::MetaCode::GetMetaValue () const}}
 \label{da/dc9/classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}
 
 
-This Returns the MetaValue. The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value. This value can be set with \hyperlink{classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}{SetMetaValue} . \begin{DoxyReturn}{Returns}
+This Returns the MetaValue. 
+
+The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value. This value can be set with \hyperlink{classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}{SetMetaValue} . \begin{DoxyReturn}{Returns}
 This returns the input code for this \hyperlink{classphys_1_1MetaCode}{MetaCode}. For keyboard Buttons this will be 0 if not pressed, 1 if pressed, and -\/1 if it was pressed and just released. This could return any number inside a range (depending on hardware and configuration) to represent how tilted a joystick or how much a mouse moved. 
 \end{DoxyReturn}
 
 
-Definition at line 138 of file metacode.cpp.\hypertarget{classphys_1_1MetaCode_a506486e5a6f08d50a5af42fa6d48a7f5}{
+Definition at line 138 of file metacode.cpp.
+
+\hypertarget{classphys_1_1MetaCode_a506486e5a6f08d50a5af42fa6d48a7f5}{
 \index{phys::MetaCode@{phys::MetaCode}!operator==@{operator==}}
 \index{operator==@{operator==}!phys::MetaCode@{phys::MetaCode}}
 \subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::MetaCode::operator== (const {\bf MetaCode} \& {\em other}) const}}
 \label{da/dc9/classphys_1_1MetaCode_a506486e5a6f08d50a5af42fa6d48a7f5}
 
 
-Compares two MetaCodes for equality. This returns true if the MetaValue and Code are the Same, this ignores ID. 
+Compares two MetaCodes for equality. 
 
-Definition at line 168 of file metacode.cpp.\hypertarget{classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}{
+This returns true if the MetaValue and Code are the Same, this ignores ID. 
+
+Definition at line 168 of file metacode.cpp.
+
+\hypertarget{classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}{
 \index{phys::MetaCode@{phys::MetaCode}!SetCode@{SetCode}}
 \index{SetCode@{SetCode}!phys::MetaCode@{phys::MetaCode}}
 \subsubsection[{SetCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::MetaCode::SetCode (const {\bf MetaCode::InputCode} \& {\em Code\_\-})}}
 \label{da/dc9/classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}
 
 
-This Sets The InputCode. See \hyperlink{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{GetCode} to see exactly what the Code is. This will Set the code stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{GetCode} . 
+This Sets The InputCode. 
+
+See \hyperlink{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{GetCode} to see exactly what the Code is. This will Set the code stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{GetCode} . 
 \begin{DoxyParams}{Parameters}
 \item[{\em Code\_\-}]The value you want the stored code to become. \end{DoxyParams}
 
 
-Definition at line 158 of file metacode.cpp.\hypertarget{classphys_1_1MetaCode_a0ef70c11c06f0e3015121985cb1b6153}{
+Definition at line 158 of file metacode.cpp.
+
+\hypertarget{classphys_1_1MetaCode_a0ef70c11c06f0e3015121985cb1b6153}{
 \index{phys::MetaCode@{phys::MetaCode}!SetID@{SetID}}
 \index{SetID@{SetID}!phys::MetaCode@{phys::MetaCode}}
 \subsubsection[{SetID}]{\setlength{\rightskip}{0pt plus 5cm}void phys::MetaCode::SetID (const short unsigned int \& {\em ID\_\-})}}
 \label{da/dc9/classphys_1_1MetaCode_a0ef70c11c06f0e3015121985cb1b6153}
 
 
-This Sets The input ID. See \hyperlink{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{GetID} to see exactly what the input ID is. This will set the ID stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{GetID} . 
+This Sets The input ID. 
+
+See \hyperlink{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{GetID} to see exactly what the input ID is. This will set the ID stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{GetID} . 
 \begin{DoxyParams}{Parameters}
 \item[{\em ID\_\-}]The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. \end{DoxyParams}
 
 
-Definition at line 163 of file metacode.cpp.\hypertarget{classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}{
+Definition at line 163 of file metacode.cpp.
+
+\hypertarget{classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}{
 \index{phys::MetaCode@{phys::MetaCode}!SetMetaValue@{SetMetaValue}}
 \index{SetMetaValue@{SetMetaValue}!phys::MetaCode@{phys::MetaCode}}
 \subsubsection[{SetMetaValue}]{\setlength{\rightskip}{0pt plus 5cm}void phys::MetaCode::SetMetaValue (const int \& {\em MetaValue\_\-})}}
 \label{da/dc9/classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}
 
 
-This Sets The MetaValue. See \hyperlink{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{GetMetaValue} to see exactly what the MetaValue is. This will set the MetaValue stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{GetMetaValue} . 
+This Sets The MetaValue. 
+
+See \hyperlink{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{GetMetaValue} to see exactly what the MetaValue is. This will set the MetaValue stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{GetMetaValue} . 
 \begin{DoxyParams}{Parameters}
 \item[{\em MetaValue\_\-}]Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. \end{DoxyParams}
 
 
 Definition at line 153 of file metacode.cpp.
+
+
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 
