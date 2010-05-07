@@ -34,10 +34,15 @@ if [ -f "data/linux/ogre/libOgreMain.so" ]
 then
 	echo Ogre Library present.
 else
-	echo Ogre Missing, Beginning Ogre Build
-	cd libincludes/linux/ogresrc/
-	cmake .
-	make
+	if [ -f "lib/RenderSystem_GL.so" ]
+	then
+		echo Ogre Compile, but not copied into working directory
+	else
+		echo Ogre Missing, Beginning Ogre Build
+		cd libincludes/linux/ogresrc/
+		cmake .
+		make
+	fi
 	cp -a lib/libOgreMain.* ../../../data/linux/ogre/
 	cp lib/RenderSystem_GL.so ../../../data/linux/ogre/
 	cd ../../..

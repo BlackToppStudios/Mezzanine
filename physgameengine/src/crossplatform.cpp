@@ -119,7 +119,7 @@ namespace phys
             return misc;
         }
 
-        void WaitMilliseconds(PhysWhole WaitTime)
+        void WaitMilliseconds(const PhysWhole &WaitTime)
         {
             #ifdef WINDOWS
                 Sleep(WaitTime);
