@@ -45,56 +45,59 @@
 
 #include "physquaternion.h"
 
-PhysQuaternion::PhysQuaternion()
+namespace phys
 {
-    X=0;
-    Y=0;
-    Z=0;
-    W=0;
-}
+    Quaternion::Quaternion()
+    {
+        X=0;
+        Y=0;
+        Z=0;
+        W=0;
+    }
 
-PhysQuaternion::PhysQuaternion(PhysReal x, PhysReal y, PhysReal z, PhysReal w)
-{
-    X=x;
-    Y=y;
-    Z=z;
-    W=w;
-}
+    Quaternion::Quaternion(PhysReal x, PhysReal y, PhysReal z, PhysReal w)
+    {
+        X=x;
+        Y=y;
+        Z=z;
+        W=w;
+    }
 
-btQuaternion PhysQuaternion::GetBulletQuaternion()
-{
-    btQuaternion Theirs;
-    Theirs.setX(this->X);
-    Theirs.setY(this->Y);
-    Theirs.setZ(this->Z);
-    Theirs.setW(this->W);
-    return Theirs;
-}
+    btQuaternion Quaternion::GetBulletQuaternion()
+    {
+        btQuaternion Theirs;
+        Theirs.setX(this->X);
+        Theirs.setY(this->Y);
+        Theirs.setZ(this->Z);
+        Theirs.setW(this->W);
+        return Theirs;
+    }
 
-void PhysQuaternion::ExtractBulletQuaternion(btQuaternion Ours)
-{
-    this->X=Ours.x();
-    this->Y=Ours.y();
-    this->Z=Ours.z();
-    this->W=Ours.w();
-}
+    void Quaternion::ExtractBulletQuaternion(btQuaternion Ours)
+    {
+        this->X=Ours.x();
+        this->Y=Ours.y();
+        this->Z=Ours.z();
+        this->W=Ours.w();
+    }
 
-Ogre::Quaternion PhysQuaternion::GetOgreQuaternion()
-{
-    Ogre::Quaternion Theirs;
-    Theirs.x=this->X;
-    Theirs.y=this->Y;
-    Theirs.z=this->Z;
-    Theirs.w=this->W;
-    return Theirs;
-}
+    Ogre::Quaternion Quaternion::GetOgreQuaternion()
+    {
+        Ogre::Quaternion Theirs;
+        Theirs.x=this->X;
+        Theirs.y=this->Y;
+        Theirs.z=this->Z;
+        Theirs.w=this->W;
+        return Theirs;
+    }
 
-void PhysQuaternion::ExtractOgreQuaternion(Ogre::Quaternion Ours)
-{
-    this->X=Ours.x;
-    this->Y=Ours.y;
-    this->Z=Ours.z;
-    this->W=Ours.w;
+    void Quaternion::ExtractOgreQuaternion(Ogre::Quaternion Ours)
+    {
+        this->X=Ours.x;
+        this->Y=Ours.y;
+        this->Z=Ours.z;
+        this->W=Ours.w;
+    }
 }
 
 #endif

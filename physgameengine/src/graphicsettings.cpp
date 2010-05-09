@@ -41,7 +41,7 @@
 #define _graphicsettings_cpp
 
 #include "physworld.h"
-#include "physeventmanager.h"
+#include "eventmanager.h"
 #include "graphicsettings.h"
 
 namespace phys

@@ -46,7 +46,7 @@
 ///////////////////////////////////////
 
 #include "physworld.h"
-#include "physeventmanager.h"
+#include "eventmanager.h"
 
 #include "SDL.h"
 #include <boost/thread/thread.hpp>

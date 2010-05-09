@@ -136,7 +136,7 @@ class ActorBase {
         /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n
         /// This function is called on by the SetOrientation function, and shouldn't be called manually.
         /// @param Rotation The quaternion representing the rotation of the actor.
-        void SetOgreOrientation (PhysQuaternion Rotation);
+        void SetOgreOrientation (Quaternion Rotation);
         /// @brief Makes the actor visable.
         /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n
         /// This is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually.
@@ -160,7 +160,7 @@ class ActorBase {
         /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
         /// This function is called on by the SetOrientation function, and shouldn't be called manually.
         /// @param Rotation The quaternion representing the rotation of the actor.
-        virtual void SetBulletOrientation (PhysQuaternion Rotation);
+        virtual void SetBulletOrientation (Quaternion Rotation);
 
 	public:
         /// @brief Destructor.
@@ -199,7 +199,7 @@ class ActorBase {
         /// @details Calling this function after adding it to the PhysWorld will have no effect. @n
         /// This function will set where the actor is facing in the PhysWorld when it is first placed inside the world.
         /// @param Orientation The PhysQuaternion representing the Orientation.
-        void SetInitOrientation(PhysQuaternion Orientation);
+        void SetInitOrientation(Quaternion Orientation);
 
         /// @brief Sets the orientation of the actor.
         /// @details Sets the orientation of the actor via Quaternion parameters.
@@ -207,7 +207,7 @@ class ActorBase {
         /// @brief Sets the orientation of the actor.
         /// @details Sets the orientation of the actor via a Quaternion.
         /// @param Rotation The Quaternion representing the Rotation.
-        void SetOrientation(PhysQuaternion Rotation);
+        void SetOrientation(Quaternion Rotation);
 
         /// @brief Sets the state of the object to Kinematic.
         /// @details This function will set the object to a Kinematic Object. @n

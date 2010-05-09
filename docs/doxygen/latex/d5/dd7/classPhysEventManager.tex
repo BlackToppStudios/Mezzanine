@@ -1,0 +1,422 @@
+\hypertarget{classPhysEventManager}{
+\section{PhysEventManager Class Reference}
+\label{d5/dd7/classPhysEventManager}\index{PhysEventManager@{PhysEventManager}}
+}
+
+
+This is a container for Events and facilitates the transfer of data.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPhysEventManager_a1355f36d99de303cec6f3b27cadaa9ff}{PhysEventManager} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$ParentWorld\_\-)
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+unsigned int \hyperlink{classPhysEventManager_ab14d238e7abe9919be8e2d9eef388b64}{GetRemainingEventCount} ()
+\begin{DoxyCompactList}\small\item\em Gets a count of events. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Event}{Event} $\ast$ \hyperlink{classPhysEventManager_a1ab0da9e37f43c2c0d5af1dae26dcaf2}{GetNextEvent} ()
+\begin{DoxyCompactList}\small\item\em Return a pointer to the Next event. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Event}{Event} $\ast$ \hyperlink{classPhysEventManager_a23091695829acad90c499f6724fe048c}{PopNextEvent} ()
+\begin{DoxyCompactList}\small\item\em Return a pointer to the Next event, and removes the Event from storage. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysEventManager_ad040054bd9018ff0fd27ad78ec1e87fa}{RemoveNextEvent} ()
+\begin{DoxyCompactList}\small\item\em Removes an Event From the que without looking at it. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysEventManager_a6f51657b66d214942aed0e832ee558ef}{AddEvent} (\hyperlink{classphys_1_1Event}{Event} $\ast$EventToAdd)
+\begin{DoxyCompactList}\small\item\em Adds an event of any kind to the end of the Event Queue. \item\end{DoxyCompactList}\item 
+\hypertarget{classPhysEventManager_a34b4b8d35fee0f593fbb32b83843abba}{
+void {\bfseries UpdateEvents} ()}
+\label{d5/dd7/classPhysEventManager_a34b4b8d35fee0f593fbb32b83843abba}
+
+\item 
+\hypertarget{classPhysEventManager_adcdeb687464f00252e1c4052d4b9304e}{
+void {\bfseries UpdateSystemEvents} ()}
+\label{d5/dd7/classPhysEventManager_adcdeb687464f00252e1c4052d4b9304e}
+
+\item 
+\hypertarget{classPhysEventManager_a99f2350628caf751e156107d57646030}{
+void {\bfseries UpdateUserInputEvents} ()}
+\label{d5/dd7/classPhysEventManager_a99f2350628caf751e156107d57646030}
+
+\item 
+\hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ \hyperlink{classPhysEventManager_ae1276d993b2892048341205ae0e8de02}{GetNextRenderTimeEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Rendertime event. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ \hyperlink{classPhysEventManager_a682d25bedcbbf2c66bd8c067e67ee7f5}{PopNextRenderTimeEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Rendertime event and removes it from the Que. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysEventManager_a56acc075e743921e27284c023b3298ce}{RemoveNextRenderTimeEvent} ()
+\begin{DoxyCompactList}\small\item\em Removes the First Rendertime Event From the que without looking at it. \item\end{DoxyCompactList}\item 
+\hyperlink{classPhysEventUserInput}{PhysEventUserInput} $\ast$ \hyperlink{classPhysEventManager_a4874a9b1138d2351bf28e527a66c02b8}{GetNextUserInputEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event. \item\end{DoxyCompactList}\item 
+\hyperlink{classPhysEventUserInput}{PhysEventUserInput} $\ast$ \hyperlink{classPhysEventManager_ad6612a6e1c728941e2c467e7f136ca51}{PopNextUserInputEvent} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event and removes it from the Que. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysEventManager_a9c6f5296c9961fa469ebe06d7599283a}{RemoveNextUserInputEvent} ()
+\begin{DoxyCompactList}\small\item\em Removes the First User Input Event From the que without looking at it. \item\end{DoxyCompactList}\item 
+\hypertarget{classPhysEventManager_a61aa2ee266536d45fec2be0487f77940}{
+\hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ {\bfseries GetNextQuitEvent} ()}
+\label{d5/dd7/classPhysEventManager_a61aa2ee266536d45fec2be0487f77940}
+
+\item 
+\hypertarget{classPhysEventManager_a1def6dcacc5dd8a0d55dd2d47fe89a1c}{
+\hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ {\bfseries PopNextQuitEvent} ()}
+\label{d5/dd7/classPhysEventManager_a1def6dcacc5dd8a0d55dd2d47fe89a1c}
+
+\item 
+\hypertarget{classPhysEventManager_accdd3b4047b05b721f77ca68e016baf5}{
+void {\bfseries RemoveNextQuitEvent} ()}
+\label{d5/dd7/classPhysEventManager_accdd3b4047b05b721f77ca68e016baf5}
+
+\item 
+\hyperlink{classphys_1_1Event}{Event} $\ast$ \hyperlink{classPhysEventManager_abf1dd378082dde44e9bcebc900f7edf6}{GetNextSpecificEvent} (\hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{Event::EventType} SpecificType)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Event}{Event} $\ast$ \hyperlink{classPhysEventManager_ae1a12ccef3435f164472e6f8c38c77fe}{PopNextSpecificEvent} (\hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{Event::EventType} SpecificType)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysEventManager_a0984ae7ac0cc0db9fb24e50156497de4}{RemoveNextSpecificEvent} (\hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{Event::EventType} SpecificType)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysEventManager_a1e99385441c5377a741561db581ef3ae}{AddPollingCheck} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&InputToTryPolling)
+\begin{DoxyCompactList}\small\item\em Generates extra events each iteration of the main loop, based on user input polling. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysEventManager_af81bf9a5f081f44a6cd91fdd19d4a42a}{RemovePollingCheck} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&InputToStopPolling)
+\begin{DoxyCompactList}\small\item\em Removes Events from the list(s) of what needs to be polled. \item\end{DoxyCompactList}\item 
+\hyperlink{classPhysEventUserInput}{PhysEventUserInput} $\ast$ \hyperlink{classPhysEventManager_ac66ebe495e2a77d06803291711528db2}{PollForUserInputEvents} ()
+\begin{DoxyCompactList}\small\item\em This activates the polling routines of the user input subsystems. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is a container for Events and facilitates the transfer of data. The Event Manager Exists to passed important information about Gamestate from where it is generated to where it is needed. It is the Game Developers option whether they want to grab events directly using the get functions that have filters, or if they want to get all the events at once from a central location and dispatch form there. \par
+ Since all User input comes in the form of events, this is also where user input Polling and optional input sources like Joysticks are controlled from. \par
+ All of these event are stored in an internal Queue and order is preserved. So the First item In will be the First Out (FIFO). This is not strictly a FIFO buffer, there are a number of functions for getting of managing specific kinds of events. Generally these 'Filtered' management functions Still return the first of those kinds of event. \begin{DoxyWarning}{Warning}
+Delete pointers you get from this. Anything can create events and Put them here, and anything can get them out, This means the simple way to not cause memory leaks is to have the routines extracting the events delete the events. 
+
+Currently this is not thread safe, even though it should be. 
+\end{DoxyWarning}
+
+
+Definition at line 85 of file eventmanager.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classPhysEventManager_a1355f36d99de303cec6f3b27cadaa9ff}{
+\index{PhysEventManager@{PhysEventManager}!PhysEventManager@{PhysEventManager}}
+\index{PhysEventManager@{PhysEventManager}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{PhysEventManager}]{\setlength{\rightskip}{0pt plus 5cm}PhysEventManager::PhysEventManager ({\bf PhysWorld} $\ast$ {\em ParentWorld\_\-})}}
+\label{d5/dd7/classPhysEventManager_a1355f36d99de303cec6f3b27cadaa9ff}
+
+
+Default constructor. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000003}{Todo}]TODO build a deconstructor that deletes all the events still int the queue \end{Desc}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ParentWorld\_\-}]A pointer to the world that this physworld is working with Primarily\end{DoxyParams}
+This creates an empty PhysEventManger
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000002}{Todo}]TODO: Make the \hyperlink{classPhysEventManager}{PhysEventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
+
+
+Definition at line 91 of file eventmanager.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classPhysEventManager_a6f51657b66d214942aed0e832ee558ef}{
+\index{PhysEventManager@{PhysEventManager}!AddEvent@{AddEvent}}
+\index{AddEvent@{AddEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{AddEvent}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::AddEvent ({\bf Event} $\ast$ {\em EventToAdd})}}
+\label{d5/dd7/classPhysEventManager_a6f51657b66d214942aed0e832ee558ef}
+
+
+Adds an event of any kind to the end of the Event Queue. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em EventToAdd}]This is a pointer to an Event.\end{DoxyParams}
+This adds the existing event to the Queue. Be careful this is not delete, and does not go out of scope. Deleting the Event is now the responsibilty of the code that pulls it out of Event Manager. 
+
+Definition at line 132 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_a1e99385441c5377a741561db581ef3ae}{
+\index{PhysEventManager@{PhysEventManager}!AddPollingCheck@{AddPollingCheck}}
+\index{AddPollingCheck@{AddPollingCheck}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{AddPollingCheck}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::AddPollingCheck (const {\bf MetaCode} \& {\em InputToTryPolling})}}
+\label{d5/dd7/classPhysEventManager_a1e99385441c5377a741561db581ef3ae}
+
+
+Generates extra events each iteration of the main loop, based on user input polling. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em InputToTryPolling}]This accepts a MetaCode and will try to watch for occurences like this one\end{DoxyParams}
+This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each Iteration of the main loop there will be a \hyperlink{classPhysEventUserInput}{PhysEventUserInput} that created. That Event will Include all the normal metacodes for user input that happened, and it will also have a meta code for each time this function was called. The added metacode may be partialky ignored, the Metavalue is almost always ignored, and in a situation where the can only be one of a given input on a system, the ID is ignore and 0 is assumed. 
+\begin{DoxyExceptions}{Exceptions}
+\item[{\em Unsupported Polling Check on this Platform}]When the metacode passed cannot be polled on this platform \end{DoxyExceptions}
+
+
+Definition at line 285 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_a1ab0da9e37f43c2c0d5af1dae26dcaf2}{
+\index{PhysEventManager@{PhysEventManager}!GetNextEvent@{GetNextEvent}}
+\index{GetNextEvent@{GetNextEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{GetNextEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event} $\ast$ PhysEventManager::GetNextEvent ()}}
+\label{d5/dd7/classPhysEventManager_a1ab0da9e37f43c2c0d5af1dae26dcaf2}
+
+
+Return a pointer to the Next event. 
+
+This returns a pointer to the next PhysEvent. It is advisable to use this for performance reasons because it runs in constant time. However it does not return a specific kind of event, and must be cast in order to use the true content. This returns a pointer to 0 if there are no events in the que. \begin{DoxyReturn}{Returns}
+A pointer to a PhysEvent, that still needs to be removed from the event manager and deleted. 
+\end{DoxyReturn}
+
+
+Definition at line 106 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_ae1276d993b2892048341205ae0e8de02}{
+\index{PhysEventManager@{PhysEventManager}!GetNextRenderTimeEvent@{GetNextRenderTimeEvent}}
+\index{GetNextRenderTimeEvent@{GetNextRenderTimeEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{GetNextRenderTimeEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventRenderTime} $\ast$ PhysEventManager::GetNextRenderTimeEvent ()}}
+\label{d5/dd7/classPhysEventManager_ae1276d993b2892048341205ae0e8de02}
+
+
+Returns a pointer to the Next Rendertime event. 
+
+This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no rendertime events in the que. \begin{DoxyReturn}{Returns}
+A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted. 
+\end{DoxyReturn}
+
+
+Definition at line 228 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_abf1dd378082dde44e9bcebc900f7edf6}{
+\index{PhysEventManager@{PhysEventManager}!GetNextSpecificEvent@{GetNextSpecificEvent}}
+\index{GetNextSpecificEvent@{GetNextSpecificEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{GetNextSpecificEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event} $\ast$ PhysEventManager::GetNextSpecificEvent ({\bf Event::EventType} {\em SpecificType})}}
+\label{d5/dd7/classPhysEventManager_abf1dd378082dde44e9bcebc900f7edf6}
+
+
+Returns a pointer to the Next kind event of the Specified type. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em SpecificType}]This is a PhysEvent::EventType that defines the type you want this to work with\end{DoxyParams}
+This and the other NextSpecificEvent functions are the core of the Event Filtering System. In general the other filtering functions call one of these and does very little work on their own. \par
+ This performs a linear search starting with the oldest (first entered Events) and simply checks if it the of the correct type. Then this returns a pointer to the next event of the specified type, or returns a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. \begin{DoxyReturn}{Returns}
+A pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput}, that still needs to be removed from the event manager and deleted. 
+\end{DoxyReturn}
+
+
+Definition at line 185 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_a4874a9b1138d2351bf28e527a66c02b8}{
+\index{PhysEventManager@{PhysEventManager}!GetNextUserInputEvent@{GetNextUserInputEvent}}
+\index{GetNextUserInputEvent@{GetNextUserInputEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{GetNextUserInputEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventUserInput} $\ast$ PhysEventManager::GetNextUserInputEvent ()}}
+\label{d5/dd7/classPhysEventManager_a4874a9b1138d2351bf28e527a66c02b8}
+
+
+Returns a pointer to the Next User Input event. 
+
+This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input events in the que. \begin{DoxyReturn}{Returns}
+A pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput}, that still needs to be removed from the event manager and deleted. 
+\end{DoxyReturn}
+
+
+Definition at line 247 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_ab14d238e7abe9919be8e2d9eef388b64}{
+\index{PhysEventManager@{PhysEventManager}!GetRemainingEventCount@{GetRemainingEventCount}}
+\index{GetRemainingEventCount@{GetRemainingEventCount}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{GetRemainingEventCount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int PhysEventManager::GetRemainingEventCount ()}}
+\label{d5/dd7/classPhysEventManager_ab14d238e7abe9919be8e2d9eef388b64}
+
+
+Gets a count of events. 
+
+This returns a total count of all events stored in this \hyperlink{classPhysEventManager}{PhysEventManager}. \begin{DoxyReturn}{Returns}
+This returns an unsigned integer with the amount of of total events 
+\end{DoxyReturn}
+
+
+Definition at line 101 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_ac66ebe495e2a77d06803291711528db2}{
+\index{PhysEventManager@{PhysEventManager}!PollForUserInputEvents@{PollForUserInputEvents}}
+\index{PollForUserInputEvents@{PollForUserInputEvents}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{PollForUserInputEvents}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventUserInput} $\ast$ PhysEventManager::PollForUserInputEvents ()}}
+\label{d5/dd7/classPhysEventManager_ac66ebe495e2a77d06803291711528db2}
+
+
+This activates the polling routines of the user input subsystems. 
+
+This checks the current state of user input devices that have been added by \hyperlink{classPhysEventManager_a1e99385441c5377a741561db581ef3ae}{AddPollingCheck(const MetaCode \&InputToTryPolling)}. This is called automatically by main loop processing, but there is no harm in calling it several times. \begin{DoxyReturn}{Returns}
+This returns a pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput} that contains the desired metacodes 
+\end{DoxyReturn}
+
+
+Definition at line 325 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_a23091695829acad90c499f6724fe048c}{
+\index{PhysEventManager@{PhysEventManager}!PopNextEvent@{PopNextEvent}}
+\index{PopNextEvent@{PopNextEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{PopNextEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event} $\ast$ PhysEventManager::PopNextEvent ()}}
+\label{d5/dd7/classPhysEventManager_a23091695829acad90c499f6724fe048c}
+
+
+Return a pointer to the Next event, and removes the Event from storage. 
+
+This functions just like GetNextEvent , except that it also removes the item from the internal storage of the \hyperlink{classPhysEventManager}{PhysEventManager}. This returns a pointer to 0 if there are no events in the que. \begin{DoxyReturn}{Returns}
+A pointer to a PhysEvent, that will need to be deleted once it has been used. 
+\end{DoxyReturn}
+
+
+Definition at line 116 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_a682d25bedcbbf2c66bd8c067e67ee7f5}{
+\index{PhysEventManager@{PhysEventManager}!PopNextRenderTimeEvent@{PopNextRenderTimeEvent}}
+\index{PopNextRenderTimeEvent@{PopNextRenderTimeEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{PopNextRenderTimeEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventRenderTime} $\ast$ PhysEventManager::PopNextRenderTimeEvent ()}}
+\label{d5/dd7/classPhysEventManager_a682d25bedcbbf2c66bd8c067e67ee7f5}
+
+
+Returns a pointer to the Next Rendertime event and removes it from the Que. 
+
+This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no rendertime events in the que. This also removes the returned pointer form the Que. \begin{DoxyReturn}{Returns}
+A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted. 
+\end{DoxyReturn}
+
+
+Definition at line 233 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_ae1a12ccef3435f164472e6f8c38c77fe}{
+\index{PhysEventManager@{PhysEventManager}!PopNextSpecificEvent@{PopNextSpecificEvent}}
+\index{PopNextSpecificEvent@{PopNextSpecificEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{PopNextSpecificEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event} $\ast$ PhysEventManager::PopNextSpecificEvent ({\bf Event::EventType} {\em SpecificType})}}
+\label{d5/dd7/classPhysEventManager_ae1a12ccef3435f164472e6f8c38c77fe}
+
+
+Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em SpecificType}]This is a PhysEvent::EventType that defines the type you want this to work with\end{DoxyParams}
+This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que. \begin{DoxyReturn}{Returns}
+A pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput}, that still needs to be removed from the event manager and deleted. 
+\end{DoxyReturn}
+
+
+Definition at line 199 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_ad6612a6e1c728941e2c467e7f136ca51}{
+\index{PhysEventManager@{PhysEventManager}!PopNextUserInputEvent@{PopNextUserInputEvent}}
+\index{PopNextUserInputEvent@{PopNextUserInputEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{PopNextUserInputEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventUserInput} $\ast$ PhysEventManager::PopNextUserInputEvent ()}}
+\label{d5/dd7/classPhysEventManager_ad6612a6e1c728941e2c467e7f136ca51}
+
+
+Returns a pointer to the Next User Input event and removes it from the Que. 
+
+This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input events in the que. This also removes the returned pointer form the Que. \begin{DoxyReturn}{Returns}
+A pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput}, that still needs to be removed from the event manager and deleted. 
+\end{DoxyReturn}
+
+
+Definition at line 252 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_ad040054bd9018ff0fd27ad78ec1e87fa}{
+\index{PhysEventManager@{PhysEventManager}!RemoveNextEvent@{RemoveNextEvent}}
+\index{RemoveNextEvent@{RemoveNextEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{RemoveNextEvent}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::RemoveNextEvent ()}}
+\label{d5/dd7/classPhysEventManager_ad040054bd9018ff0fd27ad78ec1e87fa}
+
+
+Removes an Event From the que without looking at it. 
+
+This together with \hyperlink{classPhysEventManager_a1ab0da9e37f43c2c0d5af1dae26dcaf2}{GetNextEvent()} are the same as call \hyperlink{classPhysEventManager_a23091695829acad90c499f6724fe048c}{PopNextEvent()}. \begin{DoxyWarning}{Warning}
+If you did not call \hyperlink{classPhysEventManager_a1ab0da9e37f43c2c0d5af1dae26dcaf2}{GetNextEvent()} and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately 
+\end{DoxyWarning}
+
+\begin{DoxyExceptions}{Exceptions}
+\item[{\em This}]can throw any STL exception a que could. Any with likely throw some kind of except if called when there are no Events in the Que. \end{DoxyExceptions}
+
+
+Definition at line 127 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_a56acc075e743921e27284c023b3298ce}{
+\index{PhysEventManager@{PhysEventManager}!RemoveNextRenderTimeEvent@{RemoveNextRenderTimeEvent}}
+\index{RemoveNextRenderTimeEvent@{RemoveNextRenderTimeEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{RemoveNextRenderTimeEvent}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::RemoveNextRenderTimeEvent ()}}
+\label{d5/dd7/classPhysEventManager_a56acc075e743921e27284c023b3298ce}
+
+
+Removes the First Rendertime Event From the que without looking at it. 
+
+This together with \hyperlink{classPhysEventManager_ae1276d993b2892048341205ae0e8de02}{GetNextRenderTimeEvent()} are the pretty much same as call \hyperlink{classPhysEventManager_a682d25bedcbbf2c66bd8c067e67ee7f5}{PopNextRenderTimeEvent()}. \begin{DoxyWarning}{Warning}
+If you did not call \hyperlink{classPhysEventManager_ae1276d993b2892048341205ae0e8de02}{GetNextRenderTimeEvent()} and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately 
+\end{DoxyWarning}
+
+\begin{DoxyExceptions}{Exceptions}
+\item[{\em This}]can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que. \end{DoxyExceptions}
+
+
+Definition at line 238 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_a0984ae7ac0cc0db9fb24e50156497de4}{
+\index{PhysEventManager@{PhysEventManager}!RemoveNextSpecificEvent@{RemoveNextSpecificEvent}}
+\index{RemoveNextSpecificEvent@{RemoveNextSpecificEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{RemoveNextSpecificEvent}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::RemoveNextSpecificEvent ({\bf Event::EventType} {\em SpecificType})}}
+\label{d5/dd7/classPhysEventManager_a0984ae7ac0cc0db9fb24e50156497de4}
+
+
+Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em SpecificType}]This is a PhysEvent::EventType that defines the type you want this to work with\end{DoxyParams}
+This is just like PopNextSpecificEvent(PhysEvent::EventType SpecificType) but exept it doesn't bother with any of the needed structure involved with returning data, and just removes the specific evetn from the Que. \begin{DoxyWarning}{Warning}
+If you did not call GetNextSpecificEvent(PhysEvent::EventType SpecificType) and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately. 
+\end{DoxyWarning}
+
+\begin{DoxyExceptions}{Exceptions}
+\item[{\em This}]can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que. \end{DoxyExceptions}
+
+
+Definition at line 214 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_a9c6f5296c9961fa469ebe06d7599283a}{
+\index{PhysEventManager@{PhysEventManager}!RemoveNextUserInputEvent@{RemoveNextUserInputEvent}}
+\index{RemoveNextUserInputEvent@{RemoveNextUserInputEvent}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{RemoveNextUserInputEvent}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::RemoveNextUserInputEvent ()}}
+\label{d5/dd7/classPhysEventManager_a9c6f5296c9961fa469ebe06d7599283a}
+
+
+Removes the First User Input Event From the que without looking at it. 
+
+This together with \hyperlink{classPhysEventManager_a4874a9b1138d2351bf28e527a66c02b8}{GetNextUserInputEvent()} are the pretty much same as call \hyperlink{classPhysEventManager_ad6612a6e1c728941e2c467e7f136ca51}{PopNextUserInputEvent()}. \begin{DoxyWarning}{Warning}
+If you did not call \hyperlink{classPhysEventManager_a4874a9b1138d2351bf28e527a66c02b8}{GetNextUserInputEvent()} and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately 
+\end{DoxyWarning}
+
+\begin{DoxyExceptions}{Exceptions}
+\item[{\em This}]can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que. \end{DoxyExceptions}
+
+
+Definition at line 257 of file eventmanager.cpp.
+
+\hypertarget{classPhysEventManager_af81bf9a5f081f44a6cd91fdd19d4a42a}{
+\index{PhysEventManager@{PhysEventManager}!RemovePollingCheck@{RemovePollingCheck}}
+\index{RemovePollingCheck@{RemovePollingCheck}!PhysEventManager@{PhysEventManager}}
+\subsubsection[{RemovePollingCheck}]{\setlength{\rightskip}{0pt plus 5cm}void PhysEventManager::RemovePollingCheck (const {\bf MetaCode} \& {\em InputToStopPolling})}}
+\label{d5/dd7/classPhysEventManager_af81bf9a5f081f44a6cd91fdd19d4a42a}
+
+
+Removes Events from the list(s) of what needs to be polled. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em InputToStopPolling}]This accepts a MetaCode and will try to Remove Watches like this one\end{DoxyParams}
+This will remove any check for polling that share the same inputcode and ID. This 
+\begin{DoxyExceptions}{Exceptions}
+\item[{\em Polling check not present}]Is thrown \end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+eventmanager.h\item 
+eventmanager.cpp\end{DoxyCompactItemize}

@@ -46,6 +46,8 @@
 
 #include "physactor.h"
 
+using namespace phys;
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @class PhysMotionState
 /// @headerfile physactor.h
@@ -84,7 +86,7 @@ class PhysMotionState : public btMotionState {
         /// @details Sets the orientation the actor will have when it is added to the world.
         /// This function is called on by the ActorBase function SetInitOrientation().
         /// @param Orientation The vector3 representing the orientation to be used.
-        void SetOrientation(PhysQuaternion orientation);
+        void SetOrientation(Quaternion orientation);
 
         /// @brief Sets the initial position.
         /// @details This function is called on by the physics world upon adding the actor to the world.
@@ -260,12 +262,12 @@ void ActorBase::SetBulletInitLocation (PhysVector3 Location)
     this->MotionState->initposition.setOrigin(Location.GetBulletVector3());
 }
 
-void ActorBase::SetOgreOrientation (PhysQuaternion Rotation)
+void ActorBase::SetOgreOrientation (Quaternion Rotation)
 {
     this->node->setOrientation(Rotation.GetOgreQuaternion());
 }
 
-void ActorBase::SetBulletOrientation (PhysQuaternion Rotation)
+void ActorBase::SetBulletOrientation (Quaternion Rotation)
 {
     btTransform temp = this->CollisionObject->getWorldTransform();
     temp.setRotation(Rotation.GetBulletQuaternion());
@@ -293,18 +295,18 @@ void ActorBase::SetInitLocation(PhysVector3 Location)
     this->SetBulletInitLocation(Location);
 }
 
-void ActorBase::SetInitOrientation(PhysQuaternion Orientation)
+void ActorBase::SetInitOrientation(Quaternion Orientation)
 {
     this->MotionState->SetOrientation(Orientation);
 }
 
 void ActorBase::SetOrientation (PhysReal x, PhysReal y, PhysReal z, PhysReal w)
 {
-    PhysQuaternion temp(x,y,z,w);
+    Quaternion temp(x,y,z,w);
     this->SetOrientation(temp);
 }
 
-void ActorBase::SetOrientation (PhysQuaternion Rotation)
+void ActorBase::SetOrientation (Quaternion Rotation)
 {
     this->SetBulletOrientation(Rotation);
     this->SetOgreOrientation(Rotation);
@@ -423,7 +425,7 @@ void PhysMotionState::SetPosition(PhysVector3 position)
     this->initposition.setOrigin(position.GetBulletVector3());
 }
 
-void PhysMotionState::SetOrientation(PhysQuaternion orientation)
+void PhysMotionState::SetOrientation(Quaternion orientation)
 {
     this->initposition.setRotation(orientation.GetBulletQuaternion());
 }

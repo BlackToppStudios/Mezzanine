@@ -71,7 +71,7 @@
 #include "crossplatform.h"
 #include "physworldcallbackmanager.h"
 #include "event.h"
-#include "physeventmanager.h"
+#include "eventmanager.h"
 #include "physdatatypes.h"
 #include "physvector.h"
 

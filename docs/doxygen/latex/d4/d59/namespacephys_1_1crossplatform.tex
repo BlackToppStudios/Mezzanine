@@ -1,0 +1,79 @@
+\hypertarget{namespacephys_1_1crossplatform}{
+\section{phys::crossplatform Namespace Reference}
+\label{d4/d59/namespacephys_1_1crossplatform}\index{phys::crossplatform@{phys::crossplatform}}
+}
+
+
+All functionality that needs different implemenations per platform will go in here.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespacephys_1_1crossplatform_a8f7321f409f1f2a5fa07881ae22fcc2d}{
+string {\bfseries GetPluginsDotCFG} ()}
+\label{d4/d59/namespacephys_1_1crossplatform_a8f7321f409f1f2a5fa07881ae22fcc2d}
+
+\item 
+\hypertarget{namespacephys_1_1crossplatform_a2d43f3aa5a485564c3f375b36a08152f}{
+string {\bfseries GetSettingsDotCFG} ()}
+\label{d4/d59/namespacephys_1_1crossplatform_a2d43f3aa5a485564c3f375b36a08152f}
+
+\item 
+string \hyperlink{namespacephys_1_1crossplatform_ac73c7f2db76ddfeb41723d72decc1366}{GetDataDirectory} ()
+\begin{DoxyCompactList}\small\item\em Gets the Default Data Directory. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b64a8ed9}{
+void $\ast$ {\bfseries GetSDLOgreBinder} ()}
+\label{d4/d59/namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b64a8ed9}
+
+\item 
+void \hyperlink{namespacephys_1_1crossplatform_aeecd8627f86a826cc1ad55bf45b11757}{WaitMilliseconds} (const PhysWhole \&WaitTime)
+\begin{DoxyCompactList}\small\item\em Pauses the program for a given period of time. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespacephys_1_1crossplatform_a2025b17e592096a6fbb6d24619138c71}{RenderPhysWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TheWorld)
+\begin{DoxyCompactList}\small\item\em Renders the current world contents to the screen. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+All functionality that needs different implemenations per platform will go in here. If we did our jobs right You not need to change anything to compile on different platforms exvept the build target. If you want, the platform can be manually defined in this section and this should be the only place that you need to change to compile this on a supported platform. Just remark all the lines that are not your platform using \char`\"{}//\char`\"{} and unremark your platform. \par
+\par
+ Should you choose to port this to your platform, make sure that all the required libraries are installed, then make sure to write an implementation for each of the functions in \hyperlink{crossplatform_8cpp_source}{crossplatform.cpp}, then you should get to the nitty gritty of making the minor platforms inconsistencies work. \par
+\par
+ For most games there will be no need to directly call these functions, however if you decide you game is an exception, there is one key thing to remember about all of these functions. All of these may perform/behave slightly differently. 
+
+\subsection{Function Documentation}
+\hypertarget{namespacephys_1_1crossplatform_ac73c7f2db76ddfeb41723d72decc1366}{
+\index{phys::crossplatform@{phys::crossplatform}!GetDataDirectory@{GetDataDirectory}}
+\index{GetDataDirectory@{GetDataDirectory}!phys::crossplatform@{phys::crossplatform}}
+\subsubsection[{GetDataDirectory}]{\setlength{\rightskip}{0pt plus 5cm}string phys::crossplatform::GetDataDirectory ()}}
+\label{d4/d59/namespacephys_1_1crossplatform_ac73c7f2db76ddfeb41723d72decc1366}
+
+
+Gets the Default Data Directory. 
+
+The directory returned by this function can be used to easily graphics objects. In general the Graphics subsystem can easily open files in this location with just their filename \begin{DoxyReturn}{Returns}
+A string containing the path to the default Data Directory. 
+\end{DoxyReturn}
+\hypertarget{namespacephys_1_1crossplatform_a2025b17e592096a6fbb6d24619138c71}{
+\index{phys::crossplatform@{phys::crossplatform}!RenderPhysWorld@{RenderPhysWorld}}
+\index{RenderPhysWorld@{RenderPhysWorld}!phys::crossplatform@{phys::crossplatform}}
+\subsubsection[{RenderPhysWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::crossplatform::RenderPhysWorld ({\bf PhysWorld} $\ast$ {\em TheWorld})}}
+\label{d4/d59/namespacephys_1_1crossplatform_a2025b17e592096a6fbb6d24619138c71}
+
+
+Renders the current world contents to the screen. 
+
+This makes use of \hyperlink{classPhysWorld}{PhysWorld} internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. 
+\begin{DoxyParams}{Parameters}
+\item[{\em TheWorld}]This is a pointer to the \hyperlink{classPhysWorld}{PhysWorld} to be rendered. \end{DoxyParams}
+\hypertarget{namespacephys_1_1crossplatform_aeecd8627f86a826cc1ad55bf45b11757}{
+\index{phys::crossplatform@{phys::crossplatform}!WaitMilliseconds@{WaitMilliseconds}}
+\index{WaitMilliseconds@{WaitMilliseconds}!phys::crossplatform@{phys::crossplatform}}
+\subsubsection[{WaitMilliseconds}]{\setlength{\rightskip}{0pt plus 5cm}void phys::crossplatform::WaitMilliseconds (const PhysWhole \& {\em WaitTime})}}
+\label{d4/d59/namespacephys_1_1crossplatform_aeecd8627f86a826cc1ad55bf45b11757}
+
+
+Pauses the program for a given period of time. 
+
+Pauses the program for a given period of time. 
+\begin{DoxyParams}{Parameters}
+\item[{\em WaitTime}]The amount of time in milliseconds to wait \end{DoxyParams}

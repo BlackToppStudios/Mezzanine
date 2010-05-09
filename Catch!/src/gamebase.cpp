@@ -8,14 +8,14 @@
 #include "gamebase.h"
 
 //Physengine include
-#include "physactor.h"
-#include "physworld.h"
-#include "physeventmanager.h"
-#include "physdatatypes.h"
-#include "physeventrendertime.h"
-#include "physeventuserinput.h"
+#include <physactor.h>
+#include <physworld.h>
+#include <eventmanager.h>
+#include <physdatatypes.h>
+#include <eventrendertime.h>
+#include <physeventuserinput.h>
 
-#include "sstream"
+#include <sstream>
 
 //Create the World Globally!
 PhysWorld TheWorld;
@@ -76,7 +76,7 @@ bool PostRender()
     TheWorld.SetWindowName( timestream.str() );
 
 	//getting a message from the event manager
-	PhysEventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
+	EventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
 
     // Is currentTime a valid event?
     while(0 != CurrentTime)

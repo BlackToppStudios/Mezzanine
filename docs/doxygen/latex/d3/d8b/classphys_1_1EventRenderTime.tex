@@ -1,0 +1,96 @@
+\hypertarget{classphys_1_1EventRenderTime}{
+\section{phys::EventRenderTime Class Reference}
+\label{d3/d8b/classphys_1_1EventRenderTime}\index{phys::EventRenderTime@{phys::EventRenderTime}}
+}
+
+
+This communicates the amount of time since the world was rendered.  
+
+
+
+
+{\ttfamily \#include $<$eventrendertime.h$>$}
+
+Inheritance diagram for phys::EventRenderTime:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d3/d8b/classphys_1_1EventRenderTime}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1EventRenderTime_ac3c025af82c0a31369c0b6de28d7cab1}{EventRenderTime} (PhysWhole Milliseconds)
+\begin{DoxyCompactList}\small\item\em The Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Event_af5fdbb3e08d8e578d58770fbc606fda7}{EventType} \hyperlink{classphys_1_1EventRenderTime_a66918bf3793196899621e4442a6f7a57}{getEventType} () const 
+\begin{DoxyCompactList}\small\item\em Returns that this event is a EventType::RenderTime. \item\end{DoxyCompactList}\item 
+PhysWhole \hyperlink{classphys_1_1EventRenderTime_a1aa4e9d58140b2d1d4c52fdb0f74662f}{getMilliSecondsSinceLastFrame} ()
+\begin{DoxyCompactList}\small\item\em Returns the a floating point value with the amount of time.  Returns the a floating point value with the amount of time. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This communicates the amount of time since the world was rendered. This stores in milliseconds the amount of time since the last rendering of the physworld. 
+
+Definition at line 59 of file eventrendertime.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1EventRenderTime_ac3c025af82c0a31369c0b6de28d7cab1}{
+\index{phys::EventRenderTime@{phys::EventRenderTime}!EventRenderTime@{EventRenderTime}}
+\index{EventRenderTime@{EventRenderTime}!phys::EventRenderTime@{phys::EventRenderTime}}
+\subsubsection[{EventRenderTime}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventRenderTime::EventRenderTime (PhysWhole {\em Milliseconds})}}
+\label{d3/d8b/classphys_1_1EventRenderTime_ac3c025af82c0a31369c0b6de28d7cab1}
+
+
+The Constructor. 
+
+This is the only way to set the time 
+\begin{DoxyParams}{Parameters}
+\item[{\em Milliseconds}]As it says, the amount of milliseconds since the last rendering \end{DoxyParams}
+
+
+Definition at line 53 of file eventrendertime.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1EventRenderTime_a66918bf3793196899621e4442a6f7a57}{
+\index{phys::EventRenderTime@{phys::EventRenderTime}!getEventType@{getEventType}}
+\index{getEventType@{getEventType}!phys::EventRenderTime@{phys::EventRenderTime}}
+\subsubsection[{getEventType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Event::EventType} phys::EventRenderTime::getEventType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d8b/classphys_1_1EventRenderTime_a66918bf3793196899621e4442a6f7a57}
+
+
+Returns that this event is a EventType::RenderTime. 
+
+This is primarily for the benefit of sorting thorugh event pointers. If this functions returns EventType::RenderTime, then and event pointer can safely be cast to \hyperlink{classphys_1_1EventRenderTime}{phys::EventRenderTime} . This method is inherited from \hyperlink{classphys_1_1Event}{phys::Event} . 
+
+Implements \hyperlink{classphys_1_1Event_ac2c0623a6bc399e62f4b9fb2c022ea73}{phys::Event}.
+
+
+
+Definition at line 58 of file eventrendertime.cpp.
+
+\hypertarget{classphys_1_1EventRenderTime_a1aa4e9d58140b2d1d4c52fdb0f74662f}{
+\index{phys::EventRenderTime@{phys::EventRenderTime}!getMilliSecondsSinceLastFrame@{getMilliSecondsSinceLastFrame}}
+\index{getMilliSecondsSinceLastFrame@{getMilliSecondsSinceLastFrame}!phys::EventRenderTime@{phys::EventRenderTime}}
+\subsubsection[{getMilliSecondsSinceLastFrame}]{\setlength{\rightskip}{0pt plus 5cm}PhysWhole phys::EventRenderTime::getMilliSecondsSinceLastFrame ()}}
+\label{d3/d8b/classphys_1_1EventRenderTime_a1aa4e9d58140b2d1d4c52fdb0f74662f}
+
+
+Returns the a floating point value with the amount of time.  Returns the a floating point value with the amount of time. 
+
+\begin{DoxyReturn}{Returns}
+A floating point value with the amount of time. 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file eventrendertime.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+eventrendertime.h\item 
+eventrendertime.cpp\end{DoxyCompactItemize}
