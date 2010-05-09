@@ -55,7 +55,7 @@ namespace phys
         W=0;
     }
 
-    Quaternion::Quaternion(PhysReal x, PhysReal y, PhysReal z, PhysReal w)
+    Quaternion::Quaternion(const PhysReal &x, const PhysReal &y, const PhysReal &z, const PhysReal &w)
     {
         X=x;
         Y=y;
@@ -73,7 +73,7 @@ namespace phys
         return Theirs;
     }
 
-    void Quaternion::ExtractBulletQuaternion(btQuaternion Ours)
+    void Quaternion::ExtractBulletQuaternion(const btQuaternion &Ours)
     {
         this->X=Ours.x();
         this->Y=Ours.y();
@@ -91,7 +91,7 @@ namespace phys
         return Theirs;
     }
 
-    void Quaternion::ExtractOgreQuaternion(Ogre::Quaternion Ours)
+    void Quaternion::ExtractOgreQuaternion(const Ogre::Quaternion &Ours)
     {
         this->X=Ours.x;
         this->Y=Ours.y;
