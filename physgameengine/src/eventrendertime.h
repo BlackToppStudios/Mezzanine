@@ -37,31 +37,48 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef PHYSEVENTRENDERTIME_CPP
-#define PHYSEVENTRENDERTIME_CPP
+#ifndef EVENTRENDERTIME_H
+#define EVENTRENDERTIME_H
 ///////////////////////////////////////////////////////////////////////////////
-// This will store the amount of time  since key rendering events have occurred
+// This will store the amount of time since rendering events that occured recently
 ///////////////////////////////////////
 
+#include "event.h"
 #include "physdatatypes.h"
-#include "physeventrendertime.h"
 
 using namespace std;
 
-PhysEventRenderTime::PhysEventRenderTime (PhysWhole Milliseconds)
+namespace phys
 {
-    Rendertime=Milliseconds;
-}
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class EventRenderTime
+    /// @headerfile eventrendertime.h
+    /// @brief This communicates the amount of time since the world was rendered
+    /// @details This stores in milliseconds the amount of time since the last
+    /// rendering of the physworld.
+    class EventRenderTime : public Event
+    {
+        private:
+            PhysWhole Rendertime;
 
-Event::EventType PhysEventRenderTime::getEventType() const
-{
-	return RenderTime;
-}
+        public:
 
-PhysWhole PhysEventRenderTime::getMilliSecondsSinceLastFrame()
-{
-	return Rendertime;
-}
+            /// @brief The Constructor
+            /// @details This is the only way to set the time
+            /// @param Milliseconds As it says, the amount of milliseconds since the last rendering
+            EventRenderTime (PhysWhole Milliseconds);
 
+            /// @brief Returns that this event is a EventType::RenderTime
+            /// @details This is primarily for the benefit of sorting thorugh event pointers. If
+            /// this functions returns EventType::RenderTime, then and event pointer can safely be
+            /// cast to phys::EventRenderTime . This method is inherited from phys::Event .
+            virtual EventType getEventType() const;
+
+            /// @brief Returns the a floating point value with the amount of time.
+            /// @pdetails Returns the a floating point value with the amount of time.
+            /// @return A floating point value with the amount of time.
+            PhysWhole getMilliSecondsSinceLastFrame();
+    };
+}
 
 #endif

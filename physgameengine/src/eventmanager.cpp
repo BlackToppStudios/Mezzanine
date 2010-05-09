@@ -225,14 +225,14 @@ void PhysEventManager::RemoveNextSpecificEvent(Event::EventType SpecificType)
 ///////////////////////////////////////////////////////////////////////////////
 // Filtered management functions - RenderTime Events
 ///////////////////////////////////////
-PhysEventRenderTime* PhysEventManager::GetNextRenderTimeEvent()
+EventRenderTime* PhysEventManager::GetNextRenderTimeEvent()
 {
-    return dynamic_cast<PhysEventRenderTime*> (this->GetNextSpecificEvent(Event::RenderTime));
+    return dynamic_cast<EventRenderTime*> (this->GetNextSpecificEvent(Event::RenderTime));
 }
 
-PhysEventRenderTime* PhysEventManager::PopNextRenderTimeEvent()
+EventRenderTime* PhysEventManager::PopNextRenderTimeEvent()
 {
-    return dynamic_cast<PhysEventRenderTime*> (this->PopNextSpecificEvent(Event::RenderTime));
+    return dynamic_cast<EventRenderTime*> (this->PopNextSpecificEvent(Event::RenderTime));
 }
 
 void PhysEventManager::RemoveNextRenderTimeEvent()

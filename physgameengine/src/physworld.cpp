@@ -426,7 +426,7 @@ void PhysWorld::MainLoop()
         //PostRender Callback
 		if(this->CallBacks->IsPostRenderCallbackSet())
         {
-			this->Events->AddEvent(new PhysEventRenderTime(FrameTime));
+			this->Events->AddEvent(new EventRenderTime(FrameTime));
 			Callbackbools[5] = this->CallBacks->PostRender();
         }
 

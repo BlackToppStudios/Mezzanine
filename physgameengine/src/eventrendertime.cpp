@@ -37,27 +37,33 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef PHYSEVENTRENDERTIME_H
-#define PHYSEVENTRENDERTIME_H
+#ifndef EVENTRENDERTIME_CPP
+#define EVENTRENDERTIME_CPP
 ///////////////////////////////////////////////////////////////////////////////
-// This will store the amount of time since rendering events that occured recently
+// This will store the amount of time  since key rendering events have occurred
 ///////////////////////////////////////
 
-#include "event.h"
 #include "physdatatypes.h"
+#include "eventrendertime.h"
 
 using namespace std;
 
-using namespace phys;
-
-class PhysEventRenderTime : public Event
+namespace phys
 {
-    private:
-        PhysWhole Rendertime;
-	public:
-        PhysEventRenderTime (PhysWhole Milliseconds);
-		virtual EventType getEventType() const;
-		PhysWhole getMilliSecondsSinceLastFrame();
-};
+    EventRenderTime::EventRenderTime (PhysWhole Milliseconds)
+    {
+        Rendertime=Milliseconds;
+    }
+
+    Event::EventType EventRenderTime::getEventType() const
+    {
+        return RenderTime;
+    }
+
+    PhysWhole EventRenderTime::getMilliSecondsSinceLastFrame()
+    {
+        return Rendertime;
+    }
+}
 
 #endif

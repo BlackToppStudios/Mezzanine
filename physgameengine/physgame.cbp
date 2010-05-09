@@ -86,8 +86,12 @@
 		<Unit filename="src/crossplatform.h" />
 		<Unit filename="src/event.cpp" />
 		<Unit filename="src/event.h" />
+		<Unit filename="src/eventmanager.cpp" />
+		<Unit filename="src/eventmanager.h" />
 		<Unit filename="src/eventquit.cpp" />
 		<Unit filename="src/eventquit.h" />
+		<Unit filename="src/eventrendertime.cpp" />
+		<Unit filename="src/eventrendertime.h" />
 		<Unit filename="src/graphicsettings.cpp" />
 		<Unit filename="src/graphicsettings.h" />
 		<Unit filename="src/metacode.cpp" />
@@ -96,10 +100,6 @@
 		<Unit filename="src/physactor.h" />
 		<Unit filename="src/physdatatypes.cpp" />
 		<Unit filename="src/physdatatypes.h" />
-		<Unit filename="src/physeventmanager.cpp" />
-		<Unit filename="src/physeventmanager.h" />
-		<Unit filename="src/physeventrendertime.cpp" />
-		<Unit filename="src/physeventrendertime.h" />
 		<Unit filename="src/physeventuserinput.cpp" />
 		<Unit filename="src/physeventuserinput.h" />
 		<Unit filename="src/physmisc.cpp" />

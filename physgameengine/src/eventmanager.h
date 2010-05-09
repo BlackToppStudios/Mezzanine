@@ -50,7 +50,7 @@
 using namespace std;
 
 #include "event.h"
-#include "physeventrendertime.h"
+#include "eventrendertime.h"
 #include "physeventuserinput.h"
 #include "eventquit.h"
 
@@ -171,7 +171,7 @@ class PhysEventManager
         /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no rendertime
         /// events in the que.
         /// @return A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted.
-		PhysEventRenderTime* GetNextRenderTimeEvent();
+		EventRenderTime* GetNextRenderTimeEvent();
 
         /// @brief Returns a pointer to the Next Rendertime event and removes it from the Que
         /// @details This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use
@@ -179,7 +179,7 @@ class PhysEventManager
         /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no rendertime
         /// events in the que. This also removes the returned pointer form the Que.
         /// @return A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted.
-		PhysEventRenderTime* PopNextRenderTimeEvent();
+		EventRenderTime* PopNextRenderTimeEvent();
 
 		/// @brief Removes the First Rendertime Event From the que without looking at it.
         /// @details This together with GetNextRenderTimeEvent() are the pretty much same as call PopNextRenderTimeEvent().
