@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physquaternion_h
-#define _physquaternion_h
+#ifndef _quaternion_h
+#define _quaternion_h
 
 #include "physdatatypes.h"
 

@@ -37,13 +37,13 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physquaternion_cpp
-#define _physquaternion_cpp
+#ifndef _quaternion_cpp
+#define _quaternion_cpp
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 
-#include "physquaternion.h"
+#include "quaternion.h"
 
 namespace phys
 {

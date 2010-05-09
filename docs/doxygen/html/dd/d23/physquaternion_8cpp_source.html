@@ -70,61 +70,64 @@
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;physquaternion.h&quot;</span>
 <a name="l00047"></a>00047 
-<a name="l00048"></a><a class="code" href="../../d5/d19/classPhysQuaternion.html#afa90934d42b3a55d4b06bcf4c076123b">00048</a> <a class="code" href="../../d5/d19/classPhysQuaternion.html#afa90934d42b3a55d4b06bcf4c076123b" title="Blank Constructor.">PhysQuaternion::PhysQuaternion</a>()
+<a name="l00048"></a>00048 <span class="keyword">namespace </span>phys
 <a name="l00049"></a>00049 {
-<a name="l00050"></a>00050     <a class="code" href="../../d5/d19/classPhysQuaternion.html#ac6ef4975979103a0285379e166dafc9c" title="Rotation on the X Axis.">X</a>=0;
-<a name="l00051"></a>00051     <a class="code" href="../../d5/d19/classPhysQuaternion.html#a2b07bc54cfd68f82588cb869f8ef4428" title="Rotation on the Y Axis.">Y</a>=0;
-<a name="l00052"></a>00052     <a class="code" href="../../d5/d19/classPhysQuaternion.html#a991d092617466f15ab7c297059668cf2" title="Rotation on the Z Axis.">Z</a>=0;
-<a name="l00053"></a>00053     <a class="code" href="../../d5/d19/classPhysQuaternion.html#a5569a775ccde5755ffa4a12a0a31c555" title="Rotation on the W Axis.">W</a>=0;
-<a name="l00054"></a>00054 }
-<a name="l00055"></a>00055 
-<a name="l00056"></a><a class="code" href="../../d5/d19/classPhysQuaternion.html#aa0cbd53e7a9e624a3f0f22aa94618e17">00056</a> <a class="code" href="../../d5/d19/classPhysQuaternion.html#afa90934d42b3a55d4b06bcf4c076123b" title="Blank Constructor.">PhysQuaternion::PhysQuaternion</a>(PhysReal x, PhysReal y, PhysReal z, PhysReal w)
-<a name="l00057"></a>00057 {
-<a name="l00058"></a>00058     <a class="code" href="../../d5/d19/classPhysQuaternion.html#ac6ef4975979103a0285379e166dafc9c" title="Rotation on the X Axis.">X</a>=x;
-<a name="l00059"></a>00059     <a class="code" href="../../d5/d19/classPhysQuaternion.html#a2b07bc54cfd68f82588cb869f8ef4428" title="Rotation on the Y Axis.">Y</a>=y;
-<a name="l00060"></a>00060     <a class="code" href="../../d5/d19/classPhysQuaternion.html#a991d092617466f15ab7c297059668cf2" title="Rotation on the Z Axis.">Z</a>=z;
-<a name="l00061"></a>00061     <a class="code" href="../../d5/d19/classPhysQuaternion.html#a5569a775ccde5755ffa4a12a0a31c555" title="Rotation on the W Axis.">W</a>=w;
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 
-<a name="l00064"></a><a class="code" href="../../d5/d19/classPhysQuaternion.html#a63ed0cf13cd77d8e89af9748db2e4893">00064</a> btQuaternion <a class="code" href="../../d5/d19/classPhysQuaternion.html#a63ed0cf13cd77d8e89af9748db2e4893" title="Gets a Bullet quaternion.">PhysQuaternion::GetBulletQuaternion</a>()
-<a name="l00065"></a>00065 {
-<a name="l00066"></a>00066     btQuaternion Theirs;
-<a name="l00067"></a>00067     Theirs.setX(this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#ac6ef4975979103a0285379e166dafc9c" title="Rotation on the X Axis.">X</a>);
-<a name="l00068"></a>00068     Theirs.setY(this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a2b07bc54cfd68f82588cb869f8ef4428" title="Rotation on the Y Axis.">Y</a>);
-<a name="l00069"></a>00069     Theirs.setZ(this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a991d092617466f15ab7c297059668cf2" title="Rotation on the Z Axis.">Z</a>);
-<a name="l00070"></a>00070     Theirs.setW(this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a5569a775ccde5755ffa4a12a0a31c555" title="Rotation on the W Axis.">W</a>);
-<a name="l00071"></a>00071     <span class="keywordflow">return</span> Theirs;
-<a name="l00072"></a>00072 }
-<a name="l00073"></a>00073 
-<a name="l00074"></a><a class="code" href="../../d5/d19/classPhysQuaternion.html#a112b979d18c915cb719781949d74ff83">00074</a> <span class="keywordtype">void</span> <a class="code" href="../../d5/d19/classPhysQuaternion.html#a112b979d18c915cb719781949d74ff83" title="Copies an existing Bullet quaternion.">PhysQuaternion::ExtractBulletQuaternion</a>(btQuaternion Ours)
-<a name="l00075"></a>00075 {
-<a name="l00076"></a>00076     this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#ac6ef4975979103a0285379e166dafc9c" title="Rotation on the X Axis.">X</a>=Ours.x();
-<a name="l00077"></a>00077     this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a2b07bc54cfd68f82588cb869f8ef4428" title="Rotation on the Y Axis.">Y</a>=Ours.y();
-<a name="l00078"></a>00078     this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a991d092617466f15ab7c297059668cf2" title="Rotation on the Z Axis.">Z</a>=Ours.z();
-<a name="l00079"></a>00079     this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a5569a775ccde5755ffa4a12a0a31c555" title="Rotation on the W Axis.">W</a>=Ours.w();
-<a name="l00080"></a>00080 }
-<a name="l00081"></a>00081 
-<a name="l00082"></a><a class="code" href="../../d5/d19/classPhysQuaternion.html#a30adc9ec3604da6ac9df49dc25b6fd31">00082</a> Ogre::Quaternion <a class="code" href="../../d5/d19/classPhysQuaternion.html#a30adc9ec3604da6ac9df49dc25b6fd31" title="Gets a Ogre quaternion.">PhysQuaternion::GetOgreQuaternion</a>()
-<a name="l00083"></a>00083 {
-<a name="l00084"></a>00084     Ogre::Quaternion Theirs;
-<a name="l00085"></a>00085     Theirs.x=this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#ac6ef4975979103a0285379e166dafc9c" title="Rotation on the X Axis.">X</a>;
-<a name="l00086"></a>00086     Theirs.y=this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a2b07bc54cfd68f82588cb869f8ef4428" title="Rotation on the Y Axis.">Y</a>;
-<a name="l00087"></a>00087     Theirs.z=this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a991d092617466f15ab7c297059668cf2" title="Rotation on the Z Axis.">Z</a>;
-<a name="l00088"></a>00088     Theirs.w=this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a5569a775ccde5755ffa4a12a0a31c555" title="Rotation on the W Axis.">W</a>;
-<a name="l00089"></a>00089     <span class="keywordflow">return</span> Theirs;
-<a name="l00090"></a>00090 }
-<a name="l00091"></a>00091 
-<a name="l00092"></a><a class="code" href="../../d5/d19/classPhysQuaternion.html#a63dd5036c86a5353094ad7b089ede3ab">00092</a> <span class="keywordtype">void</span> <a class="code" href="../../d5/d19/classPhysQuaternion.html#a63dd5036c86a5353094ad7b089ede3ab" title="Copies an existing Ogre quaternion.">PhysQuaternion::ExtractOgreQuaternion</a>(Ogre::Quaternion Ours)
-<a name="l00093"></a>00093 {
-<a name="l00094"></a>00094     this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#ac6ef4975979103a0285379e166dafc9c" title="Rotation on the X Axis.">X</a>=Ours.x;
-<a name="l00095"></a>00095     this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a2b07bc54cfd68f82588cb869f8ef4428" title="Rotation on the Y Axis.">Y</a>=Ours.y;
-<a name="l00096"></a>00096     this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a991d092617466f15ab7c297059668cf2" title="Rotation on the Z Axis.">Z</a>=Ours.z;
-<a name="l00097"></a>00097     this-&gt;<a class="code" href="../../d5/d19/classPhysQuaternion.html#a5569a775ccde5755ffa4a12a0a31c555" title="Rotation on the W Axis.">W</a>=Ours.w;
-<a name="l00098"></a>00098 }
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100 <span class="preprocessor">#endif</span>
+<a name="l00050"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#aca4ee6fd6d3967f06cc4a32361fa5a62">00050</a>     <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#aca4ee6fd6d3967f06cc4a32361fa5a62" title="Blank Constructor.">Quaternion::Quaternion</a>()
+<a name="l00051"></a>00051     {
+<a name="l00052"></a>00052         <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#aff61046effc744d4c08116db95537a07" title="Rotation on the X Axis.">X</a>=0;
+<a name="l00053"></a>00053         <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a1c902b90a90e4d0231ed21b66422f737" title="Rotation on the Y Axis.">Y</a>=0;
+<a name="l00054"></a>00054         <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a0d99f19d14f3e5da96117a94ee91665a" title="Rotation on the Z Axis.">Z</a>=0;
+<a name="l00055"></a>00055         <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad272f5b3af2ab1bf76173f105db2beec" title="Rotation on the W Axis.">W</a>=0;
+<a name="l00056"></a>00056     }
+<a name="l00057"></a>00057 
+<a name="l00058"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a35a0f58c14d763f582d05a0c58fc639a">00058</a>     <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#aca4ee6fd6d3967f06cc4a32361fa5a62" title="Blank Constructor.">Quaternion::Quaternion</a>(PhysReal x, PhysReal y, PhysReal z, PhysReal w)
+<a name="l00059"></a>00059     {
+<a name="l00060"></a>00060         <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#aff61046effc744d4c08116db95537a07" title="Rotation on the X Axis.">X</a>=x;
+<a name="l00061"></a>00061         <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a1c902b90a90e4d0231ed21b66422f737" title="Rotation on the Y Axis.">Y</a>=y;
+<a name="l00062"></a>00062         <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a0d99f19d14f3e5da96117a94ee91665a" title="Rotation on the Z Axis.">Z</a>=z;
+<a name="l00063"></a>00063         <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad272f5b3af2ab1bf76173f105db2beec" title="Rotation on the W Axis.">W</a>=w;
+<a name="l00064"></a>00064     }
+<a name="l00065"></a>00065 
+<a name="l00066"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#afcda116299201599a803e48719f6d50e">00066</a>     btQuaternion <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#afcda116299201599a803e48719f6d50e" title="Gets a Bullet quaternion.">Quaternion::GetBulletQuaternion</a>()
+<a name="l00067"></a>00067     {
+<a name="l00068"></a>00068         btQuaternion Theirs;
+<a name="l00069"></a>00069         Theirs.setX(this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#aff61046effc744d4c08116db95537a07" title="Rotation on the X Axis.">X</a>);
+<a name="l00070"></a>00070         Theirs.setY(this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a1c902b90a90e4d0231ed21b66422f737" title="Rotation on the Y Axis.">Y</a>);
+<a name="l00071"></a>00071         Theirs.setZ(this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a0d99f19d14f3e5da96117a94ee91665a" title="Rotation on the Z Axis.">Z</a>);
+<a name="l00072"></a>00072         Theirs.setW(this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad272f5b3af2ab1bf76173f105db2beec" title="Rotation on the W Axis.">W</a>);
+<a name="l00073"></a>00073         <span class="keywordflow">return</span> Theirs;
+<a name="l00074"></a>00074     }
+<a name="l00075"></a>00075 
+<a name="l00076"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a65a83e58aaff481bf714be8c621e159f">00076</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a65a83e58aaff481bf714be8c621e159f" title="Copies an existing Bullet quaternion.">Quaternion::ExtractBulletQuaternion</a>(btQuaternion Ours)
+<a name="l00077"></a>00077     {
+<a name="l00078"></a>00078         this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#aff61046effc744d4c08116db95537a07" title="Rotation on the X Axis.">X</a>=Ours.x();
+<a name="l00079"></a>00079         this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a1c902b90a90e4d0231ed21b66422f737" title="Rotation on the Y Axis.">Y</a>=Ours.y();
+<a name="l00080"></a>00080         this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a0d99f19d14f3e5da96117a94ee91665a" title="Rotation on the Z Axis.">Z</a>=Ours.z();
+<a name="l00081"></a>00081         this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad272f5b3af2ab1bf76173f105db2beec" title="Rotation on the W Axis.">W</a>=Ours.w();
+<a name="l00082"></a>00082     }
+<a name="l00083"></a>00083 
+<a name="l00084"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a022ed1ed25a8324b8fc0c4d8b0e7a675">00084</a>     Ogre::Quaternion <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a022ed1ed25a8324b8fc0c4d8b0e7a675" title="Gets a Ogre quaternion.">Quaternion::GetOgreQuaternion</a>()
+<a name="l00085"></a>00085     {
+<a name="l00086"></a>00086         Ogre::Quaternion Theirs;
+<a name="l00087"></a>00087         Theirs.x=this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#aff61046effc744d4c08116db95537a07" title="Rotation on the X Axis.">X</a>;
+<a name="l00088"></a>00088         Theirs.y=this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a1c902b90a90e4d0231ed21b66422f737" title="Rotation on the Y Axis.">Y</a>;
+<a name="l00089"></a>00089         Theirs.z=this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a0d99f19d14f3e5da96117a94ee91665a" title="Rotation on the Z Axis.">Z</a>;
+<a name="l00090"></a>00090         Theirs.w=this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad272f5b3af2ab1bf76173f105db2beec" title="Rotation on the W Axis.">W</a>;
+<a name="l00091"></a>00091         <span class="keywordflow">return</span> Theirs;
+<a name="l00092"></a>00092     }
+<a name="l00093"></a>00093 
+<a name="l00094"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a10089c02dc2dde173ab2abecc2be78c0">00094</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a10089c02dc2dde173ab2abecc2be78c0" title="Copies an existing Ogre quaternion.">Quaternion::ExtractOgreQuaternion</a>(Ogre::Quaternion Ours)
+<a name="l00095"></a>00095     {
+<a name="l00096"></a>00096         this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#aff61046effc744d4c08116db95537a07" title="Rotation on the X Axis.">X</a>=Ours.x;
+<a name="l00097"></a>00097         this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a1c902b90a90e4d0231ed21b66422f737" title="Rotation on the Y Axis.">Y</a>=Ours.y;
+<a name="l00098"></a>00098         this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a0d99f19d14f3e5da96117a94ee91665a" title="Rotation on the Z Axis.">Z</a>=Ours.z;
+<a name="l00099"></a>00099         this-&gt;<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad272f5b3af2ab1bf76173f105db2beec" title="Rotation on the W Axis.">W</a>=Ours.w;
+<a name="l00100"></a>00100     }
+<a name="l00101"></a>00101 }
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:34:26 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:59:14 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

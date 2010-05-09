@@ -161,7 +161,7 @@
 <a name="l00136"></a>00136 <span class="comment">        /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n</span>
 <a name="l00137"></a>00137 <span class="comment">        /// This function is called on by the SetOrientation function, and shouldn&#39;t be called manually.</span>
 <a name="l00138"></a>00138 <span class="comment">        /// @param Rotation The quaternion representing the rotation of the actor.</span>
-<a name="l00139"></a>00139 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a55f45703e3d9b8de0cd07b23bd9460bf" title="Sets the orientation of the graphical body.">SetOgreOrientation</a> (<a class="code" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> Rotation);<span class="comment"></span>
+<a name="l00139"></a>00139 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#ad13a4ba6d349dfab4965e58b8335d519" title="Sets the orientation of the graphical body.">SetOgreOrientation</a> (<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rotation);<span class="comment"></span>
 <a name="l00140"></a>00140 <span class="comment">        /// @brief Makes the actor visable.</span>
 <a name="l00141"></a>00141 <span class="comment">        /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n</span>
 <a name="l00142"></a>00142 <span class="comment">        /// This is automaticly called by the PhysWorlds AddActor function and shouldn&#39;t ever need to be called manually.</span>
@@ -185,7 +185,7 @@
 <a name="l00160"></a>00160 <span class="comment">        /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n</span>
 <a name="l00161"></a>00161 <span class="comment">        /// This function is called on by the SetOrientation function, and shouldn&#39;t be called manually.</span>
 <a name="l00162"></a>00162 <span class="comment">        /// @param Rotation The quaternion representing the rotation of the actor.</span>
-<a name="l00163"></a>00163 <span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#adf817bd5a7c562f31f6724a06a3a0f79" title="Sets the orientation of the physics body.">SetBulletOrientation</a> (<a class="code" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> Rotation);
+<a name="l00163"></a>00163 <span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a1d9a2b13dcff7a6a2dc83f08f1db97ce" title="Sets the orientation of the physics body.">SetBulletOrientation</a> (<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rotation);
 <a name="l00164"></a>00164 
 <a name="l00165"></a>00165         <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00166"></a>00166 <span class="comment">        /// @brief Destructor.</span>
@@ -224,7 +224,7 @@
 <a name="l00199"></a>00199 <span class="comment">        /// @details Calling this function after adding it to the PhysWorld will have no effect. @n</span>
 <a name="l00200"></a>00200 <span class="comment">        /// This function will set where the actor is facing in the PhysWorld when it is first placed inside the world.</span>
 <a name="l00201"></a>00201 <span class="comment">        /// @param Orientation The PhysQuaternion representing the Orientation.</span>
-<a name="l00202"></a>00202 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a72e2d0064c3e4c4d8937f490397a333f" title="Sets the starting orientation of the actor.">SetInitOrientation</a>(<a class="code" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> Orientation);
+<a name="l00202"></a>00202 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a968b3c8b29aac97b5240cf933783865b" title="Sets the starting orientation of the actor.">SetInitOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Orientation);
 <a name="l00203"></a>00203 <span class="comment"></span>
 <a name="l00204"></a>00204 <span class="comment">        /// @brief Sets the orientation of the actor.</span>
 <a name="l00205"></a>00205 <span class="comment">        /// @details Sets the orientation of the actor via Quaternion parameters.</span>
@@ -232,7 +232,7 @@
 <a name="l00207"></a>00207 <span class="comment">        /// @brief Sets the orientation of the actor.</span>
 <a name="l00208"></a>00208 <span class="comment">        /// @details Sets the orientation of the actor via a Quaternion.</span>
 <a name="l00209"></a>00209 <span class="comment">        /// @param Rotation The Quaternion representing the Rotation.</span>
-<a name="l00210"></a>00210 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a9777506815a9840552b30c65d5d70f8d" title="Sets the orientation of the actor.">SetOrientation</a>(<a class="code" href="../../d5/d19/classPhysQuaternion.html">PhysQuaternion</a> Rotation);
+<a name="l00210"></a>00210 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a9777506815a9840552b30c65d5d70f8d" title="Sets the orientation of the actor.">SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rotation);
 <a name="l00211"></a>00211 <span class="comment"></span>
 <a name="l00212"></a>00212 <span class="comment">        /// @brief Sets the state of the object to Kinematic.</span>
 <a name="l00213"></a>00213 <span class="comment">        /// @details This function will set the object to a Kinematic Object. @n</span>
@@ -327,7 +327,7 @@
 <a name="l00302"></a>00302 
 <a name="l00303"></a>00303 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:34:26 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:59:14 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

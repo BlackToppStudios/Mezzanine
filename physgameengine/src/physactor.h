@@ -41,7 +41,7 @@
 #define _physactor_h
 
 #include "physvector.h"
-#include "physquaternion.h"
+#include "quaternion.h"
 #include "physworld.h"
 
 ///////////////////////////////////
