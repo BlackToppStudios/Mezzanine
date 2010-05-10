@@ -66,7 +66,7 @@
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _physactor_h</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;physvector.h&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;physquaternion.h&quot;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;quaternion.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;physworld.h&quot;</span>
 <a name="l00046"></a>00046 <span class="comment"></span>
 <a name="l00047"></a>00047 <span class="comment">///////////////////////////////////</span>
@@ -144,7 +144,7 @@
 <a name="l00119"></a>00119 <span class="comment">        /// @param Name Name of the actor.</span>
 <a name="l00120"></a>00120 <span class="comment">        /// @param File File name of the graphical mesh to be used.</span>
 <a name="l00121"></a>00121 <span class="comment">        /// @param Group Resource group where the graphical mesh can be found.</span>
-<a name="l00122"></a>00122 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#aa87583c47b8653e8ac7d96f1481b57fd" title="Creates an entity for the mesh file to be placed on a scene node.">CreateEntity</a>(PhysString name, PhysString file, PhysString group);<span class="comment"></span>
+<a name="l00122"></a>00122 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a7fd55114a59fe098a217314cf29cd055" title="Creates an entity for the mesh file to be placed on a scene node.">CreateEntity</a>(String name, String file, String group);<span class="comment"></span>
 <a name="l00123"></a>00123 <span class="comment">        /// @brief Creates a node for the entity in the graphical world.</span>
 <a name="l00124"></a>00124 <span class="comment">        /// @details Creates a node in the scene manager to attach the actor&#39;s entity to within the graphical world. @n</span>
 <a name="l00125"></a>00125 <span class="comment">        /// This function is called on by the Constructor, and shouldn&#39;t be called manually.</span>
@@ -197,7 +197,7 @@
 <a name="l00172"></a>00172 <span class="comment">        /// @param File The 3d mesh file that contains the 3d model the actor will use.</span>
 <a name="l00173"></a>00173 <span class="comment">        /// @param Group The resource group where the 3d mesh and other related files can be found.</span>
 <a name="l00174"></a>00174 <span class="comment">        /// @param World Pointer to the PhysWorld this object will be added to.</span>
-<a name="l00175"></a>00175 <span class="comment"></span>        <a class="code" href="../../dd/d7b/classActorBase.html#a673d963aa7a99475cb03250c010dfa15" title="Descriptive constructor.">ActorBase</a> (PhysString name, PhysString file, PhysString group, <a class="code" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>* World);
+<a name="l00175"></a>00175 <span class="comment"></span>        <a class="code" href="../../dd/d7b/classActorBase.html#a32337e36f62d5ffb6315fad932aa84d9" title="Descriptive constructor.">ActorBase</a> (String name, String file, String group, <a class="code" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>* World);
 <a name="l00176"></a>00176 <span class="comment"></span>
 <a name="l00177"></a>00177 <span class="comment">        /// @brief Manually sets the location of the actor.</span>
 <a name="l00178"></a>00178 <span class="comment">        /// @details Calling this function prior to adding it to the PhysWorld will have no effect. @n</span>
@@ -205,12 +205,12 @@
 <a name="l00180"></a>00180 <span class="comment">        /// @param X Location on the X vector.</span>
 <a name="l00181"></a>00181 <span class="comment">        /// @param Y Location on the Y vector.</span>
 <a name="l00182"></a>00182 <span class="comment">        /// @param Z Location on the Z vector.</span>
-<a name="l00183"></a>00183 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a34848d620c5d9d2796999edbdcb77c9a" title="Manually sets the location of the actor.">SetLocation</a>(PhysReal x, PhysReal y, PhysReal z);<span class="comment"></span>
+<a name="l00183"></a>00183 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a693c1bcb10ba7dc8fc37eef70ce65f0c" title="Manually sets the location of the actor.">SetLocation</a>(Real x, Real y, Real z);<span class="comment"></span>
 <a name="l00184"></a>00184 <span class="comment">        /// @brief Manually sets the location of the actor.</span>
 <a name="l00185"></a>00185 <span class="comment">        /// @details Calling this function prior to adding it to the PhysWorld will have no effect. @n</span>
 <a name="l00186"></a>00186 <span class="comment">        /// In most situations you won&#39;t want to use this function, and instead produce movement through physics functions.</span>
 <a name="l00187"></a>00187 <span class="comment">        /// @param Place The PhysVector3 representing the location.</span>
-<a name="l00188"></a>00188 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a34848d620c5d9d2796999edbdcb77c9a" title="Manually sets the location of the actor.">SetLocation</a>(<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Place);<span class="comment"></span>
+<a name="l00188"></a>00188 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a693c1bcb10ba7dc8fc37eef70ce65f0c" title="Manually sets the location of the actor.">SetLocation</a>(<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Place);<span class="comment"></span>
 <a name="l00189"></a>00189 <span class="comment">        /// @brief Retrieves the location of the object.</span>
 <a name="l00190"></a>00190 <span class="comment">        /// @details This function will retrieve the location of the object within the world.</span>
 <a name="l00191"></a>00191 <span class="comment"></span>        <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> <a class="code" href="../../dd/d7b/classActorBase.html#a9dfdaf0304e4a462b3b033fb254116af" title="Retrieves the location of the object.">GetLocation</a>();
@@ -228,11 +228,11 @@
 <a name="l00203"></a>00203 <span class="comment"></span>
 <a name="l00204"></a>00204 <span class="comment">        /// @brief Sets the orientation of the actor.</span>
 <a name="l00205"></a>00205 <span class="comment">        /// @details Sets the orientation of the actor via Quaternion parameters.</span>
-<a name="l00206"></a>00206 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a9777506815a9840552b30c65d5d70f8d" title="Sets the orientation of the actor.">SetOrientation</a>(PhysReal x, PhysReal y, PhysReal z, PhysReal w);<span class="comment"></span>
+<a name="l00206"></a>00206 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a676bcd5370c2e4a4e81d8bde7ed3970f" title="Sets the orientation of the actor.">SetOrientation</a>(Real x, Real y, Real z, Real w);<span class="comment"></span>
 <a name="l00207"></a>00207 <span class="comment">        /// @brief Sets the orientation of the actor.</span>
 <a name="l00208"></a>00208 <span class="comment">        /// @details Sets the orientation of the actor via a Quaternion.</span>
 <a name="l00209"></a>00209 <span class="comment">        /// @param Rotation The Quaternion representing the Rotation.</span>
-<a name="l00210"></a>00210 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a9777506815a9840552b30c65d5d70f8d" title="Sets the orientation of the actor.">SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rotation);
+<a name="l00210"></a>00210 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dd/d7b/classActorBase.html#a676bcd5370c2e4a4e81d8bde7ed3970f" title="Sets the orientation of the actor.">SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rotation);
 <a name="l00211"></a>00211 <span class="comment"></span>
 <a name="l00212"></a>00212 <span class="comment">        /// @brief Sets the state of the object to Kinematic.</span>
 <a name="l00213"></a>00213 <span class="comment">        /// @details This function will set the object to a Kinematic Object. @n</span>
@@ -261,8 +261,8 @@
 <a name="l00236"></a>00236 <span class="comment">        /// @brief Creates a rigid object for the actor.</span>
 <a name="l00237"></a>00237 <span class="comment">        /// @details Creates a rigid object to be placed in the physics world later. @n</span>
 <a name="l00238"></a>00238 <span class="comment">        /// This is automaticly called by the Constructor and shouldn&#39;t be called manually.</span>
-<a name="l00239"></a>00239 <span class="comment">        /// @param PMass &quot;PhysReal Mass&quot; The mass of the object.</span>
-<a name="l00240"></a>00240 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../d5/d10/classActorRigid.html#ac651eed187c3cb912bc7f294f0b42ad1" title="Creates a rigid object for the actor.">CreateRigidObject</a> (PhysReal pmass);<span class="comment"></span>
+<a name="l00239"></a>00239 <span class="comment">        /// @param PMass &quot;Real Mass&quot; The mass of the object.</span>
+<a name="l00240"></a>00240 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../d5/d10/classActorRigid.html#a57d5fe315a120e97bf34e1930a7678d8" title="Creates a rigid object for the actor.">CreateRigidObject</a> (Real pmass);<span class="comment"></span>
 <a name="l00241"></a>00241 <span class="comment">        /// @brief Adds the actor to the physics world.</span>
 <a name="l00242"></a>00242 <span class="comment">        /// @details Adds the actor to the physics world. @n</span>
 <a name="l00243"></a>00243 <span class="comment">        /// This is automaticly called by the PhysWorlds AddActor function and shouldn&#39;t be called manually.</span>
@@ -279,7 +279,7 @@
 <a name="l00254"></a>00254 <span class="comment">        /// @param File The 3d mesh file that contains the 3d model the actor will use.</span>
 <a name="l00255"></a>00255 <span class="comment">        /// @param Group The resource group where the 3d mesh and other related files can be found.</span>
 <a name="l00256"></a>00256 <span class="comment">        /// @param World Pointer to the PhysWorld this object will be added to.</span>
-<a name="l00257"></a>00257 <span class="comment"></span>        <a class="code" href="../../d5/d10/classActorRigid.html#a8313ce86811d7233b8672f562306976c" title="Descriptive constructor.">ActorRigid</a>(PhysReal mass, PhysString name, PhysString file, PhysString group, <a class="code" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>* World);<span class="comment"></span>
+<a name="l00257"></a>00257 <span class="comment"></span>        <a class="code" href="../../d5/d10/classActorRigid.html#a99b5b801a7462e987b8dd4437155b9d1" title="Descriptive constructor.">ActorRigid</a>(Real mass, String name, String file, String group, <a class="code" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>* World);<span class="comment"></span>
 <a name="l00258"></a>00258 <span class="comment">        /// @brief Destructor.</span>
 <a name="l00259"></a>00259 <span class="comment">        /// @details The class destructor.</span>
 <a name="l00260"></a>00260 <span class="comment"></span>        <span class="keyword">virtual</span> <a class="code" href="../../d5/d10/classActorRigid.html#a36b9eb18fc9e83769a48eb1c34312889" title="Destructor.">~ActorRigid</a>();<span class="comment"></span>
@@ -327,7 +327,7 @@
 <a name="l00302"></a>00302 
 <a name="l00303"></a>00303 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:59:14 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:55 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

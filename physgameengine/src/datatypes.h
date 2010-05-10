@@ -48,11 +48,29 @@ union SDL_Event;
 
 namespace phys
 {
+    /// @typedef Real
+    /// @brief A Datatype used to represent a real floating point number
+    /// @details This Datatype is currently a typedef to a float, This is to match
+    /// our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics
+    /// subsystem, btScalar). With a recompilation of all the subsystems and  this
+    /// there is no reason theoretical reason why this could not be changed to a
+    /// double, or even something more extreme like a GMP datatype
     typedef float Real;
+
+    /// @typedef Whole
+    /// @brief A Datatype used to represent an postive integer numbers
+    /// @details This is a typedef to unsigned long.
     typedef unsigned long Whole;
+
+    /// @typedef String
+    /// @brief A Datatype used to a series of characters
+    /// @details This is a typedef to std::string.
     typedef const std::string String;
 
-    /// @todo TODO Completely remove references to Rawevent as it exists and replace them with some kind of wrapper class.
+    /// @internal
+    /// @typedef RawEvent
+    /// @brief This is an internal datatype use to communicate with the User input Subsystem
+    /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details
     typedef SDL_Event RawEvent;
 
 

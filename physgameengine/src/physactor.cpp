@@ -43,6 +43,7 @@
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+#include "BulletCollision/CollisionShapes/btShapeHull.h"
 
 #include "physactor.h"
 
@@ -216,9 +217,24 @@ void ActorBase::CreateTrimesh()
 
     delete[] vertices;
     delete[] indices;
+    delete Shape;
 
     ///TODO - Check for thread safety
-    Shape = new btBvhTriangleMeshShape(trimesh, true);
+    //Shape = new btConvexTriangleMeshShape(trimesh, true);
+    btConvexShape *tmpshape = new btConvexTriangleMeshShape(trimesh);
+    btShapeHull *hull = new btShapeHull(tmpshape);
+    btScalar margin = tmpshape->getMargin();
+    hull->buildHull(margin);
+    //Shape=hull;
+    tmpshape->setUserPointer(hull);
+    btConvexHullShape* convexShape = new btConvexHullShape();
+    for (unsigned b=0;b<hull->numVertices();b++)
+    {
+        convexShape->addPoint(hull->getVertexPointer()[b]);
+    }
+    delete tmpshape;
+    delete hull;
+    Shape = convexShape;
 }
 
 void ActorBase::CreateEntity (String name, String file, String group)

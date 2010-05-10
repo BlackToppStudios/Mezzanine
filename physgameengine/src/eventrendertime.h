@@ -75,7 +75,7 @@ namespace phys
             virtual EventType getEventType() const;
 
             /// @brief Returns the a floating point value with the amount of time.
-            /// @pdetails Returns the a floating point value with the amount of time.
+            /// @details Returns the a floating point value with the amount of time.
             /// @return A floating point value with the amount of time.
             Whole getMilliSecondsSinceLastFrame();
     };

@@ -77,10 +77,10 @@ namespace phys
 
             /// @brief Constructor.
             /// @details Constructor that sets all four axis' of rotation.
-            /// @param X Rotation on the X Axis.
-            /// @param Y Rotation on the Y Axis.
-            /// @param Z Rotation on the Z Axis.
-            /// @param W Rotation on the W Axis.
+            /// @param x Rotation on the X Axis.
+            /// @param y Rotation on the Y Axis.
+            /// @param z Rotation on the Z Axis.
+            /// @param w Rotation on the W Axis.
             Quaternion(const Real &x, const Real &y, const Real &z, const Real &w);
 
             /// @brief Gets a Bullet quaternion.

@@ -33,16 +33,16 @@
 <a href="#_details">More...</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f7321f409f1f2a5fa07881ae22fcc2d"></a><!-- doxytag: member="phys::crossplatform::GetPluginsDotCFG" ref="a8f7321f409f1f2a5fa07881ae22fcc2d" args="()" -->
-string&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetPluginsDotCFG</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d43f3aa5a485564c3f375b36a08152f"></a><!-- doxytag: member="phys::crossplatform::GetSettingsDotCFG" ref="a2d43f3aa5a485564c3f375b36a08152f" args="()" -->
-string&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetSettingsDotCFG</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#a8f7321f409f1f2a5fa07881ae22fcc2d">GetPluginsDotCFG</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a string with a path/filename to the default Plugins config file.  <a href="#a8f7321f409f1f2a5fa07881ae22fcc2d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#a2d43f3aa5a485564c3f375b36a08152f">GetSettingsDotCFG</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a string with a path/filename to the default Graphics Subsytem settings file.  <a href="#a2d43f3aa5a485564c3f375b36a08152f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#ac73c7f2db76ddfeb41723d72decc1366">GetDataDirectory</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the Default Data Directory.  <a href="#ac73c7f2db76ddfeb41723d72decc1366"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a596ed780d507e681d9261d26b64a8ed9"></a><!-- doxytag: member="phys::crossplatform::GetSDLOgreBinder" ref="a596ed780d507e681d9261d26b64a8ed9" args="()" -->
-void *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetSDLOgreBinder</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#aeecd8627f86a826cc1ad55bf45b11757">WaitMilliseconds</a> (const PhysWhole &amp;WaitTime)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pauses the program for a given period of time.  <a href="#aeecd8627f86a826cc1ad55bf45b11757"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#a596ed780d507e681d9261d26b64a8ed9">GetSDLOgreBinder</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem).  <a href="#a596ed780d507e681d9261d26b64a8ed9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab5287fc10a132457a1309e1f5645347a">WaitMilliseconds</a> (const Whole &amp;WaitTime)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pauses the program for a given period of time.  <a href="#ab5287fc10a132457a1309e1f5645347a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#a2025b17e592096a6fbb6d24619138c71">RenderPhysWorld</a> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TheWorld)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Renders the current world contents to the screen.  <a href="#a2025b17e592096a6fbb6d24619138c71"></a><br/></td></tr>
 </table>
@@ -75,6 +75,72 @@ void *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetSDLOgreBinder</b
 
 </div>
 </div>
+<a class="anchor" id="a8f7321f409f1f2a5fa07881ae22fcc2d"></a><!-- doxytag: member="phys::crossplatform::GetPluginsDotCFG" ref="a8f7321f409f1f2a5fa07881ae22fcc2d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string phys::crossplatform::GetPluginsDotCFG </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns a string with a path/filename to the default Plugins config file. </p>
+<p><b>For internal use only.</b></p>
+<p>Plugins.cfg is the file that determines which graphics plugins are loaded. This is a feature of the graphics subsystem and is generally not needed outside of engine code. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string which contains the path and filename of the plugins file </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a596ed780d507e681d9261d26b64a8ed9"></a><!-- doxytag: member="phys::crossplatform::GetSDLOgreBinder" ref="a596ed780d507e681d9261d26b64a8ed9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * phys::crossplatform::GetSDLOgreBinder </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). </p>
+<p><b>For internal use only.</b></p>
+<p>This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2d43f3aa5a485564c3f375b36a08152f"></a><!-- doxytag: member="phys::crossplatform::GetSettingsDotCFG" ref="a2d43f3aa5a485564c3f375b36a08152f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string phys::crossplatform::GetSettingsDotCFG </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns a string with a path/filename to the default Graphics Subsytem settings file. </p>
+<p><b>For internal use only.</b></p>
+<p>Settings.cfg is the file that determines how graphics settings are configured by default. This is a feature of the graphics subsystem and is generally not needed outside of engine code. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string which contains the path and filename of the graphics setts file </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a2025b17e592096a6fbb6d24619138c71"></a><!-- doxytag: member="phys::crossplatform::RenderPhysWorld" ref="a2025b17e592096a6fbb6d24619138c71" args="(PhysWorld *TheWorld)" -->
 <div class="memitem">
 <div class="memproto">
@@ -102,14 +168,14 @@ void *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetSDLOgreBinder</b
 
 </div>
 </div>
-<a class="anchor" id="aeecd8627f86a826cc1ad55bf45b11757"></a><!-- doxytag: member="phys::crossplatform::WaitMilliseconds" ref="aeecd8627f86a826cc1ad55bf45b11757" args="(const PhysWhole &amp;WaitTime)" -->
+<a class="anchor" id="ab5287fc10a132457a1309e1f5645347a"></a><!-- doxytag: member="phys::crossplatform::WaitMilliseconds" ref="ab5287fc10a132457a1309e1f5645347a" args="(const Whole &amp;WaitTime)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void phys::crossplatform::WaitMilliseconds </td>
           <td>(</td>
-          <td class="paramtype">const PhysWhole &amp;&nbsp;</td>
+          <td class="paramtype">const Whole &amp;&nbsp;</td>
           <td class="paramname"> <em>WaitTime</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -130,7 +196,7 @@ void *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetSDLOgreBinder</b
 </div>
 </div>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:59:15 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:56 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

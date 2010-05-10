@@ -108,10 +108,10 @@
 		<Unit filename="src/physvector.h" />
 		<Unit filename="src/physworld.cpp" />
 		<Unit filename="src/physworld.h" />
-		<Unit filename="src/physworldcallbackmanager.cpp" />
-		<Unit filename="src/physworldcallbackmanager.h" />
 		<Unit filename="src/quaternion.cpp" />
 		<Unit filename="src/quaternion.h" />
+		<Unit filename="src/worldcallbackmanager.cpp" />
+		<Unit filename="src/worldcallbackmanager.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

@@ -97,7 +97,7 @@
 <a name="l00072"></a>00072 <span class="preprocessor">#include &quot;physworldcallbackmanager.h&quot;</span>
 <a name="l00073"></a>00073 <span class="preprocessor">#include &quot;event.h&quot;</span>
 <a name="l00074"></a>00074 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>
-<a name="l00075"></a>00075 <span class="preprocessor">#include &quot;physdatatypes.h&quot;</span>
+<a name="l00075"></a>00075 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
 <a name="l00076"></a>00076 <span class="preprocessor">#include &quot;physvector.h&quot;</span>
 <a name="l00077"></a>00077 
 <a name="l00078"></a>00078 <span class="keyword">using namespace </span>phys;
@@ -195,9 +195,9 @@
 <a name="l00170"></a>00170 
 <a name="l00171"></a>00171         <span class="comment">//Settings for Engine Functionality</span>
 <a name="l00172"></a>00172         <span class="keywordtype">string</span> WindowName;
-<a name="l00173"></a>00173         PhysWhole TargetFrameLength;
+<a name="l00173"></a>00173         Whole TargetFrameLength;
 <a name="l00174"></a>00174 
-<a name="l00175"></a>00175         PhysReal PhysicsStepsize;
+<a name="l00175"></a>00175         Real PhysicsStepsize;
 <a name="l00176"></a>00176 <span class="comment"></span>
 <a name="l00177"></a>00177 <span class="comment">        /// @brief Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly</span>
 <a name="l00178"></a>00178 <span class="comment">        /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly</span>
@@ -228,7 +228,7 @@
 <a name="l00203"></a>00203 <span class="comment">                /// @details Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is</span>
 <a name="l00204"></a>00204 <span class="comment">                /// Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types</span>
 <a name="l00205"></a>00205 <span class="comment">                /// that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int</span>
-<a name="l00206"></a>00206 <span class="comment">                /// unsigned long int, bool, float, double, long double, wchar_t, size_t, PhysReal, PhysWhole, PhysString, PhysVector3, RawEvent and MetaCode.</span>
+<a name="l00206"></a>00206 <span class="comment">                /// unsigned long int, bool, float, double, long double, wchar_t, size_t, Real, Whole, String, PhysVector3, RawEvent and MetaCode.</span>
 <a name="l00207"></a>00207 <span class="comment">                /// If compiled statically it should support any data type which supports output streams.</span>
 <a name="l00208"></a>00208 <span class="comment">                /// @param Message This is what will be streamed to the log</span>
 <a name="l00209"></a>00209 <span class="comment"></span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a5e9fead1c3100f5dbd5ca985b82b85ea" title="Runtime Event logging Function.">Log</a>(T Message);<span class="comment"></span>
@@ -246,26 +246,26 @@
 <a name="l00221"></a>00221 <span class="comment">        /// @details This changes the text in the bar at the top of the game window in windowed mode. Currently the changes only</span>
 <a name="l00222"></a>00222 <span class="comment">        /// works if this function is called before PhysWorld.GameInit but it is our TODO list to fix so it can be changed at anytime.</span>
 <a name="l00223"></a>00223 <span class="comment">        /// @param NewName This is the new text to be used in the titlebar.</span>
-<a name="l00224"></a>00224 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ac4ce341c1fc9a06f6265dcedc62f705b" title="This can set the the Text in the titlebar.">SetWindowName</a>(<span class="keyword">const</span> PhysString &amp;NewName);
+<a name="l00224"></a>00224 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#abab1d26203cb8386d6a51f4fc0b0a1e4" title="This can set the the Text in the titlebar.">SetWindowName</a>(<span class="keyword">const</span> String &amp;NewName);
 <a name="l00225"></a>00225 <span class="comment"></span>
 <a name="l00226"></a>00226 <span class="comment">        /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be</span>
 <a name="l00227"></a>00227 <span class="comment">        /// @details In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. However, the mainloop will always reduce</span>
 <a name="l00228"></a>00228 <span class="comment">        /// the actual amount of time to 0 when the hardware is overburdened.</span>
-<a name="l00229"></a>00229 <span class="comment">        /// @return This returns a PhysWhole with the current Value</span>
-<a name="l00230"></a>00230 <span class="comment"></span>        PhysWhole <a class="code" href="../../db/df5/classPhysWorld.html#a33e8430ed43897276ca55fbb47e54bcf" title="Retrieves the amount of milliseconds we would like each iteration of the Main Loop...">GetTargetFrameTime</a>();<span class="comment"></span>
+<a name="l00229"></a>00229 <span class="comment">        /// @return This returns a Whole with the current Value</span>
+<a name="l00230"></a>00230 <span class="comment"></span>        Whole <a class="code" href="../../db/df5/classPhysWorld.html#abc6bbb700f46d71fb29230c05c9263d4" title="Retrieves the amount of milliseconds we would like each iteration of the Main Loop...">GetTargetFrameTime</a>();<span class="comment"></span>
 <a name="l00231"></a>00231 <span class="comment">        /// @brief This sets a new Target Time</span>
 <a name="l00232"></a>00232 <span class="comment">        /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value</span>
 <a name="l00233"></a>00233 <span class="comment">        /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but</span>
 <a name="l00234"></a>00234 <span class="comment">        /// set it too high, and system resources could becom completely taxed and power will be wasted.</span>
 <a name="l00235"></a>00235 <span class="comment">        /// @param NewTargetTime The new length of time, in milliseconds.</span>
 <a name="l00236"></a>00236 <span class="comment">        /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.</span>
-<a name="l00237"></a>00237 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#af2954fa97d3e5f12e7c69b84fb493ade" title="This sets a new Target Time.">SetTargetFrameTime</a>(<span class="keyword">const</span> PhysWhole &amp;NewTargetTime);<span class="comment"></span>
+<a name="l00237"></a>00237 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a5375f0e42292087a345d8fd7c84c0b8b" title="This sets a new Target Time.">SetTargetFrameTime</a>(<span class="keyword">const</span> Whole &amp;NewTargetTime);<span class="comment"></span>
 <a name="l00238"></a>00238 <span class="comment">        /// @brief This sets a new Target Frame Rate</span>
 <a name="l00239"></a>00239 <span class="comment">        /// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to</span>
 <a name="l00240"></a>00240 <span class="comment">        /// PhysWorld::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms</span>
 <a name="l00241"></a>00241 <span class="comment">        /// @param NewTargetTime The new desired frame rate.</span>
 <a name="l00242"></a>00242 <span class="comment">        /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.</span>
-<a name="l00243"></a>00243 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a4b02ee63ad6c20be767fd20f2f1128f5" title="This sets a new Target Frame Rate.">SetTargetFrameRate</a>(<span class="keyword">const</span> PhysWhole &amp;NewFrameRate);
+<a name="l00243"></a>00243 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a7182be8b59c54a7b7caafc80c5bef2ad" title="This sets a new Target Frame Rate.">SetTargetFrameRate</a>(<span class="keyword">const</span> Whole &amp;NewFrameRate);
 <a name="l00244"></a>00244 <span class="comment"></span>
 <a name="l00245"></a>00245 <span class="comment">        /// @brief This Shows an Engine Generated Configuration Screen</span>
 <a name="l00246"></a>00246 <span class="comment">        /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration</span>
@@ -296,7 +296,7 @@
 <a name="l00271"></a>00271 <span class="comment">        /// @details This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is</span>
 <a name="l00272"></a>00272 <span class="comment">        /// useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items</span>
 <a name="l00273"></a>00273 <span class="comment">        /// each iteration of the main loop.</span>
-<a name="l00274"></a>00274 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a19b8e1c6f629417d02a133226b70c422" title="Performs all the items that would normally be performed during the game loop.">DoMainLoopAllItems</a>(<span class="keyword">const</span> PhysReal &amp;PreviousFrameTime);
+<a name="l00274"></a>00274 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#af0edf74c0f03fddbfeabb6014890c617" title="Performs all the items that would normally be performed during the game loop.">DoMainLoopAllItems</a>(<span class="keyword">const</span> Real &amp;PreviousFrameTime);
 <a name="l00275"></a>00275 <span class="comment"></span>
 <a name="l00276"></a>00276 <span class="comment">        /// @brief Increments physics by one step</span>
 <a name="l00277"></a>00277 <span class="comment">        /// @param TimeElapsed This is the amount of time that has elapsed since this function was last called, required for proper physics</span>
@@ -304,7 +304,7 @@
 <a name="l00279"></a>00279 <span class="comment">        /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come</span>
 <a name="l00280"></a>00280 <span class="comment">        /// from although it is concievable that a game could manually insert those manually. This will not delete events it places</span>
 <a name="l00281"></a>00281 <span class="comment">        /// in the event manager, that is the responsibility of the code that pulls out the event out.</span>
-<a name="l00282"></a>00282 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ad20ba081176e768a9e57518bae12846e" title="Increments physics by one step.">DoMainLoopPhysics</a>(<span class="keyword">const</span> PhysReal &amp;TimeElapsed);
+<a name="l00282"></a>00282 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#acb0ff808937e6588b0c28fcfc7c974de" title="Increments physics by one step.">DoMainLoopPhysics</a>(<span class="keyword">const</span> Real &amp;TimeElapsed);
 <a name="l00283"></a>00283 <span class="comment"></span>
 <a name="l00284"></a>00284 <span class="comment">        /// @brief Gathers user input from the OS and places events in the event manager</span>
 <a name="l00285"></a>00285 <span class="comment">        /// @details This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places</span>
@@ -335,7 +335,7 @@
 <a name="l00310"></a>00310 <span class="comment">        /// Options are: filesystem, zip.</span>
 <a name="l00311"></a>00311 <span class="comment">        /// @param Group The name of the group the resources at this location belong to.</span>
 <a name="l00312"></a>00312 <span class="comment">        /// @param recursive Whether or not to search sub-directories.</span>
-<a name="l00313"></a>00313 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a85f3c34f1b9f8e4f0496c72be7f48fcd" title="Adds a location for graphical resources.">AddResourceLocation</a>(<span class="keyword">const</span> PhysString &amp;Location, <span class="keyword">const</span> PhysString &amp;Type, <span class="keyword">const</span> PhysString &amp;Group, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;recursive=<span class="keyword">false</span>);
+<a name="l00313"></a>00313 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a8959c58a728483c6e1109cd65bbb00c9" title="Adds a location for graphical resources.">AddResourceLocation</a>(<span class="keyword">const</span> String &amp;Location, <span class="keyword">const</span> String &amp;Type, <span class="keyword">const</span> String &amp;Group, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;recursive=<span class="keyword">false</span>);
 <a name="l00314"></a>00314 <span class="comment"></span>
 <a name="l00315"></a>00315 <span class="comment">        /// @brief Prepares the resource for use.</span>
 <a name="l00316"></a>00316 <span class="comment">        /// @details This function can be thought of as a preloader.  This will prepare the defined</span>
@@ -344,7 +344,7 @@
 <a name="l00319"></a>00319 <span class="comment">        /// @param Type The type of resource that the file is. @n</span>
 <a name="l00320"></a>00320 <span class="comment">        /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.</span>
 <a name="l00321"></a>00321 <span class="comment">        /// @param Group Name of the group the resource belongs to.</span>
-<a name="l00322"></a>00322 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a908c21f7f5452f8d7c6d4b5b2308ba5e" title="Prepares the resource for use.">DeclareResource</a>(PhysString Name, PhysString Type, PhysString Group);
+<a name="l00322"></a>00322 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ab5fb62f548fa5af7ee59b1ff6c00180a" title="Prepares the resource for use.">DeclareResource</a>(String Name, String Type, String Group);
 <a name="l00323"></a>00323 <span class="comment"></span>
 <a name="l00324"></a>00324 <span class="comment">        /// @brief Makes a resource group ready to use.</span>
 <a name="l00325"></a>00325 <span class="comment">        /// @details After adding all of your resources and declaring them as nessessary, this function</span>
@@ -352,7 +352,7 @@
 <a name="l00327"></a>00327 <span class="comment">        /// will be ready to use.  Do not initialize any more groups then you need to however, as that will</span>
 <a name="l00328"></a>00328 <span class="comment">        /// take up memory and drop performance.</span>
 <a name="l00329"></a>00329 <span class="comment">        /// @param Name Name of the resource group.</span>
-<a name="l00330"></a>00330 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a0b67df4c76c32b9b2bdcafdc51f6aba7" title="Makes a resource group ready to use.">InitResourceGroup</a>(PhysString Name);
+<a name="l00330"></a>00330 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a00a96b8627c8561a465cf2637f35aa7b" title="Makes a resource group ready to use.">InitResourceGroup</a>(String Name);
 <a name="l00331"></a>00331 <span class="comment"></span>
 <a name="l00332"></a>00332 <span class="comment">        /// @brief Sets the gravity.</span>
 <a name="l00333"></a>00333 <span class="comment">        /// @details Sets the strength and direction of gravity within the world.</span>
@@ -369,7 +369,7 @@
 <a name="l00344"></a>00344 };
 <a name="l00345"></a>00345 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:59:14 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:55 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

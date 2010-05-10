@@ -53,7 +53,7 @@
 #include "physworld.h"
 #include "physvector.h"
 #include "crossplatform.h"
-#include "physworldcallbackmanager.h"
+#include "worldcallbackmanager.h"
 #include "graphicsettings.h"
 #include "physactor.h"
 #include "physeventuserinput.h"

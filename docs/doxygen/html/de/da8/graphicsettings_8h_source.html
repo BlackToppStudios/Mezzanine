@@ -85,8 +85,8 @@
 <a name="l00060"></a>00060             <span class="keywordtype">bool</span> Fullscreen;
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062             <span class="comment">//these refer to the render window</span>
-<a name="l00063"></a>00063             PhysWhole RenderHeight;
-<a name="l00064"></a>00064             PhysWhole RenderWidth;
+<a name="l00063"></a>00063             Whole RenderHeight;
+<a name="l00064"></a>00064             Whole RenderWidth;
 <a name="l00065"></a>00065 
 <a name="l00066"></a>00066         <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00067"></a>00067 <span class="comment">            /// @brief Default constructor</span>
@@ -100,7 +100,7 @@
 <a name="l00075"></a>00075 <span class="comment">            /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the</span>
 <a name="l00076"></a>00076 <span class="comment">            /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support</span>
 <a name="l00077"></a>00077 <span class="comment">            /// arbitrary resolutions in fullscreen mode.</span>
-<a name="l00078"></a>00078 <span class="comment"></span>            <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aceaaf53585413067adbf271e2c1e48fa" title="Default constructor.">GraphicsSettings</a>(<span class="keyword">const</span> PhysWhole &amp;Width_, <span class="keyword">const</span> PhysWhole &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_);
+<a name="l00078"></a>00078 <span class="comment"></span>            <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aceaaf53585413067adbf271e2c1e48fa" title="Default constructor.">GraphicsSettings</a>(<span class="keyword">const</span> Whole &amp;Width_, <span class="keyword">const</span> Whole &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_);
 <a name="l00079"></a>00079 <span class="comment"></span>
 <a name="l00080"></a>00080 <span class="comment">            /// @brief Adjust all Settings</span>
 <a name="l00081"></a>00081 <span class="comment">            /// @param Width_ The desired width.</span>
@@ -109,7 +109,7 @@
 <a name="l00084"></a>00084 <span class="comment">            /// @details This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be</span>
 <a name="l00085"></a>00085 <span class="comment">            /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens</span>
 <a name="l00086"></a>00086 <span class="comment">            /// do not support arbitrary resolutions in fullscreen mode.</span>
-<a name="l00087"></a>00087 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aa8107167a2094f757f409db36e088171" title="Adjust all Settings.">Construct</a>(<span class="keyword">const</span> PhysWhole &amp;Width_, <span class="keyword">const</span> PhysWhole &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_);
+<a name="l00087"></a>00087 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a63d41a500ee1ddf0ea9ffba5e353bae0" title="Adjust all Settings.">Construct</a>(<span class="keyword">const</span> Whole &amp;Width_, <span class="keyword">const</span> Whole &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_);
 <a name="l00088"></a>00088 <span class="comment"></span>
 <a name="l00089"></a>00089 <span class="comment">            /// @brief Gets the Fullscreen Setting</span>
 <a name="l00090"></a>00090 <span class="comment">            /// @details Gets the Fullscreen Setting</span>
@@ -123,25 +123,25 @@
 <a name="l00098"></a>00098 <span class="comment">            /// @brief Gets the Height of the Rendering Area</span>
 <a name="l00099"></a>00099 <span class="comment">            /// @details Gets the Height of the Rendering Area</span>
 <a name="l00100"></a>00100 <span class="comment">            /// @return This returns the Height of the Rendering Area</span>
-<a name="l00101"></a>00101 <span class="comment"></span>            PhysWhole <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a4e9df38f338a0b660f68c716a6b4a223" title="Gets the Height of the Rendering Area.">getRenderHeight</a>() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00101"></a>00101 <span class="comment"></span>            Whole <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a118171db4fc0a2b17da4284cc91fbeb4" title="Gets the Height of the Rendering Area.">getRenderHeight</a>() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l00102"></a>00102 <span class="comment">            /// @brief Sets the Height.</span>
 <a name="l00103"></a>00103 <span class="comment">            /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen</span>
-<a name="l00104"></a>00104 <span class="comment">            /// @param Height_ This accepts a PhysWhole.</span>
-<a name="l00105"></a>00105 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#ace1f9f0f9c29a0c82524ce0bcffd16fa" title="Sets the Height.">setRenderHeight</a>(<span class="keyword">const</span> PhysWhole &amp;Height_);
+<a name="l00104"></a>00104 <span class="comment">            /// @param Height_ This accepts a Whole.</span>
+<a name="l00105"></a>00105 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a1e6b11740f681beb4d64553656a760f1" title="Sets the Height.">setRenderHeight</a>(<span class="keyword">const</span> Whole &amp;Height_);
 <a name="l00106"></a>00106 <span class="comment"></span>
 <a name="l00107"></a>00107 <span class="comment">            /// @brief Gets the Width of the Rendering Area</span>
 <a name="l00108"></a>00108 <span class="comment">            /// @details Gets the Width of the Rendering Area</span>
 <a name="l00109"></a>00109 <span class="comment">            /// @return This returns the Width of the Rendering Area</span>
-<a name="l00110"></a>00110 <span class="comment"></span>            PhysWhole <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aca019a830353f95f69c27c147c52dd03" title="Gets the Width of the Rendering Area.">getRenderWidth</a>() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00110"></a>00110 <span class="comment"></span>            Whole <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aa8a8548afca8d3e127a1be69a2c1eba2" title="Gets the Width of the Rendering Area.">getRenderWidth</a>() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l00111"></a>00111 <span class="comment">            /// @brief Sets the Width.</span>
 <a name="l00112"></a>00112 <span class="comment">            /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen</span>
-<a name="l00113"></a>00113 <span class="comment">            /// @param Width_ This accepts a PhysWhole.</span>
-<a name="l00114"></a>00114 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a4d74a7f2f880a5d556f43bcdbedc5e27" title="Sets the Width.">setRenderWidth</a>(<span class="keyword">const</span> PhysWhole &amp;Width_);
+<a name="l00113"></a>00113 <span class="comment">            /// @param Width_ This accepts a Whole.</span>
+<a name="l00114"></a>00114 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a7cebb39f829f5e600231b4efc22b9ec3" title="Sets the Width.">setRenderWidth</a>(<span class="keyword">const</span> Whole &amp;Width_);
 <a name="l00115"></a>00115     };
 <a name="l00116"></a>00116 }
 <a name="l00117"></a>00117 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:59:14 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:55 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

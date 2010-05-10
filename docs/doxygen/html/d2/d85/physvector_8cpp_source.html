@@ -74,23 +74,23 @@
 <a name="l00049"></a>00049 <span class="comment"></span><span class="comment">// Constructors</span>
 <a name="l00050"></a><a class="code" href="../../da/d11/classPhysVector3.html#a0d68895a6479ed7f875f666ce381afba">00050</a> <a class="code" href="../../da/d11/classPhysVector3.html#a0d68895a6479ed7f875f666ce381afba" title="Blank Constructor.">PhysVector3::PhysVector3</a>()
 <a name="l00051"></a>00051 {
-<a name="l00052"></a>00052     <a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a>=0;
-<a name="l00053"></a>00053     <a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a>=0;
-<a name="l00054"></a>00054     <a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a>=0;
+<a name="l00052"></a>00052     <a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>=0;
+<a name="l00053"></a>00053     <a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>=0;
+<a name="l00054"></a>00054     <a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>=0;
 <a name="l00055"></a>00055 }
 <a name="l00056"></a>00056 
-<a name="l00057"></a><a class="code" href="../../da/d11/classPhysVector3.html#aad8161121a45b20dde0e3cc6959801be">00057</a> <a class="code" href="../../da/d11/classPhysVector3.html#a0d68895a6479ed7f875f666ce381afba" title="Blank Constructor.">PhysVector3::PhysVector3</a>(PhysReal x, PhysReal y, PhysReal z)
+<a name="l00057"></a><a class="code" href="../../da/d11/classPhysVector3.html#a0fd6687cacb095a14a398fd88a33d76a">00057</a> <a class="code" href="../../da/d11/classPhysVector3.html#a0d68895a6479ed7f875f666ce381afba" title="Blank Constructor.">PhysVector3::PhysVector3</a>(Real x, Real y, Real z)
 <a name="l00058"></a>00058 {
-<a name="l00059"></a>00059         <a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a>=x;
-<a name="l00060"></a>00060         <a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a>=y;
-<a name="l00061"></a>00061         <a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a>=z;
+<a name="l00059"></a>00059         <a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>=x;
+<a name="l00060"></a>00060         <a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>=y;
+<a name="l00061"></a>00061         <a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>=z;
 <a name="l00062"></a>00062 }
 <a name="l00063"></a>00063 <span class="comment"></span>
 <a name="l00064"></a>00064 <span class="comment">/////////////////////////////////////////////////////////////////////</span>
 <a name="l00065"></a>00065 <span class="comment"></span><span class="comment">// Operators</span>
 <a name="l00066"></a>00066 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; x)
 <a name="l00067"></a>00067 {
-<a name="l00068"></a>00068     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00068"></a>00068     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
 <a name="l00069"></a>00069     <span class="keywordflow">return</span> stream;
 <a name="l00070"></a>00070 }
 <a name="l00071"></a>00071 
@@ -106,9 +106,9 @@
 <a name="l00081"></a>00081 
 <a name="l00082"></a>00082 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecFrom)
 <a name="l00083"></a>00083 {
-<a name="l00084"></a>00084     VecTo.x=VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a>;
-<a name="l00085"></a>00085     VecTo.y=VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00086"></a>00086     VecTo.z=VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a>;
+<a name="l00084"></a>00084     VecTo.x=VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>;
+<a name="l00085"></a>00085     VecTo.y=VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00086"></a>00086     VecTo.z=VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>;
 <a name="l00087"></a>00087     <span class="keywordflow">return</span> VecTo;
 <a name="l00088"></a>00088 }
 <a name="l00089"></a>00089 
@@ -131,26 +131,26 @@
 <a name="l00106"></a>00106 
 <a name="l00107"></a>00107 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecFrom)
 <a name="l00108"></a>00108 {
-<a name="l00109"></a>00109     VecTo.setX(VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a>);
-<a name="l00110"></a>00110     VecTo.setY(VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00111"></a>00111     VecTo.setZ(VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a>);
+<a name="l00109"></a>00109     VecTo.setX(VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>);
+<a name="l00110"></a>00110     VecTo.setY(VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00111"></a>00111     VecTo.setZ(VecFrom.<a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>);
 <a name="l00112"></a>00112     VecTo.setW(0);
 <a name="l00113"></a>00113     <span class="keywordflow">return</span> VecTo;
 <a name="l00114"></a>00114 }
 <a name="l00115"></a>00115 
 <a name="l00116"></a>00116 <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom)
 <a name="l00117"></a>00117 {
-<a name="l00118"></a>00118     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a>=VecFrom.x;
-<a name="l00119"></a>00119     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a>=VecFrom.y;
-<a name="l00120"></a>00120     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a>=VecFrom.z;
+<a name="l00118"></a>00118     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>=VecFrom.x;
+<a name="l00119"></a>00119     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>=VecFrom.y;
+<a name="l00120"></a>00120     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>=VecFrom.z;
 <a name="l00121"></a>00121     <span class="keywordflow">return</span> VecTo;
 <a name="l00122"></a>00122 }
 <a name="l00123"></a>00123 
 <a name="l00124"></a>00124 <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom)
 <a name="l00125"></a>00125 {
-<a name="l00126"></a>00126     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a>=VecFrom.getX();
-<a name="l00127"></a>00127     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a>=VecFrom.getY();
-<a name="l00128"></a>00128     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a>=VecFrom.getZ();
+<a name="l00126"></a>00126     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>=VecFrom.getX();
+<a name="l00127"></a>00127     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>=VecFrom.getY();
+<a name="l00128"></a>00128     VecTo.<a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>=VecFrom.getZ();
 <a name="l00129"></a>00129     <span class="keywordflow">return</span> VecTo;
 <a name="l00130"></a>00130 }
 <a name="l00131"></a>00131 <span class="comment"></span>
@@ -159,39 +159,39 @@
 <a name="l00134"></a><a class="code" href="../../da/d11/classPhysVector3.html#adfc5f9e933a94be994ce5ce0c38d1f96">00134</a> btVector3 <a class="code" href="../../da/d11/classPhysVector3.html#adfc5f9e933a94be994ce5ce0c38d1f96" title="Gets a Bullet vector3.">PhysVector3::GetBulletVector3</a>()
 <a name="l00135"></a>00135 {
 <a name="l00136"></a>00136     btVector3 Theirs;
-<a name="l00137"></a>00137     Theirs.setX(this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a>);
-<a name="l00138"></a>00138     Theirs.setY(this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00139"></a>00139     Theirs.setZ(this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a>);
+<a name="l00137"></a>00137     Theirs.setX(this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>);
+<a name="l00138"></a>00138     Theirs.setY(this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00139"></a>00139     Theirs.setZ(this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>);
 <a name="l00140"></a>00140     Theirs.setW(0);
 <a name="l00141"></a>00141     <span class="keywordflow">return</span> Theirs;
 <a name="l00142"></a>00142 }
 <a name="l00143"></a>00143 
 <a name="l00144"></a><a class="code" href="../../da/d11/classPhysVector3.html#a71a78da9e8011cb727010f8ba3acf546">00144</a> <span class="keywordtype">void</span> <a class="code" href="../../da/d11/classPhysVector3.html#a71a78da9e8011cb727010f8ba3acf546" title="Copies an existing Bullet vector3.">PhysVector3::ExtractBulletVector3</a>(btVector3 Ours)
 <a name="l00145"></a>00145 {
-<a name="l00146"></a>00146     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a>=Ours.getX();
-<a name="l00147"></a>00147     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a>=Ours.getY();
-<a name="l00148"></a>00148     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a>=Ours.getZ();
+<a name="l00146"></a>00146     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>=Ours.getX();
+<a name="l00147"></a>00147     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>=Ours.getY();
+<a name="l00148"></a>00148     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>=Ours.getZ();
 <a name="l00149"></a>00149 }
 <a name="l00150"></a>00150 
 <a name="l00151"></a><a class="code" href="../../da/d11/classPhysVector3.html#a01facc2b865bb79c589ed1985dd6c49c">00151</a> Ogre::Vector3 <a class="code" href="../../da/d11/classPhysVector3.html#a01facc2b865bb79c589ed1985dd6c49c" title="Gets a Ogre vector3.">PhysVector3::GetOgreVector3</a>()
 <a name="l00152"></a>00152 {
 <a name="l00153"></a>00153     Ogre::Vector3 Theirs;
-<a name="l00154"></a>00154     Theirs.x=this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a>;
-<a name="l00155"></a>00155     Theirs.y=this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00156"></a>00156     Theirs.z=this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a>;
+<a name="l00154"></a>00154     Theirs.x=this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>;
+<a name="l00155"></a>00155     Theirs.y=this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00156"></a>00156     Theirs.z=this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>;
 <a name="l00157"></a>00157     <span class="keywordflow">return</span> Theirs;
 <a name="l00158"></a>00158 }
 <a name="l00159"></a>00159 
 <a name="l00160"></a><a class="code" href="../../da/d11/classPhysVector3.html#a422acbc95f72d00a26cb477ab7db5e87">00160</a> <span class="keywordtype">void</span> <a class="code" href="../../da/d11/classPhysVector3.html#a422acbc95f72d00a26cb477ab7db5e87" title="Copies an existing Ogre vector3.">PhysVector3::ExtractOgreVector3</a>(Ogre::Vector3 Ours)
 <a name="l00161"></a>00161 {
-<a name="l00162"></a>00162     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#ac4586254a6116c616046bd9d5b35ca31" title="Coordinate on the X vector.">X</a>=Ours.x;
-<a name="l00163"></a>00163     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a9bf4609392a492c2b3e278d635ed976a" title="Coordinate on the Y vector.">Y</a>=Ours.y;
-<a name="l00164"></a>00164     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a0c0585976cb4c215626e205a2c663226" title="Coordinate on the Z vector.">Z</a>=Ours.z;
+<a name="l00162"></a>00162     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>=Ours.x;
+<a name="l00163"></a>00163     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>=Ours.y;
+<a name="l00164"></a>00164     this-&gt;<a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>=Ours.z;
 <a name="l00165"></a>00165 }
 <a name="l00166"></a>00166 
 <a name="l00167"></a>00167 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:59:14 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:55 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

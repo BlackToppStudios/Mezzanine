@@ -22,9 +22,9 @@ Inheritance diagram for ActorBase:\begin{figure}[H]
 \item 
 virtual \hyperlink{classActorBase_a6fd984c46b3232c2522adb44be4dedb7}{$\sim$ActorBase} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classActorBase_a673d963aa7a99475cb03250c010dfa15}{ActorBase} (PhysString name, PhysString file, PhysString group, \hyperlink{classPhysWorld}{PhysWorld} $\ast$World)
+\hyperlink{classActorBase_a32337e36f62d5ffb6315fad932aa84d9}{ActorBase} (String name, String file, String group, \hyperlink{classPhysWorld}{PhysWorld} $\ast$World)
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classActorBase_a34848d620c5d9d2796999edbdcb77c9a}{SetLocation} (PhysReal x, PhysReal y, PhysReal z)
+void \hyperlink{classActorBase_a693c1bcb10ba7dc8fc37eef70ce65f0c}{SetLocation} (Real x, Real y, Real z)
 \begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classActorBase_a2a204add0b036de441ebd59d14939000}{SetLocation} (\hyperlink{classPhysVector3}{PhysVector3} Place)
 \begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
@@ -34,7 +34,7 @@ void \hyperlink{classActorBase_ac118fc21f89d067d987d511b444f7d55}{SetInitLocatio
 \begin{DoxyCompactList}\small\item\em Sets the starting location of the actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classActorBase_a968b3c8b29aac97b5240cf933783865b}{SetInitOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation)
 \begin{DoxyCompactList}\small\item\em Sets the starting orientation of the actor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classActorBase_a9777506815a9840552b30c65d5d70f8d}{SetOrientation} (PhysReal x, PhysReal y, PhysReal z, PhysReal w)
+void \hyperlink{classActorBase_a676bcd5370c2e4a4e81d8bde7ed3970f}{SetOrientation} (Real x, Real y, Real z, Real w)
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classActorBase_a66429021cfc19b32cd0f645955e20584}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Rotation)
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
@@ -49,7 +49,7 @@ virtual void \hyperlink{classActorBase_a1af82a2ed960fd114518fdf84d5ff146}{AddObj
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
 void \hyperlink{classActorBase_af7f0806222c79b5d5120dccefd93715e}{CreateTrimesh} ()
 \begin{DoxyCompactList}\small\item\em Creates a trimesh shape from the mesh file. \item\end{DoxyCompactList}\item 
-void \hyperlink{classActorBase_aa87583c47b8653e8ac7d96f1481b57fd}{CreateEntity} (PhysString name, PhysString file, PhysString group)
+void \hyperlink{classActorBase_a7fd55114a59fe098a217314cf29cd055}{CreateEntity} (String name, String file, String group)
 \begin{DoxyCompactList}\small\item\em Creates an entity for the mesh file to be placed on a scene node. \item\end{DoxyCompactList}\item 
 void \hyperlink{classActorBase_a168cd57e20b2adfc5cae21627ddbae31}{CreateSceneNode} ()
 \begin{DoxyCompactList}\small\item\em Creates a node for the entity in the graphical world. \item\end{DoxyCompactList}\item 
@@ -133,13 +133,13 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 116 of file physactor.cpp.
+Definition at line 117 of file physactor.cpp.
 
-\hypertarget{classActorBase_a673d963aa7a99475cb03250c010dfa15}{
+\hypertarget{classActorBase_a32337e36f62d5ffb6315fad932aa84d9}{
 \index{ActorBase@{ActorBase}!ActorBase@{ActorBase}}
 \index{ActorBase@{ActorBase}!ActorBase@{ActorBase}}
-\subsubsection[{ActorBase}]{\setlength{\rightskip}{0pt plus 5cm}ActorBase::ActorBase (PhysString {\em name}, \/  PhysString {\em file}, \/  PhysString {\em group}, \/  {\bf PhysWorld} $\ast$ {\em World})}}
-\label{dd/d7b/classActorBase_a673d963aa7a99475cb03250c010dfa15}
+\subsubsection[{ActorBase}]{\setlength{\rightskip}{0pt plus 5cm}ActorBase::ActorBase (String {\em name}, \/  String {\em file}, \/  String {\em group}, \/  {\bf PhysWorld} $\ast$ {\em World})}}
+\label{dd/d7b/classActorBase_a32337e36f62d5ffb6315fad932aa84d9}
 
 
 Descriptive constructor. 
@@ -149,7 +149,7 @@ This constructor contains the basic information needed to make an actor.
 \item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em World}]Pointer to the \hyperlink{classPhysWorld}{PhysWorld} this object will be added to. \end{DoxyParams}
 
 
-Definition at line 106 of file physactor.cpp.
+Definition at line 107 of file physactor.cpp.
 
 
 
@@ -183,13 +183,13 @@ Makes the actor visable.
 Adds the actor to all the nessessary graphics elements to make it visable on screen. \par
  This is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually. 
 
-Definition at line 315 of file physactor.cpp.
+Definition at line 331 of file physactor.cpp.
 
-\hypertarget{classActorBase_aa87583c47b8653e8ac7d96f1481b57fd}{
+\hypertarget{classActorBase_a7fd55114a59fe098a217314cf29cd055}{
 \index{ActorBase@{ActorBase}!CreateEntity@{CreateEntity}}
 \index{CreateEntity@{CreateEntity}!ActorBase@{ActorBase}}
-\subsubsection[{CreateEntity}]{\setlength{\rightskip}{0pt plus 5cm}void ActorBase::CreateEntity (PhysString {\em name}, \/  PhysString {\em file}, \/  PhysString {\em group})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
-\label{dd/d7b/classActorBase_aa87583c47b8653e8ac7d96f1481b57fd}
+\subsubsection[{CreateEntity}]{\setlength{\rightskip}{0pt plus 5cm}void ActorBase::CreateEntity (String {\em name}, \/  String {\em file}, \/  String {\em group})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{dd/d7b/classActorBase_a7fd55114a59fe098a217314cf29cd055}
 
 
 Creates an entity for the mesh file to be placed on a scene node. 
@@ -200,7 +200,7 @@ Creates an entity in the scene manager from the mesh file provided to be attache
 \item[{\em Name}]Name of the actor. \item[{\em File}]File name of the graphical mesh to be used. \item[{\em Group}]Resource group where the graphical mesh can be found. \end{DoxyParams}
 
 
-Definition at line 224 of file physactor.cpp.
+Definition at line 240 of file physactor.cpp.
 
 \hypertarget{classActorBase_a168cd57e20b2adfc5cae21627ddbae31}{
 \index{ActorBase@{ActorBase}!CreateSceneNode@{CreateSceneNode}}
@@ -214,7 +214,7 @@ Creates a node for the entity in the graphical world.
 Creates a node in the scene manager to attach the actor's entity to within the graphical world. \par
  This function is called on by the Constructor, and shouldn't be called manually. 
 
-Definition at line 229 of file physactor.cpp.
+Definition at line 245 of file physactor.cpp.
 
 \hypertarget{classActorBase_af7f0806222c79b5d5120dccefd93715e}{
 \index{ActorBase@{ActorBase}!CreateTrimesh@{CreateTrimesh}}
@@ -232,7 +232,7 @@ TODO -\/ Check for thread safety
 
 
 
-Definition at line 122 of file physactor.cpp.
+Definition at line 123 of file physactor.cpp.
 
 \hypertarget{classActorBase_ae84ff822d2f962360bf291bb2c88eb3e}{
 \index{ActorBase@{ActorBase}!GetBulletLocation@{GetBulletLocation}}
@@ -245,7 +245,7 @@ Retrieves the location of the physics body.
 
 This function will retrieve the location of the object within the physics world. 
 
-Definition at line 252 of file physactor.cpp.
+Definition at line 268 of file physactor.cpp.
 
 \hypertarget{classActorBase_a9dfdaf0304e4a462b3b033fb254116af}{
 \index{ActorBase@{ActorBase}!GetLocation@{GetLocation}}
@@ -258,7 +258,7 @@ Retrieves the location of the object.
 
 This function will retrieve the location of the object within the world. 
 
-Definition at line 288 of file physactor.cpp.
+Definition at line 304 of file physactor.cpp.
 
 \hypertarget{classActorBase_a73ee03084b2ca78659b6e6439cafa75f}{
 \index{ActorBase@{ActorBase}!GetOgreLocation@{GetOgreLocation}}
@@ -271,7 +271,7 @@ Retrieves the location of the graphical body.
 
 This function will retrieve the location of the object within the graphical world. 
 
-Definition at line 239 of file physactor.cpp.
+Definition at line 255 of file physactor.cpp.
 
 \hypertarget{classActorBase_af52177760d530df2b0987ed8626a656d}{
 \index{ActorBase@{ActorBase}!SetBulletInitLocation@{SetBulletInitLocation}}
@@ -288,7 +288,7 @@ Sets the starting location of the physics body within the \hyperlink{classPhysMo
 \item[{\em Location}]The \hyperlink{classPhysVector3}{PhysVector3} representing the desired starting location for the actor. \end{DoxyParams}
 
 
-Definition at line 260 of file physactor.cpp.
+Definition at line 276 of file physactor.cpp.
 
 \hypertarget{classActorBase_af64a57138bbd32c52581a5c8d0d29a76}{
 \index{ActorBase@{ActorBase}!SetBulletLocation@{SetBulletLocation}}
@@ -305,7 +305,7 @@ This will take a \hyperlink{classPhysVector3}{PhysVector3} and set the location 
 \item[{\em Location}]The \hyperlink{classPhysVector3}{PhysVector3} representing the location. \end{DoxyParams}
 
 
-Definition at line 246 of file physactor.cpp.
+Definition at line 262 of file physactor.cpp.
 
 \hypertarget{classActorBase_a1d9a2b13dcff7a6a2dc83f08f1db97ce}{
 \index{ActorBase@{ActorBase}!SetBulletOrientation@{SetBulletOrientation}}
@@ -322,7 +322,7 @@ This will take a PhysQuaternion and set the orientation of the actor within the 
 \item[{\em Rotation}]The quaternion representing the rotation of the actor. \end{DoxyParams}
 
 
-Definition at line 270 of file physactor.cpp.
+Definition at line 286 of file physactor.cpp.
 
 \hypertarget{classActorBase_ac118fc21f89d067d987d511b444f7d55}{
 \index{ActorBase@{ActorBase}!SetInitLocation@{SetInitLocation}}
@@ -339,7 +339,7 @@ Calling this function after adding it to the \hyperlink{classPhysWorld}{PhysWorl
 \item[{\em Location}]The \hyperlink{classPhysVector3}{PhysVector3} representing the location. \end{DoxyParams}
 
 
-Definition at line 293 of file physactor.cpp.
+Definition at line 309 of file physactor.cpp.
 
 \hypertarget{classActorBase_a968b3c8b29aac97b5240cf933783865b}{
 \index{ActorBase@{ActorBase}!SetInitOrientation@{SetInitOrientation}}
@@ -356,7 +356,7 @@ Calling this function after adding it to the \hyperlink{classPhysWorld}{PhysWorl
 \item[{\em Orientation}]The PhysQuaternion representing the Orientation. \end{DoxyParams}
 
 
-Definition at line 298 of file physactor.cpp.
+Definition at line 314 of file physactor.cpp.
 
 \hypertarget{classActorBase_a2d5f990e8c6925b7e44e9ec85f379e6a}{
 \index{ActorBase@{ActorBase}!SetKinematic@{SetKinematic}}
@@ -370,7 +370,7 @@ Sets the state of the object to Kinematic.
 This function will set the object to a Kinematic Object. \par
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
 
-Definition at line 323 of file physactor.cpp.
+Definition at line 339 of file physactor.cpp.
 
 \hypertarget{classActorBase_a2a204add0b036de441ebd59d14939000}{
 \index{ActorBase@{ActorBase}!SetLocation@{SetLocation}}
@@ -387,13 +387,13 @@ Calling this function prior to adding it to the \hyperlink{classPhysWorld}{PhysW
 \item[{\em Place}]The \hyperlink{classPhysVector3}{PhysVector3} representing the location. \end{DoxyParams}
 
 
-Definition at line 282 of file physactor.cpp.
+Definition at line 298 of file physactor.cpp.
 
-\hypertarget{classActorBase_a34848d620c5d9d2796999edbdcb77c9a}{
+\hypertarget{classActorBase_a693c1bcb10ba7dc8fc37eef70ce65f0c}{
 \index{ActorBase@{ActorBase}!SetLocation@{SetLocation}}
 \index{SetLocation@{SetLocation}!ActorBase@{ActorBase}}
-\subsubsection[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void ActorBase::SetLocation (PhysReal {\em x}, \/  PhysReal {\em y}, \/  PhysReal {\em z})}}
-\label{dd/d7b/classActorBase_a34848d620c5d9d2796999edbdcb77c9a}
+\subsubsection[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void ActorBase::SetLocation (Real {\em x}, \/  Real {\em y}, \/  Real {\em z})}}
+\label{dd/d7b/classActorBase_a693c1bcb10ba7dc8fc37eef70ce65f0c}
 
 
 Manually sets the location of the actor. 
@@ -404,7 +404,7 @@ Calling this function prior to adding it to the \hyperlink{classPhysWorld}{PhysW
 \item[{\em X}]Location on the X vector. \item[{\em Y}]Location on the Y vector. \item[{\em Z}]Location on the Z vector. \end{DoxyParams}
 
 
-Definition at line 276 of file physactor.cpp.
+Definition at line 292 of file physactor.cpp.
 
 \hypertarget{classActorBase_a3140cc5c1c630efc1c04c20ada319b8b}{
 \index{ActorBase@{ActorBase}!SetOgreLocation@{SetOgreLocation}}
@@ -421,7 +421,7 @@ This will take a \hyperlink{classPhysVector3}{PhysVector3} and set the location 
 \item[{\em Location}]The \hyperlink{classPhysVector3}{PhysVector3} representing the location. \end{DoxyParams}
 
 
-Definition at line 234 of file physactor.cpp.
+Definition at line 250 of file physactor.cpp.
 
 \hypertarget{classActorBase_ad13a4ba6d349dfab4965e58b8335d519}{
 \index{ActorBase@{ActorBase}!SetOgreOrientation@{SetOgreOrientation}}
@@ -438,7 +438,7 @@ This will take a PhysQuaternion and set the orientation of the actor within the 
 \item[{\em Rotation}]The quaternion representing the rotation of the actor. \end{DoxyParams}
 
 
-Definition at line 265 of file physactor.cpp.
+Definition at line 281 of file physactor.cpp.
 
 \hypertarget{classActorBase_a66429021cfc19b32cd0f645955e20584}{
 \index{ActorBase@{ActorBase}!SetOrientation@{SetOrientation}}
@@ -454,20 +454,20 @@ Sets the orientation of the actor via a Quaternion.
 \item[{\em Rotation}]The Quaternion representing the Rotation. \end{DoxyParams}
 
 
-Definition at line 309 of file physactor.cpp.
+Definition at line 325 of file physactor.cpp.
 
-\hypertarget{classActorBase_a9777506815a9840552b30c65d5d70f8d}{
+\hypertarget{classActorBase_a676bcd5370c2e4a4e81d8bde7ed3970f}{
 \index{ActorBase@{ActorBase}!SetOrientation@{SetOrientation}}
 \index{SetOrientation@{SetOrientation}!ActorBase@{ActorBase}}
-\subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void ActorBase::SetOrientation (PhysReal {\em x}, \/  PhysReal {\em y}, \/  PhysReal {\em z}, \/  PhysReal {\em w})}}
-\label{dd/d7b/classActorBase_a9777506815a9840552b30c65d5d70f8d}
+\subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void ActorBase::SetOrientation (Real {\em x}, \/  Real {\em y}, \/  Real {\em z}, \/  Real {\em w})}}
+\label{dd/d7b/classActorBase_a676bcd5370c2e4a4e81d8bde7ed3970f}
 
 
 Sets the orientation of the actor. 
 
 Sets the orientation of the actor via Quaternion parameters. 
 
-Definition at line 303 of file physactor.cpp.
+Definition at line 319 of file physactor.cpp.
 
 \hypertarget{classActorBase_a97f55e5fff5d69483ebb0b9042a50bb0}{
 \index{ActorBase@{ActorBase}!SetStatic@{SetStatic}}
@@ -481,7 +481,7 @@ Sets the state of the object to Static.
 This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
-Definition at line 329 of file physactor.cpp.
+Definition at line 345 of file physactor.cpp.
 
 
 

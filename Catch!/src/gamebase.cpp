@@ -175,7 +175,7 @@ void LoadContent()
     //Final Steps
     PhysVector3 grav;
     grav.X=0.0;
-    grav.Y=-1000.0;
+    grav.Y=-100000.0;
     grav.Z=0.0;
     TheWorld.AddActor(object1);
     TheWorld.AddActor(object2);

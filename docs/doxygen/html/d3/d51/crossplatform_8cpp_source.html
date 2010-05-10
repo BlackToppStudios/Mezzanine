@@ -90,7 +90,7 @@
 <a name="l00065"></a>00065 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00066"></a>00066 <span class="comment"></span>        <span class="comment">//returns: The appropriate string, which contains a path, to the correct</span>
 <a name="l00067"></a>00067         <span class="comment">//&quot;plugins.cfg&quot; file</span>
-<a name="l00068"></a>00068         <span class="keywordtype">string</span> GetPluginsDotCFG()
+<a name="l00068"></a>00068         <span class="keywordtype">string</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a8f7321f409f1f2a5fa07881ae22fcc2d" title="Returns a string with a path/filename to the default Plugins config file.">GetPluginsDotCFG</a>()
 <a name="l00069"></a>00069         {
 <a name="l00070"></a>00070 <span class="preprocessor">            #ifdef LINUX</span>
 <a name="l00071"></a>00071 <span class="preprocessor"></span>                <span class="keywordflow">return</span> <span class="stringliteral">&quot;data/linux/plugins.cfg&quot;</span>;
@@ -104,7 +104,7 @@
 <a name="l00079"></a>00079 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00080"></a>00080 <span class="comment"></span>        <span class="comment">//returns: The appropriate string, which contains a path, to the correct</span>
 <a name="l00081"></a>00081         <span class="comment">//&quot;settings.cfg&quot; file</span>
-<a name="l00082"></a>00082         <span class="keywordtype">string</span> GetSettingsDotCFG()
+<a name="l00082"></a>00082         <span class="keywordtype">string</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a2d43f3aa5a485564c3f375b36a08152f" title="Returns a string with a path/filename to the default Graphics Subsytem settings file...">GetSettingsDotCFG</a>()
 <a name="l00083"></a>00083         {
 <a name="l00084"></a>00084 <span class="preprocessor">            #ifdef LINUX</span>
 <a name="l00085"></a>00085 <span class="preprocessor"></span>                <span class="keywordflow">return</span> <span class="stringliteral">&quot;data/linux/settings.cfg&quot;</span>;
@@ -123,7 +123,7 @@
 <a name="l00098"></a>00098 <span class="comment"></span>        <span class="comment">//This returns a named parameter list with valid settings to use Ogre rendering</span>
 <a name="l00099"></a>00099         <span class="comment">//on a pre-existing SDL context</span>
 <a name="l00100"></a>00100         <span class="comment">//void* is always an ogre NameValuePairList</span>
-<a name="l00101"></a>00101         <span class="keywordtype">void</span>* GetSDLOgreBinder()
+<a name="l00101"></a>00101         <span class="keywordtype">void</span>* <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a596ed780d507e681d9261d26b64a8ed9" title="This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics...">GetSDLOgreBinder</a>()
 <a name="l00102"></a>00102         {
 <a name="l00103"></a>00103             Ogre::NameValuePairList *misc = <span class="keyword">new</span> Ogre::NameValuePairList();
 <a name="l00104"></a>00104 <span class="preprocessor">            #ifdef WINDOWS</span>
@@ -144,7 +144,7 @@
 <a name="l00119"></a>00119             <span class="keywordflow">return</span> misc;
 <a name="l00120"></a>00120         }
 <a name="l00121"></a>00121 
-<a name="l00122"></a>00122         <span class="keywordtype">void</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#aeecd8627f86a826cc1ad55bf45b11757" title="Pauses the program for a given period of time.">WaitMilliseconds</a>(<span class="keyword">const</span> PhysWhole &amp;WaitTime)
+<a name="l00122"></a>00122         <span class="keywordtype">void</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab5287fc10a132457a1309e1f5645347a" title="Pauses the program for a given period of time.">WaitMilliseconds</a>(<span class="keyword">const</span> Whole &amp;WaitTime)
 <a name="l00123"></a>00123         {
 <a name="l00124"></a>00124 <span class="preprocessor">            #ifdef WINDOWS</span>
 <a name="l00125"></a>00125 <span class="preprocessor"></span>                Sleep(WaitTime);
@@ -168,7 +168,7 @@
 <a name="l00143"></a>00143 
 <a name="l00144"></a>00144 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:59:14 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:55 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

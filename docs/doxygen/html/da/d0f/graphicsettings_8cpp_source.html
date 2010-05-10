@@ -77,15 +77,15 @@
 <a name="l00052"></a>00052 <span class="comment">    ////</span>
 <a name="l00053"></a>00053 <span class="comment"></span>    <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aceaaf53585413067adbf271e2c1e48fa" title="Default constructor.">GraphicsSettings::GraphicsSettings</a>()
 <a name="l00054"></a>00054     {
-<a name="l00055"></a>00055         <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aa8107167a2094f757f409db36e088171" title="Adjust all Settings.">Construct</a>(640,480,<span class="keyword">false</span>);
-<a name="l00056"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a58d20902f41ddf10db9f9a810a3910cc">00056</a>     }
+<a name="l00055"></a>00055         <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a63d41a500ee1ddf0ea9ffba5e353bae0" title="Adjust all Settings.">Construct</a>(640,480,<span class="keyword">false</span>);
+<a name="l00056"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a7cbb84f41101ef66a04e2a0990f796a2">00056</a>     }
 <a name="l00057"></a>00057 
-<a name="l00058"></a>00058     <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aceaaf53585413067adbf271e2c1e48fa" title="Default constructor.">GraphicsSettings::GraphicsSettings</a>( <span class="keyword">const</span> PhysWhole &amp;Width_, <span class="keyword">const</span> PhysWhole &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_ )
+<a name="l00058"></a>00058     <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aceaaf53585413067adbf271e2c1e48fa" title="Default constructor.">GraphicsSettings::GraphicsSettings</a>( <span class="keyword">const</span> Whole &amp;Width_, <span class="keyword">const</span> Whole &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_ )
 <a name="l00059"></a>00059     {
-<a name="l00060"></a>00060         <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aa8107167a2094f757f409db36e088171" title="Adjust all Settings.">Construct</a>( Width_, Height_, FullScreen_ );
-<a name="l00061"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aa8107167a2094f757f409db36e088171">00061</a>     }
+<a name="l00060"></a>00060         <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a63d41a500ee1ddf0ea9ffba5e353bae0" title="Adjust all Settings.">Construct</a>( Width_, Height_, FullScreen_ );
+<a name="l00061"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a63d41a500ee1ddf0ea9ffba5e353bae0">00061</a>     }
 <a name="l00062"></a>00062 
-<a name="l00063"></a>00063     <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aa8107167a2094f757f409db36e088171" title="Adjust all Settings.">GraphicsSettings::Construct</a>( <span class="keyword">const</span> PhysWhole &amp;Width_, <span class="keyword">const</span> PhysWhole &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_ )
+<a name="l00063"></a>00063     <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a63d41a500ee1ddf0ea9ffba5e353bae0" title="Adjust all Settings.">GraphicsSettings::Construct</a>( <span class="keyword">const</span> Whole &amp;Width_, <span class="keyword">const</span> Whole &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_ )
 <a name="l00064"></a>00064     {
 <a name="l00065"></a>00065         this-&gt;Fullscreen = FullScreen_;
 <a name="l00066"></a>00066         this-&gt;RenderHeight = Height_;
@@ -104,26 +104,26 @@
 <a name="l00079"></a>00079         <span class="comment">//wierd checks go here to make sure it worked</span>
 <a name="l00080"></a>00080         this-&gt;Fullscreen = Fullscreen_;
 <a name="l00081"></a>00081     }
-<a name="l00082"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a4e9df38f338a0b660f68c716a6b4a223">00082</a> 
+<a name="l00082"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a118171db4fc0a2b17da4284cc91fbeb4">00082</a> 
 <a name="l00083"></a>00083     <span class="comment">//Returns the height of the render window</span>
-<a name="l00084"></a>00084     PhysWhole <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a4e9df38f338a0b660f68c716a6b4a223" title="Gets the Height of the Rendering Area.">GraphicsSettings::getRenderHeight</a>()<span class="keyword"> const</span>
+<a name="l00084"></a>00084     Whole <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a118171db4fc0a2b17da4284cc91fbeb4" title="Gets the Height of the Rendering Area.">GraphicsSettings::getRenderHeight</a>()<span class="keyword"> const</span>
 <a name="l00085"></a>00085 <span class="keyword">    </span>{
 <a name="l00086"></a>00086         <span class="keywordflow">return</span> this-&gt;RenderHeight;
 <a name="l00087"></a>00087     }
-<a name="l00088"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aca019a830353f95f69c27c147c52dd03">00088</a> 
+<a name="l00088"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aa8a8548afca8d3e127a1be69a2c1eba2">00088</a> 
 <a name="l00089"></a>00089     <span class="comment">//Returns the width of the render window</span>
-<a name="l00090"></a>00090     PhysWhole <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aca019a830353f95f69c27c147c52dd03" title="Gets the Width of the Rendering Area.">GraphicsSettings::getRenderWidth</a>()<span class="keyword"> const</span>
+<a name="l00090"></a>00090     Whole <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aa8a8548afca8d3e127a1be69a2c1eba2" title="Gets the Width of the Rendering Area.">GraphicsSettings::getRenderWidth</a>()<span class="keyword"> const</span>
 <a name="l00091"></a>00091 <span class="keyword">    </span>{
 <a name="l00092"></a>00092         <span class="keywordflow">return</span> this-&gt;RenderWidth;
-<a name="l00093"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#ace1f9f0f9c29a0c82524ce0bcffd16fa">00093</a>     }
+<a name="l00093"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a1e6b11740f681beb4d64553656a760f1">00093</a>     }
 <a name="l00094"></a>00094     <span class="comment">//returns: false if changes could not be made</span>
-<a name="l00095"></a>00095     <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#ace1f9f0f9c29a0c82524ce0bcffd16fa" title="Sets the Height.">GraphicsSettings::setRenderHeight</a>(<span class="keyword">const</span> PhysWhole &amp;Height_)
+<a name="l00095"></a>00095     <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a1e6b11740f681beb4d64553656a760f1" title="Sets the Height.">GraphicsSettings::setRenderHeight</a>(<span class="keyword">const</span> Whole &amp;Height_)
 <a name="l00096"></a>00096     {
 <a name="l00097"></a>00097         this-&gt;RenderHeight = Height_;
 <a name="l00098"></a>00098     }
-<a name="l00099"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a4d74a7f2f880a5d556f43bcdbedc5e27">00099</a> 
+<a name="l00099"></a><a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a7cebb39f829f5e600231b4efc22b9ec3">00099</a> 
 <a name="l00100"></a>00100     <span class="comment">//returns: false if changes could not be made</span>
-<a name="l00101"></a>00101     <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a4d74a7f2f880a5d556f43bcdbedc5e27" title="Sets the Width.">GraphicsSettings::setRenderWidth</a>(<span class="keyword">const</span> PhysWhole &amp;Width_)
+<a name="l00101"></a>00101     <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a7cebb39f829f5e600231b4efc22b9ec3" title="Sets the Width.">GraphicsSettings::setRenderWidth</a>(<span class="keyword">const</span> Whole &amp;Width_)
 <a name="l00102"></a>00102     {
 <a name="l00103"></a>00103         this-&gt;RenderWidth = Width_;
 <a name="l00104"></a>00104     }
@@ -132,7 +132,7 @@
 <a name="l00107"></a>00107 
 <a name="l00108"></a>00108 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 13:59:14 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:55 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
