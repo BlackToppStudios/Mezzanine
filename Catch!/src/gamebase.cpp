@@ -11,7 +11,7 @@
 #include <physactor.h>
 #include <physworld.h>
 #include <eventmanager.h>
-#include <physdatatypes.h>
+#include <datatypes.h>
 #include <eventrendertime.h>
 #include <physeventuserinput.h>
 
@@ -21,11 +21,9 @@
 PhysWorld TheWorld;
 ActorRigid* object1;
 ActorRigid* object2;
-PhysReal x=0;
-PhysReal y=0;
-PhysReal z=0;
-
-
+Real x=0;
+Real y=0;
+Real z=0;
 
 int main(int argc, char **argv)
 {
@@ -66,7 +64,7 @@ int main(int argc, char **argv)
 bool PostRender()
 {
 	//Lets set a variable for the time
-	static PhysWhole gametime = 0;
+	static Whole gametime = 0;
 
 	TheWorld.Log("---------- Starting CallBack -------------");
     TheWorld.Log("Current Game Time ");
@@ -96,8 +94,6 @@ bool PostRender()
 	{
 		return false;
 	}
-
-
 
     //If we wanted to we could unremark the following line and call all the main loop items right here, but
     //that is not needed, nor is it the prefered way to do things. All these Items will be called automatically
@@ -161,9 +157,9 @@ bool CheckForEsc()
 void LoadContent()
 {
     //Ogre Setup Code
-    PhysString groupname="Robot";
-    PhysString filename="robot.mesh";
-    PhysReal mass=5.0;
+    String groupname="Robot";
+    String filename="robot.mesh";
+    Real mass=5.0;
     TheWorld.AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld.DeclareResource(filename, "Mesh", groupname);
     TheWorld.DeclareResource("Examples.material", "Material", groupname);

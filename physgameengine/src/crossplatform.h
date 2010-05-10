@@ -69,7 +69,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // Includes
-#include "physdatatypes.h"
+#include "datatypes.h"
 
 #include <string>
 
@@ -119,7 +119,7 @@ namespace phys
         /// @brief Pauses the program for a given period of time.
         /// @details Pauses the program for a given period of time.
         /// @param WaitTime The amount of time in milliseconds to wait
-        void WaitMilliseconds(const PhysWhole &WaitTime);
+        void WaitMilliseconds(const Whole &WaitTime);
 
         //Handles the actual cross platform swapping of buffers.
         /// @brief Renders the current world contents to the screen.

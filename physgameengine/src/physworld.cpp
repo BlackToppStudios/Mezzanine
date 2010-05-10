@@ -48,7 +48,7 @@
 //for other code to interact with those libraries directly.
 ///////////////////////////////////////////////////////////////////////////////
 //Includes
-#include "physdatatypes.h"
+#include "datatypes.h"
 #include "event.h"
 #include "physworld.h"
 #include "physvector.h"
@@ -181,9 +181,9 @@ void PhysWorld::TestLogger()
     long double temp11 = 11.00011;
     wchar_t temp12 = 'L';
     size_t temp13 = 13;
-    PhysReal temp14 = 1.4;
-    PhysWhole temp15 = 15;
-    PhysString temp16("16 or so");
+    Real temp14 = 1.4;
+    Whole temp15 = 15;
+    String temp16("16 or so");
     PhysVector3 temp17(0,1,7);
     RawEvent temp18;
         temp18.type = SDL_KEYDOWN;
@@ -208,9 +208,9 @@ void PhysWorld::TestLogger()
     OneLogTest(temp11, "long double");
     OneLogTest(temp12, "wchar_t");
     OneLogTest(temp13, "size_t");
-    OneLogTest(temp14, "PhysReal");
-    OneLogTest(temp15, "PhysWhole");
-    OneLogTest(temp16, "PhysString");
+    OneLogTest(temp14, "Real");
+    OneLogTest(temp15, "Whole");
+    OneLogTest(temp16, "String");
     OneLogTest(temp17, "PhysVector3");
     OneLogTest(temp18, "RawEvent"); /// @todo TODO Figure out How does this called the same streaming function as MetaCode ?!?!?
     OneLogTest(temp19, "MetaCode");
@@ -307,12 +307,12 @@ void PhysWorld::MainLoop()
 	bool Callbackbools[] = {true, true, true, true, true, true};
 
 	//Used for tracking times to prevent Infinite render loops in graphically simple games
-	//PhysWhole Times[] = {0,0,0,0};
+	//Whole Times[] = {0,0,0,0};
 
 	this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 
-    PhysWhole FrameDelay = 0;
-    PhysWhole FrameTime = 0;
+    Whole FrameDelay = 0;
+    Whole FrameTime = 0;
 
     /*! @page mainloop1 Main Loop Structure and Flow
      The MainLoop is heart of most vidoe games and simulations.
@@ -442,7 +442,7 @@ void PhysWorld::MoveCamera(const PhysVector3 &Position, const PhysVector3 &LookA
     this->OgreCamera->lookAt(Ogre::Vector3(LookAt.X,LookAt.Y,LookAt.Z));
 }
 
-void PhysWorld::DoMainLoopAllItems(const PhysReal &PreviousFrameTime)
+void PhysWorld::DoMainLoopAllItems(const Real &PreviousFrameTime)
 {
 	this->DoMainLoopPhysics(PreviousFrameTime);
 	this->DoMainLoopWindowManagerBuffering();
@@ -450,12 +450,12 @@ void PhysWorld::DoMainLoopAllItems(const PhysReal &PreviousFrameTime)
 	this->DoMainLoopRender();
 }
 
-void PhysWorld::DoMainLoopPhysics(const PhysReal &TimeElapsed)
+void PhysWorld::DoMainLoopPhysics(const Real &TimeElapsed)
 {
-    PhysReal FloatTime = TimeElapsed;
+    Real FloatTime = TimeElapsed;
     FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
 
-    PhysReal IdealStep = this->TargetFrameLength;
+    Real IdealStep = this->TargetFrameLength;
     IdealStep *= 0.0001;
 
     //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
@@ -560,7 +560,7 @@ std::string PhysWorld::GetWindowName()
     return this->WindowName;
 }
 
-void PhysWorld::SetWindowName(const PhysString &NewName)
+void PhysWorld::SetWindowName(const String &NewName)
 {
     /// @todo TODO Change the name of an application once it is running
     WindowName = NewName;
@@ -570,17 +570,17 @@ void PhysWorld::SetWindowName(const PhysString &NewName)
     }
 }
 
-PhysWhole PhysWorld::GetTargetFrameTime()
+Whole PhysWorld::GetTargetFrameTime()
 {
     return this->TargetFrameLength;
 }
 
-void PhysWorld::SetTargetFrameTime(const PhysWhole &NewTargetTime)
+void PhysWorld::SetTargetFrameTime(const Whole &NewTargetTime)
 {
     this->TargetFrameLength = NewTargetTime;
 }
 
-void PhysWorld::SetTargetFrameRate(const PhysWhole &NewFrameRate)
+void PhysWorld::SetTargetFrameRate(const Whole &NewFrameRate)
 {
     this->SetTargetFrameTime( 1000/NewFrameRate );
 }
@@ -589,17 +589,17 @@ void PhysWorld::SetTargetFrameRate(const PhysWhole &NewFrameRate)
 // Ogre Resource Related Public Members
 ///////////////////////////////////////
 
-void PhysWorld::AddResourceLocation(const PhysString &Location, const PhysString &Type, const PhysString &Group, const bool &recursive)
+void PhysWorld::AddResourceLocation(const String &Location, const String &Type, const String &Group, const bool &recursive)
 {
     this->OgreRoot->addResourceLocation(Location, Type, Group, recursive);
 }
 
-void PhysWorld::DeclareResource(PhysString Name, PhysString Type, PhysString Group)
+void PhysWorld::DeclareResource(String Name, String Type, String Group)
 {
     this->OgreResource->declareResource(Name, Type, Group);
 }
 
-void PhysWorld::InitResourceGroup(PhysString Group)
+void PhysWorld::InitResourceGroup(String Group)
 {
     this->OgreResource->initialiseResourceGroup(Group);
 }

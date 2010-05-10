@@ -119,7 +119,7 @@ class ActorBase {
         /// @param Name Name of the actor.
         /// @param File File name of the graphical mesh to be used.
         /// @param Group Resource group where the graphical mesh can be found.
-        void CreateEntity(PhysString name, PhysString file, PhysString group);
+        void CreateEntity(String name, String file, String group);
         /// @brief Creates a node for the entity in the graphical world.
         /// @details Creates a node in the scene manager to attach the actor's entity to within the graphical world. @n
         /// This function is called on by the Constructor, and shouldn't be called manually.
@@ -172,7 +172,7 @@ class ActorBase {
         /// @param File The 3d mesh file that contains the 3d model the actor will use.
         /// @param Group The resource group where the 3d mesh and other related files can be found.
         /// @param World Pointer to the PhysWorld this object will be added to.
-        ActorBase (PhysString name, PhysString file, PhysString group, PhysWorld* World);
+        ActorBase (String name, String file, String group, PhysWorld* World);
 
         /// @brief Manually sets the location of the actor.
         /// @details Calling this function prior to adding it to the PhysWorld will have no effect. @n
@@ -180,7 +180,7 @@ class ActorBase {
         /// @param X Location on the X vector.
         /// @param Y Location on the Y vector.
         /// @param Z Location on the Z vector.
-        void SetLocation(PhysReal x, PhysReal y, PhysReal z);
+        void SetLocation(Real x, Real y, Real z);
         /// @brief Manually sets the location of the actor.
         /// @details Calling this function prior to adding it to the PhysWorld will have no effect. @n
         /// In most situations you won't want to use this function, and instead produce movement through physics functions.
@@ -203,7 +203,7 @@ class ActorBase {
 
         /// @brief Sets the orientation of the actor.
         /// @details Sets the orientation of the actor via Quaternion parameters.
-        void SetOrientation(PhysReal x, PhysReal y, PhysReal z, PhysReal w);
+        void SetOrientation(Real x, Real y, Real z, Real w);
         /// @brief Sets the orientation of the actor.
         /// @details Sets the orientation of the actor via a Quaternion.
         /// @param Rotation The Quaternion representing the Rotation.
@@ -236,8 +236,8 @@ class ActorRigid: public ActorBase {
         /// @brief Creates a rigid object for the actor.
         /// @details Creates a rigid object to be placed in the physics world later. @n
         /// This is automaticly called by the Constructor and shouldn't be called manually.
-        /// @param PMass "PhysReal Mass" The mass of the object.
-        void CreateRigidObject (PhysReal pmass);
+        /// @param PMass "Real Mass" The mass of the object.
+        void CreateRigidObject (Real pmass);
         /// @brief Adds the actor to the physics world.
         /// @details Adds the actor to the physics world. @n
         /// This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually.
@@ -254,7 +254,7 @@ class ActorRigid: public ActorBase {
         /// @param File The 3d mesh file that contains the 3d model the actor will use.
         /// @param Group The resource group where the 3d mesh and other related files can be found.
         /// @param World Pointer to the PhysWorld this object will be added to.
-        ActorRigid(PhysReal mass, PhysString name, PhysString file, PhysString group, PhysWorld* World);
+        ActorRigid(Real mass, String name, String file, String group, PhysWorld* World);
         /// @brief Destructor.
         /// @details The class destructor.
         virtual ~ActorRigid();

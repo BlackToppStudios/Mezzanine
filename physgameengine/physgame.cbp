@@ -84,6 +84,8 @@
 		</Compiler>
 		<Unit filename="src/crossplatform.cpp" />
 		<Unit filename="src/crossplatform.h" />
+		<Unit filename="src/datatypes.cpp" />
+		<Unit filename="src/datatypes.h" />
 		<Unit filename="src/event.cpp" />
 		<Unit filename="src/event.h" />
 		<Unit filename="src/eventmanager.cpp" />
@@ -98,8 +100,6 @@
 		<Unit filename="src/metacode.h" />
 		<Unit filename="src/physactor.cpp" />
 		<Unit filename="src/physactor.h" />
-		<Unit filename="src/physdatatypes.cpp" />
-		<Unit filename="src/physdatatypes.h" />
 		<Unit filename="src/physeventuserinput.cpp" />
 		<Unit filename="src/physeventuserinput.h" />
 		<Unit filename="src/physmisc.cpp" />

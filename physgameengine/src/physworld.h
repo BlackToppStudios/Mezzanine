@@ -72,7 +72,7 @@
 #include "physworldcallbackmanager.h"
 #include "event.h"
 #include "eventmanager.h"
-#include "physdatatypes.h"
+#include "datatypes.h"
 #include "physvector.h"
 
 using namespace phys;
@@ -170,9 +170,9 @@ class PhysWorld
 
         //Settings for Engine Functionality
         string WindowName;
-        PhysWhole TargetFrameLength;
+        Whole TargetFrameLength;
 
-        PhysReal PhysicsStepsize;
+        Real PhysicsStepsize;
 
         /// @brief Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
         /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
@@ -203,7 +203,7 @@ class PhysWorld
 		/// @details Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is
 		/// Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types
 		/// that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int
-		/// unsigned long int, bool, float, double, long double, wchar_t, size_t, PhysReal, PhysWhole, PhysString, PhysVector3, RawEvent and MetaCode.
+		/// unsigned long int, bool, float, double, long double, wchar_t, size_t, Real, Whole, String, PhysVector3, RawEvent and MetaCode.
 		/// If compiled statically it should support any data type which supports output streams.
 		/// @param Message This is what will be streamed to the log
     	template <class T> void Log(T Message);
@@ -221,26 +221,26 @@ class PhysWorld
     	/// @details This changes the text in the bar at the top of the game window in windowed mode. Currently the changes only
     	/// works if this function is called before PhysWorld.GameInit but it is our TODO list to fix so it can be changed at anytime.
     	/// @param NewName This is the new text to be used in the titlebar.
-        void SetWindowName(const PhysString &NewName);
+        void SetWindowName(const String &NewName);
 
         /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be
     	/// @details In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. However, the mainloop will always reduce
     	/// the actual amount of time to 0 when the hardware is overburdened.
-    	/// @return This returns a PhysWhole with the current Value
-        PhysWhole GetTargetFrameTime();
+    	/// @return This returns a Whole with the current Value
+        Whole GetTargetFrameTime();
         /// @brief This sets a new Target Time
     	/// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value
         /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but
         /// set it too high, and system resources could becom completely taxed and power will be wasted.
     	/// @param NewTargetTime The new length of time, in milliseconds.
     	/// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-        void SetTargetFrameTime(const PhysWhole &NewTargetTime);
+        void SetTargetFrameTime(const Whole &NewTargetTime);
         /// @brief This sets a new Target Frame Rate
     	/// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to
     	/// PhysWorld::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms
     	/// @param NewTargetTime The new desired frame rate.
     	/// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-        void SetTargetFrameRate(const PhysWhole &NewFrameRate);
+        void SetTargetFrameRate(const Whole &NewFrameRate);
 
         /// @brief This Shows an Engine Generated Configuration Screen
         /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration
@@ -271,7 +271,7 @@ class PhysWorld
         /// @details This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is
         /// useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items
         /// each iteration of the main loop.
-        void DoMainLoopAllItems(const PhysReal &PreviousFrameTime);
+        void DoMainLoopAllItems(const Real &PreviousFrameTime);
 
         /// @brief Increments physics by one step
         /// @param TimeElapsed This is the amount of time that has elapsed since this function was last called, required for proper physics
@@ -279,7 +279,7 @@ class PhysWorld
         /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come
         /// from although it is concievable that a game could manually insert those manually. This will not delete events it places
         /// in the event manager, that is the responsibility of the code that pulls out the event out.
-        void DoMainLoopPhysics(const PhysReal &TimeElapsed);
+        void DoMainLoopPhysics(const Real &TimeElapsed);
 
         /// @brief Gathers user input from the OS and places events in the event manager
         /// @details This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places
@@ -310,7 +310,7 @@ class PhysWorld
         /// Options are: filesystem, zip.
         /// @param Group The name of the group the resources at this location belong to.
         /// @param recursive Whether or not to search sub-directories.
-        void AddResourceLocation(const PhysString &Location, const PhysString &Type, const PhysString &Group, const bool &recursive=false);
+        void AddResourceLocation(const String &Location, const String &Type, const String &Group, const bool &recursive=false);
 
         /// @brief Prepares the resource for use.
         /// @details This function can be thought of as a preloader.  This will prepare the defined
@@ -319,7 +319,7 @@ class PhysWorld
         /// @param Type The type of resource that the file is. @n
         /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.
         /// @param Group Name of the group the resource belongs to.
-        void DeclareResource(PhysString Name, PhysString Type, PhysString Group);
+        void DeclareResource(String Name, String Type, String Group);
 
         /// @brief Makes a resource group ready to use.
         /// @details After adding all of your resources and declaring them as nessessary, this function
@@ -327,7 +327,7 @@ class PhysWorld
         /// will be ready to use.  Do not initialize any more groups then you need to however, as that will
         /// take up memory and drop performance.
         /// @param Name Name of the resource group.
-        void InitResourceGroup(PhysString Name);
+        void InitResourceGroup(String Name);
 
         /// @brief Sets the gravity.
         /// @details Sets the strength and direction of gravity within the world.

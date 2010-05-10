@@ -37,27 +37,29 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physdatatypes_h
-#define _physdatatypes_h
+#ifndef _datatypes_h
+#define _datatypes_h
 ///////////////////////////////////////////////////////////////////////////////
 //Any Special data types that we need will get declared right here
 ///////////////////////////////////////
 #include <string>
 
-typedef float PhysReal;
-typedef unsigned long PhysWhole;
-typedef const std::string PhysString;
-
-
-/// @todo TODO Completely remove references to Rawevent as it exists and replace them with some kind of wrapper class.
 union SDL_Event;
-typedef SDL_Event RawEvent;
+
+namespace phys
+{
+    typedef float Real;
+    typedef unsigned long Whole;
+    typedef const std::string String;
+
+    /// @todo TODO Completely remove references to Rawevent as it exists and replace them with some kind of wrapper class.
+    typedef SDL_Event RawEvent;
 
 
-//TODO make a typedef for RawEvent.type and a function that return that new datatype
-//  this will make it easier to swap out event subsystems when porting between platforms
-//  If done right we will only need to swap out the code specific to message internals
-
+    //TODO make a typedef for RawEvent.type and a function that return that new datatype
+    //  this will make it easier to swap out event subsystems when porting between platforms
+    //  If done right we will only need to swap out the code specific to message internals
+}
 
 #endif
 

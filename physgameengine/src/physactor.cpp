@@ -103,7 +103,7 @@ class PhysMotionState : public btMotionState {
 ///////////////////////////////////
 // ActorBase class fuctions
 
-ActorBase::ActorBase (PhysString name, PhysString file, PhysString group, PhysWorld* World)
+ActorBase::ActorBase (String name, String file, String group, PhysWorld* World)
 {
     this->GameWorld = World;
     this->node = this->GameWorld->OgreSceneManager->createSceneNode();
@@ -221,7 +221,7 @@ void ActorBase::CreateTrimesh()
     Shape = new btBvhTriangleMeshShape(trimesh, true);
 }
 
-void ActorBase::CreateEntity (PhysString name, PhysString file, PhysString group)
+void ActorBase::CreateEntity (String name, String file, String group)
 {
     this->entity = this->GameWorld->OgreSceneManager->createEntity(name, file, group);
 }
@@ -273,7 +273,7 @@ void ActorBase::SetBulletOrientation (Quaternion Rotation)
     temp.setRotation(Rotation.GetBulletQuaternion());
 }
 
-void ActorBase::SetLocation (PhysReal x, PhysReal y, PhysReal z)
+void ActorBase::SetLocation (Real x, Real y, Real z)
 {
     PhysVector3 temp(x,y,z);
     this->SetLocation(temp);
@@ -300,7 +300,7 @@ void ActorBase::SetInitOrientation(Quaternion Orientation)
     this->MotionState->SetOrientation(Orientation);
 }
 
-void ActorBase::SetOrientation (PhysReal x, PhysReal y, PhysReal z, PhysReal w)
+void ActorBase::SetOrientation (Real x, Real y, Real z, Real w)
 {
     Quaternion temp(x,y,z,w);
     this->SetOrientation(temp);
@@ -335,7 +335,7 @@ void ActorBase::SetStatic()
 ///////////////////////////////////
 // ActorRigid class functions
 
-ActorRigid::ActorRigid (PhysReal mass, PhysString name, PhysString file, PhysString group, PhysWorld* World) : ActorBase (name, file, group, World)
+ActorRigid::ActorRigid (Real mass, String name, String file, String group, PhysWorld* World) : ActorBase (name, file, group, World)
 {
     this->CreateRigidObject(mass);
 }
@@ -345,7 +345,7 @@ ActorRigid::~ActorRigid ()
     delete physrigidbody;
 }
 
-void ActorRigid::CreateRigidObject (PhysReal pmass)
+void ActorRigid::CreateRigidObject (Real pmass)
 {
     btScalar bmass=pmass;
     this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);

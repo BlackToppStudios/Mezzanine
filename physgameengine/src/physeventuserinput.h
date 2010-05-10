@@ -74,7 +74,7 @@
 using namespace std;
 
 #include "event.h"
-#include "physdatatypes.h"
+#include "datatypes.h"
 #include "metacode.h"
 
 using namespace phys;

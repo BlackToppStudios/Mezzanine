@@ -41,10 +41,10 @@
 #define _physmisc_cpp
 
 #include "SDL.h"
-#include "physdatatypes.h"
+#include "datatypes.h"
 #include "physmisc.h"
 
-PhysString GetNameOfEventFrom( RawEvent* event )
+String GetNameOfEventFrom( RawEvent* event )
 {
         switch(event->type)
         {

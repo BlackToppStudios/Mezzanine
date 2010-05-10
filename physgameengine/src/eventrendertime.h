@@ -44,7 +44,7 @@
 ///////////////////////////////////////
 
 #include "event.h"
-#include "physdatatypes.h"
+#include "datatypes.h"
 
 using namespace std;
 
@@ -59,14 +59,14 @@ namespace phys
     class EventRenderTime : public Event
     {
         private:
-            PhysWhole Rendertime;
+            Whole Rendertime;
 
         public:
 
             /// @brief The Constructor
             /// @details This is the only way to set the time
             /// @param Milliseconds As it says, the amount of milliseconds since the last rendering
-            EventRenderTime (PhysWhole Milliseconds);
+            EventRenderTime (Whole Milliseconds);
 
             /// @brief Returns that this event is a EventType::RenderTime
             /// @details This is primarily for the benefit of sorting thorugh event pointers. If
@@ -77,7 +77,7 @@ namespace phys
             /// @brief Returns the a floating point value with the amount of time.
             /// @pdetails Returns the a floating point value with the amount of time.
             /// @return A floating point value with the amount of time.
-            PhysWhole getMilliSecondsSinceLastFrame();
+            Whole getMilliSecondsSinceLastFrame();
     };
 }
 

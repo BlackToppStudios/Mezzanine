@@ -60,8 +60,8 @@ namespace phys
             bool Fullscreen;
 
             //these refer to the render window
-            PhysWhole RenderHeight;
-            PhysWhole RenderWidth;
+            Whole RenderHeight;
+            Whole RenderWidth;
 
         public:
             /// @brief Default constructor
@@ -75,7 +75,7 @@ namespace phys
             /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the
             /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support
             /// arbitrary resolutions in fullscreen mode.
-            GraphicsSettings(const PhysWhole &Width_, const PhysWhole &Height_, const bool &FullScreen_);
+            GraphicsSettings(const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
 
             /// @brief Adjust all Settings
             /// @param Width_ The desired width.
@@ -84,7 +84,7 @@ namespace phys
             /// @details This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be
             /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens
             /// do not support arbitrary resolutions in fullscreen mode.
-            void Construct(const PhysWhole &Width_, const PhysWhole &Height_, const bool &FullScreen_);
+            void Construct(const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
 
             /// @brief Gets the Fullscreen Setting
             /// @details Gets the Fullscreen Setting
@@ -98,20 +98,20 @@ namespace phys
             /// @brief Gets the Height of the Rendering Area
             /// @details Gets the Height of the Rendering Area
             /// @return This returns the Height of the Rendering Area
-            PhysWhole getRenderHeight() const;
+            Whole getRenderHeight() const;
             /// @brief Sets the Height.
             /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Height_ This accepts a PhysWhole.
-            void setRenderHeight(const PhysWhole &Height_);
+            /// @param Height_ This accepts a Whole.
+            void setRenderHeight(const Whole &Height_);
 
             /// @brief Gets the Width of the Rendering Area
             /// @details Gets the Width of the Rendering Area
             /// @return This returns the Width of the Rendering Area
-            PhysWhole getRenderWidth() const;
+            Whole getRenderWidth() const;
             /// @brief Sets the Width.
             /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Width_ This accepts a PhysWhole.
-            void setRenderWidth(const PhysWhole &Width_);
+            /// @param Width_ This accepts a Whole.
+            void setRenderWidth(const Whole &Width_);
     };
 }
 #endif

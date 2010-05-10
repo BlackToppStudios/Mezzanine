@@ -55,7 +55,7 @@ namespace phys
         W=0;
     }
 
-    Quaternion::Quaternion(const PhysReal &x, const PhysReal &y, const PhysReal &z, const PhysReal &w)
+    Quaternion::Quaternion(const Real &x, const Real &y, const Real &z, const Real &w)
     {
         X=x;
         Y=y;

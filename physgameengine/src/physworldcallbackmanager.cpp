@@ -49,7 +49,7 @@
 
 //Includes
 #include "physworldcallbackmanager.h"
-#include "physdatatypes.h"
+#include "datatypes.h"
 #include "physworld.h"
 
 using namespace std;

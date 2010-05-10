@@ -40,7 +40,9 @@
 #ifndef _physvector_h
 #define _physvector_h
 
-#include "physdatatypes.h"
+#include "datatypes.h"
+
+using namespace phys;
 
 //Forward Declarations for wierd compatibility functions
 class btVector3;
@@ -53,11 +55,11 @@ class PhysVector3
 {
 	public:
         /// @brief Coordinate on the X vector.
-		PhysReal X;
+		Real X;
 		/// @brief Coordinate on the Y vector.
-		PhysReal Y;
+		Real Y;
 		/// @brief Coordinate on the Z vector.
-		PhysReal Z;
+		Real Z;
 
         /// @brief Blank Constructor.
         /// @details Basic no-initialization constructor.
@@ -67,7 +69,7 @@ class PhysVector3
         /// @param X Coordinate on the X vector.
         /// @param Y Coordinate on the Y vector.
         /// @param Z Coordinate on the Z vector.
-		PhysVector3(PhysReal X, PhysReal Y, PhysReal Z);
+		PhysVector3(Real X, Real Y, Real Z);
 
         /// @brief Gets a Bullet vector3.
         /// @details Creates a Bullet vector3 with values equal to this class and returns it.

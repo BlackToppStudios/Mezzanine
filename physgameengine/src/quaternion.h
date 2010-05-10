@@ -40,7 +40,7 @@
 #ifndef _quaternion_h
 #define _quaternion_h
 
-#include "physdatatypes.h"
+#include "datatypes.h"
 
 class btQuaternion;
 namespace Ogre
@@ -62,13 +62,13 @@ namespace phys
     {
         private:
             /// @brief Rotation on the X Axis.
-            PhysReal X;
+            Real X;
             /// @brief Rotation on the Y Axis.
-            PhysReal Y;
+            Real Y;
             /// @brief Rotation on the Z Axis.
-            PhysReal Z;
+            Real Z;
             /// @brief Rotation on the W Axis.
-            PhysReal W;
+            Real W;
 
         public:
             /// @brief Blank Constructor.
@@ -81,7 +81,7 @@ namespace phys
             /// @param Y Rotation on the Y Axis.
             /// @param Z Rotation on the Z Axis.
             /// @param W Rotation on the W Axis.
-            Quaternion(const PhysReal &x, const PhysReal &y, const PhysReal &z, const PhysReal &w);
+            Quaternion(const Real &x, const Real &y, const Real &z, const Real &w);
 
             /// @brief Gets a Bullet quaternion.
             /// @details Creates a Bullet quaternion with values equal to this class and returns it.

@@ -54,7 +54,7 @@ PhysVector3::PhysVector3()
     Z=0;
 }
 
-PhysVector3::PhysVector3(PhysReal x, PhysReal y, PhysReal z)
+PhysVector3::PhysVector3(Real x, Real y, Real z)
 {
 	X=x;
 	Y=y;

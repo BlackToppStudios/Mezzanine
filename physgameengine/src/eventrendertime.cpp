@@ -43,14 +43,14 @@
 // This will store the amount of time  since key rendering events have occurred
 ///////////////////////////////////////
 
-#include "physdatatypes.h"
+#include "datatypes.h"
 #include "eventrendertime.h"
 
 using namespace std;
 
 namespace phys
 {
-    EventRenderTime::EventRenderTime (PhysWhole Milliseconds)
+    EventRenderTime::EventRenderTime (Whole Milliseconds)
     {
         Rendertime=Milliseconds;
     }
@@ -60,7 +60,7 @@ namespace phys
         return RenderTime;
     }
 
-    PhysWhole EventRenderTime::getMilliSecondsSinceLastFrame()
+    Whole EventRenderTime::getMilliSecondsSinceLastFrame()
     {
         return Rendertime;
     }

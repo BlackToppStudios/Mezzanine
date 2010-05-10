@@ -55,12 +55,12 @@ namespace phys
         Construct(640,480,false);
     }
 
-    GraphicsSettings::GraphicsSettings( const PhysWhole &Width_, const PhysWhole &Height_, const bool &FullScreen_ )
+    GraphicsSettings::GraphicsSettings( const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
     {
         Construct( Width_, Height_, FullScreen_ );
     }
 
-    void GraphicsSettings::Construct( const PhysWhole &Width_, const PhysWhole &Height_, const bool &FullScreen_ )
+    void GraphicsSettings::Construct( const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
     {
         this->Fullscreen = FullScreen_;
         this->RenderHeight = Height_;
@@ -81,24 +81,24 @@ namespace phys
     }
 
     //Returns the height of the render window
-    PhysWhole GraphicsSettings::getRenderHeight() const
+    Whole GraphicsSettings::getRenderHeight() const
     {
         return this->RenderHeight;
     }
 
     //Returns the width of the render window
-    PhysWhole GraphicsSettings::getRenderWidth() const
+    Whole GraphicsSettings::getRenderWidth() const
     {
         return this->RenderWidth;
     }
     //returns: false if changes could not be made
-    void GraphicsSettings::setRenderHeight(const PhysWhole &Height_)
+    void GraphicsSettings::setRenderHeight(const Whole &Height_)
     {
         this->RenderHeight = Height_;
     }
 
     //returns: false if changes could not be made
-    void GraphicsSettings::setRenderWidth(const PhysWhole &Width_)
+    void GraphicsSettings::setRenderWidth(const Whole &Width_)
     {
         this->RenderWidth = Width_;
     }

@@ -66,7 +66,7 @@
     slouken@libsdl.org
 */
 
-#include "physdatatypes.h"
+#include "datatypes.h"
 
 using namespace std;
 
