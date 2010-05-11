@@ -336,7 +336,7 @@ class PhysWorld
 
 		/// @brief This is a point to the default Call BackManager
         /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.
-		PhysWorldCallBackManager* CallBacks;
+		WorldCallBackManager* CallBacks;
 
         /// @brief This is the default pointer to the Event Manager.
         /// @details This is the Event manager that all physworld members will place any events into.

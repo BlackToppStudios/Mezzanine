@@ -50,8 +50,7 @@ namespace phys
     /// @headerfile worldcallbackmanager.h
     /// @brief This Stores callbacks for for use in the main loop
     /// @details This stores a series of pointers to functions that the main loop
-    ///
-
+    /// will call. This can be swapped out at any point in time
     class WorldCallBackManager
     {
         private:
@@ -70,8 +69,8 @@ namespace phys
 
         public:
 
-            PhysWorldCallBackManager(PhysWorld* _Parent);
-            ~PhysWorldCallBackManager();
+            WorldCallBackManager(PhysWorld* _Parent);
+            ~WorldCallBackManager();
 
             //Called when a frame is about to begin rendering. so is the
             //Function you passe in with the setFrameStartCallback

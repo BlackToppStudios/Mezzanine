@@ -116,7 +116,7 @@ void PhysWorld::Construct(  const PhysVector3 &GeographyLowerBounds_,
     SanityChecks();
 
     //Callbacks are the main way that a game using the PhysWorld will be able to have their code run at custom times
-	this->CallBacks = new PhysWorldCallBackManager(this);
+	this->CallBacks = new WorldCallBackManager(this);
     //Events are the main way for the game using the physworld to  get information about the various subsystems
     this->Events = new PhysEventManager(this);
 

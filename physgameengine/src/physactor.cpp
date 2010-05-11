@@ -228,7 +228,7 @@ void ActorBase::CreateTrimesh()
     //Shape=hull;
     tmpshape->setUserPointer(hull);
     btConvexHullShape* convexShape = new btConvexHullShape();
-    for (unsigned b=0;b<hull->numVertices();b++)
+    for (int b=0;b<hull->numVertices();b++)
     {
         convexShape->addPoint(hull->getVertexPointer()[b]);
     }
@@ -378,6 +378,11 @@ void ActorRigid::CreateShapeFromMesh()
 {
     this->CreateTrimesh();
     this->physrigidbody->setCollisionShape(this->Shape);
+    btVector3 inertia(0,0,0);
+    //btVector3 inertia = this->physrigidbody->getInvInertiaDiagLocal();
+    this->Shape->calculateLocalInertia(1/this->physrigidbody->getInvMass(), inertia);
+    //this->physrigidbody->setMassProps(1/this->physrigidbody->getInvMass(), inertia);
+
 }
 
 ///////////////////////////////////
