@@ -995,9 +995,9 @@
 	<fstream>
 	<string>
 
-1269828512 source:c:\physgame2\physgame\physgamelauncher\src\crossplatform.cpp
+1272253375 source:c:\physgame2\physgame\physgamelauncher\src\crossplatform.cpp
 
-1269828424 source:c:\physgame2\physgame\physgamelauncher\src\physgamelauncherapp.cpp
+1273466282 source:c:\physgame2\physgame\physgamelauncher\src\physgamelauncherapp.cpp
 	"physgamelauncherApp.h"
 	<iostream>
 	<fstream>
@@ -1010,17 +1010,19 @@
 	<wx/app.h>
 	"zzip.h"
 
-1269828258 c:\physgame2\physgame\physgamelauncher\src\crossplatform.h
+1272254329 c:\physgame2\physgame\physgamelauncher\src\crossplatform.h
 	<fcntl.h>
 	<io.h>
 
-1271044856 c:\physgame2\physgame\physgamelauncher\src\physgamelaunchermain.h
-	<wx/menu.h>
+1273541543 c:\physgame2\physgame\physgamelauncher\src\physgamelaunchermain.h
+	<wx/panel.h>
+	<wx/button.h>
 	<wx/frame.h>
-	<wx/statusbr.h>
-	"zzip.h"
+	<sys/stat.h>
+	<iostream>
+	<string>
 
-1271904327 source:c:\physgame2\physgame\physgamelauncher\src\physgamelaunchermain.cpp
+1272676951 source:c:\physgame2\physgame\physgamelauncher\src\physgamelaunchermain.cpp
 	"physgamelauncherMain.h"
 	<wx/msgdlg.h>
 	"zlib.h"
@@ -1795,4 +1797,90 @@
 	<sys/types.h>
 	<unistd.h>
 	<unixio.h>
+
+1271044464 c:\physgame2\physgame\physgamelauncher\libinclude\zziplib\zzip.h
+	"types.h"
+
+1271044522 c:\physgame2\physgame\physgamelauncher\libinclude\zziplib\types.h
+	"conf.h"
+	<fcntl.h>
+	<stddef.h>
+	<sys/types.h>
+
+1271044567 c:\physgame2\physgame\physgamelauncher\libinclude\zziplib\conf.h
+	<zzip/_msvc.h>
+	"zzip-1.h"
+	"zzip-2.h"
+	"zzip-3.h"
+	"zzip-4.h"
+	"zzip-5.h"
+	"_config.h"
+	<errno.h>
+	<io.h>
+	<windows.h>
+
+1249423422 c:\physgame2\physgame\physgamelauncher\libinclude\zziplib\_config.h
+
+1121653608 c:\physgame2\physgame\physgamelauncher\libinclude\zziplib\zlib.h
+	"zconf.h"
+
+1121874026 c:\physgame2\physgame\physgamelauncher\libinclude\zziplib\zconf.h
+	<windows.h>
+	<sys/types.h>
+	<unistd.h>
+	<unixio.h>
+
+1266231502 c:\physgame2\physgame\physgamelauncher\libinclude\zziplib\unzip.h
+	"zlib.h"
+	"ioapi.h"
+	"bzlib.h"
+
+1266231580 c:\physgame2\physgame\physgamelauncher\libinclude\zziplib\ioapi.h
+	<stdio.h>
+	<stdlib.h>
+	"zlib.h"
+	<stdint.h>
+	"mz64conf.h"
+	"stdint.h"
+
+1193991318 source:c:\physgame2\physgame\physgamelauncher\src\resource.rc
+	"wx/msw/wx.rc"
+
+1194642978 c:\wxwidgets-2.8.10\include\wx\button.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/univ/button.h"
+	"wx/msw/button.h"
+	"wx/motif/button.h"
+	"wx/gtk/button.h"
+	"wx/gtk1/button.h"
+	"wx/mac/button.h"
+	"wx/cocoa/button.h"
+	"wx/os2/button.h"
+	"wx/palmos/button.h"
+
+1186436490 c:\wxwidgets-2.8.10\include\wx\control.h
+	"wx/defs.h"
+	"wx/window.h"
+	"wx/univ/control.h"
+	"wx/palmos/control.h"
+	"wx/msw/control.h"
+	"wx/motif/control.h"
+	"wx/gtk/control.h"
+	"wx/gtk1/control.h"
+	"wx/mac/control.h"
+	"wx/cocoa/control.h"
+	"wx/os2/control.h"
+
+1186436394 c:\wxwidgets-2.8.10\include\wx\univ\control.h
+	"wx/univ/inphand.h"
+	"wx/univ/inpcons.h"
+
+1186436450 c:\wxwidgets-2.8.10\include\wx\msw\control.h
+	"wx/dynarray.h"
+
+1186436394 c:\wxwidgets-2.8.10\include\wx\univ\button.h
+	"wx/bitmap.h"
+
+1186436450 c:\wxwidgets-2.8.10\include\wx\msw\button.h
 

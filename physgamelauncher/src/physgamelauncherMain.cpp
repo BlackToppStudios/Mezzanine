@@ -11,6 +11,8 @@
 #include <wx/msgdlg.h>
 //#include <windows.h>
 #include "zlib.h"
+#include <sys/stat.h>
+
 
 #include <iostream>
 #include <fstream>
@@ -22,11 +24,6 @@
 //(*InternalHeaders(physgamelauncherFrame)
 #include <wx/intl.h>
 #include <wx/string.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include "crossplatform.h"
-#
-
 //*)
 
 //helper functions
@@ -61,10 +58,11 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(physgamelauncherFrame)
-const long physgamelauncherFrame::RUN_GAME = wxNewId();
-const long physgamelauncherFrame::idMenuQuit = wxNewId();
-const long physgamelauncherFrame::idMenuAbout = wxNewId();
-const long physgamelauncherFrame::ID_STATUSBAR1 = wxNewId();
+const long physgamelauncherFrame::RUN_GAME2 = wxNewId();
+const long physgamelauncherFrame::ID_BUTTON2 = wxNewId();
+const long physgamelauncherFrame::ID_BUTTON3 = wxNewId();
+const long physgamelauncherFrame::idMenuQuit2 = wxNewId();
+const long physgamelauncherFrame::ID_PANEL1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(physgamelauncherFrame,wxFrame)
@@ -75,35 +73,16 @@ END_EVENT_TABLE()
 physgamelauncherFrame::physgamelauncherFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(physgamelauncherFrame)
-    wxMenuItem* MenuItem2;
-    wxMenuItem* MenuItem1;
-    wxMenu* Menu1;
-    wxMenuBar* MenuBar1;
-    wxMenu* Menu2;
-
     Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    MenuBar1 = new wxMenuBar();
-    Menu1 = new wxMenu();
-    MenuItem3 = new wxMenuItem(Menu1, RUN_GAME, _("Run\tAlt-R"), _("Runs the program"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem3);
-    MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem1);
-    MenuBar1->Append(Menu1, _("&File"));
-    Menu2 = new wxMenu();
-    MenuItem2 = new wxMenuItem(Menu2, idMenuAbout, _("About\tF1"), _("Show info about this application"), wxITEM_NORMAL);
-    Menu2->Append(MenuItem2);
-    MenuBar1->Append(Menu2, _("Help"));
-    SetMenuBar(MenuBar1);
-    StatusBar1 = new wxStatusBar(this, ID_STATUSBAR1, 0, _T("ID_STATUSBAR1"));
-    int __wxStatusBarWidths_1[1] = { -1 };
-    int __wxStatusBarStyles_1[1] = { wxSB_NORMAL };
-    StatusBar1->SetFieldsCount(1,__wxStatusBarWidths_1);
-    StatusBar1->SetStatusStyles(1,__wxStatusBarStyles_1);
-    SetStatusBar(StatusBar1);
+    SetClientSize(wxSize(350,400));
+    Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(200,136), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+    Button1 = new wxButton(Panel1, RUN_GAME2, _("Play"), wxPoint(224,64), wxSize(104,28), 0, wxDefaultValidator, _T("RUN_GAME2"));
+    Button2 = new wxButton(Panel1, ID_BUTTON2, _("Options"), wxPoint(224,120), wxSize(104,28), 0, wxDefaultValidator, _T("ID_BUTTON2"));
+    Button3 = new wxButton(Panel1, ID_BUTTON3, _("Load new files"), wxPoint(224,176), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
+    Button4 = new wxButton(Panel1, idMenuQuit2, _("Quit"), wxPoint(224,232), wxSize(104,28), 0, wxDefaultValidator, _T("idMenuQuit2"));
 
-    Connect(RUN_GAME,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&physgamelauncherFrame::RunGame);
-    Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
-    Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&physgamelauncherFrame::OnAbout);
+    Connect(RUN_GAME2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::RunGame);
+    Connect(idMenuQuit2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
     //*)
 }
 
@@ -125,12 +104,20 @@ void physgamelauncherFrame::RunGame(wxCommandEvent& event)
     Exe = RunExe.GetExeWindows();
 
     wxString wxexe = wxString::FromAscii(Exe.c_str());
+    if (FileExists(Exe))
+    {
+        wxExecute(wxexe);
+    }
+    else
+    {
+        //insert popup here saying that the launcher could not find the proper exe here
+    }
 
-    wxExecute(wxexe);
-     z_stream strm;
+    z_stream strm;
 
- //   zzip_dir_open steddddd;
+//   zzip_dir_open steddddd;
 
+//     ZZIP_File;
 
 
 }
@@ -144,3 +131,27 @@ void physgamelauncherFrame::OnAbout(wxCommandEvent& event)
 void physgamelauncherFrame::OnButton1Click(wxCommandEvent& event)
 {
 }
+
+bool physgamelauncherFrame::FileExists(string strFilename)
+{
+    struct stat stFileInfo;
+    bool blnReturn;
+    int intStat;
+
+    // Attempt to get the file attributes
+    intStat = stat(strFilename.c_str(),&stFileInfo);
+    if (intStat == 0)
+    {
+        // We were able to get the file attributes
+        // so the file obviously exists.
+        blnReturn = true;
+    }
+    else
+    {
+        // We were not able to get the file attributes.
+        blnReturn = false;
+    }
+
+    return(blnReturn);
+}
+
