@@ -65,6 +65,9 @@ using namespace std;
 ///////////////////////////////////////
 namespace phys
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    // Creation and Deletion Methods
+    ///////////////////////////////////////
     MetaCode::MetaCode()
     {}
 
@@ -116,6 +119,17 @@ namespace phys
         }
     }
 
+    void MetaCode::Construct(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
+    {
+        SetMetaValue(MetaValue_);
+        SetID(ID_);
+        SetCode(Code_);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Dirty Hacks
+    ///////////////////////////////////////
+
     //This function assumes the RawEvent is a valid SDL Keyevent
     MetaCode::InputCode MetaCode::GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_)
     {
@@ -128,13 +142,9 @@ namespace phys
         return To;
     }
 
-    void MetaCode::Construct(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
-    {
-        SetMetaValue(MetaValue_);
-        SetID(ID_);
-        SetCode(Code_);
-    }
-
+    ///////////////////////////////////////////////////////////////////////////////
+    // Gets and Sets
+    ///////////////////////////////////////
     int MetaCode::GetMetaValue() const
     {
         return this->MetaValue;
@@ -164,6 +174,10 @@ namespace phys
     {
         this->ID=ID_;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Operators
+    ///////////////////////////////////////
 
     bool MetaCode::operator==(const MetaCode &other) const
     {

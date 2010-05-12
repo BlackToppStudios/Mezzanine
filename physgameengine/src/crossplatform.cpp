@@ -44,7 +44,7 @@
 
 //Internal includes
 #include "crossplatform.h"
-#include "physworld.h"
+#include "world.h"
 
 //External includes
 #include <Ogre.h>
@@ -128,7 +128,7 @@ namespace phys
             #endif
         }
 
-        void RenderPhysWorld(PhysWorld *TheWorld)
+        void RenderPhysWorld(World *TheWorld)
         {
             #ifndef WINDOWS
                TheWorld->OgreGameWindow->update(true);
@@ -138,7 +138,7 @@ namespace phys
             #endif
         }
 
-    }// /crossplatform
-}// /phys
+    }
+}
 
 #endif

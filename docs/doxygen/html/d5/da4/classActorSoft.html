@@ -53,8 +53,8 @@ Inheritance diagram for ActorSoft:</div>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/da4/classActorSoft.html#a01a570c728d6cb96d1a40003d6b17e22">CreateSoftObject</a> (btSoftBodyWorldInfo *softworldinfo, int nodecount, btVector3 *nodearray, btScalar *massarray)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a soft object for the actor.  <a href="#a01a570c728d6cb96d1a40003d6b17e22"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/da4/classActorSoft.html#a0def29f28ed4d126a0634ddc97e33e2f">AddObjectToWorld</a> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TargetWorld, btSoftRigidDynamicsWorld *World)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#a0def29f28ed4d126a0634ddc97e33e2f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/da4/classActorSoft.html#a2c9b96e757040add73272ed392c3a464">AddObjectToWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *TargetWorld, btSoftRigidDynamicsWorld *<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a>)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#a2c9b96e757040add73272ed392c3a464"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7d4efd5150008eecc54e070be075700"></a><!-- doxytag: member="ActorSoft::physsoftbody" ref="aa7d4efd5150008eecc54e070be075700" args="" -->
 btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physsoftbody</b></td></tr>
@@ -83,19 +83,19 @@ btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physsoftbody<
 <p>Destructor. </p>
 <p>The class destructor. </p>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00390">390</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00395">395</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a0def29f28ed4d126a0634ddc97e33e2f"></a><!-- doxytag: member="ActorSoft::AddObjectToWorld" ref="a0def29f28ed4d126a0634ddc97e33e2f" args="(PhysWorld *TargetWorld, btSoftRigidDynamicsWorld *World)" -->
+<a class="anchor" id="a2c9b96e757040add73272ed392c3a464"></a><!-- doxytag: member="ActorSoft::AddObjectToWorld" ref="a2c9b96e757040add73272ed392c3a464" args="(World *TargetWorld, btSoftRigidDynamicsWorld *World)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ActorSoft::AddObjectToWorld </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td>
           <td class="paramname"> <em>TargetWorld</em>, </td>
         </tr>
         <tr>
@@ -118,15 +118,15 @@ btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physsoftbody<
  This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> class. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the World class. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>World</em>&nbsp;</td><td>Pointer to the physics world. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="../../dd/d7b/classActorBase.html#a1af82a2ed960fd114518fdf84d5ff146">ActorBase</a>.</p>
+<p>Implements <a class="el" href="../../dd/d7b/classActorBase.html#a8c5401ae316ad2fbc1279016cef4c9f6">ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00401">401</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00406">406</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -148,7 +148,7 @@ btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physsoftbody<
 <p>Creates a collision shape from mesh file. </p>
 <p>This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. </p>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00406">406</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00411">411</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -193,7 +193,7 @@ btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physsoftbody<
 <p>Creates a soft object to be placed in the physics world later. <br/>
  This is automaticly called by the Constructor and shouldn't be called manually. </p>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00395">395</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00400">400</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
 </div>
 </div>
@@ -202,7 +202,7 @@ btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>physsoftbody<
 <li><a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 12 01:43:37 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

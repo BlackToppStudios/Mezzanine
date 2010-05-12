@@ -42,8 +42,6 @@
 
 #include "eventquit.h"
 
-using namespace std;
-
 namespace phys
 {
 

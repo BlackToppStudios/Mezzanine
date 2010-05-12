@@ -28,8 +28,8 @@
 </div>
 <div class="contents">
 <h1>ActorBase Member List</h1>This is the complete list of members for <a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a>, including all inherited members.<table>
-  <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#a32337e36f62d5ffb6315fad932aa84d9">ActorBase</a>(String name, String file, String group, PhysWorld *World)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td></td></tr>
-  <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#a1af82a2ed960fd114518fdf84d5ff146">AddObjectToWorld</a>(PhysWorld *TargetWorld, btSoftRigidDynamicsWorld *World)=0</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected, pure virtual]</code></td></tr>
+  <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#a5a0e5dc193a2dca9d0f823dad7fdaa7a">ActorBase</a>(String name, String file, String group, World *World)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#a8c5401ae316ad2fbc1279016cef4c9f6">AddObjectToWorld</a>(World *TargetWorld, btSoftRigidDynamicsWorld *World)=0</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected, pure virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#afab604970fede16ccde0c6b8e72d9ee0">AttachToGraphics</a>()</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>CollisionObject</b> (defined in <a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a>)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#a7fd55114a59fe098a217314cf29cd055">CreateEntity</a>(String name, String file, String group)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected]</code></td></tr>
@@ -42,7 +42,6 @@
   <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#a73ee03084b2ca78659b6e6439cafa75f">GetOgreLocation</a>()</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>MotionState</b> (defined in <a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a>)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected]</code></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>node</b> (defined in <a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a>)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected]</code></td></tr>
-  <tr bgcolor="#f0f0f0"><td><b>PhysWorld</b> (defined in <a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a>)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [friend]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#af52177760d530df2b0987ed8626a656d">SetBulletInitLocation</a>(PhysVector3 Location)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#af64a57138bbd32c52581a5c8d0d29a76">SetBulletLocation</a>(PhysVector3 Location)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected, virtual]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#a1d9a2b13dcff7a6a2dc83f08f1db97ce">SetBulletOrientation</a>(Quaternion Rotation)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected, virtual]</code></td></tr>
@@ -57,9 +56,10 @@
   <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#a66429021cfc19b32cd0f645955e20584">SetOrientation</a>(Quaternion Rotation)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td></td></tr>
   <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#a97f55e5fff5d69483ebb0b9042a50bb0">SetStatic</a>()</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td></td></tr>
   <tr bgcolor="#f0f0f0"><td><b>Shape</b> (defined in <a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a>)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [protected]</code></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>World</b> (defined in <a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a>)</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [friend]</code></td></tr>
   <tr class="memlist"><td><a class="el" href="../../dd/d7b/classActorBase.html#a6fd984c46b3232c2522adb44be4dedb7">~ActorBase</a>()</td><td><a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a></td><td><code> [virtual]</code></td></tr>
 </table></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 12 01:43:36 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

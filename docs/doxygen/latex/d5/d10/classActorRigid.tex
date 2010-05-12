@@ -20,7 +20,7 @@ Inheritance diagram for ActorRigid:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classActorRigid_a99b5b801a7462e987b8dd4437155b9d1}{ActorRigid} (Real mass, String name, String file, String group, \hyperlink{classPhysWorld}{PhysWorld} $\ast$World)
+\hyperlink{classActorRigid_a8a71c343f3872cce605212c0c22e7e14}{ActorRigid} (Real mass, String name, String file, String group, \hyperlink{classphys_1_1World}{World} $\ast$\hyperlink{classphys_1_1World}{World})
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classActorRigid_a36b9eb18fc9e83769a48eb1c34312889}{$\sim$ActorRigid} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
@@ -31,7 +31,7 @@ void \hyperlink{classActorRigid_a1a1b7ca97c69bb5420a76116c388b3d1}{CreateShapeFr
 \item 
 void \hyperlink{classActorRigid_a57d5fe315a120e97bf34e1930a7678d8}{CreateRigidObject} (Real pmass)
 \begin{DoxyCompactList}\small\item\em Creates a rigid object for the actor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classActorRigid_ac6d7e05944623329f0c2140c19e2c49e}{AddObjectToWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$World)
+void \hyperlink{classActorRigid_a2dc29c81eae90d3344fda0a80f066448}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$\hyperlink{classphys_1_1World}{World})
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -51,11 +51,11 @@ Definition at line 232 of file physactor.h.
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classActorRigid_a99b5b801a7462e987b8dd4437155b9d1}{
+\hypertarget{classActorRigid_a8a71c343f3872cce605212c0c22e7e14}{
 \index{ActorRigid@{ActorRigid}!ActorRigid@{ActorRigid}}
 \index{ActorRigid@{ActorRigid}!ActorRigid@{ActorRigid}}
-\subsubsection[{ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}ActorRigid::ActorRigid (Real {\em mass}, \/  String {\em name}, \/  String {\em file}, \/  String {\em group}, \/  {\bf PhysWorld} $\ast$ {\em World})}}
-\label{d5/d10/classActorRigid_a99b5b801a7462e987b8dd4437155b9d1}
+\subsubsection[{ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}ActorRigid::ActorRigid (Real {\em mass}, \/  String {\em name}, \/  String {\em file}, \/  String {\em group}, \/  {\bf World} $\ast$ {\em World})}}
+\label{d5/d10/classActorRigid_a8a71c343f3872cce605212c0c22e7e14}
 
 
 Descriptive constructor. 
@@ -63,7 +63,7 @@ Descriptive constructor.
 This constructor contains the basic information needed to make a Rigid Object. \par
  This class inherits from \hyperlink{classActorBase}{ActorBase}. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Mass}]The mass the object will have in the \hyperlink{classPhysWorld}{PhysWorld}. \item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em World}]Pointer to the \hyperlink{classPhysWorld}{PhysWorld} this object will be added to. \end{DoxyParams}
+\item[{\em Mass}]The mass the object will have in the World. \item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em World}]Pointer to the World this object will be added to. \end{DoxyParams}
 
 
 Definition at line 354 of file physactor.cpp.
@@ -84,11 +84,11 @@ Definition at line 359 of file physactor.cpp.
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classActorRigid_ac6d7e05944623329f0c2140c19e2c49e}{
+\hypertarget{classActorRigid_a2dc29c81eae90d3344fda0a80f066448}{
 \index{ActorRigid@{ActorRigid}!AddObjectToWorld@{AddObjectToWorld}}
 \index{AddObjectToWorld@{AddObjectToWorld}!ActorRigid@{ActorRigid}}
-\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void ActorRigid::AddObjectToWorld ({\bf PhysWorld} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em World})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
-\label{d5/d10/classActorRigid_ac6d7e05944623329f0c2140c19e2c49e}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void ActorRigid::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em World})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\label{d5/d10/classActorRigid_a2dc29c81eae90d3344fda0a80f066448}
 
 
 Adds the actor to the physics world. 
@@ -96,10 +96,10 @@ Adds the actor to the physics world.
 Adds the actor to the physics world. \par
  This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em TargetWorld}]Pointer to the \hyperlink{classPhysWorld}{PhysWorld} class. \item[{\em World}]Pointer to the physics world. \end{DoxyParams}
+\item[{\em TargetWorld}]Pointer to the World class. \item[{\em World}]Pointer to the physics world. \end{DoxyParams}
 
 
-Implements \hyperlink{classActorBase_a1af82a2ed960fd114518fdf84d5ff146}{ActorBase}.
+Implements \hyperlink{classActorBase_a8c5401ae316ad2fbc1279016cef4c9f6}{ActorBase}.
 
 
 

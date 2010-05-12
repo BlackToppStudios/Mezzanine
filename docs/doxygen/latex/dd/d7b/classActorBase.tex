@@ -22,7 +22,7 @@ Inheritance diagram for ActorBase:\begin{figure}[H]
 \item 
 virtual \hyperlink{classActorBase_a6fd984c46b3232c2522adb44be4dedb7}{$\sim$ActorBase} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classActorBase_a32337e36f62d5ffb6315fad932aa84d9}{ActorBase} (String name, String file, String group, \hyperlink{classPhysWorld}{PhysWorld} $\ast$World)
+\hyperlink{classActorBase_a5a0e5dc193a2dca9d0f823dad7fdaa7a}{ActorBase} (String name, String file, String group, \hyperlink{classphys_1_1World}{World} $\ast$\hyperlink{classphys_1_1World}{World})
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classActorBase_a693c1bcb10ba7dc8fc37eef70ce65f0c}{SetLocation} (Real x, Real y, Real z)
 \begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
@@ -45,7 +45,7 @@ void \hyperlink{classActorBase_a97f55e5fff5d69483ebb0b9042a50bb0}{SetStatic} ()
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{classActorBase_a1af82a2ed960fd114518fdf84d5ff146}{AddObjectToWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$World)=0
+virtual void \hyperlink{classActorBase_a8c5401ae316ad2fbc1279016cef4c9f6}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$\hyperlink{classphys_1_1World}{World})=0
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
 void \hyperlink{classActorBase_af7f0806222c79b5d5120dccefd93715e}{CreateTrimesh} ()
 \begin{DoxyCompactList}\small\item\em Creates a trimesh shape from the mesh file. \item\end{DoxyCompactList}\item 
@@ -72,9 +72,9 @@ virtual void \hyperlink{classActorBase_a1d9a2b13dcff7a6a2dc83f08f1db97ce}{SetBul
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classActorBase_a02a4306818777f7c2e5853e8babd485e}{
-\hyperlink{classPhysWorld}{PhysWorld} $\ast$ {\bfseries GameWorld}}
-\label{dd/d7b/classActorBase_a02a4306818777f7c2e5853e8babd485e}
+\hypertarget{classActorBase_a8c75fa8ccf16922aded9f0fd696578ef}{
+\hyperlink{classphys_1_1World}{World} $\ast$ {\bfseries GameWorld}}
+\label{dd/d7b/classActorBase_a8c75fa8ccf16922aded9f0fd696578ef}
 
 \item 
 \hypertarget{classActorBase_ada6ceb752605b29357b6c5d53c477696}{
@@ -105,15 +105,15 @@ btCollisionObject $\ast$ {\bfseries CollisionObject}}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classActorBase_a375fd37c70c941f0442997a60fdb05c7}{
-class \hyperlink{classActorBase_a375fd37c70c941f0442997a60fdb05c7}{PhysWorld}}
-\label{dd/d7b/classActorBase_a375fd37c70c941f0442997a60fdb05c7}
+\hypertarget{classActorBase_a7b4bcdf992c21ae83363f25df05b1d25}{
+class {\bfseries World}}
+\label{dd/d7b/classActorBase_a7b4bcdf992c21ae83363f25df05b1d25}
 
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-This is the base class from which all the actors inherit. The actor classes store and manage all the relevant data regarding objects inside the \hyperlink{classPhysWorld}{PhysWorld}. They serve as a binder between the physics and graphics for objects and have functions that allow the manipulation of objects loaded into the \hyperlink{classPhysWorld}{PhysWorld}. Currently there are 4 actor classes: \hyperlink{classActorBase}{ActorBase}, ActorDynRigid, ActorDynSoft, and ActorSta. \par
+This is the base class from which all the actors inherit. The actor classes store and manage all the relevant data regarding objects inside the World. They serve as a binder between the physics and graphics for objects and have functions that allow the manipulation of objects loaded into the World. Currently there are 4 actor classes: \hyperlink{classActorBase}{ActorBase}, ActorDynRigid, ActorDynSoft, and ActorSta. \par
  \hyperlink{classActorBase}{ActorBase} is a base class that serves as a template for the other three actor classes. \par
  \hyperlink{classActorBase}{ActorBase} should never be created, as it lacks the functionality needed for most objects. 
 
@@ -135,18 +135,18 @@ The class destructor.
 
 Definition at line 117 of file physactor.cpp.
 
-\hypertarget{classActorBase_a32337e36f62d5ffb6315fad932aa84d9}{
+\hypertarget{classActorBase_a5a0e5dc193a2dca9d0f823dad7fdaa7a}{
 \index{ActorBase@{ActorBase}!ActorBase@{ActorBase}}
 \index{ActorBase@{ActorBase}!ActorBase@{ActorBase}}
-\subsubsection[{ActorBase}]{\setlength{\rightskip}{0pt plus 5cm}ActorBase::ActorBase (String {\em name}, \/  String {\em file}, \/  String {\em group}, \/  {\bf PhysWorld} $\ast$ {\em World})}}
-\label{dd/d7b/classActorBase_a32337e36f62d5ffb6315fad932aa84d9}
+\subsubsection[{ActorBase}]{\setlength{\rightskip}{0pt plus 5cm}ActorBase::ActorBase (String {\em name}, \/  String {\em file}, \/  String {\em group}, \/  {\bf World} $\ast$ {\em World})}}
+\label{dd/d7b/classActorBase_a5a0e5dc193a2dca9d0f823dad7fdaa7a}
 
 
 Descriptive constructor. 
 
 This constructor contains the basic information needed to make an actor. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em World}]Pointer to the \hyperlink{classPhysWorld}{PhysWorld} this object will be added to. \end{DoxyParams}
+\item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em World}]Pointer to the World this object will be added to. \end{DoxyParams}
 
 
 Definition at line 107 of file physactor.cpp.
@@ -154,11 +154,11 @@ Definition at line 107 of file physactor.cpp.
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classActorBase_a1af82a2ed960fd114518fdf84d5ff146}{
+\hypertarget{classActorBase_a8c5401ae316ad2fbc1279016cef4c9f6}{
 \index{ActorBase@{ActorBase}!AddObjectToWorld@{AddObjectToWorld}}
 \index{AddObjectToWorld@{AddObjectToWorld}!ActorBase@{ActorBase}}
-\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ActorBase::AddObjectToWorld ({\bf PhysWorld} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em World})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, pure virtual\mbox{]}}}}
-\label{dd/d7b/classActorBase_a1af82a2ed960fd114518fdf84d5ff146}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void ActorBase::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em World})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, pure virtual\mbox{]}}}}
+\label{dd/d7b/classActorBase_a8c5401ae316ad2fbc1279016cef4c9f6}
 
 
 Adds the actor to the physics world. 
@@ -166,10 +166,10 @@ Adds the actor to the physics world.
 Adds the actor to the physics world. \par
  This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em TargetWorld}]Pointer to the \hyperlink{classPhysWorld}{PhysWorld} class. \item[{\em World}]Pointer to the physics world. \end{DoxyParams}
+\item[{\em TargetWorld}]Pointer to the World class. \item[{\em World}]Pointer to the physics world. \end{DoxyParams}
 
 
-Implemented in \hyperlink{classActorRigid_ac6d7e05944623329f0c2140c19e2c49e}{ActorRigid}, and \hyperlink{classActorSoft_a0def29f28ed4d126a0634ddc97e33e2f}{ActorSoft}.
+Implemented in \hyperlink{classActorRigid_a2dc29c81eae90d3344fda0a80f066448}{ActorRigid}, and \hyperlink{classActorSoft_a2c9b96e757040add73272ed392c3a464}{ActorSoft}.
 
 \hypertarget{classActorBase_afab604970fede16ccde0c6b8e72d9ee0}{
 \index{ActorBase@{ActorBase}!AttachToGraphics@{AttachToGraphics}}
@@ -333,8 +333,8 @@ Definition at line 286 of file physactor.cpp.
 
 Sets the starting location of the actor. 
 
-Calling this function after adding it to the \hyperlink{classPhysWorld}{PhysWorld} will have no effect. \par
- This function will set where the actor will be located in the \hyperlink{classPhysWorld}{PhysWorld} when it is first placed inside the world. 
+Calling this function after adding it to the World will have no effect. \par
+ This function will set where the actor will be located in the World when it is first placed inside the world. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Location}]The \hyperlink{classPhysVector3}{PhysVector3} representing the location. \end{DoxyParams}
 
@@ -350,8 +350,8 @@ Definition at line 309 of file physactor.cpp.
 
 Sets the starting orientation of the actor. 
 
-Calling this function after adding it to the \hyperlink{classPhysWorld}{PhysWorld} will have no effect. \par
- This function will set where the actor is facing in the \hyperlink{classPhysWorld}{PhysWorld} when it is first placed inside the world. 
+Calling this function after adding it to the World will have no effect. \par
+ This function will set where the actor is facing in the World when it is first placed inside the world. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Orientation}]The PhysQuaternion representing the Orientation. \end{DoxyParams}
 
@@ -381,7 +381,7 @@ Definition at line 339 of file physactor.cpp.
 
 Manually sets the location of the actor. 
 
-Calling this function prior to adding it to the \hyperlink{classPhysWorld}{PhysWorld} will have no effect. \par
+Calling this function prior to adding it to the World will have no effect. \par
  In most situations you won't want to use this function, and instead produce movement through physics functions. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Place}]The \hyperlink{classPhysVector3}{PhysVector3} representing the location. \end{DoxyParams}
@@ -398,7 +398,7 @@ Definition at line 298 of file physactor.cpp.
 
 Manually sets the location of the actor. 
 
-Calling this function prior to adding it to the \hyperlink{classPhysWorld}{PhysWorld} will have no effect. \par
+Calling this function prior to adding it to the World will have no effect. \par
  In most situations you won't want to use this function, and instead produce movement through physics functions. 
 \begin{DoxyParams}{Parameters}
 \item[{\em X}]Location on the X vector. \item[{\em Y}]Location on the Y vector. \item[{\em Z}]Location on the Z vector. \end{DoxyParams}

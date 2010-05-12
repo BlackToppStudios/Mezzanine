@@ -40,16 +40,16 @@
 #ifndef _graphicsettings_cpp
 #define _graphicsettings_cpp
 
-#include "physworld.h"
+#include "world.h"
 #include "eventmanager.h"
 #include "graphicsettings.h"
 
 namespace phys
 {
 
-    /////////////////////////////////////
-    // Functions for managing settings
-    ////
+    ///////////////////////////////////////////////////////////////////////////
+    // Creation and Deletion functions
+    ///////////////////////////////////
     GraphicsSettings::GraphicsSettings()
     {
         Construct(640,480,false);
@@ -67,7 +67,10 @@ namespace phys
         this->RenderWidth = Width_;
     }
 
-    //returns: True if user wants fullscreen
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Fullscreen functions
+    ///////////////////////////////////
     bool GraphicsSettings::getFullscreen() const
     {
         return this->Fullscreen;
@@ -76,33 +79,33 @@ namespace phys
     //returns: false if changes could not be made
     void GraphicsSettings::setFullscreen(const bool &Fullscreen_)
     {
-        //wierd checks go here to make sure it worked
+        /// @todo TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games
         this->Fullscreen = Fullscreen_;
     }
 
-    //Returns the height of the render window
+    ///////////////////////////////////////////////////////////////////////////
+    // Resolution functions
+    ///////////////////////////////////
     Whole GraphicsSettings::getRenderHeight() const
     {
         return this->RenderHeight;
     }
 
-    //Returns the width of the render window
     Whole GraphicsSettings::getRenderWidth() const
     {
         return this->RenderWidth;
     }
-    //returns: false if changes could not be made
+
     void GraphicsSettings::setRenderHeight(const Whole &Height_)
     {
         this->RenderHeight = Height_;
     }
 
-    //returns: false if changes could not be made
     void GraphicsSettings::setRenderWidth(const Whole &Width_)
     {
         this->RenderWidth = Width_;
     }
 
-}//namespace phys
+}
 
 #endif

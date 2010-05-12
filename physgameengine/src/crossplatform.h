@@ -60,7 +60,7 @@
 
 /// @todo Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this.
 
-//Unremark one of these when
+//Unremark one of these when not compiling with code::blocks
 //#define LINUX
 //#define MACOSX
 //#define WINDOWS
@@ -75,11 +75,10 @@
 
 using namespace std;
 
-class PhysWorld;
-
 namespace phys
 {
     //Forward Declarations should go here
+    class World;
 
     namespace crossplatform
     {
@@ -98,36 +97,31 @@ namespace phys
         /// @return A string which contains the path and filename of the graphics setts file
         string GetSettingsDotCFG();
 
-        //Gets the default locatio for Game Data
-
         /// @brief Gets the Default Data Directory
         /// @details The directory returned by this function can be used to easily graphics objects. In general
         /// the Graphics subsystem can easily open files in this location with just their filename
         /// @return A string containing the path to the default Data Directory.
         string GetDataDirectory();
 
-
-        //This returns a named parameter list with valid settings to use Ogre rendering
-        // on a pre-existing SDL context
         /// @internal
         /// @brief This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)
         /// @details This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)
+        /// This returns a named parameter list with valid settings to use Ogre rendering on a pre-existing SDL context
         /// @warning This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish
         void* GetSDLOgreBinder();
 
-        //A simple crossplatform sleep function, unused, prefer SDLsleep instead
         /// @brief Pauses the program for a given period of time.
         /// @details Pauses the program for a given period of time.
         /// @param WaitTime The amount of time in milliseconds to wait
         void WaitMilliseconds(const Whole &WaitTime);
 
-        //Handles the actual cross platform swapping of buffers.
         /// @brief Renders the current world contents to the screen.
-        /// @details This makes use of PhysWorld internals to Render to the screen, So it is advised against calling this directly.
+        /// @details This makes use of World internals to Render to the screen, So it is advised against calling this directly.
         /// Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop
         /// at the aproppriate times.
-        /// @param TheWorld This is a pointer to the PhysWorld to be rendered.
-        void RenderPhysWorld(PhysWorld *TheWorld);
-    }
+        /// Handles the actual cross platform swapping of graphics buffers.
+        /// @param TheWorld This is a pointer to the World to be rendered.
+        void RenderPhysWorld(World *TheWorld);
+        }
 }
 #endif

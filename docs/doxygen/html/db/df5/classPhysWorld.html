@@ -36,8 +36,8 @@
 <p><a href="../../d6/dd3/classPhysWorld-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a12892fd39d20cb671e23038d10ec4d94">PhysWorld</a> (const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyLowerBounds, const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyUpperbounds, const unsigned short int &amp;MaxPhysicsProxies=1024)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Descriptive constructor.  <a href="#a12892fd39d20cb671e23038d10ec4d94"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a69e1e6b7492d3786c091f44c90d73512">PhysWorld</a> (const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyLowerBounds_, const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyUpperbounds_, const unsigned short int &amp;MaxPhysicsProxies_=1024)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Descriptive constructor.  <a href="#a69e1e6b7492d3786c091f44c90d73512"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a6ded8026b0cd72e7877830698197adf0">PhysWorld</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#a6ded8026b0cd72e7877830698197adf0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#acdfe3b4c1c236860dc7dff945cfe5b07">~PhysWorld</a> ()</td></tr>
@@ -62,6 +62,12 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Shows an Engine Generated Configuration Screen.  <a href="#a9b83f04907443c6307956a3c4089e3ca"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a3d86580cc1014cd543621fbf11b2cae1">MoveCamera</a> (const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;Position, const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;LookAt)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This moves the camera relative to the world.  <a href="#a3d86580cc1014cd543621fbf11b2cae1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a8959c58a728483c6e1109cd65bbb00c9">AddResourceLocation</a> (const String &amp;Location, const String &amp;Type, const String &amp;Group, const bool &amp;recursive=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds a location for graphical resources.  <a href="#a8959c58a728483c6e1109cd65bbb00c9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#ab5fb62f548fa5af7ee59b1ff6c00180a">DeclareResource</a> (String Name, String Type, String Group)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prepares the resource for use.  <a href="#ab5fb62f548fa5af7ee59b1ff6c00180a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a00a96b8627c8561a465cf2637f35aa7b">InitResourceGroup</a> (String Name)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Makes a resource group ready to use.  <a href="#a00a96b8627c8561a465cf2637f35aa7b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a92cf86cdb716bdd762b4029e95b1ee8f">GameInit</a> (const bool &amp;CallMainLoop=true)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This creates the game window and starts the game.  <a href="#a92cf86cdb716bdd762b4029e95b1ee8f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#ad41cad0347b6f5ba7ec05568aaffa514">MainLoop</a> ()</td></tr>
@@ -78,19 +84,13 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This forces the screen to be re-rendered.  <a href="#a8f33541d67164a2452e568443e9905be"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#ae490054b3e1c4c5aa69cb8e3b7bd2f29">AddActor</a> (<a class="el" href="../../dd/d7b/classActorBase.html">ActorBase</a> *ActorToAdd)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The adds and Actor to the physworld.  <a href="#ae490054b3e1c4c5aa69cb8e3b7bd2f29"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a8959c58a728483c6e1109cd65bbb00c9">AddResourceLocation</a> (const String &amp;Location, const String &amp;Type, const String &amp;Group, const bool &amp;recursive=false)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds a location for graphical resources.  <a href="#a8959c58a728483c6e1109cd65bbb00c9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#ab5fb62f548fa5af7ee59b1ff6c00180a">DeclareResource</a> (String Name, String Type, String Group)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prepares the resource for use.  <a href="#ab5fb62f548fa5af7ee59b1ff6c00180a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a00a96b8627c8561a465cf2637f35aa7b">InitResourceGroup</a> (String Name)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Makes a resource group ready to use.  <a href="#a00a96b8627c8561a465cf2637f35aa7b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#ab03e39a70b915d0b5a590e9e2cfbb522">SetGravity</a> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> pgrav)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the gravity.  <a href="#ab03e39a70b915d0b5a590e9e2cfbb522"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d84/classPhysWorldCallBackManager.html">PhysWorldCallBackManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df">CallBacks</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is a point to the default Call BackManager.  <a href="#a080ea6f1584374b07d3c1f29c7ed64df"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc">Events</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the default pointer to the Event Manager.  <a href="#a601b3c6093aaf2a69fcd3311dde9aadc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html">CallBackManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac">CallBacks</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is a point to the default Call BackManager.  <a href="#a1e7f5280b5f63bba7ee38d146c2a6aac"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/dde/classphys_1_1EventManager.html">EventManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#a013e6dc988e69448457b0a18a62aedff">Events</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the default pointer to the Event Manager.  <a href="#a013e6dc988e69448457b0a18a62aedff"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac09063d4b0192680ba3aa0bd4003a274"></a><!-- doxytag: member="PhysWorld::ActorBase" ref="ac09063d4b0192680ba3aa0bd4003a274" args="" -->
 class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/df5/classPhysWorld.html#ac09063d4b0192680ba3aa0bd4003a274">ActorBase</a></td></tr>
@@ -103,7 +103,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 
 <p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00128">128</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a12892fd39d20cb671e23038d10ec4d94"></a><!-- doxytag: member="PhysWorld::PhysWorld" ref="a12892fd39d20cb671e23038d10ec4d94" args="(const PhysVector3 &amp;GeographyLowerBounds, const PhysVector3 &amp;GeographyUpperbounds, const unsigned short int &amp;MaxPhysicsProxies=1024)" -->
+<a class="anchor" id="a69e1e6b7492d3786c091f44c90d73512"></a><!-- doxytag: member="PhysWorld::PhysWorld" ref="a69e1e6b7492d3786c091f44c90d73512" args="(const PhysVector3 &amp;GeographyLowerBounds_, const PhysVector3 &amp;GeographyUpperbounds_, const unsigned short int &amp;MaxPhysicsProxies_=1024)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -135,17 +135,16 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <div class="memdoc">
 
 <p>Descriptive constructor. </p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000012">Todo:</a></b></dt><dd>TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset </dd></dl>
 <p>This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>GeographyLowerBounds</em>&nbsp;</td><td>The lower limits for the size of the physics simulation </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>GeographyUpperbounds</em>&nbsp;</td><td>The Upper limits for the size of the physics simulation </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>MaxPhysicsProxies</em>&nbsp;</td><td>This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.</td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>GeographyLowerBounds_</em>&nbsp;</td><td>The lower limits for the size of the physics simulation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>GeographyUpperbounds_</em>&nbsp;</td><td>The Upper limits for the size of the physics simulation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>MaxPhysicsProxies_</em>&nbsp;</td><td>This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000007">Todo:</a></b></dt><dd>TODO: adjust the constructors to allow for pointers to a callback manager and event manager </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000011">Todo:</a></b></dt><dd>TODO: adjust the constructors to allow for pointers to a callback manager and event manager </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00089">89</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
@@ -168,7 +167,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 
 <p>Default constructor. </p>
 <p>This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.</p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000006">Todo:</a></b></dt><dd>TODO Fix the `const`ness of all methods to be as const as allowable </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000010">Todo:</a></b></dt><dd>TODO Fix the `const`ness of all methods to be as const as allowable </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00075">75</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
 
@@ -725,7 +724,7 @@ template&lt;class T &gt; </div>
 <p>This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to <a class="el" href="../../db/df5/classPhysWorld.html#a5375f0e42292087a345d8fd7c84c0b8b" title="This sets a new Target Time.">PhysWorld::SetTargetFrameTime</a>. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>NewTargetTime</em>&nbsp;</td><td>The new desired frame rate. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>NewFrameRate</em>&nbsp;</td><td>The new desired frame rate. </td></tr>
   </table>
   </dd>
 </dl>
@@ -790,7 +789,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000011">Todo:</a></b></dt><dd>TODO Change the name of an application once it is running </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000015">Todo:</a></b></dt><dd>TODO Change the name of an application once it is running </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="../../d6/d29/physworld_8cpp_source.html#l00563">563</a> of file <a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a>.</p>
@@ -842,12 +841,12 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a080ea6f1584374b07d3c1f29c7ed64df"></a><!-- doxytag: member="PhysWorld::CallBacks" ref="a080ea6f1584374b07d3c1f29c7ed64df" args="" -->
+<a class="anchor" id="a1e7f5280b5f63bba7ee38d146c2a6aac"></a><!-- doxytag: member="PhysWorld::CallBacks" ref="a1e7f5280b5f63bba7ee38d146c2a6aac" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d4/d84/classPhysWorldCallBackManager.html">PhysWorldCallBackManager</a>* <a class="el" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df">PhysWorld::CallBacks</a></td>
+          <td class="memname"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html">CallBackManager</a>* <a class="el" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac">PhysWorld::CallBacks</a></td>
         </tr>
       </table>
 </div>
@@ -856,16 +855,16 @@ template&lt;class T &gt; </div>
 <p>This is a point to the default Call BackManager. </p>
 <p>All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. </p>
 
-<p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00339">339</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00363">363</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a601b3c6093aaf2a69fcd3311dde9aadc"></a><!-- doxytag: member="PhysWorld::Events" ref="a601b3c6093aaf2a69fcd3311dde9aadc" args="" -->
+<a class="anchor" id="a013e6dc988e69448457b0a18a62aedff"></a><!-- doxytag: member="PhysWorld::Events" ref="a013e6dc988e69448457b0a18a62aedff" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d5/dd7/classPhysEventManager.html">PhysEventManager</a>* <a class="el" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc">PhysWorld::Events</a></td>
+          <td class="memname"><a class="el" href="../../da/dde/classphys_1_1EventManager.html">EventManager</a>* <a class="el" href="../../db/df5/classPhysWorld.html#a013e6dc988e69448457b0a18a62aedff">PhysWorld::Events</a></td>
         </tr>
       </table>
 </div>
@@ -874,7 +873,7 @@ template&lt;class T &gt; </div>
 <p>This is the default pointer to the Event Manager. </p>
 <p>This is the Event manager that all physworld members will place any events into. </p>
 
-<p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00343">343</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/db2/physworld_8h_source.html#l00367">367</a> of file <a class="el" href="../../d5/db2/physworld_8h_source.html">physworld.h</a>.</p>
 
 </div>
 </div>
@@ -883,7 +882,7 @@ template&lt;class T &gt; </div>
 <li><a class="el" href="../../d6/d29/physworld_8cpp_source.html">physworld.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 12 00:28:33 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

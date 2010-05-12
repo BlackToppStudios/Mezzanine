@@ -82,6 +82,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/callbackmanager.cpp" />
+		<Unit filename="src/callbackmanager.h" />
 		<Unit filename="src/crossplatform.cpp" />
 		<Unit filename="src/crossplatform.h" />
 		<Unit filename="src/datatypes.cpp" />
@@ -106,12 +108,10 @@
 		<Unit filename="src/physmisc.h" />
 		<Unit filename="src/physvector.cpp" />
 		<Unit filename="src/physvector.h" />
-		<Unit filename="src/physworld.cpp" />
-		<Unit filename="src/physworld.h" />
 		<Unit filename="src/quaternion.cpp" />
 		<Unit filename="src/quaternion.h" />
-		<Unit filename="src/worldcallbackmanager.cpp" />
-		<Unit filename="src/worldcallbackmanager.h" />
+		<Unit filename="src/world.cpp" />
+		<Unit filename="src/world.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

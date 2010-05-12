@@ -55,14 +55,13 @@ namespace phys
     /// @headerfile eventrendertime.h
     /// @brief This communicates the amount of time since the world was rendered
     /// @details This stores in milliseconds the amount of time since the last
-    /// rendering of the physworld.
+    /// rendering of the world.
     class EventRenderTime : public Event
     {
         private:
             Whole Rendertime;
 
         public:
-
             /// @brief The Constructor
             /// @details This is the only way to set the time
             /// @param Milliseconds As it says, the amount of milliseconds since the last rendering

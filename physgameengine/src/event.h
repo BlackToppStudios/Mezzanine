@@ -44,12 +44,6 @@
 //to normalize the output of the event manager class.
 ///////////////////////////////////////
 
-#include <string>
-#include <ostream>
-
-
-using namespace std;
-
 namespace phys
 {
 

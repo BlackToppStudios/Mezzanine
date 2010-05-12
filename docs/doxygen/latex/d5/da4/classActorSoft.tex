@@ -29,7 +29,7 @@ void \hyperlink{classActorSoft_a55ac461f317aed2b812f07eb384b2a6d}{CreateShapeFro
 \item 
 void \hyperlink{classActorSoft_a01a570c728d6cb96d1a40003d6b17e22}{CreateSoftObject} (btSoftBodyWorldInfo $\ast$softworldinfo, int nodecount, btVector3 $\ast$nodearray, btScalar $\ast$massarray)
 \begin{DoxyCompactList}\small\item\em Creates a soft object for the actor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classActorSoft_a0def29f28ed4d126a0634ddc97e33e2f}{AddObjectToWorld} (\hyperlink{classPhysWorld}{PhysWorld} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$World)
+void \hyperlink{classActorSoft_a2c9b96e757040add73272ed392c3a464}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$\hyperlink{classphys_1_1World}{World})
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -60,16 +60,16 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 390 of file physactor.cpp.
+Definition at line 395 of file physactor.cpp.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classActorSoft_a0def29f28ed4d126a0634ddc97e33e2f}{
+\hypertarget{classActorSoft_a2c9b96e757040add73272ed392c3a464}{
 \index{ActorSoft@{ActorSoft}!AddObjectToWorld@{AddObjectToWorld}}
 \index{AddObjectToWorld@{AddObjectToWorld}!ActorSoft@{ActorSoft}}
-\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void ActorSoft::AddObjectToWorld ({\bf PhysWorld} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em World})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
-\label{d5/da4/classActorSoft_a0def29f28ed4d126a0634ddc97e33e2f}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void ActorSoft::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em World})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\label{d5/da4/classActorSoft_a2c9b96e757040add73272ed392c3a464}
 
 
 Adds the actor to the physics world. 
@@ -77,14 +77,14 @@ Adds the actor to the physics world.
 Adds the actor to the physics world. \par
  This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em TargetWorld}]Pointer to the \hyperlink{classPhysWorld}{PhysWorld} class. \item[{\em World}]Pointer to the physics world. \end{DoxyParams}
+\item[{\em TargetWorld}]Pointer to the World class. \item[{\em World}]Pointer to the physics world. \end{DoxyParams}
 
 
-Implements \hyperlink{classActorBase_a1af82a2ed960fd114518fdf84d5ff146}{ActorBase}.
+Implements \hyperlink{classActorBase_a8c5401ae316ad2fbc1279016cef4c9f6}{ActorBase}.
 
 
 
-Definition at line 401 of file physactor.cpp.
+Definition at line 406 of file physactor.cpp.
 
 \hypertarget{classActorSoft_a55ac461f317aed2b812f07eb384b2a6d}{
 \index{ActorSoft@{ActorSoft}!CreateShapeFromMesh@{CreateShapeFromMesh}}
@@ -97,7 +97,7 @@ Creates a collision shape from mesh file.
 
 This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. 
 
-Definition at line 406 of file physactor.cpp.
+Definition at line 411 of file physactor.cpp.
 
 \hypertarget{classActorSoft_a01a570c728d6cb96d1a40003d6b17e22}{
 \index{ActorSoft@{ActorSoft}!CreateSoftObject@{CreateSoftObject}}
@@ -111,7 +111,7 @@ Creates a soft object for the actor.
 Creates a soft object to be placed in the physics world later. \par
  This is automaticly called by the Constructor and shouldn't be called manually. 
 
-Definition at line 395 of file physactor.cpp.
+Definition at line 400 of file physactor.cpp.
 
 
 

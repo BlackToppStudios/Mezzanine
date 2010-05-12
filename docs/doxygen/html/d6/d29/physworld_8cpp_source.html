@@ -78,7 +78,7 @@
 <a name="l00053"></a>00053 <span class="preprocessor">#include &quot;physworld.h&quot;</span>
 <a name="l00054"></a>00054 <span class="preprocessor">#include &quot;physvector.h&quot;</span>
 <a name="l00055"></a>00055 <span class="preprocessor">#include &quot;crossplatform.h&quot;</span>
-<a name="l00056"></a>00056 <span class="preprocessor">#include &quot;physworldcallbackmanager.h&quot;</span>
+<a name="l00056"></a>00056 <span class="preprocessor">#include &quot;callbackmanager.h&quot;</span>
 <a name="l00057"></a>00057 <span class="preprocessor">#include &quot;graphicsettings.h&quot;</span>
 <a name="l00058"></a>00058 <span class="preprocessor">#include &quot;physactor.h&quot;</span>
 <a name="l00059"></a>00059 <span class="preprocessor">#include &quot;physeventuserinput.h&quot;</span>
@@ -111,7 +111,7 @@
 <a name="l00086"></a>00086 <span class="comment"></span>
 <a name="l00087"></a>00087 <span class="comment">/// @todo TODO: adjust the constructors to allow for pointers to a callback manager and event manager</span>
 <a name="l00088"></a>00088 <span class="comment"></span>
-<a name="l00089"></a><a class="code" href="../../db/df5/classPhysWorld.html#a12892fd39d20cb671e23038d10ec4d94">00089</a> <a class="code" href="../../db/df5/classPhysWorld.html#a6ded8026b0cd72e7877830698197adf0" title="Default constructor.">PhysWorld::PhysWorld</a>(   <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyLowerBounds_,
+<a name="l00089"></a><a class="code" href="../../db/df5/classPhysWorld.html#a69e1e6b7492d3786c091f44c90d73512">00089</a> <a class="code" href="../../db/df5/classPhysWorld.html#a6ded8026b0cd72e7877830698197adf0" title="Default constructor.">PhysWorld::PhysWorld</a>(   <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyLowerBounds_,
 <a name="l00090"></a>00090                         <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyUpperbounds_,
 <a name="l00091"></a>00091                         <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span>  &amp;MaxPhysicsProxies_)
 <a name="l00092"></a>00092 {
@@ -141,9 +141,9 @@
 <a name="l00116"></a>00116     SanityChecks();
 <a name="l00117"></a>00117 
 <a name="l00118"></a>00118     <span class="comment">//Callbacks are the main way that a game using the PhysWorld will be able to have their code run at custom times</span>
-<a name="l00119"></a>00119         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a> = <span class="keyword">new</span> <a class="code" href="../../d4/d84/classPhysWorldCallBackManager.html">PhysWorldCallBackManager</a>(<span class="keyword">this</span>);
+<a name="l00119"></a>00119         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a> = <span class="keyword">new</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a>(<span class="keyword">this</span>);
 <a name="l00120"></a>00120     <span class="comment">//Events are the main way for the game using the physworld to  get information about the various subsystems</span>
-<a name="l00121"></a>00121     this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a> = <span class="keyword">new</span> <a class="code" href="../../d5/dd7/classPhysEventManager.html" title="This is a container for Events and facilitates the transfer of data.">PhysEventManager</a>(<span class="keyword">this</span>);
+<a name="l00121"></a>00121     this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a013e6dc988e69448457b0a18a62aedff" title="This is the default pointer to the Event Manager.">Events</a> = <span class="keyword">new</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>(<span class="keyword">this</span>);
 <a name="l00122"></a>00122 
 <a name="l00123"></a>00123         <span class="comment">//instantiate the Physics engine and related items</span>
 <a name="l00124"></a>00124         GeographyLowerBounds = GeographyLowerBounds_;
@@ -270,8 +270,8 @@
 <a name="l00245"></a>00245         <span class="keyword">delete</span> OgreRoot;
 <a name="l00246"></a>00246 
 <a name="l00247"></a>00247         <span class="comment">//clear up our objects</span>
-<a name="l00248"></a>00248         <span class="keyword">delete</span> <a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>;
-<a name="l00249"></a>00249         <span class="keyword">delete</span> <a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>;
+<a name="l00248"></a>00248         <span class="keyword">delete</span> <a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>;
+<a name="l00249"></a>00249         <span class="keyword">delete</span> <a class="code" href="../../db/df5/classPhysWorld.html#a013e6dc988e69448457b0a18a62aedff" title="This is the default pointer to the Event Manager.">Events</a>;
 <a name="l00250"></a>00250 
 <a name="l00251"></a>00251         <span class="keyword">delete</span> PlayerSettings;
 <a name="l00252"></a>00252 
@@ -406,29 +406,29 @@
 <a name="l00381"></a>00381         <span class="keywordflow">while</span> (Callbackbools[0] &amp;&amp; Callbackbools[1] &amp;&amp; Callbackbools[2] &amp;&amp; Callbackbools[3] &amp;&amp; Callbackbools[4] &amp;&amp; Callbackbools[5])
 <a name="l00382"></a>00382         {
 <a name="l00383"></a>00383         <span class="comment">//Input buffering Callbacks</span>
-<a name="l00384"></a>00384         <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPreInputCallbackSet() || this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostInputCallbackSet() )
+<a name="l00384"></a>00384         <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1add8e6e7f5862ec4a4fe48095dc3c4e" title="Is the PreInput callback set or not.">IsPreInputCallbackSet</a>() || this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a075b799a815a2be2a83e30bb689711a7" title="Is the PostInput callback set or not.">IsPostInputCallbackSet</a>() )
 <a name="l00385"></a>00385         {
-<a name="l00386"></a>00386                 <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPreInputCallbackSet() )
-<a name="l00387"></a>00387                 { Callbackbools[0] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PreInput(); }
+<a name="l00386"></a>00386                 <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1add8e6e7f5862ec4a4fe48095dc3c4e" title="Is the PreInput callback set or not.">IsPreInputCallbackSet</a>() )
+<a name="l00387"></a>00387                 { Callbackbools[0] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84e782f8729f49b296691763351ee2b1" title="This calls the PreInput Callback.">PreInput</a>(); }
 <a name="l00388"></a>00388                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c" title="Gathers user input from the OS and places events in the event manager.">DoMainLoopInputBuffering</a>();
-<a name="l00389"></a>00389                         <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostInputCallbackSet() )
-<a name="l00390"></a>00390                 { Callbackbools[1] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PostInput(); }
+<a name="l00389"></a>00389                         <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a075b799a815a2be2a83e30bb689711a7" title="Is the PostInput callback set or not.">IsPostInputCallbackSet</a>() )
+<a name="l00390"></a>00390                 { Callbackbools[1] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a83afb36cfc7e71863d68a8b4c1d5e9d2" title="This calls the PostInput Callback.">PostInput</a>(); }
 <a name="l00391"></a>00391         }
 <a name="l00392"></a>00392 
 <a name="l00393"></a>00393         <span class="comment">//Physics &amp; Physics Callbacks</span>
-<a name="l00394"></a>00394                 <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPrePhysicsCallbackSet() || this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostPhysicsCallbackSet() )
+<a name="l00394"></a>00394                 <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#af93b7b96e85faa77ed005840e0189ebd" title="Is the PrePhysics callback set or not.">IsPrePhysicsCallbackSet</a>() || this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ac4bf07f907b8d4d7e052126bcfbba4ba" title="Is the PostPhysics callback set or not.">IsPostPhysicsCallbackSet</a>() )
 <a name="l00395"></a>00395         {
-<a name="l00396"></a>00396             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPrePhysicsCallbackSet() )
-<a name="l00397"></a>00397                 { Callbackbools[2] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PrePhysics(); }
+<a name="l00396"></a>00396             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#af93b7b96e85faa77ed005840e0189ebd" title="Is the PrePhysics callback set or not.">IsPrePhysicsCallbackSet</a>() )
+<a name="l00397"></a>00397                 { Callbackbools[2] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a65867cc4855f0f8cd84a2b4a8bbf0fd6" title="This calls the PrePhysics Callback.">PrePhysics</a>(); }
 <a name="l00398"></a>00398                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#acb0ff808937e6588b0c28fcfc7c974de" title="Increments physics by one step.">DoMainLoopPhysics</a>(FrameTime);
-<a name="l00399"></a>00399             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostPhysicsCallbackSet() )
-<a name="l00400"></a>00400                 { Callbackbools[3] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PostPhysics(); }
+<a name="l00399"></a>00399             <span class="keywordflow">if</span>( this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ac4bf07f907b8d4d7e052126bcfbba4ba" title="Is the PostPhysics callback set or not.">IsPostPhysicsCallbackSet</a>() )
+<a name="l00400"></a>00400                 { Callbackbools[3] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a06bf0e8787f21caf31bf428727155084" title="This calls the PostPhysics Callback.">PostPhysics</a>(); }
 <a name="l00401"></a>00401         }
 <a name="l00402"></a>00402 
 <a name="l00403"></a>00403         <span class="comment">//PreRender callback</span>
-<a name="l00404"></a>00404                 <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPreRenderCallbackSet())
+<a name="l00404"></a>00404                 <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa4eff76517403726c846911f6b97b2c2" title="Is the PreRender callback set or not.">IsPreRenderCallbackSet</a>())
 <a name="l00405"></a>00405         {
-<a name="l00406"></a>00406             Callbackbools[4] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PreRender();
+<a name="l00406"></a>00406             Callbackbools[4] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a244c88b8a06f68a4f4bcff6253bf6806" title="This calls the PreRender Callback.">PreRender</a>();
 <a name="l00407"></a>00407                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a" title="Creates events for each Window manger.">DoMainLoopWindowManagerBuffering</a>();
 <a name="l00408"></a>00408         }
 <a name="l00409"></a>00409 
@@ -449,10 +449,10 @@
 <a name="l00424"></a>00424         crossplatform::WaitMilliseconds( FrameDelay );
 <a name="l00425"></a>00425 
 <a name="l00426"></a>00426         <span class="comment">//PostRender Callback</span>
-<a name="l00427"></a>00427                 <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;IsPostRenderCallbackSet())
+<a name="l00427"></a>00427                 <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a13011f2f9ffd561255772bc4082b304f" title="Is the PostRender callback set or not.">IsPostRenderCallbackSet</a>())
 <a name="l00428"></a>00428         {
-<a name="l00429"></a>00429                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>-&gt;<a class="code" href="../../d5/dd7/classPhysEventManager.html#a6f51657b66d214942aed0e832ee558ef" title="Adds an event of any kind to the end of the Event Queue.">AddEvent</a>(<span class="keyword">new</span> <a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a>(FrameTime));
-<a name="l00430"></a>00430                         Callbackbools[5] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a080ea6f1584374b07d3c1f29c7ed64df" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;PostRender();
+<a name="l00429"></a>00429                         this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a013e6dc988e69448457b0a18a62aedff" title="This is the default pointer to the Event Manager.">Events</a>-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#a563f30ac5390d398c99cf7dbfb722000" title="Adds an event of any kind to the end of the Event Queue.">AddEvent</a>(<span class="keyword">new</span> <a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a>(FrameTime));
+<a name="l00430"></a>00430                         Callbackbools[5] = this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a1e7f5280b5f63bba7ee38d146c2a6aac" title="This is a point to the default Call BackManager.">CallBacks</a>-&gt;<a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa1a1132e877d989ecea08a16ee4b3ac1" title="This calls the PostRender Callback.">PostRender</a>();
 <a name="l00431"></a>00431         }
 <a name="l00432"></a>00432 
 <a name="l00433"></a>00433         }<span class="comment">//End of main loop</span>
@@ -491,12 +491,12 @@
 <a name="l00466"></a>00466 
 <a name="l00467"></a><a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a">00467</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#ae81bab7f314d98f7b787c508e60c9c9a" title="Creates events for each Window manger.">PhysWorld::DoMainLoopWindowManagerBuffering</a>()
 <a name="l00468"></a>00468 {
-<a name="l00469"></a>00469     this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>-&gt;UpdateSystemEvents();
+<a name="l00469"></a>00469     this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a013e6dc988e69448457b0a18a62aedff" title="This is the default pointer to the Event Manager.">Events</a>-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5" title="Pulls System and Window manager Events from the all the subsystems for use in the...">UpdateSystemEvents</a>();
 <a name="l00470"></a>00470 }
 <a name="l00471"></a>00471 
 <a name="l00472"></a><a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c">00472</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a81b3f0dcc0a90d039623f696343e6e9c" title="Gathers user input from the OS and places events in the event manager.">PhysWorld::DoMainLoopInputBuffering</a>()
 <a name="l00473"></a>00473 {
-<a name="l00474"></a>00474     this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a601b3c6093aaf2a69fcd3311dde9aadc" title="This is the default pointer to the Event Manager.">Events</a>-&gt;UpdateUserInputEvents();
+<a name="l00474"></a>00474     this-&gt;<a class="code" href="../../db/df5/classPhysWorld.html#a013e6dc988e69448457b0a18a62aedff" title="This is the default pointer to the Event Manager.">Events</a>-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#a01a5a131ac26679eee5dcf5dd514045c" title="Pulls User Interface Events from the all the subsystems for use in the EventManager...">UpdateUserInputEvents</a>();
 <a name="l00475"></a>00475 }
 <a name="l00476"></a>00476 
 <a name="l00477"></a><a class="code" href="../../db/df5/classPhysWorld.html#a8f33541d67164a2452e568443e9905be">00477</a> <span class="keywordtype">void</span> <a class="code" href="../../db/df5/classPhysWorld.html#a8f33541d67164a2452e568443e9905be" title="This forces the screen to be re-rendered.">PhysWorld::DoMainLoopRender</a>()
@@ -640,7 +640,7 @@
 <a name="l00615"></a>00615 
 <a name="l00616"></a>00616 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:55 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 12 00:28:32 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

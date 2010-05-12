@@ -43,17 +43,13 @@
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
-    // This class will store settings about player preferences, The current plan
-    //plan is to use only one, but we can make more for multiplayer situations
-
-    ///////////////////////////////////////////////////////////////////////////////
     /// @class GraphicsSettings
-    /// @headerfile gamesettings.h
-    /// @brief This is intended to store basic graphics setting for the user
+    /// @headerfile graphicsettings.h
+    /// @brief This is intended to store basic graphics setting for the user.
     /// @details This stores x/y resolution, fullscreen and in the future other
     /// settings. This is intended to make it easy for developers to pass/move around
     /// complex graphics settings. We hope to eventually include other items like
-    /// shader, rendering API, and maybe other settings too.
+    /// shader settings, rendering API, and maybe other settings too.
     class GraphicsSettings
     {
         private:

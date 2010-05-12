@@ -43,8 +43,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem).  <a href="#a596ed780d507e681d9261d26b64a8ed9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab5287fc10a132457a1309e1f5645347a">WaitMilliseconds</a> (const Whole &amp;WaitTime)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pauses the program for a given period of time.  <a href="#ab5287fc10a132457a1309e1f5645347a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#a2025b17e592096a6fbb6d24619138c71">RenderPhysWorld</a> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TheWorld)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Renders the current world contents to the screen.  <a href="#a2025b17e592096a6fbb6d24619138c71"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#aa80d0a5289b00daad110fd29bf23c5e7">RenderPhysWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *TheWorld)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Renders the current world contents to the screen.  <a href="#aa80d0a5289b00daad110fd29bf23c5e7"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>All functionality that needs different implemenations per platform will go in here. </p>
@@ -114,7 +114,7 @@
 
 <p>This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). </p>
 <p><b>For internal use only.</b></p>
-<p>This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) </p>
+<p>This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) This returns a named parameter list with valid settings to use Ogre rendering on a pre-existing SDL context </p>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish </dd></dl>
 
 </div>
@@ -141,14 +141,14 @@
 
 </div>
 </div>
-<a class="anchor" id="a2025b17e592096a6fbb6d24619138c71"></a><!-- doxytag: member="phys::crossplatform::RenderPhysWorld" ref="a2025b17e592096a6fbb6d24619138c71" args="(PhysWorld *TheWorld)" -->
+<a class="anchor" id="aa80d0a5289b00daad110fd29bf23c5e7"></a><!-- doxytag: member="phys::crossplatform::RenderPhysWorld" ref="aa80d0a5289b00daad110fd29bf23c5e7" args="(World *TheWorld)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void phys::crossplatform::RenderPhysWorld </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *&nbsp;</td>
+          <td class="paramtype">World *&nbsp;</td>
           <td class="paramname"> <em>TheWorld</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -158,10 +158,10 @@
 <div class="memdoc">
 
 <p>Renders the current world contents to the screen. </p>
-<p>This makes use of <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. </p>
+<p>This makes use of <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Handles the actual cross platform swapping of graphics buffers. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>TheWorld</em>&nbsp;</td><td>This is a pointer to the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> to be rendered. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>TheWorld</em>&nbsp;</td><td>This is a pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> to be rendered. </td></tr>
   </table>
   </dd>
 </dl>
@@ -196,7 +196,7 @@
 </div>
 </div>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 12 02:53:03 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

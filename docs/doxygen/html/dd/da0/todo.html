@@ -22,37 +22,45 @@
 <div class="contents">
 
 
-<h1><a class="anchor" id="todo">Todo List </a></h1><p><a class="anchor" id="_todo000003"></a> </p>
+<h1><a class="anchor" id="todo">Todo List </a></h1><p><a class="anchor" id="_todo000006"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../d5/dd7/classPhysEventManager.html#a1355f36d99de303cec6f3b27cadaa9ff">PhysEventManager::PhysEventManager</a> (<a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> *ParentWorld_) </dt>
-<dd><p class="startdd">TODO build a deconstructor that deletes all the events still int the queue </p>
-<p class="enddd">TODO: Make the <a class="el" href="../../d5/dd7/classPhysEventManager.html" title="This is a container for Events and facilitates the transfer of data.">PhysEventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </p>
+<dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a148f8c559642d3d50206169b3d0406be">phys::EventManager::EventManager</a> (World *ParentWorld_) </dt>
+<dd><p class="startdd">TODO build a deconstructor that deletes all the events still in the queue </p>
+<p class="enddd">TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000012"></a> </p>
+<p><a class="anchor" id="_todo000003"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../db/df5/classPhysWorld.html#a12892fd39d20cb671e23038d10ec4d94">PhysWorld::PhysWorld</a> (const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyLowerBounds, const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyUpperbounds, const unsigned short int &amp;MaxPhysicsProxies=1024) </dt>
-<dd><p class="startdd">TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset </p>
-<p class="enddd">TODO: adjust the constructors to allow for pointers to a callback manager and event manager </p>
-</dd>
+<dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166">phys::EventManager::UpdateEvents</a> () </dt>
+<dd>There has got to be a more efficient way to do UpdateEvents() </dd>
 </dl>
-<p><a class="anchor" id="_todo000006"></a> </p>
+<p><a class="anchor" id="_todo000004"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../db/df5/classPhysWorld.html#a6ded8026b0cd72e7877830698197adf0">PhysWorld::PhysWorld</a> () </dt>
+<dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5">phys::EventManager::UpdateSystemEvents</a> () </dt>
+<dd>make Physevents for each of the events in SDL_WmEvents(and delete the SDL events) </dd>
+</dl>
+<p><a class="anchor" id="_todo000007"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aba9e127ab2cf3f20604313e39d32f7a8">phys::GraphicsSettings::setFullscreen</a> (const bool &amp;Fullscreen_) </dt>
+<dd>TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games </dd>
+</dl>
+<p><a class="anchor" id="_todo000015"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#acd0dff342c08fe3008226488b7c53d97">phys::World::SetWindowName</a> (const String &amp;NewName) </dt>
+<dd>TODO Change the name of an application once it is running </dd>
+</dl>
+<p><a class="anchor" id="_todo000010"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695">phys::World::World</a> () </dt>
 <dd>TODO Fix the `const`ness of all methods to be as const as allowable </dd>
 </dl>
 <p><a class="anchor" id="_todo000011"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../db/df5/classPhysWorld.html#abab1d26203cb8386d6a51f4fc0b0a1e4">PhysWorld::SetWindowName</a> (const String &amp;NewName) </dt>
-<dd>TODO Change the name of an application once it is running </dd>
-</dl>
-<p><a class="anchor" id="_todo000001"></a> </p>
-<dl>
-<dt>Namespace <a class="el" href="../../d8/dcc/namespacestd.html">std</a>  </dt>
-<dd>Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this. </dd>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#a1f020a5a49a3bbfca6d570db44e72beb">phys::World::World</a> (const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyLowerBounds_, const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyUpperbounds_, const unsigned short int &amp;MaxPhysicsProxies_=1024) </dt>
+<dd>TODO: adjust the constructors to allow for pointers to a callback manager and event manager </dd>
 </dl>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:55 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 12 02:53:02 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

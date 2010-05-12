@@ -49,8 +49,8 @@ Inheritance diagram for ActorBase:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a6fd984c46b3232c2522adb44be4dedb7">~ActorBase</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#a6fd984c46b3232c2522adb44be4dedb7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a32337e36f62d5ffb6315fad932aa84d9">ActorBase</a> (String name, String file, String group, <a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *World)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Descriptive constructor.  <a href="#a32337e36f62d5ffb6315fad932aa84d9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a5a0e5dc193a2dca9d0f823dad7fdaa7a">ActorBase</a> (String name, String file, String group, <a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a>)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Descriptive constructor.  <a href="#a5a0e5dc193a2dca9d0f823dad7fdaa7a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a693c1bcb10ba7dc8fc37eef70ce65f0c">SetLocation</a> (Real x, Real y, Real z)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Manually sets the location of the actor.  <a href="#a693c1bcb10ba7dc8fc37eef70ce65f0c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a2a204add0b036de441ebd59d14939000">SetLocation</a> (<a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Place)</td></tr>
@@ -70,8 +70,8 @@ Inheritance diagram for ActorBase:</div>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a97f55e5fff5d69483ebb0b9042a50bb0">SetStatic</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the state of the object to Static.  <a href="#a97f55e5fff5d69483ebb0b9042a50bb0"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a1af82a2ed960fd114518fdf84d5ff146">AddObjectToWorld</a> (<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *TargetWorld, btSoftRigidDynamicsWorld *World)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#a1af82a2ed960fd114518fdf84d5ff146"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a8c5401ae316ad2fbc1279016cef4c9f6">AddObjectToWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *TargetWorld, btSoftRigidDynamicsWorld *<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a>)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#a8c5401ae316ad2fbc1279016cef4c9f6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#af7f0806222c79b5d5120dccefd93715e">CreateTrimesh</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a trimesh shape from the mesh file.  <a href="#af7f0806222c79b5d5120dccefd93715e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a7fd55114a59fe098a217314cf29cd055">CreateEntity</a> (String name, String file, String group)</td></tr>
@@ -95,8 +95,8 @@ Inheritance diagram for ActorBase:</div>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a1d9a2b13dcff7a6a2dc83f08f1db97ce">SetBulletOrientation</a> (<a class="el" href="../../df/d8c/classphys_1_1Quaternion.html">Quaternion</a> Rotation)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the orientation of the physics body.  <a href="#a1d9a2b13dcff7a6a2dc83f08f1db97ce"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02a4306818777f7c2e5853e8babd485e"></a><!-- doxytag: member="ActorBase::GameWorld" ref="a02a4306818777f7c2e5853e8babd485e" args="" -->
-<a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GameWorld</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c75fa8ccf16922aded9f0fd696578ef"></a><!-- doxytag: member="ActorBase::GameWorld" ref="a8c75fa8ccf16922aded9f0fd696578ef" args="" -->
+<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GameWorld</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada6ceb752605b29357b6c5d53c477696"></a><!-- doxytag: member="ActorBase::entity" ref="ada6ceb752605b29357b6c5d53c477696" args="" -->
 Ogre::Entity *&nbsp;</td><td class="memItemRight" valign="bottom"><b>entity</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affa8851ae622e1d420afa4770ab89ea4"></a><!-- doxytag: member="ActorBase::node" ref="affa8851ae622e1d420afa4770ab89ea4" args="" -->
@@ -108,12 +108,12 @@ btCollisionObject *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Collis
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ae7c4fd3b9449771e1c1bbd09cf103e"></a><!-- doxytag: member="ActorBase::MotionState" ref="a4ae7c4fd3b9449771e1c1bbd09cf103e" args="" -->
 <a class="el" href="../../d2/d14/classPhysMotionState.html">PhysMotionState</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>MotionState</b></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a375fd37c70c941f0442997a60fdb05c7"></a><!-- doxytag: member="ActorBase::PhysWorld" ref="a375fd37c70c941f0442997a60fdb05c7" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d7b/classActorBase.html#a375fd37c70c941f0442997a60fdb05c7">PhysWorld</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b4bcdf992c21ae83363f25df05b1d25"></a><!-- doxytag: member="ActorBase::World" ref="a7b4bcdf992c21ae83363f25df05b1d25" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is the base class from which all the actors inherit. </p>
-<p>The actor classes store and manage all the relevant data regarding objects inside the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>. They serve as a binder between the physics and graphics for objects and have functions that allow the manipulation of objects loaded into the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a>. Currently there are 4 actor classes: <a class="el" href="../../dd/d7b/classActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>, ActorDynRigid, ActorDynSoft, and ActorSta. <br/>
+<p>The actor classes store and manage all the relevant data regarding objects inside the World. They serve as a binder between the physics and graphics for objects and have functions that allow the manipulation of objects loaded into the World. Currently there are 4 actor classes: <a class="el" href="../../dd/d7b/classActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>, ActorDynRigid, ActorDynSoft, and ActorSta. <br/>
  <a class="el" href="../../dd/d7b/classActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> is a base class that serves as a template for the other three actor classes. <br/>
  <a class="el" href="../../dd/d7b/classActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> should never be created, as it lacks the functionality needed for most objects. </p>
 
@@ -141,7 +141,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 
 </div>
 </div>
-<a class="anchor" id="a32337e36f62d5ffb6315fad932aa84d9"></a><!-- doxytag: member="ActorBase::ActorBase" ref="a32337e36f62d5ffb6315fad932aa84d9" args="(String name, String file, String group, PhysWorld *World)" -->
+<a class="anchor" id="a5a0e5dc193a2dca9d0f823dad7fdaa7a"></a><!-- doxytag: member="ActorBase::ActorBase" ref="a5a0e5dc193a2dca9d0f823dad7fdaa7a" args="(String name, String file, String group, World *World)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -166,7 +166,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td>
           <td class="paramname"> <em>World</em></td><td>&nbsp;</td>
         </tr>
         <tr>
@@ -185,7 +185,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
     <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of the actor. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>File</em>&nbsp;</td><td>The 3d mesh file that contains the 3d model the actor will use. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>Group</em>&nbsp;</td><td>The resource group where the 3d mesh and other related files can be found. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>World</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> this object will be added to. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>World</em>&nbsp;</td><td>Pointer to the World this object will be added to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -195,14 +195,14 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a1af82a2ed960fd114518fdf84d5ff146"></a><!-- doxytag: member="ActorBase::AddObjectToWorld" ref="a1af82a2ed960fd114518fdf84d5ff146" args="(PhysWorld *TargetWorld, btSoftRigidDynamicsWorld *World)=0" -->
+<a class="anchor" id="a8c5401ae316ad2fbc1279016cef4c9f6"></a><!-- doxytag: member="ActorBase::AddObjectToWorld" ref="a8c5401ae316ad2fbc1279016cef4c9f6" args="(World *TargetWorld, btSoftRigidDynamicsWorld *World)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">virtual void ActorBase::AddObjectToWorld </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../db/df5/classPhysWorld.html">PhysWorld</a> *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td>
           <td class="paramname"> <em>TargetWorld</em>, </td>
         </tr>
         <tr>
@@ -225,13 +225,13 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
  This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> class. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the World class. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>World</em>&nbsp;</td><td>Pointer to the physics world. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="../../d5/d10/classActorRigid.html#ac6d7e05944623329f0c2140c19e2c49e">ActorRigid</a>, and <a class="el" href="../../d5/da4/classActorSoft.html#a0def29f28ed4d126a0634ddc97e33e2f">ActorSoft</a>.</p>
+<p>Implemented in <a class="el" href="../../d5/d10/classActorRigid.html#a2dc29c81eae90d3344fda0a80f066448">ActorRigid</a>, and <a class="el" href="../../d5/da4/classActorSoft.html#a2c9b96e757040add73272ed392c3a464">ActorSoft</a>.</p>
 
 </div>
 </div>
@@ -527,8 +527,8 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <div class="memdoc">
 
 <p>Sets the starting location of the actor. </p>
-<p>Calling this function after adding it to the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> will have no effect. <br/>
- This function will set where the actor will be located in the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> when it is first placed inside the world. </p>
+<p>Calling this function after adding it to the World will have no effect. <br/>
+ This function will set where the actor will be located in the World when it is first placed inside the world. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Location</em>&nbsp;</td><td>The <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> representing the location. </td></tr>
@@ -557,8 +557,8 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <div class="memdoc">
 
 <p>Sets the starting orientation of the actor. </p>
-<p>Calling this function after adding it to the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> will have no effect. <br/>
- This function will set where the actor is facing in the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> when it is first placed inside the world. </p>
+<p>Calling this function after adding it to the World will have no effect. <br/>
+ This function will set where the actor is facing in the World when it is first placed inside the world. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Orientation</em>&nbsp;</td><td>The PhysQuaternion representing the Orientation. </td></tr>
@@ -610,7 +610,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <div class="memdoc">
 
 <p>Manually sets the location of the actor. </p>
-<p>Calling this function prior to adding it to the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> will have no effect. <br/>
+<p>Calling this function prior to adding it to the World will have no effect. <br/>
  In most situations you won't want to use this function, and instead produce movement through physics functions. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -655,7 +655,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <div class="memdoc">
 
 <p>Manually sets the location of the actor. </p>
-<p>Calling this function prior to adding it to the <a class="el" href="../../db/df5/classPhysWorld.html" title="This is the main entry point for the entire library.">PhysWorld</a> will have no effect. <br/>
+<p>Calling this function prior to adding it to the World will have no effect. <br/>
  In most situations you won't want to use this function, and instead produce movement through physics functions. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -831,7 +831,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <li><a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 9 22:27:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 12 01:43:36 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -14,7 +14,7 @@ This is the main entry point for the entire library.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classPhysWorld_a12892fd39d20cb671e23038d10ec4d94}{PhysWorld} (const \hyperlink{classPhysVector3}{PhysVector3} \&GeographyLowerBounds, const \hyperlink{classPhysVector3}{PhysVector3} \&GeographyUpperbounds, const unsigned short int \&MaxPhysicsProxies=1024)
+\hyperlink{classPhysWorld_a69e1e6b7492d3786c091f44c90d73512}{PhysWorld} (const \hyperlink{classPhysVector3}{PhysVector3} \&GeographyLowerBounds\_\-, const \hyperlink{classPhysVector3}{PhysVector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-=1024)
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classPhysWorld_a6ded8026b0cd72e7877830698197adf0}{PhysWorld} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
@@ -38,6 +38,12 @@ bool \hyperlink{classPhysWorld_a9b83f04907443c6307956a3c4089e3ca}{ShowSystemSett
 \begin{DoxyCompactList}\small\item\em This Shows an Engine Generated Configuration Screen. \item\end{DoxyCompactList}\item 
 void \hyperlink{classPhysWorld_a3d86580cc1014cd543621fbf11b2cae1}{MoveCamera} (const \hyperlink{classPhysVector3}{PhysVector3} \&Position, const \hyperlink{classPhysVector3}{PhysVector3} \&LookAt)
 \begin{DoxyCompactList}\small\item\em This moves the camera relative to the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysWorld_a8959c58a728483c6e1109cd65bbb00c9}{AddResourceLocation} (const String \&Location, const String \&Type, const String \&Group, const bool \&recursive=false)
+\begin{DoxyCompactList}\small\item\em Adds a location for graphical resources. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysWorld_ab5fb62f548fa5af7ee59b1ff6c00180a}{DeclareResource} (String Name, String Type, String Group)
+\begin{DoxyCompactList}\small\item\em Prepares the resource for use. \item\end{DoxyCompactList}\item 
+void \hyperlink{classPhysWorld_a00a96b8627c8561a465cf2637f35aa7b}{InitResourceGroup} (String Name)
+\begin{DoxyCompactList}\small\item\em Makes a resource group ready to use. \item\end{DoxyCompactList}\item 
 void \hyperlink{classPhysWorld_a92cf86cdb716bdd762b4029e95b1ee8f}{GameInit} (const bool \&CallMainLoop=true)
 \begin{DoxyCompactList}\small\item\em This creates the game window and starts the game. \item\end{DoxyCompactList}\item 
 void \hyperlink{classPhysWorld_ad41cad0347b6f5ba7ec05568aaffa514}{MainLoop} ()
@@ -54,20 +60,14 @@ void \hyperlink{classPhysWorld_a8f33541d67164a2452e568443e9905be}{DoMainLoopRend
 \begin{DoxyCompactList}\small\item\em This forces the screen to be re-\/rendered. \item\end{DoxyCompactList}\item 
 void \hyperlink{classPhysWorld_ae490054b3e1c4c5aa69cb8e3b7bd2f29}{AddActor} (\hyperlink{classActorBase}{ActorBase} $\ast$ActorToAdd)
 \begin{DoxyCompactList}\small\item\em The adds and Actor to the physworld. \item\end{DoxyCompactList}\item 
-void \hyperlink{classPhysWorld_a8959c58a728483c6e1109cd65bbb00c9}{AddResourceLocation} (const String \&Location, const String \&Type, const String \&Group, const bool \&recursive=false)
-\begin{DoxyCompactList}\small\item\em Adds a location for graphical resources. \item\end{DoxyCompactList}\item 
-void \hyperlink{classPhysWorld_ab5fb62f548fa5af7ee59b1ff6c00180a}{DeclareResource} (String Name, String Type, String Group)
-\begin{DoxyCompactList}\small\item\em Prepares the resource for use. \item\end{DoxyCompactList}\item 
-void \hyperlink{classPhysWorld_a00a96b8627c8561a465cf2637f35aa7b}{InitResourceGroup} (String Name)
-\begin{DoxyCompactList}\small\item\em Makes a resource group ready to use. \item\end{DoxyCompactList}\item 
 void \hyperlink{classPhysWorld_ab03e39a70b915d0b5a590e9e2cfbb522}{SetGravity} (\hyperlink{classPhysVector3}{PhysVector3} pgrav)
 \begin{DoxyCompactList}\small\item\em Sets the gravity. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classPhysWorldCallBackManager}{PhysWorldCallBackManager} $\ast$ \hyperlink{classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}{CallBacks}
+\hyperlink{classphys_1_1CallBackManager}{CallBackManager} $\ast$ \hyperlink{classPhysWorld_a1e7f5280b5f63bba7ee38d146c2a6aac}{CallBacks}
 \begin{DoxyCompactList}\small\item\em This is a point to the default Call BackManager. \item\end{DoxyCompactList}\item 
-\hyperlink{classPhysEventManager}{PhysEventManager} $\ast$ \hyperlink{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{Events}
+\hyperlink{classphys_1_1EventManager}{EventManager} $\ast$ \hyperlink{classPhysWorld_a013e6dc988e69448457b0a18a62aedff}{Events}
 \begin{DoxyCompactList}\small\item\em This is the default pointer to the Event Manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -89,24 +89,20 @@ Definition at line 128 of file physworld.h.
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classPhysWorld_a12892fd39d20cb671e23038d10ec4d94}{
+\hypertarget{classPhysWorld_a69e1e6b7492d3786c091f44c90d73512}{
 \index{PhysWorld@{PhysWorld}!PhysWorld@{PhysWorld}}
 \index{PhysWorld@{PhysWorld}!PhysWorld@{PhysWorld}}
 \subsubsection[{PhysWorld}]{\setlength{\rightskip}{0pt plus 5cm}PhysWorld::PhysWorld (const {\bf PhysVector3} \& {\em GeographyLowerBounds\_\-}, \/  const {\bf PhysVector3} \& {\em GeographyUpperbounds\_\-}, \/  const unsigned short int \& {\em MaxPhysicsProxies\_\-} = {\ttfamily 1024})}}
-\label{db/df5/classPhysWorld_a12892fd39d20cb671e23038d10ec4d94}
+\label{db/df5/classPhysWorld_a69e1e6b7492d3786c091f44c90d73512}
 
 
 Descriptive constructor. 
 
-\begin{Desc}
-\item[\hyperlink{todo__todo000012}{Todo}]TODO: Create a data member and access functions for FrameDelay, and a any other Phys game variables still be hardset \end{Desc}
-
-
 This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. 
 \begin{DoxyParams}{Parameters}
-\item[{\em GeographyLowerBounds}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies}]This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.\end{DoxyParams}
+\item[{\em GeographyLowerBounds\_\-}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds\_\-}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies\_\-}]This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.\end{DoxyParams}
 \begin{Desc}
-\item[\hyperlink{todo__todo000007}{Todo}]TODO: adjust the constructors to allow for pointers to a callback manager and event manager \end{Desc}
+\item[\hyperlink{todo__todo000011}{Todo}]TODO: adjust the constructors to allow for pointers to a callback manager and event manager \end{Desc}
 
 
 Definition at line 89 of file physworld.cpp.
@@ -123,7 +119,7 @@ Default constructor.
 This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000006}{Todo}]TODO Fix the `const`ness of all methods to be as const as allowable \end{Desc}
+\item[\hyperlink{todo__todo000010}{Todo}]TODO Fix the `const`ness of all methods to be as const as allowable \end{Desc}
 
 
 Definition at line 75 of file physworld.cpp.
@@ -413,7 +409,7 @@ This sets a new Target Frame Rate.
 
 This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to \hyperlink{classPhysWorld_a5375f0e42292087a345d8fd7c84c0b8b}{PhysWorld::SetTargetFrameTime}. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms 
 \begin{DoxyParams}{Parameters}
-\item[{\em NewTargetTime}]The new desired frame rate. \end{DoxyParams}
+\item[{\em NewFrameRate}]The new desired frame rate. \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
 Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix. 
 \end{DoxyWarning}
@@ -455,7 +451,7 @@ This changes the text in the bar at the top of the game window in windowed mode.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000011}{Todo}]TODO Change the name of an application once it is running \end{Desc}
+\item[\hyperlink{todo__todo000015}{Todo}]TODO Change the name of an application once it is running \end{Desc}
 
 
 
@@ -493,31 +489,31 @@ This should be treated as an internal function, it is {\bfseries subject} {\bfse
 
 
 \subsection{Member Data Documentation}
-\hypertarget{classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}{
+\hypertarget{classPhysWorld_a1e7f5280b5f63bba7ee38d146c2a6aac}{
 \index{PhysWorld@{PhysWorld}!CallBacks@{CallBacks}}
 \index{CallBacks@{CallBacks}!PhysWorld@{PhysWorld}}
-\subsubsection[{CallBacks}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysWorldCallBackManager}$\ast$ {\bf PhysWorld::CallBacks}}}
-\label{db/df5/classPhysWorld_a080ea6f1584374b07d3c1f29c7ed64df}
+\subsubsection[{CallBacks}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CallBackManager}$\ast$ {\bf PhysWorld::CallBacks}}}
+\label{db/df5/classPhysWorld_a1e7f5280b5f63bba7ee38d146c2a6aac}
 
 
 This is a point to the default Call BackManager. 
 
 All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. 
 
-Definition at line 339 of file physworld.h.
+Definition at line 363 of file physworld.h.
 
-\hypertarget{classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}{
+\hypertarget{classPhysWorld_a013e6dc988e69448457b0a18a62aedff}{
 \index{PhysWorld@{PhysWorld}!Events@{Events}}
 \index{Events@{Events}!PhysWorld@{PhysWorld}}
-\subsubsection[{Events}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventManager}$\ast$ {\bf PhysWorld::Events}}}
-\label{db/df5/classPhysWorld_a601b3c6093aaf2a69fcd3311dde9aadc}
+\subsubsection[{Events}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventManager}$\ast$ {\bf PhysWorld::Events}}}
+\label{db/df5/classPhysWorld_a013e6dc988e69448457b0a18a62aedff}
 
 
 This is the default pointer to the Event Manager. 
 
 This is the Event manager that all physworld members will place any events into. 
 
-Definition at line 343 of file physworld.h.
+Definition at line 367 of file physworld.h.
 
 
 

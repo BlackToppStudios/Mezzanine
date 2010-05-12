@@ -7,6 +7,10 @@
 This is intended to store basic graphics setting for the user.  
 
 
+
+
+{\ttfamily \#include $<$graphicsettings.h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -31,9 +35,9 @@ void \hyperlink{classphys_1_1GraphicsSettings_a7cebb39f829f5e600231b4efc22b9ec3}
 
 
 \subsection{Detailed Description}
-This is intended to store basic graphics setting for the user. This stores x/y resolution, fullscreen and in the future other settings. This is intended to make it easy for developers to pass/move around complex graphics settings. We hope to eventually include other items like shader, rendering API, and maybe other settings too. 
+This is intended to store basic graphics setting for the user. This stores x/y resolution, fullscreen and in the future other settings. This is intended to make it easy for developers to pass/move around complex graphics settings. We hope to eventually include other items like shader settings, rendering API, and maybe other settings too. 
 
-Definition at line 57 of file graphicsettings.h.
+Definition at line 53 of file graphicsettings.h.
 
 
 
@@ -100,7 +104,7 @@ This returns a bool, true if fullscreen is set, false otherwise
 \end{DoxyReturn}
 
 
-Definition at line 69 of file graphicsettings.cpp.
+Definition at line 72 of file graphicsettings.cpp.
 
 \hypertarget{classphys_1_1GraphicsSettings_a118171db4fc0a2b17da4284cc91fbeb4}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!getRenderHeight@{getRenderHeight}}
@@ -116,7 +120,7 @@ This returns the Height of the Rendering Area
 \end{DoxyReturn}
 
 
-Definition at line 82 of file graphicsettings.cpp.
+Definition at line 87 of file graphicsettings.cpp.
 
 \hypertarget{classphys_1_1GraphicsSettings_aa8a8548afca8d3e127a1be69a2c1eba2}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!getRenderWidth@{getRenderWidth}}
@@ -132,7 +136,7 @@ This returns the Width of the Rendering Area
 \end{DoxyReturn}
 
 
-Definition at line 88 of file graphicsettings.cpp.
+Definition at line 92 of file graphicsettings.cpp.
 
 \hypertarget{classphys_1_1GraphicsSettings_aba9e127ab2cf3f20604313e39d32f7a8}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!setFullscreen@{setFullscreen}}
@@ -148,7 +152,13 @@ Set the Fullscreen Setting
 \item[{\em Fullscreen\_\-}]This accepts a bool. True for fullscreen, false for windowed \end{DoxyParams}
 
 
-Definition at line 75 of file graphicsettings.cpp.
+\begin{Desc}
+\item[\hyperlink{todo__todo000007}{Todo}]TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games \end{Desc}
+
+
+
+
+Definition at line 78 of file graphicsettings.cpp.
 
 \hypertarget{classphys_1_1GraphicsSettings_a1e6b11740f681beb4d64553656a760f1}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!setRenderHeight@{setRenderHeight}}
@@ -164,7 +174,7 @@ Set the Render Height inside the window in windowed mode, set the resolution of 
 \item[{\em Height\_\-}]This accepts a Whole. \end{DoxyParams}
 
 
-Definition at line 93 of file graphicsettings.cpp.
+Definition at line 97 of file graphicsettings.cpp.
 
 \hypertarget{classphys_1_1GraphicsSettings_a7cebb39f829f5e600231b4efc22b9ec3}{
 \index{phys::GraphicsSettings@{phys::GraphicsSettings}!setRenderWidth@{setRenderWidth}}
@@ -180,7 +190,7 @@ Set the Render Width inside the window in windowed mode, set the resolution of t
 \item[{\em Width\_\-}]This accepts a Whole. \end{DoxyParams}
 
 
-Definition at line 99 of file graphicsettings.cpp.
+Definition at line 102 of file graphicsettings.cpp.
 
 
 

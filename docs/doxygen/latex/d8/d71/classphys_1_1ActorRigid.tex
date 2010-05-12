@@ -1,0 +1,143 @@
+\hypertarget{classphys_1_1ActorRigid}{
+\section{phys::ActorRigid Class Reference}
+\label{d8/d71/classphys_1_1ActorRigid}\index{phys::ActorRigid@{phys::ActorRigid}}
+}
+
+
+This is the actor class for Rigid Objects.  
+
+
+
+
+{\ttfamily \#include $<$physactor.h$>$}
+
+Inheritance diagram for phys::ActorRigid:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d8/d71/classphys_1_1ActorRigid}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1ActorRigid_ac42c05745d57eb5745de3f34e820b72d}{ActorRigid} (Real mass, String name, String file, String group, \hyperlink{classphys_1_1World}{World} $\ast$\_\-World)
+\begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{$\sim$ActorRigid} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_af898ddd439948d35225f0b566cfcd23f}{CreateShapeFromMesh} ()
+\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}{CreateRigidObject} (Real pmass)
+\begin{DoxyCompactList}\small\item\em Creates a rigid object for the actor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_a3c56eb06fe6a7d468b7a67c45ade7be4}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$btWorld)
+\begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}{
+btRigidBody $\ast$ {\bfseries physrigidbody}}
+\label{d8/d71/classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the actor class for Rigid Objects. This class should be used to make any rigid object that can be moved as a result of force. Most objects will fall into this catagory. A few examples of a Rigid Object: Boxes, Car Frames, Chairs, etc. For Semi Rigid bodies that are deformable, like jello, it is better to use \hyperlink{classphys_1_1ActorSoft}{ActorSoft}. 
+
+Definition at line 237 of file physactor.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ActorRigid_ac42c05745d57eb5745de3f34e820b72d}{
+\index{phys::ActorRigid@{phys::ActorRigid}!ActorRigid@{ActorRigid}}
+\index{ActorRigid@{ActorRigid}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorRigid::ActorRigid (Real {\em mass}, \/  String {\em name}, \/  String {\em file}, \/  String {\em group}, \/  {\bf World} $\ast$ {\em \_\-World})}}
+\label{d8/d71/classphys_1_1ActorRigid_ac42c05745d57eb5745de3f34e820b72d}
+
+
+Descriptive constructor. 
+
+This constructor contains the basic information needed to make a Rigid Object. \par
+ This class inherits from \hyperlink{classphys_1_1ActorBase}{ActorBase}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
+
+
+Definition at line 355 of file physactor.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{
+\index{phys::ActorRigid@{phys::ActorRigid}!$\sim$ActorRigid@{$\sim$ActorRigid}}
+\index{$\sim$ActorRigid@{$\sim$ActorRigid}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{$\sim$ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorRigid::$\sim$ActorRigid ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d71/classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}
+
+
+Destructor. 
+
+The class destructor. 
+
+Definition at line 360 of file physactor.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1ActorRigid_a3c56eb06fe6a7d468b7a67c45ade7be4}{
+\index{phys::ActorRigid@{phys::ActorRigid}!AddObjectToWorld@{AddObjectToWorld}}
+\index{AddObjectToWorld@{AddObjectToWorld}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em btWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\label{d8/d71/classphys_1_1ActorRigid_a3c56eb06fe6a7d468b7a67c45ade7be4}
+
+
+Adds the actor to the physics world. 
+
+Adds the actor to the physics world. \par
+ This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \item[{\em btWorld}]Pointer to the physics world. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1ActorBase_ac5d4ad5a634b16000742f506ed5957fb}{phys::ActorBase}.
+
+
+
+Definition at line 372 of file physactor.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}{
+\index{phys::ActorRigid@{phys::ActorRigid}!CreateRigidObject@{CreateRigidObject}}
+\index{CreateRigidObject@{CreateRigidObject}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{CreateRigidObject}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateRigidObject (Real {\em pmass})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d8/d71/classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}
+
+
+Creates a rigid object for the actor. 
+
+Creates a rigid object to be placed in the physics world later. \par
+ This is automaticly called by the Constructor and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em PMass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
+
+
+Definition at line 365 of file physactor.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_af898ddd439948d35225f0b566cfcd23f}{
+\index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMesh@{CreateShapeFromMesh}}
+\index{CreateShapeFromMesh@{CreateShapeFromMesh}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{CreateShapeFromMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMesh ()}}
+\label{d8/d71/classphys_1_1ActorRigid_af898ddd439948d35225f0b566cfcd23f}
+
+
+Creates a collision shape from mesh file. 
+
+This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. 
+
+Definition at line 378 of file physactor.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+physactor.h\item 
+physactor.cpp\end{DoxyCompactItemize}

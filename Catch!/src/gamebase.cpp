@@ -9,7 +9,7 @@
 
 //Physengine include
 #include <physactor.h>
-#include <physworld.h>
+#include <world.h>
 #include <eventmanager.h>
 #include <datatypes.h>
 #include <eventrendertime.h>
@@ -18,7 +18,7 @@
 #include <sstream>
 
 //Create the World Globally!
-PhysWorld TheWorld;
+phys::World TheWorld;
 ActorRigid* object1;
 ActorRigid* object2;
 Real x=0;
