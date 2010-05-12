@@ -7,9 +7,9 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="WinDebug">
-				<Option output="bin/WinDebug/physgamelauncher" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="obj/WinDebug/" />
-				<Option object_output="obj/WinDebug/" />
+				<Option output="bin\WinDebug\physgamelauncher" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="obj\WinDebug\" />
+				<Option object_output="obj\WinDebug\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
@@ -23,29 +23,30 @@
 					<Add option="-D__WXMSW__" />
 					<Add option="-DWXUSINGDLL" />
 					<Add option="-DwxUSE_UNICODE" />
-					<Add directory="$(#wx)/lib/gcc_dll/mswud" />
-					<Add directory="$(#wx)/include" />
-					<Add directory="$(#wx)/contrib/include" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswud" />
+					<Add directory="$(#wx)\include" />
+					<Add directory="$(#wx)\contrib\include" />
+					<Add directory="libinclude" />
+					<Add directory="libinclude\zziplib" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="$(#wx)/lib/gcc_dll/mswud" />
-					<Add directory="$(#wx)/include" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswud" />
+					<Add directory="$(#wx)\include" />
 				</ResourceCompiler>
 				<Linker>
 					<Add library="libwxmsw28ud.a" />
-					<Add directory="$(#wx)/lib/gcc_dll" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
 				</Linker>
 			</Target>
 			<Target title="LinDebug">
-				<Option output="bin/LinDebug/physgamelauncher" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="obj/LinDebug/" />
-				<Option object_output="obj/LinDebug/" />
+				<Option output="bin\LinDebug\physgamelauncher" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="obj\LinDebug\" />
+				<Option object_output="obj\LinDebug\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="`wx-config --cflags`" />
-					<Add directory="libinclude/zziplib" />
 				</Compiler>
 				<Linker>
 					<Add option="`wx-config --libs`" />
@@ -55,26 +56,23 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="resource.rc">
-			<Option compilerVar="WINDRES" />
-		</Unit>
-		<Unit filename="src/_config.h" />
-		<Unit filename="src/configopener.cpp" />
-		<Unit filename="src/configopener.h" />
-		<Unit filename="src/crossplatform.cpp" />
-		<Unit filename="src/crossplatform.h" />
-		<Unit filename="src/physgamelauncherApp.cpp" />
-		<Unit filename="src/physgamelauncherApp.h" />
-		<Unit filename="src/physgamelauncherMain.cpp" />
-		<Unit filename="src/physgamelauncherMain.h" />
-		<Unit filename="wxsmith/physgamelauncherframe.wxs" />
+		<Unit filename="src\_config.h" />
+		<Unit filename="src\configopener.cpp" />
+		<Unit filename="src\configopener.h" />
+		<Unit filename="src\crossplatform.cpp" />
+		<Unit filename="src\crossplatform.h" />
+		<Unit filename="src\physgamelauncherApp.cpp" />
+		<Unit filename="src\physgamelauncherApp.h" />
+		<Unit filename="src\physgamelauncherMain.cpp" />
+		<Unit filename="src\physgamelauncherMain.h" />
+		<Unit filename="wxsmith\physgamelauncherframe.wxs" />
 		<Extensions>
 			<code_completion />
 			<debugger />
 			<wxsmith version="1">
-				<gui name="wxWidgets" src="physgamelauncherApp.cpp" main="physgamelauncherFrame" init_handlers="necessary" language="CPP" />
+				<gui name="wxWidgets" src="src\physgamelauncherApp.cpp" main="physgamelauncherFrame" init_handlers="necessary" language="CPP" />
 				<resources>
-					<wxFrame wxs="wxsmith/physgamelauncherframe.wxs" src="physgamelauncherMain.cpp" hdr="physgamelauncherMain.h" name="physgamelauncherFrame" language="CPP" />
+					<wxFrame wxs="wxsmith/physgamelauncherframe.wxs" src="src\physgamelauncherMain.cpp" hdr="src\physgamelauncherMain.h" name="physgamelauncherFrame" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>
