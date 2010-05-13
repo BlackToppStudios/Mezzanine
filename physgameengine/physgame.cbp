@@ -82,14 +82,16 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/actorcontainerbase.cpp" />
+		<Unit filename="src/actorcontainerbase.h" />
 		<Unit filename="src/callbackmanager.cpp" />
 		<Unit filename="src/callbackmanager.h" />
 		<Unit filename="src/crossplatform.cpp" />
 		<Unit filename="src/crossplatform.h" />
 		<Unit filename="src/datatypes.cpp" />
 		<Unit filename="src/datatypes.h" />
-		<Unit filename="src/event.cpp" />
-		<Unit filename="src/event.h" />
+		<Unit filename="src/eventbase.cpp" />
+		<Unit filename="src/eventbase.h" />
 		<Unit filename="src/eventmanager.cpp" />
 		<Unit filename="src/eventmanager.h" />
 		<Unit filename="src/eventquit.cpp" />

@@ -50,7 +50,7 @@
 // Includes
 ///////////////////////////////////////
 #include "physeventuserinput.h"
-#include "event.h"
+#include "eventbase.h"
 
 #include <vector>
 
@@ -154,7 +154,7 @@ void PhysEventUserInput::ToggleCode(const MetaCode &Code_)
         {Code.push_back(Code_);}
 }
 
-Event::EventType PhysEventUserInput::getEventType() const
+EventBase::EventType PhysEventUserInput::getEventType() const
 {
     return UserInput;
 }

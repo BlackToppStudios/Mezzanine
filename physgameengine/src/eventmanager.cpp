@@ -101,23 +101,23 @@ namespace phys
         return EventQueue.size();
     }
 
-    Event* EventManager::GetNextEvent()
+    EventBase* EventManager::GetNextEvent()
     {
         if(EventQueue.size()==0)
         {
                 return 0;
         }
-        Event* results = EventQueue.front();
+        EventBase* results = EventQueue.front();
         return results;
     }
 
-    Event* EventManager::PopNextEvent()
+    EventBase* EventManager::PopNextEvent()
     {
         if(EventQueue.size()==0)
         {
                 return 0;
         }
-        Event* results = EventQueue.front();
+        EventBase* results = EventQueue.front();
         EventQueue.pop_front();
         return results;
     }
@@ -127,7 +127,7 @@ namespace phys
         EventQueue.pop_front();
     }
 
-    void EventManager::AddEvent(Event* EventToAdd)
+    void EventManager::AddEvent(EventBase* EventToAdd)
     {
         EventQueue.push_back(EventToAdd);
     }
@@ -179,10 +179,10 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - You choose YAYYYY!!!
     ///////////////////////////////////////
-    Event* EventManager::GetNextSpecificEvent(Event::EventType SpecificType)
+    EventBase* EventManager::GetNextSpecificEvent(EventBase::EventType SpecificType)
     {
-        Event* results = 0;
-        for(list<Event*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        EventBase* results = 0;
+        for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
             if((*Iter)->getEventType()==SpecificType)
             {
@@ -193,10 +193,10 @@ namespace phys
         return results;
     }
 
-    Event* EventManager::PopNextSpecificEvent(Event::EventType SpecificType)
+    EventBase* EventManager::PopNextSpecificEvent(EventBase::EventType SpecificType)
     {
-        Event* results = 0;
-        for(list<Event*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        EventBase* results = 0;
+        for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
             if((*Iter)->getEventType()==SpecificType)
             {
@@ -208,9 +208,9 @@ namespace phys
         return results;
     }
 
-    void EventManager::RemoveNextSpecificEvent(Event::EventType SpecificType)
+    void EventManager::RemoveNextSpecificEvent(EventBase::EventType SpecificType)
     {
-        for(list<Event*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
             if((*Iter)->getEventType()==SpecificType)
             {
@@ -224,17 +224,17 @@ namespace phys
     ///////////////////////////////////////
     EventRenderTime* EventManager::GetNextRenderTimeEvent()
     {
-        return dynamic_cast<EventRenderTime*> (this->GetNextSpecificEvent(Event::RenderTime));
+        return dynamic_cast<EventRenderTime*> (this->GetNextSpecificEvent(EventBase::RenderTime));
     }
 
     EventRenderTime* EventManager::PopNextRenderTimeEvent()
     {
-        return dynamic_cast<EventRenderTime*> (this->PopNextSpecificEvent(Event::RenderTime));
+        return dynamic_cast<EventRenderTime*> (this->PopNextSpecificEvent(EventBase::RenderTime));
     }
 
     void EventManager::RemoveNextRenderTimeEvent()
     {
-        this->RemoveNextSpecificEvent(Event::RenderTime);
+        this->RemoveNextSpecificEvent(EventBase::RenderTime);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -243,17 +243,17 @@ namespace phys
 
     PhysEventUserInput* EventManager::GetNextUserInputEvent()
     {
-        return dynamic_cast<PhysEventUserInput*> (this->GetNextSpecificEvent(Event::UserInput));
+        return dynamic_cast<PhysEventUserInput*> (this->GetNextSpecificEvent(EventBase::UserInput));
     }
 
     PhysEventUserInput* EventManager::PopNextUserInputEvent()
     {
-        return dynamic_cast<PhysEventUserInput*> (this->PopNextSpecificEvent(Event::UserInput));
+        return dynamic_cast<PhysEventUserInput*> (this->PopNextSpecificEvent(EventBase::UserInput));
     }
 
     void EventManager::RemoveNextUserInputEvent()
     {
-        this->RemoveNextSpecificEvent(Event::UserInput);
+        this->RemoveNextSpecificEvent(EventBase::UserInput);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -262,17 +262,17 @@ namespace phys
 
     EventQuit* EventManager::GetNextQuitEvent()
     {
-        return dynamic_cast<EventQuit*> (this->GetNextSpecificEvent(Event::QuitMessage));
+        return dynamic_cast<EventQuit*> (this->GetNextSpecificEvent(EventBase::QuitMessage));
     }
 
     EventQuit* EventManager::PopNextQuitEvent()
     {
-        return dynamic_cast<EventQuit*> (this->PopNextSpecificEvent(Event::QuitMessage));
+        return dynamic_cast<EventQuit*> (this->PopNextSpecificEvent(EventBase::QuitMessage));
     }
 
     void EventManager::RemoveNextQuitEvent()
     {
-        this->RemoveNextSpecificEvent(Event::QuitMessage);
+        this->RemoveNextSpecificEvent(EventBase::QuitMessage);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

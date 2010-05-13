@@ -49,7 +49,7 @@
 
 using namespace std;
 
-#include "event.h"
+#include "eventbase.h"
 #include "eventrendertime.h"
 #include "physeventuserinput.h"
 #include "eventquit.h"
@@ -88,7 +88,7 @@ namespace phys
             World* ParentWorld;
 
             //The Queue that all the events get stored in
-            list<Event*> EventQueue;
+            list<EventBase*> EventQueue;
 
             //Checks for quit messages and adds them to the queue
             void UpdateQuitEvents();
@@ -136,13 +136,13 @@ namespace phys
             /// because it runs in constant time. However it does not return a specific kind of event, and must be cast
             /// in order to use the true content. This returns a pointer to 0 if there are no events in the que.
             /// @return A pointer to a PhysEvent, that still needs to be removed from the event manager and deleted.
-            Event* GetNextEvent();
+            EventBase* GetNextEvent();
 
             /// @brief Return a pointer to the Next event, and removes the Event from storage
             /// @details This functions just like GetNextEvent , except that it also removes the item from the internal storage
             /// of the PhysEventManager. This returns a pointer to 0 if there are no events in the que.
             /// @return A pointer to a PhysEvent, that will need to be deleted once it has been used.
-            Event* PopNextEvent();
+            EventBase* PopNextEvent();
 
             /// @brief Removes an Event From the que without looking at it.
             /// @details This together with GetNextEvent() are the same as call PopNextEvent().
@@ -155,7 +155,7 @@ namespace phys
             /// @param EventToAdd This is a pointer to an Event.
             /// @details This adds the existing event to the Queue. Be careful this is not delete, and does not go out of scope. Deleting the Event is now the
             /// responsibilty of the code that pulls it out of Event Manager.
-            void AddEvent(Event* EventToAdd);
+            void AddEvent(EventBase* EventToAdd);
 
             /// @brief Pulls Events from the all the subsystems for use in the EventManager.
             /// @details The work this function does is already performed in the main loop. This only really needs to be used
@@ -263,13 +263,13 @@ namespace phys
             /// a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use
             /// this for performance reasons becuase it runs in linear time relative to the amount of events.
             /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
-            Event* GetNextSpecificEvent(Event::EventType SpecificType);
+            EventBase* GetNextSpecificEvent(EventBase::EventType SpecificType);
 
             /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que
             /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with
             /// @details This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que.
             /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
-            Event* PopNextSpecificEvent(Event::EventType SpecificType);
+            EventBase* PopNextSpecificEvent(EventBase::EventType SpecificType);
 
             /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que
             /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with
@@ -278,7 +278,7 @@ namespace phys
             /// @warning If you did not call GetNextSpecificEvent(PhysEvent::EventType SpecificType) and haven't deleted or stored, or somehow dealt with
             /// this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately.
             /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
-            void RemoveNextSpecificEvent(Event::EventType SpecificType);
+            void RemoveNextSpecificEvent(EventBase::EventType SpecificType);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Polling management functions

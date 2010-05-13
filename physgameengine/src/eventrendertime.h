@@ -43,7 +43,7 @@
 // This will store the amount of time since rendering events that occured recently
 ///////////////////////////////////////
 
-#include "event.h"
+#include "eventbase.h"
 #include "datatypes.h"
 
 using namespace std;
@@ -56,7 +56,7 @@ namespace phys
     /// @brief This communicates the amount of time since the world was rendered
     /// @details This stores in milliseconds the amount of time since the last
     /// rendering of the world.
-    class EventRenderTime : public Event
+    class EventRenderTime : public EventBase
     {
         private:
             Whole Rendertime;

@@ -49,7 +49,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Includes
 #include "datatypes.h"
-#include "event.h"
+#include "eventbase.h"
 #include "world.h"
 #include "physvector.h"
 #include "crossplatform.h"
@@ -366,7 +366,7 @@ namespace phys
          preparations for rendering.
          @subsection rendering2 3.B) Rendering
          This is where the rendering actually occurs. The state of all the items in the world is grabbed from the physics subsystem
-         and rendered. Additionally this is where the \ref FrameDelay is calculated and acted on, so the frame rate can stay consistent.
+         and rendered. Additionally this is where the FrameDelay is calculated and acted on, so the frame rate can stay consistent.
          @subsection rendering3 3.C) PostRenderCallback
          This is a great place to switch out the Callback Manager, for accomplishing tasks like switching between in game menus and
          actual gameplay. This is also a decent place to get a head start on anything that would be run in the PreInputCallback.

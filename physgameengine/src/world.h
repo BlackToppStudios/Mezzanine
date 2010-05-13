@@ -56,21 +56,22 @@
  @section Engine Structure
   @subpage mainloop1 "Main Loop Flow"
 
-  //@ref phys::CallBackManager
+  @ref phys::CallBackManager
 
-  //@ref phys::EventManager
+  @ref phys::EventManager
 
-  //@subpage Actor "Items in the world - Actor Class"
+  @ref phys::ActorBase "Items in the world - Actor Class"
+
  @section Data Types
   @ref PhysVector3
 
-  @ref PhysEvent
+  @ref phys::Event
 */
 
 //Includes and Forward Declarations
 #include "crossplatform.h"
 #include "callbackmanager.h"
-#include "event.h"
+#include "eventbase.h"
 #include "eventmanager.h"
 #include "datatypes.h"
 #include "physvector.h"

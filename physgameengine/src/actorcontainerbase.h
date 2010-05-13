@@ -37,29 +37,16 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef EVENT_CPP
-#define EVENT_CPP
+#ifndef actorcontainerbase_h
+#define actorcontainerbase_h
 
-#include "event.h"
+//Internal includes
+#include "physactor.h"
+#include "world.h"
 
-/*std::ostream& operator << (std::ostream& stream, const PhysEvent& x)
+namespace phys
 {
-    switch(x.getEventType())
-    {
-        case EventType.RenderTime:
-            stream << "RenderTime";
-            break;
-        case EventType.UserInput:
-            stream << "UserInput";
-            break;
-        case EventType:
-            stream << "SystemMessage";
-            break;
-         case EventType:
-            stream << "Other";
-            break;
-    }
-    return stream;
-}*/
+
+}
 
 #endif

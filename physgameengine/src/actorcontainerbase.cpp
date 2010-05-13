@@ -37,33 +37,19 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef EVENTRENDERTIME_CPP
-#define EVENTRENDERTIME_CPP
-///////////////////////////////////////////////////////////////////////////////
-// This will store the amount of time  since key rendering events have occurred
-///////////////////////////////////////
+#ifndef actorcontainerbase_cpp
+#define actorcontainerbase_cpp
 
-#include "datatypes.h"
-#include "eventrendertime.h"
 
-using namespace std;
+#include "actorcontainerbase.h"
 
 namespace phys
 {
-    EventRenderTime::EventRenderTime (Whole Milliseconds)
-    {
-        Rendertime=Milliseconds;
-    }
 
-    EventBase::EventType EventRenderTime::getEventType() const
-    {
-        return RenderTime;
-    }
 
-    Whole EventRenderTime::getMilliSecondsSinceLastFrame()
-    {
-        return Rendertime;
-    }
+
 }
+
+
 
 #endif
