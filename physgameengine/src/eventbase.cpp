@@ -37,55 +37,29 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef actorcontainerbase_h
-#define actorcontainerbase_h
+#ifndef EVENTBASE_CPP
+#define EVENTBASE_CPP
 
-//Internal includes
-#include "physactor.h"
-#include "world.h"
+#include "eventbase.h"
 
-namespace phys
+/*std::ostream& operator << (std::ostream& stream, const PhysEvent& x)
 {
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorContainerBase
-    /// @headerfile actorcontainerbase.h
-    /// @brief A base class to unify the interface for different kinds of containers for holding actors
-    /// @details Containers for actors must implement atleast this interface(abstract base class) to
-    /// be usable with the phys::World for tracking in game objects. There are several reasons why this
-    /// will be useful. Our first thought was deriving from this and an STL container like vector or
-    /// list. \n\n
-    /// Currently, you cannot simply swap one member of this with another, in a running physworld. We are
-    /// Looking into the feasibility of implementing this
-    class ActorContainerBase
+    switch(x.getEventType())
     {
-        private:
-            World* ParentWorld;
-
-        public:
-            /// @brief This will add an Actor to this container and the world
-            /// @details This will add an Actor to this container and the world, and handle the nitty gritty details
-            /// of add this to physics subsystem and graphics subsystem
-            virtual void AddActor(ActorBase* ActorToAdd) const = 0;
-
-            //remove(ptr)
-
-            //GetCount
-
-            //call member function pointer on all members
-
-            //gotofirst
-            //gotonext
-            //gotoprevious
-            //gotolast
-            //removecurrent
-            //addBeforeCurrent
-            //addAfterCurrent
-
-            //GetType
-
-    };
-}
+        case EventType.RenderTime:
+            stream << "RenderTime";
+            break;
+        case EventType.UserInput:
+            stream << "UserInput";
+            break;
+        case EventType:
+            stream << "SystemMessage";
+            break;
+         case EventType:
+            stream << "Other";
+            break;
+    }
+    return stream;
+}*/
 
 #endif
