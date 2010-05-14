@@ -93,7 +93,6 @@ class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
 class btSoftRigidDynamicsWorld;
 
-
 //forward Declarations so that we do not need #include <Ogre.h>
 namespace Ogre
 {
@@ -110,6 +109,9 @@ namespace phys
 {
     class ActorBase;
     class GraphicsSettings;
+    namespace debug {
+        class InternalDebugDrawer;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class World
     /// @headerfile world.h
@@ -173,6 +175,9 @@ namespace phys
             Ogre::Camera* OgreCamera;
             Ogre::Viewport* OgreViewport;
             Ogre::SceneManager* OgreSceneManager;
+
+            friend class debug::InternalDebugDrawer;
+            debug::InternalDebugDrawer* BulletDrawer;
         public:
 
 
@@ -351,6 +356,17 @@ namespace phys
             /// @details Sets the strength and direction of gravity within the world.
             /// @param pgrav Vector3 representing the strength and direction of gravity.
             void SetGravity(PhysVector3 pgrav);
+
+            /// @brief Enables and Disables Physics Debug Drawing
+            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the phys
+            /// subsytem pixel for pixel.
+            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control
+            void SetDebugPhysicsRendering(int ToBeEnabled);
+
+            /// @brief Is Physics Debug Drawing currently enabled?
+            /// @details lets you check if Physics Debug Drawing is enabled or not.
+            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features
+            int GetDebugPhysicsRendering();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Feature Manager Pointers

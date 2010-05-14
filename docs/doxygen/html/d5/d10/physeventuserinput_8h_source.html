@@ -98,7 +98,7 @@
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074 <span class="keyword">using namespace </span>std;
 <a name="l00075"></a>00075 
-<a name="l00076"></a>00076 <span class="preprocessor">#include &quot;event.h&quot;</span>
+<a name="l00076"></a>00076 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
 <a name="l00077"></a>00077 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
 <a name="l00078"></a>00078 <span class="preprocessor">#include &quot;metacode.h&quot;</span>
 <a name="l00079"></a>00079 
@@ -116,7 +116,7 @@
 <a name="l00091"></a>00091 <span class="comment">/// characters to use the same interface players, allowing for more realistic</span>
 <a name="l00092"></a>00092 <span class="comment">/// response from them. This is not limited to the tricks discussed here.</span>
 <a name="l00093"></a>00093 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00094"></a><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">00094</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> : <span class="keyword">public</span> <a class="code" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a>
+<a name="l00094"></a><a class="code" href="../../dc/d0e/classPhysEventUserInput.html">00094</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> : <span class="keyword">public</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>
 <a name="l00095"></a>00095 {
 <a name="l00096"></a>00096     <span class="keyword">private</span>:
 <a name="l00097"></a>00097         <span class="comment">//Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if</span>
@@ -217,13 +217,13 @@
 <a name="l00192"></a>00192 <span class="comment"></span>
 <a name="l00193"></a>00193 <span class="comment">        /// @brief Returns the type of this event</span>
 <a name="l00194"></a>00194 <span class="comment">        /// @return Returns EventType::UserInput</span>
-<a name="l00195"></a>00195 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d5/dcb/classphys_1_1Event.html#af5fdbb3e08d8e578d58770fbc606fda7">EventType</a> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a2a39643cd222f7af0db7b087e0441582" title="Returns the type of this event.">getEventType</a>() <span class="keyword">const</span>;
+<a name="l00195"></a>00195 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventType</a> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#ab3c989e3ce256db32bd46d1b8d4c2014" title="Returns the type of this event.">getEventType</a>() <span class="keyword">const</span>;
 <a name="l00196"></a>00196 };
 <a name="l00197"></a>00197 
 <a name="l00198"></a>00198 
 <a name="l00199"></a>00199 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 12 23:14:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 01:37:07 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

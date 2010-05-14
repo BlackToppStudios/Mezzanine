@@ -74,7 +74,7 @@
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050 <span class="keyword">using namespace </span>std;
 <a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;event.h&quot;</span>
+<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
 <a name="l00053"></a>00053 <span class="preprocessor">#include &quot;eventrendertime.h&quot;</span>
 <a name="l00054"></a>00054 <span class="preprocessor">#include &quot;physeventuserinput.h&quot;</span>
 <a name="l00055"></a>00055 <span class="preprocessor">#include &quot;eventquit.h&quot;</span>
@@ -113,7 +113,7 @@
 <a name="l00088"></a>00088             <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* ParentWorld;
 <a name="l00089"></a>00089 
 <a name="l00090"></a>00090             <span class="comment">//The Queue that all the events get stored in</span>
-<a name="l00091"></a>00091             list&lt;Event*&gt; EventQueue;
+<a name="l00091"></a>00091             list&lt;EventBase*&gt; EventQueue;
 <a name="l00092"></a>00092 
 <a name="l00093"></a>00093             <span class="comment">//Checks for quit messages and adds them to the queue</span>
 <a name="l00094"></a>00094             <span class="keywordtype">void</span> UpdateQuitEvents();
@@ -161,13 +161,13 @@
 <a name="l00136"></a>00136 <span class="comment">            /// because it runs in constant time. However it does not return a specific kind of event, and must be cast</span>
 <a name="l00137"></a>00137 <span class="comment">            /// in order to use the true content. This returns a pointer to 0 if there are no events in the que.</span>
 <a name="l00138"></a>00138 <span class="comment">            /// @return A pointer to a PhysEvent, that still needs to be removed from the event manager and deleted.</span>
-<a name="l00139"></a>00139 <span class="comment"></span>            <a class="code" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a4c11830094d6566fd5db87dfbe6b5dd0" title="Return a pointer to the Next event.">GetNextEvent</a>();
+<a name="l00139"></a>00139 <span class="comment"></span>            <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#aa0937763961aefc59aea197a8f9bc0dc" title="Return a pointer to the Next event.">GetNextEvent</a>();
 <a name="l00140"></a>00140 <span class="comment"></span>
 <a name="l00141"></a>00141 <span class="comment">            /// @brief Return a pointer to the Next event, and removes the Event from storage</span>
 <a name="l00142"></a>00142 <span class="comment">            /// @details This functions just like GetNextEvent , except that it also removes the item from the internal storage</span>
 <a name="l00143"></a>00143 <span class="comment">            /// of the PhysEventManager. This returns a pointer to 0 if there are no events in the que.</span>
 <a name="l00144"></a>00144 <span class="comment">            /// @return A pointer to a PhysEvent, that will need to be deleted once it has been used.</span>
-<a name="l00145"></a>00145 <span class="comment"></span>            <a class="code" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#ac4f0c084cadd712233914c96fffdb2d5" title="Return a pointer to the Next event, and removes the Event from storage.">PopNextEvent</a>();
+<a name="l00145"></a>00145 <span class="comment"></span>            <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#ae403b203bc425744377ec5fc311f4e5d" title="Return a pointer to the Next event, and removes the Event from storage.">PopNextEvent</a>();
 <a name="l00146"></a>00146 <span class="comment"></span>
 <a name="l00147"></a>00147 <span class="comment">            /// @brief Removes an Event From the que without looking at it.</span>
 <a name="l00148"></a>00148 <span class="comment">            /// @details This together with GetNextEvent() are the same as call PopNextEvent().</span>
@@ -180,7 +180,7 @@
 <a name="l00155"></a>00155 <span class="comment">            /// @param EventToAdd This is a pointer to an Event.</span>
 <a name="l00156"></a>00156 <span class="comment">            /// @details This adds the existing event to the Queue. Be careful this is not delete, and does not go out of scope. Deleting the Event is now the</span>
 <a name="l00157"></a>00157 <span class="comment">            /// responsibilty of the code that pulls it out of Event Manager.</span>
-<a name="l00158"></a>00158 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a563f30ac5390d398c99cf7dbfb722000" title="Adds an event of any kind to the end of the Event Queue.">AddEvent</a>(<a class="code" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a>* EventToAdd);
+<a name="l00158"></a>00158 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#abada23d83ef38e59a38eb91a88a07404" title="Adds an event of any kind to the end of the Event Queue.">AddEvent</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>* EventToAdd);
 <a name="l00159"></a>00159 <span class="comment"></span>
 <a name="l00160"></a>00160 <span class="comment">            /// @brief Pulls Events from the all the subsystems for use in the EventManager.</span>
 <a name="l00161"></a>00161 <span class="comment">            /// @details The work this function does is already performed in the main loop. This only really needs to be used</span>
@@ -288,13 +288,13 @@
 <a name="l00263"></a>00263 <span class="comment">            /// a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use</span>
 <a name="l00264"></a>00264 <span class="comment">            /// this for performance reasons becuase it runs in linear time relative to the amount of events.</span>
 <a name="l00265"></a>00265 <span class="comment">            /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.</span>
-<a name="l00266"></a>00266 <span class="comment"></span>            <a class="code" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#ad0242442d4663b8f2b17824cbf38452b" title="Returns a pointer to the Next kind event of the Specified type.">GetNextSpecificEvent</a>(<a class="code" href="../../d5/dcb/classphys_1_1Event.html#af5fdbb3e08d8e578d58770fbc606fda7">Event::EventType</a> SpecificType);
+<a name="l00266"></a>00266 <span class="comment"></span>            <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a7340cfab326856cf4ebc653b11101016" title="Returns a pointer to the Next kind event of the Specified type.">GetNextSpecificEvent</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> SpecificType);
 <a name="l00267"></a>00267 <span class="comment"></span>
 <a name="l00268"></a>00268 <span class="comment">            /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que</span>
 <a name="l00269"></a>00269 <span class="comment">            /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with</span>
 <a name="l00270"></a>00270 <span class="comment">            /// @details This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que.</span>
 <a name="l00271"></a>00271 <span class="comment">            /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.</span>
-<a name="l00272"></a>00272 <span class="comment"></span>            <a class="code" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#ab96c53c888cdb6ed29ec0d2ce6e7b646" title="Returns a pointer to the Next kind event of the Specified type, and removes it from...">PopNextSpecificEvent</a>(<a class="code" href="../../d5/dcb/classphys_1_1Event.html#af5fdbb3e08d8e578d58770fbc606fda7">Event::EventType</a> SpecificType);
+<a name="l00272"></a>00272 <span class="comment"></span>            <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a156ba3c53cc799499272430111bbdfa4" title="Returns a pointer to the Next kind event of the Specified type, and removes it from...">PopNextSpecificEvent</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> SpecificType);
 <a name="l00273"></a>00273 <span class="comment"></span>
 <a name="l00274"></a>00274 <span class="comment">            /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que</span>
 <a name="l00275"></a>00275 <span class="comment">            /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with</span>
@@ -303,7 +303,7 @@
 <a name="l00278"></a>00278 <span class="comment">            /// @warning If you did not call GetNextSpecificEvent(PhysEvent::EventType SpecificType) and haven&#39;t deleted or stored, or somehow dealt with</span>
 <a name="l00279"></a>00279 <span class="comment">            /// this pointer, then this is a memory leak. Don&#39;t use this unless you are certain you have taken care of the pointer appropriately.</span>
 <a name="l00280"></a>00280 <span class="comment">            /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.</span>
-<a name="l00281"></a>00281 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#aa15f81b71bde3e14048ec1fefa9d3591" title="Returns a pointer to the Next kind event of the Specified type, and removes it from...">RemoveNextSpecificEvent</a>(<a class="code" href="../../d5/dcb/classphys_1_1Event.html#af5fdbb3e08d8e578d58770fbc606fda7">Event::EventType</a> SpecificType);
+<a name="l00281"></a>00281 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a486c1173a2c1a64885bfdbe7ca267611" title="Returns a pointer to the Next kind event of the Specified type, and removes it from...">RemoveNextSpecificEvent</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> SpecificType);
 <a name="l00282"></a>00282 <span class="comment"></span>
 <a name="l00283"></a>00283 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00284"></a>00284 <span class="comment"></span>        <span class="comment">// Polling management functions</span><span class="comment"></span>
@@ -332,7 +332,7 @@
 <a name="l00307"></a>00307 }
 <a name="l00308"></a>00308 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 12 23:14:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 01:37:07 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -56,8 +56,9 @@ namespace phys
     /// be usable with the phys::World for tracking in game objects. There are several reasons why this
     /// will be useful. Our first thought was deriving from this and an STL container like vector or
     /// list. \n\n
+    /// Since members of this class should be implementing or inheriting a proper container\n\n
     /// Currently, you cannot simply swap one member of this with another, in a running physworld. We are
-    /// Looking into the feasibility of implementing this
+    /// Looking into the feasibility of implementing this.
     class ActorContainerBase
     {
         private:
@@ -66,24 +67,27 @@ namespace phys
         public:
             /// @brief This will add an Actor to this container and the world
             /// @details This will add an Actor to this container and the world, and handle the nitty gritty details
-            /// of add this to physics subsystem and graphics subsystem
-            virtual void AddActor(ActorBase* ActorToAdd) const = 0;
+            /// of add this to physics subsystem and graphics subsystem. \n\n
+            /// This will not add the Actor to any specific location in the ordering of the container.
+            virtual void AddActor(ActorBase* ActorToAdd) = 0;
 
-            //remove(ptr)
+            virtual void RemoveActor(ActorBase* ActorToAdd) = 0;
+            virtual void RemoveActorAtCursor(ActorBase* ActorToAdd) = 0;
 
-            //GetCount
+            virtual Whole GetActorCount() const = 0;
 
-            //call member function pointer on all members
+            virtual void CursorToFirst() = 0;
+            virtual void CursorToPrevious() = 0;
+            virtual void CursorToNext() = 0;
+            virtual void CursorToLast() = 0;
 
-            //gotofirst
-            //gotonext
-            //gotoprevious
-            //gotolast
-            //removecurrent
-            //addBeforeCurrent
-            //addAfterCurrent
+            virtual void AddActorBeforeCursor(ActorBase* ActorToAdd) = 0;
+            virtual void AddActorAfterCursor(ActorBase* ActorToAdd) = 0;
+            virtual ActorBase* GetAtCursor() const = 0;
+            virtual ActorBase* GetFirst() const = 0;
+            virtual ActorBase* GetLast() const = 0;
 
-            //GetType
+            virtual String GetType() const = 0;
 
     };
 }

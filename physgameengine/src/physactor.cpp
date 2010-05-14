@@ -347,7 +347,7 @@ namespace phys{
         delete Shape;
 
         /// @todo - Check for thread safety
-        btTriangleMesh *pshape = this->CreateTrimesh();
+        //btTriangleMesh *pshape = this->CreateTrimesh();
         btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateTrimesh());
         btShapeHull *hull = new btShapeHull(tmpshape);
         btScalar margin = tmpshape->getMargin();
@@ -361,9 +361,9 @@ namespace phys{
         }
         delete tmpshape;
         delete hull;
-        delete pshape;
+        //delete pshape;
         Shape = convexShape;
-        this->Shape->setLocalScaling(btVector3(0.04,0.04,0.04));
+        this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
         this->physrigidbody->setCollisionShape(this->Shape);
         //btVector3 inertia(0,0,0);
         //btVector3 inertia = this->physrigidbody->getInvInertiaDiagLocal();
@@ -377,12 +377,12 @@ namespace phys{
         delete Shape;
 
         /// @todo - Check for thread safety
-        btTriangleMesh *pshape = this->CreateTrimesh();
-        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(pshape,true);
+        //btTriangleMesh *pshape = this->CreateTrimesh();
+        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(this->CreateTrimesh(),true);
         this->Shape=tmpshape;
-        this->Shape->setLocalScaling(btVector3(0.04,0.04,0.04));
+        this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
         this->physrigidbody->setCollisionShape(this->Shape);
-        delete pshape;
+        //delete pshape;
     }
 
     ///////////////////////////////////

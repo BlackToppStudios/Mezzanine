@@ -56,6 +56,8 @@ int main(int argc, char **argv)
 
     LoadContent();
 
+    TheWorld.SetDebugPhysicsRendering(1);
+
 	//Start the Main Loop
 	TheWorld.MainLoop();
 

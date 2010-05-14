@@ -68,7 +68,7 @@
 <a name="l00043"></a>00043 <span class="comment"></span><span class="comment">// This will store the amount of time since rendering events that occured recently</span><span class="comment"></span>
 <a name="l00044"></a>00044 <span class="comment">///////////////////////////////////////</span>
 <a name="l00045"></a>00045 <span class="comment"></span>
-<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;event.h&quot;</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
 <a name="l00047"></a>00047 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
 <a name="l00048"></a>00048 
 <a name="l00049"></a>00049 <span class="keyword">using namespace </span>std;
@@ -81,7 +81,7 @@
 <a name="l00056"></a>00056 <span class="comment">    /// @brief This communicates the amount of time since the world was rendered</span>
 <a name="l00057"></a>00057 <span class="comment">    /// @details This stores in milliseconds the amount of time since the last</span>
 <a name="l00058"></a>00058 <span class="comment">    /// rendering of the world.</span>
-<a name="l00059"></a><a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html">00059</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a> : <span class="keyword">public</span> <a class="code" href="../../d5/dcb/classphys_1_1Event.html" title="The base class for all events.">Event</a>
+<a name="l00059"></a><a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html">00059</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a> : <span class="keyword">public</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>
 <a name="l00060"></a>00060     {
 <a name="l00061"></a>00061         <span class="keyword">private</span>:
 <a name="l00062"></a>00062             Whole Rendertime;
@@ -96,7 +96,7 @@
 <a name="l00071"></a>00071 <span class="comment">            /// @details This is primarily for the benefit of sorting thorugh event pointers. If</span>
 <a name="l00072"></a>00072 <span class="comment">            /// this functions returns EventType::RenderTime, then and event pointer can safely be</span>
 <a name="l00073"></a>00073 <span class="comment">            /// cast to phys::EventRenderTime . This method is inherited from phys::Event .</span>
-<a name="l00074"></a>00074 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d5/dcb/classphys_1_1Event.html#af5fdbb3e08d8e578d58770fbc606fda7">EventType</a> <a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html#a66918bf3793196899621e4442a6f7a57" title="Returns that this event is a EventType::RenderTime.">getEventType</a>() <span class="keyword">const</span>;
+<a name="l00074"></a>00074 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventType</a> <a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html#a76a47983d5aa197104cc3c0b9dea9dfa" title="Returns that this event is a EventType::RenderTime.">getEventType</a>() <span class="keyword">const</span>;
 <a name="l00075"></a>00075 <span class="comment"></span>
 <a name="l00076"></a>00076 <span class="comment">            /// @brief Returns the a floating point value with the amount of time.</span>
 <a name="l00077"></a>00077 <span class="comment">            /// @details Returns the a floating point value with the amount of time.</span>
@@ -107,7 +107,7 @@
 <a name="l00082"></a>00082 
 <a name="l00083"></a>00083 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 12 23:14:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 01:37:07 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
