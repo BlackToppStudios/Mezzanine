@@ -447,12 +447,12 @@
 <a name="l00422"></a>00422             <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> Code;
 <a name="l00423"></a>00423 
 <a name="l00424"></a>00424             <span class="comment">//function that the constructors can call aid initial setup</span>
-<a name="l00425"></a>00425             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00425"></a>00425             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
 <a name="l00426"></a>00426             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_, <span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;ID_, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_);
 <a name="l00427"></a>00427 
 <a name="l00428"></a>00428             <span class="comment">//This assigns a value to Inputcode by doing an efficient low level copy of the correct portion of an SDL_event</span>
 <a name="l00429"></a>00429             <span class="comment">//If mishandled this function can corrupt the MetaCode, and it can throw any error memcpy could throw.</span>
-<a name="l00430"></a>00430             <span class="keyword">static</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> GetInputCodeFromSDL_KEY(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00430"></a>00430             <span class="keyword">static</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> GetInputCodeFromSDL_KEY(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
 <a name="l00431"></a>00431 
 <a name="l00432"></a>00432         <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00433"></a>00433 <span class="comment">            /// @brief Default constructor</span>
@@ -476,7 +476,7 @@
 <a name="l00451"></a>00451 <span class="comment">            /// @warning We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In</span>
 <a name="l00452"></a>00452 <span class="comment">            /// that event you would have to recompile your application to get it working with a new version of physgame. Using this function in Game code removes any gaurantees of Game Code</span>
 <a name="l00453"></a>00453 <span class="comment">            /// Portability.</span>
-<a name="l00454"></a>00454 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#ae2c80c84f924ddfd880f46ffe6a1746e" title="Default constructor.">MetaCode</a>(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00454"></a>00454 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#ae2c80c84f924ddfd880f46ffe6a1746e" title="Default constructor.">MetaCode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
 <a name="l00455"></a>00455 <span class="comment"></span>
 <a name="l00456"></a>00456 <span class="comment">            /// @brief This Returns the Inputcode</span>
 <a name="l00457"></a>00457 <span class="comment">            /// @details This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred.</span>
@@ -528,7 +528,7 @@
 <a name="l00503"></a>00503 
 <a name="l00504"></a>00504 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 01:37:07 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 09:49:04 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

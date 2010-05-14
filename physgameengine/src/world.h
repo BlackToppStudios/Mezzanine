@@ -65,7 +65,7 @@
  @section Data Types
   @ref PhysVector3
 
-  @ref phys::Event
+  @ref phys::EventBase
 */
 
 //Includes and Forward Declarations
@@ -104,7 +104,13 @@ namespace Ogre
 	class Camera;
 	class Viewport;
 }
-
+///////////////////////////////////////////////////////////////////////////////
+/// @namespace phys
+/// @brief The bulk of the engine components go in this namspace
+/// @details This is where imporant classes like World, CallBackManager, and
+/// The eventmanager reside. For more detailed usage information please refer
+/// to individual class documentation or the @ref index main page.
+///////////////////////////////////////
 namespace phys
 {
     class ActorBase;

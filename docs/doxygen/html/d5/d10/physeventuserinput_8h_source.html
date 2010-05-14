@@ -121,8 +121,8 @@
 <a name="l00096"></a>00096     <span class="keyword">private</span>:
 <a name="l00097"></a>00097         <span class="comment">//Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if</span>
 <a name="l00098"></a>00098         <span class="comment">//passed any other kind of data.</span>
-<a name="l00099"></a>00099         <span class="keywordtype">void</span> AddCodesFromSDLMouseButton(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
-<a name="l00100"></a>00100         <span class="keywordtype">void</span> AddCodesFromSDLMouseMotion(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00099"></a>00099         <span class="keywordtype">void</span> AddCodesFromSDLMouseButton(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
+<a name="l00100"></a>00100         <span class="keywordtype">void</span> AddCodesFromSDLMouseMotion(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
 <a name="l00101"></a>00101 
 <a name="l00102"></a>00102     <span class="keyword">protected</span>:
 <a name="l00103"></a>00103         vector&lt;MetaCode&gt; Code;
@@ -177,7 +177,7 @@
 <a name="l00152"></a>00152 <span class="comment">        /// @warning Do not use this without reading and fully understanding the warnings on MetaCode::MetaCode(const RawEvent &amp;RawEvent_) . This function has all the same</span>
 <a name="l00153"></a>00153 <span class="comment">        /// Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must it should use</span>
 <a name="l00154"></a>00154 <span class="comment">        /// PhysEventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.</span>
-<a name="l00155"></a>00155 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d" title="Adds a MetaCode.">AddCode</a>(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00155"></a>00155 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a4f5b94c64cd08c15b480e441d25a385d" title="Adds a MetaCode.">AddCode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
 <a name="l00156"></a>00156 <span class="comment"></span>
 <a name="l00157"></a>00157 <span class="comment">        /// @brief Add Several MetaCodes from a vector</span>
 <a name="l00158"></a>00158 <span class="comment">        /// @param Codes_ A vector of MetaCodes to be added to this event</span>
@@ -192,7 +192,7 @@
 <a name="l00167"></a>00167 <span class="comment">        /// function to use. This will work same on a all platforms. However, the binary format of the Rawevent could chnage meaning you would have to recompile the game code to work</span>
 <a name="l00168"></a>00168 <span class="comment">        /// with new version of the engine</span>
 <a name="l00169"></a>00169 <span class="comment">        /// \n This Function is currently incomplete, and does not yet process all events such as joysticks events and some mouse events.</span>
-<a name="l00170"></a>00170 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a9e42f42f9a4a42f792e5cf95856669c0" title="Adds all possible MetaCodes that can be created from the given RawEvent.">AddCodesFromRawEvent</a>(<span class="keyword">const</span> RawEvent &amp;RawEvent_);
+<a name="l00170"></a>00170 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a9e42f42f9a4a42f792e5cf95856669c0" title="Adds all possible MetaCodes that can be created from the given RawEvent.">AddCodesFromRawEvent</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
 <a name="l00171"></a>00171 <span class="comment"></span>
 <a name="l00172"></a>00172 <span class="comment">        /// @brief Removes a specific code from storage.</span>
 <a name="l00173"></a>00173 <span class="comment">        /// @param Code_ This will search for all matching copies of this</span>
@@ -223,7 +223,7 @@
 <a name="l00198"></a>00198 
 <a name="l00199"></a>00199 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 01:37:07 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 09:49:04 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

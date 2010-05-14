@@ -82,7 +82,7 @@
 <a name="l00057"></a>00057 {<span class="comment"></span>
 <a name="l00058"></a>00058 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00059"></a>00059 <span class="comment"></span>    <span class="comment">// Internal C style functions</span>
-<a name="l00060"></a>00060     <span class="keywordtype">int</span> PhysSDLFilter( <span class="keyword">const</span> RawEvent *event );
+<a name="l00060"></a>00060     <span class="keywordtype">int</span> PhysSDLFilter( <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> *event );
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062     <span class="comment">//If this is passed an event that points to 0 it will function as a method to tell us if an SDL_QUIT message has been thrown</span>
 <a name="l00063"></a>00063     <span class="comment">//this will return 2 if it has not seen an SDL_quit, and a 4 if it has</span>
@@ -183,7 +183,7 @@
 <a name="l00158"></a>00158 
 <a name="l00159"></a>00159         <span class="keywordflow">while</span>( !SDL_UserInputEvents.empty() )
 <a name="l00160"></a>00160         {
-<a name="l00161"></a>00161             RawEvent* CurrentRawEvent = SDL_UserInputEvents.front();
+<a name="l00161"></a>00161             <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a>* CurrentRawEvent = SDL_UserInputEvents.front();
 <a name="l00162"></a>00162 
 <a name="l00163"></a>00163             FromSDLEvent-&gt;<a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a9e42f42f9a4a42f792e5cf95856669c0" title="Adds all possible MetaCodes that can be created from the given RawEvent.">AddCodesFromRawEvent</a>( *CurrentRawEvent );
 <a name="l00164"></a>00164             <span class="keyword">delete</span> CurrentRawEvent;
@@ -338,7 +338,7 @@
 <a name="l00313"></a>00313             this-&gt;ParentWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported Polling Check on this Platform&quot;</span>);
 <a name="l00314"></a>00314     }
 <a name="l00315"></a>00315 
-<a name="l00316"></a>00316     <span class="keywordtype">void</span> RemovePollingCheck(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;InputToStopPolling)
+<a name="l00316"></a><a class="code" href="../../df/dec/namespacephys.html#a49d077eb58030fdb50229c55bc09a03d">00316</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/dec/namespacephys.html#a49d077eb58030fdb50229c55bc09a03d">RemovePollingCheck</a>(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;InputToStopPolling)
 <a name="l00317"></a>00317     {<span class="comment"></span>
 <a name="l00318"></a>00318 <span class="comment">        /// @todo Actually code RemovePollingCheck</span>
 <a name="l00319"></a>00319 <span class="comment"></span>    }
@@ -432,11 +432,11 @@
 <a name="l00407"></a>00407     {
 <a name="l00408"></a>00408         UpdateQuitEvents(); <span class="comment">//quit skips the preprocessing Queue and goes straight into the the main Queue</span>
 <a name="l00409"></a>00409 
-<a name="l00410"></a>00410         RawEvent temp;
-<a name="l00411"></a>00411         RawEvent* FromSDL=&amp;temp;
+<a name="l00410"></a>00410         <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> temp;
+<a name="l00411"></a>00411         <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a>* FromSDL=&amp;temp;
 <a name="l00412"></a>00412         <span class="keywordflow">while</span>(SDL_PollEvent(FromSDL))
 <a name="l00413"></a>00413         {
-<a name="l00414"></a>00414             RawEvent* ScopeHolder = <span class="keyword">new</span> RawEvent;
+<a name="l00414"></a>00414             <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a>* ScopeHolder = <span class="keyword">new</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a>;
 <a name="l00415"></a>00415             *ScopeHolder = temp;
 <a name="l00416"></a>00416             <span class="keywordflow">switch</span>(FromSDL-&gt;type)
 <a name="l00417"></a>00417             {
@@ -486,7 +486,7 @@
 <a name="l00461"></a>00461 
 <a name="l00462"></a>00462 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 01:37:07 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 09:49:04 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

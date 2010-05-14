@@ -22,9 +22,9 @@ Inheritance diagram for phys::ActorBase:\begin{figure}[H]
 \item 
 virtual \hyperlink{classphys_1_1ActorBase_a5e5d4b50c83c6851e554b5e7ad65403f}{$\sim$ActorBase} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ActorBase_ad9d90a68921ce81653e9950c1330809d}{ActorBase} (String name, String file, String group, \hyperlink{classphys_1_1World}{World} $\ast$\_\-World)
+\hyperlink{classphys_1_1ActorBase_ad9d90a68921ce81653e9950c1330809d}{ActorBase} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group, \hyperlink{classphys_1_1World}{World} $\ast$\_\-World)
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ActorBase_a0b0db2ec0f4926326635b86f1ead2276}{SetLocation} (Real x, Real y, Real z)
+void \hyperlink{classphys_1_1ActorBase_a0b0db2ec0f4926326635b86f1ead2276}{SetLocation} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} x, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} y, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} z)
 \begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_a9a182b7262742ab5d499e7a51d407044}{SetLocation} (\hyperlink{classPhysVector3}{PhysVector3} Place)
 \begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
@@ -34,7 +34,7 @@ void \hyperlink{classphys_1_1ActorBase_ab7513e8b650b40ea4387c170929457a7}{SetIni
 \begin{DoxyCompactList}\small\item\em Sets the starting location of the actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_a681186465db767954ca3f9530a1d7c36}{SetInitOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation)
 \begin{DoxyCompactList}\small\item\em Sets the starting orientation of the actor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ActorBase_adbf0cc77031f22597a799fd0f7f8216d}{SetOrientation} (Real x, Real y, Real z, Real w)
+void \hyperlink{classphys_1_1ActorBase_adbf0cc77031f22597a799fd0f7f8216d}{SetOrientation} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} x, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} y, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} z, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} w)
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_ac4b0bf1eff730d94f72d04957efea69d}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Rotation)
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
@@ -49,7 +49,7 @@ virtual void \hyperlink{classphys_1_1ActorBase_ac5d4ad5a634b16000742f506ed5957fb
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
 btTriangleMesh $\ast$ \hyperlink{classphys_1_1ActorBase_a4d2137276c50bbe5bc8cf9ecc66581b7}{CreateTrimesh} ()
 \begin{DoxyCompactList}\small\item\em Creates a trimesh shape from the mesh file. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ActorBase_aff7dbb190fb982a43123bee3066501c4}{CreateEntity} (String name, String file, String group)
+void \hyperlink{classphys_1_1ActorBase_aff7dbb190fb982a43123bee3066501c4}{CreateEntity} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group)
 \begin{DoxyCompactList}\small\item\em Creates an entity for the mesh file to be placed on a scene node. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_a125d6f0a0b4072e64490638c074eea2d}{CreateSceneNode} ()
 \begin{DoxyCompactList}\small\item\em Creates a node for the entity in the graphical world. \item\end{DoxyCompactList}\item 
@@ -136,7 +136,7 @@ Definition at line 118 of file physactor.cpp.
 \hypertarget{classphys_1_1ActorBase_ad9d90a68921ce81653e9950c1330809d}{
 \index{phys::ActorBase@{phys::ActorBase}!ActorBase@{ActorBase}}
 \index{ActorBase@{ActorBase}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{ActorBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorBase::ActorBase (String {\em name}, \/  String {\em file}, \/  String {\em group}, \/  {\bf World} $\ast$ {\em \_\-World})}}
+\subsubsection[{ActorBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorBase::ActorBase ({\bf String} {\em name}, \/  {\bf String} {\em file}, \/  {\bf String} {\em group}, \/  {\bf World} $\ast$ {\em \_\-World})}}
 \label{d8/d0f/classphys_1_1ActorBase_ad9d90a68921ce81653e9950c1330809d}
 
 
@@ -186,7 +186,7 @@ Definition at line 298 of file physactor.cpp.
 \hypertarget{classphys_1_1ActorBase_aff7dbb190fb982a43123bee3066501c4}{
 \index{phys::ActorBase@{phys::ActorBase}!CreateEntity@{CreateEntity}}
 \index{CreateEntity@{CreateEntity}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{CreateEntity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateEntity (String {\em name}, \/  String {\em file}, \/  String {\em group})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{CreateEntity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateEntity ({\bf String} {\em name}, \/  {\bf String} {\em file}, \/  {\bf String} {\em group})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_aff7dbb190fb982a43123bee3066501c4}
 
 
@@ -369,7 +369,7 @@ Definition at line 265 of file physactor.cpp.
 \hypertarget{classphys_1_1ActorBase_a0b0db2ec0f4926326635b86f1ead2276}{
 \index{phys::ActorBase@{phys::ActorBase}!SetLocation@{SetLocation}}
 \index{SetLocation@{SetLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetLocation (Real {\em x}, \/  Real {\em y}, \/  Real {\em z})}}
+\subsubsection[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetLocation ({\bf Real} {\em x}, \/  {\bf Real} {\em y}, \/  {\bf Real} {\em z})}}
 \label{d8/d0f/classphys_1_1ActorBase_a0b0db2ec0f4926326635b86f1ead2276}
 
 
@@ -436,7 +436,7 @@ Definition at line 292 of file physactor.cpp.
 \hypertarget{classphys_1_1ActorBase_adbf0cc77031f22597a799fd0f7f8216d}{
 \index{phys::ActorBase@{phys::ActorBase}!SetOrientation@{SetOrientation}}
 \index{SetOrientation@{SetOrientation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetOrientation (Real {\em x}, \/  Real {\em y}, \/  Real {\em z}, \/  Real {\em w})}}
+\subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetOrientation ({\bf Real} {\em x}, \/  {\bf Real} {\em y}, \/  {\bf Real} {\em z}, \/  {\bf Real} {\em w})}}
 \label{d8/d0f/classphys_1_1ActorBase_adbf0cc77031f22597a799fd0f7f8216d}
 
 

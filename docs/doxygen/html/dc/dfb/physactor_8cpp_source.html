@@ -130,7 +130,7 @@
 <a name="l00105"></a>00105 <span class="comment">    ///////////////////////////////////</span>
 <a name="l00106"></a>00106 <span class="comment"></span>    <span class="comment">// ActorBase class fuctions</span>
 <a name="l00107"></a>00107 
-<a name="l00108"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad9d90a68921ce81653e9950c1330809d">00108</a>     <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad9d90a68921ce81653e9950c1330809d" title="Descriptive constructor.">ActorBase::ActorBase</a> (String name, String file, String group, <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* _World)
+<a name="l00108"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad9d90a68921ce81653e9950c1330809d">00108</a>     <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad9d90a68921ce81653e9950c1330809d" title="Descriptive constructor.">ActorBase::ActorBase</a> (<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> group, <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* _World)
 <a name="l00109"></a>00109     {
 <a name="l00110"></a>00110         this-&gt;GameWorld = _World;
 <a name="l00111"></a>00111         this-&gt;node = this-&gt;GameWorld-&gt;OgreSceneManager-&gt;createSceneNode();
@@ -234,7 +234,7 @@
 <a name="l00209"></a>00209         <span class="keywordflow">return</span> trimesh;
 <a name="l00210"></a>00210     }
 <a name="l00211"></a>00211 
-<a name="l00212"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aff7dbb190fb982a43123bee3066501c4">00212</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aff7dbb190fb982a43123bee3066501c4" title="Creates an entity for the mesh file to be placed on a scene node.">ActorBase::CreateEntity</a> (String name, String file, String group)
+<a name="l00212"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aff7dbb190fb982a43123bee3066501c4">00212</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aff7dbb190fb982a43123bee3066501c4" title="Creates an entity for the mesh file to be placed on a scene node.">ActorBase::CreateEntity</a> (<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> group)
 <a name="l00213"></a>00213     {
 <a name="l00214"></a>00214         this-&gt;entity = this-&gt;GameWorld-&gt;OgreSceneManager-&gt;createEntity(name, file, group);
 <a name="l00215"></a>00215     }
@@ -281,7 +281,7 @@
 <a name="l00256"></a>00256         temp.setRotation(Rotation.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#afcda116299201599a803e48719f6d50e" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>());
 <a name="l00257"></a>00257     }
 <a name="l00258"></a>00258 
-<a name="l00259"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0b0db2ec0f4926326635b86f1ead2276">00259</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0b0db2ec0f4926326635b86f1ead2276" title="Manually sets the location of the actor.">ActorBase::SetLocation</a> (Real x, Real y, Real z)
+<a name="l00259"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0b0db2ec0f4926326635b86f1ead2276">00259</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0b0db2ec0f4926326635b86f1ead2276" title="Manually sets the location of the actor.">ActorBase::SetLocation</a> (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> x, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> y, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> z)
 <a name="l00260"></a>00260     {
 <a name="l00261"></a>00261         <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> temp(x,y,z);
 <a name="l00262"></a>00262         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0b0db2ec0f4926326635b86f1ead2276" title="Manually sets the location of the actor.">SetLocation</a>(temp);
@@ -308,7 +308,7 @@
 <a name="l00283"></a>00283         this-&gt;MotionState-&gt;<a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac799070edfea4d1c442e3ed0857bcb1d" title="Sets the initial orientation.">SetOrientation</a>(Orientation);
 <a name="l00284"></a>00284     }
 <a name="l00285"></a>00285 
-<a name="l00286"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#adbf0cc77031f22597a799fd0f7f8216d">00286</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#adbf0cc77031f22597a799fd0f7f8216d" title="Sets the orientation of the actor.">ActorBase::SetOrientation</a> (Real x, Real y, Real z, Real w)
+<a name="l00286"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#adbf0cc77031f22597a799fd0f7f8216d">00286</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#adbf0cc77031f22597a799fd0f7f8216d" title="Sets the orientation of the actor.">ActorBase::SetOrientation</a> (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> x, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> y, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> z, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> w)
 <a name="l00287"></a>00287     {
 <a name="l00288"></a>00288         <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> temp(x,y,z,w);
 <a name="l00289"></a>00289         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#adbf0cc77031f22597a799fd0f7f8216d" title="Sets the orientation of the actor.">SetOrientation</a>(temp);
@@ -344,7 +344,7 @@
 <a name="l00319"></a>00319 <span class="comment">    ///////////////////////////////////</span>
 <a name="l00320"></a>00320 <span class="comment"></span>    <span class="comment">// ActorRigid class functions</span>
 <a name="l00321"></a>00321 
-<a name="l00322"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#ac42c05745d57eb5745de3f34e820b72d">00322</a>     <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#ac42c05745d57eb5745de3f34e820b72d" title="Descriptive constructor.">ActorRigid::ActorRigid</a> (Real mass, String name, String file, String group, <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* _World) : <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> (name, file, group, _World)
+<a name="l00322"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#ac42c05745d57eb5745de3f34e820b72d">00322</a>     <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#ac42c05745d57eb5745de3f34e820b72d" title="Descriptive constructor.">ActorRigid::ActorRigid</a> (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> mass, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> group, <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* _World) : <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> (name, file, group, _World)
 <a name="l00323"></a>00323     {
 <a name="l00324"></a>00324         this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a19227c52b972cd96ad69a7b6273e2bbf" title="Creates a rigid object for the actor.">CreateRigidObject</a>(mass);
 <a name="l00325"></a>00325     }
@@ -354,7 +354,7 @@
 <a name="l00329"></a>00329         <span class="keyword">delete</span> physrigidbody;
 <a name="l00330"></a>00330     }
 <a name="l00331"></a>00331 
-<a name="l00332"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a19227c52b972cd96ad69a7b6273e2bbf">00332</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a19227c52b972cd96ad69a7b6273e2bbf" title="Creates a rigid object for the actor.">ActorRigid::CreateRigidObject</a> (Real pmass)
+<a name="l00332"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a19227c52b972cd96ad69a7b6273e2bbf">00332</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a19227c52b972cd96ad69a7b6273e2bbf" title="Creates a rigid object for the actor.">ActorRigid::CreateRigidObject</a> (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> pmass)
 <a name="l00333"></a>00333     {
 <a name="l00334"></a>00334         btScalar bmass=pmass;
 <a name="l00335"></a>00335         this-&gt;physrigidbody = <span class="keyword">new</span> btRigidBody (bmass, this-&gt;MotionState, this-&gt;Shape);
@@ -491,7 +491,7 @@
 <a name="l00466"></a>00466 }
 <a name="l00467"></a>00467 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 01:37:07 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri May 14 09:49:04 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -29,10 +29,10 @@
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\plugins.cfg .\bin\WinDebug\data\windows" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\settings.cfg .\bin\WinDebug\data\windows" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\common\robot.mesh .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\common\robot.skeleton .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\common\Examples.material .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\common\r2skin.jpg .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\robot.mesh .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\robot.skeleton .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\Examples.material .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\r2skin.jpg .\bin\WinDebug\data\common" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
@@ -54,9 +54,13 @@
 					<Add directory="." />
 				</Linker>
 				<ExtraCommands>
-					<Add before="mkdir bin/LinuxDebug/ -p" />
+					<Add before="mkdir bin/LinuxDebug/data/common -p" />
 					<Add before="cp ../physgameengine/bin/LinuxDebug/* ./bin/LinuxDebug/ -r" />
 					<Add before="cp data/linux/Catch!-start bin/LinuxDebug/" />
+					<Add before="cp data/common/*.jpg bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.mesh bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.skeleton bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.material bin/LinuxDebug/data/common/" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
