@@ -21,6 +21,8 @@
 phys::World TheWorld;
 ActorRigid* object1;
 ActorRigid* object2;
+ActorRigid* object3;
+ActorRigid* object4;
 Real x=0;
 Real y=0;
 Real z=0;
@@ -108,6 +110,10 @@ bool PostRender()
 
 bool PrePhysics()
 {
+    TheWorld.Log(object1->GetLocation());
+    TheWorld.Log(object2->GetLocation());
+    TheWorld.Log(object3->GetLocation());
+    TheWorld.Log(object4->GetLocation());
     return true;
 }
 
@@ -167,10 +173,17 @@ void LoadContent()
 
     //Actor Init Code
     object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
-    object1->CreateShapeFromMesh();
-    object2 = new ActorRigid (0, "Robot2",filename,groupname,&TheWorld);
-    object2->CreateShapeFromMesh();
-    object2->SetInitLocation(PhysVector3(0,-130.0,0));
+    object1->CreateShapeFromMeshDynamic();
+    object1->SetInitLocation(PhysVector3(0,50,0));
+    object2 = new ActorRigid (mass,"Robot2",filename,groupname,&TheWorld);
+    object2->CreateShapeFromMeshDynamic();
+    object2->SetInitLocation(PhysVector3(0,-130,0));
+    object3 = new ActorRigid (0,"Robot3",filename,groupname,&TheWorld);
+    object3->CreateShapeFromMeshStatic();
+    object3->SetInitLocation(PhysVector3(0,-80,0));
+    object4 = new ActorRigid (0,"Robot4",filename,groupname,&TheWorld);
+    object4->CreateShapeFromMeshStatic();
+    object4->SetInitLocation(PhysVector3(0,130,0));
 
     //Final Steps
     PhysVector3 grav;
@@ -179,6 +192,8 @@ void LoadContent()
     grav.Z=0.0;
     TheWorld.AddActor(object1);
     TheWorld.AddActor(object2);
+    TheWorld.AddActor(object3);
+    TheWorld.AddActor(object4);
     TheWorld.SetGravity(grav);
 }
 

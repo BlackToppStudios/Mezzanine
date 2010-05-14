@@ -59,7 +59,7 @@ class btCollisionShape;
 class btSoftBodyWorldInfo;
 class btCollisionObject;
 class btSoftRigidDynamicsWorld;
-
+class btTriangleMesh;
 typedef float btScalar;
 
 namespace Ogre
@@ -115,7 +115,7 @@ namespace phys
             /// @brief Creates a trimesh shape from the mesh file.
             /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n
             /// This is automaticly called by the CreateShapeFromMesh function in child classes and shouldn't be called manually.
-            void CreateTrimesh();
+            btTriangleMesh* CreateTrimesh();
 
             //Ogre Management Functions
             /// @brief Creates an entity for the mesh file to be placed on a scene node.
@@ -156,11 +156,6 @@ namespace phys
             /// @brief Retrieves the location of the physics body.
             /// @details This function will retrieve the location of the object within the physics world.
             virtual PhysVector3 GetBulletLocation();
-            /// @brief Sets the starting location of the physics body within the PhysMotionState.
-            /// @details Sets the starting location of the physics body within the PhysMotionState. @n
-            /// This function is called on by the SetInitLocation function, and shouldn't be called manually.
-            /// @param Location The PhysVector3 representing the desired starting location for the actor.
-            void SetBulletInitLocation (PhysVector3 Location);
             /// @brief Sets the orientation of the physics body.
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
             /// This function is called on by the SetOrientation function, and shouldn't be called manually.
@@ -265,8 +260,14 @@ namespace phys
             virtual ~ActorRigid();
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
-            /// construct a triangle mesh shape and attach it to this objects collision shape.
-            void CreateShapeFromMesh();
+            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
+            /// be used with only with Dynamic objects.
+            void CreateShapeFromMeshDynamic();
+            /// @brief Creates a collision shape from mesh file.
+            /// @details This function will read the location of every verticy in the mesh file and use that to
+            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
+            /// be used with only with Dynamic objects.
+            void CreateShapeFromMeshStatic();
     };
 
     ///////////////////////////////////////////////////////////////////////////////

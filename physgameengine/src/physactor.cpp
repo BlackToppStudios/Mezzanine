@@ -121,14 +121,13 @@ namespace phys{
         delete Shape;
     }
 
-    void ActorBase::CreateTrimesh()
+    btTriangleMesh* ActorBase::CreateTrimesh()
     {
         // Get the mesh from the entity
         Ogre::MeshPtr myMesh = entity->getMesh();
 
         // Get the submesh and associated data
         Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-
         Ogre::IndexData*  indexData = subMesh->indexData;
         Ogre::VertexData* vertexData = subMesh->vertexData;
 
@@ -150,20 +149,15 @@ namespace phys{
 
         // Lock the vertex buffer (READ ONLY)
         unsigned char* vertex =   static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-
         float* pReal = NULL;
-
         for (size_t j = 0; j < vertexData->vertexCount; ++j, vertex += vBuffer->getVertexSize() )
         {
             posElem->baseVertexPointerToElement(vertex, &pReal);
             Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);
             vertices[j] = pt;
         }
-
         vBuffer->unlock();
-
         size_t index_offset = 0;
-
         bool use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
 
         // Lock the index buffer (READ ONLY)
@@ -181,10 +175,9 @@ namespace phys{
         {
             for (size_t k = 0; k < triCount*3; ++k)
             {
-             indices[index_offset++] = static_cast<unsigned long>(pShort[k]);
+                indices[index_offset++] = static_cast<unsigned long>(pShort[k]);
             }
         }
-
         iBuffer->unlock();
 
         // We now have vertices and indices ready to go
@@ -200,11 +193,8 @@ namespace phys{
         for (unsigned int y=0; y<triCount; y++)
         {
             // Set each vertex
-
             vert0.setValue(vertices[indices[i]].x, vertices[indices[i]].y, vertices[indices[i]].z);
-
             vert1.setValue(vertices[indices[i+1]].x, vertices[indices[i+1]].y, vertices[indices[i+1]].z);
-
             vert2.setValue(vertices[indices[i+2]].x, vertices[indices[i+2]].y, vertices[indices[i+2]].z);
 
             // Add it into the trimesh
@@ -213,29 +203,10 @@ namespace phys{
             // Increase index count
             i+=3;
         }
-
-        // --------------- Cleanup
-
         delete[] vertices;
         delete[] indices;
-        delete Shape;
 
-        ///TODO - Check for thread safety
-        //Shape = new btConvexTriangleMeshShape(trimesh, true);
-        btConvexShape *tmpshape = new btConvexTriangleMeshShape(trimesh);
-        btShapeHull *hull = new btShapeHull(tmpshape);
-        btScalar margin = tmpshape->getMargin();
-        hull->buildHull(margin);
-        //Shape=hull;
-        tmpshape->setUserPointer(hull);
-        btConvexHullShape* convexShape = new btConvexHullShape();
-        for (int b=0;b<hull->numVertices();b++)
-        {
-            convexShape->addPoint(hull->getVertexPointer()[b]);
-        }
-        delete tmpshape;
-        delete hull;
-        Shape = convexShape;
+        return trimesh;
     }
 
     void ActorBase::CreateEntity (String name, String file, String group)
@@ -262,8 +233,8 @@ namespace phys{
 
     void ActorBase::SetBulletLocation (PhysVector3 Location)
     {
-        btTransform temp = this->CollisionObject->getWorldTransform();
-        temp.setOrigin(Location.GetBulletVector3());
+        //btTransform* temp = this->CollisionObject->getWorldTransform();
+        this->CollisionObject->getWorldTransform().setOrigin(Location.GetBulletVector3());
     }
 
     PhysVector3 ActorBase::GetBulletLocation()
@@ -272,11 +243,6 @@ namespace phys{
         btTransform trans = this->CollisionObject->getWorldTransform();
         temp.ExtractBulletVector3(trans.getOrigin());
         return temp;
-    }
-
-    void ActorBase::SetBulletInitLocation (PhysVector3 Location)
-    {
-        this->MotionState->initposition.setOrigin(Location.GetBulletVector3());
     }
 
     void ActorBase::SetOgreOrientation (Quaternion Rotation)
@@ -309,7 +275,7 @@ namespace phys{
 
     void ActorBase::SetInitLocation(PhysVector3 Location)
     {
-        this->SetBulletInitLocation(Location);
+        this->SetBulletLocation(Location);
     }
 
     void ActorBase::SetInitOrientation(Quaternion Orientation)
@@ -332,7 +298,8 @@ namespace phys{
     void ActorBase::AttachToGraphics ()
     {
         PhysVector3 temp;
-        temp.ExtractBulletVector3(this->MotionState->initposition.getOrigin());
+        //temp.ExtractBulletVector3(this->MotionState->initposition.getOrigin());
+        temp = GetBulletLocation();
         this->node->setPosition(temp.GetOgreVector3());
         this->node->attachObject(this->entity);
     }
@@ -375,15 +342,47 @@ namespace phys{
         AttachToGraphics();
     }
 
-    void ActorRigid::CreateShapeFromMesh()
+    void ActorRigid::CreateShapeFromMeshDynamic()
     {
-        this->CreateTrimesh();
+        delete Shape;
+
+        /// @todo - Check for thread safety
+        btTriangleMesh *pshape = this->CreateTrimesh();
+        btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateTrimesh());
+        btShapeHull *hull = new btShapeHull(tmpshape);
+        btScalar margin = tmpshape->getMargin();
+        hull->buildHull(margin);
+        //Shape=hull;
+        tmpshape->setUserPointer(hull);
+        btConvexHullShape* convexShape = new btConvexHullShape();
+        for (int b=0;b<hull->numVertices();b++)
+        {
+            convexShape->addPoint(hull->getVertexPointer()[b]);
+        }
+        delete tmpshape;
+        delete hull;
+        delete pshape;
+        Shape = convexShape;
+        this->Shape->setLocalScaling(btVector3(0.04,0.04,0.04));
         this->physrigidbody->setCollisionShape(this->Shape);
-        btVector3 inertia(0,0,0);
+        //btVector3 inertia(0,0,0);
         //btVector3 inertia = this->physrigidbody->getInvInertiaDiagLocal();
-        this->Shape->calculateLocalInertia(1/this->physrigidbody->getInvMass(), inertia);
+        //this->Shape->calculateLocalInertia(1/this->physrigidbody->getInvMass(), inertia);
         //this->physrigidbody->setMassProps(1/this->physrigidbody->getInvMass(), inertia);
 
+    }
+
+    void ActorRigid::CreateShapeFromMeshStatic()
+    {
+        delete Shape;
+
+        /// @todo - Check for thread safety
+        btTriangleMesh *pshape = this->CreateTrimesh();
+        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(pshape,true);
+        this->Shape=tmpshape;
+        this->Shape->setLocalScaling(btVector3(0.04,0.04,0.04));
+        this->physrigidbody->setCollisionShape(this->Shape);
+        delete pshape;
     }
 
     ///////////////////////////////////
