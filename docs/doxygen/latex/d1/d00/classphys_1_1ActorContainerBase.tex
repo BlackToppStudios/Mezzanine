@@ -1,0 +1,113 @@
+\hypertarget{classphys_1_1ActorContainerBase}{
+\section{phys::ActorContainerBase Class Reference}
+\label{d1/d00/classphys_1_1ActorContainerBase}\index{phys::ActorContainerBase@{phys::ActorContainerBase}}
+}
+
+
+A base class to unify the interface for different kinds of containers for holding actors.  
+
+
+
+
+{\ttfamily \#include $<$actorcontainerbase.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classphys_1_1ActorContainerBase_a8dd213cba4915f68ac421fc9f341cbbe}{AddActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)=0
+\begin{DoxyCompactList}\small\item\em This will add an Actor to this container and the world. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorContainerBase_a3775dd998c7ed620d4a70b9348d4e067}{
+virtual void {\bfseries RemoveActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)=0}
+\label{d1/d00/classphys_1_1ActorContainerBase_a3775dd998c7ed620d4a70b9348d4e067}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_a058d948abcd1bc69a5142e931a67e19b}{
+virtual void {\bfseries RemoveActorAtCursor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)=0}
+\label{d1/d00/classphys_1_1ActorContainerBase_a058d948abcd1bc69a5142e931a67e19b}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_aa5ec651d4634b2d90efe2a76f9d2fbdd}{
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries GetActorCount} () const =0}
+\label{d1/d00/classphys_1_1ActorContainerBase_aa5ec651d4634b2d90efe2a76f9d2fbdd}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de47424c3}{
+virtual void {\bfseries CursorToFirst} ()=0}
+\label{d1/d00/classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de47424c3}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a083714123b3}{
+virtual void {\bfseries CursorToPrevious} ()=0}
+\label{d1/d00/classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a083714123b3}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_a1aa337456a4e74cb5740dbae08778072}{
+virtual void {\bfseries CursorToNext} ()=0}
+\label{d1/d00/classphys_1_1ActorContainerBase_a1aa337456a4e74cb5740dbae08778072}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_afad072e018a04c190e5e5fb93b82b354}{
+virtual void {\bfseries CursorToLast} ()=0}
+\label{d1/d00/classphys_1_1ActorContainerBase_afad072e018a04c190e5e5fb93b82b354}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_aab0633b4859840a4f4ecb42c389fd077}{
+virtual void {\bfseries AddActorBeforeCursor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)=0}
+\label{d1/d00/classphys_1_1ActorContainerBase_aab0633b4859840a4f4ecb42c389fd077}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_ad7f1992684712a1527dbd51967cca5c7}{
+virtual void {\bfseries AddActorAfterCursor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)=0}
+\label{d1/d00/classphys_1_1ActorContainerBase_ad7f1992684712a1527dbd51967cca5c7}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_a2c8fb86a9e188aece105b2a753ccc19a}{
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ {\bfseries GetAtCursor} () const =0}
+\label{d1/d00/classphys_1_1ActorContainerBase_a2c8fb86a9e188aece105b2a753ccc19a}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_ae703482d84a9c6726e28a8f26418b161}{
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ {\bfseries GetFirst} () const =0}
+\label{d1/d00/classphys_1_1ActorContainerBase_ae703482d84a9c6726e28a8f26418b161}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_a8efeffd5ae22085fe01af791b3ea559e}{
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ {\bfseries GetLast} () const =0}
+\label{d1/d00/classphys_1_1ActorContainerBase_a8efeffd5ae22085fe01af791b3ea559e}
+
+\item 
+\hypertarget{classphys_1_1ActorContainerBase_a526dab176597858680490d128d0584a3}{
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries GetType} () const =0}
+\label{d1/d00/classphys_1_1ActorContainerBase_a526dab176597858680490d128d0584a3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A base class to unify the interface for different kinds of containers for holding actors. Containers for actors must implement atleast this interface(abstract base class) to be usable with the \hyperlink{classphys_1_1World}{phys::World} for tracking in game objects. There are several reasons why this will be useful. Our first thought was deriving from this and an STL container like vector or list. \par
+\par
+ Since members of this class should be implementing or inheriting a proper container\par
+\par
+ Currently, you cannot simply swap one member of this with another, in a running physworld. We are Looking into the feasibility of implementing this. 
+
+Definition at line 62 of file actorcontainerbase.h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1ActorContainerBase_a8dd213cba4915f68ac421fc9f341cbbe}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!AddActor@{AddActor}}
+\index{AddActor@{AddActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{AddActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::AddActor ({\bf ActorBase} $\ast$ {\em ActorToAdd})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a8dd213cba4915f68ac421fc9f341cbbe}
+
+
+This will add an Actor to this container and the world. 
+
+This will add an Actor to this container and the world, and handle the nitty gritty details of add this to physics subsystem and graphics subsystem. \par
+\par
+ This will not add the Actor to any specific location in the ordering of the container. 
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+actorcontainerbase.h\end{DoxyCompactItemize}

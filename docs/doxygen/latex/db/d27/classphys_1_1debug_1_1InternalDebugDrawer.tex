@@ -1,0 +1,61 @@
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer}{
+\section{phys::debug::InternalDebugDrawer Class Reference}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer}\index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
+}
+
+
+This is used to draw wireframse for the Physics subsystem.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a323f6fa6e2979e989d0096bf3a304198}{
+{\bfseries InternalDebugDrawer} (\hyperlink{classphys_1_1World}{phys::World} $\ast$ParentWorld\_\-)}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a323f6fa6e2979e989d0096bf3a304198}
+
+\item 
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}{
+virtual void {\bfseries drawLine} (const btVector3 \&from, const btVector3 \&to, const btVector3 \&color)}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}
+
+\item 
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a8b912aaff8dfd9f4e97ffb2d867121b2}{
+virtual void {\bfseries drawContactPoint} (const btVector3 \&PointOnB, const btVector3 \&normalOnB, btScalar distance, int lifeTime, const btVector3 \&color)}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a8b912aaff8dfd9f4e97ffb2d867121b2}
+
+\item 
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a4e3b4cbc861f76696b4d32f0cf068ea6}{
+virtual void {\bfseries reportErrorWarning} (const char $\ast$warningString)}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a4e3b4cbc861f76696b4d32f0cf068ea6}
+
+\item 
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a1266d3fad8868ade2d515e9c92e76b4a}{
+virtual void {\bfseries draw3dText} (const btVector3 \&location, const char $\ast$textString)}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a1266d3fad8868ade2d515e9c92e76b4a}
+
+\item 
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a63059b273ed6031a393b2d994b820bcc}{
+virtual void {\bfseries setDebugMode} (int debugMode)}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a63059b273ed6031a393b2d994b820bcc}
+
+\item 
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_aba329861569d741e970ce5aafb668e84}{
+virtual int {\bfseries getDebugMode} () const }
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_aba329861569d741e970ce5aafb668e84}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is used to draw wireframse for the Physics subsystem. \begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 81 of file world.cpp.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+world.cpp\end{DoxyCompactItemize}
