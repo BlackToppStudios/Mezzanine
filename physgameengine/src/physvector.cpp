@@ -61,6 +61,16 @@ PhysVector3::PhysVector3(Real x, Real y, Real z)
 	Z=z;
 }
 
+PhysVector3::PhysVector3(Ogre::Vector3 Vec)
+{
+    this->ExtractOgreVector3(Vec);
+}
+
+PhysVector3::PhysVector3(btVector3 Vec)
+{
+    this->ExtractBulletVector3(Vec);
+}
+
 /////////////////////////////////////////////////////////////////////
 // Operators
 std::ostream& operator << (std::ostream& stream, const PhysVector3& x)
@@ -131,7 +141,7 @@ PhysVector3& operator << (PhysVector3& VecTo, const btVector3& VecFrom)
 
 ///////////////////////////////////////////////////////////////////////////////
 // Manual Conversions
-btVector3 PhysVector3::GetBulletVector3()
+btVector3 PhysVector3::GetBulletVector3() const
 {
     btVector3 Theirs;
     Theirs.setX(this->X);
@@ -148,7 +158,7 @@ void PhysVector3::ExtractBulletVector3(btVector3 Ours)
     this->Z=Ours.getZ();
 }
 
-Ogre::Vector3 PhysVector3::GetOgreVector3()
+Ogre::Vector3 PhysVector3::GetOgreVector3() const
 {
     Ogre::Vector3 Theirs;
     Theirs.x=this->X;

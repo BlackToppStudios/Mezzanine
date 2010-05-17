@@ -38,9 +38,9 @@ void \hyperlink{classphys_1_1EventManager_a01a5a131ac26679eee5dcf5dd514045c}{Upd
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Rendertime event and removes it from the Que. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_af1204912be3554312e66d3a777c1f99b}{RemoveNextRenderTimeEvent} ()
 \begin{DoxyCompactList}\small\item\em Removes the First Rendertime Event From the que without looking at it. \item\end{DoxyCompactList}\item 
-\hyperlink{classPhysEventUserInput}{PhysEventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_ad61b660278f03702e0c564c7ad2dbc5d}{GetNextUserInputEvent} ()
+\hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_a38b42602a3a4d621048c78b525b4db49}{GetNextUserInputEvent} ()
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event. \item\end{DoxyCompactList}\item 
-\hyperlink{classPhysEventUserInput}{PhysEventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_a32d29a1a66e1f77b758f08e31a922a5a}{PopNextUserInputEvent} ()
+\hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_afa89317d4b16c2b7065b9f79a4354654}{PopNextUserInputEvent} ()
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event and removes it from the Que. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_add41b5f4d2942461bcaf40a97ad40b09}{RemoveNextUserInputEvent} ()
 \begin{DoxyCompactList}\small\item\em Removes the First User Input Event From the que without looking at it. \item\end{DoxyCompactList}\item 
@@ -60,7 +60,7 @@ void \hyperlink{classphys_1_1EventManager_a6ff66883358344908afd11204f79f196}{Add
 \begin{DoxyCompactList}\small\item\em Generates extra events each iteration of the main loop, based on user input polling. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_adaf7d5346932506ed43f893eb071fd39}{RemovePollingCheck} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&InputToStopPolling)
 \begin{DoxyCompactList}\small\item\em Removes Events from the list(s) of what needs to be polled. \item\end{DoxyCompactList}\item 
-\hyperlink{classPhysEventUserInput}{PhysEventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_aaa38d44f9fad236d68c66249428cc164}{PollForUserInputEvents} ()
+\hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_a983bc9f1933466491e6bf025b26a9023}{PollForUserInputEvents} ()
 \begin{DoxyCompactList}\small\item\em This activates the polling routines of the user input subsystems. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -132,7 +132,7 @@ Generates extra events each iteration of the main loop, based on user input poll
 
 \begin{DoxyParams}{Parameters}
 \item[{\em InputToTryPolling}]This accepts a \hyperlink{classphys_1_1MetaCode}{MetaCode} and will try to watch for occurences like this one\end{DoxyParams}
-This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each Iteration of the main loop there will be a \hyperlink{classPhysEventUserInput}{PhysEventUserInput} that created. That Event will Include all the normal metacodes for user input that happened, and it will also have a meta code for each time this function was called. The added metacode may be partialky ignored, the Metavalue is almost always ignored, and in a situation where the can only be one of a given input on a system, the ID is ignore and 0 is assumed. 
+This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each Iteration of the main loop there will be a \hyperlink{classphys_1_1EventUserInput}{EventUserInput} that created. That Event will Include all the normal metacodes for user input that happened, and it will also have a meta code for each time this function was called. The added metacode may be partialky ignored, the Metavalue is almost always ignored, and in a situation where the can only be one of a given input on a system, the ID is ignore and 0 is assumed. 
 \begin{DoxyExceptions}{Exceptions}
 \item[{\em Unsupported Polling Check on this Platform}]When the metacode passed cannot be polled on this platform \end{DoxyExceptions}
 
@@ -201,23 +201,23 @@ Returns a pointer to the Next kind event of the Specified type.
 \item[{\em SpecificType}]This is a PhysEvent::EventType that defines the type you want this to work with\end{DoxyParams}
 This and the other NextSpecificEvent functions are the core of the Event Filtering System. In general the other filtering functions call one of these and does very little work on their own. \par
  This performs a linear search starting with the oldest (first entered Events) and simply checks if it the of the correct type. Then this returns a pointer to the next event of the specified type, or returns a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. \begin{DoxyReturn}{Returns}
-A pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput}, that still needs to be removed from the event manager and deleted. 
+A pointer to a \hyperlink{classphys_1_1EventUserInput}{EventUserInput}, that still needs to be removed from the event manager and deleted. 
 \end{DoxyReturn}
 
 
 Definition at line 182 of file eventmanager.cpp.
 
-\hypertarget{classphys_1_1EventManager_ad61b660278f03702e0c564c7ad2dbc5d}{
+\hypertarget{classphys_1_1EventManager_a38b42602a3a4d621048c78b525b4db49}{
 \index{phys::EventManager@{phys::EventManager}!GetNextUserInputEvent@{GetNextUserInputEvent}}
 \index{GetNextUserInputEvent@{GetNextUserInputEvent}!phys::EventManager@{phys::EventManager}}
-\subsubsection[{GetNextUserInputEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventUserInput} $\ast$ phys::EventManager::GetNextUserInputEvent ()}}
-\label{da/dde/classphys_1_1EventManager_ad61b660278f03702e0c564c7ad2dbc5d}
+\subsubsection[{GetNextUserInputEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventUserInput} $\ast$ phys::EventManager::GetNextUserInputEvent ()}}
+\label{da/dde/classphys_1_1EventManager_a38b42602a3a4d621048c78b525b4db49}
 
 
 Returns a pointer to the Next User Input event. 
 
 This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input events in the que. \begin{DoxyReturn}{Returns}
-A pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput}, that still needs to be removed from the event manager and deleted. 
+A pointer to a \hyperlink{classphys_1_1EventUserInput}{EventUserInput}, that still needs to be removed from the event manager and deleted. 
 \end{DoxyReturn}
 
 
@@ -239,17 +239,17 @@ This returns an unsigned integer with the amount of of total events
 
 Definition at line 99 of file eventmanager.cpp.
 
-\hypertarget{classphys_1_1EventManager_aaa38d44f9fad236d68c66249428cc164}{
+\hypertarget{classphys_1_1EventManager_a983bc9f1933466491e6bf025b26a9023}{
 \index{phys::EventManager@{phys::EventManager}!PollForUserInputEvents@{PollForUserInputEvents}}
 \index{PollForUserInputEvents@{PollForUserInputEvents}!phys::EventManager@{phys::EventManager}}
-\subsubsection[{PollForUserInputEvents}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventUserInput} $\ast$ phys::EventManager::PollForUserInputEvents ()}}
-\label{da/dde/classphys_1_1EventManager_aaa38d44f9fad236d68c66249428cc164}
+\subsubsection[{PollForUserInputEvents}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventUserInput} $\ast$ phys::EventManager::PollForUserInputEvents ()}}
+\label{da/dde/classphys_1_1EventManager_a983bc9f1933466491e6bf025b26a9023}
 
 
 This activates the polling routines of the user input subsystems. 
 
 This checks the current state of user input devices that have been added by \hyperlink{classphys_1_1EventManager_a6ff66883358344908afd11204f79f196}{AddPollingCheck(const MetaCode \&InputToTryPolling)}. This is called automatically by main loop processing, but there is no harm in calling it several times. \begin{DoxyReturn}{Returns}
-This returns a pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput} that contains the desired metacodes 
+This returns a pointer to a \hyperlink{classphys_1_1EventUserInput}{EventUserInput} that contains the desired metacodes 
 \end{DoxyReturn}
 
 
@@ -316,23 +316,23 @@ Returns a pointer to the Next kind event of the Specified type, and removes it f
 \begin{DoxyParams}{Parameters}
 \item[{\em SpecificType}]This is a PhysEvent::EventType that defines the type you want this to work with\end{DoxyParams}
 This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que. \begin{DoxyReturn}{Returns}
-A pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput}, that still needs to be removed from the event manager and deleted. 
+A pointer to a \hyperlink{classphys_1_1EventUserInput}{EventUserInput}, that still needs to be removed from the event manager and deleted. 
 \end{DoxyReturn}
 
 
 Definition at line 196 of file eventmanager.cpp.
 
-\hypertarget{classphys_1_1EventManager_a32d29a1a66e1f77b758f08e31a922a5a}{
+\hypertarget{classphys_1_1EventManager_afa89317d4b16c2b7065b9f79a4354654}{
 \index{phys::EventManager@{phys::EventManager}!PopNextUserInputEvent@{PopNextUserInputEvent}}
 \index{PopNextUserInputEvent@{PopNextUserInputEvent}!phys::EventManager@{phys::EventManager}}
-\subsubsection[{PopNextUserInputEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysEventUserInput} $\ast$ phys::EventManager::PopNextUserInputEvent ()}}
-\label{da/dde/classphys_1_1EventManager_a32d29a1a66e1f77b758f08e31a922a5a}
+\subsubsection[{PopNextUserInputEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventUserInput} $\ast$ phys::EventManager::PopNextUserInputEvent ()}}
+\label{da/dde/classphys_1_1EventManager_afa89317d4b16c2b7065b9f79a4354654}
 
 
 Returns a pointer to the Next User Input event and removes it from the Que. 
 
 This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input events in the que. This also removes the returned pointer form the Que. \begin{DoxyReturn}{Returns}
-A pointer to a \hyperlink{classPhysEventUserInput}{PhysEventUserInput}, that still needs to be removed from the event manager and deleted. 
+A pointer to a \hyperlink{classphys_1_1EventUserInput}{EventUserInput}, that still needs to be removed from the event manager and deleted. 
 \end{DoxyReturn}
 
 
@@ -426,8 +426,8 @@ Definition at line 211 of file eventmanager.cpp.
 
 Removes the First User Input Event From the que without looking at it. 
 
-This together with \hyperlink{classphys_1_1EventManager_ad61b660278f03702e0c564c7ad2dbc5d}{GetNextUserInputEvent()} are the pretty much same as call \hyperlink{classphys_1_1EventManager_a32d29a1a66e1f77b758f08e31a922a5a}{PopNextUserInputEvent()}. \begin{DoxyWarning}{Warning}
-If you did not call \hyperlink{classphys_1_1EventManager_ad61b660278f03702e0c564c7ad2dbc5d}{GetNextUserInputEvent()} and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately 
+This together with \hyperlink{classphys_1_1EventManager_a38b42602a3a4d621048c78b525b4db49}{GetNextUserInputEvent()} are the pretty much same as call \hyperlink{classphys_1_1EventManager_afa89317d4b16c2b7065b9f79a4354654}{PopNextUserInputEvent()}. \begin{DoxyWarning}{Warning}
+If you did not call \hyperlink{classphys_1_1EventManager_a38b42602a3a4d621048c78b525b4db49}{GetNextUserInputEvent()} and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately 
 \end{DoxyWarning}
 
 \begin{DoxyExceptions}{Exceptions}
@@ -498,7 +498,7 @@ Definition at line 142 of file eventmanager.cpp.
 
 Pulls User Interface Events from the all the subsystems for use in the \hyperlink{classphys_1_1EventManager}{EventManager}. 
 
-This adds events, like EventUserInput to the eventmanager. The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use \hyperlink{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{UpdateEvents()} and plans on using \hyperlink{classphys_1_1EventManager_a0cf574c55def063d66d7db46a4d3e8a5}{UpdateSystemEvents()} 
+This adds events, like \hyperlink{classphys_1_1EventUserInput}{EventUserInput} to the eventmanager. The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use \hyperlink{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{UpdateEvents()} and plans on using \hyperlink{classphys_1_1EventManager_a0cf574c55def063d66d7db46a4d3e8a5}{UpdateSystemEvents()} 
 
 Definition at line 150 of file eventmanager.cpp.
 

@@ -65,7 +65,7 @@ namespace phys
             enum EventType
             {
                 RenderTime,     /**< Indicates the Event is a PhysEventRenderTime */
-                UserInput,      /**< Indicates the Event is a PhysEventUserInput */
+                UserInput,      /**< Indicates the Event is a EventUserInput */
                 QuitMessage,    /**< Indicates the Event is a phys::EventQuit */
                 SystemMessage,  /**< Indicates the Event has not been coded yet */
                 Other

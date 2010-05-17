@@ -178,14 +178,14 @@
 <a name="l00153"></a>00153         ParentWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;User Input EventCount Pending:&quot;</span>);
 <a name="l00154"></a>00154         ParentWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(SDL_UserInputEvents.size());
 <a name="l00155"></a>00155 
-<a name="l00156"></a>00156         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* FromSDLEvent = <span class="keyword">new</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>();
-<a name="l00157"></a>00157         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* FromSDLPolling = this-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#aaa38d44f9fad236d68c66249428cc164" title="This activates the polling routines of the user input subsystems.">PollForUserInputEvents</a>();
+<a name="l00156"></a>00156         <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* FromSDLEvent = <span class="keyword">new</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>();
+<a name="l00157"></a>00157         <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* FromSDLPolling = this-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#a983bc9f1933466491e6bf025b26a9023" title="This activates the polling routines of the user input subsystems.">PollForUserInputEvents</a>();
 <a name="l00158"></a>00158 
 <a name="l00159"></a>00159         <span class="keywordflow">while</span>( !SDL_UserInputEvents.empty() )
 <a name="l00160"></a>00160         {
 <a name="l00161"></a>00161             <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a>* CurrentRawEvent = SDL_UserInputEvents.front();
 <a name="l00162"></a>00162 
-<a name="l00163"></a>00163             FromSDLEvent-&gt;<a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a9e42f42f9a4a42f792e5cf95856669c0" title="Adds all possible MetaCodes that can be created from the given RawEvent.">AddCodesFromRawEvent</a>( *CurrentRawEvent );
+<a name="l00163"></a>00163             FromSDLEvent-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a26a39a23deab9e54c140cc0a1cbbe6a9" title="Adds all possible MetaCodes that can be created from the given RawEvent.">AddCodesFromRawEvent</a>( *CurrentRawEvent );
 <a name="l00164"></a>00164             <span class="keyword">delete</span> CurrentRawEvent;
 <a name="l00165"></a>00165             SDL_UserInputEvents.pop(); <span class="comment">//NEXT!!!</span>
 <a name="l00166"></a>00166         }
@@ -193,7 +193,7 @@
 <a name="l00168"></a>00168         *FromSDLEvent += *FromSDLPolling;
 <a name="l00169"></a>00169         <span class="keyword">delete</span> FromSDLPolling;
 <a name="l00170"></a>00170 
-<a name="l00171"></a>00171         <span class="keywordflow">if</span> (0 &lt; FromSDLEvent-&gt;<a class="code" href="../../dc/d0e/classPhysEventUserInput.html#a86df812a38566a572134100a422a8799" title="Retrieves a count of the stored Metacodes.">GetMetaCodeCount</a>())
+<a name="l00171"></a>00171         <span class="keywordflow">if</span> (0 &lt; FromSDLEvent-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a17aa65dcf0ef8689affa50232eec4ccb" title="Retrieves a count of the stored Metacodes.">GetMetaCodeCount</a>())
 <a name="l00172"></a>00172         {
 <a name="l00173"></a>00173             this-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#abada23d83ef38e59a38eb91a88a07404" title="Adds an event of any kind to the end of the Event Queue.">AddEvent</a>(FromSDLEvent); <span class="comment">//Now FromSDL is some else&#39;s responsibility</span>
 <a name="l00174"></a>00174         }<span class="keywordflow">else</span>{
@@ -266,14 +266,14 @@
 <a name="l00241"></a>00241 <span class="comment"></span>    <span class="comment">// Filtered management functions - User Input Events</span><span class="comment"></span>
 <a name="l00242"></a>00242 <span class="comment">    ///////////////////////////////////////</span>
 <a name="l00243"></a>00243 <span class="comment"></span>
-<a name="l00244"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#ad61b660278f03702e0c564c7ad2dbc5d">00244</a>     <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#ad61b660278f03702e0c564c7ad2dbc5d" title="Returns a pointer to the Next User Input event.">EventManager::GetNextUserInputEvent</a>()
+<a name="l00244"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#a38b42602a3a4d621048c78b525b4db49">00244</a>     <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a38b42602a3a4d621048c78b525b4db49" title="Returns a pointer to the Next User Input event.">EventManager::GetNextUserInputEvent</a>()
 <a name="l00245"></a>00245     {
-<a name="l00246"></a>00246         <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>*<span class="keyword">&gt;</span> (this-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#a7340cfab326856cf4ebc653b11101016" title="Returns a pointer to the Next kind event of the Specified type.">GetNextSpecificEvent</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">EventBase::UserInput</a>));
+<a name="l00246"></a>00246         <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>*<span class="keyword">&gt;</span> (this-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#a7340cfab326856cf4ebc653b11101016" title="Returns a pointer to the Next kind event of the Specified type.">GetNextSpecificEvent</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">EventBase::UserInput</a>));
 <a name="l00247"></a>00247     }
 <a name="l00248"></a>00248 
-<a name="l00249"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#a32d29a1a66e1f77b758f08e31a922a5a">00249</a>     <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a32d29a1a66e1f77b758f08e31a922a5a" title="Returns a pointer to the Next User Input event and removes it from the Que.">EventManager::PopNextUserInputEvent</a>()
+<a name="l00249"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#afa89317d4b16c2b7065b9f79a4354654">00249</a>     <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#afa89317d4b16c2b7065b9f79a4354654" title="Returns a pointer to the Next User Input event and removes it from the Que.">EventManager::PopNextUserInputEvent</a>()
 <a name="l00250"></a>00250     {
-<a name="l00251"></a>00251         <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>*<span class="keyword">&gt;</span> (this-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#a156ba3c53cc799499272430111bbdfa4" title="Returns a pointer to the Next kind event of the Specified type, and removes it from...">PopNextSpecificEvent</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">EventBase::UserInput</a>));
+<a name="l00251"></a>00251         <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>*<span class="keyword">&gt;</span> (this-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#a156ba3c53cc799499272430111bbdfa4" title="Returns a pointer to the Next kind event of the Specified type, and removes it from...">PopNextSpecificEvent</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">EventBase::UserInput</a>));
 <a name="l00252"></a>00252     }
 <a name="l00253"></a>00253 
 <a name="l00254"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#add41b5f4d2942461bcaf40a97ad40b09">00254</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#add41b5f4d2942461bcaf40a97ad40b09" title="Removes the First User Input Event From the que without looking at it.">EventManager::RemoveNextUserInputEvent</a>()
@@ -344,7 +344,7 @@
 <a name="l00319"></a>00319 <span class="comment"></span>    }
 <a name="l00320"></a>00320 
 <a name="l00321"></a>00321 
-<a name="l00322"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#aaa38d44f9fad236d68c66249428cc164">00322</a>     <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#aaa38d44f9fad236d68c66249428cc164" title="This activates the polling routines of the user input subsystems.">EventManager::PollForUserInputEvents</a>()
+<a name="l00322"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#a983bc9f1933466491e6bf025b26a9023">00322</a>     <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a983bc9f1933466491e6bf025b26a9023" title="This activates the polling routines of the user input subsystems.">EventManager::PollForUserInputEvents</a>()
 <a name="l00323"></a>00323     {
 <a name="l00324"></a>00324         vector&lt;MetaCode&gt; MetaBag;
 <a name="l00325"></a>00325 
@@ -353,7 +353,7 @@
 <a name="l00328"></a>00328         PollMouseButtons(MetaBag);
 <a name="l00329"></a>00329         PollMouseLocation(MetaBag);
 <a name="l00330"></a>00330 
-<a name="l00331"></a>00331         <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* test = <span class="keyword">new</span> <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>(MetaBag);
+<a name="l00331"></a>00331         <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* test = <span class="keyword">new</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>(MetaBag);
 <a name="l00332"></a>00332         <span class="keywordflow">return</span> test;
 <a name="l00333"></a>00333     }
 <a name="l00334"></a>00334 
@@ -486,7 +486,7 @@
 <a name="l00461"></a>00461 
 <a name="l00462"></a>00462 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat May 15 11:46:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 17 00:38:39 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -41,7 +41,7 @@ Main loop Overview</a></h2>
 <p>This can be set using the function in PhysWorldCallBackManager that have "PreInput" in their names. This is a great place to to do begining of loop items, like gathering data for computer controlled characters, checking if game goals are met, and other items that needs to be done it iteration of the game loop and don't directly relate to physics or Rendering. </p>
 <h3><a class="anchor" id="input2">
 1.B) Input Buffering</a></h3>
-<p>During this step Input events are gathered fromt the input Subsystem (which could be any of a number of user input libraries), which are ultimately made by the Operating System and processed into <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> objects, and placed in the Default event manager ( check the pointer <a class="el" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453" title="This is the default pointer to the Event Manager.">World::Events</a> ). </p>
+<p>During this step Input events are gathered fromt the input Subsystem (which could be any of a number of user input libraries), which are ultimately made by the Operating System and processed into <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> objects, and placed in the Default event manager ( check the pointer <a class="el" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453" title="This is the default pointer to the Event Manager.">World::Events</a> ). </p>
 <h3><a class="anchor" id="input3">
 1.C) PostInputCallback</a></h3>
 <p>This callback is your first chance to access the userinput Events and try to use them. This callback can be managed by using methods in PhysWorldCallBackManager that have "PostInput" in their names. The functionality of this Callback slightly overlaps with the Prephysics Callbacks due to the timing of using them both. If both are used, one will be called immediately after the other. <br/>
@@ -76,7 +76,7 @@ Main loop Overview</a></h2>
 Ending the Main Loop</a></h2>
 <p>The main loop stores the return values of each of the 6 callbacks. If they are all true the mainloop continues to it's next iteration. If one or more of any of the callbacks returns false then the main loop ends, and the game engine exits gracefully, cleanly up the physics, graphics and any others subsystems it opened. No attempt will be made by the engine to clean up data in the callback manager. If the game code does not free these items the operating system had better do it automatically. On most PC platform this is not an issue, but it could be disastrous on a mobile, or underperforming gaming platform. </p>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat May 15 11:46:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 17 00:38:39 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

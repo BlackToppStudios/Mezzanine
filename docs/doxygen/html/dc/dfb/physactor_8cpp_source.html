@@ -246,7 +246,7 @@
 <a name="l00221"></a>00221 
 <a name="l00222"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af8a6cb524bda889b7a38f0245a7381fb">00222</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af8a6cb524bda889b7a38f0245a7381fb" title="Sets the location of the graphical body.">ActorBase::SetOgreLocation</a> (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Location)
 <a name="l00223"></a>00223     {
-<a name="l00224"></a>00224         this-&gt;node-&gt;setPosition(Location.<a class="code" href="../../da/d11/classPhysVector3.html#a01facc2b865bb79c589ed1985dd6c49c" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00224"></a>00224         this-&gt;node-&gt;setPosition(Location.<a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>());
 <a name="l00225"></a>00225     }
 <a name="l00226"></a>00226 
 <a name="l00227"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a52a65d23c76c805f4851191b62712ed8">00227</a>     <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a52a65d23c76c805f4851191b62712ed8" title="Retrieves the location of the graphical body.">ActorBase::GetOgreLocation</a>()
@@ -259,7 +259,7 @@
 <a name="l00234"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ab8d8c68937ea92b245b411c07b8bde7a">00234</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ab8d8c68937ea92b245b411c07b8bde7a" title="Sets the location of the physics body.">ActorBase::SetBulletLocation</a> (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Location)
 <a name="l00235"></a>00235     {
 <a name="l00236"></a>00236         <span class="comment">//btTransform* temp = this-&gt;CollisionObject-&gt;getWorldTransform();</span>
-<a name="l00237"></a>00237         this-&gt;CollisionObject-&gt;getWorldTransform().setOrigin(Location.<a class="code" href="../../da/d11/classPhysVector3.html#adfc5f9e933a94be994ce5ce0c38d1f96" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00237"></a>00237         this-&gt;CollisionObject-&gt;getWorldTransform().setOrigin(Location.<a class="code" href="../../da/d11/classPhysVector3.html#a7109b1bf54cae678e5cada4e82482918" title="Gets a Bullet vector3.">GetBulletVector3</a>());
 <a name="l00238"></a>00238     }
 <a name="l00239"></a>00239 
 <a name="l00240"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ac7c8bbb4859668d71325a791c88584ae">00240</a>     <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ac7c8bbb4859668d71325a791c88584ae" title="Retrieves the location of the physics body.">ActorBase::GetBulletLocation</a>()
@@ -325,7 +325,7 @@
 <a name="l00300"></a>00300         <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> temp;
 <a name="l00301"></a>00301         <span class="comment">//temp.ExtractBulletVector3(this-&gt;MotionState-&gt;initposition.getOrigin());</span>
 <a name="l00302"></a>00302         temp = <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ac7c8bbb4859668d71325a791c88584ae" title="Retrieves the location of the physics body.">GetBulletLocation</a>();
-<a name="l00303"></a>00303         this-&gt;node-&gt;setPosition(temp.<a class="code" href="../../da/d11/classPhysVector3.html#a01facc2b865bb79c589ed1985dd6c49c" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00303"></a>00303         this-&gt;node-&gt;setPosition(temp.<a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>());
 <a name="l00304"></a>00304         this-&gt;node-&gt;attachObject(this-&gt;entity);
 <a name="l00305"></a>00305     }
 <a name="l00306"></a>00306 
@@ -468,7 +468,7 @@
 <a name="l00443"></a>00443 
 <a name="l00444"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a083029e5dbcfafd573d47331ff8660cb">00444</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a083029e5dbcfafd573d47331ff8660cb" title="Sets the initial position.">PhysMotionState::SetPosition</a>(<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> position)
 <a name="l00445"></a>00445     {
-<a name="l00446"></a>00446         this-&gt;initposition.setOrigin(position.<a class="code" href="../../da/d11/classPhysVector3.html#adfc5f9e933a94be994ce5ce0c38d1f96" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00446"></a>00446         this-&gt;initposition.setOrigin(position.<a class="code" href="../../da/d11/classPhysVector3.html#a7109b1bf54cae678e5cada4e82482918" title="Gets a Bullet vector3.">GetBulletVector3</a>());
 <a name="l00447"></a>00447     }
 <a name="l00448"></a>00448 
 <a name="l00449"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac799070edfea4d1c442e3ed0857bcb1d">00449</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac799070edfea4d1c442e3ed0857bcb1d" title="Sets the initial orientation.">PhysMotionState::SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> orientation)
@@ -491,7 +491,7 @@
 <a name="l00466"></a>00466 }
 <a name="l00467"></a>00467 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat May 15 11:46:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 17 00:38:39 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

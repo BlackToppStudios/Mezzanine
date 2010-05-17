@@ -51,7 +51,7 @@ using namespace std;
 
 #include "eventbase.h"
 #include "eventrendertime.h"
-#include "physeventuserinput.h"
+#include "eventuserinput.h"
 #include "eventquit.h"
 
 namespace phys
@@ -208,16 +208,16 @@ namespace phys
             /// this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately
             /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input
             /// events in the que.
-            /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
-            PhysEventUserInput* GetNextUserInputEvent();
+            /// @return A pointer to a EventUserInput, that still needs to be removed from the event manager and deleted.
+            EventUserInput* GetNextUserInputEvent();
 
             /// @brief Returns a pointer to the Next User Input event and removes it from the Que
             /// @details This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use
             /// this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately
             /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input
             /// events in the que. This also removes the returned pointer form the Que.
-            /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
-            PhysEventUserInput* PopNextUserInputEvent();
+            /// @return A pointer to a EventUserInput, that still needs to be removed from the event manager and deleted.
+            EventUserInput* PopNextUserInputEvent();
 
             /// @brief Removes the First User Input Event From the que without looking at it.
             /// @details This together with GetNextUserInputEvent() are the pretty much same as call PopNextUserInputEvent().
@@ -262,13 +262,13 @@ namespace phys
             /// Events) and simply checks if it the of the correct type. Then this returns a pointer to the next event of the specified type, or returns
             /// a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use
             /// this for performance reasons becuase it runs in linear time relative to the amount of events.
-            /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
+            /// @return A pointer to a EventUserInput, that still needs to be removed from the event manager and deleted.
             EventBase* GetNextSpecificEvent(EventBase::EventType SpecificType);
 
             /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que
             /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with
             /// @details This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que.
-            /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.
+            /// @return A pointer to a EventUserInput, that still needs to be removed from the event manager and deleted.
             EventBase* PopNextSpecificEvent(EventBase::EventType SpecificType);
 
             /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que
@@ -286,7 +286,7 @@ namespace phys
             /// @brief Generates extra events each iteration of the main loop, based on user input polling
             /// @param InputToTryPolling This accepts a MetaCode and will try to watch for occurences like this one
             /// @details This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each
-            /// Iteration of the main loop there will be a PhysEventUserInput that created. That Event will Include all the normal metacodes for user input
+            /// Iteration of the main loop there will be a EventUserInput that created. That Event will Include all the normal metacodes for user input
             /// that happened, and it will also have a meta code for each time this function was called. The added metacode may be partialky ignored, the
             /// Metavalue is almost always ignored, and in a situation where the can only be one of a given input on a system, the ID is ignore and 0 is assumed.
             /// @exception "Unsupported Polling Check on this Platform" When the metacode passed cannot be polled on this platform
@@ -301,8 +301,8 @@ namespace phys
             /// @brief This activates the polling routines of the user input subsystems
             /// @details This checks the current state of user input devices that have been added by AddPollingCheck(const MetaCode &InputToTryPolling).
             /// This is called automatically by main loop processing, but there is no harm in calling it several times.
-            /// @return This returns a pointer to a PhysEventUserInput that contains the desired metacodes
-            PhysEventUserInput* PollForUserInputEvents();
+            /// @return This returns a pointer to a EventUserInput that contains the desired metacodes
+            EventUserInput* PollForUserInputEvents();
     };
 }
 #endif

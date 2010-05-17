@@ -100,14 +100,15 @@
 		<Unit filename="src/eventquit.h" />
 		<Unit filename="src/eventrendertime.cpp" />
 		<Unit filename="src/eventrendertime.h" />
+		<Unit filename="src/eventuserinput.cpp" />
 		<Unit filename="src/graphicsettings.cpp" />
 		<Unit filename="src/graphicsettings.h" />
+		<Unit filename="src/linegroup.cpp" />
+		<Unit filename="src/linegroup.h" />
 		<Unit filename="src/metacode.cpp" />
 		<Unit filename="src/metacode.h" />
 		<Unit filename="src/physactor.cpp" />
 		<Unit filename="src/physactor.h" />
-		<Unit filename="src/physeventuserinput.cpp" />
-		<Unit filename="src/physeventuserinput.h" />
 		<Unit filename="src/physmisc.cpp" />
 		<Unit filename="src/physmisc.h" />
 		<Unit filename="src/physvector.cpp" />

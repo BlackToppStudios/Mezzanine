@@ -83,55 +83,66 @@
 <a name="l00058"></a><a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f">00058</a> <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>;<span class="comment"></span>
 <a name="l00059"></a>00059 <span class="comment">                /// @brief Coordinate on the Y vector.</span>
 <a name="l00060"></a><a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558">00060</a> <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>;<span class="comment"></span>
-<a name="l00061"></a>00061 <span class="comment">                /// @brief Coordinate on the Z vector.</span>
-<a name="l00062"></a><a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74">00062</a> <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>;
+<a name="l00061"></a>00061 <span class="comment">                /// @brief Coordinate on the Z vector.q</span>
+<a name="l00062"></a><a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74">00062</a> <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.q.">Z</a>;
 <a name="l00063"></a>00063 <span class="comment"></span>
-<a name="l00064"></a>00064 <span class="comment">        /// @brief Blank Constructor.</span>
-<a name="l00065"></a>00065 <span class="comment">        /// @details Basic no-initialization constructor.</span>
-<a name="l00066"></a>00066 <span class="comment"></span>        <a class="code" href="../../da/d11/classPhysVector3.html#a0d68895a6479ed7f875f666ce381afba" title="Blank Constructor.">PhysVector3</a>();<span class="comment"></span>
-<a name="l00067"></a>00067 <span class="comment">        /// @brief Constructor.</span>
-<a name="l00068"></a>00068 <span class="comment">        /// @details Constructor that sets all three vectors.</span>
-<a name="l00069"></a>00069 <span class="comment">        /// @param X Coordinate on the X vector.</span>
-<a name="l00070"></a>00070 <span class="comment">        /// @param Y Coordinate on the Y vector.</span>
-<a name="l00071"></a>00071 <span class="comment">        /// @param Z Coordinate on the Z vector.</span>
-<a name="l00072"></a>00072 <span class="comment"></span>                <a class="code" href="../../da/d11/classPhysVector3.html#a0d68895a6479ed7f875f666ce381afba" title="Blank Constructor.">PhysVector3</a>(Real <a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>, Real <a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>, Real <a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.">Z</a>);
-<a name="l00073"></a>00073 <span class="comment"></span>
-<a name="l00074"></a>00074 <span class="comment">        /// @brief Gets a Bullet vector3.</span>
-<a name="l00075"></a>00075 <span class="comment">        /// @details Creates a Bullet vector3 with values equal to this class and returns it.</span>
-<a name="l00076"></a>00076 <span class="comment"></span>        btVector3 <a class="code" href="../../da/d11/classPhysVector3.html#adfc5f9e933a94be994ce5ce0c38d1f96" title="Gets a Bullet vector3.">GetBulletVector3</a>();<span class="comment"></span>
-<a name="l00077"></a>00077 <span class="comment">        /// @brief Copies an existing Bullet vector3.</span>
-<a name="l00078"></a>00078 <span class="comment">        /// @details This function will copy the values stored in an existing Bullet vector3</span>
-<a name="l00079"></a>00079 <span class="comment">        /// and set the values of this class to be the same.</span>
-<a name="l00080"></a>00080 <span class="comment">        /// @param Temp The vector3 to be extracted.</span>
-<a name="l00081"></a>00081 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../da/d11/classPhysVector3.html#a71a78da9e8011cb727010f8ba3acf546" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(btVector3 temp);
-<a name="l00082"></a>00082 <span class="comment"></span>
-<a name="l00083"></a>00083 <span class="comment">        /// @brief Gets a Ogre vector3.</span>
-<a name="l00084"></a>00084 <span class="comment">        /// @details Creates a Ogre vector3 with values equal to this class and returns it.</span>
-<a name="l00085"></a>00085 <span class="comment"></span>        Ogre::Vector3 <a class="code" href="../../da/d11/classPhysVector3.html#a01facc2b865bb79c589ed1985dd6c49c" title="Gets a Ogre vector3.">GetOgreVector3</a>();<span class="comment"></span>
-<a name="l00086"></a>00086 <span class="comment">        /// @brief Copies an existing Ogre vector3.</span>
-<a name="l00087"></a>00087 <span class="comment">        /// @details This function will copy the values stored in an existing Ogre vector3</span>
-<a name="l00088"></a>00088 <span class="comment">        /// and set the values of this class to be the same.</span>
-<a name="l00089"></a>00089 <span class="comment">        /// @param Temp The vector3 to be extracted.</span>
-<a name="l00090"></a>00090 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../da/d11/classPhysVector3.html#a422acbc95f72d00a26cb477ab7db5e87" title="Copies an existing Ogre vector3.">ExtractOgreVector3</a>(Ogre::Vector3 temp);
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092         <span class="keywordtype">void</span> operator= (<span class="keyword">const</span> btVector3 &amp;bt3);
-<a name="l00093"></a>00093         <span class="keywordtype">void</span> operator= (<span class="keyword">const</span> Ogre::Vector3 &amp;OVec3);
-<a name="l00094"></a>00094 };
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; x);
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecFrom);
-<a name="l00099"></a>00099 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
-<a name="l00102"></a>00102 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecFrom);
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104 <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
-<a name="l00105"></a>00105 <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
+<a name="l00064"></a>00064 <span class="comment">        /// @brief Default Constructor.</span>
+<a name="l00065"></a>00065 <span class="comment">        /// @details Basic all zero initialization constructor.</span>
+<a name="l00066"></a>00066 <span class="comment"></span>        <a class="code" href="../../da/d11/classPhysVector3.html#a0d68895a6479ed7f875f666ce381afba" title="Default Constructor.">PhysVector3</a>();
+<a name="l00067"></a>00067 <span class="comment"></span>
+<a name="l00068"></a>00068 <span class="comment">        /// @brief Real value Constructor.</span>
+<a name="l00069"></a>00069 <span class="comment">        /// @details Constructor that sets all three vectors.</span>
+<a name="l00070"></a>00070 <span class="comment">        /// @param X Coordinate on the X vector.</span>
+<a name="l00071"></a>00071 <span class="comment">        /// @param Y Coordinate on the Y vector.</span>
+<a name="l00072"></a>00072 <span class="comment">        /// @param Z Coordinate on the Z vector.</span>
+<a name="l00073"></a>00073 <span class="comment"></span>                <a class="code" href="../../da/d11/classPhysVector3.html#a0d68895a6479ed7f875f666ce381afba" title="Default Constructor.">PhysVector3</a>(Real <a class="code" href="../../da/d11/classPhysVector3.html#a8fb29119f25c996da9d091fd6ce5693f" title="Coordinate on the X vector.">X</a>, Real <a class="code" href="../../da/d11/classPhysVector3.html#a45b7fdd4361f9e31b36eab4551c1e558" title="Coordinate on the Y vector.">Y</a>, Real <a class="code" href="../../da/d11/classPhysVector3.html#a728c752b813e3191231904f629050a74" title="Coordinate on the Z vector.q.">Z</a>);
+<a name="l00074"></a>00074 <span class="comment"></span>
+<a name="l00075"></a>00075 <span class="comment">                /// @brief Ogre Value Constructor.</span>
+<a name="l00076"></a>00076 <span class="comment">        /// @details Constructor that sets all values to match the Ogre vector.</span>
+<a name="l00077"></a>00077 <span class="comment">        /// @param Vec The vector to be copied to make this vector</span>
+<a name="l00078"></a>00078 <span class="comment"></span>                <a class="code" href="../../da/d11/classPhysVector3.html#a0d68895a6479ed7f875f666ce381afba" title="Default Constructor.">PhysVector3</a>(Ogre::Vector3 Vec);
+<a name="l00079"></a>00079 <span class="comment"></span>
+<a name="l00080"></a>00080 <span class="comment">                /// @brief Bullet Value Constructor.</span>
+<a name="l00081"></a>00081 <span class="comment">        /// @details Constructor that sets all values to match the Bullet vector.</span>
+<a name="l00082"></a>00082 <span class="comment">        /// @param Vec The vector to be copied to make this vector</span>
+<a name="l00083"></a>00083 <span class="comment"></span>                <a class="code" href="../../da/d11/classPhysVector3.html#a0d68895a6479ed7f875f666ce381afba" title="Default Constructor.">PhysVector3</a>(btVector3 Vec);
+<a name="l00084"></a>00084 <span class="comment"></span>
+<a name="l00085"></a>00085 <span class="comment">        /// @brief Gets a Bullet vector3.</span>
+<a name="l00086"></a>00086 <span class="comment">        /// @details Creates a Bullet vector3 with values equal to this class and returns it.</span>
+<a name="l00087"></a>00087 <span class="comment"></span>        btVector3 <a class="code" href="../../da/d11/classPhysVector3.html#a7109b1bf54cae678e5cada4e82482918" title="Gets a Bullet vector3.">GetBulletVector3</a>() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00088"></a>00088 <span class="comment">        /// @brief Copies an existing Bullet vector3.</span>
+<a name="l00089"></a>00089 <span class="comment">        /// @details This function will copy the values stored in an existing Bullet vector3</span>
+<a name="l00090"></a>00090 <span class="comment">        /// and set the values of this class to be the same.</span>
+<a name="l00091"></a>00091 <span class="comment">        /// @param Temp The vector3 to be extracted.</span>
+<a name="l00092"></a>00092 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../da/d11/classPhysVector3.html#a71a78da9e8011cb727010f8ba3acf546" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(btVector3 temp);
+<a name="l00093"></a>00093 <span class="comment"></span>
+<a name="l00094"></a>00094 <span class="comment">        /// @brief Gets a Ogre vector3.</span>
+<a name="l00095"></a>00095 <span class="comment">        /// @details Creates a Ogre vector3 with values equal to this class and returns it.</span>
+<a name="l00096"></a>00096 <span class="comment"></span>        Ogre::Vector3 <a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00097"></a>00097 <span class="comment">        /// @brief Copies an existing Ogre vector3.</span>
+<a name="l00098"></a>00098 <span class="comment">        /// @details This function will copy the values stored in an existing Ogre vector3</span>
+<a name="l00099"></a>00099 <span class="comment">        /// and set the values of this class to be the same.</span>
+<a name="l00100"></a>00100 <span class="comment">        /// @param Temp The vector3 to be extracted.</span>
+<a name="l00101"></a>00101 <span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="../../da/d11/classPhysVector3.html#a422acbc95f72d00a26cb477ab7db5e87" title="Copies an existing Ogre vector3.">ExtractOgreVector3</a>(Ogre::Vector3 temp);
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103         <span class="keywordtype">void</span> operator= (<span class="keyword">const</span> btVector3 &amp;bt3);
+<a name="l00104"></a>00104         <span class="keywordtype">void</span> operator= (<span class="keyword">const</span> Ogre::Vector3 &amp;OVec3);
+<a name="l00105"></a>00105 };
 <a name="l00106"></a>00106 
-<a name="l00107"></a>00107 <span class="preprocessor">#endif</span>
+<a name="l00107"></a>00107 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; x);
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecFrom);
+<a name="l00110"></a>00110 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
+<a name="l00113"></a>00113 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecFrom);
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115 <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
+<a name="l00116"></a>00116 <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat May 15 11:46:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 17 00:38:39 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

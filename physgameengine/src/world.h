@@ -182,7 +182,7 @@ namespace phys
             Ogre::Viewport* OgreViewport;
             Ogre::SceneManager* OgreSceneManager;
 
-            friend class debug::InternalDebugDrawer;
+            friend class LineGroup;
             debug::InternalDebugDrawer* BulletDrawer;
         public:
 

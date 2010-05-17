@@ -62,10 +62,10 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the Next Rendertime event and removes it from the Que.  <a href="#aa7e800d34ad8b9295ac87dfa822a2a03"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#af1204912be3554312e66d3a777c1f99b">RemoveNextRenderTimeEvent</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes the First Rendertime Event From the que without looking at it.  <a href="#af1204912be3554312e66d3a777c1f99b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#ad61b660278f03702e0c564c7ad2dbc5d">GetNextUserInputEvent</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the Next User Input event.  <a href="#ad61b660278f03702e0c564c7ad2dbc5d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a32d29a1a66e1f77b758f08e31a922a5a">PopNextUserInputEvent</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the Next User Input event and removes it from the Que.  <a href="#a32d29a1a66e1f77b758f08e31a922a5a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a38b42602a3a4d621048c78b525b4db49">GetNextUserInputEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the Next User Input event.  <a href="#a38b42602a3a4d621048c78b525b4db49"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#afa89317d4b16c2b7065b9f79a4354654">PopNextUserInputEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the Next User Input event and removes it from the Que.  <a href="#afa89317d4b16c2b7065b9f79a4354654"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#add41b5f4d2942461bcaf40a97ad40b09">RemoveNextUserInputEvent</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes the First User Input Event From the que without looking at it.  <a href="#add41b5f4d2942461bcaf40a97ad40b09"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/dea/classphys_1_1EventQuit.html">EventQuit</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#ad7da09e5422b1db79ac4187ee9198d0c">GetNextQuitEvent</a> ()</td></tr>
@@ -84,8 +84,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generates extra events each iteration of the main loop, based on user input polling.  <a href="#a6ff66883358344908afd11204f79f196"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#adaf7d5346932506ed43f893eb071fd39">RemovePollingCheck</a> (const <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html">MetaCode</a> &amp;InputToStopPolling)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes Events from the list(s) of what needs to be polled.  <a href="#adaf7d5346932506ed43f893eb071fd39"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#aaa38d44f9fad236d68c66249428cc164">PollForUserInputEvents</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This activates the polling routines of the user input subsystems.  <a href="#aaa38d44f9fad236d68c66249428cc164"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a983bc9f1933466491e6bf025b26a9023">PollForUserInputEvents</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This activates the polling routines of the user input subsystems.  <a href="#a983bc9f1933466491e6bf025b26a9023"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is a container for Events and facilitates the transfer of data. </p>
@@ -182,7 +182,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </table>
   </dd>
 </dl>
-<p>This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each Iteration of the main loop there will be a <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> that created. That Event will Include all the normal metacodes for user input that happened, and it will also have a meta code for each time this function was called. The added metacode may be partialky ignored, the Metavalue is almost always ignored, and in a situation where the can only be one of a given input on a system, the ID is ignore and 0 is assumed. </p>
+<p>This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each Iteration of the main loop there will be a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> that created. That Event will Include all the normal metacodes for user input that happened, and it will also have a meta code for each time this function was called. The added metacode may be partialky ignored, the Metavalue is almost always ignored, and in a situation where the can only be one of a given input on a system, the ID is ignore and 0 is assumed. </p>
 <dl><dt><b>Exceptions:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Unsupported Polling Check on this Platform</em>&nbsp;</td><td>When the metacode passed cannot be polled on this platform </td></tr>
@@ -288,18 +288,18 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 </dl>
 <p>This and the other NextSpecificEvent functions are the core of the Event Filtering System. In general the other filtering functions call one of these and does very little work on their own. <br/>
  This performs a linear search starting with the oldest (first entered Events) and simply checks if it the of the correct type. Then this returns a pointer to the next event of the specified type, or returns a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00182">182</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad61b660278f03702e0c564c7ad2dbc5d"></a><!-- doxytag: member="phys::EventManager::GetNextUserInputEvent" ref="ad61b660278f03702e0c564c7ad2dbc5d" args="()" -->
+<a class="anchor" id="a38b42602a3a4d621048c78b525b4db49"></a><!-- doxytag: member="phys::EventManager::GetNextUserInputEvent" ref="a38b42602a3a4d621048c78b525b4db49" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> * phys::EventManager::GetNextUserInputEvent </td>
+          <td class="memname"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> * phys::EventManager::GetNextUserInputEvent </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -311,7 +311,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 
 <p>Returns a pointer to the Next User Input event. </p>
 <p>This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input events in the que. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00244">244</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
@@ -340,12 +340,12 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="aaa38d44f9fad236d68c66249428cc164"></a><!-- doxytag: member="phys::EventManager::PollForUserInputEvents" ref="aaa38d44f9fad236d68c66249428cc164" args="()" -->
+<a class="anchor" id="a983bc9f1933466491e6bf025b26a9023"></a><!-- doxytag: member="phys::EventManager::PollForUserInputEvents" ref="a983bc9f1933466491e6bf025b26a9023" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> * phys::EventManager::PollForUserInputEvents </td>
+          <td class="memname"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> * phys::EventManager::PollForUserInputEvents </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -357,7 +357,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 
 <p>This activates the polling routines of the user input subsystems. </p>
 <p>This checks the current state of user input devices that have been added by <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a6ff66883358344908afd11204f79f196" title="Generates extra events each iteration of the main loop, based on user input polling...">AddPollingCheck(const MetaCode &amp;InputToTryPolling)</a>. This is called automatically by main loop processing, but there is no harm in calling it several times. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a> that contains the desired metacodes </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> that contains the desired metacodes </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00322">322</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
@@ -456,18 +456,18 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </dd>
 </dl>
 <p>This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00196">196</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a32d29a1a66e1f77b758f08e31a922a5a"></a><!-- doxytag: member="phys::EventManager::PopNextUserInputEvent" ref="a32d29a1a66e1f77b758f08e31a922a5a" args="()" -->
+<a class="anchor" id="afa89317d4b16c2b7065b9f79a4354654"></a><!-- doxytag: member="phys::EventManager::PopNextUserInputEvent" ref="afa89317d4b16c2b7065b9f79a4354654" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../dc/d0e/classPhysEventUserInput.html">PhysEventUserInput</a> * phys::EventManager::PopNextUserInputEvent </td>
+          <td class="memname"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> * phys::EventManager::PopNextUserInputEvent </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -479,7 +479,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 
 <p>Returns a pointer to the Next User Input event and removes it from the Que. </p>
 <p>This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input events in the que. This also removes the returned pointer form the Que. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00249">249</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
@@ -624,8 +624,8 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Removes the First User Input Event From the que without looking at it. </p>
-<p>This together with <a class="el" href="../../da/dde/classphys_1_1EventManager.html#ad61b660278f03702e0c564c7ad2dbc5d" title="Returns a pointer to the Next User Input event.">GetNextUserInputEvent()</a> are the pretty much same as call <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a32d29a1a66e1f77b758f08e31a922a5a" title="Returns a pointer to the Next User Input event and removes it from the Que.">PopNextUserInputEvent()</a>. </p>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>If you did not call <a class="el" href="../../da/dde/classphys_1_1EventManager.html#ad61b660278f03702e0c564c7ad2dbc5d" title="Returns a pointer to the Next User Input event.">GetNextUserInputEvent()</a> and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately </dd></dl>
+<p>This together with <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a38b42602a3a4d621048c78b525b4db49" title="Returns a pointer to the Next User Input event.">GetNextUserInputEvent()</a> are the pretty much same as call <a class="el" href="../../da/dde/classphys_1_1EventManager.html#afa89317d4b16c2b7065b9f79a4354654" title="Returns a pointer to the Next User Input event and removes it from the Que.">PopNextUserInputEvent()</a>. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>If you did not call <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a38b42602a3a4d621048c78b525b4db49" title="Returns a pointer to the Next User Input event.">GetNextUserInputEvent()</a> and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately </dd></dl>
 <dl><dt><b>Exceptions:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>This</em>&nbsp;</td><td>can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que. </td></tr>
@@ -736,7 +736,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Pulls User Interface Events from the all the subsystems for use in the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>. </p>
-<p>This adds events, like EventUserInput to the eventmanager. The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166" title="Pulls Events from the all the subsystems for use in the EventManager.">UpdateEvents()</a> and plans on using <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5" title="Pulls System and Window manager Events from the all the subsystems for use in the...">UpdateSystemEvents()</a> </p>
+<p>This adds events, like <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> to the eventmanager. The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166" title="Pulls Events from the all the subsystems for use in the EventManager.">UpdateEvents()</a> and plans on using <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5" title="Pulls System and Window manager Events from the all the subsystems for use in the...">UpdateSystemEvents()</a> </p>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00150">150</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
@@ -747,7 +747,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <li><a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat May 15 11:46:57 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 17 00:38:39 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

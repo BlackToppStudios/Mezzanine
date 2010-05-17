@@ -58,22 +58,33 @@ class PhysVector3
 		Real X;
 		/// @brief Coordinate on the Y vector.
 		Real Y;
-		/// @brief Coordinate on the Z vector.
+		/// @brief Coordinate on the Z vector.q
 		Real Z;
 
-        /// @brief Blank Constructor.
-        /// @details Basic no-initialization constructor.
+        /// @brief Default Constructor.
+        /// @details Basic all zero initialization constructor.
         PhysVector3();
-        /// @brief Constructor.
+
+        /// @brief Real value Constructor.
         /// @details Constructor that sets all three vectors.
         /// @param X Coordinate on the X vector.
         /// @param Y Coordinate on the Y vector.
         /// @param Z Coordinate on the Z vector.
 		PhysVector3(Real X, Real Y, Real Z);
 
+		/// @brief Ogre Value Constructor.
+        /// @details Constructor that sets all values to match the Ogre vector.
+        /// @param Vec The vector to be copied to make this vector
+		PhysVector3(Ogre::Vector3 Vec);
+
+		/// @brief Bullet Value Constructor.
+        /// @details Constructor that sets all values to match the Bullet vector.
+        /// @param Vec The vector to be copied to make this vector
+		PhysVector3(btVector3 Vec);
+
         /// @brief Gets a Bullet vector3.
         /// @details Creates a Bullet vector3 with values equal to this class and returns it.
-        btVector3 GetBulletVector3();
+        btVector3 GetBulletVector3() const;
         /// @brief Copies an existing Bullet vector3.
         /// @details This function will copy the values stored in an existing Bullet vector3
         /// and set the values of this class to be the same.
@@ -82,7 +93,7 @@ class PhysVector3
 
         /// @brief Gets a Ogre vector3.
         /// @details Creates a Ogre vector3 with values equal to this class and returns it.
-        Ogre::Vector3 GetOgreVector3();
+        Ogre::Vector3 GetOgreVector3() const;
         /// @brief Copies an existing Ogre vector3.
         /// @details This function will copy the values stored in an existing Ogre vector3
         /// and set the values of this class to be the same.

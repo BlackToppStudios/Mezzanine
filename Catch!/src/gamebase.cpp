@@ -13,7 +13,7 @@
 #include <eventmanager.h>
 #include <datatypes.h>
 #include <eventrendertime.h>
-#include <physeventuserinput.h>
+#include <eventuserinput.h>
 
 #include <sstream>
 
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
 
     LoadContent();
 
-    TheWorld.SetDebugPhysicsRendering(0);
+    TheWorld.SetDebugPhysicsRendering(1);
 
 	//Start the Main Loop
 	TheWorld.MainLoop();
@@ -137,7 +137,7 @@ bool PostInput()
 bool CheckForEsc()
 {
     //this will either set the pointer to 0 or return a valid pointer to work with.
-    PhysEventUserInput* OneInput = TheWorld.Events->PopNextUserInputEvent();
+    EventUserInput* OneInput = TheWorld.Events->PopNextUserInputEvent();
 
     //We check each Event
     while(0 != OneInput)
@@ -179,13 +179,13 @@ void LoadContent()
     object1->SetInitLocation(PhysVector3(0,50,0));
     object2 = new ActorRigid (mass,"Robot2",filename,groupname,&TheWorld);
     object2->CreateShapeFromMeshDynamic();
-    object2->SetInitLocation(PhysVector3(0,-130,0));
+    object2->SetInitLocation(PhysVector3(0,50,0));
     object3 = new ActorRigid (0,"Robot3",filename,groupname,&TheWorld);
     object3->CreateShapeFromMeshStatic();
-    object3->SetInitLocation(PhysVector3(0,-80,0));
+    object3->SetInitLocation(PhysVector3(-130,0,0));
     object4 = new ActorRigid (0,"Robot4",filename,groupname,&TheWorld);
     object4->CreateShapeFromMeshStatic();
-    object4->SetInitLocation(PhysVector3(0,130,0));
+    object4->SetInitLocation(PhysVector3(130,0,0));
 
     //Final Steps
     PhysVector3 grav;

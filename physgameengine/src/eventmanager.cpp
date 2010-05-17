@@ -153,8 +153,8 @@ namespace phys
         ParentWorld->Log("User Input EventCount Pending:");
         ParentWorld->Log(SDL_UserInputEvents.size());
 
-        PhysEventUserInput* FromSDLEvent = new PhysEventUserInput();
-        PhysEventUserInput* FromSDLPolling = this->PollForUserInputEvents();
+        EventUserInput* FromSDLEvent = new EventUserInput();
+        EventUserInput* FromSDLPolling = this->PollForUserInputEvents();
 
         while( !SDL_UserInputEvents.empty() )
         {
@@ -241,14 +241,14 @@ namespace phys
     // Filtered management functions - User Input Events
     ///////////////////////////////////////
 
-    PhysEventUserInput* EventManager::GetNextUserInputEvent()
+    EventUserInput* EventManager::GetNextUserInputEvent()
     {
-        return dynamic_cast<PhysEventUserInput*> (this->GetNextSpecificEvent(EventBase::UserInput));
+        return dynamic_cast<EventUserInput*> (this->GetNextSpecificEvent(EventBase::UserInput));
     }
 
-    PhysEventUserInput* EventManager::PopNextUserInputEvent()
+    EventUserInput* EventManager::PopNextUserInputEvent()
     {
-        return dynamic_cast<PhysEventUserInput*> (this->PopNextSpecificEvent(EventBase::UserInput));
+        return dynamic_cast<EventUserInput*> (this->PopNextSpecificEvent(EventBase::UserInput));
     }
 
     void EventManager::RemoveNextUserInputEvent()
@@ -319,7 +319,7 @@ namespace phys
     }
 
 
-    PhysEventUserInput* EventManager::PollForUserInputEvents()
+    EventUserInput* EventManager::PollForUserInputEvents()
     {
         vector<MetaCode> MetaBag;
 
@@ -328,7 +328,7 @@ namespace phys
         PollMouseButtons(MetaBag);
         PollMouseLocation(MetaBag);
 
-        PhysEventUserInput* test = new PhysEventUserInput(MetaBag);
+        EventUserInput* test = new EventUserInput(MetaBag);
         return test;
     }
 

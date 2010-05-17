@@ -76,12 +76,12 @@
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
 <a name="l00053"></a>00053 <span class="preprocessor">#include &quot;eventrendertime.h&quot;</span>
-<a name="l00054"></a>00054 <span class="preprocessor">#include &quot;physeventuserinput.h&quot;</span>
+<a name="l00054"></a>00054 <span class="preprocessor">#include &quot;eventuserinput.h&quot;</span>
 <a name="l00055"></a>00055 <span class="preprocessor">#include &quot;eventquit.h&quot;</span>
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057 <span class="keyword">namespace </span>phys
 <a name="l00058"></a>00058 {
-<a name="l00059"></a>00059     <span class="keyword">class </span><a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>;
+<a name="l00059"></a>00059     <span class="keyword">class </span>World;
 <a name="l00060"></a>00060 <span class="comment"></span>
 <a name="l00061"></a>00061 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00062"></a>00062 <span class="comment">    /// @class EventManager</span>
@@ -233,16 +233,16 @@
 <a name="l00208"></a>00208 <span class="comment">            /// this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately</span>
 <a name="l00209"></a>00209 <span class="comment">            /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input</span>
 <a name="l00210"></a>00210 <span class="comment">            /// events in the que.</span>
-<a name="l00211"></a>00211 <span class="comment">            /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.</span>
-<a name="l00212"></a>00212 <span class="comment"></span>            <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#ad61b660278f03702e0c564c7ad2dbc5d" title="Returns a pointer to the Next User Input event.">GetNextUserInputEvent</a>();
+<a name="l00211"></a>00211 <span class="comment">            /// @return A pointer to a EventUserInput, that still needs to be removed from the event manager and deleted.</span>
+<a name="l00212"></a>00212 <span class="comment"></span>            <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a38b42602a3a4d621048c78b525b4db49" title="Returns a pointer to the Next User Input event.">GetNextUserInputEvent</a>();
 <a name="l00213"></a>00213 <span class="comment"></span>
 <a name="l00214"></a>00214 <span class="comment">            /// @brief Returns a pointer to the Next User Input event and removes it from the Que</span>
 <a name="l00215"></a>00215 <span class="comment">            /// @details This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use</span>
 <a name="l00216"></a>00216 <span class="comment">            /// this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately</span>
 <a name="l00217"></a>00217 <span class="comment">            /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input</span>
 <a name="l00218"></a>00218 <span class="comment">            /// events in the que. This also removes the returned pointer form the Que.</span>
-<a name="l00219"></a>00219 <span class="comment">            /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.</span>
-<a name="l00220"></a>00220 <span class="comment"></span>            <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a32d29a1a66e1f77b758f08e31a922a5a" title="Returns a pointer to the Next User Input event and removes it from the Que.">PopNextUserInputEvent</a>();
+<a name="l00219"></a>00219 <span class="comment">            /// @return A pointer to a EventUserInput, that still needs to be removed from the event manager and deleted.</span>
+<a name="l00220"></a>00220 <span class="comment"></span>            <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#afa89317d4b16c2b7065b9f79a4354654" title="Returns a pointer to the Next User Input event and removes it from the Que.">PopNextUserInputEvent</a>();
 <a name="l00221"></a>00221 <span class="comment"></span>
 <a name="l00222"></a>00222 <span class="comment">            /// @brief Removes the First User Input Event From the que without looking at it.</span>
 <a name="l00223"></a>00223 <span class="comment">            /// @details This together with GetNextUserInputEvent() are the pretty much same as call PopNextUserInputEvent().</span>
@@ -287,13 +287,13 @@
 <a name="l00262"></a>00262 <span class="comment">            /// Events) and simply checks if it the of the correct type. Then this returns a pointer to the next event of the specified type, or returns</span>
 <a name="l00263"></a>00263 <span class="comment">            /// a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use</span>
 <a name="l00264"></a>00264 <span class="comment">            /// this for performance reasons becuase it runs in linear time relative to the amount of events.</span>
-<a name="l00265"></a>00265 <span class="comment">            /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.</span>
+<a name="l00265"></a>00265 <span class="comment">            /// @return A pointer to a EventUserInput, that still needs to be removed from the event manager and deleted.</span>
 <a name="l00266"></a>00266 <span class="comment"></span>            <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a7340cfab326856cf4ebc653b11101016" title="Returns a pointer to the Next kind event of the Specified type.">GetNextSpecificEvent</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> SpecificType);
 <a name="l00267"></a>00267 <span class="comment"></span>
 <a name="l00268"></a>00268 <span class="comment">            /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que</span>
 <a name="l00269"></a>00269 <span class="comment">            /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with</span>
 <a name="l00270"></a>00270 <span class="comment">            /// @details This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que.</span>
-<a name="l00271"></a>00271 <span class="comment">            /// @return A pointer to a PhysEventUserInput, that still needs to be removed from the event manager and deleted.</span>
+<a name="l00271"></a>00271 <span class="comment">            /// @return A pointer to a EventUserInput, that still needs to be removed from the event manager and deleted.</span>
 <a name="l00272"></a>00272 <span class="comment"></span>            <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a156ba3c53cc799499272430111bbdfa4" title="Returns a pointer to the Next kind event of the Specified type, and removes it from...">PopNextSpecificEvent</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> SpecificType);
 <a name="l00273"></a>00273 <span class="comment"></span>
 <a name="l00274"></a>00274 <span class="comment">            /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que</span>
@@ -311,7 +311,7 @@
 <a name="l00286"></a>00286 <span class="comment">            /// @brief Generates extra events each iteration of the main loop, based on user input polling</span>
 <a name="l00287"></a>00287 <span class="comment">            /// @param InputToTryPolling This accepts a MetaCode and will try to watch for occurences like this one</span>
 <a name="l00288"></a>00288 <span class="comment">            /// @details This will trigger the input system to generate an event (or add to an exiting event) when polling for the given kind of event. Each</span>
-<a name="l00289"></a>00289 <span class="comment">            /// Iteration of the main loop there will be a PhysEventUserInput that created. That Event will Include all the normal metacodes for user input</span>
+<a name="l00289"></a>00289 <span class="comment">            /// Iteration of the main loop there will be a EventUserInput that created. That Event will Include all the normal metacodes for user input</span>
 <a name="l00290"></a>00290 <span class="comment">            /// that happened, and it will also have a meta code for each time this function was called. The added metacode may be partialky ignored, the</span>
 <a name="l00291"></a>00291 <span class="comment">            /// Metavalue is almost always ignored, and in a situation where the can only be one of a given input on a system, the ID is ignore and 0 is assumed.</span>
 <a name="l00292"></a>00292 <span class="comment">            /// @exception &quot;Unsupported Polling Check on this Platform&quot; When the metacode passed cannot be polled on this platform</span>
@@ -326,13 +326,13 @@
 <a name="l00301"></a>00301 <span class="comment">            /// @brief This activates the polling routines of the user input subsystems</span>
 <a name="l00302"></a>00302 <span class="comment">            /// @details This checks the current state of user input devices that have been added by AddPollingCheck(const MetaCode &amp;InputToTryPolling).</span>
 <a name="l00303"></a>00303 <span class="comment">            /// This is called automatically by main loop processing, but there is no harm in calling it several times.</span>
-<a name="l00304"></a>00304 <span class="comment">            /// @return This returns a pointer to a PhysEventUserInput that contains the desired metacodes</span>
-<a name="l00305"></a>00305 <span class="comment"></span>            <a class="code" href="../../dc/d0e/classPhysEventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">PhysEventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#aaa38d44f9fad236d68c66249428cc164" title="This activates the polling routines of the user input subsystems.">PollForUserInputEvents</a>();
+<a name="l00304"></a>00304 <span class="comment">            /// @return This returns a pointer to a EventUserInput that contains the desired metacodes</span>
+<a name="l00305"></a>00305 <span class="comment"></span>            <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a983bc9f1933466491e6bf025b26a9023" title="This activates the polling routines of the user input subsystems.">PollForUserInputEvents</a>();
 <a name="l00306"></a>00306     };
 <a name="l00307"></a>00307 }
 <a name="l00308"></a>00308 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat May 15 11:46:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 17 00:38:39 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

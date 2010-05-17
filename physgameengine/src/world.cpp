@@ -56,7 +56,9 @@
 #include "callbackmanager.h"
 #include "graphicsettings.h"
 #include "physactor.h"
-#include "physeventuserinput.h"
+#include "eventuserinput.h"
+#include "linegroup.h"
+
 
 #include <SDL.h>
 #include <btBulletDynamicsCommon.h>
@@ -72,9 +74,9 @@ namespace phys
     /// @intermal
     /// @namespace phys::debug
     /// @todo This whole debug namespace is a dirty hack. It needs to be broken out into a 3d line class and some kind, but the Debug render can probably stay internal
-    namespace debug{
+    namespace debug
+    {
         #include <btIDebugDraw.h>
-
         /// @internal
         /// @class InternalDebugDrawer
         /// @brief This is used to draw wireframse for the Physics subsystem
@@ -93,187 +95,6 @@ namespace phys
                 virtual int getDebugMode() const;
         };
 
-        #ifndef __LINE3D_H__
-        #define __LINE3D_H__
-
-        #include "Ogre.h"
-        #include <vector>
-
-        using namespace Ogre;
-        using namespace std;
-
-        #define POSITION_BINDING 0
-        #define TEXCOORD_BINDING 1
-
-        class Line3D:public SimpleRenderable
-        {
-        public:
-           Line3D(void);
-           ~Line3D(void);
-
-           void addPoint(const Vector3 &p);
-           const Vector3 &getPoint(unsigned short index) const;
-           unsigned short getNumPoints(void) const;
-           void updatePoint(unsigned short index, const Vector3 &value);
-           void drawLine(Vector3 &start, Vector3 &end);
-           void drawLines(void);
-
-           Real getSquaredViewDepth(const Camera *cam) const;
-           Real getBoundingRadius(void) const;
-        protected:
-           //void getWorldTransforms(Matrix4 *xform) const;
-           const Ogre::Quaternion &getWorldOrientation(void) const;
-           const Vector3 &getWorldPosition(void) const;
-
-           std::vector<Vector3> mPoints;
-           bool mDrawn;
-        };
-
-        #endif /* __LINE3D_H__ */
-
-
-        Line3D::Line3D(void)
-        {
-           mRenderOp.vertexData = new VertexData();
-           mDrawn = false;
-
-           this->setMaterial("BaseWhiteNoLighting");
-        }
-
-        Line3D::~Line3D(void)
-        {
-           delete mRenderOp.vertexData;
-        }
-
-        void Line3D::addPoint(const Vector3 &p)
-        {
-           mPoints.push_back(p);
-        }
-
-        const Vector3 &Line3D::getPoint(unsigned short index) const
-        {
-           assert(index < mPoints.size() && "Point index is out of bounds!!");
-
-           return mPoints[index];
-        }
-
-        unsigned short Line3D::getNumPoints(void) const
-        {
-           return (unsigned short)mPoints.size();
-        }
-
-        void Line3D::updatePoint(unsigned short index, const Vector3 &value)
-        {
-           assert(index < mPoints.size() && "Point index is out of bounds!!");
-
-           mPoints[index] = value;
-        }
-
-        void Line3D::drawLine(Vector3 &start, Vector3 &end)
-        {
-           if(mPoints.size())
-              mPoints.clear();
-
-           mPoints.push_back(start);
-           mPoints.push_back(end);
-
-           drawLines();
-        }
-
-        void Line3D::drawLines(void)
-        {
-           if(mDrawn)
-              return;
-           else
-              mDrawn = true;
-
-           // Initialization stuff
-           mRenderOp.indexData = 0;
-           mRenderOp.vertexData->vertexCount = mPoints.size();
-           mRenderOp.vertexData->vertexStart = 0;
-           mRenderOp.operationType = RenderOperation::OT_LINE_STRIP; // OT_LINE_LIST, OT_LINE_STRIP
-           mRenderOp.useIndexes = false;
-
-           VertexDeclaration *decl = mRenderOp.vertexData->vertexDeclaration;
-           VertexBufferBinding *bind = mRenderOp.vertexData->vertexBufferBinding;
-
-           decl->addElement(POSITION_BINDING, 0, VET_FLOAT3, VES_POSITION);
-
-           HardwareVertexBufferSharedPtr vbuf =
-              HardwareBufferManager::getSingleton().createVertexBuffer(
-                 decl->getVertexSize(POSITION_BINDING),
-                 mRenderOp.vertexData->vertexCount,
-                 HardwareBuffer::HBU_STATIC_WRITE_ONLY);
-
-           bind->setBinding(POSITION_BINDING, vbuf);
-
-           // Drawing stuff
-           int size = mPoints.size();
-           Vector3 vaabMin = mPoints[0];
-           Vector3 vaabMax = mPoints[0];
-
-           Real *prPos = static_cast<Real*>(vbuf->lock(HardwareBuffer::HBL_DISCARD));
-
-           for(int i = 0; i < size; i++)
-           {
-              *prPos++ = mPoints[i].x;
-              *prPos++ = mPoints[i].y;
-              *prPos++ = mPoints[i].z;
-
-              if(mPoints[i].x < vaabMin.x)
-                 vaabMin.x = mPoints[i].x;
-              if(mPoints[i].y < vaabMin.y)
-                 vaabMin.y = mPoints[i].y;
-              if(mPoints[i].z < vaabMin.z)
-                 vaabMin.z = mPoints[i].z;
-
-              if(mPoints[i].x > vaabMax.x)
-                 vaabMax.x = mPoints[i].x;
-              if(mPoints[i].y > vaabMax.y)
-                 vaabMax.y = mPoints[i].y;
-              if(mPoints[i].z > vaabMax.z)
-                 vaabMax.z = mPoints[i].z;
-           }
-
-           vbuf->unlock();
-
-           mBox.setExtents(vaabMin, vaabMax);
-        }
-
-        Real Line3D::getSquaredViewDepth(const Camera *cam) const
-        {
-           Vector3 vMin, vMax, vMid, vDist;
-           vMin = mBox.getMinimum();
-           vMax = mBox.getMaximum();
-           vMid = ((vMin - vMax) * 0.5) + vMin;
-           vDist = cam->getDerivedPosition() - vMid;
-
-           return vDist.squaredLength();
-        }
-
-        Real Line3D::getBoundingRadius(void) const
-        {
-           return Math::Sqrt(max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength()));
-           //return mRadius;
-        }
-        /*
-        void Line3D::getWorldTransforms(Matrix4 *xform) const
-        {
-           // return identity matrix to prevent parent transforms
-           *xform = Matrix4::IDENTITY;
-        }
-        */
-        const Ogre::Quaternion &Line3D::getWorldOrientation(void) const
-        {
-           return Ogre::Quaternion::IDENTITY;
-        }
-
-        const Vector3 &Line3D::getWorldPosition(void) const
-        {
-           return Vector3::ZERO;
-        }
-        ///////////// /line3d.cpp
-
         InternalDebugDrawer::InternalDebugDrawer(phys::World *ParentWorld_)
         {
             this->DebugDrawing = 0;
@@ -282,10 +103,10 @@ namespace phys
 
         void InternalDebugDrawer::drawLine(const btVector3& from,const btVector3& to,const btVector3& color)
         {
-            Line3D *myLine = new Line3D();
+            phys::LineGroup *myLine = new phys::LineGroup(this->ParentWorld);
 
-            Ogre::Vector3 LineStart;
-            Ogre::Vector3 LineEnd;
+            PhysVector3 LineStart;
+            PhysVector3 LineEnd;
 
             LineStart << from;
             LineEnd << to;
@@ -295,8 +116,8 @@ namespace phys
 
             myLine->drawLines();
 
-            SceneNode *myNode = this->ParentWorld->OgreSceneManager->getRootSceneNode()->createChildSceneNode();
-            myNode->attachObject(myLine);
+            /// @todo fix
+           //delete myLine;
         }
 
         void InternalDebugDrawer::drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color)
@@ -471,10 +292,10 @@ namespace phys
         OneLogTest(temp14, "Real");
         OneLogTest(temp15, "Whole");
         OneLogTest(temp16, "String");
-        OneLogTest(temp17, "PhysVector3");
+        OneLogTest(temp17, "phys::PhysVector3");
         OneLogTest(temp18, "RawEvent"); /// @todo TODO Figure out How does this called the same streaming function as MetaCode ?!?!?
         OneLogTest(temp19, "MetaCode");
-        OneLogTest(temp20, "btVector3");
+        //OneLogTest(temp20, "btVector3");
         OneLogTest(temp21, "Ogre::Vector3");
     }
 
@@ -601,7 +422,7 @@ namespace phys
          computer controlled characters, checking if game goals are met, and other items that needs to be done it iteration of the game loop and don't directly relate to physics or Rendering.
          @subsection input2 1.B) Input Buffering
          During this step Input events are gathered fromt the input Subsystem (which could be any of a number of user input libraries), which are ultimately made by the Operating System and
-         processed into PhysEventUserInput objects, and placed in the Default event manager ( check the pointer World::Events ).
+         processed into EventUserInput objects, and placed in the Default event manager ( check the pointer World::Events ).
          @subsection input3 1.C) PostInputCallback
          This callback is your first chance to access the userinput Events and try to use them. This callback can be managed by using methods in PhysWorldCallBackManager that have "PostInput"
          in their names. The functionality of this Callback slightly overlaps with the Prephysics Callbacks due to the timing of using them both. If both are used, one will be called
