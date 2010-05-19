@@ -2,7 +2,7 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="LinuxDebug" />
 	<File name="src/gamebase.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="1800" topLine="34" />
+		<Cursor position="1464" topLine="34" />
 	</File>
 	<File name="src/gamebase.h" open="0" top="0" tabpos="5">
 		<Cursor position="444" topLine="1" />

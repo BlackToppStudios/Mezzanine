@@ -36,9 +36,10 @@
 <p><a href="../../de/dad/classphys_1_1debug_1_1InternalDebugDrawer-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a323f6fa6e2979e989d0096bf3a304198"></a><!-- doxytag: member="phys::debug::InternalDebugDrawer::InternalDebugDrawer" ref="a323f6fa6e2979e989d0096bf3a304198" args="(phys::World *ParentWorld_)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>InternalDebugDrawer</b> (<a class="el" href="../../da/ddf/classphys_1_1World.html">phys::World</a> *ParentWorld_)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html#a8a35c3c80fddaaec8e21f737ed1b3938">drawLine</a> (const btVector3 &amp;from, const btVector3 &amp;to, const btVector3 &amp;color)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2bdb7e9da99e2d0cd2796cf9c67c3456"></a><!-- doxytag: member="phys::debug::InternalDebugDrawer::InternalDebugDrawer" ref="a2bdb7e9da99e2d0cd2796cf9c67c3456" args="(phys::World *ParentWorld_, Whole WireFrameCount_=1)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>InternalDebugDrawer</b> (<a class="el" href="../../da/ddf/classphys_1_1World.html">phys::World</a> *ParentWorld_, <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> WireFrameCount_=1)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a35c3c80fddaaec8e21f737ed1b3938"></a><!-- doxytag: member="phys::debug::InternalDebugDrawer::drawLine" ref="a8a35c3c80fddaaec8e21f737ed1b3938" args="(const btVector3 &amp;from, const btVector3 &amp;to, const btVector3 &amp;color)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>drawLine</b> (const btVector3 &amp;from, const btVector3 &amp;to, const btVector3 &amp;color)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b912aaff8dfd9f4e97ffb2d867121b2"></a><!-- doxytag: member="phys::debug::InternalDebugDrawer::drawContactPoint" ref="a8b912aaff8dfd9f4e97ffb2d867121b2" args="(const btVector3 &amp;PointOnB, const btVector3 &amp;normalOnB, btScalar distance, int lifeTime, const btVector3 &amp;color)" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>drawContactPoint</b> (const btVector3 &amp;PointOnB, const btVector3 &amp;normalOnB, btScalar distance, int lifeTime, const btVector3 &amp;color)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e3b4cbc861f76696b4d32f0cf068ea6"></a><!-- doxytag: member="phys::debug::InternalDebugDrawer::reportErrorWarning" ref="a4e3b4cbc861f76696b4d32f0cf068ea6" args="(const char *warningString)" -->
@@ -49,56 +50,21 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>draw3dText</b
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>setDebugMode</b> (int debugMode)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba329861569d741e970ce5aafb668e84"></a><!-- doxytag: member="phys::debug::InternalDebugDrawer::getDebugMode" ref="aba329861569d741e970ce5aafb668e84" args="() const " -->
 virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><b>getDebugMode</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1666e636e6ff81813c0b1a85d7bc157"></a><!-- doxytag: member="phys::debug::InternalDebugDrawer::GetWireFrameCount" ref="aa1666e636e6ff81813c0b1a85d7bc157" args="()" -->
+virtual <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetWireFrameCount</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76922fda7bb3b59d301e50d67e4f3c72"></a><!-- doxytag: member="phys::debug::InternalDebugDrawer::SetWireFrameCount" ref="a76922fda7bb3b59d301e50d67e4f3c72" args="(Whole WireFrameCount_)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetWireFrameCount</b> (<a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> WireFrameCount_)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is used to draw wireframse for the Physics subsystem. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00083">83</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a8a35c3c80fddaaec8e21f737ed1b3938"></a><!-- doxytag: member="phys::debug::InternalDebugDrawer::drawLine" ref="a8a35c3c80fddaaec8e21f737ed1b3938" args="(const btVector3 &amp;from, const btVector3 &amp;to, const btVector3 &amp;color)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::debug::InternalDebugDrawer::drawLine </td>
-          <td>(</td>
-          <td class="paramtype">const btVector3 &amp;&nbsp;</td>
-          <td class="paramname"> <em>from</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const btVector3 &amp;&nbsp;</td>
-          <td class="paramname"> <em>to</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const btVector3 &amp;&nbsp;</td>
-          <td class="paramname"> <em>color</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000020">Todo:</a></b></dt><dd>fix </dd></dl>
-</p>
-
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00104">104</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00086">86</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 17 00:38:40 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 19 18:35:00 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
