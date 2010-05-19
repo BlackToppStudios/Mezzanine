@@ -88,7 +88,7 @@ class PhysVector3
         /// @brief Copies an existing Bullet vector3.
         /// @details This function will copy the values stored in an existing Bullet vector3
         /// and set the values of this class to be the same.
-        /// @param Temp The vector3 to be extracted.
+        /// @param temp The vector3 to be extracted.
         void ExtractBulletVector3(btVector3 temp);
 
         /// @brief Gets a Ogre vector3.

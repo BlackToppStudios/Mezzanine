@@ -74,12 +74,12 @@ using namespace std;
 
 namespace phys
 {
-    /// @intermal
+    /// @internal
     /// @namespace phys::debug
     /// @todo This whole debug namespace is a dirty hack. Items that cannot be made public, ie help classes, which could also conceivably be left out of release build.
     namespace debug
     {
-        #include <btIDebugDraw.h>
+
         /// @internal
         /// @class InternalDebugDrawer
         /// @brief This is used to draw wireframse for the Physics subsystem

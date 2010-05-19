@@ -182,9 +182,9 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <p>This constructor contains the basic information needed to make an actor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of the actor. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>File</em>&nbsp;</td><td>The 3d mesh file that contains the 3d model the actor will use. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Group</em>&nbsp;</td><td>The resource group where the 3d mesh and other related files can be found. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>The name of the actor. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>file</em>&nbsp;</td><td>The 3d mesh file that contains the 3d model the actor will use. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>group</em>&nbsp;</td><td>The resource group where the 3d mesh and other related files can be found. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>_World</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> this object will be added to. </td></tr>
   </table>
   </dd>
@@ -294,9 +294,9 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
  This function is called on by the Constructor, and shouldn't be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>Name of the actor. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>File</em>&nbsp;</td><td>File name of the graphical mesh to be used. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Group</em>&nbsp;</td><td>Resource group where the graphical mesh can be found. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>Name of the actor. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>file</em>&nbsp;</td><td>File name of the graphical mesh to be used. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>group</em>&nbsp;</td><td>Resource group where the graphical mesh can be found. </td></tr>
   </table>
   </dd>
 </dl>
@@ -626,9 +626,9 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
  In most situations you won't want to use this function, and instead produce movement through physics functions. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>X</em>&nbsp;</td><td>Location on the X vector. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Y</em>&nbsp;</td><td>Location on the Y vector. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Z</em>&nbsp;</td><td>Location on the Z vector. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td>Location on the X vector. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>y</em>&nbsp;</td><td>Location on the Y vector. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>z</em>&nbsp;</td><td>Location on the Z vector. </td></tr>
   </table>
   </dd>
 </dl>
@@ -658,7 +658,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
  This function is called on by the SetLocation function, and shouldn't be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Location</em>&nbsp;</td><td>The <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> representing the location. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Place</em>&nbsp;</td><td>The <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> representing the location. </td></tr>
   </table>
   </dd>
 </dl>
@@ -765,6 +765,14 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 
 <p>Sets the orientation of the actor. </p>
 <p>Sets the orientation of the actor via <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> parameters. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>x</em>&nbsp;</td><td>Rotation about the X. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>y</em>&nbsp;</td><td>Rotation about the Y. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>z</em>&nbsp;</td><td>Rotation about the Z. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00286">286</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
 
@@ -798,7 +806,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../
 <li><a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 19 18:34:59 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 19 18:57:54 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

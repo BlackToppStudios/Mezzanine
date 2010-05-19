@@ -56,7 +56,7 @@ namespace phys
 {
 
 
-    /// @intermal
+    /// @internal
     /// @namespace phys::internal
     /// @todo This whole internal namespace is a better place to put dirty hacks
     namespace internal
