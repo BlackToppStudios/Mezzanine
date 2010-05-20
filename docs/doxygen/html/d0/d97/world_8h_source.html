@@ -398,22 +398,25 @@
 <a name="l00373"></a>00373 <span class="comment">            /// @details lets you check if Physics Debug Drawing is enabled or not.</span>
 <a name="l00374"></a>00374 <span class="comment">            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features</span>
 <a name="l00375"></a>00375 <span class="comment"></span>            <span class="keywordtype">int</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a92070d16eb81866b4393f0ed96fbcbbc" title="Is Physics Debug Drawing currently enabled?">GetDebugPhysicsRendering</a>();
-<a name="l00376"></a>00376 <span class="comment"></span>
-<a name="l00377"></a>00377 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00378"></a>00378 <span class="comment"></span>        <span class="comment">// Feature Manager Pointers</span><span class="comment"></span>
-<a name="l00379"></a>00379 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00380"></a>00380 <span class="comment">            /// @brief This is a point to the default Call BackManager</span>
-<a name="l00381"></a>00381 <span class="comment">            /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.</span>
-<a name="l00382"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a22a1624c63198f49fdf8e448881bdb2e">00382</a> <span class="comment"></span>            <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a>* <a class="code" href="../../da/ddf/classphys_1_1World.html#a22a1624c63198f49fdf8e448881bdb2e" title="This is a point to the default Call BackManager.">CallBacks</a>;
-<a name="l00383"></a>00383 <span class="comment"></span>
-<a name="l00384"></a>00384 <span class="comment">            /// @brief This is the default pointer to the Event Manager.</span>
-<a name="l00385"></a>00385 <span class="comment">            /// @details This is the Event manager that all physworld members will place any events into.</span>
-<a name="l00386"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453">00386</a> <span class="comment"></span>            <a class="code" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>* <a class="code" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453" title="This is the default pointer to the Event Manager.">Events</a>;
-<a name="l00387"></a>00387     };
-<a name="l00388"></a>00388 }
-<a name="l00389"></a>00389 <span class="preprocessor">#endif</span>
+<a name="l00376"></a>00376 
+<a name="l00377"></a>00377             <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetDebugPhysicsWireCount();
+<a name="l00378"></a>00378             <span class="keywordtype">void</span> SetDebugPhysicsWireCount(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> WireCount);
+<a name="l00379"></a>00379 <span class="comment"></span>
+<a name="l00380"></a>00380 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00381"></a>00381 <span class="comment"></span>        <span class="comment">// Feature Manager Pointers</span><span class="comment"></span>
+<a name="l00382"></a>00382 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00383"></a>00383 <span class="comment">            /// @brief This is a point to the default Call BackManager</span>
+<a name="l00384"></a>00384 <span class="comment">            /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.</span>
+<a name="l00385"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a22a1624c63198f49fdf8e448881bdb2e">00385</a> <span class="comment"></span>            <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a>* <a class="code" href="../../da/ddf/classphys_1_1World.html#a22a1624c63198f49fdf8e448881bdb2e" title="This is a point to the default Call BackManager.">CallBacks</a>;
+<a name="l00386"></a>00386 <span class="comment"></span>
+<a name="l00387"></a>00387 <span class="comment">            /// @brief This is the default pointer to the Event Manager.</span>
+<a name="l00388"></a>00388 <span class="comment">            /// @details This is the Event manager that all physworld members will place any events into.</span>
+<a name="l00389"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453">00389</a> <span class="comment"></span>            <a class="code" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>* <a class="code" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453" title="This is the default pointer to the Event Manager.">Events</a>;
+<a name="l00390"></a>00390     };
+<a name="l00391"></a>00391 }
+<a name="l00392"></a>00392 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 17 00:38:39 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 19 18:57:54 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -49,7 +49,7 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class EventBase
-    /// @headerfile event.h
+    /// @headerfile eventbase.h
     /// @brief The base class for all events.
     /// @details All Events used in the Event Manager, will inherit from this. While
     /// not absolutely required by the game programmer to write their own events, it

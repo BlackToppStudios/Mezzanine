@@ -144,7 +144,7 @@ Descriptive constructor.
 
 This constructor contains the basic information needed to make an actor. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
+\item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
 
 
 Definition at line 108 of file physactor.cpp.
@@ -195,7 +195,7 @@ Creates an entity for the mesh file to be placed on a scene node.
 Creates an entity in the scene manager from the mesh file provided to be attached to a node in the graphical world. \par
  This function is called on by the Constructor, and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]Name of the actor. \item[{\em File}]File name of the graphical mesh to be used. \item[{\em Group}]Resource group where the graphical mesh can be found. \end{DoxyParams}
+\item[{\em name}]Name of the actor. \item[{\em file}]File name of the graphical mesh to be used. \item[{\em group}]Resource group where the graphical mesh can be found. \end{DoxyParams}
 
 
 Definition at line 212 of file physactor.cpp.
@@ -378,7 +378,7 @@ Manually sets the location of the actor.
 Calling this function prior to adding it to the \hyperlink{classphys_1_1World}{World} will have no effect. \par
  In most situations you won't want to use this function, and instead produce movement through physics functions. 
 \begin{DoxyParams}{Parameters}
-\item[{\em X}]Location on the X vector. \item[{\em Y}]Location on the Y vector. \item[{\em Z}]Location on the Z vector. \end{DoxyParams}
+\item[{\em x}]Location on the X vector. \item[{\em y}]Location on the Y vector. \item[{\em z}]Location on the Z vector. \end{DoxyParams}
 
 
 Definition at line 259 of file physactor.cpp.
@@ -395,7 +395,7 @@ Sets the location of the graphical body.
 This will take a \hyperlink{classPhysVector3}{PhysVector3} and set the location of the actor within the graphical world. \par
  This function is called on by the SetLocation function, and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Location}]The \hyperlink{classPhysVector3}{PhysVector3} representing the location. \end{DoxyParams}
+\item[{\em Place}]The \hyperlink{classPhysVector3}{PhysVector3} representing the location. \end{DoxyParams}
 
 
 Definition at line 222 of file physactor.cpp.
@@ -443,6 +443,9 @@ Definition at line 292 of file physactor.cpp.
 Sets the orientation of the actor. 
 
 Sets the orientation of the actor via \hyperlink{classphys_1_1Quaternion}{Quaternion} parameters. 
+\begin{DoxyParams}{Parameters}
+\item[{\em x}]Rotation about the X. \item[{\em y}]Rotation about the Y. \item[{\em z}]Rotation about the Z. \end{DoxyParams}
+
 
 Definition at line 286 of file physactor.cpp.
 

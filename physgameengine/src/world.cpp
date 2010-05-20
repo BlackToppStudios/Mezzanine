@@ -71,12 +71,12 @@ using namespace std;
 
 namespace phys
 {
-    /// @intermal
+    /// @internal
     /// @namespace phys::debug
     /// @todo This whole debug namespace is a dirty hack. It needs to be broken out into a 3d line class and some kind, but the Debug render can probably stay internal
     namespace debug
     {
-        #include <btIDebugDraw.h>
+
         /// @internal
         /// @class InternalDebugDrawer
         /// @brief This is used to draw wireframse for the Physics subsystem

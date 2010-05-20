@@ -101,6 +101,8 @@ namespace phys
             void AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_);
 
         protected:
+            /// @brief This stores the MetaCodes in this event.
+            /// @details This stores the MetaCodes in this event. This represents a snapshot of the user input for the moment.
             vector<MetaCode> Code;
 
         public:
@@ -114,7 +116,7 @@ namespace phys
             EventUserInput(const MetaCode &Code_);
 
             /// @brief Multi Data Point constructor
-            /// @param Code_ The MetaCodes in this vecotor will be added to the EventUserInput during creation.
+            /// @param Codes_ The MetaCodes in this vecotor will be added to the EventUserInput during creation.
             /// @details This creates a ready to use EventUserInput which already contains all the metacodes included.
             EventUserInput(const vector<MetaCode> &Codes_);
 
@@ -125,8 +127,7 @@ namespace phys
 
             //code managment functions
             /// @brief Single Data Point constructor
-            /// @param Code_ which Metacode to return.
-            /// @return Index The requested MetaCode
+            /// @return Index The requested MetaCode to return.
             /// @details This function simply retrieves the requested MetaCode. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists
             /// \n This is useful for accessing each MetaCode stored in this physUserInputEvent.
             const MetaCode GetMetaCode(const unsigned int &Index);
@@ -158,7 +159,7 @@ namespace phys
             void AddCode(const RawEvent &RawEvent_);
 
             /// @brief Add Several MetaCodes from a vector
-            /// @param Codes_ A vector of MetaCodes to be added to this event
+            /// @param Codes A vector of MetaCodes to be added to this event
             /// @details This adds several existing metacodes to this event.
             void AddCode(const vector<MetaCode> &Codes);
 

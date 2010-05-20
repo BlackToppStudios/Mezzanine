@@ -48,7 +48,7 @@ btRigidBody $\ast$ {\bfseries physrigidbody}}
 \subsection{Detailed Description}
 This is the actor class for Rigid Objects. This class should be used to make any rigid object that can be moved as a result of force. Most objects will fall into this catagory. A few examples of a Rigid Object: Boxes, Car Frames, Chairs, etc. For Semi Rigid bodies that are deformable, like jello, it is better to use \hyperlink{classphys_1_1ActorSoft}{ActorSoft}. 
 
-Definition at line 232 of file physactor.h.
+Definition at line 235 of file physactor.h.
 
 
 
@@ -65,7 +65,7 @@ Descriptive constructor.
 This constructor contains the basic information needed to make a Rigid Object. \par
  This class inherits from \hyperlink{classphys_1_1ActorBase}{ActorBase}. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
+\item[{\em mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
 
 
 Definition at line 322 of file physactor.cpp.
@@ -119,7 +119,7 @@ Creates a rigid object for the actor.
 Creates a rigid object to be placed in the physics world later. \par
  This is automaticly called by the Constructor and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em PMass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
+\item[{\em pmass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
 
 
 Definition at line 332 of file physactor.cpp.
