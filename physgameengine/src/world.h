@@ -374,9 +374,6 @@ namespace phys
             /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features
             int GetDebugPhysicsRendering();
 
-            Whole GetDebugPhysicsWireCount();
-            void SetDebugPhysicsWireCount(Whole WireCount);
-
         ///////////////////////////////////////////////////////////////////////////////
         // Feature Manager Pointers
         ///////////////////////////////////////

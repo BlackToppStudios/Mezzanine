@@ -56,7 +56,6 @@ int main(int argc, char **argv)
 
     LoadContent();
 
-    TheWorld.SetDebugPhysicsWireCount(3000);
     TheWorld.SetDebugPhysicsRendering(1);
 
 	//Start the Main Loop

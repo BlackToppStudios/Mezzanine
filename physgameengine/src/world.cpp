@@ -67,16 +67,13 @@
 
 #include <sstream>
 #include <string>
-#include <queue>
-
-
 using namespace std;
 
 namespace phys
 {
     /// @intermal
     /// @namespace phys::debug
-    /// @todo This whole debug namespace is a dirty hack. Items that cannot be made public, ie help classes, which could also conceivably be left out of release build.
+    /// @todo This whole debug namespace is a dirty hack. It needs to be broken out into a 3d line class and some kind, but the Debug render can probably stay internal
     namespace debug
     {
         #include <btIDebugDraw.h>
@@ -88,36 +85,20 @@ namespace phys
             private:
                 World* ParentWorld;
                 int DebugDrawing;
-                std::queue<phys::LineGroup*> WireFrameTrail;
-                Whole WireFrameCount;
             public:
-                InternalDebugDrawer(phys::World *ParentWorld_, Whole WireFrameCount_ = 1);
-                ~InternalDebugDrawer();
+                InternalDebugDrawer(phys::World *ParentWorld_);
                 virtual void drawLine(const btVector3& from,const btVector3& to,const btVector3& color);
                 virtual void drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color);
                 virtual void reportErrorWarning(const char* warningString);
                 virtual void draw3dText(const btVector3& location,const char* textString);
                 virtual void setDebugMode(int debugMode);
                 virtual int getDebugMode() const;
-
-                virtual Whole GetWireFrameCount();
-                virtual void SetWireFrameCount(Whole WireFrameCount_);
         };
 
-        InternalDebugDrawer::InternalDebugDrawer(phys::World *ParentWorld_, Whole WireFrameCount_)
+        InternalDebugDrawer::InternalDebugDrawer(phys::World *ParentWorld_)
         {
             this->DebugDrawing = 0;
             this->ParentWorld = ParentWorld_;
-            this->WireFrameCount=WireFrameCount_;
-        }
-
-        InternalDebugDrawer::~InternalDebugDrawer()
-        {
-            while( ! this->WireFrameTrail.empty())//WireFrameCount)
-            {
-                delete this->WireFrameTrail.front();
-                this->WireFrameTrail.pop();
-            }
         }
 
         void InternalDebugDrawer::drawLine(const btVector3& from,const btVector3& to,const btVector3& color)
@@ -135,16 +116,8 @@ namespace phys
 
             myLine->drawLines();
 
-            this->WireFrameTrail.push(myLine);
-
-            //Delete all the extra
-            while(this->WireFrameTrail.size()+1 > WireFrameCount)
-            {
-                phys::LineGroup *temp = this->WireFrameTrail.front();
-                this->WireFrameTrail.pop();
-                delete temp;
-
-            }
+            /// @todo fix
+           //delete myLine;
         }
 
         void InternalDebugDrawer::drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color)
@@ -159,9 +132,7 @@ namespace phys
         }
 
         void InternalDebugDrawer::draw3dText(const btVector3& location,const char* textString)
-        {
-
-        }
+        {}
 
         void InternalDebugDrawer::setDebugMode(int debugMode)
         {
@@ -171,16 +142,6 @@ namespace phys
         int InternalDebugDrawer::getDebugMode() const
         {
             return this->DebugDrawing;
-        }
-
-        Whole InternalDebugDrawer::GetWireFrameCount()
-        {
-            return this->WireFrameCount;
-        }
-
-        void InternalDebugDrawer::SetWireFrameCount(Whole WireFrameCount_)
-        {
-            this->WireFrameCount=WireFrameCount_;
         }
     }// /debug
 
@@ -762,15 +723,6 @@ namespace phys
         }
     }
 
-    Whole World::GetDebugPhysicsWireCount()
-    {
-        return this->BulletDrawer->GetWireFrameCount();
-    }
-
-    void World::SetDebugPhysicsWireCount(Whole WireCount)
-    {
-        this->BulletDrawer->SetWireFrameCount(WireCount);
-    }
 
 }
 #endif
