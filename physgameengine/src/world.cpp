@@ -64,6 +64,7 @@
 #include <btBulletDynamicsCommon.h>
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 #include <Ogre.h>
+#include "BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
 
 #include <sstream>
 #include <string>
@@ -334,6 +335,8 @@ namespace phys
         this->BulletSolver = new btSequentialImpulseConstraintSolver;
         this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
         this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
+
+	btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
 
         this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld(
                                                     BulletDispatcher,
