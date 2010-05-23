@@ -55,22 +55,28 @@ using namespace std;
 namespace phys
 {
 
+///////////////////////////////////////////////////////////////////////////////
+// phys::internal::Line3D
+///////////////////////////////////////
 
-    /// @internal
-    /// @namespace phys::internal
-    /// @todo This whole internal namespace is a better place to put dirty hacks
+    //We need to decalare an internal class to make this work.
     namespace internal
     {
-        class Line3D:public SimpleRenderable
+        /// @internal
+        /// @brief Does the bulk of the work that that the phys::LineGroup performs
+        /// @details phys::LineGroup is a simple wrapper around this to perform precise
+        /// low level interactions with Ogre, the rendering subsystem. This uses too much stuff
+        /// from ogre to use publicly. so we need to hide it here in the phys::internal namespace.
+        class Line3D: public SimpleRenderable
         {
             public:
                Line3D(void);
                ~Line3D(void);
 
                void addPoint(const Vector3 &p);
-               const Vector3 &getPoint(unsigned short index) const;
-               unsigned short getNumPoints(void) const;
-               void updatePoint(unsigned short index, const Vector3 &value);
+               const Vector3 &getPoint(Whole index) const;
+               Whole getNumPoints(void) const;
+               void updatePoint(Whole index, const Vector3 &value);
                void drawLine(Vector3 &start, Vector3 &end);
                void drawLines(void);        //Render this
 
@@ -103,19 +109,19 @@ namespace phys
            mPoints.push_back(p);
         }
 
-        const Vector3 &Line3D::getPoint(unsigned short index) const
+        const Vector3 &Line3D::getPoint(Whole index) const
         {
            assert(index < mPoints.size() && "Point index is out of bounds!!");
 
            return mPoints[index];
         }
 
-        unsigned short Line3D::getNumPoints(void) const
+        Whole Line3D::getNumPoints(void) const
         {
-           return (unsigned short)mPoints.size();
+           return mPoints.size();
         }
 
-        void Line3D::updatePoint(unsigned short index, const Vector3 &value)
+        void Line3D::updatePoint(Whole index, const Vector3 &value)
         {
            assert(index < mPoints.size() && "Point index is out of bounds!!");
 
@@ -124,6 +130,7 @@ namespace phys
 
         void Line3D::drawLine(Vector3 &start, Vector3 &end)
         {
+           /// @todo TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen
            if(mPoints.size())
               mPoints.clear();
 
@@ -231,6 +238,10 @@ namespace phys
         }
     }// /internal
 
+
+///////////////////////////////////////////////////////////////////////////////
+// phys::LineGroup
+///////////////////////////////////////
     LineGroup::LineGroup(World *Parent_)
     {
         this->Parent = Parent_;
@@ -247,18 +258,18 @@ namespace phys
         this->LineData->addPoint( p.GetOgreVector3());
     }
 
-    const PhysVector3 LineGroup::getPoint(unsigned short index) const
+    const PhysVector3 LineGroup::getPoint(Whole index) const
     {
         PhysVector3 temp(this->LineData->getPoint(index));
         return temp;
     }
 
-    unsigned short LineGroup::getNumPoints(void) const
+    Whole LineGroup::getNumPoints(void) const
     {
         return this->LineData->getNumPoints();
     }
 
-    void LineGroup::updatePoint(unsigned short index, const PhysVector3 &value)
+    void LineGroup::updatePoint(Whole index, const PhysVector3 &value)
     {
         return this->LineData->updatePoint(index, value.GetOgreVector3());
     }

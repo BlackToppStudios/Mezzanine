@@ -24,7 +24,7 @@ Inheritance diagram for phys::ActorRigid:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{$\sim$ActorRigid} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ActorRigid_a067d5beab7602bbc3de852b9b8332113}{CreateShapeFromMeshDynamic} ()
+void \hyperlink{classphys_1_1ActorRigid_a441f502d0014b3479235e172e4ef5db8}{CreateShapeFromMeshDynamic} (short signed int accuracy=1)
 \begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{CreateShapeFromMeshStatic} ()
 \begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -48,7 +48,7 @@ btRigidBody $\ast$ {\bfseries physrigidbody}}
 \subsection{Detailed Description}
 This is the actor class for Rigid Objects. This class should be used to make any rigid object that can be moved as a result of force. Most objects will fall into this catagory. A few examples of a Rigid Object: Boxes, Car Frames, Chairs, etc. For Semi Rigid bodies that are deformable, like jello, it is better to use \hyperlink{classphys_1_1ActorSoft}{ActorSoft}. 
 
-Definition at line 235 of file physactor.h.
+Definition at line 232 of file physactor.h.
 
 
 
@@ -65,10 +65,10 @@ Descriptive constructor.
 This constructor contains the basic information needed to make a Rigid Object. \par
  This class inherits from \hyperlink{classphys_1_1ActorBase}{ActorBase}. 
 \begin{DoxyParams}{Parameters}
-\item[{\em mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
+\item[{\em Mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
 
 
-Definition at line 322 of file physactor.cpp.
+Definition at line 347 of file physactor.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{
 \index{phys::ActorRigid@{phys::ActorRigid}!$\sim$ActorRigid@{$\sim$ActorRigid}}
@@ -81,7 +81,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 327 of file physactor.cpp.
+Definition at line 352 of file physactor.cpp.
 
 
 
@@ -105,7 +105,7 @@ Implements \hyperlink{classphys_1_1ActorBase_ac5d4ad5a634b16000742f506ed5957fb}{
 
 
 
-Definition at line 339 of file physactor.cpp.
+Definition at line 364 of file physactor.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateRigidObject@{CreateRigidObject}}
@@ -119,16 +119,16 @@ Creates a rigid object for the actor.
 Creates a rigid object to be placed in the physics world later. \par
  This is automaticly called by the Constructor and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em pmass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
+\item[{\em PMass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
 
 
-Definition at line 332 of file physactor.cpp.
+Definition at line 357 of file physactor.cpp.
 
-\hypertarget{classphys_1_1ActorRigid_a067d5beab7602bbc3de852b9b8332113}{
+\hypertarget{classphys_1_1ActorRigid_a441f502d0014b3479235e172e4ef5db8}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}}
 \index{CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshDynamic ()}}
-\label{d8/d71/classphys_1_1ActorRigid_a067d5beab7602bbc3de852b9b8332113}
+\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshDynamic (short signed int {\em accuracy} = {\ttfamily 1})}}
+\label{d8/d71/classphys_1_1ActorRigid_a441f502d0014b3479235e172e4ef5db8}
 
 
 Creates a collision shape from mesh file. 
@@ -136,15 +136,23 @@ Creates a collision shape from mesh file.
 This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000011}{Todo}]
+\item[\hyperlink{todo__todo000013}{Todo}]
 \begin{DoxyItemize}
 \item Check for thread safety 
 \end{DoxyItemize}\end{Desc}
 
 
+\begin{Desc}
+\item[\hyperlink{todo__todo000014}{Todo}]add code here to increase the verticies that is used to create the hull from the first accuracy setting. \end{Desc}
 
 
-Definition at line 345 of file physactor.cpp.
+\begin{Desc}
+\item[\hyperlink{todo__todo000015}{Todo}]add code here for compound shapes of convex hulls \end{Desc}
+
+
+
+
+Definition at line 370 of file physactor.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}}
@@ -158,7 +166,7 @@ Creates a collision shape from mesh file.
 This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000012}{Todo}]
+\item[\hyperlink{todo__todo000016}{Todo}]
 \begin{DoxyItemize}
 \item Check for thread safety 
 \end{DoxyItemize}\end{Desc}
@@ -166,7 +174,7 @@ This function will read the location of every verticy in the mesh file and use t
 
 
 
-Definition at line 375 of file physactor.cpp.
+Definition at line 433 of file physactor.cpp.
 
 
 

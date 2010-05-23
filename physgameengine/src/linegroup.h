@@ -43,37 +43,83 @@
 #include "datatypes.h"
 #include "physvector.h"
 
-
 namespace phys
 {
-    // Just a forward declaration to make wrapping some functionality to engine internals easier.
+    // Just a few forward declarations to make wrapping some functionality to engine internals easier.
     class World;
     namespace internal
     {
             class Line3D;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class LineGroup
+    /// @headerfile linegroup.h
+    /// @brief This is a group of consectutive line segments to be rendered together.
+    /// @details This class stores a listing of points and renders thems as one
+    /// object into the world provided.
     class LineGroup
     {
         public:
+            /// @brief Basic Constructor
+            /// @details This creates a basic, empty, LineGroup.
+            /// @param Parent_ This is a pointer to the world to render to.
             LineGroup(World *Parent_);
+
+            /// @brief Default Destructor
+            /// @details This safely tears down, and removes from the graphics system the LineGroup
             ~LineGroup(void);
 
+            /// @brief This add Either a start pointing, or a line segment to the next point
+            /// @details This adds a point that will be rendered as the endpoint of a line
+            /// @param p The Point to be added.
             void addPoint(const PhysVector3 &p);
-            const PhysVector3 getPoint(unsigned short index) const;
-            unsigned short getNumPoints(void) const;
-            void updatePoint(unsigned short index, const PhysVector3 &value);
+
+            /// @brief Access points by order they were added.
+            /// @details This returns the point indicated by index. They start at 0, and increment from there
+            /// @param index A Whole number which indicates which point to retrieve.
+            const PhysVector3 getPoint(Whole index) const;
+
+            /// @brief Get the amount of points used to define Line Segments
+            /// @details This return the amount of points and therefore line segments. There will always be one more point
+            /// Than line segments.
+            /// @return A Whole Number which indicates the amount of points.
+            Whole getNumPoints(void) const;
+
+            /// @brief This changes a specific point
+            /// @details This replaces a point specified by index with a new point
+            /// @param index The index of the point to replace.
+            /// @param value A point to replace the existing point with
+            void updatePoint(Whole index, const PhysVector3 &value);
+
+            /// @brief This adds Two points to the list
+            /// @details This could add 2 line segments, be it simply adds two lines to the list, but if you don't care then this is an
+            /// easy way to guarantee that a specific line segment be rendered.
+            /// @todo TODO: In the future we will add a break in the line segment chain when this is called.
+            /// @param start The first point to be added
+            /// @param end The first point to be added
             void drawLine(const PhysVector3 &start, const PhysVector3 &end);
+
+            /// @brief Renders the line segment chain.
+            /// @details This send the Line segment information to the rending subsystem. PrepareForRendering() should be called first
+            /// @todo TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention.
             void drawLines(void);
 
+            /// @brief This assists in the rendering process
+            /// @details This sends some of the data to the rendering subsystem to aid drawLines
             void PrepareForRendering();
 
-
             //Real getSquaredViewDepth(const Camera *cam) const;
+
+            /// @brief How big would a circle need to be to encapsulate this
+            /// @details This returns the radius the a circle would need to have to surround this line group.
             Real getBoundingRadius(void) const;
 
         private:
+            /// @brief A pointer to the world that this LineGroup will render to.
             World *Parent;
+
+            /// @brief A Pointer to the internal class that actually does the work.
             internal::Line3D *LineData;
     };
 }

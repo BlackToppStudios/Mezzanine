@@ -2,6 +2,11 @@
 \section{phys::internal::Line3D Class Reference}
 \label{d4/db5/classphys_1_1internal_1_1Line3D}\index{phys::internal::Line3D@{phys::internal::Line3D}}
 }
+
+
+Does the bulk of the work that that the \hyperlink{classphys_1_1LineGroup}{phys::LineGroup} performs.  
+
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -10,25 +15,22 @@ void {\bfseries addPoint} (const Vector3 \&p)}
 \label{d4/db5/classphys_1_1internal_1_1Line3D_aeb3b828b35b4c8ed76158285be6ddc67}
 
 \item 
-\hypertarget{classphys_1_1internal_1_1Line3D_a3a94450be2bacd0c17d44db011070ece}{
-const Vector3 \& {\bfseries getPoint} (unsigned short index) const }
-\label{d4/db5/classphys_1_1internal_1_1Line3D_a3a94450be2bacd0c17d44db011070ece}
+\hypertarget{classphys_1_1internal_1_1Line3D_a190af0e38be28297ed2f6a7aecf0c316}{
+const Vector3 \& {\bfseries getPoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index) const }
+\label{d4/db5/classphys_1_1internal_1_1Line3D_a190af0e38be28297ed2f6a7aecf0c316}
 
 \item 
-\hypertarget{classphys_1_1internal_1_1Line3D_a1c8b1bdae1db25d6f27ff2d1ebf38bee}{
-unsigned short {\bfseries getNumPoints} (void) const }
-\label{d4/db5/classphys_1_1internal_1_1Line3D_a1c8b1bdae1db25d6f27ff2d1ebf38bee}
+\hypertarget{classphys_1_1internal_1_1Line3D_ab72a9dab3a355035c24c15e4a737ea2f}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries getNumPoints} (void) const }
+\label{d4/db5/classphys_1_1internal_1_1Line3D_ab72a9dab3a355035c24c15e4a737ea2f}
 
 \item 
-\hypertarget{classphys_1_1internal_1_1Line3D_a99e726bf689a3afa6439a9fd6d940a76}{
-void {\bfseries updatePoint} (unsigned short index, const Vector3 \&value)}
-\label{d4/db5/classphys_1_1internal_1_1Line3D_a99e726bf689a3afa6439a9fd6d940a76}
+\hypertarget{classphys_1_1internal_1_1Line3D_a4b2dec1619e4456ab0cb034ad34eb9d1}{
+void {\bfseries updatePoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index, const Vector3 \&value)}
+\label{d4/db5/classphys_1_1internal_1_1Line3D_a4b2dec1619e4456ab0cb034ad34eb9d1}
 
 \item 
-\hypertarget{classphys_1_1internal_1_1Line3D_a0320e600b9f363036c63eb47527bb854}{
-void {\bfseries drawLine} (Vector3 \&start, Vector3 \&end)}
-\label{d4/db5/classphys_1_1internal_1_1Line3D_a0320e600b9f363036c63eb47527bb854}
-
+void \hyperlink{classphys_1_1internal_1_1Line3D_a0320e600b9f363036c63eb47527bb854}{drawLine} (Vector3 \&start, Vector3 \&end)
 \item 
 \hypertarget{classphys_1_1internal_1_1Line3D_a008f0874c2213002e0c39330561f80f2}{
 void {\bfseries drawLines} (void)}
@@ -74,9 +76,29 @@ bool {\bfseries mDrawn}}
 
 
 \subsection{Detailed Description}
+Does the bulk of the work that that the \hyperlink{classphys_1_1LineGroup}{phys::LineGroup} performs. \begin{DoxyInternal}{For internal use only.}
+\hyperlink{classphys_1_1LineGroup}{phys::LineGroup} is a simple wrapper around this to perform precise low level interactions with Ogre, the rendering subsystem. This uses too much stuff from ogre to use publicly. so we need to hide it here in the \hyperlink{namespacephys_1_1internal}{phys::internal} namespace. \end{DoxyInternal}
 
 
-Definition at line 64 of file linegroup.cpp.
+Definition at line 70 of file linegroup.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1internal_1_1Line3D_a0320e600b9f363036c63eb47527bb854}{
+\index{phys::internal::Line3D@{phys::internal::Line3D}!drawLine@{drawLine}}
+\index{drawLine@{drawLine}!phys::internal::Line3D@{phys::internal::Line3D}}
+\subsubsection[{drawLine}]{\setlength{\rightskip}{0pt plus 5cm}void phys::internal::Line3D::drawLine (Vector3 \& {\em start}, \/  Vector3 \& {\em end})}}
+\label{d4/db5/classphys_1_1internal_1_1Line3D_a0320e600b9f363036c63eb47527bb854}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000008}{Todo}]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen \end{Desc}
+
+
+
+
+Definition at line 131 of file linegroup.cpp.
 
 
 
