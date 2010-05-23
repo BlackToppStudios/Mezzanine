@@ -121,9 +121,9 @@ namespace phys
             /// @brief Creates an entity for the mesh file to be placed on a scene node.
             /// @details Creates an entity in the scene manager from the mesh file provided to be attached to a node in the graphical world. @n
             /// This function is called on by the Constructor, and shouldn't be called manually.
-            /// @param name Name of the actor.
-            /// @param file File name of the graphical mesh to be used.
-            /// @param group Resource group where the graphical mesh can be found.
+            /// @param Name Name of the actor.
+            /// @param File File name of the graphical mesh to be used.
+            /// @param Group Resource group where the graphical mesh can be found.
             void CreateEntity(String name, String file, String group);
             /// @brief Creates a node for the entity in the graphical world.
             /// @details Creates a node in the scene manager to attach the actor's entity to within the graphical world. @n
@@ -132,7 +132,7 @@ namespace phys
             /// @brief Sets the location of the graphical body.
             /// @details This will take a PhysVector3 and set the location of the actor within the graphical world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
-            /// @param Place The PhysVector3 representing the location.
+            /// @param Location The PhysVector3 representing the location.
             void SetOgreLocation(PhysVector3 Place);
             /// @brief Retrieves the location of the graphical body.
             /// @details This function will retrieve the location of the object within the graphical world.
@@ -168,18 +168,18 @@ namespace phys
             virtual ~ActorBase ();
             /// @brief Descriptive constructor.
             /// @details This constructor contains the basic information needed to make an actor.
-            /// @param name The name of the actor.
-            /// @param file The 3d mesh file that contains the 3d model the actor will use.
-            /// @param group The resource group where the 3d mesh and other related files can be found.
+            /// @param Name The name of the actor.
+            /// @param File The 3d mesh file that contains the 3d model the actor will use.
+            /// @param Group The resource group where the 3d mesh and other related files can be found.
             /// @param _World Pointer to the World this object will be added to.
             ActorBase (String name, String file, String group, World* _World);
 
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
             /// In most situations you won't want to use this function, and instead produce movement through physics functions.
-            /// @param x Location on the X vector.
-            /// @param y Location on the Y vector.
-            /// @param z Location on the Z vector.
+            /// @param X Location on the X vector.
+            /// @param Y Location on the Y vector.
+            /// @param Z Location on the Z vector.
             void SetLocation(Real x, Real y, Real z);
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
@@ -203,9 +203,6 @@ namespace phys
 
             /// @brief Sets the orientation of the actor.
             /// @details Sets the orientation of the actor via Quaternion parameters.
-            /// @param x Rotation about the X.
-            /// @param y Rotation about the Y.
-            /// @param z Rotation about the Z.
             void SetOrientation(Real x, Real y, Real z, Real w);
             /// @brief Sets the orientation of the actor.
             /// @details Sets the orientation of the actor via a Quaternion.
@@ -239,7 +236,7 @@ namespace phys
             /// @brief Creates a rigid object for the actor.
             /// @details Creates a rigid object to be placed in the physics world later. @n
             /// This is automaticly called by the Constructor and shouldn't be called manually.
-            /// @param pmass "Real Mass" The mass of the object.
+            /// @param PMass "Real Mass" The mass of the object.
             void CreateRigidObject (Real pmass);
             /// @brief Adds the actor to the physics world.
             /// @details Adds the actor to the physics world. @n
@@ -252,10 +249,10 @@ namespace phys
             /// @brief Descriptive constructor.
             /// @details This constructor contains the basic information needed to make a Rigid Object. @n
             /// This class inherits from ActorBase.
-            /// @param mass The mass the object will have in the World.
-            /// @param name The name of the actor.
-            /// @param file The 3d mesh file that contains the 3d model the actor will use.
-            /// @param group The resource group where the 3d mesh and other related files can be found.
+            /// @param Mass The mass the object will have in the World.
+            /// @param Name The name of the actor.
+            /// @param File The 3d mesh file that contains the 3d model the actor will use.
+            /// @param Group The resource group where the 3d mesh and other related files can be found.
             /// @param _World Pointer to the World this object will be added to.
             ActorRigid(Real mass, String name, String file, String group, World* _World);
             /// @brief Destructor.
@@ -265,7 +262,7 @@ namespace phys
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Dynamic objects.
-            void CreateShapeFromMeshDynamic();
+            void CreateShapeFromMeshDynamic(short signed int accuracy);
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld

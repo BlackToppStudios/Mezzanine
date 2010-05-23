@@ -280,6 +280,8 @@ namespace phys
         this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
         this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
 
+	btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
+
         this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld(
                                                     BulletDispatcher,
                                                     BulletBroadphase,

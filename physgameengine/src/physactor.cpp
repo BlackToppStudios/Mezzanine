@@ -44,6 +44,7 @@
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 #include "BulletCollision/CollisionShapes/btShapeHull.h"
+#include "BulletCollision/Gimpact/btGImpactShape.h"
 
 #include "physactor.h"
 
@@ -120,6 +121,9 @@ namespace phys{
         delete MotionState;
         delete Shape;
     }
+
+    ///////////////////////////////////
+    // ActorBase Private misc functions
 
     btTriangleMesh* ActorBase::CreateTrimesh()
     {
@@ -209,6 +213,9 @@ namespace phys{
         return trimesh;
     }
 
+    ///////////////////////////////////
+    // ActorBase Constructor functions
+
     void ActorBase::CreateEntity (String name, String file, String group)
     {
         this->entity = this->GameWorld->OgreSceneManager->createEntity(name, file, group);
@@ -218,6 +225,9 @@ namespace phys{
     {
         this->node = this->GameWorld->OgreSceneManager->createSceneNode();
     }
+
+    ///////////////////////////////////
+    // ActorBase Private Location Functions
 
     void ActorBase::SetOgreLocation (PhysVector3 Location)
     {
@@ -245,6 +255,9 @@ namespace phys{
         return temp;
     }
 
+    ///////////////////////////////////
+    // ActorBase Private Orientation functions
+
     void ActorBase::SetOgreOrientation (Quaternion Rotation)
     {
         this->node->setOrientation(Rotation.GetOgreQuaternion());
@@ -255,6 +268,9 @@ namespace phys{
         btTransform temp = this->CollisionObject->getWorldTransform();
         temp.setRotation(Rotation.GetBulletQuaternion());
     }
+
+    ///////////////////////////////////
+    // ActorBase Public Location functions
 
     void ActorBase::SetLocation (Real x, Real y, Real z)
     {
@@ -278,9 +294,12 @@ namespace phys{
         this->SetBulletLocation(Location);
     }
 
+    ///////////////////////////////////
+    // ActorBase Public Orientation functions
+
     void ActorBase::SetInitOrientation(Quaternion Orientation)
     {
-        this->MotionState->SetOrientation(Orientation);
+        this->SetBulletOrientation(Orientation);
     }
 
     void ActorBase::SetOrientation (Real x, Real y, Real z, Real w)
@@ -295,6 +314,9 @@ namespace phys{
         this->SetOgreOrientation(Rotation);
     }
 
+    ///////////////////////////////////
+    // ActorBase Public Misc Functions
+
     void ActorBase::AttachToGraphics ()
     {
         PhysVector3 temp;
@@ -303,6 +325,9 @@ namespace phys{
         this->node->setPosition(temp.GetOgreVector3());
         this->node->attachObject(this->entity);
     }
+
+    ///////////////////////////////////
+    // ActorBase Public Collision flag functions
 
     void ActorBase::SetKinematic()
     {
@@ -342,34 +367,67 @@ namespace phys{
         AttachToGraphics();
     }
 
-    void ActorRigid::CreateShapeFromMeshDynamic()
+    void ActorRigid::CreateShapeFromMeshDynamic(short signed int accuracy=1)
     {
-        delete Shape;
-
-        /// @todo - Check for thread safety
-        //btTriangleMesh *pshape = this->CreateTrimesh();
-        btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateTrimesh());
-        btShapeHull *hull = new btShapeHull(tmpshape);
-        btScalar margin = tmpshape->getMargin();
-        hull->buildHull(margin);
-        //Shape=hull;
-        tmpshape->setUserPointer(hull);
-        btConvexHullShape* convexShape = new btConvexHullShape();
-        for (int b=0;b<hull->numVertices();b++)
+        if(accuracy==1)
         {
-            convexShape->addPoint(hull->getVertexPointer()[b]);
+            delete Shape;
+            /// @todo - Check for thread safety
+            btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateTrimesh());
+            btShapeHull *hull = new btShapeHull(tmpshape);
+            btScalar margin = tmpshape->getMargin();
+            hull->buildHull(margin);
+            tmpshape->setUserPointer(hull);
+            btConvexHullShape* convexShape = new btConvexHullShape();
+            for (int b=0;b<hull->numVertices();b++)
+            {
+                convexShape->addPoint(hull->getVertexPointer()[b]);
+            }
+            delete tmpshape;
+            delete hull;
+            btScalar mass=this->physrigidbody->getInvMass();
+            mass=1/mass;
+            btVector3 inertia(0,0,0);
+            convexShape->calculateLocalInertia(mass, inertia);
+            Shape = convexShape;
+            this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
+            this->physrigidbody->setCollisionShape(this->Shape);
+            this->physrigidbody->setMassProps(mass,inertia);
+            return;
         }
-        delete tmpshape;
-        delete hull;
-        //delete pshape;
-        Shape = convexShape;
-        this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
-        this->physrigidbody->setCollisionShape(this->Shape);
-        //btVector3 inertia(0,0,0);
-        //btVector3 inertia = this->physrigidbody->getInvInertiaDiagLocal();
-        //this->Shape->calculateLocalInertia(1/this->physrigidbody->getInvMass(), inertia);
-        //this->physrigidbody->setMassProps(1/this->physrigidbody->getInvMass(), inertia);
-
+        if(accuracy==2)
+        {
+            delete Shape;
+            /// @todo add code here to increase the verticies that is used to create the hull from the first accuracy setting.
+            btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateTrimesh());
+            Shape=tmpshape;
+            this->physrigidbody->setCollisionShape(this->Shape);
+            return;
+        }
+        if(accuracy==3)
+        {
+            delete Shape;
+            /// @todo add code here for compound shapes of convex hulls
+            this->physrigidbody->setCollisionShape(this->Shape);
+            return;
+        }
+        if(accuracy==4)
+        {
+            delete Shape;
+            btGImpactMeshShape* gimpact = new btGImpactMeshShape(this->CreateTrimesh());
+            btScalar mass=this->physrigidbody->getInvMass();
+            mass=1/mass;
+            btVector3 inertia(0,0,0);
+            gimpact->calculateLocalInertia(mass, inertia);
+            gimpact->setLocalScaling(btVector3(1.f,1.f,1.f));
+            gimpact->setMargin(0.04);
+            gimpact->updateBound();
+            Shape=gimpact;
+            this->physrigidbody->setCollisionShape(this->Shape);
+            this->physrigidbody->setMassProps(mass,inertia);
+            return;
+        }
+        return;
     }
 
     void ActorRigid::CreateShapeFromMeshStatic()
@@ -377,12 +435,10 @@ namespace phys{
         delete Shape;
 
         /// @todo - Check for thread safety
-        //btTriangleMesh *pshape = this->CreateTrimesh();
         btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(this->CreateTrimesh(),true);
         this->Shape=tmpshape;
         this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
         this->physrigidbody->setCollisionShape(this->Shape);
-        //delete pshape;
     }
 
     ///////////////////////////////////
