@@ -115,10 +115,10 @@ This constructor allows for an easier way to define the boundaries for items mov
 \begin{DoxyParams}{Parameters}
 \item[{\em GeographyLowerBounds\_\-}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds\_\-}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies\_\-}]This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.\end{DoxyParams}
 \begin{Desc}
-\item[\hyperlink{todo__todo000015}{Todo}]TODO: adjust the constructors to allow for pointers to a callback manager and event manager \end{Desc}
+\item[\hyperlink{todo__todo000014}{Todo}]TODO: adjust the constructors to allow for pointers to a callback manager and event manager \end{Desc}
 
 
-Definition at line 236 of file world.cpp.
+Definition at line 291 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a7f762724406c874250c3dc8910a1e695}{
 \index{phys::World@{phys::World}!World@{World}}
@@ -132,10 +132,10 @@ Default constructor.
 This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000014}{Todo}]TODO Fix the `const`ness of all methods to be as const as allowable \end{Desc}
+\item[\hyperlink{todo__todo000013}{Todo}]TODO Fix the `const`ness of all methods to be as const as allowable \end{Desc}
 
 
-Definition at line 222 of file world.cpp.
+Definition at line 277 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a8b2c74c7e5d5ce3c46a814e183a7aff1}{
 \index{phys::World@{phys::World}!$\sim$World@{$\sim$World}}
@@ -148,7 +148,7 @@ Deconstructor.
 
 This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager) 
 
-Definition at line 382 of file world.cpp.
+Definition at line 437 of file world.cpp.
 
 
 
@@ -167,7 +167,7 @@ The takes over for manager an Actor, and makes sure that it's physics status and
 \item[{\em ActorToAdd}]This is a pointer to the actor to be added \end{DoxyParams}
 
 
-Definition at line 711 of file world.cpp.
+Definition at line 766 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ab26033088abe4d60a40cf770dd1b0de8}{
 \index{phys::World@{phys::World}!AddResourceLocation@{AddResourceLocation}}
@@ -184,7 +184,7 @@ This function will add a location on the disk to find files needed to create and
  Options are: filesystem, zip. \item[{\em Group}]The name of the group the resources at this location belong to. \item[{\em recursive}]Whether or not to search sub-\/directories. \end{DoxyParams}
 
 
-Definition at line 753 of file world.cpp.
+Definition at line 808 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ad8c9834c1b9a0de437a0b29f17c0c48e}{
 \index{phys::World@{phys::World}!DeclareResource@{DeclareResource}}
@@ -201,7 +201,7 @@ This function can be thought of as a preloader. This will prepare the defined re
  Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture. \item[{\em Group}]Name of the group the resource belongs to. \end{DoxyParams}
 
 
-Definition at line 758 of file world.cpp.
+Definition at line 813 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a25c2583425bfe3d0d2bfce1093f0175e}{
 \index{phys::World@{phys::World}!DoMainLoopAllItems@{DoMainLoopAllItems}}
@@ -217,7 +217,7 @@ Performs all the items that would normally be performed during the game loop.
 \item[{\em PreviousFrameTime}]This is the amount of time that has elapsed since this function was last called, so that physics can be done properly.\end{DoxyParams}
 This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items each iteration of the main loop. 
 
-Definition at line 606 of file world.cpp.
+Definition at line 661 of file world.cpp.
 
 \hypertarget{classphys_1_1World_af4204b587fcc71e8313dd97d476378d6}{
 \index{phys::World@{phys::World}!DoMainLoopInputBuffering@{DoMainLoopInputBuffering}}
@@ -230,7 +230,7 @@ Gathers user input from the OS and places events in the event manager.
 
 This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
 
-Definition at line 633 of file world.cpp.
+Definition at line 688 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a4596a7bd1dc49c3b45b5562fcd0d08f2}{
 \index{phys::World@{phys::World}!DoMainLoopPhysics@{DoMainLoopPhysics}}
@@ -246,7 +246,7 @@ Increments physics by one step.
 \item[{\em TimeElapsed}]This is the amount of time that has elapsed since this function was last called, required for proper physics\end{DoxyParams}
 Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre/Post-\/Physics Callback is set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come from although it is concievable that a game could manually insert those manually. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
 
-Definition at line 614 of file world.cpp.
+Definition at line 669 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a34133dd084f575a51209458dbe9ecdac}{
 \index{phys::World@{phys::World}!DoMainLoopRender@{DoMainLoopRender}}
@@ -259,7 +259,7 @@ This forces the screen to be re-\/rendered.
 
 This renders the screen based on the status of all in game actors. This is automatically called in the main loop. 
 
-Definition at line 638 of file world.cpp.
+Definition at line 693 of file world.cpp.
 
 \hypertarget{classphys_1_1World_af7bc68e5a19fd4c9c8cc2437485096e1}{
 \index{phys::World@{phys::World}!DoMainLoopWindowManagerBuffering@{DoMainLoopWindowManagerBuffering}}
@@ -272,7 +272,7 @@ Creates events for each Window manger.
 
 This gather information from system/windows manager events, such as windows minimization, maximization, program exit, window hidden window shown, and a few other similar types of events. This makes events out of the information and places them in the event manager This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. 
 
-Definition at line 628 of file world.cpp.
+Definition at line 683 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{
 \index{phys::World@{phys::World}!GameInit@{GameInit}}
@@ -288,7 +288,7 @@ This creates the game window and starts the game.
 \item[{\em CallMainLoop}]should the main loop be called\end{DoxyParams}
 Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be minimal delay from the time you call this and the game actually begins. This will automatically call the Main Loop unless passed falsed. 
 
-Definition at line 439 of file world.cpp.
+Definition at line 494 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a92070d16eb81866b4393f0ed96fbcbbc}{
 \index{phys::World@{phys::World}!GetDebugPhysicsRendering@{GetDebugPhysicsRendering}}
@@ -304,7 +304,7 @@ lets you check if Physics Debug Drawing is enabled or not. \begin{DoxyReturn}{Re
 \end{DoxyReturn}
 
 
-Definition at line 791 of file world.cpp.
+Definition at line 846 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a1031d596580ac1a8d3593b5be9b49091}{
 \index{phys::World@{phys::World}!GetDebugPhysicsWireCount@{GetDebugPhysicsWireCount}}
@@ -320,7 +320,7 @@ This returns either 2 or the last amount passed into \hyperlink{classphys_1_1Wor
 \end{DoxyReturn}
 
 
-Definition at line 806 of file world.cpp.
+Definition at line 861 of file world.cpp.
 
 \hypertarget{classphys_1_1World_aa063ace52be484c7b03ec5859453f48b}{
 \index{phys::World@{phys::World}!GetTargetFrameTime@{GetTargetFrameTime}}
@@ -336,7 +336,7 @@ This returns a Whole with the current Value
 \end{DoxyReturn}
 
 
-Definition at line 734 of file world.cpp.
+Definition at line 789 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a1f0139bbc9561bcf18844be25e4adc73}{
 \index{phys::World@{phys::World}!GetWindowName@{GetWindowName}}
@@ -352,7 +352,7 @@ This returns a String Containing the Window Title
 \end{DoxyReturn}
 
 
-Definition at line 719 of file world.cpp.
+Definition at line 774 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a82b1b40f39c1f2e48759fdb77389153d}{
 \index{phys::World@{phys::World}!InitResourceGroup@{InitResourceGroup}}
@@ -368,7 +368,7 @@ After adding all of your resources and declaring them as nessessary, this functi
 \item[{\em Name}]Name of the resource group. \end{DoxyParams}
 
 
-Definition at line 763 of file world.cpp.
+Definition at line 818 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a05267a20e8d5518771d0848190b33d60}{
 \index{phys::World@{phys::World}!Log@{Log}}
@@ -384,7 +384,7 @@ Be careful with this function, even though it appears to be a template, it does 
 \item[{\em Message}]This is what will be streamed to the log \end{DoxyParams}
 
 
-Definition at line 409 of file world.cpp.
+Definition at line 464 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a88e6bdee6b972111b6804ca746738c50}{
 \index{phys::World@{phys::World}!LogAndThrow@{LogAndThrow}}
@@ -400,7 +400,7 @@ This will log the Message, and will throw an exception with the Message included
 \item[{\em Message}]This will be streamed to the log, then used in a thrown exception. \end{DoxyParams}
 
 
-Definition at line 416 of file world.cpp.
+Definition at line 471 of file world.cpp.
 
 \hypertarget{classphys_1_1World_af1d9e36d43f5e50543fa2351a32c8362}{
 \index{phys::World@{phys::World}!MainLoop@{MainLoop}}
@@ -425,7 +425,7 @@ The parameters really do explain it. This puts the camera at an arbitrary point,
 \item[{\em Position}]Where should the camera be seated \item[{\em LookAt}]Point the camera such that this poin is centered on the screen \end{DoxyParams}
 
 
-Definition at line 600 of file world.cpp.
+Definition at line 655 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a9fbd112d2677aa948301287d541b64bb}{
 \index{phys::World@{phys::World}!SetDebugPhysicsRendering@{SetDebugPhysicsRendering}}
@@ -441,7 +441,7 @@ Enables and Disables Physics Debug Drawing using default wireframes. This will f
 \item[{\em ToBeEnabled}]1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control \end{DoxyParams}
 
 
-Definition at line 781 of file world.cpp.
+Definition at line 836 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a6fa4d1e58a78ba0403af1c003fd321d9}{
 \index{phys::World@{phys::World}!SetDebugPhysicsWireCount@{SetDebugPhysicsWireCount}}
@@ -457,7 +457,7 @@ Each frame of the action gets its own wire frame, and how many of those back did
 \item[{\em WireFrameCount\_\-}]This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate, Any amount more than just a few seconds worth can be cumbersome. \end{DoxyParams}
 
 
-Definition at line 801 of file world.cpp.
+Definition at line 856 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a3779f811ca8a394a20fc2d92823b5f93}{
 \index{phys::World@{phys::World}!SetGravity@{SetGravity}}
@@ -473,7 +473,7 @@ Sets the strength and direction of gravity within the world.
 \item[{\em pgrav}]Vector3 representing the strength and direction of gravity. \end{DoxyParams}
 
 
-Definition at line 772 of file world.cpp.
+Definition at line 827 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a76dfcde35392291aafd6eb1a64b3c95c}{
 \index{phys::World@{phys::World}!SetTargetFrameRate@{SetTargetFrameRate}}
@@ -492,7 +492,7 @@ Setting vary low or very High values could cause unknown errors, This is on our 
 \end{DoxyWarning}
 
 
-Definition at line 744 of file world.cpp.
+Definition at line 799 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ad95b5a5ad73e0a05826b5bd834876333}{
 \index{phys::World@{phys::World}!SetTargetFrameTime@{SetTargetFrameTime}}
@@ -511,7 +511,7 @@ Setting vary low or very High values could cause unknown errors, This is on our 
 \end{DoxyWarning}
 
 
-Definition at line 739 of file world.cpp.
+Definition at line 794 of file world.cpp.
 
 \hypertarget{classphys_1_1World_acd0dff342c08fe3008226488b7c53d97}{
 \index{phys::World@{phys::World}!SetWindowName@{SetWindowName}}
@@ -522,18 +522,18 @@ Definition at line 739 of file world.cpp.
 
 This can set the the Text in the titlebar. 
 
-This changes the text in the bar at the top of the game window in windowed mode. Currently the changes only works if this function is called before \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{World.GameInit} but it is our TODO list to fix so it can be changed at anytime. 
+This changes the text in the bar at the top of the game window in windowed mode. It can be changed at anytime. 
 \begin{DoxyParams}{Parameters}
 \item[{\em NewName}]This is the new text to be used in the titlebar. \end{DoxyParams}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000019}{Todo}]TODO Change the name of an application once it is running \end{Desc}
+\item[\hyperlink{todo__todo000018}{Todo}]TODO Change the name of an application once it is running \end{Desc}
 
 
 
 
-Definition at line 724 of file world.cpp.
+Definition at line 779 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a0d8ce136bebe81a6826b7e202a531f6a}{
 \index{phys::World@{phys::World}!ShowSystemSettingDialog@{ShowSystemSettingDialog}}
@@ -546,7 +546,7 @@ This Shows an Engine Generated Configuration Screen.
 
 This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. 
 
-Definition at line 425 of file world.cpp.
+Definition at line 480 of file world.cpp.
 
 
 
@@ -577,7 +577,7 @@ This is a point to the default Call BackManager.
 
 All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. 
 
-Definition at line 396 of file world.h.
+Definition at line 395 of file world.h.
 
 \hypertarget{classphys_1_1World_ad0b13f1f3caf0342f56671b522543453}{
 \index{phys::World@{phys::World}!Events@{Events}}
@@ -590,7 +590,7 @@ This is the default pointer to the Event Manager.
 
 This is the Event manager that all physworld members will place any events into. 
 
-Definition at line 400 of file world.h.
+Definition at line 399 of file world.h.
 
 
 

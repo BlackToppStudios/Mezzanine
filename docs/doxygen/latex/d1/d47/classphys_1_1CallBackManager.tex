@@ -1,0 +1,482 @@
+\hypertarget{classphys_1_1CallBackManager}{
+\section{phys::CallBackManager Class Reference}
+\label{d1/d47/classphys_1_1CallBackManager}\index{phys::CallBackManager@{phys::CallBackManager}}
+}
+
+
+This Stores callbacks for for use in the main loop.  
+
+
+
+
+{\ttfamily \#include $<$callbackmanager.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1CallBackManager_a16d4c60beef774ae904cf01853d71aae}{CallBackManager} (\hyperlink{classphys_1_1World}{World} $\ast$\_\-Parent)
+\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1CallBackManager_a098b7a7822538aa6d6c4ba690f1e069d}{$\sim$CallBackManager} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_a84e782f8729f49b296691763351ee2b1}{PreInput} ()
+\begin{DoxyCompactList}\small\item\em This calls the PreInput Callback. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_ae3da6f1eb10cdf4d8551aaeeda73053c}{ErasePreInput} ()
+\begin{DoxyCompactList}\small\item\em Drops the PreInput pointer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_a1efb0c185304376986093beebf08a277}{SetPreInput} (bool($\ast$Callback)())
+\begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function for PreInput. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_a1add8e6e7f5862ec4a4fe48095dc3c4e}{IsPreInputCallbackSet} ()
+\begin{DoxyCompactList}\small\item\em Is the PreInput callback set or not. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_a83afb36cfc7e71863d68a8b4c1d5e9d2}{PostInput} ()
+\begin{DoxyCompactList}\small\item\em This calls the PostInput Callback. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_a84ccf382be58b42439869ec9b77a0f89}{ErasePostInput} ()
+\begin{DoxyCompactList}\small\item\em Drops the PostInput pointer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_abbf73a7199a64d6a2a39c7de44c5acd6}{SetPostInput} (bool($\ast$Callback)())
+\begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function for PostInput. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_a075b799a815a2be2a83e30bb689711a7}{IsPostInputCallbackSet} ()
+\begin{DoxyCompactList}\small\item\em Is the PostInput callback set or not. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_a65867cc4855f0f8cd84a2b4a8bbf0fd6}{PrePhysics} ()
+\begin{DoxyCompactList}\small\item\em This calls the PrePhysics Callback. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_afaeba4d6ae245d1560b76799417cce40}{ErasePrePhysics} ()
+\begin{DoxyCompactList}\small\item\em Drops the PrePhysics pointer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_a3f06ccacd416b3109f20c30cd30f9efe}{SetPrePhysics} (bool($\ast$Callback)())
+\begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function for PrePhysics. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_af93b7b96e85faa77ed005840e0189ebd}{IsPrePhysicsCallbackSet} ()
+\begin{DoxyCompactList}\small\item\em Is the PrePhysics callback set or not. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_a06bf0e8787f21caf31bf428727155084}{PostPhysics} ()
+\begin{DoxyCompactList}\small\item\em This calls the PostPhysics Callback. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_a2d03573a93606e9d3fcd7adad5c8c397}{ErasePostPhysics} ()
+\begin{DoxyCompactList}\small\item\em Drops the PostPhysics pointer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_a17687cd04807dfc80a25847be830c2f2}{SetPostPhysics} (bool($\ast$Callback)())
+\begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function for PostPhysics. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_ac4bf07f907b8d4d7e052126bcfbba4ba}{IsPostPhysicsCallbackSet} ()
+\begin{DoxyCompactList}\small\item\em Is the PostPhysics callback set or not. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_a244c88b8a06f68a4f4bcff6253bf6806}{PreRender} ()
+\begin{DoxyCompactList}\small\item\em This calls the PreRender Callback. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_adadf16f3f38398c9593646416ef18499}{ErasePreRender} ()
+\begin{DoxyCompactList}\small\item\em Drops the PreRender pointer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_a1e060fd479413457a798ea3c6b2bcb4d}{SetPreRender} (bool($\ast$Callback)())
+\begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function for PreRender. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_aa4eff76517403726c846911f6b97b2c2}{IsPreRenderCallbackSet} ()
+\begin{DoxyCompactList}\small\item\em Is the PreRender callback set or not. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_aa1a1132e877d989ecea08a16ee4b3ac1}{PostRender} ()
+\begin{DoxyCompactList}\small\item\em This calls the PostRender Callback. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_a0eef22a8df4dc87289a18f0e6a1d0baf}{ErasePostRender} ()
+\begin{DoxyCompactList}\small\item\em Drops the PostRender pointer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CallBackManager_afe6a91491f3872599d2c5784a902361a}{SetPostRender} (bool($\ast$Callback)())
+\begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function for PostRender. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1CallBackManager_a13011f2f9ffd561255772bc4082b304f}{IsPostRenderCallbackSet} ()
+\begin{DoxyCompactList}\small\item\em Is the PostRender callback set or not. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This Stores callbacks for for use in the main loop. This stores a series of pointers to functions that the main loop will call. This can be swapped out at any point in time with another \hyperlink{classphys_1_1CallBackManager}{CallBackManager} to completely (or subtley) alter game behavior. In general 
+
+Definition at line 55 of file callbackmanager.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1CallBackManager_a16d4c60beef774ae904cf01853d71aae}{
+\index{phys::CallBackManager@{phys::CallBackManager}!CallBackManager@{CallBackManager}}
+\index{CallBackManager@{CallBackManager}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{CallBackManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::CallBackManager::CallBackManager ({\bf World} $\ast$ {\em \_\-Parent})}}
+\label{d1/d47/classphys_1_1CallBackManager_a16d4c60beef774ae904cf01853d71aae}
+
+
+Constructor. 
+
+This creates a usable but empty \hyperlink{classphys_1_1CallBackManager}{CallBackManager} 
+\begin{DoxyParams}{Parameters}
+\item[{\em \_\-Parent}]This is a pointer to the world that this callback manager works with. \end{DoxyParams}
+
+
+Definition at line 56 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a098b7a7822538aa6d6c4ba690f1e069d}{
+\index{phys::CallBackManager@{phys::CallBackManager}!$\sim$CallBackManager@{$\sim$CallBackManager}}
+\index{$\sim$CallBackManager@{$\sim$CallBackManager}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{$\sim$CallBackManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::CallBackManager::$\sim$CallBackManager ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a098b7a7822538aa6d6c4ba690f1e069d}
+
+
+Deconstructor. 
+
+Deconstructor Currently doesn't do very much 
+
+Definition at line 70 of file callbackmanager.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1CallBackManager_a84ccf382be58b42439869ec9b77a0f89}{
+\index{phys::CallBackManager@{phys::CallBackManager}!ErasePostInput@{ErasePostInput}}
+\index{ErasePostInput@{ErasePostInput}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{ErasePostInput}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::ErasePostInput ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a84ccf382be58b42439869ec9b77a0f89}
+
+
+Drops the PostInput pointer. 
+
+Drops the PostInput pointer, this does not 'delete' the pointer, merely assigns it to zero. 
+
+Definition at line 122 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a2d03573a93606e9d3fcd7adad5c8c397}{
+\index{phys::CallBackManager@{phys::CallBackManager}!ErasePostPhysics@{ErasePostPhysics}}
+\index{ErasePostPhysics@{ErasePostPhysics}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{ErasePostPhysics}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::ErasePostPhysics ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a2d03573a93606e9d3fcd7adad5c8c397}
+
+
+Drops the PostPhysics pointer. 
+
+Drops the PostPhysics pointer, this does not 'delete' the pointer, merely assigns it to zero. 
+
+Definition at line 184 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a0eef22a8df4dc87289a18f0e6a1d0baf}{
+\index{phys::CallBackManager@{phys::CallBackManager}!ErasePostRender@{ErasePostRender}}
+\index{ErasePostRender@{ErasePostRender}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{ErasePostRender}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::ErasePostRender ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a0eef22a8df4dc87289a18f0e6a1d0baf}
+
+
+Drops the PostRender pointer. 
+
+Drops the PostRender pointer, this does not 'delete' the pointer, merely assigns it to zero. 
+
+Definition at line 247 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_ae3da6f1eb10cdf4d8551aaeeda73053c}{
+\index{phys::CallBackManager@{phys::CallBackManager}!ErasePreInput@{ErasePreInput}}
+\index{ErasePreInput@{ErasePreInput}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{ErasePreInput}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::ErasePreInput ()}}
+\label{d1/d47/classphys_1_1CallBackManager_ae3da6f1eb10cdf4d8551aaeeda73053c}
+
+
+Drops the PreInput pointer. 
+
+Drops the PreInput pointer, this does not 'delete' the pointer, merely assigns it to zero. 
+
+Definition at line 89 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_afaeba4d6ae245d1560b76799417cce40}{
+\index{phys::CallBackManager@{phys::CallBackManager}!ErasePrePhysics@{ErasePrePhysics}}
+\index{ErasePrePhysics@{ErasePrePhysics}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{ErasePrePhysics}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::ErasePrePhysics ()}}
+\label{d1/d47/classphys_1_1CallBackManager_afaeba4d6ae245d1560b76799417cce40}
+
+
+Drops the PrePhysics pointer. 
+
+Drops the PrePhysics pointer, this does not 'delete' the pointer, merely assigns it to zero. 
+
+Definition at line 153 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_adadf16f3f38398c9593646416ef18499}{
+\index{phys::CallBackManager@{phys::CallBackManager}!ErasePreRender@{ErasePreRender}}
+\index{ErasePreRender@{ErasePreRender}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{ErasePreRender}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::ErasePreRender ()}}
+\label{d1/d47/classphys_1_1CallBackManager_adadf16f3f38398c9593646416ef18499}
+
+
+Drops the PreRender pointer. 
+
+Drops the PreRender pointer, this does not 'delete' the pointer, merely assigns it to zero. 
+
+Definition at line 215 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a075b799a815a2be2a83e30bb689711a7}{
+\index{phys::CallBackManager@{phys::CallBackManager}!IsPostInputCallbackSet@{IsPostInputCallbackSet}}
+\index{IsPostInputCallbackSet@{IsPostInputCallbackSet}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{IsPostInputCallbackSet}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::IsPostInputCallbackSet ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a075b799a815a2be2a83e30bb689711a7}
+
+
+Is the PostInput callback set or not. 
+
+Is the PostInput callback set or not. The returns true if set or false otherwise. \begin{DoxyReturn}{Returns}
+This returns true if the PostInput CallBack is set, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_ac4bf07f907b8d4d7e052126bcfbba4ba}{
+\index{phys::CallBackManager@{phys::CallBackManager}!IsPostPhysicsCallbackSet@{IsPostPhysicsCallbackSet}}
+\index{IsPostPhysicsCallbackSet@{IsPostPhysicsCallbackSet}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{IsPostPhysicsCallbackSet}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::IsPostPhysicsCallbackSet ()}}
+\label{d1/d47/classphys_1_1CallBackManager_ac4bf07f907b8d4d7e052126bcfbba4ba}
+
+
+Is the PostPhysics callback set or not. 
+
+Is the PostPhysics callback set or not. The returns true if set or false otherwise. \begin{DoxyReturn}{Returns}
+This returns true if the PostPhysics CallBack is set, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 194 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a13011f2f9ffd561255772bc4082b304f}{
+\index{phys::CallBackManager@{phys::CallBackManager}!IsPostRenderCallbackSet@{IsPostRenderCallbackSet}}
+\index{IsPostRenderCallbackSet@{IsPostRenderCallbackSet}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{IsPostRenderCallbackSet}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::IsPostRenderCallbackSet ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a13011f2f9ffd561255772bc4082b304f}
+
+
+Is the PostRender callback set or not. 
+
+Is the PostRender callback set or not. The returns true if set or false otherwise. \begin{DoxyReturn}{Returns}
+This returns true if the PostRender CallBack is set, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 257 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a1add8e6e7f5862ec4a4fe48095dc3c4e}{
+\index{phys::CallBackManager@{phys::CallBackManager}!IsPreInputCallbackSet@{IsPreInputCallbackSet}}
+\index{IsPreInputCallbackSet@{IsPreInputCallbackSet}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{IsPreInputCallbackSet}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::IsPreInputCallbackSet ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a1add8e6e7f5862ec4a4fe48095dc3c4e}
+
+
+Is the PreInput callback set or not. 
+
+Is the PreInput callback set or not. The returns true if set or false otherwise. \begin{DoxyReturn}{Returns}
+This returns true if the PreInput CallBack is set, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_af93b7b96e85faa77ed005840e0189ebd}{
+\index{phys::CallBackManager@{phys::CallBackManager}!IsPrePhysicsCallbackSet@{IsPrePhysicsCallbackSet}}
+\index{IsPrePhysicsCallbackSet@{IsPrePhysicsCallbackSet}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{IsPrePhysicsCallbackSet}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::IsPrePhysicsCallbackSet ()}}
+\label{d1/d47/classphys_1_1CallBackManager_af93b7b96e85faa77ed005840e0189ebd}
+
+
+Is the PrePhysics callback set or not. 
+
+Is the PrePhysics callback set or not. The returns true if set or false otherwise. \begin{DoxyReturn}{Returns}
+This returns true if the PrePhysics CallBack is set, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 163 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_aa4eff76517403726c846911f6b97b2c2}{
+\index{phys::CallBackManager@{phys::CallBackManager}!IsPreRenderCallbackSet@{IsPreRenderCallbackSet}}
+\index{IsPreRenderCallbackSet@{IsPreRenderCallbackSet}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{IsPreRenderCallbackSet}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::IsPreRenderCallbackSet ()}}
+\label{d1/d47/classphys_1_1CallBackManager_aa4eff76517403726c846911f6b97b2c2}
+
+
+Is the PreRender callback set or not. 
+
+Is the PreRender callback set or not. The returns true if set or false otherwise. \begin{DoxyReturn}{Returns}
+This returns true if the PreRender CallBack is set, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 225 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a83afb36cfc7e71863d68a8b4c1d5e9d2}{
+\index{phys::CallBackManager@{phys::CallBackManager}!PostInput@{PostInput}}
+\index{PostInput@{PostInput}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{PostInput}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::PostInput ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a83afb36cfc7e71863d68a8b4c1d5e9d2}
+
+
+This calls the PostInput Callback. 
+
+This calls the PostInput Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. \begin{DoxyReturn}{Returns}
+A bool that represents whether the mainloop should end. 
+\end{DoxyReturn}
+
+
+Definition at line 111 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a06bf0e8787f21caf31bf428727155084}{
+\index{phys::CallBackManager@{phys::CallBackManager}!PostPhysics@{PostPhysics}}
+\index{PostPhysics@{PostPhysics}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{PostPhysics}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::PostPhysics ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a06bf0e8787f21caf31bf428727155084}
+
+
+This calls the PostPhysics Callback. 
+
+This calls the PostPhysics Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. \begin{DoxyReturn}{Returns}
+A bool that represents whether the mainloop should end. 
+\end{DoxyReturn}
+
+
+Definition at line 175 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_aa1a1132e877d989ecea08a16ee4b3ac1}{
+\index{phys::CallBackManager@{phys::CallBackManager}!PostRender@{PostRender}}
+\index{PostRender@{PostRender}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{PostRender}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::PostRender ()}}
+\label{d1/d47/classphys_1_1CallBackManager_aa1a1132e877d989ecea08a16ee4b3ac1}
+
+
+This calls the PostRender Callback. 
+
+This calls the PostRender Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. \begin{DoxyReturn}{Returns}
+A bool that represents whether the mainloop should end. 
+\end{DoxyReturn}
+
+
+Definition at line 238 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a84e782f8729f49b296691763351ee2b1}{
+\index{phys::CallBackManager@{phys::CallBackManager}!PreInput@{PreInput}}
+\index{PreInput@{PreInput}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{PreInput}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::PreInput ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a84e782f8729f49b296691763351ee2b1}
+
+
+This calls the PreInput Callback. 
+
+This calls the PreInput Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. \begin{DoxyReturn}{Returns}
+A bool that represents whether the mainloop should end. 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a65867cc4855f0f8cd84a2b4a8bbf0fd6}{
+\index{phys::CallBackManager@{phys::CallBackManager}!PrePhysics@{PrePhysics}}
+\index{PrePhysics@{PrePhysics}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{PrePhysics}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::PrePhysics ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a65867cc4855f0f8cd84a2b4a8bbf0fd6}
+
+
+This calls the PrePhysics Callback. 
+
+This calls the PrePhysics Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. \begin{DoxyReturn}{Returns}
+A bool that represents whether the mainloop should end. 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a244c88b8a06f68a4f4bcff6253bf6806}{
+\index{phys::CallBackManager@{phys::CallBackManager}!PreRender@{PreRender}}
+\index{PreRender@{PreRender}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{PreRender}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::CallBackManager::PreRender ()}}
+\label{d1/d47/classphys_1_1CallBackManager_a244c88b8a06f68a4f4bcff6253bf6806}
+
+
+This calls the PreRender Callback. 
+
+This calls the PreRender Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. \begin{DoxyReturn}{Returns}
+A bool that represents whether the mainloop should end. 
+\end{DoxyReturn}
+
+
+Definition at line 206 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_abbf73a7199a64d6a2a39c7de44c5acd6}{
+\index{phys::CallBackManager@{phys::CallBackManager}!SetPostInput@{SetPostInput}}
+\index{SetPostInput@{SetPostInput}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{SetPostInput}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::SetPostInput (bool($\ast$)() {\em Callback})}}
+\label{d1/d47/classphys_1_1CallBackManager_abbf73a7199a64d6a2a39c7de44c5acd6}
+
+
+This assigns a function to be the callback function for PostInput. 
+
+This assigns a function to be the callback function for PostInput. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Callback}]This is a pointer to a function that returns a bool and accepts no arguments \end{DoxyParams}
+
+
+Definition at line 127 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a17687cd04807dfc80a25847be830c2f2}{
+\index{phys::CallBackManager@{phys::CallBackManager}!SetPostPhysics@{SetPostPhysics}}
+\index{SetPostPhysics@{SetPostPhysics}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{SetPostPhysics}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::SetPostPhysics (bool($\ast$)() {\em Callback})}}
+\label{d1/d47/classphys_1_1CallBackManager_a17687cd04807dfc80a25847be830c2f2}
+
+
+This assigns a function to be the callback function for PostPhysics. 
+
+This assigns a function to be the callback function for PostPhysics. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Callback}]This is a pointer to a function that returns a bool and accepts no arguments \end{DoxyParams}
+
+
+Definition at line 189 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_afe6a91491f3872599d2c5784a902361a}{
+\index{phys::CallBackManager@{phys::CallBackManager}!SetPostRender@{SetPostRender}}
+\index{SetPostRender@{SetPostRender}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{SetPostRender}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::SetPostRender (bool($\ast$)() {\em Callback})}}
+\label{d1/d47/classphys_1_1CallBackManager_afe6a91491f3872599d2c5784a902361a}
+
+
+This assigns a function to be the callback function for PostRender. 
+
+This assigns a function to be the callback function for PostRender. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Callback}]This is a pointer to a function that returns a bool and accepts no arguments \end{DoxyParams}
+
+
+Definition at line 252 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a1efb0c185304376986093beebf08a277}{
+\index{phys::CallBackManager@{phys::CallBackManager}!SetPreInput@{SetPreInput}}
+\index{SetPreInput@{SetPreInput}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{SetPreInput}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::SetPreInput (bool($\ast$)() {\em Callback})}}
+\label{d1/d47/classphys_1_1CallBackManager_a1efb0c185304376986093beebf08a277}
+
+
+This assigns a function to be the callback function for PreInput. 
+
+This assigns a function to be the callback function for PreInput. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Callback}]This is a pointer to a function that returns a bool and accepts no arguments \end{DoxyParams}
+
+
+Definition at line 94 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a3f06ccacd416b3109f20c30cd30f9efe}{
+\index{phys::CallBackManager@{phys::CallBackManager}!SetPrePhysics@{SetPrePhysics}}
+\index{SetPrePhysics@{SetPrePhysics}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{SetPrePhysics}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::SetPrePhysics (bool($\ast$)() {\em Callback})}}
+\label{d1/d47/classphys_1_1CallBackManager_a3f06ccacd416b3109f20c30cd30f9efe}
+
+
+This assigns a function to be the callback function for PrePhysics. 
+
+This assigns a function to be the callback function for PrePhysics. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Callback}]This is a pointer to a function that returns a bool and accepts no arguments \end{DoxyParams}
+
+
+Definition at line 158 of file callbackmanager.cpp.
+
+\hypertarget{classphys_1_1CallBackManager_a1e060fd479413457a798ea3c6b2bcb4d}{
+\index{phys::CallBackManager@{phys::CallBackManager}!SetPreRender@{SetPreRender}}
+\index{SetPreRender@{SetPreRender}!phys::CallBackManager@{phys::CallBackManager}}
+\subsubsection[{SetPreRender}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CallBackManager::SetPreRender (bool($\ast$)() {\em Callback})}}
+\label{d1/d47/classphys_1_1CallBackManager_a1e060fd479413457a798ea3c6b2bcb4d}
+
+
+This assigns a function to be the callback function for PreRender. 
+
+This assigns a function to be the callback function for PreRender. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Callback}]This is a pointer to a function that returns a bool and accepts no arguments \end{DoxyParams}
+
+
+Definition at line 220 of file callbackmanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+callbackmanager.h\item 
+callbackmanager.cpp\end{DoxyCompactItemize}

@@ -55,34 +55,45 @@ using namespace phys;
 
 namespace phys
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    // Internal C style functions
-    int PhysSDLFilter( const RawEvent *event );
-
-    //If this is passed an event that points to 0 it will function as a method to tell us if an SDL_QUIT message has been thrown
-    //this will return 2 if it has not seen an SDL_quit, and a 4 if it has
-    int PhysSDLFilter( const SDL_Event *event )
+    /// @internal
+    /// @namespace phys::internal
+    /// @brief This namespace is used for internal helper classes, and in general it should be ignored by game developers
+    /// @details This whole internal namespace is a dirty hack. This is where code goes that must implement classes or functions for the various subsytems the Physgame engine draws on.
+    namespace internal
     {
-        static bool DroppedQuit=false;
+        /// @internal
+        /// @brief SDL uses this to filter events it presents to applications
+        /// @details This is used used to filter out SQL_quit messages, and generate appropriate messages for the game developer to use.
+        /// This will always drop quit events, and store that information for later use.
+        /// @param event This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages
+        /// @warning Do not use this. It can only cause problems. This is for SDL, the user input subsystem, to filter certain events.
+        /// @return This will always return either 0 or 1 to SDL. 0 if it should drop the event, which it does to all SDL_quit events, 1 if the event should be allowed, which it does to all events which are not SDL_quit events. If a null pointer was passed, then this will return 4 if it dropped an SDL_Quit, and 2 if it has not droppped an SDL_quit.
+        int PhysSDLFilter( const RawEvent *event );
 
-        if(event!=0)                //if this is a real event
+        //If this is passed an event that points to 0 it will function as a method to tell us if an SDL_QUIT message has been thrown
+        //this will return 2 if it has not seen an SDL_quit, and a 4 if it has
+        int PhysSDLFilter( const SDL_Event *event )
         {
-            if ( event->type == SDL_QUIT )
-            {
-                DroppedQuit=true;   //Drop all quit events, and track that we dropped them
-                return 0;
-            }
-            return 1;
-        }else{
-            if(DroppedQuit)         //4 if we need to make a quit event
-            {
-                DroppedQuit=false;  //Reset this so we don't add more in the future by accident
-                return 4;
-            }
-            return 2;
-        }
-    }
+            static bool DroppedQuit=false;
 
+            if(event!=0)                //if this is a real event
+            {
+                if ( event->type == SDL_QUIT )
+                {
+                    DroppedQuit=true;   //Drop all quit events, and track that we dropped them
+                    return 0;
+                }
+                return 1;
+            }else{
+                if(DroppedQuit)         //4 if we need to make a quit event
+                {
+                    DroppedQuit=false;  //Reset this so we don't add more in the future by accident
+                    return 4;
+                }
+                return 2;
+            }
+        }
+    } // /internal
 
     /// @todo TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
     /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
@@ -446,9 +457,9 @@ namespace phys
     {
         if (NULL == SDL_GetEventFilter())           //Verify the Event filter is installed, if not, then install it.
         {
-            SDL_SetEventFilter( PhysSDLFilter );
+            SDL_SetEventFilter( internal::PhysSDLFilter );
         }else{
-            if(4==PhysSDLFilter(0))                 //Pass it a null pointer to get it to "Not Callback Mode"
+            if(4==internal::PhysSDLFilter(0))                 //Pass it a null pointer to get it to "Not Callback Mode"
             {
                 this->AddEvent(new EventQuit());    //We need to make a quit event
             }else{

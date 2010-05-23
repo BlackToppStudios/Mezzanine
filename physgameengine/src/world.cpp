@@ -74,55 +74,110 @@ namespace phys
 {
     /// @internal
     /// @namespace phys::debug
-    /// @todo This whole debug namespace is a dirty hack. It needs to be broken out into a 3d line class and some kind, but the Debug render can probably stay internal
+    /// @brief This namespace is for internal debugging tools. In general it should be used in game code.
+    /// @details This whole debug namespace is a dirty hack. This is where internal only classes and functions go
+    /// that can and maybe should be ommited from release builds
     namespace debug
     {
-
         /// @internal
         /// @class InternalDebugDrawer
         /// @brief This is used to draw wireframse for the Physics subsystem
         class InternalDebugDrawer : public btIDebugDraw
         {
             private:
+                /// @internal
                 /// @brief A pointer to phys::World that this Debug Drawer works with
                 World* ParentWorld;
 
+                /// @internal
                 /// @brief How many wireframes do you want to keep around on the screen.
                 Whole WireFrameCount;
 
-                /// @brief This queue stores The listing of of the wireframes still to be rendered
+                /// @internal
+                /// @brief This queue stores The listing of of the wireframes still to be rendered.
                 /// @details This stores an amount of wireframes up to the WireFrameCount. When this class is created or a
                 /// new frame rendered a new Line group is a added to this queue.
                 std::queue<phys::LineGroup*> WireFrames;
 
+                /// @internal
                 /// @brief This stores whether or not to render physics debug lines
                 /// @details This stores whether or not to render physics debud lines. 0 = Do not draw anything. 1 = Draw model wireframes.
                 /// Later we will add support for contact drawing, individual modeling drawing, etc...
                 int DebugDrawing;
             public:
+                /// @internal
                 /// @brief Basic Constructor
                 /// @param ParentWorld_ This is a Pointer to the world to be rendered
+                /// @param WireFrameCount_ This sets the amount of previous Wireframes to be rendered, see InternalDebugDrawer::SetWireFrameCount for details.
                 /// @details This creates a basic Debug Drawer which works with the phys::World that was passed. With a new
                 InternalDebugDrawer(phys::World *ParentWorld_, Whole WireFrameCount_ = 2);
 
+                /// @internal
                 /// @brief Destructor
                 /// @details This deletes all the Wireframes and will stop wireframe rendering
                 ~InternalDebugDrawer();
 
+                /// @internal
                 /// @brief This will prepare a line segment for being drawn
+                /// @details This adds the points for a line to the internal list of points to be rendered.
                 /// @param from The first point of the line
                 /// @param to The second point of the line
                 /// @param color Currently ignored
                 virtual void drawLine(const btVector3& from,const btVector3& to,const btVector3& color);
 
+                /// @internal
+                /// @brief This add all the rendering information to the graphics subsystem
+                /// @details This sends all the points in the list of lines to the rendering subsystem(currently ogre), where they will stay until deleted
                 virtual void PrepareForRendering();
+
+                /// @internal
+                /// @brief Sets the amount of previous wireframes to leave visible.
+                /// @details This will limit the amount of previous wireframes drawn. Setting this will cause all the extra wireframes to be deleted
+                /// InternalDebugDrawer::PrepareForRendering() is next called, which should happen just before everything is rendered.
+                /// @param WireFrameCount_ This is a whole number which is limit.
                 virtual void SetWireFrameCount(Whole WireFrameCount_);
+
+                /// @internal
+                /// @brief This returns the amount of wireframes to be drawn
+                /// @details This returns either 2 or the amount last set by InternalDebugDrawer::SetWireFrameCount .
+                /// @return This returns a whole number with the wireframe limit.
                 virtual Whole GetWireFrameCount();
 
+                /// @internal
+                /// @brief Currently Unused
+                /// @details Currently Unused
+                /// @param PointOnB Currently Unused
+                /// @param normalOnB Currently Unused
+                /// @param distance Currently Unused
+                /// @param lifeTime Currently Unused
+                /// @param color Currently Unused
                 virtual void drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color);
+
+                /// @internal
+                /// @brief Used by the physics subsystem to report errors using the renderer
+                /// @details We *Believe* that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we
+                /// Have redirected all input from this function to the World::Log function.
+                /// @param warningString We *Believe* These are messagesfrom the physics subsystem, and that this should not directly called otherwise
                 virtual void reportErrorWarning(const char* warningString);
-                virtual void draw3dText(const btVector3& location,const char* textString);
+
+                /// @internal
+                /// @brief Currently Unused
+                /// @details Currently Unused
+                /// @param location Currently Unused
+                /// @param textString Currently Unused
+                virtual void draw3dText(const btVector3& location, const char* textString);
+
+                /// @internal
+                /// @brief This is used to decide how much the debug render should draw
+                /// @details Currently this accepts btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe and setting these will either start or stop
+                /// Wireframe rendering. All other btIDebugDraw values are ignored.
+                /// @param debugMode An Int which contains either btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
                 virtual void setDebugMode(int debugMode);
+
+                /// @internal
+                /// @brief This will return the current debug mode.
+                /// @details Currently this can only return btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
+                /// @return Returns the Current debug mode, currently either btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
                 virtual int getDebugMode() const;
         };
 
