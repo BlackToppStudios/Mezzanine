@@ -441,6 +441,13 @@ namespace phys{
         this->physrigidbody->setCollisionShape(this->Shape);
     }
 
+    void ActorRigid::LimitMovementOnAxis(bool x, bool y, bool z)
+    {
+        btVector3 LinFact(x,y,z);
+        this->physrigidbody->setLinearFactor(LinFact);
+        return;
+    }
+
     ///////////////////////////////////
     // ActorSoft class functions
 

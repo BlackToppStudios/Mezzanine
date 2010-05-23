@@ -173,6 +173,7 @@ void LoadContent()
     object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
     object1->CreateShapeFromMeshDynamic();
     object1->SetInitLocation(PhysVector3(0,50,0));
+    object1->LimitMovementOnAxis(false,true,true);
     object2 = new ActorRigid (mass,"Robot2",filename,groupname,&TheWorld);
     object2->CreateShapeFromMeshDynamic();
     object2->SetInitLocation(PhysVector3(0,50,0));

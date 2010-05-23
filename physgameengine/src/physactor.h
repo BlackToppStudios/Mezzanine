@@ -268,6 +268,16 @@ namespace phys
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Dynamic objects.
             void CreateShapeFromMeshStatic();
+	    /// @brief Restricts movement on the axis or axies of your choice.
+            /// @details This function will lock any and all axies you define you want to be locked.
+            /// Simply pass true to allow movement on that axis, false if you don't.  This function
+            /// is primarily useful for 2D games, in which if you are viewing the playing area from
+            /// the side you can pass in LimitMovementOnAxis(true,true,false) and the object will
+            /// only be able to move up, down, or side to side, but not in or out.
+            /// @param X Allow or Disallow use of the X axis for movement.
+            /// @param Y Allow or Disallow use of the Y axis for movement.
+            /// @param Z Allow or Disallow use of the Z axis for movement.
+            void LimitMovementOnAxis(bool x, bool y, bool z);
     };
 
     ///////////////////////////////////////////////////////////////////////////////
