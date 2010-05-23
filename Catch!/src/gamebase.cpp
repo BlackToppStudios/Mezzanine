@@ -56,12 +56,11 @@ int main(int argc, char **argv)
 
     LoadContent();
 
-    //TheWorld.SetDebugPhysicsWireCount(3000);
-    TheWorld.SetDebugPhysicsRendering(0);
+    TheWorld.SetDebugPhysicsWireCount(30);
+    TheWorld.SetDebugPhysicsRendering(1);
 
 	//Start the Main Loop
 	TheWorld.MainLoop();
-
 
 	return 0;
 }
@@ -81,7 +80,7 @@ bool PostRender()
 	//getting a message from the event manager
 	EventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
 
-    // Is currentTime a valid event?
+    // Is CurrentTime a valid event?
     while(0 != CurrentTime)
     {
         //TheWorld.Log("Time since last frame ");
@@ -94,19 +93,15 @@ bool PostRender()
     }
 
     //IF the game has gone on for 10 or more seconds close it.
-
 	if (10000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
 	{
 		return false;
 	}
 
-    //If we wanted to we could unremark the following line and call all the main loop items right here, but
-    //that is not needed, nor is it the prefered way to do things. All these Items will be called automatically
-    //if the callbacks for the exists.
-    //TheWorld.DoMainLoopAllItems();
-
-    //x+=0.5;
-    //object1->SetLocation(x,y,z);
+    if (2000<gametime)
+    {
+        TheWorld.SetDebugPhysicsWireCount(2);
+    }
 
     return true;
 }

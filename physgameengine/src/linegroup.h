@@ -66,6 +66,9 @@ namespace phys
             void drawLine(const PhysVector3 &start, const PhysVector3 &end);
             void drawLines(void);
 
+            void PrepareForRendering();
+
+
             //Real getSquaredViewDepth(const Camera *cam) const;
             Real getBoundingRadius(void) const;
 

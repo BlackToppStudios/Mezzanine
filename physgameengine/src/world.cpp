@@ -67,6 +67,7 @@
 
 #include <sstream>
 #include <string>
+#include <queue>
 using namespace std;
 
 namespace phys
@@ -83,11 +84,41 @@ namespace phys
         class InternalDebugDrawer : public btIDebugDraw
         {
             private:
+                /// @brief A pointer to phys::World that this Debug Drawer works with
                 World* ParentWorld;
+
+                /// @brief How many wireframes do you want to keep around on the screen.
+                Whole WireFrameCount;
+
+                /// @brief This queue stores The listing of of the wireframes still to be rendered
+                /// @details This stores an amount of wireframes up to the WireFrameCount. When this class is created or a
+                /// new frame rendered a new Line group is a added to this queue.
+                std::queue<phys::LineGroup*> WireFrames;
+
+                /// @brief This stores whether or not to render physics debug lines
+                /// @details This stores whether or not to render physics debud lines. 0 = Do not draw anything. 1 = Draw model wireframes.
+                /// Later we will add support for contact drawing, individual modeling drawing, etc...
                 int DebugDrawing;
             public:
-                InternalDebugDrawer(phys::World *ParentWorld_);
+                /// @brief Basic Constructor
+                /// @param ParentWorld_ This is a Pointer to the world to be rendered
+                /// @details This creates a basic Debug Drawer which works with the phys::World that was passed. With a new
+                InternalDebugDrawer(phys::World *ParentWorld_, Whole WireFrameCount_ = 2);
+
+                /// @brief Destructor
+                /// @details This deletes all the Wireframes and will stop wireframe rendering
+                ~InternalDebugDrawer();
+
+                /// @brief This will prepare a line segment for being drawn
+                /// @param from The first point of the line
+                /// @param to The second point of the line
+                /// @param color Currently ignored
                 virtual void drawLine(const btVector3& from,const btVector3& to,const btVector3& color);
+
+                virtual void PrepareForRendering();
+                virtual void SetWireFrameCount(Whole WireFrameCount_);
+                virtual Whole GetWireFrameCount();
+
                 virtual void drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color);
                 virtual void reportErrorWarning(const char* warningString);
                 virtual void draw3dText(const btVector3& location,const char* textString);
@@ -95,29 +126,36 @@ namespace phys
                 virtual int getDebugMode() const;
         };
 
-        InternalDebugDrawer::InternalDebugDrawer(phys::World *ParentWorld_)
+        InternalDebugDrawer::InternalDebugDrawer( phys::World *ParentWorld_, Whole WireFrameCount_ )
         {
             this->DebugDrawing = 0;
             this->ParentWorld = ParentWorld_;
+
+            this->WireFrameCount = WireFrameCount_;
+
+            //phys::LineGroup* temp = new phys::LineGroup(this->ParentWorld);
+            this->WireFrames.push(new phys::LineGroup(this->ParentWorld));
+        }
+
+        InternalDebugDrawer::~InternalDebugDrawer()
+        {
+            while ( ! this->WireFrames.empty() )
+            {
+                delete this->WireFrames.front();
+                this->WireFrames.pop();
+            }
         }
 
         void InternalDebugDrawer::drawLine(const btVector3& from,const btVector3& to,const btVector3& color)
         {
-            phys::LineGroup *myLine = new phys::LineGroup(this->ParentWorld);
+            phys::LineGroup *myLine = this->WireFrames.back();
 
-            PhysVector3 LineStart;
-            PhysVector3 LineEnd;
-
-            LineStart << from;
-            LineEnd << to;
+            //Convert btVectors to PhysVector3s
+            PhysVector3 LineStart(from);
+            PhysVector3 LineEnd(to);
 
             myLine->addPoint(LineStart);
             myLine->addPoint(LineEnd);
-
-            myLine->drawLines();
-
-            /// @todo fix
-           //delete myLine;
         }
 
         void InternalDebugDrawer::drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color)
@@ -143,6 +181,37 @@ namespace phys
         {
             return this->DebugDrawing;
         }
+
+        void InternalDebugDrawer::PrepareForRendering()
+        {
+            if(!this->WireFrames.empty())
+            {
+                this->WireFrames.back()->drawLines();
+            }
+
+            //Delete extra wireframes
+            while ( this->WireFrames.size() > this->WireFrameCount )
+            {
+                delete this->WireFrames.front();
+                this->WireFrames.pop();
+            }
+
+            //This will add the Ogre Scene Nodes to the world and set up a
+            this->WireFrames.back()->PrepareForRendering();
+            this->WireFrames.push(new phys::LineGroup(this->ParentWorld));
+        }
+
+        void InternalDebugDrawer::SetWireFrameCount(Whole WireFrameCount_)
+        {
+            this->WireFrameCount = WireFrameCount_;
+        }
+
+        Whole InternalDebugDrawer::GetWireFrameCount()
+        {
+            return this->WireFrameCount;
+        }
+
+
     }// /debug
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -216,9 +285,6 @@ namespace phys
                                                     BulletBroadphase,
                                                     BulletSolver,
                                                     BulletCollisionConfiguration);
-
-        this->BulletDrawer = new debug::InternalDebugDrawer(this);
-        BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
     }
 
     void World::SanityChecks()
@@ -376,6 +442,11 @@ namespace phys
         this->LoadOgreSettings();
         this->CreateRenderWindow();
 
+        //Initiliaze the Physics Debug Drawer
+        this->BulletDrawer = new debug::InternalDebugDrawer(this);
+        BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
+
+
         if(CallMainLoop)
         {
             MainLoop();
@@ -492,7 +563,11 @@ namespace phys
 
             //Render the frame and figure the amount of time it took //By default Limit frame rate to 62.5
             this->DoMainLoopRender();
-            this->BulletDynamicsWorld->debugDrawWorld();
+            if( this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
+            {
+                this->BulletDrawer->PrepareForRendering();
+                this->BulletDynamicsWorld->debugDrawWorld();
+            }
 
             // Do Time Calculations to Determine Rendering Time
             FrameTime = RenderTimer.getMilliseconds();
@@ -723,6 +798,14 @@ namespace phys
         }
     }
 
+    void World::SetDebugPhysicsWireCount(Whole WireFrameCount_)
+    {
+        this->BulletDrawer->SetWireFrameCount(WireFrameCount_);
+    }
 
+    Whole World::GetDebugPhysicsWireCount()
+    {
+        return this->BulletDrawer->GetWireFrameCount();
+    }
 }
 #endif

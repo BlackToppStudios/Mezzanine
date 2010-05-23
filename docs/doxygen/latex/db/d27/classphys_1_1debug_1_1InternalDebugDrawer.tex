@@ -10,14 +10,25 @@ This is used to draw wireframse for the Physics subsystem.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a2bdb7e9da99e2d0cd2796cf9c67c3456}{
-{\bfseries InternalDebugDrawer} (\hyperlink{classphys_1_1World}{phys::World} $\ast$ParentWorld\_\-, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-=1)}
-\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a2bdb7e9da99e2d0cd2796cf9c67c3456}
+\hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a0e701e00e1080fdadfcf35e9051789a3}{InternalDebugDrawer} (\hyperlink{classphys_1_1World}{phys::World} $\ast$ParentWorld\_\-, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-=2)
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a9b5cb5ec48541effddb305de12508323}{$\sim$InternalDebugDrawer} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}{drawLine} (const btVector3 \&from, const btVector3 \&to, const btVector3 \&color)
+\begin{DoxyCompactList}\small\item\em This will prepare a line segment for being drawn. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}{
+virtual void {\bfseries PrepareForRendering} ()}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}
 
 \item 
-\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}{
-virtual void {\bfseries drawLine} (const btVector3 \&from, const btVector3 \&to, const btVector3 \&color)}
-\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{
+virtual void {\bfseries SetWireFrameCount} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-)}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}
+
+\item 
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_aa1666e636e6ff81813c0b1a85d7bc157}{
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries GetWireFrameCount} ()}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_aa1666e636e6ff81813c0b1a85d7bc157}
 
 \item 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a8b912aaff8dfd9f4e97ffb2d867121b2}{
@@ -44,16 +55,6 @@ virtual void {\bfseries setDebugMode} (int debugMode)}
 virtual int {\bfseries getDebugMode} () const }
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_aba329861569d741e970ce5aafb668e84}
 
-\item 
-\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_aa1666e636e6ff81813c0b1a85d7bc157}{
-virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries GetWireFrameCount} ()}
-\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_aa1666e636e6ff81813c0b1a85d7bc157}
-
-\item 
-\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{
-virtual void {\bfseries SetWireFrameCount} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-)}
-\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}
-
 \end{DoxyCompactItemize}
 
 
@@ -62,7 +63,58 @@ This is used to draw wireframse for the Physics subsystem. \begin{DoxyInternal}{
 \end{DoxyInternal}
 
 
-Definition at line 86 of file world.cpp.
+Definition at line 84 of file world.cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a0e701e00e1080fdadfcf35e9051789a3}{
+\index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!InternalDebugDrawer@{InternalDebugDrawer}}
+\index{InternalDebugDrawer@{InternalDebugDrawer}!phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
+\subsubsection[{InternalDebugDrawer}]{\setlength{\rightskip}{0pt plus 5cm}phys::debug::InternalDebugDrawer::InternalDebugDrawer ({\bf phys::World} $\ast$ {\em ParentWorld\_\-}, \/  {\bf Whole} {\em WireFrameCount\_\-} = {\ttfamily 2})}}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a0e701e00e1080fdadfcf35e9051789a3}
+
+
+Basic Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ParentWorld\_\-}]This is a Pointer to the world to be rendered\end{DoxyParams}
+This creates a basic Debug Drawer which works with the \hyperlink{classphys_1_1World}{phys::World} that was passed. With a new 
+
+Definition at line 129 of file world.cpp.
+
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a9b5cb5ec48541effddb305de12508323}{
+\index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!$\sim$InternalDebugDrawer@{$\sim$InternalDebugDrawer}}
+\index{$\sim$InternalDebugDrawer@{$\sim$InternalDebugDrawer}!phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
+\subsubsection[{$\sim$InternalDebugDrawer}]{\setlength{\rightskip}{0pt plus 5cm}phys::debug::InternalDebugDrawer::$\sim$InternalDebugDrawer ()}}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a9b5cb5ec48541effddb305de12508323}
+
+
+Destructor. 
+
+This deletes all the Wireframes and will stop wireframe rendering 
+
+Definition at line 140 of file world.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}{
+\index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!drawLine@{drawLine}}
+\index{drawLine@{drawLine}!phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
+\subsubsection[{drawLine}]{\setlength{\rightskip}{0pt plus 5cm}void phys::debug::InternalDebugDrawer::drawLine (const btVector3 \& {\em from}, \/  const btVector3 \& {\em to}, \/  const btVector3 \& {\em color})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}
+
+
+This will prepare a line segment for being drawn. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em from}]The first point of the line \item[{\em to}]The second point of the line \item[{\em color}]Currently ignored \end{DoxyParams}
+
+
+Definition at line 149 of file world.cpp.
 
 
 

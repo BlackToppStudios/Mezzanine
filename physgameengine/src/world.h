@@ -113,6 +113,7 @@ namespace Ogre
 ///////////////////////////////////////
 namespace phys
 {
+    //Forward Declarations
     class ActorBase;
     class GraphicsSettings;
     namespace debug {
@@ -233,8 +234,7 @@ namespace phys
             std::string GetWindowName();
 
             /// @brief This can set the the Text in the titlebar
-            /// @details This changes the text in the bar at the top of the game window in windowed mode. Currently the changes only
-            /// works if this function is called before World.GameInit but it is our TODO list to fix so it can be changed at anytime.
+            /// @details This changes the text in the bar at the top of the game window in windowed mode. It can be changed at anytime.
             /// @param NewName This is the new text to be used in the titlebar.
             void SetWindowName(const String &NewName);
 
@@ -242,8 +242,8 @@ namespace phys
         // Graphics system methods
         ///////////////////////////////////////
             /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be
-            /// @details In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. However, the mainloop will always reduce
-            /// the actual amount of time to 0 when the hardware is overburdened.
+            /// @details In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
+            /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.
             /// @return This returns a Whole with the current Value
             Whole GetTargetFrameTime();
 
@@ -364,7 +364,7 @@ namespace phys
             void SetGravity(PhysVector3 pgrav);
 
             /// @brief Enables and Disables Physics Debug Drawing
-            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the phys
+            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics
             /// subsytem pixel for pixel.
             /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control
             void SetDebugPhysicsRendering(int ToBeEnabled);
@@ -373,6 +373,19 @@ namespace phys
             /// @details lets you check if Physics Debug Drawing is enabled or not.
             /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features
             int GetDebugPhysicsRendering();
+
+            /// @brief How many Wireframes do you want drawn from previous events
+            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount
+            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()
+            /// In conjunction with this to specify an amout of seconds worth of wireframes.
+            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate,
+            /// Any amount more than just a few seconds worth can be cumbersome.
+            void SetDebugPhysicsWireCount(Whole WireFrameCount_);
+
+            /// @brief This gets how many WireFrames are being drawn.
+            /// @details This will tell you how many frames worth of previous in game events are being drawn.
+            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .
+            Whole GetDebugPhysicsWireCount();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Feature Manager Pointers
