@@ -64,6 +64,7 @@
 #include <btBulletDynamicsCommon.h>
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 #include <Ogre.h>
+#include "BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
 
 #include <sstream>
 #include <string>

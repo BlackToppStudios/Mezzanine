@@ -262,7 +262,7 @@ namespace phys
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Dynamic objects.
-            void CreateShapeFromMeshDynamic(short signed int accuracy);
+            void CreateShapeFromMeshDynamic(short signed int accuracy=1);
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
