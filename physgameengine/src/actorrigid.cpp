@@ -40,7 +40,6 @@
 #ifndef _physactorrigid_cpp
 #define _physactorrigid_cpp
 
-//#include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 #include "BulletCollision/CollisionShapes/btShapeHull.h"

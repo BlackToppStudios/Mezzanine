@@ -40,16 +40,7 @@
 #ifndef _internalmotionstate_cpp
 #define _internalmotionstate_cpp
 
-//#include <Ogre.h>
-//#include "btBulletDynamicsCommon.h"
-//#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
-//#include "BulletCollision/CollisionShapes/btShapeHull.h"
-//#include "BulletCollision/Gimpact/btGImpactShape.h"
-
-//#include "actorbase.h"
-
 #include "internalmotionstate.h.cpp"
-
 
 namespace phys{
     namespace internal{

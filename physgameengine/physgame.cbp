@@ -108,6 +108,11 @@
 		<Unit filename="src/eventuserinput.cpp" />
 		<Unit filename="src/graphicsettings.cpp" />
 		<Unit filename="src/graphicsettings.h" />
+		<Unit filename="src/internalmotionstate.cpp" />
+		<Unit filename="src/internalmotionstate.h.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/linegroup.cpp" />
 		<Unit filename="src/linegroup.h" />
 		<Unit filename="src/metacode.cpp" />

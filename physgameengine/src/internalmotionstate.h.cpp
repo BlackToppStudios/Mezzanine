@@ -42,9 +42,6 @@
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
-//#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
-//#include "BulletCollision/CollisionShapes/btShapeHull.h"
-//#include "BulletCollision/Gimpact/btGImpactShape.h"
 
 #include "physvector.h"
 #include "quaternion.h"
@@ -58,8 +55,7 @@ namespace phys{
         /// @brief This class is used by the actor class to sync between the physics world and the graphical world.
         /// @details This class provides the link for position and orientation between the two worlds in the engine.
         /// This is called on every step(frame) of the world to sync the actor if it has moved.
-        /// @attention The file internalmotionstate.h.cpp is a header file for internal use only. It should not be
-        /// directly compiled, nor should it be shipp with the header files to the users.
+        /// @attention This filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a source file and should not shipped with the DLL whe the SDK is released. This is used for engine internals that need to be used by multiple classes.
         ///////////////////////////////////////
         class PhysMotionState : public btMotionState {
             private:

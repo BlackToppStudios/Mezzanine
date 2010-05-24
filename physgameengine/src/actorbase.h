@@ -46,26 +46,13 @@
 
 ///////////////////////////////////
 // Forward Declares
-//
-//class btMotionState;
-//class btQuaternion;
-//class btVector3;
-//class btRigidBody;
-//class btSoftBody;
-//class btTransform;
-//class btDiscreteDynamicsWorld;
-//class btDefaultMotionState;
 class btCollisionShape;
-//class btSoftBodyWorldInfo;
 class btCollisionObject;
-//class btSoftRigidDynamicsWorld;
 class btTriangleMesh;
-//typedef float btScalar;
-//
+
 namespace Ogre
 {
     class Entity;
-//    class SceneManager;
     class SceneNode;
 }
 

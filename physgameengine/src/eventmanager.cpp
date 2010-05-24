@@ -49,7 +49,7 @@
 #include "eventmanager.h"
 
 #include "SDL.h"
-//#include <boost/thread/thread.hpp>
+//#include <boost/thread/thread.hpp> //will use this when this becomes multithreaded
 
 namespace phys
 {
