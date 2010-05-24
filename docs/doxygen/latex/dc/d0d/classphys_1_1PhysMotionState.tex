@@ -59,7 +59,7 @@ Blank Constructor.
 
 Basic no-\/initialization constructor. 
 
-Definition at line 483 of file physactor.cpp.
+Definition at line 484 of file physactor.cpp.
 
 \hypertarget{classphys_1_1PhysMotionState_a505aa5ea3bbaba4710924f030f4ed008}{
 \index{phys::PhysMotionState@{phys::PhysMotionState}!PhysMotionState@{PhysMotionState}}
@@ -72,10 +72,10 @@ Constructor.
 
 The class constructor. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Scenenode}]The scenenode belonging to the actor. \end{DoxyParams}
+\item[{\em scenenode}]The scenenode belonging to the actor. \end{DoxyParams}
 
 
-Definition at line 488 of file physactor.cpp.
+Definition at line 489 of file physactor.cpp.
 
 \hypertarget{classphys_1_1PhysMotionState_a20798e3dce2d71a938c3607a8610eaac}{
 \index{phys::PhysMotionState@{phys::PhysMotionState}!$\sim$PhysMotionState@{$\sim$PhysMotionState}}
@@ -88,7 +88,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 494 of file physactor.cpp.
+Definition at line 495 of file physactor.cpp.
 
 
 
@@ -105,10 +105,10 @@ Sets the initial position.
 This function is called on by the physics world upon adding the actor to the world. This function uses the previous set vector3 that was set with SetInitPosition(). \par
  Default position is (0,0,0). 
 \begin{DoxyParams}{Parameters}
-\item[{\em WorldTrans}]The location and orientation data. \end{DoxyParams}
+\item[{\em worldTrans}]The location and orientation data. \end{DoxyParams}
 
 
-Definition at line 517 of file physactor.cpp.
+Definition at line 518 of file physactor.cpp.
 
 \hypertarget{classphys_1_1PhysMotionState_a034376e768543b377430611dff323412}{
 \index{phys::PhysMotionState@{phys::PhysMotionState}!SetNode@{SetNode}}
@@ -121,10 +121,10 @@ Sets the scenenode.
 
 Sets the scenenode to be sync'd every step. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Scenenode}]The scenenode belonging to the actor. \end{DoxyParams}
+\item[{\em scenenode}]The scenenode belonging to the actor. \end{DoxyParams}
 
 
-Definition at line 502 of file physactor.cpp.
+Definition at line 503 of file physactor.cpp.
 
 \hypertarget{classphys_1_1PhysMotionState_ac799070edfea4d1c442e3ed0857bcb1d}{
 \index{phys::PhysMotionState@{phys::PhysMotionState}!SetOrientation@{SetOrientation}}
@@ -137,10 +137,10 @@ Sets the initial orientation.
 
 Sets the orientation the actor will have when it is added to the world. This function is called on by the \hyperlink{classphys_1_1ActorBase}{ActorBase} function SetInitOrientation(). 
 \begin{DoxyParams}{Parameters}
-\item[{\em Orientation}]The vector3 representing the orientation to be used. \end{DoxyParams}
+\item[{\em orientation}]The vector3 representing the orientation to be used. \end{DoxyParams}
 
 
-Definition at line 512 of file physactor.cpp.
+Definition at line 513 of file physactor.cpp.
 
 \hypertarget{classphys_1_1PhysMotionState_a083029e5dbcfafd573d47331ff8660cb}{
 \index{phys::PhysMotionState@{phys::PhysMotionState}!SetPosition@{SetPosition}}
@@ -153,10 +153,10 @@ Sets the initial position.
 
 Sets the position the actor will be placed in when it is added to the world. This function is called on by the \hyperlink{classphys_1_1ActorBase}{ActorBase} function SetInitPosition(). 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]The vector3 representing the location to be used. \end{DoxyParams}
+\item[{\em position}]The vector3 representing the location to be used. \end{DoxyParams}
 
 
-Definition at line 507 of file physactor.cpp.
+Definition at line 508 of file physactor.cpp.
 
 \hypertarget{classphys_1_1PhysMotionState_a91e372f8f474bb570e502ee42ec2deeb}{
 \index{phys::PhysMotionState@{phys::PhysMotionState}!setWorldTransform@{setWorldTransform}}
@@ -169,10 +169,10 @@ Updates the position and orientation.
 
 This function is called each step(frame) by the physics world to sync the physics and graphical worlds. 
 \begin{DoxyParams}{Parameters}
-\item[{\em WorldTrans}]The location and orientation data. \end{DoxyParams}
+\item[{\em worldTrans}]The location and orientation data. \end{DoxyParams}
 
 
-Definition at line 522 of file physactor.cpp.
+Definition at line 523 of file physactor.cpp.
 
 
 

@@ -71,35 +71,36 @@ namespace phys{
             PhysMotionState();
             /// @brief Constructor.
             /// @details The class constructor.
-            /// @param Scenenode The scenenode belonging to the actor.
+            /// @param scenenode The scenenode belonging to the actor.
             PhysMotionState(Ogre::SceneNode* scenenode);
             /// @brief Destructor.
             /// @details The class destructor.
             virtual ~PhysMotionState();
             /// @brief Sets the scenenode.
             /// @details Sets the scenenode to be sync'd every step.
-            /// @param Scenenode The scenenode belonging to the actor.
+            /// @param scenenode The scenenode belonging to the actor.
             void SetNode(Ogre::SceneNode* scenenode);
             /// @brief Sets the initial position.
             /// @details Sets the position the actor will be placed in when it is added to the world.
             /// This function is called on by the ActorBase function SetInitPosition().
-            /// @param Position The vector3 representing the location to be used.
+            /// @param position The vector3 representing the location to be used.
             void SetPosition(PhysVector3 position);
             /// @brief Sets the initial orientation.
             /// @details Sets the orientation the actor will have when it is added to the world.
             /// This function is called on by the ActorBase function SetInitOrientation().
-            /// @param Orientation The vector3 representing the orientation to be used.
+            /// @param orientation The vector3 representing the orientation to be used.
             void SetOrientation(Quaternion orientation);
 
             /// @brief Sets the initial position.
             /// @details This function is called on by the physics world upon adding the actor to the world.
             /// This function uses the previous set vector3 that was set with SetInitPosition(). @n
             /// Default position is (0,0,0).
-            /// @param WorldTrans The location and orientation data.
+            /// @param worldTrans The location and orientation data.
             virtual void getWorldTransform(btTransform &worldTrans) const;
+
             /// @brief Updates the position and orientation.
             /// @details This function is called each step(frame) by the physics world to sync the physics and graphical worlds.
-            /// @param WorldTrans The location and orientation data.
+            /// @param worldTrans The location and orientation data.
             virtual void setWorldTransform(const btTransform &worldTrans);
     };
 
