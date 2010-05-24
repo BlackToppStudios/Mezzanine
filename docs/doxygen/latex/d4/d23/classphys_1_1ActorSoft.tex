@@ -35,16 +35,16 @@ void \hyperlink{classphys_1_1ActorSoft_a3a704ab32f847a5d0e060f8a592efefd}{AddObj
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classphys_1_1ActorSoft_ab3b2c8e1f94dff3e3244a5024595afef}{
-btSoftBody $\ast$ {\bfseries physsoftbody}}
+btSoftBody $\ast$ \hyperlink{classphys_1_1ActorSoft_ab3b2c8e1f94dff3e3244a5024595afef}{physsoftbody}}
 \label{d4/d23/classphys_1_1ActorSoft_ab3b2c8e1f94dff3e3244a5024595afef}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Used to simulate the functionality of a btSoftBody for use with the physics subsystem. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 This is the actor class for Soft Objects. This class should be used to make any soft object that, like \hyperlink{classphys_1_1ActorRigid}{ActorRigid}, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. 
 
-Definition at line 283 of file physactor.h.
+Definition at line 310 of file physactor.h.
 
 
 
@@ -60,7 +60,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 451 of file physactor.cpp.
+Definition at line 458 of file physactor.cpp.
 
 
 
@@ -84,7 +84,7 @@ Implements \hyperlink{classphys_1_1ActorBase_ac5d4ad5a634b16000742f506ed5957fb}{
 
 
 
-Definition at line 462 of file physactor.cpp.
+Definition at line 469 of file physactor.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a51d78e0f503c3c815511c3d246b426ae}{
 \index{phys::ActorSoft@{phys::ActorSoft}!CreateShapeFromMesh@{CreateShapeFromMesh}}
@@ -97,7 +97,7 @@ Creates a collision shape from mesh file.
 
 This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. 
 
-Definition at line 467 of file physactor.cpp.
+Definition at line 474 of file physactor.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a04c98bb0ab9ed7c1dfc3435d49403ef4}{
 \index{phys::ActorSoft@{phys::ActorSoft}!CreateSoftObject@{CreateSoftObject}}
@@ -110,8 +110,11 @@ Creates a soft object for the actor.
 
 Creates a soft object to be placed in the physics world later. \par
  This is automaticly called by the Constructor and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em softworldinfo}]Currently Unused \item[{\em nodecount}]Currently Unused \item[{\em nodearray}]Currently Unused \item[{\em massarray}]Currently Unused \end{DoxyParams}
 
-Definition at line 456 of file physactor.cpp.
+
+Definition at line 463 of file physactor.cpp.
 
 
 

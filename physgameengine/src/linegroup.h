@@ -60,6 +60,7 @@ namespace phys
     /// object into the world provided.
     class LineGroup
     {
+        /// @todo TODO: This class really should support rotation, the underlying implementation does.
         public:
             /// @brief Basic Constructor
             /// @details This creates a basic, empty, LineGroup.
@@ -113,6 +114,7 @@ namespace phys
 
             /// @brief How big would a circle need to be to encapsulate this
             /// @details This returns the radius the a circle would need to have to surround this line group.
+            /// @return This returns a real number which indicates the radius.
             Real getBoundingRadius(void) const;
 
         private:

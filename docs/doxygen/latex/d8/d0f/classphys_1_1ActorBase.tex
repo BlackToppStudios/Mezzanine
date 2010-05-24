@@ -71,35 +71,35 @@ virtual void \hyperlink{classphys_1_1ActorBase_a492244ac46ced53b809f436da992bc84
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classphys_1_1ActorBase_a0ffbb74296ac96db26c890274df794a2}{
-\hyperlink{classphys_1_1World}{World} $\ast$ {\bfseries GameWorld}}
+\hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1ActorBase_a0ffbb74296ac96db26c890274df794a2}{GameWorld}}
 \label{d8/d0f/classphys_1_1ActorBase_a0ffbb74296ac96db26c890274df794a2}
 
-\item 
+\begin{DoxyCompactList}\small\item\em A pointer to the \hyperlink{classphys_1_1World}{World} the actor will reside. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ActorBase_ae44969ba242ca5c13a608b7467be0674}{
-Ogre::Entity $\ast$ {\bfseries entity}}
+Ogre::Entity $\ast$ \hyperlink{classphys_1_1ActorBase_ae44969ba242ca5c13a608b7467be0674}{entity}}
 \label{d8/d0f/classphys_1_1ActorBase_ae44969ba242ca5c13a608b7467be0674}
 
-\item 
+\begin{DoxyCompactList}\small\item\em This class encapsulates the functionality of the Ogre::Entity using this. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ActorBase_a687bfa0cc44adf715651c7ac41a46321}{
-Ogre::SceneNode $\ast$ {\bfseries node}}
+Ogre::SceneNode $\ast$ \hyperlink{classphys_1_1ActorBase_a687bfa0cc44adf715651c7ac41a46321}{node}}
 \label{d8/d0f/classphys_1_1ActorBase_a687bfa0cc44adf715651c7ac41a46321}
 
-\item 
+\begin{DoxyCompactList}\small\item\em This class encapsulates the functionality of the Ogre::SceneNode using this. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ActorBase_a643613ce7abb4b6d4352bab036b7cf69}{
-btCollisionShape $\ast$ {\bfseries Shape}}
+btCollisionShape $\ast$ \hyperlink{classphys_1_1ActorBase_a643613ce7abb4b6d4352bab036b7cf69}{Shape}}
 \label{d8/d0f/classphys_1_1ActorBase_a643613ce7abb4b6d4352bab036b7cf69}
 
-\item 
+\begin{DoxyCompactList}\small\item\em This class encapsulates the functionality of the btCollisionShape using this. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ActorBase_a70676c52ffee64705a7b463d29b60429}{
-btCollisionObject $\ast$ {\bfseries CollisionObject}}
+btCollisionObject $\ast$ \hyperlink{classphys_1_1ActorBase_a70676c52ffee64705a7b463d29b60429}{CollisionObject}}
 \label{d8/d0f/classphys_1_1ActorBase_a70676c52ffee64705a7b463d29b60429}
 
-\item 
+\begin{DoxyCompactList}\small\item\em This class encapsulates the functionality of the btCollisionObject using this. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ActorBase_a44934cb1db748c3c69e3b88a8dd17dcb}{
-\hyperlink{classphys_1_1PhysMotionState}{PhysMotionState} $\ast$ {\bfseries MotionState}}
+\hyperlink{classphys_1_1PhysMotionState}{PhysMotionState} $\ast$ \hyperlink{classphys_1_1ActorBase_a44934cb1db748c3c69e3b88a8dd17dcb}{MotionState}}
 \label{d8/d0f/classphys_1_1ActorBase_a44934cb1db748c3c69e3b88a8dd17dcb}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This class encapsulates the functionality of the \hyperlink{classphys_1_1PhysMotionState}{PhysMotionState} using this. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -144,7 +144,7 @@ Descriptive constructor.
 
 This constructor contains the basic information needed to make an actor. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
+\item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
 
 
 Definition at line 109 of file physactor.cpp.
@@ -195,7 +195,7 @@ Creates an entity for the mesh file to be placed on a scene node.
 Creates an entity in the scene manager from the mesh file provided to be attached to a node in the graphical world. \par
  This function is called on by the Constructor, and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]Name of the actor. \item[{\em File}]File name of the graphical mesh to be used. \item[{\em Group}]Resource group where the graphical mesh can be found. \end{DoxyParams}
+\item[{\em name}]Name of the actor. \item[{\em file}]File name of the graphical mesh to be used. \item[{\em group}]Resource group where the graphical mesh can be found. \end{DoxyParams}
 
 
 Definition at line 219 of file physactor.cpp.
@@ -378,7 +378,7 @@ Manually sets the location of the actor.
 Calling this function prior to adding it to the \hyperlink{classphys_1_1World}{World} will have no effect. \par
  In most situations you won't want to use this function, and instead produce movement through physics functions. 
 \begin{DoxyParams}{Parameters}
-\item[{\em X}]Location on the X vector. \item[{\em Y}]Location on the Y vector. \item[{\em Z}]Location on the Z vector. \end{DoxyParams}
+\item[{\em x}]Location on the X vector. \item[{\em y}]Location on the Y vector. \item[{\em z}]Location on the Z vector. \end{DoxyParams}
 
 
 Definition at line 275 of file physactor.cpp.
@@ -395,7 +395,7 @@ Sets the location of the graphical body.
 This will take a \hyperlink{classPhysVector3}{PhysVector3} and set the location of the actor within the graphical world. \par
  This function is called on by the SetLocation function, and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Location}]The \hyperlink{classPhysVector3}{PhysVector3} representing the location. \end{DoxyParams}
+\item[{\em Place}]The \hyperlink{classPhysVector3}{PhysVector3} representing the location. \end{DoxyParams}
 
 
 Definition at line 232 of file physactor.cpp.
@@ -443,6 +443,9 @@ Definition at line 311 of file physactor.cpp.
 Sets the orientation of the actor. 
 
 Sets the orientation of the actor via \hyperlink{classphys_1_1Quaternion}{Quaternion} parameters. 
+\begin{DoxyParams}{Parameters}
+\item[{\em x}]Where the X vector is rotated about. \item[{\em y}]Where the Y vector is rotated about. \item[{\em z}]Where the Z vector is rotated about. \item[{\em w}]How much to about the x, y, z. \end{DoxyParams}
+
 
 Definition at line 305 of file physactor.cpp.
 

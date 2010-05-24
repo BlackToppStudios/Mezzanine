@@ -70,25 +70,82 @@ namespace phys
         class Line3D: public SimpleRenderable
         {
             public:
-               Line3D(void);
-               ~Line3D(void);
+                /// @internal
+                /// @brief Default Constructor
+                /// @details This creates an empty Line3D.
+                Line3D(void);
 
-               void addPoint(const Vector3 &p);
-               const Vector3 &getPoint(Whole index) const;
-               Whole getNumPoints(void) const;
-               void updatePoint(Whole index, const Vector3 &value);
-               void drawLine(Vector3 &start, Vector3 &end);
-               void drawLines(void);        //Render this
+                /// @internal
+                /// @brief Destructor
+                /// @details This safely tears down the Line3D.
+                ~Line3D(void);
 
-               Real getSquaredViewDepth(const Camera *cam) const;
-               Real getBoundingRadius(void) const;
+                /// @internal
+                /// @brief This adds a point to the list of what should be rendered.
+                /// @param p The point to be added.
+                void addPoint(const Vector3 &p);
+
+                /// @internal
+                /// @brief Access a specific point by index
+                /// @details This really does just access the underlying vector.
+                /// @return This Returns the specific Vector3 requested.
+                const Vector3 &getPoint(Whole index) const;
+
+                /// @internal
+                /// @brief How many points are in this Line3D.
+                /// @return This returns the amount of points stored in this class.
+                Whole getNumPoints(void) const;
+
+                /// @internal
+                /// @brief Change an existing point.
+                /// @details This replaces a point specified by index with a new point
+                /// @param index The index of the point to replace.
+                /// @param value A point to replace the existing point with
+                void updatePoint(Whole index, const Vector3 &value);
+
+                /// @internal
+                /// @brief Adds two points
+                /// @details This adds to points, to guarantee that a specific line segment is drawn.
+                /// @param start The first point to be added
+                /// @param end The first point to be added
+                void drawLine(Vector3 &start, Vector3 &end);
+
+                /// @internal
+                /// @brief Renders this
+                /// @details This does the actual rendering.
+                void drawLines(void);        //Render this
+
+                /// @internal
+                /// @brief Not Used
+                /// @details Not Used
+                /// @param cam Not Used
+                Real getSquaredViewDepth(const Camera *cam) const;
+
+                /// @internal
+                /// @brief How big would a circle need to be to encapsulate this
+                /// @details This returns the radius the a circle would need to have to surround this line group.
+                /// @return This returns a real number which indicates the radius.
+                Real getBoundingRadius(void) const;
             protected:
-               //void getWorldTransforms(Matrix4 *xform) const;
-               const Ogre::Quaternion &getWorldOrientation(void) const;
-               const Vector3 &getWorldPosition(void) const;
+                //void getWorldTransforms(Matrix4 *xform) const;
+                /// @internal
+                /// @brief Gets how rotated this is currently
+                /// @details Returns a quaternion with the rotation
+                /// @return Is a Ogre::Quaternion which stores the rotation information of this Line3D
+                const Ogre::Quaternion &getWorldOrientation(void) const;
 
-               std::vector<Vector3> mPoints;
-               bool mDrawn;     //Has this been rendered yet?
+                /// @internal
+                /// @brief Get the position of this Line3d
+                /// @return This returns a Vector3 with the Position relative to the world Origin
+                const Vector3 &getWorldPosition(void) const;
+
+                /// @internal
+                /// @brief This is a vector which stores the point data
+                std::vector<Vector3> mPoints;
+
+                /// @internal
+                /// @brief This indicates whether or not the the line have been done yet.
+                bool mDrawn;     //Has this been rendered yet?
         };
 
         Line3D::Line3D(void)

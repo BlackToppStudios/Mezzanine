@@ -22,15 +22,15 @@
 <div class="contents">
 
 
-<h1><a class="anchor" id="todo">Todo List </a></h1><p><a class="anchor" id="_todo000013"></a> </p>
+<h1><a class="anchor" id="todo">Todo List </a></h1><p><a class="anchor" id="_todo000014"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html#a441f502d0014b3479235e172e4ef5db8">phys::ActorRigid::CreateShapeFromMeshDynamic</a> (short signed int accuracy=1) </dt>
+<dt>Member <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html#aab4a408ce0724be6adf4c9f51f55f8a1">phys::ActorRigid::CreateShapeFromMeshDynamic</a> (short unsigned int accuracy=1) </dt>
 <dd><p class="startdd">- Check for thread safety </p>
 <p>add code here to increase the verticies that is used to create the hull from the first accuracy setting. </p>
 <p class="enddd">add code here for compound shapes of convex hulls </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000016"></a> </p>
+<p><a class="anchor" id="_todo000017"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac">phys::ActorRigid::CreateShapeFromMeshStatic</a> () </dt>
 <dd>- Check for thread safety </dd>
@@ -62,38 +62,43 @@
 <dt>Member <a class="el" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a0320e600b9f363036c63eb47527bb854">phys::internal::Line3D::drawLine</a> (Vector3 &amp;start, Vector3 &amp;end) </dt>
 <dd>TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen </dd>
 </dl>
-<p><a class="anchor" id="_todo000009"></a> </p>
+<p><a class="anchor" id="_todo000010"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html#aed46446e634948f8c73a5b26406cb5af">phys::LineGroup::drawLine</a> (const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;start, const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;end) </dt>
 <dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd>
 </dl>
-<p><a class="anchor" id="_todo000010"></a> </p>
+<p><a class="anchor" id="_todo000011"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html#ade1bb4f8e1164e1b8d7aeabbc970b79d">phys::LineGroup::drawLines</a> (void) </dt>
 <dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd>
+</dl>
+<p><a class="anchor" id="_todo000009"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html#a676039a6beec56d24c631e9da5fd7e76">phys::LineGroup::LineGroup</a> (World *Parent_) </dt>
+<dd>TODO: This class really should support rotation, the underlying implementation does. </dd>
 </dl>
 <p><a class="anchor" id="_todo000005"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../df/dec/namespacephys.html#a49d077eb58030fdb50229c55bc09a03d">phys::RemovePollingCheck</a> (const MetaCode &amp;InputToStopPolling) </dt>
 <dd>Actually code RemovePollingCheck </dd>
 </dl>
-<p><a class="anchor" id="_todo000022"></a> </p>
+<p><a class="anchor" id="_todo000023"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#acd0dff342c08fe3008226488b7c53d97">phys::World::SetWindowName</a> (const String &amp;NewName) </dt>
 <dd>TODO Change the name of an application once it is running </dd>
 </dl>
-<p><a class="anchor" id="_todo000017"></a> </p>
-<dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695">phys::World::World</a> () </dt>
-<dd>TODO Fix the `const`ness of all methods to be as const as allowable </dd>
-</dl>
-<p><a class="anchor" id="_todo000018"></a> </p>
+<p><a class="anchor" id="_todo000019"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#a1f020a5a49a3bbfca6d570db44e72beb">phys::World::World</a> (const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyLowerBounds_, const <a class="el" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyUpperbounds_, const unsigned short int &amp;MaxPhysicsProxies_=1024) </dt>
 <dd>TODO: adjust the constructors to allow for pointers to a callback manager and event manager </dd>
 </dl>
+<p><a class="anchor" id="_todo000018"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695">phys::World::World</a> () </dt>
+<dd>TODO Fix the `const`ness of all methods to be as const as allowable </dd>
+</dl>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 23 18:55:38 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 00:55:33 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

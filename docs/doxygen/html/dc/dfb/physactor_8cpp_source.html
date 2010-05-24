@@ -133,18 +133,18 @@
 <a name="l00108"></a>00108 
 <a name="l00109"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad9d90a68921ce81653e9950c1330809d">00109</a>     <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad9d90a68921ce81653e9950c1330809d" title="Descriptive constructor.">ActorBase::ActorBase</a> (<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> group, <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* _World)
 <a name="l00110"></a>00110     {
-<a name="l00111"></a>00111         this-&gt;GameWorld = _World;
-<a name="l00112"></a>00112         this-&gt;node = this-&gt;GameWorld-&gt;OgreSceneManager-&gt;createSceneNode();
-<a name="l00113"></a>00113         this-&gt;GameWorld-&gt;OgreSceneManager-&gt;getRootSceneNode()-&gt;addChild(this-&gt;node);
-<a name="l00114"></a>00114         this-&gt;MotionState = <span class="keyword">new</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html" title="This class is used by the actor class to sync between the physics world and the graphical...">PhysMotionState</a>(this-&gt;node);
-<a name="l00115"></a>00115         this-&gt;Shape = <span class="keyword">new</span> btEmptyShape();
+<a name="l00111"></a>00111         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ffbb74296ac96db26c890274df794a2" title="A pointer to the World the actor will reside.">GameWorld</a> = _World;
+<a name="l00112"></a>00112         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a> = this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ffbb74296ac96db26c890274df794a2" title="A pointer to the World the actor will reside.">GameWorld</a>-&gt;OgreSceneManager-&gt;createSceneNode();
+<a name="l00113"></a>00113         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ffbb74296ac96db26c890274df794a2" title="A pointer to the World the actor will reside.">GameWorld</a>-&gt;OgreSceneManager-&gt;getRootSceneNode()-&gt;addChild(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>);
+<a name="l00114"></a>00114         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a44934cb1db748c3c69e3b88a8dd17dcb" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a> = <span class="keyword">new</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html" title="This class is used by the actor class to sync between the physics world and the graphical...">PhysMotionState</a>(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>);
+<a name="l00115"></a>00115         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a> = <span class="keyword">new</span> btEmptyShape();
 <a name="l00116"></a>00116         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aff7dbb190fb982a43123bee3066501c4" title="Creates an entity for the mesh file to be placed on a scene node.">CreateEntity</a>(name, file, group);
 <a name="l00117"></a>00117     }
 <a name="l00118"></a>00118 
 <a name="l00119"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a5e5d4b50c83c6851e554b5e7ad65403f">00119</a>     <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a5e5d4b50c83c6851e554b5e7ad65403f" title="Destructor.">ActorBase::~ActorBase</a> ()
 <a name="l00120"></a>00120     {
-<a name="l00121"></a>00121         <span class="keyword">delete</span> MotionState;
-<a name="l00122"></a>00122         <span class="keyword">delete</span> Shape;
+<a name="l00121"></a>00121         <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a44934cb1db748c3c69e3b88a8dd17dcb" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a>;
+<a name="l00122"></a>00122         <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;
 <a name="l00123"></a>00123     }
 <a name="l00124"></a>00124 <span class="comment"></span>
 <a name="l00125"></a>00125 <span class="comment">    ///////////////////////////////////</span>
@@ -153,7 +153,7 @@
 <a name="l00128"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7">00128</a>     btTriangleMesh* <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7" title="Creates a trimesh shape from the mesh file.">ActorBase::CreateTrimesh</a>()
 <a name="l00129"></a>00129     {
 <a name="l00130"></a>00130         <span class="comment">// Get the mesh from the entity</span>
-<a name="l00131"></a>00131         Ogre::MeshPtr myMesh = entity-&gt;getMesh();
+<a name="l00131"></a>00131         Ogre::MeshPtr myMesh = <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>-&gt;getMesh();
 <a name="l00132"></a>00132 
 <a name="l00133"></a>00133         <span class="comment">// Get the submesh and associated data</span>
 <a name="l00134"></a>00134         Ogre::SubMesh* subMesh = myMesh-&gt;getSubMesh(0);
@@ -243,12 +243,12 @@
 <a name="l00218"></a>00218 
 <a name="l00219"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aff7dbb190fb982a43123bee3066501c4">00219</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aff7dbb190fb982a43123bee3066501c4" title="Creates an entity for the mesh file to be placed on a scene node.">ActorBase::CreateEntity</a> (<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> group)
 <a name="l00220"></a>00220     {
-<a name="l00221"></a>00221         this-&gt;entity = this-&gt;GameWorld-&gt;OgreSceneManager-&gt;createEntity(name, file, group);
+<a name="l00221"></a>00221         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a> = this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ffbb74296ac96db26c890274df794a2" title="A pointer to the World the actor will reside.">GameWorld</a>-&gt;OgreSceneManager-&gt;createEntity(name, file, group);
 <a name="l00222"></a>00222     }
 <a name="l00223"></a>00223 
 <a name="l00224"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a125d6f0a0b4072e64490638c074eea2d">00224</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a125d6f0a0b4072e64490638c074eea2d" title="Creates a node for the entity in the graphical world.">ActorBase::CreateSceneNode</a> ()
 <a name="l00225"></a>00225     {
-<a name="l00226"></a>00226         this-&gt;node = this-&gt;GameWorld-&gt;OgreSceneManager-&gt;createSceneNode();
+<a name="l00226"></a>00226         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a> = this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ffbb74296ac96db26c890274df794a2" title="A pointer to the World the actor will reside.">GameWorld</a>-&gt;OgreSceneManager-&gt;createSceneNode();
 <a name="l00227"></a>00227     }
 <a name="l00228"></a>00228 <span class="comment"></span>
 <a name="l00229"></a>00229 <span class="comment">    ///////////////////////////////////</span>
@@ -256,26 +256,26 @@
 <a name="l00231"></a>00231 
 <a name="l00232"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af8a6cb524bda889b7a38f0245a7381fb">00232</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af8a6cb524bda889b7a38f0245a7381fb" title="Sets the location of the graphical body.">ActorBase::SetOgreLocation</a> (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Location)
 <a name="l00233"></a>00233     {
-<a name="l00234"></a>00234         this-&gt;node-&gt;setPosition(Location.<a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00234"></a>00234         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;setPosition(Location.<a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>());
 <a name="l00235"></a>00235     }
 <a name="l00236"></a>00236 
 <a name="l00237"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a52a65d23c76c805f4851191b62712ed8">00237</a>     <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a52a65d23c76c805f4851191b62712ed8" title="Retrieves the location of the graphical body.">ActorBase::GetOgreLocation</a>()
 <a name="l00238"></a>00238     {
 <a name="l00239"></a>00239         <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> temp;
-<a name="l00240"></a>00240         temp.<a class="code" href="../../da/d11/classPhysVector3.html#a422acbc95f72d00a26cb477ab7db5e87" title="Copies an existing Ogre vector3.">ExtractOgreVector3</a>(this-&gt;node-&gt;getPosition());
+<a name="l00240"></a>00240         temp.<a class="code" href="../../da/d11/classPhysVector3.html#a422acbc95f72d00a26cb477ab7db5e87" title="Copies an existing Ogre vector3.">ExtractOgreVector3</a>(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;getPosition());
 <a name="l00241"></a>00241         <span class="keywordflow">return</span> temp;
 <a name="l00242"></a>00242     }
 <a name="l00243"></a>00243 
 <a name="l00244"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ab8d8c68937ea92b245b411c07b8bde7a">00244</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ab8d8c68937ea92b245b411c07b8bde7a" title="Sets the location of the physics body.">ActorBase::SetBulletLocation</a> (<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> Location)
 <a name="l00245"></a>00245     {
 <a name="l00246"></a>00246         <span class="comment">//btTransform* temp = this-&gt;CollisionObject-&gt;getWorldTransform();</span>
-<a name="l00247"></a>00247         this-&gt;CollisionObject-&gt;getWorldTransform().setOrigin(Location.<a class="code" href="../../da/d11/classPhysVector3.html#a7109b1bf54cae678e5cada4e82482918" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00247"></a>00247         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;getWorldTransform().setOrigin(Location.<a class="code" href="../../da/d11/classPhysVector3.html#a7109b1bf54cae678e5cada4e82482918" title="Gets a Bullet vector3.">GetBulletVector3</a>());
 <a name="l00248"></a>00248     }
 <a name="l00249"></a>00249 
 <a name="l00250"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ac7c8bbb4859668d71325a791c88584ae">00250</a>     <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ac7c8bbb4859668d71325a791c88584ae" title="Retrieves the location of the physics body.">ActorBase::GetBulletLocation</a>()
 <a name="l00251"></a>00251     {
 <a name="l00252"></a>00252         <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> temp;
-<a name="l00253"></a>00253         btTransform trans = this-&gt;CollisionObject-&gt;getWorldTransform();
+<a name="l00253"></a>00253         btTransform trans = this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;getWorldTransform();
 <a name="l00254"></a>00254         temp.<a class="code" href="../../da/d11/classPhysVector3.html#a71a78da9e8011cb727010f8ba3acf546" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(trans.getOrigin());
 <a name="l00255"></a>00255         <span class="keywordflow">return</span> temp;
 <a name="l00256"></a>00256     }
@@ -285,12 +285,12 @@
 <a name="l00260"></a>00260 
 <a name="l00261"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a7b2d13cb1e8bba60eeae782a53fd5e49">00261</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a7b2d13cb1e8bba60eeae782a53fd5e49" title="Sets the orientation of the graphical body.">ActorBase::SetOgreOrientation</a> (<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rotation)
 <a name="l00262"></a>00262     {
-<a name="l00263"></a>00263         this-&gt;node-&gt;setOrientation(Rotation.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a022ed1ed25a8324b8fc0c4d8b0e7a675" title="Gets a Ogre quaternion.">GetOgreQuaternion</a>());
+<a name="l00263"></a>00263         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;setOrientation(Rotation.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a022ed1ed25a8324b8fc0c4d8b0e7a675" title="Gets a Ogre quaternion.">GetOgreQuaternion</a>());
 <a name="l00264"></a>00264     }
 <a name="l00265"></a>00265 
 <a name="l00266"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a492244ac46ced53b809f436da992bc84">00266</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a492244ac46ced53b809f436da992bc84" title="Sets the orientation of the physics body.">ActorBase::SetBulletOrientation</a> (<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rotation)
 <a name="l00267"></a>00267     {
-<a name="l00268"></a>00268         btTransform temp = this-&gt;CollisionObject-&gt;getWorldTransform();
+<a name="l00268"></a>00268         btTransform temp = this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;getWorldTransform();
 <a name="l00269"></a>00269         temp.setRotation(Rotation.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#afcda116299201599a803e48719f6d50e" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>());
 <a name="l00270"></a>00270     }
 <a name="l00271"></a>00271 <span class="comment"></span>
@@ -347,8 +347,8 @@
 <a name="l00322"></a>00322         <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> temp;
 <a name="l00323"></a>00323         <span class="comment">//temp.ExtractBulletVector3(this-&gt;MotionState-&gt;initposition.getOrigin());</span>
 <a name="l00324"></a>00324         temp = <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ac7c8bbb4859668d71325a791c88584ae" title="Retrieves the location of the physics body.">GetBulletLocation</a>();
-<a name="l00325"></a>00325         this-&gt;node-&gt;setPosition(temp.<a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00326"></a>00326         this-&gt;node-&gt;attachObject(this-&gt;entity);
+<a name="l00325"></a>00325         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;setPosition(temp.<a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00326"></a>00326         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;attachObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
 <a name="l00327"></a>00327     }
 <a name="l00328"></a>00328 <span class="comment"></span>
 <a name="l00329"></a>00329 <span class="comment">    ///////////////////////////////////</span>
@@ -357,13 +357,13 @@
 <a name="l00332"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f">00332</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f" title="Sets the state of the object to Kinematic.">ActorBase::SetKinematic</a>()
 <a name="l00333"></a>00333     {
 <a name="l00334"></a>00334         <span class="keywordtype">int</span> x=2;
-<a name="l00335"></a>00335         this-&gt;CollisionObject-&gt;setCollisionFlags(x);
+<a name="l00335"></a>00335         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(x);
 <a name="l00336"></a>00336     }
 <a name="l00337"></a>00337 
 <a name="l00338"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037">00338</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037" title="Sets the state of the object to Static.">ActorBase::SetStatic</a>()
 <a name="l00339"></a>00339     {
 <a name="l00340"></a>00340         <span class="keywordtype">int</span> x=1;
-<a name="l00341"></a>00341         this-&gt;CollisionObject-&gt;setCollisionFlags(x);
+<a name="l00341"></a>00341         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(x);
 <a name="l00342"></a>00342     }
 <a name="l00343"></a>00343 <span class="comment"></span>
 <a name="l00344"></a>00344 <span class="comment">    ///////////////////////////////////</span>
@@ -376,27 +376,27 @@
 <a name="l00351"></a>00351 
 <a name="l00352"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#ab317b5a2578157e54655a1aea8f4d058">00352</a>     <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#ab317b5a2578157e54655a1aea8f4d058" title="Destructor.">ActorRigid::~ActorRigid</a> ()
 <a name="l00353"></a>00353     {
-<a name="l00354"></a>00354         <span class="keyword">delete</span> physrigidbody;
+<a name="l00354"></a>00354         <span class="keyword">delete</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>;
 <a name="l00355"></a>00355     }
 <a name="l00356"></a>00356 
 <a name="l00357"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a19227c52b972cd96ad69a7b6273e2bbf">00357</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a19227c52b972cd96ad69a7b6273e2bbf" title="Creates a rigid object for the actor.">ActorRigid::CreateRigidObject</a> (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> pmass)
 <a name="l00358"></a>00358     {
 <a name="l00359"></a>00359         btScalar bmass=pmass;
-<a name="l00360"></a>00360         this-&gt;physrigidbody = <span class="keyword">new</span> btRigidBody (bmass, this-&gt;MotionState, this-&gt;Shape);
-<a name="l00361"></a>00361         CollisionObject=physrigidbody;
+<a name="l00360"></a>00360         this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a> = <span class="keyword">new</span> btRigidBody (bmass, this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a44934cb1db748c3c69e3b88a8dd17dcb" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a>, this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
+<a name="l00361"></a>00361         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>=<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>;
 <a name="l00362"></a>00362     }
 <a name="l00363"></a>00363 
 <a name="l00364"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a3c56eb06fe6a7d468b7a67c45ade7be4">00364</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a3c56eb06fe6a7d468b7a67c45ade7be4" title="Adds the actor to the physics world.">ActorRigid::AddObjectToWorld</a> (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld, btSoftRigidDynamicsWorld* btWorld)
 <a name="l00365"></a>00365     {
-<a name="l00366"></a>00366         btWorld-&gt;addRigidBody(this-&gt;physrigidbody);
+<a name="l00366"></a>00366         btWorld-&gt;addRigidBody(this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>);
 <a name="l00367"></a>00367         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a45f190cb9b647bb3385d1298f9dab589" title="Makes the actor visable.">AttachToGraphics</a>();
 <a name="l00368"></a>00368     }
 <a name="l00369"></a>00369 
-<a name="l00370"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a441f502d0014b3479235e172e4ef5db8">00370</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a441f502d0014b3479235e172e4ef5db8" title="Creates a collision shape from mesh file.">ActorRigid::CreateShapeFromMeshDynamic</a>(<span class="keywordtype">short</span> <span class="keywordtype">signed</span> <span class="keywordtype">int</span> accuracy)
+<a name="l00370"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#aab4a408ce0724be6adf4c9f51f55f8a1">00370</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#aab4a408ce0724be6adf4c9f51f55f8a1" title="Creates a collision shape from mesh file.">ActorRigid::CreateShapeFromMeshDynamic</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> accuracy)
 <a name="l00371"></a>00371     {
 <a name="l00372"></a>00372         <span class="keywordflow">if</span>(accuracy==1)
 <a name="l00373"></a>00373         {
-<a name="l00374"></a>00374             <span class="keyword">delete</span> Shape;<span class="comment"></span>
+<a name="l00374"></a>00374             <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;<span class="comment"></span>
 <a name="l00375"></a>00375 <span class="comment">            /// @todo - Check for thread safety</span>
 <a name="l00376"></a>00376 <span class="comment"></span>            btConvexShape *tmpshape = <span class="keyword">new</span> btConvexTriangleMeshShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7" title="Creates a trimesh shape from the mesh file.">CreateTrimesh</a>());
 <a name="l00377"></a>00377             btShapeHull *hull = <span class="keyword">new</span> btShapeHull(tmpshape);
@@ -410,46 +410,46 @@
 <a name="l00385"></a>00385             }
 <a name="l00386"></a>00386             <span class="keyword">delete</span> tmpshape;
 <a name="l00387"></a>00387             <span class="keyword">delete</span> hull;
-<a name="l00388"></a>00388             btScalar mass=this-&gt;physrigidbody-&gt;getInvMass();
+<a name="l00388"></a>00388             btScalar mass=this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;getInvMass();
 <a name="l00389"></a>00389             mass=1/mass;
 <a name="l00390"></a>00390             btVector3 inertia(0,0,0);
 <a name="l00391"></a>00391             convexShape-&gt;calculateLocalInertia(mass, inertia);
-<a name="l00392"></a>00392             Shape = convexShape;
-<a name="l00393"></a>00393             this-&gt;Shape-&gt;setLocalScaling(btVector3(0.95,0.95,0.95));
-<a name="l00394"></a>00394             this-&gt;physrigidbody-&gt;setCollisionShape(this-&gt;Shape);
-<a name="l00395"></a>00395             this-&gt;physrigidbody-&gt;setMassProps(mass,inertia);
+<a name="l00392"></a>00392             <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a> = convexShape;
+<a name="l00393"></a>00393             this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>-&gt;setLocalScaling(btVector3(0.95,0.95,0.95));
+<a name="l00394"></a>00394             this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
+<a name="l00395"></a>00395             this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setMassProps(mass,inertia);
 <a name="l00396"></a>00396             <span class="keywordflow">return</span>;
 <a name="l00397"></a>00397         }
 <a name="l00398"></a>00398         <span class="keywordflow">if</span>(accuracy==2)
 <a name="l00399"></a>00399         {
-<a name="l00400"></a>00400             <span class="keyword">delete</span> Shape;<span class="comment"></span>
+<a name="l00400"></a>00400             <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;<span class="comment"></span>
 <a name="l00401"></a>00401 <span class="comment">            /// @todo add code here to increase the verticies that is used to create the hull from the first accuracy setting.</span>
 <a name="l00402"></a>00402 <span class="comment"></span>            btConvexShape *tmpshape = <span class="keyword">new</span> btConvexTriangleMeshShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7" title="Creates a trimesh shape from the mesh file.">CreateTrimesh</a>());
-<a name="l00403"></a>00403             Shape=tmpshape;
-<a name="l00404"></a>00404             this-&gt;physrigidbody-&gt;setCollisionShape(this-&gt;Shape);
+<a name="l00403"></a>00403             <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>=tmpshape;
+<a name="l00404"></a>00404             this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
 <a name="l00405"></a>00405             <span class="keywordflow">return</span>;
 <a name="l00406"></a>00406         }
 <a name="l00407"></a>00407         <span class="keywordflow">if</span>(accuracy==3)
 <a name="l00408"></a>00408         {
-<a name="l00409"></a>00409             <span class="keyword">delete</span> Shape;<span class="comment"></span>
+<a name="l00409"></a>00409             <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;<span class="comment"></span>
 <a name="l00410"></a>00410 <span class="comment">            /// @todo add code here for compound shapes of convex hulls</span>
-<a name="l00411"></a>00411 <span class="comment"></span>            this-&gt;physrigidbody-&gt;setCollisionShape(this-&gt;Shape);
+<a name="l00411"></a>00411 <span class="comment"></span>            this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
 <a name="l00412"></a>00412             <span class="keywordflow">return</span>;
 <a name="l00413"></a>00413         }
 <a name="l00414"></a>00414         <span class="keywordflow">if</span>(accuracy==4)
 <a name="l00415"></a>00415         {
-<a name="l00416"></a>00416             <span class="keyword">delete</span> Shape;
+<a name="l00416"></a>00416             <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;
 <a name="l00417"></a>00417             btGImpactMeshShape* gimpact = <span class="keyword">new</span> btGImpactMeshShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7" title="Creates a trimesh shape from the mesh file.">CreateTrimesh</a>());
-<a name="l00418"></a>00418             btScalar mass=this-&gt;physrigidbody-&gt;getInvMass();
+<a name="l00418"></a>00418             btScalar mass=this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;getInvMass();
 <a name="l00419"></a>00419             mass=1/mass;
 <a name="l00420"></a>00420             btVector3 inertia(0,0,0);
 <a name="l00421"></a>00421             gimpact-&gt;calculateLocalInertia(mass, inertia);
 <a name="l00422"></a>00422             gimpact-&gt;setLocalScaling(btVector3(1.f,1.f,1.f));
 <a name="l00423"></a>00423             gimpact-&gt;setMargin(0.04);
 <a name="l00424"></a>00424             gimpact-&gt;updateBound();
-<a name="l00425"></a>00425             Shape=gimpact;
-<a name="l00426"></a>00426             this-&gt;physrigidbody-&gt;setCollisionShape(this-&gt;Shape);
-<a name="l00427"></a>00427             this-&gt;physrigidbody-&gt;setMassProps(mass,inertia);
+<a name="l00425"></a>00425             <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>=gimpact;
+<a name="l00426"></a>00426             this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
+<a name="l00427"></a>00427             this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setMassProps(mass,inertia);
 <a name="l00428"></a>00428             <span class="keywordflow">return</span>;
 <a name="l00429"></a>00429         }
 <a name="l00430"></a>00430         <span class="keywordflow">return</span>;
@@ -457,97 +457,104 @@
 <a name="l00432"></a>00432 
 <a name="l00433"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac">00433</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac" title="Creates a collision shape from mesh file.">ActorRigid::CreateShapeFromMeshStatic</a>()
 <a name="l00434"></a>00434     {
-<a name="l00435"></a>00435         <span class="keyword">delete</span> Shape;
+<a name="l00435"></a>00435         <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;
 <a name="l00436"></a>00436 <span class="comment"></span>
 <a name="l00437"></a>00437 <span class="comment">        /// @todo - Check for thread safety</span>
 <a name="l00438"></a>00438 <span class="comment"></span>        btBvhTriangleMeshShape *tmpshape = <span class="keyword">new</span> btBvhTriangleMeshShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7" title="Creates a trimesh shape from the mesh file.">CreateTrimesh</a>(),<span class="keyword">true</span>);
-<a name="l00439"></a>00439         this-&gt;Shape=tmpshape;
-<a name="l00440"></a>00440         this-&gt;Shape-&gt;setLocalScaling(btVector3(0.95,0.95,0.95));
-<a name="l00441"></a>00441         this-&gt;physrigidbody-&gt;setCollisionShape(this-&gt;Shape);
+<a name="l00439"></a>00439         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>=tmpshape;
+<a name="l00440"></a>00440         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>-&gt;setLocalScaling(btVector3(0.95,0.95,0.95));
+<a name="l00441"></a>00441         this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
 <a name="l00442"></a>00442     }
-<a name="l00443"></a>00443 <span class="comment"></span>
-<a name="l00444"></a>00444 <span class="comment">    ///////////////////////////////////</span>
-<a name="l00445"></a>00445 <span class="comment"></span>    <span class="comment">// ActorSoft class functions</span>
-<a name="l00446"></a>00446 
-<a name="l00447"></a>00447     <span class="comment">/*ActorSoft::ActorSoft ()</span>
-<a name="l00448"></a>00448 <span class="comment">    {</span>
-<a name="l00449"></a>00449 <span class="comment">    }*/</span>
-<a name="l00450"></a>00450 
-<a name="l00451"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a636c145f1e468fd45adc8da2a1708fbe">00451</a>     <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a636c145f1e468fd45adc8da2a1708fbe" title="Destructor.">ActorSoft::~ActorSoft</a> ()
-<a name="l00452"></a>00452     {
-<a name="l00453"></a>00453         <span class="keyword">delete</span> physsoftbody;
-<a name="l00454"></a>00454     }
-<a name="l00455"></a>00455 
-<a name="l00456"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a04c98bb0ab9ed7c1dfc3435d49403ef4">00456</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a04c98bb0ab9ed7c1dfc3435d49403ef4" title="Creates a soft object for the actor.">ActorSoft::CreateSoftObject</a> (btSoftBodyWorldInfo* softworldinfo, <span class="keywordtype">int</span> nodecount, btVector3* nodearray, btScalar* massarray)
-<a name="l00457"></a>00457     {
-<a name="l00458"></a>00458         this-&gt;physsoftbody = <span class="keyword">new</span> btSoftBody (softworldinfo, nodecount, nodearray, massarray);
-<a name="l00459"></a>00459         CollisionObject=physsoftbody;
-<a name="l00460"></a>00460     }
-<a name="l00461"></a>00461 
-<a name="l00462"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a3a704ab32f847a5d0e060f8a592efefd">00462</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a3a704ab32f847a5d0e060f8a592efefd" title="Adds the actor to the physics world.">ActorSoft::AddObjectToWorld</a> (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld, btSoftRigidDynamicsWorld* btWorld)
-<a name="l00463"></a>00463     {
-<a name="l00464"></a>00464         btWorld-&gt;addSoftBody(this-&gt;physsoftbody);
-<a name="l00465"></a>00465     }
-<a name="l00466"></a>00466 
-<a name="l00467"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a51d78e0f503c3c815511c3d246b426ae">00467</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a51d78e0f503c3c815511c3d246b426ae" title="Creates a collision shape from mesh file.">ActorSoft::CreateShapeFromMesh</a>()
-<a name="l00468"></a>00468     {
-<a name="l00469"></a>00469         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7" title="Creates a trimesh shape from the mesh file.">CreateTrimesh</a>();
-<a name="l00470"></a>00470         this-&gt;physsoftbody-&gt;setCollisionShape(this-&gt;Shape);
-<a name="l00471"></a>00471     }
-<a name="l00472"></a>00472 <span class="comment"></span>
-<a name="l00473"></a>00473 <span class="comment">    ///////////////////////////////////</span>
-<a name="l00474"></a>00474 <span class="comment"></span>    <span class="comment">// PhysMotionState</span>
-<a name="l00475"></a>00475 
-<a name="l00476"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac685ae94d7ee7740aaee8c1a1132b27a">00476</a>     <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac685ae94d7ee7740aaee8c1a1132b27a" title="Blank Constructor.">PhysMotionState::PhysMotionState</a>()
-<a name="l00477"></a>00477     {
-<a name="l00478"></a>00478         this-&gt;initposition.setIdentity();
-<a name="l00479"></a>00479     }
-<a name="l00480"></a>00480 
-<a name="l00481"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a505aa5ea3bbaba4710924f030f4ed008">00481</a>     <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac685ae94d7ee7740aaee8c1a1132b27a" title="Blank Constructor.">PhysMotionState::PhysMotionState</a>(Ogre::SceneNode* scenenode)
-<a name="l00482"></a>00482     {
-<a name="l00483"></a>00483         this-&gt;snode=scenenode;
-<a name="l00484"></a>00484         this-&gt;initposition.setIdentity();
-<a name="l00485"></a>00485     }
-<a name="l00486"></a>00486 
-<a name="l00487"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a20798e3dce2d71a938c3607a8610eaac">00487</a>     <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a20798e3dce2d71a938c3607a8610eaac" title="Destructor.">PhysMotionState::~PhysMotionState</a>()
-<a name="l00488"></a>00488     {
-<a name="l00489"></a>00489         <span class="keywordflow">if</span> (snode!=NULL)
-<a name="l00490"></a>00490         {
-<a name="l00491"></a>00491             <span class="keyword">delete</span> snode;
-<a name="l00492"></a>00492         }
-<a name="l00493"></a>00493     }
-<a name="l00494"></a>00494 
-<a name="l00495"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a034376e768543b377430611dff323412">00495</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a034376e768543b377430611dff323412" title="Sets the scenenode.">PhysMotionState::SetNode</a>(Ogre::SceneNode* scenenode)
-<a name="l00496"></a>00496     {
-<a name="l00497"></a>00497         this-&gt;snode=scenenode;
-<a name="l00498"></a>00498     }
-<a name="l00499"></a>00499 
-<a name="l00500"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a083029e5dbcfafd573d47331ff8660cb">00500</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a083029e5dbcfafd573d47331ff8660cb" title="Sets the initial position.">PhysMotionState::SetPosition</a>(<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> position)
-<a name="l00501"></a>00501     {
-<a name="l00502"></a>00502         this-&gt;initposition.setOrigin(position.<a class="code" href="../../da/d11/classPhysVector3.html#a7109b1bf54cae678e5cada4e82482918" title="Gets a Bullet vector3.">GetBulletVector3</a>());
-<a name="l00503"></a>00503     }
-<a name="l00504"></a>00504 
-<a name="l00505"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac799070edfea4d1c442e3ed0857bcb1d">00505</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac799070edfea4d1c442e3ed0857bcb1d" title="Sets the initial orientation.">PhysMotionState::SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> orientation)
-<a name="l00506"></a>00506     {
-<a name="l00507"></a>00507         this-&gt;initposition.setRotation(orientation.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#afcda116299201599a803e48719f6d50e" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>());
-<a name="l00508"></a>00508     }
-<a name="l00509"></a>00509 
-<a name="l00510"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a80e8549fbab99150ba8f34aa3bf087d8">00510</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a80e8549fbab99150ba8f34aa3bf087d8" title="Sets the initial position.">PhysMotionState::getWorldTransform</a>(btTransform &amp;worldTrans)<span class="keyword"> const</span>
-<a name="l00511"></a>00511 <span class="keyword">    </span>{
-<a name="l00512"></a>00512         worldTrans=initposition;
-<a name="l00513"></a>00513     }
-<a name="l00514"></a>00514 
-<a name="l00515"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a91e372f8f474bb570e502ee42ec2deeb">00515</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a91e372f8f474bb570e502ee42ec2deeb" title="Updates the position and orientation.">PhysMotionState::setWorldTransform</a>(<span class="keyword">const</span> btTransform &amp;worldTrans)
-<a name="l00516"></a>00516     {
-<a name="l00517"></a>00517         btQuaternion rotation = worldTrans.getRotation();
-<a name="l00518"></a>00518         this-&gt;snode-&gt;setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
-<a name="l00519"></a>00519         btVector3 position = worldTrans.getOrigin();
-<a name="l00520"></a>00520         this-&gt;snode-&gt;setPosition(position.x(), position.y(), position.z());
-<a name="l00521"></a>00521     }
-<a name="l00522"></a>00522 }
-<a name="l00523"></a>00523 <span class="preprocessor">#endif</span>
+<a name="l00443"></a>00443 
+<a name="l00444"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#adaed962ee8ed788612e541fb00867c78">00444</a>     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#adaed962ee8ed788612e541fb00867c78" title="Restricts movement on the axis or axies of your choice.">ActorRigid::LimitMovementOnAxis</a>(<span class="keywordtype">bool</span> x, <span class="keywordtype">bool</span> y, <span class="keywordtype">bool</span> z)
+<a name="l00445"></a>00445     {
+<a name="l00446"></a>00446         btVector3 LinFact(x,y,z);
+<a name="l00447"></a>00447         this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setLinearFactor(LinFact);
+<a name="l00448"></a>00448         <span class="keywordflow">return</span>;
+<a name="l00449"></a>00449     }
+<a name="l00450"></a>00450 <span class="comment"></span>
+<a name="l00451"></a>00451 <span class="comment">    ///////////////////////////////////</span>
+<a name="l00452"></a>00452 <span class="comment"></span>    <span class="comment">// ActorSoft class functions</span>
+<a name="l00453"></a>00453 
+<a name="l00454"></a>00454     <span class="comment">/*ActorSoft::ActorSoft ()</span>
+<a name="l00455"></a>00455 <span class="comment">    {</span>
+<a name="l00456"></a>00456 <span class="comment">    }*/</span>
+<a name="l00457"></a>00457 
+<a name="l00458"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a636c145f1e468fd45adc8da2a1708fbe">00458</a>     <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a636c145f1e468fd45adc8da2a1708fbe" title="Destructor.">ActorSoft::~ActorSoft</a> ()
+<a name="l00459"></a>00459     {
+<a name="l00460"></a>00460         <span class="keyword">delete</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem...">physsoftbody</a>;
+<a name="l00461"></a>00461     }
+<a name="l00462"></a>00462 
+<a name="l00463"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a04c98bb0ab9ed7c1dfc3435d49403ef4">00463</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a04c98bb0ab9ed7c1dfc3435d49403ef4" title="Creates a soft object for the actor.">ActorSoft::CreateSoftObject</a> (btSoftBodyWorldInfo* softworldinfo, <span class="keywordtype">int</span> nodecount, btVector3* nodearray, btScalar* massarray)
+<a name="l00464"></a>00464     {
+<a name="l00465"></a>00465         this-&gt;<a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem...">physsoftbody</a> = <span class="keyword">new</span> btSoftBody (softworldinfo, nodecount, nodearray, massarray);
+<a name="l00466"></a>00466         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>=<a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem...">physsoftbody</a>;
+<a name="l00467"></a>00467     }
+<a name="l00468"></a>00468 
+<a name="l00469"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a3a704ab32f847a5d0e060f8a592efefd">00469</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a3a704ab32f847a5d0e060f8a592efefd" title="Adds the actor to the physics world.">ActorSoft::AddObjectToWorld</a> (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld, btSoftRigidDynamicsWorld* btWorld)
+<a name="l00470"></a>00470     {
+<a name="l00471"></a>00471         btWorld-&gt;addSoftBody(this-&gt;<a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem...">physsoftbody</a>);
+<a name="l00472"></a>00472     }
+<a name="l00473"></a>00473 
+<a name="l00474"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a51d78e0f503c3c815511c3d246b426ae">00474</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a51d78e0f503c3c815511c3d246b426ae" title="Creates a collision shape from mesh file.">ActorSoft::CreateShapeFromMesh</a>()
+<a name="l00475"></a>00475     {
+<a name="l00476"></a>00476         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7" title="Creates a trimesh shape from the mesh file.">CreateTrimesh</a>();
+<a name="l00477"></a>00477         this-&gt;<a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem...">physsoftbody</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
+<a name="l00478"></a>00478     }
+<a name="l00479"></a>00479 <span class="comment"></span>
+<a name="l00480"></a>00480 <span class="comment">    ///////////////////////////////////</span>
+<a name="l00481"></a>00481 <span class="comment"></span>    <span class="comment">// PhysMotionState</span>
+<a name="l00482"></a>00482 
+<a name="l00483"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac685ae94d7ee7740aaee8c1a1132b27a">00483</a>     <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac685ae94d7ee7740aaee8c1a1132b27a" title="Blank Constructor.">PhysMotionState::PhysMotionState</a>()
+<a name="l00484"></a>00484     {
+<a name="l00485"></a>00485         this-&gt;initposition.setIdentity();
+<a name="l00486"></a>00486     }
+<a name="l00487"></a>00487 
+<a name="l00488"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a505aa5ea3bbaba4710924f030f4ed008">00488</a>     <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac685ae94d7ee7740aaee8c1a1132b27a" title="Blank Constructor.">PhysMotionState::PhysMotionState</a>(Ogre::SceneNode* scenenode)
+<a name="l00489"></a>00489     {
+<a name="l00490"></a>00490         this-&gt;snode=scenenode;
+<a name="l00491"></a>00491         this-&gt;initposition.setIdentity();
+<a name="l00492"></a>00492     }
+<a name="l00493"></a>00493 
+<a name="l00494"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a20798e3dce2d71a938c3607a8610eaac">00494</a>     <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a20798e3dce2d71a938c3607a8610eaac" title="Destructor.">PhysMotionState::~PhysMotionState</a>()
+<a name="l00495"></a>00495     {
+<a name="l00496"></a>00496         <span class="keywordflow">if</span> (snode!=NULL)
+<a name="l00497"></a>00497         {
+<a name="l00498"></a>00498             <span class="keyword">delete</span> snode;
+<a name="l00499"></a>00499         }
+<a name="l00500"></a>00500     }
+<a name="l00501"></a>00501 
+<a name="l00502"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a034376e768543b377430611dff323412">00502</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a034376e768543b377430611dff323412" title="Sets the scenenode.">PhysMotionState::SetNode</a>(Ogre::SceneNode* scenenode)
+<a name="l00503"></a>00503     {
+<a name="l00504"></a>00504         this-&gt;snode=scenenode;
+<a name="l00505"></a>00505     }
+<a name="l00506"></a>00506 
+<a name="l00507"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a083029e5dbcfafd573d47331ff8660cb">00507</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a083029e5dbcfafd573d47331ff8660cb" title="Sets the initial position.">PhysMotionState::SetPosition</a>(<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> position)
+<a name="l00508"></a>00508     {
+<a name="l00509"></a>00509         this-&gt;initposition.setOrigin(position.<a class="code" href="../../da/d11/classPhysVector3.html#a7109b1bf54cae678e5cada4e82482918" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00510"></a>00510     }
+<a name="l00511"></a>00511 
+<a name="l00512"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac799070edfea4d1c442e3ed0857bcb1d">00512</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#ac799070edfea4d1c442e3ed0857bcb1d" title="Sets the initial orientation.">PhysMotionState::SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> orientation)
+<a name="l00513"></a>00513     {
+<a name="l00514"></a>00514         this-&gt;initposition.setRotation(orientation.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#afcda116299201599a803e48719f6d50e" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>());
+<a name="l00515"></a>00515     }
+<a name="l00516"></a>00516 
+<a name="l00517"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a80e8549fbab99150ba8f34aa3bf087d8">00517</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a80e8549fbab99150ba8f34aa3bf087d8" title="Sets the initial position.">PhysMotionState::getWorldTransform</a>(btTransform &amp;worldTrans)<span class="keyword"> const</span>
+<a name="l00518"></a>00518 <span class="keyword">    </span>{
+<a name="l00519"></a>00519         worldTrans=initposition;
+<a name="l00520"></a>00520     }
+<a name="l00521"></a>00521 
+<a name="l00522"></a><a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a91e372f8f474bb570e502ee42ec2deeb">00522</a>     <span class="keywordtype">void</span> <a class="code" href="../../dc/d0d/classphys_1_1PhysMotionState.html#a91e372f8f474bb570e502ee42ec2deeb" title="Updates the position and orientation.">PhysMotionState::setWorldTransform</a>(<span class="keyword">const</span> btTransform &amp;worldTrans)
+<a name="l00523"></a>00523     {
+<a name="l00524"></a>00524         btQuaternion rotation = worldTrans.getRotation();
+<a name="l00525"></a>00525         this-&gt;snode-&gt;setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
+<a name="l00526"></a>00526         btVector3 position = worldTrans.getOrigin();
+<a name="l00527"></a>00527         this-&gt;snode-&gt;setPosition(position.x(), position.y(), position.z());
+<a name="l00528"></a>00528     }
+<a name="l00529"></a>00529 }
+<a name="l00530"></a>00530 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 23 18:55:38 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 00:55:33 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

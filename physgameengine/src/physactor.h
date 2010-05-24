@@ -95,15 +95,23 @@ namespace phys
 
         protected:
 
+            /// @brief A pointer to the World the actor will reside.
             World* GameWorld;
 
             //abstraction for other libraries
+            ///@brief This class encapsulates the functionality of the Ogre::Entity using this
             Ogre::Entity* entity;
+
+            ///@brief This class encapsulates the functionality of the Ogre::SceneNode using this
             Ogre::SceneNode* node;
 
+            ///@brief This class encapsulates the functionality of the btCollisionShape using this
             btCollisionShape* Shape;
+
+            ///@brief This class encapsulates the functionality of the btCollisionObject using this
             btCollisionObject* CollisionObject;
 
+            ///@brief This class encapsulates the functionality of the PhysMotionState using this
             PhysMotionState* MotionState;
 
             /// @brief Adds the actor to the physics world.
@@ -112,6 +120,7 @@ namespace phys
             /// @param TargetWorld Pointer to the World class.
             /// @param btWorld Pointer to the physics world.
             virtual void AddObjectToWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld) = 0;
+
             /// @brief Creates a trimesh shape from the mesh file.
             /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n
             /// This is automaticly called by the CreateShapeFromMesh function in child classes and shouldn't be called manually.
@@ -121,9 +130,9 @@ namespace phys
             /// @brief Creates an entity for the mesh file to be placed on a scene node.
             /// @details Creates an entity in the scene manager from the mesh file provided to be attached to a node in the graphical world. @n
             /// This function is called on by the Constructor, and shouldn't be called manually.
-            /// @param Name Name of the actor.
-            /// @param File File name of the graphical mesh to be used.
-            /// @param Group Resource group where the graphical mesh can be found.
+            /// @param name Name of the actor.
+            /// @param file File name of the graphical mesh to be used.
+            /// @param group Resource group where the graphical mesh can be found.
             void CreateEntity(String name, String file, String group);
             /// @brief Creates a node for the entity in the graphical world.
             /// @details Creates a node in the scene manager to attach the actor's entity to within the graphical world. @n
@@ -132,7 +141,7 @@ namespace phys
             /// @brief Sets the location of the graphical body.
             /// @details This will take a PhysVector3 and set the location of the actor within the graphical world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
-            /// @param Location The PhysVector3 representing the location.
+            /// @param Place The PhysVector3 representing the location.
             void SetOgreLocation(PhysVector3 Place);
             /// @brief Retrieves the location of the graphical body.
             /// @details This function will retrieve the location of the object within the graphical world.
@@ -166,20 +175,21 @@ namespace phys
             /// @brief Destructor.
             /// @details The class destructor.
             virtual ~ActorBase ();
+
             /// @brief Descriptive constructor.
             /// @details This constructor contains the basic information needed to make an actor.
-            /// @param Name The name of the actor.
-            /// @param File The 3d mesh file that contains the 3d model the actor will use.
-            /// @param Group The resource group where the 3d mesh and other related files can be found.
+            /// @param name The name of the actor.
+            /// @param file The 3d mesh file that contains the 3d model the actor will use.
+            /// @param group The resource group where the 3d mesh and other related files can be found.
             /// @param _World Pointer to the World this object will be added to.
             ActorBase (String name, String file, String group, World* _World);
 
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
             /// In most situations you won't want to use this function, and instead produce movement through physics functions.
-            /// @param X Location on the X vector.
-            /// @param Y Location on the Y vector.
-            /// @param Z Location on the Z vector.
+            /// @param x Location on the X vector.
+            /// @param y Location on the Y vector.
+            /// @param z Location on the Z vector.
             void SetLocation(Real x, Real y, Real z);
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
@@ -203,7 +213,12 @@ namespace phys
 
             /// @brief Sets the orientation of the actor.
             /// @details Sets the orientation of the actor via Quaternion parameters.
+            /// @param x Where the X vector is rotated about.
+            /// @param y Where the Y vector is rotated about.
+            /// @param z Where the Z vector is rotated about.
+            /// @param w How much to about the x, y, z.
             void SetOrientation(Real x, Real y, Real z, Real w);
+
             /// @brief Sets the orientation of the actor.
             /// @details Sets the orientation of the actor via a Quaternion.
             /// @param Rotation The Quaternion representing the Rotation.
@@ -232,12 +247,14 @@ namespace phys
     class ActorRigid: public ActorBase {
 
         protected:
+            /// @brief Used to simulate the behavior of a btRigidBody
             btRigidBody* physrigidbody;
             /// @brief Creates a rigid object for the actor.
             /// @details Creates a rigid object to be placed in the physics world later. @n
             /// This is automaticly called by the Constructor and shouldn't be called manually.
-            /// @param PMass "Real Mass" The mass of the object.
+            /// @param pmass "Real Mass" The mass of the object.
             void CreateRigidObject (Real pmass);
+
             /// @brief Adds the actor to the physics world.
             /// @details Adds the actor to the physics world. @n
             /// This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually.
@@ -249,10 +266,10 @@ namespace phys
             /// @brief Descriptive constructor.
             /// @details This constructor contains the basic information needed to make a Rigid Object. @n
             /// This class inherits from ActorBase.
-            /// @param Mass The mass the object will have in the World.
-            /// @param Name The name of the actor.
-            /// @param File The 3d mesh file that contains the 3d model the actor will use.
-            /// @param Group The resource group where the 3d mesh and other related files can be found.
+            /// @param mass The mass the object will have in the World.
+            /// @param name The name of the actor.
+            /// @param file The 3d mesh file that contains the 3d model the actor will use.
+            /// @param group The resource group where the 3d mesh and other related files can be found.
             /// @param _World Pointer to the World this object will be added to.
             ActorRigid(Real mass, String name, String file, String group, World* _World);
             /// @brief Destructor.
@@ -262,21 +279,22 @@ namespace phys
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Dynamic objects.
-            void CreateShapeFromMeshDynamic(short signed int accuracy=1);
+            /// @param accuracy A value from 1 to 4. The higher the more accurate, but the more resource intensive
+            void CreateShapeFromMeshDynamic(short unsigned int accuracy=1);
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Dynamic objects.
             void CreateShapeFromMeshStatic();
-	    /// @brief Restricts movement on the axis or axies of your choice.
+            /// @brief Restricts movement on the axis or axies of your choice.
             /// @details This function will lock any and all axies you define you want to be locked.
             /// Simply pass true to allow movement on that axis, false if you don't.  This function
             /// is primarily useful for 2D games, in which if you are viewing the playing area from
             /// the side you can pass in LimitMovementOnAxis(true,true,false) and the object will
             /// only be able to move up, down, or side to side, but not in or out.
-            /// @param X Allow or Disallow use of the X axis for movement.
-            /// @param Y Allow or Disallow use of the Y axis for movement.
-            /// @param Z Allow or Disallow use of the Z axis for movement.
+            /// @param x Allow or Disallow use of the X axis for movement.
+            /// @param y Allow or Disallow use of the Y axis for movement.
+            /// @param z Allow or Disallow use of the Z axis for movement.
             void LimitMovementOnAxis(bool x, bool y, bool z);
     };
 
@@ -289,14 +307,17 @@ namespace phys
     /// Rope, and Cloth.  Semi Rigid bodies that are still somewhat deformable, like Jello,
     /// should be made as a soft object.
     ///////////////////////////////////////
-
     class ActorSoft: public ActorBase {
-
         protected:
+            ///@brief Used to simulate the functionality of a btSoftBody for use with the physics subsystem.
             btSoftBody* physsoftbody;
             /// @brief Creates a soft object for the actor.
             /// @details Creates a soft object to be placed in the physics world later. @n
             /// This is automaticly called by the Constructor and shouldn't be called manually.
+            /// @param softworldinfo Currently Unused
+            /// @param nodecount Currently Unused
+            /// @param nodearray Currently Unused
+            /// @param massarray Currently Unused
             void CreateSoftObject (btSoftBodyWorldInfo* softworldinfo, int nodecount, btVector3* nodearray, btScalar* massarray);
             /// @brief Adds the actor to the physics world.
             /// @details Adds the actor to the physics world. @n

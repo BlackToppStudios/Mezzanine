@@ -53,12 +53,16 @@ Definition at line 61 of file linegroup.h.
 
 Basic Constructor. 
 
+\begin{Desc}
+\item[\hyperlink{todo__todo000009}{Todo}]TODO: This class really should support rotation, the underlying implementation does. \end{Desc}
+
+
 This creates a basic, empty, \hyperlink{classphys_1_1LineGroup}{LineGroup}. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Parent\_\-}]This is a pointer to the world to render to. \end{DoxyParams}
 
 
-Definition at line 245 of file linegroup.cpp.
+Definition at line 302 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_a0ddd66bc946dd266e3b666c8101ea7f8}{
 \index{phys::LineGroup@{phys::LineGroup}!$\sim$LineGroup@{$\sim$LineGroup}}
@@ -71,7 +75,7 @@ Default Destructor.
 
 This safely tears down, and removes from the graphics system the \hyperlink{classphys_1_1LineGroup}{LineGroup} 
 
-Definition at line 251 of file linegroup.cpp.
+Definition at line 308 of file linegroup.cpp.
 
 
 
@@ -90,7 +94,7 @@ This adds a point that will be rendered as the endpoint of a line
 \item[{\em p}]The Point to be added. \end{DoxyParams}
 
 
-Definition at line 256 of file linegroup.cpp.
+Definition at line 313 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_aed46446e634948f8c73a5b26406cb5af}{
 \index{phys::LineGroup@{phys::LineGroup}!drawLine@{drawLine}}
@@ -102,13 +106,13 @@ Definition at line 256 of file linegroup.cpp.
 This adds Two points to the list. 
 
 This could add 2 line segments, be it simply adds two lines to the list, but if you don't care then this is an easy way to guarantee that a specific line segment be rendered. \begin{Desc}
-\item[\hyperlink{todo__todo000009}{Todo}]TODO: In the future we will add a break in the line segment chain when this is called. \end{Desc}
+\item[\hyperlink{todo__todo000010}{Todo}]TODO: In the future we will add a break in the line segment chain when this is called. \end{Desc}
 
 \begin{DoxyParams}{Parameters}
 \item[{\em start}]The first point to be added \item[{\em end}]The first point to be added \end{DoxyParams}
 
 
-Definition at line 277 of file linegroup.cpp.
+Definition at line 334 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_ade1bb4f8e1164e1b8d7aeabbc970b79d}{
 \index{phys::LineGroup@{phys::LineGroup}!drawLines@{drawLines}}
@@ -120,10 +124,10 @@ Definition at line 277 of file linegroup.cpp.
 Renders the line segment chain. 
 
 This send the Line segment information to the rending subsystem. \hyperlink{classphys_1_1LineGroup_ab8d5c3c91dd16008429cc4cafed7f42f}{PrepareForRendering()} should be called first \begin{Desc}
-\item[\hyperlink{todo__todo000010}{Todo}]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. \end{Desc}
+\item[\hyperlink{todo__todo000011}{Todo}]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. \end{Desc}
 
 
-Definition at line 284 of file linegroup.cpp.
+Definition at line 341 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_a9dbbd74f5256ee67454ef6ede752dc32}{
 \index{phys::LineGroup@{phys::LineGroup}!getBoundingRadius@{getBoundingRadius}}
@@ -134,9 +138,12 @@ Definition at line 284 of file linegroup.cpp.
 
 How big would a circle need to be to encapsulate this. 
 
-This returns the radius the a circle would need to have to surround this line group. 
+This returns the radius the a circle would need to have to surround this line group. \begin{DoxyReturn}{Returns}
+This returns a real number which indicates the radius. 
+\end{DoxyReturn}
 
-Definition at line 289 of file linegroup.cpp.
+
+Definition at line 346 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_a32e14111a18318fd17aa503b1d3cfe8c}{
 \index{phys::LineGroup@{phys::LineGroup}!getNumPoints@{getNumPoints}}
@@ -152,7 +159,7 @@ A Whole Number which indicates the amount of points.
 \end{DoxyReturn}
 
 
-Definition at line 267 of file linegroup.cpp.
+Definition at line 324 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_a16d15a03eab7029344fa73c1dfd7ca43}{
 \index{phys::LineGroup@{phys::LineGroup}!getPoint@{getPoint}}
@@ -168,7 +175,7 @@ This returns the point indicated by index. They start at 0, and increment from t
 \item[{\em index}]A Whole number which indicates which point to retrieve. \end{DoxyParams}
 
 
-Definition at line 261 of file linegroup.cpp.
+Definition at line 318 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_ab8d5c3c91dd16008429cc4cafed7f42f}{
 \index{phys::LineGroup@{phys::LineGroup}!PrepareForRendering@{PrepareForRendering}}
@@ -181,7 +188,7 @@ This assists in the rendering process.
 
 This sends some of the data to the rendering subsystem to aid drawLines 
 
-Definition at line 294 of file linegroup.cpp.
+Definition at line 351 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_a180c18bd979019c39a44c9c20b0e1f13}{
 \index{phys::LineGroup@{phys::LineGroup}!updatePoint@{updatePoint}}
@@ -197,7 +204,7 @@ This replaces a point specified by index with a new point
 \item[{\em index}]The index of the point to replace. \item[{\em value}]A point to replace the existing point with \end{DoxyParams}
 
 
-Definition at line 272 of file linegroup.cpp.
+Definition at line 329 of file linegroup.cpp.
 
 
 

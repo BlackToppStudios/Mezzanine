@@ -84,74 +84,76 @@
 <a name="l00059"></a>00059 <span class="comment">    /// @details This class stores a listing of points and renders thems as one</span>
 <a name="l00060"></a>00060 <span class="comment">    /// object into the world provided.</span>
 <a name="l00061"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html">00061</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>
-<a name="l00062"></a>00062     {
-<a name="l00063"></a>00063         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00064"></a>00064 <span class="comment">            /// @brief Basic Constructor</span>
-<a name="l00065"></a>00065 <span class="comment">            /// @details This creates a basic, empty, LineGroup.</span>
-<a name="l00066"></a>00066 <span class="comment">            /// @param Parent_ This is a pointer to the world to render to.</span>
-<a name="l00067"></a>00067 <span class="comment"></span>            <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a676039a6beec56d24c631e9da5fd7e76" title="Basic Constructor.">LineGroup</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *Parent_);
-<a name="l00068"></a>00068 <span class="comment"></span>
-<a name="l00069"></a>00069 <span class="comment">            /// @brief Default Destructor</span>
-<a name="l00070"></a>00070 <span class="comment">            /// @details This safely tears down, and removes from the graphics system the LineGroup</span>
-<a name="l00071"></a>00071 <span class="comment"></span>            <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a0ddd66bc946dd266e3b666c8101ea7f8" title="Default Destructor.">~LineGroup</a>(<span class="keywordtype">void</span>);
-<a name="l00072"></a>00072 <span class="comment"></span>
-<a name="l00073"></a>00073 <span class="comment">            /// @brief This add Either a start pointing, or a line segment to the next point</span>
-<a name="l00074"></a>00074 <span class="comment">            /// @details This adds a point that will be rendered as the endpoint of a line</span>
-<a name="l00075"></a>00075 <span class="comment">            /// @param p The Point to be added.</span>
-<a name="l00076"></a>00076 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a550582bde23059645b5966a384734131" title="This add Either a start pointing, or a line segment to the next point.">addPoint</a>(<span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;p);
-<a name="l00077"></a>00077 <span class="comment"></span>
-<a name="l00078"></a>00078 <span class="comment">            /// @brief Access points by order they were added.</span>
-<a name="l00079"></a>00079 <span class="comment">            /// @details This returns the point indicated by index. They start at 0, and increment from there</span>
-<a name="l00080"></a>00080 <span class="comment">            /// @param index A Whole number which indicates which point to retrieve.</span>
-<a name="l00081"></a>00081 <span class="comment"></span>            <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a16d15a03eab7029344fa73c1dfd7ca43" title="Access points by order they were added.">getPoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index) <span class="keyword">const</span>;
-<a name="l00082"></a>00082 <span class="comment"></span>
-<a name="l00083"></a>00083 <span class="comment">            /// @brief Get the amount of points used to define Line Segments</span>
-<a name="l00084"></a>00084 <span class="comment">            /// @details This return the amount of points and therefore line segments. There will always be one more point</span>
-<a name="l00085"></a>00085 <span class="comment">            /// Than line segments.</span>
-<a name="l00086"></a>00086 <span class="comment">            /// @return A Whole Number which indicates the amount of points.</span>
-<a name="l00087"></a>00087 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a32e14111a18318fd17aa503b1d3cfe8c" title="Get the amount of points used to define Line Segments.">getNumPoints</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
-<a name="l00088"></a>00088 <span class="comment"></span>
-<a name="l00089"></a>00089 <span class="comment">            /// @brief This changes a specific point</span>
-<a name="l00090"></a>00090 <span class="comment">            /// @details This replaces a point specified by index with a new point</span>
-<a name="l00091"></a>00091 <span class="comment">            /// @param index The index of the point to replace.</span>
-<a name="l00092"></a>00092 <span class="comment">            /// @param value A point to replace the existing point with</span>
-<a name="l00093"></a>00093 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a180c18bd979019c39a44c9c20b0e1f13" title="This changes a specific point.">updatePoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;value);
-<a name="l00094"></a>00094 <span class="comment"></span>
-<a name="l00095"></a>00095 <span class="comment">            /// @brief This adds Two points to the list</span>
-<a name="l00096"></a>00096 <span class="comment">            /// @details This could add 2 line segments, be it simply adds two lines to the list, but if you don&#39;t care then this is an</span>
-<a name="l00097"></a>00097 <span class="comment">            /// easy way to guarantee that a specific line segment be rendered.</span>
-<a name="l00098"></a>00098 <span class="comment">            /// @todo TODO: In the future we will add a break in the line segment chain when this is called.</span>
-<a name="l00099"></a>00099 <span class="comment">            /// @param start The first point to be added</span>
-<a name="l00100"></a>00100 <span class="comment">            /// @param end The first point to be added</span>
-<a name="l00101"></a>00101 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#aed46446e634948f8c73a5b26406cb5af" title="This adds Two points to the list.">drawLine</a>(<span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;start, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;end);
-<a name="l00102"></a>00102 <span class="comment"></span>
-<a name="l00103"></a>00103 <span class="comment">            /// @brief Renders the line segment chain.</span>
-<a name="l00104"></a>00104 <span class="comment">            /// @details This send the Line segment information to the rending subsystem. PrepareForRendering() should be called first</span>
-<a name="l00105"></a>00105 <span class="comment">            /// @todo TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention.</span>
-<a name="l00106"></a>00106 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ade1bb4f8e1164e1b8d7aeabbc970b79d" title="Renders the line segment chain.">drawLines</a>(<span class="keywordtype">void</span>);
-<a name="l00107"></a>00107 <span class="comment"></span>
-<a name="l00108"></a>00108 <span class="comment">            /// @brief This assists in the rendering process</span>
-<a name="l00109"></a>00109 <span class="comment">            /// @details This sends some of the data to the rendering subsystem to aid drawLines</span>
-<a name="l00110"></a>00110 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ab8d5c3c91dd16008429cc4cafed7f42f" title="This assists in the rendering process.">PrepareForRendering</a>();
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112             <span class="comment">//Real getSquaredViewDepth(const Camera *cam) const;</span>
-<a name="l00113"></a>00113 <span class="comment"></span>
-<a name="l00114"></a>00114 <span class="comment">            /// @brief How big would a circle need to be to encapsulate this</span>
-<a name="l00115"></a>00115 <span class="comment">            /// @details This returns the radius the a circle would need to have to surround this line group.</span>
-<a name="l00116"></a>00116 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a9dbbd74f5256ee67454ef6ede752dc32" title="How big would a circle need to be to encapsulate this.">getBoundingRadius</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118         <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00119"></a>00119 <span class="comment">            /// @brief A pointer to the world that this LineGroup will render to.</span>
-<a name="l00120"></a>00120 <span class="comment"></span>            <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *Parent;
-<a name="l00121"></a>00121 <span class="comment"></span>
-<a name="l00122"></a>00122 <span class="comment">            /// @brief A Pointer to the internal class that actually does the work.</span>
-<a name="l00123"></a>00123 <span class="comment"></span>            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html" title="Does the bulk of the work that that the phys::LineGroup performs.">internal::Line3D</a> *LineData;
-<a name="l00124"></a>00124     };
-<a name="l00125"></a>00125 }
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 <span class="preprocessor">#endif</span>
+<a name="l00062"></a>00062     {<span class="comment"></span>
+<a name="l00063"></a>00063 <span class="comment">        /// @todo TODO: This class really should support rotation, the underlying implementation does.</span>
+<a name="l00064"></a>00064 <span class="comment"></span>        <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00065"></a>00065 <span class="comment">            /// @brief Basic Constructor</span>
+<a name="l00066"></a>00066 <span class="comment">            /// @details This creates a basic, empty, LineGroup.</span>
+<a name="l00067"></a>00067 <span class="comment">            /// @param Parent_ This is a pointer to the world to render to.</span>
+<a name="l00068"></a>00068 <span class="comment"></span>            <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a676039a6beec56d24c631e9da5fd7e76" title="Basic Constructor.">LineGroup</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *Parent_);
+<a name="l00069"></a>00069 <span class="comment"></span>
+<a name="l00070"></a>00070 <span class="comment">            /// @brief Default Destructor</span>
+<a name="l00071"></a>00071 <span class="comment">            /// @details This safely tears down, and removes from the graphics system the LineGroup</span>
+<a name="l00072"></a>00072 <span class="comment"></span>            <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a0ddd66bc946dd266e3b666c8101ea7f8" title="Default Destructor.">~LineGroup</a>(<span class="keywordtype">void</span>);
+<a name="l00073"></a>00073 <span class="comment"></span>
+<a name="l00074"></a>00074 <span class="comment">            /// @brief This add Either a start pointing, or a line segment to the next point</span>
+<a name="l00075"></a>00075 <span class="comment">            /// @details This adds a point that will be rendered as the endpoint of a line</span>
+<a name="l00076"></a>00076 <span class="comment">            /// @param p The Point to be added.</span>
+<a name="l00077"></a>00077 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a550582bde23059645b5966a384734131" title="This add Either a start pointing, or a line segment to the next point.">addPoint</a>(<span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;p);
+<a name="l00078"></a>00078 <span class="comment"></span>
+<a name="l00079"></a>00079 <span class="comment">            /// @brief Access points by order they were added.</span>
+<a name="l00080"></a>00080 <span class="comment">            /// @details This returns the point indicated by index. They start at 0, and increment from there</span>
+<a name="l00081"></a>00081 <span class="comment">            /// @param index A Whole number which indicates which point to retrieve.</span>
+<a name="l00082"></a>00082 <span class="comment"></span>            <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a16d15a03eab7029344fa73c1dfd7ca43" title="Access points by order they were added.">getPoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index) <span class="keyword">const</span>;
+<a name="l00083"></a>00083 <span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment">            /// @brief Get the amount of points used to define Line Segments</span>
+<a name="l00085"></a>00085 <span class="comment">            /// @details This return the amount of points and therefore line segments. There will always be one more point</span>
+<a name="l00086"></a>00086 <span class="comment">            /// Than line segments.</span>
+<a name="l00087"></a>00087 <span class="comment">            /// @return A Whole Number which indicates the amount of points.</span>
+<a name="l00088"></a>00088 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a32e14111a18318fd17aa503b1d3cfe8c" title="Get the amount of points used to define Line Segments.">getNumPoints</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00089"></a>00089 <span class="comment"></span>
+<a name="l00090"></a>00090 <span class="comment">            /// @brief This changes a specific point</span>
+<a name="l00091"></a>00091 <span class="comment">            /// @details This replaces a point specified by index with a new point</span>
+<a name="l00092"></a>00092 <span class="comment">            /// @param index The index of the point to replace.</span>
+<a name="l00093"></a>00093 <span class="comment">            /// @param value A point to replace the existing point with</span>
+<a name="l00094"></a>00094 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a180c18bd979019c39a44c9c20b0e1f13" title="This changes a specific point.">updatePoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;value);
+<a name="l00095"></a>00095 <span class="comment"></span>
+<a name="l00096"></a>00096 <span class="comment">            /// @brief This adds Two points to the list</span>
+<a name="l00097"></a>00097 <span class="comment">            /// @details This could add 2 line segments, be it simply adds two lines to the list, but if you don&#39;t care then this is an</span>
+<a name="l00098"></a>00098 <span class="comment">            /// easy way to guarantee that a specific line segment be rendered.</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @todo TODO: In the future we will add a break in the line segment chain when this is called.</span>
+<a name="l00100"></a>00100 <span class="comment">            /// @param start The first point to be added</span>
+<a name="l00101"></a>00101 <span class="comment">            /// @param end The first point to be added</span>
+<a name="l00102"></a>00102 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#aed46446e634948f8c73a5b26406cb5af" title="This adds Two points to the list.">drawLine</a>(<span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;start, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;end);
+<a name="l00103"></a>00103 <span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">            /// @brief Renders the line segment chain.</span>
+<a name="l00105"></a>00105 <span class="comment">            /// @details This send the Line segment information to the rending subsystem. PrepareForRendering() should be called first</span>
+<a name="l00106"></a>00106 <span class="comment">            /// @todo TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention.</span>
+<a name="l00107"></a>00107 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ade1bb4f8e1164e1b8d7aeabbc970b79d" title="Renders the line segment chain.">drawLines</a>(<span class="keywordtype">void</span>);
+<a name="l00108"></a>00108 <span class="comment"></span>
+<a name="l00109"></a>00109 <span class="comment">            /// @brief This assists in the rendering process</span>
+<a name="l00110"></a>00110 <span class="comment">            /// @details This sends some of the data to the rendering subsystem to aid drawLines</span>
+<a name="l00111"></a>00111 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ab8d5c3c91dd16008429cc4cafed7f42f" title="This assists in the rendering process.">PrepareForRendering</a>();
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113             <span class="comment">//Real getSquaredViewDepth(const Camera *cam) const;</span>
+<a name="l00114"></a>00114 <span class="comment"></span>
+<a name="l00115"></a>00115 <span class="comment">            /// @brief How big would a circle need to be to encapsulate this</span>
+<a name="l00116"></a>00116 <span class="comment">            /// @details This returns the radius the a circle would need to have to surround this line group.</span>
+<a name="l00117"></a>00117 <span class="comment">            /// @return This returns a real number which indicates the radius.</span>
+<a name="l00118"></a>00118 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a9dbbd74f5256ee67454ef6ede752dc32" title="How big would a circle need to be to encapsulate this.">getBoundingRadius</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120         <span class="keyword">private</span>:<span class="comment"></span>
+<a name="l00121"></a>00121 <span class="comment">            /// @brief A pointer to the world that this LineGroup will render to.</span>
+<a name="l00122"></a>00122 <span class="comment"></span>            <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *Parent;
+<a name="l00123"></a>00123 <span class="comment"></span>
+<a name="l00124"></a>00124 <span class="comment">            /// @brief A Pointer to the internal class that actually does the work.</span>
+<a name="l00125"></a>00125 <span class="comment"></span>            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html" title="Does the bulk of the work that that the phys::LineGroup performs.">internal::Line3D</a> *LineData;
+<a name="l00126"></a>00126     };
+<a name="l00127"></a>00127 }
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 23 18:55:38 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 00:55:33 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

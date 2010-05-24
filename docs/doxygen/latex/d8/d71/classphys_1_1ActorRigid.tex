@@ -24,10 +24,12 @@ Inheritance diagram for phys::ActorRigid:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{$\sim$ActorRigid} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ActorRigid_a441f502d0014b3479235e172e4ef5db8}{CreateShapeFromMeshDynamic} (short signed int accuracy=1)
+void \hyperlink{classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}{CreateShapeFromMeshDynamic} (short unsigned int accuracy=1)
 \begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{CreateShapeFromMeshStatic} ()
-\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{LimitMovementOnAxis} (bool x, bool y, bool z)
+\begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -39,16 +41,16 @@ void \hyperlink{classphys_1_1ActorRigid_a3c56eb06fe6a7d468b7a67c45ade7be4}{AddOb
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}{
-btRigidBody $\ast$ {\bfseries physrigidbody}}
+btRigidBody $\ast$ \hyperlink{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}{physrigidbody}}
 \label{d8/d71/classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Used to simulate the behavior of a btRigidBody. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 This is the actor class for Rigid Objects. This class should be used to make any rigid object that can be moved as a result of force. Most objects will fall into this catagory. A few examples of a Rigid Object: Boxes, Car Frames, Chairs, etc. For Semi Rigid bodies that are deformable, like jello, it is better to use \hyperlink{classphys_1_1ActorSoft}{ActorSoft}. 
 
-Definition at line 232 of file physactor.h.
+Definition at line 247 of file physactor.h.
 
 
 
@@ -65,7 +67,7 @@ Descriptive constructor.
 This constructor contains the basic information needed to make a Rigid Object. \par
  This class inherits from \hyperlink{classphys_1_1ActorBase}{ActorBase}. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em Name}]The name of the actor. \item[{\em File}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em Group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
+\item[{\em mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
 
 
 Definition at line 347 of file physactor.cpp.
@@ -119,35 +121,38 @@ Creates a rigid object for the actor.
 Creates a rigid object to be placed in the physics world later. \par
  This is automaticly called by the Constructor and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em PMass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
+\item[{\em pmass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
 
 
 Definition at line 357 of file physactor.cpp.
 
-\hypertarget{classphys_1_1ActorRigid_a441f502d0014b3479235e172e4ef5db8}{
+\hypertarget{classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}}
 \index{CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshDynamic (short signed int {\em accuracy} = {\ttfamily 1})}}
-\label{d8/d71/classphys_1_1ActorRigid_a441f502d0014b3479235e172e4ef5db8}
+\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshDynamic (short unsigned int {\em accuracy} = {\ttfamily 1})}}
+\label{d8/d71/classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}
 
 
 Creates a collision shape from mesh file. 
 
 This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. 
+\begin{DoxyParams}{Parameters}
+\item[{\em accuracy}]A value from 1 to 4. The higher the more accurate, but the more resource intensive \end{DoxyParams}
+
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000013}{Todo}]
+\item[\hyperlink{todo__todo000014}{Todo}]
 \begin{DoxyItemize}
 \item Check for thread safety 
 \end{DoxyItemize}\end{Desc}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000014}{Todo}]add code here to increase the verticies that is used to create the hull from the first accuracy setting. \end{Desc}
+\item[\hyperlink{todo__todo000015}{Todo}]add code here to increase the verticies that is used to create the hull from the first accuracy setting. \end{Desc}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000015}{Todo}]add code here for compound shapes of convex hulls \end{Desc}
+\item[\hyperlink{todo__todo000016}{Todo}]add code here for compound shapes of convex hulls \end{Desc}
 
 
 
@@ -166,7 +171,7 @@ Creates a collision shape from mesh file.
 This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000016}{Todo}]
+\item[\hyperlink{todo__todo000017}{Todo}]
 \begin{DoxyItemize}
 \item Check for thread safety 
 \end{DoxyItemize}\end{Desc}
@@ -175,6 +180,22 @@ This function will read the location of every verticy in the mesh file and use t
 
 
 Definition at line 433 of file physactor.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{
+\index{phys::ActorRigid@{phys::ActorRigid}!LimitMovementOnAxis@{LimitMovementOnAxis}}
+\index{LimitMovementOnAxis@{LimitMovementOnAxis}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{LimitMovementOnAxis}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::LimitMovementOnAxis (bool {\em x}, \/  bool {\em y}, \/  bool {\em z})}}
+\label{d8/d71/classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}
+
+
+Restricts movement on the axis or axies of your choice. 
+
+This function will lock any and all axies you define you want to be locked. Simply pass true to allow movement on that axis, false if you don't. This function is primarily useful for 2D games, in which if you are viewing the playing area from the side you can pass in LimitMovementOnAxis(true,true,false) and the object will only be able to move up, down, or side to side, but not in or out. 
+\begin{DoxyParams}{Parameters}
+\item[{\em x}]Allow or Disallow use of the X axis for movement. \item[{\em y}]Allow or Disallow use of the Y axis for movement. \item[{\em z}]Allow or Disallow use of the Z axis for movement. \end{DoxyParams}
+
+
+Definition at line 444 of file physactor.cpp.
 
 
 

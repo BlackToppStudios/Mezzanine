@@ -367,7 +367,7 @@ namespace phys{
         AttachToGraphics();
     }
 
-    void ActorRigid::CreateShapeFromMeshDynamic(short signed int accuracy)
+    void ActorRigid::CreateShapeFromMeshDynamic(short unsigned int accuracy)
     {
         if(accuracy==1)
         {

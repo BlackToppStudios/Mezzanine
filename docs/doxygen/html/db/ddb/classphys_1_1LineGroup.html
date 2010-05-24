@@ -82,6 +82,7 @@
 <div class="memdoc">
 
 <p>Basic Constructor. </p>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000009">Todo:</a></b></dt><dd>TODO: This class really should support rotation, the underlying implementation does. </dd></dl>
 <p>This creates a basic, empty, <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -90,7 +91,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00245">245</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00302">302</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -113,7 +114,7 @@
 <p>Default Destructor. </p>
 <p>This safely tears down, and removes from the graphics system the <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a> </p>
 
-<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00251">251</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00308">308</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -143,7 +144,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00256">256</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00313">313</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -174,7 +175,7 @@
 
 <p>This adds Two points to the list. </p>
 <p>This could add 2 line segments, be it simply adds two lines to the list, but if you don't care then this is an easy way to guarantee that a specific line segment be rendered. </p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000009">Todo:</a></b></dt><dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000010">Todo:</a></b></dt><dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>start</em>&nbsp;</td><td>The first point to be added </td></tr>
@@ -183,7 +184,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00277">277</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00334">334</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -205,9 +206,9 @@
 
 <p>Renders the line segment chain. </p>
 <p>This send the Line segment information to the rending subsystem. <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html#ab8d5c3c91dd16008429cc4cafed7f42f" title="This assists in the rendering process.">PrepareForRendering()</a> should be called first </p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000010">Todo:</a></b></dt><dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000011">Todo:</a></b></dt><dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00284">284</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00341">341</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -229,8 +230,9 @@
 
 <p>How big would a circle need to be to encapsulate this. </p>
 <p>This returns the radius the a circle would need to have to surround this line group. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a real number which indicates the radius. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00289">289</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00346">346</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +256,7 @@
 <p>This return the amount of points and therefore line segments. There will always be one more point Than line segments. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Whole Number which indicates the amount of points. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00267">267</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00324">324</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -283,7 +285,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00261">261</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00318">318</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -305,7 +307,7 @@
 <p>This assists in the rendering process. </p>
 <p>This sends some of the data to the rendering subsystem to aid drawLines </p>
 
-<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00294">294</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00351">351</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -344,7 +346,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00272">272</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dd1/linegroup_8cpp_source.html#l00329">329</a> of file <a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -353,7 +355,7 @@
 <li><a class="el" href="../../de/dd1/linegroup_8cpp_source.html">linegroup.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun May 23 18:55:39 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 00:55:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

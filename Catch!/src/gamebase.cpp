@@ -56,7 +56,7 @@ int main(int argc, char **argv)
 
     LoadContent();
 
-    TheWorld.SetDebugPhysicsWireCount(30);
+    TheWorld.SetDebugPhysicsWireCount(2);
     TheWorld.SetDebugPhysicsRendering(1);
 
 	//Start the Main Loop
@@ -171,11 +171,11 @@ void LoadContent()
 
     //Actor Init Code
     object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
-    object1->CreateShapeFromMeshDynamic();
+    object1->CreateShapeFromMeshDynamic(4);
     object1->SetInitLocation(PhysVector3(0,50,0));
     object1->LimitMovementOnAxis(false,true,true);
     object2 = new ActorRigid (mass,"Robot2",filename,groupname,&TheWorld);
-    object2->CreateShapeFromMeshDynamic();
+    object2->CreateShapeFromMeshDynamic(4);
     object2->SetInitLocation(PhysVector3(0,50,0));
     object3 = new ActorRigid (0,"Robot3",filename,groupname,&TheWorld);
     object3->CreateShapeFromMeshStatic();

@@ -1,16 +1,16 @@
-\label{dd/da0/todo__todo000013}
-\hypertarget{dd/da0/todo__todo000013}{}
+\label{dd/da0/todo__todo000014}
+\hypertarget{dd/da0/todo__todo000014}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1ActorRigid_a441f502d0014b3479235e172e4ef5db8}{phys::ActorRigid::CreateShapeFromMeshDynamic}(short signed int accuracy=1) ]-\/ Check for thread safety 
+\item[Member \hyperlink{classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}{phys::ActorRigid::CreateShapeFromMeshDynamic}(short unsigned int accuracy=1) ]-\/ Check for thread safety 
 
 add code here to increase the verticies that is used to create the hull from the first accuracy setting. 
 
 add code here for compound shapes of convex hulls 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000016}
-\hypertarget{dd/da0/todo__todo000016}{}
+\label{dd/da0/todo__todo000017}
+\hypertarget{dd/da0/todo__todo000017}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{phys::ActorRigid::CreateShapeFromMeshStatic}() ]-\/ Check for thread safety 
@@ -53,18 +53,25 @@ TODO: Make the EventManager completely thread safe. IF this is completely thread
 \item[Member \hyperlink{classphys_1_1internal_1_1Line3D_a0320e600b9f363036c63eb47527bb854}{phys::internal::Line3D::drawLine}(Vector3 \&start, Vector3 \&end) ]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000009}
-\hypertarget{dd/da0/todo__todo000009}{}
+\label{dd/da0/todo__todo000010}
+\hypertarget{dd/da0/todo__todo000010}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1LineGroup_aed46446e634948f8c73a5b26406cb5af}{phys::LineGroup::drawLine}(const \hyperlink{classPhysVector3}{PhysVector3} \&start, const \hyperlink{classPhysVector3}{PhysVector3} \&end) ]TODO: In the future we will add a break in the line segment chain when this is called. 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000010}
-\hypertarget{dd/da0/todo__todo000010}{}
+\label{dd/da0/todo__todo000011}
+\hypertarget{dd/da0/todo__todo000011}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1LineGroup_ade1bb4f8e1164e1b8d7aeabbc970b79d}{phys::LineGroup::drawLines}(void) ]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000009}
+\hypertarget{dd/da0/todo__todo000009}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1LineGroup_a676039a6beec56d24c631e9da5fd7e76}{phys::LineGroup::LineGroup}(World $\ast$Parent\_\-) ]TODO: This class really should support rotation, the underlying implementation does. 
 \end{DoxyDescription}
 
 \label{dd/da0/todo__todo000005}
@@ -74,23 +81,23 @@ TODO: Make the EventManager completely thread safe. IF this is completely thread
 \item[Member \hyperlink{namespacephys_a49d077eb58030fdb50229c55bc09a03d}{phys::RemovePollingCheck}(const MetaCode \&InputToStopPolling) ]Actually code RemovePollingCheck 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000022}
-\hypertarget{dd/da0/todo__todo000022}{}
+\label{dd/da0/todo__todo000023}
+\hypertarget{dd/da0/todo__todo000023}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1World_acd0dff342c08fe3008226488b7c53d97}{phys::World::SetWindowName}(const String \&NewName) ]TODO Change the name of an application once it is running 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000017}
-\hypertarget{dd/da0/todo__todo000017}{}
+\label{dd/da0/todo__todo000019}
+\hypertarget{dd/da0/todo__todo000019}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1World_a7f762724406c874250c3dc8910a1e695}{phys::World::World}() ]TODO Fix the `const`ness of all methods to be as const as allowable 
+\item[Member \hyperlink{classphys_1_1World_a1f020a5a49a3bbfca6d570db44e72beb}{phys::World::World}(const \hyperlink{classPhysVector3}{PhysVector3} \&GeographyLowerBounds\_\-, const \hyperlink{classPhysVector3}{PhysVector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-=1024) ]TODO: adjust the constructors to allow for pointers to a callback manager and event manager 
 \end{DoxyDescription}
 
 \label{dd/da0/todo__todo000018}
 \hypertarget{dd/da0/todo__todo000018}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1World_a1f020a5a49a3bbfca6d570db44e72beb}{phys::World::World}(const \hyperlink{classPhysVector3}{PhysVector3} \&GeographyLowerBounds\_\-, const \hyperlink{classPhysVector3}{PhysVector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-=1024) ]TODO: adjust the constructors to allow for pointers to a callback manager and event manager 
+\item[Member \hyperlink{classphys_1_1World_a7f762724406c874250c3dc8910a1e695}{phys::World::World}() ]TODO Fix the `const`ness of all methods to be as const as allowable 
 \end{DoxyDescription}
