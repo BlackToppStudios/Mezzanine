@@ -33,7 +33,7 @@
 <p>This is the actor class for Soft Objects.  
 <a href="#_details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="../../da/dd1/actorbase_8h_source.html">actorbase.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for phys::ActorSoft:</div>
 <div class="dynsection">
@@ -65,8 +65,9 @@ btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is the actor class for Soft Objects. </p>
 <p>This class should be used to make any soft object that, like <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Currently this is not fully implemented and will likely cause errors if used. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/dc7/physactor_8h_source.html#l00310">310</a> of file <a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d20/actorsoft_8h_source.html#l00088">88</a> of file <a class="el" href="../../da/d20/actorsoft_8h_source.html">actorsoft.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a636c145f1e468fd45adc8da2a1708fbe"></a><!-- doxytag: member="phys::ActorSoft::~ActorSoft" ref="a636c145f1e468fd45adc8da2a1708fbe" args="()" -->
 <div class="memitem">
@@ -86,7 +87,7 @@ btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Destructor. </p>
 <p>The class destructor. </p>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00459">459</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d41/actorsoft_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../de/d41/actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -129,7 +130,7 @@ btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>Implements <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#ac5d4ad5a634b16000742f506ed5957fb">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00470">470</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d41/actorsoft_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../de/d41/actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -151,7 +152,7 @@ btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Creates a collision shape from mesh file. </p>
 <p>This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. </p>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00475">475</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d41/actorsoft_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../de/d41/actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -205,16 +206,16 @@ btSoftBody *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/dfb/physactor_8cpp_source.html#l00464">464</a> of file <a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d41/actorsoft_8cpp_source.html#l00063">63</a> of file <a class="el" href="../../de/d41/actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="../../d9/dc7/physactor_8h_source.html">physactor.h</a></li>
-<li><a class="el" href="../../dc/dfb/physactor_8cpp_source.html">physactor.cpp</a></li>
+<li><a class="el" href="../../da/d20/actorsoft_8h_source.html">actorsoft.h</a></li>
+<li><a class="el" href="../../de/d41/actorsoft_8cpp_source.html">actorsoft.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 02:07:56 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 04:51:49 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

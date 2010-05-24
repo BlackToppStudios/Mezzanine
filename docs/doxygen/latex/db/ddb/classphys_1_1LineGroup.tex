@@ -18,15 +18,15 @@ This is a group of consectutive line segments to be rendered together.
 \begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1LineGroup_a0ddd66bc946dd266e3b666c8101ea7f8}{$\sim$LineGroup} (void)
 \begin{DoxyCompactList}\small\item\em Default Destructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1LineGroup_a550582bde23059645b5966a384734131}{addPoint} (const \hyperlink{classPhysVector3}{PhysVector3} \&p)
+void \hyperlink{classphys_1_1LineGroup_a042a8facc505866f619cfc043a820f03}{addPoint} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&p)
 \begin{DoxyCompactList}\small\item\em This add Either a start pointing, or a line segment to the next point. \item\end{DoxyCompactList}\item 
-const \hyperlink{classPhysVector3}{PhysVector3} \hyperlink{classphys_1_1LineGroup_a16d15a03eab7029344fa73c1dfd7ca43}{getPoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index) const 
+const \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1LineGroup_a960e1ceba7e9804b7906f8618f869202}{getPoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index) const 
 \begin{DoxyCompactList}\small\item\em Access points by order they were added. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1LineGroup_a32e14111a18318fd17aa503b1d3cfe8c}{getNumPoints} (void) const 
 \begin{DoxyCompactList}\small\item\em Get the amount of points used to define Line Segments. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1LineGroup_a180c18bd979019c39a44c9c20b0e1f13}{updatePoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index, const \hyperlink{classPhysVector3}{PhysVector3} \&value)
+void \hyperlink{classphys_1_1LineGroup_a3d98d0eb4fd15ac136d4649913dd80c8}{updatePoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index, const \hyperlink{classphys_1_1Vector3}{Vector3} \&value)
 \begin{DoxyCompactList}\small\item\em This changes a specific point. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1LineGroup_aed46446e634948f8c73a5b26406cb5af}{drawLine} (const \hyperlink{classPhysVector3}{PhysVector3} \&start, const \hyperlink{classPhysVector3}{PhysVector3} \&end)
+void \hyperlink{classphys_1_1LineGroup_a141db62ea17d94b9bce421e5df5a8d89}{drawLine} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&start, const \hyperlink{classphys_1_1Vector3}{Vector3} \&end)
 \begin{DoxyCompactList}\small\item\em This adds Two points to the list. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1LineGroup_ade1bb4f8e1164e1b8d7aeabbc970b79d}{drawLines} (void)
 \begin{DoxyCompactList}\small\item\em Renders the line segment chain. \item\end{DoxyCompactList}\item 
@@ -54,7 +54,7 @@ Definition at line 61 of file linegroup.h.
 Basic Constructor. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000009}{Todo}]TODO: This class really should support rotation, the underlying implementation does. \end{Desc}
+\item[\hyperlink{todo__todo000013}{Todo}]TODO: This class really should support rotation, the underlying implementation does. \end{Desc}
 
 
 This creates a basic, empty, \hyperlink{classphys_1_1LineGroup}{LineGroup}. 
@@ -62,7 +62,7 @@ This creates a basic, empty, \hyperlink{classphys_1_1LineGroup}{LineGroup}.
 \item[{\em Parent\_\-}]This is a pointer to the world to render to. \end{DoxyParams}
 
 
-Definition at line 302 of file linegroup.cpp.
+Definition at line 301 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_a0ddd66bc946dd266e3b666c8101ea7f8}{
 \index{phys::LineGroup@{phys::LineGroup}!$\sim$LineGroup@{$\sim$LineGroup}}
@@ -75,16 +75,16 @@ Default Destructor.
 
 This safely tears down, and removes from the graphics system the \hyperlink{classphys_1_1LineGroup}{LineGroup} 
 
-Definition at line 308 of file linegroup.cpp.
+Definition at line 307 of file linegroup.cpp.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classphys_1_1LineGroup_a550582bde23059645b5966a384734131}{
+\hypertarget{classphys_1_1LineGroup_a042a8facc505866f619cfc043a820f03}{
 \index{phys::LineGroup@{phys::LineGroup}!addPoint@{addPoint}}
 \index{addPoint@{addPoint}!phys::LineGroup@{phys::LineGroup}}
-\subsubsection[{addPoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::LineGroup::addPoint (const {\bf PhysVector3} \& {\em p})}}
-\label{db/ddb/classphys_1_1LineGroup_a550582bde23059645b5966a384734131}
+\subsubsection[{addPoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::LineGroup::addPoint (const {\bf Vector3} \& {\em p})}}
+\label{db/ddb/classphys_1_1LineGroup_a042a8facc505866f619cfc043a820f03}
 
 
 This add Either a start pointing, or a line segment to the next point. 
@@ -94,25 +94,25 @@ This adds a point that will be rendered as the endpoint of a line
 \item[{\em p}]The Point to be added. \end{DoxyParams}
 
 
-Definition at line 313 of file linegroup.cpp.
+Definition at line 312 of file linegroup.cpp.
 
-\hypertarget{classphys_1_1LineGroup_aed46446e634948f8c73a5b26406cb5af}{
+\hypertarget{classphys_1_1LineGroup_a141db62ea17d94b9bce421e5df5a8d89}{
 \index{phys::LineGroup@{phys::LineGroup}!drawLine@{drawLine}}
 \index{drawLine@{drawLine}!phys::LineGroup@{phys::LineGroup}}
-\subsubsection[{drawLine}]{\setlength{\rightskip}{0pt plus 5cm}void phys::LineGroup::drawLine (const {\bf PhysVector3} \& {\em start}, \/  const {\bf PhysVector3} \& {\em end})}}
-\label{db/ddb/classphys_1_1LineGroup_aed46446e634948f8c73a5b26406cb5af}
+\subsubsection[{drawLine}]{\setlength{\rightskip}{0pt plus 5cm}void phys::LineGroup::drawLine (const {\bf Vector3} \& {\em start}, \/  const {\bf Vector3} \& {\em end})}}
+\label{db/ddb/classphys_1_1LineGroup_a141db62ea17d94b9bce421e5df5a8d89}
 
 
 This adds Two points to the list. 
 
 This could add 2 line segments, be it simply adds two lines to the list, but if you don't care then this is an easy way to guarantee that a specific line segment be rendered. \begin{Desc}
-\item[\hyperlink{todo__todo000010}{Todo}]TODO: In the future we will add a break in the line segment chain when this is called. \end{Desc}
+\item[\hyperlink{todo__todo000014}{Todo}]TODO: In the future we will add a break in the line segment chain when this is called. \end{Desc}
 
 \begin{DoxyParams}{Parameters}
 \item[{\em start}]The first point to be added \item[{\em end}]The first point to be added \end{DoxyParams}
 
 
-Definition at line 334 of file linegroup.cpp.
+Definition at line 333 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_ade1bb4f8e1164e1b8d7aeabbc970b79d}{
 \index{phys::LineGroup@{phys::LineGroup}!drawLines@{drawLines}}
@@ -124,10 +124,10 @@ Definition at line 334 of file linegroup.cpp.
 Renders the line segment chain. 
 
 This send the Line segment information to the rending subsystem. \hyperlink{classphys_1_1LineGroup_ab8d5c3c91dd16008429cc4cafed7f42f}{PrepareForRendering()} should be called first \begin{Desc}
-\item[\hyperlink{todo__todo000011}{Todo}]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. \end{Desc}
+\item[\hyperlink{todo__todo000015}{Todo}]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. \end{Desc}
 
 
-Definition at line 341 of file linegroup.cpp.
+Definition at line 340 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_a9dbbd74f5256ee67454ef6ede752dc32}{
 \index{phys::LineGroup@{phys::LineGroup}!getBoundingRadius@{getBoundingRadius}}
@@ -143,7 +143,7 @@ This returns a real number which indicates the radius.
 \end{DoxyReturn}
 
 
-Definition at line 346 of file linegroup.cpp.
+Definition at line 345 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_a32e14111a18318fd17aa503b1d3cfe8c}{
 \index{phys::LineGroup@{phys::LineGroup}!getNumPoints@{getNumPoints}}
@@ -159,13 +159,13 @@ A Whole Number which indicates the amount of points.
 \end{DoxyReturn}
 
 
-Definition at line 324 of file linegroup.cpp.
+Definition at line 323 of file linegroup.cpp.
 
-\hypertarget{classphys_1_1LineGroup_a16d15a03eab7029344fa73c1dfd7ca43}{
+\hypertarget{classphys_1_1LineGroup_a960e1ceba7e9804b7906f8618f869202}{
 \index{phys::LineGroup@{phys::LineGroup}!getPoint@{getPoint}}
 \index{getPoint@{getPoint}!phys::LineGroup@{phys::LineGroup}}
-\subsubsection[{getPoint}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf PhysVector3} phys::LineGroup::getPoint ({\bf Whole} {\em index}) const}}
-\label{db/ddb/classphys_1_1LineGroup_a16d15a03eab7029344fa73c1dfd7ca43}
+\subsubsection[{getPoint}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vector3} phys::LineGroup::getPoint ({\bf Whole} {\em index}) const}}
+\label{db/ddb/classphys_1_1LineGroup_a960e1ceba7e9804b7906f8618f869202}
 
 
 Access points by order they were added. 
@@ -175,7 +175,7 @@ This returns the point indicated by index. They start at 0, and increment from t
 \item[{\em index}]A Whole number which indicates which point to retrieve. \end{DoxyParams}
 
 
-Definition at line 318 of file linegroup.cpp.
+Definition at line 317 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1LineGroup_ab8d5c3c91dd16008429cc4cafed7f42f}{
 \index{phys::LineGroup@{phys::LineGroup}!PrepareForRendering@{PrepareForRendering}}
@@ -188,13 +188,13 @@ This assists in the rendering process.
 
 This sends some of the data to the rendering subsystem to aid drawLines 
 
-Definition at line 351 of file linegroup.cpp.
+Definition at line 350 of file linegroup.cpp.
 
-\hypertarget{classphys_1_1LineGroup_a180c18bd979019c39a44c9c20b0e1f13}{
+\hypertarget{classphys_1_1LineGroup_a3d98d0eb4fd15ac136d4649913dd80c8}{
 \index{phys::LineGroup@{phys::LineGroup}!updatePoint@{updatePoint}}
 \index{updatePoint@{updatePoint}!phys::LineGroup@{phys::LineGroup}}
-\subsubsection[{updatePoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::LineGroup::updatePoint ({\bf Whole} {\em index}, \/  const {\bf PhysVector3} \& {\em value})}}
-\label{db/ddb/classphys_1_1LineGroup_a180c18bd979019c39a44c9c20b0e1f13}
+\subsubsection[{updatePoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::LineGroup::updatePoint ({\bf Whole} {\em index}, \/  const {\bf Vector3} \& {\em value})}}
+\label{db/ddb/classphys_1_1LineGroup_a3d98d0eb4fd15ac136d4649913dd80c8}
 
 
 This changes a specific point. 
@@ -204,7 +204,7 @@ This replaces a point specified by index with a new point
 \item[{\em index}]The index of the point to replace. \item[{\em value}]A point to replace the existing point with \end{DoxyParams}
 
 
-Definition at line 329 of file linegroup.cpp.
+Definition at line 328 of file linegroup.cpp.
 
 
 

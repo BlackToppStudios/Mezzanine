@@ -88,7 +88,7 @@
 <a name="l00063"></a>00063 <span class="comment">  @ref phys::ActorBase &quot;Items in the world - Actor Class&quot;</span>
 <a name="l00064"></a>00064 <span class="comment"></span>
 <a name="l00065"></a>00065 <span class="comment"> @section Data Types</span>
-<a name="l00066"></a>00066 <span class="comment">  @ref PhysVector3</span>
+<a name="l00066"></a>00066 <span class="comment">  @ref phys::Vector3</span>
 <a name="l00067"></a>00067 <span class="comment"></span>
 <a name="l00068"></a>00068 <span class="comment">  @ref phys::EventBase</span>
 <a name="l00069"></a>00069 <span class="comment">*/</span>
@@ -99,8 +99,8 @@
 <a name="l00074"></a>00074 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
 <a name="l00075"></a>00075 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>
 <a name="l00076"></a>00076 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
-<a name="l00077"></a>00077 <span class="preprocessor">#include &quot;physvector.h&quot;</span>
-<a name="l00078"></a>00078 <span class="comment">//#include &quot;physactor.h&quot;</span>
+<a name="l00077"></a>00077 <span class="preprocessor">#include &quot;vector3.h&quot;</span>
+<a name="l00078"></a>00078 <span class="comment">//#include &quot;actorbase.h&quot;</span>
 <a name="l00079"></a>00079 
 <a name="l00080"></a>00080 <span class="preprocessor">#include &lt;string&gt;</span>
 <a name="l00081"></a>00081 
@@ -163,8 +163,8 @@
 <a name="l00138"></a>00138             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>;
 <a name="l00139"></a>00139 
 <a name="l00140"></a>00140             <span class="comment">//Physics Items</span>
-<a name="l00141"></a>00141             <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> GeographyLowerBounds;
-<a name="l00142"></a>00142             <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> GeographyUpperbounds;
+<a name="l00141"></a>00141             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GeographyLowerBounds;
+<a name="l00142"></a>00142             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GeographyUpperbounds;
 <a name="l00143"></a>00143             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span>  MaxPhysicsProxies;
 <a name="l00144"></a>00144 
 <a name="l00145"></a>00145             btAxisSweep3* BulletBroadphase;
@@ -189,7 +189,7 @@
 <a name="l00164"></a>00164             <span class="keywordtype">void</span> DestroyRenderWindow();
 <a name="l00165"></a>00165 
 <a name="l00166"></a>00166             <span class="comment">//Used by the constructors</span>
-<a name="l00167"></a>00167             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyLowerBounds, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyUpperbounds, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies);
+<a name="l00167"></a>00167             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies);
 <a name="l00168"></a>00168             <span class="keywordtype">void</span> SanityChecks();
 <a name="l00169"></a>00169             <span class="keywordtype">void</span> TestLogger();
 <a name="l00170"></a>00170             <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> OneLogTest(T Data, <span class="keywordtype">string</span> DataType,<span class="keywordtype">string</span> Message1 = <span class="stringliteral">&quot;Logging and Throwing a &quot;</span>, <span class="keywordtype">string</span> Message2 = <span class="stringliteral">&quot;Logging a &quot;</span>);
@@ -221,7 +221,7 @@
 <a name="l00196"></a>00196 <span class="comment">            /// @param GeographyLowerBounds_ The lower limits for the size of the physics simulation</span>
 <a name="l00197"></a>00197 <span class="comment">            /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation</span>
 <a name="l00198"></a>00198 <span class="comment">            /// @param MaxPhysicsProxies_ This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.</span>
-<a name="l00199"></a>00199 <span class="comment"></span>            <a class="code" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695" title="Default constructor.">World</a>( <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_=1024);
+<a name="l00199"></a>00199 <span class="comment"></span>            <a class="code" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695" title="Default constructor.">World</a>( <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_=1024);
 <a name="l00200"></a>00200 <span class="comment"></span>
 <a name="l00201"></a>00201 <span class="comment">            /// @brief Default constructor</span>
 <a name="l00202"></a>00202 <span class="comment">            /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.</span>
@@ -239,7 +239,7 @@
 <a name="l00214"></a>00214 <span class="comment">            /// @details Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is</span>
 <a name="l00215"></a>00215 <span class="comment">            /// Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types</span>
 <a name="l00216"></a>00216 <span class="comment">            /// that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int</span>
-<a name="l00217"></a>00217 <span class="comment">            /// unsigned long int, bool, float, double, long double, wchar_t, size_t, Real, Whole, String, PhysVector3, RawEvent and MetaCode.</span>
+<a name="l00217"></a>00217 <span class="comment">            /// unsigned long int, bool, float, double, long double, wchar_t, size_t, Real, Whole, String, Vector3, RawEvent and MetaCode.</span>
 <a name="l00218"></a>00218 <span class="comment">            /// If compiled statically it should support any data type which supports output streams.</span>
 <a name="l00219"></a>00219 <span class="comment">            /// @param Message This is what will be streamed to the log</span>
 <a name="l00220"></a>00220 <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(T Message);
@@ -298,7 +298,7 @@
 <a name="l00273"></a>00273 <span class="comment">            /// @details The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.</span>
 <a name="l00274"></a>00274 <span class="comment">            /// @param Position Where should the camera be seated</span>
 <a name="l00275"></a>00275 <span class="comment">            /// @param LookAt Point the camera such that this poin is centered on the screen</span>
-<a name="l00276"></a>00276 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ad461d55f869f8aef72d0f0e0eb1b04dd" title="This moves the camera relative to the world.">MoveCamera</a>(<span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;Position, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;LookAt);
+<a name="l00276"></a>00276 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#aed87ebc1e559c3057132c50bba16117f" title="This moves the camera relative to the world.">MoveCamera</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;Position, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;LookAt);
 <a name="l00277"></a>00277 <span class="comment"></span>
 <a name="l00278"></a>00278 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00279"></a>00279 <span class="comment"></span>        <span class="comment">// Graphics system loading methods</span><span class="comment"></span>
@@ -386,7 +386,7 @@
 <a name="l00361"></a>00361 <span class="comment">            /// @brief Sets the gravity.</span>
 <a name="l00362"></a>00362 <span class="comment">            /// @details Sets the strength and direction of gravity within the world.</span>
 <a name="l00363"></a>00363 <span class="comment">            /// @param pgrav Vector3 representing the strength and direction of gravity.</span>
-<a name="l00364"></a>00364 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a3779f811ca8a394a20fc2d92823b5f93" title="Sets the gravity.">SetGravity</a>(<a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> pgrav);
+<a name="l00364"></a>00364 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a47e1221b296ea7c3188da65ca9570bd5" title="Sets the gravity.">SetGravity</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> pgrav);
 <a name="l00365"></a>00365 <span class="comment"></span>
 <a name="l00366"></a>00366 <span class="comment">            /// @brief Enables and Disables Physics Debug Drawing</span>
 <a name="l00367"></a>00367 <span class="comment">            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics</span>
@@ -426,7 +426,7 @@
 <a name="l00401"></a>00401 }
 <a name="l00402"></a>00402 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 02:07:55 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 04:51:48 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

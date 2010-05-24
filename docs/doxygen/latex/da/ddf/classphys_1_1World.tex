@@ -14,7 +14,7 @@ This is the main entry point for the entire library.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1World_a1f020a5a49a3bbfca6d570db44e72beb}{World} (const \hyperlink{classPhysVector3}{PhysVector3} \&GeographyLowerBounds\_\-, const \hyperlink{classPhysVector3}{PhysVector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-=1024)
+\hyperlink{classphys_1_1World_aa74e4e6053044c3ecec87fdbf7880c18}{World} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyLowerBounds\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-=1024)
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1World_a7f762724406c874250c3dc8910a1e695}{World} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
@@ -36,7 +36,7 @@ void \hyperlink{classphys_1_1World_a76dfcde35392291aafd6eb1a64b3c95c}{SetTargetF
 \begin{DoxyCompactList}\small\item\em This sets a new Target Frame Rate. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1World_a0d8ce136bebe81a6826b7e202a531f6a}{ShowSystemSettingDialog} ()
 \begin{DoxyCompactList}\small\item\em This Shows an Engine Generated Configuration Screen. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_ad461d55f869f8aef72d0f0e0eb1b04dd}{MoveCamera} (const \hyperlink{classPhysVector3}{PhysVector3} \&Position, const \hyperlink{classPhysVector3}{PhysVector3} \&LookAt)
+void \hyperlink{classphys_1_1World_aed87ebc1e559c3057132c50bba16117f}{MoveCamera} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Position, const \hyperlink{classphys_1_1Vector3}{Vector3} \&LookAt)
 \begin{DoxyCompactList}\small\item\em This moves the camera relative to the world. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_ab26033088abe4d60a40cf770dd1b0de8}{AddResourceLocation} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Location, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Type, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group, const bool \&recursive=false)
 \begin{DoxyCompactList}\small\item\em Adds a location for graphical resources. \item\end{DoxyCompactList}\item 
@@ -60,7 +60,7 @@ void \hyperlink{classphys_1_1World_a34133dd084f575a51209458dbe9ecdac}{DoMainLoop
 \begin{DoxyCompactList}\small\item\em This forces the screen to be re-\/rendered. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_a0fec41ef68b7bb1443aab927f8277a81}{AddActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)
 \begin{DoxyCompactList}\small\item\em The adds and Actor to the physworld. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1World_a3779f811ca8a394a20fc2d92823b5f93}{SetGravity} (\hyperlink{classPhysVector3}{PhysVector3} pgrav)
+void \hyperlink{classphys_1_1World_a47e1221b296ea7c3188da65ca9570bd5}{SetGravity} (\hyperlink{classphys_1_1Vector3}{Vector3} pgrav)
 \begin{DoxyCompactList}\small\item\em Sets the gravity. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_a9fbd112d2677aa948301287d541b64bb}{SetDebugPhysicsRendering} (int ToBeEnabled)
 \begin{DoxyCompactList}\small\item\em Enables and Disables Physics Debug Drawing. \item\end{DoxyCompactList}\item 
@@ -102,11 +102,11 @@ Definition at line 132 of file world.h.
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1World_a1f020a5a49a3bbfca6d570db44e72beb}{
+\hypertarget{classphys_1_1World_aa74e4e6053044c3ecec87fdbf7880c18}{
 \index{phys::World@{phys::World}!World@{World}}
 \index{World@{World}!phys::World@{phys::World}}
-\subsubsection[{World}]{\setlength{\rightskip}{0pt plus 5cm}phys::World::World (const {\bf PhysVector3} \& {\em GeographyLowerBounds\_\-}, \/  const {\bf PhysVector3} \& {\em GeographyUpperbounds\_\-}, \/  const unsigned short int \& {\em MaxPhysicsProxies\_\-} = {\ttfamily 1024})}}
-\label{da/ddf/classphys_1_1World_a1f020a5a49a3bbfca6d570db44e72beb}
+\subsubsection[{World}]{\setlength{\rightskip}{0pt plus 5cm}phys::World::World (const {\bf Vector3} \& {\em GeographyLowerBounds\_\-}, \/  const {\bf Vector3} \& {\em GeographyUpperbounds\_\-}, \/  const unsigned short int \& {\em MaxPhysicsProxies\_\-} = {\ttfamily 1024})}}
+\label{da/ddf/classphys_1_1World_aa74e4e6053044c3ecec87fdbf7880c18}
 
 
 Descriptive constructor. 
@@ -379,7 +379,7 @@ Definition at line 821 of file world.cpp.
 
 Runtime Event logging Function. 
 
-Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int unsigned long int, bool, float, double, long double, wchar\_\-t, size\_\-t, Real, Whole, String, \hyperlink{classPhysVector3}{PhysVector3}, RawEvent and \hyperlink{classphys_1_1MetaCode}{MetaCode}. If compiled statically it should support any data type which supports output streams. 
+Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int unsigned long int, bool, float, double, long double, wchar\_\-t, size\_\-t, Real, Whole, String, \hyperlink{classphys_1_1Vector3}{Vector3}, RawEvent and \hyperlink{classphys_1_1MetaCode}{MetaCode}. If compiled statically it should support any data type which supports output streams. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Message}]This is what will be streamed to the log \end{DoxyParams}
 
@@ -411,11 +411,11 @@ Definition at line 474 of file world.cpp.
 
 This Function house the main loop. 
 
-By default this is called from the function \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{World.GameInit()} this is were the bulk of the simulation is ran from, see \hyperlink{mainloop1}{Main Loop Structure and Flow} \hypertarget{classphys_1_1World_ad461d55f869f8aef72d0f0e0eb1b04dd}{
+By default this is called from the function \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{World.GameInit()} this is were the bulk of the simulation is ran from, see \hyperlink{mainloop1}{Main Loop Structure and Flow} \hypertarget{classphys_1_1World_aed87ebc1e559c3057132c50bba16117f}{
 \index{phys::World@{phys::World}!MoveCamera@{MoveCamera}}
 \index{MoveCamera@{MoveCamera}!phys::World@{phys::World}}
-\subsubsection[{MoveCamera}]{\setlength{\rightskip}{0pt plus 5cm}void phys::World::MoveCamera (const {\bf PhysVector3} \& {\em Position}, \/  const {\bf PhysVector3} \& {\em LookAt})}}
-\label{da/ddf/classphys_1_1World_ad461d55f869f8aef72d0f0e0eb1b04dd}
+\subsubsection[{MoveCamera}]{\setlength{\rightskip}{0pt plus 5cm}void phys::World::MoveCamera (const {\bf Vector3} \& {\em Position}, \/  const {\bf Vector3} \& {\em LookAt})}}
+\label{da/ddf/classphys_1_1World_aed87ebc1e559c3057132c50bba16117f}
 
 
 This moves the camera relative to the world. 
@@ -459,18 +459,18 @@ Each frame of the action gets its own wire frame, and how many of those back did
 
 Definition at line 859 of file world.cpp.
 
-\hypertarget{classphys_1_1World_a3779f811ca8a394a20fc2d92823b5f93}{
+\hypertarget{classphys_1_1World_a47e1221b296ea7c3188da65ca9570bd5}{
 \index{phys::World@{phys::World}!SetGravity@{SetGravity}}
 \index{SetGravity@{SetGravity}!phys::World@{phys::World}}
-\subsubsection[{SetGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::World::SetGravity ({\bf PhysVector3} {\em pgrav})}}
-\label{da/ddf/classphys_1_1World_a3779f811ca8a394a20fc2d92823b5f93}
+\subsubsection[{SetGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::World::SetGravity ({\bf Vector3} {\em pgrav})}}
+\label{da/ddf/classphys_1_1World_a47e1221b296ea7c3188da65ca9570bd5}
 
 
 Sets the gravity. 
 
 Sets the strength and direction of gravity within the world. 
 \begin{DoxyParams}{Parameters}
-\item[{\em pgrav}]Vector3 representing the strength and direction of gravity. \end{DoxyParams}
+\item[{\em pgrav}]\hyperlink{classphys_1_1Vector3}{Vector3} representing the strength and direction of gravity. \end{DoxyParams}
 
 
 Definition at line 830 of file world.cpp.

@@ -40,7 +40,7 @@
 #ifndef _physactorsoft_h
 #define _physactorsoft_h
 
-//#include "physvector.h"
+//#include "vector3.h"
 //#include "quaternion.h"
 //#include "world.h"
 

@@ -70,7 +70,7 @@ namespace phys{
             this->snode=scenenode;
         }
 
-        void PhysMotionState::SetPosition(PhysVector3 position)
+        void PhysMotionState::SetPosition(Vector3 position)
         {
             this->initposition.setOrigin(position.GetBulletVector3());
         }

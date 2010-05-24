@@ -14,19 +14,19 @@ Does the bulk of the work that that the \hyperlink{classphys_1_1LineGroup}{phys:
 \begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1internal_1_1Line3D_acddc95dd5f319d6afc68260af8bea39c}{$\sim$Line3D} (void)
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1internal_1_1Line3D_aeb3b828b35b4c8ed76158285be6ddc67}{addPoint} (const Vector3 \&p)
+void \hyperlink{classphys_1_1internal_1_1Line3D_aeb3b828b35b4c8ed76158285be6ddc67}{addPoint} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&p)
 \begin{DoxyCompactList}\small\item\em This adds a point to the list of what should be rendered. \item\end{DoxyCompactList}\item 
-const Vector3 \& \hyperlink{classphys_1_1internal_1_1Line3D_a190af0e38be28297ed2f6a7aecf0c316}{getPoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index) const 
+const \hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1internal_1_1Line3D_a190af0e38be28297ed2f6a7aecf0c316}{getPoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index) const 
 \begin{DoxyCompactList}\small\item\em Access a specific point by index. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1internal_1_1Line3D_ab72a9dab3a355035c24c15e4a737ea2f}{getNumPoints} (void) const 
 \begin{DoxyCompactList}\small\item\em How many points are in this \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1internal_1_1Line3D_a4b2dec1619e4456ab0cb034ad34eb9d1}{updatePoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index, const Vector3 \&value)
+void \hyperlink{classphys_1_1internal_1_1Line3D_a4b2dec1619e4456ab0cb034ad34eb9d1}{updatePoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index, const \hyperlink{classphys_1_1Vector3}{Vector3} \&value)
 \begin{DoxyCompactList}\small\item\em Change an existing point. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1internal_1_1Line3D_a0320e600b9f363036c63eb47527bb854}{drawLine} (Vector3 \&start, Vector3 \&end)
+void \hyperlink{classphys_1_1internal_1_1Line3D_a31bf19dc06547cbe042e1ddfbcf672f3}{drawLine} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&start, const \hyperlink{classphys_1_1Vector3}{Vector3} \&end)
 \begin{DoxyCompactList}\small\item\em Adds two points. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1internal_1_1Line3D_a008f0874c2213002e0c39330561f80f2}{drawLines} (void)
 \begin{DoxyCompactList}\small\item\em Renders this. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1internal_1_1Line3D_a04b77721c599bb368c791da7621fc814}{getSquaredViewDepth} (const Camera $\ast$cam) const 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1internal_1_1Line3D_a5d2622c10ef432e84cad59634dcee340}{getSquaredViewDepth} (const Ogre::Camera $\ast$cam) const 
 \begin{DoxyCompactList}\small\item\em Not Used. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1internal_1_1Line3D_a3fdd0ff2b7b22cebc71f796431afc7c8}{getBoundingRadius} (void) const 
 \begin{DoxyCompactList}\small\item\em How big would a circle need to be to encapsulate this. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -35,12 +35,12 @@ void \hyperlink{classphys_1_1internal_1_1Line3D_a008f0874c2213002e0c39330561f80f
 \item 
 const Ogre::Quaternion \& \hyperlink{classphys_1_1internal_1_1Line3D_a68aea39fc0eee3eeb744c5cd151ef209}{getWorldOrientation} (void) const 
 \begin{DoxyCompactList}\small\item\em Gets how rotated this is currently. \item\end{DoxyCompactList}\item 
-const Vector3 \& \hyperlink{classphys_1_1internal_1_1Line3D_a2e81ac3696fedb22bd08688f7ecba2a8}{getWorldPosition} (void) const 
+const \hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1internal_1_1Line3D_a5bf47edcb7d369718c40c56d9db11b29}{getWorldPosition} (void) const 
 \begin{DoxyCompactList}\small\item\em Get the position of this Line3d. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std::vector$<$ Vector3 $>$ \hyperlink{classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}{mPoints}
+std::vector$<$ \hyperlink{classphys_1_1Vector3}{Vector3} $>$ \hyperlink{classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}{mPoints}
 \begin{DoxyCompactList}\small\item\em This is a vector which stores the point data. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1internal_1_1Line3D_a7f3a190db3c0cd83ff4fdf3d95d6f0ee}{mDrawn}
 \begin{DoxyCompactList}\small\item\em This indicates whether or not the the line have been done yet. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -51,7 +51,7 @@ Does the bulk of the work that that the \hyperlink{classphys_1_1LineGroup}{phys:
 \hyperlink{classphys_1_1LineGroup}{phys::LineGroup} is a simple wrapper around this to perform precise low level interactions with Ogre, the rendering subsystem. This uses too much stuff from ogre to use publicly. so we need to hide it here in the \hyperlink{namespacephys_1_1internal}{phys::internal} namespace. \end{DoxyInternal}
 
 
-Definition at line 70 of file linegroup.cpp.
+Definition at line 69 of file linegroup.cpp.
 
 
 
@@ -69,7 +69,7 @@ Default Constructor.
 This creates an empty \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}. \end{DoxyInternal}
 
 
-Definition at line 151 of file linegroup.cpp.
+Definition at line 150 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1internal_1_1Line3D_acddc95dd5f319d6afc68260af8bea39c}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!$\sim$Line3D@{$\sim$Line3D}}
@@ -84,7 +84,7 @@ Destructor.
 This safely tears down the \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}. \end{DoxyInternal}
 
 
-Definition at line 159 of file linegroup.cpp.
+Definition at line 158 of file linegroup.cpp.
 
 
 
@@ -92,7 +92,7 @@ Definition at line 159 of file linegroup.cpp.
 \hypertarget{classphys_1_1internal_1_1Line3D_aeb3b828b35b4c8ed76158285be6ddc67}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!addPoint@{addPoint}}
 \index{addPoint@{addPoint}!phys::internal::Line3D@{phys::internal::Line3D}}
-\subsubsection[{addPoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::internal::Line3D::addPoint (const Vector3 \& {\em p})}}
+\subsubsection[{addPoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::internal::Line3D::addPoint (const {\bf Vector3} \& {\em p})}}
 \label{d4/db5/classphys_1_1internal_1_1Line3D_aeb3b828b35b4c8ed76158285be6ddc67}
 
 
@@ -105,13 +105,13 @@ This adds a point to the list of what should be rendered.
 \end{DoxyInternal}
 
 
-Definition at line 164 of file linegroup.cpp.
+Definition at line 163 of file linegroup.cpp.
 
-\hypertarget{classphys_1_1internal_1_1Line3D_a0320e600b9f363036c63eb47527bb854}{
+\hypertarget{classphys_1_1internal_1_1Line3D_a31bf19dc06547cbe042e1ddfbcf672f3}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!drawLine@{drawLine}}
 \index{drawLine@{drawLine}!phys::internal::Line3D@{phys::internal::Line3D}}
-\subsubsection[{drawLine}]{\setlength{\rightskip}{0pt plus 5cm}void phys::internal::Line3D::drawLine (Vector3 \& {\em start}, \/  Vector3 \& {\em end})}}
-\label{d4/db5/classphys_1_1internal_1_1Line3D_a0320e600b9f363036c63eb47527bb854}
+\subsubsection[{drawLine}]{\setlength{\rightskip}{0pt plus 5cm}void phys::internal::Line3D::drawLine (const {\bf Vector3} \& {\em start}, \/  const {\bf Vector3} \& {\em end})}}
+\label{d4/db5/classphys_1_1internal_1_1Line3D_a31bf19dc06547cbe042e1ddfbcf672f3}
 
 
 Adds two points. 
@@ -124,12 +124,12 @@ This adds to points, to guarantee that a specific line segment is drawn.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000008}{Todo}]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen \end{Desc}
+\item[\hyperlink{todo__todo000012}{Todo}]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen \end{Desc}
 
 
 
 
-Definition at line 188 of file linegroup.cpp.
+Definition at line 187 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1internal_1_1Line3D_a008f0874c2213002e0c39330561f80f2}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!drawLines@{drawLines}}
@@ -144,7 +144,7 @@ Renders this.
 This does the actual rendering. \end{DoxyInternal}
 
 
-Definition at line 200 of file linegroup.cpp.
+Definition at line 199 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1internal_1_1Line3D_a3fdd0ff2b7b22cebc71f796431afc7c8}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!getBoundingRadius@{getBoundingRadius}}
@@ -162,7 +162,7 @@ This returns a real number which indicates the radius.
 \end{DoxyInternal}
 
 
-Definition at line 275 of file linegroup.cpp.
+Definition at line 274 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1internal_1_1Line3D_ab72a9dab3a355035c24c15e4a737ea2f}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!getNumPoints@{getNumPoints}}
@@ -180,12 +180,12 @@ This returns the amount of points stored in this class.
 \end{DoxyInternal}
 
 
-Definition at line 176 of file linegroup.cpp.
+Definition at line 175 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1internal_1_1Line3D_a190af0e38be28297ed2f6a7aecf0c316}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!getPoint@{getPoint}}
 \index{getPoint@{getPoint}!phys::internal::Line3D@{phys::internal::Line3D}}
-\subsubsection[{getPoint}]{\setlength{\rightskip}{0pt plus 5cm}const Vector3 \& phys::internal::Line3D::getPoint ({\bf Whole} {\em index}) const}}
+\subsubsection[{getPoint}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vector3} \& phys::internal::Line3D::getPoint ({\bf Whole} {\em index}) const}}
 \label{d4/db5/classphys_1_1internal_1_1Line3D_a190af0e38be28297ed2f6a7aecf0c316}
 
 
@@ -193,18 +193,18 @@ Access a specific point by index.
 
 \begin{DoxyInternal}{For internal use only.}
 This really does just access the underlying vector. \begin{DoxyReturn}{Returns}
-This Returns the specific Vector3 requested. 
+This Returns the specific \hyperlink{classphys_1_1Vector3}{Vector3} requested. 
 \end{DoxyReturn}
 \end{DoxyInternal}
 
 
-Definition at line 169 of file linegroup.cpp.
+Definition at line 168 of file linegroup.cpp.
 
-\hypertarget{classphys_1_1internal_1_1Line3D_a04b77721c599bb368c791da7621fc814}{
+\hypertarget{classphys_1_1internal_1_1Line3D_a5d2622c10ef432e84cad59634dcee340}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!getSquaredViewDepth@{getSquaredViewDepth}}
 \index{getSquaredViewDepth@{getSquaredViewDepth}!phys::internal::Line3D@{phys::internal::Line3D}}
-\subsubsection[{getSquaredViewDepth}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::internal::Line3D::getSquaredViewDepth (const Camera $\ast$ {\em cam}) const}}
-\label{d4/db5/classphys_1_1internal_1_1Line3D_a04b77721c599bb368c791da7621fc814}
+\subsubsection[{getSquaredViewDepth}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::internal::Line3D::getSquaredViewDepth (const Ogre::Camera $\ast$ {\em cam}) const}}
+\label{d4/db5/classphys_1_1internal_1_1Line3D_a5d2622c10ef432e84cad59634dcee340}
 
 
 Not Used. 
@@ -216,7 +216,7 @@ Not Used
 \end{DoxyInternal}
 
 
-Definition at line 264 of file linegroup.cpp.
+Definition at line 263 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1internal_1_1Line3D_a68aea39fc0eee3eeb744c5cd151ef209}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!getWorldOrientation@{getWorldOrientation}}
@@ -234,30 +234,26 @@ Is a Ogre::Quaternion which stores the rotation information of this \hyperlink{c
 \end{DoxyInternal}
 
 
-Definition at line 287 of file linegroup.cpp.
+Definition at line 286 of file linegroup.cpp.
 
-\hypertarget{classphys_1_1internal_1_1Line3D_a2e81ac3696fedb22bd08688f7ecba2a8}{
+\hypertarget{classphys_1_1internal_1_1Line3D_a5bf47edcb7d369718c40c56d9db11b29}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!getWorldPosition@{getWorldPosition}}
 \index{getWorldPosition@{getWorldPosition}!phys::internal::Line3D@{phys::internal::Line3D}}
-\subsubsection[{getWorldPosition}]{\setlength{\rightskip}{0pt plus 5cm}const Vector3 \& phys::internal::Line3D::getWorldPosition (void) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
-\label{d4/db5/classphys_1_1internal_1_1Line3D_a2e81ac3696fedb22bd08688f7ecba2a8}
+\subsubsection[{getWorldPosition}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vector3}\& phys::internal::Line3D::getWorldPosition (void) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d4/db5/classphys_1_1internal_1_1Line3D_a5bf47edcb7d369718c40c56d9db11b29}
 
 
 Get the position of this Line3d. 
 
 \begin{DoxyInternal}{For internal use only.}
 \begin{DoxyReturn}{Returns}
-This returns a Vector3 with the Position relative to the world Origin 
+This returns a \hyperlink{classphys_1_1Vector3}{Vector3} with the Position relative to the world Origin 
 \end{DoxyReturn}
 \end{DoxyInternal}
-
-
-Definition at line 292 of file linegroup.cpp.
-
 \hypertarget{classphys_1_1internal_1_1Line3D_a4b2dec1619e4456ab0cb034ad34eb9d1}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!updatePoint@{updatePoint}}
 \index{updatePoint@{updatePoint}!phys::internal::Line3D@{phys::internal::Line3D}}
-\subsubsection[{updatePoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::internal::Line3D::updatePoint ({\bf Whole} {\em index}, \/  const Vector3 \& {\em value})}}
+\subsubsection[{updatePoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::internal::Line3D::updatePoint ({\bf Whole} {\em index}, \/  const {\bf Vector3} \& {\em value})}}
 \label{d4/db5/classphys_1_1internal_1_1Line3D_a4b2dec1619e4456ab0cb034ad34eb9d1}
 
 
@@ -270,7 +266,7 @@ This replaces a point specified by index with a new point
 \end{DoxyInternal}
 
 
-Definition at line 181 of file linegroup.cpp.
+Definition at line 180 of file linegroup.cpp.
 
 
 
@@ -288,12 +284,12 @@ This indicates whether or not the the line have been done yet.
 \end{DoxyInternal}
 
 
-Definition at line 148 of file linegroup.cpp.
+Definition at line 147 of file linegroup.cpp.
 
 \hypertarget{classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}{
 \index{phys::internal::Line3D@{phys::internal::Line3D}!mPoints@{mPoints}}
 \index{mPoints@{mPoints}!phys::internal::Line3D@{phys::internal::Line3D}}
-\subsubsection[{mPoints}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$Vector3$>$ {\bf phys::internal::Line3D::mPoints}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{mPoints}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<${\bf Vector3}$>$ {\bf phys::internal::Line3D::mPoints}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d4/db5/classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}
 
 
@@ -303,7 +299,7 @@ This is a vector which stores the point data.
 \end{DoxyInternal}
 
 
-Definition at line 144 of file linegroup.cpp.
+Definition at line 143 of file linegroup.cpp.
 
 
 

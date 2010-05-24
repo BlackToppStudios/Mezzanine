@@ -66,7 +66,7 @@
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _linegroup_cpp</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;physvector.h&quot;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;vector3.h&quot;</span>
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 <span class="keyword">namespace </span>phys
 <a name="l00047"></a>00047 {
@@ -99,12 +99,12 @@
 <a name="l00074"></a>00074 <span class="comment">            /// @brief This add Either a start pointing, or a line segment to the next point</span>
 <a name="l00075"></a>00075 <span class="comment">            /// @details This adds a point that will be rendered as the endpoint of a line</span>
 <a name="l00076"></a>00076 <span class="comment">            /// @param p The Point to be added.</span>
-<a name="l00077"></a>00077 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a550582bde23059645b5966a384734131" title="This add Either a start pointing, or a line segment to the next point.">addPoint</a>(<span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;p);
+<a name="l00077"></a>00077 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a042a8facc505866f619cfc043a820f03" title="This add Either a start pointing, or a line segment to the next point.">addPoint</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;p);
 <a name="l00078"></a>00078 <span class="comment"></span>
 <a name="l00079"></a>00079 <span class="comment">            /// @brief Access points by order they were added.</span>
 <a name="l00080"></a>00080 <span class="comment">            /// @details This returns the point indicated by index. They start at 0, and increment from there</span>
 <a name="l00081"></a>00081 <span class="comment">            /// @param index A Whole number which indicates which point to retrieve.</span>
-<a name="l00082"></a>00082 <span class="comment"></span>            <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a16d15a03eab7029344fa73c1dfd7ca43" title="Access points by order they were added.">getPoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index) <span class="keyword">const</span>;
+<a name="l00082"></a>00082 <span class="comment"></span>            <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a960e1ceba7e9804b7906f8618f869202" title="Access points by order they were added.">getPoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index) <span class="keyword">const</span>;
 <a name="l00083"></a>00083 <span class="comment"></span>
 <a name="l00084"></a>00084 <span class="comment">            /// @brief Get the amount of points used to define Line Segments</span>
 <a name="l00085"></a>00085 <span class="comment">            /// @details This return the amount of points and therefore line segments. There will always be one more point</span>
@@ -116,7 +116,7 @@
 <a name="l00091"></a>00091 <span class="comment">            /// @details This replaces a point specified by index with a new point</span>
 <a name="l00092"></a>00092 <span class="comment">            /// @param index The index of the point to replace.</span>
 <a name="l00093"></a>00093 <span class="comment">            /// @param value A point to replace the existing point with</span>
-<a name="l00094"></a>00094 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a180c18bd979019c39a44c9c20b0e1f13" title="This changes a specific point.">updatePoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;value);
+<a name="l00094"></a>00094 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a3d98d0eb4fd15ac136d4649913dd80c8" title="This changes a specific point.">updatePoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;value);
 <a name="l00095"></a>00095 <span class="comment"></span>
 <a name="l00096"></a>00096 <span class="comment">            /// @brief This adds Two points to the list</span>
 <a name="l00097"></a>00097 <span class="comment">            /// @details This could add 2 line segments, be it simply adds two lines to the list, but if you don&#39;t care then this is an</span>
@@ -124,7 +124,7 @@
 <a name="l00099"></a>00099 <span class="comment">            /// @todo TODO: In the future we will add a break in the line segment chain when this is called.</span>
 <a name="l00100"></a>00100 <span class="comment">            /// @param start The first point to be added</span>
 <a name="l00101"></a>00101 <span class="comment">            /// @param end The first point to be added</span>
-<a name="l00102"></a>00102 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#aed46446e634948f8c73a5b26406cb5af" title="This adds Two points to the list.">drawLine</a>(<span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;start, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;end);
+<a name="l00102"></a>00102 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a141db62ea17d94b9bce421e5df5a8d89" title="This adds Two points to the list.">drawLine</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;start, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;end);
 <a name="l00103"></a>00103 <span class="comment"></span>
 <a name="l00104"></a>00104 <span class="comment">            /// @brief Renders the line segment chain.</span>
 <a name="l00105"></a>00105 <span class="comment">            /// @details This send the Line segment information to the rending subsystem. PrepareForRendering() should be called first</span>
@@ -153,7 +153,7 @@
 <a name="l00128"></a>00128 
 <a name="l00129"></a>00129 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 02:07:54 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 04:51:48 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

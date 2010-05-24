@@ -41,7 +41,7 @@
 #define _linegroup_cpp
 
 #include "datatypes.h"
-#include "physvector.h"
+#include "vector3.h"
 
 namespace phys
 {
@@ -74,12 +74,12 @@ namespace phys
             /// @brief This add Either a start pointing, or a line segment to the next point
             /// @details This adds a point that will be rendered as the endpoint of a line
             /// @param p The Point to be added.
-            void addPoint(const PhysVector3 &p);
+            void addPoint(const Vector3 &p);
 
             /// @brief Access points by order they were added.
             /// @details This returns the point indicated by index. They start at 0, and increment from there
             /// @param index A Whole number which indicates which point to retrieve.
-            const PhysVector3 getPoint(Whole index) const;
+            const Vector3 getPoint(Whole index) const;
 
             /// @brief Get the amount of points used to define Line Segments
             /// @details This return the amount of points and therefore line segments. There will always be one more point
@@ -91,7 +91,7 @@ namespace phys
             /// @details This replaces a point specified by index with a new point
             /// @param index The index of the point to replace.
             /// @param value A point to replace the existing point with
-            void updatePoint(Whole index, const PhysVector3 &value);
+            void updatePoint(Whole index, const Vector3 &value);
 
             /// @brief This adds Two points to the list
             /// @details This could add 2 line segments, be it simply adds two lines to the list, but if you don't care then this is an
@@ -99,7 +99,7 @@ namespace phys
             /// @todo TODO: In the future we will add a break in the line segment chain when this is called.
             /// @param start The first point to be added
             /// @param end The first point to be added
-            void drawLine(const PhysVector3 &start, const PhysVector3 &end);
+            void drawLine(const Vector3 &start, const Vector3 &end);
 
             /// @brief Renders the line segment chain.
             /// @details This send the Line segment information to the rending subsystem. PrepareForRendering() should be called first

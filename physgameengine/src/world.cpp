@@ -51,7 +51,7 @@
 #include "datatypes.h"
 #include "eventbase.h"
 #include "world.h"
-#include "physvector.h"
+#include "vector3.h"
 #include "crossplatform.h"
 #include "callbackmanager.h"
 #include "graphicsettings.h"
@@ -207,8 +207,8 @@ namespace phys
             phys::LineGroup *myLine = this->WireFrames.back();
 
             //Convert btVectors to PhysVector3s
-            PhysVector3 LineStart(from);
-            PhysVector3 LineEnd(to);
+            Vector3 LineStart(from);
+            Vector3 LineEnd(to);
 
             myLine->addPoint(LineStart);
             myLine->addPoint(LineEnd);
@@ -277,8 +277,8 @@ namespace phys
     /// @todo TODO Fix the `const`ness of all methods to be as const as allowable
     World::World()
     {
-        PhysVector3 Lbounds(-1000.0,-1000.0,-1000.0);
-        PhysVector3 Ubounds(1000.0,1000.0,1000.0);
+        Vector3 Lbounds(-1000.0,-1000.0,-1000.0);
+        Vector3 Ubounds(1000.0,1000.0,1000.0);
 
         this->Construct(
             Lbounds,
@@ -289,8 +289,8 @@ namespace phys
 
     /// @todo TODO: adjust the constructors to allow for pointers to a callback manager and event manager
 
-    World::World(   const PhysVector3 &GeographyLowerBounds_,
-                            const PhysVector3 &GeographyUpperbounds_,
+    World::World(   const Vector3 &GeographyLowerBounds_,
+                            const Vector3 &GeographyUpperbounds_,
                             const unsigned short int  &MaxPhysicsProxies_)
     {
         this->Construct(GeographyLowerBounds_,
@@ -299,8 +299,8 @@ namespace phys
                         );
     }
 
-    void World::Construct(  const PhysVector3 &GeographyLowerBounds_,
-                                const PhysVector3 &GeographyUpperbounds_,
+    void World::Construct(  const Vector3 &GeographyLowerBounds_,
+                                const Vector3 &GeographyUpperbounds_,
                                 const unsigned short int &MaxPhysicsProxies_)
     {
         //Set some sane Defaults for some values
@@ -389,7 +389,7 @@ namespace phys
         Real temp14 = 1.4;
         Whole temp15 = 15;
         String temp16("16 or so");
-        PhysVector3 temp17(0,1,7);
+        Vector3 temp17(0,1,7);
         RawEvent temp18;
             temp18.type = SDL_KEYDOWN;
             temp18.key.keysym.sym = SDLK_BACKSPACE;
@@ -416,7 +416,7 @@ namespace phys
         OneLogTest(temp14, "Real");
         OneLogTest(temp15, "Whole");
         OneLogTest(temp16, "String");
-        OneLogTest(temp17, "phys::PhysVector3");
+        OneLogTest(temp17, "phys::Vector3");
         OneLogTest(temp18, "RawEvent"); /// @todo TODO Figure out How does this called the same streaming function as MetaCode ?!?!?
         OneLogTest(temp19, "MetaCode");
         //OneLogTest(temp20, "btVector3");
@@ -655,7 +655,7 @@ namespace phys
         this->DestroyRenderWindow();
     }
 
-    void World::MoveCamera(const PhysVector3 &Position, const PhysVector3 &LookAt)
+    void World::MoveCamera(const Vector3 &Position, const Vector3 &LookAt)
     {
         this->OgreCamera->setPosition(Ogre::Vector3(Position.X,Position.Y,Position.Z));
         this->OgreCamera->lookAt(Ogre::Vector3(LookAt.X,LookAt.Y,LookAt.Z));
@@ -748,7 +748,7 @@ namespace phys
         this->OgreCamera->setNearClipDistance(5.0f);
         this->OgreCamera->setFarClipDistance(5000.0f);
 
-        this->MoveCamera(PhysVector3(0.0f,0.0f,500.0f), PhysVector3(0.0f,0.0f,0.0f));
+        this->MoveCamera(Vector3(0.0f,0.0f,500.0f), Vector3(0.0f,0.0f,0.0f));
 
         //viewport connects camera and render window
         this->OgreViewport = this->OgreGameWindow->addViewport(OgreCamera);
@@ -827,7 +827,7 @@ namespace phys
     // Bullet World Management Functions
     ///////////////////////////////////////
 
-    void World::SetGravity(PhysVector3 pgrav)
+    void World::SetGravity(Vector3 pgrav)
     {
         this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
     }

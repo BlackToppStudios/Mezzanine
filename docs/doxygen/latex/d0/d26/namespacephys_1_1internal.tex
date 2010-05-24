@@ -10,15 +10,15 @@ This namespace is used for internal helper classes, and in general it should be 
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
+class \hyperlink{classphys_1_1internal_1_1PhysMotionState}{PhysMotionState}
+\begin{DoxyCompactList}\small\item\em This class is used by the actor class to sync between the physics world and the graphical world. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}
 \begin{DoxyCompactList}\small\item\em Does the bulk of the work that that the \hyperlink{classphys_1_1LineGroup}{phys::LineGroup} performs. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \hyperlink{namespacephys_1_1internal_aae2a1133a05c67ac3062038c0c5dad4a}{PhysSDLFilter} (const \hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{RawEvent} $\ast$event)
-\begin{DoxyCompactList}\small\item\em SDL uses this to filter events it presents to applications. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_1_1internal_a8ca9bdbec082de74b347496001b9615f}{GetNameOfEventFrom} (\hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{RawEvent} $\ast$event)
-\begin{DoxyCompactList}\small\item\em This returns a string which contains the name of the SDL passed into it. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em SDL uses this to filter events it presents to applications. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -27,23 +27,6 @@ This whole internal namespace is a dirty hack. This is where code goes that must
 
 
 \subsection{Function Documentation}
-\hypertarget{namespacephys_1_1internal_a8ca9bdbec082de74b347496001b9615f}{
-\index{phys::internal@{phys::internal}!GetNameOfEventFrom@{GetNameOfEventFrom}}
-\index{GetNameOfEventFrom@{GetNameOfEventFrom}!phys::internal@{phys::internal}}
-\subsubsection[{GetNameOfEventFrom}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::internal::GetNameOfEventFrom (RawEvent $\ast$ {\em event})}}
-\label{d0/d26/namespacephys_1_1internal_a8ca9bdbec082de74b347496001b9615f}
-
-
-This returns a string which contains the name of the SDL passed into it. 
-
-\begin{DoxyInternal}{For internal use only.}
-This supports all known SDL events and will return \char`\"{}Unknown RawEvent Event Inserted\char`\"{} for unknown events. 
-\begin{DoxyParams}{Parameters}
-\item[{\em event}]This is a \hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{phys::RawEvent} which you wan to determine the type of. \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-This returns a \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String} with naming the correct type. 
-\end{DoxyReturn}
-\end{DoxyInternal}
 \hypertarget{namespacephys_1_1internal_aae2a1133a05c67ac3062038c0c5dad4a}{
 \index{phys::internal@{phys::internal}!PhysSDLFilter@{PhysSDLFilter}}
 \index{PhysSDLFilter@{PhysSDLFilter}!phys::internal@{phys::internal}}
@@ -66,5 +49,5 @@ This will always return either 0 or 1 to SDL. 0 if it should drop the event, whi
 \end{DoxyInternal}
 
 
-Definition at line 75 of file eventmanager.cpp.
+Definition at line 73 of file eventmanager.cpp.
 

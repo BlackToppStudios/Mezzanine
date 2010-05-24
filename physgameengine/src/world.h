@@ -63,7 +63,7 @@
   @ref phys::ActorBase "Items in the world - Actor Class"
 
  @section Data Types
-  @ref PhysVector3
+  @ref phys::Vector3
 
   @ref phys::EventBase
 */
@@ -74,7 +74,7 @@
 #include "eventbase.h"
 #include "eventmanager.h"
 #include "datatypes.h"
-#include "physvector.h"
+#include "vector3.h"
 //#include "actorbase.h"
 
 #include <string>
@@ -138,8 +138,8 @@ namespace phys
             friend class ActorBase;
 
             //Physics Items
-            PhysVector3 GeographyLowerBounds;
-            PhysVector3 GeographyUpperbounds;
+            Vector3 GeographyLowerBounds;
+            Vector3 GeographyUpperbounds;
             unsigned short int  MaxPhysicsProxies;
 
             btAxisSweep3* BulletBroadphase;
@@ -164,7 +164,7 @@ namespace phys
             void DestroyRenderWindow();
 
             //Used by the constructors
-            void Construct(const PhysVector3 &GeographyLowerBounds, const PhysVector3 &GeographyUpperbounds, const unsigned short int &MaxPhysicsProxies);
+            void Construct(const Vector3 &GeographyLowerBounds, const Vector3 &GeographyUpperbounds, const unsigned short int &MaxPhysicsProxies);
             void SanityChecks();
             void TestLogger();
             template <class T> void OneLogTest(T Data, string DataType,string Message1 = "Logging and Throwing a ", string Message2 = "Logging a ");
@@ -196,7 +196,7 @@ namespace phys
             /// @param GeographyLowerBounds_ The lower limits for the size of the physics simulation
             /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
             /// @param MaxPhysicsProxies_ This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.
-            World( const PhysVector3 &GeographyLowerBounds_, const PhysVector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_=1024);
+            World( const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_=1024);
 
             /// @brief Default constructor
             /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
@@ -214,7 +214,7 @@ namespace phys
             /// @details Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is
             /// Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types
             /// that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int
-            /// unsigned long int, bool, float, double, long double, wchar_t, size_t, Real, Whole, String, PhysVector3, RawEvent and MetaCode.
+            /// unsigned long int, bool, float, double, long double, wchar_t, size_t, Real, Whole, String, Vector3, RawEvent and MetaCode.
             /// If compiled statically it should support any data type which supports output streams.
             /// @param Message This is what will be streamed to the log
             template <class T> void Log(T Message);
@@ -273,7 +273,7 @@ namespace phys
             /// @details The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.
             /// @param Position Where should the camera be seated
             /// @param LookAt Point the camera such that this poin is centered on the screen
-            void MoveCamera(const PhysVector3 &Position, const PhysVector3 &LookAt);
+            void MoveCamera(const Vector3 &Position, const Vector3 &LookAt);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Graphics system loading methods
@@ -361,7 +361,7 @@ namespace phys
             /// @brief Sets the gravity.
             /// @details Sets the strength and direction of gravity within the world.
             /// @param pgrav Vector3 representing the strength and direction of gravity.
-            void SetGravity(PhysVector3 pgrav);
+            void SetGravity(Vector3 pgrav);
 
             /// @brief Enables and Disables Physics Debug Drawing
             /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics

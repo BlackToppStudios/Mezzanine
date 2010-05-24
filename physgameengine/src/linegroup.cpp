@@ -46,7 +46,6 @@
 #include <Ogre.h>
 #include <vector>
 
-using namespace Ogre;
 using namespace std;
 
 #define POSITION_BINDING 0
@@ -67,7 +66,7 @@ namespace phys
         /// @details phys::LineGroup is a simple wrapper around this to perform precise
         /// low level interactions with Ogre, the rendering subsystem. This uses too much stuff
         /// from ogre to use publicly. so we need to hide it here in the phys::internal namespace.
-        class Line3D: public SimpleRenderable
+        class Line3D: public Ogre::SimpleRenderable
         {
             public:
                 /// @internal
@@ -108,7 +107,7 @@ namespace phys
                 /// @details This adds to points, to guarantee that a specific line segment is drawn.
                 /// @param start The first point to be added
                 /// @param end The first point to be added
-                void drawLine(Vector3 &start, Vector3 &end);
+                void drawLine(const Vector3 &start, const Vector3 &end);
 
                 /// @internal
                 /// @brief Renders this
@@ -119,7 +118,7 @@ namespace phys
                 /// @brief Not Used
                 /// @details Not Used
                 /// @param cam Not Used
-                Real getSquaredViewDepth(const Camera *cam) const;
+                Real getSquaredViewDepth(const Ogre::Camera *cam) const;
 
                 /// @internal
                 /// @brief How big would a circle need to be to encapsulate this
@@ -150,7 +149,7 @@ namespace phys
 
         Line3D::Line3D(void)
         {
-           mRenderOp.vertexData = new VertexData();
+           mRenderOp.vertexData = new Ogre::VertexData();
            mDrawn = false;
 
            this->setMaterial("BaseWhiteNoLighting");
@@ -185,7 +184,7 @@ namespace phys
            mPoints[index] = value;
         }
 
-        void Line3D::drawLine(Vector3 &start, Vector3 &end)
+        void Line3D::drawLine(const Vector3 &start, const Vector3 &end)
         {
            /// @todo TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen
            if(mPoints.size())
@@ -208,19 +207,19 @@ namespace phys
             mRenderOp.indexData = 0;
             mRenderOp.vertexData->vertexCount = mPoints.size();
             mRenderOp.vertexData->vertexStart = 0;
-            mRenderOp.operationType = RenderOperation::OT_LINE_STRIP; // OT_LINE_LIST, OT_LINE_STRIP
+            mRenderOp.operationType = Ogre::RenderOperation::OT_LINE_STRIP; // OT_LINE_LIST, OT_LINE_STRIP
             mRenderOp.useIndexes = false;
 
-            VertexDeclaration *decl = mRenderOp.vertexData->vertexDeclaration;
-            VertexBufferBinding *bind = mRenderOp.vertexData->vertexBufferBinding;
+            Ogre::VertexDeclaration *decl = mRenderOp.vertexData->vertexDeclaration;
+            Ogre::VertexBufferBinding *bind = mRenderOp.vertexData->vertexBufferBinding;
 
-            decl->addElement(POSITION_BINDING, 0, VET_FLOAT3, VES_POSITION);
+            decl->addElement(POSITION_BINDING, 0, Ogre::VET_FLOAT3, Ogre::VES_POSITION);
 
-            HardwareVertexBufferSharedPtr vbuf =
-              HardwareBufferManager::getSingleton().createVertexBuffer(
+            Ogre::HardwareVertexBufferSharedPtr vbuf =
+              Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
                  decl->getVertexSize(POSITION_BINDING),
                  mRenderOp.vertexData->vertexCount,
-                 HardwareBuffer::HBU_STATIC_WRITE_ONLY);
+                 Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
 
             bind->setBinding(POSITION_BINDING, vbuf);
 
@@ -231,39 +230,39 @@ namespace phys
                Vector3 vaabMin = mPoints[0];
                Vector3 vaabMax = mPoints[0];
 
-               Real *prPos = static_cast<Real*>(vbuf->lock(HardwareBuffer::HBL_DISCARD));
+               Real *prPos = static_cast<Real*>(vbuf->lock(Ogre::HardwareBuffer::HBL_DISCARD));
 
                for(int i = 0; i < size; i++)
                {
-                  *prPos++ = mPoints[i].x;
-                  *prPos++ = mPoints[i].y;
-                  *prPos++ = mPoints[i].z;
+                  *prPos++ = mPoints[i].X;
+                  *prPos++ = mPoints[i].Y;
+                  *prPos++ = mPoints[i].Z;
 
-                  if(mPoints[i].x < vaabMin.x)
-                     vaabMin.x = mPoints[i].x;
-                  if(mPoints[i].y < vaabMin.y)
-                     vaabMin.y = mPoints[i].y;
-                  if(mPoints[i].z < vaabMin.z)
-                     vaabMin.z = mPoints[i].z;
+                  if(mPoints[i].X < vaabMin.X)
+                     vaabMin.X = mPoints[i].X;
+                  if(mPoints[i].Y < vaabMin.Y)
+                     vaabMin.Y = mPoints[i].Y;
+                  if(mPoints[i].Z < vaabMin.Z)
+                     vaabMin.Z = mPoints[i].Z;
 
-                  if(mPoints[i].x > vaabMax.x)
-                     vaabMax.x = mPoints[i].x;
-                  if(mPoints[i].y > vaabMax.y)
-                     vaabMax.y = mPoints[i].y;
-                  if(mPoints[i].z > vaabMax.z)
-                     vaabMax.z = mPoints[i].z;
+                  if(mPoints[i].X > vaabMax.X)
+                     vaabMax.X = mPoints[i].X;
+                  if(mPoints[i].Y > vaabMax.Y)
+                     vaabMax.Y = mPoints[i].Y;
+                  if(mPoints[i].Z > vaabMax.Z)
+                     vaabMax.Z = mPoints[i].Z;
                }
 
                vbuf->unlock();
 
-               mBox.setExtents(vaabMin, vaabMax);
+               mBox.setExtents(vaabMin.GetOgreVector3(), vaabMax.GetOgreVector3());
             }
 
         }
 
-        Real Line3D::getSquaredViewDepth(const Camera *cam) const
+        Real Line3D::getSquaredViewDepth(const Ogre::Camera *cam) const
         {
-           Vector3 vMin, vMax, vMid, vDist;
+           Ogre::Vector3 vMin, vMax, vMid, vDist;
            vMin = mBox.getMinimum();
            vMax = mBox.getMaximum();
            vMid = ((vMin - vMax) * 0.5) + vMin;
@@ -274,7 +273,7 @@ namespace phys
 
         Real Line3D::getBoundingRadius(void) const
         {
-           return Math::Sqrt(max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength()));
+           return Ogre::Math::Sqrt(max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength()));
            //return mRadius;
         }
         /*
@@ -289,10 +288,10 @@ namespace phys
            return Ogre::Quaternion::IDENTITY;
         }
 
-        const Vector3 &Line3D::getWorldPosition(void) const
+        /*const Vector3 &Line3D::getWorldPosition(void) const
         {
            return Vector3::ZERO;
-        }
+        }*/
     }// /internal
 
 
@@ -310,14 +309,14 @@ namespace phys
         delete this->LineData;
     }
 
-    void LineGroup::addPoint(const PhysVector3 &p)
+    void LineGroup::addPoint(const Vector3 &p)
     {
         this->LineData->addPoint( p.GetOgreVector3());
     }
 
-    const PhysVector3 LineGroup::getPoint(Whole index) const
+    const Vector3 LineGroup::getPoint(Whole index) const
     {
-        PhysVector3 temp(this->LineData->getPoint(index));
+        Vector3 temp(this->LineData->getPoint(index));
         return temp;
     }
 
@@ -326,16 +325,16 @@ namespace phys
         return this->LineData->getNumPoints();
     }
 
-    void LineGroup::updatePoint(Whole index, const PhysVector3 &value)
+    void LineGroup::updatePoint(Whole index, const Vector3 &value)
     {
         return this->LineData->updatePoint(index, value.GetOgreVector3());
     }
 
-    void LineGroup::drawLine(const PhysVector3 &start, const PhysVector3 &end)
+    void LineGroup::drawLine(const Vector3 &start, const Vector3 &end)
     {
-        Ogre::Vector3 Ostart = start.GetOgreVector3();
-        Ogre::Vector3 Oend = end.GetOgreVector3();
-        this->LineData->drawLine(Ostart, Oend );
+        //Ogre::Vector3 Ostart = start.GetOgreVector3();
+        //Ogre::Vector3 Oend = end.GetOgreVector3();
+        this->LineData->drawLine(start, end);
     }
 
     void LineGroup::drawLines(void)
@@ -350,7 +349,7 @@ namespace phys
 
     void LineGroup::PrepareForRendering()
     {
-        SceneNode *myNode = this->Parent->OgreSceneManager->getRootSceneNode()->createChildSceneNode();
+        Ogre::SceneNode *myNode = this->Parent->OgreSceneManager->getRootSceneNode()->createChildSceneNode();
         myNode->attachObject(this->LineData);
     }
 }

@@ -117,10 +117,10 @@
 		<Unit filename="src/linegroup.h" />
 		<Unit filename="src/metacode.cpp" />
 		<Unit filename="src/metacode.h" />
-		<Unit filename="src/physvector.cpp" />
-		<Unit filename="src/physvector.h" />
 		<Unit filename="src/quaternion.cpp" />
 		<Unit filename="src/quaternion.h" />
+		<Unit filename="src/vector3.cpp" />
+		<Unit filename="src/vector3.h" />
 		<Unit filename="src/world.cpp" />
 		<Unit filename="src/world.h" />
 		<Extensions>

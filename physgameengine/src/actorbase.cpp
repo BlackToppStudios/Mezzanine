@@ -171,27 +171,27 @@ namespace phys{
     ///////////////////////////////////
     // ActorBase Private Location Functions
 
-    void ActorBase::SetOgreLocation (PhysVector3 Location)
+    void ActorBase::SetOgreLocation (Vector3 Location)
     {
         this->node->setPosition(Location.GetOgreVector3());
     }
 
-    PhysVector3 ActorBase::GetOgreLocation()
+    Vector3 ActorBase::GetOgreLocation()
     {
-        PhysVector3 temp;
+        Vector3 temp;
         temp.ExtractOgreVector3(this->node->getPosition());
         return temp;
     }
 
-    void ActorBase::SetBulletLocation (PhysVector3 Location)
+    void ActorBase::SetBulletLocation (Vector3 Location)
     {
         //btTransform* temp = this->CollisionObject->getWorldTransform();
         this->CollisionObject->getWorldTransform().setOrigin(Location.GetBulletVector3());
     }
 
-    PhysVector3 ActorBase::GetBulletLocation()
+    Vector3 ActorBase::GetBulletLocation()
     {
-        PhysVector3 temp;
+        Vector3 temp;
         btTransform trans = this->CollisionObject->getWorldTransform();
         temp.ExtractBulletVector3(trans.getOrigin());
         return temp;
@@ -216,22 +216,22 @@ namespace phys{
 
     void ActorBase::SetLocation (Real x, Real y, Real z)
     {
-        PhysVector3 temp(x,y,z);
+        Vector3 temp(x,y,z);
         this->SetLocation(temp);
     }
 
-    void ActorBase::SetLocation (PhysVector3 Place)
+    void ActorBase::SetLocation (Vector3 Place)
     {
         this->SetBulletLocation(Place);
         this->SetOgreLocation(Place);
     }
 
-    PhysVector3 ActorBase::GetLocation()
+    Vector3 ActorBase::GetLocation()
     {
         return this->GetBulletLocation();
     }
 
-    void ActorBase::SetInitLocation(PhysVector3 Location)
+    void ActorBase::SetInitLocation(Vector3 Location)
     {
         this->SetBulletLocation(Location);
     }
@@ -261,7 +261,7 @@ namespace phys{
 
     void ActorBase::AttachToGraphics ()
     {
-        PhysVector3 temp;
+        Vector3 temp;
         //temp.ExtractBulletVector3(this->MotionState->initposition.getOrigin());
         temp = GetBulletLocation();
         this->node->setPosition(temp.GetOgreVector3());

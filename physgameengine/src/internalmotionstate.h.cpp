@@ -43,7 +43,7 @@
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 
-#include "physvector.h"
+#include "vector3.h"
 #include "quaternion.h"
 
 namespace phys{
@@ -87,7 +87,7 @@ namespace phys{
                 /// @details Sets the position the actor will be placed in when it is added to the world.
                 /// This function is called on by the ActorBase function SetInitPosition().
                 /// @param position The vector3 representing the location to be used.
-                void SetPosition(PhysVector3 position);
+                void SetPosition(Vector3 position);
 
                 /// @brief Sets the initial orientation.
                 /// @details Sets the orientation the actor will have when it is added to the world.

@@ -71,318 +71,317 @@
 <a name="l00046"></a>00046 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
 <a name="l00047"></a>00047 <span class="preprocessor">#include &lt;vector&gt;</span>
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <span class="keyword">using namespace </span>Ogre;
-<a name="l00050"></a>00050 <span class="keyword">using namespace </span>std;
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="preprocessor">#define POSITION_BINDING 0</span>
-<a name="l00053"></a>00053 <span class="preprocessor"></span><span class="preprocessor">#define TEXCOORD_BINDING 1</span>
-<a name="l00054"></a>00054 <span class="preprocessor"></span>
-<a name="l00055"></a>00055 <span class="keyword">namespace </span>phys
-<a name="l00056"></a>00056 {
-<a name="l00057"></a>00057 <span class="comment"></span>
-<a name="l00058"></a>00058 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00059"></a>00059 <span class="comment"></span><span class="comment">// phys::internal::Line3D</span><span class="comment"></span>
-<a name="l00060"></a>00060 <span class="comment">///////////////////////////////////////</span>
-<a name="l00061"></a>00061 <span class="comment"></span>
-<a name="l00062"></a>00062     <span class="comment">//We need to decalare an internal class to make this work.</span>
-<a name="l00063"></a>00063     <span class="keyword">namespace </span>internal
-<a name="l00064"></a>00064     {<span class="comment"></span>
-<a name="l00065"></a>00065 <span class="comment">        /// @internal</span>
-<a name="l00066"></a>00066 <span class="comment">        /// @brief Does the bulk of the work that that the phys::LineGroup performs</span>
-<a name="l00067"></a>00067 <span class="comment">        /// @details phys::LineGroup is a simple wrapper around this to perform precise</span>
-<a name="l00068"></a>00068 <span class="comment">        /// low level interactions with Ogre, the rendering subsystem. This uses too much stuff</span>
-<a name="l00069"></a>00069 <span class="comment">        /// from ogre to use publicly. so we need to hide it here in the phys::internal namespace.</span>
-<a name="l00070"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html">00070</a> <span class="comment"></span>        <span class="keyword">class </span><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html" title="Does the bulk of the work that that the phys::LineGroup performs.">Line3D</a>: <span class="keyword">public</span> SimpleRenderable
-<a name="l00071"></a>00071         {
-<a name="l00072"></a>00072             <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00073"></a>00073 <span class="comment">                /// @internal</span>
-<a name="l00074"></a>00074 <span class="comment">                /// @brief Default Constructor</span>
-<a name="l00075"></a>00075 <span class="comment">                /// @details This creates an empty Line3D.</span>
-<a name="l00076"></a>00076 <span class="comment"></span>                <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab22b8f5fae0bb2585b1031adfff424bd" title="Default Constructor.">Line3D</a>(<span class="keywordtype">void</span>);
-<a name="l00077"></a>00077 <span class="comment"></span>
-<a name="l00078"></a>00078 <span class="comment">                /// @internal</span>
-<a name="l00079"></a>00079 <span class="comment">                /// @brief Destructor</span>
-<a name="l00080"></a>00080 <span class="comment">                /// @details This safely tears down the Line3D.</span>
-<a name="l00081"></a>00081 <span class="comment"></span>                <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acddc95dd5f319d6afc68260af8bea39c" title="Destructor.">~Line3D</a>(<span class="keywordtype">void</span>);
-<a name="l00082"></a>00082 <span class="comment"></span>
-<a name="l00083"></a>00083 <span class="comment">                /// @internal</span>
-<a name="l00084"></a>00084 <span class="comment">                /// @brief This adds a point to the list of what should be rendered.</span>
-<a name="l00085"></a>00085 <span class="comment">                /// @param p The point to be added.</span>
-<a name="l00086"></a>00086 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#aeb3b828b35b4c8ed76158285be6ddc67" title="This adds a point to the list of what should be rendered.">addPoint</a>(<span class="keyword">const</span> Vector3 &amp;p);
-<a name="l00087"></a>00087 <span class="comment"></span>
-<a name="l00088"></a>00088 <span class="comment">                /// @internal</span>
-<a name="l00089"></a>00089 <span class="comment">                /// @brief Access a specific point by index</span>
-<a name="l00090"></a>00090 <span class="comment">                /// @details This really does just access the underlying vector.</span>
-<a name="l00091"></a>00091 <span class="comment">                /// @return This Returns the specific Vector3 requested.</span>
-<a name="l00092"></a>00092 <span class="comment"></span>                <span class="keyword">const</span> Vector3 &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a190af0e38be28297ed2f6a7aecf0c316" title="Access a specific point by index.">getPoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index) <span class="keyword">const</span>;
-<a name="l00093"></a>00093 <span class="comment"></span>
-<a name="l00094"></a>00094 <span class="comment">                /// @internal</span>
-<a name="l00095"></a>00095 <span class="comment">                /// @brief How many points are in this Line3D.</span>
-<a name="l00096"></a>00096 <span class="comment">                /// @return This returns the amount of points stored in this class.</span>
-<a name="l00097"></a>00097 <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab72a9dab3a355035c24c15e4a737ea2f" title="How many points are in this Line3D.">getNumPoints</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
-<a name="l00098"></a>00098 <span class="comment"></span>
-<a name="l00099"></a>00099 <span class="comment">                /// @internal</span>
-<a name="l00100"></a>00100 <span class="comment">                /// @brief Change an existing point.</span>
-<a name="l00101"></a>00101 <span class="comment">                /// @details This replaces a point specified by index with a new point</span>
-<a name="l00102"></a>00102 <span class="comment">                /// @param index The index of the point to replace.</span>
-<a name="l00103"></a>00103 <span class="comment">                /// @param value A point to replace the existing point with</span>
-<a name="l00104"></a>00104 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a4b2dec1619e4456ab0cb034ad34eb9d1" title="Change an existing point.">updatePoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> Vector3 &amp;value);
-<a name="l00105"></a>00105 <span class="comment"></span>
-<a name="l00106"></a>00106 <span class="comment">                /// @internal</span>
-<a name="l00107"></a>00107 <span class="comment">                /// @brief Adds two points</span>
-<a name="l00108"></a>00108 <span class="comment">                /// @details This adds to points, to guarantee that a specific line segment is drawn.</span>
-<a name="l00109"></a>00109 <span class="comment">                /// @param start The first point to be added</span>
-<a name="l00110"></a>00110 <span class="comment">                /// @param end The first point to be added</span>
-<a name="l00111"></a>00111 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a0320e600b9f363036c63eb47527bb854" title="Adds two points.">drawLine</a>(Vector3 &amp;start, Vector3 &amp;end);
-<a name="l00112"></a>00112 <span class="comment"></span>
-<a name="l00113"></a>00113 <span class="comment">                /// @internal</span>
-<a name="l00114"></a>00114 <span class="comment">                /// @brief Renders this</span>
-<a name="l00115"></a>00115 <span class="comment">                /// @details This does the actual rendering.</span>
-<a name="l00116"></a>00116 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2" title="Renders this.">drawLines</a>(<span class="keywordtype">void</span>);        <span class="comment">//Render this</span>
-<a name="l00117"></a>00117 <span class="comment"></span>
-<a name="l00118"></a>00118 <span class="comment">                /// @internal</span>
-<a name="l00119"></a>00119 <span class="comment">                /// @brief Not Used</span>
-<a name="l00120"></a>00120 <span class="comment">                /// @details Not Used</span>
-<a name="l00121"></a>00121 <span class="comment">                /// @param cam Not Used</span>
-<a name="l00122"></a>00122 <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a04b77721c599bb368c791da7621fc814" title="Not Used.">getSquaredViewDepth</a>(<span class="keyword">const</span> Camera *cam) <span class="keyword">const</span>;
-<a name="l00123"></a>00123 <span class="comment"></span>
-<a name="l00124"></a>00124 <span class="comment">                /// @internal</span>
-<a name="l00125"></a>00125 <span class="comment">                /// @brief How big would a circle need to be to encapsulate this</span>
-<a name="l00126"></a>00126 <span class="comment">                /// @details This returns the radius the a circle would need to have to surround this line group.</span>
-<a name="l00127"></a>00127 <span class="comment">                /// @return This returns a real number which indicates the radius.</span>
-<a name="l00128"></a>00128 <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a3fdd0ff2b7b22cebc71f796431afc7c8" title="How big would a circle need to be to encapsulate this.">getBoundingRadius</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
-<a name="l00129"></a>00129             <span class="keyword">protected</span>:
-<a name="l00130"></a>00130                 <span class="comment">//void getWorldTransforms(Matrix4 *xform) const;</span><span class="comment"></span>
-<a name="l00131"></a>00131 <span class="comment">                /// @internal</span>
-<a name="l00132"></a>00132 <span class="comment">                /// @brief Gets how rotated this is currently</span>
-<a name="l00133"></a>00133 <span class="comment">                /// @details Returns a quaternion with the rotation</span>
-<a name="l00134"></a>00134 <span class="comment">                /// @return Is a Ogre::Quaternion which stores the rotation information of this Line3D</span>
-<a name="l00135"></a>00135 <span class="comment"></span>                <span class="keyword">const</span> Ogre::Quaternion &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a68aea39fc0eee3eeb744c5cd151ef209" title="Gets how rotated this is currently.">getWorldOrientation</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
-<a name="l00136"></a>00136 <span class="comment"></span>
-<a name="l00137"></a>00137 <span class="comment">                /// @internal</span>
-<a name="l00138"></a>00138 <span class="comment">                /// @brief Get the position of this Line3d</span>
-<a name="l00139"></a>00139 <span class="comment">                /// @return This returns a Vector3 with the Position relative to the world Origin</span>
-<a name="l00140"></a>00140 <span class="comment"></span>                <span class="keyword">const</span> Vector3 &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a2e81ac3696fedb22bd08688f7ecba2a8" title="Get the position of this Line3d.">getWorldPosition</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
-<a name="l00141"></a>00141 <span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">                /// @internal</span>
-<a name="l00143"></a>00143 <span class="comment">                /// @brief This is a vector which stores the point data</span>
-<a name="l00144"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e">00144</a> <span class="comment"></span>                std::vector&lt;Vector3&gt; <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>;
-<a name="l00145"></a>00145 <span class="comment"></span>
-<a name="l00146"></a>00146 <span class="comment">                /// @internal</span>
-<a name="l00147"></a>00147 <span class="comment">                /// @brief This indicates whether or not the the line have been done yet.</span>
-<a name="l00148"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a7f3a190db3c0cd83ff4fdf3d95d6f0ee">00148</a> <span class="comment"></span>                <span class="keywordtype">bool</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a7f3a190db3c0cd83ff4fdf3d95d6f0ee" title="This indicates whether or not the the line have been done yet.">mDrawn</a>;     <span class="comment">//Has this been rendered yet?</span>
-<a name="l00149"></a>00149         };
-<a name="l00150"></a>00150 
-<a name="l00151"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab22b8f5fae0bb2585b1031adfff424bd">00151</a>         <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab22b8f5fae0bb2585b1031adfff424bd" title="Default Constructor.">Line3D::Line3D</a>(<span class="keywordtype">void</span>)
-<a name="l00152"></a>00152         {
-<a name="l00153"></a>00153            mRenderOp.vertexData = <span class="keyword">new</span> VertexData();
-<a name="l00154"></a>00154            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a7f3a190db3c0cd83ff4fdf3d95d6f0ee" title="This indicates whether or not the the line have been done yet.">mDrawn</a> = <span class="keyword">false</span>;
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156            this-&gt;setMaterial(<span class="stringliteral">&quot;BaseWhiteNoLighting&quot;</span>);
-<a name="l00157"></a>00157         }
-<a name="l00158"></a>00158 
-<a name="l00159"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acddc95dd5f319d6afc68260af8bea39c">00159</a>         <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acddc95dd5f319d6afc68260af8bea39c" title="Destructor.">Line3D::~Line3D</a>(<span class="keywordtype">void</span>)
-<a name="l00160"></a>00160         {
-<a name="l00161"></a>00161            <span class="keyword">delete</span> mRenderOp.vertexData;
-<a name="l00162"></a>00162         }
-<a name="l00163"></a>00163 
-<a name="l00164"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#aeb3b828b35b4c8ed76158285be6ddc67">00164</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#aeb3b828b35b4c8ed76158285be6ddc67" title="This adds a point to the list of what should be rendered.">Line3D::addPoint</a>(<span class="keyword">const</span> Vector3 &amp;p)
-<a name="l00165"></a>00165         {
-<a name="l00166"></a>00166            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.push_back(p);
-<a name="l00167"></a>00167         }
-<a name="l00168"></a>00168 
-<a name="l00169"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a190af0e38be28297ed2f6a7aecf0c316">00169</a>         <span class="keyword">const</span> Vector3 &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a190af0e38be28297ed2f6a7aecf0c316" title="Access a specific point by index.">Line3D::getPoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index)<span class="keyword"> const</span>
-<a name="l00170"></a>00170 <span class="keyword">        </span>{
-<a name="l00171"></a>00171            assert(index &lt; <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size() &amp;&amp; <span class="stringliteral">&quot;Point index is out of bounds!!&quot;</span>);
-<a name="l00172"></a>00172 
-<a name="l00173"></a>00173            <span class="keywordflow">return</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[index];
-<a name="l00174"></a>00174         }
-<a name="l00175"></a>00175 
-<a name="l00176"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab72a9dab3a355035c24c15e4a737ea2f">00176</a>         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab72a9dab3a355035c24c15e4a737ea2f" title="How many points are in this Line3D.">Line3D::getNumPoints</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
-<a name="l00177"></a>00177 <span class="keyword">        </span>{
-<a name="l00178"></a>00178            <span class="keywordflow">return</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size();
-<a name="l00179"></a>00179         }
-<a name="l00180"></a>00180 
-<a name="l00181"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a4b2dec1619e4456ab0cb034ad34eb9d1">00181</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a4b2dec1619e4456ab0cb034ad34eb9d1" title="Change an existing point.">Line3D::updatePoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> Vector3 &amp;value)
-<a name="l00182"></a>00182         {
-<a name="l00183"></a>00183            assert(index &lt; <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size() &amp;&amp; <span class="stringliteral">&quot;Point index is out of bounds!!&quot;</span>);
-<a name="l00184"></a>00184 
-<a name="l00185"></a>00185            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[index] = value;
-<a name="l00186"></a>00186         }
-<a name="l00187"></a>00187 
-<a name="l00188"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a0320e600b9f363036c63eb47527bb854">00188</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a0320e600b9f363036c63eb47527bb854" title="Adds two points.">Line3D::drawLine</a>(Vector3 &amp;start, Vector3 &amp;end)
-<a name="l00189"></a>00189         {<span class="comment"></span>
-<a name="l00190"></a>00190 <span class="comment">           /// @todo TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen</span>
-<a name="l00191"></a>00191 <span class="comment"></span>           <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size())
-<a name="l00192"></a>00192               <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.clear();
-<a name="l00193"></a>00193 
-<a name="l00194"></a>00194            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.push_back(start);
-<a name="l00195"></a>00195            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.push_back(end);
-<a name="l00196"></a>00196 
-<a name="l00197"></a>00197            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2" title="Renders this.">drawLines</a>();
-<a name="l00198"></a>00198         }
-<a name="l00199"></a>00199 
-<a name="l00200"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2">00200</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2" title="Renders this.">Line3D::drawLines</a>(<span class="keywordtype">void</span>)
-<a name="l00201"></a>00201         {
-<a name="l00202"></a>00202             <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a7f3a190db3c0cd83ff4fdf3d95d6f0ee" title="This indicates whether or not the the line have been done yet.">mDrawn</a>)
-<a name="l00203"></a>00203                 <span class="keywordflow">return</span>;
-<a name="l00204"></a>00204             <span class="keywordflow">else</span>
-<a name="l00205"></a>00205                 <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a7f3a190db3c0cd83ff4fdf3d95d6f0ee" title="This indicates whether or not the the line have been done yet.">mDrawn</a> = <span class="keyword">true</span>;
-<a name="l00206"></a>00206 
-<a name="l00207"></a>00207             <span class="comment">// Initialization stuff</span>
-<a name="l00208"></a>00208             mRenderOp.indexData = 0;
-<a name="l00209"></a>00209             mRenderOp.vertexData-&gt;vertexCount = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size();
-<a name="l00210"></a>00210             mRenderOp.vertexData-&gt;vertexStart = 0;
-<a name="l00211"></a>00211             mRenderOp.operationType = RenderOperation::OT_LINE_STRIP; <span class="comment">// OT_LINE_LIST, OT_LINE_STRIP</span>
-<a name="l00212"></a>00212             mRenderOp.useIndexes = <span class="keyword">false</span>;
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214             VertexDeclaration *decl = mRenderOp.vertexData-&gt;vertexDeclaration;
-<a name="l00215"></a>00215             VertexBufferBinding *bind = mRenderOp.vertexData-&gt;vertexBufferBinding;
-<a name="l00216"></a>00216 
-<a name="l00217"></a>00217             decl-&gt;addElement(POSITION_BINDING, 0, VET_FLOAT3, VES_POSITION);
-<a name="l00218"></a>00218 
-<a name="l00219"></a>00219             HardwareVertexBufferSharedPtr vbuf =
-<a name="l00220"></a>00220               HardwareBufferManager::getSingleton().createVertexBuffer(
-<a name="l00221"></a>00221                  decl-&gt;getVertexSize(POSITION_BINDING),
-<a name="l00222"></a>00222                  mRenderOp.vertexData-&gt;vertexCount,
-<a name="l00223"></a>00223                  HardwareBuffer::HBU_STATIC_WRITE_ONLY);
-<a name="l00224"></a>00224 
-<a name="l00225"></a>00225             bind-&gt;setBinding(POSITION_BINDING, vbuf);
-<a name="l00226"></a>00226 
-<a name="l00227"></a>00227             <span class="comment">// Drawing stuff</span>
-<a name="l00228"></a>00228             <span class="keywordtype">int</span> size = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size();
-<a name="l00229"></a>00229             <span class="keywordflow">if</span>( size &gt; 0 )
-<a name="l00230"></a>00230             {
-<a name="l00231"></a>00231                Vector3 vaabMin = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[0];
-<a name="l00232"></a>00232                Vector3 vaabMax = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[0];
-<a name="l00233"></a>00233 
-<a name="l00234"></a>00234                <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> *prPos = <span class="keyword">static_cast&lt;</span><a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>*<span class="keyword">&gt;</span>(vbuf-&gt;lock(HardwareBuffer::HBL_DISCARD));
-<a name="l00235"></a>00235 
-<a name="l00236"></a>00236                <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
-<a name="l00237"></a>00237                {
-<a name="l00238"></a>00238                   *prPos++ = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].x;
-<a name="l00239"></a>00239                   *prPos++ = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].y;
-<a name="l00240"></a>00240                   *prPos++ = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].z;
-<a name="l00241"></a>00241 
-<a name="l00242"></a>00242                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].x &lt; vaabMin.x)
-<a name="l00243"></a>00243                      vaabMin.x = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].x;
-<a name="l00244"></a>00244                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].y &lt; vaabMin.y)
-<a name="l00245"></a>00245                      vaabMin.y = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].y;
-<a name="l00246"></a>00246                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].z &lt; vaabMin.z)
-<a name="l00247"></a>00247                      vaabMin.z = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].z;
-<a name="l00248"></a>00248 
-<a name="l00249"></a>00249                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].x &gt; vaabMax.x)
-<a name="l00250"></a>00250                      vaabMax.x = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].x;
-<a name="l00251"></a>00251                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].y &gt; vaabMax.y)
-<a name="l00252"></a>00252                      vaabMax.y = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].y;
-<a name="l00253"></a>00253                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].z &gt; vaabMax.z)
-<a name="l00254"></a>00254                      vaabMax.z = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].z;
-<a name="l00255"></a>00255                }
-<a name="l00256"></a>00256 
-<a name="l00257"></a>00257                vbuf-&gt;unlock();
-<a name="l00258"></a>00258 
-<a name="l00259"></a>00259                mBox.setExtents(vaabMin, vaabMax);
-<a name="l00260"></a>00260             }
-<a name="l00261"></a>00261 
-<a name="l00262"></a>00262         }
-<a name="l00263"></a>00263 
-<a name="l00264"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a04b77721c599bb368c791da7621fc814">00264</a>         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a04b77721c599bb368c791da7621fc814" title="Not Used.">Line3D::getSquaredViewDepth</a>(<span class="keyword">const</span> Camera *cam)<span class="keyword"> const</span>
-<a name="l00265"></a>00265 <span class="keyword">        </span>{
-<a name="l00266"></a>00266            Vector3 vMin, vMax, vMid, vDist;
-<a name="l00267"></a>00267            vMin = mBox.getMinimum();
-<a name="l00268"></a>00268            vMax = mBox.getMaximum();
-<a name="l00269"></a>00269            vMid = ((vMin - vMax) * 0.5) + vMin;
-<a name="l00270"></a>00270            vDist = cam-&gt;getDerivedPosition() - vMid;
-<a name="l00271"></a>00271 
-<a name="l00272"></a>00272            <span class="keywordflow">return</span> vDist.squaredLength();
-<a name="l00273"></a>00273         }
-<a name="l00274"></a>00274 
-<a name="l00275"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a3fdd0ff2b7b22cebc71f796431afc7c8">00275</a>         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a3fdd0ff2b7b22cebc71f796431afc7c8" title="How big would a circle need to be to encapsulate this.">Line3D::getBoundingRadius</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
-<a name="l00276"></a>00276 <span class="keyword">        </span>{
-<a name="l00277"></a>00277            <span class="keywordflow">return</span> Math::Sqrt(max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength()));
-<a name="l00278"></a>00278            <span class="comment">//return mRadius;</span>
-<a name="l00279"></a>00279         }
-<a name="l00280"></a>00280         <span class="comment">/*</span>
-<a name="l00281"></a>00281 <span class="comment">        void Line3D::getWorldTransforms(Matrix4 *xform) const</span>
-<a name="l00282"></a>00282 <span class="comment">        {</span>
-<a name="l00283"></a>00283 <span class="comment">           // return identity matrix to prevent parent transforms</span>
-<a name="l00284"></a>00284 <span class="comment">           *xform = Matrix4::IDENTITY;</span>
-<a name="l00285"></a>00285 <span class="comment">        }</span>
-<a name="l00286"></a>00286 <span class="comment">        */</span>
-<a name="l00287"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a68aea39fc0eee3eeb744c5cd151ef209">00287</a>         <span class="keyword">const</span> Ogre::Quaternion &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a68aea39fc0eee3eeb744c5cd151ef209" title="Gets how rotated this is currently.">Line3D::getWorldOrientation</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
-<a name="l00288"></a>00288 <span class="keyword">        </span>{
-<a name="l00289"></a>00289            <span class="keywordflow">return</span> Ogre::Quaternion::IDENTITY;
-<a name="l00290"></a>00290         }
-<a name="l00291"></a>00291 
-<a name="l00292"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a2e81ac3696fedb22bd08688f7ecba2a8">00292</a>         <span class="keyword">const</span> Vector3 &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a2e81ac3696fedb22bd08688f7ecba2a8" title="Get the position of this Line3d.">Line3D::getWorldPosition</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
-<a name="l00293"></a>00293 <span class="keyword">        </span>{
-<a name="l00294"></a>00294            <span class="keywordflow">return</span> Vector3::ZERO;
-<a name="l00295"></a>00295         }
-<a name="l00296"></a>00296     }<span class="comment">// /internal</span>
-<a name="l00297"></a>00297 
-<a name="l00298"></a>00298 <span class="comment"></span>
-<a name="l00299"></a>00299 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00300"></a>00300 <span class="comment"></span><span class="comment">// phys::LineGroup</span><span class="comment"></span>
-<a name="l00301"></a>00301 <span class="comment">///////////////////////////////////////</span>
-<a name="l00302"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a676039a6beec56d24c631e9da5fd7e76">00302</a> <span class="comment"></span>    <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a676039a6beec56d24c631e9da5fd7e76" title="Basic Constructor.">LineGroup::LineGroup</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *Parent_)
-<a name="l00303"></a>00303     {
-<a name="l00304"></a>00304         this-&gt;Parent = Parent_;
-<a name="l00305"></a>00305         this-&gt;LineData = <span class="keyword">new</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html" title="Does the bulk of the work that that the phys::LineGroup performs.">internal::Line3D</a>();
-<a name="l00306"></a>00306     }
-<a name="l00307"></a>00307 
-<a name="l00308"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a0ddd66bc946dd266e3b666c8101ea7f8">00308</a>     <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a0ddd66bc946dd266e3b666c8101ea7f8" title="Default Destructor.">LineGroup::~LineGroup</a>(<span class="keywordtype">void</span>)
-<a name="l00309"></a>00309     {
-<a name="l00310"></a>00310         <span class="keyword">delete</span> this-&gt;LineData;
-<a name="l00311"></a>00311     }
-<a name="l00312"></a>00312 
-<a name="l00313"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a550582bde23059645b5966a384734131">00313</a>     <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a550582bde23059645b5966a384734131" title="This add Either a start pointing, or a line segment to the next point.">LineGroup::addPoint</a>(<span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;p)
-<a name="l00314"></a>00314     {
-<a name="l00315"></a>00315         this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#aeb3b828b35b4c8ed76158285be6ddc67" title="This adds a point to the list of what should be rendered.">addPoint</a>( p.<a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00316"></a>00316     }
-<a name="l00317"></a>00317 
-<a name="l00318"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a16d15a03eab7029344fa73c1dfd7ca43">00318</a>     <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a16d15a03eab7029344fa73c1dfd7ca43" title="Access points by order they were added.">LineGroup::getPoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index)<span class="keyword"> const</span>
-<a name="l00319"></a>00319 <span class="keyword">    </span>{
-<a name="l00320"></a>00320         <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> temp(this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a190af0e38be28297ed2f6a7aecf0c316" title="Access a specific point by index.">getPoint</a>(index));
-<a name="l00321"></a>00321         <span class="keywordflow">return</span> temp;
-<a name="l00322"></a>00322     }
-<a name="l00323"></a>00323 
-<a name="l00324"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a32e14111a18318fd17aa503b1d3cfe8c">00324</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a32e14111a18318fd17aa503b1d3cfe8c" title="Get the amount of points used to define Line Segments.">LineGroup::getNumPoints</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
-<a name="l00325"></a>00325 <span class="keyword">    </span>{
-<a name="l00326"></a>00326         <span class="keywordflow">return</span> this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab72a9dab3a355035c24c15e4a737ea2f" title="How many points are in this Line3D.">getNumPoints</a>();
-<a name="l00327"></a>00327     }
-<a name="l00328"></a>00328 
-<a name="l00329"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a180c18bd979019c39a44c9c20b0e1f13">00329</a>     <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a180c18bd979019c39a44c9c20b0e1f13" title="This changes a specific point.">LineGroup::updatePoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;value)
-<a name="l00330"></a>00330     {
-<a name="l00331"></a>00331         <span class="keywordflow">return</span> this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a4b2dec1619e4456ab0cb034ad34eb9d1" title="Change an existing point.">updatePoint</a>(index, value.<a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00332"></a>00332     }
-<a name="l00333"></a>00333 
-<a name="l00334"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#aed46446e634948f8c73a5b26406cb5af">00334</a>     <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#aed46446e634948f8c73a5b26406cb5af" title="This adds Two points to the list.">LineGroup::drawLine</a>(<span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;start, <span class="keyword">const</span> <a class="code" href="../../da/d11/classPhysVector3.html">PhysVector3</a> &amp;end)
-<a name="l00335"></a>00335     {
-<a name="l00336"></a>00336         Ogre::Vector3 Ostart = start.<a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>();
-<a name="l00337"></a>00337         Ogre::Vector3 Oend = end.<a class="code" href="../../da/d11/classPhysVector3.html#a11bb925270d1fa86620e1ad080c507db" title="Gets a Ogre vector3.">GetOgreVector3</a>();
-<a name="l00338"></a>00338         this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a0320e600b9f363036c63eb47527bb854" title="Adds two points.">drawLine</a>(Ostart, Oend );
-<a name="l00339"></a>00339     }
-<a name="l00340"></a>00340 
-<a name="l00341"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ade1bb4f8e1164e1b8d7aeabbc970b79d">00341</a>     <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ade1bb4f8e1164e1b8d7aeabbc970b79d" title="Renders the line segment chain.">LineGroup::drawLines</a>(<span class="keywordtype">void</span>)
-<a name="l00342"></a>00342     {
-<a name="l00343"></a>00343         this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2" title="Renders this.">drawLines</a>();
-<a name="l00344"></a>00344     }
-<a name="l00345"></a>00345 
-<a name="l00346"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a9dbbd74f5256ee67454ef6ede752dc32">00346</a>     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a9dbbd74f5256ee67454ef6ede752dc32" title="How big would a circle need to be to encapsulate this.">LineGroup::getBoundingRadius</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
-<a name="l00347"></a>00347 <span class="keyword">    </span>{
-<a name="l00348"></a>00348         <span class="keywordflow">return</span> this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a3fdd0ff2b7b22cebc71f796431afc7c8" title="How big would a circle need to be to encapsulate this.">getBoundingRadius</a>();
-<a name="l00349"></a>00349     }
-<a name="l00350"></a>00350 
-<a name="l00351"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ab8d5c3c91dd16008429cc4cafed7f42f">00351</a>     <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ab8d5c3c91dd16008429cc4cafed7f42f" title="This assists in the rendering process.">LineGroup::PrepareForRendering</a>()
-<a name="l00352"></a>00352     {
-<a name="l00353"></a>00353         SceneNode *myNode = this-&gt;Parent-&gt;OgreSceneManager-&gt;getRootSceneNode()-&gt;createChildSceneNode();
-<a name="l00354"></a>00354         myNode-&gt;attachObject(this-&gt;LineData);
-<a name="l00355"></a>00355     }
-<a name="l00356"></a>00356 }
-<a name="l00357"></a>00357 
-<a name="l00358"></a>00358 <span class="preprocessor">#endif</span>
+<a name="l00049"></a>00049 <span class="keyword">using namespace </span>std;
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="preprocessor">#define POSITION_BINDING 0</span>
+<a name="l00052"></a>00052 <span class="preprocessor"></span><span class="preprocessor">#define TEXCOORD_BINDING 1</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span>
+<a name="l00054"></a>00054 <span class="keyword">namespace </span>phys
+<a name="l00055"></a>00055 {
+<a name="l00056"></a>00056 <span class="comment"></span>
+<a name="l00057"></a>00057 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00058"></a>00058 <span class="comment"></span><span class="comment">// phys::internal::Line3D</span><span class="comment"></span>
+<a name="l00059"></a>00059 <span class="comment">///////////////////////////////////////</span>
+<a name="l00060"></a>00060 <span class="comment"></span>
+<a name="l00061"></a>00061     <span class="comment">//We need to decalare an internal class to make this work.</span>
+<a name="l00062"></a>00062     <span class="keyword">namespace </span>internal
+<a name="l00063"></a>00063     {<span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">        /// @internal</span>
+<a name="l00065"></a>00065 <span class="comment">        /// @brief Does the bulk of the work that that the phys::LineGroup performs</span>
+<a name="l00066"></a>00066 <span class="comment">        /// @details phys::LineGroup is a simple wrapper around this to perform precise</span>
+<a name="l00067"></a>00067 <span class="comment">        /// low level interactions with Ogre, the rendering subsystem. This uses too much stuff</span>
+<a name="l00068"></a>00068 <span class="comment">        /// from ogre to use publicly. so we need to hide it here in the phys::internal namespace.</span>
+<a name="l00069"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html">00069</a> <span class="comment"></span>        <span class="keyword">class </span><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html" title="Does the bulk of the work that that the phys::LineGroup performs.">Line3D</a>: <span class="keyword">public</span> Ogre::SimpleRenderable
+<a name="l00070"></a>00070         {
+<a name="l00071"></a>00071             <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00072"></a>00072 <span class="comment">                /// @internal</span>
+<a name="l00073"></a>00073 <span class="comment">                /// @brief Default Constructor</span>
+<a name="l00074"></a>00074 <span class="comment">                /// @details This creates an empty Line3D.</span>
+<a name="l00075"></a>00075 <span class="comment"></span>                <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab22b8f5fae0bb2585b1031adfff424bd" title="Default Constructor.">Line3D</a>(<span class="keywordtype">void</span>);
+<a name="l00076"></a>00076 <span class="comment"></span>
+<a name="l00077"></a>00077 <span class="comment">                /// @internal</span>
+<a name="l00078"></a>00078 <span class="comment">                /// @brief Destructor</span>
+<a name="l00079"></a>00079 <span class="comment">                /// @details This safely tears down the Line3D.</span>
+<a name="l00080"></a>00080 <span class="comment"></span>                <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acddc95dd5f319d6afc68260af8bea39c" title="Destructor.">~Line3D</a>(<span class="keywordtype">void</span>);
+<a name="l00081"></a>00081 <span class="comment"></span>
+<a name="l00082"></a>00082 <span class="comment">                /// @internal</span>
+<a name="l00083"></a>00083 <span class="comment">                /// @brief This adds a point to the list of what should be rendered.</span>
+<a name="l00084"></a>00084 <span class="comment">                /// @param p The point to be added.</span>
+<a name="l00085"></a>00085 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#aeb3b828b35b4c8ed76158285be6ddc67" title="This adds a point to the list of what should be rendered.">addPoint</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;p);
+<a name="l00086"></a>00086 <span class="comment"></span>
+<a name="l00087"></a>00087 <span class="comment">                /// @internal</span>
+<a name="l00088"></a>00088 <span class="comment">                /// @brief Access a specific point by index</span>
+<a name="l00089"></a>00089 <span class="comment">                /// @details This really does just access the underlying vector.</span>
+<a name="l00090"></a>00090 <span class="comment">                /// @return This Returns the specific Vector3 requested.</span>
+<a name="l00091"></a>00091 <span class="comment"></span>                <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a190af0e38be28297ed2f6a7aecf0c316" title="Access a specific point by index.">getPoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index) <span class="keyword">const</span>;
+<a name="l00092"></a>00092 <span class="comment"></span>
+<a name="l00093"></a>00093 <span class="comment">                /// @internal</span>
+<a name="l00094"></a>00094 <span class="comment">                /// @brief How many points are in this Line3D.</span>
+<a name="l00095"></a>00095 <span class="comment">                /// @return This returns the amount of points stored in this class.</span>
+<a name="l00096"></a>00096 <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab72a9dab3a355035c24c15e4a737ea2f" title="How many points are in this Line3D.">getNumPoints</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00097"></a>00097 <span class="comment"></span>
+<a name="l00098"></a>00098 <span class="comment">                /// @internal</span>
+<a name="l00099"></a>00099 <span class="comment">                /// @brief Change an existing point.</span>
+<a name="l00100"></a>00100 <span class="comment">                /// @details This replaces a point specified by index with a new point</span>
+<a name="l00101"></a>00101 <span class="comment">                /// @param index The index of the point to replace.</span>
+<a name="l00102"></a>00102 <span class="comment">                /// @param value A point to replace the existing point with</span>
+<a name="l00103"></a>00103 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a4b2dec1619e4456ab0cb034ad34eb9d1" title="Change an existing point.">updatePoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;value);
+<a name="l00104"></a>00104 <span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">                /// @internal</span>
+<a name="l00106"></a>00106 <span class="comment">                /// @brief Adds two points</span>
+<a name="l00107"></a>00107 <span class="comment">                /// @details This adds to points, to guarantee that a specific line segment is drawn.</span>
+<a name="l00108"></a>00108 <span class="comment">                /// @param start The first point to be added</span>
+<a name="l00109"></a>00109 <span class="comment">                /// @param end The first point to be added</span>
+<a name="l00110"></a>00110 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a31bf19dc06547cbe042e1ddfbcf672f3" title="Adds two points.">drawLine</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;start, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;end);
+<a name="l00111"></a>00111 <span class="comment"></span>
+<a name="l00112"></a>00112 <span class="comment">                /// @internal</span>
+<a name="l00113"></a>00113 <span class="comment">                /// @brief Renders this</span>
+<a name="l00114"></a>00114 <span class="comment">                /// @details This does the actual rendering.</span>
+<a name="l00115"></a>00115 <span class="comment"></span>                <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2" title="Renders this.">drawLines</a>(<span class="keywordtype">void</span>);        <span class="comment">//Render this</span>
+<a name="l00116"></a>00116 <span class="comment"></span>
+<a name="l00117"></a>00117 <span class="comment">                /// @internal</span>
+<a name="l00118"></a>00118 <span class="comment">                /// @brief Not Used</span>
+<a name="l00119"></a>00119 <span class="comment">                /// @details Not Used</span>
+<a name="l00120"></a>00120 <span class="comment">                /// @param cam Not Used</span>
+<a name="l00121"></a>00121 <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a5d2622c10ef432e84cad59634dcee340" title="Not Used.">getSquaredViewDepth</a>(<span class="keyword">const</span> Ogre::Camera *cam) <span class="keyword">const</span>;
+<a name="l00122"></a>00122 <span class="comment"></span>
+<a name="l00123"></a>00123 <span class="comment">                /// @internal</span>
+<a name="l00124"></a>00124 <span class="comment">                /// @brief How big would a circle need to be to encapsulate this</span>
+<a name="l00125"></a>00125 <span class="comment">                /// @details This returns the radius the a circle would need to have to surround this line group.</span>
+<a name="l00126"></a>00126 <span class="comment">                /// @return This returns a real number which indicates the radius.</span>
+<a name="l00127"></a>00127 <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a3fdd0ff2b7b22cebc71f796431afc7c8" title="How big would a circle need to be to encapsulate this.">getBoundingRadius</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00128"></a>00128             <span class="keyword">protected</span>:
+<a name="l00129"></a>00129                 <span class="comment">//void getWorldTransforms(Matrix4 *xform) const;</span><span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">                /// @internal</span>
+<a name="l00131"></a>00131 <span class="comment">                /// @brief Gets how rotated this is currently</span>
+<a name="l00132"></a>00132 <span class="comment">                /// @details Returns a quaternion with the rotation</span>
+<a name="l00133"></a>00133 <span class="comment">                /// @return Is a Ogre::Quaternion which stores the rotation information of this Line3D</span>
+<a name="l00134"></a>00134 <span class="comment"></span>                <span class="keyword">const</span> Ogre::Quaternion &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a68aea39fc0eee3eeb744c5cd151ef209" title="Gets how rotated this is currently.">getWorldOrientation</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00135"></a>00135 <span class="comment"></span>
+<a name="l00136"></a>00136 <span class="comment">                /// @internal</span>
+<a name="l00137"></a>00137 <span class="comment">                /// @brief Get the position of this Line3d</span>
+<a name="l00138"></a>00138 <span class="comment">                /// @return This returns a Vector3 with the Position relative to the world Origin</span>
+<a name="l00139"></a>00139 <span class="comment"></span>                <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a5bf47edcb7d369718c40c56d9db11b29" title="Get the position of this Line3d.">getWorldPosition</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;
+<a name="l00140"></a>00140 <span class="comment"></span>
+<a name="l00141"></a>00141 <span class="comment">                /// @internal</span>
+<a name="l00142"></a>00142 <span class="comment">                /// @brief This is a vector which stores the point data</span>
+<a name="l00143"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e">00143</a> <span class="comment"></span>                std::vector&lt;Vector3&gt; <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>;
+<a name="l00144"></a>00144 <span class="comment"></span>
+<a name="l00145"></a>00145 <span class="comment">                /// @internal</span>
+<a name="l00146"></a>00146 <span class="comment">                /// @brief This indicates whether or not the the line have been done yet.</span>
+<a name="l00147"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a7f3a190db3c0cd83ff4fdf3d95d6f0ee">00147</a> <span class="comment"></span>                <span class="keywordtype">bool</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a7f3a190db3c0cd83ff4fdf3d95d6f0ee" title="This indicates whether or not the the line have been done yet.">mDrawn</a>;     <span class="comment">//Has this been rendered yet?</span>
+<a name="l00148"></a>00148         };
+<a name="l00149"></a>00149 
+<a name="l00150"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab22b8f5fae0bb2585b1031adfff424bd">00150</a>         <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab22b8f5fae0bb2585b1031adfff424bd" title="Default Constructor.">Line3D::Line3D</a>(<span class="keywordtype">void</span>)
+<a name="l00151"></a>00151         {
+<a name="l00152"></a>00152            mRenderOp.vertexData = <span class="keyword">new</span> Ogre::VertexData();
+<a name="l00153"></a>00153            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a7f3a190db3c0cd83ff4fdf3d95d6f0ee" title="This indicates whether or not the the line have been done yet.">mDrawn</a> = <span class="keyword">false</span>;
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155            this-&gt;setMaterial(<span class="stringliteral">&quot;BaseWhiteNoLighting&quot;</span>);
+<a name="l00156"></a>00156         }
+<a name="l00157"></a>00157 
+<a name="l00158"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acddc95dd5f319d6afc68260af8bea39c">00158</a>         <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acddc95dd5f319d6afc68260af8bea39c" title="Destructor.">Line3D::~Line3D</a>(<span class="keywordtype">void</span>)
+<a name="l00159"></a>00159         {
+<a name="l00160"></a>00160            <span class="keyword">delete</span> mRenderOp.vertexData;
+<a name="l00161"></a>00161         }
+<a name="l00162"></a>00162 
+<a name="l00163"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#aeb3b828b35b4c8ed76158285be6ddc67">00163</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#aeb3b828b35b4c8ed76158285be6ddc67" title="This adds a point to the list of what should be rendered.">Line3D::addPoint</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;p)
+<a name="l00164"></a>00164         {
+<a name="l00165"></a>00165            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.push_back(p);
+<a name="l00166"></a>00166         }
+<a name="l00167"></a>00167 
+<a name="l00168"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a190af0e38be28297ed2f6a7aecf0c316">00168</a>         <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a190af0e38be28297ed2f6a7aecf0c316" title="Access a specific point by index.">Line3D::getPoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index)<span class="keyword"> const</span>
+<a name="l00169"></a>00169 <span class="keyword">        </span>{
+<a name="l00170"></a>00170            assert(index &lt; <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size() &amp;&amp; <span class="stringliteral">&quot;Point index is out of bounds!!&quot;</span>);
+<a name="l00171"></a>00171 
+<a name="l00172"></a>00172            <span class="keywordflow">return</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[index];
+<a name="l00173"></a>00173         }
+<a name="l00174"></a>00174 
+<a name="l00175"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab72a9dab3a355035c24c15e4a737ea2f">00175</a>         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab72a9dab3a355035c24c15e4a737ea2f" title="How many points are in this Line3D.">Line3D::getNumPoints</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
+<a name="l00176"></a>00176 <span class="keyword">        </span>{
+<a name="l00177"></a>00177            <span class="keywordflow">return</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size();
+<a name="l00178"></a>00178         }
+<a name="l00179"></a>00179 
+<a name="l00180"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a4b2dec1619e4456ab0cb034ad34eb9d1">00180</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a4b2dec1619e4456ab0cb034ad34eb9d1" title="Change an existing point.">Line3D::updatePoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;value)
+<a name="l00181"></a>00181         {
+<a name="l00182"></a>00182            assert(index &lt; <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size() &amp;&amp; <span class="stringliteral">&quot;Point index is out of bounds!!&quot;</span>);
+<a name="l00183"></a>00183 
+<a name="l00184"></a>00184            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[index] = value;
+<a name="l00185"></a>00185         }
+<a name="l00186"></a>00186 
+<a name="l00187"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a31bf19dc06547cbe042e1ddfbcf672f3">00187</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a31bf19dc06547cbe042e1ddfbcf672f3" title="Adds two points.">Line3D::drawLine</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;start, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;end)
+<a name="l00188"></a>00188         {<span class="comment"></span>
+<a name="l00189"></a>00189 <span class="comment">           /// @todo TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen</span>
+<a name="l00190"></a>00190 <span class="comment"></span>           <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size())
+<a name="l00191"></a>00191               <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.clear();
+<a name="l00192"></a>00192 
+<a name="l00193"></a>00193            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.push_back(start);
+<a name="l00194"></a>00194            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.push_back(end);
+<a name="l00195"></a>00195 
+<a name="l00196"></a>00196            <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2" title="Renders this.">drawLines</a>();
+<a name="l00197"></a>00197         }
+<a name="l00198"></a>00198 
+<a name="l00199"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2">00199</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2" title="Renders this.">Line3D::drawLines</a>(<span class="keywordtype">void</span>)
+<a name="l00200"></a>00200         {
+<a name="l00201"></a>00201             <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a7f3a190db3c0cd83ff4fdf3d95d6f0ee" title="This indicates whether or not the the line have been done yet.">mDrawn</a>)
+<a name="l00202"></a>00202                 <span class="keywordflow">return</span>;
+<a name="l00203"></a>00203             <span class="keywordflow">else</span>
+<a name="l00204"></a>00204                 <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a7f3a190db3c0cd83ff4fdf3d95d6f0ee" title="This indicates whether or not the the line have been done yet.">mDrawn</a> = <span class="keyword">true</span>;
+<a name="l00205"></a>00205 
+<a name="l00206"></a>00206             <span class="comment">// Initialization stuff</span>
+<a name="l00207"></a>00207             mRenderOp.indexData = 0;
+<a name="l00208"></a>00208             mRenderOp.vertexData-&gt;vertexCount = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size();
+<a name="l00209"></a>00209             mRenderOp.vertexData-&gt;vertexStart = 0;
+<a name="l00210"></a>00210             mRenderOp.operationType = Ogre::RenderOperation::OT_LINE_STRIP; <span class="comment">// OT_LINE_LIST, OT_LINE_STRIP</span>
+<a name="l00211"></a>00211             mRenderOp.useIndexes = <span class="keyword">false</span>;
+<a name="l00212"></a>00212 
+<a name="l00213"></a>00213             Ogre::VertexDeclaration *decl = mRenderOp.vertexData-&gt;vertexDeclaration;
+<a name="l00214"></a>00214             Ogre::VertexBufferBinding *bind = mRenderOp.vertexData-&gt;vertexBufferBinding;
+<a name="l00215"></a>00215 
+<a name="l00216"></a>00216             decl-&gt;addElement(POSITION_BINDING, 0, Ogre::VET_FLOAT3, Ogre::VES_POSITION);
+<a name="l00217"></a>00217 
+<a name="l00218"></a>00218             Ogre::HardwareVertexBufferSharedPtr vbuf =
+<a name="l00219"></a>00219               Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+<a name="l00220"></a>00220                  decl-&gt;getVertexSize(POSITION_BINDING),
+<a name="l00221"></a>00221                  mRenderOp.vertexData-&gt;vertexCount,
+<a name="l00222"></a>00222                  Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY);
+<a name="l00223"></a>00223 
+<a name="l00224"></a>00224             bind-&gt;setBinding(POSITION_BINDING, vbuf);
+<a name="l00225"></a>00225 
+<a name="l00226"></a>00226             <span class="comment">// Drawing stuff</span>
+<a name="l00227"></a>00227             <span class="keywordtype">int</span> size = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>.size();
+<a name="l00228"></a>00228             <span class="keywordflow">if</span>( size &gt; 0 )
+<a name="l00229"></a>00229             {
+<a name="l00230"></a>00230                <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> vaabMin = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[0];
+<a name="l00231"></a>00231                <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> vaabMax = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[0];
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233                <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> *prPos = <span class="keyword">static_cast&lt;</span><a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>*<span class="keyword">&gt;</span>(vbuf-&gt;lock(Ogre::HardwareBuffer::HBL_DISCARD));
+<a name="l00234"></a>00234 
+<a name="l00235"></a>00235                <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; size; i++)
+<a name="l00236"></a>00236                {
+<a name="l00237"></a>00237                   *prPos++ = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].X;
+<a name="l00238"></a>00238                   *prPos++ = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].Y;
+<a name="l00239"></a>00239                   *prPos++ = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].Z;
+<a name="l00240"></a>00240 
+<a name="l00241"></a>00241                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].X &lt; vaabMin.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>)
+<a name="l00242"></a>00242                      vaabMin.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].X;
+<a name="l00243"></a>00243                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].Y &lt; vaabMin.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>)
+<a name="l00244"></a>00244                      vaabMin.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].Y;
+<a name="l00245"></a>00245                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].Z &lt; vaabMin.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>)
+<a name="l00246"></a>00246                      vaabMin.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a> = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].Z;
+<a name="l00247"></a>00247 
+<a name="l00248"></a>00248                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].X &gt; vaabMax.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>)
+<a name="l00249"></a>00249                      vaabMax.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].X;
+<a name="l00250"></a>00250                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].Y &gt; vaabMax.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>)
+<a name="l00251"></a>00251                      vaabMax.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].Y;
+<a name="l00252"></a>00252                   <span class="keywordflow">if</span>(<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].Z &gt; vaabMax.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>)
+<a name="l00253"></a>00253                      vaabMax.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a> = <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#acb6b813e2d713dbad02fe5a5ca1af97e" title="This is a vector which stores the point data.">mPoints</a>[i].Z;
+<a name="l00254"></a>00254                }
+<a name="l00255"></a>00255 
+<a name="l00256"></a>00256                vbuf-&gt;unlock();
+<a name="l00257"></a>00257 
+<a name="l00258"></a>00258                mBox.setExtents(vaabMin.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>(), vaabMax.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00259"></a>00259             }
+<a name="l00260"></a>00260 
+<a name="l00261"></a>00261         }
+<a name="l00262"></a>00262 
+<a name="l00263"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a5d2622c10ef432e84cad59634dcee340">00263</a>         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a5d2622c10ef432e84cad59634dcee340" title="Not Used.">Line3D::getSquaredViewDepth</a>(<span class="keyword">const</span> Ogre::Camera *cam)<span class="keyword"> const</span>
+<a name="l00264"></a>00264 <span class="keyword">        </span>{
+<a name="l00265"></a>00265            Ogre::Vector3 vMin, vMax, vMid, vDist;
+<a name="l00266"></a>00266            vMin = mBox.getMinimum();
+<a name="l00267"></a>00267            vMax = mBox.getMaximum();
+<a name="l00268"></a>00268            vMid = ((vMin - vMax) * 0.5) + vMin;
+<a name="l00269"></a>00269            vDist = cam-&gt;getDerivedPosition() - vMid;
+<a name="l00270"></a>00270 
+<a name="l00271"></a>00271            <span class="keywordflow">return</span> vDist.squaredLength();
+<a name="l00272"></a>00272         }
+<a name="l00273"></a>00273 
+<a name="l00274"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a3fdd0ff2b7b22cebc71f796431afc7c8">00274</a>         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a3fdd0ff2b7b22cebc71f796431afc7c8" title="How big would a circle need to be to encapsulate this.">Line3D::getBoundingRadius</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
+<a name="l00275"></a>00275 <span class="keyword">        </span>{
+<a name="l00276"></a>00276            <span class="keywordflow">return</span> Ogre::Math::Sqrt(max(mBox.getMaximum().squaredLength(), mBox.getMinimum().squaredLength()));
+<a name="l00277"></a>00277            <span class="comment">//return mRadius;</span>
+<a name="l00278"></a>00278         }
+<a name="l00279"></a>00279         <span class="comment">/*</span>
+<a name="l00280"></a>00280 <span class="comment">        void Line3D::getWorldTransforms(Matrix4 *xform) const</span>
+<a name="l00281"></a>00281 <span class="comment">        {</span>
+<a name="l00282"></a>00282 <span class="comment">           // return identity matrix to prevent parent transforms</span>
+<a name="l00283"></a>00283 <span class="comment">           *xform = Matrix4::IDENTITY;</span>
+<a name="l00284"></a>00284 <span class="comment">        }</span>
+<a name="l00285"></a>00285 <span class="comment">        */</span>
+<a name="l00286"></a><a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a68aea39fc0eee3eeb744c5cd151ef209">00286</a>         <span class="keyword">const</span> Ogre::Quaternion &amp;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a68aea39fc0eee3eeb744c5cd151ef209" title="Gets how rotated this is currently.">Line3D::getWorldOrientation</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
+<a name="l00287"></a>00287 <span class="keyword">        </span>{
+<a name="l00288"></a>00288            <span class="keywordflow">return</span> Ogre::Quaternion::IDENTITY;
+<a name="l00289"></a>00289         }
+<a name="l00290"></a>00290 
+<a name="l00291"></a>00291         <span class="comment">/*const Vector3 &amp;Line3D::getWorldPosition(void) const</span>
+<a name="l00292"></a>00292 <span class="comment">        {</span>
+<a name="l00293"></a>00293 <span class="comment">           return Vector3::ZERO;</span>
+<a name="l00294"></a>00294 <span class="comment">        }*/</span>
+<a name="l00295"></a>00295     }<span class="comment">// /internal</span>
+<a name="l00296"></a>00296 
+<a name="l00297"></a>00297 <span class="comment"></span>
+<a name="l00298"></a>00298 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00299"></a>00299 <span class="comment"></span><span class="comment">// phys::LineGroup</span><span class="comment"></span>
+<a name="l00300"></a>00300 <span class="comment">///////////////////////////////////////</span>
+<a name="l00301"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a676039a6beec56d24c631e9da5fd7e76">00301</a> <span class="comment"></span>    <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a676039a6beec56d24c631e9da5fd7e76" title="Basic Constructor.">LineGroup::LineGroup</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *Parent_)
+<a name="l00302"></a>00302     {
+<a name="l00303"></a>00303         this-&gt;Parent = Parent_;
+<a name="l00304"></a>00304         this-&gt;LineData = <span class="keyword">new</span> <a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html" title="Does the bulk of the work that that the phys::LineGroup performs.">internal::Line3D</a>();
+<a name="l00305"></a>00305     }
+<a name="l00306"></a>00306 
+<a name="l00307"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a0ddd66bc946dd266e3b666c8101ea7f8">00307</a>     <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a0ddd66bc946dd266e3b666c8101ea7f8" title="Default Destructor.">LineGroup::~LineGroup</a>(<span class="keywordtype">void</span>)
+<a name="l00308"></a>00308     {
+<a name="l00309"></a>00309         <span class="keyword">delete</span> this-&gt;LineData;
+<a name="l00310"></a>00310     }
+<a name="l00311"></a>00311 
+<a name="l00312"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a042a8facc505866f619cfc043a820f03">00312</a>     <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a042a8facc505866f619cfc043a820f03" title="This add Either a start pointing, or a line segment to the next point.">LineGroup::addPoint</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;p)
+<a name="l00313"></a>00313     {
+<a name="l00314"></a>00314         this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#aeb3b828b35b4c8ed76158285be6ddc67" title="This adds a point to the list of what should be rendered.">addPoint</a>( p.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00315"></a>00315     }
+<a name="l00316"></a>00316 
+<a name="l00317"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a960e1ceba7e9804b7906f8618f869202">00317</a>     <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a960e1ceba7e9804b7906f8618f869202" title="Access points by order they were added.">LineGroup::getPoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index)<span class="keyword"> const</span>
+<a name="l00318"></a>00318 <span class="keyword">    </span>{
+<a name="l00319"></a>00319         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> temp(this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a190af0e38be28297ed2f6a7aecf0c316" title="Access a specific point by index.">getPoint</a>(index));
+<a name="l00320"></a>00320         <span class="keywordflow">return</span> temp;
+<a name="l00321"></a>00321     }
+<a name="l00322"></a>00322 
+<a name="l00323"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a32e14111a18318fd17aa503b1d3cfe8c">00323</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a32e14111a18318fd17aa503b1d3cfe8c" title="Get the amount of points used to define Line Segments.">LineGroup::getNumPoints</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
+<a name="l00324"></a>00324 <span class="keyword">    </span>{
+<a name="l00325"></a>00325         <span class="keywordflow">return</span> this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#ab72a9dab3a355035c24c15e4a737ea2f" title="How many points are in this Line3D.">getNumPoints</a>();
+<a name="l00326"></a>00326     }
+<a name="l00327"></a>00327 
+<a name="l00328"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a3d98d0eb4fd15ac136d4649913dd80c8">00328</a>     <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a3d98d0eb4fd15ac136d4649913dd80c8" title="This changes a specific point.">LineGroup::updatePoint</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> index, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;value)
+<a name="l00329"></a>00329     {
+<a name="l00330"></a>00330         <span class="keywordflow">return</span> this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a4b2dec1619e4456ab0cb034ad34eb9d1" title="Change an existing point.">updatePoint</a>(index, value.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00331"></a>00331     }
+<a name="l00332"></a>00332 
+<a name="l00333"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a141db62ea17d94b9bce421e5df5a8d89">00333</a>     <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a141db62ea17d94b9bce421e5df5a8d89" title="This adds Two points to the list.">LineGroup::drawLine</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;start, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;end)
+<a name="l00334"></a>00334     {
+<a name="l00335"></a>00335         <span class="comment">//Ogre::Vector3 Ostart = start.GetOgreVector3();</span>
+<a name="l00336"></a>00336         <span class="comment">//Ogre::Vector3 Oend = end.GetOgreVector3();</span>
+<a name="l00337"></a>00337         this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a31bf19dc06547cbe042e1ddfbcf672f3" title="Adds two points.">drawLine</a>(start, end);
+<a name="l00338"></a>00338     }
+<a name="l00339"></a>00339 
+<a name="l00340"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ade1bb4f8e1164e1b8d7aeabbc970b79d">00340</a>     <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ade1bb4f8e1164e1b8d7aeabbc970b79d" title="Renders the line segment chain.">LineGroup::drawLines</a>(<span class="keywordtype">void</span>)
+<a name="l00341"></a>00341     {
+<a name="l00342"></a>00342         this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2" title="Renders this.">drawLines</a>();
+<a name="l00343"></a>00343     }
+<a name="l00344"></a>00344 
+<a name="l00345"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a9dbbd74f5256ee67454ef6ede752dc32">00345</a>     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#a9dbbd74f5256ee67454ef6ede752dc32" title="How big would a circle need to be to encapsulate this.">LineGroup::getBoundingRadius</a>(<span class="keywordtype">void</span>)<span class="keyword"> const</span>
+<a name="l00346"></a>00346 <span class="keyword">    </span>{
+<a name="l00347"></a>00347         <span class="keywordflow">return</span> this-&gt;LineData-&gt;<a class="code" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a3fdd0ff2b7b22cebc71f796431afc7c8" title="How big would a circle need to be to encapsulate this.">getBoundingRadius</a>();
+<a name="l00348"></a>00348     }
+<a name="l00349"></a>00349 
+<a name="l00350"></a><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ab8d5c3c91dd16008429cc4cafed7f42f">00350</a>     <span class="keywordtype">void</span> <a class="code" href="../../db/ddb/classphys_1_1LineGroup.html#ab8d5c3c91dd16008429cc4cafed7f42f" title="This assists in the rendering process.">LineGroup::PrepareForRendering</a>()
+<a name="l00351"></a>00351     {
+<a name="l00352"></a>00352         Ogre::SceneNode *myNode = this-&gt;Parent-&gt;OgreSceneManager-&gt;getRootSceneNode()-&gt;createChildSceneNode();
+<a name="l00353"></a>00353         myNode-&gt;attachObject(this-&gt;LineData);
+<a name="l00354"></a>00354     }
+<a name="l00355"></a>00355 }
+<a name="l00356"></a>00356 
+<a name="l00357"></a>00357 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 02:07:54 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 24 04:51:48 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

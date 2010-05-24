@@ -40,7 +40,7 @@
 #ifndef _physactorbase_h
 #define _physactorbase_h
 
-//#include "physvector.h"
+//#include "vector3.h"
 #include "quaternion.h"
 #include "world.h"
 
@@ -130,14 +130,14 @@ namespace phys
 
             void CreateSceneNode();
             /// @brief Sets the location of the graphical body.
-            /// @details This will take a PhysVector3 and set the location of the actor within the graphical world. @n
+            /// @details This will take a Vector3 and set the location of the actor within the graphical world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
-            /// @param Place The PhysVector3 representing the location.
-            void SetOgreLocation(PhysVector3 Place);
+            /// @param Place The Vector3 representing the location.
+            void SetOgreLocation(Vector3 Place);
 
             /// @brief Retrieves the location of the graphical body.
             /// @details This function will retrieve the location of the object within the graphical world.
-            PhysVector3 GetOgreLocation();
+            Vector3 GetOgreLocation();
 
             /// @brief Sets the orientation of the graphical body.
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n
@@ -154,14 +154,14 @@ namespace phys
 // Bullet Management
 ///////////////////////////////////////
             /// @brief Sets the location of the physics body.
-            /// @details This will take a PhysVector3 and set the location of the actor within the physics world. @n
+            /// @details This will take a Vector3 and set the location of the actor within the physics world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
-            /// @param Location The PhysVector3 representing the location.
-            virtual void SetBulletLocation (PhysVector3 Location);
+            /// @param Location The Vector3 representing the location.
+            virtual void SetBulletLocation (Vector3 Location);
 
             /// @brief Retrieves the location of the physics body.
             /// @details This function will retrieve the location of the object within the physics world.
-            virtual PhysVector3 GetBulletLocation();
+            virtual Vector3 GetBulletLocation();
 
             /// @brief Sets the orientation of the physics body.
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
@@ -189,8 +189,8 @@ namespace phys
             /// @brief Sets the starting location of the actor.
             /// @details Calling this function after adding it to the World will have no effect. @n
             /// This function will set where the actor will be located in the World when it is first placed inside the world.
-            /// @param Location The PhysVector3 representing the location.
-            void SetInitLocation(PhysVector3 Location);
+            /// @param Location The Vector3 representing the location.
+            void SetInitLocation(Vector3 Location);
 
             /// @brief Sets the starting orientation of the actor.
             /// @details Calling this function after adding it to the World will have no effect. @n
@@ -210,12 +210,12 @@ namespace phys
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
             /// In most situations you won't want to use this function, and instead produce movement through physics functions.
-            /// @param Place The PhysVector3 representing the location.
-            void SetLocation(PhysVector3 Place);
+            /// @param Place The Vector3 representing the location.
+            void SetLocation(Vector3 Place);
 
             /// @brief Retrieves the location of the object.
             /// @details This function will retrieve the location of the object within the world.
-            PhysVector3 GetLocation();
+            Vector3 GetLocation();
 
             /// @brief Sets the orientation of the actor.
             /// @details Sets the orientation of the actor via Quaternion parameters.

@@ -172,20 +172,20 @@ void LoadContent()
     //Actor Init Code
     object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
     object1->CreateShapeFromMeshDynamic(4);
-    object1->SetInitLocation(PhysVector3(0,50,0));
+    object1->SetInitLocation(Vector3(0,50,0));
     object1->LimitMovementOnAxis(false,true,true);
     object2 = new ActorRigid (mass,"Robot2",filename,groupname,&TheWorld);
     object2->CreateShapeFromMeshDynamic(4);
-    object2->SetInitLocation(PhysVector3(0,50,0));
+    object2->SetInitLocation(Vector3(0,50,0));
     object3 = new ActorRigid (0,"Robot3",filename,groupname,&TheWorld);
     object3->CreateShapeFromMeshStatic();
-    object3->SetInitLocation(PhysVector3(-130,0,0));
+    object3->SetInitLocation(Vector3(-130,0,0));
     object4 = new ActorRigid (0,"Robot4",filename,groupname,&TheWorld);
     object4->CreateShapeFromMeshStatic();
-    object4->SetInitLocation(PhysVector3(130,0,0));
+    object4->SetInitLocation(Vector3(130,0,0));
 
     //Final Steps
-    PhysVector3 grav;
+    Vector3 grav;
     grav.X=0.0;
     grav.Y=-1000.0;
     grav.Z=0.0;
