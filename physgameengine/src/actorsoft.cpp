@@ -1,4 +1,4 @@
-//Â© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -37,21 +37,44 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _misc_h
-#define _misc_h
+#ifndef _physactorsoft_cpp
+#define _physactorsoft_cpp
 
-#include "datatypes.h"
+//#include <Ogre.h>
+//#include "btBulletDynamicsCommon.h"
+#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+//#include "BulletCollision/CollisionShapes/btShapeHull.h"
+//#include "BulletCollision/Gimpact/btGImpactShape.h"
 
-namespace phys
-{
-    namespace internal
+#include "actorsoft.h"
+namespace phys{
+    ///////////////////////////////////
+    // ActorSoft class functions
+
+    /*ActorSoft::ActorSoft ()
     {
-        /// @internal
-        /// @brief This returns a string which contains the name of the SDL passed into it.
-        /// @details This supports all known SDL events and will return "Unknown RawEvent Event Inserted" for unknown events.
-        /// @param event This is a phys::RawEvent which you wan to determine the type of.
-        /// @return This returns a phys::String with naming the correct type.
-        String GetNameOfEventFrom(RawEvent* event);
+    }*/
+
+    ActorSoft::~ActorSoft ()
+    {
+        delete physsoftbody;
+    }
+
+    void ActorSoft::CreateSoftObject (btSoftBodyWorldInfo* softworldinfo, int nodecount, btVector3* nodearray, btScalar* massarray)
+    {
+        this->physsoftbody = new btSoftBody (softworldinfo, nodecount, nodearray, massarray);
+        CollisionObject=physsoftbody;
+    }
+
+    void ActorSoft::AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld)
+    {
+        btWorld->addSoftBody(this->physsoftbody);
+    }
+
+    void ActorSoft::CreateShapeFromMesh()
+    {
+        this->CreateTrimesh();
+        this->physsoftbody->setCollisionShape(this->Shape);
     }
 }
 #endif

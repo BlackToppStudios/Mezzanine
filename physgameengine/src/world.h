@@ -75,7 +75,7 @@
 #include "eventmanager.h"
 #include "datatypes.h"
 #include "physvector.h"
-//#include "physactor.h"
+//#include "actorbase.h"
 
 #include <string>
 

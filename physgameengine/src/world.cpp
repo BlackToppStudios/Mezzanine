@@ -55,7 +55,7 @@
 #include "crossplatform.h"
 #include "callbackmanager.h"
 #include "graphicsettings.h"
-#include "physactor.h"
+#include "actorbase.h"
 #include "eventuserinput.h"
 #include "linegroup.h"
 

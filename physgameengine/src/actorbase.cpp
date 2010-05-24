@@ -37,82 +37,27 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physactor_cpp
-#define _physactor_cpp
+#ifndef _physactorbase_cpp
+#define _physactorbase_cpp
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
-#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
-#include "BulletCollision/CollisionShapes/btShapeHull.h"
-#include "BulletCollision/Gimpact/btGImpactShape.h"
+//#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+//#include "BulletCollision/CollisionShapes/btShapeHull.h"
+//#include "BulletCollision/Gimpact/btGImpactShape.h"
 
-#include "physactor.h"
-
-using namespace phys;
+#include "actorbase.h"
+#include "internalmotionstate.h.cpp"
 
 namespace phys{
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class PhysMotionState
-    /// @headerfile physactor.h
-    /// @brief This class is used by the actor class to sync between the physics world and the graphical world.
-    /// @details This class provides the link for position and orientation between the two worlds in the engine.
-    /// This is called on every step(frame) of the world to sync the actor if it has moved.
-    ///////////////////////////////////////
-
-    class PhysMotionState : public btMotionState {
-        private:
-            friend class ActorBase;
-            Ogre::SceneNode* snode;
-            btTransform initposition;
-
-        public:
-            /// @brief Blank Constructor.
-            /// @details Basic no-initialization constructor.
-            PhysMotionState();
-            /// @brief Constructor.
-            /// @details The class constructor.
-            /// @param scenenode The scenenode belonging to the actor.
-            PhysMotionState(Ogre::SceneNode* scenenode);
-            /// @brief Destructor.
-            /// @details The class destructor.
-            virtual ~PhysMotionState();
-            /// @brief Sets the scenenode.
-            /// @details Sets the scenenode to be sync'd every step.
-            /// @param scenenode The scenenode belonging to the actor.
-            void SetNode(Ogre::SceneNode* scenenode);
-            /// @brief Sets the initial position.
-            /// @details Sets the position the actor will be placed in when it is added to the world.
-            /// This function is called on by the ActorBase function SetInitPosition().
-            /// @param position The vector3 representing the location to be used.
-            void SetPosition(PhysVector3 position);
-            /// @brief Sets the initial orientation.
-            /// @details Sets the orientation the actor will have when it is added to the world.
-            /// This function is called on by the ActorBase function SetInitOrientation().
-            /// @param orientation The vector3 representing the orientation to be used.
-            void SetOrientation(Quaternion orientation);
-
-            /// @brief Sets the initial position.
-            /// @details This function is called on by the physics world upon adding the actor to the world.
-            /// This function uses the previous set vector3 that was set with SetInitPosition(). @n
-            /// Default position is (0,0,0).
-            /// @param worldTrans The location and orientation data.
-            virtual void getWorldTransform(btTransform &worldTrans) const;
-
-            /// @brief Updates the position and orientation.
-            /// @details This function is called each step(frame) by the physics world to sync the physics and graphical worlds.
-            /// @param worldTrans The location and orientation data.
-            virtual void setWorldTransform(const btTransform &worldTrans);
-    };
-
     ///////////////////////////////////
     // ActorBase class fuctions
-
     ActorBase::ActorBase (String name, String file, String group, World* _World)
     {
         this->GameWorld = _World;
         this->node = this->GameWorld->OgreSceneManager->createSceneNode();
         this->GameWorld->OgreSceneManager->getRootSceneNode()->addChild(this->node);
-        this->MotionState = new PhysMotionState(this->node);
+        this->MotionState = new internal::PhysMotionState(this->node);
         this->Shape = new btEmptyShape();
         this->CreateEntity(name, file, group);
     }
@@ -125,7 +70,6 @@ namespace phys{
 
     ///////////////////////////////////
     // ActorBase Private misc functions
-
     btTriangleMesh* ActorBase::CreateTrimesh()
     {
         // Get the mesh from the entity
@@ -329,7 +273,6 @@ namespace phys{
 
     ///////////////////////////////////
     // ActorBase Public Collision flag functions
-
     void ActorBase::SetKinematic()
     {
         int x=2;
@@ -341,191 +284,5 @@ namespace phys{
         int x=1;
         this->CollisionObject->setCollisionFlags(x);
     }
-
-    ///////////////////////////////////
-    // ActorRigid class functions
-
-    ActorRigid::ActorRigid (Real mass, String name, String file, String group, World* _World) : ActorBase (name, file, group, _World)
-    {
-        this->CreateRigidObject(mass);
-    }
-
-    ActorRigid::~ActorRigid ()
-    {
-        delete physrigidbody;
-    }
-
-    void ActorRigid::CreateRigidObject (Real pmass)
-    {
-        btScalar bmass=pmass;
-        this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
-        CollisionObject=physrigidbody;
-    }
-
-    void ActorRigid::AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld)
-    {
-        btWorld->addRigidBody(this->physrigidbody);
-        AttachToGraphics();
-    }
-
-    void ActorRigid::CreateShapeFromMeshDynamic(short unsigned int accuracy)
-    {
-        if(accuracy==1)
-        {
-            delete Shape;
-            /// @todo - Check for thread safety
-            btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateTrimesh());
-            btShapeHull *hull = new btShapeHull(tmpshape);
-            btScalar margin = tmpshape->getMargin();
-            hull->buildHull(margin);
-            tmpshape->setUserPointer(hull);
-            btConvexHullShape* convexShape = new btConvexHullShape();
-            for (int b=0;b<hull->numVertices();b++)
-            {
-                convexShape->addPoint(hull->getVertexPointer()[b]);
-            }
-            delete tmpshape;
-            delete hull;
-            btScalar mass=this->physrigidbody->getInvMass();
-            mass=1/mass;
-            btVector3 inertia(0,0,0);
-            convexShape->calculateLocalInertia(mass, inertia);
-            Shape = convexShape;
-            this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
-            this->physrigidbody->setCollisionShape(this->Shape);
-            this->physrigidbody->setMassProps(mass,inertia);
-            return;
-        }
-        if(accuracy==2)
-        {
-            delete Shape;
-            /// @todo add code here to increase the verticies that is used to create the hull from the first accuracy setting.
-            btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateTrimesh());
-            Shape=tmpshape;
-            this->physrigidbody->setCollisionShape(this->Shape);
-            return;
-        }
-        if(accuracy==3)
-        {
-            delete Shape;
-            /// @todo add code here for compound shapes of convex hulls
-            this->physrigidbody->setCollisionShape(this->Shape);
-            return;
-        }
-        if(accuracy==4)
-        {
-            delete Shape;
-            btGImpactMeshShape* gimpact = new btGImpactMeshShape(this->CreateTrimesh());
-            btScalar mass=this->physrigidbody->getInvMass();
-            mass=1/mass;
-            btVector3 inertia(0,0,0);
-            gimpact->calculateLocalInertia(mass, inertia);
-            gimpact->setLocalScaling(btVector3(1.f,1.f,1.f));
-            gimpact->setMargin(0.04);
-            gimpact->updateBound();
-            Shape=gimpact;
-            this->physrigidbody->setCollisionShape(this->Shape);
-            this->physrigidbody->setMassProps(mass,inertia);
-            return;
-        }
-        return;
-    }
-
-    void ActorRigid::CreateShapeFromMeshStatic()
-    {
-        delete Shape;
-
-        /// @todo - Check for thread safety
-        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(this->CreateTrimesh(),true);
-        this->Shape=tmpshape;
-        this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
-        this->physrigidbody->setCollisionShape(this->Shape);
-    }
-
-    void ActorRigid::LimitMovementOnAxis(bool x, bool y, bool z)
-    {
-        btVector3 LinFact(x,y,z);
-        this->physrigidbody->setLinearFactor(LinFact);
-        return;
-    }
-
-    ///////////////////////////////////
-    // ActorSoft class functions
-
-    /*ActorSoft::ActorSoft ()
-    {
-    }*/
-
-    ActorSoft::~ActorSoft ()
-    {
-        delete physsoftbody;
-    }
-
-    void ActorSoft::CreateSoftObject (btSoftBodyWorldInfo* softworldinfo, int nodecount, btVector3* nodearray, btScalar* massarray)
-    {
-        this->physsoftbody = new btSoftBody (softworldinfo, nodecount, nodearray, massarray);
-        CollisionObject=physsoftbody;
-    }
-
-    void ActorSoft::AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld)
-    {
-        btWorld->addSoftBody(this->physsoftbody);
-    }
-
-    void ActorSoft::CreateShapeFromMesh()
-    {
-        this->CreateTrimesh();
-        this->physsoftbody->setCollisionShape(this->Shape);
-    }
-
-    ///////////////////////////////////
-    // PhysMotionState
-
-    PhysMotionState::PhysMotionState()
-    {
-        this->initposition.setIdentity();
-    }
-
-    PhysMotionState::PhysMotionState(Ogre::SceneNode* scenenode)
-    {
-        this->snode=scenenode;
-        this->initposition.setIdentity();
-    }
-
-    PhysMotionState::~PhysMotionState()
-    {
-        if (snode!=NULL)
-        {
-            delete snode;
-        }
-    }
-
-    void PhysMotionState::SetNode(Ogre::SceneNode* scenenode)
-    {
-        this->snode=scenenode;
-    }
-
-    void PhysMotionState::SetPosition(PhysVector3 position)
-    {
-        this->initposition.setOrigin(position.GetBulletVector3());
-    }
-
-    void PhysMotionState::SetOrientation(Quaternion orientation)
-    {
-        this->initposition.setRotation(orientation.GetBulletQuaternion());
-    }
-
-    void PhysMotionState::getWorldTransform(btTransform &worldTrans) const
-    {
-        worldTrans=initposition;
-    }
-
-    void PhysMotionState::setWorldTransform(const btTransform &worldTrans)
-    {
-        btQuaternion rotation = worldTrans.getRotation();
-        this->snode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
-        btVector3 position = worldTrans.getOrigin();
-        this->snode->setPosition(position.x(), position.y(), position.z());
-    }
-}
+}// /phys
 #endif

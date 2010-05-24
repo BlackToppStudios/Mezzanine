@@ -83,8 +83,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/actorbase.cpp" />
+		<Unit filename="src/actorbase.h" />
 		<Unit filename="src/actorcontainerbase.cpp" />
 		<Unit filename="src/actorcontainerbase.h" />
+		<Unit filename="src/actorrigid.cpp" />
+		<Unit filename="src/actorrigid.h" />
+		<Unit filename="src/actorsoft.cpp" />
+		<Unit filename="src/actorsoft.h" />
 		<Unit filename="src/callbackmanager.cpp" />
 		<Unit filename="src/callbackmanager.h" />
 		<Unit filename="src/crossplatform.cpp" />
@@ -106,10 +112,6 @@
 		<Unit filename="src/linegroup.h" />
 		<Unit filename="src/metacode.cpp" />
 		<Unit filename="src/metacode.h" />
-		<Unit filename="src/misc.cpp" />
-		<Unit filename="src/misc.h" />
-		<Unit filename="src/physactor.cpp" />
-		<Unit filename="src/physactor.h" />
 		<Unit filename="src/physvector.cpp" />
 		<Unit filename="src/physvector.h" />
 		<Unit filename="src/quaternion.cpp" />

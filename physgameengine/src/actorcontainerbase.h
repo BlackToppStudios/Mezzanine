@@ -41,7 +41,7 @@
 #define actorcontainerbase_h
 
 //Internal includes
-#include "physactor.h"
+#include "actorbase.h"
 #include "world.h"
 
 namespace phys

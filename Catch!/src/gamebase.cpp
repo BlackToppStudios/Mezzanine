@@ -8,7 +8,7 @@
 #include "gamebase.h"
 
 //Physengine include
-#include <physactor.h>
+#include <actorrigid.h>
 #include <world.h>
 #include <eventmanager.h>
 #include <datatypes.h>

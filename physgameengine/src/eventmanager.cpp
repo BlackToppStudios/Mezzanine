@@ -51,8 +51,6 @@
 #include "SDL.h"
 //#include <boost/thread/thread.hpp>
 
-using namespace phys;
-
 namespace phys
 {
     /// @internal
