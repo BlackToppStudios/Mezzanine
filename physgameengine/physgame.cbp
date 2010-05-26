@@ -87,6 +87,8 @@
 		<Unit filename="src/actorbase.h" />
 		<Unit filename="src/actorcontainerbase.cpp" />
 		<Unit filename="src/actorcontainerbase.h" />
+		<Unit filename="src/actorcontainervector.cpp" />
+		<Unit filename="src/actorcontainervector.h" />
 		<Unit filename="src/actorrigid.cpp" />
 		<Unit filename="src/actorrigid.h" />
 		<Unit filename="src/actorsoft.cpp" />
