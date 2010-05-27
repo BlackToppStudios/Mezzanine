@@ -14,6 +14,7 @@
 #include <datatypes.h>
 #include <eventrendertime.h>
 #include <eventuserinput.h>
+#include <actorcontainervector.h>
 
 #include <sstream>
 
@@ -170,17 +171,32 @@ void LoadContent()
     TheWorld.InitResourceGroup(groupname);
 
     //Actor Init Code
+    ActorRigid* temp[1001];
+    ActorContainerVector box (&TheWorld);
+    for(box.clear(); box.size()<7; box.CursorToLast())
+    {
+        std::stringstream namemaker;
+        namemaker << groupname << box.size();
+        box.AddActor(new ActorRigid (mass,namemaker.str(),filename,groupname,&TheWorld));
+        box.LastActorAdded()->CreateShapeFromMeshDynamic(4);
+        box.LastActorAdded()->SetInitLocation(Vector3( ((float)(34*box.size())-182), 160, 0));
+        TheWorld.AddActor(box.LastActorAdded());
+    }
+
     object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
     object1->CreateShapeFromMeshDynamic(4);
-    object1->SetInitLocation(Vector3(0,50,0));
+    object1->SetInitLocation(Vector3(0.0,10,0));
     object1->LimitMovementOnAxis(false,true,true);
-    object2 = new ActorRigid (mass,"Robot2",filename,groupname,&TheWorld);
+
+    object2 = new ActorRigid (mass,"Robot_2",filename,groupname,&TheWorld);
     object2->CreateShapeFromMeshDynamic(4);
-    object2->SetInitLocation(Vector3(0,50,0));
-    object3 = new ActorRigid (0,"Robot3",filename,groupname,&TheWorld);
+    object2->SetInitLocation(Vector3(0.0,10,0));
+    object2->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.5));
+
+    object3 = new ActorRigid (0,"Robot_3",filename,groupname,&TheWorld);
     object3->CreateShapeFromMeshStatic();
     object3->SetInitLocation(Vector3(-130,0,0));
-    object4 = new ActorRigid (0,"Robot4",filename,groupname,&TheWorld);
+    object4 = new ActorRigid (0,"Robot_4",filename,groupname,&TheWorld);
     object4->CreateShapeFromMeshStatic();
     object4->SetInitLocation(Vector3(130,0,0));
 
@@ -193,6 +209,8 @@ void LoadContent()
     TheWorld.AddActor(object2);
     TheWorld.AddActor(object3);
     TheWorld.AddActor(object4);
+
+
     TheWorld.SetGravity(grav);
 }
 

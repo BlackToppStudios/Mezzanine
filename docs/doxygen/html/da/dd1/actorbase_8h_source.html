@@ -255,24 +255,31 @@
 <a name="l00230"></a>00230 <span class="comment">            /// @param Rotation The Quaternion representing the Rotation.</span>
 <a name="l00231"></a>00231 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#adbf0cc77031f22597a799fd0f7f8216d" title="Sets the orientation of the actor.">SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rotation);
 <a name="l00232"></a>00232 <span class="comment"></span>
-<a name="l00233"></a>00233 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00234"></a>00234 <span class="comment"></span><span class="comment">// Public Collision flag functions</span><span class="comment"></span>
-<a name="l00235"></a>00235 <span class="comment">///////////////////////////////////////</span>
-<a name="l00236"></a>00236 <span class="comment">            /// @brief Sets the state of the object to Kinematic.</span>
-<a name="l00237"></a>00237 <span class="comment">            /// @details This function will set the object to a Kinematic Object. @n</span>
-<a name="l00238"></a>00238 <span class="comment">            /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.</span>
-<a name="l00239"></a>00239 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f" title="Sets the state of the object to Kinematic.">SetKinematic</a>();
-<a name="l00240"></a>00240 <span class="comment"></span>
-<a name="l00241"></a>00241 <span class="comment">            /// @brief Sets the state of the object to Static.</span>
-<a name="l00242"></a>00242 <span class="comment">            /// @details This function will set the object to a Static Object. @n</span>
-<a name="l00243"></a>00243 <span class="comment">            /// Static Objects don&#39;t move or have any force applied to them, but are cabable of exerting force on other objects.</span>
-<a name="l00244"></a>00244 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037" title="Sets the state of the object to Static.">SetStatic</a>();
-<a name="l00245"></a>00245     };
-<a name="l00246"></a>00246 
-<a name="l00247"></a>00247 } <span class="comment">// /phys</span>
-<a name="l00248"></a>00248 <span class="preprocessor">#endif</span>
+<a name="l00233"></a>00233 <span class="comment">            /// @brief Creates a collision shape from mesh file.</span>
+<a name="l00234"></a>00234 <span class="comment">            /// @details This function will read the location of every verticy in the mesh file and use that to</span>
+<a name="l00235"></a>00235 <span class="comment">            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld</span>
+<a name="l00236"></a>00236 <span class="comment">            /// be used with only with Dynamic objects.</span>
+<a name="l00237"></a>00237 <span class="comment">            /// @param accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent</span>
+<a name="l00238"></a>00238 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aa41370f6d2031a9dad8df45bd7f3bcc6" title="Creates a collision shape from mesh file.">CreateShapeFromMeshDynamic</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> accuracy ) = 0;
+<a name="l00239"></a>00239 <span class="comment"></span>
+<a name="l00240"></a>00240 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00241"></a>00241 <span class="comment"></span><span class="comment">// Public Collision flag functions</span><span class="comment"></span>
+<a name="l00242"></a>00242 <span class="comment">///////////////////////////////////////</span>
+<a name="l00243"></a>00243 <span class="comment">            /// @brief Sets the state of the object to Kinematic.</span>
+<a name="l00244"></a>00244 <span class="comment">            /// @details This function will set the object to a Kinematic Object. @n</span>
+<a name="l00245"></a>00245 <span class="comment">            /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.</span>
+<a name="l00246"></a>00246 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f" title="Sets the state of the object to Kinematic.">SetKinematic</a>();
+<a name="l00247"></a>00247 <span class="comment"></span>
+<a name="l00248"></a>00248 <span class="comment">            /// @brief Sets the state of the object to Static.</span>
+<a name="l00249"></a>00249 <span class="comment">            /// @details This function will set the object to a Static Object. @n</span>
+<a name="l00250"></a>00250 <span class="comment">            /// Static Objects don&#39;t move or have any force applied to them, but are cabable of exerting force on other objects.</span>
+<a name="l00251"></a>00251 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037" title="Sets the state of the object to Static.">SetStatic</a>();
+<a name="l00252"></a>00252     };
+<a name="l00253"></a>00253 
+<a name="l00254"></a>00254 } <span class="comment">// /phys</span>
+<a name="l00255"></a>00255 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed May 26 00:55:14 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu May 27 00:21:48 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

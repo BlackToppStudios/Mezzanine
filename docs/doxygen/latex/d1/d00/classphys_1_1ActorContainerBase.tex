@@ -20,8 +20,12 @@ Inheritance diagram for phys::ActorContainerBase:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classphys_1_1ActorContainerBase_a629529f9002646d463ea167af1d20df2}{ActorContainerBase} (\hyperlink{classphys_1_1World}{World} $\ast$ParentWorld\_\-)
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerBase_a8dd213cba4915f68ac421fc9f341cbbe}{AddActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)=0
 \begin{DoxyCompactList}\small\item\em This will add an Actor to this container and the world. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a6ccc6d058bcbbe0b9a638e28fb136477}{LastActorAdded} ()=0
+\begin{DoxyCompactList}\small\item\em This provides an easy way to access the last Actor added to this container. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerBase_a523072e42f6b581d044432f84a84ede4}{RemoveActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToRemove)=0
 \begin{DoxyCompactList}\small\item\em Remove an Actor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerBase_a60f37a056e8750f3b389c5ceed14520c}{RemoveActorAtCursor} ()=0
@@ -58,6 +62,25 @@ A base class to unify the interface for different kinds of containers for holdin
  Because of this classes representation of a cursor only 1 thread at a time should use the cursor movement functions. For the container that the \hyperlink{classphys_1_1World}{phys::World} keeps it should be assume that the cursor is used. For other containers you should manage you container carefully and/or use another iteration method, such as STL iterators. 
 
 Definition at line 69 of file actorcontainerbase.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ActorContainerBase_a629529f9002646d463ea167af1d20df2}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!ActorContainerBase@{ActorContainerBase}}
+\index{ActorContainerBase@{ActorContainerBase}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{ActorContainerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorContainerBase::ActorContainerBase ({\bf World} $\ast$ {\em ParentWorld\_\-})}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a629529f9002646d463ea167af1d20df2}
+
+
+Basic Constructor. 
+
+This just assigned the passed pointer to ParentWorld 
+\begin{DoxyParams}{Parameters}
+\item[{\em ParentWorld\_\-}]This is the world that will perform physics and graphical work on the actors in this container \end{DoxyParams}
+
+
+Definition at line 47 of file actorcontainerbase.cpp.
 
 
 
@@ -212,6 +235,19 @@ This returns a \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys:
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_a20d18213e69b3821ee973865df428e6d}{phys::ActorContainerVector}.
 
+\hypertarget{classphys_1_1ActorContainerBase_a6ccc6d058bcbbe0b9a638e28fb136477}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!LastActorAdded@{LastActorAdded}}
+\index{LastActorAdded@{LastActorAdded}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{LastActorAdded}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::LastActorAdded ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a6ccc6d058bcbbe0b9a638e28fb136477}
+
+
+This provides an easy way to access the last Actor added to this container. 
+
+For many containers this will simply return a pointer to the last actorl 
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a49e643bdeff78521de9c4a9fea59a0d2}{phys::ActorContainerVector}.
+
 \hypertarget{classphys_1_1ActorContainerBase_a523072e42f6b581d044432f84a84ede4}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!RemoveActor@{RemoveActor}}
 \index{RemoveActor@{RemoveActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
@@ -240,6 +276,7 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a430977daf010a25f53d
 
 
 
-The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 
-actorcontainerbase.h\end{DoxyCompactItemize}
+actorcontainerbase.h\item 
+actorcontainerbase.cpp\end{DoxyCompactItemize}

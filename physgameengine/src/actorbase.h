@@ -230,6 +230,13 @@ namespace phys
             /// @param Rotation The Quaternion representing the Rotation.
             void SetOrientation(Quaternion Rotation);
 
+            /// @brief Creates a collision shape from mesh file.
+            /// @details This function will read the location of every verticy in the mesh file and use that to
+            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
+            /// be used with only with Dynamic objects.
+            /// @param accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent
+            virtual void CreateShapeFromMeshDynamic(short unsigned int accuracy ) = 0;
+
 ///////////////////////////////////////////////////////////////////////////////
 // Public Collision flag functions
 ///////////////////////////////////////

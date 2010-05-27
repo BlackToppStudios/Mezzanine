@@ -20,8 +20,12 @@ Inheritance diagram for phys::ActorContainerVector:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classphys_1_1ActorContainerVector_a65a17a06bc964c2b5f04a8dbb003622a}{ActorContainerVector} (\hyperlink{classphys_1_1World}{World} $\ast$Parent\_\-)
+\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerVector_a4bc3e38f16caddee021a97739bebaf6e}{AddActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)
 \begin{DoxyCompactList}\small\item\em This will add an Actor to this container and the world. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a49e643bdeff78521de9c4a9fea59a0d2}{LastActorAdded} ()
+\begin{DoxyCompactList}\small\item\em This provides an easy way to access the last Actor added to this container. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerVector_aeee5bd81601faed85e6a35f576c8d476}{RemoveActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToRemove)
 \begin{DoxyCompactList}\small\item\em Remove an Actor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerVector_a430977daf010a25f53df6cf37954f8ca}{RemoveActorAtCursor} ()
@@ -54,7 +58,26 @@ vector$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$::iterator \hy
 \subsection{Detailed Description}
 A simple Actor Container using a vector. This inherits from std::vector and our \hyperlink{classphys_1_1ActorContainerBase}{phys::ActorContainerBase} to allow us to have access to a container through a standardized structure this way the phys::world doesn't need to worry about the details when accessing and storing actors 
 
-Definition at line 56 of file actorcontainervector.h.
+Definition at line 57 of file actorcontainervector.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ActorContainerVector_a65a17a06bc964c2b5f04a8dbb003622a}{
+\index{phys::ActorContainerVector@{phys::ActorContainerVector}!ActorContainerVector@{ActorContainerVector}}
+\index{ActorContainerVector@{ActorContainerVector}!phys::ActorContainerVector@{phys::ActorContainerVector}}
+\subsubsection[{ActorContainerVector}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorContainerVector::ActorContainerVector ({\bf World} $\ast$ {\em Parent\_\-})}}
+\label{d3/d64/classphys_1_1ActorContainerVector_a65a17a06bc964c2b5f04a8dbb003622a}
+
+
+Simple Constructor. 
+
+This creates and empty usable container based on std::vector. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Parent\_\-}]this is a Pointer to the \hyperlink{classphys_1_1World}{phys::World} that will be using these actors. \end{DoxyParams}
+
+
+Definition at line 45 of file actorcontainervector.cpp.
 
 
 
@@ -79,7 +102,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a8dd213cba4915f68ac421fc9f
 
 
 
-Definition at line 45 of file actorcontainervector.cpp.
+Definition at line 49 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_ad9c2eb2a9405dcf687c86745afc9c031}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToFirst@{CursorToFirst}}
@@ -96,7 +119,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de
 
 
 
-Definition at line 72 of file actorcontainervector.cpp.
+Definition at line 82 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_aa6b08266bbb57a22c07ab50514e58db4}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToLast@{CursorToLast}}
@@ -113,7 +136,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_afad072e018a04c190e5e5fb93
 
 
 
-Definition at line 98 of file actorcontainervector.cpp.
+Definition at line 108 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a1c72366a6261d8e98dc0a9d2fad9f70f}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToNext@{CursorToNext}}
@@ -130,7 +153,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a1aa337456a4e74cb5740dbae0
 
 
 
-Definition at line 89 of file actorcontainervector.cpp.
+Definition at line 99 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b04a8805a002413}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToPrevious@{CursorToPrevious}}
@@ -147,7 +170,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a0837
 
 
 
-Definition at line 80 of file actorcontainervector.cpp.
+Definition at line 90 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a6d2e5e68e23f5798ad10ba41e479d0f7}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetActorCount@{GetActorCount}}
@@ -167,7 +190,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_aa5ec651d4634b2d90efe2a76f
 
 
 
-Definition at line 67 of file actorcontainervector.cpp.
+Definition at line 77 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a280700490b368a963dd8feae044c7a6d}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetAtCursor@{GetAtCursor}}
@@ -187,7 +210,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a2c8fb86a9e188aece105b2a75
 
 
 
-Definition at line 106 of file actorcontainervector.cpp.
+Definition at line 116 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a55ceecd017455f3185aa62798811e3c6}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetFirst@{GetFirst}}
@@ -207,7 +230,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_ae703482d84a9c6726e28a8f26
 
 
 
-Definition at line 114 of file actorcontainervector.cpp.
+Definition at line 124 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetLast@{GetLast}}
@@ -227,7 +250,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a8efeffd5ae22085fe01af791b
 
 
 
-Definition at line 119 of file actorcontainervector.cpp.
+Definition at line 129 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a20d18213e69b3821ee973865df428e6d}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetType@{GetType}}
@@ -247,7 +270,24 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a526dab176597858680490d128
 
 
 
-Definition at line 124 of file actorcontainervector.cpp.
+Definition at line 134 of file actorcontainervector.cpp.
+
+\hypertarget{classphys_1_1ActorContainerVector_a49e643bdeff78521de9c4a9fea59a0d2}{
+\index{phys::ActorContainerVector@{phys::ActorContainerVector}!LastActorAdded@{LastActorAdded}}
+\index{LastActorAdded@{LastActorAdded}!phys::ActorContainerVector@{phys::ActorContainerVector}}
+\subsubsection[{LastActorAdded}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::LastActorAdded ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d64/classphys_1_1ActorContainerVector_a49e643bdeff78521de9c4a9fea59a0d2}
+
+
+This provides an easy way to access the last Actor added to this container. 
+
+For many containers this will simply return a pointer to the last actorl 
+
+Implements \hyperlink{classphys_1_1ActorContainerBase_a6ccc6d058bcbbe0b9a638e28fb136477}{phys::ActorContainerBase}.
+
+
+
+Definition at line 55 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_aeee5bd81601faed85e6a35f576c8d476}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!RemoveActor@{RemoveActor}}
@@ -264,7 +304,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a523072e42f6b581d044432f84
 
 
 
-Definition at line 50 of file actorcontainervector.cpp.
+Definition at line 60 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a430977daf010a25f53df6cf37954f8ca}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!RemoveActorAtCursor@{RemoveActorAtCursor}}
@@ -281,7 +321,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a60f37a056e8750f3b389c5cee
 
 
 
-Definition at line 62 of file actorcontainervector.cpp.
+Definition at line 72 of file actorcontainervector.cpp.
 
 
 
@@ -295,9 +335,9 @@ Definition at line 62 of file actorcontainervector.cpp.
 
 This is used to store information about the cursor. 
 
-This implementation of \hyperlink{classphys_1_1ActorContainerBase}{ActorContainerBase} will use this, and only this to access the cursor so feel free to use this instead 
+This implementation of \hyperlink{classphys_1_1ActorContainerBase}{ActorContainerBase} will use this, and only this to access the cursor so feel free to use this instead. 
 
-Definition at line 86 of file actorcontainervector.h.
+Definition at line 94 of file actorcontainervector.h.
 
 
 

@@ -45,9 +45,19 @@
 
 namespace phys
 {
+    ActorContainerVector::ActorContainerVector (World* Parent_) : ActorContainerBase (Parent_)
+    {
+    }
+
     void ActorContainerVector::AddActor(ActorBase* ActorToAdd)
     {
+        this->RecentlyAdded = ActorToAdd;
         this->push_back(ActorToAdd);
+    }
+
+    ActorBase* ActorContainerVector::LastActorAdded()
+    {
+        return this->RecentlyAdded;
     }
 
     void ActorContainerVector::RemoveActor(ActorBase* ActorToRemove)

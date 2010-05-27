@@ -41,6 +41,7 @@
 #define actorcontainervector_h
 
 #include "actorcontainerbase.h"
+#include "world.h"
 #include <vector>
 
 namespace phys
@@ -56,7 +57,14 @@ namespace phys
     class ActorContainerVector : public ActorContainerBase , public std::vector<ActorBase*>
     {
         public:
+            /// @brief Simple Constructor
+            /// @details This creates and empty usable container based on std::vector.
+            /// @param Parent_ this is a Pointer to the phys::World that will be using these actors.
+            ActorContainerVector (World* Parent_);
+
             virtual void AddActor(ActorBase* ActorToAdd);
+
+            virtual ActorBase* LastActorAdded();
 
             virtual void RemoveActor(ActorBase* ActorToRemove);
 
@@ -82,8 +90,12 @@ namespace phys
 
             /// @brief This is used to store information about the cursor
             /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor
-            /// so feel free to use this instead
+            /// so feel free to use this instead.
             vector<ActorBase*>::iterator cursor;
+
+        private:
+            /// @brief This is used to implement LastActorAdded()
+            ActorBase* RecentlyAdded;
     };
 }
 

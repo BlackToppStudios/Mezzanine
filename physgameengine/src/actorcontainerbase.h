@@ -69,15 +69,25 @@ namespace phys
     class ActorContainerBase
     {
         private:
+            /// @brief This is expected to be a pointer to the world this will be rendered with and built on
             World* ParentWorld;
 
         public:
+            /// @brief Basic Constructor
+            /// @details This just assigned the passed pointer to ParentWorld
+            /// @param ParentWorld_ This is the world that will perform physics and graphical work on the actors in this container
+            ActorContainerBase(World* ParentWorld_);
+
             /// @brief This will add an Actor to this container and the world
             /// @details This will add an Actor to this container and the world, and handle the nitty gritty details
             /// of add this to physics subsystem and graphics subsystem. \n\n
             /// This will not add the Actor to any specific location in the ordering of the container.
             /// @param ActorToAdd This is a pointer to the actor to add
             virtual void AddActor(ActorBase* ActorToAdd) = 0;
+
+            /// @brief This provides an easy way to access the last Actor added to this container
+            /// @details For many containers this will simply return a pointer to the last actorl
+            virtual ActorBase* LastActorAdded() = 0;
 
             /// @brief Remove an Actor
             /// @details Remove all references of the actor pointed from the container. Will throw an exception when attempting to remove
@@ -131,6 +141,8 @@ namespace phys
             /// @details This and the actor the cursor points at after CursorToLast() should match.
             /// @return This returns a pointer to an ActorBase. Will throw an exception when attempting to get from an empty container.
             virtual ActorBase* GetLast() const = 0;
+
+
 
             /// @brief Which kind of container it this anyway.
             /// @details Since this interface could be used with any type of containers and innumerable 3rd party container implemention this

@@ -46,7 +46,10 @@
 namespace phys
 {
 
-//Exists in case we need to put some code into all implementations at some point
+    ActorContainerBase::ActorContainerBase(World* ParentWorld_)
+    {
+        this->ParentWorld=ParentWorld_;
+    }
 
 }
 
