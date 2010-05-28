@@ -96,7 +96,7 @@ Default constructor.
 This creates an empty PhysEventManger
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000006}{Todo}]TODO: Make the \hyperlink{classphys_1_1EventManager}{EventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
+\item[\hyperlink{todo__todo000007}{Todo}]TODO: Make the \hyperlink{classphys_1_1EventManager}{EventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
 
 
 Definition at line 98 of file eventmanager.cpp.
@@ -253,7 +253,7 @@ This returns a pointer to a \hyperlink{classphys_1_1EventUserInput}{EventUserInp
 \end{DoxyReturn}
 
 
-Definition at line 331 of file eventmanager.cpp.
+Definition at line 387 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_ae403b203bc425744377ec5fc311f4e5d}{
 \index{phys::EventManager@{phys::EventManager}!PopNextEvent@{PopNextEvent}}
@@ -451,6 +451,10 @@ Removes Events from the list(s) of what needs to be polled.
 This will remove any check for polling that share the same inputcode and ID. This 
 \begin{DoxyExceptions}{Exceptions}
 \item[{\em Polling check not present}]Is thrown \end{DoxyExceptions}
+
+
+Definition at line 325 of file eventmanager.cpp.
+
 \hypertarget{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{
 \index{phys::EventManager@{phys::EventManager}!UpdateEvents@{UpdateEvents}}
 \index{UpdateEvents@{UpdateEvents}!phys::EventManager@{phys::EventManager}}
@@ -463,7 +467,7 @@ Pulls Events from the all the subsystems for use in the \hyperlink{classphys_1_1
 The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use \hyperlink{classphys_1_1EventManager_a0cf574c55def063d66d7db46a4d3e8a5}{UpdateSystemEvents()} or \hyperlink{classphys_1_1EventManager_a01a5a131ac26679eee5dcf5dd514045c}{UpdateUserInputEvents()} 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000007}{Todo}]There has got to be a more efficient way to do \hyperlink{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{UpdateEvents()} \end{Desc}
+\item[\hyperlink{todo__todo000008}{Todo}]There has got to be a more efficient way to do \hyperlink{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{UpdateEvents()} \end{Desc}
 
 
 
@@ -482,7 +486,7 @@ Pulls System and Window manager Events from the all the subsystems for use in th
 This adds events, like \hyperlink{classphys_1_1EventQuit}{EventQuit} and Other Windows manager events. The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use \hyperlink{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{UpdateEvents()} and plans on using \hyperlink{classphys_1_1EventManager_a01a5a131ac26679eee5dcf5dd514045c}{UpdateUserInputEvents()} 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000008}{Todo}]make Physevents for each of the events in SDL\_\-WmEvents(and delete the SDL events) \end{Desc}
+\item[\hyperlink{todo__todo000009}{Todo}]make Physevents for each of the events in SDL\_\-WmEvents(and delete the SDL events) \end{Desc}
 
 
 

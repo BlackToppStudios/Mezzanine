@@ -49,6 +49,8 @@ void \hyperlink{classphys_1_1ActorBase_af0219532fe71d1d84042a20a88fe5037}{SetSta
 \item 
 virtual void \hyperlink{classphys_1_1ActorBase_ac5d4ad5a634b16000742f506ed5957fb}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$btWorld)=0
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorBase_af669724f10d0bf74f4951c85caa42494}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$btWorld)=0
+\begin{DoxyCompactList}\small\item\em Removes the actor from the physics world. \item\end{DoxyCompactList}\item 
 btTriangleMesh $\ast$ \hyperlink{classphys_1_1ActorBase_a4d2137276c50bbe5bc8cf9ecc66581b7}{CreateTrimesh} ()
 \begin{DoxyCompactList}\small\item\em Creates a trimesh shape from the mesh file. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_aff7dbb190fb982a43123bee3066501c4}{CreateEntity} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group)
@@ -164,7 +166,7 @@ Definition at line 51 of file actorbase.cpp.
 Adds the actor to the physics world. 
 
 Adds the actor to the physics world. \par
- This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. 
+ This is automatically called by the phys::Worlds::AddActor function and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \item[{\em btWorld}]Pointer to the physics world. \end{DoxyParams}
 
@@ -284,6 +286,23 @@ Retrieves the location of the graphical body.
 This function will retrieve the location of the object within the graphical world. 
 
 Definition at line 178 of file actorbase.cpp.
+
+\hypertarget{classphys_1_1ActorBase_af669724f10d0bf74f4951c85caa42494}{
+\index{phys::ActorBase@{phys::ActorBase}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
+\index{RemoveObjectFromWorld@{RemoveObjectFromWorld}!phys::ActorBase@{phys::ActorBase}}
+\subsubsection[{RemoveObjectFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorBase::RemoveObjectFromWorld ({\bf World} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em btWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, pure virtual\mbox{]}}}}
+\label{d8/d0f/classphys_1_1ActorBase_af669724f10d0bf74f4951c85caa42494}
+
+
+Removes the actor from the physics world. 
+
+Removes the actor from the physics world. \par
+ This is automatically called by the \hyperlink{classphys_1_1World_ab00f84983afcc7f6ef1e5a84367d994d}{phys::World::RemoveActor} function and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \item[{\em btWorld}]Pointer to the physics world. \end{DoxyParams}
+
+
+Implemented in \hyperlink{classphys_1_1ActorRigid_a74a4eaa5491b90a977e9db0457271f31}{phys::ActorRigid}.
 
 \hypertarget{classphys_1_1ActorBase_aa7ab524d2905e640cea6324cce9ccfdb}{
 \index{phys::ActorBase@{phys::ActorBase}!SetBulletLocation@{SetBulletLocation}}

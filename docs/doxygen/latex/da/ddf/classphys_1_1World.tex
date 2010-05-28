@@ -60,6 +60,8 @@ void \hyperlink{classphys_1_1World_a34133dd084f575a51209458dbe9ecdac}{DoMainLoop
 \begin{DoxyCompactList}\small\item\em This forces the screen to be re-\/rendered. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_a0fec41ef68b7bb1443aab927f8277a81}{AddActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)
 \begin{DoxyCompactList}\small\item\em The adds and Actor to the physworld. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1World_ab00f84983afcc7f6ef1e5a84367d994d}{RemoveActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToRemove)
+\begin{DoxyCompactList}\small\item\em The Removes an Actor from the physworld. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_a47e1221b296ea7c3188da65ca9570bd5}{SetGravity} (\hyperlink{classphys_1_1Vector3}{Vector3} pgrav)
 \begin{DoxyCompactList}\small\item\em Sets the gravity. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_a9fbd112d2677aa948301287d541b64bb}{SetDebugPhysicsRendering} (int ToBeEnabled)
@@ -97,7 +99,7 @@ void \hyperlink{classphys_1_1World_ac7946bdb41c7884bcd7cfdec2b5358f0}{crossplatf
 \subsection{Detailed Description}
 This is the main entry point for the entire library. The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. 
 
-Definition at line 132 of file world.h.
+Definition at line 135 of file world.h.
 
 
 
@@ -162,9 +164,9 @@ Definition at line 440 of file world.cpp.
 
 The adds and Actor to the physworld. 
 
-The takes over for manager an Actor, and makes sure that it's physics status and 3d graphics status are properly handled. Once an actor has been passed into the Physworld using this, the physworld handle deleting it. 
+This adds, and makes sure that it's physics status and 3d graphics status are properly handled. The \hyperlink{classphys_1_1World}{phys::World} will delete any actor still left in it upon deconstruction. 
 \begin{DoxyParams}{Parameters}
-\item[{\em ActorToAdd}]This is a pointer to the actor to be added \end{DoxyParams}
+\item[{\em ActorToAdd}]This is a pointer to the actor to be added. \end{DoxyParams}
 
 
 Definition at line 769 of file world.cpp.
@@ -184,7 +186,7 @@ This function will add a location on the disk to find files needed to create and
  Options are: filesystem, zip. \item[{\em Group}]The name of the group the resources at this location belong to. \item[{\em recursive}]Whether or not to search sub-\/directories. \end{DoxyParams}
 
 
-Definition at line 811 of file world.cpp.
+Definition at line 818 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ad8c9834c1b9a0de437a0b29f17c0c48e}{
 \index{phys::World@{phys::World}!DeclareResource@{DeclareResource}}
@@ -201,7 +203,7 @@ This function can be thought of as a preloader. This will prepare the defined re
  Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture. \item[{\em Group}]Name of the group the resource belongs to. \end{DoxyParams}
 
 
-Definition at line 816 of file world.cpp.
+Definition at line 823 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a25c2583425bfe3d0d2bfce1093f0175e}{
 \index{phys::World@{phys::World}!DoMainLoopAllItems@{DoMainLoopAllItems}}
@@ -304,7 +306,7 @@ lets you check if Physics Debug Drawing is enabled or not. \begin{DoxyReturn}{Re
 \end{DoxyReturn}
 
 
-Definition at line 849 of file world.cpp.
+Definition at line 856 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a1031d596580ac1a8d3593b5be9b49091}{
 \index{phys::World@{phys::World}!GetDebugPhysicsWireCount@{GetDebugPhysicsWireCount}}
@@ -320,7 +322,7 @@ This returns either 2 or the last amount passed into \hyperlink{classphys_1_1Wor
 \end{DoxyReturn}
 
 
-Definition at line 864 of file world.cpp.
+Definition at line 871 of file world.cpp.
 
 \hypertarget{classphys_1_1World_aa063ace52be484c7b03ec5859453f48b}{
 \index{phys::World@{phys::World}!GetTargetFrameTime@{GetTargetFrameTime}}
@@ -336,7 +338,7 @@ This returns a Whole with the current Value
 \end{DoxyReturn}
 
 
-Definition at line 792 of file world.cpp.
+Definition at line 799 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a1f0139bbc9561bcf18844be25e4adc73}{
 \index{phys::World@{phys::World}!GetWindowName@{GetWindowName}}
@@ -352,7 +354,7 @@ This returns a String Containing the Window Title
 \end{DoxyReturn}
 
 
-Definition at line 777 of file world.cpp.
+Definition at line 784 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a82b1b40f39c1f2e48759fdb77389153d}{
 \index{phys::World@{phys::World}!InitResourceGroup@{InitResourceGroup}}
@@ -368,7 +370,7 @@ After adding all of your resources and declaring them as nessessary, this functi
 \item[{\em Name}]Name of the resource group. \end{DoxyParams}
 
 
-Definition at line 821 of file world.cpp.
+Definition at line 828 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a05267a20e8d5518771d0848190b33d60}{
 \index{phys::World@{phys::World}!Log@{Log}}
@@ -427,6 +429,22 @@ The parameters really do explain it. This puts the camera at an arbitrary point,
 
 Definition at line 658 of file world.cpp.
 
+\hypertarget{classphys_1_1World_ab00f84983afcc7f6ef1e5a84367d994d}{
+\index{phys::World@{phys::World}!RemoveActor@{RemoveActor}}
+\index{RemoveActor@{RemoveActor}!phys::World@{phys::World}}
+\subsubsection[{RemoveActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::World::RemoveActor ({\bf ActorBase} $\ast$ {\em ActorToRemove})}}
+\label{da/ddf/classphys_1_1World_ab00f84983afcc7f6ef1e5a84367d994d}
+
+
+The Removes an Actor from the physworld. 
+
+This removes the actor to the internal graphics and physics systems, and drops the pointer. This does not delete The Actor. 
+\begin{DoxyParams}{Parameters}
+\item[{\em ActorToRemove}]This is a pointer to the actor to be removed \end{DoxyParams}
+
+
+Definition at line 775 of file world.cpp.
+
 \hypertarget{classphys_1_1World_a9fbd112d2677aa948301287d541b64bb}{
 \index{phys::World@{phys::World}!SetDebugPhysicsRendering@{SetDebugPhysicsRendering}}
 \index{SetDebugPhysicsRendering@{SetDebugPhysicsRendering}!phys::World@{phys::World}}
@@ -441,7 +459,7 @@ Enables and Disables Physics Debug Drawing using default wireframes. This will f
 \item[{\em ToBeEnabled}]1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control \end{DoxyParams}
 
 
-Definition at line 839 of file world.cpp.
+Definition at line 846 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a6fa4d1e58a78ba0403af1c003fd321d9}{
 \index{phys::World@{phys::World}!SetDebugPhysicsWireCount@{SetDebugPhysicsWireCount}}
@@ -457,7 +475,7 @@ Each frame of the action gets its own wire frame, and how many of those back did
 \item[{\em WireFrameCount\_\-}]This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate, Any amount more than just a few seconds worth can be cumbersome. \end{DoxyParams}
 
 
-Definition at line 859 of file world.cpp.
+Definition at line 866 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a47e1221b296ea7c3188da65ca9570bd5}{
 \index{phys::World@{phys::World}!SetGravity@{SetGravity}}
@@ -473,7 +491,7 @@ Sets the strength and direction of gravity within the world.
 \item[{\em pgrav}]\hyperlink{classphys_1_1Vector3}{Vector3} representing the strength and direction of gravity. \end{DoxyParams}
 
 
-Definition at line 830 of file world.cpp.
+Definition at line 837 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a76dfcde35392291aafd6eb1a64b3c95c}{
 \index{phys::World@{phys::World}!SetTargetFrameRate@{SetTargetFrameRate}}
@@ -492,7 +510,7 @@ Setting vary low or very High values could cause unknown errors, This is on our 
 \end{DoxyWarning}
 
 
-Definition at line 802 of file world.cpp.
+Definition at line 809 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ad95b5a5ad73e0a05826b5bd834876333}{
 \index{phys::World@{phys::World}!SetTargetFrameTime@{SetTargetFrameTime}}
@@ -511,7 +529,7 @@ Setting vary low or very High values could cause unknown errors, This is on our 
 \end{DoxyWarning}
 
 
-Definition at line 797 of file world.cpp.
+Definition at line 804 of file world.cpp.
 
 \hypertarget{classphys_1_1World_acd0dff342c08fe3008226488b7c53d97}{
 \index{phys::World@{phys::World}!SetWindowName@{SetWindowName}}
@@ -533,7 +551,7 @@ This changes the text in the bar at the top of the game window in windowed mode.
 
 
 
-Definition at line 782 of file world.cpp.
+Definition at line 789 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a0d8ce136bebe81a6826b7e202a531f6a}{
 \index{phys::World@{phys::World}!ShowSystemSettingDialog@{ShowSystemSettingDialog}}
@@ -577,7 +595,7 @@ This is a point to the default Call BackManager.
 
 All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. 
 
-Definition at line 395 of file world.h.
+Definition at line 406 of file world.h.
 
 \hypertarget{classphys_1_1World_ad0b13f1f3caf0342f56671b522543453}{
 \index{phys::World@{phys::World}!Events@{Events}}
@@ -590,7 +608,7 @@ This is the default pointer to the Event Manager.
 
 This is the Event manager that all physworld members will place any events into. 
 
-Definition at line 399 of file world.h.
+Definition at line 410 of file world.h.
 
 
 

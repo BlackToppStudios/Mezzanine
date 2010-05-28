@@ -20,13 +20,7 @@
 
 //Create the World Globally!
 phys::World TheWorld;
-ActorRigid* object1;
-ActorRigid* object2;
-ActorRigid* object3;
-ActorRigid* object4;
-Real x=0;
-Real y=0;
-Real z=0;
+ActorRigid *object1, *object2, *object3, *object4;
 
 int main(int argc, char **argv)
 {
@@ -109,6 +103,7 @@ bool PostRender()
 
 bool PrePhysics()
 {
+    TheWorld.Log("Object Locations");
     TheWorld.Log(object1->GetLocation());
     TheWorld.Log(object2->GetLocation());
     TheWorld.Log(object3->GetLocation());
@@ -171,7 +166,6 @@ void LoadContent()
     TheWorld.InitResourceGroup(groupname);
 
     //Actor Init Code
-    ActorRigid* temp[1001];
     ActorContainerVector box (&TheWorld);
     for(box.clear(); box.size()<7; box.CursorToLast())
     {
@@ -209,7 +203,6 @@ void LoadContent()
     TheWorld.AddActor(object2);
     TheWorld.AddActor(object3);
     TheWorld.AddActor(object4);
-
 
     TheWorld.SetGravity(grav);
 }

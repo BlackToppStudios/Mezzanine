@@ -75,6 +75,12 @@ namespace phys{
         AttachToGraphics();
     }
 
+    void ActorRigid::RemoveObjectFromWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld)
+    {
+        btWorld->removeRigidBody(this->physrigidbody);
+        /// @todo TODO, Implement DetachFromGraphics and call it here.
+    }
+
     void ActorRigid::CreateShapeFromMeshDynamic(short unsigned int accuracy)
     {
         if(accuracy==1)

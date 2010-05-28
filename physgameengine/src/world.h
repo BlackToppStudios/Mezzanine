@@ -56,16 +56,19 @@
  @section Engine Structure
   @subpage mainloop1 "Main Loop Flow"
 
-  @ref phys::CallBackManager
+  @ref phys::World "World - It integrates everything"
 
-  @ref phys::EventManager
+  @ref phys::CallBackManager "Call Backs - Running Game code from the engine"
 
-  @ref phys::ActorBase "Items in the world - Actor Class"
+  @ref phys::EventManager "Events - Handling messages, event and interupts from the outisde"
+
+  @ref phys::ActorBase "Actors - Items in the world"
 
  @section Data Types
   @ref phys::Vector3
 
   @ref phys::EventBase
+
 */
 
 //Includes and Forward Declarations
@@ -75,12 +78,10 @@
 #include "eventmanager.h"
 #include "datatypes.h"
 #include "vector3.h"
-//#include "actorbase.h"
 
 #include <string>
 
 using namespace std;
-
 
 //Other forward declarations
 //forward Declarations so that we do not need #include "SDL.h"
@@ -104,6 +105,7 @@ namespace Ogre
 	class Camera;
 	class Viewport;
 }
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @namespace phys
 /// @brief The bulk of the engine components go in this namspace
@@ -115,6 +117,7 @@ namespace phys
 {
     //Forward Declarations
     class ActorBase;
+    class ActorContainerBase;
     class GraphicsSettings;
     namespace debug {
         class InternalDebugDrawer;
@@ -151,7 +154,6 @@ namespace phys
             //SDL Objects
             SDL_Surface *SDLscreen;
             bool HasSDLBeenInitialized;
-
 
             //Players settings
             GraphicsSettings* PlayerSettings;
@@ -350,14 +352,23 @@ namespace phys
             void DoMainLoopRender();
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Physics Methods
+        // Actor Methods
         ///////////////////////////////////////
             /// @brief The adds and Actor to the physworld.
-            /// @details The takes over for manager an Actor, and makes sure that it's physics status and 3d graphics status are properly handled. Once an
-            /// actor has been passed into the Physworld using this, the physworld handle deleting it.
-            /// @param ActorToAdd This is a pointer to the actor to be added
+            /// @details This adds, and makes sure that it's physics status and 3d graphics status are
+            /// properly handled. The phys::World will delete any actor still left in it upon deconstruction.
+            /// @param ActorToAdd This is a pointer to the actor to be added.
             void AddActor(ActorBase* ActorToAdd);
 
+            /// @brief The Removes an Actor from the physworld.
+            /// @details This removes the actor to the internal graphics and physics systems, and drops the pointer. This does not delete
+            /// The Actor.
+            /// @param ActorToRemove This is a pointer to the actor to be removed
+            void RemoveActor(ActorBase* ActorToRemove);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Physics Methods
+        ///////////////////////////////////////
             /// @brief Sets the gravity.
             /// @details Sets the strength and direction of gravity within the world.
             /// @param pgrav Vector3 representing the strength and direction of gravity.
@@ -397,6 +408,11 @@ namespace phys
             /// @brief This is the default pointer to the Event Manager.
             /// @details This is the Event manager that all physworld members will place any events into.
             EventManager* Events;
+
+        private:
+            /// @brief This is a convienient place to keep pointer to our Actors
+            /// @details Whenever an actor is added, a pointer to it will be stored here.
+            ActorContainerBase* Actors;
     };
 }
 #endif

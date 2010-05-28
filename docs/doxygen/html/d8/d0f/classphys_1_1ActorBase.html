@@ -76,6 +76,8 @@ Inheritance diagram for phys::ActorBase:</div>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#ac5d4ad5a634b16000742f506ed5957fb">AddObjectToWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *TargetWorld, btSoftRigidDynamicsWorld *btWorld)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#ac5d4ad5a634b16000742f506ed5957fb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#af669724f10d0bf74f4951c85caa42494">RemoveObjectFromWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *TargetWorld, btSoftRigidDynamicsWorld *btWorld)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes the actor from the physics world.  <a href="#af669724f10d0bf74f4951c85caa42494"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">btTriangleMesh *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7">CreateTrimesh</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a trimesh shape from the mesh file.  <a href="#a4d2137276c50bbe5bc8cf9ecc66581b7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#aff7dbb190fb982a43123bee3066501c4">CreateEntity</a> (<a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> name, <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> file, <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> group)</td></tr>
@@ -230,7 +232,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 
 <p>Adds the actor to the physics world. </p>
 <p>Adds the actor to the physics world. <br/>
- This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. </p>
+ This is automatically called by the phys::Worlds::AddActor function and shouldn't be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> class. </td></tr>
@@ -451,6 +453,46 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>This function will retrieve the location of the object within the graphical world. </p>
 
 <p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00178">178</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af669724f10d0bf74f4951c85caa42494"></a><!-- doxytag: member="phys::ActorBase::RemoveObjectFromWorld" ref="af669724f10d0bf74f4951c85caa42494" args="(World *TargetWorld, btSoftRigidDynamicsWorld *btWorld)=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void phys::ActorBase::RemoveObjectFromWorld </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td>
+          <td class="paramname"> <em>TargetWorld</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">btSoftRigidDynamicsWorld *&nbsp;</td>
+          <td class="paramname"> <em>btWorld</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [protected, pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removes the actor from the physics world. </p>
+<p>Removes the actor from the physics world. <br/>
+ This is automatically called by the <a class="el" href="../../da/ddf/classphys_1_1World.html#ab00f84983afcc7f6ef1e5a84367d994d" title="The Removes an Actor from the physworld.">phys::World::RemoveActor</a> function and shouldn't be called manually. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> class. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>btWorld</em>&nbsp;</td><td>Pointer to the physics world. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html#a74a4eaa5491b90a977e9db0457271f31">phys::ActorRigid</a>.</p>
 
 </div>
 </div>
@@ -844,7 +886,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <li><a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu May 27 00:21:49 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu May 27 23:24:04 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

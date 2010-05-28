@@ -22,7 +22,7 @@
 <div class="contents">
 
 
-<h1><a class="anchor" id="todo">Todo List </a></h1><p><a class="anchor" id="_todo000001"></a> </p>
+<h1><a class="anchor" id="todo">Todo List </a></h1><p><a class="anchor" id="_todo000002"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html#aab4a408ce0724be6adf4c9f51f55f8a1">phys::ActorRigid::CreateShapeFromMeshDynamic</a> (short unsigned int accuracy=1) </dt>
 <dd><p class="startdd">- Check for thread safety </p>
@@ -30,10 +30,15 @@
 <p class="enddd">add code here for compound shapes of convex hulls </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000004"></a> </p>
+<p><a class="anchor" id="_todo000005"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac">phys::ActorRigid::CreateShapeFromMeshStatic</a> () </dt>
 <dd>- Check for thread safety </dd>
+</dl>
+<p><a class="anchor" id="_todo000001"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html#a74a4eaa5491b90a977e9db0457271f31">phys::ActorRigid::RemoveObjectFromWorld</a> (World *TargetWorld, btSoftRigidDynamicsWorld *btWorld) </dt>
+<dd>TODO, Implement DetachFromGraphics and call it here. </dd>
 </dl>
 <p><a class="anchor" id="_todo000010"></a> </p>
 <dl>
@@ -42,12 +47,12 @@
 <p class="enddd">TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000007"></a> </p>
+<p><a class="anchor" id="_todo000008"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166">phys::EventManager::UpdateEvents</a> () </dt>
 <dd>There has got to be a more efficient way to do UpdateEvents() </dd>
 </dl>
-<p><a class="anchor" id="_todo000008"></a> </p>
+<p><a class="anchor" id="_todo000009"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5">phys::EventManager::UpdateSystemEvents</a> () </dt>
 <dd>make Physevents for each of the events in SDL_WmEvents(and delete the SDL events) </dd>
@@ -77,28 +82,23 @@
 <dt>Member <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html#a676039a6beec56d24c631e9da5fd7e76">phys::LineGroup::LineGroup</a> (World *Parent_) </dt>
 <dd>TODO: This class really should support rotation, the underlying implementation does. </dd>
 </dl>
-<p><a class="anchor" id="_todo000009"></a> </p>
-<dl>
-<dt>Member <a class="el" href="../../df/dec/namespacephys.html#a49d077eb58030fdb50229c55bc09a03d">phys::RemovePollingCheck</a> (const MetaCode &amp;InputToStopPolling) </dt>
-<dd>Actually code RemovePollingCheck </dd>
-</dl>
 <p><a class="anchor" id="_todo000023"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#acd0dff342c08fe3008226488b7c53d97">phys::World::SetWindowName</a> (const String &amp;NewName) </dt>
 <dd>TODO Change the name of an application once it is running </dd>
-</dl>
-<p><a class="anchor" id="_todo000019"></a> </p>
-<dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#aa74e4e6053044c3ecec87fdbf7880c18">phys::World::World</a> (const Vector3 &amp;GeographyLowerBounds_, const Vector3 &amp;GeographyUpperbounds_, const unsigned short int &amp;MaxPhysicsProxies_=1024) </dt>
-<dd>TODO: adjust the constructors to allow for pointers to a callback manager and event manager </dd>
 </dl>
 <p><a class="anchor" id="_todo000018"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695">phys::World::World</a> () </dt>
 <dd>TODO Fix the `const`ness of all methods to be as const as allowable </dd>
 </dl>
+<p><a class="anchor" id="_todo000019"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#aa74e4e6053044c3ecec87fdbf7880c18">phys::World::World</a> (const Vector3 &amp;GeographyLowerBounds_, const Vector3 &amp;GeographyUpperbounds_, const unsigned short int &amp;MaxPhysicsProxies_=1024) </dt>
+<dd>TODO: adjust the constructors to allow for pointers to a callback manager and event manager </dd>
+</dl>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu May 27 00:21:48 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu May 27 23:24:04 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

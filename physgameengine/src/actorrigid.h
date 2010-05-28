@@ -47,28 +47,7 @@
 ///////////////////////////////////
 // Forward Declares
 
-//class btMotionState;
-//class btQuaternion;
-//class btVector3;
 class btRigidBody;
-//class btSoftBody;
-//class btTransform;
-//class btDiscreteDynamicsWorld;
-//class btDefaultMotionState;
-//class btCollisionShape;
-//class btSoftBodyWorldInfo;
-//class btCollisionObject;
-//class btSoftRigidDynamicsWorld;
-//class btTriangleMesh;
-//typedef float btScalar;
-//
-//namespace Ogre
-//{
-//    class Entity;
-//    class SceneManager;
-//    class SceneNode;
-//}
-//
 #include "actorbase.h"
 
 ///////////////////////////////////
@@ -95,12 +74,9 @@ namespace phys
             /// @param pmass "Real Mass" The mass of the object.
             void CreateRigidObject (Real pmass);
 
-            /// @brief Adds the actor to the physics world.
-            /// @details Adds the actor to the physics world. @n
-            /// This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually.
-            /// @param TargetWorld Pointer to the World class.
-            /// @param btWorld Pointer to the physics world.
             void AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld);
+
+            void RemoveObjectFromWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld);
 
         public:
             /// @brief Descriptive constructor.

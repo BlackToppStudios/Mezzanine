@@ -103,10 +103,17 @@ namespace phys
 
             /// @brief Adds the actor to the physics world.
             /// @details Adds the actor to the physics world. @n
-            /// This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually.
+            /// This is automatically called by the phys::Worlds::AddActor function and shouldn't be called manually.
             /// @param TargetWorld Pointer to the World class.
             /// @param btWorld Pointer to the physics world.
             virtual void AddObjectToWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld) = 0;
+
+            /// @brief Removes the actor from the physics world.
+            /// @details Removes the actor from the physics world. @n
+            /// This is automatically called by the phys::World::RemoveActor function and shouldn't be called manually.
+            /// @param TargetWorld Pointer to the World class.
+            /// @param btWorld Pointer to the physics world.
+            virtual void RemoveObjectFromWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld) = 0;
 
             /// @brief Creates a trimesh shape from the mesh file.
             /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n

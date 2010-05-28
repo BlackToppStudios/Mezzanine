@@ -83,7 +83,7 @@
 <a name="l00058"></a>00058 <span class="preprocessor">#include &quot;actorbase.h&quot;</span>
 <a name="l00059"></a>00059 <span class="preprocessor">#include &quot;eventuserinput.h&quot;</span>
 <a name="l00060"></a>00060 <span class="preprocessor">#include &quot;linegroup.h&quot;</span>
-<a name="l00061"></a>00061 
+<a name="l00061"></a>00061 <span class="preprocessor">#include &quot;actorcontainervector.h&quot;</span>
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063 <span class="preprocessor">#include &lt;SDL.h&gt;</span>
 <a name="l00064"></a>00064 <span class="preprocessor">#include &lt;btBulletDynamicsCommon.h&gt;</span>
@@ -333,8 +333,8 @@
 <a name="l00308"></a>00308         this-&gt;TargetFrameLength=16;
 <a name="l00309"></a>00309         this-&gt;HasSDLBeenInitialized=<span class="keyword">false</span>;
 <a name="l00310"></a>00310         this-&gt;PhysicsStepsize = btScalar(1.)/btScalar(60.);
-<a name="l00311"></a>00311 
-<a name="l00312"></a>00312         PlayerSettings = <span class="keyword">new</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html" title="This is intended to store basic graphics setting for the user.">GraphicsSettings</a>();
+<a name="l00311"></a>00311         this-&gt;Actors = <span class="keyword">new</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html" title="A simple Actor Container using a vector.">ActorContainerVector</a>(<span class="keyword">this</span>);
+<a name="l00312"></a>00312         this-&gt;PlayerSettings = <span class="keyword">new</span> <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html" title="This is intended to store basic graphics setting for the user.">GraphicsSettings</a>();
 <a name="l00313"></a>00313 
 <a name="l00314"></a>00314         <span class="comment">//We create our Ogre environment</span>
 <a name="l00315"></a>00315         this-&gt;OgreRoot = <span class="keyword">new</span> Ogre::Root(<a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a8f7321f409f1f2a5fa07881ae22fcc2d" title="Returns a string with a path/filename to the default Plugins config file.">crossplatform::GetPluginsDotCFG</a>(),<a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a2d43f3aa5a485564c3f375b36a08152f" title="Returns a string with a path/filename to the default Graphics Subsytem settings file...">crossplatform::GetSettingsDotCFG</a>(),<span class="stringliteral">&quot;Physgame.log&quot;</span>);
@@ -794,106 +794,113 @@
 <a name="l00769"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a0fec41ef68b7bb1443aab927f8277a81">00769</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a0fec41ef68b7bb1443aab927f8277a81" title="The adds and Actor to the physworld.">World::AddActor</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToAdd)
 <a name="l00770"></a>00770     {
 <a name="l00771"></a>00771         ActorToAdd-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ac5d4ad5a634b16000742f506ed5957fb" title="Adds the actor to the physics world.">AddObjectToWorld</a>(<span class="keyword">this</span>, this-&gt;BulletDynamicsWorld);
-<a name="l00772"></a>00772     }
-<a name="l00773"></a>00773 <span class="comment"></span>
-<a name="l00774"></a>00774 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00775"></a>00775 <span class="comment"></span>    <span class="comment">// Simple get and Set functions</span><span class="comment"></span>
-<a name="l00776"></a>00776 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00777"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a1f0139bbc9561bcf18844be25e4adc73">00777</a> <span class="comment"></span>    std::string <a class="code" href="../../da/ddf/classphys_1_1World.html#a1f0139bbc9561bcf18844be25e4adc73" title="Retrieves the Current Window Title.">World::GetWindowName</a>()
-<a name="l00778"></a>00778     {
-<a name="l00779"></a>00779         <span class="keywordflow">return</span> this-&gt;WindowName;
-<a name="l00780"></a>00780     }
-<a name="l00781"></a>00781 
-<a name="l00782"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#acd0dff342c08fe3008226488b7c53d97">00782</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#acd0dff342c08fe3008226488b7c53d97" title="This can set the the Text in the titlebar.">World::SetWindowName</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;NewName)
-<a name="l00783"></a>00783     {<span class="comment"></span>
-<a name="l00784"></a>00784 <span class="comment">        /// @todo TODO Change the name of an application once it is running</span>
-<a name="l00785"></a>00785 <span class="comment"></span>        WindowName = NewName;
-<a name="l00786"></a>00786         <span class="keywordflow">if</span>(this-&gt;HasSDLBeenInitialized)
-<a name="l00787"></a>00787         {
-<a name="l00788"></a>00788             SDL_WM_SetCaption(WindowName.c_str(),WindowName.c_str());
-<a name="l00789"></a>00789         }
-<a name="l00790"></a>00790     }
-<a name="l00791"></a>00791 
-<a name="l00792"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#aa063ace52be484c7b03ec5859453f48b">00792</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../da/ddf/classphys_1_1World.html#aa063ace52be484c7b03ec5859453f48b" title="Retrieves the amount of milliseconds we would like each iteration of the Main Loop...">World::GetTargetFrameTime</a>()
-<a name="l00793"></a>00793     {
-<a name="l00794"></a>00794         <span class="keywordflow">return</span> this-&gt;TargetFrameLength;
-<a name="l00795"></a>00795     }
-<a name="l00796"></a>00796 
-<a name="l00797"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ad95b5a5ad73e0a05826b5bd834876333">00797</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ad95b5a5ad73e0a05826b5bd834876333" title="This sets a new Target Time.">World::SetTargetFrameTime</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewTargetTime)
-<a name="l00798"></a>00798     {
-<a name="l00799"></a>00799         this-&gt;TargetFrameLength = NewTargetTime;
-<a name="l00800"></a>00800     }
-<a name="l00801"></a>00801 
-<a name="l00802"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a76dfcde35392291aafd6eb1a64b3c95c">00802</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a76dfcde35392291aafd6eb1a64b3c95c" title="This sets a new Target Frame Rate.">World::SetTargetFrameRate</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewFrameRate)
-<a name="l00803"></a>00803     {
-<a name="l00804"></a>00804         this-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ad95b5a5ad73e0a05826b5bd834876333" title="This sets a new Target Time.">SetTargetFrameTime</a>( 1000/NewFrameRate );
-<a name="l00805"></a>00805     }
-<a name="l00806"></a>00806 <span class="comment"></span>
-<a name="l00807"></a>00807 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00808"></a>00808 <span class="comment"></span>    <span class="comment">// Ogre Resource Related Public Members</span><span class="comment"></span>
-<a name="l00809"></a>00809 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00810"></a>00810 <span class="comment"></span>
-<a name="l00811"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ab26033088abe4d60a40cf770dd1b0de8">00811</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ab26033088abe4d60a40cf770dd1b0de8" title="Adds a location for graphical resources.">World::AddResourceLocation</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Location, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Type, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Group, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;recursive)
-<a name="l00812"></a>00812     {
-<a name="l00813"></a>00813         this-&gt;OgreRoot-&gt;addResourceLocation(Location, Type, Group, recursive);
-<a name="l00814"></a>00814     }
-<a name="l00815"></a>00815 
-<a name="l00816"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ad8c9834c1b9a0de437a0b29f17c0c48e">00816</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ad8c9834c1b9a0de437a0b29f17c0c48e" title="Prepares the resource for use.">World::DeclareResource</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Type, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Group)
-<a name="l00817"></a>00817     {
-<a name="l00818"></a>00818         this-&gt;OgreResource-&gt;declareResource(Name, Type, Group);
-<a name="l00819"></a>00819     }
-<a name="l00820"></a>00820 
-<a name="l00821"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a82b1b40f39c1f2e48759fdb77389153d">00821</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a82b1b40f39c1f2e48759fdb77389153d" title="Makes a resource group ready to use.">World::InitResourceGroup</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Group)
-<a name="l00822"></a>00822     {
-<a name="l00823"></a>00823         this-&gt;OgreResource-&gt;initialiseResourceGroup(Group);
-<a name="l00824"></a>00824     }
-<a name="l00825"></a>00825 <span class="comment"></span>
-<a name="l00826"></a>00826 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00827"></a>00827 <span class="comment"></span>    <span class="comment">// Bullet World Management Functions</span><span class="comment"></span>
-<a name="l00828"></a>00828 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00829"></a>00829 <span class="comment"></span>
-<a name="l00830"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a47e1221b296ea7c3188da65ca9570bd5">00830</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a47e1221b296ea7c3188da65ca9570bd5" title="Sets the gravity.">World::SetGravity</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> pgrav)
-<a name="l00831"></a>00831     {
-<a name="l00832"></a>00832         this-&gt;BulletDynamicsWorld-&gt;setGravity(pgrav.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
-<a name="l00833"></a>00833     }
-<a name="l00834"></a>00834 
-<a name="l00835"></a>00835 
-<a name="l00836"></a>00836     <span class="comment">//Bullet Debug Drawing</span>
-<a name="l00837"></a>00837 
-<a name="l00838"></a>00838 
-<a name="l00839"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a9fbd112d2677aa948301287d541b64bb">00839</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a9fbd112d2677aa948301287d541b64bb" title="Enables and Disables Physics Debug Drawing.">World::SetDebugPhysicsRendering</a>(<span class="keywordtype">int</span> ToBeEnabled)
-<a name="l00840"></a>00840     {
-<a name="l00841"></a>00841         <span class="keywordflow">if</span>(ToBeEnabled)
-<a name="l00842"></a>00842         {
-<a name="l00843"></a>00843             this-&gt;BulletDynamicsWorld-&gt;getDebugDrawer()-&gt;setDebugMode(btIDebugDraw::DBG_DrawWireframe);
-<a name="l00844"></a>00844         }<span class="keywordflow">else</span>{
-<a name="l00845"></a>00845             this-&gt;BulletDynamicsWorld-&gt;getDebugDrawer()-&gt;setDebugMode(btIDebugDraw::DBG_NoDebug);
-<a name="l00846"></a>00846         }
-<a name="l00847"></a>00847     }
-<a name="l00848"></a>00848 
-<a name="l00849"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a92070d16eb81866b4393f0ed96fbcbbc">00849</a>     <span class="keywordtype">int</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a92070d16eb81866b4393f0ed96fbcbbc" title="Is Physics Debug Drawing currently enabled?">World::GetDebugPhysicsRendering</a>()
-<a name="l00850"></a>00850     {
-<a name="l00851"></a>00851         <span class="keywordflow">if</span>(this-&gt;BulletDrawer-&gt;<a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html#aba329861569d741e970ce5aafb668e84" title="This will return the current debug mode.">getDebugMode</a>()==btIDebugDraw::DBG_DrawWireframe)
-<a name="l00852"></a>00852         {
-<a name="l00853"></a>00853             <span class="keywordflow">return</span> 1;
-<a name="l00854"></a>00854         }<span class="keywordflow">else</span>{
-<a name="l00855"></a>00855             <span class="keywordflow">return</span> 0;
-<a name="l00856"></a>00856         }
-<a name="l00857"></a>00857     }
-<a name="l00858"></a>00858 
-<a name="l00859"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a6fa4d1e58a78ba0403af1c003fd321d9">00859</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a6fa4d1e58a78ba0403af1c003fd321d9" title="How many Wireframes do you want drawn from previous events.">World::SetDebugPhysicsWireCount</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> WireFrameCount_)
-<a name="l00860"></a>00860     {
-<a name="l00861"></a>00861         this-&gt;BulletDrawer-&gt;<a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html#a76922fda7bb3b59d301e50d67e4f3c72" title="Sets the amount of previous wireframes to leave visible.">SetWireFrameCount</a>(WireFrameCount_);
-<a name="l00862"></a>00862     }
-<a name="l00863"></a>00863 
-<a name="l00864"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a1031d596580ac1a8d3593b5be9b49091">00864</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../da/ddf/classphys_1_1World.html#a1031d596580ac1a8d3593b5be9b49091" title="This gets how many WireFrames are being drawn.">World::GetDebugPhysicsWireCount</a>()
-<a name="l00865"></a>00865     {
-<a name="l00866"></a>00866         <span class="keywordflow">return</span> this-&gt;BulletDrawer-&gt;<a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html#aa1666e636e6ff81813c0b1a85d7bc157" title="This returns the amount of wireframes to be drawn.">GetWireFrameCount</a>();
-<a name="l00867"></a>00867     }
-<a name="l00868"></a>00868 }
-<a name="l00869"></a>00869 <span class="preprocessor">#endif</span>
+<a name="l00772"></a>00772         this-&gt;Actors-&gt;<a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a8dd213cba4915f68ac421fc9f341cbbe" title="This will add an Actor to this container and the world.">AddActor</a>(ActorToAdd);
+<a name="l00773"></a>00773     }
+<a name="l00774"></a>00774 
+<a name="l00775"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ab00f84983afcc7f6ef1e5a84367d994d">00775</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ab00f84983afcc7f6ef1e5a84367d994d" title="The Removes an Actor from the physworld.">World::RemoveActor</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToRemove)
+<a name="l00776"></a>00776     {
+<a name="l00777"></a>00777         ActorToRemove-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af669724f10d0bf74f4951c85caa42494" title="Removes the actor from the physics world.">RemoveObjectFromWorld</a>(<span class="keyword">this</span>, this-&gt;BulletDynamicsWorld);
+<a name="l00778"></a>00778         this-&gt;Actors-&gt;<a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a523072e42f6b581d044432f84a84ede4" title="Remove an Actor.">RemoveActor</a>(ActorToRemove);
+<a name="l00779"></a>00779     }
+<a name="l00780"></a>00780 <span class="comment"></span>
+<a name="l00781"></a>00781 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00782"></a>00782 <span class="comment"></span>    <span class="comment">// Simple get and Set functions</span><span class="comment"></span>
+<a name="l00783"></a>00783 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00784"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a1f0139bbc9561bcf18844be25e4adc73">00784</a> <span class="comment"></span>    std::string <a class="code" href="../../da/ddf/classphys_1_1World.html#a1f0139bbc9561bcf18844be25e4adc73" title="Retrieves the Current Window Title.">World::GetWindowName</a>()
+<a name="l00785"></a>00785     {
+<a name="l00786"></a>00786         <span class="keywordflow">return</span> this-&gt;WindowName;
+<a name="l00787"></a>00787     }
+<a name="l00788"></a>00788 
+<a name="l00789"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#acd0dff342c08fe3008226488b7c53d97">00789</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#acd0dff342c08fe3008226488b7c53d97" title="This can set the the Text in the titlebar.">World::SetWindowName</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;NewName)
+<a name="l00790"></a>00790     {<span class="comment"></span>
+<a name="l00791"></a>00791 <span class="comment">        /// @todo TODO Change the name of an application once it is running</span>
+<a name="l00792"></a>00792 <span class="comment"></span>        WindowName = NewName;
+<a name="l00793"></a>00793         <span class="keywordflow">if</span>(this-&gt;HasSDLBeenInitialized)
+<a name="l00794"></a>00794         {
+<a name="l00795"></a>00795             SDL_WM_SetCaption(WindowName.c_str(),WindowName.c_str());
+<a name="l00796"></a>00796         }
+<a name="l00797"></a>00797     }
+<a name="l00798"></a>00798 
+<a name="l00799"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#aa063ace52be484c7b03ec5859453f48b">00799</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../da/ddf/classphys_1_1World.html#aa063ace52be484c7b03ec5859453f48b" title="Retrieves the amount of milliseconds we would like each iteration of the Main Loop...">World::GetTargetFrameTime</a>()
+<a name="l00800"></a>00800     {
+<a name="l00801"></a>00801         <span class="keywordflow">return</span> this-&gt;TargetFrameLength;
+<a name="l00802"></a>00802     }
+<a name="l00803"></a>00803 
+<a name="l00804"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ad95b5a5ad73e0a05826b5bd834876333">00804</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ad95b5a5ad73e0a05826b5bd834876333" title="This sets a new Target Time.">World::SetTargetFrameTime</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewTargetTime)
+<a name="l00805"></a>00805     {
+<a name="l00806"></a>00806         this-&gt;TargetFrameLength = NewTargetTime;
+<a name="l00807"></a>00807     }
+<a name="l00808"></a>00808 
+<a name="l00809"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a76dfcde35392291aafd6eb1a64b3c95c">00809</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a76dfcde35392291aafd6eb1a64b3c95c" title="This sets a new Target Frame Rate.">World::SetTargetFrameRate</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewFrameRate)
+<a name="l00810"></a>00810     {
+<a name="l00811"></a>00811         this-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ad95b5a5ad73e0a05826b5bd834876333" title="This sets a new Target Time.">SetTargetFrameTime</a>( 1000/NewFrameRate );
+<a name="l00812"></a>00812     }
+<a name="l00813"></a>00813 <span class="comment"></span>
+<a name="l00814"></a>00814 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00815"></a>00815 <span class="comment"></span>    <span class="comment">// Ogre Resource Related Public Members</span><span class="comment"></span>
+<a name="l00816"></a>00816 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00817"></a>00817 <span class="comment"></span>
+<a name="l00818"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ab26033088abe4d60a40cf770dd1b0de8">00818</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ab26033088abe4d60a40cf770dd1b0de8" title="Adds a location for graphical resources.">World::AddResourceLocation</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Location, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Type, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Group, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;recursive)
+<a name="l00819"></a>00819     {
+<a name="l00820"></a>00820         this-&gt;OgreRoot-&gt;addResourceLocation(Location, Type, Group, recursive);
+<a name="l00821"></a>00821     }
+<a name="l00822"></a>00822 
+<a name="l00823"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ad8c9834c1b9a0de437a0b29f17c0c48e">00823</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ad8c9834c1b9a0de437a0b29f17c0c48e" title="Prepares the resource for use.">World::DeclareResource</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Type, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Group)
+<a name="l00824"></a>00824     {
+<a name="l00825"></a>00825         this-&gt;OgreResource-&gt;declareResource(Name, Type, Group);
+<a name="l00826"></a>00826     }
+<a name="l00827"></a>00827 
+<a name="l00828"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a82b1b40f39c1f2e48759fdb77389153d">00828</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a82b1b40f39c1f2e48759fdb77389153d" title="Makes a resource group ready to use.">World::InitResourceGroup</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Group)
+<a name="l00829"></a>00829     {
+<a name="l00830"></a>00830         this-&gt;OgreResource-&gt;initialiseResourceGroup(Group);
+<a name="l00831"></a>00831     }
+<a name="l00832"></a>00832 <span class="comment"></span>
+<a name="l00833"></a>00833 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00834"></a>00834 <span class="comment"></span>    <span class="comment">// Bullet World Management Functions</span><span class="comment"></span>
+<a name="l00835"></a>00835 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00836"></a>00836 <span class="comment"></span>
+<a name="l00837"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a47e1221b296ea7c3188da65ca9570bd5">00837</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a47e1221b296ea7c3188da65ca9570bd5" title="Sets the gravity.">World::SetGravity</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> pgrav)
+<a name="l00838"></a>00838     {
+<a name="l00839"></a>00839         this-&gt;BulletDynamicsWorld-&gt;setGravity(pgrav.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00840"></a>00840     }
+<a name="l00841"></a>00841 
+<a name="l00842"></a>00842 
+<a name="l00843"></a>00843     <span class="comment">//Bullet Debug Drawing</span>
+<a name="l00844"></a>00844 
+<a name="l00845"></a>00845 
+<a name="l00846"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a9fbd112d2677aa948301287d541b64bb">00846</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a9fbd112d2677aa948301287d541b64bb" title="Enables and Disables Physics Debug Drawing.">World::SetDebugPhysicsRendering</a>(<span class="keywordtype">int</span> ToBeEnabled)
+<a name="l00847"></a>00847     {
+<a name="l00848"></a>00848         <span class="keywordflow">if</span>(ToBeEnabled)
+<a name="l00849"></a>00849         {
+<a name="l00850"></a>00850             this-&gt;BulletDynamicsWorld-&gt;getDebugDrawer()-&gt;setDebugMode(btIDebugDraw::DBG_DrawWireframe);
+<a name="l00851"></a>00851         }<span class="keywordflow">else</span>{
+<a name="l00852"></a>00852             this-&gt;BulletDynamicsWorld-&gt;getDebugDrawer()-&gt;setDebugMode(btIDebugDraw::DBG_NoDebug);
+<a name="l00853"></a>00853         }
+<a name="l00854"></a>00854     }
+<a name="l00855"></a>00855 
+<a name="l00856"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a92070d16eb81866b4393f0ed96fbcbbc">00856</a>     <span class="keywordtype">int</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a92070d16eb81866b4393f0ed96fbcbbc" title="Is Physics Debug Drawing currently enabled?">World::GetDebugPhysicsRendering</a>()
+<a name="l00857"></a>00857     {
+<a name="l00858"></a>00858         <span class="keywordflow">if</span>(this-&gt;BulletDrawer-&gt;<a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html#aba329861569d741e970ce5aafb668e84" title="This will return the current debug mode.">getDebugMode</a>()==btIDebugDraw::DBG_DrawWireframe)
+<a name="l00859"></a>00859         {
+<a name="l00860"></a>00860             <span class="keywordflow">return</span> 1;
+<a name="l00861"></a>00861         }<span class="keywordflow">else</span>{
+<a name="l00862"></a>00862             <span class="keywordflow">return</span> 0;
+<a name="l00863"></a>00863         }
+<a name="l00864"></a>00864     }
+<a name="l00865"></a>00865 
+<a name="l00866"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a6fa4d1e58a78ba0403af1c003fd321d9">00866</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a6fa4d1e58a78ba0403af1c003fd321d9" title="How many Wireframes do you want drawn from previous events.">World::SetDebugPhysicsWireCount</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> WireFrameCount_)
+<a name="l00867"></a>00867     {
+<a name="l00868"></a>00868         this-&gt;BulletDrawer-&gt;<a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html#a76922fda7bb3b59d301e50d67e4f3c72" title="Sets the amount of previous wireframes to leave visible.">SetWireFrameCount</a>(WireFrameCount_);
+<a name="l00869"></a>00869     }
+<a name="l00870"></a>00870 
+<a name="l00871"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a1031d596580ac1a8d3593b5be9b49091">00871</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../da/ddf/classphys_1_1World.html#a1031d596580ac1a8d3593b5be9b49091" title="This gets how many WireFrames are being drawn.">World::GetDebugPhysicsWireCount</a>()
+<a name="l00872"></a>00872     {
+<a name="l00873"></a>00873         <span class="keywordflow">return</span> this-&gt;BulletDrawer-&gt;<a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html#aa1666e636e6ff81813c0b1a85d7bc157" title="This returns the amount of wireframes to be drawn.">GetWireFrameCount</a>();
+<a name="l00874"></a>00874     }
+<a name="l00875"></a>00875 }
+<a name="l00876"></a>00876 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu May 27 00:21:48 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu May 27 23:24:04 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

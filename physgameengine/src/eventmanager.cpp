@@ -322,9 +322,65 @@ namespace phys
             this->ParentWorld->LogAndThrow("Unsupported Polling Check on this Platform");
     }
 
-    void RemovePollingCheck(const MetaCode &InputToStopPolling)
+    void EventManager::RemovePollingCheck(const MetaCode &InputToStopPolling)
     {
-        /// @todo Actually code RemovePollingCheck
+        bool ItFailed = true; // who cares why it failed, it did, and should be reported
+        bool supported = false; //used to help determine if the metacode passed in was nonsense or could have been valid
+
+        //Check for keyboard code
+        if ( MetaCode::KEY_LAST > InputToStopPolling.GetCode() && InputToStopPolling.GetCode() > MetaCode::KEY_FIRST)
+        {
+            supported=true;
+
+            vector<MetaCode::InputCode>::iterator KeyIter;
+            for(KeyIter = this->WatchKeyboardKeys.begin(); KeyIter!=this->WatchKeyboardKeys.end(); KeyIter++) //Check Each
+            {
+                if( *KeyIter == InputToStopPolling.GetCode())
+                {
+                    this->WatchKeyboardKeys.erase(KeyIter);
+                    ItFailed=false;
+                }
+            }
+        }
+
+        //if it is a specific mouse button, then
+        if ( MetaCode::MOUSEBUTTON == InputToStopPolling.GetCode())
+        {
+            supported=true;
+
+            vector<int>::iterator MouseIter;
+            for(MouseIter = this->WatchMouseKeys.begin(); MouseIter!=this->WatchMouseKeys.end(); MouseIter++) //Check Each
+            {
+                if( *MouseIter == InputToStopPolling.GetCode())
+                {
+                    this->WatchMouseKeys.erase(MouseIter);
+                    ItFailed=false;
+                }
+            }
+        }
+
+        //Mouse Movement
+        if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToStopPolling.GetCode())
+        {
+            supported=true;
+            if(PollMouseVert == true)
+                {ItFailed=false;}
+            PollMouseVert = false;
+
+        }
+
+        if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == InputToStopPolling.GetCode())
+        {
+            supported=true;
+            if(PollMouseHor == true)
+                {ItFailed=false;}
+            PollMouseHor = false;
+        }
+
+        if (!supported)
+            this->ParentWorld->LogAndThrow("Unsupported Polling Check on this Platform, Cannot Remove");
+        if (ItFailed)
+            this->ParentWorld->LogAndThrow("Polling Check did not exist, Cannot Remove");
     }
 
 

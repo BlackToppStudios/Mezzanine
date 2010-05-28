@@ -58,7 +58,7 @@
 #include "actorbase.h"
 #include "eventuserinput.h"
 #include "linegroup.h"
-
+#include "actorcontainervector.h"
 
 #include <SDL.h>
 #include <btBulletDynamicsCommon.h>
@@ -308,8 +308,8 @@ namespace phys
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
         this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
-
-        PlayerSettings = new GraphicsSettings();
+        this->Actors = new ActorContainerVector(this);
+        this->PlayerSettings = new GraphicsSettings();
 
         //We create our Ogre environment
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
@@ -336,7 +336,7 @@ namespace phys
         this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
         this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
 
-	btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
+        btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
 
         this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld(
                                                     BulletDispatcher,
@@ -769,6 +769,13 @@ namespace phys
     void World::AddActor(ActorBase* ActorToAdd)
     {
         ActorToAdd->AddObjectToWorld(this, this->BulletDynamicsWorld);
+        this->Actors->AddActor(ActorToAdd);
+    }
+
+    void World::RemoveActor(ActorBase* ActorToRemove)
+    {
+        ActorToRemove->RemoveObjectFromWorld(this, this->BulletDynamicsWorld);
+        this->Actors->RemoveActor(ActorToRemove);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
