@@ -19,9 +19,11 @@
 
 #include <sstream>
 
+using namespace phys;
+
 //Create the World Globally!
-phys::World TheWorld;
-phys::ActorRigid *object1, *object2, *object3, *object4;
+World TheWorld;
+ActorRigid *object1, *object2, *object3, *object4;
 
 int main(int argc, char **argv)
 {
@@ -34,17 +36,17 @@ int main(int argc, char **argv)
     TheWorld.CallBacks->SetPrePhysics(&PrePhysics);
 
 
-    //give the World our function to execute after rendering
+    //give the World our function to execute after renderingg
     TheWorld.CallBacks->SetPostRender(&PostRender);
 
     //Set the Make the RenderWindow and load system stuff
 	TheWorld.GameInit(false);
 
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
-    phys::MetaCode PollForQ(0, 1, phys::MetaCode::KEY_q);
-    phys::MetaCode PollForRightClick(0, 3, phys::MetaCode::MOUSEBUTTON);
-    phys::MetaCode PollForX(0,0, phys::MetaCode::MOUSEABSOLUTEHORIZONTAL);
-    phys::MetaCode PollForY(0,0, phys::MetaCode::MOUSEABSOLUTEVERTICAL);
+    MetaCode PollForQ(0, 1, MetaCode::KEY_q);
+    MetaCode PollForRightClick(0, 3, MetaCode::MOUSEBUTTON);
+    MetaCode PollForX(0,0, MetaCode::MOUSEABSOLUTEHORIZONTAL);
+    MetaCode PollForY(0,0, MetaCode::MOUSEABSOLUTEVERTICAL);
     TheWorld.Events->AddPollingCheck(PollForQ);
     TheWorld.Events->AddPollingCheck(PollForRightClick);
     TheWorld.Events->AddPollingCheck(PollForX);
@@ -64,7 +66,7 @@ int main(int argc, char **argv)
 bool PostRender()
 {
 	//Lets set a variable for the time
-	static phys::Whole gametime = 0;
+	static Whole gametime = 0;
 
 	TheWorld.Log("---------- Starting CallBack -------------");
     TheWorld.Log("Current Game Time ");
@@ -74,7 +76,7 @@ bool PostRender()
     TheWorld.SetWindowName( timestream.str() );
 
 	//getting a message from the event manager
-	phys::EventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
+	EventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
 
     // Is CurrentTime a valid event?
     while(0 != CurrentTime)
@@ -130,7 +132,7 @@ bool PostInput()
 bool CheckForEsc()
 {
     //this will either set the pointer to 0 or return a valid pointer to work with.
-    phys::EventUserInput* OneInput = TheWorld.Events->PopNextUserInputEvent();
+    EventUserInput* OneInput = TheWorld.Events->PopNextUserInputEvent();
 
     //We check each Event
     while(0 != OneInput)
@@ -158,9 +160,9 @@ bool CheckForEsc()
 void LoadContent()
 {
     //Ogre Setup Code
-    phys::String groupname="Robot";
-    phys::String filename="robot.mesh";
-    phys::Real mass=5.0;
+    String groupname="Robot";
+    String filename="robot.mesh";
+    Real mass=5.0;
     TheWorld.AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld.DeclareResource(filename, "Mesh", groupname);
     TheWorld.DeclareResource("Examples.material", "Material", groupname);
