@@ -440,7 +440,7 @@
 <a name="l00415"></a>00415                         <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> temp(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a>,0,*iter);
 <a name="l00416"></a>00416                         CodeBag.push_back(temp);
 <a name="l00417"></a>00417                     }<span class="keywordflow">else</span>{<span class="comment">//up</span>
-<a name="l00418"></a>00418                         <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> temp(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3">MetaCode::BUTTON_UP</a>,0,*iter);
+<a name="l00418"></a>00418                         MetaCode temp(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3">MetaCode::BUTTON_UP</a>,0,*iter);
 <a name="l00419"></a>00419                         CodeBag.push_back(temp);
 <a name="l00420"></a>00420                     }
 <a name="l00421"></a>00421                 }
@@ -458,10 +458,10 @@
 <a name="l00433"></a>00433             {
 <a name="l00434"></a>00434                 <span class="keywordflow">if</span>(SDL_GetMouseState(NULL, NULL)&amp;SDL_BUTTON(*iter))
 <a name="l00435"></a>00435                 {
-<a name="l00436"></a>00436                         <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> temp(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a>,*iter,<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a" title="The First Mouse event, all Mouse Event values will be more than this.">MetaCode::MOUSEBUTTON</a>);
+<a name="l00436"></a>00436                         MetaCode temp(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a>,*iter,<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a" title="The First Mouse event, all Mouse Event values will be more than this.">MetaCode::MOUSEBUTTON</a>);
 <a name="l00437"></a>00437                         CodeBag.push_back(temp);
 <a name="l00438"></a>00438                 }<span class="keywordflow">else</span>{
-<a name="l00439"></a>00439                         <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> temp(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3">MetaCode::BUTTON_UP</a>,*iter,<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a" title="The First Mouse event, all Mouse Event values will be more than this.">MetaCode::MOUSEBUTTON</a>);
+<a name="l00439"></a>00439                         MetaCode temp(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3">MetaCode::BUTTON_UP</a>,*iter,<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a" title="The First Mouse event, all Mouse Event values will be more than this.">MetaCode::MOUSEBUTTON</a>);
 <a name="l00440"></a>00440                         CodeBag.push_back(temp);
 <a name="l00441"></a>00441                 }
 <a name="l00442"></a>00442             }
@@ -478,12 +478,12 @@
 <a name="l00453"></a>00453             SDL_GetMouseState(&amp;Hor, &amp;Vert);
 <a name="l00454"></a>00454             <span class="keywordflow">if</span>( PollMouseVert )
 <a name="l00455"></a>00455             {
-<a name="l00456"></a>00456                 <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> temp(Vert,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+<a name="l00456"></a>00456                 MetaCode temp(Vert,0,MetaCode::MOUSEABSOLUTEVERTICAL);
 <a name="l00457"></a>00457                 CodeBag.push_back(temp);
 <a name="l00458"></a>00458             }
 <a name="l00459"></a>00459             <span class="keywordflow">if</span>( PollMouseHor )
 <a name="l00460"></a>00460             {
-<a name="l00461"></a>00461                 <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> temp(Hor,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
+<a name="l00461"></a>00461                 MetaCode temp(Hor,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
 <a name="l00462"></a>00462                 CodeBag.push_back(temp);
 <a name="l00463"></a>00463             }
 <a name="l00464"></a>00464         }
@@ -540,7 +540,7 @@
 <a name="l00515"></a>00515         }<span class="keywordflow">else</span>{
 <a name="l00516"></a>00516             <span class="keywordflow">if</span>(4==<a class="code" href="../../d0/d26/namespacephys_1_1internal.html#aae2a1133a05c67ac3062038c0c5dad4a" title="SDL uses this to filter events it presents to applications.">internal::PhysSDLFilter</a>(0))                 <span class="comment">//Pass it a null pointer to get it to &quot;Not Callback Mode&quot;</span>
 <a name="l00517"></a>00517             {
-<a name="l00518"></a>00518                 this-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#abada23d83ef38e59a38eb91a88a07404" title="Adds an event of any kind to the end of the Event Queue.">AddEvent</a>(<span class="keyword">new</span> <a class="code" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a>());    <span class="comment">//We need to make a quit event</span>
+<a name="l00518"></a>00518                 this-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#abada23d83ef38e59a38eb91a88a07404" title="Adds an event of any kind to the end of the Event Queue.">AddEvent</a>(<span class="keyword">new</span> EventQuit());    <span class="comment">//We need to make a quit event</span>
 <a name="l00519"></a>00519             }<span class="keywordflow">else</span>{
 <a name="l00520"></a>00520                 <span class="comment">//all clear</span>
 <a name="l00521"></a>00521             }
@@ -551,7 +551,7 @@
 <a name="l00526"></a>00526 
 <a name="l00527"></a>00527 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu May 27 23:24:04 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 31 02:06:55 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

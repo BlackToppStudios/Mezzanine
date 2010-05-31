@@ -123,8 +123,12 @@
 		<Unit filename="src/quaternion.h" />
 		<Unit filename="src/vector3.cpp" />
 		<Unit filename="src/vector3.h" />
+		<Unit filename="src/vectorwactor3.cpp" />
+		<Unit filename="src/vectorwactor3.h" />
 		<Unit filename="src/world.cpp" />
 		<Unit filename="src/world.h" />
+		<Unit filename="src/worldquerytool.cpp" />
+		<Unit filename="src/worldquerytool.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

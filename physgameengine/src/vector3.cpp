@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physvector_cpp
-#define _physvector_cpp
+#ifndef _vector3_cpp
+#define _vector3_cpp
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
@@ -128,7 +128,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 }
 
 
-Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const Vector3& VecFrom)
+Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom)
 {
     VecTo.x=VecFrom.X;
     VecTo.y=VecFrom.Y;
@@ -153,7 +153,7 @@ btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom)
     return VecTo;
 }
 
-btVector3& operator << (btVector3& VecTo, const Vector3& VecFrom)
+btVector3& operator << (btVector3& VecTo, const phys::Vector3& VecFrom)
 {
     VecTo.setX(VecFrom.X);
     VecTo.setY(VecFrom.Y);
@@ -162,7 +162,7 @@ btVector3& operator << (btVector3& VecTo, const Vector3& VecFrom)
     return VecTo;
 }
 
-Vector3& operator << (Vector3& VecTo, const Ogre::Vector3& VecFrom)
+phys::Vector3& operator << (phys::Vector3& VecTo, const Ogre::Vector3& VecFrom)
 {
     VecTo.X=VecFrom.x;
     VecTo.Y=VecFrom.y;
@@ -170,7 +170,7 @@ Vector3& operator << (Vector3& VecTo, const Ogre::Vector3& VecFrom)
     return VecTo;
 }
 
-Vector3& operator << (Vector3& VecTo, const btVector3& VecFrom)
+phys::Vector3& operator << (phys::Vector3& VecTo, const btVector3& VecFrom)
 {
     VecTo.X=VecFrom.getX();
     VecTo.Y=VecFrom.getY();

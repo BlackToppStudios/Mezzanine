@@ -37,12 +37,10 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physvector_h
-#define _physvector_h
+#ifndef _vector3_h
+#define _vector3_h
 
 #include "datatypes.h"
-
-using namespace phys;
 
 //Forward Declarations for wierd compatibility functions
 class btVector3;
@@ -121,15 +119,15 @@ namespace phys
     };
 }// /phys
 
-std::ostream& operator << (std::ostream& stream, const Vector3& x);
+std::ostream& operator << (std::ostream& stream, const phys::Vector3& x);
 
-Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const Vector3& VecFrom);
+Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom);
 Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom);
 
 btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom);
-btVector3& operator << (btVector3& VecTo, const Vector3& VecFrom);
+btVector3& operator << (btVector3& VecTo, const phys::Vector3& VecFrom);
 
-Vector3& operator << (Vector3& VecTo, const Ogre::Vector3& VecFrom);
-Vector3& operator << (Vector3& VecTo, const btVector3& VecFrom);
+phys::Vector3& operator << (phys::Vector3& VecTo, const Ogre::Vector3& VecFrom);
+phys::Vector3& operator << (phys::Vector3& VecTo, const btVector3& VecFrom);
 
 #endif

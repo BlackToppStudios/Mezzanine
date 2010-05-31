@@ -62,8 +62,8 @@
 <a name="l00037"></a>00037 <span class="comment">   Joseph Toppi - toppij@gmail.com</span>
 <a name="l00038"></a>00038 <span class="comment">   John Blackwood - makoenergy02@gmail.com</span>
 <a name="l00039"></a>00039 <span class="comment">*/</span>
-<a name="l00040"></a>00040 <span class="preprocessor">#ifndef _physvector_cpp</span>
-<a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _physvector_cpp</span>
+<a name="l00040"></a>00040 <span class="preprocessor">#ifndef _vector3_cpp</span>
+<a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _vector3_cpp</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;btBulletDynamicsCommon.h&quot;</span>
@@ -153,7 +153,7 @@
 <a name="l00128"></a>00128 }
 <a name="l00129"></a>00129 
 <a name="l00130"></a>00130 
-<a name="l00131"></a>00131 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; VecFrom)
+<a name="l00131"></a>00131 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom)
 <a name="l00132"></a>00132 {
 <a name="l00133"></a>00133     VecTo.x=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>;
 <a name="l00134"></a>00134     VecTo.y=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>;
@@ -178,7 +178,7 @@
 <a name="l00153"></a>00153     <span class="keywordflow">return</span> VecTo;
 <a name="l00154"></a>00154 }
 <a name="l00155"></a>00155 
-<a name="l00156"></a>00156 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; VecFrom)
+<a name="l00156"></a>00156 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom)
 <a name="l00157"></a>00157 {
 <a name="l00158"></a>00158     VecTo.setX(VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>);
 <a name="l00159"></a>00159     VecTo.setY(VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>);
@@ -187,7 +187,7 @@
 <a name="l00162"></a>00162     <span class="keywordflow">return</span> VecTo;
 <a name="l00163"></a>00163 }
 <a name="l00164"></a>00164 
-<a name="l00165"></a>00165 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom)
+<a name="l00165"></a>00165 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom)
 <a name="l00166"></a>00166 {
 <a name="l00167"></a>00167     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>=VecFrom.x;
 <a name="l00168"></a>00168     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=VecFrom.y;
@@ -195,7 +195,7 @@
 <a name="l00170"></a>00170     <span class="keywordflow">return</span> VecTo;
 <a name="l00171"></a>00171 }
 <a name="l00172"></a>00172 
-<a name="l00173"></a>00173 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom)
+<a name="l00173"></a>00173 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom)
 <a name="l00174"></a>00174 {
 <a name="l00175"></a>00175     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>=VecFrom.getX();
 <a name="l00176"></a>00176     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=VecFrom.getY();
@@ -205,7 +205,7 @@
 <a name="l00180"></a>00180 
 <a name="l00181"></a>00181 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu May 27 23:24:04 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon May 31 02:06:55 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
