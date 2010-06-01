@@ -44,9 +44,11 @@
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 #include "BulletCollision/CollisionShapes/btShapeHull.h"
 #include "BulletCollision/Gimpact/btGImpactShape.h"
+#include "ConvexBuilder.h"
 
 #include "actorrigid.h"
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
+#include "internaldecompinterface.h.cpp"
 
 namespace phys{
     ///////////////////////////////////
@@ -67,6 +69,92 @@ namespace phys{
         btScalar bmass=pmass;
         this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
         CollisionObject=physrigidbody;
+    }
+
+    void ActorRigid::PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent)
+    {
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        Ogre::IndexData*  indexData = subMesh->indexData;
+        Ogre::VertexData* vertexData = subMesh->vertexData;
+
+        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+        Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
+
+        unsigned int triCount = indexData->indexCount/3;
+        Ogre::Real* vertices = new Ogre::Real[vertexData->vertexCount*3];
+        unsigned int* indices = new unsigned int[indexData->indexCount];
+        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+        int vcount=0;
+        float* pReal = NULL;
+        for (size_t j = 0; j < vertexData->vertexCount; j+=3, vertex += vBuffer->getVertexSize() )
+        {
+            posElem->baseVertexPointerToElement(vertex, &pReal);
+            vertices[j] = pReal[0];
+            vertices[j+1] = pReal[1];
+            vertices[j+2] = pReal[2];
+            vcount+=3;
+        }
+        vBuffer->unlock();
+        size_t index_offset = 0;
+        bool use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
+
+        unsigned long* pLong = static_cast<unsigned long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+        unsigned short* pShort = reinterpret_cast<unsigned short*>(pLong);
+
+        if (use32bitindexes)
+        {
+            for (size_t k = 0; k < triCount*3; ++k)
+            {
+                indices[index_offset++] = pLong[k];
+            }
+        }
+        else
+        {
+            for (size_t k = 0; k < triCount*3; ++k)
+            {
+                indices[index_offset++] = static_cast<unsigned long>(pShort[k]);
+            }
+        }
+        iBuffer->unlock();
+
+        ConvexDecomposition::DecompDesc desc;
+        desc.mVcount = vcount;
+        desc.mTcount = triCount;
+        desc.mVertices = &vertices[0];
+        desc.mIndices = &indices[0];
+        unsigned int maxv  = 16;
+        float skinWidth    = 0.0;
+        desc.mDepth        = depth;
+		desc.mCpercent     = cpercent;
+		desc.mPpercent     = ppercent;
+		desc.mMaxVertices  = maxv;
+		desc.mSkinWidth    = skinWidth;
+
+        internal::PhysConvexDecomposition decomp;
+        desc.mCallback = &decomp;
+
+        ConvexBuilder cb(desc.mCallback);
+        cb.process(desc);
+
+        btCompoundShape* compound = new btCompoundShape(false);
+        btTransform trans;
+        trans.setIdentity();
+        for (int i=0;i<decomp.m_convexShapes.size();i++)
+        {
+            btVector3 centroid = decomp.m_convexCentroids[i];
+            trans.setOrigin(centroid);
+            btConvexHullShape* convexShape = decomp.m_convexShapes[i];
+            compound->addChildShape(trans,convexShape);
+        }
+        Shape=compound;
+        this->physrigidbody->setCollisionShape(this->Shape);
+
+        delete[] vertices;
+        delete[] indices;
+
+        return;
     }
 
     void ActorRigid::AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld)
@@ -112,17 +200,31 @@ namespace phys{
         if(accuracy==2)
         {
             delete Shape;
-            /// @todo add code here to increase the verticies that is used to create the hull from the first accuracy setting.
-            btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateTrimesh());
-            Shape=tmpshape;
-            this->physrigidbody->setCollisionShape(this->Shape);
+            int depth=5;
+            float cpercent=5;
+            float ppercent=15;
+            this->PerformConvexDecomposition(depth,cpercent,ppercent);
+
+            btScalar mass=this->physrigidbody->getInvMass();
+            mass=1/mass;
+            btVector3 inertia(0,0,0);
+            Shape->calculateLocalInertia(mass, inertia);
+            this->physrigidbody->setMassProps(mass,inertia);
             return;
         }
         if(accuracy==3)
         {
             delete Shape;
-            /// @todo add code here for compound shapes of convex hulls
-            this->physrigidbody->setCollisionShape(this->Shape);
+            int depth=7;
+            float cpercent=5;
+            float ppercent=10;
+            this->PerformConvexDecomposition(depth,cpercent,ppercent);
+
+            btScalar mass=this->physrigidbody->getInvMass();
+            mass=1/mass;
+            btVector3 inertia(0,0,0);
+            Shape->calculateLocalInertia(mass, inertia);
+            this->physrigidbody->setMassProps(mass,inertia);
             return;
         }
         if(accuracy==4)

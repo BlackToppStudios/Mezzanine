@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
-		<Project filename="physgameengine/physgame.cbp" />
-		<Project filename="Catch!/Catch!.cbp" active="1" />
+		<Project filename="physgameengine\physgame.cbp" active="1" />
+		<Project filename="Catch!\Catch!.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
