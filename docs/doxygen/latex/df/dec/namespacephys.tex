@@ -1,0 +1,142 @@
+\hypertarget{namespacephys}{
+\section{phys Namespace Reference}
+\label{df/dec/namespacephys}\index{phys@{phys}}
+}
+
+
+The bulk of the engine components go in this namspace.  
+
+
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespacephys_1_1crossplatform}{crossplatform}
+
+
+\begin{DoxyCompactList}\small\item\em All functionality that needs different implemenations per platform will go in here. \item\end{DoxyCompactList}
+
+\item 
+namespace \hyperlink{namespacephys_1_1debug}{debug}
+
+
+\begin{DoxyCompactList}\small\item\em This namespace is for internal debugging tools. In general it should be used in game code. \item\end{DoxyCompactList}
+
+\item 
+namespace \hyperlink{namespacephys_1_1internal}{internal}
+
+
+\begin{DoxyCompactList}\small\item\em This namespace is used for internal helper classes, and in general it should be ignored by game developers. \item\end{DoxyCompactList}
+
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classphys_1_1ActorBase}{ActorBase}
+\begin{DoxyCompactList}\small\item\em This is the base class from which all the actors inherit. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1ActorContainerBase}{ActorContainerBase}
+\begin{DoxyCompactList}\small\item\em A base class to unify the interface for different kinds of containers for holding actors. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1ActorContainerVector}{ActorContainerVector}
+\begin{DoxyCompactList}\small\item\em A simple Actor Container using a vector. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1ActorRigid}{ActorRigid}
+\begin{DoxyCompactList}\small\item\em This is the actor class for Rigid Objects. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1ActorSoft}{ActorSoft}
+\begin{DoxyCompactList}\small\item\em This is the actor class for Soft Objects. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1CallBackManager}{CallBackManager}
+\begin{DoxyCompactList}\small\item\em This Stores callbacks for for use in the main loop. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1EventBase}{EventBase}
+\begin{DoxyCompactList}\small\item\em The base class for all events. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1EventManager}{EventManager}
+\begin{DoxyCompactList}\small\item\em This is a container for Events and facilitates the transfer of data. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1EventQuit}{EventQuit}
+\begin{DoxyCompactList}\small\item\em This is intended to convey the message that quitting needs to happen. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1EventRenderTime}{EventRenderTime}
+\begin{DoxyCompactList}\small\item\em This communicates the amount of time since the world was rendered. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1EventUserInput}{EventUserInput}
+\begin{DoxyCompactList}\small\item\em This is a container for MetaCodes that is used in the physEventManager. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1GraphicsSettings}{GraphicsSettings}
+\begin{DoxyCompactList}\small\item\em This is intended to store basic graphics setting for the user. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1LineGroup}{LineGroup}
+\begin{DoxyCompactList}\small\item\em This is a group of consectutive line segments to be rendered together. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1MetaCode}{MetaCode}
+\begin{DoxyCompactList}\small\item\em This Determines the kind of user input. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1Quaternion}{Quaternion}
+\begin{DoxyCompactList}\small\item\em This is used to store information about rotation in 3d space. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1Vector3}{Vector3}
+\begin{DoxyCompactList}\small\item\em This is used to represent a point in space, or a vector through space. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1VectorWActor3}{VectorWActor3}
+\begin{DoxyCompactList}\small\item\em This class is used to store or transfer a position relative to an Actor. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1World}{World}
+\begin{DoxyCompactList}\small\item\em This is the main entry point for the entire library. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1WorldQueryTool}{WorldQueryTool}
+\begin{DoxyCompactList}\small\item\em This provides a number of optional tools for working with a \hyperlink{classphys_1_1World}{phys::World}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef float \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real}
+\begin{DoxyCompactList}\small\item\em A Datatype used to represent a real floating point number. \item\end{DoxyCompactList}\item 
+typedef unsigned long \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole}
+\begin{DoxyCompactList}\small\item\em A Datatype used to represent an postive integer numbers. \item\end{DoxyCompactList}\item 
+typedef const std::string \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}
+\begin{DoxyCompactList}\small\item\em A Datatype used to a series of characters. \item\end{DoxyCompactList}\item 
+typedef SDL\_\-Event \hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{RawEvent}
+\begin{DoxyCompactList}\small\item\em This is an internal datatype use to communicate with the User input Subsystem. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The bulk of the engine components go in this namspace. This is where imporant classes like \hyperlink{classphys_1_1World}{World}, \hyperlink{classphys_1_1CallBackManager}{CallBackManager}, and The eventmanager reside. For more detailed usage information please refer to individual class documentation or the \hyperlink{index}{Physgame} main page. 
+
+\subsection{Typedef Documentation}
+\hypertarget{namespacephys_a8126d26e4507e66d09876988bb941fd4}{
+\index{phys@{phys}!RawEvent@{RawEvent}}
+\index{RawEvent@{RawEvent}!phys@{phys}}
+\subsubsection[{RawEvent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::RawEvent}}}
+\label{df/dec/namespacephys_a8126d26e4507e66d09876988bb941fd4}
+
+
+This is an internal datatype use to communicate with the User input Subsystem. 
+
+\begin{DoxyInternal}{For internal use only.}
+This is a typedef to SDL\_\-Event. See the SDL Documentation for more details \end{DoxyInternal}
+
+
+Definition at line 74 of file datatypes.h.
+
+\hypertarget{namespacephys_af7eb897198d265b8e868f45240230d5f}{
+\index{phys@{phys}!Real@{Real}}
+\index{Real@{Real}!phys@{phys}}
+\subsubsection[{Real}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::Real}}}
+\label{df/dec/namespacephys_af7eb897198d265b8e868f45240230d5f}
+
+
+A Datatype used to represent a real floating point number. 
+
+This Datatype is currently a typedef to a float, This is to match our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no reason theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype 
+
+Definition at line 58 of file datatypes.h.
+
+\hypertarget{namespacephys_aa03900411993de7fbfec4789bc1d392e}{
+\index{phys@{phys}!String@{String}}
+\index{String@{String}!phys@{phys}}
+\subsubsection[{String}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::String}}}
+\label{df/dec/namespacephys_aa03900411993de7fbfec4789bc1d392e}
+
+
+A Datatype used to a series of characters. 
+
+This is a typedef to std::string. 
+
+Definition at line 68 of file datatypes.h.
+
+\hypertarget{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{
+\index{phys@{phys}!Whole@{Whole}}
+\index{Whole@{Whole}!phys@{phys}}
+\subsubsection[{Whole}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::Whole}}}
+\label{df/dec/namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}
+
+
+A Datatype used to represent an postive integer numbers. 
+
+This is a typedef to unsigned long. 
+
+Definition at line 63 of file datatypes.h.
+

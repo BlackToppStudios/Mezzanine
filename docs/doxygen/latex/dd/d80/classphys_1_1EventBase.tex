@@ -1,0 +1,101 @@
+\hypertarget{classphys_1_1EventBase}{
+\section{phys::EventBase Class Reference}
+\label{dd/d80/classphys_1_1EventBase}\index{phys::EventBase@{phys::EventBase}}
+}
+
+
+The base class for all events.  
+
+
+
+
+{\ttfamily \#include $<$eventbase.h$>$}
+
+Inheritance diagram for phys::EventBase:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{dd/d80/classphys_1_1EventBase}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventType} \{ \par
+\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5}{RenderTime}, 
+\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef}{UserInput}, 
+\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9}{QuitMessage}, 
+\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08}{SystemMessage}, 
+\par
+{\bfseries Other}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} \hyperlink{classphys_1_1EventBase_a0f39a25f4b64f7cf701e174454616366}{getEventType} () const =0
+\begin{DoxyCompactList}\small\item\em This will aid in identifying all classes that inherit from this class. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The base class for all events. All Events used in the Event Manager, will inherit from this. While not absolutely required by the game programmer to write their own events, it it could be useful. Instances of this class cannot be made, and all classes that inherit from this are expected to implement \hyperlink{classphys_1_1EventBase_a0f39a25f4b64f7cf701e174454616366}{getEventType()}. 
+
+Definition at line 58 of file eventbase.h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{
+\index{phys::EventBase@{phys::EventBase}!EventType@{EventType}}
+\index{EventType@{EventType}!phys::EventBase@{phys::EventBase}}
+\subsubsection[{EventType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::EventBase::EventType}}}
+\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}
+A listing of values that can be used to identify Events. \begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{RenderTime@{RenderTime}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!RenderTime@{RenderTime}}\item[{\em 
+\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5}{
+RenderTime}
+\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5}
+}]Indicates the Event is a PhysEventRenderTime \index{UserInput@{UserInput}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!UserInput@{UserInput}}\item[{\em 
+\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef}{
+UserInput}
+\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef}
+}]Indicates the Event is a \hyperlink{classphys_1_1EventUserInput}{EventUserInput} \index{QuitMessage@{QuitMessage}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!QuitMessage@{QuitMessage}}\item[{\em 
+\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9}{
+QuitMessage}
+\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9}
+}]Indicates the Event is a \hyperlink{classphys_1_1EventQuit}{phys::EventQuit} \index{SystemMessage@{SystemMessage}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!SystemMessage@{SystemMessage}}\item[{\em 
+\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08}{
+SystemMessage}
+\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08}
+}]Indicates the Event has not been coded yet \end{description}
+\end{Desc}
+
+
+
+Definition at line 65 of file eventbase.h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1EventBase_a0f39a25f4b64f7cf701e174454616366}{
+\index{phys::EventBase@{phys::EventBase}!getEventType@{getEventType}}
+\index{getEventType@{getEventType}!phys::EventBase@{phys::EventBase}}
+\subsubsection[{getEventType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf EventBase::EventType} phys::EventBase::getEventType () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{dd/d80/classphys_1_1EventBase_a0f39a25f4b64f7cf701e174454616366}
+
+
+This will aid in identifying all classes that inherit from this class. 
+
+All Classes derived form this calls will return an Event::EventType that correspond the the data/class type they actually are. \begin{DoxyReturn}{Returns}
+This returns an eventype that will correspend with the actual event type. This can be used on all Phys game provided class to safely cast a pointer to the correct event type. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classphys_1_1EventQuit_ad996640acbb58d2a17fc405de6515c93}{phys::EventQuit}, \hyperlink{classphys_1_1EventRenderTime_a76a47983d5aa197104cc3c0b9dea9dfa}{phys::EventRenderTime}, and \hyperlink{classphys_1_1EventUserInput_ab31bb312cde99c0a2bf64af012ee4b87}{phys::EventUserInput}.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+eventbase.h\end{DoxyCompactItemize}

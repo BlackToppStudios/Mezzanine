@@ -1,0 +1,127 @@
+\hypertarget{classphys_1_1ActorSoft}{
+\section{phys::ActorSoft Class Reference}
+\label{d4/d23/classphys_1_1ActorSoft}\index{phys::ActorSoft@{phys::ActorSoft}}
+}
+
+
+This is the actor class for Soft Objects.  
+
+
+
+
+{\ttfamily \#include $<$actorbase.h$>$}
+
+Inheritance diagram for phys::ActorSoft:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d4/d23/classphys_1_1ActorSoft}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classphys_1_1ActorSoft_a636c145f1e468fd45adc8da2a1708fbe}{$\sim$ActorSoft} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorSoft_a51d78e0f503c3c815511c3d246b426ae}{CreateShapeFromMesh} ()
+\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classphys_1_1ActorSoft_a04c98bb0ab9ed7c1dfc3435d49403ef4}{CreateSoftObject} (btSoftBodyWorldInfo $\ast$softworldinfo, int nodecount, btVector3 $\ast$nodearray, btScalar $\ast$massarray)
+\begin{DoxyCompactList}\small\item\em Creates a soft object for the actor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorSoft_a3a704ab32f847a5d0e060f8a592efefd}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$btWorld)
+\begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ActorSoft_ab3b2c8e1f94dff3e3244a5024595afef}{
+btSoftBody $\ast$ \hyperlink{classphys_1_1ActorSoft_ab3b2c8e1f94dff3e3244a5024595afef}{physsoftbody}}
+\label{d4/d23/classphys_1_1ActorSoft_ab3b2c8e1f94dff3e3244a5024595afef}
+
+\begin{DoxyCompactList}\small\item\em Used to simulate the functionality of a btSoftBody for use with the physics subsystem. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the actor class for Soft Objects. This class should be used to make any soft object that, like \hyperlink{classphys_1_1ActorRigid}{ActorRigid}, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. \begin{DoxyWarning}{Warning}
+Currently this is not fully implemented and will likely cause errors if used. 
+\end{DoxyWarning}
+
+
+Definition at line 88 of file actorsoft.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ActorSoft_a636c145f1e468fd45adc8da2a1708fbe}{
+\index{phys::ActorSoft@{phys::ActorSoft}!$\sim$ActorSoft@{$\sim$ActorSoft}}
+\index{$\sim$ActorSoft@{$\sim$ActorSoft}!phys::ActorSoft@{phys::ActorSoft}}
+\subsubsection[{$\sim$ActorSoft}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorSoft::$\sim$ActorSoft ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d23/classphys_1_1ActorSoft_a636c145f1e468fd45adc8da2a1708fbe}
+
+
+Destructor. 
+
+The class destructor. 
+
+Definition at line 58 of file actorsoft.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1ActorSoft_a3a704ab32f847a5d0e060f8a592efefd}{
+\index{phys::ActorSoft@{phys::ActorSoft}!AddObjectToWorld@{AddObjectToWorld}}
+\index{AddObjectToWorld@{AddObjectToWorld}!phys::ActorSoft@{phys::ActorSoft}}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorSoft::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em btWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\label{d4/d23/classphys_1_1ActorSoft_a3a704ab32f847a5d0e060f8a592efefd}
+
+
+Adds the actor to the physics world. 
+
+Adds the actor to the physics world. \par
+ This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \item[{\em btWorld}]Pointer to the physics world. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1ActorBase_ac5d4ad5a634b16000742f506ed5957fb}{phys::ActorBase}.
+
+
+
+Definition at line 69 of file actorsoft.cpp.
+
+\hypertarget{classphys_1_1ActorSoft_a51d78e0f503c3c815511c3d246b426ae}{
+\index{phys::ActorSoft@{phys::ActorSoft}!CreateShapeFromMesh@{CreateShapeFromMesh}}
+\index{CreateShapeFromMesh@{CreateShapeFromMesh}!phys::ActorSoft@{phys::ActorSoft}}
+\subsubsection[{CreateShapeFromMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorSoft::CreateShapeFromMesh ()}}
+\label{d4/d23/classphys_1_1ActorSoft_a51d78e0f503c3c815511c3d246b426ae}
+
+
+Creates a collision shape from mesh file. 
+
+This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. 
+
+Definition at line 74 of file actorsoft.cpp.
+
+\hypertarget{classphys_1_1ActorSoft_a04c98bb0ab9ed7c1dfc3435d49403ef4}{
+\index{phys::ActorSoft@{phys::ActorSoft}!CreateSoftObject@{CreateSoftObject}}
+\index{CreateSoftObject@{CreateSoftObject}!phys::ActorSoft@{phys::ActorSoft}}
+\subsubsection[{CreateSoftObject}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorSoft::CreateSoftObject (btSoftBodyWorldInfo $\ast$ {\em softworldinfo}, \/  int {\em nodecount}, \/  btVector3 $\ast$ {\em nodearray}, \/  btScalar $\ast$ {\em massarray})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d4/d23/classphys_1_1ActorSoft_a04c98bb0ab9ed7c1dfc3435d49403ef4}
+
+
+Creates a soft object for the actor. 
+
+Creates a soft object to be placed in the physics world later. \par
+ This is automaticly called by the Constructor and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em softworldinfo}]Currently Unused \item[{\em nodecount}]Currently Unused \item[{\em nodearray}]Currently Unused \item[{\em massarray}]Currently Unused \end{DoxyParams}
+
+
+Definition at line 63 of file actorsoft.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorsoft.h\item 
+actorsoft.cpp\end{DoxyCompactItemize}

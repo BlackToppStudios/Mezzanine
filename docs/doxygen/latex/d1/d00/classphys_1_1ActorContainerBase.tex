@@ -1,0 +1,282 @@
+\hypertarget{classphys_1_1ActorContainerBase}{
+\section{phys::ActorContainerBase Class Reference}
+\label{d1/d00/classphys_1_1ActorContainerBase}\index{phys::ActorContainerBase@{phys::ActorContainerBase}}
+}
+
+
+A base class to unify the interface for different kinds of containers for holding actors.  
+
+
+
+
+{\ttfamily \#include $<$actorcontainerbase.h$>$}
+
+Inheritance diagram for phys::ActorContainerBase:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d1/d00/classphys_1_1ActorContainerBase}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1ActorContainerBase_a629529f9002646d463ea167af1d20df2}{ActorContainerBase} (\hyperlink{classphys_1_1World}{World} $\ast$ParentWorld\_\-)
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerBase_a8dd213cba4915f68ac421fc9f341cbbe}{AddActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)=0
+\begin{DoxyCompactList}\small\item\em This will add an Actor to this container and the world. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a6ccc6d058bcbbe0b9a638e28fb136477}{LastActorAdded} ()=0
+\begin{DoxyCompactList}\small\item\em This provides an easy way to access the last Actor added to this container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerBase_a523072e42f6b581d044432f84a84ede4}{RemoveActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToRemove)=0
+\begin{DoxyCompactList}\small\item\em Remove an Actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerBase_a60f37a056e8750f3b389c5ceed14520c}{RemoveActorAtCursor} ()=0
+\begin{DoxyCompactList}\small\item\em Removes the current actor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorContainerBase_aa5ec651d4634b2d90efe2a76f9d2fbdd}{GetActorCount} () const =0
+\begin{DoxyCompactList}\small\item\em Returns how many actors this stores. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de47424c3}{CursorToFirst} ()=0
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the first item in the container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a083714123b3}{CursorToPrevious} ()=0
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the previous item in the container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerBase_a1aa337456a4e74cb5740dbae08778072}{CursorToNext} ()=0
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the next item in the container. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerBase_afad072e018a04c190e5e5fb93b82b354}{CursorToLast} ()=0
+\begin{DoxyCompactList}\small\item\em This moves the cursor to the last item in the container. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a2c8fb86a9e188aece105b2a753ccc19a}{GetAtCursor} () const =0
+\begin{DoxyCompactList}\small\item\em This gets the actor at the cursor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_ae703482d84a9c6726e28a8f26418b161}{GetFirst} () const =0
+\begin{DoxyCompactList}\small\item\em This gets the first actor in the container. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a8efeffd5ae22085fe01af791b3ea559e}{GetLast} () const =0
+\begin{DoxyCompactList}\small\item\em This gets the last actor in the container. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorContainerBase_a526dab176597858680490d128d0584a3}{GetType} () const =0
+\begin{DoxyCompactList}\small\item\em Which kind of container it this anyway. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A base class to unify the interface for different kinds of containers for holding actors. Containers for actors must implement atleast this interface(abstract base class) to be usable with the \hyperlink{classphys_1_1World}{phys::World} for tracking in game objects. There are several reasons why this will be useful. Our first thought was deriving from this and an STL container like vector or list. Members of this class should be implementing or inheriting a proper container\par
+\par
+ The phys world will use one of these containers to store all of the actors for tracking purposes Since \par
+\par
+ Currently, you cannot simply swap one member of this with another, in a running \hyperlink{classphys_1_1World}{phys::World}. We are Looking into the feasibility of implementing this. \par
+\par
+ However the is no reason an actor could be in multiple containers so this could be a viable work around for actor sorting and categorization at runtime. \par
+\par
+ Because of this classes representation of a cursor only 1 thread at a time should use the cursor movement functions. For the container that the \hyperlink{classphys_1_1World}{phys::World} keeps it should be assume that the cursor is used. For other containers you should manage you container carefully and/or use another iteration method, such as STL iterators. 
+
+Definition at line 69 of file actorcontainerbase.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ActorContainerBase_a629529f9002646d463ea167af1d20df2}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!ActorContainerBase@{ActorContainerBase}}
+\index{ActorContainerBase@{ActorContainerBase}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{ActorContainerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorContainerBase::ActorContainerBase ({\bf World} $\ast$ {\em ParentWorld\_\-})}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a629529f9002646d463ea167af1d20df2}
+
+
+Basic Constructor. 
+
+This just assigned the passed pointer to ParentWorld 
+\begin{DoxyParams}{Parameters}
+\item[{\em ParentWorld\_\-}]This is the world that will perform physics and graphical work on the actors in this container \end{DoxyParams}
+
+
+Definition at line 47 of file actorcontainerbase.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1ActorContainerBase_a8dd213cba4915f68ac421fc9f341cbbe}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!AddActor@{AddActor}}
+\index{AddActor@{AddActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{AddActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::AddActor ({\bf ActorBase} $\ast$ {\em ActorToAdd})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a8dd213cba4915f68ac421fc9f341cbbe}
+
+
+This will add an Actor to this container and the world. 
+
+This will add an Actor to this container and the world, and handle the nitty gritty details of add this to physics subsystem and graphics subsystem. \par
+\par
+ This will not add the Actor to any specific location in the ordering of the container. 
+\begin{DoxyParams}{Parameters}
+\item[{\em ActorToAdd}]This is a pointer to the actor to add \end{DoxyParams}
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a4bc3e38f16caddee021a97739bebaf6e}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de47424c3}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!CursorToFirst@{CursorToFirst}}
+\index{CursorToFirst@{CursorToFirst}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{CursorToFirst}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToFirst ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de47424c3}
+
+
+This moves the cursor to the first item in the container. 
+
+This moves the cursor to the first item in the container change or return anything else. An exception will be throw if there are no valid items to move to with the cursor. There must be atleast one item to use any cursor moving functions. 
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_ad9c2eb2a9405dcf687c86745afc9c031}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_afad072e018a04c190e5e5fb93b82b354}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!CursorToLast@{CursorToLast}}
+\index{CursorToLast@{CursorToLast}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{CursorToLast}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToLast ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_afad072e018a04c190e5e5fb93b82b354}
+
+
+This moves the cursor to the last item in the container. 
+
+This moves the cursor to the last item in the container change or return anything else. See \hyperlink{classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de47424c3}{CursorToFirst()} for more details. 
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_aa6b08266bbb57a22c07ab50514e58db4}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a1aa337456a4e74cb5740dbae08778072}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!CursorToNext@{CursorToNext}}
+\index{CursorToNext@{CursorToNext}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{CursorToNext}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToNext ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a1aa337456a4e74cb5740dbae08778072}
+
+
+This moves the cursor to the next item in the container. 
+
+This is the same as \hyperlink{classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a083714123b3}{CursorToPrevious()} except if you start from the begin you'll work your way to the end. If you are at the end, you'll stay their if you call this again 
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a1c72366a6261d8e98dc0a9d2fad9f70f}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a083714123b3}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!CursorToPrevious@{CursorToPrevious}}
+\index{CursorToPrevious@{CursorToPrevious}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{CursorToPrevious}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToPrevious ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a083714123b3}
+
+
+This moves the cursor to the previous item in the container. 
+
+This moves the cursor to the previous item in the container, and if you started at the last item, you will visit every item in a properly implemented container, except for items that may have bee added during your traversal. It is also posible this could visit the same actor twice or more. When called from the first item this does nothing. An exception will be throw if there are no valid items to move to with the cursor. There must be atleast one item to use any cursor moving functions. 
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b04a8805a002413}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_aa5ec651d4634b2d90efe2a76f9d2fbdd}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetActorCount@{GetActorCount}}
+\index{GetActorCount@{GetActorCount}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{GetActorCount}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Whole} phys::ActorContainerBase::GetActorCount () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_aa5ec651d4634b2d90efe2a76f9d2fbdd}
+
+
+Returns how many actors this stores. 
+
+\begin{DoxyReturn}{Returns}
+This returns a Whole number with the count of actors 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a6d2e5e68e23f5798ad10ba41e479d0f7}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a2c8fb86a9e188aece105b2a753ccc19a}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetAtCursor@{GetAtCursor}}
+\index{GetAtCursor@{GetAtCursor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{GetAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::GetAtCursor () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a2c8fb86a9e188aece105b2a753ccc19a}
+
+
+This gets the actor at the cursor. 
+
+This gets the actor at the cursor, and will not move the cursor. If the cursor has not be set to a location, any valid actor in the container could be returned. Will throw an exception when attempting to get from an empty container. \begin{DoxyReturn}{Returns}
+This returns a pointer to an \hyperlink{classphys_1_1ActorBase}{ActorBase}. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a280700490b368a963dd8feae044c7a6d}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_ae703482d84a9c6726e28a8f26418b161}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetFirst@{GetFirst}}
+\index{GetFirst@{GetFirst}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{GetFirst}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::GetFirst () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_ae703482d84a9c6726e28a8f26418b161}
+
+
+This gets the first actor in the container. 
+
+This and the actor the cursor points at after \hyperlink{classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de47424c3}{CursorToFirst()} should match. \begin{DoxyReturn}{Returns}
+This returns a pointer to an \hyperlink{classphys_1_1ActorBase}{ActorBase}. Will throw an exception when attempting to get from an empty container. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a55ceecd017455f3185aa62798811e3c6}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a8efeffd5ae22085fe01af791b3ea559e}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetLast@{GetLast}}
+\index{GetLast@{GetLast}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{GetLast}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::GetLast () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a8efeffd5ae22085fe01af791b3ea559e}
+
+
+This gets the last actor in the container. 
+
+This and the actor the cursor points at after \hyperlink{classphys_1_1ActorContainerBase_afad072e018a04c190e5e5fb93b82b354}{CursorToLast()} should match. \begin{DoxyReturn}{Returns}
+This returns a pointer to an \hyperlink{classphys_1_1ActorBase}{ActorBase}. Will throw an exception when attempting to get from an empty container. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a526dab176597858680490d128d0584a3}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf String} phys::ActorContainerBase::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a526dab176597858680490d128d0584a3}
+
+
+Which kind of container it this anyway. 
+
+Since this interface could be used with any type of containers and innumerable 3rd party container implemention this can be used to more safely cast this container to a more specific type. \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String} 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a20d18213e69b3821ee973865df428e6d}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a6ccc6d058bcbbe0b9a638e28fb136477}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!LastActorAdded@{LastActorAdded}}
+\index{LastActorAdded@{LastActorAdded}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{LastActorAdded}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::LastActorAdded ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a6ccc6d058bcbbe0b9a638e28fb136477}
+
+
+This provides an easy way to access the last Actor added to this container. 
+
+For many containers this will simply return a pointer to the last actorl 
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a49e643bdeff78521de9c4a9fea59a0d2}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a523072e42f6b581d044432f84a84ede4}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!RemoveActor@{RemoveActor}}
+\index{RemoveActor@{RemoveActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{RemoveActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::RemoveActor ({\bf ActorBase} $\ast$ {\em ActorToRemove})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a523072e42f6b581d044432f84a84ede4}
+
+
+Remove an Actor. 
+
+Remove all references of the actor pointed from the container. Will throw an exception when attempting to remove and no match could be found. 
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_aeee5bd81601faed85e6a35f576c8d476}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a60f37a056e8750f3b389c5ceed14520c}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!RemoveActorAtCursor@{RemoveActorAtCursor}}
+\index{RemoveActorAtCursor@{RemoveActorAtCursor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{RemoveActorAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::RemoveActorAtCursor ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a60f37a056e8750f3b389c5ceed14520c}
+
+
+Removes the current actor. 
+
+This removes the actor the cursor at. Will throw an exception when attempting to remove from an empty container. Where the cursor goes is implementation dependent. 
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a430977daf010a25f53df6cf37954f8ca}{phys::ActorContainerVector}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorcontainerbase.h\item 
+actorcontainerbase.cpp\end{DoxyCompactItemize}

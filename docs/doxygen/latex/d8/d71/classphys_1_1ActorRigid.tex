@@ -1,0 +1,238 @@
+\hypertarget{classphys_1_1ActorRigid}{
+\section{phys::ActorRigid Class Reference}
+\label{d8/d71/classphys_1_1ActorRigid}\index{phys::ActorRigid@{phys::ActorRigid}}
+}
+
+
+This is the actor class for Rigid Objects.  
+
+
+
+
+{\ttfamily \#include $<$actorbase.h$>$}
+
+Inheritance diagram for phys::ActorRigid:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d8/d71/classphys_1_1ActorRigid}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1ActorRigid_ac42c05745d57eb5745de3f34e820b72d}{ActorRigid} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} mass, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group, \hyperlink{classphys_1_1World}{World} $\ast$\_\-World)
+\begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{$\sim$ActorRigid} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}{CreateShapeFromMeshDynamic} (short unsigned int accuracy=1)
+\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{CreateShapeFromMeshStatic} ()
+\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{LimitMovementOnAxis} (bool x, bool y, bool z)
+\begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}{CreateRigidObject} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} pmass)
+\begin{DoxyCompactList}\small\item\em Creates a rigid object for the actor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_a3c56eb06fe6a7d468b7a67c45ade7be4}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$btWorld)
+\begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_a74a4eaa5491b90a977e9db0457271f31}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$btWorld)
+\begin{DoxyCompactList}\small\item\em Removes the actor from the physics world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}{
+btRigidBody $\ast$ \hyperlink{classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}{physrigidbody}}
+\label{d8/d71/classphys_1_1ActorRigid_a690889f942e177644f4f8521f509c88d}
+
+\begin{DoxyCompactList}\small\item\em Used to simulate the behavior of a btRigidBody. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the actor class for Rigid Objects. This class should be used to make any rigid object that can be moved as a result of force. Most objects will fall into this catagory. A few examples of a Rigid Object: Boxes, Car Frames, Chairs, etc. For Semi Rigid bodies that are deformable, like jello, it is better to use \hyperlink{classphys_1_1ActorSoft}{ActorSoft}. 
+
+Definition at line 66 of file actorrigid.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ActorRigid_ac42c05745d57eb5745de3f34e820b72d}{
+\index{phys::ActorRigid@{phys::ActorRigid}!ActorRigid@{ActorRigid}}
+\index{ActorRigid@{ActorRigid}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorRigid::ActorRigid ({\bf Real} {\em mass}, \/  {\bf String} {\em name}, \/  {\bf String} {\em file}, \/  {\bf String} {\em group}, \/  {\bf World} $\ast$ {\em \_\-World})}}
+\label{d8/d71/classphys_1_1ActorRigid_ac42c05745d57eb5745de3f34e820b72d}
+
+
+Descriptive constructor. 
+
+This constructor contains the basic information needed to make a Rigid Object. \par
+ This class inherits from \hyperlink{classphys_1_1ActorBase}{ActorBase}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
+
+
+Definition at line 53 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{
+\index{phys::ActorRigid@{phys::ActorRigid}!$\sim$ActorRigid@{$\sim$ActorRigid}}
+\index{$\sim$ActorRigid@{$\sim$ActorRigid}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{$\sim$ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorRigid::$\sim$ActorRigid ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d71/classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}
+
+
+Destructor. 
+
+The class destructor. 
+
+Definition at line 58 of file actorrigid.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1ActorRigid_a3c56eb06fe6a7d468b7a67c45ade7be4}{
+\index{phys::ActorRigid@{phys::ActorRigid}!AddObjectToWorld@{AddObjectToWorld}}
+\index{AddObjectToWorld@{AddObjectToWorld}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em btWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\label{d8/d71/classphys_1_1ActorRigid_a3c56eb06fe6a7d468b7a67c45ade7be4}
+
+
+Adds the actor to the physics world. 
+
+Adds the actor to the physics world. \par
+ This is automatically called by the phys::Worlds::AddActor function and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \item[{\em btWorld}]Pointer to the physics world. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1ActorBase_ac5d4ad5a634b16000742f506ed5957fb}{phys::ActorBase}.
+
+
+
+Definition at line 70 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}{
+\index{phys::ActorRigid@{phys::ActorRigid}!CreateRigidObject@{CreateRigidObject}}
+\index{CreateRigidObject@{CreateRigidObject}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{CreateRigidObject}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateRigidObject ({\bf Real} {\em pmass})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d8/d71/classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}
+
+
+Creates a rigid object for the actor. 
+
+Creates a rigid object to be placed in the physics world later. \par
+ This is automaticly called by the Constructor and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em pmass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
+
+
+Definition at line 63 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}{
+\index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}}
+\index{CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshDynamic (short unsigned int {\em accuracy} = {\ttfamily 1})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d71/classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}
+
+
+Creates a collision shape from mesh file. 
+
+This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. 
+\begin{DoxyParams}{Parameters}
+\item[{\em accuracy}]A value from 1 to 4. The higher the more accurate, but the more resource intensive \end{DoxyParams}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000002}{Todo}]
+\begin{DoxyItemize}
+\item Check for thread safety 
+\end{DoxyItemize}\end{Desc}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000003}{Todo}]add code here to increase the verticies that is used to create the hull from the first accuracy setting. \end{Desc}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000004}{Todo}]add code here for compound shapes of convex hulls \end{Desc}
+
+
+
+
+Implements \hyperlink{classphys_1_1ActorBase_aa41370f6d2031a9dad8df45bd7f3bcc6}{phys::ActorBase}.
+
+
+
+Definition at line 82 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{
+\index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}}
+\index{CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{CreateShapeFromMeshStatic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshStatic ()}}
+\label{d8/d71/classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}
+
+
+Creates a collision shape from mesh file. 
+
+This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000005}{Todo}]
+\begin{DoxyItemize}
+\item Check for thread safety 
+\end{DoxyItemize}\end{Desc}
+
+
+
+
+Definition at line 145 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{
+\index{phys::ActorRigid@{phys::ActorRigid}!LimitMovementOnAxis@{LimitMovementOnAxis}}
+\index{LimitMovementOnAxis@{LimitMovementOnAxis}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{LimitMovementOnAxis}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::LimitMovementOnAxis (bool {\em x}, \/  bool {\em y}, \/  bool {\em z})}}
+\label{d8/d71/classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}
+
+
+Restricts movement on the axis or axies of your choice. 
+
+This function will lock any and all axies you define you want to be locked. Simply pass true to allow movement on that axis, false if you don't. This function is primarily useful for 2D games, in which if you are viewing the playing area from the side you can pass in LimitMovementOnAxis(true,true,false) and the object will only be able to move up, down, or side to side, but not in or out. 
+\begin{DoxyParams}{Parameters}
+\item[{\em x}]Allow or Disallow use of the X axis for movement. \item[{\em y}]Allow or Disallow use of the Y axis for movement. \item[{\em z}]Allow or Disallow use of the Z axis for movement. \end{DoxyParams}
+
+
+Definition at line 156 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a74a4eaa5491b90a977e9db0457271f31}{
+\index{phys::ActorRigid@{phys::ActorRigid}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
+\index{RemoveObjectFromWorld@{RemoveObjectFromWorld}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{RemoveObjectFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::RemoveObjectFromWorld ({\bf World} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em btWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\label{d8/d71/classphys_1_1ActorRigid_a74a4eaa5491b90a977e9db0457271f31}
+
+
+Removes the actor from the physics world. 
+
+Removes the actor from the physics world. \par
+ This is automatically called by the \hyperlink{classphys_1_1World_ab00f84983afcc7f6ef1e5a84367d994d}{phys::World::RemoveActor} function and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \item[{\em btWorld}]Pointer to the physics world. \end{DoxyParams}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000001}{Todo}]TODO, Implement DetachFromGraphics and call it here. \end{Desc}
+
+
+
+
+Implements \hyperlink{classphys_1_1ActorBase_af669724f10d0bf74f4951c85caa42494}{phys::ActorBase}.
+
+
+
+Definition at line 76 of file actorrigid.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorrigid.h\item 
+actorrigid.cpp\end{DoxyCompactItemize}

@@ -1,0 +1,116 @@
+\hypertarget{classphys_1_1WorldQueryTool}{
+\section{phys::WorldQueryTool Class Reference}
+\label{d8/d69/classphys_1_1WorldQueryTool}\index{phys::WorldQueryTool@{phys::WorldQueryTool}}
+}
+
+
+This provides a number of optional tools for working with a \hyperlink{classphys_1_1World}{phys::World}.  
+
+
+
+
+{\ttfamily \#include $<$worldquerytool.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1WorldQueryTool_a6b156ab7ea6236402c40467da7f11c0d}{WorldQueryTool} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-)
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1WorldQueryTool_a55721f152fb117fdfb8bc6d20af6b1dc}{GetMouseX} ()
+\begin{DoxyCompactList}\small\item\em This. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1WorldQueryTool_ac2d8517db7305157c1393320f434751b}{GetMouseY} ()
+\item 
+bool \hyperlink{classphys_1_1WorldQueryTool_ae12be78aeb3b5a2caf05b9220909bc86}{IsMouseButtonPushed} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode})
+\item 
+\hyperlink{classphys_1_1VectorWActor3}{VectorWActor3} \hyperlink{classphys_1_1WorldQueryTool_a85c3bcafc9ceea4ed485ff457d7b1f7b}{GetActorUnderMouse} ()
+\item 
+\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a70cb78186d7c4fafcbf17b8ccde4bab2}{GetActorFromRay} (\hyperlink{classphys_1_1Vector3}{Vector3} Origin, \hyperlink{classphys_1_1Vector3}{Vector3} Destination)
+\item 
+void \hyperlink{classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}{GatherEvents} (bool ClearEventsFromEventMgr=false)
+\begin{DoxyCompactList}\small\item\em This gathers any user-\/input/event data that might be queryed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This provides a number of optional tools for working with a \hyperlink{classphys_1_1World}{phys::World}. Currently this allows for more seamless mouse use, including 'picking' of objects with the mouse, and associated functionality. 
+
+Definition at line 57 of file worldquerytool.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1WorldQueryTool_a6b156ab7ea6236402c40467da7f11c0d}{
+\index{phys::WorldQueryTool@{phys::WorldQueryTool}!WorldQueryTool@{WorldQueryTool}}
+\index{WorldQueryTool@{WorldQueryTool}!phys::WorldQueryTool@{phys::WorldQueryTool}}
+\subsubsection[{WorldQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}phys::WorldQueryTool::WorldQueryTool ({\bf World} $\ast$ {\em GameWorld\_\-})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_a6b156ab7ea6236402c40467da7f11c0d}
+
+
+Basic Constructor. 
+
+This creates a \hyperlink{classphys_1_1WorldQueryTool}{WorldQueryTool} Ready to run queries on the the world you pass it. 
+\begin{DoxyParams}{Parameters}
+\item[{\em GameWorld\_\-}]This is a pointer to the \hyperlink{classphys_1_1World}{phys::World} to be queried \end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}{
+\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GatherEvents@{GatherEvents}}
+\index{GatherEvents@{GatherEvents}!phys::WorldQueryTool@{phys::WorldQueryTool}}
+\subsubsection[{GatherEvents}]{\setlength{\rightskip}{0pt plus 5cm}void phys::WorldQueryTool::GatherEvents (bool {\em ClearEventsFromEventMgr} = {\ttfamily false})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}
+
+
+This gathers any user-\/input/event data that might be queryed. 
+
+This should be called periodcally (ideally in the post user input callback) to allow this to gather data from the \hyperlink{classphys_1_1World}{phys::World} 's event manager. When called this will drop prior event data and any relevant queries will come from this new data. At the caller's discretion this method can properly delete any events pulled from the event manager 
+\begin{DoxyParams}{Parameters}
+\item[{\em ClearEventsFromEventMgr}]If set to true, This method will properly remove any events it pulls from the event manager. \end{DoxyParams}
+\hypertarget{classphys_1_1WorldQueryTool_a70cb78186d7c4fafcbf17b8ccde4bab2}{
+\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetActorFromRay@{GetActorFromRay}}
+\index{GetActorFromRay@{GetActorFromRay}!phys::WorldQueryTool@{phys::WorldQueryTool}}
+\subsubsection[{GetActorFromRay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase}$\ast$ phys::WorldQueryTool::GetActorFromRay ({\bf Vector3} {\em Origin}, \/  {\bf Vector3} {\em Destination})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_a70cb78186d7c4fafcbf17b8ccde4bab2}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em @return}]\end{DoxyParams}
+\hypertarget{classphys_1_1WorldQueryTool_a85c3bcafc9ceea4ed485ff457d7b1f7b}{
+\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetActorUnderMouse@{GetActorUnderMouse}}
+\index{GetActorUnderMouse@{GetActorUnderMouse}!phys::WorldQueryTool@{phys::WorldQueryTool}}
+\subsubsection[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VectorWActor3} phys::WorldQueryTool::GetActorUnderMouse ()}}
+\label{d8/d69/classphys_1_1WorldQueryTool_a85c3bcafc9ceea4ed485ff457d7b1f7b}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em @return}]\end{DoxyParams}
+\hypertarget{classphys_1_1WorldQueryTool_a55721f152fb117fdfb8bc6d20af6b1dc}{
+\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetMouseX@{GetMouseX}}
+\index{GetMouseX@{GetMouseX}!phys::WorldQueryTool@{phys::WorldQueryTool}}
+\subsubsection[{GetMouseX}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::WorldQueryTool::GetMouseX ()}}
+\label{d8/d69/classphys_1_1WorldQueryTool_a55721f152fb117fdfb8bc6d20af6b1dc}
+
+
+This. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em @return}]\end{DoxyParams}
+\hypertarget{classphys_1_1WorldQueryTool_ac2d8517db7305157c1393320f434751b}{
+\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetMouseY@{GetMouseY}}
+\index{GetMouseY@{GetMouseY}!phys::WorldQueryTool@{phys::WorldQueryTool}}
+\subsubsection[{GetMouseY}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::WorldQueryTool::GetMouseY ()}}
+\label{d8/d69/classphys_1_1WorldQueryTool_ac2d8517db7305157c1393320f434751b}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em @return}]\end{DoxyParams}
+\hypertarget{classphys_1_1WorldQueryTool_ae12be78aeb3b5a2caf05b9220909bc86}{
+\index{phys::WorldQueryTool@{phys::WorldQueryTool}!IsMouseButtonPushed@{IsMouseButtonPushed}}
+\index{IsMouseButtonPushed@{IsMouseButtonPushed}!phys::WorldQueryTool@{phys::WorldQueryTool}}
+\subsubsection[{IsMouseButtonPushed}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::WorldQueryTool::IsMouseButtonPushed ({\bf MetaCode::InputCode})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_ae12be78aeb3b5a2caf05b9220909bc86}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em @return}]\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+worldquerytool.h\end{DoxyCompactItemize}
