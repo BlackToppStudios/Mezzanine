@@ -270,6 +270,11 @@ namespace phys{
         this->node->attachObject(this->entity);
     }
 
+    void ActorBase::DetachFromGraphics ()
+    {
+        this->node->detachObject(this->entity);
+    }
+
     ///////////////////////////////////
     // ActorBase Public Collision flag functions
     void ActorBase::SetKinematic()

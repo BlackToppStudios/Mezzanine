@@ -157,6 +157,11 @@ namespace phys
             /// This is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually.
             void AttachToGraphics();
 
+            /// @brief Makes the actor invisable.
+            /// @details This is the inverse of the AttachToGraphics function.  This will effectively remove the object from the graphics world and make it no longer visable. @n
+            /// This is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually.
+            void DetachFromGraphics();
+
 //////////////////////////////////////////////////////////////////////////////
 // Bullet Management
 ///////////////////////////////////////
