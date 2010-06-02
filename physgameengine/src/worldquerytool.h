@@ -43,6 +43,7 @@
 #include "world.h"
 #include "actorbase.h"
 #include "vectorwactor3.h"
+#include "metacode.h"
 
 namespace phys
 {
@@ -56,21 +57,60 @@ namespace phys
     class WorldQueryTool
     {
         private:
-            void contruct(World* GameWorld, bool ClearEventsFrom);
+            /// @internal
+            /// @brief This does all the work for building the class
+            /// @details This simply assigns all the values passed in appropriately
+            /// where they need to go
+            /// @param GameWorld This is the phys::World we are querying
+            void contruct(World* GameWorld_);
+
+            /// @internal
+            /// @brief This is gameworld we will be querying
+            World* GameWorld;
 
         public:
-            WorldQueryTool(World* GameWorld);
-            WorldQueryTool(World* GameWorld, bool ClearEventsFrom);
+            /// @brief Basic Constructor
+            /// @details This creates a WorldQueryTool Ready to run queries on the the world you pass it.
+            /// @param GameWorld_ This is a pointer to the phys::World to be queried
+            WorldQueryTool(World* GameWorld_);
 
+            /// @brief This
+            /// @details
+            /// @param
+            /// @return
             Whole GetMouseX();
-            Whole GetMouseY();
-            // a function for mouse buttons also
 
+            /// @brief
+            /// @details
+            /// @param
+            /// @return
+            Whole GetMouseY();
+
+            /// @brief
+            /// @details
+            /// @param
+            /// @return
+            bool IsMouseButtonPushed(MetaCode::InputCode);
+
+            /// @brief
+            /// @details
+            /// @param
+            /// @return
             VectorWActor3 GetActorUnderMouse();
+
+            /// @brief
+            /// @details
+            /// @param
+            /// @return
             ActorBase* GetActorFromRay(Vector3 Origin, Vector3 Destination);
 
-
-
+            /// @brief This gathers any user-input/event data that might be queryed
+            /// @details This should be called periodcally (ideally in the post user input callback) to allow this
+            /// to gather data from the phys::World 's event manager. When called this will drop prior event data
+            /// and any relevant queries will come from this new data. At the caller's discretion this method
+            /// can properly delete any events pulled from the event manager
+            /// @param ClearEventsFromEventMgr If set to true, This method will properly remove any events it pulls from the event manager.
+            void GatherEvents(bool ClearEventsFromEventMgr = false);
     };
 
 }
