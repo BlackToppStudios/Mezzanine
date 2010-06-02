@@ -68,7 +68,6 @@ namespace phys{
     {
         btScalar bmass=pmass;
         this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
-        CollisionObject=physrigidbody;
     }
 
     void ActorRigid::PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent)

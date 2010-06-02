@@ -35,6 +35,11 @@ void \hyperlink{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{Limit
 \item 
 void \hyperlink{classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}{CreateRigidObject} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} pmass)
 \begin{DoxyCompactList}\small\item\em Creates a rigid object for the actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorRigid_a63aac7ce099716928f7b9f4c6ef40453}{
+void {\bfseries PerformConvexDecomposition} (unsigned int depth, float cpercent, float ppercent)}
+\label{d8/d71/classphys_1_1ActorRigid_a63aac7ce099716928f7b9f4c6ef40453}
+
+\item 
 void \hyperlink{classphys_1_1ActorRigid_a3c56eb06fe6a7d468b7a67c45ade7be4}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$btWorld)
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorRigid_a74a4eaa5491b90a977e9db0457271f31}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$btWorld)
@@ -72,7 +77,7 @@ This constructor contains the basic information needed to make a Rigid Object. \
 \item[{\em mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
 
 
-Definition at line 53 of file actorrigid.cpp.
+Definition at line 56 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{
 \index{phys::ActorRigid@{phys::ActorRigid}!$\sim$ActorRigid@{$\sim$ActorRigid}}
@@ -85,7 +90,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 58 of file actorrigid.cpp.
+Definition at line 61 of file actorrigid.cpp.
 
 
 
@@ -109,7 +114,7 @@ Implements \hyperlink{classphys_1_1ActorBase_ac5d4ad5a634b16000742f506ed5957fb}{
 
 
 
-Definition at line 70 of file actorrigid.cpp.
+Definition at line 159 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateRigidObject@{CreateRigidObject}}
@@ -126,7 +131,7 @@ Creates a rigid object to be placed in the physics world later. \par
 \item[{\em pmass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
 
 
-Definition at line 63 of file actorrigid.cpp.
+Definition at line 66 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}}
@@ -149,21 +154,13 @@ This function will read the location of every verticy in the mesh file and use t
 \end{DoxyItemize}\end{Desc}
 
 
-\begin{Desc}
-\item[\hyperlink{todo__todo000003}{Todo}]add code here to increase the verticies that is used to create the hull from the first accuracy setting. \end{Desc}
-
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000004}{Todo}]add code here for compound shapes of convex hulls \end{Desc}
-
-
 
 
 Implements \hyperlink{classphys_1_1ActorBase_aa41370f6d2031a9dad8df45bd7f3bcc6}{phys::ActorBase}.
 
 
 
-Definition at line 82 of file actorrigid.cpp.
+Definition at line 171 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}}
@@ -177,7 +174,7 @@ Creates a collision shape from mesh file.
 This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000005}{Todo}]
+\item[\hyperlink{todo__todo000003}{Todo}]
 \begin{DoxyItemize}
 \item Check for thread safety 
 \end{DoxyItemize}\end{Desc}
@@ -185,7 +182,7 @@ This function will read the location of every verticy in the mesh file and use t
 
 
 
-Definition at line 145 of file actorrigid.cpp.
+Definition at line 248 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{
 \index{phys::ActorRigid@{phys::ActorRigid}!LimitMovementOnAxis@{LimitMovementOnAxis}}
@@ -201,7 +198,7 @@ This function will lock any and all axies you define you want to be locked. Simp
 \item[{\em x}]Allow or Disallow use of the X axis for movement. \item[{\em y}]Allow or Disallow use of the Y axis for movement. \item[{\em z}]Allow or Disallow use of the Z axis for movement. \end{DoxyParams}
 
 
-Definition at line 156 of file actorrigid.cpp.
+Definition at line 259 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a74a4eaa5491b90a977e9db0457271f31}{
 \index{phys::ActorRigid@{phys::ActorRigid}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
@@ -228,7 +225,7 @@ Implements \hyperlink{classphys_1_1ActorBase_af669724f10d0bf74f4951c85caa42494}{
 
 
 
-Definition at line 76 of file actorrigid.cpp.
+Definition at line 165 of file actorrigid.cpp.
 
 
 
