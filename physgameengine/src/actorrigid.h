@@ -74,6 +74,8 @@ namespace phys
             /// @param pmass "Real Mass" The mass of the object.
             void CreateRigidObject (Real pmass);
 
+            void PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent);
+
             void AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld);
 
             void RemoveObjectFromWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld);

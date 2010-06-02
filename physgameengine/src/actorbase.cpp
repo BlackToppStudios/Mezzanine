@@ -63,6 +63,8 @@ namespace phys{
     {
         delete MotionState;
         delete Shape;
+        delete node;
+        delete entity;
     }
 
     ///////////////////////////////////
