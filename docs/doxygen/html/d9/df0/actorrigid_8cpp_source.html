@@ -190,9 +190,9 @@
 <a name="l00165"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a74a4eaa5491b90a977e9db0457271f31">00165</a> 
 <a name="l00166"></a>00166     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a74a4eaa5491b90a977e9db0457271f31" title="Removes the actor from the physics world.">ActorRigid::RemoveObjectFromWorld</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld, btSoftRigidDynamicsWorld* btWorld)
 <a name="l00167"></a>00167     {
-<a name="l00168"></a>00168         btWorld-&gt;removeRigidBody(this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>);<span class="comment"></span>
-<a name="l00169"></a>00169 <span class="comment">        /// @todo TODO, Implement DetachFromGraphics and call it here.</span>
-<a name="l00170"></a>00170 <span class="comment"></span>    }
+<a name="l00168"></a>00168         btWorld-&gt;removeRigidBody(this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>);
+<a name="l00169"></a>00169         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec" title="Makes the actor invisable.">DetachFromGraphics</a>();
+<a name="l00170"></a>00170     }
 <a name="l00171"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#aab4a408ce0724be6adf4c9f51f55f8a1">00171</a> 
 <a name="l00172"></a>00172     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#aab4a408ce0724be6adf4c9f51f55f8a1" title="Creates a collision shape from mesh file.">ActorRigid::CreateShapeFromMeshDynamic</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> accuracy)
 <a name="l00173"></a>00173     {
@@ -291,7 +291,7 @@
 <a name="l00266"></a>00266 }
 <a name="l00267"></a>00267 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 1 23:09:28 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 7 00:44:14 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

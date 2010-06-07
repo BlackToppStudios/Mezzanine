@@ -65,6 +65,8 @@ void \hyperlink{classphys_1_1ActorBase_a7b2d13cb1e8bba60eeae782a53fd5e49}{SetOgr
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the graphical body. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_a45f190cb9b647bb3385d1298f9dab589}{AttachToGraphics} ()
 \begin{DoxyCompactList}\small\item\em Makes the actor visable. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorBase_acc352d14b6d7f15694ea108ec1c281ec}{DetachFromGraphics} ()
+\begin{DoxyCompactList}\small\item\em Makes the actor invisable. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBase_aa7ab524d2905e640cea6324cce9ccfdb}{SetBulletLocation} (\hyperlink{classphys_1_1Vector3}{Vector3} Location)
 \begin{DoxyCompactList}\small\item\em Sets the location of the physics body. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorBase_ad543855adcc37dc9cdea4e264ca7953d}{GetBulletLocation} ()
@@ -248,6 +250,20 @@ Makes a trimesh to be used as a collision shape in the physics world from a mesh
 
 Definition at line 71 of file actorbase.cpp.
 
+\hypertarget{classphys_1_1ActorBase_acc352d14b6d7f15694ea108ec1c281ec}{
+\index{phys::ActorBase@{phys::ActorBase}!DetachFromGraphics@{DetachFromGraphics}}
+\index{DetachFromGraphics@{DetachFromGraphics}!phys::ActorBase@{phys::ActorBase}}
+\subsubsection[{DetachFromGraphics}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::DetachFromGraphics ()\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d8/d0f/classphys_1_1ActorBase_acc352d14b6d7f15694ea108ec1c281ec}
+
+
+Makes the actor invisable. 
+
+This is the inverse of the AttachToGraphics function. This will effectively remove the object from the graphics world and make it no longer visable. \par
+ This is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually. 
+
+Definition at line 272 of file actorbase.cpp.
+
 \hypertarget{classphys_1_1ActorBase_ad543855adcc37dc9cdea4e264ca7953d}{
 \index{phys::ActorBase@{phys::ActorBase}!GetBulletLocation@{GetBulletLocation}}
 \index{GetBulletLocation@{GetBulletLocation}!phys::ActorBase@{phys::ActorBase}}
@@ -384,7 +400,7 @@ Sets the state of the object to Kinematic.
 This function will set the object to a Kinematic Object. \par
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
 
-Definition at line 274 of file actorbase.cpp.
+Definition at line 279 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a3212be459859a67bf7ae64919d58d5a5}{
 \index{phys::ActorBase@{phys::ActorBase}!SetLocation@{SetLocation}}
@@ -498,7 +514,7 @@ Sets the state of the object to Static.
 This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
-Definition at line 280 of file actorbase.cpp.
+Definition at line 285 of file actorbase.cpp.
 
 
 

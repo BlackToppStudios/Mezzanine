@@ -344,19 +344,19 @@ namespace phys
                 KEY_UNDO			= 322,		/**< Atari keyboard has Undo */
 
                 //From here down they do not match directly anymore
-                KEYMOD_NONE  	= 323,
-                KEYMOD_LSHIFT	= 324,
-                KEYMOD_RSHIFT	= 325,
-                KEYMOD_LCTRL 	= 326,
-                KEYMOD_RCTRL 	= 327,
-                KEYMOD_LALT  	= 328,
-                KEYMOD_RALT 	= 329,
-                KEYMOD_LMETA 	= 330,
-                KEYMOD_RMETA 	= 331,
-                KEYMOD_NUM   	= 332,
-                KEYMOD_CAPS  	= 333,
-                KEYMOD_MODE  	= 334,
-                KEYMOD_RESERVED = 335,
+                KEYMOD_NONE     	= 323,
+                KEYMOD_LSHIFT   	= 324,
+                KEYMOD_RSHIFT   	= 325,
+                KEYMOD_LCTRL 	    = 326,
+                KEYMOD_RCTRL    	= 327,
+                KEYMOD_LALT     	= 328,
+                KEYMOD_RALT     	= 329,
+                KEYMOD_LMETA    	= 330,
+                KEYMOD_RMETA    	= 331,
+                KEYMOD_NUM      	= 332,
+                KEYMOD_CAPS     	= 333,
+                KEYMOD_MODE     	= 334,
+                KEYMOD_RESERVED     = 335,
 
                 KEY_LAST        = 379,  /// The last KeyCode, all Keys values will be less than this, and all Events will be larger than that
 

@@ -67,17 +67,45 @@
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;worldquerytool.h&quot;</span>
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="keyword">namespace </span>phys
+<a name="l00045"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a6b156ab7ea6236402c40467da7f11c0d">00045</a> <span class="keyword">namespace </span>phys
 <a name="l00046"></a>00046 {
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 }
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="preprocessor">#endif</span>
+<a name="l00047"></a>00047     <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a6b156ab7ea6236402c40467da7f11c0d" title="Basic Constructor.">WorldQueryTool::WorldQueryTool</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_)
+<a name="l00048"></a>00048     {
+<a name="l00049"></a>00049         this-&gt;GameWorld = GameWorld_;
+<a name="l00050"></a>00050         this-&gt;MouseButtonCache.reset();
+<a name="l00051"></a>00051         this-&gt;KeyboardButtonCache.reset();
+<a name="l00052"></a>00052         this-&gt;MouseXCache=0;
+<a name="l00053"></a>00053         this-&gt;MouseYCache=0;
+<a name="l00054"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ace36ffebcabbbf0553c517820bc636c9">00054</a>     }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056     <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ace36ffebcabbbf0553c517820bc636c9" title="Destructor.">WorldQueryTool::~WorldQueryTool</a>()
+<a name="l00057"></a>00057     {
+<a name="l00058"></a>00058 
+<a name="l00059"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a55721f152fb117fdfb8bc6d20af6b1dc">00059</a>     }
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a55721f152fb117fdfb8bc6d20af6b1dc" title="This gets the X coordinate of the mouse.">WorldQueryTool::GetMouseX</a>()
+<a name="l00062"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ac2d8517db7305157c1393320f434751b">00062</a>         {<span class="keywordflow">return</span> this-&gt;MouseXCache;}
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ac2d8517db7305157c1393320f434751b" title="This gets the Y coordinate of the mouse.">WorldQueryTool::GetMouseY</a>()
+<a name="l00065"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#af277b578432dfaefffbc4fd9bb80ca64">00065</a>         {<span class="keywordflow">return</span> this-&gt;MouseYCache;}
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067     <span class="keywordtype">bool</span> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#af277b578432dfaefffbc4fd9bb80ca64" title="Returns whether a specific Mouse button is pushed.">WorldQueryTool::IsMouseButtonPushed</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> MouseButton)
+<a name="l00068"></a>00068     {
+<a name="l00069"></a>00069         <span class="keywordflow">if</span>(MouseButton &gt;= this-&gt;MouseButtonLimit || MouseButton&lt;0)
+<a name="l00070"></a>00070             {GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported mouse button access through WorldQueryTool&quot;</span>);}
+<a name="l00071"></a>00071         <span class="keywordflow">return</span> this-&gt;MouseButtonCache[MouseButton];
+<a name="l00072"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8343f54b900adb316ddc6de5405da328">00072</a>     }
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074     <span class="keywordtype">bool</span> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8343f54b900adb316ddc6de5405da328" title="Returns whether a specific KEyboard button is pushed.">WorldQueryTool::IsKeyboardButtonPushed</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> KeyboardButton)
+<a name="l00075"></a>00075         {<span class="keywordflow">return</span> this-&gt;KeyboardButtonCache[KeyboardButton];}
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 1 23:09:29 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 7 00:44:14 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

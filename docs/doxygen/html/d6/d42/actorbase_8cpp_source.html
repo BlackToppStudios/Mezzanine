@@ -294,24 +294,29 @@
 <a name="l00269"></a>00269         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;setPosition(temp.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
 <a name="l00270"></a>00270         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;attachObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
 <a name="l00271"></a>00271     }
-<a name="l00272"></a>00272 <span class="comment"></span>
-<a name="l00273"></a>00273 <span class="comment">    ///////////////////////////////////</span>
-<a name="l00274"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f">00274</a> <span class="comment"></span>    <span class="comment">// ActorBase Public Collision flag functions</span>
-<a name="l00275"></a>00275     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f" title="Sets the state of the object to Kinematic.">ActorBase::SetKinematic</a>()
-<a name="l00276"></a>00276     {
-<a name="l00277"></a>00277         <span class="keywordtype">int</span> x=2;
-<a name="l00278"></a>00278         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(x);
-<a name="l00279"></a>00279     }
-<a name="l00280"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037">00280</a> 
-<a name="l00281"></a>00281     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037" title="Sets the state of the object to Static.">ActorBase::SetStatic</a>()
-<a name="l00282"></a>00282     {
-<a name="l00283"></a>00283         <span class="keywordtype">int</span> x=1;
-<a name="l00284"></a>00284         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(x);
-<a name="l00285"></a>00285     }
-<a name="l00286"></a>00286 }<span class="comment">// /phys</span>
-<a name="l00287"></a>00287 <span class="preprocessor">#endif</span>
+<a name="l00272"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec">00272</a> 
+<a name="l00273"></a>00273     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec" title="Makes the actor invisable.">ActorBase::DetachFromGraphics</a> ()
+<a name="l00274"></a>00274     {
+<a name="l00275"></a>00275         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;detachObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
+<a name="l00276"></a>00276     }
+<a name="l00277"></a>00277 <span class="comment"></span>
+<a name="l00278"></a>00278 <span class="comment">    ///////////////////////////////////</span>
+<a name="l00279"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f">00279</a> <span class="comment"></span>    <span class="comment">// ActorBase Public Collision flag functions</span>
+<a name="l00280"></a>00280     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f" title="Sets the state of the object to Kinematic.">ActorBase::SetKinematic</a>()
+<a name="l00281"></a>00281     {
+<a name="l00282"></a>00282         <span class="keywordtype">int</span> x=2;
+<a name="l00283"></a>00283         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(x);
+<a name="l00284"></a>00284     }
+<a name="l00285"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037">00285</a> 
+<a name="l00286"></a>00286     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037" title="Sets the state of the object to Static.">ActorBase::SetStatic</a>()
+<a name="l00287"></a>00287     {
+<a name="l00288"></a>00288         <span class="keywordtype">int</span> x=1;
+<a name="l00289"></a>00289         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(x);
+<a name="l00290"></a>00290     }
+<a name="l00291"></a>00291 }<span class="comment">// /phys</span>
+<a name="l00292"></a>00292 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 1 23:09:28 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 7 00:44:14 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

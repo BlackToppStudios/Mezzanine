@@ -44,7 +44,35 @@
 
 namespace phys
 {
+    WorldQueryTool::WorldQueryTool(World* GameWorld_)
+    {
+        this->GameWorld = GameWorld_;
+        this->MouseButtonCache.reset();
+        this->KeyboardButtonCache.reset();
+        this->MouseXCache=0;
+        this->MouseYCache=0;
+    }
 
+    WorldQueryTool::~WorldQueryTool()
+    {
+
+    }
+
+    Whole WorldQueryTool::GetMouseX()
+        {return this->MouseXCache;}
+
+    Whole WorldQueryTool::GetMouseY()
+        {return this->MouseYCache;}
+
+    bool WorldQueryTool::IsMouseButtonPushed(short unsigned int MouseButton)
+    {
+        if(MouseButton >= this->MouseButtonLimit || MouseButton<0)
+            {GameWorld->LogAndThrow("Unsupported mouse button access through WorldQueryTool");}
+        return this->MouseButtonCache[MouseButton];
+    }
+
+    bool WorldQueryTool::IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton)
+        {return this->KeyboardButtonCache[KeyboardButton];}
 
 }
 

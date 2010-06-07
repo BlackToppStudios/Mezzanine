@@ -63,13 +63,12 @@
 					<Add directory="libincludes/linux/ogresrc/include" />
 					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src" />
 					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
-					<Add directory="libincludes/common/convex decomp/src" />
+					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
 				</Compiler>
 				<Linker>
 					<Add option="`sdl-config --libs`" />
 					<Add library="OgreMain" />
 					<Add library="Bullet" />
-					<Add library="ConvexDecomposition" />
 					<Add directory="data/linux/bullet" />
 					<Add directory="data/linux/ogre" />
 					<Add directory="data/linux/convex decomp" />

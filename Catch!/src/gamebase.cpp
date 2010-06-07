@@ -175,7 +175,7 @@ void LoadContent()
         std::stringstream namemaker;
         namemaker << groupname << box.size();
         box.AddActor(new ActorRigid (mass,namemaker.str(),filename,groupname,&TheWorld));
-        box.LastActorAdded()->CreateShapeFromMeshDynamic(4);
+        box.LastActorAdded()->CreateShapeFromMeshDynamic(2);
         box.LastActorAdded()->SetInitLocation(Vector3( ((float)(34*box.size())-182), 160, 0));
         TheWorld.AddActor(box.LastActorAdded());
     }
