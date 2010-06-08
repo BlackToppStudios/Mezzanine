@@ -59,6 +59,7 @@
 #include "eventuserinput.h"
 #include "linegroup.h"
 #include "actorcontainervector.h"
+#include "ray.h"
 
 #include <SDL.h>
 #include <btBulletDynamicsCommon.h>
@@ -394,8 +395,9 @@ namespace phys
             temp18.type = SDL_KEYDOWN;
             temp18.key.keysym.sym = SDLK_BACKSPACE;
         MetaCode temp19(temp18);
-        btVector3 temp20(1,1,1);
-        Ogre::Vector3 temp21(2,2,2);
+        btVector3 temp20(0,2,0);
+        Ogre::Vector3 temp21(0,2,1);
+        Ray temp22(Vector3(0,0,2),Vector3(2,0,0));
         //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
         /// @todo TODO add each type of event here (logtest) to make it really easy to log events
 
@@ -421,6 +423,7 @@ namespace phys
         OneLogTest(temp19, "MetaCode");
         //OneLogTest(temp20, "btVector3");
         OneLogTest(temp21, "Ogre::Vector3");
+        OneLogTest(temp22,"Ray");
     }
 
     template <class T> void World::OneLogTest(T Data, string DataType, string Message1, string Message2)
