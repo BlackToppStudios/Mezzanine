@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+﻿//© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -63,13 +63,17 @@ namespace phys
         W=w;
     }
 
-    btQuaternion Quaternion::GetBulletQuaternion()
+    btQuaternion Quaternion::GetBulletQuaternion(bool normalize)
     {
         btQuaternion Theirs;
         Theirs.setX(this->X);
         Theirs.setY(this->Y);
         Theirs.setZ(this->Z);
         Theirs.setW(this->W);
+        if(normalize)
+        {
+            Theirs.normalize();
+        }
         return Theirs;
     }
 
@@ -81,13 +85,17 @@ namespace phys
         this->W=Ours.w();
     }
 
-    Ogre::Quaternion Quaternion::GetOgreQuaternion()
+    Ogre::Quaternion Quaternion::GetOgreQuaternion(bool normalize)
     {
         Ogre::Quaternion Theirs;
         Theirs.x=this->X;
         Theirs.y=this->Y;
         Theirs.z=this->Z;
         Theirs.w=this->W;
+        if(normalize)
+        {
+            Theirs.normalise();
+        }
         return Theirs;
     }
 
