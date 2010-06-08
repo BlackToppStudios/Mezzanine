@@ -141,6 +141,13 @@ namespace phys
         EventQueue.push_back(EventToAdd);
     }
 
+    const list<EventBase*>* EventManager::GetAllEvents() const
+    {
+        return &(this->EventQueue);
+    }
+
+
+
     void EventManager::UpdateEvents()
     {
         /// @todo There has got to be a more efficient way to do UpdateEvents()
@@ -226,6 +233,21 @@ namespace phys
                 EventQueue.erase(Iter);
             }
         }
+    }
+
+    list<EventBase*>* EventManager::GetAllSpecificEvents(EventBase::EventType SpecificType)
+    {
+        list<EventBase*>* TempList= new list<EventBase*>;
+
+        for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        {
+            if((*Iter)->getEventType()==SpecificType)
+            {
+                TempList->push_back(*Iter);
+            }
+        }
+
+        return TempList;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

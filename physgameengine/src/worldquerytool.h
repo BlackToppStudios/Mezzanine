@@ -44,8 +44,14 @@
 #include "actorbase.h"
 #include "vectorwactor3.h"
 #include "metacode.h"
+#include "ray.h"
 
 #include <bitset>
+
+namespace Ogre
+{
+    class RaySceneQuery;
+}
 
 namespace phys
 {
@@ -83,6 +89,7 @@ namespace phys
             /// @brief A place to store which keys are pressed or not.
             std::bitset<MetaCode::INPUTEVENT_LAST> KeyboardButtonCache;
 
+            Ogre::RaySceneQuery* RayQuery;
         public:
             /// @brief Basic Constructor.
             /// @details This creates a WorldQueryTool Ready to run queries on the the world you pass it.
@@ -124,7 +131,7 @@ namespace phys
             /// @details
             /// @param
             /// @return
-            ActorBase* GetActorFromRay(Vector3 Origin, Vector3 Destination);
+            ActorBase* GetFirstActorOnRay(Ray ActorRay);
 
             /// @brief
             /// @details

@@ -92,6 +92,7 @@ namespace phys
             /// @brief Gets a Bullet vector3.
             /// @details Creates a Bullet vector3 with values equal to this class and returns it.
             btVector3 GetBulletVector3() const;
+
             /// @brief Copies an existing Bullet vector3.
             /// @details This function will copy the values stored in an existing Bullet vector3
             /// and set the values of this class to be the same.
@@ -101,6 +102,7 @@ namespace phys
             /// @brief Gets a Ogre vector3.
             /// @details Creates a Ogre vector3 with values equal to this class and returns it.
             Ogre::Vector3 GetOgreVector3() const;
+
             /// @brief Copies an existing Ogre vector3.
             /// @details This function will copy the values stored in an existing Ogre vector3
             /// and set the values of this class to be the same.

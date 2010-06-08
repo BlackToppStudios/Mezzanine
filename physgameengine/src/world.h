@@ -137,8 +137,10 @@ namespace phys
         private:
             /// @brief Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
             /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectl
-            friend void crossplatform::RenderPhysWorld(World *TheWorld);
-            friend class ActorBase;
+            friend void crossplatform::RenderPhysWorld(World *TheWorld); // Needs ogre access for making window
+            friend class ActorBase; //Several items from Ogre and Bullet
+            friend class LineGroup; //Needs the debug::InternalDebugDrawer* BulletDrawer
+            friend class WorldQueryTool; // Needs to access various Ogre internals
 
             //Physics Items
             Vector3 GeographyLowerBounds;
@@ -185,7 +187,7 @@ namespace phys
             Ogre::Viewport* OgreViewport;
             Ogre::SceneManager* OgreSceneManager;
 
-            friend class LineGroup;
+            // Bullet functions
             debug::InternalDebugDrawer* BulletDrawer;
         public:
 

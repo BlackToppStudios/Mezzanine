@@ -174,6 +174,12 @@ namespace phys
             /// and plans on using UpdateSystemEvents()
             void UpdateUserInputEvents();
 
+            /// @brief This returns a complete list of all events in the event manager
+            /// @details This simply returns a const pointer of the internal event queue.
+            /// @warning The pointers contained in this list must be used carefully. Do not delete them, this will cause errors.
+            /// @return This returns a const pointer the list<EventBase*> which is this classes event pointer list. Use this carefully, even though it is a const pointer it is still possible to mess around with internals in an innapropriate way. Treat this as if it were read only.
+            const list<EventBase*>* GetAllEvents() const;
+
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - RenderTime Events
         ///////////////////////////////////////
@@ -274,11 +280,18 @@ namespace phys
             /// @brief Returns a pointer to the Next kind event of the Specified type, and removes it from the Que
             /// @param SpecificType This is a PhysEvent::EventType that defines the type you want this to work with
             /// @details This is just like PopNextSpecificEvent(PhysEvent::EventType SpecificType) but exept it doesn't bother with any of the needed
-            /// structure involved with returning data, and just removes the specific evetn from the Que.
+            /// structure involved with returning data, and just removes the specific event from the Queue.
             /// @warning If you did not call GetNextSpecificEvent(PhysEvent::EventType SpecificType) and haven't deleted or stored, or somehow dealt with
             /// this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately.
             /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
             void RemoveNextSpecificEvent(EventBase::EventType SpecificType);
+
+            /// @brief This returns a complete list of all the specified events.
+            /// @details This finds all the events that are of the specified type in the event manager, then creates a new list
+            /// and return that. This runs in linear time relative to the amounts of events.
+            /// @warning The pointers contained in this list must be used carefully. Do not delete them, this will cause errors.
+            /// @return This returns a list<EventBase*> which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly.
+            list<EventBase*>* GetAllSpecificEvents(EventBase::EventType SpecificType);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Polling management functions

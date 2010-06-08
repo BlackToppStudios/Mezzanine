@@ -42,6 +42,8 @@
 
 #include "worldquerytool.h"
 
+#include <Ogre.h>
+
 namespace phys
 {
     WorldQueryTool::WorldQueryTool(World* GameWorld_)
@@ -51,11 +53,17 @@ namespace phys
         this->KeyboardButtonCache.reset();
         this->MouseXCache=0;
         this->MouseYCache=0;
+
+        // create the ray scene query object
+        this->RayQuery = this->GameWorld->OgreSceneManager->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+        if (NULL == this->RayQuery)
+            {this->GameWorld->LogAndThrow("Failed to create RaySceneQuery instance in WorldQueryTool"); }
+        this->RayQuery->setSortByDistance(true);
     }
 
     WorldQueryTool::~WorldQueryTool()
     {
-
+        delete this->RayQuery;
     }
 
     Whole WorldQueryTool::GetMouseX()
@@ -67,7 +75,7 @@ namespace phys
     bool WorldQueryTool::IsMouseButtonPushed(short unsigned int MouseButton)
     {
         if(MouseButton >= this->MouseButtonLimit || MouseButton<0)
-            {GameWorld->LogAndThrow("Unsupported mouse button access through WorldQueryTool");}
+            {this->GameWorld->LogAndThrow("Unsupported mouse button access through WorldQueryTool");}
         return this->MouseButtonCache[MouseButton];
     }
 
