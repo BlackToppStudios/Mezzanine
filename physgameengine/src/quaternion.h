@@ -1,4 +1,4 @@
-//Â© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -85,7 +85,8 @@ namespace phys
 
             /// @brief Gets a Bullet quaternion.
             /// @details Creates a Bullet quaternion with values equal to this class and returns it.
-            btQuaternion GetBulletQuaternion();
+            /// @param normalize Whether or not you want this function to normalize the quaternion for you.
+            btQuaternion GetBulletQuaternion(bool normalize=false);
 
             /// @brief Copies an existing Bullet quaternion.
             /// @details This function will copy the values stored in an existing Bullet quaternion
@@ -95,7 +96,8 @@ namespace phys
 
             /// @brief Gets a Ogre quaternion.
             /// @details Creates a Ogre quaternion with values equal to this class and returns it.
-            Ogre::Quaternion GetOgreQuaternion();
+            /// @param normalize Whether or not you want this function to normalize the quaternion for you.
+            Ogre::Quaternion GetOgreQuaternion(bool normalize=false);
 
             /// @brief Copies an existing Ogre quaternion.
             /// @details This function will copy the values stored in an existing Ogre quaternion

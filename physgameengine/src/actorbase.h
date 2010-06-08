@@ -229,6 +229,10 @@ namespace phys
             /// @details This function will retrieve the location of the object within the world.
             Vector3 GetLocation();
 
+            /// @brief Retrieves the name of the object.
+            /// @details This function will retrieve the name of the object,
+            std::string GetName ();
+
             /// @brief Sets the orientation of the actor.
             /// @details Sets the orientation of the actor via Quaternion parameters.
             /// @param x Where the X vector is rotated about.

@@ -209,8 +209,7 @@ namespace phys{
 
     void ActorBase::SetBulletOrientation (Quaternion Rotation)
     {
-        btTransform temp = this->CollisionObject->getWorldTransform();
-        temp.setRotation(Rotation.GetBulletQuaternion());
+        this->CollisionObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
     }
 
     ///////////////////////////////////
@@ -273,6 +272,11 @@ namespace phys{
     void ActorBase::DetachFromGraphics ()
     {
         this->node->detachObject(this->entity);
+    }
+
+    std::string ActorBase::GetName ()
+    {
+        return this->entity->getName();
     }
 
     ///////////////////////////////////
