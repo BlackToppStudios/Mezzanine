@@ -26,7 +26,7 @@ bool \hyperlink{classphys_1_1WorldQueryTool_af277b578432dfaefffbc4fd9bb80ca64}{I
 \begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1WorldQueryTool_a8343f54b900adb316ddc6de5405da328}{IsKeyboardButtonPushed} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} KeyboardButton)
 \begin{DoxyCompactList}\small\item\em Returns whether a specific KEyboard button is pushed. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a70cb78186d7c4fafcbf17b8ccde4bab2}{GetActorFromRay} (\hyperlink{classphys_1_1Vector3}{Vector3} Origin, \hyperlink{classphys_1_1Vector3}{Vector3} Destination)
+\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a8d26735297b1c0368739f0ba05ca6a15}{GetFirstActorOnRay} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
 \item 
 \hyperlink{classphys_1_1VectorWActor3}{VectorWActor3} \hyperlink{classphys_1_1WorldQueryTool_a85c3bcafc9ceea4ed485ff457d7b1f7b}{GetActorUnderMouse} ()
 \item 
@@ -37,7 +37,7 @@ void \hyperlink{classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}{G
 \subsection{Detailed Description}
 This provides a number of optional tools for working with a \hyperlink{classphys_1_1World}{phys::World}. Currently this allows for more seamless mouse use, including 'picking' of objects with the mouse, and associated functionality. 
 
-Definition at line 59 of file worldquerytool.h.
+Definition at line 65 of file worldquerytool.h.
 
 
 
@@ -69,7 +69,7 @@ Destructor.
 
 Deletes everything in the world query tool. 
 
-Definition at line 54 of file worldquerytool.cpp.
+Definition at line 60 of file worldquerytool.cpp.
 
 
 
@@ -88,19 +88,19 @@ This should be called periodcally (ideally in the post user input callback) to a
  This runs in linear time relative to the events in the event manager. This will usually be a trivial amount if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup) 
 \begin{DoxyParams}{Parameters}
 \item[{\em ClearEventsFromEventMgr}]If set to true, This method will properly remove any events it pulls from the event manager. \end{DoxyParams}
-\hypertarget{classphys_1_1WorldQueryTool_a70cb78186d7c4fafcbf17b8ccde4bab2}{
-\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetActorFromRay@{GetActorFromRay}}
-\index{GetActorFromRay@{GetActorFromRay}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetActorFromRay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase}$\ast$ phys::WorldQueryTool::GetActorFromRay ({\bf Vector3} {\em Origin}, \/  {\bf Vector3} {\em Destination})}}
-\label{d8/d69/classphys_1_1WorldQueryTool_a70cb78186d7c4fafcbf17b8ccde4bab2}
-
-\begin{DoxyParams}{Parameters}
-\item[{\em @return}]\end{DoxyParams}
 \hypertarget{classphys_1_1WorldQueryTool_a85c3bcafc9ceea4ed485ff457d7b1f7b}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetActorUnderMouse@{GetActorUnderMouse}}
 \index{GetActorUnderMouse@{GetActorUnderMouse}!phys::WorldQueryTool@{phys::WorldQueryTool}}
 \subsubsection[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VectorWActor3} phys::WorldQueryTool::GetActorUnderMouse ()}}
 \label{d8/d69/classphys_1_1WorldQueryTool_a85c3bcafc9ceea4ed485ff457d7b1f7b}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em @return}]\end{DoxyParams}
+\hypertarget{classphys_1_1WorldQueryTool_a8d26735297b1c0368739f0ba05ca6a15}{
+\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetFirstActorOnRay@{GetFirstActorOnRay}}
+\index{GetFirstActorOnRay@{GetFirstActorOnRay}!phys::WorldQueryTool@{phys::WorldQueryTool}}
+\subsubsection[{GetFirstActorOnRay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase}$\ast$ phys::WorldQueryTool::GetFirstActorOnRay ({\bf Ray} {\em ActorRay})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_a8d26735297b1c0368739f0ba05ca6a15}
 
 \begin{DoxyParams}{Parameters}
 \item[{\em @return}]\end{DoxyParams}
@@ -118,7 +118,7 @@ This returns a Whole number which represents the X coordinate of the mouse.
 \end{DoxyReturn}
 
 
-Definition at line 59 of file worldquerytool.cpp.
+Definition at line 65 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_ac2d8517db7305157c1393320f434751b}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetMouseY@{GetMouseY}}
@@ -134,7 +134,7 @@ This returns a Whole number which represents the Y coordinate of the mouse.
 \end{DoxyReturn}
 
 
-Definition at line 62 of file worldquerytool.cpp.
+Definition at line 68 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_a8343f54b900adb316ddc6de5405da328}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!IsKeyboardButtonPushed@{IsKeyboardButtonPushed}}
@@ -153,7 +153,7 @@ This returns a bool which is set to true if the requested button is pressed or h
 \end{DoxyReturn}
 
 
-Definition at line 72 of file worldquerytool.cpp.
+Definition at line 78 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_af277b578432dfaefffbc4fd9bb80ca64}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!IsMouseButtonPushed@{IsMouseButtonPushed}}
@@ -175,7 +175,7 @@ This returns a bool which is set to true if the requested button is pressed or h
 \end{DoxyReturn}
 
 
-Definition at line 65 of file worldquerytool.cpp.
+Definition at line 71 of file worldquerytool.cpp.
 
 
 

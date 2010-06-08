@@ -235,9 +235,10 @@ namespace phys
         }
     }
 
+    /// @todo Make version of this function for each type
     list<EventBase*>* EventManager::GetAllSpecificEvents(EventBase::EventType SpecificType)
     {
-        list<EventBase*>* TempList= new list<EventBase*>;
+        list<EventBase*>* TempList = new list<EventBase*>;
 
         for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {

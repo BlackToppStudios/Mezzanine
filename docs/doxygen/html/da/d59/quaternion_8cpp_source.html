@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>quaternion.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//Â© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>quaternion.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -88,46 +88,54 @@
 <a name="l00063"></a>00063         W=w;
 <a name="l00064"></a>00064     }
 <a name="l00065"></a>00065 
-<a name="l00066"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#afcda116299201599a803e48719f6d50e">00066</a>     btQuaternion <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#afcda116299201599a803e48719f6d50e" title="Gets a Bullet quaternion.">Quaternion::GetBulletQuaternion</a>()
+<a name="l00066"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a30944ae1fe905ee4f5c946c9a0b354f7">00066</a>     btQuaternion <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a30944ae1fe905ee4f5c946c9a0b354f7" title="Gets a Bullet quaternion.">Quaternion::GetBulletQuaternion</a>(<span class="keywordtype">bool</span> normalize)
 <a name="l00067"></a>00067     {
 <a name="l00068"></a>00068         btQuaternion Theirs;
 <a name="l00069"></a>00069         Theirs.setX(this-&gt;X);
 <a name="l00070"></a>00070         Theirs.setY(this-&gt;Y);
 <a name="l00071"></a>00071         Theirs.setZ(this-&gt;Z);
 <a name="l00072"></a>00072         Theirs.setW(this-&gt;W);
-<a name="l00073"></a>00073         <span class="keywordflow">return</span> Theirs;
-<a name="l00074"></a>00074     }
-<a name="l00075"></a>00075 
-<a name="l00076"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a10d3582b2731e70279d7bab43173f317">00076</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a10d3582b2731e70279d7bab43173f317" title="Copies an existing Bullet quaternion.">Quaternion::ExtractBulletQuaternion</a>(<span class="keyword">const</span> btQuaternion &amp;Ours)
-<a name="l00077"></a>00077     {
-<a name="l00078"></a>00078         this-&gt;X=Ours.x();
-<a name="l00079"></a>00079         this-&gt;Y=Ours.y();
-<a name="l00080"></a>00080         this-&gt;Z=Ours.z();
-<a name="l00081"></a>00081         this-&gt;W=Ours.w();
-<a name="l00082"></a>00082     }
-<a name="l00083"></a>00083 
-<a name="l00084"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a022ed1ed25a8324b8fc0c4d8b0e7a675">00084</a>     Ogre::Quaternion <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a022ed1ed25a8324b8fc0c4d8b0e7a675" title="Gets a Ogre quaternion.">Quaternion::GetOgreQuaternion</a>()
-<a name="l00085"></a>00085     {
-<a name="l00086"></a>00086         Ogre::Quaternion Theirs;
-<a name="l00087"></a>00087         Theirs.x=this-&gt;X;
-<a name="l00088"></a>00088         Theirs.y=this-&gt;Y;
-<a name="l00089"></a>00089         Theirs.z=this-&gt;Z;
-<a name="l00090"></a>00090         Theirs.w=this-&gt;W;
-<a name="l00091"></a>00091         <span class="keywordflow">return</span> Theirs;
-<a name="l00092"></a>00092     }
-<a name="l00093"></a>00093 
-<a name="l00094"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a942fab675a0b124e1dc5e2febab113e6">00094</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a942fab675a0b124e1dc5e2febab113e6" title="Copies an existing Ogre quaternion.">Quaternion::ExtractOgreQuaternion</a>(<span class="keyword">const</span> Ogre::Quaternion &amp;Ours)
-<a name="l00095"></a>00095     {
-<a name="l00096"></a>00096         this-&gt;X=Ours.x;
-<a name="l00097"></a>00097         this-&gt;Y=Ours.y;
-<a name="l00098"></a>00098         this-&gt;Z=Ours.z;
-<a name="l00099"></a>00099         this-&gt;W=Ours.w;
+<a name="l00073"></a>00073         <span class="keywordflow">if</span>(normalize)
+<a name="l00074"></a>00074         {
+<a name="l00075"></a>00075             Theirs.normalize();
+<a name="l00076"></a>00076         }
+<a name="l00077"></a>00077         <span class="keywordflow">return</span> Theirs;
+<a name="l00078"></a>00078     }
+<a name="l00079"></a>00079 
+<a name="l00080"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a10d3582b2731e70279d7bab43173f317">00080</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a10d3582b2731e70279d7bab43173f317" title="Copies an existing Bullet quaternion.">Quaternion::ExtractBulletQuaternion</a>(<span class="keyword">const</span> btQuaternion &amp;Ours)
+<a name="l00081"></a>00081     {
+<a name="l00082"></a>00082         this-&gt;X=Ours.x();
+<a name="l00083"></a>00083         this-&gt;Y=Ours.y();
+<a name="l00084"></a>00084         this-&gt;Z=Ours.z();
+<a name="l00085"></a>00085         this-&gt;W=Ours.w();
+<a name="l00086"></a>00086     }
+<a name="l00087"></a>00087 
+<a name="l00088"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad7501687205092c203d2358ca53d3bfe">00088</a>     Ogre::Quaternion <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad7501687205092c203d2358ca53d3bfe" title="Gets a Ogre quaternion.">Quaternion::GetOgreQuaternion</a>(<span class="keywordtype">bool</span> normalize)
+<a name="l00089"></a>00089     {
+<a name="l00090"></a>00090         Ogre::Quaternion Theirs;
+<a name="l00091"></a>00091         Theirs.x=this-&gt;X;
+<a name="l00092"></a>00092         Theirs.y=this-&gt;Y;
+<a name="l00093"></a>00093         Theirs.z=this-&gt;Z;
+<a name="l00094"></a>00094         Theirs.w=this-&gt;W;
+<a name="l00095"></a>00095         <span class="keywordflow">if</span>(normalize)
+<a name="l00096"></a>00096         {
+<a name="l00097"></a>00097             Theirs.normalise();
+<a name="l00098"></a>00098         }
+<a name="l00099"></a>00099         <span class="keywordflow">return</span> Theirs;
 <a name="l00100"></a>00100     }
-<a name="l00101"></a>00101 }
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103 <span class="preprocessor">#endif</span>
+<a name="l00101"></a>00101 
+<a name="l00102"></a><a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a942fab675a0b124e1dc5e2febab113e6">00102</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a942fab675a0b124e1dc5e2febab113e6" title="Copies an existing Ogre quaternion.">Quaternion::ExtractOgreQuaternion</a>(<span class="keyword">const</span> Ogre::Quaternion &amp;Ours)
+<a name="l00103"></a>00103     {
+<a name="l00104"></a>00104         this-&gt;X=Ours.x;
+<a name="l00105"></a>00105         this-&gt;Y=Ours.y;
+<a name="l00106"></a>00106         this-&gt;Z=Ours.z;
+<a name="l00107"></a>00107         this-&gt;W=Ours.w;
+<a name="l00108"></a>00108     }
+<a name="l00109"></a>00109 }
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 8 09:44:06 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 8 12:57:56 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -131,6 +131,8 @@
 		<Unit filename="src/metacode.h" />
 		<Unit filename="src/quaternion.cpp" />
 		<Unit filename="src/quaternion.h" />
+		<Unit filename="src/ray.cpp" />
+		<Unit filename="src/ray.h" />
 		<Unit filename="src/vector3.cpp" />
 		<Unit filename="src/vector3.h" />
 		<Unit filename="src/vectorwactor3.cpp" />

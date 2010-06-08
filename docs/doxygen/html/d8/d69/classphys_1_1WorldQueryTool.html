@@ -50,7 +50,7 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns whether a specific Mouse button is pushed.  <a href="#af277b578432dfaefffbc4fd9bb80ca64"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8343f54b900adb316ddc6de5405da328">IsKeyboardButtonPushed</a> (<a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> KeyboardButton)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns whether a specific KEyboard button is pushed.  <a href="#a8343f54b900adb316ddc6de5405da328"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a70cb78186d7c4fafcbf17b8ccde4bab2">GetActorFromRay</a> (<a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> Origin, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> Destination)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8d26735297b1c0368739f0ba05ca6a15">GetFirstActorOnRay</a> (<a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> ActorRay)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/ddc/classphys_1_1VectorWActor3.html">VectorWActor3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a85c3bcafc9ceea4ed485ff457d7b1f7b">GetActorUnderMouse</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ae387ff047f3cdf408d8959b8cbf4cc57">GatherEvents</a> (bool ClearEventsFromEventMgr=false)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This gathers any user-input/event data that might be queryed.  <a href="#ae387ff047f3cdf408d8959b8cbf4cc57"></a><br/></td></tr>
@@ -59,7 +59,7 @@
 <p>This provides a number of optional tools for working with a <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. </p>
 <p>Currently this allows for more seamless mouse use, including 'picking' of objects with the mouse, and associated functionality. </p>
 
-<p>Definition at line <a class="el" href="../../d1/dd1/worldquerytool_8h_source.html#l00059">59</a> of file <a class="el" href="../../d1/dd1/worldquerytool_8h_source.html">worldquerytool.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/dd1/worldquerytool_8h_source.html#l00065">65</a> of file <a class="el" href="../../d1/dd1/worldquerytool_8h_source.html">worldquerytool.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6b156ab7ea6236402c40467da7f11c0d"></a><!-- doxytag: member="phys::WorldQueryTool::WorldQueryTool" ref="a6b156ab7ea6236402c40467da7f11c0d" args="(World *GameWorld_)" -->
 <div class="memitem">
@@ -108,7 +108,7 @@
 <p>Destructor. </p>
 <p>Deletes everything in the world query tool. </p>
 
-<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00054">54</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00060">60</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -142,26 +142,16 @@
 
 </div>
 </div>
-<a class="anchor" id="a70cb78186d7c4fafcbf17b8ccde4bab2"></a><!-- doxytag: member="phys::WorldQueryTool::GetActorFromRay" ref="a70cb78186d7c4fafcbf17b8ccde4bab2" args="(Vector3 Origin, Vector3 Destination)" -->
+<a class="anchor" id="a85c3bcafc9ceea4ed485ff457d7b1f7b"></a><!-- doxytag: member="phys::WorldQueryTool::GetActorUnderMouse" ref="a85c3bcafc9ceea4ed485ff457d7b1f7b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a>* phys::WorldQueryTool::GetActorFromRay </td>
+          <td class="memname"><a class="el" href="../../de/ddc/classphys_1_1VectorWActor3.html">VectorWActor3</a> phys::WorldQueryTool::GetActorUnderMouse </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td>
-          <td class="paramname"> <em>Origin</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td>
-          <td class="paramname"> <em>Destination</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
@@ -175,14 +165,15 @@
 
 </div>
 </div>
-<a class="anchor" id="a85c3bcafc9ceea4ed485ff457d7b1f7b"></a><!-- doxytag: member="phys::WorldQueryTool::GetActorUnderMouse" ref="a85c3bcafc9ceea4ed485ff457d7b1f7b" args="()" -->
+<a class="anchor" id="a8d26735297b1c0368739f0ba05ca6a15"></a><!-- doxytag: member="phys::WorldQueryTool::GetFirstActorOnRay" ref="a8d26735297b1c0368739f0ba05ca6a15" args="(Ray ActorRay)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/ddc/classphys_1_1VectorWActor3.html">VectorWActor3</a> phys::WorldQueryTool::GetActorUnderMouse </td>
+          <td class="memname"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a>* phys::WorldQueryTool::GetFirstActorOnRay </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a>&nbsp;</td>
+          <td class="paramname"> <em>ActorRay</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
@@ -217,7 +208,7 @@
 <p>This gets the X location of this mouse. This runs in constant time. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a Whole number which represents the X coordinate of the mouse. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00059">59</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -240,7 +231,7 @@
 <p>This gets the Y location of this mouse. This runs in constant time. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a Whole number which represents the Y coordinate of the mouse. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00062">62</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -270,7 +261,7 @@
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00072">72</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00078">78</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -306,7 +297,7 @@
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -315,7 +306,7 @@
 <li><a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 8 09:44:07 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 8 12:57:58 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

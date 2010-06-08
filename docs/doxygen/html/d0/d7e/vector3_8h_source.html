@@ -116,48 +116,50 @@
 <a name="l00091"></a>00091 <span class="comment"></span>
 <a name="l00092"></a>00092 <span class="comment">            /// @brief Gets a Bullet vector3.</span>
 <a name="l00093"></a>00093 <span class="comment">            /// @details Creates a Bullet vector3 with values equal to this class and returns it.</span>
-<a name="l00094"></a>00094 <span class="comment"></span>            btVector3 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00095"></a>00095 <span class="comment">            /// @brief Copies an existing Bullet vector3.</span>
-<a name="l00096"></a>00096 <span class="comment">            /// @details This function will copy the values stored in an existing Bullet vector3</span>
-<a name="l00097"></a>00097 <span class="comment">            /// and set the values of this class to be the same.</span>
-<a name="l00098"></a>00098 <span class="comment">            /// @param temp The vector3 to be extracted.</span>
-<a name="l00099"></a>00099 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a24ae86b068340be6727877f8c6c1a313" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(btVector3 temp);
-<a name="l00100"></a>00100 <span class="comment"></span>
-<a name="l00101"></a>00101 <span class="comment">            /// @brief Gets a Ogre vector3.</span>
-<a name="l00102"></a>00102 <span class="comment">            /// @details Creates a Ogre vector3 with values equal to this class and returns it.</span>
-<a name="l00103"></a>00103 <span class="comment"></span>            Ogre::Vector3 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00104"></a>00104 <span class="comment">            /// @brief Copies an existing Ogre vector3.</span>
-<a name="l00105"></a>00105 <span class="comment">            /// @details This function will copy the values stored in an existing Ogre vector3</span>
-<a name="l00106"></a>00106 <span class="comment">            /// and set the values of this class to be the same.</span>
-<a name="l00107"></a>00107 <span class="comment">            /// @param temp The vector3 to be extracted.</span>
-<a name="l00108"></a>00108 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a09a31cb8fe491f61e0cc10d21705a0df" title="Copies an existing Ogre vector3.">ExtractOgreVector3</a>(Ogre::Vector3 temp);
-<a name="l00109"></a>00109 <span class="comment"></span>
-<a name="l00110"></a>00110 <span class="comment">            /// @brief Assignment operator to convert from Bullet Vectors</span>
-<a name="l00111"></a>00111 <span class="comment">            /// @details This copies the x,y and z values from the bullet into this vector</span>
-<a name="l00112"></a>00112 <span class="comment">            /// @param bt3 This is a btVector3 that will be copied</span>
-<a name="l00113"></a>00113 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a7163daa9f9bee5214cc740f9d5ce9ed3" title="Assignment operator to convert from Bullet Vectors.">operator= </a>(<span class="keyword">const</span> btVector3 &amp;bt3);
-<a name="l00114"></a>00114 <span class="comment"></span>
-<a name="l00115"></a>00115 <span class="comment">            /// @brief Assignment operator to convert from Ogre Vectors</span>
-<a name="l00116"></a>00116 <span class="comment">            /// @details This copies the x,y and z values from the bullet into this vector</span>
-<a name="l00117"></a>00117 <span class="comment">            /// @param OVec3 This is a Ogre::Vector3 that will be copied</span>
-<a name="l00118"></a>00118 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a7163daa9f9bee5214cc740f9d5ce9ed3" title="Assignment operator to convert from Bullet Vectors.">operator= </a>(<span class="keyword">const</span> Ogre::Vector3 &amp;OVec3);
-<a name="l00119"></a>00119     };
-<a name="l00120"></a>00120 }<span class="comment">// /phys</span>
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; x);
+<a name="l00094"></a>00094 <span class="comment"></span>            btVector3 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>() <span class="keyword">const</span>;
+<a name="l00095"></a>00095 <span class="comment"></span>
+<a name="l00096"></a>00096 <span class="comment">            /// @brief Copies an existing Bullet vector3.</span>
+<a name="l00097"></a>00097 <span class="comment">            /// @details This function will copy the values stored in an existing Bullet vector3</span>
+<a name="l00098"></a>00098 <span class="comment">            /// and set the values of this class to be the same.</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @param temp The vector3 to be extracted.</span>
+<a name="l00100"></a>00100 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a24ae86b068340be6727877f8c6c1a313" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(btVector3 temp);
+<a name="l00101"></a>00101 <span class="comment"></span>
+<a name="l00102"></a>00102 <span class="comment">            /// @brief Gets a Ogre vector3.</span>
+<a name="l00103"></a>00103 <span class="comment">            /// @details Creates a Ogre vector3 with values equal to this class and returns it.</span>
+<a name="l00104"></a>00104 <span class="comment"></span>            Ogre::Vector3 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>() <span class="keyword">const</span>;
+<a name="l00105"></a>00105 <span class="comment"></span>
+<a name="l00106"></a>00106 <span class="comment">            /// @brief Copies an existing Ogre vector3.</span>
+<a name="l00107"></a>00107 <span class="comment">            /// @details This function will copy the values stored in an existing Ogre vector3</span>
+<a name="l00108"></a>00108 <span class="comment">            /// and set the values of this class to be the same.</span>
+<a name="l00109"></a>00109 <span class="comment">            /// @param temp The vector3 to be extracted.</span>
+<a name="l00110"></a>00110 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a09a31cb8fe491f61e0cc10d21705a0df" title="Copies an existing Ogre vector3.">ExtractOgreVector3</a>(Ogre::Vector3 temp);
+<a name="l00111"></a>00111 <span class="comment"></span>
+<a name="l00112"></a>00112 <span class="comment">            /// @brief Assignment operator to convert from Bullet Vectors</span>
+<a name="l00113"></a>00113 <span class="comment">            /// @details This copies the x,y and z values from the bullet into this vector</span>
+<a name="l00114"></a>00114 <span class="comment">            /// @param bt3 This is a btVector3 that will be copied</span>
+<a name="l00115"></a>00115 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a7163daa9f9bee5214cc740f9d5ce9ed3" title="Assignment operator to convert from Bullet Vectors.">operator= </a>(<span class="keyword">const</span> btVector3 &amp;bt3);
+<a name="l00116"></a>00116 <span class="comment"></span>
+<a name="l00117"></a>00117 <span class="comment">            /// @brief Assignment operator to convert from Ogre Vectors</span>
+<a name="l00118"></a>00118 <span class="comment">            /// @details This copies the x,y and z values from the bullet into this vector</span>
+<a name="l00119"></a>00119 <span class="comment">            /// @param OVec3 This is a Ogre::Vector3 that will be copied</span>
+<a name="l00120"></a>00120 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a7163daa9f9bee5214cc740f9d5ce9ed3" title="Assignment operator to convert from Bullet Vectors.">operator= </a>(<span class="keyword">const</span> Ogre::Vector3 &amp;OVec3);
+<a name="l00121"></a>00121     };
+<a name="l00122"></a>00122 }<span class="comment">// /phys</span>
 <a name="l00123"></a>00123 
-<a name="l00124"></a>00124 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom);
-<a name="l00125"></a>00125 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
-<a name="l00128"></a>00128 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom);
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
-<a name="l00131"></a>00131 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133 <span class="preprocessor">#endif</span>
+<a name="l00124"></a>00124 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; x);
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom);
+<a name="l00127"></a>00127 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
+<a name="l00130"></a>00130 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom);
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
+<a name="l00133"></a>00133 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 8 09:44:06 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 8 12:57:56 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

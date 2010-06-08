@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>quaternion.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//Â© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>quaternion.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -110,29 +110,31 @@
 <a name="l00085"></a>00085 <span class="comment"></span>
 <a name="l00086"></a>00086 <span class="comment">            /// @brief Gets a Bullet quaternion.</span>
 <a name="l00087"></a>00087 <span class="comment">            /// @details Creates a Bullet quaternion with values equal to this class and returns it.</span>
-<a name="l00088"></a>00088 <span class="comment"></span>            btQuaternion <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#afcda116299201599a803e48719f6d50e" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>();
-<a name="l00089"></a>00089 <span class="comment"></span>
-<a name="l00090"></a>00090 <span class="comment">            /// @brief Copies an existing Bullet quaternion.</span>
-<a name="l00091"></a>00091 <span class="comment">            /// @details This function will copy the values stored in an existing Bullet quaternion</span>
-<a name="l00092"></a>00092 <span class="comment">            /// and set the values of this class to be the same.</span>
-<a name="l00093"></a>00093 <span class="comment">            /// @param Ours The quaternion to be extracted.</span>
-<a name="l00094"></a>00094 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a10d3582b2731e70279d7bab43173f317" title="Copies an existing Bullet quaternion.">ExtractBulletQuaternion</a>(<span class="keyword">const</span> btQuaternion &amp;Ours);
-<a name="l00095"></a>00095 <span class="comment"></span>
-<a name="l00096"></a>00096 <span class="comment">            /// @brief Gets a Ogre quaternion.</span>
-<a name="l00097"></a>00097 <span class="comment">            /// @details Creates a Ogre quaternion with values equal to this class and returns it.</span>
-<a name="l00098"></a>00098 <span class="comment"></span>            Ogre::Quaternion <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a022ed1ed25a8324b8fc0c4d8b0e7a675" title="Gets a Ogre quaternion.">GetOgreQuaternion</a>();
-<a name="l00099"></a>00099 <span class="comment"></span>
-<a name="l00100"></a>00100 <span class="comment">            /// @brief Copies an existing Ogre quaternion.</span>
-<a name="l00101"></a>00101 <span class="comment">            /// @details This function will copy the values stored in an existing Ogre quaternion</span>
-<a name="l00102"></a>00102 <span class="comment">            /// and set the values of this class to be the same.</span>
-<a name="l00103"></a>00103 <span class="comment">            /// @param Ours The quaternion to be extracted.</span>
-<a name="l00104"></a>00104 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a942fab675a0b124e1dc5e2febab113e6" title="Copies an existing Ogre quaternion.">ExtractOgreQuaternion</a>(<span class="keyword">const</span> Ogre::Quaternion &amp;Ours);
-<a name="l00105"></a>00105     };
-<a name="l00106"></a>00106 }
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108 <span class="preprocessor">#endif</span>
+<a name="l00088"></a>00088 <span class="comment">            /// @param normalize Whether or not you want this function to normalize the quaternion for you.</span>
+<a name="l00089"></a>00089 <span class="comment"></span>            btQuaternion <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a30944ae1fe905ee4f5c946c9a0b354f7" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>(<span class="keywordtype">bool</span> normalize=<span class="keyword">false</span>);
+<a name="l00090"></a>00090 <span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">            /// @brief Copies an existing Bullet quaternion.</span>
+<a name="l00092"></a>00092 <span class="comment">            /// @details This function will copy the values stored in an existing Bullet quaternion</span>
+<a name="l00093"></a>00093 <span class="comment">            /// and set the values of this class to be the same.</span>
+<a name="l00094"></a>00094 <span class="comment">            /// @param Ours The quaternion to be extracted.</span>
+<a name="l00095"></a>00095 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a10d3582b2731e70279d7bab43173f317" title="Copies an existing Bullet quaternion.">ExtractBulletQuaternion</a>(<span class="keyword">const</span> btQuaternion &amp;Ours);
+<a name="l00096"></a>00096 <span class="comment"></span>
+<a name="l00097"></a>00097 <span class="comment">            /// @brief Gets a Ogre quaternion.</span>
+<a name="l00098"></a>00098 <span class="comment">            /// @details Creates a Ogre quaternion with values equal to this class and returns it.</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @param normalize Whether or not you want this function to normalize the quaternion for you.</span>
+<a name="l00100"></a>00100 <span class="comment"></span>            Ogre::Quaternion <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad7501687205092c203d2358ca53d3bfe" title="Gets a Ogre quaternion.">GetOgreQuaternion</a>(<span class="keywordtype">bool</span> normalize=<span class="keyword">false</span>);
+<a name="l00101"></a>00101 <span class="comment"></span>
+<a name="l00102"></a>00102 <span class="comment">            /// @brief Copies an existing Ogre quaternion.</span>
+<a name="l00103"></a>00103 <span class="comment">            /// @details This function will copy the values stored in an existing Ogre quaternion</span>
+<a name="l00104"></a>00104 <span class="comment">            /// and set the values of this class to be the same.</span>
+<a name="l00105"></a>00105 <span class="comment">            /// @param Ours The quaternion to be extracted.</span>
+<a name="l00106"></a>00106 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a942fab675a0b124e1dc5e2febab113e6" title="Copies an existing Ogre quaternion.">ExtractOgreQuaternion</a>(<span class="keyword">const</span> Ogre::Quaternion &amp;Ours);
+<a name="l00107"></a>00107     };
+<a name="l00108"></a>00108 }
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 8 09:44:06 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 8 12:57:56 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

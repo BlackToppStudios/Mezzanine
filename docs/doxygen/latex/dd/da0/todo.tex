@@ -12,13 +12,20 @@
 \item[Member \hyperlink{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{phys::ActorRigid::CreateShapeFromMeshStatic}() ]-\/ Check for thread safety 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000007}
-\hypertarget{dd/da0/todo__todo000007}{}
+\label{dd/da0/todo__todo000008}
+\hypertarget{dd/da0/todo__todo000008}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1EventManager_a148f8c559642d3d50206169b3d0406be}{phys::EventManager::EventManager}(World $\ast$ParentWorld\_\-) ]TODO build a deconstructor that deletes all the events still in the queue 
 
 TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000007}
+\hypertarget{dd/da0/todo__todo000007}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1EventManager_a701bca02423436360c4e51b6e580cb2e}{phys::EventManager::GetAllSpecificEvents}(EventBase::EventType SpecificType) ]Make version of this function for each type 
 \end{DoxyDescription}
 
 \label{dd/da0/todo__todo000005}
@@ -35,57 +42,57 @@ TODO: Make the EventManager completely thread safe. IF this is completely thread
 \item[Member \hyperlink{classphys_1_1EventManager_a0cf574c55def063d66d7db46a4d3e8a5}{phys::EventManager::UpdateSystemEvents}() ]make Physevents for each of the events in SDL\_\-WmEvents(and delete the SDL events) 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000008}
-\hypertarget{dd/da0/todo__todo000008}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1GraphicsSettings_aba9e127ab2cf3f20604313e39d32f7a8}{phys::GraphicsSettings::setFullscreen}(const bool \&Fullscreen\_\-) ]TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games 
-\end{DoxyDescription}
-
 \label{dd/da0/todo__todo000009}
 \hypertarget{dd/da0/todo__todo000009}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1internal_1_1Line3D_a31bf19dc06547cbe042e1ddfbcf672f3}{phys::internal::Line3D::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen 
-\end{DoxyDescription}
-
-\label{dd/da0/todo__todo000011}
-\hypertarget{dd/da0/todo__todo000011}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1LineGroup_a141db62ea17d94b9bce421e5df5a8d89}{phys::LineGroup::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: In the future we will add a break in the line segment chain when this is called. 
-\end{DoxyDescription}
-
-\label{dd/da0/todo__todo000012}
-\hypertarget{dd/da0/todo__todo000012}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1LineGroup_ade1bb4f8e1164e1b8d7aeabbc970b79d}{phys::LineGroup::drawLines}(void) ]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. 
+\item[Member \hyperlink{classphys_1_1GraphicsSettings_aba9e127ab2cf3f20604313e39d32f7a8}{phys::GraphicsSettings::setFullscreen}(const bool \&Fullscreen\_\-) ]TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games 
 \end{DoxyDescription}
 
 \label{dd/da0/todo__todo000010}
 \hypertarget{dd/da0/todo__todo000010}{}
  
 \begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1internal_1_1Line3D_a31bf19dc06547cbe042e1ddfbcf672f3}{phys::internal::Line3D::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000012}
+\hypertarget{dd/da0/todo__todo000012}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1LineGroup_a141db62ea17d94b9bce421e5df5a8d89}{phys::LineGroup::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: In the future we will add a break in the line segment chain when this is called. 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000013}
+\hypertarget{dd/da0/todo__todo000013}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1LineGroup_ade1bb4f8e1164e1b8d7aeabbc970b79d}{phys::LineGroup::drawLines}(void) ]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000011}
+\hypertarget{dd/da0/todo__todo000011}{}
+ 
+\begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1LineGroup_a676039a6beec56d24c631e9da5fd7e76}{phys::LineGroup::LineGroup}(World $\ast$Parent\_\-) ]TODO: This class really should support rotation, the underlying implementation does. 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000020}
-\hypertarget{dd/da0/todo__todo000020}{}
+\label{dd/da0/todo__todo000021}
+\hypertarget{dd/da0/todo__todo000021}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1World_acd0dff342c08fe3008226488b7c53d97}{phys::World::SetWindowName}(const String \&NewName) ]TODO Change the name of an application once it is running 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000015}
-\hypertarget{dd/da0/todo__todo000015}{}
+\label{dd/da0/todo__todo000016}
+\hypertarget{dd/da0/todo__todo000016}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1World_a7f762724406c874250c3dc8910a1e695}{phys::World::World}() ]TODO Fix the `const`ness of all methods to be as const as allowable 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000016}
-\hypertarget{dd/da0/todo__todo000016}{}
+\label{dd/da0/todo__todo000017}
+\hypertarget{dd/da0/todo__todo000017}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1World_aa74e4e6053044c3ecec87fdbf7880c18}{phys::World::World}(const Vector3 \&GeographyLowerBounds\_\-, const Vector3 \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-=1024) ]TODO: adjust the constructors to allow for pointers to a callback manager and event manager 
