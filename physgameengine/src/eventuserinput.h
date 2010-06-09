@@ -134,7 +134,7 @@ namespace phys
 
             /// @brief Retrieves a count of the stored Metacodes
             /// @return The amount of codes stored in this physEventUserInput.
-            /// @details
+            /// @details Retrieves a count of the stored Metacodes
             unsigned int GetMetaCodeCount();
 
             /// @brief Adds a MetaCode

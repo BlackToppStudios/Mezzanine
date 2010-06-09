@@ -87,7 +87,7 @@ namespace phys
 
             /// @internal
             /// @brief A place to store which keys are pressed or not.
-            std::bitset<MetaCode::INPUTEVENT_LAST> KeyboardButtonCache;
+            std::bitset<MetaCode::KEY_LAST> KeyboardButtonCache;
 
             Ogre::RaySceneQuery* RayQuery;
         public:

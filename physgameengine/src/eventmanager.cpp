@@ -141,7 +141,7 @@ namespace phys
         EventQueue.push_back(EventToAdd);
     }
 
-    const list<EventBase*>* EventManager::GetAllEvents() const
+    const std::list<EventBase*>* EventManager::GetAllEvents() const
     {
         return &(this->EventQueue);
     }
@@ -198,7 +198,7 @@ namespace phys
     EventBase* EventManager::GetNextSpecificEvent(EventBase::EventType SpecificType)
     {
         EventBase* results = 0;
-        for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
             if((*Iter)->getEventType()==SpecificType)
             {
@@ -212,7 +212,7 @@ namespace phys
     EventBase* EventManager::PopNextSpecificEvent(EventBase::EventType SpecificType)
     {
         EventBase* results = 0;
-        for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
             if((*Iter)->getEventType()==SpecificType)
             {
@@ -226,7 +226,7 @@ namespace phys
 
     void EventManager::RemoveNextSpecificEvent(EventBase::EventType SpecificType)
     {
-        for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
             if((*Iter)->getEventType()==SpecificType)
             {
@@ -235,11 +235,11 @@ namespace phys
         }
     }
 
-    list<EventBase*>* EventManager::GetAllSpecificEvents(EventBase::EventType SpecificType)
+    std::list<EventBase*>* EventManager::GetAllSpecificEvents(EventBase::EventType SpecificType)
     {
-        list<EventBase*>* TempList = new list<EventBase*>;
+        std::list<EventBase*>* TempList = new std::list<EventBase*>;
 
-        for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
             if((*Iter)->getEventType()==SpecificType)
             {
@@ -251,7 +251,7 @@ namespace phys
 
     void EventManager::RemoveAllSpecificEvents(EventBase::EventType SpecificType)
     {
-        for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
             if((*Iter)->getEventType()==SpecificType)
             {
@@ -278,12 +278,12 @@ namespace phys
         this->RemoveNextSpecificEvent(EventBase::RenderTime);
     }
 
-    list<EventRenderTime*>* EventManager::GetAllRenderTimeEvents()
+    std::list<EventRenderTime*>* EventManager::GetAllRenderTimeEvents()
     {
-        list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::UserInput);
-        list<EventRenderTime*>* Results= new list<EventRenderTime*>;
+        std::list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::UserInput);
+        std::list<EventRenderTime*>* Results= new std::list<EventRenderTime*>;
 
-        for(list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
         {
             Results->push_back( dynamic_cast<EventRenderTime*> (*Iter) );
         }
@@ -311,12 +311,12 @@ namespace phys
         this->RemoveNextSpecificEvent(EventBase::UserInput);
     }
 
-    list<EventUserInput*>* EventManager::GetAllUserInputEvents()
+    std::list<EventUserInput*>* EventManager::GetAllUserInputEvents()
     {
-        list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::UserInput);
-        list<EventUserInput*>* Results= new list<EventUserInput*>;
+        std::list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::UserInput);
+        std::list<EventUserInput*>* Results= new std::list<EventUserInput*>;
 
-        for(list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
         {
             Results->push_back( dynamic_cast<EventUserInput*> (*Iter) );
         }
@@ -343,12 +343,12 @@ namespace phys
         this->RemoveNextSpecificEvent(EventBase::QuitMessage);
     }
 
-    list<EventQuit*>* EventManager::GetAllQuitEvents()
+    std::list<EventQuit*>* EventManager::GetAllQuitEvents()
     {
-        list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::QuitMessage);
-        list<EventQuit*>* Results= new list<EventQuit*>;
+        std::list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::QuitMessage);
+        std::list<EventQuit*>* Results= new std::list<EventQuit*>;
 
-        for(list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
         {
             Results->push_back( dynamic_cast<EventQuit*> (*Iter) );
         }

@@ -35,7 +35,6 @@ int main(int argc, char **argv)
     TheWorld.CallBacks->SetPostInput(&PostInput);
     TheWorld.CallBacks->SetPrePhysics(&PrePhysics);
 
-
     //give the World our function to execute after renderingg
     TheWorld.CallBacks->SetPostRender(&PostRender);
 
@@ -164,21 +163,21 @@ void LoadContent()
         std::stringstream namemaker;
         namemaker << groupname << box.size();
         box.AddActor(new ActorRigid (mass,namemaker.str(),filename,groupname,&TheWorld));
-        box.LastActorAdded()->CreateShapeFromMeshDynamic(4);
+        box.LastActorAdded()->CreateShapeFromMeshDynamic(2);
         box.LastActorAdded()->SetInitLocation(Vector3( ((float)(48*box.size())-182), 160, 0));
         box.LastActorAdded()->SetInitOrientation(Quaternion(0,-0.5,0,0.5));
         TheWorld.AddActor(box.LastActorAdded());
     }
 
     object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
-    object1->CreateShapeFromMeshDynamic(4);
+    object1->CreateShapeFromMeshDynamic(2);
     object1->SetInitLocation(Vector3(-5.0,10,0));
     object1->LimitMovementOnAxis(false,true,true);
 
     object2 = new ActorRigid (mass,"Robot_2",filename,groupname,&TheWorld);
     object2->CreateShapeFromMeshDynamic(4);
     object2->SetInitLocation(Vector3(5,10,0));
-    object2->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.5));
+    object2->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
 
     object3 = new ActorRigid (0,"Robot_3",filename,groupname,&TheWorld);
     object3->CreateShapeFromMeshStatic();

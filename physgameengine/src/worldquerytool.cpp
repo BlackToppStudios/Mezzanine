@@ -82,6 +82,41 @@ namespace phys
     bool WorldQueryTool::IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton)
         {return this->KeyboardButtonCache[KeyboardButton];}
 
+
+    void WorldQueryTool::GatherEvents(bool ClearEventsFromEventMgr)
+    {
+/*        this->MouseButtonCache.reset();
+        this->KeyboardButtonCache.reset();
+        this->MouseXCache=0;
+        this->MouseYCache=0;*/
+        //Get the Events and remove if they need to be removed
+        std::list<EventUserInput*>* UserInput = this->GameWorld->Events->GetAllUserInputEvents();
+        if( ClearEventsFromEventMgr )
+            { this->GameWorld->Events->RemoveAllSpecificEvents(EventBase::UserInput); }
+
+        //For each metacode adjust any needed info
+        for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); Iter!=UserInput->end(); Iter++) //for each event
+        {
+            for(unsigned int c = 0; c<(*Iter)->GetMetaCodeCount(); c++) //For each metacode in the event
+            {                                                           //Newer Items should take precedence of older ones, so only store the oldest ones
+                if( MetaCode::KEY_FIRST <= (*Iter)->GetMetaCode(c).GetCode() && (*Iter)->GetMetaCode(c).GetCode() <= MetaCode::KEY_LAST ) //is it a Key
+                {
+                    if(0 <= (*Iter)->GetMetaCode(c).GetMetaValue()) //see
+                    {
+                        this->KeyboardButtonCache.reset( (*Iter)->GetMetaCode(c).GetCode() );
+                    }else{
+                        this->KeyboardButtonCache.set( (*Iter)->GetMetaCode(c).GetCode() );
+                    }
+                }
+                //check for mouse events
+            }
+        }
+
+        if( ClearEventsFromEventMgr )
+        {
+            //todo Delete events
+        }
+    }
 }
 
 
