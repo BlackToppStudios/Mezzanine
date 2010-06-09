@@ -40,18 +40,24 @@ const list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ $\ast$ \h
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Rendertime event and removes it from the Que. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_af1204912be3554312e66d3a777c1f99b}{RemoveNextRenderTimeEvent} ()
 \begin{DoxyCompactList}\small\item\em Removes the First Rendertime Event From the que without looking at it. \item\end{DoxyCompactList}\item 
+list$<$ \hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_ae52d41b9cc8c818ad4af15e8d4f90d7a}{GetAllRenderTimeEvents} ()
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render Time events. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_a38b42602a3a4d621048c78b525b4db49}{GetNextUserInputEvent} ()
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_afa89317d4b16c2b7065b9f79a4354654}{PopNextUserInputEvent} ()
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event and removes it from the Que. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_add41b5f4d2942461bcaf40a97ad40b09}{RemoveNextUserInputEvent} ()
 \begin{DoxyCompactList}\small\item\em Removes the First User Input Event From the que without looking at it. \item\end{DoxyCompactList}\item 
+list$<$ \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aff8eb19d37e98b459443d8417c8d4de6}{GetAllUserInputEvents} ()
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the User Input events. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ \hyperlink{classphys_1_1EventManager_ad7da09e5422b1db79ac4187ee9198d0c}{GetNextQuitEvent} ()
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1EventQuit}{EventQuit}. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ \hyperlink{classphys_1_1EventManager_a9b0d8e4d76fef35423bb862d7127b747}{PopNextQuitEvent} ()
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1EventQuit}{EventQuit} and removes it from the Que. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_a5031871aa6e044764ec2963228f735dd}{RemoveNextQuitEvent} ()
 \begin{DoxyCompactList}\small\item\em Removes the First \hyperlink{classphys_1_1EventQuit}{EventQuit} From the que without looking at it. \item\end{DoxyCompactList}\item 
+list$<$ \hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_af547d813d112827a1662d22ab072da84}{GetAllQuitEvents} ()
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the quit events. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_a7340cfab326856cf4ebc653b11101016}{GetNextSpecificEvent} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_a156ba3c53cc799499272430111bbdfa4}{PopNextSpecificEvent} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
@@ -60,6 +66,8 @@ void \hyperlink{classphys_1_1EventManager_a486c1173a2c1a64885bfdbe7ca267611}{Rem
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
 list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_a701bca02423436360c4e51b6e580cb2e}{GetAllSpecificEvents} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
 \begin{DoxyCompactList}\small\item\em This returns a complete list of all the specified events. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventManager_ac38a5a7d003a3f92e40c842916094bde}{RemoveAllSpecificEvents} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
+\begin{DoxyCompactList}\small\item\em This removes all the events of the specified type. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_a6ff66883358344908afd11204f79f196}{AddPollingCheck} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&InputToTryPolling)
 \begin{DoxyCompactList}\small\item\em Generates extra events each iteration of the main loop, based on user input polling. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_adaf7d5346932506ed43f893eb071fd39}{RemovePollingCheck} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&InputToStopPolling)
@@ -93,7 +101,7 @@ Definition at line 84 of file eventmanager.h.
 Default constructor. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000008}{Todo}]TODO build a deconstructor that deletes all the events still in the queue \end{Desc}
+\item[\hyperlink{todo__todo000007}{Todo}]TODO build a deconstructor that deletes all the events still in the queue \end{Desc}
 
 \begin{DoxyParams}{Parameters}
 \item[{\em ParentWorld\_\-}]A pointer to the world that this world is working with Primarily\end{DoxyParams}
@@ -141,7 +149,7 @@ This will trigger the input system to generate an event (or add to an exiting ev
 \item[{\em Unsupported Polling Check on this Platform}]When the metacode passed cannot be polled on this platform \end{DoxyExceptions}
 
 
-Definition at line 314 of file eventmanager.cpp.
+Definition at line 363 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_a96614684d2dcba5702b70dfe0d2a8c76}{
 \index{phys::EventManager@{phys::EventManager}!GetAllEvents@{GetAllEvents}}
@@ -162,6 +170,41 @@ This returns a const pointer the list$<$EventBase$\ast$$>$ which is this classes
 
 Definition at line 144 of file eventmanager.cpp.
 
+\hypertarget{classphys_1_1EventManager_af547d813d112827a1662d22ab072da84}{
+\index{phys::EventManager@{phys::EventManager}!GetAllQuitEvents@{GetAllQuitEvents}}
+\index{GetAllQuitEvents@{GetAllQuitEvents}!phys::EventManager@{phys::EventManager}}
+\subsubsection[{GetAllQuitEvents}]{\setlength{\rightskip}{0pt plus 5cm}list$<$ {\bf EventQuit} $\ast$ $>$ $\ast$ phys::EventManager::GetAllQuitEvents ()}}
+\label{da/dde/classphys_1_1EventManager_af547d813d112827a1662d22ab072da84}
+
+
+This returns a complete list of all the quit events. 
+
+This finds all the \hyperlink{classphys_1_1EventQuit}{EventQuit} Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. \begin{DoxyWarning}{Warning}
+Something is wrong if you have more than a few quit events. These should be checked for in each iteration of the main loop. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+This returns a list$<$EventQuit$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
+\end{DoxyReturn}
+
+
+Definition at line 346 of file eventmanager.cpp.
+
+\hypertarget{classphys_1_1EventManager_ae52d41b9cc8c818ad4af15e8d4f90d7a}{
+\index{phys::EventManager@{phys::EventManager}!GetAllRenderTimeEvents@{GetAllRenderTimeEvents}}
+\index{GetAllRenderTimeEvents@{GetAllRenderTimeEvents}!phys::EventManager@{phys::EventManager}}
+\subsubsection[{GetAllRenderTimeEvents}]{\setlength{\rightskip}{0pt plus 5cm}list$<$ {\bf EventRenderTime} $\ast$ $>$ $\ast$ phys::EventManager::GetAllRenderTimeEvents ()}}
+\label{da/dde/classphys_1_1EventManager_ae52d41b9cc8c818ad4af15e8d4f90d7a}
+
+
+This returns a complete list of all the Render Time events. 
+
+This finds all the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. \begin{DoxyReturn}{Returns}
+This returns a list$<$EventRenderTime$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
+\end{DoxyReturn}
+
+
+Definition at line 281 of file eventmanager.cpp.
+
 \hypertarget{classphys_1_1EventManager_a701bca02423436360c4e51b6e580cb2e}{
 \index{phys::EventManager@{phys::EventManager}!GetAllSpecificEvents@{GetAllSpecificEvents}}
 \index{GetAllSpecificEvents@{GetAllSpecificEvents}!phys::EventManager@{phys::EventManager}}
@@ -175,13 +218,27 @@ This finds all the events that are of the specified type in the event manager, t
 The pointers contained in this list must be used carefully. Do not delete them, this will cause errors. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
-This returns a list$<$EventBase$\ast$$>$ which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly.
+This returns a list$<$EventBase$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
 \end{DoxyReturn}
-\begin{Desc}
-\item[\hyperlink{todo__todo000007}{Todo}]Make version of this function for each type \end{Desc}
 
 
-Definition at line 239 of file eventmanager.cpp.
+Definition at line 238 of file eventmanager.cpp.
+
+\hypertarget{classphys_1_1EventManager_aff8eb19d37e98b459443d8417c8d4de6}{
+\index{phys::EventManager@{phys::EventManager}!GetAllUserInputEvents@{GetAllUserInputEvents}}
+\index{GetAllUserInputEvents@{GetAllUserInputEvents}!phys::EventManager@{phys::EventManager}}
+\subsubsection[{GetAllUserInputEvents}]{\setlength{\rightskip}{0pt plus 5cm}list$<$ {\bf EventUserInput} $\ast$ $>$ $\ast$ phys::EventManager::GetAllUserInputEvents ()}}
+\label{da/dde/classphys_1_1EventManager_aff8eb19d37e98b459443d8417c8d4de6}
+
+
+This returns a complete list of all the User Input events. 
+
+This finds all the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. \begin{DoxyReturn}{Returns}
+This returns a list$<$EventUserInput$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
+\end{DoxyReturn}
+
+
+Definition at line 314 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_aa0937763961aefc59aea197a8f9bc0dc}{
 \index{phys::EventManager@{phys::EventManager}!GetNextEvent@{GetNextEvent}}
@@ -213,7 +270,7 @@ A pointer to a \hyperlink{classphys_1_1EventQuit}{EventQuit}, that still needs t
 \end{DoxyReturn}
 
 
-Definition at line 295 of file eventmanager.cpp.
+Definition at line 331 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_ae8730b039a280449af052d75f2e60b06}{
 \index{phys::EventManager@{phys::EventManager}!GetNextRenderTimeEvent@{GetNextRenderTimeEvent}}
@@ -229,7 +286,7 @@ A pointer to a PhysEventRenderTime, that still needs to be removed from the even
 \end{DoxyReturn}
 
 
-Definition at line 257 of file eventmanager.cpp.
+Definition at line 266 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_a7340cfab326856cf4ebc653b11101016}{
 \index{phys::EventManager@{phys::EventManager}!GetNextSpecificEvent@{GetNextSpecificEvent}}
@@ -265,7 +322,7 @@ A pointer to a \hyperlink{classphys_1_1EventUserInput}{EventUserInput}, that sti
 \end{DoxyReturn}
 
 
-Definition at line 276 of file eventmanager.cpp.
+Definition at line 299 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_a67b755e3fe888e1305312d0f966f4a06}{
 \index{phys::EventManager@{phys::EventManager}!GetRemainingEventCount@{GetRemainingEventCount}}
@@ -297,7 +354,7 @@ This returns a pointer to a \hyperlink{classphys_1_1EventUserInput}{EventUserInp
 \end{DoxyReturn}
 
 
-Definition at line 410 of file eventmanager.cpp.
+Definition at line 459 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_ae403b203bc425744377ec5fc311f4e5d}{
 \index{phys::EventManager@{phys::EventManager}!PopNextEvent@{PopNextEvent}}
@@ -329,7 +386,7 @@ A pointer to a \hyperlink{classphys_1_1EventQuit}{EventQuit}, that still needs t
 \end{DoxyReturn}
 
 
-Definition at line 300 of file eventmanager.cpp.
+Definition at line 336 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_aa7e800d34ad8b9295ac87dfa822a2a03}{
 \index{phys::EventManager@{phys::EventManager}!PopNextRenderTimeEvent@{PopNextRenderTimeEvent}}
@@ -345,7 +402,7 @@ A pointer to a PhysEventRenderTime, that still needs to be removed from the even
 \end{DoxyReturn}
 
 
-Definition at line 262 of file eventmanager.cpp.
+Definition at line 271 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_a156ba3c53cc799499272430111bbdfa4}{
 \index{phys::EventManager@{phys::EventManager}!PopNextSpecificEvent@{PopNextSpecificEvent}}
@@ -380,7 +437,23 @@ A pointer to a \hyperlink{classphys_1_1EventUserInput}{EventUserInput}, that sti
 \end{DoxyReturn}
 
 
-Definition at line 281 of file eventmanager.cpp.
+Definition at line 304 of file eventmanager.cpp.
+
+\hypertarget{classphys_1_1EventManager_ac38a5a7d003a3f92e40c842916094bde}{
+\index{phys::EventManager@{phys::EventManager}!RemoveAllSpecificEvents@{RemoveAllSpecificEvents}}
+\index{RemoveAllSpecificEvents@{RemoveAllSpecificEvents}!phys::EventManager@{phys::EventManager}}
+\subsubsection[{RemoveAllSpecificEvents}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventManager::RemoveAllSpecificEvents ({\bf EventBase::EventType} {\em SpecificType})}}
+\label{da/dde/classphys_1_1EventManager_ac38a5a7d003a3f92e40c842916094bde}
+
+
+This removes all the events of the specified type. 
+
+This finds all the events that are of the specified type in the event manager, then removes them. \begin{DoxyWarning}{Warning}
+This does not delete the events. This is a memory leak unless used with GetAllSpecificEvents so that the events can be tracked indeendantly, and deleted. 
+\end{DoxyWarning}
+
+
+Definition at line 252 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_a2389a44d199f121e1fea741f83248513}{
 \index{phys::EventManager@{phys::EventManager}!RemoveNextEvent@{RemoveNextEvent}}
@@ -418,7 +491,7 @@ If you did not call \hyperlink{classphys_1_1EventManager_ad7da09e5422b1db79ac418
 \item[{\em This}]can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que. \end{DoxyExceptions}
 
 
-Definition at line 305 of file eventmanager.cpp.
+Definition at line 341 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_af1204912be3554312e66d3a777c1f99b}{
 \index{phys::EventManager@{phys::EventManager}!RemoveNextRenderTimeEvent@{RemoveNextRenderTimeEvent}}
@@ -437,7 +510,7 @@ If you did not call \hyperlink{classphys_1_1EventManager_ae8730b039a280449af052d
 \item[{\em This}]can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que. \end{DoxyExceptions}
 
 
-Definition at line 267 of file eventmanager.cpp.
+Definition at line 276 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_a486c1173a2c1a64885bfdbe7ca267611}{
 \index{phys::EventManager@{phys::EventManager}!RemoveNextSpecificEvent@{RemoveNextSpecificEvent}}
@@ -478,7 +551,7 @@ If you did not call \hyperlink{classphys_1_1EventManager_a38b42602a3a4d621048c78
 \item[{\em This}]can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que. \end{DoxyExceptions}
 
 
-Definition at line 286 of file eventmanager.cpp.
+Definition at line 309 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_adaf7d5346932506ed43f893eb071fd39}{
 \index{phys::EventManager@{phys::EventManager}!RemovePollingCheck@{RemovePollingCheck}}
@@ -497,7 +570,7 @@ This will remove any check for polling that share the same inputcode and ID. Thi
 \item[{\em Polling check not present}]Is thrown \end{DoxyExceptions}
 
 
-Definition at line 348 of file eventmanager.cpp.
+Definition at line 397 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{
 \index{phys::EventManager@{phys::EventManager}!UpdateEvents@{UpdateEvents}}

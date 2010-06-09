@@ -1,0 +1,78 @@
+\hypertarget{classphys_1_1Ray}{
+\section{phys::Ray Class Reference}
+\label{df/d57/classphys_1_1Ray}\index{phys::Ray@{phys::Ray}}
+}
+
+
+This is used to indicate a line with one end.  
+
+
+
+
+{\ttfamily \#include $<$ray.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1Ray_a35f4f5eec653ea561353163eaad672d3}{Ray} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Ray_aa6123ef37a2351e6cca3954c23212379}{Ray} (\hyperlink{classphys_1_1Vector3}{Vector3} From\_\-, \hyperlink{classphys_1_1Vector3}{Vector3} To\_\-)
+\begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Ray_a3004d52f8f1e317ee602f8f278531057}{
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Ray_a3004d52f8f1e317ee602f8f278531057}{From}}
+\label{df/d57/classphys_1_1Ray_a3004d52f8f1e317ee602f8f278531057}
+
+\begin{DoxyCompactList}\small\item\em The origin point of the Vector. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Ray_aa2585a1c6d29d1533c816e7277baf1ad}{
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Ray_aa2585a1c6d29d1533c816e7277baf1ad}{To}}
+\label{df/d57/classphys_1_1Ray_aa2585a1c6d29d1533c816e7277baf1ad}
+
+\begin{DoxyCompactList}\small\item\em A point on the line of the ray. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is used to indicate a line with one end. Currently this is just a collection of two vector3s with a couple of constructors. 
+
+Definition at line 54 of file ray.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1Ray_a35f4f5eec653ea561353163eaad672d3}{
+\index{phys::Ray@{phys::Ray}!Ray@{Ray}}
+\index{Ray@{Ray}!phys::Ray@{phys::Ray}}
+\subsubsection[{Ray}]{\setlength{\rightskip}{0pt plus 5cm}phys::Ray::Ray ()}}
+\label{df/d57/classphys_1_1Ray_a35f4f5eec653ea561353163eaad672d3}
+
+
+Default constructor. 
+
+This create a ray starting at 0,0,0 pointing to 0,1,0, 
+
+Definition at line 49 of file ray.cpp.
+
+\hypertarget{classphys_1_1Ray_aa6123ef37a2351e6cca3954c23212379}{
+\index{phys::Ray@{phys::Ray}!Ray@{Ray}}
+\index{Ray@{Ray}!phys::Ray@{phys::Ray}}
+\subsubsection[{Ray}]{\setlength{\rightskip}{0pt plus 5cm}phys::Ray::Ray ({\bf Vector3} {\em From\_\-}, \/  {\bf Vector3} {\em To\_\-})}}
+\label{df/d57/classphys_1_1Ray_aa6123ef37a2351e6cca3954c23212379}
+
+
+Thorough constructor. 
+
+This accepts 2 Vector3s and uses them to build the ray 
+\begin{DoxyParams}{Parameters}
+\item[{\em From\_\-}]The origin fo the new \hyperlink{classphys_1_1Ray}{Ray} \item[{\em To\_\-}]A point along the line for the destination line. \end{DoxyParams}
+
+
+Definition at line 54 of file ray.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+ray.h\item 
+ray.cpp\end{DoxyCompactItemize}
