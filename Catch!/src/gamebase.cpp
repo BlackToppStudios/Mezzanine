@@ -43,19 +43,15 @@ int main(int argc, char **argv)
 	TheWorld.GameInit(false);
 
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
-    MetaCode PollForQ(0, 1, MetaCode::KEY_q);
-    MetaCode PollForRightClick(0, 3, MetaCode::MOUSEBUTTON);
-    MetaCode PollForX(0,0, MetaCode::MOUSEABSOLUTEHORIZONTAL);
-    MetaCode PollForY(0,0, MetaCode::MOUSEABSOLUTEVERTICAL);
-    TheWorld.Events->AddPollingCheck(PollForQ);
-    TheWorld.Events->AddPollingCheck(PollForRightClick);
-    TheWorld.Events->AddPollingCheck(PollForX);
-    TheWorld.Events->AddPollingCheck(PollForY);
+    TheWorld.Events->AddPollingCheck( MetaCode(0, 1, MetaCode::KEY_q) );
+    TheWorld.Events->AddPollingCheck( MetaCode(0, 3, MetaCode::MOUSEBUTTON) );
+    TheWorld.Events->AddPollingCheck( MetaCode(0,0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );
 
+    //Actually Load the game stuff
     LoadContent();
 
     TheWorld.SetDebugPhysicsWireCount(2);
-    TheWorld.SetDebugPhysicsRendering(0);
+    TheWorld.SetDebugPhysicsRendering(1);
 
 	//Start the Main Loop
 	TheWorld.MainLoop();
@@ -70,10 +66,6 @@ bool PostRender()
 
 	TheWorld.Log("---------- Starting CallBack -------------");
     TheWorld.Log("Current Game Time ");
-
-    std::stringstream timestream;
-    timestream << "Catch!... " << gametime;
-    TheWorld.SetWindowName( timestream.str() );
 
 	//getting a message from the event manager
 	EventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
@@ -90,16 +82,14 @@ bool PostRender()
         CurrentTime = TheWorld.Events->GetNextRenderTimeEvent();
     }
 
+    //Play around with the title bar
+    std::stringstream timestream;
+    timestream << "Catch!... " << gametime;
+    TheWorld.SetWindowName( timestream.str() );
+
     //IF the game has gone on for 10 or more seconds close it.
 	if (10000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
-	{
-		return false;
-	}
-
-    if (2000<gametime)
-    {
-        TheWorld.SetDebugPhysicsWireCount(2);
-    }
+        { return false; }
 
     return true;
 }
@@ -121,7 +111,6 @@ bool PreInput()
 
 bool PostInput()
 {
-    //Do nothing this just guarantees that the main loop will run checks for user input.
     if( !CheckForEsc() )
         return false;
     return true;
@@ -143,7 +132,7 @@ bool CheckForEsc()
         for (int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
             TheWorld.Log(OneInput->GetMetaCode(c));
-            //Is the key we just pulled ESCAPE
+            //Is the key we just pushed ESCAPE
             if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode())
             {
                 return false;
@@ -210,5 +199,4 @@ void LoadContent()
 
     TheWorld.SetGravity(grav);
 }
-
 #endif

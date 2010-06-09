@@ -235,7 +235,6 @@ namespace phys
         }
     }
 
-    /// @todo Make version of this function for each type
     list<EventBase*>* EventManager::GetAllSpecificEvents(EventBase::EventType SpecificType)
     {
         list<EventBase*>* TempList = new list<EventBase*>;
@@ -247,8 +246,18 @@ namespace phys
                 TempList->push_back(*Iter);
             }
         }
-
         return TempList;
+    }
+
+    void EventManager::RemoveAllSpecificEvents(EventBase::EventType SpecificType)
+    {
+        for(list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        {
+            if((*Iter)->getEventType()==SpecificType)
+            {
+                this->EventQueue.remove(*Iter);
+            }
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -269,6 +278,20 @@ namespace phys
         this->RemoveNextSpecificEvent(EventBase::RenderTime);
     }
 
+    list<EventRenderTime*>* EventManager::GetAllRenderTimeEvents()
+    {
+        list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::UserInput);
+        list<EventRenderTime*>* Results= new list<EventRenderTime*>;
+
+        for(list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
+        {
+            Results->push_back( dynamic_cast<EventRenderTime*> (*Iter) );
+        }
+
+        return Results;
+    }
+
+
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - User Input Events
     ///////////////////////////////////////
@@ -288,6 +311,19 @@ namespace phys
         this->RemoveNextSpecificEvent(EventBase::UserInput);
     }
 
+    list<EventUserInput*>* EventManager::GetAllUserInputEvents()
+    {
+        list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::UserInput);
+        list<EventUserInput*>* Results= new list<EventUserInput*>;
+
+        for(list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
+        {
+            Results->push_back( dynamic_cast<EventUserInput*> (*Iter) );
+        }
+
+        return Results;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - Quit Event
     ///////////////////////////////////////
@@ -305,6 +341,19 @@ namespace phys
     void EventManager::RemoveNextQuitEvent()
     {
         this->RemoveNextSpecificEvent(EventBase::QuitMessage);
+    }
+
+    list<EventQuit*>* EventManager::GetAllQuitEvents()
+    {
+        list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::QuitMessage);
+        list<EventQuit*>* Results= new list<EventQuit*>;
+
+        for(list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
+        {
+            Results->push_back( dynamic_cast<EventQuit*> (*Iter) );
+        }
+
+        return Results;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -206,6 +206,11 @@ namespace phys
             /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
             void RemoveNextRenderTimeEvent();
 
+            /// @brief This returns a complete list of all the Render Time events.
+            /// @details This finds all the EventUserInput Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.
+            /// @return This returns a list<EventRenderTime*> pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.
+            list<EventRenderTime*>* GetAllRenderTimeEvents();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - User Input Events
         ///////////////////////////////////////
@@ -232,6 +237,11 @@ namespace phys
             /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
             void RemoveNextUserInputEvent();
 
+            /// @brief This returns a complete list of all the User Input events.
+            /// @details This finds all the EventUserInput Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.
+            /// @return This returns a list<EventUserInput*> pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.
+            list<EventUserInput*>* GetAllUserInputEvents();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - Quit Events
         ///////////////////////////////////////
@@ -257,6 +267,12 @@ namespace phys
             /// Don't use this unless you are certain you have taken care of the pointer appropriately
             /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
             void RemoveNextQuitEvent();
+
+            /// @brief This returns a complete list of all the quit events.
+            /// @details This finds all the EventQuit Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.
+            /// @warning Something is wrong if you have more than a few quit events. These should be checked for in each iteration of the main loop.
+            /// @return This returns a list<EventQuit*> pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.
+            list<EventQuit*>* GetAllQuitEvents();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - You choose YAYYYY!!!
@@ -290,8 +306,13 @@ namespace phys
             /// @details This finds all the events that are of the specified type in the event manager, then creates a new list
             /// and return that. This runs in linear time relative to the amounts of events.
             /// @warning The pointers contained in this list must be used carefully. Do not delete them, this will cause errors.
-            /// @return This returns a list<EventBase*> which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly.
+            /// @return This returns a list<EventBase*> pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.
             list<EventBase*>* GetAllSpecificEvents(EventBase::EventType SpecificType);
+
+            /// @brief This removes all the events of the specified type.
+            /// @details This finds all the events that are of the specified type in the event manager, then removes them.
+            /// @warning This does not delete the events. This is a memory leak unless used with GetAllSpecificEvents so that the events can be tracked indeendantly, and deleted.
+            void RemoveAllSpecificEvents(EventBase::EventType SpecificType);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Polling management functions
