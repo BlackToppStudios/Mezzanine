@@ -181,8 +181,8 @@ namespace phys{
     Vector3 ActorBase::GetOgreLocation()
     {
         Vector3 temp;
-        temp.ExtractOgreVector3(this->node->getPosition());
-        return temp;
+        //temp.ExtractOgreVector3(this->node->getPosition());
+        return temp.ExtractOgreVector3(this->node->getPosition());
     }
 
     void ActorBase::SetBulletLocation (Vector3 Location)
@@ -194,8 +194,8 @@ namespace phys{
     Vector3 ActorBase::GetBulletLocation()
     {
         Vector3 temp;
-        btTransform trans = this->CollisionObject->getWorldTransform();
-        temp.ExtractBulletVector3(trans.getOrigin());
+        //btTransform trans = this->CollisionObject->getWorldTransform();
+        temp.ExtractBulletVector3(this->CollisionObject->getWorldTransform().getOrigin());
         return temp;
     }
 
@@ -263,7 +263,6 @@ namespace phys{
     void ActorBase::AttachToGraphics ()
     {
         Vector3 temp;
-        //temp.ExtractBulletVector3(this->MotionState->initposition.getOrigin());
         temp = GetBulletLocation();
         this->node->setPosition(temp.GetOgreVector3());
         this->node->attachObject(this->entity);
@@ -283,14 +282,14 @@ namespace phys{
     // ActorBase Public Collision flag functions
     void ActorBase::SetKinematic()
     {
-        int x=2;
-        this->CollisionObject->setCollisionFlags(x);
+        //int x=2;
+        this->CollisionObject->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
     }
 
     void ActorBase::SetStatic()
     {
-        int x=1;
-        this->CollisionObject->setCollisionFlags(x);
+        //int x=1;
+        this->CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
     }
 }// /phys
 #endif
