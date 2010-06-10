@@ -112,7 +112,7 @@
 <a name="l00087"></a>00087 <span class="comment"></span>
 <a name="l00088"></a>00088 <span class="comment">            /// @internal</span>
 <a name="l00089"></a>00089 <span class="comment">            /// @brief A place to store which keys are pressed or not.</span>
-<a name="l00090"></a>00090 <span class="comment"></span>            std::bitset&lt;MetaCode::INPUTEVENT_LAST&gt; KeyboardButtonCache;
+<a name="l00090"></a>00090 <span class="comment"></span>            std::bitset&lt;MetaCode::KEY_LAST&gt; KeyboardButtonCache;
 <a name="l00091"></a>00091 
 <a name="l00092"></a>00092             Ogre::RaySceneQuery* RayQuery;
 <a name="l00093"></a>00093         <span class="keyword">public</span>:<span class="comment"></span>
@@ -152,36 +152,42 @@
 <a name="l00127"></a>00127 <span class="comment">            /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.</span>
 <a name="l00128"></a>00128 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8343f54b900adb316ddc6de5405da328" title="Returns whether a specific KEyboard button is pushed.">IsKeyboardButtonPushed</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> KeyboardButton);
 <a name="l00129"></a>00129 <span class="comment"></span>
-<a name="l00130"></a>00130 <span class="comment">            /// @brief</span>
-<a name="l00131"></a>00131 <span class="comment">            /// @details</span>
-<a name="l00132"></a>00132 <span class="comment">            /// @param</span>
-<a name="l00133"></a>00133 <span class="comment">            /// @return</span>
-<a name="l00134"></a>00134 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8d26735297b1c0368739f0ba05ca6a15">GetFirstActorOnRay</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
+<a name="l00130"></a>00130 <span class="comment">            /// @brief This will find the first Actor to intesect the Given ray.</span>
+<a name="l00131"></a>00131 <span class="comment">            /// @details This use the graphics subsystem to cast a ray</span>
+<a name="l00132"></a>00132 <span class="comment">            /// @param ActorRay The Ray to search along.</span>
+<a name="l00133"></a>00133 <span class="comment">            /// @return This returns a pointer to an actorbase, which is the first actor along the ray</span>
+<a name="l00134"></a>00134 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#af5864818aad3e6d44452ae6f6d0ba4b6" title="This will find the first Actor to intesect the Given ray.">GetFirstActorOnRayByPolygon</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
 <a name="l00135"></a>00135 <span class="comment"></span>
 <a name="l00136"></a>00136 <span class="comment">            /// @brief</span>
 <a name="l00137"></a>00137 <span class="comment">            /// @details</span>
-<a name="l00138"></a>00138 <span class="comment">            /// @param</span>
-<a name="l00139"></a>00139 <span class="comment">            /// @return</span>
-<a name="l00140"></a>00140 <span class="comment"></span>            <a class="code" href="../../de/ddc/classphys_1_1VectorWActor3.html" title="This class is used to store or transfer a position relative to an Actor.">VectorWActor3</a> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a85c3bcafc9ceea4ed485ff457d7b1f7b">GetActorUnderMouse</a>();
+<a name="l00138"></a>00138 <span class="comment">            /// @param ActorRay The Ray to search along.</span>
+<a name="l00139"></a>00139 <span class="comment">            /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.</span>
+<a name="l00140"></a>00140 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ac727c485571593a81d5828bfaf17e545">GetFirstActorOnRayByAABB</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
 <a name="l00141"></a>00141 <span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">            /// @brief This gathers any user-input/event data that might be queryed</span>
-<a name="l00143"></a>00143 <span class="comment">            /// @details This should be called periodcally (ideally in the post user input callback) to allow this</span>
-<a name="l00144"></a>00144 <span class="comment">            /// to gather data from the phys::World &#39;s event manager. When called this will drop prior event data</span>
-<a name="l00145"></a>00145 <span class="comment">            /// and any relevant queries will come from this new data. At the caller&#39;s discretion this method</span>
-<a name="l00146"></a>00146 <span class="comment">            /// can properly delete any events pulled from the event manager. \n \n</span>
-<a name="l00147"></a>00147 <span class="comment">            /// This runs in linear time relative to the events in the event manager. This will usually be a trivial amount</span>
-<a name="l00148"></a>00148 <span class="comment">            /// if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup)</span>
-<a name="l00149"></a>00149 <span class="comment">            /// @param ClearEventsFromEventMgr If set to true, This method will properly remove any events it pulls from the event manager.</span>
-<a name="l00150"></a>00150 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ae387ff047f3cdf408d8959b8cbf4cc57" title="This gathers any user-input/event data that might be queryed.">GatherEvents</a>(<span class="keywordtype">bool</span> ClearEventsFromEventMgr = <span class="keyword">false</span>);
-<a name="l00151"></a>00151     };
-<a name="l00152"></a>00152 
-<a name="l00153"></a>00153 }
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156 
-<a name="l00157"></a>00157 <span class="preprocessor">#endif</span>
+<a name="l00142"></a>00142 <span class="comment">            /// @brief</span>
+<a name="l00143"></a>00143 <span class="comment">            /// @details</span>
+<a name="l00144"></a>00144 <span class="comment">            /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB .</span>
+<a name="l00145"></a>00145 <span class="comment">            /// @return This returns a VectorWActor3 which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.</span>
+<a name="l00146"></a>00146 <span class="comment"></span>            <a class="code" href="../../de/ddc/classphys_1_1VectorWActor3.html" title="This class is used to store or transfer a position relative to an Actor.">VectorWActor3</a> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a2b1e95fb1ed9ceb7e26210c884c4a1db">GetActorUnderMouse</a>(<span class="keywordtype">bool</span> UsePolygon=<span class="keyword">true</span>);
+<a name="l00147"></a>00147 <span class="comment"></span>
+<a name="l00148"></a>00148 <span class="comment">            /// @brief This gathers any user-input/event data that might be queryed</span>
+<a name="l00149"></a>00149 <span class="comment">            /// @details This should be called periodcally (ideally in the post user input callback) to allow this</span>
+<a name="l00150"></a>00150 <span class="comment">            /// to gather data from the phys::World &#39;s event manager. When called this will drop prior event data</span>
+<a name="l00151"></a>00151 <span class="comment">            /// and any relevant queries will come from this new data. At the caller&#39;s discretion this method</span>
+<a name="l00152"></a>00152 <span class="comment">            /// can properly delete any events pulled from the event manager. \n \n</span>
+<a name="l00153"></a>00153 <span class="comment">            /// This runs in linear time relative to the events in the event manager. This will usually be a trivial amount</span>
+<a name="l00154"></a>00154 <span class="comment">            /// if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup)</span>
+<a name="l00155"></a>00155 <span class="comment">            /// @param ClearEventsFromEventMgr If set to true, This method will properly remove any events it pulls from the event manager.</span>
+<a name="l00156"></a>00156 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ae387ff047f3cdf408d8959b8cbf4cc57" title="This gathers any user-input/event data that might be queryed.">GatherEvents</a>(<span class="keywordtype">bool</span> ClearEventsFromEventMgr = <span class="keyword">false</span>);
+<a name="l00157"></a>00157     };
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159 }
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161 
+<a name="l00162"></a>00162 
+<a name="l00163"></a>00163 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 9 11:29:21 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 10 10:46:30 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

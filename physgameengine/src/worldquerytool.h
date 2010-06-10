@@ -127,17 +127,23 @@ namespace phys
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
             bool IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton);
 
-            /// @brief
-            /// @details
-            /// @param
-            /// @return
-            ActorBase* GetFirstActorOnRay(Ray ActorRay);
+            /// @brief This will find the first Actor to intesect the Given ray.
+            /// @details This use the graphics subsystem to cast a ray
+            /// @param ActorRay The Ray to search along.
+            /// @return This returns a pointer to an actorbase, which is the first actor along the ray
+            ActorBase* GetFirstActorOnRayByPolygon(Ray ActorRay);
 
             /// @brief
             /// @details
-            /// @param
-            /// @return
-            VectorWActor3 GetActorUnderMouse();
+            /// @param ActorRay The Ray to search along.
+            /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.
+            ActorBase* GetFirstActorOnRayByAABB(Ray ActorRay);
+
+            /// @brief
+            /// @details
+            /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB .
+            /// @return This returns a VectorWActor3 which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
+            VectorWActor3 GetActorUnderMouse(bool UsePolygon=true);
 
             /// @brief This gathers any user-input/event data that might be queryed
             /// @details This should be called periodcally (ideally in the post user input callback) to allow this

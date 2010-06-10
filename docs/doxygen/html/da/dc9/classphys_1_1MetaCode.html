@@ -417,6 +417,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Returns the Input ID.  <a href="#a70389ebd99493248fe93c598e2fe06c9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a0ef70c11c06f0e3015121985cb1b6153">SetID</a> (const short unsigned int &amp;ID_)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Sets The input ID.  <a href="#a0ef70c11c06f0e3015121985cb1b6153"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#ad86e1599eccea8edecb721eb84c06c72">IsKeyboardButton</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Does this <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> Represent a state of a keyboard key.  <a href="#ad86e1599eccea8edecb721eb84c06c72"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a506486e5a6f08d50a5af42fa6d48a7f5">operator==</a> (const <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html">MetaCode</a> &amp;other) const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares two MetaCodes for equality.  <a href="#a506486e5a6f08d50a5af42fa6d48a7f5"></a><br/></td></tr>
 </table>
@@ -741,6 +743,29 @@
 
 </div>
 </div>
+<a class="anchor" id="ad86e1599eccea8edecb721eb84c06c72"></a><!-- doxytag: member="phys::MetaCode::IsKeyboardButton" ref="ad86e1599eccea8edecb721eb84c06c72" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::MetaCode::IsKeyboardButton </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Does this <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> Represent a state of a keyboard key. </p>
+<p>Returns true if this <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> pertains to a keyboard key being up, polled, down, pressed, or lifted. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a bool which will be true if this is keyboard event. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d1/dae/metacode_8cpp_source.html#l00178">178</a> of file <a class="el" href="../../d1/dae/metacode_8cpp_source.html">metacode.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a506486e5a6f08d50a5af42fa6d48a7f5"></a><!-- doxytag: member="phys::MetaCode::operator==" ref="a506486e5a6f08d50a5af42fa6d48a7f5" args="(const MetaCode &amp;other) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -760,7 +785,7 @@
 <p>Compares two MetaCodes for equality. </p>
 <p>This returns true if the MetaValue and Code are the Same, this ignores ID. </p>
 
-<p>Definition at line <a class="el" href="../../d1/dae/metacode_8cpp_source.html#l00182">182</a> of file <a class="el" href="../../d1/dae/metacode_8cpp_source.html">metacode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/dae/metacode_8cpp_source.html#l00187">187</a> of file <a class="el" href="../../d1/dae/metacode_8cpp_source.html">metacode.cpp</a>.</p>
 
 </div>
 </div>
@@ -856,7 +881,7 @@
 <li><a class="el" href="../../d1/dae/metacode_8cpp_source.html">metacode.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 9 11:29:23 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 10 10:46:31 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

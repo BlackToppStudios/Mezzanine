@@ -40,8 +40,13 @@
 #ifndef _ray_h
 #define _ray_h
 
-#include "datatypes.h"
 #include "vector3.h"
+
+namespace Ogre
+{
+    class Ray;
+}
+
 
 namespace phys
 {
@@ -69,6 +74,12 @@ namespace phys
             /// @param From_ The origin fo the new Ray
             /// @param To_ A point along the line for the destination line.
             Ray(Vector3 From_, Vector3 To_);
+
+            /// @brief Gets an Ogre::Ray that contains this Rays information
+            /// @details Used to aid interopability, this will return afresh Ogre::Ray with the same data as this Ray
+            /// @return This returns an Ogre::Ray that contains the same information as this rays information
+            Ogre::Ray GetOgreRay();
+
 
 
     };

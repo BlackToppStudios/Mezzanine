@@ -26,9 +26,11 @@ bool \hyperlink{classphys_1_1WorldQueryTool_af277b578432dfaefffbc4fd9bb80ca64}{I
 \begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1WorldQueryTool_a8343f54b900adb316ddc6de5405da328}{IsKeyboardButtonPushed} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} KeyboardButton)
 \begin{DoxyCompactList}\small\item\em Returns whether a specific KEyboard button is pushed. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a8d26735297b1c0368739f0ba05ca6a15}{GetFirstActorOnRay} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
+\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_af5864818aad3e6d44452ae6f6d0ba4b6}{GetFirstActorOnRayByPolygon} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
+\begin{DoxyCompactList}\small\item\em This will find the first Actor to intesect the Given ray. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_ac727c485571593a81d5828bfaf17e545}{GetFirstActorOnRayByAABB} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
 \item 
-\hyperlink{classphys_1_1VectorWActor3}{VectorWActor3} \hyperlink{classphys_1_1WorldQueryTool_a85c3bcafc9ceea4ed485ff457d7b1f7b}{GetActorUnderMouse} ()
+\hyperlink{classphys_1_1VectorWActor3}{VectorWActor3} \hyperlink{classphys_1_1WorldQueryTool_a2b1e95fb1ed9ceb7e26210c884c4a1db}{GetActorUnderMouse} (bool UsePolygon=true)
 \item 
 void \hyperlink{classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}{GatherEvents} (bool ClearEventsFromEventMgr=false)
 \begin{DoxyCompactList}\small\item\em This gathers any user-\/input/event data that might be queryed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -88,22 +90,57 @@ This should be called periodcally (ideally in the post user input callback) to a
  This runs in linear time relative to the events in the event manager. This will usually be a trivial amount if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup) 
 \begin{DoxyParams}{Parameters}
 \item[{\em ClearEventsFromEventMgr}]If set to true, This method will properly remove any events it pulls from the event manager. \end{DoxyParams}
-\hypertarget{classphys_1_1WorldQueryTool_a85c3bcafc9ceea4ed485ff457d7b1f7b}{
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000021}{Todo}]Add support for joystick events to \hyperlink{classphys_1_1WorldQueryTool}{WorldQueryTool} \end{Desc}
+
+
+
+
+Definition at line 82 of file worldquerytool.cpp.
+
+\hypertarget{classphys_1_1WorldQueryTool_a2b1e95fb1ed9ceb7e26210c884c4a1db}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetActorUnderMouse@{GetActorUnderMouse}}
 \index{GetActorUnderMouse@{GetActorUnderMouse}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VectorWActor3} phys::WorldQueryTool::GetActorUnderMouse ()}}
-\label{d8/d69/classphys_1_1WorldQueryTool_a85c3bcafc9ceea4ed485ff457d7b1f7b}
+\subsubsection[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VectorWActor3} phys::WorldQueryTool::GetActorUnderMouse (bool {\em UsePolygon} = {\ttfamily true})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_a2b1e95fb1ed9ceb7e26210c884c4a1db}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em @return}]\end{DoxyParams}
-\hypertarget{classphys_1_1WorldQueryTool_a8d26735297b1c0368739f0ba05ca6a15}{
-\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetFirstActorOnRay@{GetFirstActorOnRay}}
-\index{GetFirstActorOnRay@{GetFirstActorOnRay}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetFirstActorOnRay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase}$\ast$ phys::WorldQueryTool::GetFirstActorOnRay ({\bf Ray} {\em ActorRay})}}
-\label{d8/d69/classphys_1_1WorldQueryTool_a8d26735297b1c0368739f0ba05ca6a15}
+\item[{\em UsePolygon}]If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB . \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1VectorWActor3}{VectorWActor3} which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1WorldQueryTool_ac727c485571593a81d5828bfaf17e545}{
+\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetFirstActorOnRayByAABB@{GetFirstActorOnRayByAABB}}
+\index{GetFirstActorOnRayByAABB@{GetFirstActorOnRayByAABB}!phys::WorldQueryTool@{phys::WorldQueryTool}}
+\subsubsection[{GetFirstActorOnRayByAABB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase}$\ast$ phys::WorldQueryTool::GetFirstActorOnRayByAABB ({\bf Ray} {\em ActorRay})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_ac727c485571593a81d5828bfaf17e545}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em @return}]\end{DoxyParams}
+\item[{\em ActorRay}]The \hyperlink{classphys_1_1Ray}{Ray} to search along. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a pointer to an actorbase, which is the first actor to have an Axis-\/Aligned Bounding Box along the ray. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1WorldQueryTool_af5864818aad3e6d44452ae6f6d0ba4b6}{
+\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetFirstActorOnRayByPolygon@{GetFirstActorOnRayByPolygon}}
+\index{GetFirstActorOnRayByPolygon@{GetFirstActorOnRayByPolygon}!phys::WorldQueryTool@{phys::WorldQueryTool}}
+\subsubsection[{GetFirstActorOnRayByPolygon}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::WorldQueryTool::GetFirstActorOnRayByPolygon ({\bf Ray} {\em ActorRay})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_af5864818aad3e6d44452ae6f6d0ba4b6}
+
+
+This will find the first Actor to intesect the Given ray. 
+
+This use the graphics subsystem to cast a ray 
+\begin{DoxyParams}{Parameters}
+\item[{\em ActorRay}]The \hyperlink{classphys_1_1Ray}{Ray} to search along. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a pointer to an actorbase, which is the first actor along the ray 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file worldquerytool.cpp.
+
 \hypertarget{classphys_1_1WorldQueryTool_a55721f152fb117fdfb8bc6d20af6b1dc}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetMouseX@{GetMouseX}}
 \index{GetMouseX@{GetMouseX}!phys::WorldQueryTool@{phys::WorldQueryTool}}

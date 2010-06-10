@@ -113,7 +113,7 @@
 <a name="l00088"></a>00088             <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* ParentWorld;
 <a name="l00089"></a>00089 
 <a name="l00090"></a>00090             <span class="comment">//The Queue that all the events get stored in</span>
-<a name="l00091"></a>00091             list&lt;EventBase*&gt; EventQueue;
+<a name="l00091"></a>00091             std::list&lt;EventBase*&gt; EventQueue;
 <a name="l00092"></a>00092 
 <a name="l00093"></a>00093             <span class="comment">//Checks for quit messages and adds them to the queue</span>
 <a name="l00094"></a>00094             <span class="keywordtype">void</span> UpdateQuitEvents();
@@ -203,7 +203,7 @@
 <a name="l00178"></a>00178 <span class="comment">            /// @details This simply returns a const pointer of the internal event queue.</span>
 <a name="l00179"></a>00179 <span class="comment">            /// @warning The pointers contained in this list must be used carefully. Do not delete them, this will cause errors.</span>
 <a name="l00180"></a>00180 <span class="comment">            /// @return This returns a const pointer the list&lt;EventBase*&gt; which is this classes event pointer list. Use this carefully, even though it is a const pointer it is still possible to mess around with internals in an innapropriate way. Treat this as if it were read only.</span>
-<a name="l00181"></a>00181 <span class="comment"></span>            <span class="keyword">const</span> list&lt;EventBase*&gt;* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a96614684d2dcba5702b70dfe0d2a8c76" title="This returns a complete list of all events in the event manager.">GetAllEvents</a>() <span class="keyword">const</span>;
+<a name="l00181"></a>00181 <span class="comment"></span>            <span class="keyword">const</span> std::list&lt;EventBase*&gt;* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a1c17bf26ec80f2be30cdb090534cacf8" title="This returns a complete list of all events in the event manager.">GetAllEvents</a>() <span class="keyword">const</span>;
 <a name="l00182"></a>00182 <span class="comment"></span>
 <a name="l00183"></a>00183 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00184"></a>00184 <span class="comment"></span>        <span class="comment">// Filtered management functions - RenderTime Events</span><span class="comment"></span>
@@ -234,7 +234,7 @@
 <a name="l00209"></a>00209 <span class="comment">            /// @brief This returns a complete list of all the Render Time events.</span>
 <a name="l00210"></a>00210 <span class="comment">            /// @details This finds all the EventUserInput Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.</span>
 <a name="l00211"></a>00211 <span class="comment">            /// @return This returns a list&lt;EventRenderTime*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.</span>
-<a name="l00212"></a>00212 <span class="comment"></span>            list&lt;EventRenderTime*&gt;* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#ae52d41b9cc8c818ad4af15e8d4f90d7a" title="This returns a complete list of all the Render Time events.">GetAllRenderTimeEvents</a>();
+<a name="l00212"></a>00212 <span class="comment"></span>            std::list&lt;EventRenderTime*&gt;* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#aee73dff2d113826b8c01db7f7417d527" title="This returns a complete list of all the Render Time events.">GetAllRenderTimeEvents</a>();
 <a name="l00213"></a>00213 <span class="comment"></span>
 <a name="l00214"></a>00214 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00215"></a>00215 <span class="comment"></span>        <span class="comment">// Filtered management functions - User Input Events</span><span class="comment"></span>
@@ -264,8 +264,8 @@
 <a name="l00239"></a>00239 <span class="comment"></span>
 <a name="l00240"></a>00240 <span class="comment">            /// @brief This returns a complete list of all the User Input events.</span>
 <a name="l00241"></a>00241 <span class="comment">            /// @details This finds all the EventUserInput Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.</span>
-<a name="l00242"></a>00242 <span class="comment">            /// @return This returns a list&lt;EventUserInput*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.</span>
-<a name="l00243"></a>00243 <span class="comment"></span>            list&lt;EventUserInput*&gt;* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#aff8eb19d37e98b459443d8417c8d4de6" title="This returns a complete list of all the User Input events.">GetAllUserInputEvents</a>();
+<a name="l00242"></a>00242 <span class="comment">            /// @return This returns a std::list&lt;EventUserInput*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.</span>
+<a name="l00243"></a>00243 <span class="comment"></span>            std::list&lt;EventUserInput*&gt;* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#aef240dacae9479c4385d540e4feab867" title="This returns a complete list of all the User Input events.">GetAllUserInputEvents</a>();
 <a name="l00244"></a>00244 <span class="comment"></span>
 <a name="l00245"></a>00245 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00246"></a>00246 <span class="comment"></span>        <span class="comment">// Filtered management functions - Quit Events</span><span class="comment"></span>
@@ -296,8 +296,8 @@
 <a name="l00271"></a>00271 <span class="comment">            /// @brief This returns a complete list of all the quit events.</span>
 <a name="l00272"></a>00272 <span class="comment">            /// @details This finds all the EventQuit Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.</span>
 <a name="l00273"></a>00273 <span class="comment">            /// @warning Something is wrong if you have more than a few quit events. These should be checked for in each iteration of the main loop.</span>
-<a name="l00274"></a>00274 <span class="comment">            /// @return This returns a list&lt;EventQuit*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.</span>
-<a name="l00275"></a>00275 <span class="comment"></span>            list&lt;EventQuit*&gt;* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#af547d813d112827a1662d22ab072da84" title="This returns a complete list of all the quit events.">GetAllQuitEvents</a>();
+<a name="l00274"></a>00274 <span class="comment">            /// @return This returns a std::list&lt;EventQuit*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.</span>
+<a name="l00275"></a>00275 <span class="comment"></span>            std::list&lt;EventQuit*&gt;* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#afefd52a9693bc5541592997abbf3c53f" title="This returns a complete list of all the quit events.">GetAllQuitEvents</a>();
 <a name="l00276"></a>00276 <span class="comment"></span>
 <a name="l00277"></a>00277 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00278"></a>00278 <span class="comment"></span>        <span class="comment">// Filtered management functions - You choose YAYYYY!!!</span><span class="comment"></span>
@@ -331,8 +331,8 @@
 <a name="l00306"></a>00306 <span class="comment">            /// @details This finds all the events that are of the specified type in the event manager, then creates a new list</span>
 <a name="l00307"></a>00307 <span class="comment">            /// and return that. This runs in linear time relative to the amounts of events.</span>
 <a name="l00308"></a>00308 <span class="comment">            /// @warning The pointers contained in this list must be used carefully. Do not delete them, this will cause errors.</span>
-<a name="l00309"></a>00309 <span class="comment">            /// @return This returns a list&lt;EventBase*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.</span>
-<a name="l00310"></a>00310 <span class="comment"></span>            list&lt;EventBase*&gt;* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a701bca02423436360c4e51b6e580cb2e" title="This returns a complete list of all the specified events.">GetAllSpecificEvents</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> SpecificType);
+<a name="l00309"></a>00309 <span class="comment">            /// @return This returns a std::list&lt;EventBase*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.</span>
+<a name="l00310"></a>00310 <span class="comment"></span>            std::list&lt;EventBase*&gt;* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a300e537d27cd53ac8276438d4c91a3f6" title="This returns a complete list of all the specified events.">GetAllSpecificEvents</a>(<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> SpecificType);
 <a name="l00311"></a>00311 <span class="comment"></span>
 <a name="l00312"></a>00312 <span class="comment">            /// @brief This removes all the events of the specified type.</span>
 <a name="l00313"></a>00313 <span class="comment">            /// @details This finds all the events that are of the specified type in the event manager, then removes them.</span>
@@ -366,7 +366,7 @@
 <a name="l00341"></a>00341 }
 <a name="l00342"></a>00342 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 9 11:29:21 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 10 10:46:30 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

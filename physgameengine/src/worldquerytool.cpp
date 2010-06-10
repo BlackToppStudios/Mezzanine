@@ -42,6 +42,7 @@
 
 #include "worldquerytool.h"
 
+
 #include <Ogre.h>
 
 namespace phys
@@ -118,9 +119,7 @@ namespace phys
                     }else{
                         this->MouseButtonCache.set( (*Iter)->GetMetaCode(c).GetID() );
                     }
-
                 }
-
                /// @todo Add support for joystick events to WorldQueryTool
             }
         }
@@ -133,7 +132,26 @@ namespace phys
                 UserInput->remove(*Iter);
             }
         }
+    } // \GatherEvents
+
+    ActorBase* WorldQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay)
+    {
+        Ogre::Ray Ooray = ActorRay.GetOgreRay();
+
+        if(NULL != this->RayQuery)          //Double check that the Rayquery is valid
+        {
+            this->RayQuery->setRay(Ooray);
+            if( this->RayQuery->execute().size() <= 0 ) //Did we hit anything
+            {
+                return NULL;
+            }
+        }else{                          //Whoops something Failed
+            this->GameWorld->LogAndThrow("Attempting to run a query on Null RaySceneQuery");
+        }
+
+        return NULL;
     }
+
 }
 
 

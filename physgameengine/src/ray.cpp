@@ -46,6 +46,8 @@
 
 #include "ray.h"
 
+#include <Ogre.h>
+
 #include <ostream>
 
 namespace phys
@@ -59,6 +61,14 @@ namespace phys
     {
         this->From=From_;
         this->To=To_;
+    }
+
+    Ogre::Ray Ray::GetOgreRay()
+    {
+        return Ogre::Ray(
+            this->From.GetOgreVector3(),
+            this->To.GetOgreVector3()
+        );
     }
 
 }
