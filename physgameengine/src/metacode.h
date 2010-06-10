@@ -491,6 +491,11 @@ namespace phys
             /// @param ID_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
             void SetID(const short unsigned int &ID_);
 
+            /// @brief Does this MetaCode Represent a state of a keyboard key
+            /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.
+            /// @return This returns a bool which will be true if this is keyboard event.
+            bool IsKeyboardButton() const;
+
             /// @brief Compares two MetaCodes for equality
             /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.
             bool operator==(const MetaCode &other) const;

@@ -175,6 +175,11 @@ namespace phys
         this->ID=ID_;
     }
 
+    bool MetaCode::IsKeyboardButton() const
+    {
+        return (MetaCode::KEY_FIRST <= this->Code && this->Code <= MetaCode::KEY_LAST);
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
     ///////////////////////////////////////

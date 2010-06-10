@@ -85,12 +85,7 @@ namespace phys
 
     void WorldQueryTool::GatherEvents(bool ClearEventsFromEventMgr)
     {
-/*        this->MouseButtonCache.reset();
-        this->KeyboardButtonCache.reset();
-        this->MouseXCache=0;
-        this->MouseYCache=0;*/
-        //Get the Events and remove if they need to be removed
-        std::list<EventUserInput*>* UserInput = this->GameWorld->Events->GetAllUserInputEvents();
+        std::list<EventUserInput*>* UserInput = this->GameWorld->Events->GetAllUserInputEvents();   // Get the updated list of events
         if( ClearEventsFromEventMgr )
             { this->GameWorld->Events->RemoveAllSpecificEvents(EventBase::UserInput); }
 
@@ -99,22 +94,44 @@ namespace phys
         {
             for(unsigned int c = 0; c<(*Iter)->GetMetaCodeCount(); c++) //For each metacode in the event
             {                                                           //Newer Items should take precedence of older ones, so only store the oldest ones
-                if( MetaCode::KEY_FIRST <= (*Iter)->GetMetaCode(c).GetCode() && (*Iter)->GetMetaCode(c).GetCode() <= MetaCode::KEY_LAST ) //is it a Key
+                if( (*Iter)->GetMetaCode(c).IsKeyboardButton() ) //is it a Key
                 {
-                    if(0 <= (*Iter)->GetMetaCode(c).GetMetaValue()) //see
+                    if(0 <= (*Iter)->GetMetaCode(c).GetMetaValue()) //see MetaCode::ButtonState
                     {
                         this->KeyboardButtonCache.reset( (*Iter)->GetMetaCode(c).GetCode() );
                     }else{
                         this->KeyboardButtonCache.set( (*Iter)->GetMetaCode(c).GetCode() );
                     }
                 }
-                //check for mouse events
+
+                if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == (*Iter)->GetMetaCode(c).GetCode() )
+                    { this->MouseXCache = (*Iter)->GetMetaCode(c).GetMetaValue(); }
+
+                if ( MetaCode::MOUSEABSOLUTEVERTICAL == (*Iter)->GetMetaCode(c).GetCode() )
+                    { this->MouseYCache = (*Iter)->GetMetaCode(c).GetMetaValue(); }
+
+                if ( MetaCode::MOUSEBUTTON == (*Iter)->GetMetaCode(c).GetCode() )
+                {
+                    if(0 <= (*Iter)->GetMetaCode(c).GetMetaValue()) //see MetaCode::ButtonState
+                    {
+                        this->MouseButtonCache.reset( (*Iter)->GetMetaCode(c).GetID() );
+                    }else{
+                        this->MouseButtonCache.set( (*Iter)->GetMetaCode(c).GetID() );
+                    }
+
+                }
+
+               /// @todo Add support for joystick events to WorldQueryTool
             }
         }
 
-        if( ClearEventsFromEventMgr )
+        if( ClearEventsFromEventMgr )//Erase everything if we were asked to.
         {
-            //todo Delete events
+            for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); !UserInput->empty(); Iter = UserInput->begin())
+            {
+                delete(*Iter);
+                UserInput->remove(*Iter);
+            }
         }
     }
 }

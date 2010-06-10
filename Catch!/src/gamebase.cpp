@@ -3,26 +3,19 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Gamewide Logic misc Features go here
 ///////////////////////////////////////////////////////////////////////////////
-// Includes
-//Game Include
+
+//Game Includes
 #include "gamebase.h"
 
-//Physengine include
-#include <actorrigid.h>
-#include <world.h>
-#include <eventmanager.h>
-#include <datatypes.h>
-#include <eventrendertime.h>
-#include <eventuserinput.h>
-#include <actorcontainervector.h>
-#include <metacode.h>
+//Physgame includes
+#include <physgame.h>
 
+//STL includes
 #include <sstream>
 
 using namespace phys;
 
-//Create the World Globally!
-World TheWorld;
+World TheWorld;                     //Create the World Globally! and we a place to hold some actors
 ActorRigid *object1, *object2, *object3, *object4;
 
 int main(int argc, char **argv)
@@ -72,8 +65,7 @@ bool PostRender()
     // Is CurrentTime a valid event?
     while(0 != CurrentTime)
     {
-        //TheWorld.Log("Time since last frame ");
-        //TheWorld.Log(CurrentTime->getMilliSecondsSinceLastFrame());
+
         TheWorld.Log(gametime);
         gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
 
@@ -110,6 +102,15 @@ bool PreInput()
 
 bool PostInput()
 {
+    //User Input through a WorldQueryTool
+    static WorldQueryTool Queryer(&TheWorld);
+
+    Queryer.GatherEvents();
+    TheWorld.Log("Mouse location From WorldQueryTool X/Y");
+    TheWorld.Log(Queryer.GetMouseX());
+    TheWorld.Log(Queryer.GetMouseY());
+
+    // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
         return false;
     return true;
