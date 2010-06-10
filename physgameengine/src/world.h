@@ -62,13 +62,32 @@
 
   @ref phys::EventManager "Events - Handling messages, event and interupts from the outisde"
 
-  @ref phys::ActorBase "Actors - Items in the world"
+  @subpage actorcontainer1 "Actor Container - Keeping track of our in game objects"
 
- @section Data Types
+ @section Types Data Types
   @ref phys::Vector3
+
+  @ref phys::VectorWActor3
+
+  @ref phys::Ray
+
+  @ref phys::Real
+
+  @ref phys::Whole
+
+  @ref phys::Quaternion
+
+  @ref phys::MetaCode
+
+ @section Classes Sophisticated Data Types
+  @ref phys::ActorBase "Actors - Items in the world"
 
   @ref phys::EventBase
 
+  @ref phys::GraphicsSettings
+
+ @section Optional Optional Engine Components
+  @ref phys::WorldQueryTool
 */
 
 //Includes and Forward Declarations

@@ -32,7 +32,7 @@ void \hyperlink{classphys_1_1EventManager_a0cf574c55def063d66d7db46a4d3e8a5}{Upd
 \begin{DoxyCompactList}\small\item\em Pulls System and Window manager Events from the all the subsystems for use in the \hyperlink{classphys_1_1EventManager}{EventManager}. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_a01a5a131ac26679eee5dcf5dd514045c}{UpdateUserInputEvents} ()
 \begin{DoxyCompactList}\small\item\em Pulls User Interface Events from the all the subsystems for use in the \hyperlink{classphys_1_1EventManager}{EventManager}. \item\end{DoxyCompactList}\item 
-const list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_a96614684d2dcba5702b70dfe0d2a8c76}{GetAllEvents} () const 
+const std::list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_a1c17bf26ec80f2be30cdb090534cacf8}{GetAllEvents} () const 
 \begin{DoxyCompactList}\small\item\em This returns a complete list of all events in the event manager. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ \hyperlink{classphys_1_1EventManager_ae8730b039a280449af052d75f2e60b06}{GetNextRenderTimeEvent} ()
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Rendertime event. \item\end{DoxyCompactList}\item 
@@ -40,7 +40,7 @@ const list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ $\ast$ \h
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next Rendertime event and removes it from the Que. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_af1204912be3554312e66d3a777c1f99b}{RemoveNextRenderTimeEvent} ()
 \begin{DoxyCompactList}\small\item\em Removes the First Rendertime Event From the que without looking at it. \item\end{DoxyCompactList}\item 
-list$<$ \hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_ae52d41b9cc8c818ad4af15e8d4f90d7a}{GetAllRenderTimeEvents} ()
+std::list$<$ \hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aee73dff2d113826b8c01db7f7417d527}{GetAllRenderTimeEvents} ()
 \begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render Time events. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_a38b42602a3a4d621048c78b525b4db49}{GetNextUserInputEvent} ()
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event. \item\end{DoxyCompactList}\item 
@@ -48,7 +48,7 @@ list$<$ \hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ $>$ $\a
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event and removes it from the Que. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_add41b5f4d2942461bcaf40a97ad40b09}{RemoveNextUserInputEvent} ()
 \begin{DoxyCompactList}\small\item\em Removes the First User Input Event From the que without looking at it. \item\end{DoxyCompactList}\item 
-list$<$ \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aff8eb19d37e98b459443d8417c8d4de6}{GetAllUserInputEvents} ()
+std::list$<$ \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aef240dacae9479c4385d540e4feab867}{GetAllUserInputEvents} ()
 \begin{DoxyCompactList}\small\item\em This returns a complete list of all the User Input events. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ \hyperlink{classphys_1_1EventManager_ad7da09e5422b1db79ac4187ee9198d0c}{GetNextQuitEvent} ()
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1EventQuit}{EventQuit}. \item\end{DoxyCompactList}\item 
@@ -56,7 +56,7 @@ list$<$ \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ $>$ $\ast
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next \hyperlink{classphys_1_1EventQuit}{EventQuit} and removes it from the Que. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_a5031871aa6e044764ec2963228f735dd}{RemoveNextQuitEvent} ()
 \begin{DoxyCompactList}\small\item\em Removes the First \hyperlink{classphys_1_1EventQuit}{EventQuit} From the que without looking at it. \item\end{DoxyCompactList}\item 
-list$<$ \hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_af547d813d112827a1662d22ab072da84}{GetAllQuitEvents} ()
+std::list$<$ \hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_afefd52a9693bc5541592997abbf3c53f}{GetAllQuitEvents} ()
 \begin{DoxyCompactList}\small\item\em This returns a complete list of all the quit events. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ \hyperlink{classphys_1_1EventManager_a7340cfab326856cf4ebc653b11101016}{GetNextSpecificEvent} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type. \item\end{DoxyCompactList}\item 
@@ -64,7 +64,7 @@ list$<$ \hyperlink{classphys_1_1EventQuit}{EventQuit} $\ast$ $>$ $\ast$ \hyperli
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_a486c1173a2c1a64885bfdbe7ca267611}{RemoveNextSpecificEvent} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next kind event of the Specified type, and removes it from the Que. \item\end{DoxyCompactList}\item 
-list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_a701bca02423436360c4e51b6e580cb2e}{GetAllSpecificEvents} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
+std::list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_a300e537d27cd53ac8276438d4c91a3f6}{GetAllSpecificEvents} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
 \begin{DoxyCompactList}\small\item\em This returns a complete list of all the specified events. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1EventManager_ac38a5a7d003a3f92e40c842916094bde}{RemoveAllSpecificEvents} (\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventBase::EventType} SpecificType)
 \begin{DoxyCompactList}\small\item\em This removes all the events of the specified type. \item\end{DoxyCompactList}\item 
@@ -151,11 +151,11 @@ This will trigger the input system to generate an event (or add to an exiting ev
 
 Definition at line 363 of file eventmanager.cpp.
 
-\hypertarget{classphys_1_1EventManager_a96614684d2dcba5702b70dfe0d2a8c76}{
+\hypertarget{classphys_1_1EventManager_a1c17bf26ec80f2be30cdb090534cacf8}{
 \index{phys::EventManager@{phys::EventManager}!GetAllEvents@{GetAllEvents}}
 \index{GetAllEvents@{GetAllEvents}!phys::EventManager@{phys::EventManager}}
-\subsubsection[{GetAllEvents}]{\setlength{\rightskip}{0pt plus 5cm}const list$<$ {\bf EventBase} $\ast$ $>$ $\ast$ phys::EventManager::GetAllEvents () const}}
-\label{da/dde/classphys_1_1EventManager_a96614684d2dcba5702b70dfe0d2a8c76}
+\subsubsection[{GetAllEvents}]{\setlength{\rightskip}{0pt plus 5cm}const std::list$<$ {\bf EventBase} $\ast$ $>$ $\ast$ phys::EventManager::GetAllEvents () const}}
+\label{da/dde/classphys_1_1EventManager_a1c17bf26ec80f2be30cdb090534cacf8}
 
 
 This returns a complete list of all events in the event manager. 
@@ -170,11 +170,11 @@ This returns a const pointer the list$<$EventBase$\ast$$>$ which is this classes
 
 Definition at line 144 of file eventmanager.cpp.
 
-\hypertarget{classphys_1_1EventManager_af547d813d112827a1662d22ab072da84}{
+\hypertarget{classphys_1_1EventManager_afefd52a9693bc5541592997abbf3c53f}{
 \index{phys::EventManager@{phys::EventManager}!GetAllQuitEvents@{GetAllQuitEvents}}
 \index{GetAllQuitEvents@{GetAllQuitEvents}!phys::EventManager@{phys::EventManager}}
-\subsubsection[{GetAllQuitEvents}]{\setlength{\rightskip}{0pt plus 5cm}list$<$ {\bf EventQuit} $\ast$ $>$ $\ast$ phys::EventManager::GetAllQuitEvents ()}}
-\label{da/dde/classphys_1_1EventManager_af547d813d112827a1662d22ab072da84}
+\subsubsection[{GetAllQuitEvents}]{\setlength{\rightskip}{0pt plus 5cm}std::list$<$ {\bf EventQuit} $\ast$ $>$ $\ast$ phys::EventManager::GetAllQuitEvents ()}}
+\label{da/dde/classphys_1_1EventManager_afefd52a9693bc5541592997abbf3c53f}
 
 
 This returns a complete list of all the quit events. 
@@ -183,17 +183,17 @@ This finds all the \hyperlink{classphys_1_1EventQuit}{EventQuit} Events then cre
 Something is wrong if you have more than a few quit events. These should be checked for in each iteration of the main loop. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
-This returns a list$<$EventQuit$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
+This returns a std::list$<$EventQuit$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
 \end{DoxyReturn}
 
 
 Definition at line 346 of file eventmanager.cpp.
 
-\hypertarget{classphys_1_1EventManager_ae52d41b9cc8c818ad4af15e8d4f90d7a}{
+\hypertarget{classphys_1_1EventManager_aee73dff2d113826b8c01db7f7417d527}{
 \index{phys::EventManager@{phys::EventManager}!GetAllRenderTimeEvents@{GetAllRenderTimeEvents}}
 \index{GetAllRenderTimeEvents@{GetAllRenderTimeEvents}!phys::EventManager@{phys::EventManager}}
-\subsubsection[{GetAllRenderTimeEvents}]{\setlength{\rightskip}{0pt plus 5cm}list$<$ {\bf EventRenderTime} $\ast$ $>$ $\ast$ phys::EventManager::GetAllRenderTimeEvents ()}}
-\label{da/dde/classphys_1_1EventManager_ae52d41b9cc8c818ad4af15e8d4f90d7a}
+\subsubsection[{GetAllRenderTimeEvents}]{\setlength{\rightskip}{0pt plus 5cm}std::list$<$ {\bf EventRenderTime} $\ast$ $>$ $\ast$ phys::EventManager::GetAllRenderTimeEvents ()}}
+\label{da/dde/classphys_1_1EventManager_aee73dff2d113826b8c01db7f7417d527}
 
 
 This returns a complete list of all the Render Time events. 
@@ -205,11 +205,11 @@ This returns a list$<$EventRenderTime$\ast$$>$ pointer which is this a subset of
 
 Definition at line 281 of file eventmanager.cpp.
 
-\hypertarget{classphys_1_1EventManager_a701bca02423436360c4e51b6e580cb2e}{
+\hypertarget{classphys_1_1EventManager_a300e537d27cd53ac8276438d4c91a3f6}{
 \index{phys::EventManager@{phys::EventManager}!GetAllSpecificEvents@{GetAllSpecificEvents}}
 \index{GetAllSpecificEvents@{GetAllSpecificEvents}!phys::EventManager@{phys::EventManager}}
-\subsubsection[{GetAllSpecificEvents}]{\setlength{\rightskip}{0pt plus 5cm}list$<$ {\bf EventBase} $\ast$ $>$ $\ast$ phys::EventManager::GetAllSpecificEvents ({\bf EventBase::EventType} {\em SpecificType})}}
-\label{da/dde/classphys_1_1EventManager_a701bca02423436360c4e51b6e580cb2e}
+\subsubsection[{GetAllSpecificEvents}]{\setlength{\rightskip}{0pt plus 5cm}std::list$<$ {\bf EventBase} $\ast$ $>$ $\ast$ phys::EventManager::GetAllSpecificEvents ({\bf EventBase::EventType} {\em SpecificType})}}
+\label{da/dde/classphys_1_1EventManager_a300e537d27cd53ac8276438d4c91a3f6}
 
 
 This returns a complete list of all the specified events. 
@@ -218,23 +218,23 @@ This finds all the events that are of the specified type in the event manager, t
 The pointers contained in this list must be used carefully. Do not delete them, this will cause errors. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
-This returns a list$<$EventBase$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
+This returns a std::list$<$EventBase$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
 \end{DoxyReturn}
 
 
 Definition at line 238 of file eventmanager.cpp.
 
-\hypertarget{classphys_1_1EventManager_aff8eb19d37e98b459443d8417c8d4de6}{
+\hypertarget{classphys_1_1EventManager_aef240dacae9479c4385d540e4feab867}{
 \index{phys::EventManager@{phys::EventManager}!GetAllUserInputEvents@{GetAllUserInputEvents}}
 \index{GetAllUserInputEvents@{GetAllUserInputEvents}!phys::EventManager@{phys::EventManager}}
-\subsubsection[{GetAllUserInputEvents}]{\setlength{\rightskip}{0pt plus 5cm}list$<$ {\bf EventUserInput} $\ast$ $>$ $\ast$ phys::EventManager::GetAllUserInputEvents ()}}
-\label{da/dde/classphys_1_1EventManager_aff8eb19d37e98b459443d8417c8d4de6}
+\subsubsection[{GetAllUserInputEvents}]{\setlength{\rightskip}{0pt plus 5cm}std::list$<$ {\bf EventUserInput} $\ast$ $>$ $\ast$ phys::EventManager::GetAllUserInputEvents ()}}
+\label{da/dde/classphys_1_1EventManager_aef240dacae9479c4385d540e4feab867}
 
 
 This returns a complete list of all the User Input events. 
 
 This finds all the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. \begin{DoxyReturn}{Returns}
-This returns a list$<$EventUserInput$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
+This returns a std::list$<$EventUserInput$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
 \end{DoxyReturn}
 
 

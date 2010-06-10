@@ -532,7 +532,7 @@ namespace phys
         /*! @page mainloop1 Main Loop Structure and Flow
          The MainLoop is heart of most vidoe games and simulations.
 
-         @section overview1 Main loop Overview
+         @section mainloopoverview1 Main loop Overview
          The Main loop runs in World.MainLoop() which is called by default from @ref World.GameInit(). By default this Method also starts the render, the physics andthe input systems. It does very little
          on it's own. It uses the default callback manager (which you can swap out if you want), which is the callback manager point to by World::CallBacks . Once started it runs the
          callbacks present in the callback manager until one of them returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback

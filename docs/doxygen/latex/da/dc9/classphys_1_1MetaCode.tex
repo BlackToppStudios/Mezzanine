@@ -391,6 +391,8 @@ short unsigned int \hyperlink{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2f
 \begin{DoxyCompactList}\small\item\em This Returns the Input ID. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1MetaCode_a0ef70c11c06f0e3015121985cb1b6153}{SetID} (const short unsigned int \&ID\_\-)
 \begin{DoxyCompactList}\small\item\em This Sets The input ID. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1MetaCode_ad86e1599eccea8edecb721eb84c06c72}{IsKeyboardButton} () const 
+\begin{DoxyCompactList}\small\item\em Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent a state of a keyboard key. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1MetaCode_a506486e5a6f08d50a5af42fa6d48a7f5}{operator==} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&other) const 
 \begin{DoxyCompactList}\small\item\em Compares two MetaCodes for equality. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -667,6 +669,22 @@ This returns the input code for this \hyperlink{classphys_1_1MetaCode}{MetaCode}
 
 Definition at line 148 of file metacode.cpp.
 
+\hypertarget{classphys_1_1MetaCode_ad86e1599eccea8edecb721eb84c06c72}{
+\index{phys::MetaCode@{phys::MetaCode}!IsKeyboardButton@{IsKeyboardButton}}
+\index{IsKeyboardButton@{IsKeyboardButton}!phys::MetaCode@{phys::MetaCode}}
+\subsubsection[{IsKeyboardButton}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::MetaCode::IsKeyboardButton () const}}
+\label{da/dc9/classphys_1_1MetaCode_ad86e1599eccea8edecb721eb84c06c72}
+
+
+Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent a state of a keyboard key. 
+
+Returns true if this \hyperlink{classphys_1_1MetaCode}{MetaCode} pertains to a keyboard key being up, polled, down, pressed, or lifted. \begin{DoxyReturn}{Returns}
+This returns a bool which will be true if this is keyboard event. 
+\end{DoxyReturn}
+
+
+Definition at line 178 of file metacode.cpp.
+
 \hypertarget{classphys_1_1MetaCode_a506486e5a6f08d50a5af42fa6d48a7f5}{
 \index{phys::MetaCode@{phys::MetaCode}!operator==@{operator==}}
 \index{operator==@{operator==}!phys::MetaCode@{phys::MetaCode}}
@@ -678,7 +696,7 @@ Compares two MetaCodes for equality.
 
 This returns true if the MetaValue and Code are the Same, this ignores ID. 
 
-Definition at line 182 of file metacode.cpp.
+Definition at line 187 of file metacode.cpp.
 
 \hypertarget{classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}{
 \index{phys::MetaCode@{phys::MetaCode}!SetCode@{SetCode}}

@@ -25,7 +25,7 @@
 
 
 <h1><a class="anchor" id="mainloop1">Main Loop Structure and Flow </a></h1><p>The MainLoop is heart of most vidoe games and simulations.</p>
-<h2><a class="anchor" id="overview1">
+<h2><a class="anchor" id="mainloopoverview1">
 Main loop Overview</a></h2>
 <p>The Main loop runs in <a class="el" href="../../da/ddf/classphys_1_1World.html#af1d9e36d43f5e50543fa2351a32c8362" title="This Function house the main loop.">World.MainLoop()</a> which is called by default from <a class="el" href="../../da/ddf/classphys_1_1World.html#a21cc36be08a61f40619584d4c438936b">World::GameInit()</a>. By default this Method also starts the render, the physics andthe input systems. It does very little on it's own. It uses the default callback manager (which you can swap out if you want), which is the callback manager point to by <a class="el" href="../../da/ddf/classphys_1_1World.html#a22a1624c63198f49fdf8e448881bdb2e" title="This is a point to the default Call BackManager.">World::CallBacks</a> . Once started it runs the callbacks present in the callback manager until one of them returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback before and after each of these tasks. <br/>
  <br/>
@@ -76,7 +76,7 @@ Main loop Overview</a></h2>
 Ending the Main Loop</a></h2>
 <p>The main loop stores the return values of each of the 6 callbacks. If they are all true the mainloop continues to it's next iteration. If one or more of any of the callbacks returns false then the main loop ends, and the game engine exits gracefully, cleanly up the physics, graphics and any others subsystems it opened. No attempt will be made by the engine to clean up data in the callback manager. If the game code does not free these items the operating system had better do it automatically. On most PC platform this is not an issue, but it could be disastrous on a mobile, or underperforming gaming platform. </p>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 9 11:29:21 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 10 10:46:30 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

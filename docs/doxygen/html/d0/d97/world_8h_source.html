@@ -87,364 +87,383 @@
 <a name="l00062"></a>00062 <span class="comment"></span>
 <a name="l00063"></a>00063 <span class="comment">  @ref phys::EventManager &quot;Events - Handling messages, event and interupts from the outisde&quot;</span>
 <a name="l00064"></a>00064 <span class="comment"></span>
-<a name="l00065"></a>00065 <span class="comment">  @ref phys::ActorBase &quot;Actors - Items in the world&quot;</span>
+<a name="l00065"></a>00065 <span class="comment">  @subpage actorcontainer1 &quot;Actor Container - Keeping track of our in game objects&quot;</span>
 <a name="l00066"></a>00066 <span class="comment"></span>
-<a name="l00067"></a>00067 <span class="comment"> @section Data Types</span>
+<a name="l00067"></a>00067 <span class="comment"> @section Types Data Types</span>
 <a name="l00068"></a>00068 <span class="comment">  @ref phys::Vector3</span>
 <a name="l00069"></a>00069 <span class="comment"></span>
-<a name="l00070"></a>00070 <span class="comment">  @ref phys::EventBase</span>
+<a name="l00070"></a>00070 <span class="comment">  @ref phys::VectorWActor3</span>
 <a name="l00071"></a>00071 <span class="comment"></span>
-<a name="l00072"></a>00072 <span class="comment">*/</span>
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="comment">//Includes and Forward Declarations</span>
-<a name="l00075"></a>00075 <span class="preprocessor">#include &quot;crossplatform.h&quot;</span>
-<a name="l00076"></a>00076 <span class="preprocessor">#include &quot;callbackmanager.h&quot;</span>
-<a name="l00077"></a>00077 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
-<a name="l00078"></a>00078 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>
-<a name="l00079"></a>00079 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
-<a name="l00080"></a>00080 <span class="preprocessor">#include &quot;vector3.h&quot;</span>
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 <span class="preprocessor">#include &lt;string&gt;</span>
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="keyword">using namespace </span>std;
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="comment">//Other forward declarations</span>
-<a name="l00087"></a>00087 <span class="comment">//forward Declarations so that we do not need #include &quot;SDL.h&quot;</span>
-<a name="l00088"></a>00088 <span class="keyword">class </span>SDL_Surface;
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090 <span class="comment">//forward Declarations so that we do not need #include &quot;btBulletDynamicsCommon.h&quot;</span>
-<a name="l00091"></a>00091 <span class="keyword">class </span>btAxisSweep3;
-<a name="l00092"></a>00092 <span class="keyword">class </span>btDefaultCollisionConfiguration;
-<a name="l00093"></a>00093 <span class="keyword">class </span>btCollisionDispatcher;
-<a name="l00094"></a>00094 <span class="keyword">class </span>btSequentialImpulseConstraintSolver;
-<a name="l00095"></a>00095 <span class="keyword">class </span>btSoftRigidDynamicsWorld;
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 <span class="comment">//forward Declarations so that we do not need #include &lt;Ogre.h&gt;</span>
-<a name="l00098"></a>00098 <span class="keyword">namespace </span>Ogre
-<a name="l00099"></a>00099 {
-<a name="l00100"></a>00100         <span class="keyword">class </span>Root;
-<a name="l00101"></a>00101         <span class="keyword">class </span>RenderSystem;
-<a name="l00102"></a>00102         <span class="keyword">class </span>RenderWindow;
-<a name="l00103"></a>00103     <span class="keyword">class </span>ResourceGroupManager;
-<a name="l00104"></a>00104         <span class="keyword">class </span>SceneManager;
-<a name="l00105"></a>00105         <span class="keyword">class </span>Camera;
-<a name="l00106"></a>00106         <span class="keyword">class </span>Viewport;
-<a name="l00107"></a>00107 }
-<a name="l00108"></a>00108 <span class="comment"></span>
-<a name="l00109"></a>00109 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00110"></a>00110 <span class="comment">/// @namespace phys</span>
-<a name="l00111"></a>00111 <span class="comment">/// @brief The bulk of the engine components go in this namspace</span>
-<a name="l00112"></a>00112 <span class="comment">/// @details This is where imporant classes like World, CallBackManager, and</span>
-<a name="l00113"></a>00113 <span class="comment">/// The eventmanager reside. For more detailed usage information please refer</span>
-<a name="l00114"></a>00114 <span class="comment">/// to individual class documentation or the @ref index main page.</span>
-<a name="l00115"></a>00115 <span class="comment">///////////////////////////////////////</span>
-<a name="l00116"></a>00116 <span class="comment"></span><span class="keyword">namespace </span>phys
-<a name="l00117"></a>00117 {
-<a name="l00118"></a>00118     <span class="comment">//Forward Declarations</span>
-<a name="l00119"></a>00119     <span class="keyword">class </span>ActorBase;
-<a name="l00120"></a>00120     <span class="keyword">class </span>ActorContainerBase;
-<a name="l00121"></a>00121     <span class="keyword">class </span>GraphicsSettings;
-<a name="l00122"></a>00122     <span class="keyword">namespace </span>debug {
-<a name="l00123"></a>00123         <span class="keyword">class </span>InternalDebugDrawer;
-<a name="l00124"></a>00124     }<span class="comment"></span>
-<a name="l00125"></a>00125 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00126"></a>00126 <span class="comment">    /// @class World</span>
-<a name="l00127"></a>00127 <span class="comment">    /// @headerfile world.h</span>
-<a name="l00128"></a>00128 <span class="comment">    /// @brief This is the main entry point for the entire library.</span>
-<a name="l00129"></a>00129 <span class="comment">    /// @details The physworld coordinates and integrates all the underlying subsystems,</span>
-<a name="l00130"></a>00130 <span class="comment">    /// Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and</span>
-<a name="l00131"></a>00131 <span class="comment">    /// SDL is used for user input and window management. Games will need a</span>
-<a name="l00132"></a>00132 <span class="comment">    /// container for all the playing pieces. It makes sense to tie all of this</span>
-<a name="l00133"></a>00133 <span class="comment">    /// functionality into one world object.</span>
-<a name="l00134"></a>00134 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00135"></a><a class="code" href="../../da/ddf/classphys_1_1World.html">00135</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>
-<a name="l00136"></a>00136     {
-<a name="l00137"></a>00137         <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00138"></a>00138 <span class="comment">            /// @brief Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly</span>
-<a name="l00139"></a>00139 <span class="comment">            /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectl</span>
-<a name="l00140"></a>00140 <span class="comment"></span>            <span class="keyword">friend</span> <span class="keywordtype">void</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#aa80d0a5289b00daad110fd29bf23c5e7" title="Renders the current world contents to the screen.">crossplatform::RenderPhysWorld</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TheWorld); <span class="comment">// Needs ogre access for making window</span>
-<a name="l00141"></a>00141             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>; <span class="comment">//Several items from Ogre and Bullet</span>
-<a name="l00142"></a>00142             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>; <span class="comment">//Needs the debug::InternalDebugDrawer* BulletDrawer</span>
-<a name="l00143"></a>00143             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html" title="This provides a number of optional tools for working with a phys::World.">WorldQueryTool</a>; <span class="comment">// Needs to access various Ogre internals</span>
-<a name="l00144"></a>00144 
-<a name="l00145"></a>00145             <span class="comment">//Physics Items</span>
-<a name="l00146"></a>00146             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GeographyLowerBounds;
-<a name="l00147"></a>00147             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GeographyUpperbounds;
-<a name="l00148"></a>00148             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span>  MaxPhysicsProxies;
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150             btAxisSweep3* BulletBroadphase;
-<a name="l00151"></a>00151             btDefaultCollisionConfiguration* BulletCollisionConfiguration;
-<a name="l00152"></a>00152             btCollisionDispatcher* BulletDispatcher;
-<a name="l00153"></a>00153             btSequentialImpulseConstraintSolver* BulletSolver;
-<a name="l00154"></a>00154             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156             <span class="comment">//SDL Objects</span>
-<a name="l00157"></a>00157             SDL_Surface *SDLscreen;
-<a name="l00158"></a>00158             <span class="keywordtype">bool</span> HasSDLBeenInitialized;
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160             <span class="comment">//Players settings</span>
-<a name="l00161"></a>00161             <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html" title="This is intended to store basic graphics setting for the user.">GraphicsSettings</a>* PlayerSettings;
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163             <span class="comment">//Try to retrieve ogre settinss</span>
-<a name="l00164"></a>00164             <span class="keywordtype">void</span> LoadOgreSettings();
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166             <span class="comment">//Manages the windows all the graphics will be drawn to</span>
-<a name="l00167"></a>00167             <span class="keywordtype">void</span> CreateRenderWindow();
-<a name="l00168"></a>00168             <span class="keywordtype">void</span> DestroyRenderWindow();
-<a name="l00169"></a>00169 
-<a name="l00170"></a>00170             <span class="comment">//Used by the constructors</span>
-<a name="l00171"></a>00171             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies);
-<a name="l00172"></a>00172             <span class="keywordtype">void</span> SanityChecks();
-<a name="l00173"></a>00173             <span class="keywordtype">void</span> TestLogger();
-<a name="l00174"></a>00174             <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> OneLogTest(T Data, <span class="keywordtype">string</span> DataType,<span class="keywordtype">string</span> Message1 = <span class="stringliteral">&quot;Logging and Throwing a &quot;</span>, <span class="keywordtype">string</span> Message2 = <span class="stringliteral">&quot;Logging a &quot;</span>);
-<a name="l00175"></a>00175 
-<a name="l00176"></a>00176             <span class="comment">//Settings for Engine Functionality</span>
-<a name="l00177"></a>00177             <span class="keywordtype">string</span> WindowName;
-<a name="l00178"></a>00178             <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> TargetFrameLength;
-<a name="l00179"></a>00179             <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> PhysicsStepsize;
-<a name="l00180"></a>00180 
-<a name="l00181"></a>00181             <span class="comment">//Ogre objects</span>
-<a name="l00182"></a>00182             Ogre::Root* OgreRoot;
-<a name="l00183"></a>00183             Ogre::RenderSystem* OgreRenderSystem;
-<a name="l00184"></a>00184             Ogre::RenderWindow* OgreGameWindow;
-<a name="l00185"></a>00185             Ogre::ResourceGroupManager* OgreResource;
-<a name="l00186"></a>00186             Ogre::Camera* OgreCamera;
-<a name="l00187"></a>00187             Ogre::Viewport* OgreViewport;
-<a name="l00188"></a>00188             Ogre::SceneManager* OgreSceneManager;
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190             <span class="comment">// Bullet functions</span>
-<a name="l00191"></a>00191             <a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem.">debug::InternalDebugDrawer</a>* BulletDrawer;
-<a name="l00192"></a>00192         <span class="keyword">public</span>:
-<a name="l00193"></a>00193 
-<a name="l00194"></a>00194 <span class="comment"></span>
-<a name="l00195"></a>00195 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00196"></a>00196 <span class="comment"></span>        <span class="comment">// Creation and Deletion methods</span><span class="comment"></span>
-<a name="l00197"></a>00197 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00198"></a>00198 <span class="comment">            /// @brief Descriptive constructor</span>
-<a name="l00199"></a>00199 <span class="comment">            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.</span>
-<a name="l00200"></a>00200 <span class="comment">            /// @param GeographyLowerBounds_ The lower limits for the size of the physics simulation</span>
-<a name="l00201"></a>00201 <span class="comment">            /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation</span>
-<a name="l00202"></a>00202 <span class="comment">            /// @param MaxPhysicsProxies_ This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.</span>
-<a name="l00203"></a>00203 <span class="comment"></span>            <a class="code" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695" title="Default constructor.">World</a>( <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_=1024);
-<a name="l00204"></a>00204 <span class="comment"></span>
-<a name="l00205"></a>00205 <span class="comment">            /// @brief Default constructor</span>
-<a name="l00206"></a>00206 <span class="comment">            /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.</span>
-<a name="l00207"></a>00207 <span class="comment"></span>            <a class="code" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695" title="Default constructor.">World</a>();
-<a name="l00208"></a>00208 <span class="comment"></span>
-<a name="l00209"></a>00209 <span class="comment">            /// @brief Deconstructor</span>
-<a name="l00210"></a>00210 <span class="comment">            /// @details This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the</span>
-<a name="l00211"></a>00211 <span class="comment">            /// Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager)</span>
-<a name="l00212"></a>00212 <span class="comment"></span>            <a class="code" href="../../da/ddf/classphys_1_1World.html#a8b2c74c7e5d5ce3c46a814e183a7aff1" title="Deconstructor.">~World</a>();
+<a name="l00072"></a>00072 <span class="comment">  @ref phys::Ray</span>
+<a name="l00073"></a>00073 <span class="comment"></span>
+<a name="l00074"></a>00074 <span class="comment">  @ref phys::Real</span>
+<a name="l00075"></a>00075 <span class="comment"></span>
+<a name="l00076"></a>00076 <span class="comment">  @ref phys::Whole</span>
+<a name="l00077"></a>00077 <span class="comment"></span>
+<a name="l00078"></a>00078 <span class="comment">  @ref phys::Quaternion</span>
+<a name="l00079"></a>00079 <span class="comment"></span>
+<a name="l00080"></a>00080 <span class="comment">  @ref phys::MetaCode</span>
+<a name="l00081"></a>00081 <span class="comment"></span>
+<a name="l00082"></a>00082 <span class="comment"> @section Classes Sophisticated Data Types</span>
+<a name="l00083"></a>00083 <span class="comment">  @ref phys::ActorBase &quot;Actors - Items in the world&quot;</span>
+<a name="l00084"></a>00084 <span class="comment"></span>
+<a name="l00085"></a>00085 <span class="comment">  @ref phys::EventBase</span>
+<a name="l00086"></a>00086 <span class="comment"></span>
+<a name="l00087"></a>00087 <span class="comment">  @ref phys::GraphicsSettings</span>
+<a name="l00088"></a>00088 <span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment"> @section Optional Optional Engine Components</span>
+<a name="l00090"></a>00090 <span class="comment">  @ref phys::WorldQueryTool</span>
+<a name="l00091"></a>00091 <span class="comment">*/</span>
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 <span class="comment">//Includes and Forward Declarations</span>
+<a name="l00094"></a>00094 <span class="preprocessor">#include &quot;crossplatform.h&quot;</span>
+<a name="l00095"></a>00095 <span class="preprocessor">#include &quot;callbackmanager.h&quot;</span>
+<a name="l00096"></a>00096 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
+<a name="l00097"></a>00097 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>
+<a name="l00098"></a>00098 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
+<a name="l00099"></a>00099 <span class="preprocessor">#include &quot;vector3.h&quot;</span>
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 <span class="keyword">using namespace </span>std;
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 <span class="comment">//Other forward declarations</span>
+<a name="l00106"></a>00106 <span class="comment">//forward Declarations so that we do not need #include &quot;SDL.h&quot;</span>
+<a name="l00107"></a>00107 <span class="keyword">class </span>SDL_Surface;
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 <span class="comment">//forward Declarations so that we do not need #include &quot;btBulletDynamicsCommon.h&quot;</span>
+<a name="l00110"></a>00110 <span class="keyword">class </span>btAxisSweep3;
+<a name="l00111"></a>00111 <span class="keyword">class </span>btDefaultCollisionConfiguration;
+<a name="l00112"></a>00112 <span class="keyword">class </span>btCollisionDispatcher;
+<a name="l00113"></a>00113 <span class="keyword">class </span>btSequentialImpulseConstraintSolver;
+<a name="l00114"></a>00114 <span class="keyword">class </span>btSoftRigidDynamicsWorld;
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116 <span class="comment">//forward Declarations so that we do not need #include &lt;Ogre.h&gt;</span>
+<a name="l00117"></a>00117 <span class="keyword">namespace </span>Ogre
+<a name="l00118"></a>00118 {
+<a name="l00119"></a>00119         <span class="keyword">class </span>Root;
+<a name="l00120"></a>00120         <span class="keyword">class </span>RenderSystem;
+<a name="l00121"></a>00121         <span class="keyword">class </span>RenderWindow;
+<a name="l00122"></a>00122     <span class="keyword">class </span>ResourceGroupManager;
+<a name="l00123"></a>00123         <span class="keyword">class </span>SceneManager;
+<a name="l00124"></a>00124         <span class="keyword">class </span>Camera;
+<a name="l00125"></a>00125         <span class="keyword">class </span>Viewport;
+<a name="l00126"></a>00126 }
+<a name="l00127"></a>00127 <span class="comment"></span>
+<a name="l00128"></a>00128 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00129"></a>00129 <span class="comment">/// @namespace phys</span>
+<a name="l00130"></a>00130 <span class="comment">/// @brief The bulk of the engine components go in this namspace</span>
+<a name="l00131"></a>00131 <span class="comment">/// @details This is where imporant classes like World, CallBackManager, and</span>
+<a name="l00132"></a>00132 <span class="comment">/// The eventmanager reside. For more detailed usage information please refer</span>
+<a name="l00133"></a>00133 <span class="comment">/// to individual class documentation or the @ref index main page.</span>
+<a name="l00134"></a>00134 <span class="comment">///////////////////////////////////////</span>
+<a name="l00135"></a>00135 <span class="comment"></span><span class="keyword">namespace </span>phys
+<a name="l00136"></a>00136 {
+<a name="l00137"></a>00137     <span class="comment">//Forward Declarations</span>
+<a name="l00138"></a>00138     <span class="keyword">class </span>ActorBase;
+<a name="l00139"></a>00139     <span class="keyword">class </span>ActorContainerBase;
+<a name="l00140"></a>00140     <span class="keyword">class </span>GraphicsSettings;
+<a name="l00141"></a>00141     <span class="keyword">namespace </span>debug {
+<a name="l00142"></a>00142         <span class="keyword">class </span>InternalDebugDrawer;
+<a name="l00143"></a>00143     }<span class="comment"></span>
+<a name="l00144"></a>00144 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00145"></a>00145 <span class="comment">    /// @class World</span>
+<a name="l00146"></a>00146 <span class="comment">    /// @headerfile world.h</span>
+<a name="l00147"></a>00147 <span class="comment">    /// @brief This is the main entry point for the entire library.</span>
+<a name="l00148"></a>00148 <span class="comment">    /// @details The physworld coordinates and integrates all the underlying subsystems,</span>
+<a name="l00149"></a>00149 <span class="comment">    /// Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and</span>
+<a name="l00150"></a>00150 <span class="comment">    /// SDL is used for user input and window management. Games will need a</span>
+<a name="l00151"></a>00151 <span class="comment">    /// container for all the playing pieces. It makes sense to tie all of this</span>
+<a name="l00152"></a>00152 <span class="comment">    /// functionality into one world object.</span>
+<a name="l00153"></a>00153 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00154"></a><a class="code" href="../../da/ddf/classphys_1_1World.html">00154</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>
+<a name="l00155"></a>00155     {
+<a name="l00156"></a>00156         <span class="keyword">private</span>:<span class="comment"></span>
+<a name="l00157"></a>00157 <span class="comment">            /// @brief Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly</span>
+<a name="l00158"></a>00158 <span class="comment">            /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectl</span>
+<a name="l00159"></a>00159 <span class="comment"></span>            <span class="keyword">friend</span> <span class="keywordtype">void</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#aa80d0a5289b00daad110fd29bf23c5e7" title="Renders the current world contents to the screen.">crossplatform::RenderPhysWorld</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TheWorld); <span class="comment">// Needs ogre access for making window</span>
+<a name="l00160"></a>00160             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>; <span class="comment">//Several items from Ogre and Bullet</span>
+<a name="l00161"></a>00161             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../db/ddb/classphys_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>; <span class="comment">//Needs the debug::InternalDebugDrawer* BulletDrawer</span>
+<a name="l00162"></a>00162             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html" title="This provides a number of optional tools for working with a phys::World.">WorldQueryTool</a>; <span class="comment">// Needs to access various Ogre internals</span>
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164             <span class="comment">//Physics Items</span>
+<a name="l00165"></a>00165             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GeographyLowerBounds;
+<a name="l00166"></a>00166             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GeographyUpperbounds;
+<a name="l00167"></a>00167             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span>  MaxPhysicsProxies;
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169             btAxisSweep3* BulletBroadphase;
+<a name="l00170"></a>00170             btDefaultCollisionConfiguration* BulletCollisionConfiguration;
+<a name="l00171"></a>00171             btCollisionDispatcher* BulletDispatcher;
+<a name="l00172"></a>00172             btSequentialImpulseConstraintSolver* BulletSolver;
+<a name="l00173"></a>00173             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
+<a name="l00174"></a>00174 
+<a name="l00175"></a>00175             <span class="comment">//SDL Objects</span>
+<a name="l00176"></a>00176             SDL_Surface *SDLscreen;
+<a name="l00177"></a>00177             <span class="keywordtype">bool</span> HasSDLBeenInitialized;
+<a name="l00178"></a>00178 
+<a name="l00179"></a>00179             <span class="comment">//Players settings</span>
+<a name="l00180"></a>00180             <a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html" title="This is intended to store basic graphics setting for the user.">GraphicsSettings</a>* PlayerSettings;
+<a name="l00181"></a>00181 
+<a name="l00182"></a>00182             <span class="comment">//Try to retrieve ogre settinss</span>
+<a name="l00183"></a>00183             <span class="keywordtype">void</span> LoadOgreSettings();
+<a name="l00184"></a>00184 
+<a name="l00185"></a>00185             <span class="comment">//Manages the windows all the graphics will be drawn to</span>
+<a name="l00186"></a>00186             <span class="keywordtype">void</span> CreateRenderWindow();
+<a name="l00187"></a>00187             <span class="keywordtype">void</span> DestroyRenderWindow();
+<a name="l00188"></a>00188 
+<a name="l00189"></a>00189             <span class="comment">//Used by the constructors</span>
+<a name="l00190"></a>00190             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies);
+<a name="l00191"></a>00191             <span class="keywordtype">void</span> SanityChecks();
+<a name="l00192"></a>00192             <span class="keywordtype">void</span> TestLogger();
+<a name="l00193"></a>00193             <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> OneLogTest(T Data, <span class="keywordtype">string</span> DataType,<span class="keywordtype">string</span> Message1 = <span class="stringliteral">&quot;Logging and Throwing a &quot;</span>, <span class="keywordtype">string</span> Message2 = <span class="stringliteral">&quot;Logging a &quot;</span>);
+<a name="l00194"></a>00194 
+<a name="l00195"></a>00195             <span class="comment">//Settings for Engine Functionality</span>
+<a name="l00196"></a>00196             <span class="keywordtype">string</span> WindowName;
+<a name="l00197"></a>00197             <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> TargetFrameLength;
+<a name="l00198"></a>00198             <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> PhysicsStepsize;
+<a name="l00199"></a>00199 
+<a name="l00200"></a>00200             <span class="comment">//Ogre objects</span>
+<a name="l00201"></a>00201             Ogre::Root* OgreRoot;
+<a name="l00202"></a>00202             Ogre::RenderSystem* OgreRenderSystem;
+<a name="l00203"></a>00203             Ogre::RenderWindow* OgreGameWindow;
+<a name="l00204"></a>00204             Ogre::ResourceGroupManager* OgreResource;
+<a name="l00205"></a>00205             Ogre::Camera* OgreCamera;
+<a name="l00206"></a>00206             Ogre::Viewport* OgreViewport;
+<a name="l00207"></a>00207             Ogre::SceneManager* OgreSceneManager;
+<a name="l00208"></a>00208 
+<a name="l00209"></a>00209             <span class="comment">// Bullet functions</span>
+<a name="l00210"></a>00210             <a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem.">debug::InternalDebugDrawer</a>* BulletDrawer;
+<a name="l00211"></a>00211         <span class="keyword">public</span>:
+<a name="l00212"></a>00212 
 <a name="l00213"></a>00213 <span class="comment"></span>
 <a name="l00214"></a>00214 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00215"></a>00215 <span class="comment"></span>        <span class="comment">// Logging</span><span class="comment"></span>
+<a name="l00215"></a>00215 <span class="comment"></span>        <span class="comment">// Creation and Deletion methods</span><span class="comment"></span>
 <a name="l00216"></a>00216 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00217"></a>00217 <span class="comment">            /// @brief Runtime Event logging Function</span>
-<a name="l00218"></a>00218 <span class="comment">            /// @details Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is</span>
-<a name="l00219"></a>00219 <span class="comment">            /// Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types</span>
-<a name="l00220"></a>00220 <span class="comment">            /// that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int</span>
-<a name="l00221"></a>00221 <span class="comment">            /// unsigned long int, bool, float, double, long double, wchar_t, size_t, Real, Whole, String, Vector3, RawEvent and MetaCode.</span>
-<a name="l00222"></a>00222 <span class="comment">            /// If compiled statically it should support any data type which supports output streams.</span>
-<a name="l00223"></a>00223 <span class="comment">            /// @param Message This is what will be streamed to the log</span>
-<a name="l00224"></a>00224 <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(T Message);
-<a name="l00225"></a>00225 <span class="comment"></span>
-<a name="l00226"></a>00226 <span class="comment">            /// @brief This is the preferred way to throw an exception currently</span>
-<a name="l00227"></a>00227 <span class="comment">            /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data</span>
-<a name="l00228"></a>00228 <span class="comment">            /// type the Log function supports</span>
-<a name="l00229"></a>00229 <span class="comment">            /// @param Message This will be streamed to the log, then used in a thrown exception.</span>
-<a name="l00230"></a>00230 <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(T Message);
-<a name="l00231"></a>00231 <span class="comment"></span>
-<a name="l00232"></a>00232 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00233"></a>00233 <span class="comment"></span>        <span class="comment">// Window Management</span><span class="comment"></span>
-<a name="l00234"></a>00234 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00235"></a>00235 <span class="comment">            /// @brief Retrieves the Current Window Title</span>
-<a name="l00236"></a>00236 <span class="comment">            /// @details This gets the texts that the engine has stored for use in the title bar</span>
-<a name="l00237"></a>00237 <span class="comment">            /// @return This returns a String Containing the Window Title</span>
-<a name="l00238"></a>00238 <span class="comment"></span>            std::string <a class="code" href="../../da/ddf/classphys_1_1World.html#a1f0139bbc9561bcf18844be25e4adc73" title="Retrieves the Current Window Title.">GetWindowName</a>();
-<a name="l00239"></a>00239 <span class="comment"></span>
-<a name="l00240"></a>00240 <span class="comment">            /// @brief This can set the the Text in the titlebar</span>
-<a name="l00241"></a>00241 <span class="comment">            /// @details This changes the text in the bar at the top of the game window in windowed mode. It can be changed at anytime.</span>
-<a name="l00242"></a>00242 <span class="comment">            /// @param NewName This is the new text to be used in the titlebar.</span>
-<a name="l00243"></a>00243 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#acd0dff342c08fe3008226488b7c53d97" title="This can set the the Text in the titlebar.">SetWindowName</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;NewName);
+<a name="l00217"></a>00217 <span class="comment">            /// @brief Descriptive constructor</span>
+<a name="l00218"></a>00218 <span class="comment">            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.</span>
+<a name="l00219"></a>00219 <span class="comment">            /// @param GeographyLowerBounds_ The lower limits for the size of the physics simulation</span>
+<a name="l00220"></a>00220 <span class="comment">            /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation</span>
+<a name="l00221"></a>00221 <span class="comment">            /// @param MaxPhysicsProxies_ This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.</span>
+<a name="l00222"></a>00222 <span class="comment"></span>            <a class="code" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695" title="Default constructor.">World</a>( <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_=1024);
+<a name="l00223"></a>00223 <span class="comment"></span>
+<a name="l00224"></a>00224 <span class="comment">            /// @brief Default constructor</span>
+<a name="l00225"></a>00225 <span class="comment">            /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.</span>
+<a name="l00226"></a>00226 <span class="comment"></span>            <a class="code" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695" title="Default constructor.">World</a>();
+<a name="l00227"></a>00227 <span class="comment"></span>
+<a name="l00228"></a>00228 <span class="comment">            /// @brief Deconstructor</span>
+<a name="l00229"></a>00229 <span class="comment">            /// @details This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the</span>
+<a name="l00230"></a>00230 <span class="comment">            /// Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager)</span>
+<a name="l00231"></a>00231 <span class="comment"></span>            <a class="code" href="../../da/ddf/classphys_1_1World.html#a8b2c74c7e5d5ce3c46a814e183a7aff1" title="Deconstructor.">~World</a>();
+<a name="l00232"></a>00232 <span class="comment"></span>
+<a name="l00233"></a>00233 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00234"></a>00234 <span class="comment"></span>        <span class="comment">// Logging</span><span class="comment"></span>
+<a name="l00235"></a>00235 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00236"></a>00236 <span class="comment">            /// @brief Runtime Event logging Function</span>
+<a name="l00237"></a>00237 <span class="comment">            /// @details Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is</span>
+<a name="l00238"></a>00238 <span class="comment">            /// Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types</span>
+<a name="l00239"></a>00239 <span class="comment">            /// that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int</span>
+<a name="l00240"></a>00240 <span class="comment">            /// unsigned long int, bool, float, double, long double, wchar_t, size_t, Real, Whole, String, Vector3, RawEvent and MetaCode.</span>
+<a name="l00241"></a>00241 <span class="comment">            /// If compiled statically it should support any data type which supports output streams.</span>
+<a name="l00242"></a>00242 <span class="comment">            /// @param Message This is what will be streamed to the log</span>
+<a name="l00243"></a>00243 <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(T Message);
 <a name="l00244"></a>00244 <span class="comment"></span>
-<a name="l00245"></a>00245 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00246"></a>00246 <span class="comment"></span>        <span class="comment">// Graphics system methods</span><span class="comment"></span>
-<a name="l00247"></a>00247 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00248"></a>00248 <span class="comment">            /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be</span>
-<a name="l00249"></a>00249 <span class="comment">            /// @details In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually</span>
-<a name="l00250"></a>00250 <span class="comment">            /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.</span>
-<a name="l00251"></a>00251 <span class="comment">            /// @return This returns a Whole with the current Value</span>
-<a name="l00252"></a>00252 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../da/ddf/classphys_1_1World.html#aa063ace52be484c7b03ec5859453f48b" title="Retrieves the amount of milliseconds we would like each iteration of the Main Loop...">GetTargetFrameTime</a>();
-<a name="l00253"></a>00253 <span class="comment"></span>
-<a name="l00254"></a>00254 <span class="comment">            /// @brief This sets a new Target Time</span>
-<a name="l00255"></a>00255 <span class="comment">            /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value</span>
-<a name="l00256"></a>00256 <span class="comment">            /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but</span>
-<a name="l00257"></a>00257 <span class="comment">            /// set it too high, and system resources could becom completely taxed and power will be wasted.</span>
-<a name="l00258"></a>00258 <span class="comment">            /// @param NewTargetTime The new length of time, in milliseconds.</span>
-<a name="l00259"></a>00259 <span class="comment">            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.</span>
-<a name="l00260"></a>00260 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ad95b5a5ad73e0a05826b5bd834876333" title="This sets a new Target Time.">SetTargetFrameTime</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewTargetTime);
-<a name="l00261"></a>00261 <span class="comment"></span>
-<a name="l00262"></a>00262 <span class="comment">            /// @brief This sets a new Target Frame Rate</span>
-<a name="l00263"></a>00263 <span class="comment">            /// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to</span>
-<a name="l00264"></a>00264 <span class="comment">            /// World::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms</span>
-<a name="l00265"></a>00265 <span class="comment">            /// @param NewFrameRate The new desired frame rate.</span>
-<a name="l00266"></a>00266 <span class="comment">            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.</span>
-<a name="l00267"></a>00267 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a76dfcde35392291aafd6eb1a64b3c95c" title="This sets a new Target Frame Rate.">SetTargetFrameRate</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewFrameRate);
-<a name="l00268"></a>00268 <span class="comment"></span>
-<a name="l00269"></a>00269 <span class="comment">            /// @brief This Shows an Engine Generated Configuration Screen</span>
-<a name="l00270"></a>00270 <span class="comment">            /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration</span>
-<a name="l00271"></a>00271 <span class="comment">            /// options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler</span>
-<a name="l00272"></a>00272 <span class="comment">            /// Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage</span>
-<a name="l00273"></a>00273 <span class="comment">            /// user settings.</span>
-<a name="l00274"></a>00274 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a0d8ce136bebe81a6826b7e202a531f6a" title="This Shows an Engine Generated Configuration Screen.">ShowSystemSettingDialog</a>();
-<a name="l00275"></a>00275 <span class="comment"></span>
-<a name="l00276"></a>00276 <span class="comment">            /// @brief This moves the camera relative to the world</span>
-<a name="l00277"></a>00277 <span class="comment">            /// @details The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.</span>
-<a name="l00278"></a>00278 <span class="comment">            /// @param Position Where should the camera be seated</span>
-<a name="l00279"></a>00279 <span class="comment">            /// @param LookAt Point the camera such that this poin is centered on the screen</span>
-<a name="l00280"></a>00280 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#aed87ebc1e559c3057132c50bba16117f" title="This moves the camera relative to the world.">MoveCamera</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;Position, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;LookAt);
-<a name="l00281"></a>00281 <span class="comment"></span>
-<a name="l00282"></a>00282 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00283"></a>00283 <span class="comment"></span>        <span class="comment">// Graphics system loading methods</span><span class="comment"></span>
-<a name="l00284"></a>00284 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00285"></a>00285 <span class="comment">            /// @brief Adds a location for graphical resources.</span>
-<a name="l00286"></a>00286 <span class="comment">            /// @details This function will add a location on the disk to find files needed to create and</span>
-<a name="l00287"></a>00287 <span class="comment">            /// manipulate graphical objects.</span>
-<a name="l00288"></a>00288 <span class="comment">            /// @param Location The location on the file system the resource can be found.</span>
-<a name="l00289"></a>00289 <span class="comment">            /// @param Type The kind of file system the location can be found in. @n</span>
-<a name="l00290"></a>00290 <span class="comment">            /// Options are: filesystem, zip.</span>
-<a name="l00291"></a>00291 <span class="comment">            /// @param Group The name of the group the resources at this location belong to.</span>
-<a name="l00292"></a>00292 <span class="comment">            /// @param recursive Whether or not to search sub-directories.</span>
-<a name="l00293"></a>00293 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ab26033088abe4d60a40cf770dd1b0de8" title="Adds a location for graphical resources.">AddResourceLocation</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Location, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Type, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Group, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;recursive=<span class="keyword">false</span>);
+<a name="l00245"></a>00245 <span class="comment">            /// @brief This is the preferred way to throw an exception currently</span>
+<a name="l00246"></a>00246 <span class="comment">            /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data</span>
+<a name="l00247"></a>00247 <span class="comment">            /// type the Log function supports</span>
+<a name="l00248"></a>00248 <span class="comment">            /// @param Message This will be streamed to the log, then used in a thrown exception.</span>
+<a name="l00249"></a>00249 <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(T Message);
+<a name="l00250"></a>00250 <span class="comment"></span>
+<a name="l00251"></a>00251 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00252"></a>00252 <span class="comment"></span>        <span class="comment">// Window Management</span><span class="comment"></span>
+<a name="l00253"></a>00253 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00254"></a>00254 <span class="comment">            /// @brief Retrieves the Current Window Title</span>
+<a name="l00255"></a>00255 <span class="comment">            /// @details This gets the texts that the engine has stored for use in the title bar</span>
+<a name="l00256"></a>00256 <span class="comment">            /// @return This returns a String Containing the Window Title</span>
+<a name="l00257"></a>00257 <span class="comment"></span>            std::string <a class="code" href="../../da/ddf/classphys_1_1World.html#a1f0139bbc9561bcf18844be25e4adc73" title="Retrieves the Current Window Title.">GetWindowName</a>();
+<a name="l00258"></a>00258 <span class="comment"></span>
+<a name="l00259"></a>00259 <span class="comment">            /// @brief This can set the the Text in the titlebar</span>
+<a name="l00260"></a>00260 <span class="comment">            /// @details This changes the text in the bar at the top of the game window in windowed mode. It can be changed at anytime.</span>
+<a name="l00261"></a>00261 <span class="comment">            /// @param NewName This is the new text to be used in the titlebar.</span>
+<a name="l00262"></a>00262 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#acd0dff342c08fe3008226488b7c53d97" title="This can set the the Text in the titlebar.">SetWindowName</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;NewName);
+<a name="l00263"></a>00263 <span class="comment"></span>
+<a name="l00264"></a>00264 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00265"></a>00265 <span class="comment"></span>        <span class="comment">// Graphics system methods</span><span class="comment"></span>
+<a name="l00266"></a>00266 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00267"></a>00267 <span class="comment">            /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be</span>
+<a name="l00268"></a>00268 <span class="comment">            /// @details In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually</span>
+<a name="l00269"></a>00269 <span class="comment">            /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.</span>
+<a name="l00270"></a>00270 <span class="comment">            /// @return This returns a Whole with the current Value</span>
+<a name="l00271"></a>00271 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../da/ddf/classphys_1_1World.html#aa063ace52be484c7b03ec5859453f48b" title="Retrieves the amount of milliseconds we would like each iteration of the Main Loop...">GetTargetFrameTime</a>();
+<a name="l00272"></a>00272 <span class="comment"></span>
+<a name="l00273"></a>00273 <span class="comment">            /// @brief This sets a new Target Time</span>
+<a name="l00274"></a>00274 <span class="comment">            /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value</span>
+<a name="l00275"></a>00275 <span class="comment">            /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but</span>
+<a name="l00276"></a>00276 <span class="comment">            /// set it too high, and system resources could becom completely taxed and power will be wasted.</span>
+<a name="l00277"></a>00277 <span class="comment">            /// @param NewTargetTime The new length of time, in milliseconds.</span>
+<a name="l00278"></a>00278 <span class="comment">            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.</span>
+<a name="l00279"></a>00279 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ad95b5a5ad73e0a05826b5bd834876333" title="This sets a new Target Time.">SetTargetFrameTime</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewTargetTime);
+<a name="l00280"></a>00280 <span class="comment"></span>
+<a name="l00281"></a>00281 <span class="comment">            /// @brief This sets a new Target Frame Rate</span>
+<a name="l00282"></a>00282 <span class="comment">            /// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to</span>
+<a name="l00283"></a>00283 <span class="comment">            /// World::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms</span>
+<a name="l00284"></a>00284 <span class="comment">            /// @param NewFrameRate The new desired frame rate.</span>
+<a name="l00285"></a>00285 <span class="comment">            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.</span>
+<a name="l00286"></a>00286 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a76dfcde35392291aafd6eb1a64b3c95c" title="This sets a new Target Frame Rate.">SetTargetFrameRate</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewFrameRate);
+<a name="l00287"></a>00287 <span class="comment"></span>
+<a name="l00288"></a>00288 <span class="comment">            /// @brief This Shows an Engine Generated Configuration Screen</span>
+<a name="l00289"></a>00289 <span class="comment">            /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration</span>
+<a name="l00290"></a>00290 <span class="comment">            /// options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler</span>
+<a name="l00291"></a>00291 <span class="comment">            /// Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage</span>
+<a name="l00292"></a>00292 <span class="comment">            /// user settings.</span>
+<a name="l00293"></a>00293 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a0d8ce136bebe81a6826b7e202a531f6a" title="This Shows an Engine Generated Configuration Screen.">ShowSystemSettingDialog</a>();
 <a name="l00294"></a>00294 <span class="comment"></span>
-<a name="l00295"></a>00295 <span class="comment">            /// @brief Prepares the resource for use.</span>
-<a name="l00296"></a>00296 <span class="comment">            /// @details This function can be thought of as a preloader.  This will prepare the defined</span>
-<a name="l00297"></a>00297 <span class="comment">            /// resource located on the disk for use.</span>
-<a name="l00298"></a>00298 <span class="comment">            /// @param Name Name of the file/resource to be &#39;prepared&#39;.</span>
-<a name="l00299"></a>00299 <span class="comment">            /// @param Type The type of resource that the file is. @n</span>
-<a name="l00300"></a>00300 <span class="comment">            /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.</span>
-<a name="l00301"></a>00301 <span class="comment">            /// @param Group Name of the group the resource belongs to.</span>
-<a name="l00302"></a>00302 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ad8c9834c1b9a0de437a0b29f17c0c48e" title="Prepares the resource for use.">DeclareResource</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Type, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Group);
-<a name="l00303"></a>00303 <span class="comment"></span>
-<a name="l00304"></a>00304 <span class="comment">            /// @brief Makes a resource group ready to use.</span>
-<a name="l00305"></a>00305 <span class="comment">            /// @details After adding all of your resources and declaring them as nessessary, this function</span>
-<a name="l00306"></a>00306 <span class="comment">            /// is the final step.  After calling this function any and all resources within the defined group</span>
-<a name="l00307"></a>00307 <span class="comment">            /// will be ready to use.  Do not initialize any more groups then you need to however, as that will</span>
-<a name="l00308"></a>00308 <span class="comment">            /// take up memory and drop performance.</span>
-<a name="l00309"></a>00309 <span class="comment">            /// @param Name Name of the resource group.</span>
-<a name="l00310"></a>00310 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a82b1b40f39c1f2e48759fdb77389153d" title="Makes a resource group ready to use.">InitResourceGroup</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name);
-<a name="l00311"></a>00311 <span class="comment"></span>
-<a name="l00312"></a>00312 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00313"></a>00313 <span class="comment"></span>        <span class="comment">// Main Loop and Initialization</span><span class="comment"></span>
-<a name="l00314"></a>00314 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00315"></a>00315 <span class="comment">            /// @brief This creates the game window and starts the game.</span>
-<a name="l00316"></a>00316 <span class="comment">            /// @param CallMainLoop should the main loop be called</span>
-<a name="l00317"></a>00317 <span class="comment">            /// @details Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be</span>
-<a name="l00318"></a>00318 <span class="comment">            /// minimal delay from the time you call this and the game actually begins.</span>
-<a name="l00319"></a>00319 <span class="comment">            /// This will automatically call the Main Loop unless passed falsed.</span>
-<a name="l00320"></a>00320 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a21cc36be08a61f40619584d4c438936b" title="This creates the game window and starts the game.">GameInit</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;CallMainLoop=<span class="keyword">true</span> );
-<a name="l00321"></a>00321 <span class="comment"></span>
-<a name="l00322"></a>00322 <span class="comment">            /// @brief This Function house the main loop</span>
-<a name="l00323"></a>00323 <span class="comment">            /// @details By default this is called from the function World.GameInit() this is were the bulk of the simulation is ran from, see @ref mainloop1</span>
-<a name="l00324"></a>00324 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#af1d9e36d43f5e50543fa2351a32c8362" title="This Function house the main loop.">MainLoop</a>();
-<a name="l00325"></a>00325 <span class="comment"></span>
-<a name="l00326"></a>00326 <span class="comment">            /// @brief Performs all the items that would normally be performed during the game loop</span>
-<a name="l00327"></a>00327 <span class="comment">            /// @param PreviousFrameTime This is the amount of time that has elapsed since this function was last called, so that physics can be done properly.</span>
-<a name="l00328"></a>00328 <span class="comment">            /// @details This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is</span>
-<a name="l00329"></a>00329 <span class="comment">            /// useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items</span>
-<a name="l00330"></a>00330 <span class="comment">            /// each iteration of the main loop.</span>
-<a name="l00331"></a>00331 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a25c2583425bfe3d0d2bfce1093f0175e" title="Performs all the items that would normally be performed during the game loop.">DoMainLoopAllItems</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;PreviousFrameTime);
-<a name="l00332"></a>00332 <span class="comment"></span>
-<a name="l00333"></a>00333 <span class="comment">            /// @brief Increments physics by one step</span>
-<a name="l00334"></a>00334 <span class="comment">            /// @param TimeElapsed This is the amount of time that has elapsed since this function was last called, required for proper physics</span>
-<a name="l00335"></a>00335 <span class="comment">            /// @details Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre/Post-Physics Callback is</span>
-<a name="l00336"></a>00336 <span class="comment">            /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come</span>
-<a name="l00337"></a>00337 <span class="comment">            /// from although it is concievable that a game could manually insert those manually. This will not delete events it places</span>
-<a name="l00338"></a>00338 <span class="comment">            /// in the event manager, that is the responsibility of the code that pulls out the event out.</span>
-<a name="l00339"></a>00339 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a4596a7bd1dc49c3b45b5562fcd0d08f2" title="Increments physics by one step.">DoMainLoopPhysics</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;TimeElapsed);
+<a name="l00295"></a>00295 <span class="comment">            /// @brief This moves the camera relative to the world</span>
+<a name="l00296"></a>00296 <span class="comment">            /// @details The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.</span>
+<a name="l00297"></a>00297 <span class="comment">            /// @param Position Where should the camera be seated</span>
+<a name="l00298"></a>00298 <span class="comment">            /// @param LookAt Point the camera such that this poin is centered on the screen</span>
+<a name="l00299"></a>00299 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#aed87ebc1e559c3057132c50bba16117f" title="This moves the camera relative to the world.">MoveCamera</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;Position, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;LookAt);
+<a name="l00300"></a>00300 <span class="comment"></span>
+<a name="l00301"></a>00301 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00302"></a>00302 <span class="comment"></span>        <span class="comment">// Graphics system loading methods</span><span class="comment"></span>
+<a name="l00303"></a>00303 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00304"></a>00304 <span class="comment">            /// @brief Adds a location for graphical resources.</span>
+<a name="l00305"></a>00305 <span class="comment">            /// @details This function will add a location on the disk to find files needed to create and</span>
+<a name="l00306"></a>00306 <span class="comment">            /// manipulate graphical objects.</span>
+<a name="l00307"></a>00307 <span class="comment">            /// @param Location The location on the file system the resource can be found.</span>
+<a name="l00308"></a>00308 <span class="comment">            /// @param Type The kind of file system the location can be found in. @n</span>
+<a name="l00309"></a>00309 <span class="comment">            /// Options are: filesystem, zip.</span>
+<a name="l00310"></a>00310 <span class="comment">            /// @param Group The name of the group the resources at this location belong to.</span>
+<a name="l00311"></a>00311 <span class="comment">            /// @param recursive Whether or not to search sub-directories.</span>
+<a name="l00312"></a>00312 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ab26033088abe4d60a40cf770dd1b0de8" title="Adds a location for graphical resources.">AddResourceLocation</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Location, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Type, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Group, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;recursive=<span class="keyword">false</span>);
+<a name="l00313"></a>00313 <span class="comment"></span>
+<a name="l00314"></a>00314 <span class="comment">            /// @brief Prepares the resource for use.</span>
+<a name="l00315"></a>00315 <span class="comment">            /// @details This function can be thought of as a preloader.  This will prepare the defined</span>
+<a name="l00316"></a>00316 <span class="comment">            /// resource located on the disk for use.</span>
+<a name="l00317"></a>00317 <span class="comment">            /// @param Name Name of the file/resource to be &#39;prepared&#39;.</span>
+<a name="l00318"></a>00318 <span class="comment">            /// @param Type The type of resource that the file is. @n</span>
+<a name="l00319"></a>00319 <span class="comment">            /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.</span>
+<a name="l00320"></a>00320 <span class="comment">            /// @param Group Name of the group the resource belongs to.</span>
+<a name="l00321"></a>00321 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ad8c9834c1b9a0de437a0b29f17c0c48e" title="Prepares the resource for use.">DeclareResource</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Type, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Group);
+<a name="l00322"></a>00322 <span class="comment"></span>
+<a name="l00323"></a>00323 <span class="comment">            /// @brief Makes a resource group ready to use.</span>
+<a name="l00324"></a>00324 <span class="comment">            /// @details After adding all of your resources and declaring them as nessessary, this function</span>
+<a name="l00325"></a>00325 <span class="comment">            /// is the final step.  After calling this function any and all resources within the defined group</span>
+<a name="l00326"></a>00326 <span class="comment">            /// will be ready to use.  Do not initialize any more groups then you need to however, as that will</span>
+<a name="l00327"></a>00327 <span class="comment">            /// take up memory and drop performance.</span>
+<a name="l00328"></a>00328 <span class="comment">            /// @param Name Name of the resource group.</span>
+<a name="l00329"></a>00329 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a82b1b40f39c1f2e48759fdb77389153d" title="Makes a resource group ready to use.">InitResourceGroup</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name);
+<a name="l00330"></a>00330 <span class="comment"></span>
+<a name="l00331"></a>00331 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00332"></a>00332 <span class="comment"></span>        <span class="comment">// Main Loop and Initialization</span><span class="comment"></span>
+<a name="l00333"></a>00333 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00334"></a>00334 <span class="comment">            /// @brief This creates the game window and starts the game.</span>
+<a name="l00335"></a>00335 <span class="comment">            /// @param CallMainLoop should the main loop be called</span>
+<a name="l00336"></a>00336 <span class="comment">            /// @details Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be</span>
+<a name="l00337"></a>00337 <span class="comment">            /// minimal delay from the time you call this and the game actually begins.</span>
+<a name="l00338"></a>00338 <span class="comment">            /// This will automatically call the Main Loop unless passed falsed.</span>
+<a name="l00339"></a>00339 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a21cc36be08a61f40619584d4c438936b" title="This creates the game window and starts the game.">GameInit</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;CallMainLoop=<span class="keyword">true</span> );
 <a name="l00340"></a>00340 <span class="comment"></span>
-<a name="l00341"></a>00341 <span class="comment">            /// @brief Gathers user input from the OS and places events in the event manager</span>
-<a name="l00342"></a>00342 <span class="comment">            /// @details This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places</span>
-<a name="l00343"></a>00343 <span class="comment">            /// in the event manager, that is the responsibility of the code that pulls out the event out.</span>
-<a name="l00344"></a>00344 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#af4204b587fcc71e8313dd97d476378d6" title="Gathers user input from the OS and places events in the event manager.">DoMainLoopInputBuffering</a>();
-<a name="l00345"></a>00345 <span class="comment"></span>
-<a name="l00346"></a>00346 <span class="comment">            /// @brief Creates events for each Window manger</span>
-<a name="l00347"></a>00347 <span class="comment">            /// @details This gather information from system/windows manager events, such as windows  minimization, maximization, program exit, window hidden</span>
-<a name="l00348"></a>00348 <span class="comment">            /// window shown, and a few other similar types of events. This makes events out of the information and places them in the event manager</span>
-<a name="l00349"></a>00349 <span class="comment">            /// This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out.</span>
-<a name="l00350"></a>00350 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#af7bc68e5a19fd4c9c8cc2437485096e1" title="Creates events for each Window manger.">DoMainLoopWindowManagerBuffering</a>();
+<a name="l00341"></a>00341 <span class="comment">            /// @brief This Function house the main loop</span>
+<a name="l00342"></a>00342 <span class="comment">            /// @details By default this is called from the function World.GameInit() this is were the bulk of the simulation is ran from, see @ref mainloop1</span>
+<a name="l00343"></a>00343 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#af1d9e36d43f5e50543fa2351a32c8362" title="This Function house the main loop.">MainLoop</a>();
+<a name="l00344"></a>00344 <span class="comment"></span>
+<a name="l00345"></a>00345 <span class="comment">            /// @brief Performs all the items that would normally be performed during the game loop</span>
+<a name="l00346"></a>00346 <span class="comment">            /// @param PreviousFrameTime This is the amount of time that has elapsed since this function was last called, so that physics can be done properly.</span>
+<a name="l00347"></a>00347 <span class="comment">            /// @details This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is</span>
+<a name="l00348"></a>00348 <span class="comment">            /// useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items</span>
+<a name="l00349"></a>00349 <span class="comment">            /// each iteration of the main loop.</span>
+<a name="l00350"></a>00350 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a25c2583425bfe3d0d2bfce1093f0175e" title="Performs all the items that would normally be performed during the game loop.">DoMainLoopAllItems</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;PreviousFrameTime);
 <a name="l00351"></a>00351 <span class="comment"></span>
-<a name="l00352"></a>00352 <span class="comment">            /// @brief This forces the screen to be re-rendered</span>
-<a name="l00353"></a>00353 <span class="comment">            /// @details This renders the screen based on the status of all in game actors. This is automatically called in the main loop.</span>
-<a name="l00354"></a>00354 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a34133dd084f575a51209458dbe9ecdac" title="This forces the screen to be re-rendered.">DoMainLoopRender</a>();
-<a name="l00355"></a>00355 <span class="comment"></span>
-<a name="l00356"></a>00356 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00357"></a>00357 <span class="comment"></span>        <span class="comment">// Actor Methods</span><span class="comment"></span>
-<a name="l00358"></a>00358 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00359"></a>00359 <span class="comment">            /// @brief The adds and Actor to the physworld.</span>
-<a name="l00360"></a>00360 <span class="comment">            /// @details This adds, and makes sure that it&#39;s physics status and 3d graphics status are</span>
-<a name="l00361"></a>00361 <span class="comment">            /// properly handled. The phys::World will delete any actor still left in it upon deconstruction.</span>
-<a name="l00362"></a>00362 <span class="comment">            /// @param ActorToAdd This is a pointer to the actor to be added.</span>
-<a name="l00363"></a>00363 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a0fec41ef68b7bb1443aab927f8277a81" title="The adds and Actor to the physworld.">AddActor</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToAdd);
+<a name="l00352"></a>00352 <span class="comment">            /// @brief Increments physics by one step</span>
+<a name="l00353"></a>00353 <span class="comment">            /// @param TimeElapsed This is the amount of time that has elapsed since this function was last called, required for proper physics</span>
+<a name="l00354"></a>00354 <span class="comment">            /// @details Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre/Post-Physics Callback is</span>
+<a name="l00355"></a>00355 <span class="comment">            /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come</span>
+<a name="l00356"></a>00356 <span class="comment">            /// from although it is concievable that a game could manually insert those manually. This will not delete events it places</span>
+<a name="l00357"></a>00357 <span class="comment">            /// in the event manager, that is the responsibility of the code that pulls out the event out.</span>
+<a name="l00358"></a>00358 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a4596a7bd1dc49c3b45b5562fcd0d08f2" title="Increments physics by one step.">DoMainLoopPhysics</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;TimeElapsed);
+<a name="l00359"></a>00359 <span class="comment"></span>
+<a name="l00360"></a>00360 <span class="comment">            /// @brief Gathers user input from the OS and places events in the event manager</span>
+<a name="l00361"></a>00361 <span class="comment">            /// @details This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places</span>
+<a name="l00362"></a>00362 <span class="comment">            /// in the event manager, that is the responsibility of the code that pulls out the event out.</span>
+<a name="l00363"></a>00363 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#af4204b587fcc71e8313dd97d476378d6" title="Gathers user input from the OS and places events in the event manager.">DoMainLoopInputBuffering</a>();
 <a name="l00364"></a>00364 <span class="comment"></span>
-<a name="l00365"></a>00365 <span class="comment">            /// @brief The Removes an Actor from the physworld.</span>
-<a name="l00366"></a>00366 <span class="comment">            /// @details This removes the actor to the internal graphics and physics systems, and drops the pointer. This does not delete</span>
-<a name="l00367"></a>00367 <span class="comment">            /// The Actor.</span>
-<a name="l00368"></a>00368 <span class="comment">            /// @param ActorToRemove This is a pointer to the actor to be removed</span>
-<a name="l00369"></a>00369 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ab00f84983afcc7f6ef1e5a84367d994d" title="The Removes an Actor from the physworld.">RemoveActor</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToRemove);
+<a name="l00365"></a>00365 <span class="comment">            /// @brief Creates events for each Window manger</span>
+<a name="l00366"></a>00366 <span class="comment">            /// @details This gather information from system/windows manager events, such as windows  minimization, maximization, program exit, window hidden</span>
+<a name="l00367"></a>00367 <span class="comment">            /// window shown, and a few other similar types of events. This makes events out of the information and places them in the event manager</span>
+<a name="l00368"></a>00368 <span class="comment">            /// This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out.</span>
+<a name="l00369"></a>00369 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#af7bc68e5a19fd4c9c8cc2437485096e1" title="Creates events for each Window manger.">DoMainLoopWindowManagerBuffering</a>();
 <a name="l00370"></a>00370 <span class="comment"></span>
-<a name="l00371"></a>00371 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00372"></a>00372 <span class="comment"></span>        <span class="comment">// Physics Methods</span><span class="comment"></span>
-<a name="l00373"></a>00373 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00374"></a>00374 <span class="comment">            /// @brief Sets the gravity.</span>
-<a name="l00375"></a>00375 <span class="comment">            /// @details Sets the strength and direction of gravity within the world.</span>
-<a name="l00376"></a>00376 <span class="comment">            /// @param pgrav Vector3 representing the strength and direction of gravity.</span>
-<a name="l00377"></a>00377 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a47e1221b296ea7c3188da65ca9570bd5" title="Sets the gravity.">SetGravity</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> pgrav);
-<a name="l00378"></a>00378 <span class="comment"></span>
-<a name="l00379"></a>00379 <span class="comment">            /// @brief Enables and Disables Physics Debug Drawing</span>
-<a name="l00380"></a>00380 <span class="comment">            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics</span>
-<a name="l00381"></a>00381 <span class="comment">            /// subsytem pixel for pixel.</span>
-<a name="l00382"></a>00382 <span class="comment">            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control</span>
-<a name="l00383"></a>00383 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a9fbd112d2677aa948301287d541b64bb" title="Enables and Disables Physics Debug Drawing.">SetDebugPhysicsRendering</a>(<span class="keywordtype">int</span> ToBeEnabled);
-<a name="l00384"></a>00384 <span class="comment"></span>
-<a name="l00385"></a>00385 <span class="comment">            /// @brief Is Physics Debug Drawing currently enabled?</span>
-<a name="l00386"></a>00386 <span class="comment">            /// @details lets you check if Physics Debug Drawing is enabled or not.</span>
-<a name="l00387"></a>00387 <span class="comment">            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features</span>
-<a name="l00388"></a>00388 <span class="comment"></span>            <span class="keywordtype">int</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a92070d16eb81866b4393f0ed96fbcbbc" title="Is Physics Debug Drawing currently enabled?">GetDebugPhysicsRendering</a>();
+<a name="l00371"></a>00371 <span class="comment">            /// @brief This forces the screen to be re-rendered</span>
+<a name="l00372"></a>00372 <span class="comment">            /// @details This renders the screen based on the status of all in game actors. This is automatically called in the main loop.</span>
+<a name="l00373"></a>00373 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a34133dd084f575a51209458dbe9ecdac" title="This forces the screen to be re-rendered.">DoMainLoopRender</a>();
+<a name="l00374"></a>00374 <span class="comment"></span>
+<a name="l00375"></a>00375 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00376"></a>00376 <span class="comment"></span>        <span class="comment">// Actor Methods</span><span class="comment"></span>
+<a name="l00377"></a>00377 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00378"></a>00378 <span class="comment">            /// @brief The adds and Actor to the physworld.</span>
+<a name="l00379"></a>00379 <span class="comment">            /// @details This adds, and makes sure that it&#39;s physics status and 3d graphics status are</span>
+<a name="l00380"></a>00380 <span class="comment">            /// properly handled. The phys::World will delete any actor still left in it upon deconstruction.</span>
+<a name="l00381"></a>00381 <span class="comment">            /// @param ActorToAdd This is a pointer to the actor to be added.</span>
+<a name="l00382"></a>00382 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a0fec41ef68b7bb1443aab927f8277a81" title="The adds and Actor to the physworld.">AddActor</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToAdd);
+<a name="l00383"></a>00383 <span class="comment"></span>
+<a name="l00384"></a>00384 <span class="comment">            /// @brief The Removes an Actor from the physworld.</span>
+<a name="l00385"></a>00385 <span class="comment">            /// @details This removes the actor to the internal graphics and physics systems, and drops the pointer. This does not delete</span>
+<a name="l00386"></a>00386 <span class="comment">            /// The Actor.</span>
+<a name="l00387"></a>00387 <span class="comment">            /// @param ActorToRemove This is a pointer to the actor to be removed</span>
+<a name="l00388"></a>00388 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#ab00f84983afcc7f6ef1e5a84367d994d" title="The Removes an Actor from the physworld.">RemoveActor</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToRemove);
 <a name="l00389"></a>00389 <span class="comment"></span>
-<a name="l00390"></a>00390 <span class="comment">            /// @brief How many Wireframes do you want drawn from previous events</span>
-<a name="l00391"></a>00391 <span class="comment">            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount</span>
-<a name="l00392"></a>00392 <span class="comment">            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()</span>
-<a name="l00393"></a>00393 <span class="comment">            /// In conjunction with this to specify an amout of seconds worth of wireframes.</span>
-<a name="l00394"></a>00394 <span class="comment">            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don&#39;t forget to be mindful of the framerate,</span>
-<a name="l00395"></a>00395 <span class="comment">            /// Any amount more than just a few seconds worth can be cumbersome.</span>
-<a name="l00396"></a>00396 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a6fa4d1e58a78ba0403af1c003fd321d9" title="How many Wireframes do you want drawn from previous events.">SetDebugPhysicsWireCount</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> WireFrameCount_);
+<a name="l00390"></a>00390 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00391"></a>00391 <span class="comment"></span>        <span class="comment">// Physics Methods</span><span class="comment"></span>
+<a name="l00392"></a>00392 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00393"></a>00393 <span class="comment">            /// @brief Sets the gravity.</span>
+<a name="l00394"></a>00394 <span class="comment">            /// @details Sets the strength and direction of gravity within the world.</span>
+<a name="l00395"></a>00395 <span class="comment">            /// @param pgrav Vector3 representing the strength and direction of gravity.</span>
+<a name="l00396"></a>00396 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a47e1221b296ea7c3188da65ca9570bd5" title="Sets the gravity.">SetGravity</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> pgrav);
 <a name="l00397"></a>00397 <span class="comment"></span>
-<a name="l00398"></a>00398 <span class="comment">            /// @brief This gets how many WireFrames are being drawn.</span>
-<a name="l00399"></a>00399 <span class="comment">            /// @details This will tell you how many frames worth of previous in game events are being drawn.</span>
-<a name="l00400"></a>00400 <span class="comment">            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .</span>
-<a name="l00401"></a>00401 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../da/ddf/classphys_1_1World.html#a1031d596580ac1a8d3593b5be9b49091" title="This gets how many WireFrames are being drawn.">GetDebugPhysicsWireCount</a>();
-<a name="l00402"></a>00402 <span class="comment"></span>
-<a name="l00403"></a>00403 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00404"></a>00404 <span class="comment"></span>        <span class="comment">// Feature Manager Pointers</span><span class="comment"></span>
-<a name="l00405"></a>00405 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00406"></a>00406 <span class="comment">            /// @brief This is a point to the default Call BackManager</span>
-<a name="l00407"></a>00407 <span class="comment">            /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.</span>
-<a name="l00408"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a22a1624c63198f49fdf8e448881bdb2e">00408</a> <span class="comment"></span>            <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a>* <a class="code" href="../../da/ddf/classphys_1_1World.html#a22a1624c63198f49fdf8e448881bdb2e" title="This is a point to the default Call BackManager.">CallBacks</a>;
-<a name="l00409"></a>00409 <span class="comment"></span>
-<a name="l00410"></a>00410 <span class="comment">            /// @brief This is the default pointer to the Event Manager.</span>
-<a name="l00411"></a>00411 <span class="comment">            /// @details This is the Event manager that all physworld members will place any events into.</span>
-<a name="l00412"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453">00412</a> <span class="comment"></span>            <a class="code" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>* <a class="code" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453" title="This is the default pointer to the Event Manager.">Events</a>;
-<a name="l00413"></a>00413 
-<a name="l00414"></a>00414         <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00415"></a>00415 <span class="comment">            /// @brief This is a convienient place to keep pointer to our Actors</span>
-<a name="l00416"></a>00416 <span class="comment">            /// @details Whenever an actor is added, a pointer to it will be stored here.</span>
-<a name="l00417"></a>00417 <span class="comment"></span>            <a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html" title="A base class to unify the interface for different kinds of containers for holding...">ActorContainerBase</a>* Actors;
-<a name="l00418"></a>00418     };
-<a name="l00419"></a>00419 }
-<a name="l00420"></a>00420 <span class="preprocessor">#endif</span>
+<a name="l00398"></a>00398 <span class="comment">            /// @brief Enables and Disables Physics Debug Drawing</span>
+<a name="l00399"></a>00399 <span class="comment">            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics</span>
+<a name="l00400"></a>00400 <span class="comment">            /// subsytem pixel for pixel.</span>
+<a name="l00401"></a>00401 <span class="comment">            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control</span>
+<a name="l00402"></a>00402 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a9fbd112d2677aa948301287d541b64bb" title="Enables and Disables Physics Debug Drawing.">SetDebugPhysicsRendering</a>(<span class="keywordtype">int</span> ToBeEnabled);
+<a name="l00403"></a>00403 <span class="comment"></span>
+<a name="l00404"></a>00404 <span class="comment">            /// @brief Is Physics Debug Drawing currently enabled?</span>
+<a name="l00405"></a>00405 <span class="comment">            /// @details lets you check if Physics Debug Drawing is enabled or not.</span>
+<a name="l00406"></a>00406 <span class="comment">            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features</span>
+<a name="l00407"></a>00407 <span class="comment"></span>            <span class="keywordtype">int</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a92070d16eb81866b4393f0ed96fbcbbc" title="Is Physics Debug Drawing currently enabled?">GetDebugPhysicsRendering</a>();
+<a name="l00408"></a>00408 <span class="comment"></span>
+<a name="l00409"></a>00409 <span class="comment">            /// @brief How many Wireframes do you want drawn from previous events</span>
+<a name="l00410"></a>00410 <span class="comment">            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount</span>
+<a name="l00411"></a>00411 <span class="comment">            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()</span>
+<a name="l00412"></a>00412 <span class="comment">            /// In conjunction with this to specify an amout of seconds worth of wireframes.</span>
+<a name="l00413"></a>00413 <span class="comment">            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don&#39;t forget to be mindful of the framerate,</span>
+<a name="l00414"></a>00414 <span class="comment">            /// Any amount more than just a few seconds worth can be cumbersome.</span>
+<a name="l00415"></a>00415 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/ddf/classphys_1_1World.html#a6fa4d1e58a78ba0403af1c003fd321d9" title="How many Wireframes do you want drawn from previous events.">SetDebugPhysicsWireCount</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> WireFrameCount_);
+<a name="l00416"></a>00416 <span class="comment"></span>
+<a name="l00417"></a>00417 <span class="comment">            /// @brief This gets how many WireFrames are being drawn.</span>
+<a name="l00418"></a>00418 <span class="comment">            /// @details This will tell you how many frames worth of previous in game events are being drawn.</span>
+<a name="l00419"></a>00419 <span class="comment">            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .</span>
+<a name="l00420"></a>00420 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../da/ddf/classphys_1_1World.html#a1031d596580ac1a8d3593b5be9b49091" title="This gets how many WireFrames are being drawn.">GetDebugPhysicsWireCount</a>();
+<a name="l00421"></a>00421 <span class="comment"></span>
+<a name="l00422"></a>00422 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00423"></a>00423 <span class="comment"></span>        <span class="comment">// Feature Manager Pointers</span><span class="comment"></span>
+<a name="l00424"></a>00424 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00425"></a>00425 <span class="comment">            /// @brief This is a point to the default Call BackManager</span>
+<a name="l00426"></a>00426 <span class="comment">            /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.</span>
+<a name="l00427"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a22a1624c63198f49fdf8e448881bdb2e">00427</a> <span class="comment"></span>            <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a>* <a class="code" href="../../da/ddf/classphys_1_1World.html#a22a1624c63198f49fdf8e448881bdb2e" title="This is a point to the default Call BackManager.">CallBacks</a>;
+<a name="l00428"></a>00428 <span class="comment"></span>
+<a name="l00429"></a>00429 <span class="comment">            /// @brief This is the default pointer to the Event Manager.</span>
+<a name="l00430"></a>00430 <span class="comment">            /// @details This is the Event manager that all physworld members will place any events into.</span>
+<a name="l00431"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453">00431</a> <span class="comment"></span>            <a class="code" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>* <a class="code" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453" title="This is the default pointer to the Event Manager.">Events</a>;
+<a name="l00432"></a>00432 
+<a name="l00433"></a>00433         <span class="keyword">private</span>:<span class="comment"></span>
+<a name="l00434"></a>00434 <span class="comment">            /// @brief This is a convienient place to keep pointer to our Actors</span>
+<a name="l00435"></a>00435 <span class="comment">            /// @details Whenever an actor is added, a pointer to it will be stored here.</span>
+<a name="l00436"></a>00436 <span class="comment"></span>            <a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html" title="A base class to unify the interface for different kinds of containers for holding...">ActorContainerBase</a>* Actors;
+<a name="l00437"></a>00437     };
+<a name="l00438"></a>00438 }
+<a name="l00439"></a>00439 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 9 11:29:21 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 10 10:46:30 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

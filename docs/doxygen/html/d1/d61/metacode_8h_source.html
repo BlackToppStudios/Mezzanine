@@ -516,19 +516,24 @@
 <a name="l00491"></a>00491 <span class="comment">            /// @param ID_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.</span>
 <a name="l00492"></a>00492 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a0ef70c11c06f0e3015121985cb1b6153" title="This Sets The input ID.">SetID</a>(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;ID_);
 <a name="l00493"></a>00493 <span class="comment"></span>
-<a name="l00494"></a>00494 <span class="comment">            /// @brief Compares two MetaCodes for equality</span>
-<a name="l00495"></a>00495 <span class="comment">            /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.</span>
-<a name="l00496"></a>00496 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a506486e5a6f08d50a5af42fa6d48a7f5" title="Compares two MetaCodes for equality.">operator==</a>(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;other) <span class="keyword">const</span>;
-<a name="l00497"></a>00497     };
-<a name="l00498"></a>00498 }
-<a name="l00499"></a>00499 <span class="comment"></span>
-<a name="l00500"></a>00500 <span class="comment">/// @brief Allows for streaming of MetaCodes</span>
-<a name="l00501"></a>00501 <span class="comment">/// @details If it can be streamed, then it can be logged Holds true for the MetaCode.</span>
-<a name="l00502"></a>00502 <span class="comment"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">phys::MetaCode</a>&amp; x);
-<a name="l00503"></a>00503 
-<a name="l00504"></a>00504 <span class="preprocessor">#endif</span>
+<a name="l00494"></a>00494 <span class="comment">            /// @brief Does this MetaCode Represent a state of a keyboard key</span>
+<a name="l00495"></a>00495 <span class="comment">            /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.</span>
+<a name="l00496"></a>00496 <span class="comment">            /// @return This returns a bool which will be true if this is keyboard event.</span>
+<a name="l00497"></a>00497 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#ad86e1599eccea8edecb721eb84c06c72" title="Does this MetaCode Represent a state of a keyboard key.">IsKeyboardButton</a>() <span class="keyword">const</span>;
+<a name="l00498"></a>00498 <span class="comment"></span>
+<a name="l00499"></a>00499 <span class="comment">            /// @brief Compares two MetaCodes for equality</span>
+<a name="l00500"></a>00500 <span class="comment">            /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.</span>
+<a name="l00501"></a>00501 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a506486e5a6f08d50a5af42fa6d48a7f5" title="Compares two MetaCodes for equality.">operator==</a>(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;other) <span class="keyword">const</span>;
+<a name="l00502"></a>00502     };
+<a name="l00503"></a>00503 }
+<a name="l00504"></a>00504 <span class="comment"></span>
+<a name="l00505"></a>00505 <span class="comment">/// @brief Allows for streaming of MetaCodes</span>
+<a name="l00506"></a>00506 <span class="comment">/// @details If it can be streamed, then it can be logged Holds true for the MetaCode.</span>
+<a name="l00507"></a>00507 <span class="comment"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">phys::MetaCode</a>&amp; x);
+<a name="l00508"></a>00508 
+<a name="l00509"></a>00509 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 9 11:29:21 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 10 10:46:30 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
