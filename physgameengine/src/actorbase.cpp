@@ -181,8 +181,8 @@ namespace phys{
     Vector3 ActorBase::GetOgreLocation()
     {
         Vector3 temp;
-        //temp.ExtractOgreVector3(this->node->getPosition());
-        return temp.ExtractOgreVector3(this->node->getPosition());
+        temp.ExtractOgreVector3(this->node->getPosition());
+        return temp;
     }
 
     void ActorBase::SetBulletLocation (Vector3 Location)
