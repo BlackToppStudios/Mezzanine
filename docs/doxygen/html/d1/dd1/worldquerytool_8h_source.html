@@ -78,7 +78,7 @@
 <a name="l00053"></a>00053     <span class="keyword">class </span>RaySceneQuery;
 <a name="l00054"></a>00054     <span class="keyword">class </span>Vector3;
 <a name="l00055"></a>00055     <span class="keyword">class </span>Quaternion;
-<a name="l00056"></a>00056     <span class="keyword">class </span>MeshPtr;
+<a name="l00056"></a>00056     <span class="keyword">class </span>Entity;
 <a name="l00057"></a>00057 }
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059 <span class="keyword">namespace </span>phys
@@ -124,15 +124,15 @@
 <a name="l00099"></a>00099 <span class="comment"></span>
 <a name="l00100"></a>00100 <span class="comment">            /// @internal</span>
 <a name="l00101"></a>00101 <span class="comment">            /// @brief used to get information about 3d graphical objects at specific locations</span>
-<a name="l00102"></a>00102 <span class="comment"></span>
-<a name="l00103"></a>00103             <span class="keywordtype">void</span> GetMeshInformation(<span class="keyword">const</span> Ogre::MeshPtr mesh,
-<a name="l00104"></a>00104                                 <span class="keywordtype">size_t</span> &amp;vertex_count,
-<a name="l00105"></a>00105                                 Ogre::Vector3* &amp;vertices,
-<a name="l00106"></a>00106                                 <span class="keywordtype">size_t</span> &amp;index_count,
-<a name="l00107"></a>00107                                 <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>* &amp;indices,
-<a name="l00108"></a>00108                                 <span class="keyword">const</span> Ogre::Vector3 &amp;position,
-<a name="l00109"></a>00109                                 <span class="keyword">const</span> Ogre::Quaternion &amp;orient,
-<a name="l00110"></a>00110                                 <span class="keyword">const</span> Ogre::Vector3 &amp;scale);
+<a name="l00102"></a>00102 <span class="comment"></span>            <span class="keywordtype">void</span> GetMeshInformation(Ogre::Entity *entity,
+<a name="l00103"></a>00103                                 <span class="keywordtype">size_t</span> &amp;vertex_count,
+<a name="l00104"></a>00104                                 Ogre::Vector3* &amp;vertices,
+<a name="l00105"></a>00105                                 <span class="keywordtype">size_t</span> &amp;index_count,
+<a name="l00106"></a>00106                                 <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>* &amp;indices,
+<a name="l00107"></a>00107                                 <span class="keyword">const</span> Ogre::Vector3 &amp;position,
+<a name="l00108"></a>00108                                 <span class="keyword">const</span> Ogre::Quaternion &amp;orient,
+<a name="l00109"></a>00109                                 <span class="keyword">const</span> Ogre::Vector3 &amp;scale);
+<a name="l00110"></a>00110 
 <a name="l00111"></a>00111 
 <a name="l00112"></a>00112         <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00113"></a>00113 <span class="comment">            /// @brief Basic Constructor.</span>
@@ -174,20 +174,20 @@
 <a name="l00149"></a>00149 <span class="comment">            /// @brief This will find the first Actor to intesect the Given ray.</span>
 <a name="l00150"></a>00150 <span class="comment">            /// @details This use the graphics subsystem to cast a ray</span>
 <a name="l00151"></a>00151 <span class="comment">            /// @param ActorRay The Ray to search along.</span>
-<a name="l00152"></a>00152 <span class="comment">            /// @return This returns a pointer to an actorbase, which is the first actor along the ray</span>
-<a name="l00153"></a>00153 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#af5864818aad3e6d44452ae6f6d0ba4b6" title="This will find the first Actor to intesect the Given ray.">GetFirstActorOnRayByPolygon</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
+<a name="l00152"></a>00152 <span class="comment">            /// @return This returns a pointer to an VectorWActor3, which contains the first actor along the ray and the point of intersection Relative to the actor</span>
+<a name="l00153"></a>00153 <span class="comment"></span>            <a class="code" href="../../de/ddc/classphys_1_1VectorWActor3.html" title="This class is used to store or transfer a position relative to an Actor.">VectorWActor3</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a7921889d3bb3fbf74e37ee87bd9f4de4" title="This will find the first Actor to intesect the Given ray.">GetFirstActorOnRayByPolygon</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
 <a name="l00154"></a>00154 <span class="comment"></span>
 <a name="l00155"></a>00155 <span class="comment">            /// @brief</span>
 <a name="l00156"></a>00156 <span class="comment">            /// @details</span>
 <a name="l00157"></a>00157 <span class="comment">            /// @param ActorRay The Ray to search along.</span>
 <a name="l00158"></a>00158 <span class="comment">            /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.</span>
-<a name="l00159"></a>00159 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ac727c485571593a81d5828bfaf17e545">GetFirstActorOnRayByAABB</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
+<a name="l00159"></a>00159 <span class="comment"></span>            <a class="code" href="../../de/ddc/classphys_1_1VectorWActor3.html" title="This class is used to store or transfer a position relative to an Actor.">VectorWActor3</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#abaa9f42bc286d1d87b00c65e1212d852">GetFirstActorOnRayByAABB</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
 <a name="l00160"></a>00160 <span class="comment"></span>
 <a name="l00161"></a>00161 <span class="comment">            /// @brief</span>
 <a name="l00162"></a>00162 <span class="comment">            /// @details</span>
 <a name="l00163"></a>00163 <span class="comment">            /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB .</span>
 <a name="l00164"></a>00164 <span class="comment">            /// @return This returns a VectorWActor3 which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.</span>
-<a name="l00165"></a>00165 <span class="comment"></span>            <a class="code" href="../../de/ddc/classphys_1_1VectorWActor3.html" title="This class is used to store or transfer a position relative to an Actor.">VectorWActor3</a> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a2b1e95fb1ed9ceb7e26210c884c4a1db">GetActorUnderMouse</a>(<span class="keywordtype">bool</span> UsePolygon=<span class="keyword">true</span>);
+<a name="l00165"></a>00165 <span class="comment"></span>            <a class="code" href="../../de/ddc/classphys_1_1VectorWActor3.html" title="This class is used to store or transfer a position relative to an Actor.">VectorWActor3</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a3ee3394dccd1d1c844e346ec78ad1fa9">GetActorUnderMouse</a>(<span class="keywordtype">bool</span> UsePolygon=<span class="keyword">true</span>);
 <a name="l00166"></a>00166 <span class="comment"></span>
 <a name="l00167"></a>00167 <span class="comment">            /// @brief This gathers any user-input/event data that might be queryed</span>
 <a name="l00168"></a>00168 <span class="comment">            /// @details This should be called periodcally (ideally in the post user input callback) to allow this</span>
@@ -206,7 +206,7 @@
 <a name="l00181"></a>00181 
 <a name="l00182"></a>00182 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jun 13 17:02:40 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 14 00:55:02 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -76,6 +76,8 @@ Inheritance diagram for phys::ActorContainerVector:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This gets the last actor in the container.  <a href="#a211f6e419ef0b753cecf2c662a54511e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a20d18213e69b3821ee973865df428e6d">GetType</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Which kind of container it this anyway.  <a href="#a20d18213e69b3821ee973865df428e6d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc">FindActor</a> (Ogre::Node *GraphicsNode)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This finds an actor by searching for a graphics subsystem nodes.  <a href="#ad01cf1452bda36cee175ae0e54d509cc"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> * &gt;::iterator&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed">cursor</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is used to store information about the cursor.  <a href="#a08bdad9b15e265b5d44470f21766b6ed"></a><br/></td></tr>
@@ -84,7 +86,7 @@ Inheritance diagram for phys::ActorContainerVector:</div>
 <p>A simple Actor Container using a vector. </p>
 <p>This inherits from std::vector and our <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html" title="A base class to unify the interface for different kinds of containers for holding...">phys::ActorContainerBase</a> to allow us to have access to a container through a standardized structure this way the phys::world doesn't need to worry about the details when accessing and storing actors </p>
 
-<p>Definition at line <a class="el" href="../../de/dfd/actorcontainervector_8h_source.html#l00057">57</a> of file <a class="el" href="../../de/dfd/actorcontainervector_8h_source.html">actorcontainervector.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dfd/actorcontainervector_8h_source.html#l00062">62</a> of file <a class="el" href="../../de/dfd/actorcontainervector_8h_source.html">actorcontainervector.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a65a17a06bc964c2b5f04a8dbb003622a"></a><!-- doxytag: member="phys::ActorContainerVector::ActorContainerVector" ref="a65a17a06bc964c2b5f04a8dbb003622a" args="(World *Parent_)" -->
 <div class="memitem">
@@ -242,6 +244,32 @@ Inheritance diagram for phys::ActorContainerVector:</div>
 <p>Implements <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a7c424168c0bbd973b283a083714123b3">phys::ActorContainerBase</a>.</p>
 
 <p>Definition at line <a class="el" href="../../df/d3e/actorcontainervector_8cpp_source.html#l00090">90</a> of file <a class="el" href="../../df/d3e/actorcontainervector_8cpp_source.html">actorcontainervector.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad01cf1452bda36cee175ae0e54d509cc"></a><!-- doxytag: member="phys::ActorContainerVector::FindActor" ref="ad01cf1452bda36cee175ae0e54d509cc" args="(Ogre::Node *GraphicsNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> * phys::ActorContainerVector::FindActor </td>
+          <td>(</td>
+          <td class="paramtype">Ogre::Node *&nbsp;</td>
+          <td class="paramname"> <em>GraphicsNode</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This finds an actor by searching for a graphics subsystem nodes. </p>
+<p>This will iterate through each Actor in the container until it finds one with a matching Node </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to and <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> that has a matching node </dd></dl>
+
+<p>Implements <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a2e4652bf92f24a0ff20bdc4a7173b567">phys::ActorContainerBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../df/d3e/actorcontainervector_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../df/d3e/actorcontainervector_8cpp_source.html">actorcontainervector.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,7 +485,7 @@ Inheritance diagram for phys::ActorContainerVector:</div>
 <p>This is used to store information about the cursor. </p>
 <p>This implementation of <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html" title="A base class to unify the interface for different kinds of containers for holding...">ActorContainerBase</a> will use this, and only this to access the cursor so feel free to use this instead. </p>
 
-<p>Definition at line <a class="el" href="../../de/dfd/actorcontainervector_8h_source.html#l00094">94</a> of file <a class="el" href="../../de/dfd/actorcontainervector_8h_source.html">actorcontainervector.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/dfd/actorcontainervector_8h_source.html#l00101">101</a> of file <a class="el" href="../../de/dfd/actorcontainervector_8h_source.html">actorcontainervector.h</a>.</p>
 
 </div>
 </div>
@@ -466,7 +494,7 @@ Inheritance diagram for phys::ActorContainerVector:</div>
 <li><a class="el" href="../../df/d3e/actorcontainervector_8cpp_source.html">actorcontainervector.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jun 13 17:02:41 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 14 00:55:03 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

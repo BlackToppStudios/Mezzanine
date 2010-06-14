@@ -26,11 +26,11 @@ bool \hyperlink{classphys_1_1WorldQueryTool_af277b578432dfaefffbc4fd9bb80ca64}{I
 \begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1WorldQueryTool_a8343f54b900adb316ddc6de5405da328}{IsKeyboardButtonPushed} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} KeyboardButton)
 \begin{DoxyCompactList}\small\item\em Returns whether a specific KEyboard button is pushed. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_af5864818aad3e6d44452ae6f6d0ba4b6}{GetFirstActorOnRayByPolygon} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
+\hyperlink{classphys_1_1VectorWActor3}{VectorWActor3} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a7921889d3bb3fbf74e37ee87bd9f4de4}{GetFirstActorOnRayByPolygon} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
 \begin{DoxyCompactList}\small\item\em This will find the first Actor to intesect the Given ray. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_ac727c485571593a81d5828bfaf17e545}{GetFirstActorOnRayByAABB} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
+\hyperlink{classphys_1_1VectorWActor3}{VectorWActor3} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_abaa9f42bc286d1d87b00c65e1212d852}{GetFirstActorOnRayByAABB} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
 \item 
-\hyperlink{classphys_1_1VectorWActor3}{VectorWActor3} \hyperlink{classphys_1_1WorldQueryTool_a2b1e95fb1ed9ceb7e26210c884c4a1db}{GetActorUnderMouse} (bool UsePolygon=true)
+\hyperlink{classphys_1_1VectorWActor3}{VectorWActor3} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a3ee3394dccd1d1c844e346ec78ad1fa9}{GetActorUnderMouse} (bool UsePolygon=true)
 \item 
 void \hyperlink{classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}{GatherEvents} (bool ClearEventsFromEventMgr=false)
 \begin{DoxyCompactList}\small\item\em This gathers any user-\/input/event data that might be queryed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -100,33 +100,33 @@ This should be called periodcally (ideally in the post user input callback) to a
 
 Definition at line 87 of file worldquerytool.cpp.
 
-\hypertarget{classphys_1_1WorldQueryTool_a2b1e95fb1ed9ceb7e26210c884c4a1db}{
+\hypertarget{classphys_1_1WorldQueryTool_a3ee3394dccd1d1c844e346ec78ad1fa9}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetActorUnderMouse@{GetActorUnderMouse}}
 \index{GetActorUnderMouse@{GetActorUnderMouse}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VectorWActor3} phys::WorldQueryTool::GetActorUnderMouse (bool {\em UsePolygon} = {\ttfamily true})}}
-\label{d8/d69/classphys_1_1WorldQueryTool_a2b1e95fb1ed9ceb7e26210c884c4a1db}
+\subsubsection[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VectorWActor3}$\ast$ phys::WorldQueryTool::GetActorUnderMouse (bool {\em UsePolygon} = {\ttfamily true})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_a3ee3394dccd1d1c844e346ec78ad1fa9}
 
 \begin{DoxyParams}{Parameters}
 \item[{\em UsePolygon}]If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB . \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 This returns a \hyperlink{classphys_1_1VectorWActor3}{VectorWActor3} which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass. 
 \end{DoxyReturn}
-\hypertarget{classphys_1_1WorldQueryTool_ac727c485571593a81d5828bfaf17e545}{
+\hypertarget{classphys_1_1WorldQueryTool_abaa9f42bc286d1d87b00c65e1212d852}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetFirstActorOnRayByAABB@{GetFirstActorOnRayByAABB}}
 \index{GetFirstActorOnRayByAABB@{GetFirstActorOnRayByAABB}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetFirstActorOnRayByAABB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase}$\ast$ phys::WorldQueryTool::GetFirstActorOnRayByAABB ({\bf Ray} {\em ActorRay})}}
-\label{d8/d69/classphys_1_1WorldQueryTool_ac727c485571593a81d5828bfaf17e545}
+\subsubsection[{GetFirstActorOnRayByAABB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VectorWActor3}$\ast$ phys::WorldQueryTool::GetFirstActorOnRayByAABB ({\bf Ray} {\em ActorRay})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_abaa9f42bc286d1d87b00c65e1212d852}
 
 \begin{DoxyParams}{Parameters}
 \item[{\em ActorRay}]The \hyperlink{classphys_1_1Ray}{Ray} to search along. \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 This returns a pointer to an actorbase, which is the first actor to have an Axis-\/Aligned Bounding Box along the ray. 
 \end{DoxyReturn}
-\hypertarget{classphys_1_1WorldQueryTool_af5864818aad3e6d44452ae6f6d0ba4b6}{
+\hypertarget{classphys_1_1WorldQueryTool_a7921889d3bb3fbf74e37ee87bd9f4de4}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetFirstActorOnRayByPolygon@{GetFirstActorOnRayByPolygon}}
 \index{GetFirstActorOnRayByPolygon@{GetFirstActorOnRayByPolygon}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetFirstActorOnRayByPolygon}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::WorldQueryTool::GetFirstActorOnRayByPolygon ({\bf Ray} {\em ActorRay})}}
-\label{d8/d69/classphys_1_1WorldQueryTool_af5864818aad3e6d44452ae6f6d0ba4b6}
+\subsubsection[{GetFirstActorOnRayByPolygon}]{\setlength{\rightskip}{0pt plus 5cm}{\bf VectorWActor3} $\ast$ phys::WorldQueryTool::GetFirstActorOnRayByPolygon ({\bf Ray} {\em ActorRay})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_a7921889d3bb3fbf74e37ee87bd9f4de4}
 
 
 This will find the first Actor to intesect the Given ray. 
@@ -135,7 +135,7 @@ This use the graphics subsystem to cast a ray
 \begin{DoxyParams}{Parameters}
 \item[{\em ActorRay}]The \hyperlink{classphys_1_1Ray}{Ray} to search along. \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-This returns a pointer to an actorbase, which is the first actor along the ray 
+This returns a pointer to an \hyperlink{classphys_1_1VectorWActor3}{VectorWActor3}, which contains the first actor along the ray and the point of intersection Relative to the actor 
 \end{DoxyReturn}
 
 

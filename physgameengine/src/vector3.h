@@ -145,44 +145,44 @@ namespace phys
         /// @brief Bullet Addition Operator
         /// @details Allows for addition  between a phys::Vector3 and a btVector3
         /// @param Vec2 This is the btVector3 to be added
-        Vector3 Vector3::operator+ (const btVector3  &Vec2);
+        Vector3 operator+ (const btVector3  &Vec2);
 
         /// @brief Bullet Subtraction Operator
         /// @details Allows for subtraction  between a phys::Vector3 and a btVector3
         /// @param Vec2 This is the btVector3 to be subtracted
-        Vector3 Vector3::operator- (const btVector3  &Vec2);
+        Vector3 operator- (const btVector3  &Vec2);
 
         /// @brief Bullet Multiplication Operator
         /// @details Allows for multiplication  between a phys::Vector3 and a btVector3
         /// @param Vec2 This is the btVector3 to be multiplied
-        Vector3 Vector3::operator* (const btVector3  &Vec2);
+        Vector3 operator* (const btVector3  &Vec2);
 
         /// @brief Bullet Division Operator
         /// @details Allows for division  between a phys::Vector3 and a btVector3
         /// @param Vec2 This is the btVector3 to be divided
-        Vector3 Vector3::operator/ (const btVector3  &Vec2);
+        Vector3 operator/ (const btVector3  &Vec2);
 
 
 
         /// @brief Ogre Addition Operator
         /// @details Allows for addition  between a phys::Vector3 and a Ogre::Vector3
         /// @param Vec2 This is the Ogre::Vector3 to be added
-        Vector3 Vector3::operator+ (const Ogre::Vector3 &Vec2);
+        Vector3 operator+ (const Ogre::Vector3 &Vec2);
 
         /// @brief Bullet Subtraction Operator
         /// @details Allows for subtraction  between a phys::Vector3 and a Ogre::Vector3
         /// @param Vec2 This is the Ogre::Vector3 to be subtracted
-        Vector3 Vector3::operator- (const Ogre::Vector3 &Vec2);
+        Vector3 operator- (const Ogre::Vector3 &Vec2);
 
         /// @brief Bullet Multiplication Operator
         /// @details Allows for multiplying  between a phys::Vector3 and a Ogre::Vector3
         /// @param Vec2 This is the Ogre::Vector3 to be multiplied
-        Vector3 Vector3::operator* (const Ogre::Vector3 &Vec2);
+        Vector3 operator* (const Ogre::Vector3 &Vec2);
 
         /// @brief Bullet Division Operator
         /// @details Allows for division  between a phys::Vector3 and a Ogre::Vector3
         /// @param Vec2 This is the Ogre::Vector3 to be divided
-        Vector3 Vector3::operator/ (const Ogre::Vector3 &Vec2);
+        Vector3 operator/ (const Ogre::Vector3 &Vec2);
 
 
 

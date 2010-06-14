@@ -4,14 +4,9 @@
 // Gamewide Logic misc Features go here
 ///////////////////////////////////////////////////////////////////////////////
 
-//Game Includes
-#include "gamebase.h"
-
-//Physgame includes
-#include <physgame.h>
-
-//STL includes
-#include <sstream>
+#include "gamebase.h"       //Game Include
+#include <physgame.h>       //Physgame include
+#include <sstream>          //STL includes
 
 using namespace phys;
 
@@ -20,46 +15,6 @@ ActorRigid *object1, *object2, *object3, *object4;
 
 int main(int argc, char **argv)
 {
-    TheWorld.Log("Vector Math Test");
-    Vector3 Temp1(1,2,1);
-    Vector3 Temp2(1,1,1);
-    TheWorld.Log("Temp1");
-    TheWorld.Log(Temp1);
-    TheWorld.Log("Temp2");
-    TheWorld.Log(Temp2);
-    TheWorld.Log("Temp1-Temp2");
-    TheWorld.Log(Temp1-Temp2);
-    TheWorld.Log("Temp1");
-    TheWorld.Log(Temp1);
-    TheWorld.Log("Temp2");
-    TheWorld.Log(Temp2);
-
-    Vector3 Temp3(1,2,1);
-    Vector3 Temp4(1,1,1);
-    TheWorld.Log("Temp3");
-    TheWorld.Log(Temp3);
-    TheWorld.Log("Temp4");
-    TheWorld.Log(Temp4);
-    TheWorld.Log("Temp3+Temp4");
-    TheWorld.Log(Temp3+Temp4);
-    TheWorld.Log("Temp3");
-    TheWorld.Log(Temp3);
-    TheWorld.Log("Temp4");
-    TheWorld.Log(Temp4);
-
-    Vector3 Temp5(1,2,1);
-    Vector3 Temp6(1,1,1);
-    TheWorld.Log("Temp5");
-    TheWorld.Log(Temp5);
-    TheWorld.Log("Temp6");
-    TheWorld.Log(Temp6);
-    TheWorld.Log("Temp5*Temp6");
-    TheWorld.Log(Temp5*Temp6);
-    TheWorld.Log("Temp5");
-    TheWorld.Log(Temp5);
-    TheWorld.Log("Temp6");
-    TheWorld.Log(Temp6);
-
     TheWorld.SetWindowName("Catch!... The Game!");
     TheWorld.SetTargetFrameRate(40);
 
@@ -83,7 +38,7 @@ int main(int argc, char **argv)
     LoadContent();
 
     TheWorld.SetDebugPhysicsWireCount(2);
-    TheWorld.SetDebugPhysicsRendering(1);
+    TheWorld.SetDebugPhysicsRendering(0);
 
 	//Start the Main Loop
 	TheWorld.MainLoop();

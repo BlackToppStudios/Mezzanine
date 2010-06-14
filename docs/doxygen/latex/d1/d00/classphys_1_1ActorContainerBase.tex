@@ -22,6 +22,8 @@ Inheritance diagram for phys::ActorContainerBase:\begin{figure}[H]
 \item 
 \hyperlink{classphys_1_1ActorContainerBase_a629529f9002646d463ea167af1d20df2}{ActorContainerBase} (\hyperlink{classphys_1_1World}{World} $\ast$ParentWorld\_\-)
 \begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorContainerBase_aa5eac062dd70a220a4ec6df973c6f258}{$\sim$ActorContainerBase} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerBase_a8dd213cba4915f68ac421fc9f341cbbe}{AddActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)=0
 \begin{DoxyCompactList}\small\item\em This will add an Actor to this container and the world. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a6ccc6d058bcbbe0b9a638e28fb136477}{LastActorAdded} ()=0
@@ -46,8 +48,15 @@ virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphy
 \begin{DoxyCompactList}\small\item\em This gets the first actor in the container. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a8efeffd5ae22085fe01af791b3ea559e}{GetLast} () const =0
 \begin{DoxyCompactList}\small\item\em This gets the last actor in the container. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}{FindActor} (Ogre::Node $\ast$GraphicsNode)=0
+\begin{DoxyCompactList}\small\item\em This finds an actor by searching for a graphics subsystem nodes. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorContainerBase_a526dab176597858680490d128d0584a3}{GetType} () const =0
 \begin{DoxyCompactList}\small\item\em Which kind of container it this anyway. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Ogre::Node $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a423b3f134370a51fde5496a41792b42c}{GetNode} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$actor)
+\begin{DoxyCompactList}\small\item\em Used to work around the scenenode of an Actor being private, so all derived Containers can access it. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -61,7 +70,7 @@ A base class to unify the interface for different kinds of containers for holdin
 \par
  Because of this classes representation of a cursor only 1 thread at a time should use the cursor movement functions. For the container that the \hyperlink{classphys_1_1World}{phys::World} keeps it should be assume that the cursor is used. For other containers you should manage you container carefully and/or use another iteration method, such as STL iterators. 
 
-Definition at line 69 of file actorcontainerbase.h.
+Definition at line 74 of file actorcontainerbase.h.
 
 
 
@@ -80,7 +89,20 @@ This just assigned the passed pointer to ParentWorld
 \item[{\em ParentWorld\_\-}]This is the world that will perform physics and graphical work on the actors in this container \end{DoxyParams}
 
 
-Definition at line 50 of file actorcontainerbase.cpp.
+Definition at line 49 of file actorcontainerbase.cpp.
+
+\hypertarget{classphys_1_1ActorContainerBase_aa5eac062dd70a220a4ec6df973c6f258}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!$\sim$ActorContainerBase@{$\sim$ActorContainerBase}}
+\index{$\sim$ActorContainerBase@{$\sim$ActorContainerBase}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{$\sim$ActorContainerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorContainerBase::$\sim$ActorContainerBase ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_aa5eac062dd70a220a4ec6df973c6f258}
+
+
+Destructor. 
+
+This really doesn't do anything, but if someone needs to overload it, it's here 
+
+Definition at line 54 of file actorcontainerbase.cpp.
 
 
 
@@ -155,6 +177,22 @@ This moves the cursor to the previous item in the container, and if you started 
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b04a8805a002413}{phys::ActorContainerVector}.
 
+\hypertarget{classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!FindActor@{FindActor}}
+\index{FindActor@{FindActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::FindActor (Ogre::Node $\ast$ {\em GraphicsNode})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}
+
+
+This finds an actor by searching for a graphics subsystem nodes. 
+
+This will iterate through each Actor in the container until it finds one with a matching Node \begin{DoxyReturn}{Returns}
+This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that has a matching node 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}{phys::ActorContainerVector}.
+
 \hypertarget{classphys_1_1ActorContainerBase_aa5ec651d4634b2d90efe2a76f9d2fbdd}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetActorCount@{GetActorCount}}
 \index{GetActorCount@{GetActorCount}!phys::ActorContainerBase@{phys::ActorContainerBase}}
@@ -218,6 +256,21 @@ This returns a pointer to an \hyperlink{classphys_1_1ActorBase}{ActorBase}. Will
 
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a423b3f134370a51fde5496a41792b42c}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Node $\ast$ phys::ActorContainerBase::GetNode ({\bf ActorBase} $\ast$ {\em actor})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a423b3f134370a51fde5496a41792b42c}
+
+
+Used to work around the scenenode of an Actor being private, so all derived Containers can access it. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 57 of file actorcontainerbase.cpp.
 
 \hypertarget{classphys_1_1ActorContainerBase_a526dab176597858680490d128d0584a3}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetType@{GetType}}

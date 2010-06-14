@@ -41,6 +41,7 @@
 #define _worldquerytool_cpp
 
 #include "worldquerytool.h"
+#include "actorcontainerbase.h"
 
 #include <Ogre.h>
 

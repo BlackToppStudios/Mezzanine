@@ -47,7 +47,9 @@ virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphy
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}{GetLast} () const 
 \begin{DoxyCompactList}\small\item\em This gets the last actor in the container. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorContainerVector_a20d18213e69b3821ee973865df428e6d}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em Which kind of container it this anyway. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Which kind of container it this anyway. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}{FindActor} (Ogre::Node $\ast$GraphicsNode)
+\begin{DoxyCompactList}\small\item\em This finds an actor by searching for a graphics subsystem nodes. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -58,7 +60,7 @@ vector$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$::iterator \hy
 \subsection{Detailed Description}
 A simple Actor Container using a vector. This inherits from std::vector and our \hyperlink{classphys_1_1ActorContainerBase}{phys::ActorContainerBase} to allow us to have access to a container through a standardized structure this way the phys::world doesn't need to worry about the details when accessing and storing actors 
 
-Definition at line 57 of file actorcontainervector.h.
+Definition at line 62 of file actorcontainervector.h.
 
 
 
@@ -171,6 +173,26 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a0837
 
 
 Definition at line 90 of file actorcontainervector.cpp.
+
+\hypertarget{classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}{
+\index{phys::ActorContainerVector@{phys::ActorContainerVector}!FindActor@{FindActor}}
+\index{FindActor@{FindActor}!phys::ActorContainerVector@{phys::ActorContainerVector}}
+\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::FindActor (Ogre::Node $\ast$ {\em GraphicsNode})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d64/classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}
+
+
+This finds an actor by searching for a graphics subsystem nodes. 
+
+This will iterate through each Actor in the container until it finds one with a matching Node \begin{DoxyReturn}{Returns}
+This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that has a matching node 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}{phys::ActorContainerBase}.
+
+
+
+Definition at line 140 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a6d2e5e68e23f5798ad10ba41e479d0f7}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetActorCount@{GetActorCount}}
@@ -337,7 +359,7 @@ This is used to store information about the cursor.
 
 This implementation of \hyperlink{classphys_1_1ActorContainerBase}{ActorContainerBase} will use this, and only this to access the cursor so feel free to use this instead. 
 
-Definition at line 94 of file actorcontainervector.h.
+Definition at line 101 of file actorcontainervector.h.
 
 
 
