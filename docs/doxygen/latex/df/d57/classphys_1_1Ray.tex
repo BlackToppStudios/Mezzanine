@@ -17,7 +17,9 @@ This is used to indicate a line with one end.
 \hyperlink{classphys_1_1Ray_a35f4f5eec653ea561353163eaad672d3}{Ray} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Ray_aa6123ef37a2351e6cca3954c23212379}{Ray} (\hyperlink{classphys_1_1Vector3}{Vector3} From\_\-, \hyperlink{classphys_1_1Vector3}{Vector3} To\_\-)
-\begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\item 
+Ogre::Ray \hyperlink{classphys_1_1Ray_a21fbd19de94f238998930213ab72622a}{GetOgreRay} ()
+\begin{DoxyCompactList}\small\item\em Gets an Ogre::Ray that contains this Rays information. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -36,7 +38,7 @@ This is used to indicate a line with one end.
 \subsection{Detailed Description}
 This is used to indicate a line with one end. Currently this is just a collection of two vector3s with a couple of constructors. 
 
-Definition at line 54 of file ray.h.
+Definition at line 59 of file ray.h.
 
 
 
@@ -52,7 +54,7 @@ Default constructor.
 
 This create a ray starting at 0,0,0 pointing to 0,1,0, 
 
-Definition at line 49 of file ray.cpp.
+Definition at line 55 of file ray.cpp.
 
 \hypertarget{classphys_1_1Ray_aa6123ef37a2351e6cca3954c23212379}{
 \index{phys::Ray@{phys::Ray}!Ray@{Ray}}
@@ -68,7 +70,26 @@ This accepts 2 Vector3s and uses them to build the ray
 \item[{\em From\_\-}]The origin fo the new \hyperlink{classphys_1_1Ray}{Ray} \item[{\em To\_\-}]A point along the line for the destination line. \end{DoxyParams}
 
 
-Definition at line 54 of file ray.cpp.
+Definition at line 60 of file ray.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1Ray_a21fbd19de94f238998930213ab72622a}{
+\index{phys::Ray@{phys::Ray}!GetOgreRay@{GetOgreRay}}
+\index{GetOgreRay@{GetOgreRay}!phys::Ray@{phys::Ray}}
+\subsubsection[{GetOgreRay}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Ray phys::Ray::GetOgreRay ()}}
+\label{df/d57/classphys_1_1Ray_a21fbd19de94f238998930213ab72622a}
+
+
+Gets an Ogre::Ray that contains this Rays information. 
+
+Used to aid interopability, this will return afresh Ogre::Ray with the same data as this \hyperlink{classphys_1_1Ray}{Ray} \begin{DoxyReturn}{Returns}
+This returns an Ogre::Ray that contains the same information as this rays information 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file ray.cpp.
 
 
 

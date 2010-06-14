@@ -42,6 +42,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#a35f4f5eec653ea561353163eaad672d3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#aa6123ef37a2351e6cca3954c23212379">Ray</a> (<a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> From_, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> To_)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Thorough constructor.  <a href="#aa6123ef37a2351e6cca3954c23212379"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Ogre::Ray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a21fbd19de94f238998930213ab72622a">GetOgreRay</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets an Ogre::Ray that contains this Rays information.  <a href="#a21fbd19de94f238998930213ab72622a"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3004d52f8f1e317ee602f8f278531057"></a><!-- doxytag: member="phys::Ray::From" ref="a3004d52f8f1e317ee602f8f278531057" args="" -->
 <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057">From</a></td></tr>
@@ -54,7 +56,7 @@
 <p>This is used to indicate a line with one end. </p>
 <p>Currently this is just a collection of two vector3s with a couple of constructors. </p>
 
-<p>Definition at line <a class="el" href="../../d5/d92/ray_8h_source.html#l00054">54</a> of file <a class="el" href="../../d5/d92/ray_8h_source.html">ray.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/d92/ray_8h_source.html#l00059">59</a> of file <a class="el" href="../../d5/d92/ray_8h_source.html">ray.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a35f4f5eec653ea561353163eaad672d3"></a><!-- doxytag: member="phys::Ray::Ray" ref="a35f4f5eec653ea561353163eaad672d3" args="()" -->
 <div class="memitem">
@@ -74,7 +76,7 @@
 <p>Default constructor. </p>
 <p>This create a ray starting at 0,0,0 pointing to 0,1,0, </p>
 
-<p>Definition at line <a class="el" href="../../da/d00/ray_8cpp_source.html#l00049">49</a> of file <a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/ray_8cpp_source.html#l00055">55</a> of file <a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a>.</p>
 
 </div>
 </div>
@@ -113,7 +115,31 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d00/ray_8cpp_source.html#l00054">54</a> of file <a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/ray_8cpp_source.html#l00060">60</a> of file <a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a21fbd19de94f238998930213ab72622a"></a><!-- doxytag: member="phys::Ray::GetOgreRay" ref="a21fbd19de94f238998930213ab72622a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ogre::Ray phys::Ray::GetOgreRay </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets an Ogre::Ray that contains this Rays information. </p>
+<p>Used to aid interopability, this will return afresh Ogre::Ray with the same data as this <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns an Ogre::Ray that contains the same information as this rays information </dd></dl>
+
+<p>Definition at line <a class="el" href="../../da/d00/ray_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a>.</p>
 
 </div>
 </div>
@@ -122,7 +148,7 @@
 <li><a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 10 10:46:31 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jun 13 17:02:42 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

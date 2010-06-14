@@ -44,6 +44,11 @@
 #include "actorbase.h"
 #include "world.h"
 
+namespace Ogre
+{
+    class Node;
+}
+
 namespace phys
 {
 
@@ -72,11 +77,20 @@ namespace phys
             /// @brief This is expected to be a pointer to the world this will be rendered with and built on
             World* ParentWorld;
 
+        protected:
+            /// @internal
+            /// @brief Used to work around the scenenode of an Actor being private, so all derived Containers can access it.
+            Ogre::Node* GetNode(ActorBase* actor);
+
         public:
             /// @brief Basic Constructor
             /// @details This just assigned the passed pointer to ParentWorld
             /// @param ParentWorld_ This is the world that will perform physics and graphical work on the actors in this container
             ActorContainerBase(World* ParentWorld_);
+
+            /// @brief Destructor
+            /// @details This really doesn't do anything, but if someone needs to overload it, it's here
+            virtual ~ActorContainerBase();
 
             /// @brief This will add an Actor to this container and the world
             /// @details This will add an Actor to this container and the world, and handle the nitty gritty details
@@ -142,7 +156,10 @@ namespace phys
             /// @return This returns a pointer to an ActorBase. Will throw an exception when attempting to get from an empty container.
             virtual ActorBase* GetLast() const = 0;
 
-
+            /// @brief This finds an actor by searching for a graphics subsystem nodes
+            /// @details This will iterate through each Actor in the container until it finds one with a matching Node
+            /// @return This returns a pointer to and ActorBase that has a matching node
+            virtual ActorBase* FindActor(Ogre::Node* GraphicsNode) = 0;
 
             /// @brief Which kind of container it this anyway.
             /// @details Since this interface could be used with any type of containers and innumerable 3rd party container implemention this

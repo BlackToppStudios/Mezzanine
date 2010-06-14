@@ -71,33 +71,43 @@
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="preprocessor">#include &quot;ray.h&quot;</span>
 <a name="l00048"></a>00048 
-<a name="l00049"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3">00049</a> <span class="preprocessor">#include &lt;ostream&gt;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
 <a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="keyword">namespace </span>phys
-<a name="l00052"></a>00052 {
-<a name="l00053"></a>00053     <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ray::Ray</a>():From(0,0,0),To(0,1,0)
-<a name="l00054"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#aa6123ef37a2351e6cca3954c23212379">00054</a>     {
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056     }
+<a name="l00051"></a>00051 <span class="preprocessor">#include &lt;ostream&gt;</span>
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053 <span class="keyword">namespace </span>phys
+<a name="l00054"></a>00054 {
+<a name="l00055"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3">00055</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ray::Ray</a>():From(0,0,0),To(0,1,0)
+<a name="l00056"></a>00056     {
 <a name="l00057"></a>00057 
-<a name="l00058"></a>00058     <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ray::Ray</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> From_, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> To_)
-<a name="l00059"></a>00059     {
-<a name="l00060"></a>00060         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>=From_;
-<a name="l00061"></a>00061         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>=To_;
-<a name="l00062"></a>00062     }
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064 }
+<a name="l00058"></a>00058     }
+<a name="l00059"></a>00059 
+<a name="l00060"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#aa6123ef37a2351e6cca3954c23212379">00060</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ray::Ray</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> From_, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> To_)
+<a name="l00061"></a>00061     {
+<a name="l00062"></a>00062         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>=From_;
+<a name="l00063"></a>00063         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>=To_;
+<a name="l00064"></a>00064     }
 <a name="l00065"></a>00065 
-<a name="l00066"></a>00066 <span class="comment">//std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const phys::Vector3&amp; x)</span>
-<a name="l00067"></a>00067 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">phys::Ray</a>&amp; x)
-<a name="l00068"></a>00068 {
-<a name="l00069"></a>00069     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
-<a name="l00070"></a>00070     <span class="keywordflow">return</span> stream;
-<a name="l00071"></a>00071 }
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 <span class="preprocessor">#endif</span>
+<a name="l00066"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a21fbd19de94f238998930213ab72622a">00066</a>     Ogre::Ray <a class="code" href="../../df/d57/classphys_1_1Ray.html#a21fbd19de94f238998930213ab72622a" title="Gets an Ogre::Ray that contains this Rays information.">Ray::GetOgreRay</a>()
+<a name="l00067"></a>00067     {
+<a name="l00068"></a>00068         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ogre::Ray</a>(
+<a name="l00069"></a>00069             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>(),
+<a name="l00070"></a>00070             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>()
+<a name="l00071"></a>00071         );
+<a name="l00072"></a>00072     }
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 }
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 <span class="comment">//std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const phys::Vector3&amp; x)</span>
+<a name="l00077"></a>00077 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">phys::Ray</a>&amp; x)
+<a name="l00078"></a>00078 {
+<a name="l00079"></a>00079     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00080"></a>00080     <span class="keywordflow">return</span> stream;
+<a name="l00081"></a>00081 }
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 10 10:46:30 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jun 13 17:02:40 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

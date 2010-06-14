@@ -44,6 +44,11 @@
 #include "world.h"
 #include <vector>
 
+namespace Ogre
+{
+    class Node;
+}
+
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
@@ -87,6 +92,8 @@ namespace phys
             virtual ActorBase* GetLast() const;
 
             virtual String GetType() const;
+
+            virtual ActorBase* FindActor(Ogre::Node* GraphicsNode);
 
             /// @brief This is used to store information about the cursor
             /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor

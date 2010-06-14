@@ -51,6 +51,9 @@
 namespace Ogre
 {
     class RaySceneQuery;
+    class Vector3;
+    class Quaternion;
+    class Entity;
 }
 
 namespace phys
@@ -89,7 +92,23 @@ namespace phys
             /// @brief A place to store which keys are pressed or not.
             std::bitset<MetaCode::KEY_LAST> KeyboardButtonCache;
 
+            /// @internal
+            /// @brief An Ogre construct used to find information about the locations of graphical object
             Ogre::RaySceneQuery* RayQuery;
+
+
+            /// @internal
+            /// @brief used to get information about 3d graphical objects at specific locations
+            void GetMeshInformation(Ogre::Entity *entity,
+                                size_t &vertex_count,
+                                Ogre::Vector3* &vertices,
+                                size_t &index_count,
+                                unsigned long* &indices,
+                                const Ogre::Vector3 &position,
+                                const Ogre::Quaternion &orient,
+                                const Ogre::Vector3 &scale);
+
+
         public:
             /// @brief Basic Constructor.
             /// @details This creates a WorldQueryTool Ready to run queries on the the world you pass it.
@@ -130,20 +149,20 @@ namespace phys
             /// @brief This will find the first Actor to intesect the Given ray.
             /// @details This use the graphics subsystem to cast a ray
             /// @param ActorRay The Ray to search along.
-            /// @return This returns a pointer to an actorbase, which is the first actor along the ray
-            ActorBase* GetFirstActorOnRayByPolygon(Ray ActorRay);
+            /// @return This returns a pointer to an VectorWActor3, which contains the first actor along the ray and the point of intersection Relative to the actor
+            VectorWActor3* GetFirstActorOnRayByPolygon(Ray ActorRay);
 
             /// @brief
             /// @details
             /// @param ActorRay The Ray to search along.
             /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.
-            ActorBase* GetFirstActorOnRayByAABB(Ray ActorRay);
+            VectorWActor3* GetFirstActorOnRayByAABB(Ray ActorRay);
 
             /// @brief
             /// @details
             /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB .
             /// @return This returns a VectorWActor3 which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
-            VectorWActor3 GetActorUnderMouse(bool UsePolygon=true);
+            VectorWActor3* GetActorUnderMouse(bool UsePolygon=true);
 
             /// @brief This gathers any user-input/event data that might be queryed
             /// @details This should be called periodcally (ideally in the post user input callback) to allow this

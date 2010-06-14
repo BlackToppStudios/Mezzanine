@@ -118,6 +118,12 @@ namespace phys
             /// @details This copies the x,y and z values from the bullet into this vector
             /// @param OVec3 This is a Ogre::Vector3 that will be copied
             void operator= (const Ogre::Vector3 &OVec3);
+
+            /// @brief Subraction Operator
+            /// @details Allows for subtraction from a phys::Vector3
+            /// @param Vec2 This is the other phys::Vector3
+            Vector3 operator- (const Vector3 &Vec2);
+
     };
 }// /phys
 

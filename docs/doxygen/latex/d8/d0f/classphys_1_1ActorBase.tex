@@ -123,7 +123,7 @@ This is the base class from which all the actors inherit. The actor classes stor
  \hyperlink{classphys_1_1ActorBase}{ActorBase} is a base class that serves as a template for the other three actor classes. \par
  \hyperlink{classphys_1_1ActorBase}{ActorBase} should never be created, as it lacks the functionality needed for most objects. 
 
-Definition at line 79 of file actorbase.h.
+Definition at line 80 of file actorbase.h.
 
 
 
@@ -264,7 +264,7 @@ Makes the actor invisable.
 This is the inverse of the AttachToGraphics function. This will effectively remove the object from the graphics world and make it no longer visable. \par
  This is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually. 
 
-Definition at line 271 of file actorbase.cpp.
+Definition at line 270 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_ad543855adcc37dc9cdea4e264ca7953d}{
 \index{phys::ActorBase@{phys::ActorBase}!GetBulletLocation@{GetBulletLocation}}
@@ -303,7 +303,7 @@ Retrieves the name of the object.
 
 This function will retrieve the name of the object, 
 
-Definition at line 276 of file actorbase.cpp.
+Definition at line 275 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a89642f74b0f2782f5f3bf1bed080939e}{
 \index{phys::ActorBase@{phys::ActorBase}!GetOgreLocation@{GetOgreLocation}}
@@ -314,7 +314,10 @@ Definition at line 276 of file actorbase.cpp.
 
 Retrieves the location of the graphical body. 
 
-This function will retrieve the location of the object within the graphical world. 
+This function will retrieve the location of the object within the graphical world. This should always match the physics world. \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1Vector3}{phys::Vector3} with the location of the graphics. 
+\end{DoxyReturn}
+
 
 Definition at line 180 of file actorbase.cpp.
 
@@ -415,7 +418,7 @@ Sets the state of the object to Kinematic.
 This function will set the object to a Kinematic Object. \par
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
 
-Definition at line 283 of file actorbase.cpp.
+Definition at line 282 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a3212be459859a67bf7ae64919d58d5a5}{
 \index{phys::ActorBase@{phys::ActorBase}!SetLocation@{SetLocation}}
@@ -529,7 +532,7 @@ Sets the state of the object to Static.
 This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
-Definition at line 289 of file actorbase.cpp.
+Definition at line 288 of file actorbase.cpp.
 
 
 

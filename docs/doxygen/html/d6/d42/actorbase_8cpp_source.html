@@ -219,8 +219,8 @@
 <a name="l00194"></a>00194     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad543855adcc37dc9cdea4e264ca7953d" title="Retrieves the location of the physics body.">ActorBase::GetBulletLocation</a>()
 <a name="l00195"></a>00195     {
 <a name="l00196"></a>00196         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> temp;
-<a name="l00197"></a>00197         btTransform trans = this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;getWorldTransform();
-<a name="l00198"></a>00198         temp.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a24ae86b068340be6727877f8c6c1a313" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(trans.getOrigin());
+<a name="l00197"></a>00197         <span class="comment">//btTransform trans = this-&gt;CollisionObject-&gt;getWorldTransform();</span>
+<a name="l00198"></a>00198         temp.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a24ae86b068340be6727877f8c6c1a313" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;getWorldTransform().getOrigin());
 <a name="l00199"></a>00199         <span class="keywordflow">return</span> temp;
 <a name="l00200"></a>00200     }
 <a name="l00201"></a>00201 <span class="comment"></span>
@@ -288,39 +288,38 @@
 <a name="l00263"></a>00263     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a45f190cb9b647bb3385d1298f9dab589" title="Makes the actor visable.">ActorBase::AttachToGraphics</a> ()
 <a name="l00264"></a>00264     {
 <a name="l00265"></a>00265         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> temp;
-<a name="l00266"></a>00266         <span class="comment">//temp.ExtractBulletVector3(this-&gt;MotionState-&gt;initposition.getOrigin());</span>
-<a name="l00267"></a>00267         temp = <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad543855adcc37dc9cdea4e264ca7953d" title="Retrieves the location of the physics body.">GetBulletLocation</a>();
-<a name="l00268"></a>00268         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;setPosition(temp.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00269"></a>00269         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;attachObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
-<a name="l00270"></a>00270     }
-<a name="l00271"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec">00271</a> 
-<a name="l00272"></a>00272     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec" title="Makes the actor invisable.">ActorBase::DetachFromGraphics</a> ()
-<a name="l00273"></a>00273     {
-<a name="l00274"></a>00274         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;detachObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
-<a name="l00275"></a>00275     }
-<a name="l00276"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a799c6e8dea4b03474b788338340bc594">00276</a> 
-<a name="l00277"></a>00277     std::string <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a799c6e8dea4b03474b788338340bc594" title="Retrieves the name of the object.">ActorBase::GetName</a> ()
-<a name="l00278"></a>00278     {
-<a name="l00279"></a>00279         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>-&gt;getName();
-<a name="l00280"></a>00280     }
-<a name="l00281"></a>00281 <span class="comment"></span>
-<a name="l00282"></a>00282 <span class="comment">    ///////////////////////////////////</span>
-<a name="l00283"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f">00283</a> <span class="comment"></span>    <span class="comment">// ActorBase Public Collision flag functions</span>
-<a name="l00284"></a>00284     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f" title="Sets the state of the object to Kinematic.">ActorBase::SetKinematic</a>()
-<a name="l00285"></a>00285     {
-<a name="l00286"></a>00286         <span class="keywordtype">int</span> x=2;
-<a name="l00287"></a>00287         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(x);
-<a name="l00288"></a>00288     }
-<a name="l00289"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037">00289</a> 
-<a name="l00290"></a>00290     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037" title="Sets the state of the object to Static.">ActorBase::SetStatic</a>()
-<a name="l00291"></a>00291     {
-<a name="l00292"></a>00292         <span class="keywordtype">int</span> x=1;
-<a name="l00293"></a>00293         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(x);
-<a name="l00294"></a>00294     }
-<a name="l00295"></a>00295 }<span class="comment">// /phys</span>
-<a name="l00296"></a>00296 <span class="preprocessor">#endif</span>
+<a name="l00266"></a>00266         temp = <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad543855adcc37dc9cdea4e264ca7953d" title="Retrieves the location of the physics body.">GetBulletLocation</a>();
+<a name="l00267"></a>00267         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;setPosition(temp.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00268"></a>00268         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;attachObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
+<a name="l00269"></a>00269     }
+<a name="l00270"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec">00270</a> 
+<a name="l00271"></a>00271     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec" title="Makes the actor invisable.">ActorBase::DetachFromGraphics</a> ()
+<a name="l00272"></a>00272     {
+<a name="l00273"></a>00273         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;detachObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
+<a name="l00274"></a>00274     }
+<a name="l00275"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a799c6e8dea4b03474b788338340bc594">00275</a> 
+<a name="l00276"></a>00276     std::string <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a799c6e8dea4b03474b788338340bc594" title="Retrieves the name of the object.">ActorBase::GetName</a> ()
+<a name="l00277"></a>00277     {
+<a name="l00278"></a>00278         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>-&gt;getName();
+<a name="l00279"></a>00279     }
+<a name="l00280"></a>00280 <span class="comment"></span>
+<a name="l00281"></a>00281 <span class="comment">    ///////////////////////////////////</span>
+<a name="l00282"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f">00282</a> <span class="comment"></span>    <span class="comment">// ActorBase Public Collision flag functions</span>
+<a name="l00283"></a>00283     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f" title="Sets the state of the object to Kinematic.">ActorBase::SetKinematic</a>()
+<a name="l00284"></a>00284     {
+<a name="l00285"></a>00285         <span class="comment">//int x=2;</span>
+<a name="l00286"></a>00286         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
+<a name="l00287"></a>00287     }
+<a name="l00288"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037">00288</a> 
+<a name="l00289"></a>00289     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037" title="Sets the state of the object to Static.">ActorBase::SetStatic</a>()
+<a name="l00290"></a>00290     {
+<a name="l00291"></a>00291         <span class="comment">//int x=1;</span>
+<a name="l00292"></a>00292         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+<a name="l00293"></a>00293     }
+<a name="l00294"></a>00294 }<span class="comment">// /phys</span>
+<a name="l00295"></a>00295 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 10 10:46:30 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jun 13 17:02:40 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

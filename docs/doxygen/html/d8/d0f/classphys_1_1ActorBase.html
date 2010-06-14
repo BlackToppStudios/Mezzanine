@@ -131,7 +131,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
  <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> is a base class that serves as a template for the other three actor classes. <br/>
  <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> should never be created, as it lacks the functionality needed for most objects. </p>
 
-<p>Definition at line <a class="el" href="../../da/dd1/actorbase_8h_source.html#l00079">79</a> of file <a class="el" href="../../da/dd1/actorbase_8h_source.html">actorbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/dd1/actorbase_8h_source.html#l00080">80</a> of file <a class="el" href="../../da/dd1/actorbase_8h_source.html">actorbase.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5e5d4b50c83c6851e554b5e7ad65403f"></a><!-- doxytag: member="phys::ActorBase::~ActorBase" ref="a5e5d4b50c83c6851e554b5e7ad65403f" args="()" -->
 <div class="memitem">
@@ -413,7 +413,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>This is the inverse of the AttachToGraphics function. This will effectively remove the object from the graphics world and make it no longer visable. <br/>
  This is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00271">271</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00270">270</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -479,7 +479,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>Retrieves the name of the object. </p>
 <p>This function will retrieve the name of the object, </p>
 
-<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00276">276</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00275">275</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -499,7 +499,8 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <div class="memdoc">
 
 <p>Retrieves the location of the graphical body. </p>
-<p>This function will retrieve the location of the object within the graphical world. </p>
+<p>This function will retrieve the location of the object within the graphical world. This should always match the physics world. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a> with the location of the graphics. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00180">180</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
@@ -684,7 +685,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>This function will set the object to a Kinematic Object. <br/>
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00283">283</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00282">282</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -926,7 +927,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>This function will set the object to a Static Object. <br/>
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00289">289</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00288">288</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -935,7 +936,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <li><a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 10 10:46:30 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Jun 13 17:02:41 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

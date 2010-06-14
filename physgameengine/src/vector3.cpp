@@ -74,7 +74,7 @@ namespace phys
     }
 
     /////////////////////////////////////////////////////////////////////
-    // Operators
+    // Assignment Operators
     void Vector3::operator= (const btVector3 &bt3)
     {
         (*this)<<bt3;
@@ -83,6 +83,17 @@ namespace phys
     void Vector3::operator=(const Ogre::Vector3 &OVec3)
     {
         (*this)<<OVec3;
+    }
+
+    /////////////////////////////////////////////////////////////////////
+    // Assignment Operators
+    Vector3 Vector3::operator- (const Vector3 &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X-=Vec2.X;
+        Temp.Y-=Vec2.Y;
+        Temp.Z-=Vec2.Z;
+        return Temp;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -121,6 +132,8 @@ namespace phys
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators
 std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 {
     stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";

@@ -20,6 +20,21 @@ ActorRigid *object1, *object2, *object3, *object4;
 
 int main(int argc, char **argv)
 {
+    TheWorld.Log("Vector Math Test");
+    Vector3 Temp1(1,2,1);
+    Vector3 Temp2(1,1,1);
+    TheWorld.Log("Temp1");
+    TheWorld.Log(Temp1);
+    TheWorld.Log("Temp2");
+    TheWorld.Log(Temp2);
+    TheWorld.Log("Temp1-Temp2");
+    TheWorld.Log(Temp1-Temp2);
+    TheWorld.Log("Temp1");
+    TheWorld.Log(Temp1);
+    TheWorld.Log("Temp2");
+    TheWorld.Log(Temp2);
+
+
     TheWorld.SetWindowName("Catch!... The Game!");
     TheWorld.SetTargetFrameRate(40);
 
@@ -164,14 +179,14 @@ void LoadContent()
         std::stringstream namemaker;
         namemaker << groupname << box.size();
         box.AddActor(new ActorRigid (mass,namemaker.str(),filename,groupname,&TheWorld));
-        box.LastActorAdded()->CreateShapeFromMeshDynamic(2);
+        box.LastActorAdded()->CreateShapeFromMeshDynamic(4);
         box.LastActorAdded()->SetInitLocation(Vector3( ((float)(48*box.size())-182), 160, 0));
         box.LastActorAdded()->SetInitOrientation(Quaternion(0,-0.5,0,0.5));
         TheWorld.AddActor(box.LastActorAdded());
     }
 
     object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
-    object1->CreateShapeFromMeshDynamic(2);
+    object1->CreateShapeFromMeshDynamic(4);
     object1->SetInitLocation(Vector3(-5.0,10,0));
     object1->LimitMovementOnAxis(false,true,true);
 

@@ -40,8 +40,9 @@
 #ifndef actorcontainerbase_cpp
 #define actorcontainerbase_cpp
 
-
 #include "actorcontainerbase.h"
+
+#include <Ogre.h>
 
 namespace phys
 {
@@ -54,6 +55,13 @@ namespace phys
         this->ParentWorld=ParentWorld_;
     }
 
+    ActorContainerBase::~ActorContainerBase()
+        {}
+
+    Ogre::Node* ActorContainerBase::GetNode(ActorBase* actor)
+    {
+        return actor->node;
+    }
 }
 
 

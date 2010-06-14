@@ -46,6 +46,7 @@
 
 ///////////////////////////////////
 // Forward Declares
+
 class btCollisionShape;
 class btCollisionObject;
 class btTriangleMesh;
@@ -54,12 +55,14 @@ namespace Ogre
 {
     class Entity;
     class SceneNode;
+    class Vector3;
 }
 
 ///////////////////////////////////
 // Actual code
 namespace phys
 {
+    class ActorContainerBase;
     namespace internal
     {
         class PhysMotionState;
@@ -79,6 +82,7 @@ namespace phys
     class ActorBase {
         private:
             friend class World;
+            friend class ActorContainerBase;
 
         protected:
 
@@ -143,7 +147,8 @@ namespace phys
             void SetOgreLocation(Vector3 Place);
 
             /// @brief Retrieves the location of the graphical body.
-            /// @details This function will retrieve the location of the object within the graphical world.
+            /// @details This function will retrieve the location of the object within the graphical world. This should always match the physics world.
+            /// @return This returns a phys::Vector3 with the location of the graphics.
             Vector3 GetOgreLocation();
 
             /// @brief Sets the orientation of the graphical body.
