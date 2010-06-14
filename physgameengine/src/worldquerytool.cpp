@@ -42,7 +42,6 @@
 
 #include "worldquerytool.h"
 
-
 #include <Ogre.h>
 
 namespace phys
@@ -205,7 +204,7 @@ namespace phys
                 if (new_closest_found)
                 {
                     closest_result = Ooray.getPoint(closest_distance);
-                    //ClosestActor->Actor = this->GameWorld->Actors->FindActor( pentity->getParentNode() );
+                    ClosestActor->Actor = this->GameWorld->Actors->FindActor( pentity->getParentNode() );
                 }
             } // \if entity
         } // \if qr_idx
