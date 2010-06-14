@@ -87,6 +87,16 @@ namespace phys
 
     /////////////////////////////////////////////////////////////////////
     // Assignment Operators
+
+        Vector3 Vector3::operator+ (const Vector3 &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X+=Vec2.X;
+        Temp.Y+=Vec2.Y;
+        Temp.Z+=Vec2.Z;
+        return Temp;
+    }
+
     Vector3 Vector3::operator- (const Vector3 &Vec2)
     {
         Vector3 Temp(X,Y,Z);
@@ -95,6 +105,101 @@ namespace phys
         Temp.Z-=Vec2.Z;
         return Temp;
     }
+
+        Vector3 Vector3::operator* (const Vector3 &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X*=Vec2.X;
+        Temp.Y*=Vec2.Y;
+        Temp.Z*=Vec2.Z;
+        return Temp;
+    }
+
+         Vector3 Vector3::operator/ (const Vector3 &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X/=Vec2.X;
+        Temp.Y/=Vec2.Y;
+        Temp.Z/=Vec2.Z;
+        return Temp;
+    }
+
+
+    Vector3 Vector3::operator+ (const btVector3  &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X+=Vec2.getX();
+        Temp.Y+=Vec2.getY();
+        Temp.Z+=Vec2.getZ();
+        return Temp;
+    }
+
+    Vector3 Vector3::operator- (const btVector3  &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X-=Vec2.getX();
+        Temp.Y-=Vec2.getY();
+        Temp.Z-=Vec2.getZ();
+        return Temp;
+    }
+
+            Vector3 Vector3::operator* (const btVector3  &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X*=Vec2.getX();
+        Temp.Y*=Vec2.getY();
+        Temp.Z*=Vec2.getZ();
+        return Temp;
+    }
+
+        Vector3 Vector3::operator/ (const btVector3  &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X/=Vec2.getX();
+        Temp.Y/=Vec2.getY();
+        Temp.Z/=Vec2.getZ();
+        return Temp;
+    }
+
+        Vector3 Vector3::operator+ (const Ogre::Vector3 &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X+=Vec2.x;
+        Temp.Y+=Vec2.y;
+        Temp.Z+=Vec2.z;
+        return Temp;
+    }
+
+
+        Vector3 Vector3::operator- (const Ogre::Vector3 &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X-=Vec2.x;
+        Temp.Y-=Vec2.y;
+        Temp.Z-=Vec2.z;
+        return Temp;
+    }
+
+        Vector3 Vector3::operator* (const Ogre::Vector3 &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X*=Vec2.x;
+        Temp.Y*=Vec2.y;
+        Temp.Z*=Vec2.z;
+        return Temp;
+    }
+
+            Vector3 Vector3::operator/ (const Ogre::Vector3 &Vec2)
+    {
+        Vector3 Temp(X,Y,Z);
+        Temp.X/=Vec2.x;
+        Temp.Y/=Vec2.y;
+        Temp.Z/=Vec2.z;
+        return Temp;
+    }
+
+
+
 
     ///////////////////////////////////////////////////////////////////////////////
     // Manual Conversions
