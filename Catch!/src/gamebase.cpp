@@ -161,11 +161,13 @@ void LoadContent()
     //object1->LimitMovementOnAxis(false,true,true);
 
     object2 = new ActorRigid (80.0f,"Sphere_Wood","Sphere_Wood.mesh",groupname,&TheWorld);
-    object2->CreateShapeFromMeshDynamic(1);
+    object2->CreateSphereShapeFromMesh();
+    object2->SetActorScaling(Vector3(0.1,0.1,0.1));
     object2->SetInitLocation(Vector3(50,800,-1000));
 
     object3 = new ActorRigid (100.0f,"Sphere_Metal","Sphere_Metal.mesh",groupname,&TheWorld);
-    object3->CreateShapeFromMeshDynamic(4);
+    object3->CreateSphereShapeFromMesh();
+    object2->SetActorScaling(Vector3(0.1,0.1,0.1));
     object3->SetInitLocation(Vector3(-50.0,600.0,-50.0));
 
     object4 = new ActorRigid (mass,"Robot_2",filerobot,groupname,&TheWorld);

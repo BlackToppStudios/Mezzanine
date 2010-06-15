@@ -278,6 +278,12 @@ namespace phys{
         return this->entity->getName();
     }
 
+    void ActorBase::SetActorScaling(Vector3 scaling)
+    {
+        this->node->setScale(scaling.GetOgreVector3());
+        this->Shape->setLocalScaling(scaling.GetBulletVector3());
+    }
+
     ///////////////////////////////////
     // ActorBase Public Collision flag functions
     void ActorBase::SetKinematic()

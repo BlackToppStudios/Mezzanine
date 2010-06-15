@@ -251,6 +251,11 @@ namespace phys
             /// @param Rotation The Quaternion representing the Rotation.
             void SetOrientation(Quaternion Rotation);
 
+            /// @brief Sets the scale of the actor.
+            /// @details This function will alter the scaling/size of the actor with the given vector3.
+            /// @param scale The vector3 by which to apply the scale.  Will scale each axis' accordingly.
+            void SetActorScaling(Vector3 scale);
+
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld

@@ -246,6 +246,30 @@ namespace phys{
         return;
     }
 
+    void ActorRigid::CreateSphereShapeFromMesh()
+    {
+        Vector3 test;
+        test.ExtractOgreVector3(this->entity->getMesh()->getBounds().getSize());
+        if(test.X==test.Y && test.Y==test.Z)
+        {
+            Real radius=test.X*0.5;
+            btSphereShape* sphereshape = new btSphereShape(radius);
+            btScalar mass=this->physrigidbody->getInvMass();
+            mass=1/mass;
+            btVector3 inertia(0,0,0);
+            sphereshape->calculateLocalInertia(mass, inertia);
+            Shape = sphereshape;
+            this->Shape->setLocalScaling(btVector3(1.f,1.f,1.f));
+            this->physrigidbody->setCollisionShape(this->Shape);
+            this->physrigidbody->setMassProps(mass,inertia);
+            return;
+        }
+        else
+        {
+            return;
+        }
+    }
+
     void ActorRigid::CreateShapeFromMeshStatic()
     {
         delete Shape;

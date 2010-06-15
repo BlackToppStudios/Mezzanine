@@ -102,6 +102,10 @@ namespace phys
             /// @param accuracy A value from 1 to 4. The higher the more accurate, but the more resource intensive
             void CreateShapeFromMeshDynamic(short unsigned int accuracy=1);
 
+            /// @brief Creates a sphere collision shape.
+            /// @details Will dynamically create a sphere collision shape from the loaded mesh file.
+            void CreateSphereShapeFromMesh();
+
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
