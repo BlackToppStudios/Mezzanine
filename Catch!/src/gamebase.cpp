@@ -11,7 +11,6 @@
 using namespace phys;
 
 World TheWorld;                     //Create the World Globally! and we a place to hold some actors
-ActorRigid *object1, *object2, *object3, *object4;
 
 int main(int argc, char **argv)
 {
@@ -38,7 +37,7 @@ int main(int argc, char **argv)
     LoadContent();
 
     TheWorld.SetDebugPhysicsWireCount(2);
-    TheWorld.SetDebugPhysicsRendering(0);
+    TheWorld.SetDebugPhysicsRendering(1);
 
 	//Start the Main Loop
 	TheWorld.MainLoop();
@@ -73,8 +72,8 @@ bool PostRender()
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
 
-    //IF the game has gone on for 10 or more seconds close it.
-	if (10000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
+    //IF the game has gone on for 60 or more seconds close it.
+	if (60000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
         { return false; }
 
     return true;
@@ -83,10 +82,8 @@ bool PostRender()
 bool PrePhysics()
 {
     TheWorld.Log("Object Locations");
-    TheWorld.Log(object1->GetLocation());
-    TheWorld.Log(object2->GetLocation());
-    TheWorld.Log(object3->GetLocation());
-    TheWorld.Log(object4->GetLocation());
+    //Replace this with something that uses the actor container and logs the location of everything
+    //TheWorld.Log(object1->GetLocation());
     return true;
 }
 
@@ -143,54 +140,59 @@ bool CheckForEsc()
 
 void LoadContent()
 {
+    ActorRigid *object1, *object2, *object3, *object4, *object5, *object6;
     //Ogre Setup Code
-    String groupname="Robot";
-    String filename="robot.mesh";
+    String groupname="Group1";
+    String filerobot="robot.mesh";
+
     Real mass=5.0;
     TheWorld.AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
-    TheWorld.DeclareResource(filename, "Mesh", groupname);
+    TheWorld.DeclareResource(filerobot, "Mesh", groupname);
     TheWorld.DeclareResource("Examples.material", "Material", groupname);
+    TheWorld.DeclareResource("plane.material", "Material", groupname);
+    TheWorld.DeclareResource("Sphere_Wood.material", "Material", groupname);
+    TheWorld.DeclareResource("Sphere_Metal.material", "Material", groupname);
+
     TheWorld.InitResourceGroup(groupname);
 
-    //Actor Init Code
-    ActorContainerVector box (&TheWorld);
-    for(box.clear(); box.size()<7; box.CursorToLast())
-    {
-        std::stringstream namemaker;
-        namemaker << groupname << box.size();
-        box.AddActor(new ActorRigid (mass,namemaker.str(),filename,groupname,&TheWorld));
-        box.LastActorAdded()->CreateShapeFromMeshDynamic(4);
-        box.LastActorAdded()->SetInitLocation(Vector3( ((float)(48*box.size())-182), 160, 0));
-        box.LastActorAdded()->SetInitOrientation(Quaternion(0,-0.5,0,0.5));
-        TheWorld.AddActor(box.LastActorAdded());
-    }
-
-    object1 = new ActorRigid (mass,groupname,filename,groupname,&TheWorld);
+    object1 = new ActorRigid (mass,groupname,filerobot,groupname,&TheWorld);
     object1->CreateShapeFromMeshDynamic(4);
-    object1->SetInitLocation(Vector3(-5.0,10,0));
-    object1->LimitMovementOnAxis(false,true,true);
+    object1->SetInitLocation(Vector3(-25.0,10,0));
+    //object1->LimitMovementOnAxis(false,true,true);
 
-    object2 = new ActorRigid (mass,"Robot_2",filename,groupname,&TheWorld);
-    object2->CreateShapeFromMeshDynamic(4);
-    object2->SetInitLocation(Vector3(5,10,0));
-    object2->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
+    object2 = new ActorRigid (80.0f,"Sphere_Wood","Sphere_Wood.mesh",groupname,&TheWorld);
+    object2->CreateShapeFromMeshDynamic(1);
+    object2->SetInitLocation(Vector3(50,800,-1000));
 
-    object3 = new ActorRigid (0,"Robot_3",filename,groupname,&TheWorld);
-    object3->CreateShapeFromMeshStatic();
-    object3->SetInitLocation(Vector3(-130,0,0));
-    object4 = new ActorRigid (0,"Robot_4",filename,groupname,&TheWorld);
-    object4->CreateShapeFromMeshStatic();
-    object4->SetInitLocation(Vector3(130,0,0));
+    object3 = new ActorRigid (100.0f,"Sphere_Metal","Sphere_Metal.mesh",groupname,&TheWorld);
+    object3->CreateShapeFromMeshDynamic(4);
+    object3->SetInitLocation(Vector3(-50.0,600.0,-50.0));
+
+    object4 = new ActorRigid (mass,"Robot_2",filerobot,groupname,&TheWorld);
+    object4->CreateShapeFromMeshDynamic(1);
+    object4->SetInitLocation(Vector3(25,10,0));
+    object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
+
+    object5 = new ActorRigid (0,"Plane","plane.mesh",groupname,&TheWorld);
+    object5->CreateShapeFromMeshStatic();
+    object5->SetInitLocation(Vector3(0.0,-100,-300.0));
+
+    object6 = new ActorRigid (0,"Ramp","plane.mesh",groupname,&TheWorld);
+    object6->CreateShapeFromMeshDynamic(1);
+    object6->SetInitLocation(Vector3(00.0,100,-900.0));
+    object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, 0.75));
 
     //Final Steps
     Vector3 grav;
     grav.X=0.0;
-    grav.Y=-1000.0;
+    grav.Y=-10000.0;
     grav.Z=0.0;
     TheWorld.AddActor(object1);
     TheWorld.AddActor(object2);
     TheWorld.AddActor(object3);
     TheWorld.AddActor(object4);
+    TheWorld.AddActor(object5);
+    TheWorld.AddActor(object6);
 
     TheWorld.SetGravity(grav);
 }
