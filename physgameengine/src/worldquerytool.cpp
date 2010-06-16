@@ -75,7 +75,7 @@ namespace phys
 
     bool WorldQueryTool::IsMouseButtonPushed(short unsigned int MouseButton)
     {
-        if(MouseButton >= this->MouseButtonLimit || MouseButton<0)
+        if(MouseButton >= this->MouseButtonLimit)
             {this->GameWorld->LogAndThrow("Unsupported mouse button access through WorldQueryTool");}
         return this->MouseButtonCache[MouseButton];
     }

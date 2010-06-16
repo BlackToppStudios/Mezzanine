@@ -93,7 +93,18 @@ namespace phys
 
             virtual String GetType() const;
 
+
+            /// @brief This finds an actor by searching for a graphics subsystem nodes
+            /// @details This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time.
+            /// @return This returns a pointer to and ActorBase that has a matching node
+            /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.
             virtual ActorBase* FindActor(Ogre::Node* GraphicsNode);
+
+            /// @brief This finds an actor based on its name
+            /// @details This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time.
+            /// @return This returns a pointer to and ActorBase that has a matching name
+            /// @param Name This is the name of the Actor you want to find
+            virtual ActorBase* FindActor(String Name);
 
             /// @brief This is used to store information about the cursor
             /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor

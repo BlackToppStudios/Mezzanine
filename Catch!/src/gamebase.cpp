@@ -10,7 +10,8 @@
 
 using namespace phys;
 
-World TheWorld;                     //Create the World Globally! and we a place to hold some actors
+World TheWorld( Vector3(-10000.0,-10000.0,-10000.0),
+                Vector3(10000.0,10000.0,10000.0));                     //Create the World Globally! and we a place to hold some actors
 
 int main(int argc, char **argv)
 {
@@ -31,13 +32,13 @@ int main(int argc, char **argv)
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
     TheWorld.Events->AddPollingCheck( MetaCode(0, 1, MetaCode::KEY_q) );
     TheWorld.Events->AddPollingCheck( MetaCode(0, 3, MetaCode::MOUSEBUTTON) );
-    TheWorld.Events->AddPollingCheck( MetaCode(0,0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );
+    TheWorld.Events->AddPollingCheck( MetaCode(0, 0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );
 
     //Actually Load the game stuff
     LoadContent();
 
     TheWorld.SetDebugPhysicsWireCount(2);
-    TheWorld.SetDebugPhysicsRendering(1);
+    TheWorld.SetDebugPhysicsRendering(0);
 
 	//Start the Main Loop
 	TheWorld.MainLoop();
@@ -83,7 +84,7 @@ bool PrePhysics()
 {
     TheWorld.Log("Object Locations");
     //Replace this with something that uses the actor container and logs the location of everything
-    //TheWorld.Log(object1->GetLocation());
+    TheWorld.Log(TheWorld.Actors->FindActor("WoodSphere")->GetLocation());
     return true;
 }
 
@@ -160,15 +161,15 @@ void LoadContent()
     object1->SetInitLocation(Vector3(-25.0,10,0));
     //object1->LimitMovementOnAxis(false,true,true);
 
-    object2 = new ActorRigid (80.0f,"Sphere_Wood","Sphere_Wood.mesh",groupname,&TheWorld);
+    object2 = new ActorRigid (6.0f,"WoodSphere","Sphere_Wood.mesh",groupname,&TheWorld);
     object2->CreateSphereShapeFromMesh();
     object2->SetActorScaling(Vector3(0.1,0.1,0.1));
-    object2->SetInitLocation(Vector3(50,800,-1000));
+    object2->SetInitLocation(Vector3(-50.0,800.0,-800.0));
 
-    object3 = new ActorRigid (100.0f,"Sphere_Metal","Sphere_Metal.mesh",groupname,&TheWorld);
+    object3 = new ActorRigid (100.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld);
     object3->CreateSphereShapeFromMesh();
     object2->SetActorScaling(Vector3(0.1,0.1,0.1));
-    object3->SetInitLocation(Vector3(-50.0,600.0,-50.0));
+    object3->SetInitLocation(Vector3(50.0,1800.0,-800.0));
 
     object4 = new ActorRigid (mass,"Robot_2",filerobot,groupname,&TheWorld);
     object4->CreateShapeFromMeshDynamic(1);
@@ -181,7 +182,7 @@ void LoadContent()
 
     object6 = new ActorRigid (0,"Ramp","plane.mesh",groupname,&TheWorld);
     object6->CreateShapeFromMeshDynamic(1);
-    object6->SetInitLocation(Vector3(00.0,100,-900.0));
+    object6->SetInitLocation(Vector3(00.0,100.0,-800.0));
     object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, 0.75));
 
     //Final Steps
@@ -195,6 +196,9 @@ void LoadContent()
     TheWorld.AddActor(object4);
     TheWorld.AddActor(object5);
     TheWorld.AddActor(object6);
+
+    TheWorld.Log("Actor Count");
+    TheWorld.Log( TheWorld.Actors->GetActorCount() );
 
     TheWorld.SetGravity(grav);
 }

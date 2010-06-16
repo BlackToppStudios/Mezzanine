@@ -214,11 +214,12 @@ namespace phys
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion methods
         ///////////////////////////////////////
+
             /// @brief Descriptive constructor
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
             /// @param GeographyLowerBounds_ The lower limits for the size of the physics simulation
             /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
-            /// @param MaxPhysicsProxies_ This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.
+            /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
             World( const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_=1024);
 
             /// @brief Default constructor
@@ -430,10 +431,10 @@ namespace phys
             /// @details This is the Event manager that all physworld members will place any events into.
             EventManager* Events;
 
-        private:
             /// @brief This is a convienient place to keep pointer to our Actors
             /// @details Whenever an actor is added, a pointer to it will be stored here.
             ActorContainerBase* Actors;
+
     };
 }
 #endif

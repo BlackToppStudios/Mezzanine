@@ -96,7 +96,8 @@ namespace phys
             /// @details This will add an Actor to this container and the world, and handle the nitty gritty details
             /// of add this to physics subsystem and graphics subsystem. \n\n
             /// This will not add the Actor to any specific location in the ordering of the container.
-            /// @param ActorToAdd This is a pointer to the actor to add
+            /// @warning This will cause issues if used with a container attached to a valid phys::World. Use World::AddActor instead.
+            /// @param ActorToAdd This is a pointer to the actor to add.
             virtual void AddActor(ActorBase* ActorToAdd) = 0;
 
             /// @brief This provides an easy way to access the last Actor added to this container
@@ -106,11 +107,13 @@ namespace phys
             /// @brief Remove an Actor
             /// @details Remove all references of the actor pointed from the container. Will throw an exception when attempting to remove
             /// and no match could be found.
+            /// @warning This will cause issues if used with a container attached to a valid phys::World. Use World::RemoveActor instead.
             virtual void RemoveActor(ActorBase* ActorToRemove) = 0;
 
             /// @brief Removes the current actor
             /// @details This removes the actor the cursor at. Will throw an exception when attempting to remove from an empty container.
             /// Where the cursor goes is implementation dependent.
+            /// @warning This will cause issues if used with a container attached to a valid phys::World. Use World::RemoveActor instead.
             virtual void RemoveActorAtCursor() = 0;
 
             /// @brief Returns how many actors this stores
@@ -157,9 +160,14 @@ namespace phys
             virtual ActorBase* GetLast() const = 0;
 
             /// @brief This finds an actor by searching for a graphics subsystem nodes
-            /// @details This will iterate through each Actor in the container until it finds one with a matching Node
             /// @return This returns a pointer to and ActorBase that has a matching node
+            /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.
             virtual ActorBase* FindActor(Ogre::Node* GraphicsNode) = 0;
+
+            /// @brief This finds an actor based on its name
+            /// @return This returns a pointer to and ActorBase that has a matching name
+            /// @param Name This is the name of the Actor you want to find
+            virtual ActorBase* FindActor(String Name) = 0;
 
             /// @brief Which kind of container it this anyway.
             /// @details Since this interface could be used with any type of containers and innumerable 3rd party container implemention this
