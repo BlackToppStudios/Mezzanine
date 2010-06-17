@@ -92,6 +92,8 @@ namespace phys
             void SetAutoTracking(bool Enabled, String Target, Vector3 Offset, String Name="DefaultCamera");
             void SetAutoTracking(bool Enabled, String Target, String Name="DefaultCamera");
             String GetNodeAttachedToCamera(String Name="DefaultCamera");
+            void ZoomCamera(Real Zoom, String Name="DefaultCamera");
+            void ResetZoom(String Name="DefaultCamera");
             void AttachCameraToNode(String NodeName, String CamName="DefaultCamera");
             void DetachCameraFromNode(String NodeName, String CamName="DefaultCamera");
             void IncrementYOrbit(Real Radian, String Name);
