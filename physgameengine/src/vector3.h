@@ -61,6 +61,10 @@ namespace phys
     class Vector3
     {
     public:
+
+        ///////////////////////////////////////////////////////////////////////////////
+        //`The Essentials
+
         /// @brief Coordinate on the X vector.
         Real X;
         /// @brief Coordinate on the Y vector.
@@ -89,25 +93,8 @@ namespace phys
         /// @param Vec The vector to be copied to make this vector
         Vector3(btVector3 Vec);
 
-        /// @brief Gets a Bullet vector3.
-        /// @details Creates a Bullet vector3 with values equal to this class and returns it.
-        btVector3 GetBulletVector3() const;
-
-        /// @brief Copies an existing Bullet vector3.
-        /// @details This function will copy the values stored in an existing Bullet vector3
-        /// and set the values of this class to be the same.
-        /// @param temp The vector3 to be extracted.
-        void ExtractBulletVector3(btVector3 temp);
-
-        /// @brief Gets a Ogre vector3.
-        /// @details Creates a Ogre vector3 with values equal to this class and returns it.
-        Ogre::Vector3 GetOgreVector3() const;
-
-        /// @brief Copies an existing Ogre vector3.
-        /// @details This function will copy the values stored in an existing Ogre vector3
-        /// and set the values of this class to be the same.
-        /// @param temp The vector3 to be extracted.
-        void ExtractOgreVector3(Ogre::Vector3 temp);
+        ///////////////////////////////////////////////////////////////////////////////
+        // Assignment Operators
 
         /// @brief Assignment operator to convert from Bullet Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
@@ -116,8 +103,29 @@ namespace phys
 
         /// @brief Assignment operator to convert from Ogre Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
-        /// @param OVec3 This is a Ogre::Vector3 that will be copied
+        /// @param OVec3 This is a Ogre::Vector3 that will be copied.
         void operator= (const Ogre::Vector3 &OVec3);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Equality Comparison operators
+
+        /// @brief Equality Comparison Operator
+        /// @details Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns false.
+        /// @param Vec2 This is the other phys::Vector3.
+        bool operator== (const phys::Vector3 &Vec2);
+
+        /// @brief Equality Comparison Operator
+        /// @details Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match this returns false.
+        /// @param Vec2 This is an btVector3 that needs to be compared with this.
+        bool operator== (const btVector3 &Vec2);
+
+        /// @brief Equality Comparison Operator
+        /// @details Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false.
+        /// @param Vec2 This is an Ogre::Vector3 that needs to be compared with this.
+        bool operator== (const Ogre::Vector3 &Vec2);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Arithmetic Operators
 
         /// @brief Addition Operator
         /// @details Allows for addition from a phys::Vector3
@@ -129,7 +137,6 @@ namespace phys
         /// @param Vec2 This is the other phys::Vector3
         Vector3 operator- (const Vector3 &Vec2);
 
-
         /// @brief Multiplaction Operator
         /// @details Allows for multiplaction from a phys::Vector3
         /// @param Vec2 This is the other phys::Vector3
@@ -140,7 +147,8 @@ namespace phys
         /// @param Vec2 This is the other phys::Vector3
         Vector3 operator/ (const Vector3 &Vec2);
 
-
+        /////////////////////////////////////////////////////////////////////
+        // Arithmetic Operators with btVector3
 
         /// @brief Bullet Addition Operator
         /// @details Allows for addition  between a phys::Vector3 and a btVector3
@@ -162,7 +170,8 @@ namespace phys
         /// @param Vec2 This is the btVector3 to be divided
         Vector3 operator/ (const btVector3  &Vec2);
 
-
+        ///////////////////////////////////////////////////////////////////////////////
+        // Arithmetic Operators with Ogre::Vector3
 
         /// @brief Ogre Addition Operator
         /// @details Allows for addition  between a phys::Vector3 and a Ogre::Vector3
@@ -184,11 +193,33 @@ namespace phys
         /// @param Vec2 This is the Ogre::Vector3 to be divided
         Vector3 operator/ (const Ogre::Vector3 &Vec2);
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Manual Conversions
 
+        /// @brief Gets a Bullet vector3.
+        /// @details Creates a Bullet vector3 with values equal to this class and returns it.
+        btVector3 GetBulletVector3() const;
 
+        /// @brief Copies an existing Bullet vector3.
+        /// @details This function will copy the values stored in an existing Bullet vector3
+        /// and set the values of this class to be the same.
+        /// @param temp The vector3 to be extracted.
+        void ExtractBulletVector3(btVector3 temp);
 
+        /// @brief Gets a Ogre vector3.
+        /// @details Creates a Ogre vector3 with values equal to this class and returns it.
+        Ogre::Vector3 GetOgreVector3() const;
+
+        /// @brief Copies an existing Ogre vector3.
+        /// @details This function will copy the values stored in an existing Ogre vector3
+        /// and set the values of this class to be the same.
+        /// @param temp The vector3 to be extracted.
+        void ExtractOgreVector3(Ogre::Vector3 temp);
     };
 }// /phys
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
 
 std::ostream& operator << (std::ostream& stream, const phys::Vector3& x);
 

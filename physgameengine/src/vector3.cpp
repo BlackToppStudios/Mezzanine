@@ -73,7 +73,7 @@ namespace phys
         this->ExtractBulletVector3(Vec);
     }
 
-    /////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
     // Assignment Operators
     void Vector3::operator= (const btVector3 &bt3)
     {
@@ -85,10 +85,33 @@ namespace phys
         (*this)<<OVec3;
     }
 
-    /////////////////////////////////////////////////////////////////////
-    // Assignment Operators
+    ///////////////////////////////////////////////////////////////////////////////
+    // Equality Comparison operators
+    bool Vector3::operator== (const Vector3 &Vec2)
+    {
+        if ( Vec2.X == this->X && Vec2.Y == this->Y && Vec2.Z == this->Z )
+            { return true; }
+        return false;
+    }
 
-        Vector3 Vector3::operator+ (const Vector3 &Vec2)
+    bool Vector3::operator== (const btVector3 &Vec2)
+    {
+        if ( Vec2.getX() == this->X && Vec2.getY() == this->Y && Vec2.getZ() == this->Z )
+            { return true; }
+        return false;
+    }
+
+    bool Vector3::operator== (const Ogre::Vector3 &Vec2)
+    {
+        if ( Vec2.x == this->X && Vec2.y == this->Y && Vec2.z == this->Z )
+            { return true; }
+        return false;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Arithmetic Operators
+
+    Vector3 Vector3::operator+ (const Vector3 &Vec2)
     {
         Vector3 Temp(X,Y,Z);
         Temp.X+=Vec2.X;
@@ -124,6 +147,8 @@ namespace phys
         return Temp;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Arithmetic Operators with btVector3
 
     Vector3 Vector3::operator+ (const btVector3  &Vec2)
     {
@@ -143,7 +168,7 @@ namespace phys
         return Temp;
     }
 
-            Vector3 Vector3::operator* (const btVector3  &Vec2)
+    Vector3 Vector3::operator* (const btVector3  &Vec2)
     {
         Vector3 Temp(X,Y,Z);
         Temp.X*=Vec2.getX();
@@ -152,7 +177,7 @@ namespace phys
         return Temp;
     }
 
-        Vector3 Vector3::operator/ (const btVector3  &Vec2)
+    Vector3 Vector3::operator/ (const btVector3  &Vec2)
     {
         Vector3 Temp(X,Y,Z);
         Temp.X/=Vec2.getX();
@@ -161,7 +186,10 @@ namespace phys
         return Temp;
     }
 
-        Vector3 Vector3::operator+ (const Ogre::Vector3 &Vec2)
+    ///////////////////////////////////////////////////////////////////////////////
+    // Arithmetic Operators with Ogre::Vector3
+
+    Vector3 Vector3::operator+ (const Ogre::Vector3 &Vec2)
     {
         Vector3 Temp(X,Y,Z);
         Temp.X+=Vec2.x;
@@ -170,8 +198,7 @@ namespace phys
         return Temp;
     }
 
-
-        Vector3 Vector3::operator- (const Ogre::Vector3 &Vec2)
+    Vector3 Vector3::operator- (const Ogre::Vector3 &Vec2)
     {
         Vector3 Temp(X,Y,Z);
         Temp.X-=Vec2.x;
@@ -180,7 +207,7 @@ namespace phys
         return Temp;
     }
 
-        Vector3 Vector3::operator* (const Ogre::Vector3 &Vec2)
+    Vector3 Vector3::operator* (const Ogre::Vector3 &Vec2)
     {
         Vector3 Temp(X,Y,Z);
         Temp.X*=Vec2.x;
@@ -189,7 +216,7 @@ namespace phys
         return Temp;
     }
 
-            Vector3 Vector3::operator/ (const Ogre::Vector3 &Vec2)
+    Vector3 Vector3::operator/ (const Ogre::Vector3 &Vec2)
     {
         Vector3 Temp(X,Y,Z);
         Temp.X/=Vec2.x;
@@ -197,9 +224,6 @@ namespace phys
         Temp.Z/=Vec2.z;
         return Temp;
     }
-
-
-
 
     ///////////////////////////////////////////////////////////////////////////////
     // Manual Conversions
@@ -238,7 +262,7 @@ namespace phys
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators
+// Class External << Operators for streaming or assignment
 std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 {
     stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
