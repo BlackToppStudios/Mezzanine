@@ -313,6 +313,34 @@ namespace phys
         }
     }
 
+    void CameraManager::ZoomCamera(Real Zoom, String Name)
+    {
+        Ogre::Vector3 zoomlevel(0,0,Zoom);
+        if(Name=="DefaultCamera")
+        {
+            this->DefaultCamera->moveRelative(zoomlevel);
+            return;
+        }
+        Ogre::Camera* tempptr = FindCamera(Name);
+        tempptr->moveRelative(zoomlevel);
+        return;
+    }
+
+    void CameraManager::ResetZoom (String Name)
+    {
+        Ogre::Vector3 loc;
+        if(Name=="DefaultCamera")
+        {
+            loc = this->DefaultCamera->getParentSceneNode()->getPosition();
+            this->DefaultCamera->setPosition(loc);
+            return;
+        }
+        Ogre::Camera* tempptr = FindCamera(Name);
+        loc = tempptr->getParentSceneNode()->getPosition();
+        tempptr->setPosition(loc);
+        return;
+    }
+
     void CameraManager::AttachCameraToNode (String NodeName, String CamName)
     {
         Ogre::SceneNode* tempnode = FindNode(NodeName);
