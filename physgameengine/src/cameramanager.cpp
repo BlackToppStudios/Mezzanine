@@ -121,27 +121,18 @@ namespace phys
         namemaker1 << Name1 << ONodes;
         Ogre::SceneNode* orbitingnode = this->SceneManager->createSceneNode(namemaker1.str());
         Nodes.push_back(orbitingnode);
-        if(Vector3(0,0,0)==Target)
-        {
-            this->SceneManager->getRootSceneNode()->addChild(orbitingnode);
-            orbitingnode->setPosition(RelativeLoc.GetOgreVector3());
-            orbitingnode->setAutoTracking(true, this->SceneManager->getRootSceneNode());
-        }
-        else
-        {
-            //creation
-            std::stringstream namemaker2;
-            String Name2="CenterNode";
-            namemaker2 << Name2 << ONodes;
-            Ogre::SceneNode* centernode = this->SceneManager->createSceneNode(namemaker2.str());
-            Nodes.push_back(centernode);
-            //placement
-            this->SceneManager->getRootSceneNode()->addChild(centernode);
-            centernode->addChild(orbitingnode);
-            centernode->setPosition(Target.GetOgreVector3());
-            orbitingnode->setPosition(RelativeLoc.GetOgreVector3());
-            orbitingnode->setAutoTracking(true, centernode);
-        }
+        //creation
+        std::stringstream namemaker2;
+        String Name2="CenterNode";
+        namemaker2 << Name2 << ONodes;
+        Ogre::SceneNode* centernode = this->SceneManager->createSceneNode(namemaker2.str());
+        Nodes.push_back(centernode);
+        //placement
+        this->SceneManager->getRootSceneNode()->addChild(centernode);
+        centernode->addChild(orbitingnode);
+        centernode->setPosition(Target.GetOgreVector3());
+        orbitingnode->setPosition(RelativeLoc.GetOgreVector3());
+        orbitingnode->setAutoTracking(true, centernode);
         return namemaker1.str();
     }
 
@@ -348,7 +339,7 @@ namespace phys
     {
         Ogre::Radian Rad(Radian);
         Ogre::SceneNode* tempptr = FindNode(Name);
-        tempptr->yaw(Rad, Ogre::Node::TS_PARENT);
+        tempptr->getParentSceneNode()->yaw(Rad);
     }
 }//phys
 #endif
