@@ -126,10 +126,13 @@ bool PostInput()
         { TheWorld.Cameras->IncrementYOrbit(-0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) )
-        { /*TheWorld.Cameras->ZoomCamera( 0.1 );*/ }
+        { TheWorld.Cameras->ZoomCamera( 3.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN) )
-        { /*TheWorld.Cameras->ZoomCamera( -0.1 );*/ }
+        { TheWorld.Cameras->ZoomCamera( -3.0 ); }
+
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
+        { TheWorld.Cameras->ResetZoom(); }
 
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
