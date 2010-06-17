@@ -11,7 +11,8 @@
 using namespace phys;
 
 World TheWorld( Vector3(-10000.0,-10000.0,-10000.0),
-                Vector3(10000.0,10000.0,10000.0));                     //Create the World Globally! and we a place to hold some actors
+                Vector3(10000.0,10000.0,10000.0),
+                30);                     //Create the World Globally! and we a place to hold some actors
 
 int main(int argc, char **argv)
 {
@@ -37,6 +38,7 @@ int main(int argc, char **argv)
     //Actually Load the game stuff
     LoadContent();
 
+    //Configure the wireframe Drawer
     TheWorld.SetDebugPhysicsWireCount(2);
     TheWorld.SetDebugPhysicsRendering(0);
 
@@ -51,7 +53,7 @@ bool PostRender()
 	//Lets set a variable for the time
 	static Whole gametime = 0;
 
-	TheWorld.Log("---------- Starting CallBack -------------");
+	TheWorld.Log("---------- Starting PosterRender CallBack -------------");
     TheWorld.Log("Current Game Time ");
 
 	//getting a message from the event manager
@@ -60,7 +62,6 @@ bool PostRender()
     // Is CurrentTime a valid event?
     while(0 != CurrentTime)
     {
-
         TheWorld.Log(gametime);
         gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
 
@@ -72,6 +73,10 @@ bool PostRender()
     std::stringstream timestream;
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
+
+    // Turn on the Wireframe
+    if (25000<gametime)
+        { TheWorld.SetDebugPhysicsRendering(1); }
 
     //IF the game has gone on for 60 or more seconds close it.
 	if (60000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
@@ -143,8 +148,9 @@ void LoadContent()
 {
     ActorRigid *object1, *object2, *object3, *object4, *object5, *object6;
     //Ogre Setup Code
-    String groupname="Group1";
-    String filerobot="robot.mesh";
+    String groupname ("Group1");
+    String filerobot ("robot.mesh");
+    String robotprefix ("Robot");
 
     Real mass=5.0;
     TheWorld.AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
@@ -153,27 +159,61 @@ void LoadContent()
     TheWorld.DeclareResource("plane.material", "Material", groupname);
     TheWorld.DeclareResource("Sphere_Wood.material", "Material", groupname);
     TheWorld.DeclareResource("Sphere_Metal.material", "Material", groupname);
-
     TheWorld.InitResourceGroup(groupname);
 
-    object1 = new ActorRigid (mass,groupname,filerobot,groupname,&TheWorld);
-    object1->CreateShapeFromMeshDynamic(4);
-    object1->SetInitLocation(Vector3(-25.0,10,0));
-    //object1->LimitMovementOnAxis(false,true,true);
+    // Now Lets make some bowling pins
+    Real PinSpacing=75.0;           //This is how far apart we want the pins
+    for(unsigned int c=0; c<4; c++)     //make the back row
+    {
+        std::stringstream namestream;
+        namestream << robotprefix << c;
+        TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(4);
+        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -100.0, 0));
+    }
 
-    object2 = new ActorRigid (6.0f,"WoodSphere","Sphere_Wood.mesh",groupname,&TheWorld);
+    for(unsigned int c=0; c<3; c++)     //the row with three pins
+    {
+        std::stringstream namestream;
+        namestream << robotprefix << (c+4);
+        TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -50.0, -PinSpacing));
+    }
+
+    for(unsigned int c=0; c<2; c++)     //the row with 2 pins
+    {
+        std::stringstream namestream;
+        namestream << robotprefix << (c+7);
+        TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), 0.0, -PinSpacing*2));
+    }
+
+    std::stringstream namestream;           //make the front pin
+    namestream << robotprefix << 9;
+    TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+    TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+    TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 50.0, -PinSpacing*3));
+
+    object1 = new ActorRigid (mass,"RobotWayUpFrontRight",filerobot,groupname,&TheWorld);
+    object1->CreateShapeFromMeshDynamic(1);
+    object1->SetInitLocation(Vector3(400,70,-500));
+    object1->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
+
+    object2 = new ActorRigid (150.0f,"WoodSphere","Sphere_Wood.mesh",groupname,&TheWorld);
     object2->CreateSphereShapeFromMesh();
-    object2->SetActorScaling(Vector3(0.1,0.1,0.1));
-    object2->SetInitLocation(Vector3(-50.0,800.0,-800.0));
+    object2->SetActorScaling(Vector3(0.5,0.5,0.5));
+    object2->SetInitLocation(Vector3(-130.0,2800.0,-900.0));
 
-    object3 = new ActorRigid (100.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld);
+    object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld);
     object3->CreateSphereShapeFromMesh();
-    object2->SetActorScaling(Vector3(0.1,0.1,0.1));
-    object3->SetInitLocation(Vector3(50.0,1800.0,-800.0));
+    object3->SetActorScaling(Vector3(0.7,0.7,0.7));
+    object3->SetInitLocation(Vector3(140.0,1800.0,-900.0));
 
-    object4 = new ActorRigid (mass,"Robot_2",filerobot,groupname,&TheWorld);
+    object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname,&TheWorld);
     object4->CreateShapeFromMeshDynamic(1);
-    object4->SetInitLocation(Vector3(25,10,0));
+    object4->SetInitLocation(Vector3(-400,10,-500));
     object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
 
     object5 = new ActorRigid (0,"Plane","plane.mesh",groupname,&TheWorld);
@@ -190,6 +230,7 @@ void LoadContent()
     grav.X=0.0;
     grav.Y=-10000.0;
     grav.Z=0.0;
+
     TheWorld.AddActor(object1);
     TheWorld.AddActor(object2);
     TheWorld.AddActor(object3);
