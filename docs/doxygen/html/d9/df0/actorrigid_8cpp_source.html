@@ -270,28 +270,52 @@
 <a name="l00245"></a>00245         }
 <a name="l00246"></a>00246         <span class="keywordflow">return</span>;
 <a name="l00247"></a>00247     }
-<a name="l00248"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac">00248</a> 
-<a name="l00249"></a>00249     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac" title="Creates a collision shape from mesh file.">ActorRigid::CreateShapeFromMeshStatic</a>()
+<a name="l00248"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#ae401c116a07ee4ed3fc677e83308fba5">00248</a> 
+<a name="l00249"></a>00249     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#ae401c116a07ee4ed3fc677e83308fba5" title="Creates a sphere collision shape.">ActorRigid::CreateSphereShapeFromMesh</a>()
 <a name="l00250"></a>00250     {
-<a name="l00251"></a>00251         <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;
-<a name="l00252"></a>00252 <span class="comment"></span>
-<a name="l00253"></a>00253 <span class="comment">        /// @todo - Check for thread safety</span>
-<a name="l00254"></a>00254 <span class="comment"></span>        btBvhTriangleMeshShape *tmpshape = <span class="keyword">new</span> btBvhTriangleMeshShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7" title="Creates a trimesh shape from the mesh file.">CreateTrimesh</a>(),<span class="keyword">true</span>);
-<a name="l00255"></a>00255         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>=tmpshape;
-<a name="l00256"></a>00256         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>-&gt;setLocalScaling(btVector3(0.95,0.95,0.95));
-<a name="l00257"></a>00257         this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
-<a name="l00258"></a>00258     }
-<a name="l00259"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#adaed962ee8ed788612e541fb00867c78">00259</a> 
-<a name="l00260"></a>00260     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#adaed962ee8ed788612e541fb00867c78" title="Restricts movement on the axis or axies of your choice.">ActorRigid::LimitMovementOnAxis</a>(<span class="keywordtype">bool</span> x, <span class="keywordtype">bool</span> y, <span class="keywordtype">bool</span> z)
-<a name="l00261"></a>00261     {
-<a name="l00262"></a>00262         btVector3 LinFact(x,y,z);
-<a name="l00263"></a>00263         this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setLinearFactor(LinFact);
-<a name="l00264"></a>00264         <span class="keywordflow">return</span>;
-<a name="l00265"></a>00265     }
-<a name="l00266"></a>00266 }
-<a name="l00267"></a>00267 <span class="preprocessor">#endif</span>
+<a name="l00251"></a>00251         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> test;
+<a name="l00252"></a>00252         test.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a09a31cb8fe491f61e0cc10d21705a0df" title="Copies an existing Ogre vector3.">ExtractOgreVector3</a>(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>-&gt;getMesh()-&gt;getBounds().getSize());
+<a name="l00253"></a>00253         <span class="keywordflow">if</span>(test.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>==test.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> &amp;&amp; test.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>==test.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>)
+<a name="l00254"></a>00254         {
+<a name="l00255"></a>00255             <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> radius=test.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>*0.5;
+<a name="l00256"></a>00256             btSphereShape* sphereshape = <span class="keyword">new</span> btSphereShape(radius);
+<a name="l00257"></a>00257             btScalar mass=this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;getInvMass();
+<a name="l00258"></a>00258             mass=1/mass;
+<a name="l00259"></a>00259             btVector3 inertia(0,0,0);
+<a name="l00260"></a>00260             sphereshape-&gt;calculateLocalInertia(mass, inertia);
+<a name="l00261"></a>00261             <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a> = sphereshape;
+<a name="l00262"></a>00262             this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>-&gt;setLocalScaling(btVector3(1.f,1.f,1.f));
+<a name="l00263"></a>00263             this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
+<a name="l00264"></a>00264             this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setMassProps(mass,inertia);
+<a name="l00265"></a>00265             <span class="keywordflow">return</span>;
+<a name="l00266"></a>00266         }
+<a name="l00267"></a>00267         <span class="keywordflow">else</span>
+<a name="l00268"></a>00268         {
+<a name="l00269"></a>00269             <span class="keywordflow">return</span>;
+<a name="l00270"></a>00270         }
+<a name="l00271"></a>00271     }
+<a name="l00272"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac">00272</a> 
+<a name="l00273"></a>00273     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac" title="Creates a collision shape from mesh file.">ActorRigid::CreateShapeFromMeshStatic</a>()
+<a name="l00274"></a>00274     {
+<a name="l00275"></a>00275         <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;
+<a name="l00276"></a>00276 <span class="comment"></span>
+<a name="l00277"></a>00277 <span class="comment">        /// @todo - Check for thread safety</span>
+<a name="l00278"></a>00278 <span class="comment"></span>        btBvhTriangleMeshShape *tmpshape = <span class="keyword">new</span> btBvhTriangleMeshShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7" title="Creates a trimesh shape from the mesh file.">CreateTrimesh</a>(),<span class="keyword">true</span>);
+<a name="l00279"></a>00279         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>=tmpshape;
+<a name="l00280"></a>00280         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>-&gt;setLocalScaling(btVector3(0.95,0.95,0.95));
+<a name="l00281"></a>00281         this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
+<a name="l00282"></a>00282     }
+<a name="l00283"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#adaed962ee8ed788612e541fb00867c78">00283</a> 
+<a name="l00284"></a>00284     <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#adaed962ee8ed788612e541fb00867c78" title="Restricts movement on the axis or axies of your choice.">ActorRigid::LimitMovementOnAxis</a>(<span class="keywordtype">bool</span> x, <span class="keywordtype">bool</span> y, <span class="keywordtype">bool</span> z)
+<a name="l00285"></a>00285     {
+<a name="l00286"></a>00286         btVector3 LinFact(x,y,z);
+<a name="l00287"></a>00287         this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setLinearFactor(LinFact);
+<a name="l00288"></a>00288         <span class="keywordflow">return</span>;
+<a name="l00289"></a>00289     }
+<a name="l00290"></a>00290 }
+<a name="l00291"></a>00291 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 14 00:55:02 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 17 09:17:19 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -118,22 +118,33 @@
 <a name="l00093"></a>00093 
 <a name="l00094"></a>00094             <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a20d18213e69b3821ee973865df428e6d" title="Which kind of container it this anyway.">GetType</a>() <span class="keyword">const</span>;
 <a name="l00095"></a>00095 
-<a name="l00096"></a>00096             <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">FindActor</a>(Ogre::Node* GraphicsNode);
-<a name="l00097"></a>00097 <span class="comment"></span>
-<a name="l00098"></a>00098 <span class="comment">            /// @brief This is used to store information about the cursor</span>
-<a name="l00099"></a>00099 <span class="comment">            /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor</span>
-<a name="l00100"></a>00100 <span class="comment">            /// so feel free to use this instead.</span>
-<a name="l00101"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed">00101</a> <span class="comment"></span>            vector&lt;ActorBase*&gt;::iterator <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed" title="This is used to store information about the cursor.">cursor</a>;
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103         <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00104"></a>00104 <span class="comment">            /// @brief This is used to implement LastActorAdded()</span>
-<a name="l00105"></a>00105 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* RecentlyAdded;
-<a name="l00106"></a>00106     };
-<a name="l00107"></a>00107 }
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109 <span class="preprocessor">#endif</span>
+<a name="l00096"></a>00096 <span class="comment"></span>
+<a name="l00097"></a>00097 <span class="comment">            /// @brief This finds an actor by searching for a graphics subsystem nodes</span>
+<a name="l00098"></a>00098 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time.</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching node</span>
+<a name="l00100"></a>00100 <span class="comment">            /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.</span>
+<a name="l00101"></a>00101 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">FindActor</a>(Ogre::Node* GraphicsNode);
+<a name="l00102"></a>00102 <span class="comment"></span>
+<a name="l00103"></a>00103 <span class="comment">            /// @brief This finds an actor based on its name</span>
+<a name="l00104"></a>00104 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time.</span>
+<a name="l00105"></a>00105 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching name</span>
+<a name="l00106"></a>00106 <span class="comment">            /// @param Name This is the name of the Actor you want to find</span>
+<a name="l00107"></a>00107 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">FindActor</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name);
+<a name="l00108"></a>00108 <span class="comment"></span>
+<a name="l00109"></a>00109 <span class="comment">            /// @brief This is used to store information about the cursor</span>
+<a name="l00110"></a>00110 <span class="comment">            /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor</span>
+<a name="l00111"></a>00111 <span class="comment">            /// so feel free to use this instead.</span>
+<a name="l00112"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed">00112</a> <span class="comment"></span>            vector&lt;ActorBase*&gt;::iterator <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed" title="This is used to store information about the cursor.">cursor</a>;
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114         <span class="keyword">private</span>:<span class="comment"></span>
+<a name="l00115"></a>00115 <span class="comment">            /// @brief This is used to implement LastActorAdded()</span>
+<a name="l00116"></a>00116 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* RecentlyAdded;
+<a name="l00117"></a>00117     };
+<a name="l00118"></a>00118 }
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 14 00:55:02 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 17 09:17:19 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

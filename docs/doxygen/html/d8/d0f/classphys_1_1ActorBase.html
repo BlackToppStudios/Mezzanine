@@ -69,6 +69,8 @@ Inheritance diagram for phys::ActorBase:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the orientation of the actor.  <a href="#adbf0cc77031f22597a799fd0f7f8216d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#ac4b0bf1eff730d94f72d04957efea69d">SetOrientation</a> (<a class="el" href="../../df/d8c/classphys_1_1Quaternion.html">Quaternion</a> Rotation)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the orientation of the actor.  <a href="#ac4b0bf1eff730d94f72d04957efea69d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a1ac7c692d7f88f39ebb1c1db5deba251">SetActorScaling</a> (<a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> scale)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the scale of the actor.  <a href="#a1ac7c692d7f88f39ebb1c1db5deba251"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#aa41370f6d2031a9dad8df45bd7f3bcc6">CreateShapeFromMeshDynamic</a> (short unsigned int accuracy)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a collision shape from mesh file.  <a href="#aa41370f6d2031a9dad8df45bd7f3bcc6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f">SetKinematic</a> ()</td></tr>
@@ -548,6 +550,35 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorContainerBase</
 
 </div>
 </div>
+<a class="anchor" id="a1ac7c692d7f88f39ebb1c1db5deba251"></a><!-- doxytag: member="phys::ActorBase::SetActorScaling" ref="a1ac7c692d7f88f39ebb1c1db5deba251" args="(Vector3 scale)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::ActorBase::SetActorScaling </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td>
+          <td class="paramname"> <em>scale</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the scale of the actor. </p>
+<p>This function will alter the scaling/size of the actor with the given vector3. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>scale</em>&nbsp;</td><td>The vector3 by which to apply the scale. Will scale each axis' accordingly. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00280">280</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aa7ab524d2905e640cea6324cce9ccfdb"></a><!-- doxytag: member="phys::ActorBase::SetBulletLocation" ref="aa7ab524d2905e640cea6324cce9ccfdb" args="(Vector3 Location)" -->
 <div class="memitem">
 <div class="memproto">
@@ -687,7 +718,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorContainerBase</
 <p>This function will set the object to a Kinematic Object. <br/>
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00282">282</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00288">288</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -929,7 +960,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorContainerBase</
 <p>This function will set the object to a Static Object. <br/>
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00288">288</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d42/actorbase_8cpp_source.html#l00294">294</a> of file <a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -938,7 +969,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorContainerBase</
 <li><a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 14 00:55:03 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 17 09:17:19 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

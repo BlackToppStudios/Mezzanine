@@ -78,7 +78,9 @@ void \hyperlink{classphys_1_1World_a6fa4d1e58a78ba0403af1c003fd321d9}{SetDebugPh
 \hyperlink{classphys_1_1CallBackManager}{CallBackManager} $\ast$ \hyperlink{classphys_1_1World_a22a1624c63198f49fdf8e448881bdb2e}{CallBacks}
 \begin{DoxyCompactList}\small\item\em This is a point to the default Call BackManager. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventManager}{EventManager} $\ast$ \hyperlink{classphys_1_1World_ad0b13f1f3caf0342f56671b522543453}{Events}
-\begin{DoxyCompactList}\small\item\em This is the default pointer to the Event Manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This is the default pointer to the Event Manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ActorContainerBase}{ActorContainerBase} $\ast$ \hyperlink{classphys_1_1World_a67682d0622fef8d6ae4eba447838b423}{Actors}
+\begin{DoxyCompactList}\small\item\em This is a convienient place to keep pointer to our Actors. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -120,7 +122,7 @@ Descriptive constructor.
 
 This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. 
 \begin{DoxyParams}{Parameters}
-\item[{\em GeographyLowerBounds\_\-}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds\_\-}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies\_\-}]This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.\end{DoxyParams}
+\item[{\em GeographyLowerBounds\_\-}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds\_\-}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies\_\-}]This is the amount of Actors (Also called Proxies) allowed in a physics simulation.\end{DoxyParams}
 \begin{Desc}
 \item[\hyperlink{todo__todo000016}{Todo}]TODO: adjust the constructors to allow for pointers to a callback manager and event manager \end{Desc}
 
@@ -589,6 +591,19 @@ This should be treated as an internal function, it is {\bfseries subject} {\bfse
 
 
 \subsection{Member Data Documentation}
+\hypertarget{classphys_1_1World_a67682d0622fef8d6ae4eba447838b423}{
+\index{phys::World@{phys::World}!Actors@{Actors}}
+\index{Actors@{Actors}!phys::World@{phys::World}}
+\subsubsection[{Actors}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorContainerBase}$\ast$ {\bf phys::World::Actors}}}
+\label{da/ddf/classphys_1_1World_a67682d0622fef8d6ae4eba447838b423}
+
+
+This is a convienient place to keep pointer to our Actors. 
+
+Whenever an actor is added, a pointer to it will be stored here. 
+
+Definition at line 436 of file world.h.
+
 \hypertarget{classphys_1_1World_a22a1624c63198f49fdf8e448881bdb2e}{
 \index{phys::World@{phys::World}!CallBacks@{CallBacks}}
 \index{CallBacks@{CallBacks}!phys::World@{phys::World}}
@@ -600,7 +615,7 @@ This is a point to the default Call BackManager.
 
 All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. 
 
-Definition at line 427 of file world.h.
+Definition at line 428 of file world.h.
 
 \hypertarget{classphys_1_1World_ad0b13f1f3caf0342f56671b522543453}{
 \index{phys::World@{phys::World}!Events@{Events}}
@@ -613,7 +628,7 @@ This is the default pointer to the Event Manager.
 
 This is the Event manager that all physworld members will place any events into. 
 
-Definition at line 431 of file world.h.
+Definition at line 432 of file world.h.
 
 
 

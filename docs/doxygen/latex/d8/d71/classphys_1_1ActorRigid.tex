@@ -26,6 +26,8 @@ virtual \hyperlink{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{$\
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}{CreateShapeFromMeshDynamic} (short unsigned int accuracy=1)
 \begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}{CreateSphereShapeFromMesh} ()
+\begin{DoxyCompactList}\small\item\em Creates a sphere collision shape. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{CreateShapeFromMeshStatic} ()
 \begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{LimitMovementOnAxis} (bool x, bool y, bool z)
@@ -182,6 +184,19 @@ This function will read the location of every verticy in the mesh file and use t
 
 
 
+Definition at line 272 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}{
+\index{phys::ActorRigid@{phys::ActorRigid}!CreateSphereShapeFromMesh@{CreateSphereShapeFromMesh}}
+\index{CreateSphereShapeFromMesh@{CreateSphereShapeFromMesh}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{CreateSphereShapeFromMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateSphereShapeFromMesh ()}}
+\label{d8/d71/classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}
+
+
+Creates a sphere collision shape. 
+
+Will dynamically create a sphere collision shape from the loaded mesh file. 
+
 Definition at line 248 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{
@@ -198,7 +213,7 @@ This function will lock any and all axies you define you want to be locked. Simp
 \item[{\em x}]Allow or Disallow use of the X axis for movement. \item[{\em y}]Allow or Disallow use of the Y axis for movement. \item[{\em z}]Allow or Disallow use of the Z axis for movement. \end{DoxyParams}
 
 
-Definition at line 259 of file actorrigid.cpp.
+Definition at line 283 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a74a4eaa5491b90a977e9db0457271f31}{
 \index{phys::ActorRigid@{phys::ActorRigid}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}

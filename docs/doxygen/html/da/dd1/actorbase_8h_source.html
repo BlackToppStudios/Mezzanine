@@ -276,31 +276,36 @@
 <a name="l00251"></a>00251 <span class="comment">            /// @param Rotation The Quaternion representing the Rotation.</span>
 <a name="l00252"></a>00252 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#adbf0cc77031f22597a799fd0f7f8216d" title="Sets the orientation of the actor.">SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Rotation);
 <a name="l00253"></a>00253 <span class="comment"></span>
-<a name="l00254"></a>00254 <span class="comment">            /// @brief Creates a collision shape from mesh file.</span>
-<a name="l00255"></a>00255 <span class="comment">            /// @details This function will read the location of every verticy in the mesh file and use that to</span>
-<a name="l00256"></a>00256 <span class="comment">            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld</span>
-<a name="l00257"></a>00257 <span class="comment">            /// be used with only with Dynamic objects.</span>
-<a name="l00258"></a>00258 <span class="comment">            /// @param accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent</span>
-<a name="l00259"></a>00259 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aa41370f6d2031a9dad8df45bd7f3bcc6" title="Creates a collision shape from mesh file.">CreateShapeFromMeshDynamic</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> accuracy ) = 0;
-<a name="l00260"></a>00260 <span class="comment"></span>
-<a name="l00261"></a>00261 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00262"></a>00262 <span class="comment"></span><span class="comment">// Public Collision flag functions</span><span class="comment"></span>
-<a name="l00263"></a>00263 <span class="comment">///////////////////////////////////////</span>
-<a name="l00264"></a>00264 <span class="comment">            /// @brief Sets the state of the object to Kinematic.</span>
-<a name="l00265"></a>00265 <span class="comment">            /// @details This function will set the object to a Kinematic Object. @n</span>
-<a name="l00266"></a>00266 <span class="comment">            /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.</span>
-<a name="l00267"></a>00267 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f" title="Sets the state of the object to Kinematic.">SetKinematic</a>();
-<a name="l00268"></a>00268 <span class="comment"></span>
-<a name="l00269"></a>00269 <span class="comment">            /// @brief Sets the state of the object to Static.</span>
-<a name="l00270"></a>00270 <span class="comment">            /// @details This function will set the object to a Static Object. @n</span>
-<a name="l00271"></a>00271 <span class="comment">            /// Static Objects don&#39;t move or have any force applied to them, but are cabable of exerting force on other objects.</span>
-<a name="l00272"></a>00272 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037" title="Sets the state of the object to Static.">SetStatic</a>();
-<a name="l00273"></a>00273     };
-<a name="l00274"></a>00274 
-<a name="l00275"></a>00275 } <span class="comment">// /phys</span>
-<a name="l00276"></a>00276 <span class="preprocessor">#endif</span>
+<a name="l00254"></a>00254 <span class="comment">            /// @brief Sets the scale of the actor.</span>
+<a name="l00255"></a>00255 <span class="comment">            /// @details This function will alter the scaling/size of the actor with the given vector3.</span>
+<a name="l00256"></a>00256 <span class="comment">            /// @param scale The vector3 by which to apply the scale.  Will scale each axis&#39; accordingly.</span>
+<a name="l00257"></a>00257 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a1ac7c692d7f88f39ebb1c1db5deba251" title="Sets the scale of the actor.">SetActorScaling</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> scale);
+<a name="l00258"></a>00258 <span class="comment"></span>
+<a name="l00259"></a>00259 <span class="comment">            /// @brief Creates a collision shape from mesh file.</span>
+<a name="l00260"></a>00260 <span class="comment">            /// @details This function will read the location of every verticy in the mesh file and use that to</span>
+<a name="l00261"></a>00261 <span class="comment">            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld</span>
+<a name="l00262"></a>00262 <span class="comment">            /// be used with only with Dynamic objects.</span>
+<a name="l00263"></a>00263 <span class="comment">            /// @param accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent</span>
+<a name="l00264"></a>00264 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aa41370f6d2031a9dad8df45bd7f3bcc6" title="Creates a collision shape from mesh file.">CreateShapeFromMeshDynamic</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> accuracy ) = 0;
+<a name="l00265"></a>00265 <span class="comment"></span>
+<a name="l00266"></a>00266 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00267"></a>00267 <span class="comment"></span><span class="comment">// Public Collision flag functions</span><span class="comment"></span>
+<a name="l00268"></a>00268 <span class="comment">///////////////////////////////////////</span>
+<a name="l00269"></a>00269 <span class="comment">            /// @brief Sets the state of the object to Kinematic.</span>
+<a name="l00270"></a>00270 <span class="comment">            /// @details This function will set the object to a Kinematic Object. @n</span>
+<a name="l00271"></a>00271 <span class="comment">            /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.</span>
+<a name="l00272"></a>00272 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acd5613286ec14fb2a8e5ed5f5003dc5f" title="Sets the state of the object to Kinematic.">SetKinematic</a>();
+<a name="l00273"></a>00273 <span class="comment"></span>
+<a name="l00274"></a>00274 <span class="comment">            /// @brief Sets the state of the object to Static.</span>
+<a name="l00275"></a>00275 <span class="comment">            /// @details This function will set the object to a Static Object. @n</span>
+<a name="l00276"></a>00276 <span class="comment">            /// Static Objects don&#39;t move or have any force applied to them, but are cabable of exerting force on other objects.</span>
+<a name="l00277"></a>00277 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af0219532fe71d1d84042a20a88fe5037" title="Sets the state of the object to Static.">SetStatic</a>();
+<a name="l00278"></a>00278     };
+<a name="l00279"></a>00279 
+<a name="l00280"></a>00280 } <span class="comment">// /phys</span>
+<a name="l00281"></a>00281 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 14 00:55:02 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 17 09:17:19 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

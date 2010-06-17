@@ -40,6 +40,8 @@ void \hyperlink{classphys_1_1ActorBase_adbf0cc77031f22597a799fd0f7f8216d}{SetOri
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_ac4b0bf1eff730d94f72d04957efea69d}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Rotation)
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorBase_a1ac7c692d7f88f39ebb1c1db5deba251}{SetActorScaling} (\hyperlink{classphys_1_1Vector3}{Vector3} scale)
+\begin{DoxyCompactList}\small\item\em Sets the scale of the actor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBase_aa41370f6d2031a9dad8df45bd7f3bcc6}{CreateShapeFromMeshDynamic} (short unsigned int accuracy)=0
 \begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_acd5613286ec14fb2a8e5ed5f5003dc5f}{SetKinematic} ()
@@ -343,6 +345,22 @@ Removes the actor from the physics world. \par
 
 Implemented in \hyperlink{classphys_1_1ActorRigid_a74a4eaa5491b90a977e9db0457271f31}{phys::ActorRigid}.
 
+\hypertarget{classphys_1_1ActorBase_a1ac7c692d7f88f39ebb1c1db5deba251}{
+\index{phys::ActorBase@{phys::ActorBase}!SetActorScaling@{SetActorScaling}}
+\index{SetActorScaling@{SetActorScaling}!phys::ActorBase@{phys::ActorBase}}
+\subsubsection[{SetActorScaling}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetActorScaling ({\bf Vector3} {\em scale})}}
+\label{d8/d0f/classphys_1_1ActorBase_a1ac7c692d7f88f39ebb1c1db5deba251}
+
+
+Sets the scale of the actor. 
+
+This function will alter the scaling/size of the actor with the given vector3. 
+\begin{DoxyParams}{Parameters}
+\item[{\em scale}]The vector3 by which to apply the scale. Will scale each axis' accordingly. \end{DoxyParams}
+
+
+Definition at line 280 of file actorbase.cpp.
+
 \hypertarget{classphys_1_1ActorBase_aa7ab524d2905e640cea6324cce9ccfdb}{
 \index{phys::ActorBase@{phys::ActorBase}!SetBulletLocation@{SetBulletLocation}}
 \index{SetBulletLocation@{SetBulletLocation}!phys::ActorBase@{phys::ActorBase}}
@@ -423,7 +441,7 @@ Sets the state of the object to Kinematic.
 This function will set the object to a Kinematic Object. \par
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
 
-Definition at line 282 of file actorbase.cpp.
+Definition at line 288 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a3212be459859a67bf7ae64919d58d5a5}{
 \index{phys::ActorBase@{phys::ActorBase}!SetLocation@{SetLocation}}
@@ -537,7 +555,7 @@ Sets the state of the object to Static.
 This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
-Definition at line 288 of file actorbase.cpp.
+Definition at line 294 of file actorbase.cpp.
 
 
 

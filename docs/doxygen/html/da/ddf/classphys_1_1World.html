@@ -103,6 +103,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is a point to the default Call BackManager.  <a href="#a22a1624c63198f49fdf8e448881bdb2e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/dde/classphys_1_1EventManager.html">EventManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#ad0b13f1f3caf0342f56671b522543453">Events</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the default pointer to the Event Manager.  <a href="#ad0b13f1f3caf0342f56671b522543453"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html">ActorContainerBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a67682d0622fef8d6ae4eba447838b423">Actors</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is a convienient place to keep pointer to our Actors.  <a href="#a67682d0622fef8d6ae4eba447838b423"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac09063d4b0192680ba3aa0bd4003a274"></a><!-- doxytag: member="phys::World::ActorBase" ref="ac09063d4b0192680ba3aa0bd4003a274" args="" -->
 class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorBase</b></td></tr>
@@ -156,7 +158,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>GeographyLowerBounds_</em>&nbsp;</td><td>The lower limits for the size of the physics simulation </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>GeographyUpperbounds_</em>&nbsp;</td><td>The Upper limits for the size of the physics simulation </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>MaxPhysicsProxies_</em>&nbsp;</td><td>This is the amount of Adows (Also called Actors or Proxies) allowed in a physics simulation.</td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>MaxPhysicsProxies_</em>&nbsp;</td><td>This is the amount of Actors (Also called Proxies) allowed in a physics simulation.</td></tr>
   </table>
   </dd>
 </dl>
@@ -990,6 +992,24 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a67682d0622fef8d6ae4eba447838b423"></a><!-- doxytag: member="phys::World::Actors" ref="a67682d0622fef8d6ae4eba447838b423" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html">ActorContainerBase</a>* <a class="el" href="../../da/ddf/classphys_1_1World.html#a67682d0622fef8d6ae4eba447838b423">phys::World::Actors</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This is a convienient place to keep pointer to our Actors. </p>
+<p>Whenever an actor is added, a pointer to it will be stored here. </p>
+
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00436">436</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a22a1624c63198f49fdf8e448881bdb2e"></a><!-- doxytag: member="phys::World::CallBacks" ref="a22a1624c63198f49fdf8e448881bdb2e" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -1004,7 +1024,7 @@ template&lt;class T &gt; </div>
 <p>This is a point to the default Call BackManager. </p>
 <p>All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00427">427</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00428">428</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1022,7 +1042,7 @@ template&lt;class T &gt; </div>
 <p>This is the default pointer to the Event Manager. </p>
 <p>This is the Event manager that all physworld members will place any events into. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00431">431</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00432">432</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1031,7 +1051,7 @@ template&lt;class T &gt; </div>
 <li><a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 14 00:55:04 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 17 09:17:21 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

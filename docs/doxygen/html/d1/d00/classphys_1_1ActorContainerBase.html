@@ -78,6 +78,8 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This gets the last actor in the container.  <a href="#a8efeffd5ae22085fe01af791b3ea559e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a2e4652bf92f24a0ff20bdc4a7173b567">FindActor</a> (Ogre::Node *GraphicsNode)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This finds an actor by searching for a graphics subsystem nodes.  <a href="#a2e4652bf92f24a0ff20bdc4a7173b567"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a91223cbaebb8e5f11a4f971d7e5b64b6">FindActor</a> (<a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> Name)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This finds an actor based on its name.  <a href="#a91223cbaebb8e5f11a4f971d7e5b64b6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a526dab176597858680490d128d0584a3">GetType</a> () const =0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Which kind of container it this anyway.  <a href="#a526dab176597858680490d128d0584a3"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
@@ -170,9 +172,10 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <p>This will add an Actor to this container and the world, and handle the nitty gritty details of add this to physics subsystem and graphics subsystem. <br/>
 <br/>
  This will not add the Actor to any specific location in the ordering of the container. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This will cause issues if used with a container attached to a valid <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. Use <a class="el" href="../../da/ddf/classphys_1_1World.html#a0fec41ef68b7bb1443aab927f8277a81" title="The adds and Actor to the physworld.">World::AddActor</a> instead. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>ActorToAdd</em>&nbsp;</td><td>This is a pointer to the actor to add </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ActorToAdd</em>&nbsp;</td><td>This is a pointer to the actor to add. </td></tr>
   </table>
   </dd>
 </dl>
@@ -269,6 +272,35 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 </div>
 </div>
+<a class="anchor" id="a91223cbaebb8e5f11a4f971d7e5b64b6"></a><!-- doxytag: member="phys::ActorContainerBase::FindActor" ref="a91223cbaebb8e5f11a4f971d7e5b64b6" args="(String Name)=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a>* phys::ActorContainerBase::FindActor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td>
+          <td class="paramname"> <em>Name</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This finds an actor based on its name. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to and <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> that has a matching name </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>This is the name of the Actor you want to find </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ae04f8c6dd9b07ef9c1456707be9e155b">phys::ActorContainerVector</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a2e4652bf92f24a0ff20bdc4a7173b567"></a><!-- doxytag: member="phys::ActorContainerBase::FindActor" ref="a2e4652bf92f24a0ff20bdc4a7173b567" args="(Ogre::Node *GraphicsNode)=0" -->
 <div class="memitem">
 <div class="memproto">
@@ -286,8 +318,13 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <div class="memdoc">
 
 <p>This finds an actor by searching for a graphics subsystem nodes. </p>
-<p>This will iterate through each Actor in the container until it finds one with a matching Node </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to and <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> that has a matching node </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>GraphicsNode</em>&nbsp;</td><td>This is a pointer to a GraphicsNode that the Actor you want to find will have. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc">phys::ActorContainerVector</a>.</p>
 
@@ -470,6 +507,7 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 <p>Remove an Actor. </p>
 <p>Remove all references of the actor pointed from the container. Will throw an exception when attempting to remove and no match could be found. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This will cause issues if used with a container attached to a valid <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. Use <a class="el" href="../../da/ddf/classphys_1_1World.html#ab00f84983afcc7f6ef1e5a84367d994d" title="The Removes an Actor from the physworld.">World::RemoveActor</a> instead. </dd></dl>
 
 <p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#aeee5bd81601faed85e6a35f576c8d476">phys::ActorContainerVector</a>.</p>
 
@@ -492,6 +530,7 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 <p>Removes the current actor. </p>
 <p>This removes the actor the cursor at. Will throw an exception when attempting to remove from an empty container. Where the cursor goes is implementation dependent. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This will cause issues if used with a container attached to a valid <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. Use <a class="el" href="../../da/ddf/classphys_1_1World.html#ab00f84983afcc7f6ef1e5a84367d994d" title="The Removes an Actor from the physworld.">World::RemoveActor</a> instead. </dd></dl>
 
 <p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a430977daf010a25f53df6cf37954f8ca">phys::ActorContainerVector</a>.</p>
 
@@ -502,7 +541,7 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <li><a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jun 14 00:55:03 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 17 09:17:20 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

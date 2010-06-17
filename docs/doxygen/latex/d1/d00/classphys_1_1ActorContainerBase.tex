@@ -50,6 +50,8 @@ virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphy
 \begin{DoxyCompactList}\small\item\em This gets the last actor in the container. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}{FindActor} (Ogre::Node $\ast$GraphicsNode)=0
 \begin{DoxyCompactList}\small\item\em This finds an actor by searching for a graphics subsystem nodes. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}{FindActor} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)=0
+\begin{DoxyCompactList}\small\item\em This finds an actor based on its name. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorContainerBase_a526dab176597858680490d128d0584a3}{GetType} () const =0
 \begin{DoxyCompactList}\small\item\em Which kind of container it this anyway. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
@@ -118,9 +120,12 @@ This will add an Actor to this container and the world.
 
 This will add an Actor to this container and the world, and handle the nitty gritty details of add this to physics subsystem and graphics subsystem. \par
 \par
- This will not add the Actor to any specific location in the ordering of the container. 
+ This will not add the Actor to any specific location in the ordering of the container. \begin{DoxyWarning}{Warning}
+This will cause issues if used with a container attached to a valid \hyperlink{classphys_1_1World}{phys::World}. Use \hyperlink{classphys_1_1World_a0fec41ef68b7bb1443aab927f8277a81}{World::AddActor} instead. 
+\end{DoxyWarning}
+
 \begin{DoxyParams}{Parameters}
-\item[{\em ActorToAdd}]This is a pointer to the actor to add \end{DoxyParams}
+\item[{\em ActorToAdd}]This is a pointer to the actor to add. \end{DoxyParams}
 
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_a4bc3e38f16caddee021a97739bebaf6e}{phys::ActorContainerVector}.
@@ -177,6 +182,25 @@ This moves the cursor to the previous item in the container, and if you started 
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b04a8805a002413}{phys::ActorContainerVector}.
 
+\hypertarget{classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!FindActor@{FindActor}}
+\index{FindActor@{FindActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::FindActor ({\bf String} {\em Name})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}
+
+
+This finds an actor based on its name. 
+
+\begin{DoxyReturn}{Returns}
+This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that has a matching name 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]This is the name of the Actor you want to find \end{DoxyParams}
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}{phys::ActorContainerVector}.
+
 \hypertarget{classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!FindActor@{FindActor}}
 \index{FindActor@{FindActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
@@ -186,9 +210,12 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b0
 
 This finds an actor by searching for a graphics subsystem nodes. 
 
-This will iterate through each Actor in the container until it finds one with a matching Node \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that has a matching node 
 \end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em GraphicsNode}]This is a pointer to a GraphicsNode that the Actor you want to find will have. \end{DoxyParams}
 
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}{phys::ActorContainerVector}.
@@ -310,7 +337,10 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a49e643bdeff78521de9
 
 Remove an Actor. 
 
-Remove all references of the actor pointed from the container. Will throw an exception when attempting to remove and no match could be found. 
+Remove all references of the actor pointed from the container. Will throw an exception when attempting to remove and no match could be found. \begin{DoxyWarning}{Warning}
+This will cause issues if used with a container attached to a valid \hyperlink{classphys_1_1World}{phys::World}. Use \hyperlink{classphys_1_1World_ab00f84983afcc7f6ef1e5a84367d994d}{World::RemoveActor} instead. 
+\end{DoxyWarning}
+
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_aeee5bd81601faed85e6a35f576c8d476}{phys::ActorContainerVector}.
 
@@ -323,7 +353,10 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_aeee5bd81601faed85e6
 
 Removes the current actor. 
 
-This removes the actor the cursor at. Will throw an exception when attempting to remove from an empty container. Where the cursor goes is implementation dependent. 
+This removes the actor the cursor at. Will throw an exception when attempting to remove from an empty container. Where the cursor goes is implementation dependent. \begin{DoxyWarning}{Warning}
+This will cause issues if used with a container attached to a valid \hyperlink{classphys_1_1World}{phys::World}. Use \hyperlink{classphys_1_1World_ab00f84983afcc7f6ef1e5a84367d994d}{World::RemoveActor} instead. 
+\end{DoxyWarning}
+
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_a430977daf010a25f53df6cf37954f8ca}{phys::ActorContainerVector}.
 
