@@ -55,6 +55,7 @@
 #include "actorrigid.h"
 #include "actorsoft.h"
 #include "callbackmanager.h"
+#include "cameramanager.h"
 #include "crossplatform.h"
 #include "datatypes.h"
 #include "eventbase.h"

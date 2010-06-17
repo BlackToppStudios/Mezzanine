@@ -747,7 +747,9 @@ namespace phys
         this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
 
         //setup a default camera
-        this->OgreCamera = this->OgreSceneManager->createCamera("Camera");
+        this->Cameras = new CameraManager (this->OgreSceneManager);
+        this->Cameras->CreateCamera();
+        this->OgreCamera = this->Cameras->DefaultCamera;
         this->OgreCamera->setNearClipDistance(5.0f);
         this->OgreCamera->setFarClipDistance(5000.0f);
 

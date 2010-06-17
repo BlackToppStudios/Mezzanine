@@ -97,6 +97,7 @@
 #include "eventmanager.h"
 #include "datatypes.h"
 #include "vector3.h"
+#include "cameramanager.h"
 
 #include <string>
 
@@ -298,6 +299,10 @@ namespace phys
             /// @param Position Where should the camera be seated
             /// @param LookAt Point the camera such that this poin is centered on the screen
             void MoveCamera(const Vector3 &Position, const Vector3 &LookAt);
+
+            /// @brief This is a pointer to the Camera Manager.
+            /// @details This is a pointer to the camera management class for the engine.
+            CameraManager* Cameras;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Graphics system loading methods
