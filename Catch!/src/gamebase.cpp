@@ -13,6 +13,7 @@ using namespace phys;
 World TheWorld( Vector3(-10000.0,-10000.0,-10000.0),
                 Vector3(10000.0,10000.0,10000.0),
                 30);                     //Create the World Globally! and we a place to hold some actors
+ // To amke the code simpler we store the name of our one camera node here
 
 int main(int argc, char **argv)
 {
@@ -41,6 +42,10 @@ int main(int argc, char **argv)
     //Configure the wireframe Drawer
     TheWorld.SetDebugPhysicsWireCount(2);
     TheWorld.SetDebugPhysicsRendering(0);
+
+    //Setup some camera tricks
+    String CameraNode = TheWorld.Cameras->CreateOrbitingNode( Vector3(0,0,0), Vector3(0.0,200.0,500.0) );
+    TheWorld.Cameras->AttachCameraToNode(CameraNode);
 
 	//Start the Main Loop
 	TheWorld.MainLoop();
@@ -73,6 +78,8 @@ bool PostRender()
     std::stringstream timestream;
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
+
+    TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() );
 
     // Turn on the Wireframe
     if (25000<gametime)

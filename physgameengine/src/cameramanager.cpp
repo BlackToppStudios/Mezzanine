@@ -40,7 +40,7 @@
 #ifndef _CameraManager_cpp
 #define _CameraManager_cpp
 
-#include "CameraManager.h"
+#include "cameramanager.h"
 
 #include <Ogre.h>
 
@@ -307,11 +307,32 @@ namespace phys
         return;
     }
 
+    String CameraManager::GetNodeAttachedToCamera (String Name)
+    {
+        if(Name=="DefaultCamera")
+        {
+            Ogre::SceneNode* tempnode = this->DefaultCamera->getParentSceneNode();
+            return tempnode->getName();
+        }
+        else
+        {
+            Ogre::Camera* tempcam = FindCamera(Name);
+            Ogre::SceneNode *tempnode = tempcam->getParentSceneNode();
+            return tempnode->getName();
+        }
+    }
+
     void CameraManager::AttachCameraToNode (String NodeName, String CamName)
     {
         Ogre::SceneNode* tempnode = FindNode(NodeName);
-        Ogre::Camera* tempcam = FindCamera(CamName);
-        tempnode->attachObject(tempcam);
+        if(CamName=="DefaultCamera")
+        {
+            tempnode->attachObject(this->DefaultCamera);
+        }else{
+            Ogre::Camera* tempcam = FindCamera(CamName);
+            tempnode->attachObject(tempcam);
+        }
+
         return;
     }
 
