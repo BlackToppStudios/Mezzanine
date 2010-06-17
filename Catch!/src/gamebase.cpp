@@ -79,8 +79,6 @@ bool PostRender()
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
 
-    TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() );
-
     // Turn on the Wireframe
     if (25000<gametime)
         { TheWorld.SetDebugPhysicsRendering(1); }
@@ -114,6 +112,12 @@ bool PostInput()
     TheWorld.Log("Mouse location From WorldQueryTool X/Y");
     TheWorld.Log(Queryer.GetMouseX());
     TheWorld.Log(Queryer.GetMouseY());
+
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
+        { TheWorld.Cameras->IncrementYOrbit(-0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
+
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
+        { TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
 
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
