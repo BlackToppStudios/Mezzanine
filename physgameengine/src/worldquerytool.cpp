@@ -86,6 +86,8 @@ namespace phys
 
     void WorldQueryTool::GatherEvents(bool ClearEventsFromEventMgr)
     {
+        //this->KeyboardButtonCache.reset();
+
         std::list<EventUserInput*>* UserInput = this->GameWorld->Events->GetAllUserInputEvents();   // Get the updated list of events
         if( ClearEventsFromEventMgr )
             { this->GameWorld->Events->RemoveAllSpecificEvents(EventBase::UserInput); }
@@ -115,12 +117,12 @@ namespace phys
                 {
                     if(0 <= (*Iter)->GetMetaCode(c).GetMetaValue()) //see MetaCode::ButtonState
                     {
-                        this->MouseButtonCache.reset( (*Iter)->GetMetaCode(c).GetID() );
-                    }else{
                         this->MouseButtonCache.set( (*Iter)->GetMetaCode(c).GetID() );
+                    }else{
+                        this->MouseButtonCache.reset( (*Iter)->GetMetaCode(c).GetID() );
                     }
                 }
-               /// @todo Add support for joystick events to WorldQueryTool
+                /// @todo Add support for joysticks events to WorldQueryTool
             }
         }
 
@@ -352,7 +354,6 @@ namespace phys
         }
     }
 }
-
 
 
 #endif

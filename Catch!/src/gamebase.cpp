@@ -13,10 +13,10 @@ using namespace phys;
 World TheWorld( Vector3(-10000.0,-10000.0,-10000.0),
                 Vector3(10000.0,10000.0,10000.0),
                 30);                     //Create the World Globally! and we a place to hold some actors
- // To amke the code simpler we store the name of our one camera node here
 
 int main(int argc, char **argv)
 {
+    // Set the Title
     TheWorld.SetWindowName("Catch!... The Game!");
     TheWorld.SetTargetFrameRate(40);
 
@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     TheWorld.SetDebugPhysicsRendering(0);
 
     //Setup some camera tricks
-    String CameraNode = TheWorld.Cameras->CreateOrbitingNode( Vector3(0,0,0), Vector3(0.0,200.0,500.0) );
+    String CameraNode = TheWorld.Cameras->CreateOrbitingNode( Vector3(0,0,0), Vector3(0.0,200.0,350.0) );
     TheWorld.Cameras->AttachCameraToNode(CameraNode);
 
 	//Start the Main Loop
@@ -113,11 +113,23 @@ bool PostInput()
     TheWorld.Log(Queryer.GetMouseX());
     TheWorld.Log(Queryer.GetMouseY());
 
+    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(1))
+        {TheWorld.Cameras->IncrementYOrbit(-0.01, TheWorld.Cameras->GetNodeAttachedToCamera() );}
+
+    if(320<Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(1))
+        {TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() );}
+
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
-        { TheWorld.Cameras->IncrementYOrbit(-0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
+        { TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
-        { TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
+        { TheWorld.Cameras->IncrementYOrbit(-0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
+
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) )
+        { /*TheWorld.Cameras->ZoomCamera( 0.1 );*/ }
+
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN) )
+        { /*TheWorld.Cameras->ZoomCamera( -0.1 );*/ }
 
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
@@ -234,7 +246,7 @@ void LoadContent()
     object6 = new ActorRigid (0,"Ramp","plane.mesh",groupname,&TheWorld);
     object6->CreateShapeFromMeshDynamic(1);
     object6->SetInitLocation(Vector3(00.0,100.0,-800.0));
-    object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, 0.75));
+    object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, 0.95));
 
     //Final Steps
     Vector3 grav;
