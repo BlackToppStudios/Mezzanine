@@ -80,7 +80,7 @@ bool PostRender()
     TheWorld.SetWindowName( timestream.str() );
 
     // Turn on the Wireframe
-    if (20000<gametime)
+    if (30000<gametime)
         { TheWorld.SetDebugPhysicsRendering(1); }
 
     //IF the game has gone on for 60 or more seconds close it.
@@ -181,10 +181,10 @@ void LoadContent()
     Real mass=5.0;
     TheWorld.AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld.DeclareResource(filerobot, "Mesh", groupname);
-    TheWorld.DeclareResource("Examples.material", "Material", groupname);
-    TheWorld.DeclareResource("Plane.material", "Material", groupname);
-    TheWorld.DeclareResource("Sphere_Wood.material", "Material", groupname);
-    TheWorld.DeclareResource("Sphere_Metal.material", "Material", groupname);
+    //TheWorld.DeclareResource("Examples.material", "Material", groupname);
+    //TheWorld.DeclareResource("Plane.material", "Material", groupname);
+    //TheWorld.DeclareResource("Sphere_Wood.material", "Material", groupname);
+    //TheWorld.DeclareResource("Sphere_Metal.material", "Material", groupname);
     TheWorld.InitResourceGroup(groupname);
 
     // Now Lets make some bowling pins

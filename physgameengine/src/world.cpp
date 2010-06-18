@@ -424,6 +424,7 @@ namespace phys
         //OneLogTest(temp20, "btVector3");
         OneLogTest(temp21, "Ogre::Vector3");
         OneLogTest(temp22,"Ray");
+        OneLogTest("temp23","<char const*>");
     }
 
     template <class T> void World::OneLogTest(T Data, string DataType, string Message1, string Message2)
