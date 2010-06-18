@@ -21,7 +21,7 @@ else
 			exit 1
 		else
 			echo "Bullet Missing and can be built, Beginning Bullet Build."
-			cd libincludes/commin/bulletsrc/
+			cd libincludes/common/bulletsrc/
 			codeblocks --build --target=Release BulletWorkspace.workspace
 			cd ../../..
 			cp libincludes/common/bulletsrc/libBullet.a data/linux/bullet/
