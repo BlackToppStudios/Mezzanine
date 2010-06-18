@@ -80,7 +80,7 @@ bool PostRender()
     TheWorld.SetWindowName( timestream.str() );
 
     // Turn on the Wireframe
-    if (25000<gametime)
+    if (20000<gametime)
         { TheWorld.SetDebugPhysicsRendering(1); }
 
     //IF the game has gone on for 60 or more seconds close it.
@@ -120,16 +120,16 @@ bool PostInput()
         {TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() );}
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
-        { TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
-
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
         { TheWorld.Cameras->IncrementYOrbit(-0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
 
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
+        { TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
+
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) )
-        { TheWorld.Cameras->ZoomCamera( 3.0 ); }
+        { TheWorld.Cameras->ZoomCamera( -3.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN) )
-        { TheWorld.Cameras->ZoomCamera( -3.0 ); }
+        { TheWorld.Cameras->ZoomCamera( 3.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld.Cameras->ResetZoom(); }
@@ -172,7 +172,7 @@ bool CheckForEsc()
 
 void LoadContent()
 {
-    ActorRigid *object1, *object2, *object3, *object4, *object5, *object6;
+    ActorRigid *object1, *object2, *object3, *object4, *object5, *object6, *object7;
     //Ogre Setup Code
     String groupname ("Group1");
     String filerobot ("robot.mesh");
@@ -182,7 +182,7 @@ void LoadContent()
     TheWorld.AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld.DeclareResource(filerobot, "Mesh", groupname);
     TheWorld.DeclareResource("Examples.material", "Material", groupname);
-    TheWorld.DeclareResource("plane.material", "Material", groupname);
+    TheWorld.DeclareResource("Plane.material", "Material", groupname);
     TheWorld.DeclareResource("Sphere_Wood.material", "Material", groupname);
     TheWorld.DeclareResource("Sphere_Metal.material", "Material", groupname);
     TheWorld.InitResourceGroup(groupname);
@@ -224,32 +224,37 @@ void LoadContent()
 
     object1 = new ActorRigid (mass,"RobotWayUpFrontRight",filerobot,groupname,&TheWorld);
     object1->CreateShapeFromMeshDynamic(1);
-    object1->SetInitLocation(Vector3(400,70,-500));
+    object1->SetInitLocation(Vector3(400,70,100));
     object1->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
 
     object2 = new ActorRigid (150.0f,"WoodSphere","Sphere_Wood.mesh",groupname,&TheWorld);
     object2->CreateSphereShapeFromMesh();
     object2->SetActorScaling(Vector3(0.5,0.5,0.5));
-    object2->SetInitLocation(Vector3(-130.0,2800.0,-900.0));
+    object2->SetInitLocation(Vector3(-130.0,2800.0,-1150.0));
 
     object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld);
     object3->CreateSphereShapeFromMesh();
     object3->SetActorScaling(Vector3(0.7,0.7,0.7));
-    object3->SetInitLocation(Vector3(140.0,1800.0,-900.0));
+    object3->SetInitLocation(Vector3(140.0,1800.0,-1300.0));
 
     object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname,&TheWorld);
-    object4->CreateShapeFromMeshDynamic(1);
-    object4->SetInitLocation(Vector3(-400,10,-500));
+    object4->CreateShapeFromMeshDynamic(4);
+    object4->SetInitLocation(Vector3(-400,10, 100));
     object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
 
-    object5 = new ActorRigid (0,"Plane","plane.mesh",groupname,&TheWorld);
-    object5->CreateShapeFromMeshStatic();
+    object5 = new ActorRigid (0,"Plane","Plane.mesh",groupname,&TheWorld);
+    object5->CreateShapeFromMeshDynamic(4);
     object5->SetInitLocation(Vector3(0.0,-100,-300.0));
 
-    object6 = new ActorRigid (0,"Ramp","plane.mesh",groupname,&TheWorld);
+    object6 = new ActorRigid (0,"Ramp","Plane.mesh",groupname,&TheWorld);
     object6->CreateShapeFromMeshDynamic(1);
-    object6->SetInitLocation(Vector3(00.0,100.0,-800.0));
-    object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, 0.95));
+    object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
+    object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
+
+    object7 = new ActorRigid (200.0f,"MetalSphere2","Sphere_Metal.mesh",groupname,&TheWorld);
+    object7->CreateSphereShapeFromMesh();
+    object7->SetActorScaling(Vector3(0.3,0.3,0.3));
+    object7->SetInitLocation(Vector3(10.0,25000.0,-1300.0));
 
     //Final Steps
     Vector3 grav;
@@ -263,6 +268,7 @@ void LoadContent()
     TheWorld.AddActor(object4);
     TheWorld.AddActor(object5);
     TheWorld.AddActor(object6);
+    TheWorld.AddActor(object7);
 
     TheWorld.Log("Actor Count");
     TheWorld.Log( TheWorld.Actors->GetActorCount() );

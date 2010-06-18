@@ -50,8 +50,11 @@ namespace phys
     WorldQueryTool::WorldQueryTool(World* GameWorld_)
     {
         this->GameWorld = GameWorld_;
+
         this->MouseButtonCache.reset();
+
         this->KeyboardButtonCache.reset();
+
         this->MouseXCache=0;
         this->MouseYCache=0;
 
@@ -101,9 +104,9 @@ namespace phys
                 {
                     if(0 <= (*Iter)->GetMetaCode(c).GetMetaValue()) //see MetaCode::ButtonState
                     {
-                        this->KeyboardButtonCache.reset( (*Iter)->GetMetaCode(c).GetCode() );
-                    }else{
                         this->KeyboardButtonCache.set( (*Iter)->GetMetaCode(c).GetCode() );
+                    }else{
+                        this->KeyboardButtonCache.reset( (*Iter)->GetMetaCode(c).GetCode() );
                     }
                 }
 
