@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     TheWorld.SetDebugPhysicsRendering(0);
 
     //Setup some camera tricks
-    String CameraNode = TheWorld.Cameras->CreateOrbitingNode( Vector3(0,0,0), Vector3(0.0,200.0,350.0) );
+    String CameraNode = TheWorld.Cameras->CreateOrbitingNode( Vector3(0,0,0), Vector3(0.0,200.0,750.0) );
     TheWorld.Cameras->AttachCameraToNode(CameraNode);
 
 	//Start the Main Loop
