@@ -754,7 +754,7 @@ namespace phys
         this->OgreCamera->setNearClipDistance(5.0f);
         this->OgreCamera->setFarClipDistance(5000.0f);
 
-        this->MoveCamera(Vector3(0.0f,0.0f,500.0f), Vector3(0.0f,0.0f,0.0f));
+        //this->MoveCamera(Vector3(0.0f,0.0f,500.0f), Vector3(0.0f,0.0f,0.0f));
 
         //viewport connects camera and render window
         this->OgreViewport = this->OgreGameWindow->addViewport(OgreCamera);

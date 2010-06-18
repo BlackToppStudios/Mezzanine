@@ -331,13 +331,17 @@ namespace phys
         Ogre::Vector3 loc;
         if(Name=="DefaultCamera")
         {
-            loc = this->DefaultCamera->getParentSceneNode()->getPosition();
-            this->DefaultCamera->setPosition(loc);
+            loc = this->DefaultCamera->getPosition();
+            Real zoom=loc.z;
+            zoom=0-zoom;
+            this->DefaultCamera->moveRelative(Ogre::Vector3(0,0,zoom));
             return;
         }
         Ogre::Camera* tempptr = FindCamera(Name);
-        loc = tempptr->getParentSceneNode()->getPosition();
-        tempptr->setPosition(loc);
+        loc = tempptr->getPosition();
+        Real zoom=loc.z;
+        zoom=0-zoom;
+        tempptr->moveRelative(Ogre::Vector3(0,0,zoom));
         return;
     }
 
