@@ -222,6 +222,15 @@ void LoadContent()
     TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
     TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 50.0, -PinSpacing*3));
 
+    object5 = new ActorRigid (0,"Plane","Plane.mesh",groupname,&TheWorld);
+    object5->CreateShapeFromMeshDynamic(4);
+    object5->SetInitLocation(Vector3(0.0,-100,-300.0));
+
+    object6 = new ActorRigid (0,"Ramp","Plane.mesh",groupname,&TheWorld);
+    object6->CreateShapeFromMeshDynamic(1);
+    object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
+    object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
+
     object1 = new ActorRigid (mass,"RobotWayUpFrontRight",filerobot,groupname,&TheWorld);
     object1->CreateShapeFromMeshDynamic(1);
     object1->SetInitLocation(Vector3(400,70,100));
@@ -241,15 +250,6 @@ void LoadContent()
     object4->CreateShapeFromMeshDynamic(4);
     object4->SetInitLocation(Vector3(-400,10, 100));
     object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
-
-    object5 = new ActorRigid (0,"Plane","Plane.mesh",groupname,&TheWorld);
-    object5->CreateShapeFromMeshDynamic(4);
-    object5->SetInitLocation(Vector3(0.0,-100,-300.0));
-
-    object6 = new ActorRigid (0,"Ramp","Plane.mesh",groupname,&TheWorld);
-    object6->CreateShapeFromMeshDynamic(1);
-    object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
-    object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
 
     object7 = new ActorRigid (200.0f,"MetalSphere2","Sphere_Metal.mesh",groupname,&TheWorld);
     object7->CreateSphereShapeFromMesh();
