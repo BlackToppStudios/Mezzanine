@@ -410,6 +410,35 @@
 		<Unit filename="bullet-2.76/src/MiniCL/cl_platform.h" />
 		<Unit filename="bullet-2.76/src/btBulletCollisionCommon.h" />
 		<Unit filename="bullet-2.76/src/btBulletDynamicsCommon.h" />
+		<Unit filename="convexdecomp/ConvexBuilder.cpp" />
+		<Unit filename="convexdecomp/ConvexBuilder.h" />
+		<Unit filename="convexdecomp/ConvexDecomposition.cpp" />
+		<Unit filename="convexdecomp/ConvexDecomposition.h" />
+		<Unit filename="convexdecomp/bestfit.cpp" />
+		<Unit filename="convexdecomp/bestfit.h" />
+		<Unit filename="convexdecomp/bestfitobb.cpp" />
+		<Unit filename="convexdecomp/bestfitobb.h" />
+		<Unit filename="convexdecomp/cd_hull.cpp" />
+		<Unit filename="convexdecomp/cd_hull.h" />
+		<Unit filename="convexdecomp/cd_vector.h" />
+		<Unit filename="convexdecomp/cd_wavefront.cpp" />
+		<Unit filename="convexdecomp/cd_wavefront.h" />
+		<Unit filename="convexdecomp/concavity.cpp" />
+		<Unit filename="convexdecomp/concavity.h" />
+		<Unit filename="convexdecomp/fitsphere.cpp" />
+		<Unit filename="convexdecomp/fitsphere.h" />
+		<Unit filename="convexdecomp/float_math.cpp" />
+		<Unit filename="convexdecomp/float_math.h" />
+		<Unit filename="convexdecomp/meshvolume.cpp" />
+		<Unit filename="convexdecomp/meshvolume.h" />
+		<Unit filename="convexdecomp/planetri.cpp" />
+		<Unit filename="convexdecomp/planetri.h" />
+		<Unit filename="convexdecomp/raytri.cpp" />
+		<Unit filename="convexdecomp/raytri.h" />
+		<Unit filename="convexdecomp/splitplane.cpp" />
+		<Unit filename="convexdecomp/splitplane.h" />
+		<Unit filename="convexdecomp/vlookup.cpp" />
+		<Unit filename="convexdecomp/vlookup.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
