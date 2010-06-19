@@ -1,0 +1,138 @@
+\hypertarget{classphys_1_1CameraManager}{
+\section{phys::CameraManager Class Reference}
+\label{d9/d91/classphys_1_1CameraManager}\index{phys::CameraManager@{phys::CameraManager}}
+}
+
+
+This is the manager class for all camera functions.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1CameraManager_aff47d21e0c80b2b1b44148b0ec7de344}{
+{\bfseries CameraManager} (Ogre::SceneManager $\ast$SManager)}
+\label{d9/d91/classphys_1_1CameraManager_aff47d21e0c80b2b1b44148b0ec7de344}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_ac6ff80c91fa5a2cd21ebd8b78db9add2}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries CreateCamera} ()}
+\label{d9/d91/classphys_1_1CameraManager_ac6ff80c91fa5a2cd21ebd8b78db9add2}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a9a696ea09f174a69bbc6d0bb179b3de4}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries CreateOrbitingNode} (\hyperlink{classphys_1_1Vector3}{Vector3} Target, \hyperlink{classphys_1_1Vector3}{Vector3} RelativeLoc)}
+\label{d9/d91/classphys_1_1CameraManager_a9a696ea09f174a69bbc6d0bb179b3de4}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_ab5f9ca6b053670e69f5812cf573d5972}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries CreateStandNode} (\hyperlink{classphys_1_1Vector3}{Vector3} LookAt, \hyperlink{classphys_1_1Vector3}{Vector3} Location)}
+\label{d9/d91/classphys_1_1CameraManager_ab5f9ca6b053670e69f5812cf573d5972}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a42d91612bbaa00187944290d6bfd44e9}{
+void {\bfseries ClearNodes} ()}
+\label{d9/d91/classphys_1_1CameraManager_a42d91612bbaa00187944290d6bfd44e9}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a76bebee0820fcfa462412cb112b1b874}{
+void {\bfseries ClearCameras} ()}
+\label{d9/d91/classphys_1_1CameraManager_a76bebee0820fcfa462412cb112b1b874}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a3f1b48057ca2c1cd79f3e61c9fcbe1b4}{
+void {\bfseries SetLocation} (\hyperlink{classphys_1_1Vector3}{Vector3} Location, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_a3f1b48057ca2c1cd79f3e61c9fcbe1b4}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_aaee96e189230c020d6f7b6fe439e0812}{
+void {\bfseries SetDirection} (\hyperlink{classphys_1_1Vector3}{Vector3} Direction, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_aaee96e189230c020d6f7b6fe439e0812}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a9d0fac66fbc2eb4b7247c9661427afb8}{
+void {\bfseries SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_a9d0fac66fbc2eb4b7247c9661427afb8}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_ad639c275a2bb1c6c05a8800f8e8412c6}{
+void {\bfseries SetNearClipDistance} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} NearDist, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_ad639c275a2bb1c6c05a8800f8e8412c6}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a809e4e31a9ad42afd620e95508ad78d7}{
+void {\bfseries SetFarClipDistance} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} FarDist, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_a809e4e31a9ad42afd620e95508ad78d7}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_af16862039fffd900b9c7acc20527cac8}{
+void {\bfseries SetAspectRatio} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Ratio, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_af16862039fffd900b9c7acc20527cac8}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a885a499a53c3543b6bf429583a2cb54c}{
+void {\bfseries LookAt} (\hyperlink{classphys_1_1Vector3}{Vector3} TargetLoc, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_a885a499a53c3543b6bf429583a2cb54c}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_ac29a1b3cd34ff2810bee170aa233c77e}{
+void {\bfseries SetFixedYawAxis} (bool UseFixed, \hyperlink{classphys_1_1Vector3}{Vector3} Axis, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_ac29a1b3cd34ff2810bee170aa233c77e}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_aa7370f2239e88ab151b72c4171afea07}{
+void {\bfseries SetFixedYawAxis} (bool UseFixed, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_aa7370f2239e88ab151b72c4171afea07}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a43d55c71817096add5dad1552239fc74}{
+void {\bfseries SetAutoTracking} (bool Enabled, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Target, \hyperlink{classphys_1_1Vector3}{Vector3} Offset, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_a43d55c71817096add5dad1552239fc74}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a6edd94b6e8d9f2fa1e0b84554b367933}{
+void {\bfseries SetAutoTracking} (bool Enabled, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Target, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_a6edd94b6e8d9f2fa1e0b84554b367933}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a52a62fcfbeed45a2f527f626731ddcc1}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries GetNodeAttachedToCamera} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_a52a62fcfbeed45a2f527f626731ddcc1}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a1cde365b6cab80a33ddf7046489f7af9}{
+void {\bfseries AttachCameraToNode} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} NodeName, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} CamName=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_a1cde365b6cab80a33ddf7046489f7af9}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a5137bdb9dec706fa0fafec665d4f71c8}{
+void {\bfseries DetachCameraFromNode} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} NodeName, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} CamName=\char`\"{}DefaultCamera\char`\"{})}
+\label{d9/d91/classphys_1_1CameraManager_a5137bdb9dec706fa0fafec665d4f71c8}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_a82001f0874a090717ced3fbe78ce795b}{
+void {\bfseries IncrementYOrbit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Radian, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)}
+\label{d9/d91/classphys_1_1CameraManager_a82001f0874a090717ced3fbe78ce795b}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1CameraManager_a7b4bcdf992c21ae83363f25df05b1d25}{
+class {\bfseries World}}
+\label{d9/d91/classphys_1_1CameraManager_a7b4bcdf992c21ae83363f25df05b1d25}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the manager class for all camera functions. This class contains all the functionality of the use and manipulation of the camera. 
+
+Definition at line 64 of file cameramanager.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+cameramanager.h\item 
+cameramanager.cpp\end{DoxyCompactItemize}
