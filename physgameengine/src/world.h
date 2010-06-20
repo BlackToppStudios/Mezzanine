@@ -67,7 +67,7 @@
  @section Types Data Types
   @ref phys::Vector3
 
-  @ref phys::VectorWActor3
+  @ref phys::Vector3WActor
 
   @ref phys::Ray
 

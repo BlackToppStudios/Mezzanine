@@ -139,7 +139,7 @@ namespace phys
         }
     } // \GatherEvents
 
-    VectorWActor3* WorldQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay)
+    Vector3WActor* WorldQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay)
     {
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
@@ -162,7 +162,7 @@ namespace phys
         Ogre::Real closest_distance = -1.0f;
         Vector3 closest_result;
         Ogre::RaySceneQueryResult &query_result = this->RayQuery->getLastResults();
-        VectorWActor3* ClosestActor = new VectorWActor3();
+        Vector3WActor* ClosestActor = new Vector3WActor();
         for (size_t qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
         {
             // stop checking if we have found a raycast hit that is closer than all remaining entities

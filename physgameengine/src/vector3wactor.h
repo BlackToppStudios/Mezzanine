@@ -37,25 +37,39 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _vectorwactor3_cpp
-#define _vectorwactor3_cpp
+#ifndef _vector3wactor_h
+#define _vector3wactor_h
 
-#include "vectorwactor3.h"
-
+#include "vector3.h"
+#include "actorbase.h"
 
 namespace phys
 {
-            VectorWActor3::VectorWActor3()
-            {
-                this->Actor=0;
-            }
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class Vector3WActor
+    /// @headerfile vector3wactor.h
+    /// @brief This class is used to store or transfer a position relative to an Actor.
+    /// @details This class is simply a Pointer to an actor and a Vector3
+    class Vector3WActor
+    {
+        public:
+            /// @brief Default Constructor
+            /// @details This creates a Vector3WActor with a null Actor pointer and
+            /// a Vector3 initialized to 0
+            Vector3WActor();
 
-            VectorWActor3::VectorWActor3(ActorBase* Actor_, Vector3 Vector_)
-            {
-                this->Actor=Actor_;
-                this->Vector=Vector_;
-            }
+            /// @brief Complete Constructor
+            /// @details This fills the class with data that is passed in.
+            /// @param Actor_ This is a pointer to an actor
+            /// @param Vector_ This is a Vector3 that represents some amount, like motion or distance
+            Vector3WActor(ActorBase* Actor_, Vector3 Vector_);
 
-}
+            /// @brief The pointer to the ActorBase
+            ActorBase* Actor;
+
+            /// @brief The pointer to the Vector3
+            Vector3 Vector;
+    };
+}// /phys
 
 #endif

@@ -134,6 +134,12 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld.Cameras->ResetZoom(); }
 
+    TheWorld.Log("WorldQueryTool Ray and Raycast Results");
+    //Vector3WActor  Queryer.GetFirstActorOnRayByPolygon()
+
+//initial camera positionVector3(0.0,200.0,750.0)
+
+
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
         return false;

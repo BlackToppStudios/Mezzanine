@@ -70,7 +70,7 @@
 #include "ray.h"
 //#include "sound.h"
 #include "vector3.h"
-#include "vectorwactor3.h"
+#include "vector3wactor.h"
 #include "world.h"
 #include "worldquerytool.h"
 
