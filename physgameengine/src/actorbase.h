@@ -178,7 +178,7 @@ namespace phys
 
             /// @brief Retrieves the location of the physics body.
             /// @details This function will retrieve the location of the object within the physics world.
-            virtual Vector3 GetBulletLocation();
+            virtual Vector3 GetBulletLocation() const;
 
             /// @brief Sets the orientation of the physics body.
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
@@ -232,11 +232,11 @@ namespace phys
 
             /// @brief Retrieves the location of the object.
             /// @details This function will retrieve the location of the object within the world.
-            Vector3 GetLocation();
+            Vector3 GetLocation() const;
 
             /// @brief Retrieves the name of the object.
             /// @details This function will retrieve the name of the object,
-            std::string GetName ();
+            std::string GetName() const;
 
             /// @brief Sets the orientation of the actor.
             /// @details Sets the orientation of the actor via Quaternion parameters.
@@ -278,4 +278,7 @@ namespace phys
     };
 
 } // /phys
+
+std::ostream& operator << (std::ostream& stream, const phys::ActorBase& x);
+
 #endif

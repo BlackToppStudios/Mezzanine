@@ -60,6 +60,8 @@
 #include "linegroup.h"
 #include "actorcontainervector.h"
 #include "ray.h"
+#include "actorrigid.h"
+#include "vector3wactor.h"
 
 #include <SDL.h>
 #include <btBulletDynamicsCommon.h>
@@ -316,9 +318,6 @@ namespace phys
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
         this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
 
-        // This Tests various assumptions about the wa ythe platform works, and will not akk
-        SanityChecks();
-
         //Callbacks are the main way that a game using the World will be able to have their code run at custom times
         this->CallBacks = new CallBackManager(this);
         //Events are the main way for the game using the world to  get information about the various subsystems
@@ -344,6 +343,10 @@ namespace phys
                                                     BulletBroadphase,
                                                     BulletSolver,
                                                     BulletCollisionConfiguration);
+
+        // This Tests various assumptions about the way the platform works, and will not act
+        SanityChecks();
+
     }
 
     void World::SanityChecks()
@@ -398,6 +401,14 @@ namespace phys
         btVector3 temp20(0,2,0);
         Ogre::Vector3 temp21(0,2,1);
         Ray temp22(Vector3(0,0,2),Vector3(2,0,0));
+        //"temp23"
+            //Just for the ActorBaseLogTests
+        /*    this->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", "RobotTest", false);
+            this->DeclareResource("robot.mesh", "Mesh", "RobotTest");
+        ActorRigid temp24(1.0,"Robot24","robot.mesh","RobotTest",this); */ /// @todo TODO: remove robot and come up with another solution
+        ActorRigid* temp24=0;
+        Vector3WActor temp25( temp24, Vector3(0,2,5));
+
         //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
         /// @todo TODO add each type of event here (logtest) to make it really easy to log events
 
@@ -425,6 +436,10 @@ namespace phys
         OneLogTest(temp21, "Ogre::Vector3");
         OneLogTest(temp22,"Ray");
         OneLogTest("temp23","<char const*>");
+        OneLogTest(temp24,"ActorBase");
+        OneLogTest(temp25,"Vector3WActor");
+
+        //this->RemoveActor(&temp24);
     }
 
     template <class T> void World::OneLogTest(T Data, string DataType, string Message1, string Message2)

@@ -135,10 +135,14 @@ bool PostInput()
         { TheWorld.Cameras->ResetZoom(); }
 
     TheWorld.Log("WorldQueryTool Ray and Raycast Results");
-    //Vector3WActor  Queryer.GetFirstActorOnRayByPolygon()
+    Ray WhatRay( Vector3(0,0,0), Vector3(0.0,200.0,750.0) ); // From the camera to the origin
+    TheWorld.Log( WhatRay );
+    Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(WhatRay);
 
-//initial camera positionVector3(0.0,200.0,750.0)
-
+    if ( WhatDidWeFind == NULL)
+        { TheWorld.Log("Found Nothing"); }
+    else
+        { TheWorld.Log( *WhatDidWeFind ); }
 
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )

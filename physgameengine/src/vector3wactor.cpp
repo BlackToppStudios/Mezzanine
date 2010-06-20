@@ -41,7 +41,7 @@
 #define _vector3wactor_cpp
 
 #include "vector3wactor.h"
-
+#include <ostream>
 
 namespace phys
 {
@@ -56,6 +56,17 @@ namespace phys
                 this->Vector=Vector_;
             }
 
+}
+
+std::ostream& operator << (std::ostream& stream, const phys::Vector3WActor& x)
+{
+    if (x.Actor != NULL)
+    {
+        stream << "( Actor:" << *(x.Actor) << " Vector:" << x.Vector << ")";
+    }else{
+        stream << "( Actor: NULL" << " Vector:" << x.Vector << ")";
+    }
+    return stream;
 }
 
 #endif

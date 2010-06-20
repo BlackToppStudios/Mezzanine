@@ -191,7 +191,7 @@ namespace phys{
         this->CollisionObject->getWorldTransform().setOrigin(Location.GetBulletVector3());
     }
 
-    Vector3 ActorBase::GetBulletLocation()
+    Vector3 ActorBase::GetBulletLocation() const
     {
         Vector3 temp;
         //btTransform trans = this->CollisionObject->getWorldTransform();
@@ -227,7 +227,7 @@ namespace phys{
         this->SetOgreLocation(Place);
     }
 
-    Vector3 ActorBase::GetLocation()
+    Vector3 ActorBase::GetLocation() const
     {
         return this->GetBulletLocation();
     }
@@ -273,7 +273,7 @@ namespace phys{
         this->node->detachObject(this->entity);
     }
 
-    std::string ActorBase::GetName ()
+    std::string ActorBase::GetName () const
     {
         return this->entity->getName();
     }
@@ -298,4 +298,11 @@ namespace phys{
         this->CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
     }
 }// /phys
+
+std::ostream& operator << (std::ostream& stream, const phys::ActorBase& x)
+{
+    stream << "[" << x.GetName() << " at:" << x.GetLocation() << "]";
+    return stream;
+}
+
 #endif

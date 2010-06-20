@@ -70,6 +70,10 @@ namespace phys
             /// @brief The pointer to the Vector3
             Vector3 Vector;
     };
+
+
 }// /phys
+
+std::ostream& operator << (std::ostream& stream, const phys::Vector3WActor& x);
 
 #endif
