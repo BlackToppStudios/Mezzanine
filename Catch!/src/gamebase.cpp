@@ -94,7 +94,7 @@ bool PrePhysics()
 {
     TheWorld.Log("Object Locations");
     //Replace this with something that uses the actor container and logs the location of everything
-    TheWorld.Log(TheWorld.Actors->FindActor("WoodSphere")->GetLocation());
+    TheWorld.Log(TheWorld.Actors->FindActor("MetalSphere2")->GetLocation());
     return true;
 }
 
@@ -135,7 +135,7 @@ bool PostInput()
         { TheWorld.Cameras->ResetZoom(); }
 
     TheWorld.Log("WorldQueryTool Ray and Raycast Results");
-    Ray WhatRay( Vector3(0,0,0), Vector3(0.0,200.0,750.0) ); // From the camera to the origin
+    Ray WhatRay( Vector3(20.0,-20.0,750.0), Vector3(20.0,-20.0,-750.0) ); // From the camera to the origin
     TheWorld.Log( WhatRay );
     Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(WhatRay);
 
