@@ -215,9 +215,9 @@
 <a name="l00190"></a>00190         <span class="comment">//btTransform* temp = this-&gt;CollisionObject-&gt;getWorldTransform();</span>
 <a name="l00191"></a>00191         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;getWorldTransform().setOrigin(Location.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
 <a name="l00192"></a>00192     }
-<a name="l00193"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad543855adcc37dc9cdea4e264ca7953d">00193</a> 
-<a name="l00194"></a>00194     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad543855adcc37dc9cdea4e264ca7953d" title="Retrieves the location of the physics body.">ActorBase::GetBulletLocation</a>()
-<a name="l00195"></a>00195     {
+<a name="l00193"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a9b32df1efdc346f5d6c0920b959c09a3">00193</a> 
+<a name="l00194"></a>00194     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a9b32df1efdc346f5d6c0920b959c09a3" title="Retrieves the location of the physics body.">ActorBase::GetBulletLocation</a>()<span class="keyword"> const</span>
+<a name="l00195"></a>00195 <span class="keyword">    </span>{
 <a name="l00196"></a>00196         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> temp;
 <a name="l00197"></a>00197         <span class="comment">//btTransform trans = this-&gt;CollisionObject-&gt;getWorldTransform();</span>
 <a name="l00198"></a>00198         temp.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a24ae86b068340be6727877f8c6c1a313" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;getWorldTransform().getOrigin());
@@ -251,10 +251,10 @@
 <a name="l00226"></a>00226         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aa7ab524d2905e640cea6324cce9ccfdb" title="Sets the location of the physics body.">SetBulletLocation</a>(Place);
 <a name="l00227"></a>00227         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a192ced7c3191f3f9d4921aad73952046" title="Sets the location of the graphical body.">SetOgreLocation</a>(Place);
 <a name="l00228"></a>00228     }
-<a name="l00229"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af554468ebd26c0e06301e52cb6fcfda8">00229</a> 
-<a name="l00230"></a>00230     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af554468ebd26c0e06301e52cb6fcfda8" title="Retrieves the location of the object.">ActorBase::GetLocation</a>()
-<a name="l00231"></a>00231     {
-<a name="l00232"></a>00232         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad543855adcc37dc9cdea4e264ca7953d" title="Retrieves the location of the physics body.">GetBulletLocation</a>();
+<a name="l00229"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a777b4ea4d6881af76c646b1ba9324d96">00229</a> 
+<a name="l00230"></a>00230     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a777b4ea4d6881af76c646b1ba9324d96" title="Retrieves the location of the object.">ActorBase::GetLocation</a>()<span class="keyword"> const</span>
+<a name="l00231"></a>00231 <span class="keyword">    </span>{
+<a name="l00232"></a>00232         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a9b32df1efdc346f5d6c0920b959c09a3" title="Retrieves the location of the physics body.">GetBulletLocation</a>();
 <a name="l00233"></a>00233     }
 <a name="l00234"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ff0980bcf33a8205eb058b8caa1f36b">00234</a> 
 <a name="l00235"></a>00235     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ff0980bcf33a8205eb058b8caa1f36b" title="Sets the starting location of the actor.">ActorBase::SetInitLocation</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Location)
@@ -288,7 +288,7 @@
 <a name="l00263"></a>00263     <span class="keywordtype">void</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a45f190cb9b647bb3385d1298f9dab589" title="Makes the actor visable.">ActorBase::AttachToGraphics</a> ()
 <a name="l00264"></a>00264     {
 <a name="l00265"></a>00265         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> temp;
-<a name="l00266"></a>00266         temp = <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad543855adcc37dc9cdea4e264ca7953d" title="Retrieves the location of the physics body.">GetBulletLocation</a>();
+<a name="l00266"></a>00266         temp = <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a9b32df1efdc346f5d6c0920b959c09a3" title="Retrieves the location of the physics body.">GetBulletLocation</a>();
 <a name="l00267"></a>00267         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;setPosition(temp.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
 <a name="l00268"></a>00268         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;attachObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
 <a name="l00269"></a>00269     }
@@ -297,9 +297,9 @@
 <a name="l00272"></a>00272     {
 <a name="l00273"></a>00273         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>-&gt;detachObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
 <a name="l00274"></a>00274     }
-<a name="l00275"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a799c6e8dea4b03474b788338340bc594">00275</a> 
-<a name="l00276"></a>00276     std::string <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a799c6e8dea4b03474b788338340bc594" title="Retrieves the name of the object.">ActorBase::GetName</a> ()
-<a name="l00277"></a>00277     {
+<a name="l00275"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#afc1851d7445c98a9389b3902a214a5e1">00275</a> 
+<a name="l00276"></a>00276     std::string <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#afc1851d7445c98a9389b3902a214a5e1" title="Retrieves the name of the object.">ActorBase::GetName</a> ()<span class="keyword"> const</span>
+<a name="l00277"></a>00277 <span class="keyword">    </span>{
 <a name="l00278"></a>00278         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>-&gt;getName();
 <a name="l00279"></a>00279     }
 <a name="l00280"></a><a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a1ac7c692d7f88f39ebb1c1db5deba251">00280</a> 
@@ -323,9 +323,16 @@
 <a name="l00298"></a>00298         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
 <a name="l00299"></a>00299     }
 <a name="l00300"></a>00300 }<span class="comment">// /phys</span>
-<a name="l00301"></a>00301 <span class="preprocessor">#endif</span>
+<a name="l00301"></a>00301 
+<a name="l00302"></a>00302 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">phys::ActorBase</a>&amp; x)
+<a name="l00303"></a>00303 {
+<a name="l00304"></a>00304     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#afc1851d7445c98a9389b3902a214a5e1" title="Retrieves the name of the object.">GetName</a>() &lt;&lt; <span class="stringliteral">&quot; at:&quot;</span> &lt;&lt; x.<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a777b4ea4d6881af76c646b1ba9324d96" title="Retrieves the location of the object.">GetLocation</a>() &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00305"></a>00305     <span class="keywordflow">return</span> stream;
+<a name="l00306"></a>00306 }
+<a name="l00307"></a>00307 
+<a name="l00308"></a>00308 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 17 11:40:23 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 22 11:24:25 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

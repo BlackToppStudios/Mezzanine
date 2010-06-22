@@ -135,7 +135,8 @@ bool PostInput()
         { TheWorld.Cameras->ResetZoom(); }
 
     TheWorld.Log("WorldQueryTool Ray and Raycast Results");
-    Ray WhatRay( Vector3(20.0,-20.0,750.0), Vector3(20.0,-20.0,-750.0) ); // From the camera to the origin
+
+    Ray WhatRay( -(TheWorld.Cameras->GetCameraLocation()), TheWorld.Cameras->GetCameraLocation() ); // From the camera to the origin
     TheWorld.Log( WhatRay );
     Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(WhatRay);
 

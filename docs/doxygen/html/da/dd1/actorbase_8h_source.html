@@ -203,7 +203,7 @@
 <a name="l00178"></a>00178 <span class="comment"></span>
 <a name="l00179"></a>00179 <span class="comment">            /// @brief Retrieves the location of the physics body.</span>
 <a name="l00180"></a>00180 <span class="comment">            /// @details This function will retrieve the location of the object within the physics world.</span>
-<a name="l00181"></a>00181 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ad543855adcc37dc9cdea4e264ca7953d" title="Retrieves the location of the physics body.">GetBulletLocation</a>();
+<a name="l00181"></a>00181 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a9b32df1efdc346f5d6c0920b959c09a3" title="Retrieves the location of the physics body.">GetBulletLocation</a>() <span class="keyword">const</span>;
 <a name="l00182"></a>00182 <span class="comment"></span>
 <a name="l00183"></a>00183 <span class="comment">            /// @brief Sets the orientation of the physics body.</span>
 <a name="l00184"></a>00184 <span class="comment">            /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n</span>
@@ -257,11 +257,11 @@
 <a name="l00232"></a>00232 <span class="comment"></span>
 <a name="l00233"></a>00233 <span class="comment">            /// @brief Retrieves the location of the object.</span>
 <a name="l00234"></a>00234 <span class="comment">            /// @details This function will retrieve the location of the object within the world.</span>
-<a name="l00235"></a>00235 <span class="comment"></span>            <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af554468ebd26c0e06301e52cb6fcfda8" title="Retrieves the location of the object.">GetLocation</a>();
+<a name="l00235"></a>00235 <span class="comment"></span>            <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a777b4ea4d6881af76c646b1ba9324d96" title="Retrieves the location of the object.">GetLocation</a>() <span class="keyword">const</span>;
 <a name="l00236"></a>00236 <span class="comment"></span>
 <a name="l00237"></a>00237 <span class="comment">            /// @brief Retrieves the name of the object.</span>
 <a name="l00238"></a>00238 <span class="comment">            /// @details This function will retrieve the name of the object,</span>
-<a name="l00239"></a>00239 <span class="comment"></span>            std::string <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a799c6e8dea4b03474b788338340bc594" title="Retrieves the name of the object.">GetName</a> ();
+<a name="l00239"></a>00239 <span class="comment"></span>            std::string <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#afc1851d7445c98a9389b3902a214a5e1" title="Retrieves the name of the object.">GetName</a>() <span class="keyword">const</span>;
 <a name="l00240"></a>00240 <span class="comment"></span>
 <a name="l00241"></a>00241 <span class="comment">            /// @brief Sets the orientation of the actor.</span>
 <a name="l00242"></a>00242 <span class="comment">            /// @details Sets the orientation of the actor via Quaternion parameters.</span>
@@ -303,9 +303,12 @@
 <a name="l00278"></a>00278     };
 <a name="l00279"></a>00279 
 <a name="l00280"></a>00280 } <span class="comment">// /phys</span>
-<a name="l00281"></a>00281 <span class="preprocessor">#endif</span>
+<a name="l00281"></a>00281 
+<a name="l00282"></a>00282 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">phys::ActorBase</a>&amp; x);
+<a name="l00283"></a>00283 
+<a name="l00284"></a>00284 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 17 11:40:23 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 22 11:24:25 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

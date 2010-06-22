@@ -32,9 +32,9 @@ void \hyperlink{classphys_1_1ActorBase_a0b0db2ec0f4926326635b86f1ead2276}{SetLoc
 \begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_a3212be459859a67bf7ae64919d58d5a5}{SetLocation} (\hyperlink{classphys_1_1Vector3}{Vector3} Place)
 \begin{DoxyCompactList}\small\item\em Manually sets the location of the actor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorBase_af554468ebd26c0e06301e52cb6fcfda8}{GetLocation} ()
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorBase_a777b4ea4d6881af76c646b1ba9324d96}{GetLocation} () const 
 \begin{DoxyCompactList}\small\item\em Retrieves the location of the object. \item\end{DoxyCompactList}\item 
-std::string \hyperlink{classphys_1_1ActorBase_a799c6e8dea4b03474b788338340bc594}{GetName} ()
+std::string \hyperlink{classphys_1_1ActorBase_afc1851d7445c98a9389b3902a214a5e1}{GetName} () const 
 \begin{DoxyCompactList}\small\item\em Retrieves the name of the object. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_adbf0cc77031f22597a799fd0f7f8216d}{SetOrientation} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} x, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} y, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} z, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} w)
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
@@ -73,7 +73,7 @@ void \hyperlink{classphys_1_1ActorBase_acc352d14b6d7f15694ea108ec1c281ec}{Detach
 \begin{DoxyCompactList}\small\item\em Makes the actor invisable. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBase_aa7ab524d2905e640cea6324cce9ccfdb}{SetBulletLocation} (\hyperlink{classphys_1_1Vector3}{Vector3} Location)
 \begin{DoxyCompactList}\small\item\em Sets the location of the physics body. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorBase_ad543855adcc37dc9cdea4e264ca7953d}{GetBulletLocation} ()
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorBase_a9b32df1efdc346f5d6c0920b959c09a3}{GetBulletLocation} () const 
 \begin{DoxyCompactList}\small\item\em Retrieves the location of the physics body. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBase_a492244ac46ced53b809f436da992bc84}{SetBulletOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Rotation)
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the physics body. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -273,11 +273,11 @@ This is the inverse of the AttachToGraphics function. This will effectively remo
 
 Definition at line 270 of file actorbase.cpp.
 
-\hypertarget{classphys_1_1ActorBase_ad543855adcc37dc9cdea4e264ca7953d}{
+\hypertarget{classphys_1_1ActorBase_a9b32df1efdc346f5d6c0920b959c09a3}{
 \index{phys::ActorBase@{phys::ActorBase}!GetBulletLocation@{GetBulletLocation}}
 \index{GetBulletLocation@{GetBulletLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetBulletLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorBase::GetBulletLocation ()\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
-\label{d8/d0f/classphys_1_1ActorBase_ad543855adcc37dc9cdea4e264ca7953d}
+\subsubsection[{GetBulletLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorBase::GetBulletLocation () const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\label{d8/d0f/classphys_1_1ActorBase_a9b32df1efdc346f5d6c0920b959c09a3}
 
 
 Retrieves the location of the physics body. 
@@ -286,11 +286,11 @@ This function will retrieve the location of the object within the physics world.
 
 Definition at line 193 of file actorbase.cpp.
 
-\hypertarget{classphys_1_1ActorBase_af554468ebd26c0e06301e52cb6fcfda8}{
+\hypertarget{classphys_1_1ActorBase_a777b4ea4d6881af76c646b1ba9324d96}{
 \index{phys::ActorBase@{phys::ActorBase}!GetLocation@{GetLocation}}
 \index{GetLocation@{GetLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorBase::GetLocation ()}}
-\label{d8/d0f/classphys_1_1ActorBase_af554468ebd26c0e06301e52cb6fcfda8}
+\subsubsection[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorBase::GetLocation () const}}
+\label{d8/d0f/classphys_1_1ActorBase_a777b4ea4d6881af76c646b1ba9324d96}
 
 
 Retrieves the location of the object. 
@@ -299,11 +299,11 @@ This function will retrieve the location of the object within the world.
 
 Definition at line 229 of file actorbase.cpp.
 
-\hypertarget{classphys_1_1ActorBase_a799c6e8dea4b03474b788338340bc594}{
+\hypertarget{classphys_1_1ActorBase_afc1851d7445c98a9389b3902a214a5e1}{
 \index{phys::ActorBase@{phys::ActorBase}!GetName@{GetName}}
 \index{GetName@{GetName}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}std::string phys::ActorBase::GetName ()}}
-\label{d8/d0f/classphys_1_1ActorBase_a799c6e8dea4b03474b788338340bc594}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}std::string phys::ActorBase::GetName () const}}
+\label{d8/d0f/classphys_1_1ActorBase_afc1851d7445c98a9389b3902a214a5e1}
 
 
 Retrieves the name of the object. 

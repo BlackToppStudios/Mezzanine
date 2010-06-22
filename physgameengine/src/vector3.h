@@ -125,6 +125,12 @@ namespace phys
         bool operator== (const Ogre::Vector3 &Vec2);
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Unary Operators
+        /// @brief Additive Inverse Operator
+        /// @details Returns the opposite Vector3 relative to 0,0,0
+        Vector3 operator- ();
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators
 
         /// @brief Addition Operator

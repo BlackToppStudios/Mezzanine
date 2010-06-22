@@ -86,6 +86,14 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Unary Operators
+    Vector3 Vector3::operator- ()
+    {
+        Vector3 Temp(-X,-Y,-Z);
+        return Temp;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
     bool Vector3::operator== (const Vector3 &Vec2)
     {

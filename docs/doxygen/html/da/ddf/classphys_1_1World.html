@@ -166,7 +166,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 </dl>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000016">Todo:</a></b></dt><dd>TODO: adjust the constructors to allow for pointers to a callback manager and event manager </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00293">293</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00295">295</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -189,7 +189,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 <p>This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.</p>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000015">Todo:</a></b></dt><dd>TODO Fix the `const`ness of all methods to be as const as allowable </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00279">279</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00281">281</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -211,7 +211,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 <p>Deconstructor. </p>
 <p>This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager) </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00443">443</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00459">459</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -241,7 +241,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00774">774</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00790">790</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -295,7 +295,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00823">823</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00839">839</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -342,7 +342,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00828">828</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00844">844</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -371,7 +371,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 </dl>
 <p>This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items each iteration of the main loop. </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00667">667</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00683">683</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -393,7 +393,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 <p>Gathers user input from the OS and places events in the event manager. </p>
 <p>This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00694">694</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00710">710</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -422,7 +422,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 </dl>
 <p>Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre/Post-Physics Callback is set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come from although it is concievable that a game could manually insert those manually. This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00675">675</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00691">691</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -444,7 +444,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 <p>This forces the screen to be re-rendered. </p>
 <p>This renders the screen based on the status of all in game actors. This is automatically called in the main loop. </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00699">699</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00715">715</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -466,7 +466,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 <p>Creates events for each Window manger. </p>
 <p>This gather information from system/windows manager events, such as windows minimization, maximization, program exit, window hidden window shown, and a few other similar types of events. This makes events out of the information and places them in the event manager This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out. </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00689">689</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00705">705</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -495,7 +495,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 </dl>
 <p>Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be minimal delay from the time you call this and the game actually begins. This will automatically call the Main Loop unless passed falsed. </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00500">500</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00516">516</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -518,7 +518,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 <p>lets you check if Physics Debug Drawing is enabled or not. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00861">861</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00877">877</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -541,7 +541,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 <p>This will tell you how many frames worth of previous in game events are being drawn. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns either 2 or the last amount passed into <a class="el" href="../../da/ddf/classphys_1_1World.html#a6fa4d1e58a78ba0403af1c003fd321d9" title="How many Wireframes do you want drawn from previous events.">World::SetDebugPhysicsWireCount</a> . </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00876">876</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00892">892</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -564,7 +564,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 <p>In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a Whole with the current Value </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00804">804</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00820">820</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -587,7 +587,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
 <p>This gets the texts that the engine has stored for use in the title bar </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a String Containing the Window Title </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00789">789</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00805">805</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -616,7 +616,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>WorldQueryTool</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00833">833</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00849">849</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -647,7 +647,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00470">470</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00486">486</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -678,7 +678,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00477">477</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00493">493</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -737,7 +737,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00661">661</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00677">677</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -766,7 +766,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00780">780</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00796">796</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -795,7 +795,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00851">851</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00867">867</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -824,7 +824,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00871">871</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00887">887</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -853,7 +853,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00842">842</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00858">858</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -883,7 +883,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00814">814</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00830">830</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -913,7 +913,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00809">809</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00825">825</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -942,10 +942,10 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000020">Todo:</a></b></dt><dd>TODO Change the name of an application once it is running </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000021">Todo:</a></b></dt><dd>TODO Change the name of an application once it is running </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00794">794</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00810">810</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -967,7 +967,7 @@ template&lt;class T &gt; </div>
 <p>This Shows an Engine Generated Configuration Screen. </p>
 <p>This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00486">486</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00502">502</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1071,7 +1071,7 @@ template&lt;class T &gt; </div>
 <li><a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 17 11:40:25 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 22 11:24:26 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

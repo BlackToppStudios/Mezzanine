@@ -57,7 +57,7 @@ namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CameraManager
-    /// @headerfile CameraManager.h
+    /// @headerfile cameramanager.h
     /// @brief This is the manager class for all camera functions.
     /// @details This class contains all the functionality of the use and manipulation of the camera. @n
     /// All functions that manipulate the camera will default to the default camera, so if you only use
@@ -138,8 +138,8 @@ namespace phys
             /// this number.
             /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
             void SetFarClipDistance(Real FarDist, String Name="DefaultCamera");
-            /// @brief Sets the aspect ration of the cameras veiw.
-            /// @details This function will set the aspect ration between the width and height of the cameras viewing area.
+            /// @brief Sets the aspect ratio of the cameras veiw.
+            /// @details This function will set the aspect ratio between the width and height of the cameras viewing area.
             /// @param Ratio A Real that represents the aspect ratio, where Ratio = width / height.
             /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
             void SetAspectRatio(Real Ratio, String Name="DefaultCamera");
@@ -200,12 +200,12 @@ namespace phys
             /// @brief Attaches a camera to a node.
             /// @details Attaches the specified camera to the specified node.
             /// @param NodeName The name of the node to attach the camera to.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
+            /// @param CamName The name of the camera to be manipulated.  Defaults to the Default camera.
             void AttachCameraToNode(String NodeName, String CamName="DefaultCamera");
             /// @brief Detaches a camera from a node.
             /// @details Detaches the specified camera from the specified node.
             /// @param NodeName The name of the node to detach the camera from.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
+            /// @param CamName The name of the camera to be manipulated.  Defaults to the Default camera.
             void DetachCameraFromNode(String NodeName, String CamName="DefaultCamera");
             /// @brief Increments the orbit by the amount specified.
             /// @details Increments the orbit of the specified node by the amount specified.

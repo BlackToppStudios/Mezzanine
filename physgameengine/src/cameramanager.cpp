@@ -325,13 +325,11 @@ namespace phys
     {
         if(Name=="DefaultCamera")
         {
-            Vector3 camloc;
-            camloc.ExtractOgreVector3(this->DefaultCamera->getPosition());
+            Vector3 camloc(this->DefaultCamera->getPosition());
             return camloc;
         }
         Ogre::Camera* tempptr = FindCamera(Name);
-        Vector3 camloc;
-        camloc.ExtractOgreVector3(tempptr->getPosition());
+        Vector3 camloc(tempptr->getPosition());
         return camloc;
     }
 
