@@ -182,10 +182,14 @@ namespace phys
             /// @details Gets the location of the node specified.
             /// @param Name Name of the node to get the location of.
             Vector3 GetNodeLocation(String Name);
-            /// @brief Gets the location of a camera.
-            /// @details Gets the location of the camera specified.
+            /// @brief Gets the relative location of a camera.
+            /// @details Gets the location of the camera, relative to any connected nodes, specified.
             /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            Vector3 GetCameraLocation(String Name="DefaultCamera");
+            Vector3 GetCameraRelativeLocation(String Name="DefaultCamera");
+            /// @brief Gets the global location of a camera.
+            /// @details Gets the real world location of the camera specified.
+            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
+            Vector3 GetCameraGlobalLocation(String Name="DefaultCamera");
             /// @brief Will zoom in or out the camera.
             /// @details This function will zoom in the camera by the amount specified.
             /// @param Zoom A Real of how much to zoom in by.  Note:  This number directly corolates to the dimentions

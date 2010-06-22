@@ -321,7 +321,7 @@ namespace phys
         return nodeloc;
     }
 
-    Vector3 CameraManager::GetCameraLocation (String Name)
+    Vector3 CameraManager::GetCameraRelativeLocation (String Name)
     {
         if(Name=="DefaultCamera")
         {
@@ -330,6 +330,18 @@ namespace phys
         }
         Ogre::Camera* tempptr = FindCamera(Name);
         Vector3 camloc(tempptr->getPosition());
+        return camloc;
+    }
+
+    Vector3 CameraManager::GetCameraGlobalLocation (String Name)
+    {
+        if(Name=="DefaultCamera")
+        {
+            Vector3 camloc(this->DefaultCamera->getRealPosition());
+            return camloc;
+        }
+        Ogre::Camera* tempptr = FindCamera(Name);
+        Vector3 camloc(tempptr->getRealPosition());
         return camloc;
     }
 
