@@ -298,6 +298,18 @@ namespace phys
         return;
     }
 
+    Ray CameraManager::GetCameraToVeiwportRay (Real Screenx, Real Screeny, String Name)
+    {
+        if(Name=="DefaultCamera")
+        {
+            Ray R(this->DefaultCamera->getCameraToViewportRay(Screenx, Screeny));
+            return R;
+        }
+        Ogre::Camera* tempcam = FindCamera(Name);
+        Ray R(tempcam->getCameraToViewportRay(Screenx, Screeny));
+        return R;
+    }
+
     String CameraManager::GetNodeAttachedToCamera (String Name)
     {
         if(Name=="DefaultCamera")
@@ -305,12 +317,9 @@ namespace phys
             Ogre::SceneNode* tempnode = this->DefaultCamera->getParentSceneNode();
             return tempnode->getName();
         }
-        else
-        {
-            Ogre::Camera* tempcam = FindCamera(Name);
-            Ogre::SceneNode *tempnode = tempcam->getParentSceneNode();
-            return tempnode->getName();
-        }
+        Ogre::Camera* tempcam = FindCamera(Name);
+        Ogre::SceneNode *tempnode = tempcam->getParentSceneNode();
+        return tempnode->getName();
     }
 
     Vector3 CameraManager::GetNodeLocation (String Name)

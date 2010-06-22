@@ -174,6 +174,12 @@ namespace phys
             /// @param Target Name of the node to be tracked.
             /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
             void SetAutoTracking(bool Enabled, String Target, String Name="DefaultCamera");
+            /// @brief Gets a Ray from the camera to the viewport.
+            /// @details This will cast a ray from the camera to the viewport and return it.
+            /// @param Screenx A Real representing the relative location on screen, on the x axis(0.0-1.0).
+            /// @param Screeny A Real representing the relative location on screen, on the y axis(0.0-1.0).
+            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
+            Ray GetCameraToVeiwportRay(Real Screenx, Real Screeny, String Name="DefaultCamera");
             /// @brief Gets the node attached to a camera.
             /// @details This will return a string that is the name of the node the specified camera is attached to if any.
             /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
