@@ -43,6 +43,7 @@
 #include "vector3.h"
 #include "datatypes.h"
 #include "quaternion.h"
+#include "ray.h"
 
 #include <vector>
 
