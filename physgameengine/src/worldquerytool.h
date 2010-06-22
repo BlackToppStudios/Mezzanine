@@ -147,19 +147,21 @@ namespace phys
             bool IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton);
 
             /// @brief This will find the first Actor to intesect the Given ray.
-            /// @details This use the graphics subsystem to cast a ray
+            /// @details This use the graphics subsystem to cast a ray in the world. If the ray passes through any the triangles in an actor
+            /// This will return that actor. This function runs in linear time relative to the amount of triangles in 3d meshes near the the
+            /// ray being cast. This will start at ray.from and go to ray.to .
             /// @param ActorRay The Ray to search along.
             /// @return This returns a pointer to an Vector3WActor, which contains the first actor along the ray and the point of intersection Relative to the actor
             Vector3WActor* GetFirstActorOnRayByPolygon(Ray ActorRay);
 
-            /// @brief
+            /// @brief unimplemented
             /// @details
             /// @param ActorRay The Ray to search along.
             /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.
             Vector3WActor* GetFirstActorOnRayByAABB(Ray ActorRay);
 
-            /// @brief
-            /// @details
+            /// @brief This will find the actor under the mouse.
+            /// @details This will use
             /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB .
             /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
             Vector3WActor* GetActorUnderMouse(bool UsePolygon=true);

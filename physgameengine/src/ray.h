@@ -75,6 +75,11 @@ namespace phys
             /// @param To_ A point along the line for the destination line.
             Ray(Vector3 From_, Vector3 To_);
 
+            /// @brief Compatibily constructor
+            /// @details This accepts an Ogre Ray, (graphics subsystem) to make ray
+            /// @param Ray2 This is the Ogre::Ray
+            Ray(Ogre::Ray Ray2);
+
             /// @brief Gets an Ogre::Ray that contains this Rays information
             /// @details Used to aid interopability, this will return afresh Ogre::Ray with the same data as this Ray
             /// @return This returns an Ogre::Ray that contains the same information as this rays information

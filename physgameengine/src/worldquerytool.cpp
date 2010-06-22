@@ -139,6 +139,10 @@ namespace phys
         }
     } // \GatherEvents
 
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Raycasting Nonsense goe here
+
     Vector3WActor* WorldQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay)
     {
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
@@ -219,6 +223,27 @@ namespace phys
         if (ClosestActor->Actor != NULL)
             { ClosestActor->Vector = closest_result - ClosestActor->Actor->GetLocation(); }
         return ClosestActor;
+    }
+
+    Vector3WActor* WorldQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay)
+    {
+        return 0; // just a stub :(
+    }
+
+    Vector3WActor* WorldQueryTool::GetActorUnderMouse(bool UsePolygon)
+    {
+        Vector3WActor* Results = 0;
+
+         //Ray mouseRay = mCamera->getCameraToViewportRay(mousePos.d_x/float(mWindow->getWidth()), mousePos.d_y/float(mWindow->getHeight()));
+
+        if (UsePolygon)
+        {
+            //Results = this->GetFirstActorOnRayByPolygon();
+        }else{
+            //Results = this->GetFirstActorOnRayByAABB();
+        }
+
+        return Results;
     }
 
 

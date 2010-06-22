@@ -63,6 +63,12 @@ namespace phys
         this->To=To_;
     }
 
+    Ray::Ray(Ogre::Ray Ray2)
+    {
+        this->From=Ray2.getOrigin();
+        this->To=Ray2.getPoint(1);
+    }
+
     Ogre::Ray Ray::GetOgreRay()
     {
         return Ogre::Ray(
