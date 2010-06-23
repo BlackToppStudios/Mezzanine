@@ -180,7 +180,7 @@ namespace phys
             /// @param Screenx A Real representing the relative location on screen, on the x axis(0.0-1.0).
             /// @param Screeny A Real representing the relative location on screen, on the y axis(0.0-1.0).
             /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            Ray GetCameraToVeiwportRay(Real Screenx, Real Screeny, String Name="DefaultCamera");
+            Ray GetCameraToViewportRay(Real Screenx, Real Screeny, String Name="DefaultCamera");
             /// @brief Gets the node attached to a camera.
             /// @details This will return a string that is the name of the node the specified camera is attached to if any.
             /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.

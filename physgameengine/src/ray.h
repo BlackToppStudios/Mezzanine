@@ -85,6 +85,20 @@ namespace phys
             /// @return This returns an Ogre::Ray that contains the same information as this rays information
             Ogre::Ray GetOgreRay();
 
+            /// @brief Not implemented
+            /// @details this will change the ray to be exactly 1 unit long, but pointing the same direction.
+            void Normalize();
+
+            /// @brief Not implemented
+            /// @details This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray.
+            /// @return At a ray that is the normal for this array
+            Ray GetNormal() const;
+
+            /// @brief Not implemented
+            /// @details This returns an array changed in length by the amount in the scalar. Specifically this subracts the From value
+            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.
+            /// @return This returns a copy of the ray scaled by the requested amount.
+//            Ray operator* (const &Real scalar);
 
 
     };

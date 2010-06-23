@@ -298,7 +298,7 @@ namespace phys
         return;
     }
 
-    Ray CameraManager::GetCameraToVeiwportRay (Real Screenx, Real Screeny, String Name)
+    Ray CameraManager::GetCameraToViewportRay (Real Screenx, Real Screeny, String Name)
     {
         if(Name=="DefaultCamera")
         {

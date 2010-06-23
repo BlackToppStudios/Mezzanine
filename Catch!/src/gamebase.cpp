@@ -113,11 +113,11 @@ bool PostInput()
     TheWorld.Log(Queryer.GetMouseX());
     TheWorld.Log(Queryer.GetMouseY());
 
-    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(1))
+/*    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
         {TheWorld.Cameras->IncrementYOrbit(-0.01, TheWorld.Cameras->GetNodeAttachedToCamera() );}
 
-    if(320<Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(1))
-        {TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() );}
+    if(320<Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
+        {TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() );}*/
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
         { TheWorld.Cameras->IncrementYOrbit(-0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
@@ -135,15 +135,36 @@ bool PostInput()
         { TheWorld.Cameras->ResetZoom(); }
 
     TheWorld.Log("WorldQueryTool Ray and Raycast Results");
-
     Ray WhatRay( -(TheWorld.Cameras->GetCameraGlobalLocation()), TheWorld.Cameras->GetCameraGlobalLocation() ); // From the camera to the origin
     TheWorld.Log( WhatRay );
     Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(WhatRay);
 
     if ( WhatDidWeFind == NULL)
-        { TheWorld.Log("Found Nothing"); }
-    else
-        { TheWorld.Log( *WhatDidWeFind ); }
+    {
+        TheWorld.Log("Found Nothing");
+    } else {
+        TheWorld.Log( *WhatDidWeFind );
+        delete WhatDidWeFind;
+    }
+
+    if( Queryer.IsMouseButtonPushed(1) )
+    {
+        TheWorld.Log("Mouse Clicked, Casting a Mouse Ray");
+
+        //This next line create a ray from the mouse pointer
+        Ray MouseRay( TheWorld.Cameras->GetCameraToViewportRay( Queryer.GetMouseX()/640, Queryer.GetMouseY()/480));
+        TheWorld.Log( MouseRay );
+
+        Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(MouseRay);//*1000);
+        if ( WhatDidWeFind == NULL)
+        {
+            TheWorld.Log("Mouse Ray Found Nothing");
+        } else {
+            TheWorld.Log( *WhatDidWeFind );
+            delete WhatDidWeFind;
+        }
+    }
+
 
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
