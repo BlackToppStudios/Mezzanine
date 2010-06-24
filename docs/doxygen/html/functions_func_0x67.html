@@ -46,6 +46,7 @@
       <li><a href="functions_func_0x69.html#index_i"><span>i</span></a></li>
       <li><a href="functions_func_0x6c.html#index_l"><span>l</span></a></li>
       <li><a href="functions_func_0x6d.html#index_m"><span>m</span></a></li>
+      <li><a href="functions_func_0x6e.html#index_n"><span>n</span></a></li>
       <li><a href="functions_func_0x6f.html#index_o"><span>o</span></a></li>
       <li><a href="functions_func_0x70.html#index_p"><span>p</span></a></li>
       <li><a href="functions_func_0x71.html#index_q"><span>q</span></a></li>
@@ -75,7 +76,7 @@
 , <a class="el" href="d1/d00/classphys_1_1ActorContainerBase.html#aa5ec651d4634b2d90efe2a76f9d2fbdd">phys::ActorContainerBase</a>
 </li>
 <li>GetActorUnderMouse()
-: <a class="el" href="d8/d69/classphys_1_1WorldQueryTool.html#ab819f634f3c8baf75aa3db8b82a0ce29">phys::WorldQueryTool</a>
+: <a class="el" href="d8/d69/classphys_1_1WorldQueryTool.html#a7328365e1b571bfbfbb7842a00ade6c8">phys::WorldQueryTool</a>
 </li>
 <li>GetAllEvents()
 : <a class="el" href="da/dde/classphys_1_1EventManager.html#a1c17bf26ec80f2be30cdb090534cacf8">phys::EventManager</a>
@@ -109,8 +110,14 @@
 <li>GetBulletVector3()
 : <a class="el" href="d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41">phys::Vector3</a>
 </li>
-<li>GetCameraLocation()
-: <a class="el" href="d9/d91/classphys_1_1CameraManager.html#a3c94c0f970996981c3a24d0fed79d32c">phys::CameraManager</a>
+<li>GetCameraGlobalLocation()
+: <a class="el" href="d9/d91/classphys_1_1CameraManager.html#a53ef7e8f0a4227a5a35db88fe74772fa">phys::CameraManager</a>
+</li>
+<li>GetCameraRelativeLocation()
+: <a class="el" href="d9/d91/classphys_1_1CameraManager.html#a8557218460fbc94a029f74945fa2517c">phys::CameraManager</a>
+</li>
+<li>GetCameraToViewportRay()
+: <a class="el" href="d9/d91/classphys_1_1CameraManager.html#a1a631eee22a0e45e2e72727d0bcc3560">phys::CameraManager</a>
 </li>
 <li>GetCode()
 : <a class="el" href="da/dc9/classphys_1_1MetaCode.html#a5835a05391cbb5a3dc83534a7bcf87d3">phys::MetaCode</a>
@@ -135,7 +142,7 @@
 , <a class="el" href="d3/d64/classphys_1_1ActorContainerVector.html#a55ceecd017455f3185aa62798811e3c6">phys::ActorContainerVector</a>
 </li>
 <li>GetFirstActorOnRayByAABB()
-: <a class="el" href="d8/d69/classphys_1_1WorldQueryTool.html#ad71eb0b333e09fd7c1b74645d332e675">phys::WorldQueryTool</a>
+: <a class="el" href="d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf">phys::WorldQueryTool</a>
 </li>
 <li>GetFirstActorOnRayByPolygon()
 : <a class="el" href="d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139">phys::WorldQueryTool</a>
@@ -198,6 +205,9 @@
 <li>GetNodeLocation()
 : <a class="el" href="d9/d91/classphys_1_1CameraManager.html#af5fcec9bebd90b8e98b0d2f4def97ea1">phys::CameraManager</a>
 </li>
+<li>GetNormal()
+: <a class="el" href="df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba">phys::Ray</a>
+</li>
 <li>getNumPoints()
 : <a class="el" href="d4/db5/classphys_1_1internal_1_1Line3D.html#ab72a9dab3a355035c24c15e4a737ea2f">phys::internal::Line3D</a>
 , <a class="el" href="db/ddb/classphys_1_1LineGroup.html#a32e14111a18318fd17aa503b1d3cfe8c">phys::LineGroup</a>
@@ -215,8 +225,8 @@
 : <a class="el" href="d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8">phys::Vector3</a>
 </li>
 <li>getPoint()
-: <a class="el" href="d4/db5/classphys_1_1internal_1_1Line3D.html#a190af0e38be28297ed2f6a7aecf0c316">phys::internal::Line3D</a>
-, <a class="el" href="db/ddb/classphys_1_1LineGroup.html#a960e1ceba7e9804b7906f8618f869202">phys::LineGroup</a>
+: <a class="el" href="db/ddb/classphys_1_1LineGroup.html#a960e1ceba7e9804b7906f8618f869202">phys::LineGroup</a>
+, <a class="el" href="d4/db5/classphys_1_1internal_1_1Line3D.html#a190af0e38be28297ed2f6a7aecf0c316">phys::internal::Line3D</a>
 </li>
 <li>GetRemainingEventCount()
 : <a class="el" href="da/dde/classphys_1_1EventManager.html#a67b755e3fe888e1305312d0f966f4a06">phys::EventManager</a>
@@ -257,7 +267,7 @@
 </li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 22 11:24:25 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 10:09:06 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

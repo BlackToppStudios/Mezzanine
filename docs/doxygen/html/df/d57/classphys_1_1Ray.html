@@ -42,8 +42,16 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="#a35f4f5eec653ea561353163eaad672d3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#aa6123ef37a2351e6cca3954c23212379">Ray</a> (<a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> From_, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> To_)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Thorough constructor.  <a href="#aa6123ef37a2351e6cca3954c23212379"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a395485ffe19e6a53966730c01a2781c1">Ray</a> (Ogre::Ray Ray2)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compatibily constructor.  <a href="#a395485ffe19e6a53966730c01a2781c1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Ogre::Ray&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a21fbd19de94f238998930213ab72622a">GetOgreRay</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets an Ogre::Ray that contains this Rays information.  <a href="#a21fbd19de94f238998930213ab72622a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a2acbaef60718001a048db26ccaaef787">Normalize</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Not implemented.  <a href="#a2acbaef60718001a048db26ccaaef787"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba">GetNormal</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Not implemented.  <a href="#a7445c25acb6ce865ef85e7ada829ccba"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a9f26694f254725135f56f694b2e5df06">operator*</a> (const <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;scalar)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Not implemented.  <a href="#a9f26694f254725135f56f694b2e5df06"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3004d52f8f1e317ee602f8f278531057"></a><!-- doxytag: member="phys::Ray::From" ref="a3004d52f8f1e317ee602f8f278531057" args="" -->
 <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057">From</a></td></tr>
@@ -119,7 +127,57 @@
 
 </div>
 </div>
+<a class="anchor" id="a395485ffe19e6a53966730c01a2781c1"></a><!-- doxytag: member="phys::Ray::Ray" ref="a395485ffe19e6a53966730c01a2781c1" args="(Ogre::Ray Ray2)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::Ray::Ray </td>
+          <td>(</td>
+          <td class="paramtype">Ogre::Ray&nbsp;</td>
+          <td class="paramname"> <em>Ray2</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compatibily constructor. </p>
+<p>This accepts an Ogre <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>, (graphics subsystem) to make ray </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Ray2</em>&nbsp;</td><td>This is the Ogre::Ray </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../da/d00/ray_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a7445c25acb6ce865ef85e7ada829ccba"></a><!-- doxytag: member="phys::Ray::GetNormal" ref="a7445c25acb6ce865ef85e7ada829ccba" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> phys::Ray::GetNormal </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Not implemented. </p>
+<p>This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>At a ray that is the normal for this array </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a21fbd19de94f238998930213ab72622a"></a><!-- doxytag: member="phys::Ray::GetOgreRay" ref="a21fbd19de94f238998930213ab72622a" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -139,7 +197,51 @@
 <p>Used to aid interopability, this will return afresh Ogre::Ray with the same data as this <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns an Ogre::Ray that contains the same information as this rays information </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d00/ray_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/ray_8cpp_source.html#l00072">72</a> of file <a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2acbaef60718001a048db26ccaaef787"></a><!-- doxytag: member="phys::Ray::Normalize" ref="a2acbaef60718001a048db26ccaaef787" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::Ray::Normalize </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Not implemented. </p>
+<p>this will change the ray to be exactly 1 unit long, but pointing the same direction. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9f26694f254725135f56f694b2e5df06"></a><!-- doxytag: member="phys::Ray::operator*" ref="a9f26694f254725135f56f694b2e5df06" args="(const Real &amp;scalar)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> phys::Ray::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>scalar</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Not implemented. </p>
+<p>This returns an array changed in length by the amount in the scalar. Specifically this subracts the From value out of the To value, then multiplies the To value by the scalar, then adds the from value back in. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a copy of the ray scaled by the requested amount. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../da/d00/ray_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a>.</p>
 
 </div>
 </div>
@@ -148,7 +250,7 @@
 <li><a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 22 11:24:26 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 10:09:07 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -18,8 +18,16 @@ This is used to indicate a line with one end.
 \begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Ray_aa6123ef37a2351e6cca3954c23212379}{Ray} (\hyperlink{classphys_1_1Vector3}{Vector3} From\_\-, \hyperlink{classphys_1_1Vector3}{Vector3} To\_\-)
 \begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Ray_a395485ffe19e6a53966730c01a2781c1}{Ray} (Ogre::Ray Ray2)
+\begin{DoxyCompactList}\small\item\em Compatibily constructor. \item\end{DoxyCompactList}\item 
 Ogre::Ray \hyperlink{classphys_1_1Ray_a21fbd19de94f238998930213ab72622a}{GetOgreRay} ()
-\begin{DoxyCompactList}\small\item\em Gets an Ogre::Ray that contains this Rays information. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets an Ogre::Ray that contains this Rays information. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Ray_a2acbaef60718001a048db26ccaaef787}{Normalize} ()
+\begin{DoxyCompactList}\small\item\em Not implemented. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1Ray_a7445c25acb6ce865ef85e7ada829ccba}{GetNormal} () const 
+\begin{DoxyCompactList}\small\item\em Not implemented. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1Ray_a9f26694f254725135f56f694b2e5df06}{operator$\ast$} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
+\begin{DoxyCompactList}\small\item\em Not implemented. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -72,9 +80,37 @@ This accepts 2 Vector3s and uses them to build the ray
 
 Definition at line 60 of file ray.cpp.
 
+\hypertarget{classphys_1_1Ray_a395485ffe19e6a53966730c01a2781c1}{
+\index{phys::Ray@{phys::Ray}!Ray@{Ray}}
+\index{Ray@{Ray}!phys::Ray@{phys::Ray}}
+\subsubsection[{Ray}]{\setlength{\rightskip}{0pt plus 5cm}phys::Ray::Ray (Ogre::Ray {\em Ray2})}}
+\label{df/d57/classphys_1_1Ray_a395485ffe19e6a53966730c01a2781c1}
+
+
+Compatibily constructor. 
+
+This accepts an Ogre \hyperlink{classphys_1_1Ray}{Ray}, (graphics subsystem) to make ray 
+\begin{DoxyParams}{Parameters}
+\item[{\em Ray2}]This is the Ogre::Ray \end{DoxyParams}
+
+
+Definition at line 66 of file ray.cpp.
+
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classphys_1_1Ray_a7445c25acb6ce865ef85e7ada829ccba}{
+\index{phys::Ray@{phys::Ray}!GetNormal@{GetNormal}}
+\index{GetNormal@{GetNormal}!phys::Ray@{phys::Ray}}
+\subsubsection[{GetNormal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} phys::Ray::GetNormal () const}}
+\label{df/d57/classphys_1_1Ray_a7445c25acb6ce865ef85e7ada829ccba}
+
+
+Not implemented. 
+
+This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray. \begin{DoxyReturn}{Returns}
+At a ray that is the normal for this array 
+\end{DoxyReturn}
 \hypertarget{classphys_1_1Ray_a21fbd19de94f238998930213ab72622a}{
 \index{phys::Ray@{phys::Ray}!GetOgreRay@{GetOgreRay}}
 \index{GetOgreRay@{GetOgreRay}!phys::Ray@{phys::Ray}}
@@ -89,7 +125,32 @@ This returns an Ogre::Ray that contains the same information as this rays inform
 \end{DoxyReturn}
 
 
-Definition at line 66 of file ray.cpp.
+Definition at line 72 of file ray.cpp.
+
+\hypertarget{classphys_1_1Ray_a2acbaef60718001a048db26ccaaef787}{
+\index{phys::Ray@{phys::Ray}!Normalize@{Normalize}}
+\index{Normalize@{Normalize}!phys::Ray@{phys::Ray}}
+\subsubsection[{Normalize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Ray::Normalize ()}}
+\label{df/d57/classphys_1_1Ray_a2acbaef60718001a048db26ccaaef787}
+
+
+Not implemented. 
+
+this will change the ray to be exactly 1 unit long, but pointing the same direction. \hypertarget{classphys_1_1Ray_a9f26694f254725135f56f694b2e5df06}{
+\index{phys::Ray@{phys::Ray}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!phys::Ray@{phys::Ray}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} phys::Ray::operator$\ast$ (const {\bf Real} \& {\em scalar})}}
+\label{df/d57/classphys_1_1Ray_a9f26694f254725135f56f694b2e5df06}
+
+
+Not implemented. 
+
+This returns an array changed in length by the amount in the scalar. Specifically this subracts the From value out of the To value, then multiplies the To value by the scalar, then adds the from value back in. \begin{DoxyReturn}{Returns}
+This returns a copy of the ray scaled by the requested amount. 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file ray.cpp.
 
 
 

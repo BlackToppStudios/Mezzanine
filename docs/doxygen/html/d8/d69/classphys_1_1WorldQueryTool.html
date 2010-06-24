@@ -52,8 +52,10 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns whether a specific KEyboard button is pushed.  <a href="#a8343f54b900adb316ddc6de5405da328"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139">GetFirstActorOnRayByPolygon</a> (<a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> ActorRay)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will find the first Actor to intesect the Given ray.  <a href="#a256022003d64756b0b5c5706aefd5139"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ad71eb0b333e09fd7c1b74645d332e675">GetFirstActorOnRayByAABB</a> (<a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> ActorRay)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ab819f634f3c8baf75aa3db8b82a0ce29">GetActorUnderMouse</a> (bool UsePolygon=true)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf">GetFirstActorOnRayByAABB</a> (<a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> ActorRay)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">unimplemented  <a href="#a67575416c2e9c652bbd873649ee38baf"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a7328365e1b571bfbfbb7842a00ade6c8">GetActorUnderMouse</a> (bool UsePolygon=true)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will find the actor under the mouse.  <a href="#a7328365e1b571bfbfbb7842a00ade6c8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ae387ff047f3cdf408d8959b8cbf4cc57">GatherEvents</a> (bool ClearEventsFromEventMgr=false)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This gathers any user-input/event data that might be queryed.  <a href="#ae387ff047f3cdf408d8959b8cbf4cc57"></a><br/></td></tr>
 </table>
@@ -149,12 +151,12 @@
 
 </div>
 </div>
-<a class="anchor" id="ab819f634f3c8baf75aa3db8b82a0ce29"></a><!-- doxytag: member="phys::WorldQueryTool::GetActorUnderMouse" ref="ab819f634f3c8baf75aa3db8b82a0ce29" args="(bool UsePolygon=true)" -->
+<a class="anchor" id="a7328365e1b571bfbfbb7842a00ade6c8"></a><!-- doxytag: member="phys::WorldQueryTool::GetActorUnderMouse" ref="a7328365e1b571bfbfbb7842a00ade6c8" args="(bool UsePolygon=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a>* phys::WorldQueryTool::GetActorUnderMouse </td>
+          <td class="memname"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a> * phys::WorldQueryTool::GetActorUnderMouse </td>
           <td>(</td>
           <td class="paramtype">bool&nbsp;</td>
           <td class="paramname"> <em>UsePolygon</em> = <code>true</code></td>
@@ -164,6 +166,9 @@
       </table>
 </div>
 <div class="memdoc">
+
+<p>This will find the actor under the mouse. </p>
+<p>This will use </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>UsePolygon</em>&nbsp;</td><td>If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB . </td></tr>
@@ -172,14 +177,16 @@
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a> which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass. </dd></dl>
 
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00233">233</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
+
 </div>
 </div>
-<a class="anchor" id="ad71eb0b333e09fd7c1b74645d332e675"></a><!-- doxytag: member="phys::WorldQueryTool::GetFirstActorOnRayByAABB" ref="ad71eb0b333e09fd7c1b74645d332e675" args="(Ray ActorRay)" -->
+<a class="anchor" id="a67575416c2e9c652bbd873649ee38baf"></a><!-- doxytag: member="phys::WorldQueryTool::GetFirstActorOnRayByAABB" ref="a67575416c2e9c652bbd873649ee38baf" args="(Ray ActorRay)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a>* phys::WorldQueryTool::GetFirstActorOnRayByAABB </td>
+          <td class="memname"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a> * phys::WorldQueryTool::GetFirstActorOnRayByAABB </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a>&nbsp;</td>
           <td class="paramname"> <em>ActorRay</em></td>
@@ -189,6 +196,8 @@
       </table>
 </div>
 <div class="memdoc">
+
+<p>unimplemented </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>ActorRay</em>&nbsp;</td><td>The <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> to search along. </td></tr>
@@ -196,6 +205,8 @@
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00228">228</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -216,7 +227,7 @@
 <div class="memdoc">
 
 <p>This will find the first Actor to intesect the Given ray. </p>
-<p>This use the graphics subsystem to cast a ray </p>
+<p>This use the graphics subsystem to cast a ray in the world. If the ray passes through any the triangles in an actor This will return that actor. This function runs in linear time relative to the amount of triangles in 3d meshes near the the ray being cast. This will start at ray.from and go to ray.to . </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>ActorRay</em>&nbsp;</td><td>The <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> to search along. </td></tr>
@@ -225,7 +236,7 @@
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to an <a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>, which contains the first actor along the ray and the point of intersection Relative to the actor </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00142">142</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00146">146</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -346,7 +357,7 @@
 <li><a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 22 11:24:26 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 10:09:07 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

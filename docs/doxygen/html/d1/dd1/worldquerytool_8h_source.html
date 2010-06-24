@@ -172,41 +172,43 @@
 <a name="l00147"></a>00147 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8343f54b900adb316ddc6de5405da328" title="Returns whether a specific KEyboard button is pushed.">IsKeyboardButtonPushed</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> KeyboardButton);
 <a name="l00148"></a>00148 <span class="comment"></span>
 <a name="l00149"></a>00149 <span class="comment">            /// @brief This will find the first Actor to intesect the Given ray.</span>
-<a name="l00150"></a>00150 <span class="comment">            /// @details This use the graphics subsystem to cast a ray</span>
-<a name="l00151"></a>00151 <span class="comment">            /// @param ActorRay The Ray to search along.</span>
-<a name="l00152"></a>00152 <span class="comment">            /// @return This returns a pointer to an Vector3WActor, which contains the first actor along the ray and the point of intersection Relative to the actor</span>
-<a name="l00153"></a>00153 <span class="comment"></span>            <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139" title="This will find the first Actor to intesect the Given ray.">GetFirstActorOnRayByPolygon</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
-<a name="l00154"></a>00154 <span class="comment"></span>
-<a name="l00155"></a>00155 <span class="comment">            /// @brief</span>
-<a name="l00156"></a>00156 <span class="comment">            /// @details</span>
-<a name="l00157"></a>00157 <span class="comment">            /// @param ActorRay The Ray to search along.</span>
-<a name="l00158"></a>00158 <span class="comment">            /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.</span>
-<a name="l00159"></a>00159 <span class="comment"></span>            <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ad71eb0b333e09fd7c1b74645d332e675">GetFirstActorOnRayByAABB</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
-<a name="l00160"></a>00160 <span class="comment"></span>
-<a name="l00161"></a>00161 <span class="comment">            /// @brief</span>
-<a name="l00162"></a>00162 <span class="comment">            /// @details</span>
-<a name="l00163"></a>00163 <span class="comment">            /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB .</span>
-<a name="l00164"></a>00164 <span class="comment">            /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.</span>
-<a name="l00165"></a>00165 <span class="comment"></span>            <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ab819f634f3c8baf75aa3db8b82a0ce29">GetActorUnderMouse</a>(<span class="keywordtype">bool</span> UsePolygon=<span class="keyword">true</span>);
-<a name="l00166"></a>00166 <span class="comment"></span>
-<a name="l00167"></a>00167 <span class="comment">            /// @brief This gathers any user-input/event data that might be queryed</span>
-<a name="l00168"></a>00168 <span class="comment">            /// @details This should be called periodcally (ideally in the post user input callback) to allow this</span>
-<a name="l00169"></a>00169 <span class="comment">            /// to gather data from the phys::World &#39;s event manager. When called this will drop prior event data</span>
-<a name="l00170"></a>00170 <span class="comment">            /// and any relevant queries will come from this new data. At the caller&#39;s discretion this method</span>
-<a name="l00171"></a>00171 <span class="comment">            /// can properly delete any events pulled from the event manager. \n \n</span>
-<a name="l00172"></a>00172 <span class="comment">            /// This runs in linear time relative to the events in the event manager. This will usually be a trivial amount</span>
-<a name="l00173"></a>00173 <span class="comment">            /// if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup)</span>
-<a name="l00174"></a>00174 <span class="comment">            /// @param ClearEventsFromEventMgr If set to true, This method will properly remove any events it pulls from the event manager.</span>
-<a name="l00175"></a>00175 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ae387ff047f3cdf408d8959b8cbf4cc57" title="This gathers any user-input/event data that might be queryed.">GatherEvents</a>(<span class="keywordtype">bool</span> ClearEventsFromEventMgr = <span class="keyword">false</span>);
-<a name="l00176"></a>00176     };
-<a name="l00177"></a>00177 
-<a name="l00178"></a>00178 }
+<a name="l00150"></a>00150 <span class="comment">            /// @details This use the graphics subsystem to cast a ray in the world. If the ray passes through any the triangles in an actor</span>
+<a name="l00151"></a>00151 <span class="comment">            /// This will return that actor. This function runs in linear time relative to the amount of triangles in 3d meshes near the the</span>
+<a name="l00152"></a>00152 <span class="comment">            /// ray being cast. This will start at ray.from and go to ray.to .</span>
+<a name="l00153"></a>00153 <span class="comment">            /// @param ActorRay The Ray to search along.</span>
+<a name="l00154"></a>00154 <span class="comment">            /// @return This returns a pointer to an Vector3WActor, which contains the first actor along the ray and the point of intersection Relative to the actor</span>
+<a name="l00155"></a>00155 <span class="comment"></span>            <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139" title="This will find the first Actor to intesect the Given ray.">GetFirstActorOnRayByPolygon</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
+<a name="l00156"></a>00156 <span class="comment"></span>
+<a name="l00157"></a>00157 <span class="comment">            /// @brief unimplemented</span>
+<a name="l00158"></a>00158 <span class="comment">            /// @details</span>
+<a name="l00159"></a>00159 <span class="comment">            /// @param ActorRay The Ray to search along.</span>
+<a name="l00160"></a>00160 <span class="comment">            /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.</span>
+<a name="l00161"></a>00161 <span class="comment"></span>            <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf" title="unimplemented">GetFirstActorOnRayByAABB</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay);
+<a name="l00162"></a>00162 <span class="comment"></span>
+<a name="l00163"></a>00163 <span class="comment">            /// @brief This will find the actor under the mouse.</span>
+<a name="l00164"></a>00164 <span class="comment">            /// @details This will use</span>
+<a name="l00165"></a>00165 <span class="comment">            /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB .</span>
+<a name="l00166"></a>00166 <span class="comment">            /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.</span>
+<a name="l00167"></a>00167 <span class="comment"></span>            <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a7328365e1b571bfbfbb7842a00ade6c8" title="This will find the actor under the mouse.">GetActorUnderMouse</a>(<span class="keywordtype">bool</span> UsePolygon=<span class="keyword">true</span>);
+<a name="l00168"></a>00168 <span class="comment"></span>
+<a name="l00169"></a>00169 <span class="comment">            /// @brief This gathers any user-input/event data that might be queryed</span>
+<a name="l00170"></a>00170 <span class="comment">            /// @details This should be called periodcally (ideally in the post user input callback) to allow this</span>
+<a name="l00171"></a>00171 <span class="comment">            /// to gather data from the phys::World &#39;s event manager. When called this will drop prior event data</span>
+<a name="l00172"></a>00172 <span class="comment">            /// and any relevant queries will come from this new data. At the caller&#39;s discretion this method</span>
+<a name="l00173"></a>00173 <span class="comment">            /// can properly delete any events pulled from the event manager. \n \n</span>
+<a name="l00174"></a>00174 <span class="comment">            /// This runs in linear time relative to the events in the event manager. This will usually be a trivial amount</span>
+<a name="l00175"></a>00175 <span class="comment">            /// if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup)</span>
+<a name="l00176"></a>00176 <span class="comment">            /// @param ClearEventsFromEventMgr If set to true, This method will properly remove any events it pulls from the event manager.</span>
+<a name="l00177"></a>00177 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ae387ff047f3cdf408d8959b8cbf4cc57" title="This gathers any user-input/event data that might be queryed.">GatherEvents</a>(<span class="keywordtype">bool</span> ClearEventsFromEventMgr = <span class="keyword">false</span>);
+<a name="l00178"></a>00178     };
 <a name="l00179"></a>00179 
-<a name="l00180"></a>00180 
+<a name="l00180"></a>00180 }
 <a name="l00181"></a>00181 
-<a name="l00182"></a>00182 <span class="preprocessor">#endif</span>
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183 
+<a name="l00184"></a>00184 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 22 11:24:25 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 10:09:06 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

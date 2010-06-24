@@ -32,6 +32,10 @@ bool \hyperlink{classphys_1_1Vector3_a1146d1b1b0f3d8809edfbd24e79b724a}{operator
 \begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1Vector3_aef82f53ef74363d7b662cbd1d3c204db}{operator==} (const Ogre::Vector3 \&Vec2)
 \begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_afb86ac7edd78353ec3d11d9f2efdf0cb}{operator-\/} ()
+\begin{DoxyCompactList}\small\item\em Additive Inverse Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_abef891128ea7022a8770624765cd0f97}{operator$\ast$} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
+\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a488f8df44ccd7456dab7674819e22148}{operator+} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec2)
 \begin{DoxyCompactList}\small\item\em Addition Operator. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ace72ce584a7124662b28bba59bb6b4a3}{operator-\/} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec2)
@@ -170,7 +174,7 @@ This function will copy the values stored in an existing Bullet vector3 and set 
 \item[{\em temp}]The vector3 to be extracted. \end{DoxyParams}
 
 
-Definition at line 240 of file vector3.cpp.
+Definition at line 263 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a09a31cb8fe491f61e0cc10d21705a0df}{
 \index{phys::Vector3@{phys::Vector3}!ExtractOgreVector3@{ExtractOgreVector3}}
@@ -186,7 +190,7 @@ This function will copy the values stored in an existing Ogre vector3 and set th
 \item[{\em temp}]The vector3 to be extracted. \end{DoxyParams}
 
 
-Definition at line 256 of file vector3.cpp.
+Definition at line 279 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_adf4129007ee41f5a03e97502f2df9c41}{
 \index{phys::Vector3@{phys::Vector3}!GetBulletVector3@{GetBulletVector3}}
@@ -199,7 +203,7 @@ Gets a Bullet vector3.
 
 Creates a Bullet vector3 with values equal to this class and returns it. 
 
-Definition at line 230 of file vector3.cpp.
+Definition at line 253 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a17265d86a74139398d310b56ba7e89b8}{
 \index{phys::Vector3@{phys::Vector3}!GetOgreVector3@{GetOgreVector3}}
@@ -212,7 +216,7 @@ Gets a Ogre vector3.
 
 Creates a Ogre vector3 with values equal to this class and returns it. 
 
-Definition at line 247 of file vector3.cpp.
+Definition at line 270 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a34014be39219a1ad3d4808b9614ac80d}{
 \index{phys::Vector3@{phys::Vector3}!operator$\ast$@{operator$\ast$}}
@@ -228,7 +232,7 @@ Allows for multiplying between a \hyperlink{classphys_1_1Vector3}{phys::Vector3}
 \item[{\em Vec2}]This is the Ogre::Vector3 to be multiplied \end{DoxyParams}
 
 
-Definition at line 210 of file vector3.cpp.
+Definition at line 233 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a59f8b8d5c15f4b047100480ad26ba092}{
 \index{phys::Vector3@{phys::Vector3}!operator$\ast$@{operator$\ast$}}
@@ -244,7 +248,7 @@ Allows for multiplication between a \hyperlink{classphys_1_1Vector3}{phys::Vecto
 \item[{\em Vec2}]This is the btVector3 to be multiplied \end{DoxyParams}
 
 
-Definition at line 171 of file vector3.cpp.
+Definition at line 194 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a1de842a5c63b6f5ed5cddedab44fa255}{
 \index{phys::Vector3@{phys::Vector3}!operator$\ast$@{operator$\ast$}}
@@ -260,7 +264,26 @@ Allows for multiplaction from a \hyperlink{classphys_1_1Vector3}{phys::Vector3}
 \item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector3}{phys::Vector3} \end{DoxyParams}
 
 
-Definition at line 132 of file vector3.cpp.
+Definition at line 155 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_abef891128ea7022a8770624765cd0f97}{
+\index{phys::Vector3@{phys::Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator$\ast$ (const {\bf Real} \& {\em scalar})}}
+\label{d5/d6a/classphys_1_1Vector3_abef891128ea7022a8770624765cd0f97}
+
+
+Scaling by multiplication. 
+
+This Multiplies X, Y and Z by scalar \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1Vector3}{Vector3} that has been scaled 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector3}{Vector3} by \end{DoxyParams}
+
+
+Definition at line 102 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a14ca2ae8bbe9ebefd298486b2a2ba5c9}{
 \index{phys::Vector3@{phys::Vector3}!operator+@{operator+}}
@@ -276,7 +299,7 @@ Allows for addition between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} an
 \item[{\em Vec2}]This is the Ogre::Vector3 to be added \end{DoxyParams}
 
 
-Definition at line 192 of file vector3.cpp.
+Definition at line 215 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a70c99d125274635b07b0fe90bcc15a8c}{
 \index{phys::Vector3@{phys::Vector3}!operator+@{operator+}}
@@ -292,7 +315,7 @@ Allows for addition between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} an
 \item[{\em Vec2}]This is the btVector3 to be added \end{DoxyParams}
 
 
-Definition at line 153 of file vector3.cpp.
+Definition at line 176 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a488f8df44ccd7456dab7674819e22148}{
 \index{phys::Vector3@{phys::Vector3}!operator+@{operator+}}
@@ -308,7 +331,7 @@ Allows for addition from a \hyperlink{classphys_1_1Vector3}{phys::Vector3}
 \item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector3}{phys::Vector3} \end{DoxyParams}
 
 
-Definition at line 114 of file vector3.cpp.
+Definition at line 137 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a54d5fc20ae502ac1443ddbb6cf1fbf1f}{
 \index{phys::Vector3@{phys::Vector3}!operator-\/@{operator-\/}}
@@ -324,7 +347,7 @@ Allows for subtraction between a \hyperlink{classphys_1_1Vector3}{phys::Vector3}
 \item[{\em Vec2}]This is the Ogre::Vector3 to be subtracted \end{DoxyParams}
 
 
-Definition at line 201 of file vector3.cpp.
+Definition at line 224 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_ab7ec10d90e35c2b153a2f002f12518ce}{
 \index{phys::Vector3@{phys::Vector3}!operator-\/@{operator-\/}}
@@ -340,7 +363,7 @@ Allows for subtraction between a \hyperlink{classphys_1_1Vector3}{phys::Vector3}
 \item[{\em Vec2}]This is the btVector3 to be subtracted \end{DoxyParams}
 
 
-Definition at line 162 of file vector3.cpp.
+Definition at line 185 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_ace72ce584a7124662b28bba59bb6b4a3}{
 \index{phys::Vector3@{phys::Vector3}!operator-\/@{operator-\/}}
@@ -356,7 +379,20 @@ Allows for subtraction from a \hyperlink{classphys_1_1Vector3}{phys::Vector3}
 \item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector3}{phys::Vector3} \end{DoxyParams}
 
 
-Definition at line 123 of file vector3.cpp.
+Definition at line 146 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_afb86ac7edd78353ec3d11d9f2efdf0cb}{
+\index{phys::Vector3@{phys::Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator-\/ ()}}
+\label{d5/d6a/classphys_1_1Vector3_afb86ac7edd78353ec3d11d9f2efdf0cb}
+
+
+Additive Inverse Operator. 
+
+Returns the opposite \hyperlink{classphys_1_1Vector3}{Vector3} relative to 0,0,0 
+
+Definition at line 90 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a4f9f3240dab2277e8a9b80f6c7235e5b}{
 \index{phys::Vector3@{phys::Vector3}!operator/@{operator/}}
@@ -372,7 +408,7 @@ Allows for division between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} an
 \item[{\em Vec2}]This is the Ogre::Vector3 to be divided \end{DoxyParams}
 
 
-Definition at line 219 of file vector3.cpp.
+Definition at line 242 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a945287bb9448b2353c90e16c6cfed876}{
 \index{phys::Vector3@{phys::Vector3}!operator/@{operator/}}
@@ -388,7 +424,7 @@ Allows for division between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} an
 \item[{\em Vec2}]This is the btVector3 to be divided \end{DoxyParams}
 
 
-Definition at line 180 of file vector3.cpp.
+Definition at line 203 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_ac7065621d2445feb0f336e6ce73dde22}{
 \index{phys::Vector3@{phys::Vector3}!operator/@{operator/}}
@@ -404,7 +440,7 @@ Allows for division from a \hyperlink{classphys_1_1Vector3}{phys::Vector3}
 \item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector3}{phys::Vector3} \end{DoxyParams}
 
 
-Definition at line 141 of file vector3.cpp.
+Definition at line 164 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_aea33e020934fe37bb415b034f3d057f1}{
 \index{phys::Vector3@{phys::Vector3}!operator=@{operator=}}
@@ -452,7 +488,7 @@ Returns true if X==x, Y==y and Z==z. If any of those do not match this returns f
 \item[{\em Vec2}]This is an Ogre::Vector3 that needs to be compared with this. \end{DoxyParams}
 
 
-Definition at line 104 of file vector3.cpp.
+Definition at line 127 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a1146d1b1b0f3d8809edfbd24e79b724a}{
 \index{phys::Vector3@{phys::Vector3}!operator==@{operator==}}
@@ -468,7 +504,7 @@ Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match
 \item[{\em Vec2}]This is an btVector3 that needs to be compared with this. \end{DoxyParams}
 
 
-Definition at line 97 of file vector3.cpp.
+Definition at line 120 of file vector3.cpp.
 
 \hypertarget{classphys_1_1Vector3_a90dadb1a5cd2c5814e54c11c33f286c1}{
 \index{phys::Vector3@{phys::Vector3}!operator==@{operator==}}
@@ -484,7 +520,7 @@ Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns f
 \item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector3}{phys::Vector3}. \end{DoxyParams}
 
 
-Definition at line 90 of file vector3.cpp.
+Definition at line 113 of file vector3.cpp.
 
 
 

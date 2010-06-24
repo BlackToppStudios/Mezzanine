@@ -88,26 +88,41 @@
 <a name="l00063"></a>00063         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>=To_;
 <a name="l00064"></a>00064     }
 <a name="l00065"></a>00065 
-<a name="l00066"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a21fbd19de94f238998930213ab72622a">00066</a>     Ogre::Ray <a class="code" href="../../df/d57/classphys_1_1Ray.html#a21fbd19de94f238998930213ab72622a" title="Gets an Ogre::Ray that contains this Rays information.">Ray::GetOgreRay</a>()
+<a name="l00066"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a395485ffe19e6a53966730c01a2781c1">00066</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ray::Ray</a>(Ogre::Ray Ray2)
 <a name="l00067"></a>00067     {
-<a name="l00068"></a>00068         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ogre::Ray</a>(
-<a name="l00069"></a>00069             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>(),
-<a name="l00070"></a>00070             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>()
-<a name="l00071"></a>00071         );
-<a name="l00072"></a>00072     }
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 }
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076 <span class="comment">//std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const phys::Vector3&amp; x)</span>
-<a name="l00077"></a>00077 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">phys::Ray</a>&amp; x)
-<a name="l00078"></a>00078 {
-<a name="l00079"></a>00079     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
-<a name="l00080"></a>00080     <span class="keywordflow">return</span> stream;
-<a name="l00081"></a>00081 }
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="preprocessor">#endif</span>
+<a name="l00068"></a>00068         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>=Ray2.getOrigin();
+<a name="l00069"></a>00069         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>=Ray2.getPoint(1);
+<a name="l00070"></a>00070     }
+<a name="l00071"></a>00071 
+<a name="l00072"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a21fbd19de94f238998930213ab72622a">00072</a>     Ogre::Ray <a class="code" href="../../df/d57/classphys_1_1Ray.html#a21fbd19de94f238998930213ab72622a" title="Gets an Ogre::Ray that contains this Rays information.">Ray::GetOgreRay</a>()
+<a name="l00073"></a>00073     {
+<a name="l00074"></a>00074         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ogre::Ray</a>(
+<a name="l00075"></a>00075             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>(),
+<a name="l00076"></a>00076             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>()
+<a name="l00077"></a>00077         );
+<a name="l00078"></a>00078     }
+<a name="l00079"></a>00079 
+<a name="l00080"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a9f26694f254725135f56f694b2e5df06">00080</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a9f26694f254725135f56f694b2e5df06" title="Not implemented.">Ray::operator* </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)
+<a name="l00081"></a>00081     {
+<a name="l00082"></a>00082         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ray</a>(
+<a name="l00083"></a>00083             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>,
+<a name="l00084"></a>00084             ((this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> - this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>) * scalar) + this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>
+<a name="l00085"></a>00085         );
+<a name="l00086"></a>00086     }
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 }
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091 <span class="comment">//std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const phys::Vector3&amp; x)</span>
+<a name="l00092"></a>00092 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">phys::Ray</a>&amp; x)
+<a name="l00093"></a>00093 {
+<a name="l00094"></a>00094     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00095"></a>00095     <span class="keywordflow">return</span> stream;
+<a name="l00096"></a>00096 }
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Jun 22 11:24:25 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 10:09:06 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
