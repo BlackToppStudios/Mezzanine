@@ -94,6 +94,21 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Vector3 Arithmetic with Real
+    /// @brief Scaling by multiplication
+    /// @details This Multiplies X, Y and Z by scalar
+    /// @return This returns a Vector3 that has been scaled
+    /// @param scalar This is the amount to scale the Vector3 by
+    Vector3 Vector3::operator* (const Real &scalar)
+    {
+        return Vector3(
+            this->X * scalar,
+            this->Y * scalar,
+            this->Z * scalar
+        );
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
     bool Vector3::operator== (const Vector3 &Vec2)
     {

@@ -77,6 +77,15 @@ namespace phys
         );
     }
 
+    Ray Ray::operator* (const Real &scalar)
+    {
+        return Ray(
+            this->From,
+            ((this->To - this->From) * scalar) + this->From
+        );
+    }
+
+
 }
 
 //std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)

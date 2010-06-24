@@ -155,7 +155,7 @@ bool PostInput()
         Ray MouseRay( TheWorld.Cameras->GetCameraToViewportRay( Queryer.GetMouseX()/640, Queryer.GetMouseY()/480));
         TheWorld.Log( MouseRay );
 
-        Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(MouseRay);//*1000);
+        Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(MouseRay * 1000);
         if ( WhatDidWeFind == NULL)
         {
             TheWorld.Log("Mouse Ray Found Nothing");
