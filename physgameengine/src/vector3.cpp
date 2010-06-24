@@ -282,6 +282,19 @@ namespace phys
         this->Y=Ours.y;
         this->Z=Ours.z;
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Manual Conversions
+
+    Real Vector3::Distance(const Vector3 &Vec2) const
+    {
+        float Xdelta = this->X - Vec2.X;
+        float Ydelta = this->Y - Vec2.Y;
+        float Zdelta = this->Z - Vec2.Z;
+        return Ogre::Math::Sqrt( Xdelta*Xdelta + Ydelta*Ydelta + Zdelta*Zdelta );
+    }
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -229,6 +229,17 @@ namespace phys
         /// and set the values of this class to be the same.
         /// @param temp The vector3 to be extracted.
         void ExtractOgreVector3(Ogre::Vector3 temp);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Manual Conversions
+
+        /// @brief This return the distance between this point and another
+        /// @details This uses a 3d extension of pythagoras thereom to calculate the distance between
+        /// This Vector3 and another.
+        /// @param Vec2 this is the other point to measure against
+        /// @return This returns a Real number which is the distance.
+        Real Distance(const Vector3 &Vec2) const;
+
     };
 }// /phys
 

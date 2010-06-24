@@ -119,30 +119,34 @@
 <a name="l00094"></a>00094 <span class="comment">            /// @return At a ray that is the normal for this array</span>
 <a name="l00095"></a>00095 <span class="comment"></span>            <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba" title="Not implemented.">GetNormal</a>() <span class="keyword">const</span>;
 <a name="l00096"></a>00096 <span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">            /// @brief Not implemented</span>
+<a name="l00097"></a>00097 <span class="comment">            /// @brief This returns a ray lengthened by the given multiple.</span>
 <a name="l00098"></a>00098 <span class="comment">            /// @details This returns an array changed in length by the amount in the scalar. Specifically this subracts the From value</span>
 <a name="l00099"></a>00099 <span class="comment">            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.</span>
 <a name="l00100"></a>00100 <span class="comment">            /// @return This returns a copy of the ray scaled by the requested amount.</span>
-<a name="l00101"></a>00101 <span class="comment"></span>            <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a9f26694f254725135f56f694b2e5df06" title="Not implemented.">operator* </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar);
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104     };
-<a name="l00105"></a>00105 }<span class="comment">// /phys</span>
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">phys::Ray</a>&amp; x);
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109 <span class="comment">/*Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, const phys::Vector3&amp; VecFrom);</span>
-<a name="l00110"></a>00110 <span class="comment">Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, const btVector3&amp; VecFrom);</span>
-<a name="l00111"></a>00111 <span class="comment"></span>
-<a name="l00112"></a>00112 <span class="comment">btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, const Ogre::Vector3&amp; VecFrom);</span>
-<a name="l00113"></a>00113 <span class="comment">btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, const phys::Vector3&amp; VecFrom);</span>
-<a name="l00114"></a>00114 <span class="comment"></span>
-<a name="l00115"></a>00115 <span class="comment">phys::Vector3&amp; operator &lt;&lt; (phys::Vector3&amp; VecTo, const Ogre::Vector3&amp; VecFrom);</span>
-<a name="l00116"></a>00116 <span class="comment">phys::Vector3&amp; operator &lt;&lt; (phys::Vector3&amp; VecTo, const btVector3&amp; VecFrom);</span>
-<a name="l00117"></a>00117 <span class="comment">*/</span>
-<a name="l00118"></a>00118 <span class="preprocessor">#endif</span>
+<a name="l00101"></a>00101 <span class="comment"></span>            <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a9f26694f254725135f56f694b2e5df06" title="This returns a ray lengthened by the given multiple.">operator* </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar);
+<a name="l00102"></a>00102 <span class="comment"></span>
+<a name="l00103"></a>00103 <span class="comment">            /// @brief Measures the distance distance of this ray</span>
+<a name="l00104"></a>00104 <span class="comment">            /// @details This uses the distance method of Vector3 to determine the current length of this ray.</span>
+<a name="l00105"></a>00105 <span class="comment">            /// @return This returns a real value which contains the length</span>
+<a name="l00106"></a>00106 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b" title="Measures the distance distance of this ray.">Length</a>() <span class="keyword">const</span>;
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108     };
+<a name="l00109"></a>00109 }<span class="comment">// /phys</span>
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">phys::Ray</a>&amp; x);
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 <span class="comment">/*Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, const phys::Vector3&amp; VecFrom);</span>
+<a name="l00114"></a>00114 <span class="comment">Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, const btVector3&amp; VecFrom);</span>
+<a name="l00115"></a>00115 <span class="comment"></span>
+<a name="l00116"></a>00116 <span class="comment">btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, const Ogre::Vector3&amp; VecFrom);</span>
+<a name="l00117"></a>00117 <span class="comment">btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, const phys::Vector3&amp; VecFrom);</span>
+<a name="l00118"></a>00118 <span class="comment"></span>
+<a name="l00119"></a>00119 <span class="comment">phys::Vector3&amp; operator &lt;&lt; (phys::Vector3&amp; VecTo, const Ogre::Vector3&amp; VecFrom);</span>
+<a name="l00120"></a>00120 <span class="comment">phys::Vector3&amp; operator &lt;&lt; (phys::Vector3&amp; VecTo, const btVector3&amp; VecFrom);</span>
+<a name="l00121"></a>00121 <span class="comment">*/</span>
+<a name="l00122"></a>00122 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 10:09:06 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 12:59:48 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

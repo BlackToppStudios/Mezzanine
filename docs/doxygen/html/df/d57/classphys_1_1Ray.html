@@ -51,7 +51,9 @@
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba">GetNormal</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Not implemented.  <a href="#a7445c25acb6ce865ef85e7ada829ccba"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a9f26694f254725135f56f694b2e5df06">operator*</a> (const <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;scalar)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Not implemented.  <a href="#a9f26694f254725135f56f694b2e5df06"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns a ray lengthened by the given multiple.  <a href="#a9f26694f254725135f56f694b2e5df06"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b">Length</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Measures the distance distance of this ray.  <a href="#add544025fcd6d1cdcfed3c0413b3701b"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3004d52f8f1e317ee602f8f278531057"></a><!-- doxytag: member="phys::Ray::From" ref="a3004d52f8f1e317ee602f8f278531057" args="" -->
 <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057">From</a></td></tr>
@@ -201,6 +203,29 @@
 
 </div>
 </div>
+<a class="anchor" id="add544025fcd6d1cdcfed3c0413b3701b"></a><!-- doxytag: member="phys::Ray::Length" ref="add544025fcd6d1cdcfed3c0413b3701b" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> phys::Ray::Length </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Measures the distance distance of this ray. </p>
+<p>This uses the distance method of <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> to determine the current length of this ray. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a real value which contains the length </dd></dl>
+
+<p>Definition at line <a class="el" href="../../da/d00/ray_8cpp_source.html#l00088">88</a> of file <a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a2acbaef60718001a048db26ccaaef787"></a><!-- doxytag: member="phys::Ray::Normalize" ref="a2acbaef60718001a048db26ccaaef787" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -237,7 +262,7 @@
 </div>
 <div class="memdoc">
 
-<p>Not implemented. </p>
+<p>This returns a ray lengthened by the given multiple. </p>
 <p>This returns an array changed in length by the amount in the scalar. Specifically this subracts the From value out of the To value, then multiplies the To value by the scalar, then adds the from value back in. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a copy of the ray scaled by the requested amount. </dd></dl>
 
@@ -250,7 +275,7 @@
 <li><a class="el" href="../../da/d00/ray_8cpp_source.html">ray.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 10:09:07 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 12:59:49 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

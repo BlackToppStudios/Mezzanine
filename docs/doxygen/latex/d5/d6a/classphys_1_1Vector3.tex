@@ -67,7 +67,9 @@ void \hyperlink{classphys_1_1Vector3_a24ae86b068340be6727877f8c6c1a313}{ExtractB
 Ogre::Vector3 \hyperlink{classphys_1_1Vector3_a17265d86a74139398d310b56ba7e89b8}{GetOgreVector3} () const 
 \begin{DoxyCompactList}\small\item\em Gets a Ogre vector3. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Vector3_a09a31cb8fe491f61e0cc10d21705a0df}{ExtractOgreVector3} (Ogre::Vector3 temp)
-\begin{DoxyCompactList}\small\item\em Copies an existing Ogre vector3. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Copies an existing Ogre vector3. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a6388c8993a8f09ba2f7fef366858634f}{Distance} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec2) const 
+\begin{DoxyCompactList}\small\item\em This return the distance between this point and another. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -160,6 +162,25 @@ Definition at line 71 of file vector3.cpp.
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classphys_1_1Vector3_a6388c8993a8f09ba2f7fef366858634f}{
+\index{phys::Vector3@{phys::Vector3}!Distance@{Distance}}
+\index{Distance@{Distance}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{Distance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::Vector3::Distance (const {\bf Vector3} \& {\em Vec2}) const}}
+\label{d5/d6a/classphys_1_1Vector3_a6388c8993a8f09ba2f7fef366858634f}
+
+
+This return the distance between this point and another. 
+
+This uses a 3d extension of pythagoras thereom to calculate the distance between This \hyperlink{classphys_1_1Vector3}{Vector3} and another. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]this is the other point to measure against \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a Real number which is the distance. 
+\end{DoxyReturn}
+
+
+Definition at line 290 of file vector3.cpp.
+
 \hypertarget{classphys_1_1Vector3_a24ae86b068340be6727877f8c6c1a313}{
 \index{phys::Vector3@{phys::Vector3}!ExtractBulletVector3@{ExtractBulletVector3}}
 \index{ExtractBulletVector3@{ExtractBulletVector3}!phys::Vector3@{phys::Vector3}}

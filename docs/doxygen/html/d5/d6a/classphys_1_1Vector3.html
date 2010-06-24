@@ -92,6 +92,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets a Ogre vector3.  <a href="#a17265d86a74139398d310b56ba7e89b8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a09a31cb8fe491f61e0cc10d21705a0df">ExtractOgreVector3</a> (Ogre::Vector3 temp)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copies an existing Ogre vector3.  <a href="#a09a31cb8fe491f61e0cc10d21705a0df"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f">Distance</a> (const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> &amp;Vec2) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This return the distance between this point and another.  <a href="#a6388c8993a8f09ba2f7fef366858634f"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23660f9d1e21a25c53aa06aa737bb56b"></a><!-- doxytag: member="phys::Vector3::X" ref="a23660f9d1e21a25c53aa06aa737bb56b" args="" -->
 <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b">X</a></td></tr>
@@ -236,6 +238,36 @@
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a6388c8993a8f09ba2f7fef366858634f"></a><!-- doxytag: member="phys::Vector3::Distance" ref="a6388c8993a8f09ba2f7fef366858634f" args="(const Vector3 &amp;Vec2) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> phys::Vector3::Distance </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Vec2</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This return the distance between this point and another. </p>
+<p>This uses a 3d extension of pythagoras thereom to calculate the distance between This <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> and another. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Vec2</em>&nbsp;</td><td>this is the other point to measure against </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a Real number which is the distance. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00290">290</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a24ae86b068340be6727877f8c6c1a313"></a><!-- doxytag: member="phys::Vector3::ExtractBulletVector3" ref="a24ae86b068340be6727877f8c6c1a313" args="(btVector3 temp)" -->
 <div class="memitem">
 <div class="memproto">
@@ -888,7 +920,7 @@
 <li><a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 10:09:07 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 12:59:49 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

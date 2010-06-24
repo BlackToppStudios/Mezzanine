@@ -94,12 +94,16 @@ namespace phys
             /// @return At a ray that is the normal for this array
             Ray GetNormal() const;
 
-            /// @brief Not implemented
+            /// @brief This returns a ray lengthened by the given multiple.
             /// @details This returns an array changed in length by the amount in the scalar. Specifically this subracts the From value
             /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.
             /// @return This returns a copy of the ray scaled by the requested amount.
             Ray operator* (const Real &scalar);
 
+            /// @brief Measures the distance distance of this ray
+            /// @details This uses the distance method of Vector3 to determine the current length of this ray.
+            /// @return This returns a real value which contains the length
+            Real Length() const;
 
     };
 }// /phys

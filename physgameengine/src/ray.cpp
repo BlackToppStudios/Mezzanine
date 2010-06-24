@@ -85,7 +85,10 @@ namespace phys
         );
     }
 
-
+    Real Ray::Length() const
+    {
+        return this->From.Distance( this->To );
+    }
 }
 
 //std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)

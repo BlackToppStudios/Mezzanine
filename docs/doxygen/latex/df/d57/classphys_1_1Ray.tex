@@ -27,7 +27,9 @@ void \hyperlink{classphys_1_1Ray_a2acbaef60718001a048db26ccaaef787}{Normalize} (
 \hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1Ray_a7445c25acb6ce865ef85e7ada829ccba}{GetNormal} () const 
 \begin{DoxyCompactList}\small\item\em Not implemented. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1Ray_a9f26694f254725135f56f694b2e5df06}{operator$\ast$} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
-\begin{DoxyCompactList}\small\item\em Not implemented. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This returns a ray lengthened by the given multiple. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Ray_add544025fcd6d1cdcfed3c0413b3701b}{Length} () const 
+\begin{DoxyCompactList}\small\item\em Measures the distance distance of this ray. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -127,6 +129,22 @@ This returns an Ogre::Ray that contains the same information as this rays inform
 
 Definition at line 72 of file ray.cpp.
 
+\hypertarget{classphys_1_1Ray_add544025fcd6d1cdcfed3c0413b3701b}{
+\index{phys::Ray@{phys::Ray}!Length@{Length}}
+\index{Length@{Length}!phys::Ray@{phys::Ray}}
+\subsubsection[{Length}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::Ray::Length () const}}
+\label{df/d57/classphys_1_1Ray_add544025fcd6d1cdcfed3c0413b3701b}
+
+
+Measures the distance distance of this ray. 
+
+This uses the distance method of \hyperlink{classphys_1_1Vector3}{Vector3} to determine the current length of this ray. \begin{DoxyReturn}{Returns}
+This returns a real value which contains the length 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file ray.cpp.
+
 \hypertarget{classphys_1_1Ray_a2acbaef60718001a048db26ccaaef787}{
 \index{phys::Ray@{phys::Ray}!Normalize@{Normalize}}
 \index{Normalize@{Normalize}!phys::Ray@{phys::Ray}}
@@ -143,7 +161,7 @@ this will change the ray to be exactly 1 unit long, but pointing the same direct
 \label{df/d57/classphys_1_1Ray_a9f26694f254725135f56f694b2e5df06}
 
 
-Not implemented. 
+This returns a ray lengthened by the given multiple. 
 
 This returns an array changed in length by the amount in the scalar. Specifically this subracts the From value out of the To value, then multiplies the To value by the scalar, then adds the from value back in. \begin{DoxyReturn}{Returns}
 This returns a copy of the ray scaled by the requested amount. 
