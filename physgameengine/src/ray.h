@@ -65,6 +65,9 @@ namespace phys
             /// @brief A point on the line of the ray.
             Vector3 To;
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Constructors
+
             /// @brief Default constructor
             /// @details This create a ray starting at 0,0,0 pointing to 0,1,0,
             Ray();
@@ -80,49 +83,66 @@ namespace phys
             /// @param Ray2 This is the Ogre::Ray
             Ray(Ogre::Ray Ray2);
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Manual Conversions and adjsutments
+
             /// @brief Gets an Ogre::Ray that contains this Rays information
             /// @details Used to aid interopability, this will return afresh Ogre::Ray with the same data as this Ray
             /// @return This returns an Ogre::Ray that contains the same information as this rays information
-            Ogre::Ray GetOgreRay();
-
-            /// @brief Not implemented
-            /// @details this will change the ray to be exactly 1 unit long, but pointing the same direction.
-            void Normalize();
-
-            /// @brief This returns the normal for this ray
-            /// @details This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray.
-            /// @return At a ray that is the normal for this array
-            Ray GetNormal();
-
-            /// @brief This returns a ray lengthened by the given multiple.
-            /// @details This returns a ray changed in length by the amount in the scalar. Specifically this subracts the From value
-            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.
-            /// @return This returns a copy of the ray scaled by the requested amount.
-            Ray operator* (const Real &scalar) const;
-
-            /// @brief This returns a ray scaled by the given divisor.
-            /// @details This returns an ray divided in length by the amount in the scalar. Specifically this subracts the From value
-            /// out of the To value, then divides the To value by the scalar, then adds the from value back in.
-            /// @return This returns a copy of the ray scaled by the requested amount.
-            Ray operator/ (const Real &scalar) const;
+            Ogre::Ray ExtractOgreRay() const;
 
             /// @brief Measures the distance distance of this ray
             /// @details This uses the distance method of Vector3 to determine the current length of this ray.
             /// @return This returns a real value which contains the length
             Real Length() const;
 
-    };
+            /// @brief This returns the normal for this ray
+            /// @details This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray.
+            /// @return At a ray that is the normal for this array
+            Ray GetNormal();
+
+            /// @brief Turns this Ray into its own normal
+            /// @details This will change the ray to be exactly 1 unit long, but pointing the same direction.
+            void Normalize();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Real Operators and assignments
+
+            /// @brief This returns a ray lengthened by the given multiple.
+            /// @details This returns a ray changed in length by the amount in the scalar. Specifically this subracts the From value
+            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.
+            /// @return This returns a copy of the ray scaled by the requested amount.
+            /// @param scalar The amount to multiply by.
+            Ray operator* (const Real &scalar) const;
+
+            /// @brief This returns a ray scaled by the given divisor.
+            /// @details This returns an ray divided in length by the amount in the scalar. Specifically this subracts the From value
+            /// out of the To value, then divides the To value by the scalar, then adds the from value back in.
+            /// @return This returns a copy of the ray scaled by the requested amount.
+            /// @param scalar The amount to divide by.
+            Ray operator/ (const Real &scalar) const;
+
+            /// @brief This lengthens the Ray by the given multiple.
+            /// @details This ray  ischanged in length by the amount in the scalar. Specifically this subracts the From value
+            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.
+            /// @param scalar The amount to multiply by.
+            void operator*= (const Real &scalar);
+
+            /// @brief This scales the Ray by the given divisor.
+            /// @details This ray is divided in length by the amount in the scalar. Specifically this subracts the From value
+            /// out of the To value, then divides the To value by the scalar, then adds the from value back in.
+            /// @param scalar The amount to divide by.
+            void operator/= (const Real &scalar);
+
+    }; // /Ray
+
 }// /phys
 
+/// @brief Streaming output operator
+/// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout
+/// @param stream This is the stream we send our data to.
+/// @return This returns an std::ostream which now contains our data.
 std::ostream& operator << (std::ostream& stream, const phys::Ray& x);
 
-/*Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom);
-Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom);
 
-btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom);
-btVector3& operator << (btVector3& VecTo, const phys::Vector3& VecFrom);
-
-phys::Vector3& operator << (phys::Vector3& VecTo, const Ogre::Vector3& VecFrom);
-phys::Vector3& operator << (phys::Vector3& VecTo, const btVector3& VecFrom);
-*/
 #endif

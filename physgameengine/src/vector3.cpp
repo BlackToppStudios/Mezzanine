@@ -95,7 +95,6 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector3 Arithmetic with Real
-
     Vector3 Vector3::operator* (const Real &scalar) const
     {
         return Vector3(
@@ -112,6 +111,22 @@ namespace phys
             this->Y / scalar,
             this->Z / scalar
         );
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Vector3 Arithmetic and assignment with Real
+    void Vector3::operator*= (const Real &scalar)
+    {
+        this->X *= scalar;
+        this->Y *= scalar;
+        this->Z *= scalar;
+    }
+
+    void Vector3::operator/= (const Real &scalar)
+    {
+        this->X /= scalar;
+        this->Y /= scalar;
+        this->Z /= scalar;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

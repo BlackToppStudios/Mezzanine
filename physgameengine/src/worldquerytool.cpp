@@ -145,7 +145,7 @@ namespace phys
 
     Vector3WActor* WorldQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay)
     {
-        Ogre::Ray Ooray = ActorRay.GetOgreRay();
+        Ogre::Ray Ooray = ActorRay.ExtractOgreRay();
 
         if(NULL != this->RayQuery)          //Double check that the Rayquery is valid
         {
@@ -234,7 +234,12 @@ namespace phys
     {
         Vector3WActor* Results = 0;
 
-         //Ray mouseRay = mCamera->getCameraToViewportRay(mousePos.d_x/float(mWindow->getWidth()), mousePos.d_y/float(mWindow->getHeight()));
+        Ray MouseRay( this->GameWorld->Cameras->GetCameraToViewportRay(
+                float(this->GetMouseX()) / float( 640.0 ),
+                float(this->GetMouseY()) / float( 480.0 )
+            ) );
+
+        //this->GameWorld->get
 
         if (UsePolygon)
         {

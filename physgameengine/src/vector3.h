@@ -145,8 +145,19 @@ namespace phys
         Vector3 operator/ (const Real &scalar) const;
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Arithmetic Operators
+        // Vector3 Arithmetic and assignment with Real
+        /// @brief Scaling by multiplication.
+        /// @details This Multiplies X, Y and Z by scalar and stores the changes in this Vector3.
+        /// @param scalar This is the amount to scale the Vector3 by.
+        void operator*= (const Real &scalar);
 
+        /// @brief Scaling by Division
+        /// @details This Division X, Y and Z by scalar and and stores the changes in this Vector3.
+        /// @param scalar This is the amount to scale the Vector3 by
+        void operator/= (const Real &scalar);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Arithmetic Operators
         /// @brief Addition Operator
         /// @details Allows for addition from a phys::Vector3
         /// @param Vec2 This is the other phys::Vector3
@@ -169,7 +180,6 @@ namespace phys
 
         /////////////////////////////////////////////////////////////////////
         // Arithmetic Operators with btVector3
-
         /// @brief Bullet Addition Operator
         /// @details Allows for addition  between a phys::Vector3 and a btVector3
         /// @param Vec2 This is the btVector3 to be added
@@ -192,7 +202,6 @@ namespace phys
 
         ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators with Ogre::Vector3
-
         /// @brief Ogre Addition Operator
         /// @details Allows for addition  between a phys::Vector3 and a Ogre::Vector3
         /// @param Vec2 This is the Ogre::Vector3 to be added
@@ -215,7 +224,6 @@ namespace phys
 
         ///////////////////////////////////////////////////////////////////////////////
         // Manual Conversions
-
         /// @brief Gets a Bullet vector3.
         /// @details Creates a Bullet vector3 with values equal to this class and returns it.
         btVector3 GetBulletVector3() const;
@@ -238,7 +246,6 @@ namespace phys
 
         ///////////////////////////////////////////////////////////////////////////////
         // Manual Conversions
-
         /// @brief This return the distance between this point and another
         /// @details This uses a 3d extension of pythagoras thereom to calculate the distance between
         /// This Vector3 and another.

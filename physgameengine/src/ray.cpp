@@ -52,6 +52,9 @@
 
 namespace phys
 {
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Constructors
     Ray::Ray():From(0,0,0),To(0,1,0)
     {
 
@@ -69,7 +72,10 @@ namespace phys
         this->To=Ray2.getPoint(1);
     }
 
-    Ogre::Ray Ray::GetOgreRay()
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Manual Conversions and adjsutments
+    Ogre::Ray Ray::ExtractOgreRay() const
     {
         return Ogre::Ray(
             this->From.GetOgreVector3(),
@@ -77,6 +83,23 @@ namespace phys
         );
     }
 
+    Real Ray::Length() const
+    {
+        return this->From.Distance( this->To );
+    }
+
+    Ray Ray::GetNormal()
+    {
+        return (*this) / this->Length();
+    }
+
+    void Ray::Normalize()
+    {
+        (*this) /= this->Length();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Real Operators and assignments
     Ray Ray::operator* (const Real &scalar) const
     {
         return Ray(
@@ -93,19 +116,18 @@ namespace phys
         );
     }
 
-
-    Real Ray::Length() const
+    void Ray::operator*= (const Real &scalar)
     {
-        return this->From.Distance( this->To );
+        this->To = ((this->To - this->From) * scalar) + this->From;
     }
 
-    Ray Ray::GetNormal()
+    void Ray::operator/= (const Real &scalar)
     {
-        return (*this) / this->Length();
+        this->To = ((this->To - this->From) / scalar) + this->From;
     }
+
 }
 
-//std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 std::ostream& operator << (std::ostream& stream, const phys::Ray& x)
 {
     stream << "[" << x.From << "," << x.To << "]";

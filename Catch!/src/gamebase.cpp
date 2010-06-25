@@ -154,10 +154,12 @@ bool PostInput()
         //This next line create a ray from the mouse pointer
         Ray MouseRay( TheWorld.Cameras->GetCameraToViewportRay( float(Queryer.GetMouseX())/640.0, float(Queryer.GetMouseY()/480.0) ) );
         TheWorld.Log( MouseRay );
-        MouseRay=MouseRay*WhatRay.Length();
+        MouseRay = MouseRay*WhatRay.Length();
         TheWorld.Log( MouseRay );
         TheWorld.Log( MouseRay.GetNormal() );
-
+        MouseRay.Normalize();
+        TheWorld.Log( MouseRay );
+        MouseRay *= WhatRay.Length();
 
         Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(MouseRay);
         if ( WhatDidWeFind == NULL)
