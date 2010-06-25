@@ -170,7 +170,7 @@
 <a name="l00145"></a>00145 
 <a name="l00146"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139">00146</a>     <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139" title="This will find the first Actor to intesect the Given ray.">WorldQueryTool::GetFirstActorOnRayByPolygon</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay)
 <a name="l00147"></a>00147     {
-<a name="l00148"></a>00148         Ogre::Ray Ooray = ActorRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a21fbd19de94f238998930213ab72622a" title="Gets an Ogre::Ray that contains this Rays information.">GetOgreRay</a>();
+<a name="l00148"></a>00148         Ogre::Ray Ooray = ActorRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a2a28b7fd849e824a68089d18fec08ddf" title="Gets an Ogre::Ray that contains this Rays information.">ExtractOgreRay</a>();
 <a name="l00149"></a>00149 
 <a name="l00150"></a>00150         <span class="keywordflow">if</span>(NULL != this-&gt;RayQuery)          <span class="comment">//Double check that the Rayquery is valid</span>
 <a name="l00151"></a>00151         {
@@ -259,159 +259,164 @@
 <a name="l00234"></a>00234     {
 <a name="l00235"></a>00235         <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* Results = 0;
 <a name="l00236"></a>00236 
-<a name="l00237"></a>00237          <span class="comment">//Ray mouseRay = mCamera-&gt;getCameraToViewportRay(mousePos.d_x/float(mWindow-&gt;getWidth()), mousePos.d_y/float(mWindow-&gt;getHeight()));</span>
-<a name="l00238"></a>00238 
-<a name="l00239"></a>00239         <span class="keywordflow">if</span> (UsePolygon)
-<a name="l00240"></a>00240         {
-<a name="l00241"></a>00241             <span class="comment">//Results = this-&gt;GetFirstActorOnRayByPolygon();</span>
-<a name="l00242"></a>00242         }<span class="keywordflow">else</span>{
-<a name="l00243"></a>00243             <span class="comment">//Results = this-&gt;GetFirstActorOnRayByAABB();</span>
-<a name="l00244"></a>00244         }
-<a name="l00245"></a>00245 
-<a name="l00246"></a>00246         <span class="keywordflow">return</span> Results;
-<a name="l00247"></a>00247     }
-<a name="l00248"></a>00248 
-<a name="l00249"></a>00249 
-<a name="l00250"></a>00250     <span class="comment">// Private Members</span>
-<a name="l00251"></a>00251     <span class="keywordtype">void</span> WorldQueryTool::GetMeshInformation( Ogre::Entity *entity,
-<a name="l00252"></a>00252                                 <span class="keywordtype">size_t</span> &amp;vertex_count,
-<a name="l00253"></a>00253                                 Ogre::Vector3* &amp;vertices,
-<a name="l00254"></a>00254                                 <span class="keywordtype">size_t</span> &amp;index_count,
-<a name="l00255"></a>00255                                 <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>* &amp;indices,
-<a name="l00256"></a>00256                                 <span class="keyword">const</span> Ogre::Vector3 &amp;position,
-<a name="l00257"></a>00257                                 <span class="keyword">const</span> Ogre::Quaternion &amp;orient,
-<a name="l00258"></a>00258                                 <span class="keyword">const</span> Ogre::Vector3 &amp;scale)
-<a name="l00259"></a>00259     {
-<a name="l00260"></a>00260         <span class="keywordtype">bool</span> added_shared = <span class="keyword">false</span>;
-<a name="l00261"></a>00261         <span class="keywordtype">size_t</span> current_offset = 0;
-<a name="l00262"></a>00262         <span class="keywordtype">size_t</span> shared_offset = 0;
-<a name="l00263"></a>00263         <span class="keywordtype">size_t</span> next_offset = 0;
-<a name="l00264"></a>00264         <span class="keywordtype">size_t</span> index_offset = 0;
-<a name="l00265"></a>00265         vertex_count = index_count = 0;
-<a name="l00266"></a>00266 
-<a name="l00267"></a>00267         Ogre::MeshPtr mesh = entity-&gt;getMesh();
-<a name="l00268"></a>00268 
-<a name="l00269"></a>00269 
-<a name="l00270"></a>00270         <span class="keywordtype">bool</span> useSoftwareBlendingVertices = entity-&gt;hasSkeleton();
+<a name="l00237"></a>00237         <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> MouseRay( this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a899f6054f4148d891a5d1079349098fe" title="This is a pointer to the Camera Manager.">Cameras</a>-&gt;<a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a1a631eee22a0e45e2e72727d0bcc3560" title="Gets a Ray from the camera to the viewport.">GetCameraToViewportRay</a>(
+<a name="l00238"></a>00238                 <span class="keywordtype">float</span>(this-&gt;GetMouseX()) / <span class="keywordtype">float</span>( 640.0 ),
+<a name="l00239"></a>00239                 float(this-&gt;<a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ac2d8517db7305157c1393320f434751b" title="This gets the Y coordinate of the mouse.">GetMouseY</a>()) / float( 480.0 )
+<a name="l00240"></a>00240             ) );
+<a name="l00241"></a>00241 
+<a name="l00242"></a>00242         <span class="comment">//this-&gt;GameWorld-&gt;get</span>
+<a name="l00243"></a>00243 
+<a name="l00244"></a>00244         <span class="keywordflow">if</span> (UsePolygon)
+<a name="l00245"></a>00245         {
+<a name="l00246"></a>00246             <span class="comment">//Results = this-&gt;GetFirstActorOnRayByPolygon();</span>
+<a name="l00247"></a>00247         }<span class="keywordflow">else</span>{
+<a name="l00248"></a>00248             <span class="comment">//Results = this-&gt;GetFirstActorOnRayByAABB();</span>
+<a name="l00249"></a>00249         }
+<a name="l00250"></a>00250 
+<a name="l00251"></a>00251         <span class="keywordflow">return</span> Results;
+<a name="l00252"></a>00252     }
+<a name="l00253"></a>00253 
+<a name="l00254"></a>00254 
+<a name="l00255"></a>00255     <span class="comment">// Private Members</span>
+<a name="l00256"></a>00256     <span class="keywordtype">void</span> WorldQueryTool::GetMeshInformation( Ogre::Entity *entity,
+<a name="l00257"></a>00257                                 <span class="keywordtype">size_t</span> &amp;vertex_count,
+<a name="l00258"></a>00258                                 Ogre::Vector3* &amp;vertices,
+<a name="l00259"></a>00259                                 <span class="keywordtype">size_t</span> &amp;index_count,
+<a name="l00260"></a>00260                                 <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>* &amp;indices,
+<a name="l00261"></a>00261                                 <span class="keyword">const</span> Ogre::Vector3 &amp;position,
+<a name="l00262"></a>00262                                 <span class="keyword">const</span> Ogre::Quaternion &amp;orient,
+<a name="l00263"></a>00263                                 <span class="keyword">const</span> Ogre::Vector3 &amp;scale)
+<a name="l00264"></a>00264     {
+<a name="l00265"></a>00265         <span class="keywordtype">bool</span> added_shared = <span class="keyword">false</span>;
+<a name="l00266"></a>00266         <span class="keywordtype">size_t</span> current_offset = 0;
+<a name="l00267"></a>00267         <span class="keywordtype">size_t</span> shared_offset = 0;
+<a name="l00268"></a>00268         <span class="keywordtype">size_t</span> next_offset = 0;
+<a name="l00269"></a>00269         <span class="keywordtype">size_t</span> index_offset = 0;
+<a name="l00270"></a>00270         vertex_count = index_count = 0;
 <a name="l00271"></a>00271 
-<a name="l00272"></a>00272         <span class="keywordflow">if</span> (useSoftwareBlendingVertices)
-<a name="l00273"></a>00273         {                                   <span class="comment">//10,000th line of code</span>
-<a name="l00274"></a>00274             entity-&gt;_updateAnimation();
-<a name="l00275"></a>00275         }
+<a name="l00272"></a>00272         Ogre::MeshPtr mesh = entity-&gt;getMesh();
+<a name="l00273"></a>00273 
+<a name="l00274"></a>00274 
+<a name="l00275"></a>00275         <span class="keywordtype">bool</span> useSoftwareBlendingVertices = entity-&gt;hasSkeleton();
 <a name="l00276"></a>00276 
-<a name="l00277"></a>00277         <span class="comment">// Calculate how many vertices and indices we&#39;re going to need</span>
-<a name="l00278"></a>00278         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)
-<a name="l00279"></a>00279         {
-<a name="l00280"></a>00280             Ogre::SubMesh* submesh = mesh-&gt;getSubMesh( i );
+<a name="l00277"></a>00277         <span class="keywordflow">if</span> (useSoftwareBlendingVertices)
+<a name="l00278"></a>00278         {                                   <span class="comment">//10,000th line of code</span>
+<a name="l00279"></a>00279             entity-&gt;_updateAnimation();
+<a name="l00280"></a>00280         }
 <a name="l00281"></a>00281 
-<a name="l00282"></a>00282             <span class="comment">// We only need to add the shared vertices once</span>
-<a name="l00283"></a>00283             <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)
-<a name="l00284"></a>00284             {
-<a name="l00285"></a>00285                 <span class="keywordflow">if</span>( !added_shared )
-<a name="l00286"></a>00286                 {
-<a name="l00287"></a>00287                     vertex_count += mesh-&gt;sharedVertexData-&gt;vertexCount;
-<a name="l00288"></a>00288                     added_shared = <span class="keyword">true</span>;
-<a name="l00289"></a>00289                 }
-<a name="l00290"></a>00290             }
-<a name="l00291"></a>00291             <span class="keywordflow">else</span>
-<a name="l00292"></a>00292             {
-<a name="l00293"></a>00293                 vertex_count += submesh-&gt;vertexData-&gt;vertexCount;
-<a name="l00294"></a>00294             }
-<a name="l00295"></a>00295 
-<a name="l00296"></a>00296             <span class="comment">// Add the indices</span>
-<a name="l00297"></a>00297             index_count += submesh-&gt;indexData-&gt;indexCount;
-<a name="l00298"></a>00298         }
-<a name="l00299"></a>00299 
+<a name="l00282"></a>00282         <span class="comment">// Calculate how many vertices and indices we&#39;re going to need</span>
+<a name="l00283"></a>00283         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)
+<a name="l00284"></a>00284         {
+<a name="l00285"></a>00285             Ogre::SubMesh* submesh = mesh-&gt;getSubMesh( i );
+<a name="l00286"></a>00286 
+<a name="l00287"></a>00287             <span class="comment">// We only need to add the shared vertices once</span>
+<a name="l00288"></a>00288             <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)
+<a name="l00289"></a>00289             {
+<a name="l00290"></a>00290                 <span class="keywordflow">if</span>( !added_shared )
+<a name="l00291"></a>00291                 {
+<a name="l00292"></a>00292                     vertex_count += mesh-&gt;sharedVertexData-&gt;vertexCount;
+<a name="l00293"></a>00293                     added_shared = <span class="keyword">true</span>;
+<a name="l00294"></a>00294                 }
+<a name="l00295"></a>00295             }
+<a name="l00296"></a>00296             <span class="keywordflow">else</span>
+<a name="l00297"></a>00297             {
+<a name="l00298"></a>00298                 vertex_count += submesh-&gt;vertexData-&gt;vertexCount;
+<a name="l00299"></a>00299             }
 <a name="l00300"></a>00300 
-<a name="l00301"></a>00301         <span class="comment">// Allocate space for the vertices and indices</span>
-<a name="l00302"></a>00302         vertices = <span class="keyword">new</span> Ogre::Vector3[vertex_count];
-<a name="l00303"></a>00303         indices = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>[index_count];
+<a name="l00301"></a>00301             <span class="comment">// Add the indices</span>
+<a name="l00302"></a>00302             index_count += submesh-&gt;indexData-&gt;indexCount;
+<a name="l00303"></a>00303         }
 <a name="l00304"></a>00304 
-<a name="l00305"></a>00305         added_shared = <span class="keyword">false</span>;
-<a name="l00306"></a>00306 
-<a name="l00307"></a>00307         <span class="comment">// Run through the submeshes again, adding the data into the arrays</span>
-<a name="l00308"></a>00308         <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)
-<a name="l00309"></a>00309         {
-<a name="l00310"></a>00310             Ogre::SubMesh* submesh = mesh-&gt;getSubMesh(i);
+<a name="l00305"></a>00305 
+<a name="l00306"></a>00306         <span class="comment">// Allocate space for the vertices and indices</span>
+<a name="l00307"></a>00307         vertices = <span class="keyword">new</span> Ogre::Vector3[vertex_count];
+<a name="l00308"></a>00308         indices = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>[index_count];
+<a name="l00309"></a>00309 
+<a name="l00310"></a>00310         added_shared = <span class="keyword">false</span>;
 <a name="l00311"></a>00311 
-<a name="l00312"></a>00312             <span class="comment">//Ogre::VertexData* vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;</span>
-<a name="l00313"></a>00313             Ogre::VertexData* vertex_data;
-<a name="l00314"></a>00314 
-<a name="l00315"></a>00315             <span class="comment">//When there is animation:</span>
-<a name="l00316"></a>00316             <span class="keywordflow">if</span>(useSoftwareBlendingVertices)
-<a name="l00317"></a>00317             {
-<a name="l00318"></a>00318                 <span class="comment">//    #ifdef BUILD_AGAINST_AZATHOTH</span>
-<a name="l00319"></a>00319                 <span class="comment">//             vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSharedBlendedVertexData() : entity-&gt;getSubEntity(i)-&gt;_getBlendedVertexData();</span>
-<a name="l00320"></a>00320                 <span class="comment">//    #else</span>
-<a name="l00321"></a>00321                 vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSkelAnimVertexData() : entity-&gt;getSubEntity(i)-&gt;_getSkelAnimVertexData();
-<a name="l00322"></a>00322                 <span class="comment">//    #endif</span>
-<a name="l00323"></a>00323             }<span class="keywordflow">else</span>{
-<a name="l00324"></a>00324                 vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;
-<a name="l00325"></a>00325             }
-<a name="l00326"></a>00326 
-<a name="l00327"></a>00327             <span class="keywordflow">if</span>((!submesh-&gt;useSharedVertices)||(submesh-&gt;useSharedVertices &amp;&amp; !added_shared))
-<a name="l00328"></a>00328             {
-<a name="l00329"></a>00329                 <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)
-<a name="l00330"></a>00330                 {
-<a name="l00331"></a>00331                     added_shared = <span class="keyword">true</span>;
-<a name="l00332"></a>00332                     shared_offset = current_offset;
-<a name="l00333"></a>00333                 }
-<a name="l00334"></a>00334 
-<a name="l00335"></a>00335                 <span class="keyword">const</span> Ogre::VertexElement* posElem = vertex_data-&gt;vertexDeclaration-&gt;findElementBySemantic(Ogre::VES_POSITION);
-<a name="l00336"></a>00336                 Ogre::HardwareVertexBufferSharedPtr vbuf = vertex_data-&gt;vertexBufferBinding-&gt;getBuffer(posElem-&gt;getSource());
-<a name="l00337"></a>00337                 <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* vertex = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(vbuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-<a name="l00338"></a>00338 
-<a name="l00339"></a>00339                 <span class="comment">// There is _no_ baseVertexPointerToElement() which takes an Ogre::Real or a double</span>
-<a name="l00340"></a>00340                 <span class="comment">//  as second argument. So make it float, to avoid trouble when Ogre::Real will</span>
-<a name="l00341"></a>00341                 <span class="comment">//  be comiled/typedefed as double:</span>
-<a name="l00342"></a>00342                 <span class="comment">//      Ogre::Real* pReal;</span>
-<a name="l00343"></a>00343                 <span class="keywordtype">float</span>* pReal;
-<a name="l00344"></a>00344 
-<a name="l00345"></a>00345                 <span class="keywordflow">for</span>( <span class="keywordtype">size_t</span> j = 0; j &lt; vertex_data-&gt;vertexCount; ++j, vertex += vbuf-&gt;getVertexSize())
-<a name="l00346"></a>00346                 {
-<a name="l00347"></a>00347                     posElem-&gt;baseVertexPointerToElement(vertex, &amp;pReal);
-<a name="l00348"></a>00348                     Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);
-<a name="l00349"></a>00349                     vertices[current_offset + j] = (orient * (pt * scale)) + position;
-<a name="l00350"></a>00350                 }
-<a name="l00351"></a>00351 
-<a name="l00352"></a>00352                 vbuf-&gt;unlock();
-<a name="l00353"></a>00353                 next_offset += vertex_data-&gt;vertexCount;
-<a name="l00354"></a>00354             }
-<a name="l00355"></a>00355 
+<a name="l00312"></a>00312         <span class="comment">// Run through the submeshes again, adding the data into the arrays</span>
+<a name="l00313"></a>00313         <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)
+<a name="l00314"></a>00314         {
+<a name="l00315"></a>00315             Ogre::SubMesh* submesh = mesh-&gt;getSubMesh(i);
+<a name="l00316"></a>00316 
+<a name="l00317"></a>00317             <span class="comment">//Ogre::VertexData* vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;</span>
+<a name="l00318"></a>00318             Ogre::VertexData* vertex_data;
+<a name="l00319"></a>00319 
+<a name="l00320"></a>00320             <span class="comment">//When there is animation:</span>
+<a name="l00321"></a>00321             <span class="keywordflow">if</span>(useSoftwareBlendingVertices)
+<a name="l00322"></a>00322             {
+<a name="l00323"></a>00323                 <span class="comment">//    #ifdef BUILD_AGAINST_AZATHOTH</span>
+<a name="l00324"></a>00324                 <span class="comment">//             vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSharedBlendedVertexData() : entity-&gt;getSubEntity(i)-&gt;_getBlendedVertexData();</span>
+<a name="l00325"></a>00325                 <span class="comment">//    #else</span>
+<a name="l00326"></a>00326                 vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSkelAnimVertexData() : entity-&gt;getSubEntity(i)-&gt;_getSkelAnimVertexData();
+<a name="l00327"></a>00327                 <span class="comment">//    #endif</span>
+<a name="l00328"></a>00328             }<span class="keywordflow">else</span>{
+<a name="l00329"></a>00329                 vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;
+<a name="l00330"></a>00330             }
+<a name="l00331"></a>00331 
+<a name="l00332"></a>00332             <span class="keywordflow">if</span>((!submesh-&gt;useSharedVertices)||(submesh-&gt;useSharedVertices &amp;&amp; !added_shared))
+<a name="l00333"></a>00333             {
+<a name="l00334"></a>00334                 <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)
+<a name="l00335"></a>00335                 {
+<a name="l00336"></a>00336                     added_shared = <span class="keyword">true</span>;
+<a name="l00337"></a>00337                     shared_offset = current_offset;
+<a name="l00338"></a>00338                 }
+<a name="l00339"></a>00339 
+<a name="l00340"></a>00340                 <span class="keyword">const</span> Ogre::VertexElement* posElem = vertex_data-&gt;vertexDeclaration-&gt;findElementBySemantic(Ogre::VES_POSITION);
+<a name="l00341"></a>00341                 Ogre::HardwareVertexBufferSharedPtr vbuf = vertex_data-&gt;vertexBufferBinding-&gt;getBuffer(posElem-&gt;getSource());
+<a name="l00342"></a>00342                 <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* vertex = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(vbuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+<a name="l00343"></a>00343 
+<a name="l00344"></a>00344                 <span class="comment">// There is _no_ baseVertexPointerToElement() which takes an Ogre::Real or a double</span>
+<a name="l00345"></a>00345                 <span class="comment">//  as second argument. So make it float, to avoid trouble when Ogre::Real will</span>
+<a name="l00346"></a>00346                 <span class="comment">//  be comiled/typedefed as double:</span>
+<a name="l00347"></a>00347                 <span class="comment">//      Ogre::Real* pReal;</span>
+<a name="l00348"></a>00348                 <span class="keywordtype">float</span>* pReal;
+<a name="l00349"></a>00349 
+<a name="l00350"></a>00350                 <span class="keywordflow">for</span>( <span class="keywordtype">size_t</span> j = 0; j &lt; vertex_data-&gt;vertexCount; ++j, vertex += vbuf-&gt;getVertexSize())
+<a name="l00351"></a>00351                 {
+<a name="l00352"></a>00352                     posElem-&gt;baseVertexPointerToElement(vertex, &amp;pReal);
+<a name="l00353"></a>00353                     Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);
+<a name="l00354"></a>00354                     vertices[current_offset + j] = (orient * (pt * scale)) + position;
+<a name="l00355"></a>00355                 }
 <a name="l00356"></a>00356 
-<a name="l00357"></a>00357             Ogre::IndexData* index_data = submesh-&gt;indexData;
-<a name="l00358"></a>00358             <span class="keywordtype">size_t</span> numTris = index_data-&gt;indexCount / 3;
-<a name="l00359"></a>00359             Ogre::HardwareIndexBufferSharedPtr ibuf = index_data-&gt;indexBuffer;
+<a name="l00357"></a>00357                 vbuf-&gt;unlock();
+<a name="l00358"></a>00358                 next_offset += vertex_data-&gt;vertexCount;
+<a name="l00359"></a>00359             }
 <a name="l00360"></a>00360 
-<a name="l00361"></a>00361             <span class="keywordtype">bool</span> use32bitindexes = (ibuf-&gt;getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
-<a name="l00362"></a>00362 
-<a name="l00363"></a>00363             <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*  pLong = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*<span class="keyword">&gt;</span>(ibuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-<a name="l00364"></a>00364             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>* pShort = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>*<span class="keyword">&gt;</span>(pLong);
+<a name="l00361"></a>00361 
+<a name="l00362"></a>00362             Ogre::IndexData* index_data = submesh-&gt;indexData;
+<a name="l00363"></a>00363             <span class="keywordtype">size_t</span> numTris = index_data-&gt;indexCount / 3;
+<a name="l00364"></a>00364             Ogre::HardwareIndexBufferSharedPtr ibuf = index_data-&gt;indexBuffer;
 <a name="l00365"></a>00365 
-<a name="l00366"></a>00366 
-<a name="l00367"></a>00367             <span class="keywordtype">size_t</span> offset = (submesh-&gt;useSharedVertices)? shared_offset : current_offset;
-<a name="l00368"></a>00368             <span class="keywordtype">size_t</span> index_start = index_data-&gt;indexStart;
-<a name="l00369"></a>00369             <span class="keywordtype">size_t</span> last_index = numTris*3 + index_start;
+<a name="l00366"></a>00366             <span class="keywordtype">bool</span> use32bitindexes = (ibuf-&gt;getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
+<a name="l00367"></a>00367 
+<a name="l00368"></a>00368             <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*  pLong = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*<span class="keyword">&gt;</span>(ibuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+<a name="l00369"></a>00369             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>* pShort = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>*<span class="keyword">&gt;</span>(pLong);
 <a name="l00370"></a>00370 
-<a name="l00371"></a>00371             <span class="keywordflow">if</span> (use32bitindexes)
-<a name="l00372"></a>00372             {
-<a name="l00373"></a>00373                 <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)
-<a name="l00374"></a>00374                     { indices[index_offset++] = pLong[k] + <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( offset ); }
-<a name="l00375"></a>00375             }<span class="keywordflow">else</span>{
-<a name="l00376"></a>00376                 <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)
-<a name="l00377"></a>00377                     { indices[ index_offset++ ] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( pShort[k] ) + static_cast&lt;unsigned long&gt;( offset ); }
-<a name="l00378"></a>00378             }
-<a name="l00379"></a>00379 
-<a name="l00380"></a>00380             ibuf-&gt;unlock();
-<a name="l00381"></a>00381             current_offset = next_offset;
-<a name="l00382"></a>00382         }
-<a name="l00383"></a>00383     }
-<a name="l00384"></a>00384 }
-<a name="l00385"></a>00385 
-<a name="l00386"></a>00386 
-<a name="l00387"></a>00387 <span class="preprocessor">#endif</span>
+<a name="l00371"></a>00371 
+<a name="l00372"></a>00372             <span class="keywordtype">size_t</span> offset = (submesh-&gt;useSharedVertices)? shared_offset : current_offset;
+<a name="l00373"></a>00373             <span class="keywordtype">size_t</span> index_start = index_data-&gt;indexStart;
+<a name="l00374"></a>00374             <span class="keywordtype">size_t</span> last_index = numTris*3 + index_start;
+<a name="l00375"></a>00375 
+<a name="l00376"></a>00376             <span class="keywordflow">if</span> (use32bitindexes)
+<a name="l00377"></a>00377             {
+<a name="l00378"></a>00378                 <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)
+<a name="l00379"></a>00379                     { indices[index_offset++] = pLong[k] + <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( offset ); }
+<a name="l00380"></a>00380             }<span class="keywordflow">else</span>{
+<a name="l00381"></a>00381                 <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)
+<a name="l00382"></a>00382                     { indices[ index_offset++ ] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( pShort[k] ) + static_cast&lt;unsigned long&gt;( offset ); }
+<a name="l00383"></a>00383             }
+<a name="l00384"></a>00384 
+<a name="l00385"></a>00385             ibuf-&gt;unlock();
+<a name="l00386"></a>00386             current_offset = next_offset;
+<a name="l00387"></a>00387         }
+<a name="l00388"></a>00388     }
+<a name="l00389"></a>00389 }
+<a name="l00390"></a>00390 
+<a name="l00391"></a>00391 
+<a name="l00392"></a>00392 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jun 24 12:59:48 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Fri Jun 25 13:03:07 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
