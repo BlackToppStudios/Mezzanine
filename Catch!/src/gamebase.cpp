@@ -156,6 +156,7 @@ bool PostInput()
         TheWorld.Log( MouseRay );
         MouseRay=MouseRay*WhatRay.Length();
         TheWorld.Log( MouseRay );
+        TheWorld.Log( MouseRay.GetNormal() );
 
 
         Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(MouseRay);

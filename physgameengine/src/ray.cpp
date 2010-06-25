@@ -77,7 +77,7 @@ namespace phys
         );
     }
 
-    Ray Ray::operator* (const Real &scalar)
+    Ray Ray::operator* (const Real &scalar) const
     {
         return Ray(
             this->From,
@@ -85,9 +85,23 @@ namespace phys
         );
     }
 
+    Ray Ray::operator/ (const Real &scalar) const
+    {
+        return Ray(
+            this->From,
+            ((this->To - this->From) / scalar) + this->From
+        );
+    }
+
+
     Real Ray::Length() const
     {
         return this->From.Distance( this->To );
+    }
+
+    Ray Ray::GetNormal()
+    {
+        return (*this) / this->Length();
     }
 }
 

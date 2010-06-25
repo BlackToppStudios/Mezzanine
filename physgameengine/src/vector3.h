@@ -136,7 +136,13 @@ namespace phys
         /// @details This Multiplies X, Y and Z by scalar
         /// @return This returns a Vector3 that has been scaled
         /// @param scalar This is the amount to scale the Vector3 by
-        Vector3 operator* (const Real &scalar);
+        Vector3 operator* (const Real &scalar) const;
+
+        /// @brief Scaling by Division
+        /// @details This Diisionn X, Y and Z by scalar
+        /// @return This returns a Vector3 that has been scaled
+        /// @param scalar This is the amount to scale the Vector3 by
+        Vector3 operator/ (const Real &scalar) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators
@@ -144,22 +150,22 @@ namespace phys
         /// @brief Addition Operator
         /// @details Allows for addition from a phys::Vector3
         /// @param Vec2 This is the other phys::Vector3
-        Vector3 operator+ (const Vector3 &Vec2);
+        Vector3 operator+ (const Vector3 &Vec2) const;
 
         /// @brief Subraction Operator
         /// @details Allows for subtraction from a phys::Vector3
         /// @param Vec2 This is the other phys::Vector3
-        Vector3 operator- (const Vector3 &Vec2);
+        Vector3 operator- (const Vector3 &Vec2) const;
 
         /// @brief Multiplaction Operator
         /// @details Allows for multiplaction from a phys::Vector3
         /// @param Vec2 This is the other phys::Vector3
-        Vector3 operator* (const Vector3 &Vec2);
+        Vector3 operator* (const Vector3 &Vec2) const;
 
         /// @brief Division Operator
         /// @details Allows for division from a phys::Vector3
         /// @param Vec2 This is the other phys::Vector3
-        Vector3 operator/ (const Vector3 &Vec2);
+        Vector3 operator/ (const Vector3 &Vec2) const;
 
         /////////////////////////////////////////////////////////////////////
         // Arithmetic Operators with btVector3
