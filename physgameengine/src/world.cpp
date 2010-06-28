@@ -57,221 +57,23 @@
 #include "graphicsettings.h"
 #include "actorbase.h"
 #include "eventuserinput.h"
-#include "linegroup.h"
+
 #include "actorcontainervector.h"
 #include "ray.h"
 #include "actorrigid.h"
 #include "vector3wactor.h"
 
 #include <SDL.h>
-#include <btBulletDynamicsCommon.h>
-#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 #include <Ogre.h>
-#include "BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
+#include <btBulletDynamicsCommon.h>
 
 #include <sstream>
 #include <string>
-#include <queue>
+
 using namespace std;
 
 namespace phys
 {
-    /// @internal
-    /// @namespace phys::debug
-    /// @brief This namespace is for internal debugging tools. In general it should be used in game code.
-    /// @details This whole debug namespace is a dirty hack. This is where internal only classes and functions go
-    /// that can and maybe should be ommited from release builds
-    namespace debug
-    {
-        /// @internal
-        /// @class InternalDebugDrawer
-        /// @brief This is used to draw wireframse for the Physics subsystem
-        class InternalDebugDrawer : public btIDebugDraw
-        {
-            private:
-                /// @internal
-                /// @brief A pointer to phys::World that this Debug Drawer works with
-                World* ParentWorld;
-
-                /// @internal
-                /// @brief How many wireframes do you want to keep around on the screen.
-                Whole WireFrameCount;
-
-                /// @internal
-                /// @brief This queue stores The listing of of the wireframes still to be rendered.
-                /// @details This stores an amount of wireframes up to the WireFrameCount. When this class is created or a
-                /// new frame rendered a new Line group is a added to this queue.
-                std::queue<phys::LineGroup*> WireFrames;
-
-                /// @internal
-                /// @brief This stores whether or not to render physics debug lines
-                /// @details This stores whether or not to render physics debud lines. 0 = Do not draw anything. 1 = Draw model wireframes.
-                /// Later we will add support for contact drawing, individual modeling drawing, etc...
-                int DebugDrawing;
-            public:
-                /// @internal
-                /// @brief Basic Constructor
-                /// @param ParentWorld_ This is a Pointer to the world to be rendered
-                /// @param WireFrameCount_ This sets the amount of previous Wireframes to be rendered, see InternalDebugDrawer::SetWireFrameCount for details.
-                /// @details This creates a basic Debug Drawer which works with the phys::World that was passed. With a new
-                InternalDebugDrawer(phys::World *ParentWorld_, Whole WireFrameCount_ = 2);
-
-                /// @internal
-                /// @brief Destructor
-                /// @details This deletes all the Wireframes and will stop wireframe rendering
-                ~InternalDebugDrawer();
-
-                /// @internal
-                /// @brief This will prepare a line segment for being drawn
-                /// @details This adds the points for a line to the internal list of points to be rendered.
-                /// @param from The first point of the line
-                /// @param to The second point of the line
-                /// @param color Currently ignored
-                virtual void drawLine(const btVector3& from,const btVector3& to,const btVector3& color);
-
-                /// @internal
-                /// @brief This add all the rendering information to the graphics subsystem
-                /// @details This sends all the points in the list of lines to the rendering subsystem(currently ogre), where they will stay until deleted
-                virtual void PrepareForRendering();
-
-                /// @internal
-                /// @brief Sets the amount of previous wireframes to leave visible.
-                /// @details This will limit the amount of previous wireframes drawn. Setting this will cause all the extra wireframes to be deleted
-                /// InternalDebugDrawer::PrepareForRendering() is next called, which should happen just before everything is rendered.
-                /// @param WireFrameCount_ This is a whole number which is limit.
-                virtual void SetWireFrameCount(Whole WireFrameCount_);
-
-                /// @internal
-                /// @brief This returns the amount of wireframes to be drawn
-                /// @details This returns either 2 or the amount last set by InternalDebugDrawer::SetWireFrameCount .
-                /// @return This returns a whole number with the wireframe limit.
-                virtual Whole GetWireFrameCount();
-
-                /// @internal
-                /// @brief Currently Unused
-                /// @details Currently Unused
-                /// @param PointOnB Currently Unused
-                /// @param normalOnB Currently Unused
-                /// @param distance Currently Unused
-                /// @param lifeTime Currently Unused
-                /// @param color Currently Unused
-                virtual void drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color);
-
-                /// @internal
-                /// @brief Used by the physics subsystem to report errors using the renderer
-                /// @details We *Believe* that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we
-                /// Have redirected all input from this function to the World::Log function.
-                /// @param warningString We *Believe* These are messagesfrom the physics subsystem, and that this should not directly called otherwise
-                virtual void reportErrorWarning(const char* warningString);
-
-                /// @internal
-                /// @brief Currently Unused
-                /// @details Currently Unused
-                /// @param location Currently Unused
-                /// @param textString Currently Unused
-                virtual void draw3dText(const btVector3& location, const char* textString);
-
-                /// @internal
-                /// @brief This is used to decide how much the debug render should draw
-                /// @details Currently this accepts btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe and setting these will either start or stop
-                /// Wireframe rendering. All other btIDebugDraw values are ignored.
-                /// @param debugMode An Int which contains either btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
-                virtual void setDebugMode(int debugMode);
-
-                /// @internal
-                /// @brief This will return the current debug mode.
-                /// @details Currently this can only return btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
-                /// @return Returns the Current debug mode, currently either btIDebugDraw::DBG_NoDebug or btIDebugDraw::DBG_DrawWireframe
-                virtual int getDebugMode() const;
-        };
-
-        InternalDebugDrawer::InternalDebugDrawer( phys::World *ParentWorld_, Whole WireFrameCount_ )
-        {
-            this->DebugDrawing = 0;
-            this->ParentWorld = ParentWorld_;
-
-            this->WireFrameCount = WireFrameCount_;
-
-            //phys::LineGroup* temp = new phys::LineGroup(this->ParentWorld);
-            this->WireFrames.push(new phys::LineGroup(this->ParentWorld));
-        }
-
-        InternalDebugDrawer::~InternalDebugDrawer()
-        {
-            while ( ! this->WireFrames.empty() )
-            {
-                delete this->WireFrames.front();
-                this->WireFrames.pop();
-            }
-        }
-
-        void InternalDebugDrawer::drawLine(const btVector3& from,const btVector3& to,const btVector3& color)
-        {
-            phys::LineGroup *myLine = this->WireFrames.back();
-
-            //Convert btVectors to PhysVector3s
-            Vector3 LineStart(from);
-            Vector3 LineEnd(to);
-
-            myLine->addPoint(LineStart);
-            myLine->addPoint(LineEnd);
-        }
-
-        void InternalDebugDrawer::drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color)
-        {
-
-        }
-
-        void InternalDebugDrawer::reportErrorWarning(const char* warningString)
-        {
-            String temp(warningString);
-            this->ParentWorld->Log(temp);
-        }
-
-        void InternalDebugDrawer::draw3dText(const btVector3& location,const char* textString)
-        {}
-
-        void InternalDebugDrawer::setDebugMode(int debugMode)
-        {
-            this->DebugDrawing = debugMode;
-        }
-
-        int InternalDebugDrawer::getDebugMode() const
-        {
-            return this->DebugDrawing;
-        }
-
-        void InternalDebugDrawer::PrepareForRendering()
-        {
-            if(!this->WireFrames.empty())
-            {
-                this->WireFrames.back()->drawLines();
-            }
-
-            //Delete extra wireframes
-            while ( this->WireFrames.size() > this->WireFrameCount )
-            {
-                delete this->WireFrames.front();
-                this->WireFrames.pop();
-            }
-
-            //This will add the Ogre Scene Nodes to the world and set up a
-            this->WireFrames.back()->PrepareForRendering();
-            this->WireFrames.push(new phys::LineGroup(this->ParentWorld));
-        }
-
-        void InternalDebugDrawer::SetWireFrameCount(Whole WireFrameCount_)
-        {
-            this->WireFrameCount = WireFrameCount_;
-        }
-
-        Whole InternalDebugDrawer::GetWireFrameCount()
-        {
-            return this->WireFrameCount;
-        }
-
-
-    }// /debug
 
     ///////////////////////////////////////////////////////////////////////////////
     // Physworld constructor
@@ -310,7 +112,7 @@ namespace phys
         this->SetWindowName("AppName");
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
-        this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
+
         this->Actors = new ActorContainerVector(this);
         this->VisualSettings = new GraphicsSettings();
 
@@ -323,26 +125,7 @@ namespace phys
         //Events are the main way for the game using the world to  get information about the various subsystems
         this->Events = new EventManager(this);
 
-        //instantiate the Physics engine and related items
-        GeographyLowerBounds = GeographyLowerBounds_;
-        GeographyUpperbounds = GeographyUpperbounds_;
-        MaxPhysicsProxies = MaxPhysicsProxies_;
-
-        btVector3 worldAabbMin(GeographyLowerBounds.X, GeographyLowerBounds.Y, GeographyLowerBounds.Z);
-        btVector3 worldAabbMax(GeographyUpperbounds.X, GeographyUpperbounds.Y, GeographyUpperbounds.Z);
-
-        this->BulletBroadphase = new btAxisSweep3(worldAabbMin, worldAabbMax, MaxPhysicsProxies);
-        this->BulletSolver = new btSequentialImpulseConstraintSolver;
-        this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
-        this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
-
-        btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
-
-        this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld(
-                                                    BulletDispatcher,
-                                                    BulletBroadphase,
-                                                    BulletSolver,
-                                                    BulletCollisionConfiguration);
+        this->Physics = new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_);
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -458,12 +241,7 @@ namespace phys
     //tears the world down
     World::~World()
     {
-        //Destroy the physical world that we loved and cherished
-        delete BulletDynamicsWorld;
-        delete BulletDispatcher;
-        delete BulletCollisionConfiguration;
-        delete BulletSolver;
-        delete BulletBroadphase;
+
 
         //All the pointers Ogre made should get taken care of by OGRE
         delete OgreRoot;
@@ -474,7 +252,7 @@ namespace phys
 
         delete VisualSettings;
 
-        delete BulletDrawer;
+        delete Physics;
 
         //remove sdl stuff
         SDL_FreeSurface(SDLscreen);
@@ -520,8 +298,6 @@ namespace phys
         this->CreateRenderWindow();
 
         //Initiliaze the Physics Debug Drawer
-        this->BulletDrawer = new debug::InternalDebugDrawer(this);
-        BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
 
 
         if(CallMainLoop)
@@ -640,11 +416,6 @@ namespace phys
 
             //Render the frame and figure the amount of time it took //By default Limit frame rate to 62.5
             this->DoMainLoopRender();
-            if( this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
-            {
-                this->BulletDrawer->PrepareForRendering();
-                this->BulletDynamicsWorld->debugDrawWorld();
-            }
 
             // Do Time Calculations to Determine Rendering Time
             FrameTime = RenderTimer.getMilliseconds();
@@ -690,15 +461,7 @@ namespace phys
 
     void World::DoMainLoopPhysics(const Real &TimeElapsed)
     {
-        Real FloatTime = TimeElapsed;
-        FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
-
-        Real IdealStep = this->TargetFrameLength;
-        IdealStep *= 0.0001;
-
-        //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
-        int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+2);  //used 2 simply to be extra safe
-        this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
+        this->Physics->DoMainLoopItems(TimeElapsed);
         Log("Updated Physics");
     }
 
@@ -789,13 +552,13 @@ namespace phys
 
     void World::AddActor(ActorBase* ActorToAdd)
     {
-        ActorToAdd->AddObjectToWorld(this, this->BulletDynamicsWorld);
+        ActorToAdd->AddObjectToWorld(this, this->Physics->BulletDynamicsWorld);
         this->Actors->AddActor(ActorToAdd);
     }
 
     void World::RemoveActor(ActorBase* ActorToRemove)
     {
-        ActorToRemove->RemoveObjectFromWorld(this, this->BulletDynamicsWorld);
+        ActorToRemove->RemoveObjectFromWorld(this, this->Physics->BulletDynamicsWorld);
         this->Actors->RemoveActor(ActorToRemove);
     }
 
@@ -851,47 +614,5 @@ namespace phys
         this->OgreResource->initialiseResourceGroup(Group);
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Bullet World Management Functions
-    ///////////////////////////////////////
-
-    void World::SetGravity(Vector3 pgrav)
-    {
-        this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
-    }
-
-
-    //Bullet Debug Drawing
-
-
-    void World::SetDebugPhysicsRendering(int ToBeEnabled)
-    {
-        if(ToBeEnabled)
-        {
-            this->BulletDynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
-        }else{
-            this->BulletDynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_NoDebug);
-        }
-    }
-
-    int World::GetDebugPhysicsRendering()
-    {
-        if(this->BulletDrawer->getDebugMode()==btIDebugDraw::DBG_DrawWireframe)
-        {
-            return 1;
-        }else{
-            return 0;
-        }
-    }
-
-    void World::SetDebugPhysicsWireCount(Whole WireFrameCount_)
-    {
-        this->BulletDrawer->SetWireFrameCount(WireFrameCount_);
-    }
-
-    Whole World::GetDebugPhysicsWireCount()
-    {
-        return this->BulletDrawer->GetWireFrameCount();
-    }
 }
 #endif

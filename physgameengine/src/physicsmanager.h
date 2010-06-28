@@ -40,8 +40,20 @@
 #ifndef _physicsmanager_h
 #define _physicsmanager_h
 
+//forward Declarations so that we do not need #include "btBulletDynamicsCommon.h"
+class btAxisSweep3;
+class btDefaultCollisionConfiguration;
+class btCollisionDispatcher;
+class btSequentialImpulseConstraintSolver;
+class btSoftRigidDynamicsWorld;
+
 namespace phys
 {
+    // internal forward declarations
+    class World;
+    namespace debug {
+        class InternalDebugDrawer;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class PhysicsManager
     /// @headerfile physicsmanager.h
@@ -52,9 +64,85 @@ namespace phys
     class PhysicsManager
     {
         private:
+            friend class World;
+            //Some Data Items
+            Vector3 GeographyLowerBounds;
+            Vector3 GeographyUpperBounds;
+            unsigned short int  MaxPhysicsProxies;
+            //Real PhysicsStepsize; // use this->GameWorld->TargetFrameLength instead
 
+            // Some Items bullet requires
+            btAxisSweep3* BulletBroadphase;
+            btDefaultCollisionConfiguration* BulletCollisionConfiguration;
+            btCollisionDispatcher* BulletDispatcher;
+            btSequentialImpulseConstraintSolver* BulletSolver;
+            btSoftRigidDynamicsWorld* BulletDynamicsWorld;
+            debug::InternalDebugDrawer* BulletDrawer;
+
+
+            World* GameWorld;
+
+            /// @brief This takes care of all the real work in contructing this
+            /// @details This method is called by all the constructors to insure consistent behavior.
+            /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with
+            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world
+            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
+            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
+            void Construct(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
         public:
 
+            /// @brief Simple Constructor
+            /// @details This constructor will assign some sane default values and will create a physics
+            /// world that can be used immediately
+            /// @param GameWorld_ This is a pointer to the game world this PhysicsManager will work with
+            PhysicsManager(World* GameWorld_);
+
+            /// @brief Simple Constructor
+            /// @details This constructor will assign some sane default values and will create a physics
+            /// world that can be used immediately
+            /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with
+            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world
+            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
+            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
+            PhysicsManager(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
+
+            /// @brief Deconstructor
+            /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
+            ~PhysicsManager();
+
+            /// @brief Sets the gravity.
+            /// @details Sets the strength and direction of gravity within the world.
+            /// @param pgrav Vector3 representing the strength and direction of gravity.
+            void SetGravity(Vector3 pgrav);
+
+            /// @brief Enables and Disables Physics Debug Drawing
+            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics
+            /// subsytem pixel for pixel.
+            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control
+            void SetDebugPhysicsRendering(int ToBeEnabled);
+
+            /// @brief Is Physics Debug Drawing currently enabled?
+            /// @details lets you check if Physics Debug Drawing is enabled or not.
+            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features
+            int GetDebugPhysicsRendering();
+
+            /// @brief How many Wireframes do you want drawn from previous events
+            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount
+            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()
+            /// In conjunction with this to specify an amout of seconds worth of wireframes.
+            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate,
+            /// Any amount more than just a few seconds worth can be cumbersome.
+            void SetDebugPhysicsWireCount(Whole WireFrameCount_);
+
+            /// @brief This gets how many WireFrames are being drawn.
+            /// @details This will tell you how many frames worth of previous in game events are being drawn.
+            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .
+            Whole GetDebugPhysicsWireCount();
+
+            /// @brief This does all the work reuired for the main loop to process physics
+            /// @details
+            /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
+            void DoMainLoopItems(const Real &TimeElapsed);
 
     };
 }

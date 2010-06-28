@@ -40,8 +40,8 @@ int main(int argc, char **argv)
     LoadContent();
 
     //Configure the wireframe Drawer
-    TheWorld.SetDebugPhysicsWireCount(2);
-    TheWorld.SetDebugPhysicsRendering(0);
+    TheWorld.Physics->SetDebugPhysicsWireCount(2);
+    TheWorld.Physics->SetDebugPhysicsRendering(0);
 
     //Setup some camera tricks
     String CameraNode = TheWorld.Cameras->CreateOrbitingNode( Vector3(0,0,0), Vector3(0.0,200.0,750.0) );
@@ -81,7 +81,7 @@ bool PostRender()
 
     // Turn on the Wireframe
     if (30000<gametime)
-        { TheWorld.SetDebugPhysicsRendering(1); }
+        { TheWorld.Physics->SetDebugPhysicsRendering(1); }
 
     //IF the game has gone on for 60 or more seconds close it.
 	if (60000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
@@ -325,6 +325,6 @@ void LoadContent()
     TheWorld.Log("Actor Count");
     TheWorld.Log( TheWorld.Actors->GetActorCount() );
 
-    TheWorld.SetGravity(grav);
+    TheWorld.Physics->SetGravity(grav);
 }
 #endif

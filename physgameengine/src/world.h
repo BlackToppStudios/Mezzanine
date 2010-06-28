@@ -98,6 +98,7 @@
 #include "datatypes.h"
 #include "vector3.h"
 #include "cameramanager.h"
+#include "physicsmanager.h"
 
 #include <string>
 
@@ -106,13 +107,6 @@ using namespace std;
 //Other forward declarations
 //forward Declarations so that we do not need #include "SDL.h"
 class SDL_Surface;
-
-//forward Declarations so that we do not need #include "btBulletDynamicsCommon.h"
-class btAxisSweep3;
-class btDefaultCollisionConfiguration;
-class btCollisionDispatcher;
-class btSequentialImpulseConstraintSolver;
-class btSoftRigidDynamicsWorld;
 
 //forward Declarations so that we do not need #include <Ogre.h>
 namespace Ogre
@@ -139,9 +133,7 @@ namespace phys
     class ActorBase;
     class ActorContainerBase;
     class GraphicsSettings;
-    namespace debug {
-        class InternalDebugDrawer;
-    }
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class World
     /// @headerfile world.h
@@ -161,17 +153,7 @@ namespace phys
             friend class ActorBase; //Several items from Ogre and Bullet
             friend class LineGroup; //Needs the debug::InternalDebugDrawer* BulletDrawer
             friend class WorldQueryTool; // Needs to access various Ogre internals
-
-            //Physics Items
-            Vector3 GeographyLowerBounds;
-            Vector3 GeographyUpperbounds;
-            unsigned short int  MaxPhysicsProxies;
-
-            btAxisSweep3* BulletBroadphase;
-            btDefaultCollisionConfiguration* BulletCollisionConfiguration;
-            btCollisionDispatcher* BulletDispatcher;
-            btSequentialImpulseConstraintSolver* BulletSolver;
-            btSoftRigidDynamicsWorld* BulletDynamicsWorld;
+            friend class PhysicsManager;
 
             //SDL Objects
             SDL_Surface *SDLscreen;
@@ -193,7 +175,6 @@ namespace phys
             //Settings for Engine Functionality
             string WindowName;
             Whole TargetFrameLength;
-            Real PhysicsStepsize;
 
             //Ogre objects
             Ogre::Root* OgreRoot;
@@ -204,10 +185,8 @@ namespace phys
             Ogre::Viewport* OgreViewport;
             Ogre::SceneManager* OgreSceneManager;
 
-            // Bullet functions
-            debug::InternalDebugDrawer* BulletDrawer;
-        public:
 
+        public:
 
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion methods
@@ -295,6 +274,7 @@ namespace phys
             /// @details The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.
             /// @param Position Where should the camera be seated
             /// @param LookAt Point the camera such that this poin is centered on the screen
+            /// @todo TODO: move to camera manager
             void MoveCamera(const Vector3 &Position, const Vector3 &LookAt);
 
             /// @brief This is a pointer to the Camera Manager.
@@ -391,38 +371,6 @@ namespace phys
             void RemoveActor(ActorBase* ActorToRemove);
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Physics Methods
-        ///////////////////////////////////////
-            /// @brief Sets the gravity.
-            /// @details Sets the strength and direction of gravity within the world.
-            /// @param pgrav Vector3 representing the strength and direction of gravity.
-            void SetGravity(Vector3 pgrav);
-
-            /// @brief Enables and Disables Physics Debug Drawing
-            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics
-            /// subsytem pixel for pixel.
-            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control
-            void SetDebugPhysicsRendering(int ToBeEnabled);
-
-            /// @brief Is Physics Debug Drawing currently enabled?
-            /// @details lets you check if Physics Debug Drawing is enabled or not.
-            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features
-            int GetDebugPhysicsRendering();
-
-            /// @brief How many Wireframes do you want drawn from previous events
-            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount
-            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()
-            /// In conjunction with this to specify an amout of seconds worth of wireframes.
-            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate,
-            /// Any amount more than just a few seconds worth can be cumbersome.
-            void SetDebugPhysicsWireCount(Whole WireFrameCount_);
-
-            /// @brief This gets how many WireFrames are being drawn.
-            /// @details This will tell you how many frames worth of previous in game events are being drawn.
-            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .
-            Whole GetDebugPhysicsWireCount();
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Feature Manager Pointers
         ///////////////////////////////////////
             /// @brief This is a point to the default Call BackManager
@@ -440,7 +388,7 @@ namespace phys
             //Players settings
             GraphicsSettings* VisualSettings;
 
-
+            PhysicsManager* Physics;
     };
 }
 #endif

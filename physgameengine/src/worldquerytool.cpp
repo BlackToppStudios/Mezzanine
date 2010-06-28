@@ -228,6 +228,7 @@ namespace phys
 
     Vector3WActor* WorldQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay)
     {
+        /// @todo TODO: Fix the WorldQueryTool::GetFirstActorOnRayByAABB stub
         return 0; // just a stub :(
     }
 
