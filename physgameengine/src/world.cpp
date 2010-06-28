@@ -312,7 +312,7 @@ namespace phys
         this->HasSDLBeenInitialized=false;
         this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
         this->Actors = new ActorContainerVector(this);
-        this->PlayerSettings = new GraphicsSettings();
+        this->VisualSettings = new GraphicsSettings();
 
         //We create our Ogre environment
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
@@ -472,7 +472,7 @@ namespace phys
         delete CallBacks;
         delete Events;
 
-        delete PlayerSettings;
+        delete VisualSettings;
 
         delete BulletDrawer;
 
@@ -747,7 +747,7 @@ namespace phys
         this->HasSDLBeenInitialized=true;
 
         //Setup the SDL render window
-        this->SDLscreen = SDL_SetVideoMode( PlayerSettings->getRenderWidth(), PlayerSettings->getRenderHeight(),0, SDL_OPENGL);
+        this->SDLscreen = SDL_SetVideoMode( VisualSettings->getRenderWidth(), VisualSettings->getRenderHeight(),0, SDL_OPENGL);
         SDL_WM_SetCaption(this->WindowName.c_str(), NULL);
 
         //Start Ogre Without a native render window
@@ -757,7 +757,7 @@ namespace phys
         Ogre::NameValuePairList *misc;
         misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
         (*misc)["title"] = Ogre::String(this->WindowName);
-        this->OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, PlayerSettings->getRenderHeight(), PlayerSettings->getRenderWidth(), PlayerSettings->getFullscreen(), misc);
+        this->OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, VisualSettings->getRenderHeight(), VisualSettings->getRenderWidth(), VisualSettings->getFullscreen(), misc);
 
         //prepare a scenemanager
         this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");

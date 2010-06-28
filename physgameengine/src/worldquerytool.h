@@ -163,8 +163,9 @@ namespace phys
             /// @brief This will find the actor under the mouse.
             /// @details This will use
             /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB .
+            /// @param RayLength The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0
             /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
-            Vector3WActor* GetActorUnderMouse(bool UsePolygon=true);
+            Vector3WActor* GetActorUnderMouse(Real RayLength=1000.0, bool UsePolygon=true);
 
             /// @brief This gathers any user-input/event data that might be queryed
             /// @details This should be called periodcally (ideally in the post user input callback) to allow this

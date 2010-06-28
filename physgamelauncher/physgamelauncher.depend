@@ -1408,11 +1408,10 @@
 	<fcntl.h>
 	<io.h>
 
-1272246102 /home/sqeaky/Desktop/physgame/physgamelauncher/src/physgamelauncherMain.h
-	<wx/menu.h>
+1273651242 /home/sqeaky/Desktop/physgame/physgamelauncher/src/physgamelauncherMain.h
+	<wx/panel.h>
+	<wx/button.h>
 	<wx/frame.h>
-	<wx/statusbr.h>
-	"zzip.h"
 
 1250033286 /usr/include/wx-2.8/wx/menu.h
 	"wx/defs.h"
@@ -1883,4 +1882,43 @@
 	"wx/bitmap.h"
 
 1186436450 c:\wxwidgets-2.8.10\include\wx\msw\button.h
+
+1250033286 /usr/include/wx-2.8/wx/panel.h
+	"wx/generic/panelg.h"
+
+1250033286 /usr/include/wx-2.8/wx/generic/panelg.h
+	"wx/window.h"
+	"wx/containr.h"
+
+1250033284 /usr/include/wx-2.8/wx/containr.h
+
+1250033286 /usr/include/wx-2.8/wx/button.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/univ/button.h"
+	"wx/msw/button.h"
+	"wx/motif/button.h"
+	"wx/gtk/button.h"
+	"wx/gtk1/button.h"
+	"wx/mac/button.h"
+	"wx/cocoa/button.h"
+	"wx/os2/button.h"
+	"wx/palmos/button.h"
+
+1250033286 /usr/include/wx-2.8/wx/control.h
+	"wx/defs.h"
+	"wx/window.h"
+	"wx/univ/control.h"
+	"wx/palmos/control.h"
+	"wx/msw/control.h"
+	"wx/motif/control.h"
+	"wx/gtk/control.h"
+	"wx/gtk1/control.h"
+	"wx/mac/control.h"
+	"wx/cocoa/control.h"
+	"wx/os2/control.h"
+
+1250033287 /usr/include/wx-2.8/wx/gtk/control.h
+
+1250033287 /usr/include/wx-2.8/wx/gtk/button.h
 

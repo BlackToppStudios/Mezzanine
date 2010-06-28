@@ -42,6 +42,7 @@
 
 #include "worldquerytool.h"
 #include "actorcontainerbase.h"
+#include "graphicsettings.h"
 
 #include <Ogre.h>
 
@@ -230,27 +231,27 @@ namespace phys
         return 0; // just a stub :(
     }
 
-    Vector3WActor* WorldQueryTool::GetActorUnderMouse(bool UsePolygon)
+    Vector3WActor* WorldQueryTool::GetActorUnderMouse(Real RayLength, bool UsePolygon)
     {
         Vector3WActor* Results = 0;
 
         Ray MouseRay( this->GameWorld->Cameras->GetCameraToViewportRay(
-                float(this->GetMouseX()) / float( 640.0 ),
-                float(this->GetMouseY()) / float( 480.0 )
+                float(this->GetMouseX()) / float( this->GameWorld->VisualSettings->getRenderWidth() ) ,
+                float(this->GetMouseY()) / float( this->GameWorld->VisualSettings->getRenderHeight() )
             ) );
 
-        //this->GameWorld->get
+        MouseRay *= RayLength;
+        this->GameWorld->Log( MouseRay );
 
         if (UsePolygon)
         {
-            //Results = this->GetFirstActorOnRayByPolygon();
+            Results = this->GetFirstActorOnRayByPolygon( MouseRay );
         }else{
-            //Results = this->GetFirstActorOnRayByAABB();
+            Results = this->GetFirstActorOnRayByAABB( MouseRay );
         }
 
         return Results;
     }
-
 
     // Private Members
     void WorldQueryTool::GetMeshInformation( Ogre::Entity *entity,

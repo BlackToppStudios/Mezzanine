@@ -177,9 +177,6 @@ namespace phys
             SDL_Surface *SDLscreen;
             bool HasSDLBeenInitialized;
 
-            //Players settings
-            GraphicsSettings* PlayerSettings;
-
             //Try to retrieve ogre settinss
             void LoadOgreSettings();
 
@@ -439,6 +436,10 @@ namespace phys
             /// @brief This is a convienient place to keep pointer to our Actors
             /// @details Whenever an actor is added, a pointer to it will be stored here.
             ActorContainerBase* Actors;
+
+            //Players settings
+            GraphicsSettings* VisualSettings;
+
 
     };
 }

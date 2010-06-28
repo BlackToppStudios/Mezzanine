@@ -152,21 +152,34 @@ bool PostInput()
         TheWorld.Log("Mouse Clicked, Casting a Mouse Ray");
 
         //This next line create a ray from the mouse pointer
-        Ray MouseRay( TheWorld.Cameras->GetCameraToViewportRay( float(Queryer.GetMouseX())/640.0, float(Queryer.GetMouseY()/480.0) ) );
-        TheWorld.Log( MouseRay );
-        MouseRay = MouseRay*WhatRay.Length();
-        TheWorld.Log( MouseRay );
-        TheWorld.Log( MouseRay.GetNormal() );
-        MouseRay.Normalize();
+        Ray MouseRay( TheWorld.Cameras->GetCameraToViewportRay( float(Queryer.GetMouseX()) / float( TheWorld.VisualSettings->getRenderWidth() ),
+                                                                float(Queryer.GetMouseY()) / float( TheWorld.VisualSettings->getRenderHeight() )
+                                            ) );
         TheWorld.Log( MouseRay );
         MouseRay *= WhatRay.Length();
+        //TheWorld.Log( MouseRay.GetNormal() );
+        //MouseRay.Normalize();
+        TheWorld.Log(  WhatRay.Length() );
 
         Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(MouseRay);
+
         if ( WhatDidWeFind == NULL)
         {
             TheWorld.Log("Mouse Ray Found Nothing");
         } else {
             TheWorld.Log("Mouse Ray Found:");
+            TheWorld.Log( *WhatDidWeFind );
+            delete WhatDidWeFind;
+        }
+
+        TheWorld.Log("2 Casting a Mouse Ray 2");
+        WhatDidWeFind = Queryer.GetActorUnderMouse(1552.42);
+
+        if ( WhatDidWeFind == NULL)
+        {
+            TheWorld.Log("Mouse Ray 2 Found Nothing");
+        } else {
+            TheWorld.Log("Mouse Ray 2 Found:");
             TheWorld.Log( *WhatDidWeFind );
             delete WhatDidWeFind;
         }
