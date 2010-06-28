@@ -209,6 +209,8 @@
 		<Unit filename="src/metacode.cpp" />
 		<Unit filename="src/metacode.h" />
 		<Unit filename="src/physgame.h" />
+		<Unit filename="src/physicsmanager.cpp" />
+		<Unit filename="src/physicsmanager.h" />
 		<Unit filename="src/quaternion.cpp" />
 		<Unit filename="src/quaternion.h" />
 		<Unit filename="src/ray.cpp" />
