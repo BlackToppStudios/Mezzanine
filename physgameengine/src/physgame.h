@@ -66,6 +66,7 @@
 #include "graphicsettings.h"
 #include "linegroup.h"
 #include "metacode.h"
+#include "physicsmanager.h"
 #include "quaternion.h"
 #include "ray.h"
 //#include "sound.h"

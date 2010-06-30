@@ -106,6 +106,10 @@ namespace phys
             /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
             PhysicsManager(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
 
+            /// @details This configures the Physics manager to work with the existing graphics settings. This must
+            /// be called before the physics manager is used, but after the graphics have been initialized
+            void Initialize();
+
             /// @brief Deconstructor
             /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
             ~PhysicsManager();

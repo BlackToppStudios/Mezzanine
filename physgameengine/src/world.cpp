@@ -298,7 +298,7 @@ namespace phys
         this->CreateRenderWindow();
 
         //Initiliaze the Physics Debug Drawer
-
+        this->Physics->Initialize();
 
         if(CallMainLoop)
         {

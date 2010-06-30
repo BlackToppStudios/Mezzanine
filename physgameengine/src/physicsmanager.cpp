@@ -276,8 +276,6 @@ namespace phys
 
     }
 
-
-
     void PhysicsManager::Construct(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
     {
         this->GameWorld = GameWorld_;
@@ -307,11 +305,17 @@ namespace phys
                                                     BulletCollisionConfiguration);
 
 
+    }
+
+    void PhysicsManager::Initialize()
+    {
         // This came from the Game init function, and may need to go to a game init.
         this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
         this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
 
     }
+
+
 
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
