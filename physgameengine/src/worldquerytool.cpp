@@ -228,8 +228,32 @@ namespace phys
 
     Vector3WActor* WorldQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay)
     {
-        /// @todo TODO: Fix the WorldQueryTool::GetFirstActorOnRayByAABB stub
-        return 0; // just a stub :(
+        Ogre::Ray Ooray = ActorRay.ExtractOgreRay();
+
+        if(NULL != this->RayQuery)          //Double check that the Rayquery is valid
+        {
+            this->RayQuery->setRay(Ooray);
+            if( this->RayQuery->execute().size() <= 0 ) //Did we hit anything
+            {
+                return NULL;
+            }
+        }else{                          //Whoopsie something Failed
+            this->GameWorld->LogAndThrow("Attempting to run a query on Null RaySceneQuery");
+        }
+
+        Ogre::RaySceneQueryResult &query_result = this->RayQuery->getLastResults();
+
+        if (0 < query_result.size())
+        {
+            Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[0].movable);
+            Vector3WActor* ClosestActor = new Vector3WActor();
+            ClosestActor->Actor = this->GameWorld->Actors->FindActor( pentity->getParentNode() );
+            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
+            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
+            return ClosestActor;
+        }else{
+            return 0;
+        }
     }
 
     Vector3WActor* WorldQueryTool::GetActorUnderMouse(Real RayLength, bool UsePolygon)
@@ -237,8 +261,8 @@ namespace phys
         Vector3WActor* Results = 0;
 
         Ray MouseRay( this->GameWorld->Cameras->GetCameraToViewportRay(
-                float(this->GetMouseX()) / float( this->GameWorld->VisualSettings->getRenderWidth() ) ,
-                float(this->GetMouseY()) / float( this->GameWorld->VisualSettings->getRenderHeight() )
+                float(this->GetMouseX()) / float( this->GameWorld->Graphics->getRenderWidth() ) ,
+                float(this->GetMouseY()) / float( this->GameWorld->Graphics->getRenderHeight() )
             ) );
 
         MouseRay *= RayLength;

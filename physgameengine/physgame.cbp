@@ -193,8 +193,8 @@
 		<Unit filename="src/eventrendertime.h" />
 		<Unit filename="src/eventuserinput.cpp" />
 		<Unit filename="src/eventuserinput.h" />
-		<Unit filename="src/graphicsettings.cpp" />
-		<Unit filename="src/graphicsettings.h" />
+		<Unit filename="src/graphicsmanager.cpp" />
+		<Unit filename="src/graphicsmanager.h" />
 		<Unit filename="src/internaldecompinterface.cpp" />
 		<Unit filename="src/internaldecompinterface.h.cpp">
 			<Option compile="0" />
@@ -207,6 +207,8 @@
 		</Unit>
 		<Unit filename="src/linegroup.cpp" />
 		<Unit filename="src/linegroup.h" />
+		<Unit filename="src/managerbase.cpp" />
+		<Unit filename="src/managerbase.h" />
 		<Unit filename="src/metacode.cpp" />
 		<Unit filename="src/metacode.h" />
 		<Unit filename="src/physgame.h" />

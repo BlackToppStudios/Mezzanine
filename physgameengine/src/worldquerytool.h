@@ -154,8 +154,10 @@ namespace phys
             /// @return This returns a pointer to an Vector3WActor, which contains the first actor along the ray and the point of intersection Relative to the actor
             Vector3WActor* GetFirstActorOnRayByPolygon(Ray ActorRay);
 
-            /// @brief unimplemented
-            /// @details
+            /// @brief Partially implemented. This should find the first Actor that is on or almost on the a given Ray.
+            /// @details This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned.
+            /// Presently this is untested and does not return the Offset of the intersection. This should perform faster than WorldQueryTool::GetFirstActorOnRayByPolygon
+            /// but not by a known amount.
             /// @param ActorRay The Ray to search along.
             /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.
             Vector3WActor* GetFirstActorOnRayByAABB(Ray ActorRay);

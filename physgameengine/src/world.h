@@ -132,7 +132,7 @@ namespace phys
     //Forward Declarations
     class ActorBase;
     class ActorContainerBase;
-    class GraphicsSettings;
+    class GraphicsManager;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class World
@@ -318,7 +318,7 @@ namespace phys
             /// @param CallMainLoop should the main loop be called
             /// @details Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be
             /// minimal delay from the time you call this and the game actually begins.
-            /// This will automatically call the Main Loop unless passed falsed.
+            /// This will automatically call the Main Loop unless passed false.
             void GameInit(const bool &CallMainLoop=true );
 
             /// @brief This Function house the main loop
@@ -387,7 +387,7 @@ namespace phys
 
             /// @brief A pointer to the graphics settings Manager, or it will be soon
             /// @details This will be the point that graphics settings will be managed from
-            GraphicsSettings* VisualSettings;
+            GraphicsManager* Graphics;
 
             /// @brief This will keep track of world wide phyiscs settings
             /// @details This will keep track constraints, gravity, and other settings that affect multiple actors

@@ -114,7 +114,7 @@ namespace phys
         this->HasSDLBeenInitialized=false;
 
         this->Actors = new ActorContainerVector(this);
-        this->VisualSettings = new GraphicsSettings();
+        this->Graphics = new GraphicsManager();
 
         //We create our Ogre environment
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
@@ -249,9 +249,7 @@ namespace phys
         //clear up our objects
         delete CallBacks;
         delete Events;
-
-        delete VisualSettings;
-
+        delete Graphics;
         delete Physics;
 
         //remove sdl stuff
@@ -498,7 +496,6 @@ namespace phys
         }
     }
 
-    //Seriously read the Function Name
     void World::CreateRenderWindow()
     {
         /// @todo TODO set multithreaded SDL so it will the run event manager in another thread
@@ -510,7 +507,7 @@ namespace phys
         this->HasSDLBeenInitialized=true;
 
         //Setup the SDL render window
-        this->SDLscreen = SDL_SetVideoMode( VisualSettings->getRenderWidth(), VisualSettings->getRenderHeight(),0, SDL_OPENGL);
+        this->SDLscreen = SDL_SetVideoMode( this->Graphics->getRenderWidth(), this->Graphics->getRenderHeight(),0, SDL_OPENGL);
         SDL_WM_SetCaption(this->WindowName.c_str(), NULL);
 
         //Start Ogre Without a native render window
@@ -520,7 +517,7 @@ namespace phys
         Ogre::NameValuePairList *misc;
         misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
         (*misc)["title"] = Ogre::String(this->WindowName);
-        this->OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, VisualSettings->getRenderHeight(), VisualSettings->getRenderWidth(), VisualSettings->getFullscreen(), misc);
+        this->OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, this->Graphics->getRenderHeight(), this->Graphics->getRenderWidth(), this->Graphics->getFullscreen(), misc);
 
         //prepare a scenemanager
         this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");

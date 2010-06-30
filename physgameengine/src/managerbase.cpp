@@ -1,4 +1,4 @@
-//Â© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -37,43 +37,15 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physgame_h
-#define _physgame_h
+#ifndef _managerbase_cpp
+#define _managerbase_cpp
 
-///////////////////////////////////////////////////////////////////////////////
-/// @file physgame.h
-/// @brief A single file that includes all of the physgame engine
-/// @details This file exists solely to make it easier for others to include
-/// parts of the physgame engine in their project with out needing to know or
-/// care about the internals of our projects.
-///////////////////////////////////////////////////////////////////////////////
-
-// We put headers in our headers so we can include while we include
-#include "actorbase.h"
-#include "actorcontainerbase.h"
-#include "actorcontainervector.h"
-#include "actorrigid.h"
-#include "actorsoft.h"
-#include "callbackmanager.h"
-#include "cameramanager.h"
-#include "crossplatform.h"
-#include "datatypes.h"
-#include "eventbase.h"
-#include "eventmanager.h"
-#include "eventquit.h"
-#include "eventrendertime.h"
-#include "eventuserinput.h"
-#include "graphicsmanager.h"
-#include "linegroup.h"
 #include "managerbase.h"
-#include "metacode.h"
-#include "physicsmanager.h"
-#include "quaternion.h"
-#include "ray.h"
-//#include "sound.h"
-#include "vector3.h"
-#include "vector3wactor.h"
-#include "world.h"
-#include "worldquerytool.h"
+
+namespace phys
+{
+
+
+}// /phys
 
 #endif

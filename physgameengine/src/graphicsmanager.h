@@ -37,32 +37,39 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicsettings_h
-#define _graphicsettings_h
+#ifndef _graphicsmanager_h
+#define _graphicsmanager_h
 
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class GraphicsSettings
-    /// @headerfile graphicsettings.h
+    /// @class GraphicsManager
+    /// @headerfile graphicmanager.h
     /// @brief This is intended to store basic graphics setting for the user.
     /// @details This stores x/y resolution, fullscreen and in the future other
     /// settings. This is intended to make it easy for developers to pass/move around
     /// complex graphics settings. We hope to eventually include other items like
     /// shader settings, rendering API, and maybe other settings too.
-    class GraphicsSettings
+    class GraphicsManager
     {
         private:
+
+            /// @internal
+            /// @brief This is the desired state of whether the window is fullscreen or not.
             bool Fullscreen;
 
-            //these refer to the render window
+            /// @internal
+            /// @brief This stores the Height of the renderwindow
             Whole RenderHeight;
+
+            /// @internal
+            /// @brief This stores the Width of the renderwindow
             Whole RenderWidth;
 
         public:
             /// @brief Default constructor
             /// @details This creates a default Graphics Settings with resolution 640x480 with fullscreen set to false
-            GraphicsSettings();
+            GraphicsManager();
 
             /// @brief Versatile Constructor
             /// @param Width_ The desired width.
@@ -71,7 +78,7 @@ namespace phys
             /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the
             /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support
             /// arbitrary resolutions in fullscreen mode.
-            GraphicsSettings(const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
+            GraphicsManager(const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
 
             /// @brief Adjust all Settings
             /// @param Width_ The desired width.
@@ -108,6 +115,15 @@ namespace phys
             /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
             /// @param Width_ This accepts a Whole.
             void setRenderWidth(const Whole &Width_);
+
+            /// @brief Changes the X and Y Resolution at the same time
+            /// @details This should be useful in situations where it is not possible to update the width and hright separately.
+            /// @param Width_ The new desired Width for the rendering area as a whole number
+            /// @param Height_ The new desired Width for the rendering area as a whole number
+            void setRenderResolution(const Whole &Width_, const Whole &Height_);
+
+
+
     };
 }
 #endif

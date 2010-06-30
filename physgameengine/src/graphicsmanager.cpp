@@ -37,12 +37,12 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicsettings_cpp
-#define _graphicsettings_cpp
+#ifndef _graphicsmanager_cpp
+#define _graphicsmanager_cpp
 
 #include "world.h"
 #include "eventmanager.h"
-#include "graphicsettings.h"
+#include "graphicsmanager.h"
 
 namespace phys
 {
@@ -50,17 +50,17 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////
     // Creation and Deletion functions
     ///////////////////////////////////
-    GraphicsSettings::GraphicsSettings()
+    GraphicsManager::GraphicsManager()
     {
         Construct(640,480,false);
     }
 
-    GraphicsSettings::GraphicsSettings( const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
+    GraphicsManager::GraphicsManager( const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
     {
         Construct( Width_, Height_, FullScreen_ );
     }
 
-    void GraphicsSettings::Construct( const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
+    void GraphicsManager::Construct( const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
     {
         this->Fullscreen = FullScreen_;
         this->RenderHeight = Height_;
@@ -71,14 +71,15 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////
     // Fullscreen functions
     ///////////////////////////////////
-    bool GraphicsSettings::getFullscreen() const
+    bool GraphicsManager::getFullscreen() const
     {
         return this->Fullscreen;
     }
 
     //returns: false if changes could not be made
-    void GraphicsSettings::setFullscreen(const bool &Fullscreen_)
+    void GraphicsManager::setFullscreen(const bool &Fullscreen_)
     {
+        /// @todo TODO: Need to attempt to switch to fullscreen here
         /// @todo TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games
         this->Fullscreen = Fullscreen_;
     }
@@ -86,25 +87,38 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////
     // Resolution functions
     ///////////////////////////////////
-    Whole GraphicsSettings::getRenderHeight() const
+    Whole GraphicsManager::getRenderHeight() const
     {
         return this->RenderHeight;
     }
 
-    Whole GraphicsSettings::getRenderWidth() const
+    Whole GraphicsManager::getRenderWidth() const
     {
         return this->RenderWidth;
     }
 
-    void GraphicsSettings::setRenderHeight(const Whole &Height_)
+    void GraphicsManager::setRenderHeight(const Whole &Height_)
     {
+        /// @todo TODO: Need to attempt to update resolution here
         this->RenderHeight = Height_;
     }
 
-    void GraphicsSettings::setRenderWidth(const Whole &Width_)
+    void GraphicsManager::setRenderWidth(const Whole &Width_)
     {
+        /// @todo TODO: Need to attempt to update resolution here
         this->RenderWidth = Width_;
     }
+
+    void GraphicsManager::setRenderResolution(const Whole &Width_, const Whole &Height_)
+    {
+        /// @todo TODO: Need to attempt to update resolution here
+        this->RenderWidth = Width_;
+        this->RenderHeight = Height_;
+    }
+
+
+
+
 
 }
 
