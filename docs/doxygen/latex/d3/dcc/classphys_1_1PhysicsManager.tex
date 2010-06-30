@@ -1,0 +1,217 @@
+\hypertarget{classphys_1_1PhysicsManager}{
+\section{phys::PhysicsManager Class Reference}
+\label{d3/dcc/classphys_1_1PhysicsManager}\index{phys::PhysicsManager@{phys::PhysicsManager}}
+}
+
+
+This is simply a place for storing all the Physics Related functions.  
+
+
+
+
+{\ttfamily \#include $<$physicsmanager.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1PhysicsManager_a3c78a0773d6a544aa6ea06b12ffc5fee}{PhysicsManager} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-)
+\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1PhysicsManager_aa2c37564d35c3b7266219812ee43717f}{PhysicsManager} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyLowerBounds\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-)
+\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em This configures the Physics Manager to work with the Graphic settings. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}{$\sim$PhysicsManager} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a3e74f3e0288706d44dc90657a8fa1118}{SetGravity} (\hyperlink{classphys_1_1Vector3}{Vector3} pgrav)
+\begin{DoxyCompactList}\small\item\em Sets the gravity. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a67fb59148a94ced0a92b288a638f89db}{SetDebugPhysicsRendering} (int ToBeEnabled)
+\begin{DoxyCompactList}\small\item\em Enables and Disables Physics Debug Drawing. \item\end{DoxyCompactList}\item 
+int \hyperlink{classphys_1_1PhysicsManager_a64f96d2e4b25c2b9a66042998bf334ff}{GetDebugPhysicsRendering} ()
+\begin{DoxyCompactList}\small\item\em Is Physics Debug Drawing currently enabled? \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}{SetDebugPhysicsWireCount} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-)
+\begin{DoxyCompactList}\small\item\em How many Wireframes do you want drawn from previous events. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}{GetDebugPhysicsWireCount} ()
+\begin{DoxyCompactList}\small\item\em This gets how many WireFrames are being drawn. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{DoMainLoopItems} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&TimeElapsed)
+\begin{DoxyCompactList}\small\item\em This does all the work reuired for the main loop to process physics. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1PhysicsManager_a7b4bcdf992c21ae83363f25df05b1d25}{
+class {\bfseries World}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a7b4bcdf992c21ae83363f25df05b1d25}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is simply a place for storing all the Physics Related functions. This is a plage for storing items related to Debug physics drawing, Adding constraints, screwing with gravity and doing other physics Related features. 
+
+Definition at line 64 of file physicsmanager.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1PhysicsManager_a3c78a0773d6a544aa6ea06b12ffc5fee}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!PhysicsManager@{PhysicsManager}}
+\index{PhysicsManager@{PhysicsManager}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{PhysicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::PhysicsManager::PhysicsManager ({\bf World} $\ast$ {\em GameWorld\_\-})}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a3c78a0773d6a544aa6ea06b12ffc5fee}
+
+
+Simple Constructor. 
+
+This constructor will assign some sane default values and will create a physics world that can be used immediately 
+\begin{DoxyParams}{Parameters}
+\item[{\em GameWorld\_\-}]This is a pointer to the game world this \hyperlink{classphys_1_1PhysicsManager}{PhysicsManager} will work with \end{DoxyParams}
+
+
+Definition at line 257 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_aa2c37564d35c3b7266219812ee43717f}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!PhysicsManager@{PhysicsManager}}
+\index{PhysicsManager@{PhysicsManager}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{PhysicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::PhysicsManager::PhysicsManager ({\bf World} $\ast$ {\em GameWorld\_\-}, \/  const {\bf Vector3} \& {\em GeographyLowerBounds\_\-}, \/  const {\bf Vector3} \& {\em GeographyUpperbounds\_\-}, \/  const unsigned short int \& {\em MaxPhysicsProxies\_\-})}}
+\label{d3/dcc/classphys_1_1PhysicsManager_aa2c37564d35c3b7266219812ee43717f}
+
+
+Simple Constructor. 
+
+This constructor will assign some sane default values and will create a physics world that can be used immediately 
+\begin{DoxyParams}{Parameters}
+\item[{\em GameWorld\_\-}]This is a pointer to the \hyperlink{classphys_1_1World}{phys::World} that this manager will work with \item[{\em GeographyLowerBounds\_\-}]This \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the lower right conrer of the world \item[{\em GeographyUpperbounds\_\-}]This \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the upper left conrer of the world \item[{\em MaxPhysicsProxies\_\-}]This approximates the maximum amount of items allowed in the physics world \end{DoxyParams}
+
+
+Definition at line 262 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!$\sim$PhysicsManager@{$\sim$PhysicsManager}}
+\index{$\sim$PhysicsManager@{$\sim$PhysicsManager}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{$\sim$PhysicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::PhysicsManager::$\sim$PhysicsManager ()}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}
+
+
+Deconstructor. 
+
+This deletes all those crazy pointers that Bullet, the physics subsystem need. 
+
+Definition at line 267 of file physicsmanager.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::DoMainLoopItems (const {\bf Real} \& {\em TimeElapsed})}}
+\label{d3/dcc/classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}
+
+
+This does all the work reuired for the main loop to process physics. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em TimeElapsed}]This is a real that represents the amount of time we need to simulate \end{DoxyParams}
+
+
+Definition at line 320 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a64f96d2e4b25c2b9a66042998bf334ff}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!GetDebugPhysicsRendering@{GetDebugPhysicsRendering}}
+\index{GetDebugPhysicsRendering@{GetDebugPhysicsRendering}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{GetDebugPhysicsRendering}]{\setlength{\rightskip}{0pt plus 5cm}int phys::PhysicsManager::GetDebugPhysicsRendering ()}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a64f96d2e4b25c2b9a66042998bf334ff}
+
+
+Is Physics Debug Drawing currently enabled? 
+
+lets you check if Physics Debug Drawing is enabled or not. \begin{DoxyReturn}{Returns}
+1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features 
+\end{DoxyReturn}
+
+
+Definition at line 358 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!GetDebugPhysicsWireCount@{GetDebugPhysicsWireCount}}
+\index{GetDebugPhysicsWireCount@{GetDebugPhysicsWireCount}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{GetDebugPhysicsWireCount}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::PhysicsManager::GetDebugPhysicsWireCount ()}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}
+
+
+This gets how many WireFrames are being drawn. 
+
+This will tell you how many frames worth of previous in game events are being drawn. \begin{DoxyReturn}{Returns}
+This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount . 
+\end{DoxyReturn}
+
+
+Definition at line 373 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::Initialize ()}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}
+
+
+This configures the Physics Manager to work with the Graphic settings. 
+
+This configures the Physics manager to work with the existing graphics settings. This must be called before the physics manager is used, but after the graphics have been initialized 
+
+Definition at line 310 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a67fb59148a94ced0a92b288a638f89db}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!SetDebugPhysicsRendering@{SetDebugPhysicsRendering}}
+\index{SetDebugPhysicsRendering@{SetDebugPhysicsRendering}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{SetDebugPhysicsRendering}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetDebugPhysicsRendering (int {\em ToBeEnabled})}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a67fb59148a94ced0a92b288a638f89db}
+
+
+Enables and Disables Physics Debug Drawing. 
+
+Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics subsytem pixel for pixel. 
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeEnabled}]1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control \end{DoxyParams}
+
+
+Definition at line 348 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!SetDebugPhysicsWireCount@{SetDebugPhysicsWireCount}}
+\index{SetDebugPhysicsWireCount@{SetDebugPhysicsWireCount}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{SetDebugPhysicsWireCount}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetDebugPhysicsWireCount ({\bf Whole} {\em WireFrameCount\_\-})}}
+\label{d3/dcc/classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}
+
+
+How many Wireframes do you want drawn from previous events. 
+
+Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount set this to 2, as the first wireframe is commonly entirely inside the the rendered 3d mesh. You can use \hyperlink{classphys_1_1World_aa063ace52be484c7b03ec5859453f48b}{World::GetTargetFrameTime()} In conjunction with this to specify an amout of seconds worth of wireframes. 
+\begin{DoxyParams}{Parameters}
+\item[{\em WireFrameCount\_\-}]This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate, Any amount more than just a few seconds worth can be cumbersome. \end{DoxyParams}
+
+
+Definition at line 368 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a3e74f3e0288706d44dc90657a8fa1118}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!SetGravity@{SetGravity}}
+\index{SetGravity@{SetGravity}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{SetGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetGravity ({\bf Vector3} {\em pgrav})}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a3e74f3e0288706d44dc90657a8fa1118}
+
+
+Sets the gravity. 
+
+Sets the strength and direction of gravity within the world. 
+\begin{DoxyParams}{Parameters}
+\item[{\em pgrav}]\hyperlink{classphys_1_1Vector3}{Vector3} representing the strength and direction of gravity. \end{DoxyParams}
+
+
+Definition at line 339 of file physicsmanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+physicsmanager.h\item 
+physicsmanager.cpp\end{DoxyCompactItemize}

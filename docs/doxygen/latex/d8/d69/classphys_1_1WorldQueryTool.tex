@@ -30,7 +30,7 @@ bool \hyperlink{classphys_1_1WorldQueryTool_a8343f54b900adb316ddc6de5405da328}{I
 \begin{DoxyCompactList}\small\item\em This will find the first Actor to intesect the Given ray. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}{GetFirstActorOnRayByAABB} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
 \begin{DoxyCompactList}\small\item\em unimplemented \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a7328365e1b571bfbfbb7842a00ade6c8}{GetActorUnderMouse} (bool UsePolygon=true)
+\hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a8efba55076bad228d7cda0b82895f32a}{GetActorUnderMouse} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} RayLength=1000.0, bool UsePolygon=true)
 \begin{DoxyCompactList}\small\item\em This will find the actor under the mouse. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}{GatherEvents} (bool ClearEventsFromEventMgr=false)
 \begin{DoxyCompactList}\small\item\em This gathers any user-\/input/event data that might be queryed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -58,7 +58,7 @@ This creates a \hyperlink{classphys_1_1WorldQueryTool}{WorldQueryTool} Ready to 
 \item[{\em GameWorld\_\-}]This is a pointer to the \hyperlink{classphys_1_1World}{phys::World} to be queried \end{DoxyParams}
 
 
-Definition at line 50 of file worldquerytool.cpp.
+Definition at line 51 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_ace36ffebcabbbf0553c517820bc636c9}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!$\sim$WorldQueryTool@{$\sim$WorldQueryTool}}
@@ -71,7 +71,7 @@ Destructor.
 
 Deletes everything in the world query tool. 
 
-Definition at line 68 of file worldquerytool.cpp.
+Definition at line 69 of file worldquerytool.cpp.
 
 
 
@@ -93,31 +93,31 @@ This should be called periodcally (ideally in the post user input callback) to a
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000022}{Todo}]Add support for joysticks events to \hyperlink{classphys_1_1WorldQueryTool}{WorldQueryTool} \end{Desc}
+\item[\hyperlink{todo__todo000023}{Todo}]Add support for joysticks events to \hyperlink{classphys_1_1WorldQueryTool}{WorldQueryTool} \end{Desc}
 
 
 
 
-Definition at line 90 of file worldquerytool.cpp.
+Definition at line 91 of file worldquerytool.cpp.
 
-\hypertarget{classphys_1_1WorldQueryTool_a7328365e1b571bfbfbb7842a00ade6c8}{
+\hypertarget{classphys_1_1WorldQueryTool_a8efba55076bad228d7cda0b82895f32a}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetActorUnderMouse@{GetActorUnderMouse}}
 \index{GetActorUnderMouse@{GetActorUnderMouse}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::WorldQueryTool::GetActorUnderMouse (bool {\em UsePolygon} = {\ttfamily true})}}
-\label{d8/d69/classphys_1_1WorldQueryTool_a7328365e1b571bfbfbb7842a00ade6c8}
+\subsubsection[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::WorldQueryTool::GetActorUnderMouse ({\bf Real} {\em RayLength} = {\ttfamily 1000.0}, \/  bool {\em UsePolygon} = {\ttfamily true})}}
+\label{d8/d69/classphys_1_1WorldQueryTool_a8efba55076bad228d7cda0b82895f32a}
 
 
 This will find the actor under the mouse. 
 
 This will use 
 \begin{DoxyParams}{Parameters}
-\item[{\em UsePolygon}]If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB . \end{DoxyParams}
+\item[{\em UsePolygon}]If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB . \item[{\em RayLength}]The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 This returns a \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass. 
 \end{DoxyReturn}
 
 
-Definition at line 233 of file worldquerytool.cpp.
+Definition at line 235 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetFirstActorOnRayByAABB@{GetFirstActorOnRayByAABB}}
@@ -136,7 +136,13 @@ This returns a pointer to an actorbase, which is the first actor to have an Axis
 \end{DoxyReturn}
 
 
-Definition at line 228 of file worldquerytool.cpp.
+\begin{Desc}
+\item[\hyperlink{todo__todo000024}{Todo}]TODO: Fix the \hyperlink{classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}{WorldQueryTool::GetFirstActorOnRayByAABB} stub \end{Desc}
+
+
+
+
+Definition at line 229 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_a256022003d64756b0b5c5706aefd5139}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetFirstActorOnRayByPolygon@{GetFirstActorOnRayByPolygon}}
@@ -155,7 +161,7 @@ This returns a pointer to an \hyperlink{classphys_1_1Vector3WActor}{Vector3WActo
 \end{DoxyReturn}
 
 
-Definition at line 146 of file worldquerytool.cpp.
+Definition at line 147 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_a55721f152fb117fdfb8bc6d20af6b1dc}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetMouseX@{GetMouseX}}
@@ -171,7 +177,7 @@ This returns a Whole number which represents the X coordinate of the mouse.
 \end{DoxyReturn}
 
 
-Definition at line 73 of file worldquerytool.cpp.
+Definition at line 74 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_ac2d8517db7305157c1393320f434751b}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetMouseY@{GetMouseY}}
@@ -187,7 +193,7 @@ This returns a Whole number which represents the Y coordinate of the mouse.
 \end{DoxyReturn}
 
 
-Definition at line 76 of file worldquerytool.cpp.
+Definition at line 77 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_a8343f54b900adb316ddc6de5405da328}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!IsKeyboardButtonPushed@{IsKeyboardButtonPushed}}
@@ -206,7 +212,7 @@ This returns a bool which is set to true if the requested button is pressed or h
 \end{DoxyReturn}
 
 
-Definition at line 86 of file worldquerytool.cpp.
+Definition at line 87 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_af277b578432dfaefffbc4fd9bb80ca64}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!IsMouseButtonPushed@{IsMouseButtonPushed}}
@@ -228,7 +234,7 @@ This returns a bool which is set to true if the requested button is pressed or h
 \end{DoxyReturn}
 
 
-Definition at line 79 of file worldquerytool.cpp.
+Definition at line 80 of file worldquerytool.cpp.
 
 
 

@@ -385,9 +385,12 @@ namespace phys
             /// @details Whenever an actor is added, a pointer to it will be stored here.
             ActorContainerBase* Actors;
 
-            //Players settings
+            /// @brief A pointer to the graphics settings Manager, or it will be soon
+            /// @details This will be the point that graphics settings will be managed from
             GraphicsSettings* VisualSettings;
 
+            /// @brief This will keep track of world wide phyiscs settings
+            /// @details This will keep track constraints, gravity, and other settings that affect multiple actors
             PhysicsManager* Physics;
     };
 }
