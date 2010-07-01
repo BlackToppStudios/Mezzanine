@@ -182,7 +182,6 @@ bool PostInput()
         }
     }
 
-
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
         return false;

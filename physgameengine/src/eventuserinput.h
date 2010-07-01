@@ -196,7 +196,7 @@ namespace phys
 
             /// @brief Returns the type of this event
             /// @return Returns EventType::UserInput
-            virtual EventType getEventType() const;
+            virtual EventType GetType() const;
     };
 
 }// /phys

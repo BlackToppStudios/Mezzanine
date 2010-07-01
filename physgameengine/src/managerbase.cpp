@@ -41,10 +41,24 @@
 #define _managerbase_cpp
 
 #include "managerbase.h"
+#include "world.h"
 
 namespace phys
 {
+    ManagerBase::ManagerBase()
+        {}
 
+    ManagerBase::ManagerBase(World* GameWorld_) : GameWorld(GameWorld_)
+        {}
+
+    World* ManagerBase::GetGameWorld() const
+        { return this->GameWorld; }
+
+    void ManagerBase::SetGameWorld( World* GameWorld_ )
+        { this->GameWorld = GameWorld_; }
+
+    ManagerBase::~ManagerBase()
+        {}
 
 }// /phys
 

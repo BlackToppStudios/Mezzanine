@@ -42,7 +42,7 @@
 
 #include "worldquerytool.h"
 #include "actorcontainerbase.h"
-#include "graphicsettings.h"
+#include "graphicsmanager.h"
 
 #include <Ogre.h>
 

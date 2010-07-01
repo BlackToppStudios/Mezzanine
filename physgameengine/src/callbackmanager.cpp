@@ -51,12 +51,10 @@ using namespace std;
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
-    // CallBackManager Constructor
+    // Important Functions
     ///////////////////////////////////////
-    CallBackManager::CallBackManager(World* _Parent)
+    CallBackManager::CallBackManager(World* _Parent) //: ManagerBase(_Parent)
     {
-        TheWorldIListenTo = _Parent;
-
         PreInputCallback = NULL;
         PostInputCallback = NULL;
 
@@ -68,9 +66,13 @@ namespace phys
     }
 
     CallBackManager::~CallBackManager()
-    {
+        {}
 
-    }
+    void CallBackManager::Initialize()
+        {}
+
+    //ManagerTypeName CallBackManager::GetType() const
+    //    { return ManagerBase::CallBackManager; }
 
     ///////////////////////////////////////////////////////////////////////////////
     //Preinput callback will be called in the main loop first
@@ -96,7 +98,7 @@ namespace phys
         this->PreInputCallback = Callback;
     }
 
-    bool CallBackManager::IsPreInputCallbackSet()
+    bool CallBackManager::IsPreInputCallbackSet() const
     {
         if(NULL==PreInputCallback)
         {
@@ -129,7 +131,7 @@ namespace phys
         this->PostInputCallback = Callback;
     }
 
-    bool CallBackManager::IsPostInputCallbackSet()
+    bool CallBackManager::IsPostInputCallbackSet() const
     {
         if(NULL==PostInputCallback)
         {
@@ -160,7 +162,7 @@ namespace phys
         this->PrePhysicsCallback = Callback;
     }
 
-    bool CallBackManager::IsPrePhysicsCallbackSet()
+    bool CallBackManager::IsPrePhysicsCallbackSet() const
     {
         if(NULL==PrePhysicsCallback)
         {
@@ -191,7 +193,7 @@ namespace phys
         this->PostPhysicsCallback = Callback;
     }
 
-    bool CallBackManager::IsPostPhysicsCallbackSet()
+    bool CallBackManager::IsPostPhysicsCallbackSet() const
     {
         if(NULL==PostPhysicsCallback)
         {
@@ -222,7 +224,7 @@ namespace phys
         this->PreRenderCallback = Callback;
     }
 
-    bool CallBackManager::IsPreRenderCallbackSet()
+    bool CallBackManager::IsPreRenderCallbackSet() const
     {
         if(NULL==PreRenderCallback)
         {
@@ -254,7 +256,7 @@ namespace phys
         this->PostRenderCallback = Callback;
     }
 
-    bool CallBackManager::IsPostRenderCallbackSet()
+    bool CallBackManager::IsPostRenderCallbackSet() const
     {
         if(NULL==PostRenderCallback)
         {

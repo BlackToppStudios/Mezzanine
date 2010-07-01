@@ -67,7 +67,7 @@ namespace phys
             /// @details  This returns the kind of message this is, specifcally EventType::QuitMessage . If
             /// this functions returns EventType::QuitMessage, then and event pointer can safely be
             /// cast to phys::EventQuit . This method is inherited from phys::Event .
-            virtual EventType getEventType() const;
+            virtual EventType GetType() const;
 
     };
 }

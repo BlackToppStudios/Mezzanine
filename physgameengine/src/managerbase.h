@@ -40,13 +40,9 @@
 #ifndef _managerbase_h
 #define _managerbase_h
 
-#include "world.h"
-
-///////////////////////////////////
-// Actual code
 namespace phys
 {
-
+    class World;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ManagerBase
     /// @headerfile managerbase.h
@@ -76,7 +72,6 @@ namespace phys
                 EventManager,
                 GraphicsManager,
                 PhysicsManager,
-                UnknownType,        /// This is the type return if the derived manager failed to create a GetType() function
                 UserCreated         /// This is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
             };
 
@@ -89,16 +84,36 @@ namespace phys
             ManagerBase();
 
             /// @brief Simple Constructor
-            ///
+            /// @details This is the prefered constructor. This is used to "Attach" a manager to a phys::world. This is expected to
+            /// configure everything that this manager will need except for items requiring integration with other managers.
+            /// @param GameWorld_ This is the phys::World this Manager is expected to work with.
             ManagerBase(World* GameWorld_);
 
-            virtual void Initialize() = 0;
+            virtual ~ManagerBase();
 
+            /// @brief Configure Items requiring other Managers
+            /// @details If you are using the phys::World this is called when phys::World::GameInit() is called. It is expected that
+            /// by the time this is called either ManagerBase::ManagerBase(World*) or ManagerBase::SetGameWorld(World*) will have been called.
+            /// This is where all configuration that requires atleast one other manager on the phys::World to exist.
+           // virtual void Initialize() = 0;
+
+            /// @brief This gets the World that this manager is working with.
+            /// @return This returns a phys::World* that is the same as the one store in this Manager
             virtual World* GetGameWorld() const;
 
+            /// @brief This sets the phys::World that this Manager works with.
+            /// @details It is expected that this won't change very much, and for some managers changing this at the wrong time could
+            /// cause some very fundamental problems. Moving a Manager may not work at all depending on how the manager was created. The World
+            /// this Points to does not nescessarily have to point back to this Manager. In fact, managers should be designed so that the
+            /// World can swap them out. For example swapping out event managers could allow for a swift re-mapping of game controls when
+            /// a game switches modes.
             virtual void SetGameWorld( World* GameWorld_ );
 
-            virtual ManagerTypeName GetType() const;
+            /// @brief This returns the type of a manager.
+            /// @details This is intended to make using and casting from Manager base easier. With this is is possible to cast from
+            /// ManagerBase to the correct Manager Type.
+            /// @return This returns a ManagerTypeName to identify what this can be safely cast to.
+            //virtual ManagerTypeName GetType() const = 0;
 
     };// /ManagerBase
 } // /phys

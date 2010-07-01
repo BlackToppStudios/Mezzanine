@@ -55,7 +55,7 @@ namespace phys
         Rendertime=Milliseconds;
     }
 
-    EventBase::EventType EventRenderTime::getEventType() const
+    EventBase::EventType EventRenderTime::GetType() const
     {
         return RenderTime;
     }

@@ -200,7 +200,7 @@ namespace phys
         EventBase* results = 0;
         for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
-            if((*Iter)->getEventType()==SpecificType)
+            if((*Iter)->GetType()==SpecificType)
             {
                 results = (*Iter);
                 return results;
@@ -214,7 +214,7 @@ namespace phys
         EventBase* results = 0;
         for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
-            if((*Iter)->getEventType()==SpecificType)
+            if((*Iter)->GetType()==SpecificType)
             {
                 results = (*Iter);
                 EventQueue.erase(Iter);
@@ -228,7 +228,7 @@ namespace phys
     {
         for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
-            if((*Iter)->getEventType()==SpecificType)
+            if((*Iter)->GetType()==SpecificType)
             {
                 EventQueue.erase(Iter);
             }
@@ -241,7 +241,7 @@ namespace phys
 
         for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
-            if((*Iter)->getEventType()==SpecificType)
+            if((*Iter)->GetType()==SpecificType)
             {
                 TempList->push_back(*Iter);
             }
@@ -253,7 +253,7 @@ namespace phys
     {
         for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
         {
-            if((*Iter)->getEventType()==SpecificType)
+            if((*Iter)->GetType()==SpecificType)
             {
                 this->EventQueue.remove(*Iter);
             }

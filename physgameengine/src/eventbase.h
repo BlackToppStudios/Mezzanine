@@ -76,7 +76,7 @@ namespace phys
             /// the data/class type they actually are.
             /// @return This returns an eventype that will correspend with the actual event type. This can be used on all
             /// Phys game provided class to safely cast a pointer to the correct event type.
-            virtual EventBase::EventType getEventType() const = 0;
+            virtual EventBase::EventType GetType() const = 0;
 
     };
 }

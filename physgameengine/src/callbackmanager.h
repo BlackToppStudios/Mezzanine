@@ -40,23 +40,23 @@
 #ifndef CALLBACKMANAGER_H
 #define CALLBACKMANAGER_H
 
-//Forward declaration for pointers
+#include "managerbase.h"
+
+
 namespace phys
 {
-    class World;
-
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CallBackManager
     /// @headerfile callbackmanager.h
     /// @brief This Stores callbacks for for use in the main loop
     /// @details This stores a series of pointers to functions that the main loop
     /// will call. This can be swapped out at any point in time with another
-    /// CallBackManager to completely (or subtley) alter game behavior. In general
-    class CallBackManager
+    /// CallBackManager to completely (or subtley) alter game behavior.
+    class CallBackManager//: public ManagerBase
     {
         private:
             //pointers to engine internal structures
-            World* TheWorldIListenTo;
+            //World* Game;
 
             //pointers to callback functions
             bool (*PreInputCallback)();
@@ -77,10 +77,19 @@ namespace phys
             /// @details This creates a usable but empty CallBackManager
             /// @param _Parent This is a pointer to the world that this callback manager works with.
             CallBackManager(World* _Parent);
-            CallBackManager();
+
             /// @brief Deconstructor
             /// @details Deconstructor Currently doesn't do very much
-            ~CallBackManager();
+            virtual ~CallBackManager();
+
+            /// @brief Empty Initilizor
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void Initialize();
+
+            /// @brief This returns the type of this manager.
+            /// @return This returns ManagerTypeName::CallBackManager
+//            virtual ManagerBase::ManagerTypeName GetType() const;
+
 
         ///////////////////////////////////////////////////////////////////////////////
         // PreInput Management
@@ -90,22 +99,22 @@ namespace phys
             /// intends to continue with the mainloop, and false if the callback intend to
             /// end the mainloop.
             /// @return A bool that represents whether the mainloop should end.
-            bool PreInput();
+            virtual bool PreInput();
 
             /// @brief Drops the PreInput pointer.
             /// @details Drops the PreInput pointer, this does not 'delete' the pointer, merely
             /// assigns it to zero.
-            void ErasePreInput();
+            virtual void ErasePreInput();
 
             /// @brief This assigns a function to be the callback function for PreInput
             /// @details This assigns a function to be the callback function for PreInput.
             /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments
-            void SetPreInput(bool (*Callback)());
+            virtual void SetPreInput(bool (*Callback)());
 
             /// @brief Is the PreInput callback set or not.
             /// @details Is the PreInput callback set or not. The returns true if set or false otherwise.
             /// @return This returns true if the PreInput CallBack is set, false otherwise
-            bool IsPreInputCallbackSet();
+            virtual bool IsPreInputCallbackSet() const;
 
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -116,22 +125,22 @@ namespace phys
             /// intends to continue with the mainloop, and false if the callback intend to
             /// end the mainloop.
             /// @return A bool that represents whether the mainloop should end.
-            bool PostInput();
+            virtual bool PostInput();
 
             /// @brief Drops the PostInput pointer.
             /// @details Drops the PostInput pointer, this does not 'delete' the pointer, merely
             /// assigns it to zero.
-            void ErasePostInput();
+            virtual void ErasePostInput();
 
             /// @brief This assigns a function to be the callback function for PostInput
             /// @details This assigns a function to be the callback function for PostInput.
             /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments
-            void SetPostInput(bool (*Callback)());
+            virtual void SetPostInput(bool (*Callback)());
 
             /// @brief Is the PostInput callback set or not.
             /// @details Is the PostInput callback set or not. The returns true if set or false otherwise.
             /// @return This returns true if the PostInput CallBack is set, false otherwise
-            bool IsPostInputCallbackSet();
+            virtual bool IsPostInputCallbackSet() const;
 
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -142,22 +151,22 @@ namespace phys
             /// intends to continue with the mainloop, and false if the callback intend to
             /// end the mainloop.
             /// @return A bool that represents whether the mainloop should end.
-            bool PrePhysics();
+            virtual bool PrePhysics();
 
             /// @brief Drops the PrePhysics pointer.
             /// @details Drops the PrePhysics pointer, this does not 'delete' the pointer, merely
             /// assigns it to zero.
-            void ErasePrePhysics();
+            virtual void ErasePrePhysics();
 
             /// @brief This assigns a function to be the callback function for PrePhysics
             /// @details This assigns a function to be the callback function for PrePhysics.
             /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments
-            void SetPrePhysics(bool (*Callback)());
+            virtual void SetPrePhysics(bool (*Callback)());
 
             /// @brief Is the PrePhysics callback set or not.
             /// @details Is the PrePhysics callback set or not. The returns true if set or false otherwise.
             /// @return This returns true if the PrePhysics CallBack is set, false otherwise
-            bool IsPrePhysicsCallbackSet();
+            virtual bool IsPrePhysicsCallbackSet() const;
 
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -168,22 +177,22 @@ namespace phys
             /// intends to continue with the mainloop, and false if the callback intend to
             /// end the mainloop.
             /// @return A bool that represents whether the mainloop should end.
-            bool PostPhysics();
+            virtual bool PostPhysics();
 
             /// @brief Drops the PostPhysics pointer.
             /// @details Drops the PostPhysics pointer, this does not 'delete' the pointer, merely
             /// assigns it to zero.
-            void ErasePostPhysics();
+            virtual void ErasePostPhysics();
 
             /// @brief This assigns a function to be the callback function for PostPhysics
             /// @details This assigns a function to be the callback function for PostPhysics.
             /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments
-            void SetPostPhysics(bool (*Callback)());
+            virtual void SetPostPhysics(bool (*Callback)());
 
             /// @brief Is the PostPhysics callback set or not.
             /// @details Is the PostPhysics callback set or not. The returns true if set or false otherwise.
             /// @return This returns true if the PostPhysics CallBack is set, false otherwise
-            bool IsPostPhysicsCallbackSet();
+            virtual bool IsPostPhysicsCallbackSet() const;
 
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -194,22 +203,22 @@ namespace phys
             /// intends to continue with the mainloop, and false if the callback intend to
             /// end the mainloop.
             /// @return A bool that represents whether the mainloop should end.
-            bool PreRender();
+            virtual bool PreRender();
 
             /// @brief Drops the PreRender pointer.
             /// @details Drops the PreRender pointer, this does not 'delete' the pointer, merely
             /// assigns it to zero.
-            void ErasePreRender();
+            virtual void ErasePreRender();
 
             /// @brief This assigns a function to be the callback function for PreRender
             /// @details This assigns a function to be the callback function for PreRender.
             /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments
-            void SetPreRender(bool (*Callback)());
+            virtual void SetPreRender(bool (*Callback)());
 
             /// @brief Is the PreRender callback set or not.
             /// @details Is the PreRender callback set or not. The returns true if set or false otherwise.
             /// @return This returns true if the PreRender CallBack is set, false otherwise
-            bool IsPreRenderCallbackSet();
+            virtual bool IsPreRenderCallbackSet() const;
 
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -220,22 +229,22 @@ namespace phys
             /// intends to continue with the mainloop, and false if the callback intend to
             /// end the mainloop.
             /// @return A bool that represents whether the mainloop should end.
-            bool PostRender();
+            virtual bool PostRender();
 
             /// @brief Drops the PostRender pointer.
             /// @details Drops the PostRender pointer, this does not 'delete' the pointer, merely
             /// assigns it to zero.
-            void ErasePostRender();
+            virtual void ErasePostRender();
 
             /// @brief This assigns a function to be the callback function for PostRender
             /// @details This assigns a function to be the callback function for PostRender.
             /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments
-            void SetPostRender(bool (*Callback)());
+            virtual void SetPostRender(bool (*Callback)());
 
             /// @brief Is the PostRender callback set or not.
             /// @details Is the PostRender callback set or not. The returns true if set or false otherwise.
             /// @return This returns true if the PostRender CallBack is set, false otherwise
-            bool IsPostRenderCallbackSet();
+            virtual bool IsPostRenderCallbackSet() const;
 
             //Once upon a time this was required, it will be required the exact instant someone remove too. So we settle for and uneasy peace, and leave it, but ineffectual,
             //friend class World;

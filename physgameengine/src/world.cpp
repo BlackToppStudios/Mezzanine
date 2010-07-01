@@ -54,7 +54,7 @@
 #include "vector3.h"
 #include "crossplatform.h"
 #include "callbackmanager.h"
-#include "graphicsettings.h"
+#include "graphicsmanager.h"
 #include "actorbase.h"
 #include "eventuserinput.h"
 

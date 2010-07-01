@@ -157,7 +157,7 @@ namespace phys
             {Code.push_back(Code_);}
     }
 
-    EventBase::EventType EventUserInput::getEventType() const
+    EventBase::EventType EventUserInput::GetType() const
     {
         return UserInput;
     }

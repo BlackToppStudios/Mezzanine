@@ -71,7 +71,7 @@ namespace phys
             /// @details This is primarily for the benefit of sorting thorugh event pointers. If
             /// this functions returns EventType::RenderTime, then and event pointer can safely be
             /// cast to phys::EventRenderTime . This method is inherited from phys::Event .
-            virtual EventType getEventType() const;
+            virtual EventType GetType() const;
 
             /// @brief Returns the a floating point value with the amount of time.
             /// @details Returns the a floating point value with the amount of time.

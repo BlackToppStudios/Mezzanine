@@ -136,8 +136,7 @@ namespace phys
 
     String ActorContainerVector::GetType() const
     {
-        String temp("phys::ActorContainerVector");
-        return temp;
+        return String("phys::ActorContainerVector");
     }
 
     ActorBase* ActorContainerVector::FindActor(Ogre::Node* GraphicsNode)

@@ -45,7 +45,7 @@
 namespace phys
 {
 
-    EventBase::EventType EventQuit::getEventType() const
+    EventBase::EventType EventQuit::GetType() const
     {
         return EventBase::QuitMessage;
     }
