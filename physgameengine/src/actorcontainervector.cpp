@@ -45,9 +45,8 @@
 
 namespace phys
 {
-    ActorContainerVector::ActorContainerVector (World* Parent_) : ActorContainerBase (Parent_)
-    {
-    }
+    ActorContainerVector::ActorContainerVector (World* Parent_) : phys::ActorContainerBase (Parent_)
+        {}
 
     void ActorContainerVector::AddActor(ActorBase* ActorToAdd)
     {
@@ -56,9 +55,7 @@ namespace phys
     }
 
     ActorBase* ActorContainerVector::LastActorAdded()
-    {
-        return this->RecentlyAdded;
-    }
+        { return this->RecentlyAdded; }
 
     void ActorContainerVector::RemoveActor(ActorBase* ActorToRemove)
     {
@@ -73,14 +70,10 @@ namespace phys
     }
 
     void ActorContainerVector::RemoveActorAtCursor()
-    {
-        this->cursor=this->erase(this->cursor);
-    }
+        { this->cursor=this->erase(this->cursor); }
 
     Whole ActorContainerVector::GetActorCount() const
-    {
-        return this->size();
-    }
+        { return this->size(); }
 
     void ActorContainerVector::CursorToFirst()
     {
@@ -125,19 +118,13 @@ namespace phys
     }
 
     ActorBase* ActorContainerVector::GetFirst() const
-    {
-        return *(this->begin());
-    }
+        { return *(this->begin()); }
 
     ActorBase* ActorContainerVector::GetLast() const
-    {
-        return *(this->end());
-    }
+        { return *(this->end()); }
 
-    String ActorContainerVector::GetType() const
-    {
-        return String("phys::ActorContainerVector");
-    }
+    String ActorContainerVector::GetContainerType() const
+        { return String("phys::ActorContainerVector"); }
 
     ActorBase* ActorContainerVector::FindActor(Ogre::Node* GraphicsNode)
     {
@@ -161,6 +148,34 @@ namespace phys
         return NULL;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////
+    // WorldGetSet/ManagerBase Members
+    ///////////////////////////////////
+    World* ActorContainerVector::GetGameWorld() const
+        { return this->GameWorld; }
+
+    void ActorContainerVector::SetGameWorld( World* GameWorld_ )
+    {
+        if (this->GameWorld != NULL)
+        {
+            //Remove actors from world
+        }
+
+        this->GameWorld = GameWorld_;
+
+        if (this->GameWorld != NULL)
+        {
+            //add actors to world
+        }
+    }
+
+    void ActorContainerVector::Initialize()
+        {}
+
+    ManagerBase::ManagerTypeName ActorContainerVector::GetType() const
+        { return ManagerBase::ActorContainerBase; }
+
 }
+
 
 #endif

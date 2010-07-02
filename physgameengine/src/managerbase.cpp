@@ -48,8 +48,8 @@ namespace phys
     ManagerBase::ManagerBase()
         {}
 
-    ManagerBase::ManagerBase(World* GameWorld_) : GameWorld(GameWorld_)
-        {}
+    ManagerBase::ManagerBase(World* GameWorld_)
+        { this->GameWorld = GameWorld_; }
 
     World* ManagerBase::GetGameWorld() const
         { return this->GameWorld; }

@@ -40,6 +40,8 @@
 #ifndef _managerbase_h
 #define _managerbase_h
 
+#include "worldgetset.h"
+
 namespace phys
 {
     class World;
@@ -50,11 +52,11 @@ namespace phys
     /// @details This creates a base set of functions that Managers are all
     /// expected to implement.
     ///////////////////////////////////////
-    class ManagerBase
+    class ManagerBase : public WorldGetSet
     {
         protected:
-
-            /// @brief A pointer to the World the actor will reside.
+            /// @internal
+            /// @brief The actual pointer to the world
             World* GameWorld;
 
         public:
@@ -95,7 +97,7 @@ namespace phys
             /// @details If you are using the phys::World this is called when phys::World::GameInit() is called. It is expected that
             /// by the time this is called either ManagerBase::ManagerBase(World*) or ManagerBase::SetGameWorld(World*) will have been called.
             /// This is where all configuration that requires atleast one other manager on the phys::World to exist.
-           // virtual void Initialize() = 0;
+            virtual void Initialize() = 0;
 
             /// @brief This gets the World that this manager is working with.
             /// @return This returns a phys::World* that is the same as the one store in this Manager
@@ -103,17 +105,21 @@ namespace phys
 
             /// @brief This sets the phys::World that this Manager works with.
             /// @details It is expected that this won't change very much, and for some managers changing this at the wrong time could
-            /// cause some very fundamental problems. Moving a Manager may not work at all depending on how the manager was created. The World
-            /// this Points to does not nescessarily have to point back to this Manager. In fact, managers should be designed so that the
-            /// World can swap them out. For example swapping out event managers could allow for a swift re-mapping of game controls when
-            /// a game switches modes.
+            /// cause some very fundamental problems. In fact, managers should be designed so that they
+            /// can swapped  out. For example swapping out event managers could allow for a swift re-mapping of game controls when
+            /// a game switches modes.\n\n
+            /// For managers that can be moved it is expected that this function will change the pointer on the phys::World for the
+            /// appropriate manager to point to this manager. This simplifies the calls that will naturally come next. To detach a
+            /// Manager from the world pass this method a NULL pointer. If the manager cannot be removed or detached it should
+            /// throw and exception using World::LogAndThrow, and it must not fail to attach to a world (that means it must internally
+            /// handle all exception raised by the attaching process or throw an "Unrecoverable Error")
             virtual void SetGameWorld( World* GameWorld_ );
 
             /// @brief This returns the type of a manager.
             /// @details This is intended to make using and casting from Manager base easier. With this is is possible to cast from
             /// ManagerBase to the correct Manager Type.
             /// @return This returns a ManagerTypeName to identify what this can be safely cast to.
-            //virtual ManagerTypeName GetType() const = 0;
+            virtual ManagerTypeName GetType() const = 0;
 
     };// /ManagerBase
 } // /phys

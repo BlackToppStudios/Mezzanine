@@ -224,6 +224,8 @@
 		<Unit filename="src/vector3wactor.h" />
 		<Unit filename="src/world.cpp" />
 		<Unit filename="src/world.h" />
+		<Unit filename="src/worldgetset.cpp" />
+		<Unit filename="src/worldgetset.h" />
 		<Unit filename="src/worldquerytool.cpp" />
 		<Unit filename="src/worldquerytool.h" />
 		<Extensions>

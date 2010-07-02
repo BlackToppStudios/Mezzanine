@@ -52,7 +52,7 @@ namespace phys
     /// @details This stores a series of pointers to functions that the main loop
     /// will call. This can be swapped out at any point in time with another
     /// CallBackManager to completely (or subtley) alter game behavior.
-    class CallBackManager//: public ManagerBase
+    class CallBackManager: public ManagerBase
     {
         private:
             //pointers to engine internal structures
@@ -88,7 +88,7 @@ namespace phys
 
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::CallBackManager
-//            virtual ManagerBase::ManagerTypeName GetType() const;
+            virtual ManagerBase::ManagerTypeName GetType() const;
 
 
         ///////////////////////////////////////////////////////////////////////////////

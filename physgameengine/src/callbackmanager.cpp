@@ -71,8 +71,8 @@ namespace phys
     void CallBackManager::Initialize()
         {}
 
-    //ManagerTypeName CallBackManager::GetType() const
-    //    { return ManagerBase::CallBackManager; }
+    ManagerBase::ManagerTypeName CallBackManager::GetType() const
+        { return ManagerBase::CallBackManager; }
 
     ///////////////////////////////////////////////////////////////////////////////
     //Preinput callback will be called in the main loop first

@@ -41,7 +41,7 @@
 #define actorcontainervector_h
 
 #include "actorcontainerbase.h"
-#include "world.h"
+#include "managerbase.h"
 #include <vector>
 
 namespace Ogre
@@ -59,7 +59,7 @@ namespace phys
     /// allow us to have access to a container through a standardized structure this
     /// way the phys::world doesn't need to worry about the details when accessing
     /// and storing actors
-    class ActorContainerVector : public ActorContainerBase , public std::vector<ActorBase*>
+    class ActorContainerVector : public ActorContainerBase, public std::vector<ActorBase*>, public ManagerBase
     {
         public:
             /// @brief Simple Constructor
@@ -67,6 +67,7 @@ namespace phys
             /// @param Parent_ this is a Pointer to the phys::World that will be using these actors.
             ActorContainerVector (World* Parent_);
 
+            //Simply Inherited mmembers
             virtual void AddActor(ActorBase* ActorToAdd);
 
             virtual ActorBase* LastActorAdded();
@@ -91,8 +92,9 @@ namespace phys
 
             virtual ActorBase* GetLast() const;
 
-            virtual String GetType() const;
+            virtual String GetContainerType() const;
 
+            virtual World* GetGameWorld() const;
 
             /// @brief This finds an actor by searching for a graphics subsystem nodes
             /// @details This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time.
@@ -110,6 +112,20 @@ namespace phys
             /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor
             /// so feel free to use this instead.
             vector<ActorBase*>::iterator cursor;
+
+            /// @brief This safely move all the Actors out of or into a phys::World
+            /// @details This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system
+            /// if a phys::World is present. Then this sets up all actors with the new World unless it is NULL
+            /// @warning Not Fully Implemented this just moves the pointer.
+            virtual void SetGameWorld( World* GameWorld_ );
+
+            /// @brief Empty Initilizor
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void Initialize();
+
+            /// @brief This returns the type of this manager.
+            /// @return This returns ManagerTypeName::ActorContainerBase
+            virtual ManagerTypeName GetType() const;
 
         private:
             /// @brief This is used to implement LastActorAdded()

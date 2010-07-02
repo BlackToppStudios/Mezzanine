@@ -295,13 +295,14 @@ namespace phys
         this->LoadOgreSettings();
         this->CreateRenderWindow();
 
-        //Initiliaze the Physics Debug Drawer
-        this->Physics->Initialize();
+        //Initiliaze the Managers
+        this->Physics->Initialize(); //Initialize the Debug drawer.
+        this->CallBacks->Initialize();
+        this->Actors->Initialize();
+
 
         if(CallMainLoop)
-        {
-            MainLoop();
-        }
+            { this->MainLoop(); }
     }
 
     void World::MainLoop()
