@@ -47,6 +47,8 @@ class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
 class btSoftRigidDynamicsWorld;
 
+#include "managerbase.h"
+
 namespace phys
 {
     // internal forward declarations
@@ -61,7 +63,7 @@ namespace phys
     /// @details This is a plage for storing items related to Debug physics
     /// drawing, Adding constraints, screwing with gravity and doing other physics
     /// Related features.
-    class PhysicsManager
+    class PhysicsManager : ManagerBase
     {
         private:
             friend class World;
@@ -109,7 +111,7 @@ namespace phys
             /// @brief This configures the Physics Manager to work with the Graphic settings
             /// @details This configures the Physics manager to work with the existing graphics settings. This must
             /// be called before the physics manager is used, but after the graphics have been initialized
-            void Initialize();
+            virtual void Initialize();
 
             /// @brief Deconstructor
             /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
@@ -148,6 +150,11 @@ namespace phys
             /// @details
             /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
             void DoMainLoopItems(const Real &TimeElapsed);
+
+        //Inherited from ManagerBase
+            /// @brief This returns the type of this manager.
+            /// @return This returns ManagerTypeName::PhysicsManager
+            virtual ManagerTypeName GetType() const;
 
     };
 }

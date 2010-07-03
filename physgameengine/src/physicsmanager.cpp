@@ -374,6 +374,10 @@ namespace phys
     {
         return this->BulletDrawer->GetWireFrameCount();
     }
-}
+
+    //Inherited From ManagerBase
+    ManagerBase::ManagerTypeName PhysicsManager::GetType() const
+        { return ManagerBase::PhysicsManager; }
+}// \phys
 
 #endif

@@ -298,8 +298,10 @@ namespace phys
         //Initiliaze the Managers
         this->Physics->Initialize(); //Initialize the Debug drawer.
         this->CallBacks->Initialize();
-        //this->Actors->Initialize();
-
+        this->Actors->Initialize();
+        this->Graphics->Initialize();
+        this->Cameras->Initialize();
+        this->Events->Initialize();
 
         if(CallMainLoop)
             { this->MainLoop(); }
