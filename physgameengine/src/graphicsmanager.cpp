@@ -116,7 +116,12 @@ namespace phys
         this->RenderHeight = Height_;
     }
 
+    //Inherited From ManagerBase
+    void GraphicsManager::Initialize()
+        {}
 
+    ManagerBase::ManagerTypeName GraphicsManager::GetType() const
+        { return ManagerBase::GraphicsManager; }
 
 
 

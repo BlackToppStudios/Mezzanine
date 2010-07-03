@@ -40,6 +40,8 @@
 #ifndef _graphicsmanager_h
 #define _graphicsmanager_h
 
+#include "managerbase.h"
+
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
@@ -50,7 +52,7 @@ namespace phys
     /// settings. This is intended to make it easy for developers to pass/move around
     /// complex graphics settings. We hope to eventually include other items like
     /// shader settings, rendering API, and maybe other settings too.
-    class GraphicsManager
+    class GraphicsManager: ManagerBase
     {
         private:
 
@@ -122,7 +124,15 @@ namespace phys
             /// @param Height_ The new desired Width for the rendering area as a whole number
             void setRenderResolution(const Whole &Width_, const Whole &Height_);
 
+        //Inherited from ManagerBase
+            /// @brief Empty Initializor
+            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
+            /// in case a derived class wants to override it for some reason
+            virtual void Initialize();
 
+            /// @brief This returns the type of this manager.
+            /// @return This returns ManagerTypeName::GraphicsManager
+            virtual ManagerTypeName GetType() const;
 
     };
 }
