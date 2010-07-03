@@ -41,6 +41,7 @@
 #define _CameraManager_cpp
 
 #include "cameramanager.h"
+#include "camera.h"
 
 #include <Ogre.h>
 
@@ -111,6 +112,24 @@ namespace phys
         Ogre::Camera* tempcam = this->SceneManager->createCamera(namemaker.str());
         Cameras.push_back(tempcam);
         return namemaker.str();
+    }
+
+    Camera* CameraManager::CreateCameraPtr ()
+    {
+        if(NULL==DefaultCamera)
+        {
+            String Name="DefaultCamera";
+            this->DefaultCamera = this->SceneManager->createCamera(Name);
+            Camera* tempptr = new Camera(DefaultCamera, this);
+            return tempptr;
+        }
+        std::stringstream namemaker;
+        String Name="Camera";
+        namemaker << Name << Cameras.size()+1;
+        Ogre::Camera* tempcam = this->SceneManager->createCamera(namemaker.str());
+        Cameras.push_back(tempcam);
+        Camera* tempptr = new Camera(tempcam, this);
+        return tempptr;
     }
 
     String CameraManager::CreateOrbitingNode (Vector3 Target, Vector3 RelativeLoc)

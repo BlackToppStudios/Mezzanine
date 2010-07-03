@@ -65,6 +65,7 @@ namespace phys
             btRigidBody* BodyB;
         public:
             TypedConstraint();
+            virtual ~TypedConstraint();
             TypedConstraint(ActorRigid* bodya, ActorRigid* bodyb);
             TypedConstraint(ActorRigid* bodya);
             virtual void SetParam(int num, Real value, int axis=-1) = 0;
@@ -79,6 +80,7 @@ namespace phys
             ConeTwistConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 Vectorb, Quaternion QuaternionA, Quaternion QuaternionB);
             ConeTwistConstraint(ActorRigid* ActorA, Vector3 VectorA, Quaternion QuaternionA);
             ConeTwistConstraint(btConeTwistConstraint* Constraint);
+            virtual ~ConeTwistConstraint();
             void SetAngularOnly(bool AngularOnly);
             void SetLimit(int LimitIndex, Real LimitValue);
             void SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness=1.0, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
@@ -104,6 +106,7 @@ namespace phys
             Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA);
             Generic6DofConstraint(ActorRigid* ActorB, Vector3 Vectorb, Quaternion QuaternionB, bool UseLinearReferenceB);
             Generic6DofConstraint(btGeneric6DofConstraint* Constraint);
+            virtual ~Generic6DofConstraint();
             void SetLinearUpperLimit(Vector3 Limit);
             void SetLinearLowerLimit(Vector3 Limit);
             void SetAngularUpperLimit(Vector3 Limit);
@@ -124,6 +127,7 @@ namespace phys
             Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB);
             Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA);
             Generic6DofSpringConstraint(btGeneric6DofSpringConstraint* Constraint);
+            ~Generic6DofSpringConstraint();
             void SetStiffness(int Index, Real Stiffness);
             void SetDamping(int Index, Real Damping);
             void SetEquilibriumPoint(int Index);
@@ -139,6 +143,7 @@ namespace phys
             HingeConstraint(ActorRigid* ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA);
             HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA=false);
             HingeConstraint(btHingeConstraint* Constraint);
+            virtual ~HingeConstraint();
             void SetAngularOnly(bool AngularOnly);
             void EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
             void EnableMotor(bool EnableMotor);
@@ -159,6 +164,7 @@ namespace phys
         public:
             Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2);
             Hinge2Constraint(btHinge2Constraint* Constraint);
+            ~Hinge2Constraint();
             void SetUpperLimit(Real Ang1Max);
             void SetLowerLimit(Real Ang1Min);
     };
@@ -171,6 +177,7 @@ namespace phys
             Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotA, Vector3 PivotB);
             Point2PointConstraint(ActorRigid* ActorA, Vector3 PivotA);
             Point2PointConstraint(btPoint2PointConstraint* Constraint);
+            virtual ~Point2PointConstraint();
             void SetPivotA(Vector3 PivotA);
             void SetPivotB(Vector3 PivotB);
             virtual void SetParam(int num, Real value, int axis=-1);
@@ -185,6 +192,7 @@ namespace phys
             SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA);
             SliderConstraint(ActorRigid* ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceA);
             SliderConstraint(btSliderConstraint* Constraint);
+            virtual ~SliderConstraint();
             void SetUpperLinLimit(Real UpperLimit);
             void SetUpperAngLimit(Real UpperLimit);
             void SetLowerLinLimit(Real LowerLimit);
@@ -225,6 +233,7 @@ namespace phys
         public:
             UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2);
             UniversalConstraint(btUniversalConstraint* Constraint);
+            ~UniversalConstraint();
             void SetUpperLimit(Real Ang1Max, Real Ang2Max);
             void SetLowerLimit(Real Ang1Min, Real Ang2Min);
     };
