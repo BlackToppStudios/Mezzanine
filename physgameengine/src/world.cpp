@@ -446,12 +446,6 @@ namespace phys
         this->DestroyRenderWindow();
     }
 
-    void World::MoveCamera(const Vector3 &Position, const Vector3 &LookAt)
-    {
-        this->OgreCamera->setPosition(Ogre::Vector3(Position.X,Position.Y,Position.Z));
-        this->OgreCamera->lookAt(Ogre::Vector3(LookAt.X,LookAt.Y,LookAt.Z));
-    }
-
     void World::DoMainLoopAllItems(const Real &PreviousFrameTime)
     {
         this->DoMainLoopPhysics(PreviousFrameTime);
@@ -531,8 +525,6 @@ namespace phys
         this->OgreCamera = this->Cameras->DefaultCamera;
         this->OgreCamera->setNearClipDistance(5.0f);
         this->OgreCamera->setFarClipDistance(5000.0f);
-
-        //this->MoveCamera(Vector3(0.0f,0.0f,500.0f), Vector3(0.0f,0.0f,0.0f));
 
         //viewport connects camera and render window
         this->OgreViewport = this->OgreGameWindow->addViewport(OgreCamera);

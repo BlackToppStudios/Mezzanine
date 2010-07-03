@@ -270,13 +270,6 @@ namespace phys
             /// user settings.
             bool ShowSystemSettingDialog();
 
-            /// @brief This moves the camera relative to the world
-            /// @details The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.
-            /// @param Position Where should the camera be seated
-            /// @param LookAt Point the camera such that this poin is centered on the screen
-            /// @todo TODO: move to camera manager
-            void MoveCamera(const Vector3 &Position, const Vector3 &LookAt);
-
         ///////////////////////////////////////////////////////////////////////////////
         // Graphics system loading methods
         ///////////////////////////////////////
