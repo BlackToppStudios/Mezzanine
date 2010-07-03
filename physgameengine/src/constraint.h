@@ -157,8 +157,8 @@ namespace phys
         protected:
             btHinge2Constraint* Hinge2;
         public:
-            Hinge2Constraint::Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2);
-            Hinge2Constraint::Hinge2Constraint(btHinge2Constraint* Constraint);
+            Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2);
+            Hinge2Constraint(btHinge2Constraint* Constraint);
             void SetUpperLimit(Real Ang1Max);
             void SetLowerLimit(Real Ang1Min);
     };

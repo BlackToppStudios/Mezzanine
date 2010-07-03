@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//Â© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ namespace phys
     /// @details This creates a base set of functions that Managers are all
     /// expected to implement.
     ///////////////////////////////////////
-    class ManagerBase : public WorldGetSet
+    class ManagerBase
     {
         protected:
             /// @internal
@@ -91,12 +91,15 @@ namespace phys
             /// @param GameWorld_ This is the phys::World this Manager is expected to work with.
             ManagerBase(World* GameWorld_);
 
+            /// @brief Deconstructor
+            /// @details This is actuall
             virtual ~ManagerBase();
 
             /// @brief Configure Items requiring other Managers
             /// @details If you are using the phys::World this is called when phys::World::GameInit() is called. It is expected that
             /// by the time this is called either ManagerBase::ManagerBase(World*) or ManagerBase::SetGameWorld(World*) will have been called.
-            /// This is where all configuration that requires atleast one other manager on the phys::World to exist.
+            /// This is where all configuration that requires atleast one other manager on the phys::World to exist.\n\n
+            /// Yes we know it is spelled wrong, but are Zs cooler anyway.
             virtual void Initialize() = 0;
 
             /// @brief This gets the World that this manager is working with.

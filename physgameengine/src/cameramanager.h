@@ -44,6 +44,7 @@
 #include "datatypes.h"
 #include "quaternion.h"
 #include "ray.h"
+#include "managerbase.h"
 
 #include <vector>
 
@@ -64,7 +65,7 @@ namespace phys
     /// All functions that manipulate the camera will default to the default camera, so if you only use
     /// one camera you should never have to name the camera you want to use.
     ///////////////////////////////////////////////////////////////////////////////
-    class CameraManager {
+    class CameraManager : public ManagerBase {
         private:
             friend class World;
             Ogre::SceneManager* SceneManager;
@@ -223,6 +224,17 @@ namespace phys
             /// @param Radian The amount you wish to increment the orbit in Radians.
             /// @param Name The name of the orbiting node you wish to increment the orbit for.
             void IncrementYOrbit(Real Radian, String Name);
+
+            //Inherited From ManagerBase
+            /// @brief Empty Initializor
+            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
+            /// in case a derived class wants to override it for some reason
+            virtual void Initialize();
+
+            /// @brief This returns the type of this manager.
+            /// @return This returns ManagerTypeName::CameraManager
+            virtual ManagerTypeName GetType() const;
+
     };
 }//phys
 #endif

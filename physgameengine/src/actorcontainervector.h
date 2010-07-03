@@ -59,7 +59,7 @@ namespace phys
     /// allow us to have access to a container through a standardized structure this
     /// way the phys::world doesn't need to worry about the details when accessing
     /// and storing actors
-    class ActorContainerVector : public ActorContainerBase, public std::vector<ActorBase*>, public ManagerBase
+    class ActorContainerVector : public ActorContainerBase, public std::vector<ActorBase*>
     {
         public:
             /// @brief Simple Constructor
@@ -122,10 +122,6 @@ namespace phys
             /// @brief Empty Initilizor
             /// @details This class implements this for the sake of entension and compatibility this function does nothing
             virtual void Initialize();
-
-            /// @brief This returns the type of this manager.
-            /// @return This returns ManagerTypeName::ActorContainerBase
-            virtual ManagerTypeName GetType() const;
 
         private:
             /// @brief This is used to implement LastActorAdded()

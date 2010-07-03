@@ -71,11 +71,11 @@ namespace phys
     /// movement functions. For the container that the phys::World keeps it should be assume that the
     /// cursor is used. For other containers you should manage you container carefully and/or use another
     /// iteration method, such as STL iterators.
-    class ActorContainerBase : public WorldGetSet
+    class ActorContainerBase : public ManagerBase
     {
         private:
-            /// @brief This is expected to be a pointer to the world this will be rendered with and built on
-            World* ParentWorld;
+            // @brief This is expected to be a pointer to the world this will be rendered with and built on
+            //World* ParentWorld;
 
         protected:
             /// @internal
@@ -185,6 +185,13 @@ namespace phys
             /// @details If the are any actors in the world, this removes them from both the physics and graphics subsystem, and adds them
             /// to the new world as is appropriate.
             virtual void SetGameWorld( World* GameWorld_ ) = 0;
+
+            /// @brief This returns the type of this manager.
+            /// @return This returns ManagerTypeName::ActorContainerBase
+            virtual ManagerTypeName GetType() const;
+
+            // Inherited from ManagerBase
+            virtual void Initialize() = 0;
     };
 }
 
