@@ -57,6 +57,7 @@ namespace Ogre
 
 namespace phys
 {
+    class Camera;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CameraManager
     /// @headerfile cameramanager.h
@@ -68,6 +69,7 @@ namespace phys
     class CameraManager : public ManagerBase {
         private:
             friend class World;
+            friend class Camera;
             Ogre::SceneManager* SceneManager;
             Ogre::Camera* DefaultCamera;
             std::vector< Ogre::Camera* > Cameras;
@@ -90,6 +92,10 @@ namespace phys
             /// camera created.  The first camera created will always be the Default camera, and is also created just
             /// after this class is constructed in the World.CreateRenderWindow() function.
             String CreateCamera();
+            /// @brief Creates a camera and returns a pointer.
+            /// @details This function does the same as the other CreateCamera function but will also return a pointer to
+            /// the camera class instead of a string(being the name of the camera).
+            Camera* CreateCameraPtr();
             /// @brief Creates a node that will orbit around a point.
             /// @details This will create 2 nodes in the scene, the first being the point in the world you want to orbit
             /// the second node around.  The second being the node that does the orbiting.  You can then attach a camera
@@ -206,7 +212,7 @@ namespace phys
             /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
             void ZoomCamera(Real Zoom, String Name="DefaultCamera");
             /// @brief Resets the zoom level back to the default.
-            /// @details This function will return the zoom level back to normal.
+            /// @details This function will return the zoom level back to normal.  Note this function will only work if the camera is attached to a node.
             /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
             void ResetZoom(String Name="DefaultCamera");
             /// @brief Attaches a camera to a node.

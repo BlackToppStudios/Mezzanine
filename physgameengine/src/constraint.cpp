@@ -63,6 +63,10 @@ namespace phys
         BodyA=bodya->physrigidbody;
     }
 
+    TypedConstraint::~TypedConstraint ()
+    {
+    }
+
     /////////////////////////////////////////
     // ConeTwist Constraint Functions
 
@@ -83,6 +87,11 @@ namespace phys
     ConeTwistConstraint::ConeTwistConstraint (btConeTwistConstraint* Constraint)
     {
         ConeTwist = Constraint;
+    }
+
+    ConeTwistConstraint::~ConeTwistConstraint ()
+    {
+        delete ConeTwist;
     }
 
     void ConeTwistConstraint::SetAngularOnly (bool AngularOnly)
@@ -181,6 +190,11 @@ namespace phys
         Generic6dof = Constraint;
     }
 
+    Generic6DofConstraint::~Generic6DofConstraint ()
+    {
+        delete Generic6dof;
+    }
+
     void Generic6DofConstraint::SetLinearUpperLimit (Vector3 Limit)
     {
         this->Generic6dof->setLinearUpperLimit(Limit.GetBulletVector3());
@@ -250,6 +264,11 @@ namespace phys
         Generic6dofSpring = Constraint;
     }
 
+    Generic6DofSpringConstraint::~Generic6DofSpringConstraint ()
+    {
+        delete Generic6dofSpring;
+    }
+
     void Generic6DofSpringConstraint::SetStiffness(int Index, Real Stiffness)
     {
         this->Generic6dofSpring->setStiffness(Index, Stiffness);
@@ -296,6 +315,11 @@ namespace phys
     HingeConstraint::HingeConstraint(btHingeConstraint* Constraint)
     {
         Hinge = Constraint;
+    }
+
+    HingeConstraint::~HingeConstraint()
+    {
+        delete Hinge;
     }
 
     void HingeConstraint::SetAngularOnly(bool AngularOnly)
@@ -370,6 +394,11 @@ namespace phys
         Hinge2 = Constraint;
     }
 
+    Hinge2Constraint::~Hinge2Constraint()
+    {
+        delete Hinge2;
+    }
+
     void Hinge2Constraint::SetUpperLimit(Real Ang1Max)
     {
         this->Hinge2->setUpperLimit(Ang1Max);
@@ -396,6 +425,11 @@ namespace phys
     Point2PointConstraint::Point2PointConstraint(btPoint2PointConstraint* Constraint)
     {
         Point2Point = Constraint;
+    }
+
+    Point2PointConstraint::~Point2PointConstraint()
+    {
+        delete Point2Point;
     }
 
     void Point2PointConstraint::SetPivotA(Vector3 PivotA)
@@ -437,6 +471,11 @@ namespace phys
     SliderConstraint::SliderConstraint(btSliderConstraint* Constraint)
     {
         Slider = Constraint;
+    }
+
+    SliderConstraint::~SliderConstraint()
+    {
+        delete Slider;
     }
 
     void SliderConstraint::SetUpperLinLimit(Real UpperLimit)
@@ -608,6 +647,11 @@ namespace phys
     UniversalConstraint::UniversalConstraint(btUniversalConstraint* Constraint)
     {
         Universal = Constraint;
+    }
+
+    UniversalConstraint::~UniversalConstraint()
+    {
+        delete Universal;
     }
 
     void UniversalConstraint::SetUpperLimit(Real Ang1Max, Real Ang2Max)

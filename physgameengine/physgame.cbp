@@ -177,6 +177,8 @@
 		<Unit filename="src\actorsoft.h" />
 		<Unit filename="src\callbackmanager.cpp" />
 		<Unit filename="src\callbackmanager.h" />
+		<Unit filename="src\camera.cpp" />
+		<Unit filename="src\camera.h" />
 		<Unit filename="src\cameramanager.cpp" />
 		<Unit filename="src\cameramanager.h" />
 		<Unit filename="src\constraint.cpp" />
