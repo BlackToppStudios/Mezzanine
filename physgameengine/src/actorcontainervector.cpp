@@ -172,9 +172,6 @@ namespace phys
     void ActorContainerVector::Initialize()
         {}
 
-    ManagerBase::ManagerTypeName ActorContainerVector::GetType() const
-        { return ManagerBase::ActorContainerBase; }
-
 }
 
 

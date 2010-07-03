@@ -50,18 +50,18 @@ namespace phys
         @section actorcontaineroverview Actor Container Overview
     */
 
-    ActorContainerBase::ActorContainerBase(World* ParentWorld_)
-    {
-        this->ParentWorld=ParentWorld_;
-    }
+    ActorContainerBase::ActorContainerBase(World* ParentWorld_) : ManagerBase(ParentWorld_)
+        {}
 
     ActorContainerBase::~ActorContainerBase()
         {}
 
     Ogre::Node* ActorContainerBase::GetNode(ActorBase* actor)
-    {
-        return actor->node;
-    }
+        { return actor->node; }
+
+    ManagerBase::ManagerTypeName ActorContainerBase::GetType() const
+        { return ManagerBase::ActorContainerBase; }
+
 }
 
 

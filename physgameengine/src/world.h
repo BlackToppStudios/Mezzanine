@@ -270,16 +270,13 @@ namespace phys
             /// user settings.
             bool ShowSystemSettingDialog();
 
+
             /// @brief This moves the camera relative to the world
             /// @details The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.
             /// @param Position Where should the camera be seated
             /// @param LookAt Point the camera such that this poin is centered on the screen
             /// @todo TODO: move to camera manager
             void MoveCamera(const Vector3 &Position, const Vector3 &LookAt);
-
-            /// @brief This is a pointer to the Camera Manager.
-            /// @details This is a pointer to the camera management class for the engine.
-            CameraManager* Cameras;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Graphics system loading methods
@@ -373,17 +370,21 @@ namespace phys
         ///////////////////////////////////////////////////////////////////////////////
         // Feature Manager Pointers
         ///////////////////////////////////////
+            /// @brief This is a convienient place to keep pointer to our Actors
+            /// @details Whenever an actor is added, a pointer to it will be stored here.
+            ActorContainerBase* Actors;
+
             /// @brief This is a point to the default Call BackManager
             /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.
             CallBackManager* CallBacks;
 
+            /// @brief This is a pointer to the Camera Manager.
+            /// @details This is a pointer to the camera management class for the engine.
+            CameraManager* Cameras;
+
             /// @brief This is the default pointer to the Event Manager.
             /// @details This is the Event manager that all physworld members will place any events into.
             EventManager* Events;
-
-            /// @brief This is a convienient place to keep pointer to our Actors
-            /// @details Whenever an actor is added, a pointer to it will be stored here.
-            ActorContainerBase* Actors;
 
             /// @brief A pointer to the graphics settings Manager, or it will be soon
             /// @details This will be the point that graphics settings will be managed from

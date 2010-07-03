@@ -65,6 +65,7 @@ namespace phys
     ///////////////////////////////////////
     class ActorRigid: public ActorBase {
         protected:
+            friend class TypedConstraint;
             /// @brief Used to simulate the behavior of a btRigidBody
             btRigidBody* physrigidbody;
 

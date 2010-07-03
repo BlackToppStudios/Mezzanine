@@ -414,5 +414,15 @@ namespace phys
         Ogre::SceneNode* tempptr = FindNode(Name);
         tempptr->getParentSceneNode()->yaw(Rad);
     }
+
+    // Inherited from ManagerBase
+    void CameraManager::Initialize()
+        {}
+
+    ManagerBase::ManagerTypeName CameraManager::GetType() const
+        { return ManagerBase::CameraManager; }
+
+
+
 }//phys
 #endif
