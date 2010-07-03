@@ -81,11 +81,11 @@ namespace phys
     /// the events.
     /// @warning Currently this is not thread safe, even though it should be.
     ///////////////////////////////////////////////////////////////////////////////
-    class EventManager
+    class EventManager: ManagerBase
     {
         private:
             //The Default Physics worlds that this Eventmanager is expected to interact with
-            World* ParentWorld;
+            //World* ParentWorld;
 
             //The Queue that all the events get stored in
             std::list<EventBase*> EventQueue;
@@ -337,6 +337,13 @@ namespace phys
             /// This is called automatically by main loop processing, but there is no harm in calling it several times.
             /// @return This returns a pointer to a EventUserInput that contains the desired metacodes
             EventUserInput* PollForUserInputEvents();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Inherited From ManagerBase
+        ///////////////////////////////////////
+
+
+
     };
 }
 #endif
