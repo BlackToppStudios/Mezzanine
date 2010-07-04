@@ -37,48 +37,36 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef actorcontainerbase_h
-#define actorcontainerbase_h
+#ifndef containerbase_h
+#define containerbase_h
 
 //Internal includes
-#include "actorbase.h"
-#include "world.h"
-
-namespace Ogre
-{
-    class Node;
-}
+//#include "world.h"
 
 namespace phys
 {
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorContainerBase
-    /// @headerfile actorcontainerbase.h
-    /// @brief A base class to unify the interface for different kinds of containers for holding actors
-    /// @details Containers for actors must implement atleast this interface(abstract base class) to
-    /// be usable with the phys::World for tracking in game objects. There are several reasons why this
-    /// will be useful. Our first thought was deriving from this and an STL container like vector or
-    /// list. Members of this class should be implementing or inheriting a proper container\n\n
-    /// The phys world will use one of these containers to store all of the actors for tracking purposes
-    /// Since  \n\n
-    /// In theory you should be be able to work with multiple actor containers and swiftly add or remove
-    /// them to ad from a world to quickly control what actors are being worked with. It should even be
-    /// possible to remove all actors, or have multiple set of actor in the world if you use the
-    /// GameWorldSet methods carefully. \n\n
-    /// Additionally the is no reason an actor could be in multiple containers so this can provide even
-    /// more options for actor sorting and categorization at runtime. \n\n
+    /// @class ContainerBase
+    /// @headerfile containerbase.h
+    /// @brief A base class to unify the interface for all game object containers
+    /// @details This interface will be used to allow a more generic way to work with container for
+    /// game objects such as cameras, actors, constraints and maybe other game objects. \n\n
     /// Because of this classes representation of a cursor only 1 thread at a time should use the cursor
     /// movement functions. For the container that the phys::World keeps it should be assume that the
     /// cursor is used. For other containers you should manage you container carefully and/or use another
     /// iteration method, such as STL iterators.
-    class ActorContainerBase : public ManagerBase
+    class ContainerBase
     {
+        /*private:
+            // @brief This is expected to be a pointer to the world this will be rendered with and built on
+            //World* ParentWorld;
+
         protected:
             /// @internal
             /// @brief Used to work around the scenenode of an Actor being private, so all derived Containers can access it.
-            Ogre::Node* GetNode(ActorBase* actor);
+            //Ogre::Node* GetNode(ActorBase* actor);
 
         public:
             /// @brief Basic Constructor
@@ -196,7 +184,7 @@ namespace phys
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::ActorContainerBase
             virtual ManagerTypeName GetType() const;
-
+*/
             // Inherited from ManagerBase
             virtual void Initialize() = 0;
     };

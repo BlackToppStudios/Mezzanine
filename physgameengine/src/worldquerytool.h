@@ -110,6 +110,9 @@ namespace phys
 
 
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Basic Stuff
+            ///////////////////////////////////////
             /// @brief Basic Constructor.
             /// @details This creates a WorldQueryTool Ready to run queries on the the world you pass it.
             /// @param GameWorld_ This is a pointer to the phys::World to be queried
@@ -119,6 +122,9 @@ namespace phys
             /// @details Deletes everything in the world query tool.
             ~WorldQueryTool();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Simple User Input Queries
+            ///////////////////////////////////////
             /// @brief This gets the X coordinate of the mouse
             /// @details This gets the X location of this mouse. This runs in constant time.
             /// @return This returns a Whole number which represents the X coordinate of the mouse.
@@ -146,6 +152,9 @@ namespace phys
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
             bool IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton);
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // World Ray Queries
+            ///////////////////////////////////////
             /// @brief This will find the first Actor to intesect the Given ray.
             /// @details This use the graphics subsystem to cast a ray in the world. If the ray passes through any the triangles in an actor
             /// This will return that actor. This function runs in linear time relative to the amount of triangles in 3d meshes near the the
@@ -169,6 +178,11 @@ namespace phys
             /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
             Vector3WActor* GetActorUnderMouse(Real RayLength=1000.0, bool UsePolygon=true);
 
+            //Vector3* RayPlaneIntersection(const Ray &QueryRay, Plane QueryPlane);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Basic Stuff
+            ///////////////////////////////////////
             /// @brief This gathers any user-input/event data that might be queryed
             /// @details This should be called periodcally (ideally in the post user input callback) to allow this
             /// to gather data from the phys::World 's event manager. When called this will drop prior event data
@@ -179,7 +193,6 @@ namespace phys
             /// @param ClearEventsFromEventMgr If set to true, This method will properly remove any events it pulls from the event manager.
             void GatherEvents(bool ClearEventsFromEventMgr = false);
     };
-
 }
 
 

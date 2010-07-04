@@ -146,7 +146,7 @@ namespace phys
 
     Vector3WActor* WorldQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay)
     {
-        Ogre::Ray Ooray = ActorRay.ExtractOgreRay();
+        Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
         if(NULL != this->RayQuery)          //Double check that the Rayquery is valid
         {
@@ -228,7 +228,7 @@ namespace phys
 
     Vector3WActor* WorldQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay)
     {
-        Ogre::Ray Ooray = ActorRay.ExtractOgreRay();
+        Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
         if(NULL != this->RayQuery)          //Double check that the Rayquery is valid
         {

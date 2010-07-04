@@ -89,7 +89,7 @@ namespace phys
             /// @brief Gets an Ogre::Ray that contains this Rays information
             /// @details Used to aid interopability, this will return afresh Ogre::Ray with the same data as this Ray
             /// @return This returns an Ogre::Ray that contains the same information as this rays information
-            Ogre::Ray ExtractOgreRay() const;
+            Ogre::Ray GetOgreRay() const;
 
             /// @brief Measures the distance distance of this ray
             /// @details This uses the distance method of Vector3 to determine the current length of this ray.

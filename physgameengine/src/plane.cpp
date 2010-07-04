@@ -37,100 +37,46 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _ray_cpp
-#define _ray_cpp
+#ifndef _plane_cpp
+#define _plane_cpp
 
-//will need these later for converting between rays.
-//#include <Ogre.h>
-//#include "btBulletDynamicsCommon.h"
+#include "plane.h"
 
-#include "ray.h"
-
-#include <Ogre.h>
-
-#include <ostream>
+#include "Ogre.h"
 
 namespace phys
 {
 
     ///////////////////////////////////////////////////////////////////////////////
     // Constructors
-    Ray::Ray():From(0,0,0),To(0,1,0)
-    {
+    Plane::Plane() : Gimbals(0,0,0),Distance(0)
+        {}
 
-    }
+    Plane::Plane(Vector3 Gimbals_, Real Distance_) : Gimbals(Gimbals_),Distance(Distance_)
+        {}
 
-    Ray::Ray(Vector3 From_, Vector3 To_)
-    {
-        this->From=From_;
-        this->To=To_;
-    }
-
-    Ray::Ray(Ogre::Ray Ray2)
-    {
-        this->From=Ray2.getOrigin();
-        this->To=Ray2.getPoint(1);
-    }
-
+    Plane::Plane(Ogre::Plane Plane_)
+        { this->ExtractOgrePlane(Plane_); }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Manual Conversions and adjsutments
-    Ogre::Ray Ray::GetOgreRay() const
+    // Conversions and adjustments
+    Ogre::Plane Plane::GetOgrePlane() const
+        { return Ogre::Plane( Gimbals.GetOgreVector3(), Distance); }
+
+    void Plane::ExtractOgrePlane(const Ogre::Plane& Plane2)
     {
-        return Ogre::Ray(
-            this->From.GetOgreVector3(),
-            this->To.GetOgreVector3()
-        );
+        this->Gimbals=Plane2.normal;
+        this->Distance=Plane2.d;
     }
 
-    Real Ray::Length() const
-    {
-        return this->From.Distance( this->To );
-    }
-
-    Ray Ray::GetNormal()
-    {
-        return (*this) / this->Length();
-    }
-
-    void Ray::Normalize()
-    {
-        (*this) /= this->Length();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Real Operators and assignments
-    Ray Ray::operator* (const Real &scalar) const
-    {
-        return Ray(
-            this->From,
-            ((this->To - this->From) * scalar) + this->From
-        );
-    }
-
-    Ray Ray::operator/ (const Real &scalar) const
-    {
-        return Ray(
-            this->From,
-            ((this->To - this->From) / scalar) + this->From
-        );
-    }
-
-    void Ray::operator*= (const Real &scalar)
-    {
-        this->To = ((this->To - this->From) * scalar) + this->From;
-    }
-
-    void Ray::operator/= (const Real &scalar)
-    {
-        this->To = ((this->To - this->From) / scalar) + this->From;
-    }
+    void Plane::operator=(const Ogre::Plane& Plane2)
+        { this->ExtractOgrePlane(Plane2); }
 
 }
 
-std::ostream& operator << (std::ostream& stream, const phys::Ray& x)
+std::ostream& operator << (std::ostream& stream, const phys::Plane& x)
 {
-    stream << "[" << x.From << "," << x.To << "]";
+    stream << "[Gimbals:" << x.Gimbals << ",Distance" << x.Distance << "]";
     return stream;
 }
 
