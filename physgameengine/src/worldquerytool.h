@@ -178,7 +178,16 @@ namespace phys
             /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
             Vector3WActor* GetActorUnderMouse(Real RayLength=1000.0, bool UsePolygon=true);
 
-            //Vector3* RayPlaneIntersection(const Ray &QueryRay, Plane QueryPlane);
+            /// @brief Where does this Ray Meet this Plane?
+            /// @details This does some fancy math to return the point where the ray and the plane intersent.
+            /// This returns a NULL pointer in the event the ray and plane do not meet.
+            Vector3* RayPlaneIntersection(const Ray &QueryRay, Plane QueryPlane);
+
+            /// @brief Get a Ray from the current viewport, following the mouse
+            /// @details This calls on the graphics subsystem to get a ray from the location of the current camera
+            /// @param Length how long of a ray do you want? Thsi defaults to 1000
+            /// @return This returns a ray that matches what
+            Ray* GetMouseRay(Real Length=1000);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Basic Stuff

@@ -260,13 +260,7 @@ namespace phys
     {
         Vector3WActor* Results = 0;
 
-        Ray MouseRay( this->GameWorld->Cameras->GetCameraToViewportRay(
-                float(this->GetMouseX()) / float( this->GameWorld->Graphics->getRenderWidth() ) ,
-                float(this->GetMouseY()) / float( this->GameWorld->Graphics->getRenderHeight() )
-            ) );
-
-        MouseRay *= RayLength;
-        this->GameWorld->Log( MouseRay );
+        Ray* MouseRay = this->GetMouseRay(RayLength);
 
         if (UsePolygon)
         {
@@ -275,8 +269,26 @@ namespace phys
             Results = this->GetFirstActorOnRayByAABB( MouseRay );
         }
 
+        delete MouseRay;
         return Results;
     }
+
+    Vector3* RayPlaneIntersection(const Ray &QueryRay, Plane QueryPlane)
+    {
+
+    }
+
+    Ray* GetMouseRay(Real Length=1000)
+    {
+        Ray* MouseRay= New Ray( this->GameWorld->Cameras->GetCameraToViewportRay(
+                float(this->GetMouseX()) / float( this->GameWorld->Graphics->getRenderWidth() ) ,
+                float(this->GetMouseY()) / float( this->GameWorld->Graphics->getRenderHeight() )
+            ) );
+
+        MouseRay *= RayLength;
+        return MouseRay;
+    }
+
 
     // Private Members
     void WorldQueryTool::GetMeshInformation( Ogre::Entity *entity,
