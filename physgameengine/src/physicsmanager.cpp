@@ -375,6 +375,9 @@ namespace phys
         return this->BulletDrawer->GetWireFrameCount();
     }
 
+    btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
+        { return this->BulletDynamicsWorld; }
+
     //Inherited From ManagerBase
     ManagerBase::ManagerTypeName PhysicsManager::GetType() const
         { return ManagerBase::PhysicsManager; }

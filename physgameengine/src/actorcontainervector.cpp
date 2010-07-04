@@ -52,6 +52,7 @@ namespace phys
     {
         this->RecentlyAdded = ActorToAdd;
         this->push_back(ActorToAdd);
+        this->ActorContainerBase::AddActor(ActorToAdd);
     }
 
     ActorBase* ActorContainerVector::LastActorAdded()
@@ -59,6 +60,7 @@ namespace phys
 
     void ActorContainerVector::RemoveActor(ActorBase* ActorToRemove)
     {
+        this->ActorContainerBase::RemoveActor(ActorToRemove);
         //we need to iterate through and remove all items of that match the actor to match the description in the container base
         for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
         {
@@ -155,17 +157,22 @@ namespace phys
         { return this->GameWorld; }
 
     void ActorContainerVector::SetGameWorld( World* GameWorld_ )
+        { this->SetGameWorld( GameWorld_, true, true ); }
+
+    void ActorContainerVector::SetGameWorld( World* GameWorld_, bool AddToWorld, bool RemoveFromWorld)
     {
-        if (this->GameWorld != NULL)
+        if (RemoveFromWorld && this->GameWorld != NULL)
         {
-            //Remove actors from world
+            for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
+                { (*c)->RemoveObjectFromWorld(this->GameWorld); }
         }
 
         this->GameWorld = GameWorld_;
 
-        if (this->GameWorld != NULL)
+        if (AddToWorld && this->GameWorld != NULL)
         {
-            //add actors to world
+            for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
+                { (*c)->AddObjectToWorld(this->GameWorld); }
         }
     }
 

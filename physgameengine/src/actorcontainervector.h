@@ -116,8 +116,13 @@ namespace phys
             /// @brief This safely move all the Actors out of or into a phys::World
             /// @details This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system
             /// if a phys::World is present. Then this sets up all actors with the new World unless it is NULL
-            /// @warning Not Fully Implemented this just moves the pointer.
+            /// @param GameWorld_ This is a pointer to the new phys::World to workwiths
             virtual void SetGameWorld( World* GameWorld_ );
+
+            /// @brief Optionally move actors into or out of a physworld
+            /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add
+            /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove
+            virtual void SetGameWorld( World* GameWorld_ , bool AddToWorld, bool RemoveFromWorld);
 
             /// @brief Empty Initilizor
             /// @details This class implements this for the sake of entension and compatibility this function does nothing

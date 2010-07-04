@@ -77,10 +77,6 @@ namespace phys
 
             void PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent);
 
-            void AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld);
-
-            void RemoveObjectFromWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld);
-
         public:
             /// @brief Descriptive constructor.
             /// @details This constructor contains the basic information needed to make a Rigid Object. @n
@@ -123,6 +119,10 @@ namespace phys
             /// @param y Allow or Disallow use of the Y axis for movement.
             /// @param z Allow or Disallow use of the Z axis for movement.
             void LimitMovementOnAxis(bool x, bool y, bool z);
+
+            // Inherited from ActorBase
+            virtual void AddObjectToWorld (World *TargetWorld);
+            virtual void RemoveObjectFromWorld(World* TargetWorld);
     };
 }
 #endif

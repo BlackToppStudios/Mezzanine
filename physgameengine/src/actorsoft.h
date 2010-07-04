@@ -97,12 +97,8 @@ namespace phys
             /// @param nodearray Currently Unused
             /// @param massarray Currently Unused
             void CreateSoftObject (btSoftBodyWorldInfo* softworldinfo, int nodecount, btVector3* nodearray, btScalar* massarray);
-            /// @brief Adds the actor to the physics world.
-            /// @details Adds the actor to the physics world. @n
-            /// This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually.
-            /// @param TargetWorld Pointer to the World class.
-            /// @param btWorld Pointer to the physics world.
-            void AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld);
+
+
 
         public:
             ActorSoft();
@@ -113,6 +109,11 @@ namespace phys
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.
             void CreateShapeFromMesh();
+
+            // Inherited from ActorBase
+            virtual void AddObjectToWorld (World *TargetWorld);
+            virtual void RemoveObjectFromWorld(World* TargetWorld);
+
     };
 }
 #endif

@@ -241,7 +241,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
         TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(4);
         TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -100.0, 0));
     }
@@ -250,7 +250,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
         TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
         TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -50.0, -PinSpacing));
     }
@@ -259,14 +259,14 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
         TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
         TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), 0.0, -PinSpacing*2));
     }
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+    TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
     TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
     TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 50.0, -PinSpacing*3));
 
@@ -310,13 +310,13 @@ void LoadContent()
     grav.Y=-10000.0;
     grav.Z=0.0;
 
-    TheWorld.AddActor(object1);
-    TheWorld.AddActor(object2);
-    TheWorld.AddActor(object3);
-    TheWorld.AddActor(object4);
-    TheWorld.AddActor(object5);
-    TheWorld.AddActor(object6);
-    TheWorld.AddActor(object7);
+    TheWorld.Actors->AddActor(object1);
+    TheWorld.Actors->AddActor(object2);
+    TheWorld.Actors->AddActor(object3);
+    TheWorld.Actors->AddActor(object4);
+    TheWorld.Actors->AddActor(object5);
+    TheWorld.Actors->AddActor(object6);
+    TheWorld.Actors->AddActor(object7);
 
     TheWorld.Log("Actor Count");
     TheWorld.Log( TheWorld.Actors->GetActorCount() );

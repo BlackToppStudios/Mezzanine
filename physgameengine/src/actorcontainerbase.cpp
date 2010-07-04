@@ -62,7 +62,18 @@ namespace phys
     ManagerBase::ManagerTypeName ActorContainerBase::GetType() const
         { return ManagerBase::ActorContainerBase; }
 
-}
+    void ActorContainerBase::AddActor(ActorBase* ActorToAdd)
+    {
+        if(this->GameWorld != NULL)
+            { ActorToAdd->AddObjectToWorld(this->GameWorld); }
+    }
+
+    void ActorContainerBase::RemoveActor(ActorBase* ActorToAdd)
+    {
+        if(this->GameWorld != NULL)
+            { ActorToAdd->RemoveObjectFromWorld(this->GameWorld); }
+    }
+}// \phys
 
 
 

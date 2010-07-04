@@ -81,9 +81,6 @@ namespace phys
             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
             debug::InternalDebugDrawer* BulletDrawer;
 
-
-            World* GameWorld;
-
             /// @brief This takes care of all the real work in contructing this
             /// @details This method is called by all the constructors to insure consistent behavior.
             /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with
@@ -151,11 +148,14 @@ namespace phys
             /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
             void DoMainLoopItems(const Real &TimeElapsed);
 
+            /// @internal
+            /// @brief This returns a pointer to the bullet physics world. This is for internal use only
+            btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
+
         //Inherited from ManagerBase
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::PhysicsManager
             virtual ManagerTypeName GetType() const;
-
     };
 }
 

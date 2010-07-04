@@ -185,7 +185,6 @@ namespace phys
             Ogre::Viewport* OgreViewport;
             Ogre::SceneManager* OgreSceneManager;
 
-
         public:
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -351,13 +350,13 @@ namespace phys
             /// @details This adds, and makes sure that it's physics status and 3d graphics status are
             /// properly handled. The phys::World will delete any actor still left in it upon deconstruction.
             /// @param ActorToAdd This is a pointer to the actor to be added.
-            void AddActor(ActorBase* ActorToAdd);
+            //void AddActor(ActorBase* ActorToAdd);
 
             /// @brief The Removes an Actor from the physworld.
             /// @details This removes the actor to the internal graphics and physics systems, and drops the pointer. This does not delete
             /// The Actor.
             /// @param ActorToRemove This is a pointer to the actor to be removed
-            void RemoveActor(ActorBase* ActorToRemove);
+            //void RemoveActor(ActorBase* ActorToRemove);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Feature Manager Pointers

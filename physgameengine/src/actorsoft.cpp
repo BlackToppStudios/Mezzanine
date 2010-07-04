@@ -66,10 +66,11 @@ namespace phys{
         CollisionObject=physsoftbody;
     }
 
-    void ActorSoft::AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld)
-    {
-        btWorld->addSoftBody(this->physsoftbody);
-    }
+    void ActorSoft::AddObjectToWorld (World *TargetWorld)
+        { TargetWorld->Physics->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody); }
+
+    void ActorSoft::RemoveObjectFromWorld(World* TargetWorld)
+        { TargetWorld->Physics->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody); }
 
     void ActorSoft::CreateShapeFromMesh()
     {

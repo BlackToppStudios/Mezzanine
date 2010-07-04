@@ -488,7 +488,7 @@ namespace phys
             //if we can't do that then lets make new settings
             if (!this->ShowSystemSettingDialog())
             {
-                this->LogAndThrow("Error 1: Could not setup Ogre.");
+                this->LogAndThrow("Error: Could not setup Ogre.");
             }
         }
     }
@@ -536,22 +536,6 @@ namespace phys
     void World::DestroyRenderWindow()
     {
         this->OgreGameWindow->destroy();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Bullet Related Public Members
-    ///////////////////////////////////////
-
-    void World::AddActor(ActorBase* ActorToAdd)
-    {
-        ActorToAdd->AddObjectToWorld(this, this->Physics->BulletDynamicsWorld);
-        this->Actors->AddActor(ActorToAdd);
-    }
-
-    void World::RemoveActor(ActorBase* ActorToRemove)
-    {
-        ActorToRemove->RemoveObjectFromWorld(this, this->Physics->BulletDynamicsWorld);
-        this->Actors->RemoveActor(ActorToRemove);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

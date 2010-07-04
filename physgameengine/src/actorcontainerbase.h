@@ -95,10 +95,12 @@ namespace phys
             /// @brief This will add an Actor to this container and the world
             /// @details This will add an Actor to this container and the world, and handle the nitty gritty details
             /// of add this to physics subsystem and graphics subsystem. \n\n
-            /// This will not add the Actor to any specific location in the ordering of the container.
-            /// @warning This will cause issues if used with a container attached to a valid phys::World. Use World::AddActor instead.
+            /// This will not add the Actor to any specific location in the ordering of the container. \n\n
+            /// It is expected that any container implementing this method will take appropriate steps to insure
+            /// That the actor involved is added to the Physics and graphics world. This method could be called from
+            /// derived to accomplish that task
             /// @param ActorToAdd This is a pointer to the actor to add.
-            virtual void AddActor(ActorBase* ActorToAdd) = 0;
+            virtual void AddActor(ActorBase* ActorToAdd);
 
             /// @brief This provides an easy way to access the last Actor added to this container
             /// @details For many containers this will simply return a pointer to the last actorl
@@ -184,7 +186,14 @@ namespace phys
             /// @brief This sets the phys::World that this Manager works with.
             /// @details If the are any actors in the world, this removes them from both the physics and graphics subsystem, and adds them
             /// to the new world as is appropriate.
+            /// @param GameWorld_ The new GameWorldPointer, or 0 to set none
             virtual void SetGameWorld( World* GameWorld_ ) = 0;
+
+            /// @brief Optionally move actors into or out of a physworld
+            /// @param GameWorld_ The new GameWorldPointer, or 0 to set none
+            /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add
+            /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove
+            virtual void SetGameWorld( World* GameWorld_, bool AddToWorld, bool RemoveFromWorld) = 0;
 
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::ActorContainerBase

@@ -105,20 +105,6 @@ namespace phys
             ///@brief This class encapsulates the functionality of the PhysMotionState using this
             internal::PhysMotionState* MotionState;
 
-            /// @brief Adds the actor to the physics world.
-            /// @details Adds the actor to the physics world. @n
-            /// This is automatically called by the phys::Worlds::AddActor function and shouldn't be called manually.
-            /// @param TargetWorld Pointer to the World class.
-            /// @param btWorld Pointer to the physics world.
-            virtual void AddObjectToWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld) = 0;
-
-            /// @brief Removes the actor from the physics world.
-            /// @details Removes the actor from the physics world. @n
-            /// This is automatically called by the phys::World::RemoveActor function and shouldn't be called manually.
-            /// @param TargetWorld Pointer to the World class.
-            /// @param btWorld Pointer to the physics world.
-            virtual void RemoveObjectFromWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld) = 0;
-
             /// @brief Creates a trimesh shape from the mesh file.
             /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n
             /// This is automaticly called by the CreateShapeFromMesh function in child classes and shouldn't be called manually.
@@ -215,7 +201,6 @@ namespace phys
             /// @param Orientation The PhysQuaternion representing the Orientation.
             void SetInitOrientation(Quaternion Orientation);
 
-
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
             /// In most situations you won't want to use this function, and instead produce movement through physics functions.
@@ -262,6 +247,21 @@ namespace phys
             /// be used with only with Dynamic objects.
             /// @param accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent
             virtual void CreateShapeFromMeshDynamic(short unsigned int accuracy ) = 0;
+
+///////////////////////////////////////////////////////////////////////////////
+// Working with the World
+///////////////////////////////////////
+            /// @brief Adds the actor to the physics world.
+            /// @details Adds the actor to the physics world. @n
+            /// This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually.
+            /// @param TargetWorld Pointer to the World class.
+            virtual void AddObjectToWorld(World* TargetWorld) = 0;
+
+            /// @brief Removes the actor from the physics world.
+            /// @details Removes the actor from the physics world. @n
+            /// This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually.
+            /// @param TargetWorld Pointer to the World class.
+            virtual void RemoveObjectFromWorld(World* TargetWorld) = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Public Collision flag functions
