@@ -195,6 +195,16 @@ namespace phys
         delete Generic6dof;
     }
 
+    void Generic6DofConstraint::SetOffsetALocation (Vector3 Location)
+    {
+        this->Generic6dof->getFrameOffsetA().setOrigin(Location.GetBulletVector3());
+    }
+
+    void Generic6DofConstraint::SetOffsetBLocation (Vector3 Location)
+    {
+        this->Generic6dof->getFrameOffsetB().setOrigin(Location.GetBulletVector3());
+    }
+
     void Generic6DofConstraint::SetLinearUpperLimit (Vector3 Limit)
     {
         this->Generic6dof->setLinearUpperLimit(Limit.GetBulletVector3());
@@ -257,11 +267,13 @@ namespace phys
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Generic6dofSpring = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
+        Generic6dof = Generic6dofSpring;
     }
 
     Generic6DofSpringConstraint::Generic6DofSpringConstraint (btGeneric6DofSpringConstraint* Constraint)
     {
         Generic6dofSpring = Constraint;
+        Generic6dof = Constraint;
     }
 
     Generic6DofSpringConstraint::~Generic6DofSpringConstraint ()
@@ -320,6 +332,16 @@ namespace phys
     HingeConstraint::~HingeConstraint()
     {
         delete Hinge;
+    }
+
+    void HingeConstraint::SetAPivotLocation(Vector3 Location)
+    {
+        this->Hinge->getAFrame().setOrigin(Location.GetBulletVector3());
+    }
+
+    void HingeConstraint::SetBPivotLocation(Vector3 Location)
+    {
+        this->Hinge->getBFrame().setOrigin(Location.GetBulletVector3());
     }
 
     void HingeConstraint::SetAngularOnly(bool AngularOnly)
@@ -387,11 +409,15 @@ namespace phys
         btVector3 temp2(Axis1.GetBulletVector3());
         btVector3 temp3(Axis2.GetBulletVector3());
         Hinge2 = new btHinge2Constraint(*BodyA, *BodyB, temp1, temp2, temp3);
+        Generic6dofSpring = Hinge2;
+        Generic6dof = Hinge2;
     }
 
     Hinge2Constraint::Hinge2Constraint(btHinge2Constraint* Constraint)
     {
         Hinge2 = Constraint;
+        Generic6dofSpring = Constraint;
+        Generic6dof = Constraint;
     }
 
     Hinge2Constraint::~Hinge2Constraint()
@@ -476,6 +502,16 @@ namespace phys
     SliderConstraint::~SliderConstraint()
     {
         delete Slider;
+    }
+
+    void SliderConstraint::SetFrameOffsetALocation(Vector3 Location)
+    {
+        this->Slider->getFrameOffsetA().setOrigin(Location.GetBulletVector3());
+    }
+
+    void SliderConstraint::SetFrameOffsetBLocation(Vector3 Location)
+    {
+        this->Slider->getFrameOffsetB().setOrigin(Location.GetBulletVector3());
     }
 
     void SliderConstraint::SetUpperLinLimit(Real UpperLimit)
@@ -642,11 +678,13 @@ namespace phys
         btVector3 temp2(Axis1.GetBulletVector3());
         btVector3 temp3(Axis2.GetBulletVector3());
         Universal = new btUniversalConstraint(*BodyA, *BodyB, temp1, temp2, temp3);
+        Generic6dof = Universal;
     }
 
     UniversalConstraint::UniversalConstraint(btUniversalConstraint* Constraint)
     {
         Universal = Constraint;
+        Generic6dof = Constraint;
     }
 
     UniversalConstraint::~UniversalConstraint()
