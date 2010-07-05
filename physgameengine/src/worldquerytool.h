@@ -45,6 +45,7 @@
 #include "vector3wactor.h"
 #include "metacode.h"
 #include "ray.h"
+#include "plane.h"
 
 #include <bitset>
 
@@ -181,7 +182,7 @@ namespace phys
             /// @brief Where does this Ray Meet this Plane?
             /// @details This does some fancy math to return the point where the ray and the plane intersent.
             /// This returns a NULL pointer in the event the ray and plane do not meet.
-            Vector3* RayPlaneIntersection(const Ray &QueryRay, Plane QueryPlane);
+            Vector3* RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane);
 
             /// @brief Get a Ray from the current viewport, following the mouse
             /// @details This calls on the graphics subsystem to get a ray from the location of the current camera

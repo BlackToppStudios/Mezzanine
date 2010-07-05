@@ -264,9 +264,9 @@ namespace phys
 
         if (UsePolygon)
         {
-            Results = this->GetFirstActorOnRayByPolygon( MouseRay );
+            Results = this->GetFirstActorOnRayByPolygon( *MouseRay );
         }else{
-            Results = this->GetFirstActorOnRayByAABB( MouseRay );
+            Results = this->GetFirstActorOnRayByAABB( *MouseRay );
         }
 
         delete MouseRay;
@@ -275,17 +275,17 @@ namespace phys
 
     Vector3* RayPlaneIntersection(const Ray &QueryRay, Plane QueryPlane)
     {
-
+        return 0;
     }
 
-    Ray* GetMouseRay(Real Length=1000)
+    Ray* WorldQueryTool::GetMouseRay(Real Length)
     {
-        Ray* MouseRay= New Ray( this->GameWorld->Cameras->GetCameraToViewportRay(
+        Ray* MouseRay = new Ray( this->GameWorld->Cameras->GetCameraToViewportRay(
                 float(this->GetMouseX()) / float( this->GameWorld->Graphics->getRenderWidth() ) ,
                 float(this->GetMouseY()) / float( this->GameWorld->Graphics->getRenderHeight() )
             ) );
 
-        MouseRay *= RayLength;
+        (*MouseRay) *= Length;
         return MouseRay;
     }
 
