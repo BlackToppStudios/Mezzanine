@@ -1042,17 +1042,17 @@
 1193991318 source:c:\physgame2\physgame\physgamelauncher\resource.rc
 	"wx/msw/wx.rc"
 
-1272246102 source:/home/sqeaky/Desktop/physgame/physgamelauncher/src/configopener.cpp
+1278047057 source:/home/sqeaky/Desktop/physgame/physgamelauncher/src/configopener.cpp
 	"configopener.h"
 
-1272246102 /home/sqeaky/Desktop/physgame/physgamelauncher/src/configopener.h
+1278047057 /home/sqeaky/Desktop/physgame/physgamelauncher/src/configopener.h
 	<iostream>
 	<fstream>
 	<string>
 
-1272246102 source:/home/sqeaky/Desktop/physgame/physgamelauncher/src/crossplatform.cpp
+1278047057 source:/home/sqeaky/Desktop/physgame/physgamelauncher/src/crossplatform.cpp
 
-1272246102 source:/home/sqeaky/Desktop/physgame/physgamelauncher/src/physgamelauncherApp.cpp
+1278047057 source:/home/sqeaky/Desktop/physgame/physgamelauncher/src/physgamelauncherApp.cpp
 	"physgamelauncherApp.h"
 	<iostream>
 	<fstream>
@@ -1061,7 +1061,7 @@
 	"physgamelauncherMain.h"
 	<wx/image.h>
 
-1272246102 /home/sqeaky/Desktop/physgame/physgamelauncher/src/physgamelauncherApp.h
+1278047057 /home/sqeaky/Desktop/physgame/physgamelauncher/src/physgamelauncherApp.h
 	<wx/app.h>
 	"zzip.h"
 
@@ -1404,11 +1404,11 @@
 
 1250033287 /usr/include/wx-2.8/wx/gtk/app.h
 
-1272247398 /home/sqeaky/Desktop/physgame/physgamelauncher/src/crossplatform.h
+1278047057 /home/sqeaky/Desktop/physgame/physgamelauncher/src/crossplatform.h
 	<fcntl.h>
 	<io.h>
 
-1273651242 /home/sqeaky/Desktop/physgame/physgamelauncher/src/physgamelauncherMain.h
+1278047057 /home/sqeaky/Desktop/physgame/physgamelauncher/src/physgamelauncherMain.h
 	<wx/panel.h>
 	<wx/button.h>
 	<wx/frame.h>

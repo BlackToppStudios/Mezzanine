@@ -6,7 +6,7 @@ if [ -f "data/linux/bullet/libBullet.a" ]
 then
 	echo "Bullet Library present."
 else
-	echo "Bullet Missing in data direcectory, Checking for compiled lib in bulletsrc"
+	echo "Bullet Missing in data directory, Checking for compiled lib in bulletsrc"
 	if [ -f "libincludes/common/bulletsrc/libBullet.a" ]
 	then
 		echo "Found, copying to correct location in project"
@@ -15,7 +15,7 @@ else
 		echo "Checking to see if we can compile Bullet"
 		if [ 0 -eq `cat ~/.codeblocks/default.conf |grep "SINGLE_INSTANCE bool=\"0\"" -c` ]
 		then
-			echo "Bullet Cannot be automatically compiled, You should use codeblocks to build Bullet.cbp"
+			echo "Bullet Cannot be automatically compiled, You should use codeblocks to build BulletWorkspace.workspace"
 			echo "libincludes/common/bulletsrc/BulletWorkspace.cbp"
 			echo "Alternatively you can disable the single instance feature of Code::blocks in the environment settings"
 			exit 1
@@ -29,6 +29,32 @@ else
 	fi
 fi
 
+if [ -f "data/linux/tinyxmlpp/libticpp.a" ]
+then
+	echo "TinyXMLpp Library present."
+else
+	echo "TinyXMLpp Missing in data directory, Checking for compiled lib in tinyxmlppsrc"
+	if [ -f "libincludes/common/tinyxmlppsrc/libticpp.a" ]
+	then
+		echo "Found, copying to correct location in project"
+		cp libincludes/common/tinyxmlppsrc/libticpp.a data/linux/tinyxmlpp/
+	else
+		echo "Checking to see if we can compile TinyXMLpp"
+		if [ 0 -eq `cat ~/.codeblocks/default.conf |grep "SINGLE_INSTANCE bool=\"0\"" -c` ]
+		then
+			echo "TinyXMLpp Cannot be automatically compiled, You should use codeblocks to build ticpp.workspace"
+			echo "libincludes/common/tinyxmlppsrc/ticpp.workspace"
+			echo "Alternatively you can disable the single instance feature of Code::blocks in the environment settings"
+			exit 1
+		else
+			echo "TinyXMLpp Missing and can be built, Beginning TinyXMLpp Build."
+			cd libincludes/common/tinyxmlppsrc/
+			codeblocks --build --target=Release ticpp.workspace
+			cd ../../..
+			cp libincludes/common/tinyxmlppsrc/libticpp.a data/linux/tinyxmlpp/
+		fi
+	fi
+fi
 
 #This should only be run from the root of the prject directory.
 if [ -f "data/linux/ogre/libOgreMain.so" ]
