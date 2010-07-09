@@ -120,9 +120,9 @@
 <a name="l00095"></a>00095 <span class="comment"></span>
 <a name="l00096"></a>00096 <span class="comment">    /// @todo TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and</span>
 <a name="l00097"></a>00097 <span class="comment">    /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock</span>
-<a name="l00098"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#a148f8c559642d3d50206169b3d0406be">00098</a> <span class="comment"></span>    <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a148f8c559642d3d50206169b3d0406be" title="Default constructor.">EventManager::EventManager</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* ParentWorld_)
+<a name="l00098"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#a148f8c559642d3d50206169b3d0406be">00098</a> <span class="comment"></span>    <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a148f8c559642d3d50206169b3d0406be" title="Default constructor.">EventManager::EventManager</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* ParentWorld_): <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>(ParentWorld_)
 <a name="l00099"></a>00099     {
-<a name="l00100"></a>00100         ParentWorld = ParentWorld_;
+<a name="l00100"></a>00100         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> = ParentWorld_;
 <a name="l00101"></a>00101         PollMouseHor = <span class="keyword">false</span>;
 <a name="l00102"></a>00102         PollMouseVert = <span class="keyword">false</span>;
 <a name="l00103"></a>00103     }
@@ -183,16 +183,16 @@
 <a name="l00158"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5">00158</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5" title="Pulls System and Window manager Events from the all the subsystems for use in the...">EventManager::UpdateSystemEvents</a>()
 <a name="l00159"></a>00159     {
 <a name="l00160"></a>00160         this-&gt;PreProcessSDLEvents();
-<a name="l00161"></a>00161         ParentWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;WM EventCount Pending:&quot;</span>);
-<a name="l00162"></a>00162         ParentWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(SDL_WmEvents.size());<span class="comment"></span>
+<a name="l00161"></a>00161         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;WM EventCount Pending:&quot;</span>);
+<a name="l00162"></a>00162         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(SDL_WmEvents.size());<span class="comment"></span>
 <a name="l00163"></a>00163 <span class="comment">        /// @todo make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)</span>
 <a name="l00164"></a>00164 <span class="comment"></span>    }
 <a name="l00165"></a>00165 
 <a name="l00166"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#a01a5a131ac26679eee5dcf5dd514045c">00166</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a01a5a131ac26679eee5dcf5dd514045c" title="Pulls User Interface Events from the all the subsystems for use in the EventManager...">EventManager::UpdateUserInputEvents</a>()
 <a name="l00167"></a>00167     {
 <a name="l00168"></a>00168         this-&gt;PreProcessSDLEvents();
-<a name="l00169"></a>00169         ParentWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;User Input EventCount Pending:&quot;</span>);
-<a name="l00170"></a>00170         ParentWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(SDL_UserInputEvents.size());
+<a name="l00169"></a>00169         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;User Input EventCount Pending:&quot;</span>);
+<a name="l00170"></a>00170         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(SDL_UserInputEvents.size());
 <a name="l00171"></a>00171 
 <a name="l00172"></a>00172         <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* FromSDLEvent = <span class="keyword">new</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>();
 <a name="l00173"></a>00173         <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* FromSDLPolling = this-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#a983bc9f1933466491e6bf025b26a9023" title="This activates the polling routines of the user input subsystems.">PollForUserInputEvents</a>();
@@ -225,7 +225,7 @@
 <a name="l00200"></a>00200         <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>* results = 0;
 <a name="l00201"></a>00201         <span class="keywordflow">for</span>(std::list&lt;EventBase*&gt;::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
 <a name="l00202"></a>00202         {
-<a name="l00203"></a>00203             <span class="keywordflow">if</span>((*Iter)-&gt;getEventType()==SpecificType)
+<a name="l00203"></a>00203             <span class="keywordflow">if</span>((*Iter)-&gt;GetType()==SpecificType)
 <a name="l00204"></a>00204             {
 <a name="l00205"></a>00205                 results = (*Iter);
 <a name="l00206"></a>00206                 <span class="keywordflow">return</span> results;
@@ -239,7 +239,7 @@
 <a name="l00214"></a>00214         <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>* results = 0;
 <a name="l00215"></a>00215         <span class="keywordflow">for</span>(std::list&lt;EventBase*&gt;::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
 <a name="l00216"></a>00216         {
-<a name="l00217"></a>00217             <span class="keywordflow">if</span>((*Iter)-&gt;getEventType()==SpecificType)
+<a name="l00217"></a>00217             <span class="keywordflow">if</span>((*Iter)-&gt;GetType()==SpecificType)
 <a name="l00218"></a>00218             {
 <a name="l00219"></a>00219                 results = (*Iter);
 <a name="l00220"></a>00220                 EventQueue.erase(Iter);
@@ -253,7 +253,7 @@
 <a name="l00228"></a>00228     {
 <a name="l00229"></a>00229         <span class="keywordflow">for</span>(std::list&lt;EventBase*&gt;::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
 <a name="l00230"></a>00230         {
-<a name="l00231"></a>00231             <span class="keywordflow">if</span>((*Iter)-&gt;getEventType()==SpecificType)
+<a name="l00231"></a>00231             <span class="keywordflow">if</span>((*Iter)-&gt;GetType()==SpecificType)
 <a name="l00232"></a>00232             {
 <a name="l00233"></a>00233                 EventQueue.erase(Iter);
 <a name="l00234"></a>00234             }
@@ -266,7 +266,7 @@
 <a name="l00241"></a>00241 
 <a name="l00242"></a>00242         <span class="keywordflow">for</span>(std::list&lt;EventBase*&gt;::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
 <a name="l00243"></a>00243         {
-<a name="l00244"></a>00244             <span class="keywordflow">if</span>((*Iter)-&gt;getEventType()==SpecificType)
+<a name="l00244"></a>00244             <span class="keywordflow">if</span>((*Iter)-&gt;GetType()==SpecificType)
 <a name="l00245"></a>00245             {
 <a name="l00246"></a>00246                 TempList-&gt;push_back(*Iter);
 <a name="l00247"></a>00247             }
@@ -278,7 +278,7 @@
 <a name="l00253"></a>00253     {
 <a name="l00254"></a>00254         <span class="keywordflow">for</span>(std::list&lt;EventBase*&gt;::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
 <a name="l00255"></a>00255         {
-<a name="l00256"></a>00256             <span class="keywordflow">if</span>((*Iter)-&gt;getEventType()==SpecificType)
+<a name="l00256"></a>00256             <span class="keywordflow">if</span>((*Iter)-&gt;GetType()==SpecificType)
 <a name="l00257"></a>00257             {
 <a name="l00258"></a>00258                 this-&gt;EventQueue.remove(*Iter);
 <a name="l00259"></a>00259             }
@@ -416,7 +416,7 @@
 <a name="l00391"></a>00391         }
 <a name="l00392"></a>00392 
 <a name="l00393"></a>00393         <span class="keywordflow">if</span> (ItFailed)
-<a name="l00394"></a>00394             this-&gt;ParentWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported Polling Check on this Platform&quot;</span>);
+<a name="l00394"></a>00394             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported Polling Check on this Platform&quot;</span>);
 <a name="l00395"></a>00395     }
 <a name="l00396"></a>00396 
 <a name="l00397"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#adaf7d5346932506ed43f893eb071fd39">00397</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#adaf7d5346932506ed43f893eb071fd39" title="Removes Events from the list(s) of what needs to be polled.">EventManager::RemovePollingCheck</a>(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;InputToStopPolling)
@@ -475,9 +475,9 @@
 <a name="l00450"></a>00450         }
 <a name="l00451"></a>00451 
 <a name="l00452"></a>00452         <span class="keywordflow">if</span> (!supported)
-<a name="l00453"></a>00453             this-&gt;ParentWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported Polling Check on this Platform, Cannot Remove&quot;</span>);
+<a name="l00453"></a>00453             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported Polling Check on this Platform, Cannot Remove&quot;</span>);
 <a name="l00454"></a>00454         <span class="keywordflow">if</span> (ItFailed)
-<a name="l00455"></a>00455             this-&gt;ParentWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Polling Check did not exist, Cannot Remove&quot;</span>);
+<a name="l00455"></a>00455             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Polling Check did not exist, Cannot Remove&quot;</span>);
 <a name="l00456"></a>00456     }
 <a name="l00457"></a>00457 
 <a name="l00458"></a>00458 
@@ -619,11 +619,18 @@
 <a name="l00594"></a>00594         }
 <a name="l00595"></a>00595     }
 <a name="l00596"></a>00596 
-<a name="l00597"></a>00597 } <span class="comment">// /phys</span>
-<a name="l00598"></a>00598 
-<a name="l00599"></a>00599 <span class="preprocessor">#endif</span>
+<a name="l00597"></a>00597     <span class="comment">//Inherited From ManagerBase</span>
+<a name="l00598"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0">00598</a>     <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0" title="Empty Initializor.">EventManager::Initialize</a>()
+<a name="l00599"></a>00599         {}
+<a name="l00600"></a>00600 
+<a name="l00601"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696">00601</a>     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696" title="This returns the type of this manager.">EventManager::GetType</a>()<span class="keyword"> const</span>
+<a name="l00602"></a>00602 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::EventManager; }
+<a name="l00603"></a>00603 
+<a name="l00604"></a>00604 } <span class="comment">// /phys</span>
+<a name="l00605"></a>00605 
+<a name="l00606"></a>00606 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

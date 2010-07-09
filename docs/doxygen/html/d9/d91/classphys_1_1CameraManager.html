@@ -29,11 +29,21 @@
   </div>
 </div>
 <div class="contents">
-<h1>phys::CameraManager Class Reference</h1><!-- doxytag: class="phys::CameraManager" -->
+<h1>phys::CameraManager Class Reference</h1><!-- doxytag: class="phys::CameraManager" --><!-- doxytag: inherits="phys::ManagerBase" -->
 <p>This is the manager class for all camera functions.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d9/d02/cameramanager_8h_source.html">cameramanager.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for phys::CameraManager:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="../../d9/d91/classphys_1_1CameraManager.png" usemap="#phys::CameraManager_map" alt=""/>
+  <map id="phys::CameraManager_map" name="phys::CameraManager_map">
+<area href="../../d2/de3/classphys_1_1ManagerBase.html" alt="phys::ManagerBase" shape="rect" coords="0,0,140,24"/>
+</map>
+ </div>
+</div>
 
 <p><a href="../../d8/d56/classphys_1_1CameraManager-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
@@ -44,6 +54,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class Destructor.  <a href="#a0b0f032477309eb47b0302fd5eef198c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#ac6ff80c91fa5a2cd21ebd8b78db9add2">CreateCamera</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a camera.  <a href="#ac6ff80c91fa5a2cd21ebd8b78db9add2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/df8/classphys_1_1Camera.html">Camera</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#ae51f79b63b5c34959bc4cfbef34b8f08">CreateCameraPtr</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a camera and returns a pointer.  <a href="#ae51f79b63b5c34959bc4cfbef34b8f08"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a9a696ea09f174a69bbc6d0bb179b3de4">CreateOrbitingNode</a> (<a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> Target, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> RelativeLoc)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a node that will orbit around a point.  <a href="#a9a696ea09f174a69bbc6d0bb179b3de4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#ab5f9ca6b053670e69f5812cf573d5972">CreateStandNode</a> (<a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> LookAt, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> Location)</td></tr>
@@ -94,16 +106,22 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Detaches a camera from a node.  <a href="#a5137bdb9dec706fa0fafec665d4f71c8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a82001f0874a090717ced3fbe78ce795b">IncrementYOrbit</a> (<a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Radian, <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> Name)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Increments the orbit by the amount specified.  <a href="#a82001f0874a090717ced3fbe78ce795b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488">Initialize</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Empty Initializor.  <a href="#a5e956b61fa341ae576d8d160da518488"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739">GetType</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns the type of this manager.  <a href="#a8412ea634307aa280b615a3cc7c9b739"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b4bcdf992c21ae83363f25df05b1d25"></a><!-- doxytag: member="phys::CameraManager::World" ref="a7b4bcdf992c21ae83363f25df05b1d25" args="" -->
 class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8bd9afbbd7af19d996da80e9d25890d"></a><!-- doxytag: member="phys::CameraManager::Camera" ref="ad8bd9afbbd7af19d996da80e9d25890d" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is the manager class for all camera functions. </p>
 <p>This class contains all the functionality of the use and manipulation of the camera. <br/>
  All functions that manipulate the camera will default to the default camera, so if you only use one camera you should never have to name the camera you want to use. </p>
 
-<p>Definition at line <a class="el" href="../../d9/d02/cameramanager_8h_source.html#l00067">67</a> of file <a class="el" href="../../d9/d02/cameramanager_8h_source.html">cameramanager.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d02/cameramanager_8h_source.html#l00069">69</a> of file <a class="el" href="../../d9/d02/cameramanager_8h_source.html">cameramanager.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aff47d21e0c80b2b1b44148b0ec7de344"></a><!-- doxytag: member="phys::CameraManager::CameraManager" ref="aff47d21e0c80b2b1b44148b0ec7de344" args="(Ogre::SceneManager *SManager)" -->
 <div class="memitem">
@@ -130,7 +148,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00052">52</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00053">53</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -152,7 +170,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>Class Destructor. </p>
 <p>The calss Destuctor </p>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00060">60</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00061">61</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -192,7 +210,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00389">389</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00408">408</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -214,7 +232,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>Deletes all cameras except for the first camera. </p>
 <p>This will clear the container of cameras. The default camera is not stored in this container however, so it is spared from this wipe. </p>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00159">159</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00178">178</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -236,7 +254,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>Deletes all nodes created by this manager. </p>
 <p>This will clear the container of nodes. Including Orbiting nodes, Center nodes, and Stand nodes. </p>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00153">153</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00172">172</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -258,7 +276,29 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <p>Creates a camera. </p>
 <p>This function will create a camera in the scene and return the string that is name of the camera created. The first camera created will always be the Default camera, and is also created just after this class is constructed in the World.CreateRenderWindow() function. </p>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00100">100</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00101">101</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae51f79b63b5c34959bc4cfbef34b8f08"></a><!-- doxytag: member="phys::CameraManager::CreateCameraPtr" ref="ae51f79b63b5c34959bc4cfbef34b8f08" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/df8/classphys_1_1Camera.html">Camera</a> * phys::CameraManager::CreateCameraPtr </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Creates a camera and returns a pointer. </p>
+<p>This function does the same as the other CreateCamera function but will also return a pointer to the camera class instead of a string(being the name of the camera). </p>
+
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00117">117</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -297,7 +337,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00116">116</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00135">135</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -336,7 +376,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00139">139</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00158">158</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -375,7 +415,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00403">403</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00422">422</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,7 +444,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00345">345</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00364">364</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -433,7 +473,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00333">333</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00352">352</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -479,7 +519,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00301">301</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00320">320</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -508,7 +548,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00313">313</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00332">332</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -537,7 +577,31 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00325">325</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00344">344</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8412ea634307aa280b615a3cc7c9b739"></a><!-- doxytag: member="phys::CameraManager::GetType" ref="a8412ea634307aa280b615a3cc7c9b739" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerBase::ManagerTypeName</a> phys::CameraManager::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This returns the type of this manager. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns ManagerTypeName::CameraManager </dd></dl>
+
+<p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00441">441</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -576,7 +640,31 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00411">411</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00430">430</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5e956b61fa341ae576d8d160da518488"></a><!-- doxytag: member="phys::CameraManager::Initialize" ref="a5e956b61fa341ae576d8d160da518488" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::CameraManager::Initialize </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Empty Initializor. </p>
+<p>This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason </p>
+
+<p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00438">438</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -615,7 +703,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00237">237</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00256">256</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -636,7 +724,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <div class="memdoc">
 
 <p>Resets the zoom level back to the default. </p>
-<p>This function will return the zoom level back to normal. </p>
+<p>This function will return the zoom level back to normal. Note this function will only work if the camera is attached to a node. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of the camera to be manipulated. Defaults to the Default camera. </td></tr>
@@ -644,7 +732,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00370">370</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00389">389</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -683,7 +771,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00225">225</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00244">244</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -729,7 +817,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00287">287</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00306">306</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -782,7 +870,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00273">273</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00292">292</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -821,7 +909,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00177">177</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00196">196</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -860,7 +948,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00213">213</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00232">232</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -899,7 +987,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00261">261</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00280">280</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -945,7 +1033,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00249">249</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00268">268</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -984,7 +1072,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00165">165</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00184">184</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1023,7 +1111,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00201">201</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00220">220</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1062,7 +1150,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00189">189</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00208">208</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1101,7 +1189,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00357">357</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00376">376</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1110,7 +1198,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <li><a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:01 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:05 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

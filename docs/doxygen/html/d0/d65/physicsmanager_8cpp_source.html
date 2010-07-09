@@ -303,7 +303,7 @@
 <a name="l00278"></a>00278 
 <a name="l00279"></a>00279     <span class="keywordtype">void</span> PhysicsManager::Construct(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_)
 <a name="l00280"></a>00280     {
-<a name="l00281"></a>00281         this-&gt;GameWorld = GameWorld_;
+<a name="l00281"></a>00281         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> = GameWorld_;
 <a name="l00282"></a>00282 
 <a name="l00283"></a>00283 
 <a name="l00284"></a>00284         <span class="comment">//instantiate the Physics engine and related items</span>
@@ -335,7 +335,7 @@
 <a name="l00310"></a><a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a28885be750bb763d957f122593815388">00310</a>     <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a28885be750bb763d957f122593815388" title="This configures the Physics Manager to work with the Graphic settings.">PhysicsManager::Initialize</a>()
 <a name="l00311"></a>00311     {
 <a name="l00312"></a>00312         <span class="comment">// This came from the Game init function, and may need to go to a game init.</span>
-<a name="l00313"></a>00313         this-&gt;BulletDrawer = <span class="keyword">new</span> <a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem.">debug::InternalDebugDrawer</a>(this-&gt;GameWorld);
+<a name="l00313"></a>00313         this-&gt;BulletDrawer = <span class="keyword">new</span> <a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem.">debug::InternalDebugDrawer</a>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>);
 <a name="l00314"></a>00314         this-&gt;BulletDynamicsWorld-&gt;setDebugDrawer(this-&gt;BulletDrawer);
 <a name="l00315"></a>00315 
 <a name="l00316"></a>00316     }
@@ -347,7 +347,7 @@
 <a name="l00322"></a>00322         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> FloatTime = TimeElapsed;
 <a name="l00323"></a>00323         FloatTime *= 0.0001;    <span class="comment">//Convert from MilliSeconds to Seconds</span>
 <a name="l00324"></a>00324 
-<a name="l00325"></a>00325         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> IdealStep = this-&gt;GameWorld-&gt;TargetFrameLength;
+<a name="l00325"></a>00325         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> IdealStep = this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;TargetFrameLength;
 <a name="l00326"></a>00326         IdealStep *= 0.0001;
 <a name="l00327"></a>00327 
 <a name="l00328"></a>00328         <span class="comment">//int MaxSteps = (FloatTime&lt;IdealStep) ? 1 : int(FloatTime/IdealStep+1);</span>
@@ -399,11 +399,18 @@
 <a name="l00374"></a>00374     {
 <a name="l00375"></a>00375         <span class="keywordflow">return</span> this-&gt;BulletDrawer-&gt;<a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html#aa1666e636e6ff81813c0b1a85d7bc157" title="This returns the amount of wireframes to be drawn.">GetWireFrameCount</a>();
 <a name="l00376"></a>00376     }
-<a name="l00377"></a>00377 }
-<a name="l00378"></a>00378 
-<a name="l00379"></a>00379 <span class="preprocessor">#endif</span>
+<a name="l00377"></a>00377 
+<a name="l00378"></a><a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f">00378</a>     btSoftRigidDynamicsWorld* <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only...">PhysicsManager::GetPhysicsWorldPointer</a>()
+<a name="l00379"></a>00379         { <span class="keywordflow">return</span> this-&gt;BulletDynamicsWorld; }
+<a name="l00380"></a>00380 
+<a name="l00381"></a>00381     <span class="comment">//Inherited From ManagerBase</span>
+<a name="l00382"></a><a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4d151cd24052ef3cccde6b66b8745be6">00382</a>     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4d151cd24052ef3cccde6b66b8745be6" title="This returns the type of this manager.">PhysicsManager::GetType</a>()<span class="keyword"> const</span>
+<a name="l00383"></a>00383 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::PhysicsManager; }
+<a name="l00384"></a>00384 }<span class="comment">// \phys</span>
+<a name="l00385"></a>00385 
+<a name="l00386"></a>00386 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:03 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

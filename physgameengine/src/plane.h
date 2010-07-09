@@ -51,7 +51,7 @@ namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Plane
-    /// @headerfile Plane.h
+    /// @headerfile plane.h
     /// @brief This is used to represent a flat infinite slice of the game world
     /// @details The Gimbals value represents how rotated the plane will be, and
     /// The Distance with represent how far you need to move down a line perpendicular

@@ -60,12 +60,12 @@ Inheritance diagram for phys::EventBase:</div>
 <br/>
  }</td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a0f39a25f4b64f7cf701e174454616366">getEventType</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will aid in identifying all classes that inherit from this class.  <a href="#a0f39a25f4b64f7cf701e174454616366"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a1b3d29b6ecf30f18cc3e1825a515c508">GetType</a> () const =0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will aid in identifying all classes that inherit from this class.  <a href="#a1b3d29b6ecf30f18cc3e1825a515c508"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>The base class for all events. </p>
-<p>All Events used in the Event Manager, will inherit from this. While not absolutely required by the game programmer to write their own events, it it could be useful. Instances of this class cannot be made, and all classes that inherit from this are expected to implement <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a0f39a25f4b64f7cf701e174454616366" title="This will aid in identifying all classes that inherit from this class.">getEventType()</a>. </p>
+<p>All Events used in the Event Manager, will inherit from this. While not absolutely required by the game programmer to write their own events, it it could be useful. Instances of this class cannot be made, and all classes that inherit from this are expected to implement getEventType(). </p>
 
 <p>Definition at line <a class="el" href="../../db/d87/eventbase_8h_source.html#l00058">58</a> of file <a class="el" href="../../db/d87/eventbase_8h_source.html">eventbase.h</a>.</p>
 <hr/><h2>Member Enumeration Documentation</h2>
@@ -102,12 +102,12 @@ Inheritance diagram for phys::EventBase:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a0f39a25f4b64f7cf701e174454616366"></a><!-- doxytag: member="phys::EventBase::getEventType" ref="a0f39a25f4b64f7cf701e174454616366" args="() const =0" -->
+<a class="anchor" id="a1b3d29b6ecf30f18cc3e1825a515c508"></a><!-- doxytag: member="phys::EventBase::GetType" ref="a1b3d29b6ecf30f18cc3e1825a515c508" args="() const =0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> phys::EventBase::getEventType </td>
+          <td class="memname">virtual <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> phys::EventBase::GetType </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -121,7 +121,7 @@ Inheritance diagram for phys::EventBase:</div>
 <p>All Classes derived form this calls will return an Event::EventType that correspond the the data/class type they actually are. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns an eventype that will correspend with the actual event type. This can be used on all Phys game provided class to safely cast a pointer to the correct event type. </dd></dl>
 
-<p>Implemented in <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html#ad996640acbb58d2a17fc405de6515c93">phys::EventQuit</a>, <a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html#a76a47983d5aa197104cc3c0b9dea9dfa">phys::EventRenderTime</a>, and <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html#ab31bb312cde99c0a2bf64af012ee4b87">phys::EventUserInput</a>.</p>
+<p>Implemented in <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html#a3bfca875349e73dbda47c3c62a253e3b">phys::EventQuit</a>, <a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html#a160ca55bf9e5a2ae80dab82eab88baf5">phys::EventRenderTime</a>, and <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html#a3e803a8d9bcc1576fe04d2245a86ec80">phys::EventUserInput</a>.</p>
 
 </div>
 </div>
@@ -129,7 +129,7 @@ Inheritance diagram for phys::EventBase:</div>
 <li><a class="el" href="../../db/d87/eventbase_8h_source.html">eventbase.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:01 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:10 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

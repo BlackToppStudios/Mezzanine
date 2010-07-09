@@ -84,7 +84,7 @@
 
   @ref phys::EventBase
 
-  @ref phys::GraphicsSettings
+  @ref phys::GraphicsManager
 
  @section Optional Optional Engine Components
   @ref phys::WorldQueryTool

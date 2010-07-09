@@ -46,7 +46,7 @@ namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @class GraphicsManager
-    /// @headerfile graphicmanager.h
+    /// @headerfile graphicsmanager.h
     /// @brief This is intended to store basic graphics setting for the user.
     /// @details This stores x/y resolution, fullscreen and in the future other
     /// settings. This is intended to make it easy for developers to pass/move around

@@ -29,7 +29,7 @@
   </div>
 </div>
 <div class="contents">
-<h1>phys::ActorContainerBase Class Reference</h1><!-- doxytag: class="phys::ActorContainerBase" -->
+<h1>phys::ActorContainerBase Class Reference</h1><!-- doxytag: class="phys::ActorContainerBase" --><!-- doxytag: inherits="phys::ManagerBase" -->
 <p>A base class to unify the interface for different kinds of containers for holding actors.  
 <a href="#_details">More...</a></p>
 
@@ -40,7 +40,8 @@ Inheritance diagram for phys::ActorContainerBase:</div>
  <div class="center">
   <img src="../../d1/d00/classphys_1_1ActorContainerBase.png" usemap="#phys::ActorContainerBase_map" alt=""/>
   <map id="phys::ActorContainerBase_map" name="phys::ActorContainerBase_map">
-<area href="../../d3/d64/classphys_1_1ActorContainerVector.html" alt="phys::ActorContainerVector" shape="rect" coords="0,56,169,80"/>
+<area href="../../d2/de3/classphys_1_1ManagerBase.html" alt="phys::ManagerBase" shape="rect" coords="0,0,169,24"/>
+<area href="../../d3/d64/classphys_1_1ActorContainerVector.html" alt="phys::ActorContainerVector" shape="rect" coords="0,112,169,136"/>
 </map>
  </div>
 </div>
@@ -52,12 +53,12 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Basic Constructor.  <a href="#a629529f9002646d463ea167af1d20df2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#aa5eac062dd70a220a4ec6df973c6f258">~ActorContainerBase</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destructor.  <a href="#aa5eac062dd70a220a4ec6df973c6f258"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a8dd213cba4915f68ac421fc9f341cbbe">AddActor</a> (<a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *ActorToAdd)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will add an Actor to this container and the world.  <a href="#a8dd213cba4915f68ac421fc9f341cbbe"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#af32c2adf4c0f928604ce05e20b07ef66">AddActor</a> (<a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *ActorToAdd)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will add an Actor to this container and the world.  <a href="#af32c2adf4c0f928604ce05e20b07ef66"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a6ccc6d058bcbbe0b9a638e28fb136477">LastActorAdded</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This provides an easy way to access the last Actor added to this container.  <a href="#a6ccc6d058bcbbe0b9a638e28fb136477"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a523072e42f6b581d044432f84a84ede4">RemoveActor</a> (<a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *ActorToRemove)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an Actor.  <a href="#a523072e42f6b581d044432f84a84ede4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a579e049a3190fcc1f951b3212c209616">RemoveActor</a> (<a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *ActorToRemove)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove an Actor.  <a href="#a579e049a3190fcc1f951b3212c209616"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a60f37a056e8750f3b389c5ceed14520c">RemoveActorAtCursor</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes the current actor.  <a href="#a60f37a056e8750f3b389c5ceed14520c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#aa5ec651d4634b2d90efe2a76f9d2fbdd">GetActorCount</a> () const =0</td></tr>
@@ -80,8 +81,18 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This finds an actor by searching for a graphics subsystem nodes.  <a href="#a2e4652bf92f24a0ff20bdc4a7173b567"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a91223cbaebb8e5f11a4f971d7e5b64b6">FindActor</a> (<a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> Name)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This finds an actor based on its name.  <a href="#a91223cbaebb8e5f11a4f971d7e5b64b6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a526dab176597858680490d128d0584a3">GetType</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Which kind of container it this anyway.  <a href="#a526dab176597858680490d128d0584a3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a0ed43bc828aaee8ee33152970c3cc16d">GetContainerType</a> () const =0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Which kind of container it this anyway.  <a href="#a0ed43bc828aaee8ee33152970c3cc16d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a479e6c7434f2611b0cfe6ca1fd4ebdd1">GetGameWorld</a> () const =0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This gets the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> that this class is working with.  <a href="#a479e6c7434f2611b0cfe6ca1fd4ebdd1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#ae0cb5c288f17507247dd98d3a2466876">SetGameWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *GameWorld_)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This sets the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a> that this Manager works with.  <a href="#ae0cb5c288f17507247dd98d3a2466876"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a366c1797bef08f3a1846bf010e2e2b04">SetGameWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *GameWorld_, bool AddToWorld, bool RemoveFromWorld)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Optionally move actors into or out of a physworld.  <a href="#a366c1797bef08f3a1846bf010e2e2b04"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#aa86380fd1b18d660f68b60f075967cf8">GetType</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns the type of this manager.  <a href="#aa86380fd1b18d660f68b60f075967cf8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#af36d5866e0ee9f6f450a4e62642e0928">Initialize</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Configure Items requiring other Managers.  <a href="#af36d5866e0ee9f6f450a4e62642e0928"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Ogre::Node *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a423b3f134370a51fde5496a41792b42c">GetNode</a> (<a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *actor)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to work around the scenenode of an Actor being private, so all derived Containers can access it.  <a href="#a423b3f134370a51fde5496a41792b42c"></a><br/></td></tr>
@@ -92,13 +103,13 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <br/>
  The phys world will use one of these containers to store all of the actors for tracking purposes Since <br/>
 <br/>
- Currently, you cannot simply swap one member of this with another, in a running <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. We are Looking into the feasibility of implementing this. <br/>
+ In theory you should be be able to work with multiple actor containers and swiftly add or remove them to ad from a world to quickly control what actors are being worked with. It should even be possible to remove all actors, or have multiple set of actor in the world if you use the GameWorldSet methods carefully. <br/>
 <br/>
- However the is no reason an actor could be in multiple containers so this could be a viable work around for actor sorting and categorization at runtime. <br/>
+ Additionally the is no reason an actor could be in multiple containers so this can provide even more options for actor sorting and categorization at runtime. <br/>
 <br/>
  Because of this classes representation of a cursor only 1 thread at a time should use the cursor movement functions. For the container that the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a> keeps it should be assume that the cursor is used. For other containers you should manage you container carefully and/or use another iteration method, such as STL iterators. </p>
 
-<p>Definition at line <a class="el" href="../../db/d8f/actorcontainerbase_8h_source.html#l00074">74</a> of file <a class="el" href="../../db/d8f/actorcontainerbase_8h_source.html">actorcontainerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d8f/actorcontainerbase_8h_source.html#l00076">76</a> of file <a class="el" href="../../db/d8f/actorcontainerbase_8h_source.html">actorcontainerbase.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a629529f9002646d463ea167af1d20df2"></a><!-- doxytag: member="phys::ActorContainerBase::ActorContainerBase" ref="a629529f9002646d463ea167af1d20df2" args="(World *ParentWorld_)" -->
 <div class="memitem">
@@ -147,22 +158,22 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <p>Destructor. </p>
 <p>This really doesn't do anything, but if someone needs to overload it, it's here </p>
 
-<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00054">54</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00052">52</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a8dd213cba4915f68ac421fc9f341cbbe"></a><!-- doxytag: member="phys::ActorContainerBase::AddActor" ref="a8dd213cba4915f68ac421fc9f341cbbe" args="(ActorBase *ActorToAdd)=0" -->
+<a class="anchor" id="af32c2adf4c0f928604ce05e20b07ef66"></a><!-- doxytag: member="phys::ActorContainerBase::AddActor" ref="af32c2adf4c0f928604ce05e20b07ef66" args="(ActorBase *ActorToAdd)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void phys::ActorContainerBase::AddActor </td>
+          <td class="memname">void phys::ActorContainerBase::AddActor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td>
           <td class="paramname"> <em>ActorToAdd</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -171,8 +182,9 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <p>This will add an Actor to this container and the world. </p>
 <p>This will add an Actor to this container and the world, and handle the nitty gritty details of add this to physics subsystem and graphics subsystem. <br/>
 <br/>
- This will not add the Actor to any specific location in the ordering of the container. </p>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>This will cause issues if used with a container attached to a valid <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. Use <a class="el" href="../../da/ddf/classphys_1_1World.html#a0fec41ef68b7bb1443aab927f8277a81" title="The adds and Actor to the physworld.">World::AddActor</a> instead. </dd></dl>
+ This will not add the Actor to any specific location in the ordering of the container. <br/>
+<br/>
+ It is expected that any container implementing this method will take appropriate steps to insure That the actor involved is added to the Physics and graphics world. This method could be called from derived to accomplish that task </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>ActorToAdd</em>&nbsp;</td><td>This is a pointer to the actor to add. </td></tr>
@@ -180,7 +192,9 @@ Inheritance diagram for phys::ActorContainerBase:</div>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a4bc3e38f16caddee021a97739bebaf6e">phys::ActorContainerVector</a>.</p>
+<p>Reimplemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a4bc3e38f16caddee021a97739bebaf6e">phys::ActorContainerVector</a>.</p>
+
+<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00061">61</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -375,6 +389,29 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 </div>
 </div>
+<a class="anchor" id="a0ed43bc828aaee8ee33152970c3cc16d"></a><!-- doxytag: member="phys::ActorContainerBase::GetContainerType" ref="a0ed43bc828aaee8ee33152970c3cc16d" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::ActorContainerBase::GetContainerType </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Which kind of container it this anyway. </p>
+<p>Since this interface could be used with any type of containers and innumerable 3rd party container implemention this can be used to more safely cast this container to a more specific type. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a> </dd></dl>
+
+<p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ae18c29b30d840e0f4fc9b553dd5ca32c">phys::ActorContainerVector</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ae703482d84a9c6726e28a8f26418b161"></a><!-- doxytag: member="phys::ActorContainerBase::GetFirst" ref="ae703482d84a9c6726e28a8f26418b161" args="() const =0" -->
 <div class="memitem">
 <div class="memproto">
@@ -395,6 +432,31 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to an <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>. Will throw an exception when attempting to get from an empty container. </dd></dl>
 
 <p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a55ceecd017455f3185aa62798811e3c6">phys::ActorContainerVector</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a479e6c7434f2611b0cfe6ca1fd4ebdd1"></a><!-- doxytag: member="phys::ActorContainerBase::GetGameWorld" ref="a479e6c7434f2611b0cfe6ca1fd4ebdd1" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../da/ddf/classphys_1_1World.html">World</a>* phys::ActorContainerBase::GetGameWorld </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This gets the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> that this class is working with. </p>
+<p>This returns the gameworld that this container registers it's objects with. If this is not set, then this does not Register it's actors with any world. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>* </dd></dl>
+
+<p>Reimplemented from <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#addfd62fbc444ca4c2aba40768d1b284e">phys::ManagerBase</a>.</p>
+
+<p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a5519eb0000073a2f397e158bfc368349">phys::ActorContainerVector</a>.</p>
 
 </div>
 </div>
@@ -440,30 +502,57 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <p>Used to work around the scenenode of an Actor being private, so all derived Containers can access it. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00057">57</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00055">55</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a526dab176597858680490d128d0584a3"></a><!-- doxytag: member="phys::ActorContainerBase::GetType" ref="a526dab176597858680490d128d0584a3" args="() const =0" -->
+<a class="anchor" id="aa86380fd1b18d660f68b60f075967cf8"></a><!-- doxytag: member="phys::ActorContainerBase::GetType" ref="aa86380fd1b18d660f68b60f075967cf8" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::ActorContainerBase::GetType </td>
+          <td class="memname"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerBase::ManagerTypeName</a> phys::ActorContainerBase::GetType </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [pure virtual]</code></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Which kind of container it this anyway. </p>
-<p>Since this interface could be used with any type of containers and innumerable 3rd party container implemention this can be used to more safely cast this container to a more specific type. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a> </dd></dl>
+<p>This returns the type of this manager. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns ManagerTypeName::ActorContainerBase </dd></dl>
 
-<p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a20d18213e69b3821ee973865df428e6d">phys::ActorContainerVector</a>.</p>
+<p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af36d5866e0ee9f6f450a4e62642e0928"></a><!-- doxytag: member="phys::ActorContainerBase::Initialize" ref="af36d5866e0ee9f6f450a4e62642e0928" args="()=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void phys::ActorContainerBase::Initialize </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Configure Items requiring other Managers. </p>
+<p>If you are using the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a> this is called when <a class="el" href="../../da/ddf/classphys_1_1World.html#a21cc36be08a61f40619584d4c438936b" title="This creates the game window and starts the game.">phys::World::GameInit()</a> is called. It is expected that by the time this is called either <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#ab9ad12416f771d95fe8a6d953923c634" title="Simple Constructor.">ManagerBase::ManagerBase(World*)</a> or <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a97eb1e77c1f7a0925fc623836368a262" title="This sets the phys::World that this Manager works with.">ManagerBase::SetGameWorld(World*)</a> will have been called. This is where all configuration that requires atleast one other manager on the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a> to exist.<br/>
+<br/>
+ Yes we know it is spelled wrong, but are Zs cooler anyway. </p>
+
+<p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
+
+<p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c">phys::ActorContainerVector</a>.</p>
 
 </div>
 </div>
@@ -489,12 +578,12 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 </div>
 </div>
-<a class="anchor" id="a523072e42f6b581d044432f84a84ede4"></a><!-- doxytag: member="phys::ActorContainerBase::RemoveActor" ref="a523072e42f6b581d044432f84a84ede4" args="(ActorBase *ActorToRemove)=0" -->
+<a class="anchor" id="a579e049a3190fcc1f951b3212c209616"></a><!-- doxytag: member="phys::ActorContainerBase::RemoveActor" ref="a579e049a3190fcc1f951b3212c209616" args="(ActorBase *ActorToRemove)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void phys::ActorContainerBase::RemoveActor </td>
+          <td class="memname">void phys::ActorContainerBase::RemoveActor </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td>
           <td class="paramname"> <em>ActorToRemove</em></td>
@@ -507,9 +596,11 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 <p>Remove an Actor. </p>
 <p>Remove all references of the actor pointed from the container. Will throw an exception when attempting to remove and no match could be found. </p>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>This will cause issues if used with a container attached to a valid <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. Use <a class="el" href="../../da/ddf/classphys_1_1World.html#ab00f84983afcc7f6ef1e5a84367d994d" title="The Removes an Actor from the physworld.">World::RemoveActor</a> instead. </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This will cause issues if used with a container attached to a valid <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. Use World::RemoveActor instead. </dd></dl>
 
 <p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#aeee5bd81601faed85e6a35f576c8d476">phys::ActorContainerVector</a>.</p>
+
+<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00067">67</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -530,9 +621,85 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 <p>Removes the current actor. </p>
 <p>This removes the actor the cursor at. Will throw an exception when attempting to remove from an empty container. Where the cursor goes is implementation dependent. </p>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>This will cause issues if used with a container attached to a valid <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. Use <a class="el" href="../../da/ddf/classphys_1_1World.html#ab00f84983afcc7f6ef1e5a84367d994d" title="The Removes an Actor from the physworld.">World::RemoveActor</a> instead. </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This will cause issues if used with a container attached to a valid <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. Use World::RemoveActor instead. </dd></dl>
 
 <p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a430977daf010a25f53df6cf37954f8ca">phys::ActorContainerVector</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a366c1797bef08f3a1846bf010e2e2b04"></a><!-- doxytag: member="phys::ActorContainerBase::SetGameWorld" ref="a366c1797bef08f3a1846bf010e2e2b04" args="(World *GameWorld_, bool AddToWorld, bool RemoveFromWorld)=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void phys::ActorContainerBase::SetGameWorld </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td>
+          <td class="paramname"> <em>GameWorld_</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>AddToWorld</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>RemoveFromWorld</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Optionally move actors into or out of a physworld. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>GameWorld_</em>&nbsp;</td><td>The new GameWorldPointer, or 0 to set none </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>AddToWorld</em>&nbsp;</td><td>True to add AddActors if valid world pointer was supplied, false to not add </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>RemoveFromWorld</em>&nbsp;</td><td>True to remove AddActors if valid world pointer was supplied, false to not remove </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a721d0cde6fc4f1e8d3b33867cd5c82df">phys::ActorContainerVector</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae0cb5c288f17507247dd98d3a2466876"></a><!-- doxytag: member="phys::ActorContainerBase::SetGameWorld" ref="ae0cb5c288f17507247dd98d3a2466876" args="(World *GameWorld_)=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void phys::ActorContainerBase::SetGameWorld </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td>
+          <td class="paramname"> <em>GameWorld_</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This sets the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a> that this Manager works with. </p>
+<p>If the are any actors in the world, this removes them from both the physics and graphics subsystem, and adds them to the new world as is appropriate. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>GameWorld_</em>&nbsp;</td><td>The new GameWorldPointer, or 0 to set none </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a97eb1e77c1f7a0925fc623836368a262">phys::ManagerBase</a>.</p>
+
+<p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa">phys::ActorContainerVector</a>.</p>
 
 </div>
 </div>
@@ -541,7 +708,7 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <li><a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:04 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

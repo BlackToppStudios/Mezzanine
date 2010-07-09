@@ -106,11 +106,11 @@
 <a name="l00081"></a>00081 <span class="comment">    /// the events.</span>
 <a name="l00082"></a>00082 <span class="comment">    /// @warning Currently this is not thread safe, even though it should be.</span>
 <a name="l00083"></a>00083 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00084"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html">00084</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>
+<a name="l00084"></a><a class="code" href="../../da/dde/classphys_1_1EventManager.html">00084</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>: <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>
 <a name="l00085"></a>00085     {
 <a name="l00086"></a>00086         <span class="keyword">private</span>:
 <a name="l00087"></a>00087             <span class="comment">//The Default Physics worlds that this Eventmanager is expected to interact with</span>
-<a name="l00088"></a>00088             <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* ParentWorld;
+<a name="l00088"></a>00088             <span class="comment">//World* ParentWorld;</span>
 <a name="l00089"></a>00089 
 <a name="l00090"></a>00090             <span class="comment">//The Queue that all the events get stored in</span>
 <a name="l00091"></a>00091             std::list&lt;EventBase*&gt; EventQueue;
@@ -362,11 +362,24 @@
 <a name="l00337"></a>00337 <span class="comment">            /// This is called automatically by main loop processing, but there is no harm in calling it several times.</span>
 <a name="l00338"></a>00338 <span class="comment">            /// @return This returns a pointer to a EventUserInput that contains the desired metacodes</span>
 <a name="l00339"></a>00339 <span class="comment"></span>            <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>* <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a983bc9f1933466491e6bf025b26a9023" title="This activates the polling routines of the user input subsystems.">PollForUserInputEvents</a>();
-<a name="l00340"></a>00340     };
-<a name="l00341"></a>00341 }
-<a name="l00342"></a>00342 <span class="preprocessor">#endif</span>
+<a name="l00340"></a>00340 <span class="comment"></span>
+<a name="l00341"></a>00341 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00342"></a>00342 <span class="comment"></span>        <span class="comment">// Inherited From ManagerBase</span><span class="comment"></span>
+<a name="l00343"></a>00343 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00344"></a>00344 <span class="comment">            /// @brief Empty Initializor</span>
+<a name="l00345"></a>00345 <span class="comment">            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists</span>
+<a name="l00346"></a>00346 <span class="comment">            /// in case a derived class wants to override it for some reason</span>
+<a name="l00347"></a>00347 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0" title="Empty Initializor.">Initialize</a>();
+<a name="l00348"></a>00348 <span class="comment"></span>
+<a name="l00349"></a>00349 <span class="comment">            /// @brief This returns the type of this manager.</span>
+<a name="l00350"></a>00350 <span class="comment">            /// @return This returns ManagerTypeName::EventManager</span>
+<a name="l00351"></a>00351 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerTypeName</a> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696" title="This returns the type of this manager.">GetType</a>() <span class="keyword">const</span>;
+<a name="l00352"></a>00352 
+<a name="l00353"></a>00353     };
+<a name="l00354"></a>00354 }
+<a name="l00355"></a>00355 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -14,7 +14,7 @@ A simple Actor Container using a vector.
 Inheritance diagram for phys::ActorContainerVector:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{d3/d64/classphys_1_1ActorContainerVector}
+\includegraphics[height=3cm]{d3/d64/classphys_1_1ActorContainerVector}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -46,12 +46,20 @@ virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphy
 \begin{DoxyCompactList}\small\item\em This gets the first actor in the container. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}{GetLast} () const 
 \begin{DoxyCompactList}\small\item\em This gets the last actor in the container. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorContainerVector_a20d18213e69b3821ee973865df428e6d}{GetType} () const 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorContainerVector_ae18c29b30d840e0f4fc9b553dd5ca32c}{GetContainerType} () const 
 \begin{DoxyCompactList}\small\item\em Which kind of container it this anyway. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a5519eb0000073a2f397e158bfc368349}{GetGameWorld} () const 
+\begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1World}{World} that this class is working with. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}{FindActor} (Ogre::Node $\ast$GraphicsNode)
 \begin{DoxyCompactList}\small\item\em This finds an actor by searching for a graphics subsystem nodes. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}{FindActor} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)
-\begin{DoxyCompactList}\small\item\em This finds an actor based on its name. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This finds an actor based on its name. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerVector_ab4c1394254057465f7a2f89b87dc49aa}{SetGameWorld} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-)
+\begin{DoxyCompactList}\small\item\em This safely move all the Actors out of or into a \hyperlink{classphys_1_1World}{phys::World}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerVector_a721d0cde6fc4f1e8d3b33867cd5c82df}{SetGameWorld} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-, bool AddToWorld, bool RemoveFromWorld)
+\begin{DoxyCompactList}\small\item\em Optionally move actors into or out of a physworld. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerVector_adcebf4329a587669f74e1eacc1e6912c}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Empty Initilizor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -97,19 +105,18 @@ This will add an Actor to this container and the world.
 
 This will add an Actor to this container and the world, and handle the nitty gritty details of add this to physics subsystem and graphics subsystem. \par
 \par
- This will not add the Actor to any specific location in the ordering of the container. \begin{DoxyWarning}{Warning}
-This will cause issues if used with a container attached to a valid \hyperlink{classphys_1_1World}{phys::World}. Use \hyperlink{classphys_1_1World_a0fec41ef68b7bb1443aab927f8277a81}{World::AddActor} instead. 
-\end{DoxyWarning}
-
+ This will not add the Actor to any specific location in the ordering of the container. \par
+\par
+ It is expected that any container implementing this method will take appropriate steps to insure That the actor involved is added to the Physics and graphics world. This method could be called from derived to accomplish that task 
 \begin{DoxyParams}{Parameters}
 \item[{\em ActorToAdd}]This is a pointer to the actor to add. \end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1ActorContainerBase_a8dd213cba4915f68ac421fc9f341cbbe}{phys::ActorContainerBase}.
+Reimplemented from \hyperlink{classphys_1_1ActorContainerBase_af32c2adf4c0f928604ce05e20b07ef66}{phys::ActorContainerBase}.
 
 
 
-Definition at line 49 of file actorcontainervector.cpp.
+Definition at line 48 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_ad9c2eb2a9405dcf687c86745afc9c031}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToFirst@{CursorToFirst}}
@@ -126,7 +133,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de
 
 
 
-Definition at line 82 of file actorcontainervector.cpp.
+Definition at line 77 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_aa6b08266bbb57a22c07ab50514e58db4}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToLast@{CursorToLast}}
@@ -143,7 +150,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_afad072e018a04c190e5e5fb93
 
 
 
-Definition at line 108 of file actorcontainervector.cpp.
+Definition at line 103 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a1c72366a6261d8e98dc0a9d2fad9f70f}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToNext@{CursorToNext}}
@@ -160,7 +167,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a1aa337456a4e74cb5740dbae0
 
 
 
-Definition at line 99 of file actorcontainervector.cpp.
+Definition at line 94 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b04a8805a002413}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToPrevious@{CursorToPrevious}}
@@ -177,7 +184,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a0837
 
 
 
-Definition at line 90 of file actorcontainervector.cpp.
+Definition at line 85 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!FindActor@{FindActor}}
@@ -200,7 +207,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7
 
 
 
-Definition at line 151 of file actorcontainervector.cpp.
+Definition at line 139 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!FindActor@{FindActor}}
@@ -223,7 +230,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7
 
 
 
-Definition at line 140 of file actorcontainervector.cpp.
+Definition at line 128 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a6d2e5e68e23f5798ad10ba41e479d0f7}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetActorCount@{GetActorCount}}
@@ -243,7 +250,7 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_aa5ec651d4634b2d90efe2a76f
 
 
 
-Definition at line 77 of file actorcontainervector.cpp.
+Definition at line 74 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a280700490b368a963dd8feae044c7a6d}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetAtCursor@{GetAtCursor}}
@@ -263,7 +270,27 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a2c8fb86a9e188aece105b2a75
 
 
 
-Definition at line 116 of file actorcontainervector.cpp.
+Definition at line 111 of file actorcontainervector.cpp.
+
+\hypertarget{classphys_1_1ActorContainerVector_ae18c29b30d840e0f4fc9b553dd5ca32c}{
+\index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetContainerType@{GetContainerType}}
+\index{GetContainerType@{GetContainerType}!phys::ActorContainerVector@{phys::ActorContainerVector}}
+\subsubsection[{GetContainerType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::ActorContainerVector::GetContainerType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d64/classphys_1_1ActorContainerVector_ae18c29b30d840e0f4fc9b553dd5ca32c}
+
+
+Which kind of container it this anyway. 
+
+Since this interface could be used with any type of containers and innumerable 3rd party container implemention this can be used to more safely cast this container to a more specific type. \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String} 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ActorContainerBase_a0ed43bc828aaee8ee33152970c3cc16d}{phys::ActorContainerBase}.
+
+
+
+Definition at line 125 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a55ceecd017455f3185aa62798811e3c6}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetFirst@{GetFirst}}
@@ -283,7 +310,27 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_ae703482d84a9c6726e28a8f26
 
 
 
-Definition at line 124 of file actorcontainervector.cpp.
+Definition at line 119 of file actorcontainervector.cpp.
+
+\hypertarget{classphys_1_1ActorContainerVector_a5519eb0000073a2f397e158bfc368349}{
+\index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetGameWorld@{GetGameWorld}}
+\index{GetGameWorld@{GetGameWorld}!phys::ActorContainerVector@{phys::ActorContainerVector}}
+\subsubsection[{GetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} $\ast$ phys::ActorContainerVector::GetGameWorld () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d64/classphys_1_1ActorContainerVector_a5519eb0000073a2f397e158bfc368349}
+
+
+This gets the \hyperlink{classphys_1_1World}{World} that this class is working with. 
+
+This returns the gameworld that this container registers it's objects with. If this is not set, then this does not Register it's actors with any world. \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1World}{phys::World}$\ast$ 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ActorContainerBase_a479e6c7434f2611b0cfe6ca1fd4ebdd1}{phys::ActorContainerBase}.
+
+
+
+Definition at line 153 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetLast@{GetLast}}
@@ -303,27 +350,24 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a8efeffd5ae22085fe01af791b
 
 
 
-Definition at line 129 of file actorcontainervector.cpp.
+Definition at line 122 of file actorcontainervector.cpp.
 
-\hypertarget{classphys_1_1ActorContainerVector_a20d18213e69b3821ee973865df428e6d}{
-\index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetType@{GetType}}
-\index{GetType@{GetType}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::ActorContainerVector::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d3/d64/classphys_1_1ActorContainerVector_a20d18213e69b3821ee973865df428e6d}
-
-
-Which kind of container it this anyway. 
-
-Since this interface could be used with any type of containers and innumerable 3rd party container implemention this can be used to more safely cast this container to a more specific type. \begin{DoxyReturn}{Returns}
-This returns a \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String} 
-\end{DoxyReturn}
+\hypertarget{classphys_1_1ActorContainerVector_adcebf4329a587669f74e1eacc1e6912c}{
+\index{phys::ActorContainerVector@{phys::ActorContainerVector}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!phys::ActorContainerVector@{phys::ActorContainerVector}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d64/classphys_1_1ActorContainerVector_adcebf4329a587669f74e1eacc1e6912c}
 
 
-Implements \hyperlink{classphys_1_1ActorContainerBase_a526dab176597858680490d128d0584a3}{phys::ActorContainerBase}.
+Empty Initilizor. 
+
+This class implements this for the sake of entension and compatibility this function does nothing 
+
+Implements \hyperlink{classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4e62642e0928}{phys::ActorContainerBase}.
 
 
 
-Definition at line 134 of file actorcontainervector.cpp.
+Definition at line 176 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a49e643bdeff78521de9c4a9fea59a0d2}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!LastActorAdded@{LastActorAdded}}
@@ -352,15 +396,15 @@ Definition at line 55 of file actorcontainervector.cpp.
 Remove an Actor. 
 
 Remove all references of the actor pointed from the container. Will throw an exception when attempting to remove and no match could be found. \begin{DoxyWarning}{Warning}
-This will cause issues if used with a container attached to a valid \hyperlink{classphys_1_1World}{phys::World}. Use \hyperlink{classphys_1_1World_ab00f84983afcc7f6ef1e5a84367d994d}{World::RemoveActor} instead. 
+This will cause issues if used with a container attached to a valid \hyperlink{classphys_1_1World}{phys::World}. Use World::RemoveActor instead. 
 \end{DoxyWarning}
 
 
-Implements \hyperlink{classphys_1_1ActorContainerBase_a523072e42f6b581d044432f84a84ede4}{phys::ActorContainerBase}.
+Implements \hyperlink{classphys_1_1ActorContainerBase_a579e049a3190fcc1f951b3212c209616}{phys::ActorContainerBase}.
 
 
 
-Definition at line 60 of file actorcontainervector.cpp.
+Definition at line 58 of file actorcontainervector.cpp.
 
 \hypertarget{classphys_1_1ActorContainerVector_a430977daf010a25f53df6cf37954f8ca}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!RemoveActorAtCursor@{RemoveActorAtCursor}}
@@ -372,7 +416,7 @@ Definition at line 60 of file actorcontainervector.cpp.
 Removes the current actor. 
 
 This removes the actor the cursor at. Will throw an exception when attempting to remove from an empty container. Where the cursor goes is implementation dependent. \begin{DoxyWarning}{Warning}
-This will cause issues if used with a container attached to a valid \hyperlink{classphys_1_1World}{phys::World}. Use \hyperlink{classphys_1_1World_ab00f84983afcc7f6ef1e5a84367d994d}{World::RemoveActor} instead. 
+This will cause issues if used with a container attached to a valid \hyperlink{classphys_1_1World}{phys::World}. Use World::RemoveActor instead. 
 \end{DoxyWarning}
 
 
@@ -380,7 +424,47 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a60f37a056e8750f3b389c5cee
 
 
 
-Definition at line 72 of file actorcontainervector.cpp.
+Definition at line 71 of file actorcontainervector.cpp.
+
+\hypertarget{classphys_1_1ActorContainerVector_a721d0cde6fc4f1e8d3b33867cd5c82df}{
+\index{phys::ActorContainerVector@{phys::ActorContainerVector}!SetGameWorld@{SetGameWorld}}
+\index{SetGameWorld@{SetGameWorld}!phys::ActorContainerVector@{phys::ActorContainerVector}}
+\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::SetGameWorld ({\bf World} $\ast$ {\em GameWorld\_\-}, \/  bool {\em AddToWorld}, \/  bool {\em RemoveFromWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d64/classphys_1_1ActorContainerVector_a721d0cde6fc4f1e8d3b33867cd5c82df}
+
+
+Optionally move actors into or out of a physworld. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em GameWorld\_\-}]This is a pointer to the new \hyperlink{classphys_1_1World}{phys::World} to work with. \item[{\em AddToWorld}]True to add AddActors if valid world pointer was supplied, false to not add \item[{\em RemoveFromWorld}]True to remove AddActors if valid world pointer was supplied, false to not remove \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1ActorContainerBase_a366c1797bef08f3a1846bf010e2e2b04}{phys::ActorContainerBase}.
+
+
+
+Definition at line 159 of file actorcontainervector.cpp.
+
+\hypertarget{classphys_1_1ActorContainerVector_ab4c1394254057465f7a2f89b87dc49aa}{
+\index{phys::ActorContainerVector@{phys::ActorContainerVector}!SetGameWorld@{SetGameWorld}}
+\index{SetGameWorld@{SetGameWorld}!phys::ActorContainerVector@{phys::ActorContainerVector}}
+\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::SetGameWorld ({\bf World} $\ast$ {\em GameWorld\_\-})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d64/classphys_1_1ActorContainerVector_ab4c1394254057465f7a2f89b87dc49aa}
+
+
+This safely move all the Actors out of or into a \hyperlink{classphys_1_1World}{phys::World}. 
+
+This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system if a \hyperlink{classphys_1_1World}{phys::World} is present. Then this sets up all actors with the new \hyperlink{classphys_1_1World}{World} unless it is NULL 
+\begin{DoxyParams}{Parameters}
+\item[{\em GameWorld\_\-}]This is a pointer to the new \hyperlink{classphys_1_1World}{phys::World} to work with. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1ActorContainerBase_ae0cb5c288f17507247dd98d3a2466876}{phys::ActorContainerBase}.
+
+
+
+Definition at line 156 of file actorcontainervector.cpp.
 
 
 
@@ -396,7 +480,7 @@ This is used to store information about the cursor.
 
 This implementation of \hyperlink{classphys_1_1ActorContainerBase}{ActorContainerBase} will use this, and only this to access the cursor so feel free to use this instead. 
 
-Definition at line 112 of file actorcontainervector.h.
+Definition at line 114 of file actorcontainervector.h.
 
 
 

@@ -65,23 +65,23 @@
 <a name="l00040"></a>00040 <span class="preprocessor">#ifndef CALLBACKMANAGER_H</span>
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define CALLBACKMANAGER_H</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
-<a name="l00043"></a>00043 <span class="comment">//Forward declaration for pointers</span>
-<a name="l00044"></a>00044 <span class="keyword">namespace </span>phys
-<a name="l00045"></a>00045 {
-<a name="l00046"></a>00046     <span class="keyword">class </span>World;
-<a name="l00047"></a>00047 <span class="comment"></span>
+<a name="l00043"></a>00043 <span class="preprocessor">#include &quot;managerbase.h&quot;</span>
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="keyword">namespace </span>phys
+<a name="l00047"></a>00047 {<span class="comment"></span>
 <a name="l00048"></a>00048 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00049"></a>00049 <span class="comment">    /// @class CallBackManager</span>
 <a name="l00050"></a>00050 <span class="comment">    /// @headerfile callbackmanager.h</span>
 <a name="l00051"></a>00051 <span class="comment">    /// @brief This Stores callbacks for for use in the main loop</span>
 <a name="l00052"></a>00052 <span class="comment">    /// @details This stores a series of pointers to functions that the main loop</span>
 <a name="l00053"></a>00053 <span class="comment">    /// will call. This can be swapped out at any point in time with another</span>
-<a name="l00054"></a>00054 <span class="comment">    /// CallBackManager to completely (or subtley) alter game behavior. In general</span>
-<a name="l00055"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html">00055</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a>
+<a name="l00054"></a>00054 <span class="comment">    /// CallBackManager to completely (or subtley) alter game behavior.</span>
+<a name="l00055"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html">00055</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a>: <span class="keyword">public</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>
 <a name="l00056"></a>00056     {
 <a name="l00057"></a>00057         <span class="keyword">private</span>:
 <a name="l00058"></a>00058             <span class="comment">//pointers to engine internal structures</span>
-<a name="l00059"></a>00059             <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TheWorldIListenTo;
+<a name="l00059"></a>00059             <span class="comment">//World* Game;</span>
 <a name="l00060"></a>00060 
 <a name="l00061"></a>00061             <span class="comment">//pointers to callback functions</span>
 <a name="l00062"></a>00062             bool (*PreInputCallback)();
@@ -101,175 +101,184 @@
 <a name="l00076"></a>00076 <span class="comment">            /// @brief Constructor</span>
 <a name="l00077"></a>00077 <span class="comment">            /// @details This creates a usable but empty CallBackManager</span>
 <a name="l00078"></a>00078 <span class="comment">            /// @param _Parent This is a pointer to the world that this callback manager works with.</span>
-<a name="l00079"></a>00079 <span class="comment"></span>            <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* _Parent);
-<a name="l00080"></a>00080             <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a>();<span class="comment"></span>
+<a name="l00079"></a>00079 <span class="comment"></span>            <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a16d4c60beef774ae904cf01853d71aae" title="Constructor.">CallBackManager</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* _Parent);
+<a name="l00080"></a>00080 <span class="comment"></span>
 <a name="l00081"></a>00081 <span class="comment">            /// @brief Deconstructor</span>
 <a name="l00082"></a>00082 <span class="comment">            /// @details Deconstructor Currently doesn&#39;t do very much</span>
-<a name="l00083"></a>00083 <span class="comment"></span>            <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a098b7a7822538aa6d6c4ba690f1e069d" title="Deconstructor.">~CallBackManager</a>();
+<a name="l00083"></a>00083 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a098b7a7822538aa6d6c4ba690f1e069d" title="Deconstructor.">~CallBackManager</a>();
 <a name="l00084"></a>00084 <span class="comment"></span>
-<a name="l00085"></a>00085 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00086"></a>00086 <span class="comment"></span>        <span class="comment">// PreInput Management</span><span class="comment"></span>
-<a name="l00087"></a>00087 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00088"></a>00088 <span class="comment">            /// @brief This calls the PreInput Callback.</span>
-<a name="l00089"></a>00089 <span class="comment">            /// @details This calls the PreInput Callback and returns true if the callback</span>
-<a name="l00090"></a>00090 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
-<a name="l00091"></a>00091 <span class="comment">            /// end the mainloop.</span>
-<a name="l00092"></a>00092 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
-<a name="l00093"></a>00093 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84e782f8729f49b296691763351ee2b1" title="This calls the PreInput Callback.">PreInput</a>();
-<a name="l00094"></a>00094 <span class="comment"></span>
-<a name="l00095"></a>00095 <span class="comment">            /// @brief Drops the PreInput pointer.</span>
-<a name="l00096"></a>00096 <span class="comment">            /// @details Drops the PreInput pointer, this does not &#39;delete&#39; the pointer, merely</span>
-<a name="l00097"></a>00097 <span class="comment">            /// assigns it to zero.</span>
-<a name="l00098"></a>00098 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ae3da6f1eb10cdf4d8551aaeeda73053c" title="Drops the PreInput pointer.">ErasePreInput</a>();
-<a name="l00099"></a>00099 <span class="comment"></span>
-<a name="l00100"></a>00100 <span class="comment">            /// @brief This assigns a function to be the callback function for PreInput</span>
-<a name="l00101"></a>00101 <span class="comment">            /// @details This assigns a function to be the callback function for PreInput.</span>
-<a name="l00102"></a>00102 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
-<a name="l00103"></a>00103 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1efb0c185304376986093beebf08a277" title="This assigns a function to be the callback function for PreInput.">SetPreInput</a>(<span class="keywordtype">bool</span> (*Callback)());
-<a name="l00104"></a>00104 <span class="comment"></span>
-<a name="l00105"></a>00105 <span class="comment">            /// @brief Is the PreInput callback set or not.</span>
-<a name="l00106"></a>00106 <span class="comment">            /// @details Is the PreInput callback set or not. The returns true if set or false otherwise.</span>
-<a name="l00107"></a>00107 <span class="comment">            /// @return This returns true if the PreInput CallBack is set, false otherwise</span>
-<a name="l00108"></a>00108 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1add8e6e7f5862ec4a4fe48095dc3c4e" title="Is the PreInput callback set or not.">IsPreInputCallbackSet</a>();
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110 <span class="comment"></span>
-<a name="l00111"></a>00111 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00112"></a>00112 <span class="comment"></span>        <span class="comment">// PostInput Management</span><span class="comment"></span>
-<a name="l00113"></a>00113 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00114"></a>00114 <span class="comment">            /// @brief This calls the PostInput Callback.</span>
-<a name="l00115"></a>00115 <span class="comment">            /// @details This calls the PostInput Callback and returns true if the callback</span>
-<a name="l00116"></a>00116 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
-<a name="l00117"></a>00117 <span class="comment">            /// end the mainloop.</span>
-<a name="l00118"></a>00118 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
-<a name="l00119"></a>00119 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a83afb36cfc7e71863d68a8b4c1d5e9d2" title="This calls the PostInput Callback.">PostInput</a>();
-<a name="l00120"></a>00120 <span class="comment"></span>
-<a name="l00121"></a>00121 <span class="comment">            /// @brief Drops the PostInput pointer.</span>
-<a name="l00122"></a>00122 <span class="comment">            /// @details Drops the PostInput pointer, this does not &#39;delete&#39; the pointer, merely</span>
-<a name="l00123"></a>00123 <span class="comment">            /// assigns it to zero.</span>
-<a name="l00124"></a>00124 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84ccf382be58b42439869ec9b77a0f89" title="Drops the PostInput pointer.">ErasePostInput</a>();
-<a name="l00125"></a>00125 <span class="comment"></span>
-<a name="l00126"></a>00126 <span class="comment">            /// @brief This assigns a function to be the callback function for PostInput</span>
-<a name="l00127"></a>00127 <span class="comment">            /// @details This assigns a function to be the callback function for PostInput.</span>
-<a name="l00128"></a>00128 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
-<a name="l00129"></a>00129 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#abbf73a7199a64d6a2a39c7de44c5acd6" title="This assigns a function to be the callback function for PostInput.">SetPostInput</a>(<span class="keywordtype">bool</span> (*Callback)());
-<a name="l00130"></a>00130 <span class="comment"></span>
-<a name="l00131"></a>00131 <span class="comment">            /// @brief Is the PostInput callback set or not.</span>
-<a name="l00132"></a>00132 <span class="comment">            /// @details Is the PostInput callback set or not. The returns true if set or false otherwise.</span>
-<a name="l00133"></a>00133 <span class="comment">            /// @return This returns true if the PostInput CallBack is set, false otherwise</span>
-<a name="l00134"></a>00134 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a075b799a815a2be2a83e30bb689711a7" title="Is the PostInput callback set or not.">IsPostInputCallbackSet</a>();
-<a name="l00135"></a>00135 
-<a name="l00136"></a>00136 <span class="comment"></span>
-<a name="l00137"></a>00137 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00138"></a>00138 <span class="comment"></span>        <span class="comment">// PrePhysics Management</span><span class="comment"></span>
-<a name="l00139"></a>00139 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00140"></a>00140 <span class="comment">            /// @brief This calls the PrePhysics Callback.</span>
-<a name="l00141"></a>00141 <span class="comment">            /// @details This calls the PrePhysics Callback and returns true if the callback</span>
-<a name="l00142"></a>00142 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
-<a name="l00143"></a>00143 <span class="comment">            /// end the mainloop.</span>
-<a name="l00144"></a>00144 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
-<a name="l00145"></a>00145 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a65867cc4855f0f8cd84a2b4a8bbf0fd6" title="This calls the PrePhysics Callback.">PrePhysics</a>();
-<a name="l00146"></a>00146 <span class="comment"></span>
-<a name="l00147"></a>00147 <span class="comment">            /// @brief Drops the PrePhysics pointer.</span>
-<a name="l00148"></a>00148 <span class="comment">            /// @details Drops the PrePhysics pointer, this does not &#39;delete&#39; the pointer, merely</span>
-<a name="l00149"></a>00149 <span class="comment">            /// assigns it to zero.</span>
-<a name="l00150"></a>00150 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afaeba4d6ae245d1560b76799417cce40" title="Drops the PrePhysics pointer.">ErasePrePhysics</a>();
-<a name="l00151"></a>00151 <span class="comment"></span>
-<a name="l00152"></a>00152 <span class="comment">            /// @brief This assigns a function to be the callback function for PrePhysics</span>
-<a name="l00153"></a>00153 <span class="comment">            /// @details This assigns a function to be the callback function for PrePhysics.</span>
-<a name="l00154"></a>00154 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
-<a name="l00155"></a>00155 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a3f06ccacd416b3109f20c30cd30f9efe" title="This assigns a function to be the callback function for PrePhysics.">SetPrePhysics</a>(<span class="keywordtype">bool</span> (*Callback)());
-<a name="l00156"></a>00156 <span class="comment"></span>
-<a name="l00157"></a>00157 <span class="comment">            /// @brief Is the PrePhysics callback set or not.</span>
-<a name="l00158"></a>00158 <span class="comment">            /// @details Is the PrePhysics callback set or not. The returns true if set or false otherwise.</span>
-<a name="l00159"></a>00159 <span class="comment">            /// @return This returns true if the PrePhysics CallBack is set, false otherwise</span>
-<a name="l00160"></a>00160 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#af93b7b96e85faa77ed005840e0189ebd" title="Is the PrePhysics callback set or not.">IsPrePhysicsCallbackSet</a>();
-<a name="l00161"></a>00161 
-<a name="l00162"></a>00162 <span class="comment"></span>
-<a name="l00163"></a>00163 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00164"></a>00164 <span class="comment"></span>        <span class="comment">// PostPhysics Management</span><span class="comment"></span>
-<a name="l00165"></a>00165 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00166"></a>00166 <span class="comment">            /// @brief This calls the PostPhysics Callback.</span>
-<a name="l00167"></a>00167 <span class="comment">            /// @details This calls the PostPhysics Callback and returns true if the callback</span>
-<a name="l00168"></a>00168 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
-<a name="l00169"></a>00169 <span class="comment">            /// end the mainloop.</span>
-<a name="l00170"></a>00170 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
-<a name="l00171"></a>00171 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a06bf0e8787f21caf31bf428727155084" title="This calls the PostPhysics Callback.">PostPhysics</a>();
-<a name="l00172"></a>00172 <span class="comment"></span>
-<a name="l00173"></a>00173 <span class="comment">            /// @brief Drops the PostPhysics pointer.</span>
-<a name="l00174"></a>00174 <span class="comment">            /// @details Drops the PostPhysics pointer, this does not &#39;delete&#39; the pointer, merely</span>
-<a name="l00175"></a>00175 <span class="comment">            /// assigns it to zero.</span>
-<a name="l00176"></a>00176 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a2d03573a93606e9d3fcd7adad5c8c397" title="Drops the PostPhysics pointer.">ErasePostPhysics</a>();
-<a name="l00177"></a>00177 <span class="comment"></span>
-<a name="l00178"></a>00178 <span class="comment">            /// @brief This assigns a function to be the callback function for PostPhysics</span>
-<a name="l00179"></a>00179 <span class="comment">            /// @details This assigns a function to be the callback function for PostPhysics.</span>
-<a name="l00180"></a>00180 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
-<a name="l00181"></a>00181 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a17687cd04807dfc80a25847be830c2f2" title="This assigns a function to be the callback function for PostPhysics.">SetPostPhysics</a>(<span class="keywordtype">bool</span> (*Callback)());
-<a name="l00182"></a>00182 <span class="comment"></span>
-<a name="l00183"></a>00183 <span class="comment">            /// @brief Is the PostPhysics callback set or not.</span>
-<a name="l00184"></a>00184 <span class="comment">            /// @details Is the PostPhysics callback set or not. The returns true if set or false otherwise.</span>
-<a name="l00185"></a>00185 <span class="comment">            /// @return This returns true if the PostPhysics CallBack is set, false otherwise</span>
-<a name="l00186"></a>00186 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ac4bf07f907b8d4d7e052126bcfbba4ba" title="Is the PostPhysics callback set or not.">IsPostPhysicsCallbackSet</a>();
-<a name="l00187"></a>00187 
-<a name="l00188"></a>00188 <span class="comment"></span>
-<a name="l00189"></a>00189 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00190"></a>00190 <span class="comment"></span>        <span class="comment">// PreRender Management</span><span class="comment"></span>
-<a name="l00191"></a>00191 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00192"></a>00192 <span class="comment">            /// @brief This calls the PreRender Callback.</span>
-<a name="l00193"></a>00193 <span class="comment">            /// @details This calls the PreRender Callback and returns true if the callback</span>
-<a name="l00194"></a>00194 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
-<a name="l00195"></a>00195 <span class="comment">            /// end the mainloop.</span>
-<a name="l00196"></a>00196 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
-<a name="l00197"></a>00197 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a244c88b8a06f68a4f4bcff6253bf6806" title="This calls the PreRender Callback.">PreRender</a>();
-<a name="l00198"></a>00198 <span class="comment"></span>
-<a name="l00199"></a>00199 <span class="comment">            /// @brief Drops the PreRender pointer.</span>
-<a name="l00200"></a>00200 <span class="comment">            /// @details Drops the PreRender pointer, this does not &#39;delete&#39; the pointer, merely</span>
-<a name="l00201"></a>00201 <span class="comment">            /// assigns it to zero.</span>
-<a name="l00202"></a>00202 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adadf16f3f38398c9593646416ef18499" title="Drops the PreRender pointer.">ErasePreRender</a>();
-<a name="l00203"></a>00203 <span class="comment"></span>
-<a name="l00204"></a>00204 <span class="comment">            /// @brief This assigns a function to be the callback function for PreRender</span>
-<a name="l00205"></a>00205 <span class="comment">            /// @details This assigns a function to be the callback function for PreRender.</span>
-<a name="l00206"></a>00206 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
-<a name="l00207"></a>00207 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1e060fd479413457a798ea3c6b2bcb4d" title="This assigns a function to be the callback function for PreRender.">SetPreRender</a>(<span class="keywordtype">bool</span> (*Callback)());
-<a name="l00208"></a>00208 <span class="comment"></span>
-<a name="l00209"></a>00209 <span class="comment">            /// @brief Is the PreRender callback set or not.</span>
-<a name="l00210"></a>00210 <span class="comment">            /// @details Is the PreRender callback set or not. The returns true if set or false otherwise.</span>
-<a name="l00211"></a>00211 <span class="comment">            /// @return This returns true if the PreRender CallBack is set, false otherwise</span>
-<a name="l00212"></a>00212 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa4eff76517403726c846911f6b97b2c2" title="Is the PreRender callback set or not.">IsPreRenderCallbackSet</a>();
-<a name="l00213"></a>00213 
-<a name="l00214"></a>00214 <span class="comment"></span>
-<a name="l00215"></a>00215 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00216"></a>00216 <span class="comment"></span>        <span class="comment">// PostRender Management</span><span class="comment"></span>
-<a name="l00217"></a>00217 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00218"></a>00218 <span class="comment">            /// @brief This calls the PostRender Callback.</span>
-<a name="l00219"></a>00219 <span class="comment">            /// @details This calls the PostRender Callback and returns true if the callback</span>
-<a name="l00220"></a>00220 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
-<a name="l00221"></a>00221 <span class="comment">            /// end the mainloop.</span>
-<a name="l00222"></a>00222 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
-<a name="l00223"></a>00223 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa1a1132e877d989ecea08a16ee4b3ac1" title="This calls the PostRender Callback.">PostRender</a>();
-<a name="l00224"></a>00224 <span class="comment"></span>
-<a name="l00225"></a>00225 <span class="comment">            /// @brief Drops the PostRender pointer.</span>
-<a name="l00226"></a>00226 <span class="comment">            /// @details Drops the PostRender pointer, this does not &#39;delete&#39; the pointer, merely</span>
-<a name="l00227"></a>00227 <span class="comment">            /// assigns it to zero.</span>
-<a name="l00228"></a>00228 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a0eef22a8df4dc87289a18f0e6a1d0baf" title="Drops the PostRender pointer.">ErasePostRender</a>();
-<a name="l00229"></a>00229 <span class="comment"></span>
-<a name="l00230"></a>00230 <span class="comment">            /// @brief This assigns a function to be the callback function for PostRender</span>
-<a name="l00231"></a>00231 <span class="comment">            /// @details This assigns a function to be the callback function for PostRender.</span>
-<a name="l00232"></a>00232 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
-<a name="l00233"></a>00233 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afe6a91491f3872599d2c5784a902361a" title="This assigns a function to be the callback function for PostRender.">SetPostRender</a>(<span class="keywordtype">bool</span> (*Callback)());
-<a name="l00234"></a>00234 <span class="comment"></span>
-<a name="l00235"></a>00235 <span class="comment">            /// @brief Is the PostRender callback set or not.</span>
-<a name="l00236"></a>00236 <span class="comment">            /// @details Is the PostRender callback set or not. The returns true if set or false otherwise.</span>
-<a name="l00237"></a>00237 <span class="comment">            /// @return This returns true if the PostRender CallBack is set, false otherwise</span>
-<a name="l00238"></a>00238 <span class="comment"></span>            <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a13011f2f9ffd561255772bc4082b304f" title="Is the PostRender callback set or not.">IsPostRenderCallbackSet</a>();
-<a name="l00239"></a>00239 
-<a name="l00240"></a>00240             <span class="comment">//Once upon a time this was required, it will be required the exact instant someone remove too. So we settle for and uneasy peace, and leave it, but ineffectual,</span>
-<a name="l00241"></a>00241             <span class="comment">//friend class World;</span>
-<a name="l00242"></a>00242     };
-<a name="l00243"></a>00243 }
-<a name="l00244"></a>00244 
-<a name="l00245"></a>00245 <span class="preprocessor">#endif</span>
+<a name="l00085"></a>00085 <span class="comment">            /// @brief Empty Initilizor</span>
+<a name="l00086"></a>00086 <span class="comment">            /// @details This class implements this for the sake of entension and compatibility this function does nothing</span>
+<a name="l00087"></a>00087 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a3d2af4e3c947b14f628c3e09a96af2f9" title="Empty Initilizor.">Initialize</a>();
+<a name="l00088"></a>00088 <span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment">            /// @brief This returns the type of this manager.</span>
+<a name="l00090"></a>00090 <span class="comment">            /// @return This returns ManagerTypeName::CallBackManager</span>
+<a name="l00091"></a>00091 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa0568dd5c2d1bb6dc669dfa2ca3486ad" title="This returns the type of this manager.">GetType</a>() <span class="keyword">const</span>;
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 <span class="comment"></span>
+<a name="l00094"></a>00094 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00095"></a>00095 <span class="comment"></span>        <span class="comment">// PreInput Management</span><span class="comment"></span>
+<a name="l00096"></a>00096 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00097"></a>00097 <span class="comment">            /// @brief This calls the PreInput Callback.</span>
+<a name="l00098"></a>00098 <span class="comment">            /// @details This calls the PreInput Callback and returns true if the callback</span>
+<a name="l00099"></a>00099 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
+<a name="l00100"></a>00100 <span class="comment">            /// end the mainloop.</span>
+<a name="l00101"></a>00101 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
+<a name="l00102"></a>00102 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84e782f8729f49b296691763351ee2b1" title="This calls the PreInput Callback.">PreInput</a>();
+<a name="l00103"></a>00103 <span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">            /// @brief Drops the PreInput pointer.</span>
+<a name="l00105"></a>00105 <span class="comment">            /// @details Drops the PreInput pointer, this does not &#39;delete&#39; the pointer, merely</span>
+<a name="l00106"></a>00106 <span class="comment">            /// assigns it to zero.</span>
+<a name="l00107"></a>00107 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ae3da6f1eb10cdf4d8551aaeeda73053c" title="Drops the PreInput pointer.">ErasePreInput</a>();
+<a name="l00108"></a>00108 <span class="comment"></span>
+<a name="l00109"></a>00109 <span class="comment">            /// @brief This assigns a function to be the callback function for PreInput</span>
+<a name="l00110"></a>00110 <span class="comment">            /// @details This assigns a function to be the callback function for PreInput.</span>
+<a name="l00111"></a>00111 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
+<a name="l00112"></a>00112 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1efb0c185304376986093beebf08a277" title="This assigns a function to be the callback function for PreInput.">SetPreInput</a>(<span class="keywordtype">bool</span> (*Callback)());
+<a name="l00113"></a>00113 <span class="comment"></span>
+<a name="l00114"></a>00114 <span class="comment">            /// @brief Is the PreInput callback set or not.</span>
+<a name="l00115"></a>00115 <span class="comment">            /// @details Is the PreInput callback set or not. The returns true if set or false otherwise.</span>
+<a name="l00116"></a>00116 <span class="comment">            /// @return This returns true if the PreInput CallBack is set, false otherwise</span>
+<a name="l00117"></a>00117 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adf39c71f0be97bcceb364621d1ccd77e" title="Is the PreInput callback set or not.">IsPreInputCallbackSet</a>() <span class="keyword">const</span>;
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 <span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00121"></a>00121 <span class="comment"></span>        <span class="comment">// PostInput Management</span><span class="comment"></span>
+<a name="l00122"></a>00122 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00123"></a>00123 <span class="comment">            /// @brief This calls the PostInput Callback.</span>
+<a name="l00124"></a>00124 <span class="comment">            /// @details This calls the PostInput Callback and returns true if the callback</span>
+<a name="l00125"></a>00125 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
+<a name="l00126"></a>00126 <span class="comment">            /// end the mainloop.</span>
+<a name="l00127"></a>00127 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
+<a name="l00128"></a>00128 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a83afb36cfc7e71863d68a8b4c1d5e9d2" title="This calls the PostInput Callback.">PostInput</a>();
+<a name="l00129"></a>00129 <span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">            /// @brief Drops the PostInput pointer.</span>
+<a name="l00131"></a>00131 <span class="comment">            /// @details Drops the PostInput pointer, this does not &#39;delete&#39; the pointer, merely</span>
+<a name="l00132"></a>00132 <span class="comment">            /// assigns it to zero.</span>
+<a name="l00133"></a>00133 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84ccf382be58b42439869ec9b77a0f89" title="Drops the PostInput pointer.">ErasePostInput</a>();
+<a name="l00134"></a>00134 <span class="comment"></span>
+<a name="l00135"></a>00135 <span class="comment">            /// @brief This assigns a function to be the callback function for PostInput</span>
+<a name="l00136"></a>00136 <span class="comment">            /// @details This assigns a function to be the callback function for PostInput.</span>
+<a name="l00137"></a>00137 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
+<a name="l00138"></a>00138 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#abbf73a7199a64d6a2a39c7de44c5acd6" title="This assigns a function to be the callback function for PostInput.">SetPostInput</a>(<span class="keywordtype">bool</span> (*Callback)());
+<a name="l00139"></a>00139 <span class="comment"></span>
+<a name="l00140"></a>00140 <span class="comment">            /// @brief Is the PostInput callback set or not.</span>
+<a name="l00141"></a>00141 <span class="comment">            /// @details Is the PostInput callback set or not. The returns true if set or false otherwise.</span>
+<a name="l00142"></a>00142 <span class="comment">            /// @return This returns true if the PostInput CallBack is set, false otherwise</span>
+<a name="l00143"></a>00143 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afa96dbc0779e5fa386546502b3db6c39" title="Is the PostInput callback set or not.">IsPostInputCallbackSet</a>() <span class="keyword">const</span>;
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145 <span class="comment"></span>
+<a name="l00146"></a>00146 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00147"></a>00147 <span class="comment"></span>        <span class="comment">// PrePhysics Management</span><span class="comment"></span>
+<a name="l00148"></a>00148 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00149"></a>00149 <span class="comment">            /// @brief This calls the PrePhysics Callback.</span>
+<a name="l00150"></a>00150 <span class="comment">            /// @details This calls the PrePhysics Callback and returns true if the callback</span>
+<a name="l00151"></a>00151 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
+<a name="l00152"></a>00152 <span class="comment">            /// end the mainloop.</span>
+<a name="l00153"></a>00153 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
+<a name="l00154"></a>00154 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a65867cc4855f0f8cd84a2b4a8bbf0fd6" title="This calls the PrePhysics Callback.">PrePhysics</a>();
+<a name="l00155"></a>00155 <span class="comment"></span>
+<a name="l00156"></a>00156 <span class="comment">            /// @brief Drops the PrePhysics pointer.</span>
+<a name="l00157"></a>00157 <span class="comment">            /// @details Drops the PrePhysics pointer, this does not &#39;delete&#39; the pointer, merely</span>
+<a name="l00158"></a>00158 <span class="comment">            /// assigns it to zero.</span>
+<a name="l00159"></a>00159 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afaeba4d6ae245d1560b76799417cce40" title="Drops the PrePhysics pointer.">ErasePrePhysics</a>();
+<a name="l00160"></a>00160 <span class="comment"></span>
+<a name="l00161"></a>00161 <span class="comment">            /// @brief This assigns a function to be the callback function for PrePhysics</span>
+<a name="l00162"></a>00162 <span class="comment">            /// @details This assigns a function to be the callback function for PrePhysics.</span>
+<a name="l00163"></a>00163 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
+<a name="l00164"></a>00164 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a3f06ccacd416b3109f20c30cd30f9efe" title="This assigns a function to be the callback function for PrePhysics.">SetPrePhysics</a>(<span class="keywordtype">bool</span> (*Callback)());
+<a name="l00165"></a>00165 <span class="comment"></span>
+<a name="l00166"></a>00166 <span class="comment">            /// @brief Is the PrePhysics callback set or not.</span>
+<a name="l00167"></a>00167 <span class="comment">            /// @details Is the PrePhysics callback set or not. The returns true if set or false otherwise.</span>
+<a name="l00168"></a>00168 <span class="comment">            /// @return This returns true if the PrePhysics CallBack is set, false otherwise</span>
+<a name="l00169"></a>00169 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a8684425c42a4416a204852ce6a246dc6" title="Is the PrePhysics callback set or not.">IsPrePhysicsCallbackSet</a>() <span class="keyword">const</span>;
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171 <span class="comment"></span>
+<a name="l00172"></a>00172 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00173"></a>00173 <span class="comment"></span>        <span class="comment">// PostPhysics Management</span><span class="comment"></span>
+<a name="l00174"></a>00174 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00175"></a>00175 <span class="comment">            /// @brief This calls the PostPhysics Callback.</span>
+<a name="l00176"></a>00176 <span class="comment">            /// @details This calls the PostPhysics Callback and returns true if the callback</span>
+<a name="l00177"></a>00177 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
+<a name="l00178"></a>00178 <span class="comment">            /// end the mainloop.</span>
+<a name="l00179"></a>00179 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
+<a name="l00180"></a>00180 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a06bf0e8787f21caf31bf428727155084" title="This calls the PostPhysics Callback.">PostPhysics</a>();
+<a name="l00181"></a>00181 <span class="comment"></span>
+<a name="l00182"></a>00182 <span class="comment">            /// @brief Drops the PostPhysics pointer.</span>
+<a name="l00183"></a>00183 <span class="comment">            /// @details Drops the PostPhysics pointer, this does not &#39;delete&#39; the pointer, merely</span>
+<a name="l00184"></a>00184 <span class="comment">            /// assigns it to zero.</span>
+<a name="l00185"></a>00185 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a2d03573a93606e9d3fcd7adad5c8c397" title="Drops the PostPhysics pointer.">ErasePostPhysics</a>();
+<a name="l00186"></a>00186 <span class="comment"></span>
+<a name="l00187"></a>00187 <span class="comment">            /// @brief This assigns a function to be the callback function for PostPhysics</span>
+<a name="l00188"></a>00188 <span class="comment">            /// @details This assigns a function to be the callback function for PostPhysics.</span>
+<a name="l00189"></a>00189 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
+<a name="l00190"></a>00190 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a17687cd04807dfc80a25847be830c2f2" title="This assigns a function to be the callback function for PostPhysics.">SetPostPhysics</a>(<span class="keywordtype">bool</span> (*Callback)());
+<a name="l00191"></a>00191 <span class="comment"></span>
+<a name="l00192"></a>00192 <span class="comment">            /// @brief Is the PostPhysics callback set or not.</span>
+<a name="l00193"></a>00193 <span class="comment">            /// @details Is the PostPhysics callback set or not. The returns true if set or false otherwise.</span>
+<a name="l00194"></a>00194 <span class="comment">            /// @return This returns true if the PostPhysics CallBack is set, false otherwise</span>
+<a name="l00195"></a>00195 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ad1e2131d792c6813caae4be4d5c4e5fb" title="Is the PostPhysics callback set or not.">IsPostPhysicsCallbackSet</a>() <span class="keyword">const</span>;
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197 <span class="comment"></span>
+<a name="l00198"></a>00198 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00199"></a>00199 <span class="comment"></span>        <span class="comment">// PreRender Management</span><span class="comment"></span>
+<a name="l00200"></a>00200 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00201"></a>00201 <span class="comment">            /// @brief This calls the PreRender Callback.</span>
+<a name="l00202"></a>00202 <span class="comment">            /// @details This calls the PreRender Callback and returns true if the callback</span>
+<a name="l00203"></a>00203 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
+<a name="l00204"></a>00204 <span class="comment">            /// end the mainloop.</span>
+<a name="l00205"></a>00205 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
+<a name="l00206"></a>00206 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a244c88b8a06f68a4f4bcff6253bf6806" title="This calls the PreRender Callback.">PreRender</a>();
+<a name="l00207"></a>00207 <span class="comment"></span>
+<a name="l00208"></a>00208 <span class="comment">            /// @brief Drops the PreRender pointer.</span>
+<a name="l00209"></a>00209 <span class="comment">            /// @details Drops the PreRender pointer, this does not &#39;delete&#39; the pointer, merely</span>
+<a name="l00210"></a>00210 <span class="comment">            /// assigns it to zero.</span>
+<a name="l00211"></a>00211 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adadf16f3f38398c9593646416ef18499" title="Drops the PreRender pointer.">ErasePreRender</a>();
+<a name="l00212"></a>00212 <span class="comment"></span>
+<a name="l00213"></a>00213 <span class="comment">            /// @brief This assigns a function to be the callback function for PreRender</span>
+<a name="l00214"></a>00214 <span class="comment">            /// @details This assigns a function to be the callback function for PreRender.</span>
+<a name="l00215"></a>00215 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
+<a name="l00216"></a>00216 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1e060fd479413457a798ea3c6b2bcb4d" title="This assigns a function to be the callback function for PreRender.">SetPreRender</a>(<span class="keywordtype">bool</span> (*Callback)());
+<a name="l00217"></a>00217 <span class="comment"></span>
+<a name="l00218"></a>00218 <span class="comment">            /// @brief Is the PreRender callback set or not.</span>
+<a name="l00219"></a>00219 <span class="comment">            /// @details Is the PreRender callback set or not. The returns true if set or false otherwise.</span>
+<a name="l00220"></a>00220 <span class="comment">            /// @return This returns true if the PreRender CallBack is set, false otherwise</span>
+<a name="l00221"></a>00221 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a91017cc0aa4a04e74fd8f9ca0895b6f8" title="Is the PreRender callback set or not.">IsPreRenderCallbackSet</a>() <span class="keyword">const</span>;
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223 <span class="comment"></span>
+<a name="l00224"></a>00224 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00225"></a>00225 <span class="comment"></span>        <span class="comment">// PostRender Management</span><span class="comment"></span>
+<a name="l00226"></a>00226 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00227"></a>00227 <span class="comment">            /// @brief This calls the PostRender Callback.</span>
+<a name="l00228"></a>00228 <span class="comment">            /// @details This calls the PostRender Callback and returns true if the callback</span>
+<a name="l00229"></a>00229 <span class="comment">            /// intends to continue with the mainloop, and false if the callback intend to</span>
+<a name="l00230"></a>00230 <span class="comment">            /// end the mainloop.</span>
+<a name="l00231"></a>00231 <span class="comment">            /// @return A bool that represents whether the mainloop should end.</span>
+<a name="l00232"></a>00232 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa1a1132e877d989ecea08a16ee4b3ac1" title="This calls the PostRender Callback.">PostRender</a>();
+<a name="l00233"></a>00233 <span class="comment"></span>
+<a name="l00234"></a>00234 <span class="comment">            /// @brief Drops the PostRender pointer.</span>
+<a name="l00235"></a>00235 <span class="comment">            /// @details Drops the PostRender pointer, this does not &#39;delete&#39; the pointer, merely</span>
+<a name="l00236"></a>00236 <span class="comment">            /// assigns it to zero.</span>
+<a name="l00237"></a>00237 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a0eef22a8df4dc87289a18f0e6a1d0baf" title="Drops the PostRender pointer.">ErasePostRender</a>();
+<a name="l00238"></a>00238 <span class="comment"></span>
+<a name="l00239"></a>00239 <span class="comment">            /// @brief This assigns a function to be the callback function for PostRender</span>
+<a name="l00240"></a>00240 <span class="comment">            /// @details This assigns a function to be the callback function for PostRender.</span>
+<a name="l00241"></a>00241 <span class="comment">            /// @param Callback This is a pointer to a function that returns a bool and accepts no arguments</span>
+<a name="l00242"></a>00242 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afe6a91491f3872599d2c5784a902361a" title="This assigns a function to be the callback function for PostRender.">SetPostRender</a>(<span class="keywordtype">bool</span> (*Callback)());
+<a name="l00243"></a>00243 <span class="comment"></span>
+<a name="l00244"></a>00244 <span class="comment">            /// @brief Is the PostRender callback set or not.</span>
+<a name="l00245"></a>00245 <span class="comment">            /// @details Is the PostRender callback set or not. The returns true if set or false otherwise.</span>
+<a name="l00246"></a>00246 <span class="comment">            /// @return This returns true if the PostRender CallBack is set, false otherwise</span>
+<a name="l00247"></a>00247 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aab2be377bc741b893e83dc69cadc0f76" title="Is the PostRender callback set or not.">IsPostRenderCallbackSet</a>() <span class="keyword">const</span>;
+<a name="l00248"></a>00248 
+<a name="l00249"></a>00249             <span class="comment">//Once upon a time this was required, it will be required the exact instant someone remove too. So we settle for and uneasy peace, and leave it, but ineffectual,</span>
+<a name="l00250"></a>00250             <span class="comment">//friend class World;</span>
+<a name="l00251"></a>00251     };
+<a name="l00252"></a>00252 }
+<a name="l00253"></a>00253 
+<a name="l00254"></a>00254 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
