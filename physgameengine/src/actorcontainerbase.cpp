@@ -56,7 +56,7 @@ namespace phys
     ActorContainerBase::~ActorContainerBase()
         {}
 
-    Ogre::Node* ActorContainerBase::GetNode(ActorBase* actor)
+    Ogre::Node* ActorContainerBase::GetNode(ActorBase* actor) const
         { return actor->node; }
 
     ManagerBase::ManagerTypeName ActorContainerBase::GetType() const

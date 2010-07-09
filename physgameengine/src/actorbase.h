@@ -108,7 +108,7 @@ namespace phys
             /// @brief Creates a trimesh shape from the mesh file.
             /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n
             /// This is automaticly called by the CreateShapeFromMesh function in child classes and shouldn't be called manually.
-            btTriangleMesh* CreateTrimesh();
+            btTriangleMesh* CreateTrimesh() const;
 
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
@@ -124,8 +124,8 @@ namespace phys
             /// @brief Creates a node for the entity in the graphical world.
             /// @details Creates a node in the scene manager to attach the actor's entity to within the graphical world. @n
             /// This function is called on by the Constructor, and shouldn't be called manually.
-
             void CreateSceneNode();
+
             /// @brief Sets the location of the graphical body.
             /// @details This will take a Vector3 and set the location of the actor within the graphical world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
@@ -135,7 +135,7 @@ namespace phys
             /// @brief Retrieves the location of the graphical body.
             /// @details This function will retrieve the location of the object within the graphical world. This should always match the physics world.
             /// @return This returns a phys::Vector3 with the location of the graphics.
-            Vector3 GetOgreLocation();
+            Vector3 GetOgreLocation() const;
 
             /// @brief Sets the orientation of the graphical body.
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n

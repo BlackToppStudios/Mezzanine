@@ -78,7 +78,7 @@ namespace phys
         protected:
             /// @internal
             /// @brief Used to work around the scenenode of an Actor being private, so all derived Containers can access it.
-            Ogre::Node* GetNode(ActorBase* actor);
+            Ogre::Node* GetNode(ActorBase* actor) const;
 
         public:
             /// @brief Basic Constructor

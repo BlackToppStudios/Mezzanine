@@ -69,7 +69,7 @@ namespace phys{
 
     ///////////////////////////////////
     // ActorBase Private misc functions
-    btTriangleMesh* ActorBase::CreateTrimesh()
+    btTriangleMesh* ActorBase::CreateTrimesh() const
     {
         // Get the mesh from the entity
         Ogre::MeshPtr myMesh = entity->getMesh();
@@ -178,7 +178,7 @@ namespace phys{
         this->node->setPosition(Location.GetOgreVector3());
     }
 
-    Vector3 ActorBase::GetOgreLocation()
+    Vector3 ActorBase::GetOgreLocation() const
     {
         Vector3 temp;
         temp.ExtractOgreVector3(this->node->getPosition());
