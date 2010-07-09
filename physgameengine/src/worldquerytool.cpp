@@ -273,9 +273,33 @@ namespace phys
         return Results;
     }
 
-    Vector3* RayPlaneIntersection(const Ray &QueryRay, Plane QueryPlane)
+    Vector3* WorldQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
     {
-        return 0;
+        //Prepare for fancy math and therefore division by 0
+        try
+        {
+            //Figure out the distance from the origin of the ray to the plane along the ray.
+            Real Distance = (   (QueryPlane.Gimbals.X*QueryRay.To.X - QueryPlane.Gimbals.X*QueryRay.From.X) +
+                                (QueryPlane.Gimbals.Y*QueryRay.To.Y - QueryPlane.Gimbals.Y*QueryRay.From.Y) +
+                                (QueryPlane.Gimbals.Z*QueryRay.To.Z - QueryPlane.Gimbals.Z*QueryRay.From.Z)
+                            )/(
+                                (QueryPlane.Gimbals.X*QueryRay.From.X - QueryPlane.Gimbals.Y*QueryRay.From.Y - QueryPlane.Gimbals.Z*QueryRay.From.Z - QueryPlane.Distance)
+                            );
+            if ( Distance > 0)
+            {
+                Vector3 *value = new Vector3( (QueryRay.GetNormal()*Distance).To );
+                return value;
+            }else{
+                return 0;
+                //ray is behind us
+            }
+        } catch(exception e) {
+            //In case we divide b
+            this->GameWorld->Log("Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
+            this->GameWorld->Log(e.what());
+            return 0;
+        }
+
     }
 
     Ray* WorldQueryTool::GetMouseRay(Real Length)

@@ -181,13 +181,16 @@ namespace phys
 
             /// @brief Where does this Ray Meet this Plane?
             /// @details This does some fancy math to return the point where the ray and the plane intersent.
-            /// This returns a NULL pointer in the event the ray and plane do not meet.
+            /// This returns a NULL pointer in the event the ray and plane do not meet, or are completely coterminous.
+            /// @param QueryRay This is the Ray that could intersent the plane
+            /// @param QueryPlane This is the plane to be interesected.
+            /// @return This returns a pointer to a vector that matches where the intersection of the plane and Ray, if possible
             Vector3* RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane);
 
             /// @brief Get a Ray from the current viewport, following the mouse
             /// @details This calls on the graphics subsystem to get a ray from the location of the current camera
             /// @param Length how long of a ray do you want? Thsi defaults to 1000
-            /// @return This returns a ray that matches what
+            /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.
             Ray* GetMouseRay(Real Length=1000);
 
             ///////////////////////////////////////////////////////////////////////////////

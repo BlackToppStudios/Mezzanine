@@ -88,7 +88,7 @@ namespace phys
         return this->From.Distance( this->To );
     }
 
-    Ray Ray::GetNormal()
+    Ray Ray::GetNormal() const
     {
         return (*this) / this->Length();
     }

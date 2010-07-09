@@ -99,7 +99,7 @@ namespace phys
             /// @brief This returns the normal for this ray
             /// @details This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray.
             /// @return At a ray that is the normal for this array
-            Ray GetNormal();
+            Ray GetNormal() const;
 
             /// @brief Turns this Ray into its own normal
             /// @details This will change the ray to be exactly 1 unit long, but pointing the same direction.
