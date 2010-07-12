@@ -270,6 +270,46 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Fancy Math
+
+    Vector3 Vector3::CrossProduct( const Vector3& rkVector ) const
+    {
+        return Vector3(
+                this->Y * rkVector.Z - this->Z * rkVector.Y,
+                this->Z * rkVector.X - this->X * rkVector.Z,
+                this->X * rkVector.Y - this->Y * rkVector.X
+            );
+    }
+
+    Real Vector3::dotProduct(const Vector3& vec) const
+    {
+        return this->X * vec.X + this->Y * vec.Y + this->Z * vec.Z;
+    }
+
+    void Vector3::Normalize()
+    {
+        Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
+        if (0!=TempLength)
+        {
+             (*this) /= TempLength;
+        }else{
+            /// @todo discuss the merits throwing an error here.
+        }
+    }
+
+    Vector3 Vector3::GetNormal() const
+    {
+        Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
+        if (0!=TempLength)
+        {
+            return (*this) / TempLength;
+        }else{
+            /// @todo discuss the merits throwing an error here.
+            return (*this);
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Manual Conversions
     btVector3 Vector3::GetBulletVector3() const
     {
@@ -303,10 +343,6 @@ namespace phys
         this->Y=Ours.y;
         this->Z=Ours.z;
     }
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Manual Conversions
 
     Real Vector3::Distance(const Vector3 &Vec2) const
     {

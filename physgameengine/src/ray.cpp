@@ -90,12 +90,27 @@ namespace phys
 
     Ray Ray::GetNormal() const
     {
-        return (*this) / this->Length();
+        Real TempLength = this->Length();
+        if (0!=TempLength)
+        {
+            return (*this) / TempLength;
+        }else{
+            /// @todo discuss the merits throwing an error here.
+            return (*this);
+            //return 0;
+        }
     }
 
     void Ray::Normalize()
     {
-        (*this) /= this->Length();
+        Real TempLength = this->Length();
+        if (0!=TempLength)
+        {
+            (*this) /= this->Length();
+        }else{
+            // nothing to change, we have a zero length Ray
+        }
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////

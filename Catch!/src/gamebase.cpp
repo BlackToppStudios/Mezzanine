@@ -10,9 +10,11 @@
 
 using namespace phys;
 
-World TheWorld( Vector3(-10000.0,-10000.0,-10000.0),
-                Vector3(10000.0,10000.0,10000.0),
-                30);                     //Create the World Globally! and we a place to hold some actors
+//Create the World Globally! and set it to hold some actors
+World TheWorld( Vector3(-10000.0,-10000.0,-10000.0), Vector3(10000.0,10000.0,10000.0), 30);
+
+const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
+
 
 int main(int argc, char **argv)
 {
@@ -134,52 +136,47 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld.Cameras->ResetZoom(); }
 
-    TheWorld.Log("WorldQueryTool Ray and Raycast Results");
-    Ray WhatRay( (TheWorld.Cameras->GetCameraGlobalLocation()), -TheWorld.Cameras->GetCameraGlobalLocation() ); // From the camera to the origin
-    TheWorld.Log( WhatRay );
-    Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(WhatRay);
 
-    if ( WhatDidWeFind == NULL)
-    {
-        TheWorld.Log("Found Nothing");
-    } else {
-        TheWorld.Log( *WhatDidWeFind );
-        delete WhatDidWeFind;
-    }
+    // Make a declaration for a static constrain so it survives the function lifetime
+    // static *constraint MouseDragger = 0;
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
-        TheWorld.Log("Mouse Clicked, Casting a Mouse Ray");
+        TheWorld.Log("Begin Mouse Dragging");
+        Ray *MouseRay = Queryer.GetMouseRay();
 
-        //This next line create a ray from the mouse pointer
-        Ray MouseRay( TheWorld.Cameras->GetCameraToViewportRay( float(Queryer.GetMouseX()) / float( TheWorld.Graphics->getRenderWidth() ),
-                                                                float(Queryer.GetMouseY()) / float( TheWorld.Graphics->getRenderHeight() )
-                                            ) );
-
-        TheWorld.Log( MouseRay );
-        MouseRay *= WhatRay.Length();
-        TheWorld.Log(  WhatRay.Length() );
-        Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(MouseRay);
-        if ( WhatDidWeFind == NULL)
+        //Is this the first time the mouse was pressed? If so create a contstrian
+        //if ( 0 == MouseDragger)
+        //{
+        Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
+        if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
         {
-            TheWorld.Log("Mouse Ray Found Nothing");
-        } else {
-            TheWorld.Log("Mouse Ray Found:");
-            TheWorld.Log( *WhatDidWeFind );
-            delete WhatDidWeFind;
+            TheWorld.Log("No Actor Clicked on");
+        }else{
+            TheWorld.Log(*ClickOnActor);
         }
+        //  MouseDragger = New Constraint(Some points base on )
+        //}
 
+        //MouseDragger Already Exists, now we need to update it
+        //if(0 != MouseDragger)
+        //{
+            Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
+            if (0 == DragTo)
+            {
+                TheWorld.Log("PlaneOfPlay Not Clicked on");
+            }else{
+                TheWorld.Log(*DragTo);
+            }
+            //Update Mouse dagger
+            delete DragTo;
+        //}
 
-        TheWorld.Log("2 Casting a Mouse Ray 2");
-        WhatDidWeFind = Queryer.GetActorUnderMouse(WhatRay.Length());
-        if ( WhatDidWeFind == NULL)
-        {
-            TheWorld.Log("Mouse Ray 2 Found Nothing");
-        } else {
-            TheWorld.Log("Mouse Ray 2 Found:");
-            TheWorld.Log( *WhatDidWeFind );
-            delete WhatDidWeFind;
-        }
+        delete MouseRay;
+
+    }else{
+        //delete MouseDragger
+        //MouseDragger = 0
     }
 
     // using the Raw Event Manager, and deleting the events

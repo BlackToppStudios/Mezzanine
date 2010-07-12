@@ -279,11 +279,11 @@ namespace phys
         try
         {
             //Figure out the distance from the origin of the ray to the plane along the ray.
-            Real Distance = (   (QueryPlane.Gimbals.X*QueryRay.To.X - QueryPlane.Gimbals.X*QueryRay.From.X) +
-                                (QueryPlane.Gimbals.Y*QueryRay.To.Y - QueryPlane.Gimbals.Y*QueryRay.From.Y) +
-                                (QueryPlane.Gimbals.Z*QueryRay.To.Z - QueryPlane.Gimbals.Z*QueryRay.From.Z)
+            Real Distance = (   (QueryPlane.Normal.X*QueryRay.To.X - QueryPlane.Normal.X*QueryRay.From.X) +
+                                (QueryPlane.Normal.Y*QueryRay.To.Y - QueryPlane.Normal.Y*QueryRay.From.Y) +
+                                (QueryPlane.Normal.Z*QueryRay.To.Z - QueryPlane.Normal.Z*QueryRay.From.Z)
                             )/(
-                                (QueryPlane.Gimbals.X*QueryRay.From.X - QueryPlane.Gimbals.Y*QueryRay.From.Y - QueryPlane.Gimbals.Z*QueryRay.From.Z - QueryPlane.Distance)
+                                (QueryPlane.Normal.X*QueryRay.From.X - QueryPlane.Normal.Y*QueryRay.From.Y - QueryPlane.Normal.Z*QueryRay.From.Z - QueryPlane.Distance)
                             );
             if ( Distance > 0)
             {

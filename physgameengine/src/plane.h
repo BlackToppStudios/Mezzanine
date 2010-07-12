@@ -53,15 +53,15 @@ namespace phys
     /// @class Plane
     /// @headerfile plane.h
     /// @brief This is used to represent a flat infinite slice of the game world
-    /// @details The Gimbals value represents how rotated the plane will be, and
+    /// @details The Normal value represents how rotated the plane will be, and
     /// The Distance with represent how far you need to move down a line perpendicular
-    /// to the plane, (ie the normal, which is defined by the Gimbal value) from the
+    /// to the plane, (ie the normal, which is defined by the Normal value) from the
     /// Origin.
     class Plane
     {
         public:
             /// @brief The rotation of the plane
-            Vector3 Gimbals;
+            Vector3 Normal;
 
             /// @brief How from from the origin the plane is
             Real Distance;
@@ -74,14 +74,21 @@ namespace phys
 
             /// @brief Thorough constructor
             /// @details This accepts 2 Vector3s and uses them to build the ray
-            /// @param Gimbals_ The rotation of the plane
+            /// @param Normal_ The rotation of the plane
             /// @param Distance_ Distance from origin to the plane
-            Plane(Vector3 Gimbals_, Real Distance_);
+            Plane(Vector3 Normal_, Real Distance_);
 
             /// @brief Compatibily constructor
             /// @details This accepts an Ogre Plane, (graphics subsystem) to make this Plane
             /// @param Plane_ This is the Ogre::Plane
             Plane(Ogre::Plane Plane_);
+
+            /// @brief Triangle constructor
+            /// @details This determines the plane the triangle this resides on and uses that plane here
+            /// @param rkPoint0 This is one point in the triangle
+            /// @param rkPoint1 This is another point in the triangle
+            /// @param rkPoint2 This is one point in the triangle
+            Plane(const Vector3& rkPoint0, const Vector3& rkPoint1, const Vector3& rkPoint2);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Conversions and adjustments

@@ -103,6 +103,7 @@ namespace phys
 
             /// @brief Turns this Ray into its own normal
             /// @details This will change the ray to be exactly 1 unit long, but pointing the same direction.
+            // /// @return The is the length of the Ray after Normalizing. This could be useful for finding problems with 0 length rays.
             void Normalize();
 
             ///////////////////////////////////////////////////////////////////////////////

@@ -49,23 +49,32 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     // Constructors
-    Plane::Plane() : Gimbals(0,0,0),Distance(0)
+    Plane::Plane() : Normal(0,0,0), Distance(0)
         {}
 
-    Plane::Plane(Vector3 Gimbals_, Real Distance_) : Gimbals(Gimbals_),Distance(Distance_)
+    Plane::Plane(Vector3 Normal_, Real Distance_) : Normal(Normal_),Distance(Distance_)
         {}
 
     Plane::Plane(Ogre::Plane Plane_)
         { this->ExtractOgrePlane(Plane_); }
 
+    Plane::Plane(const Vector3& rkPoint0, const Vector3& rkPoint1, const Vector3& rkPoint2)
+    {
+        Vector3 kEdge1 = rkPoint1 - rkPoint0;
+		Vector3 kEdge2 = rkPoint2 - rkPoint0;
+		this->Normal = kEdge1.CrossProduct(kEdge2);
+		this->Normal.Normalize();
+		this->Distance = -this->Normal.dotProduct(rkPoint0);
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Conversions and adjustments
     Ogre::Plane Plane::GetOgrePlane() const
-        { return Ogre::Plane( Gimbals.GetOgreVector3(), Distance); }
+        { return Ogre::Plane( Normal.GetOgreVector3(), Distance); }
 
     void Plane::ExtractOgrePlane(const Ogre::Plane& Plane2)
     {
-        this->Gimbals=Plane2.normal;
+        this->Normal=Plane2.normal;
         this->Distance=Plane2.d;
     }
 
@@ -76,7 +85,7 @@ namespace phys
 
 std::ostream& operator << (std::ostream& stream, const phys::Plane& x)
 {
-    stream << "[Gimbals:" << x.Gimbals << ",Distance" << x.Distance << "]";
+    stream << "[Normal:" << x.Normal << ",Distance" << x.Distance << "]";
     return stream;
 }
 
