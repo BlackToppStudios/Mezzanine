@@ -46,6 +46,7 @@ class btDefaultCollisionConfiguration;
 class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
 class btSoftRigidDynamicsWorld;
+class btDynamicsWorld;
 
 #include "managerbase.h"
 
@@ -72,6 +73,7 @@ namespace phys
             Vector3 GeographyUpperBounds;
             unsigned short int  MaxPhysicsProxies;
             //Real PhysicsStepsize; // use this->GameWorld->TargetFrameLength instead
+            unsigned short int CollisionAge;
 
             // Some Items bullet requires
             btAxisSweep3* BulletBroadphase;
@@ -148,9 +150,23 @@ namespace phys
             /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
             void DoMainLoopItems(const Real &TimeElapsed);
 
+            /// @brief Sets the CollisionAge.
+            /// @details Sets the CollisionAge used in filtering out collision contacts used to make events.
+            /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.
+            void SetCollisionAge(const unsigned short int Age);
+
+            /// @brief Gets the CollisionAge.
+            /// @details Gets the CollisionAge used in filtering out collision contacts used to make events.
+            /// @return Age The number of physics ticks the collision has to have existed to be used.
+            unsigned short int GetCollisionAge();
+
             /// @internal
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
             btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
+
+            /*/// @internal
+            /// @brief This is a collision callback used by the physics world.  This is for internal use only.
+            void CollisionCallback(btDynamicsWorld* world, btScalar timestep);*/
 
         //Inherited from ManagerBase
             /// @brief This returns the type of this manager.

@@ -304,7 +304,7 @@ namespace phys
                                                     BulletSolver,
                                                     BulletCollisionConfiguration);
 
-
+        //this->BulletDynamicsWorld->btDynamicsWorld::setInternalTickCallback(&PhysicsManager::CollisionCallback);
     }
 
     void PhysicsManager::Initialize()
@@ -377,6 +377,34 @@ namespace phys
 
     btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
         { return this->BulletDynamicsWorld; }
+
+    void PhysicsManager::SetCollisionAge(unsigned short int Age)
+    {
+        CollisionAge=Age;
+    }
+
+    unsigned short int PhysicsManager::GetCollisionAge()
+    {
+        return CollisionAge;
+    }
+
+    /*void PhysicsManager::CollisionCallback(btDynamicsWorld* world, btScalar timestep)
+    {
+        int numManifolds = BulletDynamicsWorld->getDispatcher()->getNumManifolds();
+        for (int i=0;i<numManifolds;i++)
+        {
+            btPersistentManifold* contactManifold = BulletDynamicsWorld->getDispatcher()->getManifoldByIndexInternal(i);
+            int numContacts = contactManifold->getNumContacts();
+            for (int j=0;j<numContacts;j++)
+            {
+                btManifoldPoint& pt = contactManifold->getContactPoint(j);
+                if (pt.m_lifeTime>=1)
+                {
+                    //create collision event
+                }
+            }
+        }
+    }*/
 
     //Inherited From ManagerBase
     ManagerBase::ManagerTypeName PhysicsManager::GetType() const

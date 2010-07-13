@@ -53,6 +53,7 @@ namespace phys{
 
     /*ActorSoft::ActorSoft ()
     {
+        ActorType=ActorBase::Actorsoft;
     }*/
 
     ActorSoft::~ActorSoft ()

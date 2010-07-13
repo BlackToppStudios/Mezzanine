@@ -84,8 +84,21 @@ namespace phys
             friend class World;
             friend class ActorContainerBase;
 
-        protected:
+        public:
+            /// @enum ActorTypeName
+            /// @brief A listing of Actor TypeNames
+            /// @details These will be returned by ActorBase::GetType(), and will allow
+            /// code using this to determine what type of Actor class they are working with
+            /// and use this information to more safely cast to the correct Actor if needed.
+            enum ActorTypeName
+            {
+                Actorbase,
+                Actorrigid,
+                Actorsoft,
+                Actorterrain
+            };
 
+        protected:
             /// @brief A pointer to the World the actor will reside.
             World* GameWorld;
 
@@ -104,6 +117,9 @@ namespace phys
 
             ///@brief This class encapsulates the functionality of the PhysMotionState using this
             internal::PhysMotionState* MotionState;
+
+            /// @brief This variable stores the type of actor that this class is.
+            ActorTypeName ActorType;
 
             /// @brief Creates a trimesh shape from the mesh file.
             /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n
@@ -173,6 +189,11 @@ namespace phys
             virtual void SetBulletOrientation (Quaternion Rotation);
 
         public:
+            /// @brief Gets the type of actor this class is.
+            /// @details This function will get the type of class that you are working with for checking and casting.
+            /// @return ActorTypeName The type of actor that this is.
+            virtual int GetType();
+
 ///////////////////////////////////////////////////////////////////////////////
 // Creation, Destruction and Initialization
 ///////////////////////////////////////
