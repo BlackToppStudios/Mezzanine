@@ -1,4 +1,4 @@
-//Â© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -37,47 +37,28 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef actorcontainerbase_cpp
-#define actorcontainerbase_cpp
+#ifndef eventcollision_cpp
+#define eventcollision_cpp
 
-#include "actorcontainerbase.h"
+#include "eventcollision.h"
 
-#include <Ogre.h>
-
-namespace phys
-{
-    /*! @page actorcontainer1 How to keep track of actors
-        @section actorcontaineroverview Actor Container Overview
-    */
-
-    ActorContainerBase::ActorContainerBase(World* ParentWorld_) : ManagerBase(ParentWorld_)
-        {}
-
-    ActorContainerBase::~ActorContainerBase()
-        {}
-
-    Ogre::Node* ActorContainerBase::GetNode(ActorBase* actor) const
-        { return actor->node; }
-
-    btCollisionObject* ActorContainerBase::GetCollisionObject(ActorBase* actor) const
-        { return actor->CollisionObject; }
-
-    ManagerBase::ManagerTypeName ActorContainerBase::GetType() const
-        { return ManagerBase::ActorContainerBase; }
-
-    void ActorContainerBase::AddActor(ActorBase* ActorToAdd)
+namespace phys {
+    EventCollision::EventCollision(ActorBase* actora, ActorBase* actorb, Vector3 location, Real impulse)
     {
-        if(this->GameWorld != NULL)
-            { ActorToAdd->AddObjectToWorld(this->GameWorld); }
+        ActorA=actora;
+        ActorB=actorb;
+        Location=location;
+        Impulse=impulse;
     }
 
-    void ActorContainerBase::RemoveActor(ActorBase* ActorToAdd)
+    EventCollision::~EventCollision()
     {
-        if(this->GameWorld != NULL)
-            { ActorToAdd->RemoveObjectFromWorld(this->GameWorld); }
     }
-}// \phys
 
-
+    EventBase::EventType EventCollision::GetType() const
+    {
+        return EventBase::Collision;
+    }
+}
 
 #endif

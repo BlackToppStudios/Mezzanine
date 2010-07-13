@@ -74,6 +74,7 @@ namespace phys
                 EventManager,
                 GraphicsManager,
                 PhysicsManager,
+                SoundManager,
                 UserCreated         /// This is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
             };
 

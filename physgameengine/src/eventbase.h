@@ -67,6 +67,7 @@ namespace phys
                 UserInput,      /**< Indicates the Event is a EventUserInput */
                 QuitMessage,    /**< Indicates the Event is a phys::EventQuit */
                 SystemMessage,  /**< Indicates the Event has not been coded yet */
+                Collision,      /**< Indicates the Event is a Physics Collision Event */
                 Other
             };
 

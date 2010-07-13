@@ -164,10 +164,6 @@ namespace phys
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
             btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
 
-            /*/// @internal
-            /// @brief This is a collision callback used by the physics world.  This is for internal use only.
-            void CollisionCallback(btDynamicsWorld* world, btScalar timestep);*/
-
         //Inherited from ManagerBase
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::PhysicsManager

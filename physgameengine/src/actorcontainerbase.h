@@ -80,6 +80,10 @@ namespace phys
             /// @brief Used to work around the scenenode of an Actor being private, so all derived Containers can access it.
             Ogre::Node* GetNode(ActorBase* actor) const;
 
+            /// @internal
+            /// @brief Used to work around the collision object of an Actor being private, so all derived Containers can access it.
+            btCollisionObject* GetCollisionObject(ActorBase* actor) const;
+
         public:
             /// @brief Basic Constructor
             /// @details This just assigned the passed pointer to ParentWorld
