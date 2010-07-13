@@ -151,9 +151,6 @@ bool PostInput()
         TheWorld.Log(PlaneOfPlay);
 
 
-        //Is this the first time the mouse was pressed? If so create a contstrian
-        //if ( 0 == MouseDragger)
-        //{
         Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
         bool firstframe=false;
         if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
@@ -178,29 +175,24 @@ bool PostInput()
                 }
             }
         }
-        //  MouseDragger = New Constraint(Some points base on )
-        //}
-
-        //MouseDragger Already Exists, now we need to update it
-        //if(0 != MouseDragger)
-        //{
-            Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
-            if (0 == DragTo)
+        Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
+        if (0 == DragTo)
+        {
+            TheWorld.Log("PlaneOfPlay Not Clicked on");
+        }else{
+            TheWorld.Log("Dragged To");
+            TheWorld.Log(*DragTo);
+            if(Dragger && !firstframe)
             {
-                TheWorld.Log("PlaneOfPlay Not Clicked on");
-            }else{
-                TheWorld.Log("Dragged To");
-                TheWorld.Log(*DragTo);
-                if(Dragger && !firstframe)
-                {
-                    Dragger->SetOffsetALocation(*DragTo);
-                }
+                Dragger->SetOffsetALocation(*DragTo);
             }
-            //Update Mouse dagger
-            delete DragTo;
-        //}
+        }
 
-        delete MouseRay;
+        if ( DragTo )
+            { delete DragTo; }
+
+        if ( MouseRay )
+            { delete MouseRay; }
 
     }else{
         if(Dragger)
@@ -208,8 +200,6 @@ bool PostInput()
             delete Dragger;
             Dragger=NULL;
         }
-        //delete MouseDragger
-        //MouseDragger = 0
     }
 
     // using the Raw Event Manager, and deleting the events
