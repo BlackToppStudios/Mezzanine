@@ -85,7 +85,7 @@ namespace phys
 
 std::ostream& operator << (std::ostream& stream, const phys::Plane& x)
 {
-    stream << "[Normal:" << x.Normal << ",Distance" << x.Distance << "]";
+    stream << "[Normal:" << x.Normal << ",Distance: " << x.Distance << "]";
     return stream;
 }
 

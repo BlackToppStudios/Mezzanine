@@ -62,6 +62,7 @@
 #include "ray.h"
 #include "actorrigid.h"
 #include "vector3wactor.h"
+#include "plane.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -191,7 +192,7 @@ namespace phys
         ActorRigid temp24(1.0,"Robot24","robot.mesh","RobotTest",this); */ /// @todo TODO: remove robot and come up with another solution
         ActorRigid* temp24=0;
         Vector3WActor temp25( temp24, Vector3(0,2,5));
-
+        Plane temp26(Vector3(2.0, 6.0, 2.0), 6.0);
         //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
         /// @todo TODO add each type of event here (logtest) to make it really easy to log events
 
@@ -221,6 +222,7 @@ namespace phys
         OneLogTest("temp23","<char const*>");
         OneLogTest(temp24,"ActorBase");
         OneLogTest(temp25,"Vector3WActor");
+        OneLogTest(temp26,"Plane");
 
         //this->RemoveActor(&temp24);
     }

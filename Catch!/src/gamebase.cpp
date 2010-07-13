@@ -144,6 +144,11 @@ bool PostInput()
     {
         TheWorld.Log("Begin Mouse Dragging");
         Ray *MouseRay = Queryer.GetMouseRay();
+        TheWorld.Log("MouseRay");
+        TheWorld.Log(*MouseRay);
+        TheWorld.Log("PlaneOfPlay");
+        TheWorld.Log(PlaneOfPlay);
+
 
         //Is this the first time the mouse was pressed? If so create a contstrian
         //if ( 0 == MouseDragger)
@@ -153,6 +158,7 @@ bool PostInput()
         {
             TheWorld.Log("No Actor Clicked on");
         }else{
+            TheWorld.Log("Actor Clicked on");
             TheWorld.Log(*ClickOnActor);
         }
         //  MouseDragger = New Constraint(Some points base on )
@@ -166,6 +172,7 @@ bool PostInput()
             {
                 TheWorld.Log("PlaneOfPlay Not Clicked on");
             }else{
+                TheWorld.Log("Dragged To");
                 TheWorld.Log(*DragTo);
             }
             //Update Mouse dagger
