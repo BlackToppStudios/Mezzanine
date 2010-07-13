@@ -57,6 +57,7 @@ namespace phys{
         this->MotionState = new internal::PhysMotionState(this->node);
         this->Shape = new btEmptyShape();
         this->CreateEntity(name, file, group);
+        ActorType=ActorBase::Actorbase;
     }
 
     ActorBase::~ActorBase ()
@@ -282,6 +283,11 @@ namespace phys{
     {
         this->node->setScale(scaling.GetOgreVector3());
         this->Shape->setLocalScaling(scaling.GetBulletVector3());
+    }
+
+    int ActorBase::GetType()
+    {
+        return this->ActorType;
     }
 
     ///////////////////////////////////

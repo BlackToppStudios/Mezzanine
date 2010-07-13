@@ -57,6 +57,7 @@ namespace phys{
     ActorRigid::ActorRigid (Real mass, String name, String file, String group, World* _World) : ActorBase (name, file, group, _World)
     {
         this->CreateRigidObject(mass);
+        ActorType=ActorBase::Actorrigid;
     }
 
     ActorRigid::~ActorRigid ()

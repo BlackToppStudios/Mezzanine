@@ -15,6 +15,7 @@ World TheWorld( Vector3(-10000.0,-10000.0,-10000.0), Vector3(10000.0,10000.0,100
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
+Generic6DofConstraint* Dragger=NULL;
 
 int main(int argc, char **argv)
 {
@@ -154,12 +155,28 @@ bool PostInput()
         //if ( 0 == MouseDragger)
         //{
         Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
+        bool firstframe=false;
         if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
         {
             TheWorld.Log("No Actor Clicked on");
         }else{
             TheWorld.Log("Actor Clicked on");
             TheWorld.Log(*ClickOnActor);
+            if(!Dragger)
+            {
+                if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid)
+                {
+                    ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                    Dragger = new Generic6DofConstraint(rigid, ClickOnActor->Vector, Quaternion(0,0,0,0), false);
+                    Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
+                    Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
+                    Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
+                    Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
+                    firstframe=true;
+                }else{
+                    TheWorld.Log("Actor is not an ActorRigid.  Aborting.");
+                }
+            }
         }
         //  MouseDragger = New Constraint(Some points base on )
         //}
@@ -174,6 +191,10 @@ bool PostInput()
             }else{
                 TheWorld.Log("Dragged To");
                 TheWorld.Log(*DragTo);
+                if(Dragger && !firstframe)
+                {
+                    Dragger->SetOffsetALocation(*DragTo);
+                }
             }
             //Update Mouse dagger
             delete DragTo;
@@ -182,6 +203,11 @@ bool PostInput()
         delete MouseRay;
 
     }else{
+        if(Dragger)
+        {
+            delete Dragger;
+            Dragger=NULL;
+        }
         //delete MouseDragger
         //MouseDragger = 0
     }
