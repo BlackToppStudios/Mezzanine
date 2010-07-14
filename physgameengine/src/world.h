@@ -101,6 +101,7 @@
 #include "physicsmanager.h"
 
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -330,8 +331,11 @@ namespace phys
 
             /// @brief Gathers user input from the OS and places events in the event manager
             /// @details This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places
-            /// in the event manager, that is the responsibility of the code that pulls out the event out.
+            /// in the event manager, that is the responsibility of the code tnly actor your query tool can find are the plahat pulls out the event out.
             void DoMainLoopInputBuffering();
+
+            /// @brief This commits the log stream
+            void DoMainLoopLogging();
 
             /// @brief Creates events for each Window manger
             /// @details This gather information from system/windows manager events, such as windows  minimization, maximization, program exit, window hidden
@@ -384,6 +388,9 @@ namespace phys
             /// @brief This will keep track of world wide phyiscs settings
             /// @details This will keep track constraints, gravity, and other settings that affect multiple actors
             PhysicsManager* Physics;
+
+
+            std::stringstream LogStream;
     };
 }
 #endif

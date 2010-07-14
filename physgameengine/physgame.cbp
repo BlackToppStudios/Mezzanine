@@ -177,6 +177,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/BuildApiDocs" />
 		<Unit filename="src/actorbase.cpp" />
 		<Unit filename="src/actorbase.h" />
 		<Unit filename="src/actorcontainerbase.cpp" />
@@ -203,6 +204,8 @@
 		<Unit filename="src/datatypes.h" />
 		<Unit filename="src/eventbase.cpp" />
 		<Unit filename="src/eventbase.h" />
+		<Unit filename="src/eventcollision.cpp" />
+		<Unit filename="src/eventcollision.h" />
 		<Unit filename="src/eventmanager.cpp" />
 		<Unit filename="src/eventmanager.h" />
 		<Unit filename="src/eventquit.cpp" />

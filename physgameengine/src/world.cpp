@@ -223,7 +223,7 @@ namespace phys
         OneLogTest(temp24,"ActorBase");
         OneLogTest(temp25,"Vector3WActor");
         OneLogTest(temp26,"Plane");
-
+        OneLogTest('7',"const char");
         //this->RemoveActor(&temp24);
     }
 
@@ -417,6 +417,8 @@ namespace phys
                 this->DoMainLoopWindowManagerBuffering();
             }
 
+            this->DoMainLoopLogging();
+
             //Render the frame and figure the amount of time it took //By default Limit frame rate to 62.5
             this->DoMainLoopRender();
 
@@ -442,6 +444,8 @@ namespace phys
                 Callbackbools[5] = this->CallBacks->PostRender();
             }
 
+
+
         }//End of main loop
 
         //Some after loop cleanup
@@ -460,6 +464,12 @@ namespace phys
     {
         this->Physics->DoMainLoopItems(TimeElapsed);
         Log("Updated Physics");
+    }
+
+    void  World::DoMainLoopLogging()
+    {
+        this->Log(this->LogStream.str());
+        this->LogStream.clear();
     }
 
     void World::DoMainLoopWindowManagerBuffering()
