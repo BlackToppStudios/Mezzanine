@@ -296,6 +296,11 @@ namespace phys
             /// @details This function will set the object to a Static Object. @n
             /// Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects.
             void SetStatic();
+
+            /// @brief Checks of the actor is static or kinematic.
+            /// @details Checks of the actor is static or kinematic, returns true if it is either.
+            /// @return Returns true if the actor is static or kinematic.
+            bool IsStaticOrKinematic();
     };
 
 } // /phys
