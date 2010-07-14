@@ -153,14 +153,14 @@ bool PostInput()
 
         Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
         bool firstframe=false;
-        if (1/*!(ClickOnActor->Actor->IsStaticOrKinematic())*/)
+        if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
         {
-            if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
+            TheWorld.Log("No Actor Clicked on");
+        }else{
+            TheWorld.Log("Actor Clicked on");
+            TheWorld.Log(*ClickOnActor);
+            if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
             {
-                TheWorld.Log("No Actor Clicked on");
-            }else{
-                TheWorld.Log("Actor Clicked on");
-                TheWorld.Log(*ClickOnActor);
                 if(!Dragger)
                 {
                     if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid)
@@ -193,9 +193,9 @@ bool PostInput()
                         TheWorld.Log("Actor is not an ActorRigid.  Aborting.");
                     }
                 }
+            }else{
+                TheWorld.Log("Actor is Static or Kinematic.  Aborting.");
             }
-        }else{
-            TheWorld.Log("Actor is static or kinematic.  Aborting.");
         }
         Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
         if (0 == DragTo)
