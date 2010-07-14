@@ -41,6 +41,7 @@
 #define _constraint_cpp
 
 #include "constraint.h"
+#include "actorrigid.h"
 #include <btBulletDynamicsCommon.h>
 
 namespace phys
@@ -56,11 +57,13 @@ namespace phys
     {
         BodyA=bodya->physrigidbody;
         BodyB=bodyb->physrigidbody;
+        ConstraintBase=NULL;
     }
 
     TypedConstraint::TypedConstraint (ActorRigid* bodya)
     {
         BodyA=bodya->physrigidbody;
+        ConstraintBase=NULL;
     }
 
     TypedConstraint::~TypedConstraint ()
@@ -76,17 +79,20 @@ namespace phys
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         ConeTwist = new btConeTwistConstraint (*BodyA, *BodyB, transa, transb);
+        ConstraintBase = ConeTwist;
     }
 
     ConeTwistConstraint::ConeTwistConstraint (ActorRigid* ActorA, Vector3 VectorA, Quaternion QuaternionA) : TypedConstraint (ActorA)
     {
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         ConeTwist = new btConeTwistConstraint (*BodyA, transa);
+        ConstraintBase = ConeTwist;
     }
 
     ConeTwistConstraint::ConeTwistConstraint (btConeTwistConstraint* Constraint)
     {
         ConeTwist = Constraint;
+        ConstraintBase = Constraint;
     }
 
     ConeTwistConstraint::~ConeTwistConstraint ()
@@ -177,17 +183,20 @@ namespace phys
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Generic6dof = new btGeneric6DofConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
+        ConstraintBase = Generic6dof;
     }
 
     Generic6DofConstraint::Generic6DofConstraint (ActorRigid* ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceB) : TypedConstraint (ActorB)
     {
         btTransform transa(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Generic6dof = new btGeneric6DofConstraint(*BodyA, transa, UseLinearReferenceB);
+        ConstraintBase = Generic6dof;
     }
 
     Generic6DofConstraint::Generic6DofConstraint (btGeneric6DofConstraint* Constraint)
     {
         Generic6dof = Constraint;
+        ConstraintBase = Constraint;
     }
 
     Generic6DofConstraint::~Generic6DofConstraint ()
@@ -268,12 +277,14 @@ namespace phys
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Generic6dofSpring = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
         Generic6dof = Generic6dofSpring;
+        ConstraintBase = Generic6dofSpring;
     }
 
     Generic6DofSpringConstraint::Generic6DofSpringConstraint (btGeneric6DofSpringConstraint* Constraint)
     {
         Generic6dofSpring = Constraint;
         Generic6dof = Constraint;
+        ConstraintBase = Constraint;
     }
 
     Generic6DofSpringConstraint::~Generic6DofSpringConstraint ()
@@ -309,12 +320,14 @@ namespace phys
         btVector3 tempA(AxisInA.GetBulletVector3());
         btVector3 tempB(AxisInB.GetBulletVector3());
         Hinge = new btHingeConstraint(*BodyA, *BodyB, PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, bool(UseReferenceA));
+        ConstraintBase = Hinge;
     }
 
     HingeConstraint::HingeConstraint(ActorRigid* ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA) : TypedConstraint (ActorA)
     {
         btVector3 tempA(AxisInA.GetBulletVector3());
         Hinge = new btHingeConstraint(*BodyA, PivotInA.GetBulletVector3(), tempA, bool(UseReferenceA));
+        ConstraintBase = Hinge;
     }
 
     HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA) : TypedConstraint (ActorA, ActorB)
@@ -322,11 +335,13 @@ namespace phys
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Hinge = new btHingeConstraint(*BodyA, *BodyB, transa, transb, UseReferenceA);
+        ConstraintBase = Hinge;
     }
 
     HingeConstraint::HingeConstraint(btHingeConstraint* Constraint)
     {
         Hinge = Constraint;
+        ConstraintBase = Constraint;
     }
 
     HingeConstraint::~HingeConstraint()
@@ -411,6 +426,7 @@ namespace phys
         Hinge2 = new btHinge2Constraint(*BodyA, *BodyB, temp1, temp2, temp3);
         Generic6dofSpring = Hinge2;
         Generic6dof = Hinge2;
+        ConstraintBase = Hinge2;
     }
 
     Hinge2Constraint::Hinge2Constraint(btHinge2Constraint* Constraint)
@@ -418,6 +434,7 @@ namespace phys
         Hinge2 = Constraint;
         Generic6dofSpring = Constraint;
         Generic6dof = Constraint;
+        ConstraintBase = Constraint;
     }
 
     Hinge2Constraint::~Hinge2Constraint()
@@ -441,16 +458,19 @@ namespace phys
     Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotA, Vector3 PivotB) : TypedConstraint(ActorA, ActorB)
     {
         Point2Point = new btPoint2PointConstraint(*BodyA, *BodyB, PivotA.GetBulletVector3(), PivotB.GetBulletVector3());
+        ConstraintBase = Point2Point;
     }
 
     Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, Vector3 PivotA) : TypedConstraint(ActorA)
     {
         Point2Point = new btPoint2PointConstraint(*BodyA, PivotA.GetBulletVector3());
+        ConstraintBase = Point2Point;
     }
 
     Point2PointConstraint::Point2PointConstraint(btPoint2PointConstraint* Constraint)
     {
         Point2Point = Constraint;
+        ConstraintBase = Constraint;
     }
 
     Point2PointConstraint::~Point2PointConstraint()
@@ -486,17 +506,20 @@ namespace phys
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Slider = new btSliderConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
+        ConstraintBase = Slider;
     }
 
     SliderConstraint::SliderConstraint(ActorRigid* ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceA) : TypedConstraint(ActorB)
     {
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Slider = new btSliderConstraint(*BodyA, transb, UseLinearReferenceA);
+        ConstraintBase = Slider;
     }
 
     SliderConstraint::SliderConstraint(btSliderConstraint* Constraint)
     {
         Slider = Constraint;
+        ConstraintBase = Slider;
     }
 
     SliderConstraint::~SliderConstraint()
@@ -679,12 +702,14 @@ namespace phys
         btVector3 temp3(Axis2.GetBulletVector3());
         Universal = new btUniversalConstraint(*BodyA, *BodyB, temp1, temp2, temp3);
         Generic6dof = Universal;
+        ConstraintBase = Universal;
     }
 
     UniversalConstraint::UniversalConstraint(btUniversalConstraint* Constraint)
     {
         Universal = Constraint;
         Generic6dof = Constraint;
+        ConstraintBase = Constraint;
     }
 
     UniversalConstraint::~UniversalConstraint()

@@ -168,6 +168,12 @@ namespace phys
             /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.
             virtual ActorBase* FindActor(Ogre::Node* GraphicsNode) = 0;
 
+            /// @brief This finds an actor by searching for a physics subsystem object.
+            /// @details This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time.
+            /// @return This returns a pointer to and ActorBase that has a physics object.
+            /// @param PhysicsObject This is a pointer to a physics object that the Actor you want to find will have.
+            virtual ActorBase* FindActor(btCollisionObject* PhysicsObject) = 0;
+
             /// @brief This finds an actor based on its name
             /// @return This returns a pointer to and ActorBase that has a matching name
             /// @param Name This is the name of the Actor you want to find

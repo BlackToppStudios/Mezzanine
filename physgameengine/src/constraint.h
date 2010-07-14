@@ -43,7 +43,10 @@
 #include "datatypes.h"
 #include "quaternion.h"
 #include "vector3.h"
-#include "actorrigid.h"
+namespace phys
+{
+    class ActorRigid;
+}
 
 class btRigidBody;
 class btTypedConstraint;
@@ -61,8 +64,11 @@ namespace phys
     class TypedConstraint
     {
         protected:
+            friend class World;
+            friend class PhysicsManager;
             btRigidBody* BodyA;
             btRigidBody* BodyB;
+            btTypedConstraint* ConstraintBase;
         public:
             TypedConstraint();
             virtual ~TypedConstraint();

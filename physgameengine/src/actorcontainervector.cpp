@@ -128,6 +128,17 @@ namespace phys
     String ActorContainerVector::GetContainerType() const
         { return String("phys::ActorContainerVector"); }
 
+    ActorBase* ActorContainerVector::FindActor(btCollisionObject* PhysicsObject)
+    {
+        //we need to iterate through and remove all items of that match the actor to match the description in the container base
+        for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
+        {
+            if ( PhysicsObject == GetCollisionObject(*c) )
+            { return *c; }
+        }
+        return NULL;
+    }
+
     ActorBase* ActorContainerVector::FindActor(Ogre::Node* GraphicsNode)
     {
         //we need to iterate through and remove all items of that match the actor to match the description in the container base

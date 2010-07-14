@@ -44,7 +44,8 @@
 #include "physicsmanager.h"
 #include "world.h"
 #include "vector3.h"
-
+#include "actorcontainerbase.h"
+#include "eventcollision.h"
 
 #include <queue>
 
@@ -303,6 +304,9 @@ namespace phys
                                                     BulletBroadphase,
                                                     BulletSolver,
                                                     BulletCollisionConfiguration);
+
+        CollisionAge=1;
+        Impulse=1.0;
     }
 
     void PhysicsManager::Initialize()
@@ -332,6 +336,7 @@ namespace phys
             this->BulletDrawer->PrepareForRendering();
             this->BulletDynamicsWorld->debugDrawWorld();
         }
+
         int numManifolds = BulletDynamicsWorld->getDispatcher()->getNumManifolds();
         for (int i=0;i<numManifolds;i++)
         {
@@ -340,9 +345,16 @@ namespace phys
             for (int j=0;j<numContacts;j++)
             {
                 btManifoldPoint& pt = contactManifold->getContactPoint(j);
-                if (pt.m_lifeTime>=1 && pt.m_appliedImpulse>=1.0)
+                if (pt.m_lifeTime>=CollisionAge && pt.m_appliedImpulse>=Impulse)
                 {
+                    btCollisionObject* objectA = static_cast<btCollisionObject*>(contactManifold->getBody0());
+                    btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
+                    ActorBase* ActA = this->GameWorld->Actors->FindActor(objectA);
+                    ActorBase* ActB = this->GameWorld->Actors->FindActor(objectB);
+                    Vector3 emptyloc(0,0,0);
+                    EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
                     //create collision event
+                    this->GameWorld->Log("Collision Event Logged at:");
                 }
             }
         }
@@ -390,14 +402,30 @@ namespace phys
     btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
         { return this->BulletDynamicsWorld; }
 
-    void PhysicsManager::SetCollisionAge(unsigned short int Age)
+    void PhysicsManager::AddConstraint(TypedConstraint* Constraint)
+    {
+        this->BulletDynamicsWorld->addConstraint(Constraint->ConstraintBase);
+    }
+
+    void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
+    {
+        this->BulletDynamicsWorld->removeConstraint(Constraint->ConstraintBase);
+    }
+
+    void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)
     {
         CollisionAge=Age;
+        Impulse=Force;
     }
 
     unsigned short int PhysicsManager::GetCollisionAge()
     {
         return CollisionAge;
+    }
+
+    Real PhysicsManager::GetImpulse()
+    {
+        return Impulse;
     }
 
     //Inherited From ManagerBase

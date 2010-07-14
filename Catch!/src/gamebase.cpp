@@ -169,6 +169,7 @@ bool PostInput()
                     Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
                     Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
                     Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
+                    TheWorld.Physics->AddConstraint(Dragger);
                     firstframe=true;
                 }else{
                     TheWorld.Log("Actor is not an ActorRigid.  Aborting.");
@@ -197,6 +198,7 @@ bool PostInput()
     }else{
         if(Dragger)
         {
+            TheWorld.Physics->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
         }

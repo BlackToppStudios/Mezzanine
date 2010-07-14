@@ -49,6 +49,7 @@ class btSoftRigidDynamicsWorld;
 class btDynamicsWorld;
 
 #include "managerbase.h"
+#include "constraint.h"
 
 namespace phys
 {
@@ -74,6 +75,7 @@ namespace phys
             unsigned short int  MaxPhysicsProxies;
             //Real PhysicsStepsize; // use this->GameWorld->TargetFrameLength instead
             unsigned short int CollisionAge;
+            Real Impulse;
 
             // Some Items bullet requires
             btAxisSweep3* BulletBroadphase;
@@ -150,15 +152,31 @@ namespace phys
             /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
             void DoMainLoopItems(const Real &TimeElapsed);
 
-            /// @brief Sets the CollisionAge.
-            /// @details Sets the CollisionAge used in filtering out collision contacts used to make events.
-            /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.
-            void SetCollisionAge(const unsigned short int Age);
+            /// @brief Adds a constraint to the world.
+            /// @details Adds the constraint to the world so that it can/will take effect.
+            /// @param Constraint The constraint to be added.
+            void AddConstraint(TypedConstraint* Constraint);
 
-            /// @brief Gets the CollisionAge.
+            /// @brief Removes a constraint from the world.
+            /// @details Removes a constraint from the world so that it will have no effect.
+            /// @param Constraint The constraint to be removed.
+            void RemoveConstraint(TypedConstraint* Constraint);
+
+            /// @brief Sets the Collision Parameters.
+            /// @details Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events.  The lower these numbers, the more events will be generated.  @n
+            /// These numbers both default to 1.
+            /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.
+            void SetCollisionParams(const unsigned short int Age, Real Force);
+
+            /// @brief Gets the Collision Age limit.
             /// @details Gets the CollisionAge used in filtering out collision contacts used to make events.
-            /// @return Age The number of physics ticks the collision has to have existed to be used.
+            /// @return This function will return the number of physics ticks the collision has to have existed to be used.
             unsigned short int GetCollisionAge();
+
+            /// @brief Gets the Collision Impulse limit.
+            /// @details Gets the Collision Impulse used in filtering out collision contacts used to make events.
+            /// @return This function will return the lower limit of the allowed force of the collision to generate an event.
+            Real GetImpulse();
 
             /// @internal
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
