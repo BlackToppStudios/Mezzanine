@@ -337,6 +337,7 @@ namespace phys
             this->BulletDynamicsWorld->debugDrawWorld();
         }
 
+        this->GameWorld->Log("Checking for Collisions.");
         int numManifolds = BulletDynamicsWorld->getDispatcher()->getNumManifolds();
         for (int i=0;i<numManifolds;i++)
         {
@@ -352,9 +353,11 @@ namespace phys
                     ActorBase* ActA = this->GameWorld->Actors->FindActor(objectA);
                     ActorBase* ActB = this->GameWorld->Actors->FindActor(objectB);
                     Vector3 emptyloc(0,0,0);
-                    EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
+                    //EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
                     //create collision event
+                    //this->GameWorld->Events->AddEvent(ColEvent);
                     this->GameWorld->Log("Collision Event Logged at:");
+                    this->GameWorld->Log(emptyloc);
                 }
             }
         }
