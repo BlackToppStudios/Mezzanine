@@ -252,6 +252,10 @@ namespace phys
         /// @return At a vector3 that is the normal of this Vector3 or 0,0,0 if the current Vector is all 0s
         Vector3 GetNormal() const;
 
+        /// @brief This will inverse the reals in the vector.
+        /// @details This function will inverse all the reals in the vector.
+        void Inverse();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Manual Conversions
         /// @brief Gets a Bullet vector3.

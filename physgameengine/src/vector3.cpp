@@ -309,6 +309,13 @@ namespace phys
         }
     }
 
+    void Vector3::Inverse()
+    {
+        X=1/X;
+        Y=1/Y;
+        Z=1/Z;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Manual Conversions
     btVector3 Vector3::GetBulletVector3() const

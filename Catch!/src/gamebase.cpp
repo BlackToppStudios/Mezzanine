@@ -153,38 +153,59 @@ bool PostInput()
 
         Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
         bool firstframe=false;
-        if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
+        if (1/*!(ClickOnActor->Actor->IsStaticOrKinematic())*/)
         {
-            TheWorld.Log("No Actor Clicked on");
-        }else{
-            TheWorld.Log("Actor Clicked on");
-            TheWorld.Log(*ClickOnActor);
-            if(!Dragger)
+            if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
             {
-                if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid)
+                TheWorld.Log("No Actor Clicked on");
+            }else{
+                TheWorld.Log("Actor Clicked on");
+                TheWorld.Log(*ClickOnActor);
+                if(!Dragger)
                 {
-                    ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                    Dragger = new Generic6DofConstraint(rigid, ClickOnActor->Vector, Quaternion(0,0,0,0), false);
-                    Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
-                    Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
-                    Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
-                    Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
-                    TheWorld.Physics->AddConstraint(Dragger);
-                    firstframe=true;
-                }else{
-                    TheWorld.Log("Actor is not an ActorRigid.  Aborting.");
+                    if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid)
+                    {
+                        Vector3 LocalPivot = ClickOnActor->Actor->GetLocation();
+                        LocalPivot.Inverse();
+                        Vector3 Clickloc = ClickOnActor->Vector;
+                        LocalPivot = LocalPivot * Clickloc;
+                        ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                        Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,0), false);
+                        Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
+                        Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
+                        Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
+                        Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
+                        TheWorld.Physics->AddConstraint(Dragger);
+                        Dragger->SetParam(4,0.8,0);
+                        Dragger->SetParam(4,0.8,1);
+                        Dragger->SetParam(4,0.8,2);
+                        Dragger->SetParam(4,0.8,3);
+                        Dragger->SetParam(4,0.8,4);
+                        Dragger->SetParam(4,0.8,5);
+                        Dragger->SetParam(2,0.1,0);
+                        Dragger->SetParam(2,0.1,1);
+                        Dragger->SetParam(2,0.1,2);
+                        Dragger->SetParam(2,0.1,3);
+                        Dragger->SetParam(2,0.1,4);
+                        Dragger->SetParam(2,0.1,5);
+                        firstframe=true;
+                    }else{
+                        TheWorld.Log("Actor is not an ActorRigid.  Aborting.");
+                    }
                 }
             }
+        }else{
+            TheWorld.Log("Actor is static or kinematic.  Aborting.");
         }
         Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
         if (0 == DragTo)
         {
             TheWorld.Log("PlaneOfPlay Not Clicked on");
         }else{
-            TheWorld.Log("Dragged To");
-            TheWorld.Log(*DragTo);
             if(Dragger && !firstframe)
             {
+                TheWorld.Log("Dragged To");
+                TheWorld.Log(*DragTo);
                 Dragger->SetOffsetALocation(*DragTo);
             }
         }

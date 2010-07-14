@@ -303,6 +303,12 @@ namespace phys{
         //int x=1;
         this->CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
     }
+
+    bool ActorBase::IsStaticOrKinematic()
+    {
+        //bool result = this->CollisionObject->isStaticOrKinematicObject();
+        return this->CollisionObject->isStaticOrKinematicObject();
+    }
 }// /phys
 
 std::ostream& operator << (std::ostream& stream, const phys::ActorBase& x)
