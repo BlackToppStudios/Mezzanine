@@ -278,6 +278,7 @@ namespace phys
         //Prepare for fancy math and therefore division by 0
         try
         {
+            this->GameWorld->LogStream << " Plane: " << QueryPlane << endl << " Ray: " << QueryRay << endl;
             //Figure out the distance from the origin of the ray to the plane along the ray.
             Real MyDistance = (   (QueryPlane.Normal.X*QueryRay.To.X - QueryPlane.Normal.X*QueryRay.From.X) +
                                 (QueryPlane.Normal.Y*QueryRay.To.Y - QueryPlane.Normal.Y*QueryRay.From.Y) +
@@ -286,7 +287,8 @@ namespace phys
                                 (QueryPlane.Normal.X*QueryRay.From.X - QueryPlane.Normal.Y*QueryRay.From.Y - QueryPlane.Normal.Z*QueryRay.From.Z - QueryPlane.Distance)
                             );
 
-            std::pair< bool, Real > Answer = Ogre::Math::intersects(QueryRay.GetOgreRay(), QueryPlane.GetOgrePlane());
+
+            std::pair< bool, Real > Answer = Ogre::Math::intersects(QueryRay.GetNormal().GetOgreRay(), QueryPlane.GetOgrePlane());
             Real Distance = Answer.second;
             this->GameWorld->LogStream << " Distances[ Ogre:"<<Distance<<", Math:"<<MyDistance<<"]"<<endl;
             if(Answer.first)

@@ -77,10 +77,17 @@ namespace phys
     // Manual Conversions and adjsutments
     Ogre::Ray Ray::GetOgreRay() const
     {
+
+        Ray Temp = this->GetNormal();
+        return Ogre::Ray(
+            Temp.From.GetOgreVector3(),
+            Temp.To.GetOgreVector3()
+        );// */
+        /*
         return Ogre::Ray(
             this->From.GetOgreVector3(),
             this->To.GetOgreVector3()
-        );
+        );// */
     }
 
     Real Ray::Length() const

@@ -334,7 +334,8 @@ namespace phys
             /// in the event manager, that is the responsibility of the code tnly actor your query tool can find are the plahat pulls out the event out.
             void DoMainLoopInputBuffering();
 
-            /// @brief This commits the log stream
+            /// @brief This commits the log stream to the log
+            /// @details This is called automatically during the main loop just before rendering.
             void DoMainLoopLogging();
 
             /// @brief Creates events for each Window manger
@@ -389,7 +390,10 @@ namespace phys
             /// @details This will keep track constraints, gravity, and other settings that affect multiple actors
             PhysicsManager* Physics;
 
-
+            /// @brief This is another way to put data in the log.
+            /// @details The contents of this will be commited to the log once per frame, just before rendering. Because of that do not
+            /// use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of
+            /// debugging data and creating in game logs and recreations, this can be very useful.
             std::stringstream LogStream;
     };
 }

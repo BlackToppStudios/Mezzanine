@@ -469,7 +469,7 @@ namespace phys
     void  World::DoMainLoopLogging()
     {
         this->Log(this->LogStream.str());
-        this->LogStream.clear();
+        this->LogStream.str("");
     }
 
     void World::DoMainLoopWindowManagerBuffering()
