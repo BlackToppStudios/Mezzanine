@@ -279,6 +279,50 @@ namespace phys
         try
         {
             this->GameWorld->LogStream << " Plane: " << QueryPlane << endl << " Ray: " << QueryRay << endl;
+
+            this->GameWorld->LogStream << "X:" << QueryPlane.Normal.X << " Y:" << QueryPlane.Normal.Y << " Z:" << QueryPlane.Normal.Z << " D:" << QueryPlane.Distance;
+
+            Real mousex1 = QueryRay.From.X;
+            Real mousey1 = QueryRay.From.Y;
+            Real mousez1 = QueryRay.From.Z;
+
+            Real mousex2 = QueryRay.From.X - QueryRay.To.X;
+            Real mousey2 = QueryRay.From.Y - QueryRay.To.Y;
+            Real mousez2 = QueryRay.From.Z - QueryRay.To.Z;
+
+
+            Real planex = QueryPlane.Normal.X;
+            Real planey = QueryPlane.Normal.Y;
+            Real planez = QueryPlane.Normal.Z;
+            Real planed = QueryPlane.Distance;
+
+            mousex1 = mousex1 * planex;
+            mousey1 = mousey1 * planey;
+            mousez1 = mousez1 * planez;
+
+            mousex2 = mousex2 * planex;
+            mousey2 = mousey2 * planey;
+            mousez2 = mousez2 * planez;
+
+            Real T = (planed - mousex1 - mousey1 - mousez1) / (mousex2 + mousey2 + mousez2);
+
+
+            Real pointA = QueryRay.From.X + ((QueryRay.From.X - QueryRay.To.X) * T);
+            Real pointB = QueryRay.From.Y + ((QueryRay.From.Y - QueryRay.To.Y) * T);
+            Real pointC = QueryRay.From.Z + ((QueryRay.From.Z - QueryRay.To.Z) * T);
+
+
+
+
+
+
+            this->GameWorld->LogStream << "JAMES RESULTS:------------:X:" << pointA << " Y:" << pointB << " Z:" << pointC << " D:" << planed;
+
+
+
+
+
+
             //Figure out the distance from the origin of the ray to the plane along the ray.
             Real MyDistance = (   (QueryPlane.Normal.X*QueryRay.To.X - QueryPlane.Normal.X*QueryRay.From.X) +
                                 (QueryPlane.Normal.Y*QueryRay.To.Y - QueryPlane.Normal.Y*QueryRay.From.Y) +
@@ -286,6 +330,10 @@ namespace phys
                             )/(
                                 (QueryPlane.Normal.X*QueryRay.From.X - QueryPlane.Normal.Y*QueryRay.From.Y - QueryPlane.Normal.Z*QueryRay.From.Z - QueryPlane.Distance)
                             );
+
+
+
+
 
 
             std::pair< bool, Real > Answer = Ogre::Math::intersects(QueryRay.GetNormal().GetOgreRay(), QueryPlane.GetOgrePlane());

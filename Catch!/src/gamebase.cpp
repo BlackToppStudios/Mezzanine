@@ -129,10 +129,10 @@ bool PostInput()
         { TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) )
-        { TheWorld.Cameras->ZoomCamera( -3.0 ); }
+        { TheWorld.Cameras->ZoomCamera( -12.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN) )
-        { TheWorld.Cameras->ZoomCamera( 3.0 ); }
+        { TheWorld.Cameras->ZoomCamera( 12.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld.Cameras->ResetZoom(); }
@@ -264,7 +264,7 @@ bool CheckForEsc()
 
 void LoadContent()
 {
-    ActorRigid *object1, *object2, *object3, *object4, *object5, *object6, *object7;
+    ActorRigid *object1, *object2, *object3, *object4, *object5, *object6, *object7, *objectJames, *object9, *object10, *object11, *object12;
     //Ogre Setup Code
     String groupname ("Group1");
     String filerobot ("robot.mesh");
@@ -286,7 +286,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << c;
         TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(4);
+        TheWorld.Actors->LastActorAdded ()->CreateShapeFromMeshDynamic(4);
         TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -100.0, 0));
     }
 
@@ -348,10 +348,35 @@ void LoadContent()
     object7->SetActorScaling(Vector3(0.3,0.3,0.3));
     object7->SetInitLocation(Vector3(10.0,25000.0,-1300.0));
 
+    objectJames = new ActorRigid (200.0f,"MetalSphereJames","Sphere_Metal.mesh",groupname,&TheWorld);
+    objectJames->CreateSphereShapeFromMesh();
+    objectJames->SetActorScaling(Vector3(0.3,0.3,0.3));
+    objectJames->SetInitLocation(Vector3(-20.0,28000.0,-100.0));
+
+
+    object9 = new ActorRigid (200.0f,"MetalSphereJames2","Sphere_Metal.mesh",groupname,&TheWorld);
+    object9->CreateSphereShapeFromMesh();
+    object9->SetActorScaling(Vector3(0.3,0.3,0.3));
+    object9->SetInitLocation(Vector3(-20.0,29000.0,-100.0));
+
+    object10 = new ActorRigid (200.0f,"MetalSphereJames3","Sphere_Metal.mesh",groupname,&TheWorld);
+    object10->CreateSphereShapeFromMesh();
+    object10->SetActorScaling(Vector3(0.3,0.3,0.3));
+    object10->SetInitLocation(Vector3(-20.0,30000.0,-100.0));
+
+    object11 = new ActorRigid (200.0f,"MetalSphereJames4","Sphere_Metal.mesh",groupname,&TheWorld);
+    object11->CreateSphereShapeFromMesh();
+    object11->SetActorScaling(Vector3(1000,0.1,0.1));
+    object11->SetInitLocation(Vector3(0.0,0.0,-5.0));
+
+    object12 = new ActorRigid (0,"Ramp2","Plane.mesh",groupname,&TheWorld);
+    object12->CreateShapeFromMeshDynamic(1);
+    object12->SetInitLocation(Vector3(00.0,300.0,-1100.0));
+    object12->SetInitOrientation(Quaternion(0, 0.0, 0.0, 0));
     //Final Steps
     Vector3 grav;
     grav.X=0.0;
-    grav.Y=-10000.0;
+    grav.Y=-70000.0;
     grav.Z=0.0;
 
     TheWorld.Actors->AddActor(object1);
@@ -361,6 +386,11 @@ void LoadContent()
     TheWorld.Actors->AddActor(object5);
     TheWorld.Actors->AddActor(object6);
     TheWorld.Actors->AddActor(object7);
+    TheWorld.Actors->AddActor(objectJames);
+    TheWorld.Actors->AddActor(object9);
+    TheWorld.Actors->AddActor(object10);
+    TheWorld.Actors->AddActor(object11);
+   // TheWorld.Actors->AddActor(object12);
 
     TheWorld.Log("Actor Count");
     TheWorld.Log( TheWorld.Actors->GetActorCount() );
