@@ -109,7 +109,6 @@ namespace phys
                                 const Ogre::Quaternion &orient,
                                 const Ogre::Vector3 &scale);
 
-
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // Basic Stuff

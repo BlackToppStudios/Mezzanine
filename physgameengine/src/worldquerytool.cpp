@@ -278,6 +278,7 @@ namespace phys
         //Prepare for fancy math and therefore division by 0
         try
         {
+            /// @todo Clean up code and return the answer
             this->GameWorld->LogStream << " Plane: " << QueryPlane << endl << " Ray: " << QueryRay << endl;
 
             this->GameWorld->LogStream << "X:" << QueryPlane.Normal.X << " Y:" << QueryPlane.Normal.Y << " Z:" << QueryPlane.Normal.Z << " D:" << QueryPlane.Distance;
@@ -289,6 +290,8 @@ namespace phys
             Real mousex2 = QueryRay.From.X - QueryRay.To.X;
             Real mousey2 = QueryRay.From.Y - QueryRay.To.Y;
             Real mousez2 = QueryRay.From.Z - QueryRay.To.Z;
+
+            Vector3 Mouse2 = QueryRay.From - QueryRay.To;
 
 
             Real planex = QueryPlane.Normal.X;
@@ -304,7 +307,13 @@ namespace phys
             mousey2 = mousey2 * planey;
             mousez2 = mousez2 * planez;
 
-            Real T = (planed - mousex1 - mousey1 - mousez1) / (mousex2 + mousey2 + mousez2);
+            try
+            {
+                Real T = (planed - mousex1 - mousey1 - mousez1) / (mousex2 + mousey2 + mousez2);
+            }catch (exception e){
+                this->GameWorld->LogAndThrow("Division by Zero, Unlucky click");
+                this->GameWorld->Log(e.what());
+            }
 
 
             Real pointA = QueryRay.From.X + ((QueryRay.From.X - QueryRay.To.X) * T);
