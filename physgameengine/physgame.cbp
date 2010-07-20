@@ -60,7 +60,6 @@
 					<Add option="-fexceptions" />
 					<Add option="-fPIC" />
 					<Add option="-DOGRE_GUI_GLX" />
-					<Add option="-DOGRE_CONFIG_LITTLE_ENDIAN" />
 					<Add option="-DLINUX" />
 					<Add directory="libincludes/linux/ogresrc/OgreMain/include" />
 					<Add directory="libincludes/linux/ogresrc/include" />
@@ -143,7 +142,6 @@
 					<Add option="-fexceptions" />
 					<Add option="-fPIC" />
 					<Add option="-DOGRE_GUI_GLX" />
-					<Add option="-DOGRE_CONFIG_LITTLE_ENDIAN" />
 					<Add option="-DLINUX" />
 					<Add directory="libincludes/linux/ogresrc/OgreMain/include" />
 					<Add directory="libincludes/linux/ogresrc/include" />
