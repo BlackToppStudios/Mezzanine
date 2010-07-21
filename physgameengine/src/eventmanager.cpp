@@ -598,6 +598,9 @@ namespace phys
     void EventManager::Initialize()
         {}
 
+    void EventManager::DoMainLoopItems()
+        {}
+
     ManagerBase::ManagerTypeName EventManager::GetType() const
         { return ManagerBase::EventManager; }
 

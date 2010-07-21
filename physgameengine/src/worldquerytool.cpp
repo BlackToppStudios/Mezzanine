@@ -307,14 +307,7 @@ namespace phys
             mousey2 = mousey2 * planey;
             mousez2 = mousez2 * planez;
 
-            try
-            {
-                Real T = (planed - mousex1 - mousey1 - mousez1) / (mousex2 + mousey2 + mousez2);
-            }catch (exception e){
-                this->GameWorld->LogAndThrow("Division by Zero, Unlucky click");
-                this->GameWorld->Log(e.what());
-            }
-
+            Real T = (planed - mousex1 - mousey1 - mousez1) / (mousex2 + mousey2 + mousez2);
 
             Real pointA = QueryRay.From.X + ((QueryRay.From.X - QueryRay.To.X) * T);
             Real pointB = QueryRay.From.Y + ((QueryRay.From.Y - QueryRay.To.Y) * T);

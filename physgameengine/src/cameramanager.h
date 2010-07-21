@@ -237,6 +237,10 @@ namespace phys
             /// in case a derived class wants to override it for some reason
             virtual void Initialize();
 
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void DoMainLoopItems();
+
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::CameraManager
             virtual ManagerTypeName GetType() const;

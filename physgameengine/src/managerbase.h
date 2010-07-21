@@ -60,7 +60,6 @@ namespace phys
             World* GameWorld;
 
         public:
-
             /// @enum ManagerTypeName
             /// @brief A listing of Manager TypeNames
             /// @details These will be returned by ManagerBase::GetType(), and will allow
@@ -77,6 +76,9 @@ namespace phys
                 SoundManager,
                 UserCreated         /// This is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
             };
+
+            /// @brief This makes working with Callback function pointer a bit easier.
+            typedef bool (*Callback)();
 
             /// @brief Default Constructor
             /// @details This creates a default manager without a valid reference to the game world. The
@@ -124,6 +126,21 @@ namespace phys
             /// ManagerBase to the correct Manager Type.
             /// @return This returns a ManagerTypeName to identify what this can be safely cast to.
             virtual ManagerTypeName GetType() const = 0;
+
+
+            virtual void SetPreMainLoopItems(Callback);
+            virtual void PreMainLoopItems();
+            virtual Callback GetPreMainLoopItems() const;
+            virtual void ErasePreMainLoopItems();
+
+            /// @brief The main loop calls this once per frame
+            /// @details This is where each manager is expected to put anything that needs to be run each iteration of the main loop
+            virtual void DoMainLoopItems() = 0;
+
+            virtual void SetPostMainLoopItems(Callback);
+            virtual void PostMainLoopItems();
+            virtual Callback GetPostMainLoopItems() const;
+            virtual void ErasePostMainLoopItems();
 
     };// /ManagerBase
 } // /phys

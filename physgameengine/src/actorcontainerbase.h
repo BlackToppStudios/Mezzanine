@@ -209,6 +209,8 @@ namespace phys
 
             // Inherited from ManagerBase
             virtual void Initialize() = 0;
+            virtual void DoMainLoopItems() = 0;
+
     };
 }
 

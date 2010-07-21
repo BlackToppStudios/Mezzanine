@@ -135,6 +135,10 @@ namespace phys
             /// @details This class implements this for the sake of entension and compatibility this function does nothing
             virtual void Initialize();
 
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void DoMainLoopItems();
+
         private:
             /// @brief This is used to implement LastActorAdded()
             ActorBase* RecentlyAdded;

@@ -346,6 +346,11 @@ namespace phys
             /// in case a derived class wants to override it for some reason
             virtual void Initialize();
 
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing. This is just empty during this round of refactoring,
+            /// and this will get all the functionality that currently should be here, but is in the world
+            virtual void DoMainLoopItems();
+
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::EventManager
             virtual ManagerTypeName GetType() const;

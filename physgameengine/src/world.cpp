@@ -264,7 +264,8 @@ namespace phys
     template <class T> void World::Log(T Message)
     {
         stringstream temp;
-        temp << Message;
+        temp << this->LogStream << Message;
+        this->LogStream.str("");
         Ogre::LogManager::getSingleton().logMessage(temp.str());
     }
 

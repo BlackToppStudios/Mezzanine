@@ -86,6 +86,10 @@ namespace phys
             /// @details This class implements this for the sake of entension and compatibility this function does nothing
             virtual void Initialize();
 
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void DoMainLoopItems();
+
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::CallBackManager
             virtual ManagerBase::ManagerTypeName GetType() const;

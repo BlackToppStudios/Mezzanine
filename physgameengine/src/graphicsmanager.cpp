@@ -120,6 +120,10 @@ namespace phys
     void GraphicsManager::Initialize()
         {}
 
+    void GraphicsManager::DoMainLoopItems()
+        {}
+
+
     ManagerBase::ManagerTypeName GraphicsManager::GetType() const
         { return ManagerBase::GraphicsManager; }
 

@@ -314,10 +314,10 @@ namespace phys
         // This came from the Game init function, and may need to go to a game init.
         this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
         this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
-
     }
 
-
+    void PhysicsManager::DoMainLoopItems()
+        {}
 
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {

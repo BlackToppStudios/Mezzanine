@@ -438,6 +438,9 @@ namespace phys
     void CameraManager::Initialize()
         {}
 
+    void CameraManager::DoMainLoopItems()
+        {}
+
     ManagerBase::ManagerTypeName CameraManager::GetType() const
         { return ManagerBase::CameraManager; }
 

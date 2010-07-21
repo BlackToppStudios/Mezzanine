@@ -114,6 +114,10 @@ namespace phys
             /// be called before the physics manager is used, but after the graphics have been initialized
             virtual void Initialize();
 
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void DoMainLoopItems();
+
             /// @brief Deconstructor
             /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
             ~PhysicsManager();

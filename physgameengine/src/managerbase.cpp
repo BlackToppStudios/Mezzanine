@@ -60,6 +60,30 @@ namespace phys
     ManagerBase::~ManagerBase()
         {}
 
+    void ManagerBase::SetPreMainLoopItems( ManagerBase::Callback)
+        {}
+
+    void ManagerBase::PreMainLoopItems()
+        {}
+
+    ManagerBase::Callback ManagerBase::GetPreMainLoopItems() const
+        {}
+
+    void ManagerBase::ErasePreMainLoopItems()
+        {}
+
+    void ManagerBase::SetPostMainLoopItems(ManagerBase::Callback)
+        {}
+
+    void ManagerBase::PostMainLoopItems()
+        {}
+
+    ManagerBase::Callback ManagerBase::GetPostMainLoopItems() const
+        {}
+
+    void ManagerBase::ErasePostMainLoopItems()
+        {}
+
 }// /phys
 
 #endif

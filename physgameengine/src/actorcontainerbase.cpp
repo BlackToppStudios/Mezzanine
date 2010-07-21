@@ -76,6 +76,8 @@ namespace phys
         if(this->GameWorld != NULL)
             { ActorToAdd->RemoveObjectFromWorld(this->GameWorld); }
     }
+
+
 }// \phys
 
 

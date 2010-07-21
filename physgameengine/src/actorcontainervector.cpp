@@ -190,6 +190,8 @@ namespace phys
     void ActorContainerVector::Initialize()
         {}
 
+    void ActorContainerVector::DoMainLoopItems()
+        {}
 }
 
 

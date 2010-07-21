@@ -71,6 +71,9 @@ namespace phys
     void CallBackManager::Initialize()
         {}
 
+    void CallBackManager::DoMainLoopItems()
+        {}
+
     ManagerBase::ManagerTypeName CallBackManager::GetType() const
         { return ManagerBase::CallBackManager; }
 
