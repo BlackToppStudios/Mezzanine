@@ -46,10 +46,20 @@
 namespace phys
 {
     ManagerBase::ManagerBase()
-        {}
+        {
+            this->GameWorld = 0;
+            this->PreMainLoop = 0;
+            this->PostMainLoop = 0;
+            this->Priority = 0;
+        }
 
     ManagerBase::ManagerBase(World* GameWorld_)
-        { this->GameWorld = GameWorld_; }
+        {
+            this->GameWorld = GameWorld_;
+            this->PreMainLoop = 0;
+            this->PostMainLoop = 0;
+            this->Priority = 0;
+        }
 
     World* ManagerBase::GetGameWorld() const
         { return this->GameWorld; }
@@ -60,29 +70,42 @@ namespace phys
     ManagerBase::~ManagerBase()
         {}
 
-    void ManagerBase::SetPreMainLoopItems( ManagerBase::Callback)
-        {}
+    void ManagerBase::SetPreMainLoopItems( ManagerBase::Callback PreMainCallback )
+        { this->PreMainLoop=PreMainCallback; }
 
-    void ManagerBase::PreMainLoopItems()
-        {}
+    bool ManagerBase::PreMainLoopItems()
+    {
+        if(NULL != this->PreMainLoop)
+        {
+            return (*( this->PreMainLoop))();
+        }
+        return true;
+    }
 
     ManagerBase::Callback ManagerBase::GetPreMainLoopItems() const
-        {}
+        { return this->PreMainLoop; }
 
     void ManagerBase::ErasePreMainLoopItems()
-        {}
+        { this->SetPreMainLoopItems(0); }
 
-    void ManagerBase::SetPostMainLoopItems(ManagerBase::Callback)
-        {}
 
-    void ManagerBase::PostMainLoopItems()
-        {}
+    void ManagerBase::SetPostMainLoopItems( ManagerBase::Callback PostMainCallback )
+        { this->PreMainLoop=PostMainCallback; }
+
+    bool ManagerBase::PostMainLoopItems()
+    {
+        if(NULL != this->PostMainLoop)
+        {
+            return (*( this->PostMainLoop))();
+        }
+        return true;
+    }
 
     ManagerBase::Callback ManagerBase::GetPostMainLoopItems() const
-        {}
+        { return this->PostMainLoop; }
 
     void ManagerBase::ErasePostMainLoopItems()
-        {}
+        { this->SetPostMainLoopItems(0); }
 
 }// /phys
 
