@@ -150,6 +150,14 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld.Cameras->ResetZoom(); }
 
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_m) )
+        {
+            Sound* Theme = TheWorld.Sounds->GetSoundByName("Theme2");
+            if(!Theme->IsPlaying())
+            {
+                Theme->Play2d(false);
+            }
+        }
 
     // Make a declaration for a static constrain so it survives the function lifetime
     // static *constraint MouseDragger = 0;
@@ -375,10 +383,16 @@ void LoadContent()
     TheWorld.Actors->AddActor(object6);
     TheWorld.Actors->AddActor(object7);
 
+    Sound *sound1, *music1, *music2;
     TheWorld.Sounds->CreateSoundSet("Announcer");
-    Sound* sound1;
-    sound1 = TheWorld.Sounds->CreateSound("Welcome", "/data/common/sounds/welcomefun-1.wav", false);
+    sound1 = TheWorld.Sounds->CreateSound("Welcome", "data/common/sounds/welcomefun-1.wav", false);
     TheWorld.Sounds->AddSoundToSoundSet("Announcer", sound1);
+
+    TheWorld.Sounds->CreateSoundSet("SoundTrack");
+    music1 = TheWorld.Sounds->CreateSound("Theme1", "data/common/music/cAudioTheme1.ogg", true);
+    TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music1);
+    music2 = TheWorld.Sounds->CreateSound("Theme2", "data/common/music/cAudioTheme2.ogg", true);
+    TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music2);
 
     TheWorld.Log("Actor Count");
     TheWorld.Log( TheWorld.Actors->GetActorCount() );
