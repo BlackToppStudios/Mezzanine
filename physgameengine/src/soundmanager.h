@@ -80,6 +80,9 @@ namespace phys
             /// @brief Class Destructor
             /// @details The class destructor.
             ~SoundManager();
+            /// @brief Inherited Initializer.
+            /// @details Written to all the class to compile, should be ignored.  Use InitializeManager() instead.
+            void Initialize();
             /// @brief Initializes the Manager.
             /// @details This function will initialize the manager using the device and parameters provided.
             /// You need to call this function if you passed false into the sound manager constructor before
@@ -87,7 +90,7 @@ namespace phys
             /// @param DeviceName The name of the device you wish to have this manager interface with/use.
             /// @param OutputFrequency Frequency of the output audio, -1 for the devices default.
             /// @param EAXEffectSlots The number of effects per sound allowed to be applied.
-            void Initialize(String &DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4);
+            void InitializeManager(String &DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4);
             /// @brief Creates a sound instance from a file that can be used to play sounds.
             /// @details This function will create a Sound from a file and returns a pointer to that Sound.
             /// You can also specify if you want the sound to be streamed from the disk so that it doesn't
@@ -120,6 +123,10 @@ namespace phys
             /// @details Deletes a single Sound via a pointer.
             /// @param SoundName A pointer to the Sound you want deleted.
             void DestroySound(Sound* SoundName);
+            /// @brief Gets a sound by it's name.
+            /// @details This function will find and return the sound with the speicified name.
+            /// @return Returns a pointer to the specified sound.
+            Sound* GetSoundByName(String SoundName);
             /// @brief Deletes all stored sounds.
             /// @details This function will delete every Sound that is stored in the manager.
             void DestroyAllSounds();
