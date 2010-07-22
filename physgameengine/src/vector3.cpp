@@ -42,6 +42,7 @@
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
+#include <cAudio.h>
 
 #include "vector3.h"
 
@@ -71,6 +72,11 @@ namespace phys
     Vector3::Vector3(btVector3 Vec)
     {
         this->ExtractBulletVector3(Vec);
+    }
+
+    Vector3::Vector3(cAudio::cVector3 Vec)
+    {
+        this->ExtractcAudioVector3(Vec);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -345,6 +351,22 @@ namespace phys
     }
 
     void Vector3::ExtractOgreVector3(Ogre::Vector3 Ours)
+    {
+        this->X=Ours.x;
+        this->Y=Ours.y;
+        this->Z=Ours.z;
+    }
+
+    cAudio::cVector3 Vector3::GetcAudioVector3() const
+    {
+        cAudio::cVector3 Theirs;
+        Theirs.x=this->X;
+        Theirs.y=this->Y;
+        Theirs.z=this->Z;
+        return Theirs;
+    }
+
+    void Vector3::ExtractcAudioVector3(cAudio::cVector3 Ours)
     {
         this->X=Ours.x;
         this->Y=Ours.y;

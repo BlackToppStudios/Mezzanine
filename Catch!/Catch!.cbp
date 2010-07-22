@@ -29,6 +29,7 @@
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\plugins.cfg .\bin\WinDebug\data\windows" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\settings.cfg .\bin\WinDebug\data\windows" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\cAudio.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v .\data\common\*.mesh .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.skeleton .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.material .\bin\WinDebug\data\common" />
@@ -91,6 +92,7 @@
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\plugins.cfg .\bin\WinRelease\data\windows" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\settings.cfg .\bin\WinRelease\data\windows" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinRelease\data\windows\ogre" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\cAudio.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v .\data\common\*.mesh .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.skeleton .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.material .\bin\WinRelease\data\common" />
