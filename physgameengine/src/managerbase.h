@@ -195,6 +195,4 @@ namespace phys
     };// /ManagerBase
 } // /phys
 
-
-
 #endif
