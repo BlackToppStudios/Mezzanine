@@ -17,6 +17,8 @@ const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1
 
 Generic6DofConstraint* Dragger=NULL;
 
+bool Mfirstrun=true;
+
 int main(int argc, char **argv)
 {
     // Set the Title
@@ -82,12 +84,23 @@ bool PostRender()
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
 
+    if (1000<gametime && 1100>gametime && Mfirstrun)
+    {
+        Sound* Welcome = NULL;
+        Welcome = TheWorld.Sounds->GetSoundByName("Welcome");
+        if(Welcome)
+        {
+            Welcome->Play2d(false);
+            Mfirstrun=false;
+        }
+    }
+
     // Turn on the Wireframe
     if (30000<gametime)
         { TheWorld.Physics->SetDebugPhysicsRendering(1); }
 
-    //IF the game has gone on for 60 or more seconds close it.
-	if (60000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
+    //IF the game has gone on for 150 or more seconds close it.
+	if (150000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
         { return false; }
 
     return true;
@@ -137,6 +150,14 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld.Cameras->ResetZoom(); }
 
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_m) )
+        {
+            Sound* Theme = TheWorld.Sounds->GetSoundByName("Theme2");
+            if(!Theme->IsPlaying())
+            {
+                Theme->Play2d(false);
+            }
+        }
 
     // Make a declaration for a static constrain so it survives the function lifetime
     // static *constraint MouseDragger = 0;
@@ -264,7 +285,7 @@ bool CheckForEsc()
 
 void LoadContent()
 {
-    ActorRigid *object1, *object2, *object3, *object4, *object5, *object6, *object7, *objectJames, *object9, *object10, *object11, *object12;
+    ActorRigid *object1, *object2, *object3, *object4, *object5, *object6, *object7;
     //Ogre Setup Code
     String groupname ("Group1");
     String filerobot ("robot.mesh");
@@ -348,35 +369,10 @@ void LoadContent()
     object7->SetActorScaling(Vector3(0.3,0.3,0.3));
     object7->SetInitLocation(Vector3(10.0,25000.0,-1300.0));
 
-    objectJames = new ActorRigid (200.0f,"MetalSphereJames","Sphere_Metal.mesh",groupname,&TheWorld);
-    objectJames->CreateSphereShapeFromMesh();
-    objectJames->SetActorScaling(Vector3(0.3,0.3,0.3));
-    objectJames->SetInitLocation(Vector3(-20.0,28000.0,-100.0));
-
-
-    object9 = new ActorRigid (200.0f,"MetalSphereJames2","Sphere_Metal.mesh",groupname,&TheWorld);
-    object9->CreateSphereShapeFromMesh();
-    object9->SetActorScaling(Vector3(0.3,0.3,0.3));
-    object9->SetInitLocation(Vector3(-20.0,29000.0,-100.0));
-
-    object10 = new ActorRigid (200.0f,"MetalSphereJames3","Sphere_Metal.mesh",groupname,&TheWorld);
-    object10->CreateSphereShapeFromMesh();
-    object10->SetActorScaling(Vector3(0.3,0.3,0.3));
-    object10->SetInitLocation(Vector3(-20.0,30000.0,-100.0));
-
-    object11 = new ActorRigid (200.0f,"MetalSphereJames4","Sphere_Metal.mesh",groupname,&TheWorld);
-    object11->CreateSphereShapeFromMesh();
-    object11->SetActorScaling(Vector3(1000,0.1,0.1));
-    object11->SetInitLocation(Vector3(0.0,0.0,-5.0));
-
-    object12 = new ActorRigid (0,"Ramp2","Plane.mesh",groupname,&TheWorld);
-    object12->CreateShapeFromMeshDynamic(1);
-    object12->SetInitLocation(Vector3(00.0,300.0,-1100.0));
-    object12->SetInitOrientation(Quaternion(0, 0.0, 0.0, 0));
     //Final Steps
     Vector3 grav;
     grav.X=0.0;
-    grav.Y=-70000.0;
+    grav.Y=-10000.0;
     grav.Z=0.0;
 
     TheWorld.Actors->AddActor(object1);
@@ -386,11 +382,17 @@ void LoadContent()
     TheWorld.Actors->AddActor(object5);
     TheWorld.Actors->AddActor(object6);
     TheWorld.Actors->AddActor(object7);
-    TheWorld.Actors->AddActor(objectJames);
-    TheWorld.Actors->AddActor(object9);
-    TheWorld.Actors->AddActor(object10);
-    TheWorld.Actors->AddActor(object11);
-   // TheWorld.Actors->AddActor(object12);
+
+    Sound *sound1, *music1, *music2;
+    TheWorld.Sounds->CreateSoundSet("Announcer");
+    sound1 = TheWorld.Sounds->CreateSound("Welcome", "data/common/sounds/welcomefun-1.wav", false);
+    TheWorld.Sounds->AddSoundToSoundSet("Announcer", sound1);
+
+    TheWorld.Sounds->CreateSoundSet("SoundTrack");
+    music1 = TheWorld.Sounds->CreateSound("Theme1", "data/common/music/cAudioTheme1.ogg", true);
+    TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music1);
+    music2 = TheWorld.Sounds->CreateSound("Theme2", "data/common/music/cAudioTheme2.ogg", true);
+    TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music2);
 
     TheWorld.Log("Actor Count");
     TheWorld.Log( TheWorld.Actors->GetActorCount() );

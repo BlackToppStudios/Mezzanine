@@ -99,6 +99,7 @@
 #include "vector3.h"
 #include "cameramanager.h"
 #include "physicsmanager.h"
+#include "soundmanager.h"
 
 #include <string>
 #include <sstream>
@@ -389,6 +390,10 @@ namespace phys
             /// @brief This will keep track of world wide phyiscs settings
             /// @details This will keep track constraints, gravity, and other settings that affect multiple actors
             PhysicsManager* Physics;
+
+            /// @brief This is a pointer to the sound subsystem.
+            /// @details This will keep track of and have functions available to manipulate sounds.
+            SoundManager* Sounds;
 
             /// @brief This is another way to put data in the log.
             /// @details The contents of this will be commited to the log once per frame, just before rendering. Because of that do not

@@ -116,6 +116,7 @@ namespace phys
 
         this->Actors = new ActorContainerVector(this);
         this->Graphics = new GraphicsManager();
+        this->Sounds = new SoundManager(this);
 
         //We create our Ogre environment
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
@@ -253,6 +254,7 @@ namespace phys
         delete Events;
         delete Graphics;
         delete Physics;
+        delete Sounds;
 
         //remove sdl stuff
         SDL_FreeSurface(SDLscreen);

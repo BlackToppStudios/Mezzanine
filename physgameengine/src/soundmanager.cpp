@@ -57,7 +57,11 @@ namespace phys
         cAudio::destroyAudioManager(AudioManager);
     }
 
-    void SoundManager::Initialize(String &DeviceName, int OutputFrequency, int EAXEffectSlots)
+    void SoundManager::Initialize()
+    {
+    }
+
+    void SoundManager::InitializeManager(String &DeviceName, int OutputFrequency, int EAXEffectSlots)
     {
         AudioManager->initialize(DeviceName.c_str(), OutputFrequency, EAXEffectSlots);
     }
@@ -112,6 +116,17 @@ namespace phys
     void SoundManager::DestroyAllSounds()
     {
         AudioManager->releaseAllSources();
+    }
+
+    Sound* SoundManager::GetSoundByName(String SoundName)
+    {
+        cAudio::IAudioSource* Source = AudioManager->getSoundByName(SoundName.c_str());
+        if(Source)
+        {
+            Sound* SoundInst = new Sound(Source, AudioManager);
+            return SoundInst;
+        }
+        return NULL;
     }
 
     SoundSet* SoundManager::CreateSoundSet(String SoundSetName)
