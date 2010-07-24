@@ -10,6 +10,7 @@ else
 	if [ -f "libincludes/common/bulletsrc/libBullet.a" ]
 	then
 		echo "Found, copying to correct location in project"
+		mkdir -p data/linux/bullet/
 		cp libincludes/common/bulletsrc/libBullet.a data/linux/bullet/
 	else
 		echo "Checking to see if we can compile Bullet"
@@ -37,6 +38,7 @@ else
 	if [ -f "libincludes/common/tinyxmlppsrc/libticpp.a" ]
 	then
 		echo "Found, copying to correct location in project"
+		mkdir -p data/linux/tinyxmlpp/
 		cp libincludes/common/tinyxmlppsrc/libticpp.a data/linux/tinyxmlpp/
 	else
 		echo "Checking to see if we can compile TinyXMLpp"
@@ -56,16 +58,41 @@ else
 	fi
 fi
 
-#This should only be run from the root of the prject directory.
+
+if [ -f "data/linux/caudio/libcAudio.so" ]
+then
+	echo "cAudio Library present."
+else
+	caudiodir="caudio-`uname -m`"
+	echo "cAudio Missing in data directory, Checking for compiled lib in caudiosrc"
+	if [ -f "libincludes/common/caudiosrc/$caudiodir/Source/libcAudio.so" ]
+	then
+		echo "Found, copying to correct location in project"
+		mkdir -p data/linux/caudio/
+		cp libincludes/linux/caudiosrc/$caudiodir/Source/libcAudio* data/linux/caudio/
+		ln -s data/linux/caudio/libcAudio* data/linux/caudio/libcAudio.so
+	else
+		
+		echo "cAudio Missing, Beginning cAudio Build."
+		cd libincludes/linux/caudiosrc/$caudiodir/Source/
+		make
+		cd ../../../../..				
+		cp libincludes/linux/caudiosrc/$caudiodir/Source/libcAudio* data/linux/caudio/
+		ln -s data/linux/caudio/libcAudio* data/linux/caudio/libcAudio.so
+	fi
+fi
+
+
+#This should only be run from the root of the project directory.
 if [ -f "data/linux/ogre/libOgreMain.so" ]
 then
 	echo Ogre Library present.
 else
 	if [ -f "lib/RenderSystem_GL.so" ]
 	then
-		echo Ogre Compile, but not copied into working directory
+		echo "Ogre Compile, but not copied into working directory"
 	else
-		echo Ogre Missing, Beginning Ogre Build
+		echo "Ogre Missing, Beginning Ogre Build"
 		cd libincludes/linux/ogresrc/
 		cmake .
 		make
