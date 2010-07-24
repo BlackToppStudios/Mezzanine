@@ -6,6 +6,7 @@
 #include "../Headers/cLogger.h"
 #include "../Headers/cFilter.h"
 #include "../Headers/cEffect.h"
+#include "../Headers/cUtils.h"
 
 #include <string.h>
 
@@ -433,6 +434,11 @@ namespace cAudio
 		checkError();
 	}
 
+	void cAudioSource::setName(const char* name)
+	{
+	    mName = safeCStr(name);
+	}
+
 	const cVector3 cAudioSource::getPosition() const
 	{
 		cVector3 position;
@@ -551,6 +557,11 @@ namespace cAudio
 	}
 
 #ifdef CAUDIO_EFX_ENABLED
+	const char* cAudioSource::getName() const
+	{
+	    return mName.c_str();
+	}
+
 	unsigned int cAudioSource::getNumEffectSlotsAvailable() const
 	{
 		return EffectSlotsAvailable;

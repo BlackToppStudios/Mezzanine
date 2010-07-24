@@ -185,6 +185,7 @@ namespace cAudio
 		/** Velocity will be set to new position - last position.
 		\param position: Position to move the source to. */
 		virtual void move(const cVector3& position) = 0;
+		virtual void setName(const char* name) = 0;
 
 		//! Returns the audio objects position
 		virtual const cVector3 getPosition() const = 0;
@@ -233,6 +234,7 @@ namespace cAudio
 
 		//! Returns the override for the doppler velocity vector
 		virtual const cVector3 getDopplerVelocity() const = 0;
+		virtual const char* getName() const = 0;
 
 		//! Registers a new event handler to this source
 		/**

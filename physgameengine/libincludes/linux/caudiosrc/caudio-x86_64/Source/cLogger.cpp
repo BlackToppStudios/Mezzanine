@@ -3,6 +3,7 @@
 // For conditions of distribution and use, see copyright notice in cAudio.h
 
 #include <time.h>
+#include <stdio.h>
 #include "../Headers/cLogger.h"
 #include "../Headers/cConsoleLogReceiver.h"
 #include "../Headers/cFileLogReceiver.h"

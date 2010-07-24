@@ -194,6 +194,7 @@ namespace cAudio
 								if(!audioName.empty())
 									audioIndex[audioName] = audio;
 
+								audio->setName(audioName.c_str());
 								audioSources.push_back(audio);
 
 								getLogger()->logInfo("AudioManager", "Audio Source (%s) created from file %s from Data Source %s.", audioName.c_str(), path.c_str(), dataSourcePriorityList[i].second.c_str());
@@ -253,6 +254,7 @@ namespace cAudio
 									if(!audioName.empty())
 										audioIndex[audioName] = audio;
 
+									audio->setName(audioName.c_str());
 									audioSources.push_back(audio);
 
 									getLogger()->logInfo("AudioManager", "Audio Source (%s) successfully created from memory.", audioName.c_str());
@@ -319,6 +321,7 @@ namespace cAudio
 
 									audioSources.push_back(audio);
 
+									audio->setName(audioName.c_str());
 									getLogger()->logInfo("AudioManager", "Audio Source (%s) successfully created from raw data.", audioName.c_str());
 									
 									return audio;

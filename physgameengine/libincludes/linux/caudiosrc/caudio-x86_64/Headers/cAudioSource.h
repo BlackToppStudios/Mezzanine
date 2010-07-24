@@ -88,6 +88,7 @@ namespace cAudio
 		virtual void setDopplerVelocity(const cVector3& dvelocity);
 
 		virtual void move(const cVector3& position);
+		virtual void setName(const char* name);
 
 		virtual const cVector3 getPosition() const;
 		virtual const cVector3 getVelocity() const;
@@ -109,6 +110,7 @@ namespace cAudio
 
 		virtual const float getDopplerStrength() const;
 		virtual const cVector3 getDopplerVelocity() const;
+		virtual const char* getName() const;
 
 		virtual void registerEventHandler(ISourceEventHandler* handler);
 		virtual void unRegisterEventHandler(ISourceEventHandler* handler);
@@ -125,6 +127,7 @@ namespace cAudio
 
 	protected:
 	private:
+		cAudioString mName;
 		//! Mutex for thread syncronization
 		cAudioMutex Mutex;
 		//! Empties the current working buffer queue
