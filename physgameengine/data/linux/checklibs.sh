@@ -70,15 +70,20 @@ else
 		echo "Found, copying to correct location in project"
 		mkdir -p data/linux/caudio/
 		cp libincludes/linux/caudiosrc/$caudiodir/Source/libcAudio* data/linux/caudio/
-		ln -s data/linux/caudio/libcAudio* data/linux/caudio/libcAudio.so
+		cd data/linux/caudio/
+		ln -s libcAudio* libcAudio.so
+		cd ../../..
 	else
 		
 		echo "cAudio Missing, Beginning cAudio Build."
 		cd libincludes/linux/caudiosrc/$caudiodir/Source/
 		make
 		cd ../../../../..				
+		mkdir -p data/linux/caudio/
 		cp libincludes/linux/caudiosrc/$caudiodir/Source/libcAudio* data/linux/caudio/
-		ln -s data/linux/caudio/libcAudio* data/linux/caudio/libcAudio.so
+		cd data/linux/caudio/
+		ln -s libcAudio* libcAudio.so
+		cd ../../..
 	fi
 fi
 
