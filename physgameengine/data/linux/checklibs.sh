@@ -76,7 +76,9 @@ else
 	else
 		
 		echo "cAudio Missing, Beginning cAudio Build."
-		cd libincludes/linux/caudiosrc/$caudiodir/Source/
+		cd libincludes/linux/caudiosrc/
+		ln -s caudio-`uname -m` caudio
+		cd $caudiodir/Source/
 		make
 		cd ../../../../..				
 		mkdir -p data/linux/caudio/

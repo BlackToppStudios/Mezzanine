@@ -115,12 +115,12 @@ namespace phys
 
     void SoundListener::SetMetersPerUnit(Real Meters)
     {
-        AudioListener->setMetersPerUnit(Meters);
+        //AudioListener->setMetersPerUnit(Meters);
     }
 
     Real SoundListener::GetMetersPerUnit()
     {
-        return AudioListener->getMetersPerUnit();
+        return 0;//AudioListener->getMetersPerUnit();
     }
 }
 
