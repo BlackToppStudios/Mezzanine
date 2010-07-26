@@ -84,18 +84,16 @@ namespace phys{
         Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
 
         unsigned int triCount = indexData->indexCount/3;
-        Ogre::Real* vertices = new Ogre::Real[vertexData->vertexCount*3];
+        Ogre::Vector3* vertices = new Ogre::Vector3[vertexData->vertexCount];
         unsigned int* indices = new unsigned int[indexData->indexCount];
         unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-        int vcount=0;
         float* pReal = NULL;
-        for (size_t j = 0; j < vertexData->vertexCount; j+=3, vertex += vBuffer->getVertexSize() )
+        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
         {
             posElem->baseVertexPointerToElement(vertex, &pReal);
-            vertices[j] = pReal[0];
-            vertices[j+1] = pReal[1];
-            vertices[j+2] = pReal[2];
-            vcount+=3;
+            vertices[j].x = *pReal++;
+            vertices[j].y = *pReal++;
+            vertices[j].z = *pReal++;
         }
         vBuffer->unlock();
         size_t index_offset = 0;
@@ -121,9 +119,9 @@ namespace phys{
         iBuffer->unlock();
 
         ConvexDecomposition::DecompDesc desc;
-        desc.mVcount = vcount;
+        desc.mVcount = vertexData->vertexCount;
         desc.mTcount = triCount;
-        desc.mVertices = &vertices[0];
+        desc.mVertices = &vertices[0].x;
         desc.mIndices = &indices[0];
         unsigned int maxv  = 16;
         float skinWidth    = 0.0;
