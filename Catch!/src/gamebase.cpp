@@ -10,9 +10,12 @@
 
 using namespace phys;
 
-World TheWorld( Vector3(-10000.0,-10000.0,-10000.0),
-                Vector3(10000.0,10000.0,10000.0),
-                30);                     //Create the World Globally! and we a place to hold some actors
+//Create the World Globally! and set it to hold some actors
+World TheWorld( Vector3(-10000.0,-10000.0,-10000.0), Vector3(10000.0,10000.0,10000.0), 30);
+
+const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
+
+Generic6DofConstraint* Dragger=NULL;
 
 int main(int argc, char **argv)
 {
@@ -79,12 +82,25 @@ bool PostRender()
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
 
+    static bool Mfirstrun=true;
+
+    if (1000<gametime && 1100>gametime && Mfirstrun)
+    {
+        Sound* Welcome = NULL;
+        Welcome = TheWorld.Sounds->GetSoundByName("Welcome");
+        if(Welcome)
+        {
+            Welcome->Play2d(false);
+            Mfirstrun=false;
+        }
+    }
+
     // Turn on the Wireframe
     if (30000<gametime)
         { TheWorld.Physics->SetDebugPhysicsRendering(1); }
 
-    //IF the game has gone on for 60 or more seconds close it.
-	if (60000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
+    //IF the game has gone on for 150 or more seconds close it.
+	if (150000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
         { return false; }
 
     return true;
@@ -126,59 +142,108 @@ bool PostInput()
         { TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) )
-        { TheWorld.Cameras->ZoomCamera( -3.0 ); }
+        { TheWorld.Cameras->ZoomCamera( -12.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN) )
-        { TheWorld.Cameras->ZoomCamera( 3.0 ); }
+        { TheWorld.Cameras->ZoomCamera( 12.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld.Cameras->ResetZoom(); }
 
-    TheWorld.Log("WorldQueryTool Ray and Raycast Results");
-    Ray WhatRay( (TheWorld.Cameras->GetCameraGlobalLocation()), -TheWorld.Cameras->GetCameraGlobalLocation() ); // From the camera to the origin
-    TheWorld.Log( WhatRay );
-    Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(WhatRay);
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_m) )
+        {
+            Sound* Theme = TheWorld.Sounds->GetSoundByName("Theme2");
+            if(!Theme->IsPlaying())
+            {
+                Theme->Play2d(false);
+            }
+        }
 
-    if ( WhatDidWeFind == NULL)
-    {
-        TheWorld.Log("Found Nothing");
-    } else {
-        TheWorld.Log( *WhatDidWeFind );
-        delete WhatDidWeFind;
-    }
+    // Make a declaration for a static constrain so it survives the function lifetime
+    // static *constraint MouseDragger = 0;
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
-        TheWorld.Log("Mouse Clicked, Casting a Mouse Ray");
+        TheWorld.Log("Begin Mouse Dragging");
+        Ray *MouseRay = Queryer.GetMouseRay();
+        TheWorld.Log("MouseRay");
+        TheWorld.Log(*MouseRay);
+        TheWorld.Log("PlaneOfPlay");
+        TheWorld.Log(PlaneOfPlay);
 
-        //This next line create a ray from the mouse pointer
-        Ray MouseRay( TheWorld.Cameras->GetCameraToViewportRay( float(Queryer.GetMouseX()) / float( TheWorld.Graphics->getRenderWidth() ),
-                                                                float(Queryer.GetMouseY()) / float( TheWorld.Graphics->getRenderHeight() )
-                                            ) );
 
-        TheWorld.Log( MouseRay );
-        MouseRay *= WhatRay.Length();
-        TheWorld.Log(  WhatRay.Length() );
-        Vector3WActor* WhatDidWeFind = Queryer.GetFirstActorOnRayByPolygon(MouseRay);
-        if ( WhatDidWeFind == NULL)
+        Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
+
+        bool firstframe=false;
+        if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
         {
-            TheWorld.Log("Mouse Ray Found Nothing");
-        } else {
-            TheWorld.Log("Mouse Ray Found:");
-            TheWorld.Log( *WhatDidWeFind );
-            delete WhatDidWeFind;
+            TheWorld.Log("No Actor Clicked on");
+        }else{
+            TheWorld.Log("Actor Clicked on");
+            TheWorld.Log(*ClickOnActor);
+            if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
+            {
+                if(!Dragger)
+                {
+                    if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid)
+                    {
+                        Vector3 LocalPivot = ClickOnActor->Actor->GetLocation();
+                        LocalPivot.Inverse();
+                        Vector3 Clickloc = ClickOnActor->Vector;
+                        LocalPivot = LocalPivot * Clickloc;
+                        ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                        Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,0), false);
+                        Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
+                        Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
+                        Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
+                        Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
+                        TheWorld.Physics->AddConstraint(Dragger);
+                        Dragger->SetParam(4,0.8,0);
+                        Dragger->SetParam(4,0.8,1);
+                        Dragger->SetParam(4,0.8,2);
+                        Dragger->SetParam(4,0.8,3);
+                        Dragger->SetParam(4,0.8,4);
+                        Dragger->SetParam(4,0.8,5);
+                        Dragger->SetParam(2,0.1,0);
+                        Dragger->SetParam(2,0.1,1);
+                        Dragger->SetParam(2,0.1,2);
+                        Dragger->SetParam(2,0.1,3);
+                        Dragger->SetParam(2,0.1,4);
+                        Dragger->SetParam(2,0.1,5);
+                        firstframe=true;
+                    }else{
+                        TheWorld.Log("Actor is not an ActorRigid.  Aborting.");
+                    }
+                }
+            }else{
+                TheWorld.Log("Actor is Static or Kinematic.  Aborting.");
+            }
+        }
+        Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
+        if (0 == DragTo)
+        {
+            TheWorld.Log("PlaneOfPlay Not Clicked on");
+        }else{
+            if(Dragger && !firstframe)
+            {
+                TheWorld.Log("Dragged To");
+                TheWorld.Log(*DragTo);
+                Dragger->SetOffsetALocation(*DragTo);
+            }
         }
 
+        if ( DragTo )
+            { delete DragTo; }
 
-        TheWorld.Log("2 Casting a Mouse Ray 2");
-        WhatDidWeFind = Queryer.GetActorUnderMouse(WhatRay.Length());
-        if ( WhatDidWeFind == NULL)
+        if ( MouseRay )
+            { delete MouseRay; }
+
+    }else{
+        if(Dragger)
         {
-            TheWorld.Log("Mouse Ray 2 Found Nothing");
-        } else {
-            TheWorld.Log("Mouse Ray 2 Found:");
-            TheWorld.Log( *WhatDidWeFind );
-            delete WhatDidWeFind;
+            TheWorld.Physics->RemoveConstraint(Dragger);
+            delete Dragger;
+            Dragger=NULL;
         }
     }
 
@@ -241,8 +306,8 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(4);
+        TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.Actors->LastActorAdded ()->CreateShapeFromMeshDynamic(4);
         TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -100.0, 0));
     }
 
@@ -250,7 +315,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
         TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
         TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -50.0, -PinSpacing));
     }
@@ -259,14 +324,14 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
         TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
         TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), 0.0, -PinSpacing*2));
     }
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    TheWorld.AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+    TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
     TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
     TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 50.0, -PinSpacing*3));
 
@@ -289,7 +354,7 @@ void LoadContent()
     object2->SetActorScaling(Vector3(0.5,0.5,0.5));
     object2->SetInitLocation(Vector3(-130.0,2800.0,-1150.0));
 
-    object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld);
+    object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld); Schedule :
     object3->CreateSphereShapeFromMesh();
     object3->SetActorScaling(Vector3(0.7,0.7,0.7));
     object3->SetInitLocation(Vector3(140.0,1800.0,-1300.0));
@@ -310,13 +375,24 @@ void LoadContent()
     grav.Y=-10000.0;
     grav.Z=0.0;
 
-    TheWorld.AddActor(object1);
-    TheWorld.AddActor(object2);
-    TheWorld.AddActor(object3);
-    TheWorld.AddActor(object4);
-    TheWorld.AddActor(object5);
-    TheWorld.AddActor(object6);
-    TheWorld.AddActor(object7);
+    TheWorld.Actors->AddActor(object1);
+    TheWorld.Actors->AddActor(object2);
+    TheWorld.Actors->AddActor(object3);
+    TheWorld.Actors->AddActor(object4);
+    TheWorld.Actors->AddActor(object5);
+    TheWorld.Actors->AddActor(object6);
+    TheWorld.Actors->AddActor(object7);
+
+    Sound *sound1, *music1, *music2;
+    TheWorld.Sounds->CreateSoundSet("Announcer");
+    sound1 = TheWorld.Sounds->CreateSound("Welcome", "data/common/sounds/welcomefun-1.ogg", false);
+    TheWorld.Sounds->AddSoundToSoundSet("Announcer", sound1);
+
+    TheWorld.Sounds->CreateSoundSet("SoundTrack");
+    music1 = TheWorld.Sounds->CreateSound("Theme1", "data/common/music/cAudioTheme1.ogg", true);
+    TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music1);
+    music2 = TheWorld.Sounds->CreateSound("Theme2", "data/common/music/cAudioTheme2.ogg", true);
+    TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music2);
 
     TheWorld.Log("Actor Count");
     TheWorld.Log( TheWorld.Actors->GetActorCount() );

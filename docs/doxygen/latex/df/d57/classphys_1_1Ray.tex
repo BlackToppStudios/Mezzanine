@@ -20,11 +20,11 @@ This is used to indicate a line with one end.
 \begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Ray_a395485ffe19e6a53966730c01a2781c1}{Ray} (Ogre::Ray Ray2)
 \begin{DoxyCompactList}\small\item\em Compatibily constructor. \item\end{DoxyCompactList}\item 
-Ogre::Ray \hyperlink{classphys_1_1Ray_a2a28b7fd849e824a68089d18fec08ddf}{ExtractOgreRay} () const 
+Ogre::Ray \hyperlink{classphys_1_1Ray_a0c29b1a55f42ff60d224f16cc0910cdb}{GetOgreRay} () const 
 \begin{DoxyCompactList}\small\item\em Gets an Ogre::Ray that contains this Rays information. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Ray_add544025fcd6d1cdcfed3c0413b3701b}{Length} () const 
 \begin{DoxyCompactList}\small\item\em Measures the distance distance of this ray. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1Ray_a7d3ed1578d4f043c89660e7a79bcd4d7}{GetNormal} ()
+\hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1Ray_a7445c25acb6ce865ef85e7ada829ccba}{GetNormal} () const 
 \begin{DoxyCompactList}\small\item\em This returns the normal for this ray. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Ray_a2acbaef60718001a048db26ccaaef787}{Normalize} ()
 \begin{DoxyCompactList}\small\item\em Turns this \hyperlink{classphys_1_1Ray}{Ray} into its own normal. \item\end{DoxyCompactList}\item 
@@ -107,27 +107,11 @@ Definition at line 69 of file ray.cpp.
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classphys_1_1Ray_a2a28b7fd849e824a68089d18fec08ddf}{
-\index{phys::Ray@{phys::Ray}!ExtractOgreRay@{ExtractOgreRay}}
-\index{ExtractOgreRay@{ExtractOgreRay}!phys::Ray@{phys::Ray}}
-\subsubsection[{ExtractOgreRay}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Ray phys::Ray::ExtractOgreRay () const}}
-\label{df/d57/classphys_1_1Ray_a2a28b7fd849e824a68089d18fec08ddf}
-
-
-Gets an Ogre::Ray that contains this Rays information. 
-
-Used to aid interopability, this will return afresh Ogre::Ray with the same data as this \hyperlink{classphys_1_1Ray}{Ray} \begin{DoxyReturn}{Returns}
-This returns an Ogre::Ray that contains the same information as this rays information 
-\end{DoxyReturn}
-
-
-Definition at line 78 of file ray.cpp.
-
-\hypertarget{classphys_1_1Ray_a7d3ed1578d4f043c89660e7a79bcd4d7}{
+\hypertarget{classphys_1_1Ray_a7445c25acb6ce865ef85e7ada829ccba}{
 \index{phys::Ray@{phys::Ray}!GetNormal@{GetNormal}}
 \index{GetNormal@{GetNormal}!phys::Ray@{phys::Ray}}
-\subsubsection[{GetNormal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} phys::Ray::GetNormal ()}}
-\label{df/d57/classphys_1_1Ray_a7d3ed1578d4f043c89660e7a79bcd4d7}
+\subsubsection[{GetNormal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} phys::Ray::GetNormal () const}}
+\label{df/d57/classphys_1_1Ray_a7445c25acb6ce865ef85e7ada829ccba}
 
 
 This returns the normal for this ray. 
@@ -138,6 +122,22 @@ At a ray that is the normal for this array
 
 
 Definition at line 91 of file ray.cpp.
+
+\hypertarget{classphys_1_1Ray_a0c29b1a55f42ff60d224f16cc0910cdb}{
+\index{phys::Ray@{phys::Ray}!GetOgreRay@{GetOgreRay}}
+\index{GetOgreRay@{GetOgreRay}!phys::Ray@{phys::Ray}}
+\subsubsection[{GetOgreRay}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Ray phys::Ray::GetOgreRay () const}}
+\label{df/d57/classphys_1_1Ray_a0c29b1a55f42ff60d224f16cc0910cdb}
+
+
+Gets an Ogre::Ray that contains this Rays information. 
+
+Used to aid interopability, this will return afresh Ogre::Ray with the same data as this \hyperlink{classphys_1_1Ray}{Ray} \begin{DoxyReturn}{Returns}
+This returns an Ogre::Ray that contains the same information as this rays information 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file ray.cpp.
 
 \hypertarget{classphys_1_1Ray_add544025fcd6d1cdcfed3c0413b3701b}{
 \index{phys::Ray@{phys::Ray}!Length@{Length}}

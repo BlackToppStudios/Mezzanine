@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -42,6 +42,7 @@
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
+#include <cAudio.h>
 
 #include "vector3.h"
 
@@ -71,6 +72,11 @@ namespace phys
     Vector3::Vector3(btVector3 Vec)
     {
         this->ExtractBulletVector3(Vec);
+    }
+
+    Vector3::Vector3(cAudio::cVector3 Vec)
+    {
+        this->ExtractcAudioVector3(Vec);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -270,6 +276,53 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Fancy Math
+
+    Vector3 Vector3::CrossProduct( const Vector3& rkVector ) const
+    {
+        return Vector3(
+                this->Y * rkVector.Z - this->Z * rkVector.Y,
+                this->Z * rkVector.X - this->X * rkVector.Z,
+                this->X * rkVector.Y - this->Y * rkVector.X
+            );
+    }
+
+    Real Vector3::dotProduct(const Vector3& vec) const
+    {
+        return this->X * vec.X + this->Y * vec.Y + this->Z * vec.Z;
+    }
+
+    void Vector3::Normalize()
+    {
+        Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
+        if (0!=TempLength)
+        {
+             (*this) /= TempLength;
+        }else{
+            /// @todo discuss the merits throwing an error here.
+        }
+    }
+
+    Vector3 Vector3::GetNormal() const
+    {
+        Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
+        if (0!=TempLength)
+        {
+            return (*this) / TempLength;
+        }else{
+            /// @todo discuss the merits throwing an error here.
+            return (*this);
+        }
+    }
+
+    void Vector3::Inverse()
+    {
+        X=1/X;
+        Y=1/Y;
+        Z=1/Z;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Manual Conversions
     btVector3 Vector3::GetBulletVector3() const
     {
@@ -304,9 +357,21 @@ namespace phys
         this->Z=Ours.z;
     }
 
+    cAudio::cVector3 Vector3::GetcAudioVector3() const
+    {
+        cAudio::cVector3 Theirs;
+        Theirs.x=this->X;
+        Theirs.y=this->Y;
+        Theirs.z=this->Z;
+        return Theirs;
+    }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Manual Conversions
+    void Vector3::ExtractcAudioVector3(cAudio::cVector3 Ours)
+    {
+        this->X=Ours.x;
+        this->Y=Ours.y;
+        this->Z=Ours.z;
+    }
 
     Real Vector3::Distance(const Vector3 &Vec2) const
     {

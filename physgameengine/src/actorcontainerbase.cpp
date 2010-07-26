@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -56,13 +56,29 @@ namespace phys
     ActorContainerBase::~ActorContainerBase()
         {}
 
-    Ogre::Node* ActorContainerBase::GetNode(ActorBase* actor)
+    Ogre::Node* ActorContainerBase::GetNode(ActorBase* actor) const
         { return actor->node; }
+
+    btCollisionObject* ActorContainerBase::GetCollisionObject(ActorBase* actor) const
+        { return actor->CollisionObject; }
 
     ManagerBase::ManagerTypeName ActorContainerBase::GetType() const
         { return ManagerBase::ActorContainerBase; }
 
-}
+    void ActorContainerBase::AddActor(ActorBase* ActorToAdd)
+    {
+        if(this->GameWorld != NULL)
+            { ActorToAdd->AddObjectToWorld(this->GameWorld); }
+    }
+
+    void ActorContainerBase::RemoveActor(ActorBase* ActorToAdd)
+    {
+        if(this->GameWorld != NULL)
+            { ActorToAdd->RemoveObjectFromWorld(this->GameWorld); }
+    }
+
+
+}// \phys
 
 
 

@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -81,11 +81,11 @@ namespace phys
     /// the events.
     /// @warning Currently this is not thread safe, even though it should be.
     ///////////////////////////////////////////////////////////////////////////////
-    class EventManager
+    class EventManager: ManagerBase
     {
         private:
             //The Default Physics worlds that this Eventmanager is expected to interact with
-            World* ParentWorld;
+            //World* ParentWorld;
 
             //The Queue that all the events get stored in
             std::list<EventBase*> EventQueue;
@@ -337,6 +337,24 @@ namespace phys
             /// This is called automatically by main loop processing, but there is no harm in calling it several times.
             /// @return This returns a pointer to a EventUserInput that contains the desired metacodes
             EventUserInput* PollForUserInputEvents();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Inherited From ManagerBase
+        ///////////////////////////////////////
+            /// @brief Empty Initializor
+            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
+            /// in case a derived class wants to override it for some reason
+            virtual void Initialize();
+
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing. This is just empty during this round of refactoring,
+            /// and this will get all the functionality that currently should be here, but is in the world
+            virtual void DoMainLoopItems();
+
+            /// @brief This returns the type of this manager.
+            /// @return This returns ManagerTypeName::EventManager
+            virtual ManagerTypeName GetType() const;
+
     };
 }
 #endif

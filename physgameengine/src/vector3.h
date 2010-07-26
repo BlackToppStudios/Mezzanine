@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -44,6 +44,10 @@
 
 //Forward Declarations for wierd compatibility functions
 class btVector3;
+namespace cAudio
+{
+    class cVector3;
+}
 namespace Ogre
 {
     class Vector3;
@@ -85,13 +89,18 @@ namespace phys
 
         /// @brief Ogre Value Constructor.
         /// @details Constructor that sets all values to match the Ogre vector.
-        /// @param Vec The vector to be copied to make this vector
+        /// @param Vec The vector to be copied to make this vector.
         Vector3(Ogre::Vector3 Vec);
 
         /// @brief Bullet Value Constructor.
         /// @details Constructor that sets all values to match the Bullet vector.
-        /// @param Vec The vector to be copied to make this vector
+        /// @param Vec The vector to be copied to make this vector.
         Vector3(btVector3 Vec);
+
+        /// @brief cAudio Value Constructor.
+        /// @details Constructor that sets all values to match the cAudio vector.
+        /// @param Vec The vector to be copied to make this vector.
+        Vector3(cAudio::cVector3 Vec);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Assignment Operators
@@ -223,6 +232,40 @@ namespace phys
         Vector3 operator/ (const Ogre::Vector3 &Vec2);
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Fancy Math
+
+        /// @brief This is used to calculate the crossproduct of this and another vector
+        /// @details This creates a third vector, which should be on a line perpendicular
+        /// to lines that contain the origin and the other vectors \n\n
+        /// Thanks to the guys at Ogre3d for the well written version of this function
+        /// that we based this on.
+        /// @param rkVector the Vector to work with to create the cross product
+        /// @return This is the crossproduct of this vector and rkVector
+        Vector3 CrossProduct( const Vector3& rkVector ) const;
+
+        /// @brief This is used to calculate the dotproduct of this and another vector
+        /// @details This calculates the sum of the products of X, Y and Z. \n\n
+        /// Thanks to the guys at Ogre3d for the well written version of this function
+        /// that we based this on.
+        /// @param vec The vector to work with to create the cross product
+        /// @return This is the dotproduct of this vector and vec
+        Real dotProduct(const Vector3& vec) const;
+
+        /// @brief This will change this point into it's own normal relative to the origin
+        /// @details This will change this vector into one that is the same direction from the origin, but only one unit a away.
+        void Normalize();
+
+        /// @brief This returns the normal for this relative to the origin
+        /// @details This will return a vector that is 1 unit in away from the origin, if a line were starting and the origin it would pass through
+        /// both the normal and the original point.
+        /// @return At a vector3 that is the normal of this Vector3 or 0,0,0 if the current Vector is all 0s
+        Vector3 GetNormal() const;
+
+        /// @brief This will inverse the reals in the vector.
+        /// @details This function will inverse all the reals in the vector.
+        void Inverse();
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Manual Conversions
         /// @brief Gets a Bullet vector3.
         /// @details Creates a Bullet vector3 with values equal to this class and returns it.
@@ -244,8 +287,16 @@ namespace phys
         /// @param temp The vector3 to be extracted.
         void ExtractOgreVector3(Ogre::Vector3 temp);
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Manual Conversions
+        /// @brief Gets a cAudio vector3.
+        /// @details Creates a cAudio vector3 with values equal to this class and returns it.
+        cAudio::cVector3 GetcAudioVector3() const;
+
+        /// @brief Copies an existing cAudio vector3.
+        /// @details This function will copy the values stored in an existing cAudio vector3
+        /// and set the values of this class to be the same.
+        /// @param temp The vector3 to be extracted.
+        void ExtractcAudioVector3(cAudio::cVector3 temp);
+
         /// @brief This return the distance between this point and another
         /// @details This uses a 3d extension of pythagoras thereom to calculate the distance between
         /// This Vector3 and another.

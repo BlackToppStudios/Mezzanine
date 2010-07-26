@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -58,7 +58,6 @@ namespace phys
     class EventBase
     {
         public:
-
             /// @enum EventType
             /// @brief A listing of values that can be used to identify Events.
             /// @details A listing of values that can be used to identify Events.
@@ -68,6 +67,7 @@ namespace phys
                 UserInput,      /**< Indicates the Event is a EventUserInput */
                 QuitMessage,    /**< Indicates the Event is a phys::EventQuit */
                 SystemMessage,  /**< Indicates the Event has not been coded yet */
+                Collision,      /**< Indicates the Event is a Physics Collision Event */
                 Other
             };
 

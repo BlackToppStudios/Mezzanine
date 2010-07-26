@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -96,19 +96,25 @@ namespace phys
 
             virtual World* GetGameWorld() const;
 
-            /// @brief This finds an actor by searching for a graphics subsystem nodes
+            /// @brief This finds an actor by searching for a graphics subsystem nodes.
             /// @details This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time.
-            /// @return This returns a pointer to and ActorBase that has a matching node
+            /// @return This returns a pointer to and ActorBase that has a matching node.
             /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.
             virtual ActorBase* FindActor(Ogre::Node* GraphicsNode);
 
-            /// @brief This finds an actor based on its name
+            /// @brief This finds an actor by searching for a physics subsystem object.
+            /// @details This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time.
+            /// @return This returns a pointer to and ActorBase that has a physics object.
+            /// @param PhysicsObject This is a pointer to a physics object that the Actor you want to find will have.
+            virtual ActorBase* FindActor(btCollisionObject* PhysicsObject);
+
+            /// @brief This finds an actor based on its name.
             /// @details This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time.
-            /// @return This returns a pointer to and ActorBase that has a matching name
-            /// @param Name This is the name of the Actor you want to find
+            /// @return This returns a pointer to and ActorBase that has a matching name.
+            /// @param Name This is the name of the Actor you want to find.
             virtual ActorBase* FindActor(String Name);
 
-            /// @brief This is used to store information about the cursor
+            /// @brief This is used to store information about the cursor.
             /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor
             /// so feel free to use this instead.
             vector<ActorBase*>::iterator cursor;
@@ -116,12 +122,22 @@ namespace phys
             /// @brief This safely move all the Actors out of or into a phys::World
             /// @details This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system
             /// if a phys::World is present. Then this sets up all actors with the new World unless it is NULL
-            /// @warning Not Fully Implemented this just moves the pointer.
+            /// @param GameWorld_ This is a pointer to the new phys::World to work with.
             virtual void SetGameWorld( World* GameWorld_ );
+
+            /// @brief Optionally move actors into or out of a physworld
+            /// @param GameWorld_ This is a pointer to the new phys::World to work with.
+            /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add
+            /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove
+            virtual void SetGameWorld( World* GameWorld_ , bool AddToWorld, bool RemoveFromWorld);
 
             /// @brief Empty Initilizor
             /// @details This class implements this for the sake of entension and compatibility this function does nothing
             virtual void Initialize();
+
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void DoMainLoopItems();
 
         private:
             /// @brief This is used to implement LastActorAdded()

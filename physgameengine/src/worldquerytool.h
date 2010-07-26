@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -45,6 +45,7 @@
 #include "vector3wactor.h"
 #include "metacode.h"
 #include "ray.h"
+#include "plane.h"
 
 #include <bitset>
 
@@ -108,8 +109,10 @@ namespace phys
                                 const Ogre::Quaternion &orient,
                                 const Ogre::Vector3 &scale);
 
-
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            // Basic Stuff
+            ///////////////////////////////////////
             /// @brief Basic Constructor.
             /// @details This creates a WorldQueryTool Ready to run queries on the the world you pass it.
             /// @param GameWorld_ This is a pointer to the phys::World to be queried
@@ -119,6 +122,9 @@ namespace phys
             /// @details Deletes everything in the world query tool.
             ~WorldQueryTool();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Simple User Input Queries
+            ///////////////////////////////////////
             /// @brief This gets the X coordinate of the mouse
             /// @details This gets the X location of this mouse. This runs in constant time.
             /// @return This returns a Whole number which represents the X coordinate of the mouse.
@@ -146,6 +152,9 @@ namespace phys
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
             bool IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton);
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // World Ray Queries
+            ///////////////////////////////////////
             /// @brief This will find the first Actor to intesect the Given ray.
             /// @details This use the graphics subsystem to cast a ray in the world. If the ray passes through any the triangles in an actor
             /// This will return that actor. This function runs in linear time relative to the amount of triangles in 3d meshes near the the
@@ -169,6 +178,23 @@ namespace phys
             /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
             Vector3WActor* GetActorUnderMouse(Real RayLength=1000.0, bool UsePolygon=true);
 
+            /// @brief Where does this Ray Meet this Plane?
+            /// @details This does some fancy math to return the point where the ray and the plane intersent.
+            /// This returns a NULL pointer in the event the ray and plane do not meet, or are completely coterminous.
+            /// @param QueryRay This is the Ray that could intersent the plane
+            /// @param QueryPlane This is the plane to be interesected.
+            /// @return This returns a pointer to a vector that matches where the intersection of the plane and Ray, if possible
+            Vector3* RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane);
+
+            /// @brief Get a Ray from the current viewport, following the mouse
+            /// @details This calls on the graphics subsystem to get a ray from the location of the current camera
+            /// @param Length how long of a ray do you want? Thsi defaults to 1000
+            /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.
+            Ray* GetMouseRay(Real Length=1000);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Basic Stuff
+            ///////////////////////////////////////
             /// @brief This gathers any user-input/event data that might be queryed
             /// @details This should be called periodcally (ideally in the post user input callback) to allow this
             /// to gather data from the phys::World 's event manager. When called this will drop prior event data
@@ -179,7 +205,6 @@ namespace phys
             /// @param ClearEventsFromEventMgr If set to true, This method will properly remove any events it pulls from the event manager.
             void GatherEvents(bool ClearEventsFromEventMgr = false);
     };
-
 }
 
 

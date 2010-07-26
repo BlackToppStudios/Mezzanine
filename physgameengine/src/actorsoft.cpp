@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -53,6 +53,7 @@ namespace phys{
 
     /*ActorSoft::ActorSoft ()
     {
+        ActorType=ActorBase::Actorsoft;
     }*/
 
     ActorSoft::~ActorSoft ()
@@ -66,10 +67,11 @@ namespace phys{
         CollisionObject=physsoftbody;
     }
 
-    void ActorSoft::AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld)
-    {
-        btWorld->addSoftBody(this->physsoftbody);
-    }
+    void ActorSoft::AddObjectToWorld (World *TargetWorld)
+        { TargetWorld->Physics->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody); }
+
+    void ActorSoft::RemoveObjectFromWorld(World* TargetWorld)
+        { TargetWorld->Physics->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody); }
 
     void ActorSoft::CreateShapeFromMesh()
     {

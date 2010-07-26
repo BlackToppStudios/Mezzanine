@@ -1,4 +1,4 @@
-//� Copyright 2010 Joseph Toppi and John Blackwood
+//� Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -57,6 +57,7 @@ namespace phys{
         this->MotionState = new internal::PhysMotionState(this->node);
         this->Shape = new btEmptyShape();
         this->CreateEntity(name, file, group);
+        ActorType=ActorBase::Actorbase;
     }
 
     ActorBase::~ActorBase ()
@@ -69,7 +70,7 @@ namespace phys{
 
     ///////////////////////////////////
     // ActorBase Private misc functions
-    btTriangleMesh* ActorBase::CreateTrimesh()
+    btTriangleMesh* ActorBase::CreateTrimesh() const
     {
         // Get the mesh from the entity
         Ogre::MeshPtr myMesh = entity->getMesh();
@@ -178,7 +179,7 @@ namespace phys{
         this->node->setPosition(Location.GetOgreVector3());
     }
 
-    Vector3 ActorBase::GetOgreLocation()
+    Vector3 ActorBase::GetOgreLocation() const
     {
         Vector3 temp;
         temp.ExtractOgreVector3(this->node->getPosition());
@@ -284,6 +285,11 @@ namespace phys{
         this->Shape->setLocalScaling(scaling.GetBulletVector3());
     }
 
+    int ActorBase::GetType()
+    {
+        return this->ActorType;
+    }
+
     ///////////////////////////////////
     // ActorBase Public Collision flag functions
     void ActorBase::SetKinematic()
@@ -296,6 +302,12 @@ namespace phys{
     {
         //int x=1;
         this->CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+    }
+
+    bool ActorBase::IsStaticOrKinematic()
+    {
+        //bool result = this->CollisionObject->isStaticOrKinematicObject();
+        return this->CollisionObject->isStaticOrKinematicObject();
     }
 }// /phys
 

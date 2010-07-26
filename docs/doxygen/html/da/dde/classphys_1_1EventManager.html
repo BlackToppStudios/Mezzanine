@@ -29,11 +29,21 @@
   </div>
 </div>
 <div class="contents">
-<h1>phys::EventManager Class Reference</h1><!-- doxytag: class="phys::EventManager" -->
+<h1>phys::EventManager Class Reference</h1><!-- doxytag: class="phys::EventManager" --><!-- doxytag: inherits="phys::ManagerBase" -->
 <p>This is a container for Events and facilitates the transfer of data.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d2/ddb/eventmanager_8h_source.html">eventmanager.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for phys::EventManager:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="../../da/dde/classphys_1_1EventManager.png" usemap="#phys::EventManager_map" alt=""/>
+  <map id="phys::EventManager_map" name="phys::EventManager_map">
+<area href="../../d2/de3/classphys_1_1ManagerBase.html" alt="phys::ManagerBase" shape="rect" coords="0,0,128,24"/>
+</map>
+ </div>
+</div>
 
 <p><a href="../../d7/d07/classphys_1_1EventManager-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
@@ -98,6 +108,10 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes Events from the list(s) of what needs to be polled.  <a href="#adaf7d5346932506ed43f893eb071fd39"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a983bc9f1933466491e6bf025b26a9023">PollForUserInputEvents</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This activates the polling routines of the user input subsystems.  <a href="#a983bc9f1933466491e6bf025b26a9023"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0">Initialize</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Empty Initializor.  <a href="#a51afdd83f44f461dfac5c9eca5883ea0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696">GetType</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns the type of this manager.  <a href="#a194890f7f8be5d45aa98623481482696"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is a container for Events and facilitates the transfer of data. </p>
@@ -468,6 +482,54 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns an unsigned integer with the amount of of total events </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00108">108</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a194890f7f8be5d45aa98623481482696"></a><!-- doxytag: member="phys::EventManager::GetType" ref="a194890f7f8be5d45aa98623481482696" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerBase::ManagerTypeName</a> phys::EventManager::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This returns the type of this manager. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns ManagerTypeName::EventManager </dd></dl>
+
+<p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00601">601</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a51afdd83f44f461dfac5c9eca5883ea0"></a><!-- doxytag: member="phys::EventManager::Initialize" ref="a51afdd83f44f461dfac5c9eca5883ea0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::EventManager::Initialize </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Empty Initializor. </p>
+<p>This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason </p>
+
+<p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00598">598</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -904,7 +966,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <li><a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:01 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:11 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

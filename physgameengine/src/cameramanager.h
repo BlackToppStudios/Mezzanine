@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -236,6 +236,10 @@ namespace phys
             /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
             /// in case a derived class wants to override it for some reason
             virtual void Initialize();
+
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void DoMainLoopItems();
 
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::CameraManager

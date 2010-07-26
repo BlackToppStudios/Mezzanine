@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -57,6 +57,7 @@ namespace phys{
     ActorRigid::ActorRigid (Real mass, String name, String file, String group, World* _World) : ActorBase (name, file, group, _World)
     {
         this->CreateRigidObject(mass);
+        ActorType=ActorBase::Actorrigid;
     }
 
     ActorRigid::~ActorRigid ()
@@ -157,15 +158,17 @@ namespace phys{
         return;
     }
 
-    void ActorRigid::AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld)
+    void ActorRigid::AddObjectToWorld (World *TargetWorld)
     {
-        btWorld->addRigidBody(this->physrigidbody);
-        AttachToGraphics();
+        TargetWorld->Physics->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody);
+        //TargetWorld->Physics->BulletDynamicsWorld->addRigidBody(this->physrigidbody);
+        this->AttachToGraphics();
     }
 
-    void ActorRigid::RemoveObjectFromWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld)
+    void ActorRigid::RemoveObjectFromWorld(World* TargetWorld)
     {
-        btWorld->removeRigidBody(this->physrigidbody);
+        TargetWorld->Physics->GetPhysicsWorldPointer()->removeRigidBody(this->physrigidbody);
+        //TargetWorld->Physics->BulletDynamicsWorld->removeRigidBody(this->physrigidbody);
         this->DetachFromGraphics();
     }
 

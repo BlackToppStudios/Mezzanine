@@ -1,0 +1,114 @@
+\hypertarget{classphys_1_1ConeTwistConstraint}{
+\section{phys::ConeTwistConstraint Class Reference}
+\label{da/dbc/classphys_1_1ConeTwistConstraint}\index{phys::ConeTwistConstraint@{phys::ConeTwistConstraint}}
+}
+Inheritance diagram for phys::ConeTwistConstraint:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{da/dbc/classphys_1_1ConeTwistConstraint}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_ab72e1489ea91e47ebbeee41dee116040}{
+{\bfseries ConeTwistConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, \hyperlink{classphys_1_1Vector3}{Vector3} VectorA, \hyperlink{classphys_1_1Vector3}{Vector3} Vectorb, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionA, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionB)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_ab72e1489ea91e47ebbeee41dee116040}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_ab9c2ee7346f1b862d508cbefe22e54e0}{
+{\bfseries ConeTwistConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1Vector3}{Vector3} VectorA, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionA)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_ab9c2ee7346f1b862d508cbefe22e54e0}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a38a9a0e7676d8ad8f77831a319bc007b}{
+{\bfseries ConeTwistConstraint} (btConeTwistConstraint $\ast$Constraint)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_a38a9a0e7676d8ad8f77831a319bc007b}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a1e2ffb465a8ceab4b77663b9e446a3ae}{
+void {\bfseries SetAngularOnly} (bool AngularOnly)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_a1e2ffb465a8ceab4b77663b9e446a3ae}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_ae8519afb837606a39dfaef447ae96888}{
+void {\bfseries SetLimit} (int LimitIndex, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} LimitValue)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_ae8519afb837606a39dfaef447ae96888}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_ac2c48c24f694367a55ed35dd8ed7e10c}{
+void {\bfseries SetLimit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} SwingSpan1, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} SwingSpan2, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Twistspan, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Softness=1.0, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} BiasFactor=0.3, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} RelaxationFactor=1.0)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_ac2c48c24f694367a55ed35dd8ed7e10c}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_ae93045d83384dccc89f638fa8857caf1}{
+void {\bfseries SetDamping} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Damping)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_ae93045d83384dccc89f638fa8857caf1}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a005bf25bd529a03c6678e048941ea83f}{
+void {\bfseries SetMaxMotorImpulse} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxMotorImpulse)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_a005bf25bd529a03c6678e048941ea83f}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_af39f9da7e28591e3361568b3ad1c8eb8}{
+void {\bfseries SetMaxMotorImpulseNormalized} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} MaxMotorImpulse)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_af39f9da7e28591e3361568b3ad1c8eb8}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a2a2a68b116e99709be83d08dbd3a99f9}{
+void {\bfseries SetFixThresh} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} FixThresh)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_a2a2a68b116e99709be83d08dbd3a99f9}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a5acf239ac6ff3b5999d81d27ba287414}{
+void {\bfseries SetMotorTarget} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Quat)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_a5acf239ac6ff3b5999d81d27ba287414}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a4ac6124494fa39770f9fc621e6db3715}{
+void {\bfseries SetMotorTargetInConstraintSpace} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Quat)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_a4ac6124494fa39770f9fc621e6db3715}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_aaf0447bbeeca85fa10959072491cafaf}{
+void {\bfseries EnableMotor} (bool Enable)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_aaf0447bbeeca85fa10959072491cafaf}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_ab7306ac08c3fd61cf88567b4e70702c0}{
+bool {\bfseries IsPassedSwingLimit} ()}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_ab7306ac08c3fd61cf88567b4e70702c0}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a555fc33b10a0c156e0ac93b94587098a}{
+virtual void {\bfseries SetParam} (int num, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} value, int axis=-\/1)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_a555fc33b10a0c156e0ac93b94587098a}
+
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_aab54f6c56622cef4314d3bbff194421e}{
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries GetParam} (int num, int axis=-\/1)}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_aab54f6c56622cef4314d3bbff194421e}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ConeTwistConstraint_a6bb25f6554b09cc9ce3afb7e1c46f074}{
+btConeTwistConstraint $\ast$ {\bfseries ConeTwist}}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_a6bb25f6554b09cc9ce3afb7e1c46f074}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 75 of file constraint.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+constraint.h\item 
+constraint.cpp\end{DoxyCompactItemize}

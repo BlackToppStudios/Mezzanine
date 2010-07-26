@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -46,6 +46,10 @@ class btDefaultCollisionConfiguration;
 class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
 class btSoftRigidDynamicsWorld;
+class btDynamicsWorld;
+
+#include "managerbase.h"
+#include "constraint.h"
 
 namespace phys
 {
@@ -61,7 +65,7 @@ namespace phys
     /// @details This is a plage for storing items related to Debug physics
     /// drawing, Adding constraints, screwing with gravity and doing other physics
     /// Related features.
-    class PhysicsManager
+    class PhysicsManager : ManagerBase
     {
         private:
             friend class World;
@@ -70,6 +74,8 @@ namespace phys
             Vector3 GeographyUpperBounds;
             unsigned short int  MaxPhysicsProxies;
             //Real PhysicsStepsize; // use this->GameWorld->TargetFrameLength instead
+            unsigned short int CollisionAge;
+            Real Impulse;
 
             // Some Items bullet requires
             btAxisSweep3* BulletBroadphase;
@@ -78,9 +84,6 @@ namespace phys
             btSequentialImpulseConstraintSolver* BulletSolver;
             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
             debug::InternalDebugDrawer* BulletDrawer;
-
-
-            World* GameWorld;
 
             /// @brief This takes care of all the real work in contructing this
             /// @details This method is called by all the constructors to insure consistent behavior.
@@ -109,7 +112,11 @@ namespace phys
             /// @brief This configures the Physics Manager to work with the Graphic settings
             /// @details This configures the Physics manager to work with the existing graphics settings. This must
             /// be called before the physics manager is used, but after the graphics have been initialized
-            void Initialize();
+            virtual void Initialize();
+
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void DoMainLoopItems();
 
             /// @brief Deconstructor
             /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
@@ -149,6 +156,40 @@ namespace phys
             /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
             void DoMainLoopItems(const Real &TimeElapsed);
 
+            /// @brief Adds a constraint to the world.
+            /// @details Adds the constraint to the world so that it can/will take effect.
+            /// @param Constraint The constraint to be added.
+            void AddConstraint(TypedConstraint* Constraint);
+
+            /// @brief Removes a constraint from the world.
+            /// @details Removes a constraint from the world so that it will have no effect.
+            /// @param Constraint The constraint to be removed.
+            void RemoveConstraint(TypedConstraint* Constraint);
+
+            /// @brief Sets the Collision Parameters.
+            /// @details Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events.  The lower these numbers, the more events will be generated.  @n
+            /// These numbers both default to 1.
+            /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.
+            void SetCollisionParams(const unsigned short int Age, Real Force);
+
+            /// @brief Gets the Collision Age limit.
+            /// @details Gets the CollisionAge used in filtering out collision contacts used to make events.
+            /// @return This function will return the number of physics ticks the collision has to have existed to be used.
+            unsigned short int GetCollisionAge();
+
+            /// @brief Gets the Collision Impulse limit.
+            /// @details Gets the Collision Impulse used in filtering out collision contacts used to make events.
+            /// @return This function will return the lower limit of the allowed force of the collision to generate an event.
+            Real GetImpulse();
+
+            /// @internal
+            /// @brief This returns a pointer to the bullet physics world. This is for internal use only
+            btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
+
+        //Inherited from ManagerBase
+            /// @brief This returns the type of this manager.
+            /// @return This returns ManagerTypeName::PhysicsManager
+            virtual ManagerTypeName GetType() const;
     };
 }
 

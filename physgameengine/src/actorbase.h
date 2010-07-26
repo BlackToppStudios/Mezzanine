@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -84,8 +84,21 @@ namespace phys
             friend class World;
             friend class ActorContainerBase;
 
-        protected:
+        public:
+            /// @enum ActorTypeName
+            /// @brief A listing of Actor TypeNames
+            /// @details These will be returned by ActorBase::GetType(), and will allow
+            /// code using this to determine what type of Actor class they are working with
+            /// and use this information to more safely cast to the correct Actor if needed.
+            enum ActorTypeName
+            {
+                Actorbase,
+                Actorrigid,
+                Actorsoft,
+                Actorterrain
+            };
 
+        protected:
             /// @brief A pointer to the World the actor will reside.
             World* GameWorld;
 
@@ -105,24 +118,13 @@ namespace phys
             ///@brief This class encapsulates the functionality of the PhysMotionState using this
             internal::PhysMotionState* MotionState;
 
-            /// @brief Adds the actor to the physics world.
-            /// @details Adds the actor to the physics world. @n
-            /// This is automatically called by the phys::Worlds::AddActor function and shouldn't be called manually.
-            /// @param TargetWorld Pointer to the World class.
-            /// @param btWorld Pointer to the physics world.
-            virtual void AddObjectToWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld) = 0;
-
-            /// @brief Removes the actor from the physics world.
-            /// @details Removes the actor from the physics world. @n
-            /// This is automatically called by the phys::World::RemoveActor function and shouldn't be called manually.
-            /// @param TargetWorld Pointer to the World class.
-            /// @param btWorld Pointer to the physics world.
-            virtual void RemoveObjectFromWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld) = 0;
+            /// @brief This variable stores the type of actor that this class is.
+            ActorTypeName ActorType;
 
             /// @brief Creates a trimesh shape from the mesh file.
             /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n
             /// This is automaticly called by the CreateShapeFromMesh function in child classes and shouldn't be called manually.
-            btTriangleMesh* CreateTrimesh();
+            btTriangleMesh* CreateTrimesh() const;
 
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
@@ -138,8 +140,8 @@ namespace phys
             /// @brief Creates a node for the entity in the graphical world.
             /// @details Creates a node in the scene manager to attach the actor's entity to within the graphical world. @n
             /// This function is called on by the Constructor, and shouldn't be called manually.
-
             void CreateSceneNode();
+
             /// @brief Sets the location of the graphical body.
             /// @details This will take a Vector3 and set the location of the actor within the graphical world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
@@ -149,7 +151,7 @@ namespace phys
             /// @brief Retrieves the location of the graphical body.
             /// @details This function will retrieve the location of the object within the graphical world. This should always match the physics world.
             /// @return This returns a phys::Vector3 with the location of the graphics.
-            Vector3 GetOgreLocation();
+            Vector3 GetOgreLocation() const;
 
             /// @brief Sets the orientation of the graphical body.
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n
@@ -187,6 +189,11 @@ namespace phys
             virtual void SetBulletOrientation (Quaternion Rotation);
 
         public:
+            /// @brief Gets the type of actor this class is.
+            /// @details This function will get the type of class that you are working with for checking and casting.
+            /// @return ActorTypeName The type of actor that this is.
+            virtual int GetType();
+
 ///////////////////////////////////////////////////////////////////////////////
 // Creation, Destruction and Initialization
 ///////////////////////////////////////
@@ -214,7 +221,6 @@ namespace phys
             /// This function will set where the actor is facing in the World when it is first placed inside the world.
             /// @param Orientation The PhysQuaternion representing the Orientation.
             void SetInitOrientation(Quaternion Orientation);
-
 
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
@@ -264,6 +270,21 @@ namespace phys
             virtual void CreateShapeFromMeshDynamic(short unsigned int accuracy ) = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
+// Working with the World
+///////////////////////////////////////
+            /// @brief Adds the actor to the physics world.
+            /// @details Adds the actor to the physics world. @n
+            /// This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually.
+            /// @param TargetWorld Pointer to the World class.
+            virtual void AddObjectToWorld(World* TargetWorld) = 0;
+
+            /// @brief Removes the actor from the physics world.
+            /// @details Removes the actor from the physics world. @n
+            /// This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually.
+            /// @param TargetWorld Pointer to the World class.
+            virtual void RemoveObjectFromWorld(World* TargetWorld) = 0;
+
+///////////////////////////////////////////////////////////////////////////////
 // Public Collision flag functions
 ///////////////////////////////////////
             /// @brief Sets the state of the object to Kinematic.
@@ -275,6 +296,11 @@ namespace phys
             /// @details This function will set the object to a Static Object. @n
             /// Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects.
             void SetStatic();
+
+            /// @brief Checks of the actor is static or kinematic.
+            /// @details Checks of the actor is static or kinematic, returns true if it is either.
+            /// @return Returns true if the actor is static or kinematic.
+            bool IsStaticOrKinematic();
     };
 
 } // /phys

@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -63,24 +63,26 @@ namespace phys
     /// list. Members of this class should be implementing or inheriting a proper container\n\n
     /// The phys world will use one of these containers to store all of the actors for tracking purposes
     /// Since  \n\n
-    /// Currently, you cannot simply swap one member of this with another, in a running phys::World. We are
-    /// Looking into the feasibility of implementing this. \n\n
-    /// However the is no reason an actor could be in multiple containers so this could be a viable work
-    /// around for actor sorting and categorization at runtime. \n\n
+    /// In theory you should be be able to work with multiple actor containers and swiftly add or remove
+    /// them to ad from a world to quickly control what actors are being worked with. It should even be
+    /// possible to remove all actors, or have multiple set of actor in the world if you use the
+    /// GameWorldSet methods carefully. \n\n
+    /// Additionally the is no reason an actor could be in multiple containers so this can provide even
+    /// more options for actor sorting and categorization at runtime. \n\n
     /// Because of this classes representation of a cursor only 1 thread at a time should use the cursor
     /// movement functions. For the container that the phys::World keeps it should be assume that the
     /// cursor is used. For other containers you should manage you container carefully and/or use another
     /// iteration method, such as STL iterators.
     class ActorContainerBase : public ManagerBase
     {
-        private:
-            // @brief This is expected to be a pointer to the world this will be rendered with and built on
-            //World* ParentWorld;
-
         protected:
             /// @internal
             /// @brief Used to work around the scenenode of an Actor being private, so all derived Containers can access it.
-            Ogre::Node* GetNode(ActorBase* actor);
+            Ogre::Node* GetNode(ActorBase* actor) const;
+
+            /// @internal
+            /// @brief Used to work around the collision object of an Actor being private, so all derived Containers can access it.
+            btCollisionObject* GetCollisionObject(ActorBase* actor) const;
 
         public:
             /// @brief Basic Constructor
@@ -95,10 +97,12 @@ namespace phys
             /// @brief This will add an Actor to this container and the world
             /// @details This will add an Actor to this container and the world, and handle the nitty gritty details
             /// of add this to physics subsystem and graphics subsystem. \n\n
-            /// This will not add the Actor to any specific location in the ordering of the container.
-            /// @warning This will cause issues if used with a container attached to a valid phys::World. Use World::AddActor instead.
+            /// This will not add the Actor to any specific location in the ordering of the container. \n\n
+            /// It is expected that any container implementing this method will take appropriate steps to insure
+            /// That the actor involved is added to the Physics and graphics world. This method could be called from
+            /// derived to accomplish that task
             /// @param ActorToAdd This is a pointer to the actor to add.
-            virtual void AddActor(ActorBase* ActorToAdd) = 0;
+            virtual void AddActor(ActorBase* ActorToAdd);
 
             /// @brief This provides an easy way to access the last Actor added to this container
             /// @details For many containers this will simply return a pointer to the last actorl
@@ -164,6 +168,12 @@ namespace phys
             /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.
             virtual ActorBase* FindActor(Ogre::Node* GraphicsNode) = 0;
 
+            /// @brief This finds an actor by searching for a physics subsystem object.
+            /// @details This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time.
+            /// @return This returns a pointer to and ActorBase that has a physics object.
+            /// @param PhysicsObject This is a pointer to a physics object that the Actor you want to find will have.
+            virtual ActorBase* FindActor(btCollisionObject* PhysicsObject) = 0;
+
             /// @brief This finds an actor based on its name
             /// @return This returns a pointer to and ActorBase that has a matching name
             /// @param Name This is the name of the Actor you want to find
@@ -184,7 +194,14 @@ namespace phys
             /// @brief This sets the phys::World that this Manager works with.
             /// @details If the are any actors in the world, this removes them from both the physics and graphics subsystem, and adds them
             /// to the new world as is appropriate.
+            /// @param GameWorld_ The new GameWorldPointer, or 0 to set none
             virtual void SetGameWorld( World* GameWorld_ ) = 0;
+
+            /// @brief Optionally move actors into or out of a physworld
+            /// @param GameWorld_ The new GameWorldPointer, or 0 to set none
+            /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add
+            /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove
+            virtual void SetGameWorld( World* GameWorld_, bool AddToWorld, bool RemoveFromWorld) = 0;
 
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::ActorContainerBase
@@ -192,6 +209,8 @@ namespace phys
 
             // Inherited from ManagerBase
             virtual void Initialize() = 0;
+            virtual void DoMainLoopItems() = 0;
+
     };
 }
 

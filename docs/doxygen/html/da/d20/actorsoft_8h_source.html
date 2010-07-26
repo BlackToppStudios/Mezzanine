@@ -121,28 +121,29 @@
 <a name="l00096"></a>00096 <span class="comment">            /// @param nodecount Currently Unused</span>
 <a name="l00097"></a>00097 <span class="comment">            /// @param nodearray Currently Unused</span>
 <a name="l00098"></a>00098 <span class="comment">            /// @param massarray Currently Unused</span>
-<a name="l00099"></a>00099 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a04c98bb0ab9ed7c1dfc3435d49403ef4" title="Creates a soft object for the actor.">CreateSoftObject</a> (btSoftBodyWorldInfo* softworldinfo, <span class="keywordtype">int</span> nodecount, btVector3* nodearray, btScalar* massarray);<span class="comment"></span>
-<a name="l00100"></a>00100 <span class="comment">            /// @brief Adds the actor to the physics world.</span>
-<a name="l00101"></a>00101 <span class="comment">            /// @details Adds the actor to the physics world. @n</span>
-<a name="l00102"></a>00102 <span class="comment">            /// This is automaticly called by the PhysWorlds AddActor function and shouldn&#39;t be called manually.</span>
-<a name="l00103"></a>00103 <span class="comment">            /// @param TargetWorld Pointer to the World class.</span>
-<a name="l00104"></a>00104 <span class="comment">            /// @param btWorld Pointer to the physics world.</span>
-<a name="l00105"></a>00105 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a3a704ab32f847a5d0e060f8a592efefd" title="Adds the actor to the physics world.">AddObjectToWorld</a> (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld, btSoftRigidDynamicsWorld* btWorld);
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107         <span class="keyword">public</span>:
-<a name="l00108"></a>00108             <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html" title="This is the actor class for Soft Objects.">ActorSoft</a>();<span class="comment"></span>
-<a name="l00109"></a>00109 <span class="comment">            /// @brief Destructor.</span>
-<a name="l00110"></a>00110 <span class="comment">            /// @details The class destructor.</span>
-<a name="l00111"></a>00111 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a636c145f1e468fd45adc8da2a1708fbe" title="Destructor.">~ActorSoft</a>();<span class="comment"></span>
-<a name="l00112"></a>00112 <span class="comment">            /// @brief Creates a collision shape from mesh file.</span>
-<a name="l00113"></a>00113 <span class="comment">            /// @details This function will read the location of every verticy in the mesh file and use that to</span>
-<a name="l00114"></a>00114 <span class="comment">            /// construct a triangle mesh shape and attach it to this objects collision shape.</span>
-<a name="l00115"></a>00115 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a51d78e0f503c3c815511c3d246b426ae" title="Creates a collision shape from mesh file.">CreateShapeFromMesh</a>();
-<a name="l00116"></a>00116     };
-<a name="l00117"></a>00117 }
-<a name="l00118"></a>00118 <span class="preprocessor">#endif</span>
+<a name="l00099"></a>00099 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a04c98bb0ab9ed7c1dfc3435d49403ef4" title="Creates a soft object for the actor.">CreateSoftObject</a> (btSoftBodyWorldInfo* softworldinfo, <span class="keywordtype">int</span> nodecount, btVector3* nodearray, btScalar* massarray);
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103         <span class="keyword">public</span>:
+<a name="l00104"></a>00104             <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html" title="This is the actor class for Soft Objects.">ActorSoft</a>();<span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">            /// @brief Destructor.</span>
+<a name="l00106"></a>00106 <span class="comment">            /// @details The class destructor.</span>
+<a name="l00107"></a>00107 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a636c145f1e468fd45adc8da2a1708fbe" title="Destructor.">~ActorSoft</a>();<span class="comment"></span>
+<a name="l00108"></a>00108 <span class="comment">            /// @brief Creates a collision shape from mesh file.</span>
+<a name="l00109"></a>00109 <span class="comment">            /// @details This function will read the location of every verticy in the mesh file and use that to</span>
+<a name="l00110"></a>00110 <span class="comment">            /// construct a triangle mesh shape and attach it to this objects collision shape.</span>
+<a name="l00111"></a>00111 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a51d78e0f503c3c815511c3d246b426ae" title="Creates a collision shape from mesh file.">CreateShapeFromMesh</a>();
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113             <span class="comment">// Inherited from ActorBase</span>
+<a name="l00114"></a>00114             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a5f97915d1cda0d048853718714a26d93" title="Adds the actor to the physics world.">AddObjectToWorld</a> (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld);
+<a name="l00115"></a>00115             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab65d106fcc1ee5243a990e7b42326bf0" title="Removes the actor from the physics world.">RemoveObjectFromWorld</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld);
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117     };
+<a name="l00118"></a>00118 }
+<a name="l00119"></a>00119 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

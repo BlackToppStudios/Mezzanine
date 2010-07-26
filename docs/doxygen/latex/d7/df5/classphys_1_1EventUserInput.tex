@@ -50,7 +50,7 @@ void \hyperlink{classphys_1_1EventUserInput_adf603505c43162cf9331a486d5832f75}{T
 \begin{DoxyCompactList}\small\item\em Removes a specific code or Adds it if not present. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventUserInput}{EventUserInput} \& \hyperlink{classphys_1_1EventUserInput_a1d6895e1b3814c1a63f5605b88ba85e5}{operator+=} (const \hyperlink{classphys_1_1EventUserInput}{EventUserInput} \&Add)
 \begin{DoxyCompactList}\small\item\em This add all of one \hyperlink{classphys_1_1EventUserInput}{EventUserInput} to another. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventType} \hyperlink{classphys_1_1EventUserInput_ab31bb312cde99c0a2bf64af012ee4b87}{getEventType} () const 
+virtual \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventType} \hyperlink{classphys_1_1EventUserInput_a3e803a8d9bcc1576fe04d2245a86ec80}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em Returns the type of this event. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -247,26 +247,6 @@ All MetaCodes that are equal to Code\_\- will simply be erased.
 
 Definition at line 123 of file eventuserinput.cpp.
 
-\hypertarget{classphys_1_1EventUserInput_ab31bb312cde99c0a2bf64af012ee4b87}{
-\index{phys::EventUserInput@{phys::EventUserInput}!getEventType@{getEventType}}
-\index{getEventType@{getEventType}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{getEventType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventBase::EventType} phys::EventUserInput::getEventType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d7/df5/classphys_1_1EventUserInput_ab31bb312cde99c0a2bf64af012ee4b87}
-
-
-Returns the type of this event. 
-
-\begin{DoxyReturn}{Returns}
-Returns EventType::UserInput 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classphys_1_1EventBase_a0f39a25f4b64f7cf701e174454616366}{phys::EventBase}.
-
-
-
-Definition at line 160 of file eventuserinput.cpp.
-
 \hypertarget{classphys_1_1EventUserInput_aaf56168b98e339cec74ae862b64632ba}{
 \index{phys::EventUserInput@{phys::EventUserInput}!GetMetaCode@{GetMetaCode}}
 \index{GetMetaCode@{GetMetaCode}!phys::EventUserInput@{phys::EventUserInput}}
@@ -299,6 +279,26 @@ The amount of codes stored in this physEventUserInput.
 Retrieves a count of the stored Metacodes 
 
 Definition at line 92 of file eventuserinput.cpp.
+
+\hypertarget{classphys_1_1EventUserInput_a3e803a8d9bcc1576fe04d2245a86ec80}{
+\index{phys::EventUserInput@{phys::EventUserInput}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::EventUserInput@{phys::EventUserInput}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventBase::EventType} phys::EventUserInput::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d7/df5/classphys_1_1EventUserInput_a3e803a8d9bcc1576fe04d2245a86ec80}
+
+
+Returns the type of this event. 
+
+\begin{DoxyReturn}{Returns}
+Returns EventType::UserInput 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1EventBase_a1b3d29b6ecf30f18cc3e1825a515c508}{phys::EventBase}.
+
+
+
+Definition at line 160 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a1d6895e1b3814c1a63f5605b88ba85e5}{
 \index{phys::EventUserInput@{phys::EventUserInput}!operator+=@{operator+=}}

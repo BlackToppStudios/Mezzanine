@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -63,7 +63,7 @@ namespace phys
     /// Rigid Object: Boxes, Car Frames, Chairs, etc.  For Semi Rigid bodies that are
     /// deformable, like jello, it is better to use ActorSoft.
     ///////////////////////////////////////
-    class ActorRigid: public ActorBase {
+    class ActorRigid : public ActorBase {
         protected:
             friend class TypedConstraint;
             /// @brief Used to simulate the behavior of a btRigidBody
@@ -76,10 +76,6 @@ namespace phys
             void CreateRigidObject (Real pmass);
 
             void PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent);
-
-            void AddObjectToWorld (World *TargetWorld, btSoftRigidDynamicsWorld* btWorld);
-
-            void RemoveObjectFromWorld(World* TargetWorld, btSoftRigidDynamicsWorld* btWorld);
 
         public:
             /// @brief Descriptive constructor.
@@ -123,6 +119,10 @@ namespace phys
             /// @param y Allow or Disallow use of the Y axis for movement.
             /// @param z Allow or Disallow use of the Z axis for movement.
             void LimitMovementOnAxis(bool x, bool y, bool z);
+
+            // Inherited from ActorBase
+            virtual void AddObjectToWorld (World *TargetWorld);
+            virtual void RemoveObjectFromWorld(World* TargetWorld);
     };
 }
 #endif

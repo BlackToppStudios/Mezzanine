@@ -67,7 +67,7 @@
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;worldquerytool.h&quot;</span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;actorcontainerbase.h&quot;</span>
-<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;graphicsettings.h&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;graphicsmanager.h&quot;</span>
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
 <a name="l00048"></a>00048 
@@ -171,7 +171,7 @@
 <a name="l00146"></a>00146 
 <a name="l00147"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139">00147</a>     <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139" title="This will find the first Actor to intesect the Given ray.">WorldQueryTool::GetFirstActorOnRayByPolygon</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay)
 <a name="l00148"></a>00148     {
-<a name="l00149"></a>00149         Ogre::Ray Ooray = ActorRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a2a28b7fd849e824a68089d18fec08ddf" title="Gets an Ogre::Ray that contains this Rays information.">ExtractOgreRay</a>();
+<a name="l00149"></a>00149         Ogre::Ray Ooray = ActorRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a0c29b1a55f42ff60d224f16cc0910cdb" title="Gets an Ogre::Ray that contains this Rays information.">GetOgreRay</a>();
 <a name="l00150"></a>00150 
 <a name="l00151"></a>00151         <span class="keywordflow">if</span>(NULL != this-&gt;RayQuery)          <span class="comment">//Double check that the Rayquery is valid</span>
 <a name="l00152"></a>00152         {
@@ -240,7 +240,7 @@
 <a name="l00215"></a>00215                 <span class="keywordflow">if</span> (new_closest_found)
 <a name="l00216"></a>00216                 {
 <a name="l00217"></a>00217                     closest_result = Ooray.getPoint(closest_distance);
-<a name="l00218"></a>00218                     ClosestActor-&gt;<a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html#ad9110e820da2e8eca9c3303cdc755938" title="The pointer to the ActorBase.">Actor</a> = this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a67682d0622fef8d6ae4eba447838b423" title="This is a convienient place to keep pointer to our Actors.">Actors</a>-&gt;<a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a2e4652bf92f24a0ff20bdc4a7173b567" title="This finds an actor by searching for a graphics subsystem nodes.">FindActor</a>( pentity-&gt;getParentNode() );
+<a name="l00218"></a>00218                     ClosestActor-&gt;<a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html#ad9110e820da2e8eca9c3303cdc755938" title="The pointer to the ActorBase.">Actor</a> = this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a67682d0622fef8d6ae4eba447838b423" title="The adds and Actor to the physworld.">Actors</a>-&gt;<a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a2e4652bf92f24a0ff20bdc4a7173b567" title="This finds an actor by searching for a graphics subsystem nodes.">FindActor</a>( pentity-&gt;getParentNode() );
 <a name="l00219"></a>00219                 }
 <a name="l00220"></a>00220             } <span class="comment">// \if entity</span>
 <a name="l00221"></a>00221         } <span class="comment">// \if qr_idx</span>
@@ -251,174 +251,234 @@
 <a name="l00226"></a>00226         <span class="keywordflow">return</span> ClosestActor;
 <a name="l00227"></a>00227     }
 <a name="l00228"></a>00228 
-<a name="l00229"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf">00229</a>     <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf" title="unimplemented">WorldQueryTool::GetFirstActorOnRayByAABB</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay)
-<a name="l00230"></a>00230     {<span class="comment"></span>
-<a name="l00231"></a>00231 <span class="comment">        /// @todo TODO: Fix the WorldQueryTool::GetFirstActorOnRayByAABB stub</span>
-<a name="l00232"></a>00232 <span class="comment"></span>        <span class="keywordflow">return</span> 0; <span class="comment">// just a stub :(</span>
-<a name="l00233"></a>00233     }
-<a name="l00234"></a>00234 
-<a name="l00235"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8efba55076bad228d7cda0b82895f32a">00235</a>     <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8efba55076bad228d7cda0b82895f32a" title="This will find the actor under the mouse.">WorldQueryTool::GetActorUnderMouse</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RayLength, <span class="keywordtype">bool</span> UsePolygon)
-<a name="l00236"></a>00236     {
-<a name="l00237"></a>00237         <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* Results = 0;
-<a name="l00238"></a>00238 
-<a name="l00239"></a>00239         <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> MouseRay( this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a899f6054f4148d891a5d1079349098fe" title="This is a pointer to the Camera Manager.">Cameras</a>-&gt;<a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a1a631eee22a0e45e2e72727d0bcc3560" title="Gets a Ray from the camera to the viewport.">GetCameraToViewportRay</a>(
-<a name="l00240"></a>00240                 <span class="keywordtype">float</span>(this-&gt;GetMouseX()) / <span class="keywordtype">float</span>( this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a7f643a1fa53c294633493862a8eeb547" title="A pointer to the graphics settings Manager, or it will be soon.">VisualSettings</a>-&gt;<a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#aa8a8548afca8d3e127a1be69a2c1eba2" title="Gets the Width of the Rendering Area.">getRenderWidth</a>() ) ,
-<a name="l00241"></a>00241                 <span class="keywordtype">float</span>(this-&gt;<a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ac2d8517db7305157c1393320f434751b" title="This gets the Y coordinate of the mouse.">GetMouseY</a>()) / <span class="keywordtype">float</span>( this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a7f643a1fa53c294633493862a8eeb547" title="A pointer to the graphics settings Manager, or it will be soon.">VisualSettings</a>-&gt;<a class="code" href="../../dc/df1/classphys_1_1GraphicsSettings.html#a118171db4fc0a2b17da4284cc91fbeb4" title="Gets the Height of the Rendering Area.">getRenderHeight</a>() )
-<a name="l00242"></a>00242             ) );
+<a name="l00229"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf">00229</a>     <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf" title="Partially implemented. This should find the first Actor that is on or almost on the...">WorldQueryTool::GetFirstActorOnRayByAABB</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay)
+<a name="l00230"></a>00230     {
+<a name="l00231"></a>00231         Ogre::Ray Ooray = ActorRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a0c29b1a55f42ff60d224f16cc0910cdb" title="Gets an Ogre::Ray that contains this Rays information.">GetOgreRay</a>();
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233         <span class="keywordflow">if</span>(NULL != this-&gt;RayQuery)          <span class="comment">//Double check that the Rayquery is valid</span>
+<a name="l00234"></a>00234         {
+<a name="l00235"></a>00235             this-&gt;RayQuery-&gt;setRay(Ooray);
+<a name="l00236"></a>00236             <span class="keywordflow">if</span>( this-&gt;RayQuery-&gt;execute().size() &lt;= 0 ) <span class="comment">//Did we hit anything</span>
+<a name="l00237"></a>00237             {
+<a name="l00238"></a>00238                 <span class="keywordflow">return</span> NULL;
+<a name="l00239"></a>00239             }
+<a name="l00240"></a>00240         }<span class="keywordflow">else</span>{                          <span class="comment">//Whoopsie something Failed</span>
+<a name="l00241"></a>00241             this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Attempting to run a query on Null RaySceneQuery&quot;</span>);
+<a name="l00242"></a>00242         }
 <a name="l00243"></a>00243 
-<a name="l00244"></a>00244         MouseRay *= RayLength;
-<a name="l00245"></a>00245         this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>( MouseRay );
-<a name="l00246"></a>00246 
-<a name="l00247"></a>00247         <span class="keywordflow">if</span> (UsePolygon)
-<a name="l00248"></a>00248         {
-<a name="l00249"></a>00249             Results = this-&gt;<a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139" title="This will find the first Actor to intesect the Given ray.">GetFirstActorOnRayByPolygon</a>( MouseRay );
-<a name="l00250"></a>00250         }<span class="keywordflow">else</span>{
-<a name="l00251"></a>00251             Results = this-&gt;<a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf" title="unimplemented">GetFirstActorOnRayByAABB</a>( MouseRay );
-<a name="l00252"></a>00252         }
-<a name="l00253"></a>00253 
-<a name="l00254"></a>00254         <span class="keywordflow">return</span> Results;
-<a name="l00255"></a>00255     }
-<a name="l00256"></a>00256 
-<a name="l00257"></a>00257     <span class="comment">// Private Members</span>
-<a name="l00258"></a>00258     <span class="keywordtype">void</span> WorldQueryTool::GetMeshInformation( Ogre::Entity *entity,
-<a name="l00259"></a>00259                                 <span class="keywordtype">size_t</span> &amp;vertex_count,
-<a name="l00260"></a>00260                                 Ogre::Vector3* &amp;vertices,
-<a name="l00261"></a>00261                                 <span class="keywordtype">size_t</span> &amp;index_count,
-<a name="l00262"></a>00262                                 <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>* &amp;indices,
-<a name="l00263"></a>00263                                 <span class="keyword">const</span> Ogre::Vector3 &amp;position,
-<a name="l00264"></a>00264                                 <span class="keyword">const</span> Ogre::Quaternion &amp;orient,
-<a name="l00265"></a>00265                                 <span class="keyword">const</span> Ogre::Vector3 &amp;scale)
-<a name="l00266"></a>00266     {
-<a name="l00267"></a>00267         <span class="keywordtype">bool</span> added_shared = <span class="keyword">false</span>;
-<a name="l00268"></a>00268         <span class="keywordtype">size_t</span> current_offset = 0;
-<a name="l00269"></a>00269         <span class="keywordtype">size_t</span> shared_offset = 0;
-<a name="l00270"></a>00270         <span class="keywordtype">size_t</span> next_offset = 0;
-<a name="l00271"></a>00271         <span class="keywordtype">size_t</span> index_offset = 0;
-<a name="l00272"></a>00272         vertex_count = index_count = 0;
-<a name="l00273"></a>00273 
-<a name="l00274"></a>00274         Ogre::MeshPtr mesh = entity-&gt;getMesh();
+<a name="l00244"></a>00244         Ogre::RaySceneQueryResult &amp;query_result = this-&gt;RayQuery-&gt;getLastResults();
+<a name="l00245"></a>00245 
+<a name="l00246"></a>00246         <span class="keywordflow">if</span> (0 &lt; query_result.size())
+<a name="l00247"></a>00247         {
+<a name="l00248"></a>00248             Ogre::Entity *pentity = <span class="keyword">static_cast&lt;</span>Ogre::Entity*<span class="keyword">&gt;</span>(query_result[0].movable);
+<a name="l00249"></a>00249             <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* ClosestActor = <span class="keyword">new</span> <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>();
+<a name="l00250"></a>00250             ClosestActor-&gt;<a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html#ad9110e820da2e8eca9c3303cdc755938" title="The pointer to the ActorBase.">Actor</a> = this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a67682d0622fef8d6ae4eba447838b423" title="The adds and Actor to the physworld.">Actors</a>-&gt;<a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a2e4652bf92f24a0ff20bdc4a7173b567" title="This finds an actor by searching for a graphics subsystem nodes.">FindActor</a>( pentity-&gt;getParentNode() );<span class="comment"></span>
+<a name="l00251"></a>00251 <span class="comment">            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.</span>
+<a name="l00252"></a>00252 <span class="comment">            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested</span>
+<a name="l00253"></a>00253 <span class="comment"></span>            <span class="keywordflow">return</span> ClosestActor;
+<a name="l00254"></a>00254         }<span class="keywordflow">else</span>{
+<a name="l00255"></a>00255             <span class="keywordflow">return</span> 0;
+<a name="l00256"></a>00256         }
+<a name="l00257"></a>00257     }
+<a name="l00258"></a>00258 
+<a name="l00259"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8efba55076bad228d7cda0b82895f32a">00259</a>     <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8efba55076bad228d7cda0b82895f32a" title="This will find the actor under the mouse.">WorldQueryTool::GetActorUnderMouse</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RayLength, <span class="keywordtype">bool</span> UsePolygon)
+<a name="l00260"></a>00260     {
+<a name="l00261"></a>00261         <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* Results = 0;
+<a name="l00262"></a>00262 
+<a name="l00263"></a>00263         <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>* MouseRay = this-&gt;<a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a567b20eb6ba6f17961f5cd892bd5a0ed" title="Get a Ray from the current viewport, following the mouse.">GetMouseRay</a>(RayLength);
+<a name="l00264"></a>00264 
+<a name="l00265"></a>00265         <span class="keywordflow">if</span> (UsePolygon)
+<a name="l00266"></a>00266         {
+<a name="l00267"></a>00267             Results = this-&gt;<a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139" title="This will find the first Actor to intesect the Given ray.">GetFirstActorOnRayByPolygon</a>( *MouseRay );
+<a name="l00268"></a>00268         }<span class="keywordflow">else</span>{
+<a name="l00269"></a>00269             Results = this-&gt;<a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf" title="Partially implemented. This should find the first Actor that is on or almost on the...">GetFirstActorOnRayByAABB</a>( *MouseRay );
+<a name="l00270"></a>00270         }
+<a name="l00271"></a>00271 
+<a name="l00272"></a>00272         <span class="keyword">delete</span> MouseRay;
+<a name="l00273"></a>00273         <span class="keywordflow">return</span> Results;
+<a name="l00274"></a>00274     }
 <a name="l00275"></a>00275 
-<a name="l00276"></a>00276 
-<a name="l00277"></a>00277         <span class="keywordtype">bool</span> useSoftwareBlendingVertices = entity-&gt;hasSkeleton();
-<a name="l00278"></a>00278 
-<a name="l00279"></a>00279         <span class="keywordflow">if</span> (useSoftwareBlendingVertices)
-<a name="l00280"></a>00280         {                                   <span class="comment">//10,000th line of code</span>
-<a name="l00281"></a>00281             entity-&gt;_updateAnimation();
-<a name="l00282"></a>00282         }
-<a name="l00283"></a>00283 
-<a name="l00284"></a>00284         <span class="comment">// Calculate how many vertices and indices we&#39;re going to need</span>
-<a name="l00285"></a>00285         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)
-<a name="l00286"></a>00286         {
-<a name="l00287"></a>00287             Ogre::SubMesh* submesh = mesh-&gt;getSubMesh( i );
-<a name="l00288"></a>00288 
-<a name="l00289"></a>00289             <span class="comment">// We only need to add the shared vertices once</span>
-<a name="l00290"></a>00290             <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)
-<a name="l00291"></a>00291             {
-<a name="l00292"></a>00292                 <span class="keywordflow">if</span>( !added_shared )
-<a name="l00293"></a>00293                 {
-<a name="l00294"></a>00294                     vertex_count += mesh-&gt;sharedVertexData-&gt;vertexCount;
-<a name="l00295"></a>00295                     added_shared = <span class="keyword">true</span>;
-<a name="l00296"></a>00296                 }
-<a name="l00297"></a>00297             }
-<a name="l00298"></a>00298             <span class="keywordflow">else</span>
-<a name="l00299"></a>00299             {
-<a name="l00300"></a>00300                 vertex_count += submesh-&gt;vertexData-&gt;vertexCount;
-<a name="l00301"></a>00301             }
+<a name="l00276"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#adfc5ea4a115ad8bb716dea87d8419e6f">00276</a>     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#adfc5ea4a115ad8bb716dea87d8419e6f" title="Where does this Ray Meet this Plane?">WorldQueryTool::RayPlaneIntersection</a>(<span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> &amp;QueryRay, <span class="keyword">const</span> <a class="code" href="../../d1/d0c/classphys_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a> &amp;QueryPlane)
+<a name="l00277"></a>00277     {
+<a name="l00278"></a>00278         <span class="comment">//Prepare for fancy math and therefore division by 0</span>
+<a name="l00279"></a>00279         <span class="keywordflow">try</span>
+<a name="l00280"></a>00280         {
+<a name="l00281"></a>00281             <span class="comment">//Figure out the distance from the origin of the ray to the plane along the ray.</span>
+<a name="l00282"></a>00282             <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Distance = (   (QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>*QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> - QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>*QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>) +
+<a name="l00283"></a>00283                                 (QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>*QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> - QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>*QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>) +
+<a name="l00284"></a>00284                                 (QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>*QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a> - QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>*QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>)
+<a name="l00285"></a>00285                             )/(
+<a name="l00286"></a>00286                                 (QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>*QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> - QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>*QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> - QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>*QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a> - QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac352595324c4df7f8385c3ad7014e65c" title="How from from the origin the plane is.">Distance</a>)
+<a name="l00287"></a>00287                             );
+<a name="l00288"></a>00288             <span class="keywordflow">if</span> ( Distance &gt; 0)
+<a name="l00289"></a>00289             {
+<a name="l00290"></a>00290                 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> *value = <span class="keyword">new</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>( (QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba" title="This returns the normal for this ray.">GetNormal</a>()*Distance).To );
+<a name="l00291"></a>00291                 <span class="keywordflow">return</span> value;
+<a name="l00292"></a>00292             }<span class="keywordflow">else</span>{
+<a name="l00293"></a>00293                 <span class="keywordflow">return</span> 0;
+<a name="l00294"></a>00294                 <span class="comment">//ray is behind us</span>
+<a name="l00295"></a>00295             }
+<a name="l00296"></a>00296         } <span class="keywordflow">catch</span>(exception e) {
+<a name="l00297"></a>00297             <span class="comment">//In case we divide b</span>
+<a name="l00298"></a>00298             this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:&quot;</span>);
+<a name="l00299"></a>00299             this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(e.what());
+<a name="l00300"></a>00300             <span class="keywordflow">return</span> 0;
+<a name="l00301"></a>00301         }
 <a name="l00302"></a>00302 
-<a name="l00303"></a>00303             <span class="comment">// Add the indices</span>
-<a name="l00304"></a>00304             index_count += submesh-&gt;indexData-&gt;indexCount;
-<a name="l00305"></a>00305         }
-<a name="l00306"></a>00306 
-<a name="l00307"></a>00307 
-<a name="l00308"></a>00308         <span class="comment">// Allocate space for the vertices and indices</span>
-<a name="l00309"></a>00309         vertices = <span class="keyword">new</span> Ogre::Vector3[vertex_count];
-<a name="l00310"></a>00310         indices = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>[index_count];
+<a name="l00303"></a>00303     }
+<a name="l00304"></a>00304 
+<a name="l00305"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a567b20eb6ba6f17961f5cd892bd5a0ed">00305</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a567b20eb6ba6f17961f5cd892bd5a0ed" title="Get a Ray from the current viewport, following the mouse.">WorldQueryTool::GetMouseRay</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Length)
+<a name="l00306"></a>00306     {
+<a name="l00307"></a>00307         <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>* MouseRay = <span class="keyword">new</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>( this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a899f6054f4148d891a5d1079349098fe" title="This is a pointer to the Camera Manager.">Cameras</a>-&gt;<a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a1a631eee22a0e45e2e72727d0bcc3560" title="Gets a Ray from the camera to the viewport.">GetCameraToViewportRay</a>(
+<a name="l00308"></a>00308                 <span class="keywordtype">float</span>(this-&gt;GetMouseX()) / <span class="keywordtype">float</span>( this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a111f2b5b67428e43e5a61b860e6dc0a1" title="A pointer to the graphics settings Manager, or it will be soon.">Graphics</a>-&gt;<a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9e1ce1f9f8bcff7712fd5beaf7cf2337" title="Gets the Width of the Rendering Area.">getRenderWidth</a>() ) ,
+<a name="l00309"></a>00309                 <span class="keywordtype">float</span>(this-&gt;<a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ac2d8517db7305157c1393320f434751b" title="This gets the Y coordinate of the mouse.">GetMouseY</a>()) / <span class="keywordtype">float</span>( this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a111f2b5b67428e43e5a61b860e6dc0a1" title="A pointer to the graphics settings Manager, or it will be soon.">Graphics</a>-&gt;<a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a38ee0f8a8a7d8ba861b1c6cfe579443e" title="Gets the Height of the Rendering Area.">getRenderHeight</a>() )
+<a name="l00310"></a>00310             ) );
 <a name="l00311"></a>00311 
-<a name="l00312"></a>00312         added_shared = <span class="keyword">false</span>;
-<a name="l00313"></a>00313 
-<a name="l00314"></a>00314         <span class="comment">// Run through the submeshes again, adding the data into the arrays</span>
-<a name="l00315"></a>00315         <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)
-<a name="l00316"></a>00316         {
-<a name="l00317"></a>00317             Ogre::SubMesh* submesh = mesh-&gt;getSubMesh(i);
-<a name="l00318"></a>00318 
-<a name="l00319"></a>00319             <span class="comment">//Ogre::VertexData* vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;</span>
-<a name="l00320"></a>00320             Ogre::VertexData* vertex_data;
-<a name="l00321"></a>00321 
-<a name="l00322"></a>00322             <span class="comment">//When there is animation:</span>
-<a name="l00323"></a>00323             <span class="keywordflow">if</span>(useSoftwareBlendingVertices)
-<a name="l00324"></a>00324             {
-<a name="l00325"></a>00325                 <span class="comment">//    #ifdef BUILD_AGAINST_AZATHOTH</span>
-<a name="l00326"></a>00326                 <span class="comment">//             vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSharedBlendedVertexData() : entity-&gt;getSubEntity(i)-&gt;_getBlendedVertexData();</span>
-<a name="l00327"></a>00327                 <span class="comment">//    #else</span>
-<a name="l00328"></a>00328                 vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSkelAnimVertexData() : entity-&gt;getSubEntity(i)-&gt;_getSkelAnimVertexData();
-<a name="l00329"></a>00329                 <span class="comment">//    #endif</span>
-<a name="l00330"></a>00330             }<span class="keywordflow">else</span>{
-<a name="l00331"></a>00331                 vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;
-<a name="l00332"></a>00332             }
+<a name="l00312"></a>00312         (*MouseRay) *= Length;
+<a name="l00313"></a>00313         <span class="keywordflow">return</span> MouseRay;
+<a name="l00314"></a>00314     }
+<a name="l00315"></a>00315 
+<a name="l00316"></a>00316 
+<a name="l00317"></a>00317     <span class="comment">// Private Members</span>
+<a name="l00318"></a>00318     <span class="keywordtype">void</span> WorldQueryTool::GetMeshInformation( Ogre::Entity *entity,
+<a name="l00319"></a>00319                                 <span class="keywordtype">size_t</span> &amp;vertex_count,
+<a name="l00320"></a>00320                                 Ogre::Vector3* &amp;vertices,
+<a name="l00321"></a>00321                                 <span class="keywordtype">size_t</span> &amp;index_count,
+<a name="l00322"></a>00322                                 <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>* &amp;indices,
+<a name="l00323"></a>00323                                 <span class="keyword">const</span> Ogre::Vector3 &amp;position,
+<a name="l00324"></a>00324                                 <span class="keyword">const</span> Ogre::Quaternion &amp;orient,
+<a name="l00325"></a>00325                                 <span class="keyword">const</span> Ogre::Vector3 &amp;scale)
+<a name="l00326"></a>00326     {
+<a name="l00327"></a>00327         <span class="keywordtype">bool</span> added_shared = <span class="keyword">false</span>;
+<a name="l00328"></a>00328         <span class="keywordtype">size_t</span> current_offset = 0;
+<a name="l00329"></a>00329         <span class="keywordtype">size_t</span> shared_offset = 0;
+<a name="l00330"></a>00330         <span class="keywordtype">size_t</span> next_offset = 0;
+<a name="l00331"></a>00331         <span class="keywordtype">size_t</span> index_offset = 0;
+<a name="l00332"></a>00332         vertex_count = index_count = 0;
 <a name="l00333"></a>00333 
-<a name="l00334"></a>00334             <span class="keywordflow">if</span>((!submesh-&gt;useSharedVertices)||(submesh-&gt;useSharedVertices &amp;&amp; !added_shared))
-<a name="l00335"></a>00335             {
-<a name="l00336"></a>00336                 <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)
-<a name="l00337"></a>00337                 {
-<a name="l00338"></a>00338                     added_shared = <span class="keyword">true</span>;
-<a name="l00339"></a>00339                     shared_offset = current_offset;
-<a name="l00340"></a>00340                 }
-<a name="l00341"></a>00341 
-<a name="l00342"></a>00342                 <span class="keyword">const</span> Ogre::VertexElement* posElem = vertex_data-&gt;vertexDeclaration-&gt;findElementBySemantic(Ogre::VES_POSITION);
-<a name="l00343"></a>00343                 Ogre::HardwareVertexBufferSharedPtr vbuf = vertex_data-&gt;vertexBufferBinding-&gt;getBuffer(posElem-&gt;getSource());
-<a name="l00344"></a>00344                 <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* vertex = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(vbuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-<a name="l00345"></a>00345 
-<a name="l00346"></a>00346                 <span class="comment">// There is _no_ baseVertexPointerToElement() which takes an Ogre::Real or a double</span>
-<a name="l00347"></a>00347                 <span class="comment">//  as second argument. So make it float, to avoid trouble when Ogre::Real will</span>
-<a name="l00348"></a>00348                 <span class="comment">//  be comiled/typedefed as double:</span>
-<a name="l00349"></a>00349                 <span class="comment">//      Ogre::Real* pReal;</span>
-<a name="l00350"></a>00350                 <span class="keywordtype">float</span>* pReal;
-<a name="l00351"></a>00351 
-<a name="l00352"></a>00352                 <span class="keywordflow">for</span>( <span class="keywordtype">size_t</span> j = 0; j &lt; vertex_data-&gt;vertexCount; ++j, vertex += vbuf-&gt;getVertexSize())
+<a name="l00334"></a>00334         Ogre::MeshPtr mesh = entity-&gt;getMesh();
+<a name="l00335"></a>00335 
+<a name="l00336"></a>00336 
+<a name="l00337"></a>00337         <span class="keywordtype">bool</span> useSoftwareBlendingVertices = entity-&gt;hasSkeleton();
+<a name="l00338"></a>00338 
+<a name="l00339"></a>00339         <span class="keywordflow">if</span> (useSoftwareBlendingVertices)
+<a name="l00340"></a>00340         {                                   <span class="comment">//10,000th line of code</span>
+<a name="l00341"></a>00341             entity-&gt;_updateAnimation();
+<a name="l00342"></a>00342         }
+<a name="l00343"></a>00343 
+<a name="l00344"></a>00344         <span class="comment">// Calculate how many vertices and indices we&#39;re going to need</span>
+<a name="l00345"></a>00345         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)
+<a name="l00346"></a>00346         {
+<a name="l00347"></a>00347             Ogre::SubMesh* submesh = mesh-&gt;getSubMesh( i );
+<a name="l00348"></a>00348 
+<a name="l00349"></a>00349             <span class="comment">// We only need to add the shared vertices once</span>
+<a name="l00350"></a>00350             <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)
+<a name="l00351"></a>00351             {
+<a name="l00352"></a>00352                 <span class="keywordflow">if</span>( !added_shared )
 <a name="l00353"></a>00353                 {
-<a name="l00354"></a>00354                     posElem-&gt;baseVertexPointerToElement(vertex, &amp;pReal);
-<a name="l00355"></a>00355                     Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);
-<a name="l00356"></a>00356                     vertices[current_offset + j] = (orient * (pt * scale)) + position;
-<a name="l00357"></a>00357                 }
-<a name="l00358"></a>00358 
-<a name="l00359"></a>00359                 vbuf-&gt;unlock();
-<a name="l00360"></a>00360                 next_offset += vertex_data-&gt;vertexCount;
+<a name="l00354"></a>00354                     vertex_count += mesh-&gt;sharedVertexData-&gt;vertexCount;
+<a name="l00355"></a>00355                     added_shared = <span class="keyword">true</span>;
+<a name="l00356"></a>00356                 }
+<a name="l00357"></a>00357             }
+<a name="l00358"></a>00358             <span class="keywordflow">else</span>
+<a name="l00359"></a>00359             {
+<a name="l00360"></a>00360                 vertex_count += submesh-&gt;vertexData-&gt;vertexCount;
 <a name="l00361"></a>00361             }
 <a name="l00362"></a>00362 
-<a name="l00363"></a>00363 
-<a name="l00364"></a>00364             Ogre::IndexData* index_data = submesh-&gt;indexData;
-<a name="l00365"></a>00365             <span class="keywordtype">size_t</span> numTris = index_data-&gt;indexCount / 3;
-<a name="l00366"></a>00366             Ogre::HardwareIndexBufferSharedPtr ibuf = index_data-&gt;indexBuffer;
+<a name="l00363"></a>00363             <span class="comment">// Add the indices</span>
+<a name="l00364"></a>00364             index_count += submesh-&gt;indexData-&gt;indexCount;
+<a name="l00365"></a>00365         }
+<a name="l00366"></a>00366 
 <a name="l00367"></a>00367 
-<a name="l00368"></a>00368             <span class="keywordtype">bool</span> use32bitindexes = (ibuf-&gt;getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
-<a name="l00369"></a>00369 
-<a name="l00370"></a>00370             <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*  pLong = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*<span class="keyword">&gt;</span>(ibuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-<a name="l00371"></a>00371             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>* pShort = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>*<span class="keyword">&gt;</span>(pLong);
-<a name="l00372"></a>00372 
+<a name="l00368"></a>00368         <span class="comment">// Allocate space for the vertices and indices</span>
+<a name="l00369"></a>00369         vertices = <span class="keyword">new</span> Ogre::Vector3[vertex_count];
+<a name="l00370"></a>00370         indices = <span class="keyword">new</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>[index_count];
+<a name="l00371"></a>00371 
+<a name="l00372"></a>00372         added_shared = <span class="keyword">false</span>;
 <a name="l00373"></a>00373 
-<a name="l00374"></a>00374             <span class="keywordtype">size_t</span> offset = (submesh-&gt;useSharedVertices)? shared_offset : current_offset;
-<a name="l00375"></a>00375             <span class="keywordtype">size_t</span> index_start = index_data-&gt;indexStart;
-<a name="l00376"></a>00376             <span class="keywordtype">size_t</span> last_index = numTris*3 + index_start;
-<a name="l00377"></a>00377 
-<a name="l00378"></a>00378             <span class="keywordflow">if</span> (use32bitindexes)
-<a name="l00379"></a>00379             {
-<a name="l00380"></a>00380                 <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)
-<a name="l00381"></a>00381                     { indices[index_offset++] = pLong[k] + <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( offset ); }
-<a name="l00382"></a>00382             }<span class="keywordflow">else</span>{
-<a name="l00383"></a>00383                 <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)
-<a name="l00384"></a>00384                     { indices[ index_offset++ ] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( pShort[k] ) + static_cast&lt;unsigned long&gt;( offset ); }
-<a name="l00385"></a>00385             }
-<a name="l00386"></a>00386 
-<a name="l00387"></a>00387             ibuf-&gt;unlock();
-<a name="l00388"></a>00388             current_offset = next_offset;
-<a name="l00389"></a>00389         }
-<a name="l00390"></a>00390     }
-<a name="l00391"></a>00391 }
-<a name="l00392"></a>00392 
+<a name="l00374"></a>00374         <span class="comment">// Run through the submeshes again, adding the data into the arrays</span>
+<a name="l00375"></a>00375         <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> i = 0; i &lt; mesh-&gt;getNumSubMeshes(); ++i)
+<a name="l00376"></a>00376         {
+<a name="l00377"></a>00377             Ogre::SubMesh* submesh = mesh-&gt;getSubMesh(i);
+<a name="l00378"></a>00378 
+<a name="l00379"></a>00379             <span class="comment">//Ogre::VertexData* vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;</span>
+<a name="l00380"></a>00380             Ogre::VertexData* vertex_data;
+<a name="l00381"></a>00381 
+<a name="l00382"></a>00382             <span class="comment">//When there is animation:</span>
+<a name="l00383"></a>00383             <span class="keywordflow">if</span>(useSoftwareBlendingVertices)
+<a name="l00384"></a>00384             {
+<a name="l00385"></a>00385                 <span class="comment">//    #ifdef BUILD_AGAINST_AZATHOTH</span>
+<a name="l00386"></a>00386                 <span class="comment">//             vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSharedBlendedVertexData() : entity-&gt;getSubEntity(i)-&gt;_getBlendedVertexData();</span>
+<a name="l00387"></a>00387                 <span class="comment">//    #else</span>
+<a name="l00388"></a>00388                 vertex_data = submesh-&gt;useSharedVertices ? entity-&gt;_getSkelAnimVertexData() : entity-&gt;getSubEntity(i)-&gt;_getSkelAnimVertexData();
+<a name="l00389"></a>00389                 <span class="comment">//    #endif</span>
+<a name="l00390"></a>00390             }<span class="keywordflow">else</span>{
+<a name="l00391"></a>00391                 vertex_data = submesh-&gt;useSharedVertices ? mesh-&gt;sharedVertexData : submesh-&gt;vertexData;
+<a name="l00392"></a>00392             }
 <a name="l00393"></a>00393 
-<a name="l00394"></a>00394 <span class="preprocessor">#endif</span>
+<a name="l00394"></a>00394             <span class="keywordflow">if</span>((!submesh-&gt;useSharedVertices)||(submesh-&gt;useSharedVertices &amp;&amp; !added_shared))
+<a name="l00395"></a>00395             {
+<a name="l00396"></a>00396                 <span class="keywordflow">if</span>(submesh-&gt;useSharedVertices)
+<a name="l00397"></a>00397                 {
+<a name="l00398"></a>00398                     added_shared = <span class="keyword">true</span>;
+<a name="l00399"></a>00399                     shared_offset = current_offset;
+<a name="l00400"></a>00400                 }
+<a name="l00401"></a>00401 
+<a name="l00402"></a>00402                 <span class="keyword">const</span> Ogre::VertexElement* posElem = vertex_data-&gt;vertexDeclaration-&gt;findElementBySemantic(Ogre::VES_POSITION);
+<a name="l00403"></a>00403                 Ogre::HardwareVertexBufferSharedPtr vbuf = vertex_data-&gt;vertexBufferBinding-&gt;getBuffer(posElem-&gt;getSource());
+<a name="l00404"></a>00404                 <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* vertex = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(vbuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+<a name="l00405"></a>00405 
+<a name="l00406"></a>00406                 <span class="comment">// There is _no_ baseVertexPointerToElement() which takes an Ogre::Real or a double</span>
+<a name="l00407"></a>00407                 <span class="comment">//  as second argument. So make it float, to avoid trouble when Ogre::Real will</span>
+<a name="l00408"></a>00408                 <span class="comment">//  be comiled/typedefed as double:</span>
+<a name="l00409"></a>00409                 <span class="comment">//      Ogre::Real* pReal;</span>
+<a name="l00410"></a>00410                 <span class="keywordtype">float</span>* pReal;
+<a name="l00411"></a>00411 
+<a name="l00412"></a>00412                 <span class="keywordflow">for</span>( <span class="keywordtype">size_t</span> j = 0; j &lt; vertex_data-&gt;vertexCount; ++j, vertex += vbuf-&gt;getVertexSize())
+<a name="l00413"></a>00413                 {
+<a name="l00414"></a>00414                     posElem-&gt;baseVertexPointerToElement(vertex, &amp;pReal);
+<a name="l00415"></a>00415                     Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);
+<a name="l00416"></a>00416                     vertices[current_offset + j] = (orient * (pt * scale)) + position;
+<a name="l00417"></a>00417                 }
+<a name="l00418"></a>00418 
+<a name="l00419"></a>00419                 vbuf-&gt;unlock();
+<a name="l00420"></a>00420                 next_offset += vertex_data-&gt;vertexCount;
+<a name="l00421"></a>00421             }
+<a name="l00422"></a>00422 
+<a name="l00423"></a>00423 
+<a name="l00424"></a>00424             Ogre::IndexData* index_data = submesh-&gt;indexData;
+<a name="l00425"></a>00425             <span class="keywordtype">size_t</span> numTris = index_data-&gt;indexCount / 3;
+<a name="l00426"></a>00426             Ogre::HardwareIndexBufferSharedPtr ibuf = index_data-&gt;indexBuffer;
+<a name="l00427"></a>00427 
+<a name="l00428"></a>00428             <span class="keywordtype">bool</span> use32bitindexes = (ibuf-&gt;getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
+<a name="l00429"></a>00429 
+<a name="l00430"></a>00430             <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*  pLong = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>*<span class="keyword">&gt;</span>(ibuf-&gt;lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+<a name="l00431"></a>00431             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>* pShort = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>*<span class="keyword">&gt;</span>(pLong);
+<a name="l00432"></a>00432 
+<a name="l00433"></a>00433 
+<a name="l00434"></a>00434             <span class="keywordtype">size_t</span> offset = (submesh-&gt;useSharedVertices)? shared_offset : current_offset;
+<a name="l00435"></a>00435             <span class="keywordtype">size_t</span> index_start = index_data-&gt;indexStart;
+<a name="l00436"></a>00436             <span class="keywordtype">size_t</span> last_index = numTris*3 + index_start;
+<a name="l00437"></a>00437 
+<a name="l00438"></a>00438             <span class="keywordflow">if</span> (use32bitindexes)
+<a name="l00439"></a>00439             {
+<a name="l00440"></a>00440                 <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)
+<a name="l00441"></a>00441                     { indices[index_offset++] = pLong[k] + <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( offset ); }
+<a name="l00442"></a>00442             }<span class="keywordflow">else</span>{
+<a name="l00443"></a>00443                 <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = index_start; k &lt; last_index; ++k)
+<a name="l00444"></a>00444                     { indices[ index_offset++ ] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>( pShort[k] ) + static_cast&lt;unsigned long&gt;( offset ); }
+<a name="l00445"></a>00445             }
+<a name="l00446"></a>00446 
+<a name="l00447"></a>00447             ibuf-&gt;unlock();
+<a name="l00448"></a>00448             current_offset = next_offset;
+<a name="l00449"></a>00449         }
+<a name="l00450"></a>00450     }
+<a name="l00451"></a>00451 }
+<a name="l00452"></a>00452 
+<a name="l00453"></a>00453 
+<a name="l00454"></a>00454 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:03 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

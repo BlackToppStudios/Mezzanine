@@ -100,7 +100,7 @@
 <a name="l00075"></a>00075 <span class="comment"></span>
 <a name="l00076"></a>00076 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00077"></a>00077 <span class="comment"></span>    <span class="comment">// Manual Conversions and adjsutments</span>
-<a name="l00078"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a2a28b7fd849e824a68089d18fec08ddf">00078</a>     Ogre::Ray <a class="code" href="../../df/d57/classphys_1_1Ray.html#a2a28b7fd849e824a68089d18fec08ddf" title="Gets an Ogre::Ray that contains this Rays information.">Ray::ExtractOgreRay</a>()<span class="keyword"> const</span>
+<a name="l00078"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a0c29b1a55f42ff60d224f16cc0910cdb">00078</a>     Ogre::Ray <a class="code" href="../../df/d57/classphys_1_1Ray.html#a0c29b1a55f42ff60d224f16cc0910cdb" title="Gets an Ogre::Ray that contains this Rays information.">Ray::GetOgreRay</a>()<span class="keyword"> const</span>
 <a name="l00079"></a>00079 <span class="keyword">    </span>{
 <a name="l00080"></a>00080         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ogre::Ray</a>(
 <a name="l00081"></a>00081             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>(),
@@ -113,8 +113,8 @@
 <a name="l00088"></a>00088         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f" title="This return the distance between this point and another.">Distance</a>( this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> );
 <a name="l00089"></a>00089     }
 <a name="l00090"></a>00090 
-<a name="l00091"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a7d3ed1578d4f043c89660e7a79bcd4d7">00091</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a7d3ed1578d4f043c89660e7a79bcd4d7" title="This returns the normal for this ray.">Ray::GetNormal</a>()
-<a name="l00092"></a>00092     {
+<a name="l00091"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba">00091</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba" title="This returns the normal for this ray.">Ray::GetNormal</a>()<span class="keyword"> const</span>
+<a name="l00092"></a>00092 <span class="keyword">    </span>{
 <a name="l00093"></a>00093         <span class="keywordflow">return</span> (*<span class="keyword">this</span>) / this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b" title="Measures the distance distance of this ray.">Length</a>();
 <a name="l00094"></a>00094     }
 <a name="l00095"></a>00095 
@@ -161,7 +161,7 @@
 <a name="l00136"></a>00136 
 <a name="l00137"></a>00137 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:00 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:03 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

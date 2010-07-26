@@ -50,8 +50,8 @@ Inheritance diagram for phys::EventRenderTime:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html#af2384f7b09bbea42dcd2539a9e1747fd">EventRenderTime</a> (<a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> Milliseconds)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The Constructor.  <a href="#af2384f7b09bbea42dcd2539a9e1747fd"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html#a76a47983d5aa197104cc3c0b9dea9dfa">getEventType</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns that this event is a EventType::RenderTime.  <a href="#a76a47983d5aa197104cc3c0b9dea9dfa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html#a160ca55bf9e5a2ae80dab82eab88baf5">GetType</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns that this event is a EventType::RenderTime.  <a href="#a160ca55bf9e5a2ae80dab82eab88baf5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html#ac9f20f13bf1f6e542151be2ce8ea2fa4">getMilliSecondsSinceLastFrame</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the a floating point value with the amount of time.  <a href="#ac9f20f13bf1f6e542151be2ce8ea2fa4"></a><br/></td></tr>
 </table>
@@ -91,30 +91,6 @@ Inheritance diagram for phys::EventRenderTime:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a76a47983d5aa197104cc3c0b9dea9dfa"></a><!-- doxytag: member="phys::EventRenderTime::getEventType" ref="a76a47983d5aa197104cc3c0b9dea9dfa" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> phys::EventRenderTime::getEventType </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Returns that this event is a EventType::RenderTime. </p>
-<p>This is primarily for the benefit of sorting thorugh event pointers. If this functions returns EventType::RenderTime, then and event pointer can safely be cast to <a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">phys::EventRenderTime</a> . This method is inherited from phys::Event . </p>
-
-<p>Implements <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a0f39a25f4b64f7cf701e174454616366">phys::EventBase</a>.</p>
-
-<p>Definition at line <a class="el" href="../../d3/d36/eventrendertime_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../d3/d36/eventrendertime_8cpp_source.html">eventrendertime.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ac9f20f13bf1f6e542151be2ce8ea2fa4"></a><!-- doxytag: member="phys::EventRenderTime::getMilliSecondsSinceLastFrame" ref="ac9f20f13bf1f6e542151be2ce8ea2fa4" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -138,12 +114,36 @@ Inheritance diagram for phys::EventRenderTime:</div>
 
 </div>
 </div>
+<a class="anchor" id="a160ca55bf9e5a2ae80dab82eab88baf5"></a><!-- doxytag: member="phys::EventRenderTime::GetType" ref="a160ca55bf9e5a2ae80dab82eab88baf5" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> phys::EventRenderTime::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns that this event is a EventType::RenderTime. </p>
+<p>This is primarily for the benefit of sorting thorugh event pointers. If this functions returns EventType::RenderTime, then and event pointer can safely be cast to <a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">phys::EventRenderTime</a> . This method is inherited from phys::Event . </p>
+
+<p>Implements <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a1b3d29b6ecf30f18cc3e1825a515c508">phys::EventBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../d3/d36/eventrendertime_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../d3/d36/eventrendertime_8cpp_source.html">eventrendertime.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d4/d60/eventrendertime_8h_source.html">eventrendertime.h</a></li>
 <li><a class="el" href="../../d3/d36/eventrendertime_8cpp_source.html">eventrendertime.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:01 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:11 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

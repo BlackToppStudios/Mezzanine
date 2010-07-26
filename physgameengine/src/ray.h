@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -89,7 +89,7 @@ namespace phys
             /// @brief Gets an Ogre::Ray that contains this Rays information
             /// @details Used to aid interopability, this will return afresh Ogre::Ray with the same data as this Ray
             /// @return This returns an Ogre::Ray that contains the same information as this rays information
-            Ogre::Ray ExtractOgreRay() const;
+            Ogre::Ray GetOgreRay() const;
 
             /// @brief Measures the distance distance of this ray
             /// @details This uses the distance method of Vector3 to determine the current length of this ray.
@@ -99,10 +99,11 @@ namespace phys
             /// @brief This returns the normal for this ray
             /// @details This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray.
             /// @return At a ray that is the normal for this array
-            Ray GetNormal();
+            Ray GetNormal() const;
 
             /// @brief Turns this Ray into its own normal
             /// @details This will change the ray to be exactly 1 unit long, but pointing the same direction.
+            // /// @return The is the length of the Ray after Normalizing. This could be useful for finding problems with 0 length rays.
             void Normalize();
 
             ///////////////////////////////////////////////////////////////////////////////

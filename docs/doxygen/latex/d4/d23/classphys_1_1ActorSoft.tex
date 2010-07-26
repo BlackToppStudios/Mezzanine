@@ -23,14 +23,16 @@ Inheritance diagram for phys::ActorSoft:\begin{figure}[H]
 virtual \hyperlink{classphys_1_1ActorSoft_a636c145f1e468fd45adc8da2a1708fbe}{$\sim$ActorSoft} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorSoft_a51d78e0f503c3c815511c3d246b426ae}{CreateShapeFromMesh} ()
-\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorSoft_a5f97915d1cda0d048853718714a26d93}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
+\begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorSoft_ab65d106fcc1ee5243a990e7b42326bf0}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
+\begin{DoxyCompactList}\small\item\em Removes the actor from the physics world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{classphys_1_1ActorSoft_a04c98bb0ab9ed7c1dfc3435d49403ef4}{CreateSoftObject} (btSoftBodyWorldInfo $\ast$softworldinfo, int nodecount, btVector3 $\ast$nodearray, btScalar $\ast$massarray)
-\begin{DoxyCompactList}\small\item\em Creates a soft object for the actor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ActorSoft_a3a704ab32f847a5d0e060f8a592efefd}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld, btSoftRigidDynamicsWorld $\ast$btWorld)
-\begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a soft object for the actor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -68,22 +70,22 @@ Definition at line 58 of file actorsoft.cpp.
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classphys_1_1ActorSoft_a3a704ab32f847a5d0e060f8a592efefd}{
+\hypertarget{classphys_1_1ActorSoft_a5f97915d1cda0d048853718714a26d93}{
 \index{phys::ActorSoft@{phys::ActorSoft}!AddObjectToWorld@{AddObjectToWorld}}
 \index{AddObjectToWorld@{AddObjectToWorld}!phys::ActorSoft@{phys::ActorSoft}}
-\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorSoft::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld}, \/  btSoftRigidDynamicsWorld $\ast$ {\em btWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
-\label{d4/d23/classphys_1_1ActorSoft_a3a704ab32f847a5d0e060f8a592efefd}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorSoft::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d23/classphys_1_1ActorSoft_a5f97915d1cda0d048853718714a26d93}
 
 
 Adds the actor to the physics world. 
 
 Adds the actor to the physics world. \par
- This is automaticly called by the PhysWorlds AddActor function and shouldn't be called manually. 
+ This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \item[{\em btWorld}]Pointer to the physics world. \end{DoxyParams}
+\item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1ActorBase_ac5d4ad5a634b16000742f506ed5957fb}{phys::ActorBase}.
+Implements \hyperlink{classphys_1_1ActorBase_a3d28e4c4a33f50210101695cb33ded3b}{phys::ActorBase}.
 
 
 
@@ -100,7 +102,7 @@ Creates a collision shape from mesh file.
 
 This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. 
 
-Definition at line 74 of file actorsoft.cpp.
+Definition at line 75 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a04c98bb0ab9ed7c1dfc3435d49403ef4}{
 \index{phys::ActorSoft@{phys::ActorSoft}!CreateSoftObject@{CreateSoftObject}}
@@ -118,6 +120,27 @@ Creates a soft object to be placed in the physics world later. \par
 
 
 Definition at line 63 of file actorsoft.cpp.
+
+\hypertarget{classphys_1_1ActorSoft_ab65d106fcc1ee5243a990e7b42326bf0}{
+\index{phys::ActorSoft@{phys::ActorSoft}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
+\index{RemoveObjectFromWorld@{RemoveObjectFromWorld}!phys::ActorSoft@{phys::ActorSoft}}
+\subsubsection[{RemoveObjectFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorSoft::RemoveObjectFromWorld ({\bf World} $\ast$ {\em TargetWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d23/classphys_1_1ActorSoft_ab65d106fcc1ee5243a990e7b42326bf0}
+
+
+Removes the actor from the physics world. 
+
+Removes the actor from the physics world. \par
+ This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}{phys::ActorBase}.
+
+
+
+Definition at line 72 of file actorsoft.cpp.
 
 
 

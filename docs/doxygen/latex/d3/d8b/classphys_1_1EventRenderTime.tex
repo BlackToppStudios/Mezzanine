@@ -22,7 +22,7 @@ Inheritance diagram for phys::EventRenderTime:\begin{figure}[H]
 \item 
 \hyperlink{classphys_1_1EventRenderTime_af2384f7b09bbea42dcd2539a9e1747fd}{EventRenderTime} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Milliseconds)
 \begin{DoxyCompactList}\small\item\em The Constructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventType} \hyperlink{classphys_1_1EventRenderTime_a76a47983d5aa197104cc3c0b9dea9dfa}{getEventType} () const 
+virtual \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventType} \hyperlink{classphys_1_1EventRenderTime_a160ca55bf9e5a2ae80dab82eab88baf5}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em Returns that this event is a EventType::RenderTime. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1EventRenderTime_ac9f20f13bf1f6e542151be2ce8ea2fa4}{getMilliSecondsSinceLastFrame} ()
 \begin{DoxyCompactList}\small\item\em Returns the a floating point value with the amount of time. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -55,23 +55,6 @@ Definition at line 53 of file eventrendertime.cpp.
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classphys_1_1EventRenderTime_a76a47983d5aa197104cc3c0b9dea9dfa}{
-\index{phys::EventRenderTime@{phys::EventRenderTime}!getEventType@{getEventType}}
-\index{getEventType@{getEventType}!phys::EventRenderTime@{phys::EventRenderTime}}
-\subsubsection[{getEventType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventBase::EventType} phys::EventRenderTime::getEventType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d3/d8b/classphys_1_1EventRenderTime_a76a47983d5aa197104cc3c0b9dea9dfa}
-
-
-Returns that this event is a EventType::RenderTime. 
-
-This is primarily for the benefit of sorting thorugh event pointers. If this functions returns EventType::RenderTime, then and event pointer can safely be cast to \hyperlink{classphys_1_1EventRenderTime}{phys::EventRenderTime} . This method is inherited from phys::Event . 
-
-Implements \hyperlink{classphys_1_1EventBase_a0f39a25f4b64f7cf701e174454616366}{phys::EventBase}.
-
-
-
-Definition at line 58 of file eventrendertime.cpp.
-
 \hypertarget{classphys_1_1EventRenderTime_ac9f20f13bf1f6e542151be2ce8ea2fa4}{
 \index{phys::EventRenderTime@{phys::EventRenderTime}!getMilliSecondsSinceLastFrame@{getMilliSecondsSinceLastFrame}}
 \index{getMilliSecondsSinceLastFrame@{getMilliSecondsSinceLastFrame}!phys::EventRenderTime@{phys::EventRenderTime}}
@@ -87,6 +70,23 @@ A floating point value with the amount of time.
 
 
 Definition at line 63 of file eventrendertime.cpp.
+
+\hypertarget{classphys_1_1EventRenderTime_a160ca55bf9e5a2ae80dab82eab88baf5}{
+\index{phys::EventRenderTime@{phys::EventRenderTime}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::EventRenderTime@{phys::EventRenderTime}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventBase::EventType} phys::EventRenderTime::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d8b/classphys_1_1EventRenderTime_a160ca55bf9e5a2ae80dab82eab88baf5}
+
+
+Returns that this event is a EventType::RenderTime. 
+
+This is primarily for the benefit of sorting thorugh event pointers. If this functions returns EventType::RenderTime, then and event pointer can safely be cast to \hyperlink{classphys_1_1EventRenderTime}{phys::EventRenderTime} . This method is inherited from phys::Event . 
+
+Implements \hyperlink{classphys_1_1EventBase_a1b3d29b6ecf30f18cc3e1825a515c508}{phys::EventBase}.
+
+
+
+Definition at line 58 of file eventrendertime.cpp.
 
 
 

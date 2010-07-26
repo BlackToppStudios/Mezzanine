@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -54,13 +54,7 @@ namespace phys
     ///////////////////////////////////////
     class ManagerBase
     {
-        protected:
-            /// @internal
-            /// @brief The actual pointer to the world
-            World* GameWorld;
-
         public:
-
             /// @enum ManagerTypeName
             /// @brief A listing of Manager TypeNames
             /// @details These will be returned by ManagerBase::GetType(), and will allow
@@ -74,8 +68,12 @@ namespace phys
                 EventManager,
                 GraphicsManager,
                 PhysicsManager,
+                SoundManager,
                 UserCreated         /// This is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
             };
+
+            /// @brief This makes working with Callback function pointer a bit easier.
+            typedef bool (*Callback)();
 
             /// @brief Default Constructor
             /// @details This creates a default manager without a valid reference to the game world. The
@@ -118,15 +116,83 @@ namespace phys
             /// handle all exception raised by the attaching process or throw an "Unrecoverable Error")
             virtual void SetGameWorld( World* GameWorld_ );
 
-            /// @brief This returns the type of a manager.
+            /// @brief This returns the type of this manager.
             /// @details This is intended to make using and casting from Manager base easier. With this is is possible to cast from
             /// ManagerBase to the correct Manager Type.
             /// @return This returns a ManagerTypeName to identify what this can be safely cast to.
             virtual ManagerTypeName GetType() const = 0;
 
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // MainLoop and CallBack Management
+        ///////////////////////////////////////
+
+            /// @brief This assigns a function to be the callback function to run prior to the main loop
+            /// @param PreMainCallback This is a pointer to a function that returns a bool and accepts no arguments, this is in the
+            /// form of a ManagerBase::Callback. If SetPreMainLoopItems
+            /// is passed 0, NULL or a null pointer, the callback will be forgetten and will not attempt to be called.
+            virtual void SetPreMainLoopItems(Callback PreMainCallback);
+
+            /// @brief This runs any callback that is required before the mainloop items are run.
+            /// @details This will return whatever the callback returns, which is true to end the main loop after this frame, or true to continue it. If no callback
+            /// is set this simply returns true, as to not interupt the mainloop.
+            /// \n This is a great Function to override in Manager classes where the complexity of callbacks is not required. This would make coding items that need
+            /// to be performed at specific times easier. If you do that, it would be a good idea to call this version of the function, just in case a callback
+            /// is set.
+            /// @return This returns a false to end the main loop, or a true if the main loop should continue.
+            virtual bool PreMainLoopItems();
+
+            /// @brief This returns the Callback that would be called before the main loop items
+            /// @return This returns a ManagerBase::Callback which is a pointer to the callback function that will be called before the main loop items
+            virtual Callback GetPreMainLoopItems() const;
+
+            /// @brief This simply calls SetPreMainLoopItems() passing it 0.
+            virtual void ErasePreMainLoopItems();
+
+            /// @brief The main loop calls this once per frame
+            /// @details This is where each manager is expected to put anything that needs to be run each iteration of the main loop
+            virtual void DoMainLoopItems() = 0;
+
+            /// @brief This assigns a function to be the callback function to run prior to the main loop
+            /// @param PreMainCallback This is a pointer to a function that returns a bool and accepts no arguments, this is in the
+            /// form of a ManagerBase::Callback. If SetPosMainLoopItems
+            /// is passed 0, NULL or a null pointer, the callback will be forgetten and will not attempt to be called.
+            virtual void SetPostMainLoopItems(Callback PostMainCallback);
+
+            /// @brief This runs any callback that is required after the mainloop items are run.
+            /// @details This will return whatever the callback returns, which is true to end the main loop after this frame, or true to continue it. If no callback
+            /// is set this simply returns true, as to not interupt the mainloop.
+            /// \n This is a great Function to override in Manager classes where the complexity of callbacks is not required. This would make coding items that need
+            /// to be performed at specific times easier. If you do that, it would be a good idea to call this version of the function, just in case a callback
+            /// is set.
+            /// @return This returns a false to end the main loop, or a true if the main loop should continue.
+            virtual bool PostMainLoopItems();
+
+            /// @brief This returns the Callback that would be called before the main loop items
+            /// @return This returns a ManagerBase::Callback which is a pointer to the callback function that will be called after the main loop items
+            virtual Callback GetPostMainLoopItems() const;
+
+            /// @brief This simply calls SetPostMainLoopItems() passing it 0.
+            virtual void ErasePostMainLoopItems();
+
+            /// @brief This is a weighting used by the main loop to decide what order the managers should be called in.
+            /// @details A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at
+            /// priority 0.
+            short int Priority;
+        protected:
+            /// @internal
+            /// @brief The actual pointer to the world
+            World* GameWorld;
+
+            /// @internal
+            /// @brief This is a function pointer to the function that should be called before running Main Loop Items
+            Callback PreMainLoop;
+
+            /// @internal
+            /// @brief This is a function pointer to the function that should be called after running Main Loop Items
+            Callback PostMainLoop;
+
     };// /ManagerBase
 } // /phys
-
-
 
 #endif

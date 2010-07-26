@@ -1,0 +1,285 @@
+\hypertarget{classphys_1_1GraphicsManager}{
+\section{phys::GraphicsManager Class Reference}
+\label{dd/d63/classphys_1_1GraphicsManager}\index{phys::GraphicsManager@{phys::GraphicsManager}}
+}
+
+
+This is intended to store basic graphics setting for the user.  
+
+
+
+
+{\ttfamily \#include $<$graphicsmanager.h$>$}
+
+Inheritance diagram for phys::GraphicsManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{dd/d63/classphys_1_1GraphicsManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1GraphicsManager_aceab258136ec2f29c8f163bf270f62c1}{GraphicsManager} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1GraphicsManager_af9ac5e5f56e5eb2f94c16d594e70123b}{GraphicsManager} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width\_\-, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height\_\-, const bool \&FullScreen\_\-)
+\begin{DoxyCompactList}\small\item\em Versatile Constructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GraphicsManager_a0618579828f2eed0cb07fbe55fd15b3f}{Construct} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width\_\-, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height\_\-, const bool \&FullScreen\_\-)
+\begin{DoxyCompactList}\small\item\em Adjust all Settings. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1GraphicsManager_ad126eedb81e3f0304731ddd33b617593}{getFullscreen} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Fullscreen Setting. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GraphicsManager_aafcf1824190e44d42a9bfbea9cfbe1b2}{setFullscreen} (const bool \&Fullscreen\_\-)
+\begin{DoxyCompactList}\small\item\em Set the Fullscreen Setting. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GraphicsManager_a38ee0f8a8a7d8ba861b1c6cfe579443e}{getRenderHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Height of the Rendering Area. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GraphicsManager_a8d59e9a8aa2ae7f520d388a4c70f0623}{setRenderHeight} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height\_\-)
+\begin{DoxyCompactList}\small\item\em Sets the Height. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GraphicsManager_a9e1ce1f9f8bcff7712fd5beaf7cf2337}{getRenderWidth} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Width of the Rendering Area. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GraphicsManager_aea5fb5808a23fa29c8522c396ac0d6b5}{setRenderWidth} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width\_\-)
+\begin{DoxyCompactList}\small\item\em Sets the Width. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GraphicsManager_ac6feb044d9ab394f3e65d51026a899a6}{setRenderResolution} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width\_\-, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height\_\-)
+\begin{DoxyCompactList}\small\item\em Changes the X and Y Resolution at the same time. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is intended to store basic graphics setting for the user. This stores x/y resolution, fullscreen and in the future other settings. This is intended to make it easy for developers to pass/move around complex graphics settings. We hope to eventually include other items like shader settings, rendering API, and maybe other settings too. 
+
+Definition at line 55 of file graphicsmanager.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1GraphicsManager_aceab258136ec2f29c8f163bf270f62c1}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!GraphicsManager@{GraphicsManager}}
+\index{GraphicsManager@{GraphicsManager}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{GraphicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::GraphicsManager::GraphicsManager ()}}
+\label{dd/d63/classphys_1_1GraphicsManager_aceab258136ec2f29c8f163bf270f62c1}
+
+
+Default constructor. 
+
+This creates a default Graphics Settings with resolution 640x480 with fullscreen set to false 
+
+Definition at line 51 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_af9ac5e5f56e5eb2f94c16d594e70123b}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!GraphicsManager@{GraphicsManager}}
+\index{GraphicsManager@{GraphicsManager}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{GraphicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::GraphicsManager::GraphicsManager (const {\bf Whole} \& {\em Width\_\-}, \/  const {\bf Whole} \& {\em Height\_\-}, \/  const bool \& {\em FullScreen\_\-})}}
+\label{dd/d63/classphys_1_1GraphicsManager_af9ac5e5f56e5eb2f94c16d594e70123b}
+
+
+Versatile Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Width\_\-}]The desired width. \item[{\em Height\_\-}]The desired height. \item[{\em FullScreen\_\-}]True if fullscreen, false if not.\end{DoxyParams}
+This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support arbitrary resolutions in fullscreen mode. 
+
+Definition at line 56 of file graphicsmanager.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1GraphicsManager_a0618579828f2eed0cb07fbe55fd15b3f}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!Construct@{Construct}}
+\index{Construct@{Construct}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{Construct}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::Construct (const {\bf Whole} \& {\em Width\_\-}, \/  const {\bf Whole} \& {\em Height\_\-}, \/  const bool \& {\em FullScreen\_\-})}}
+\label{dd/d63/classphys_1_1GraphicsManager_a0618579828f2eed0cb07fbe55fd15b3f}
+
+
+Adjust all Settings. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Width\_\-}]The desired width. \item[{\em Height\_\-}]The desired height. \item[{\em FullScreen\_\-}]True if fullscreen, false if not.\end{DoxyParams}
+This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support arbitrary resolutions in fullscreen mode. 
+
+Definition at line 61 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_ad126eedb81e3f0304731ddd33b617593}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!getFullscreen@{getFullscreen}}
+\index{getFullscreen@{getFullscreen}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{getFullscreen}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::GraphicsManager::getFullscreen () const}}
+\label{dd/d63/classphys_1_1GraphicsManager_ad126eedb81e3f0304731ddd33b617593}
+
+
+Gets the Fullscreen Setting. 
+
+Gets the Fullscreen Setting \begin{DoxyReturn}{Returns}
+This returns a bool, true if fullscreen is set, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_a38ee0f8a8a7d8ba861b1c6cfe579443e}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!getRenderHeight@{getRenderHeight}}
+\index{getRenderHeight@{getRenderHeight}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{getRenderHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::GraphicsManager::getRenderHeight () const}}
+\label{dd/d63/classphys_1_1GraphicsManager_a38ee0f8a8a7d8ba861b1c6cfe579443e}
+
+
+Gets the Height of the Rendering Area. 
+
+Gets the Height of the Rendering Area \begin{DoxyReturn}{Returns}
+This returns the Height of the Rendering Area 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_a9e1ce1f9f8bcff7712fd5beaf7cf2337}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!getRenderWidth@{getRenderWidth}}
+\index{getRenderWidth@{getRenderWidth}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{getRenderWidth}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::GraphicsManager::getRenderWidth () const}}
+\label{dd/d63/classphys_1_1GraphicsManager_a9e1ce1f9f8bcff7712fd5beaf7cf2337}
+
+
+Gets the Width of the Rendering Area. 
+
+Gets the Width of the Rendering Area \begin{DoxyReturn}{Returns}
+This returns the Width of the Rendering Area 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::GraphicsManager::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d63/classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}
+
+
+This returns the type of this manager. 
+
+\begin{DoxyReturn}{Returns}
+This returns ManagerTypeName::GraphicsManager 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{phys::ManagerBase}.
+
+
+
+Definition at line 121 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d63/classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}
+
+
+Empty Initializor. 
+
+This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason 
+
+Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
+
+
+
+Definition at line 118 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_aafcf1824190e44d42a9bfbea9cfbe1b2}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!setFullscreen@{setFullscreen}}
+\index{setFullscreen@{setFullscreen}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{setFullscreen}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::setFullscreen (const bool \& {\em Fullscreen\_\-})}}
+\label{dd/d63/classphys_1_1GraphicsManager_aafcf1824190e44d42a9bfbea9cfbe1b2}
+
+
+Set the Fullscreen Setting. 
+
+Set the Fullscreen Setting 
+\begin{DoxyParams}{Parameters}
+\item[{\em Fullscreen\_\-}]This accepts a bool. True for fullscreen, false for windowed \end{DoxyParams}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000008}{Todo}]TODO: Need to attempt to switch to fullscreen here \end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000009}{Todo}]TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games \end{Desc}
+
+
+
+
+Definition at line 78 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_a8d59e9a8aa2ae7f520d388a4c70f0623}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderHeight@{setRenderHeight}}
+\index{setRenderHeight@{setRenderHeight}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{setRenderHeight}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::setRenderHeight (const {\bf Whole} \& {\em Height\_\-})}}
+\label{dd/d63/classphys_1_1GraphicsManager_a8d59e9a8aa2ae7f520d388a4c70f0623}
+
+
+Sets the Height. 
+
+Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen 
+\begin{DoxyParams}{Parameters}
+\item[{\em Height\_\-}]This accepts a Whole. \end{DoxyParams}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000010}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
+
+
+
+
+Definition at line 98 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_ac6feb044d9ab394f3e65d51026a899a6}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderResolution@{setRenderResolution}}
+\index{setRenderResolution@{setRenderResolution}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{setRenderResolution}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::setRenderResolution (const {\bf Whole} \& {\em Width\_\-}, \/  const {\bf Whole} \& {\em Height\_\-})}}
+\label{dd/d63/classphys_1_1GraphicsManager_ac6feb044d9ab394f3e65d51026a899a6}
+
+
+Changes the X and Y Resolution at the same time. 
+
+This should be useful in situations where it is not possible to update the width and hright separately. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Width\_\-}]The new desired Width for the rendering area as a whole number \item[{\em Height\_\-}]The new desired Width for the rendering area as a whole number \end{DoxyParams}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000012}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
+
+
+
+
+Definition at line 110 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_aea5fb5808a23fa29c8522c396ac0d6b5}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderWidth@{setRenderWidth}}
+\index{setRenderWidth@{setRenderWidth}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{setRenderWidth}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::setRenderWidth (const {\bf Whole} \& {\em Width\_\-})}}
+\label{dd/d63/classphys_1_1GraphicsManager_aea5fb5808a23fa29c8522c396ac0d6b5}
+
+
+Sets the Width. 
+
+Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen 
+\begin{DoxyParams}{Parameters}
+\item[{\em Width\_\-}]This accepts a Whole. \end{DoxyParams}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000011}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
+
+
+
+
+Definition at line 104 of file graphicsmanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+graphicsmanager.h\item 
+graphicsmanager.cpp\end{DoxyCompactItemize}

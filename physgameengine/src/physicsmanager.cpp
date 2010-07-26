@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -44,7 +44,8 @@
 #include "physicsmanager.h"
 #include "world.h"
 #include "vector3.h"
-
+#include "actorcontainerbase.h"
+#include "eventcollision.h"
 
 #include <queue>
 
@@ -304,7 +305,8 @@ namespace phys
                                                     BulletSolver,
                                                     BulletCollisionConfiguration);
 
-
+        CollisionAge=1;
+        Impulse=1.0;
     }
 
     void PhysicsManager::Initialize()
@@ -312,10 +314,10 @@ namespace phys
         // This came from the Game init function, and may need to go to a game init.
         this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
         this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
-
     }
 
-
+    void PhysicsManager::DoMainLoopItems()
+        {}
 
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
@@ -333,6 +335,31 @@ namespace phys
         {
             this->BulletDrawer->PrepareForRendering();
             this->BulletDynamicsWorld->debugDrawWorld();
+        }
+
+        this->GameWorld->Log("Checking for Collisions.");
+        int numManifolds = BulletDynamicsWorld->getDispatcher()->getNumManifolds();
+        for (int i=0;i<numManifolds;i++)
+        {
+            btPersistentManifold* contactManifold = BulletDynamicsWorld->getDispatcher()->getManifoldByIndexInternal(i);
+            int numContacts = contactManifold->getNumContacts();
+            for (int j=0;j<numContacts;j++)
+            {
+                btManifoldPoint& pt = contactManifold->getContactPoint(j);
+                if (pt.m_lifeTime>=CollisionAge && pt.m_appliedImpulse>=Impulse)
+                {
+                    btCollisionObject* objectA = static_cast<btCollisionObject*>(contactManifold->getBody0());
+                    btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
+                    ActorBase* ActA = this->GameWorld->Actors->FindActor(objectA);
+                    ActorBase* ActB = this->GameWorld->Actors->FindActor(objectB);
+                    Vector3 emptyloc(0,0,0);
+                    //EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
+                    //create collision event
+                    //this->GameWorld->Events->AddEvent(ColEvent);
+                    this->GameWorld->Log("Collision Event Logged at:");
+                    this->GameWorld->Log(emptyloc);
+                }
+            }
         }
     }
 
@@ -374,6 +401,39 @@ namespace phys
     {
         return this->BulletDrawer->GetWireFrameCount();
     }
-}
+
+    btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
+        { return this->BulletDynamicsWorld; }
+
+    void PhysicsManager::AddConstraint(TypedConstraint* Constraint)
+    {
+        this->BulletDynamicsWorld->addConstraint(Constraint->ConstraintBase);
+    }
+
+    void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
+    {
+        this->BulletDynamicsWorld->removeConstraint(Constraint->ConstraintBase);
+    }
+
+    void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)
+    {
+        CollisionAge=Age;
+        Impulse=Force;
+    }
+
+    unsigned short int PhysicsManager::GetCollisionAge()
+    {
+        return CollisionAge;
+    }
+
+    Real PhysicsManager::GetImpulse()
+    {
+        return Impulse;
+    }
+
+    //Inherited From ManagerBase
+    ManagerBase::ManagerTypeName PhysicsManager::GetType() const
+        { return ManagerBase::PhysicsManager; }
+}// \phys
 
 #endif

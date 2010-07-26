@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -84,7 +84,7 @@
 
   @ref phys::EventBase
 
-  @ref phys::GraphicsSettings
+  @ref phys::GraphicsManager
 
  @section Optional Optional Engine Components
   @ref phys::WorldQueryTool
@@ -99,8 +99,10 @@
 #include "vector3.h"
 #include "cameramanager.h"
 #include "physicsmanager.h"
+#include "soundmanager.h"
 
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -184,7 +186,6 @@ namespace phys
             Ogre::Camera* OgreCamera;
             Ogre::Viewport* OgreViewport;
             Ogre::SceneManager* OgreSceneManager;
-
 
         public:
 
@@ -270,14 +271,6 @@ namespace phys
             /// user settings.
             bool ShowSystemSettingDialog();
 
-
-            /// @brief This moves the camera relative to the world
-            /// @details The parameters really do explain it. This puts the camera at an arbitrary point, pointing at an arbitrary point.
-            /// @param Position Where should the camera be seated
-            /// @param LookAt Point the camera such that this poin is centered on the screen
-            /// @todo TODO: move to camera manager
-            void MoveCamera(const Vector3 &Position, const Vector3 &LookAt);
-
         ///////////////////////////////////////////////////////////////////////////////
         // Graphics system loading methods
         ///////////////////////////////////////
@@ -339,8 +332,12 @@ namespace phys
 
             /// @brief Gathers user input from the OS and places events in the event manager
             /// @details This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places
-            /// in the event manager, that is the responsibility of the code that pulls out the event out.
+            /// in the event manager, that is the responsibility of the code tnly actor your query tool can find are the plahat pulls out the event out.
             void DoMainLoopInputBuffering();
+
+            /// @brief This commits the log stream to the log
+            /// @details This is called automatically during the main loop just before rendering.
+            void DoMainLoopLogging();
 
             /// @brief Creates events for each Window manger
             /// @details This gather information from system/windows manager events, such as windows  minimization, maximization, program exit, window hidden
@@ -359,13 +356,13 @@ namespace phys
             /// @details This adds, and makes sure that it's physics status and 3d graphics status are
             /// properly handled. The phys::World will delete any actor still left in it upon deconstruction.
             /// @param ActorToAdd This is a pointer to the actor to be added.
-            void AddActor(ActorBase* ActorToAdd);
+            //void AddActor(ActorBase* ActorToAdd);
 
             /// @brief The Removes an Actor from the physworld.
             /// @details This removes the actor to the internal graphics and physics systems, and drops the pointer. This does not delete
             /// The Actor.
             /// @param ActorToRemove This is a pointer to the actor to be removed
-            void RemoveActor(ActorBase* ActorToRemove);
+            //void RemoveActor(ActorBase* ActorToRemove);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Feature Manager Pointers
@@ -393,6 +390,16 @@ namespace phys
             /// @brief This will keep track of world wide phyiscs settings
             /// @details This will keep track constraints, gravity, and other settings that affect multiple actors
             PhysicsManager* Physics;
+
+            /// @brief This is a pointer to the sound subsystem.
+            /// @details This will keep track of and have functions available to manipulate sounds.
+            SoundManager* Sounds;
+
+            /// @brief This is another way to put data in the log.
+            /// @details The contents of this will be commited to the log once per frame, just before rendering. Because of that do not
+            /// use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of
+            /// debugging data and creating in game logs and recreations, this can be very useful.
+            std::stringstream LogStream;
     };
 }
 #endif

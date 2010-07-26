@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -75,12 +75,19 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     // Manual Conversions and adjsutments
-    Ogre::Ray Ray::ExtractOgreRay() const
+    Ogre::Ray Ray::GetOgreRay() const
     {
+
+        Ray Temp = this->GetNormal();
+        return Ogre::Ray(
+            Temp.From.GetOgreVector3(),
+            Temp.To.GetOgreVector3()
+        );// */
+        /*
         return Ogre::Ray(
             this->From.GetOgreVector3(),
             this->To.GetOgreVector3()
-        );
+        );// */
     }
 
     Real Ray::Length() const
@@ -88,14 +95,29 @@ namespace phys
         return this->From.Distance( this->To );
     }
 
-    Ray Ray::GetNormal()
+    Ray Ray::GetNormal() const
     {
-        return (*this) / this->Length();
+        Real TempLength = this->Length();
+        if (0!=TempLength)
+        {
+            return (*this) / TempLength;
+        }else{
+            /// @todo discuss the merits throwing an error here.
+            return (*this);
+            //return 0;
+        }
     }
 
     void Ray::Normalize()
     {
-        (*this) /= this->Length();
+        Real TempLength = this->Length();
+        if (0!=TempLength)
+        {
+            (*this) /= this->Length();
+        }else{
+            // nothing to change, we have a zero length Ray
+        }
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////

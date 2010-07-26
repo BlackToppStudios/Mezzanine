@@ -29,71 +29,86 @@
   </div>
 </div>
 <div class="contents">
-<h1>phys::CallBackManager Class Reference</h1><!-- doxytag: class="phys::CallBackManager" -->
+<h1>phys::CallBackManager Class Reference</h1><!-- doxytag: class="phys::CallBackManager" --><!-- doxytag: inherits="phys::ManagerBase" -->
 <p>This Stores callbacks for for use in the main loop.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d2/d38/callbackmanager_8h_source.html">callbackmanager.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for phys::CallBackManager:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="../../d1/d47/classphys_1_1CallBackManager.png" usemap="#phys::CallBackManager_map" alt=""/>
+  <map id="phys::CallBackManager_map" name="phys::CallBackManager_map">
+<area href="../../d2/de3/classphys_1_1ManagerBase.html" alt="phys::ManagerBase" shape="rect" coords="0,0,146,24"/>
+</map>
+ </div>
+</div>
 
 <p><a href="../../d9/d0e/classphys_1_1CallBackManager-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a16d4c60beef774ae904cf01853d71aae">CallBackManager</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *_Parent)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a16d4c60beef774ae904cf01853d71aae"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a098b7a7822538aa6d6c4ba690f1e069d">~CallBackManager</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a098b7a7822538aa6d6c4ba690f1e069d">~CallBackManager</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deconstructor.  <a href="#a098b7a7822538aa6d6c4ba690f1e069d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a84e782f8729f49b296691763351ee2b1">PreInput</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a3d2af4e3c947b14f628c3e09a96af2f9">Initialize</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Empty Initilizor.  <a href="#a3d2af4e3c947b14f628c3e09a96af2f9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <br class="typebreak"/>
+<a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerBase::ManagerTypeName</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#aa0568dd5c2d1bb6dc669dfa2ca3486ad">GetType</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns the type of this manager.  <a href="#aa0568dd5c2d1bb6dc669dfa2ca3486ad"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a84e782f8729f49b296691763351ee2b1">PreInput</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This calls the PreInput Callback.  <a href="#a84e782f8729f49b296691763351ee2b1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#ae3da6f1eb10cdf4d8551aaeeda73053c">ErasePreInput</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#ae3da6f1eb10cdf4d8551aaeeda73053c">ErasePreInput</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drops the PreInput pointer.  <a href="#ae3da6f1eb10cdf4d8551aaeeda73053c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a1efb0c185304376986093beebf08a277">SetPreInput</a> (bool(*Callback)())</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a1efb0c185304376986093beebf08a277">SetPreInput</a> (bool(*Callback)())</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This assigns a function to be the callback function for PreInput.  <a href="#a1efb0c185304376986093beebf08a277"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a1add8e6e7f5862ec4a4fe48095dc3c4e">IsPreInputCallbackSet</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PreInput callback set or not.  <a href="#a1add8e6e7f5862ec4a4fe48095dc3c4e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a83afb36cfc7e71863d68a8b4c1d5e9d2">PostInput</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#adf39c71f0be97bcceb364621d1ccd77e">IsPreInputCallbackSet</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PreInput callback set or not.  <a href="#adf39c71f0be97bcceb364621d1ccd77e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a83afb36cfc7e71863d68a8b4c1d5e9d2">PostInput</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This calls the PostInput Callback.  <a href="#a83afb36cfc7e71863d68a8b4c1d5e9d2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a84ccf382be58b42439869ec9b77a0f89">ErasePostInput</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a84ccf382be58b42439869ec9b77a0f89">ErasePostInput</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drops the PostInput pointer.  <a href="#a84ccf382be58b42439869ec9b77a0f89"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#abbf73a7199a64d6a2a39c7de44c5acd6">SetPostInput</a> (bool(*Callback)())</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#abbf73a7199a64d6a2a39c7de44c5acd6">SetPostInput</a> (bool(*Callback)())</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This assigns a function to be the callback function for PostInput.  <a href="#abbf73a7199a64d6a2a39c7de44c5acd6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a075b799a815a2be2a83e30bb689711a7">IsPostInputCallbackSet</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PostInput callback set or not.  <a href="#a075b799a815a2be2a83e30bb689711a7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a65867cc4855f0f8cd84a2b4a8bbf0fd6">PrePhysics</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#afa96dbc0779e5fa386546502b3db6c39">IsPostInputCallbackSet</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PostInput callback set or not.  <a href="#afa96dbc0779e5fa386546502b3db6c39"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a65867cc4855f0f8cd84a2b4a8bbf0fd6">PrePhysics</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This calls the PrePhysics Callback.  <a href="#a65867cc4855f0f8cd84a2b4a8bbf0fd6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#afaeba4d6ae245d1560b76799417cce40">ErasePrePhysics</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#afaeba4d6ae245d1560b76799417cce40">ErasePrePhysics</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drops the PrePhysics pointer.  <a href="#afaeba4d6ae245d1560b76799417cce40"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a3f06ccacd416b3109f20c30cd30f9efe">SetPrePhysics</a> (bool(*Callback)())</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a3f06ccacd416b3109f20c30cd30f9efe">SetPrePhysics</a> (bool(*Callback)())</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This assigns a function to be the callback function for PrePhysics.  <a href="#a3f06ccacd416b3109f20c30cd30f9efe"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#af93b7b96e85faa77ed005840e0189ebd">IsPrePhysicsCallbackSet</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PrePhysics callback set or not.  <a href="#af93b7b96e85faa77ed005840e0189ebd"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a06bf0e8787f21caf31bf428727155084">PostPhysics</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a8684425c42a4416a204852ce6a246dc6">IsPrePhysicsCallbackSet</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PrePhysics callback set or not.  <a href="#a8684425c42a4416a204852ce6a246dc6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a06bf0e8787f21caf31bf428727155084">PostPhysics</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This calls the PostPhysics Callback.  <a href="#a06bf0e8787f21caf31bf428727155084"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a2d03573a93606e9d3fcd7adad5c8c397">ErasePostPhysics</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a2d03573a93606e9d3fcd7adad5c8c397">ErasePostPhysics</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drops the PostPhysics pointer.  <a href="#a2d03573a93606e9d3fcd7adad5c8c397"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a17687cd04807dfc80a25847be830c2f2">SetPostPhysics</a> (bool(*Callback)())</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a17687cd04807dfc80a25847be830c2f2">SetPostPhysics</a> (bool(*Callback)())</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This assigns a function to be the callback function for PostPhysics.  <a href="#a17687cd04807dfc80a25847be830c2f2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#ac4bf07f907b8d4d7e052126bcfbba4ba">IsPostPhysicsCallbackSet</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PostPhysics callback set or not.  <a href="#ac4bf07f907b8d4d7e052126bcfbba4ba"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a244c88b8a06f68a4f4bcff6253bf6806">PreRender</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#ad1e2131d792c6813caae4be4d5c4e5fb">IsPostPhysicsCallbackSet</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PostPhysics callback set or not.  <a href="#ad1e2131d792c6813caae4be4d5c4e5fb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a244c88b8a06f68a4f4bcff6253bf6806">PreRender</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This calls the PreRender Callback.  <a href="#a244c88b8a06f68a4f4bcff6253bf6806"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#adadf16f3f38398c9593646416ef18499">ErasePreRender</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#adadf16f3f38398c9593646416ef18499">ErasePreRender</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drops the PreRender pointer.  <a href="#adadf16f3f38398c9593646416ef18499"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a1e060fd479413457a798ea3c6b2bcb4d">SetPreRender</a> (bool(*Callback)())</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a1e060fd479413457a798ea3c6b2bcb4d">SetPreRender</a> (bool(*Callback)())</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This assigns a function to be the callback function for PreRender.  <a href="#a1e060fd479413457a798ea3c6b2bcb4d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#aa4eff76517403726c846911f6b97b2c2">IsPreRenderCallbackSet</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PreRender callback set or not.  <a href="#aa4eff76517403726c846911f6b97b2c2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#aa1a1132e877d989ecea08a16ee4b3ac1">PostRender</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a91017cc0aa4a04e74fd8f9ca0895b6f8">IsPreRenderCallbackSet</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PreRender callback set or not.  <a href="#a91017cc0aa4a04e74fd8f9ca0895b6f8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#aa1a1132e877d989ecea08a16ee4b3ac1">PostRender</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This calls the PostRender Callback.  <a href="#aa1a1132e877d989ecea08a16ee4b3ac1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a0eef22a8df4dc87289a18f0e6a1d0baf">ErasePostRender</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a0eef22a8df4dc87289a18f0e6a1d0baf">ErasePostRender</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Drops the PostRender pointer.  <a href="#a0eef22a8df4dc87289a18f0e6a1d0baf"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#afe6a91491f3872599d2c5784a902361a">SetPostRender</a> (bool(*Callback)())</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#afe6a91491f3872599d2c5784a902361a">SetPostRender</a> (bool(*Callback)())</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This assigns a function to be the callback function for PostRender.  <a href="#afe6a91491f3872599d2c5784a902361a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a13011f2f9ffd561255772bc4082b304f">IsPostRenderCallbackSet</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PostRender callback set or not.  <a href="#a13011f2f9ffd561255772bc4082b304f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#aab2be377bc741b893e83dc69cadc0f76">IsPostRenderCallbackSet</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Is the PostRender callback set or not.  <a href="#aab2be377bc741b893e83dc69cadc0f76"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This Stores callbacks for for use in the main loop. </p>
-<p>This stores a series of pointers to functions that the main loop will call. This can be swapped out at any point in time with another <a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a> to completely (or subtley) alter game behavior. In general </p>
+<p>This stores a series of pointers to functions that the main loop will call. This can be swapped out at any point in time with another <a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html" title="This Stores callbacks for for use in the main loop.">CallBackManager</a> to completely (or subtley) alter game behavior. </p>
 
 <p>Definition at line <a class="el" href="../../d2/d38/callbackmanager_8h_source.html#l00055">55</a> of file <a class="el" href="../../d2/d38/callbackmanager_8h_source.html">callbackmanager.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
@@ -135,7 +150,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -144,7 +159,7 @@
 <p>Deconstructor. </p>
 <p>Deconstructor Currently doesn't do very much </p>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00070">70</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -158,7 +173,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -167,7 +182,7 @@
 <p>Drops the PostInput pointer. </p>
 <p>Drops the PostInput pointer, this does not 'delete' the pointer, merely assigns it to zero. </p>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00122">122</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00124">124</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -180,7 +195,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -189,7 +204,7 @@
 <p>Drops the PostPhysics pointer. </p>
 <p>Drops the PostPhysics pointer, this does not 'delete' the pointer, merely assigns it to zero. </p>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00184">184</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00186">186</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -202,7 +217,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -211,7 +226,7 @@
 <p>Drops the PostRender pointer. </p>
 <p>Drops the PostRender pointer, this does not 'delete' the pointer, merely assigns it to zero. </p>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00247">247</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00249">249</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -224,7 +239,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -233,7 +248,7 @@
 <p>Drops the PreInput pointer. </p>
 <p>Drops the PreInput pointer, this does not 'delete' the pointer, merely assigns it to zero. </p>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00089">89</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00091">91</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -246,7 +261,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -255,7 +270,7 @@
 <p>Drops the PrePhysics pointer. </p>
 <p>Drops the PrePhysics pointer, this does not 'delete' the pointer, merely assigns it to zero. </p>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00153">153</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00155">155</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -268,7 +283,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -277,11 +292,59 @@
 <p>Drops the PreRender pointer. </p>
 <p>Drops the PreRender pointer, this does not 'delete' the pointer, merely assigns it to zero. </p>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00215">215</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00217">217</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a075b799a815a2be2a83e30bb689711a7"></a><!-- doxytag: member="phys::CallBackManager::IsPostInputCallbackSet" ref="a075b799a815a2be2a83e30bb689711a7" args="()" -->
+<a class="anchor" id="aa0568dd5c2d1bb6dc669dfa2ca3486ad"></a><!-- doxytag: member="phys::CallBackManager::GetType" ref="aa0568dd5c2d1bb6dc669dfa2ca3486ad" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerBase::ManagerTypeName</a> phys::CallBackManager::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This returns the type of this manager. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns ManagerTypeName::CallBackManager </dd></dl>
+
+<p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3d2af4e3c947b14f628c3e09a96af2f9"></a><!-- doxytag: member="phys::CallBackManager::Initialize" ref="a3d2af4e3c947b14f628c3e09a96af2f9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::CallBackManager::Initialize </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Empty Initilizor. </p>
+<p>This class implements this for the sake of entension and compatibility this function does nothing </p>
+
+<p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afa96dbc0779e5fa386546502b3db6c39"></a><!-- doxytag: member="phys::CallBackManager::IsPostInputCallbackSet" ref="afa96dbc0779e5fa386546502b3db6c39" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -290,7 +353,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -300,11 +363,11 @@
 <p>Is the PostInput callback set or not. The returns true if set or false otherwise. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns true if the PostInput CallBack is set, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00132">132</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00134">134</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac4bf07f907b8d4d7e052126bcfbba4ba"></a><!-- doxytag: member="phys::CallBackManager::IsPostPhysicsCallbackSet" ref="ac4bf07f907b8d4d7e052126bcfbba4ba" args="()" -->
+<a class="anchor" id="ad1e2131d792c6813caae4be4d5c4e5fb"></a><!-- doxytag: member="phys::CallBackManager::IsPostPhysicsCallbackSet" ref="ad1e2131d792c6813caae4be4d5c4e5fb" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -313,7 +376,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -323,11 +386,11 @@
 <p>Is the PostPhysics callback set or not. The returns true if set or false otherwise. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns true if the PostPhysics CallBack is set, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00194">194</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00196">196</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a13011f2f9ffd561255772bc4082b304f"></a><!-- doxytag: member="phys::CallBackManager::IsPostRenderCallbackSet" ref="a13011f2f9ffd561255772bc4082b304f" args="()" -->
+<a class="anchor" id="aab2be377bc741b893e83dc69cadc0f76"></a><!-- doxytag: member="phys::CallBackManager::IsPostRenderCallbackSet" ref="aab2be377bc741b893e83dc69cadc0f76" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -336,7 +399,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -346,11 +409,11 @@
 <p>Is the PostRender callback set or not. The returns true if set or false otherwise. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns true if the PostRender CallBack is set, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00257">257</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00259">259</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1add8e6e7f5862ec4a4fe48095dc3c4e"></a><!-- doxytag: member="phys::CallBackManager::IsPreInputCallbackSet" ref="a1add8e6e7f5862ec4a4fe48095dc3c4e" args="()" -->
+<a class="anchor" id="adf39c71f0be97bcceb364621d1ccd77e"></a><!-- doxytag: member="phys::CallBackManager::IsPreInputCallbackSet" ref="adf39c71f0be97bcceb364621d1ccd77e" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -359,7 +422,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -369,11 +432,11 @@
 <p>Is the PreInput callback set or not. The returns true if set or false otherwise. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns true if the PreInput CallBack is set, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00099">99</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00101">101</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af93b7b96e85faa77ed005840e0189ebd"></a><!-- doxytag: member="phys::CallBackManager::IsPrePhysicsCallbackSet" ref="af93b7b96e85faa77ed005840e0189ebd" args="()" -->
+<a class="anchor" id="a8684425c42a4416a204852ce6a246dc6"></a><!-- doxytag: member="phys::CallBackManager::IsPrePhysicsCallbackSet" ref="a8684425c42a4416a204852ce6a246dc6" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -382,7 +445,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -392,11 +455,11 @@
 <p>Is the PrePhysics callback set or not. The returns true if set or false otherwise. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns true if the PrePhysics CallBack is set, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00163">163</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00165">165</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa4eff76517403726c846911f6b97b2c2"></a><!-- doxytag: member="phys::CallBackManager::IsPreRenderCallbackSet" ref="aa4eff76517403726c846911f6b97b2c2" args="()" -->
+<a class="anchor" id="a91017cc0aa4a04e74fd8f9ca0895b6f8"></a><!-- doxytag: member="phys::CallBackManager::IsPreRenderCallbackSet" ref="a91017cc0aa4a04e74fd8f9ca0895b6f8" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -405,7 +468,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -415,7 +478,7 @@
 <p>Is the PreRender callback set or not. The returns true if set or false otherwise. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns true if the PreRender CallBack is set, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00225">225</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00227">227</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -428,7 +491,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -438,7 +501,7 @@
 <p>This calls the PostInput Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A bool that represents whether the mainloop should end. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00111">111</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00113">113</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -451,7 +514,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -461,7 +524,7 @@
 <p>This calls the PostPhysics Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A bool that represents whether the mainloop should end. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00175">175</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00177">177</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -474,7 +537,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -484,7 +547,7 @@
 <p>This calls the PostRender Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A bool that represents whether the mainloop should end. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00238">238</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00240">240</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -497,7 +560,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -507,7 +570,7 @@
 <p>This calls the PreInput Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A bool that represents whether the mainloop should end. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00078">78</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -520,7 +583,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -530,7 +593,7 @@
 <p>This calls the PrePhysics Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A bool that represents whether the mainloop should end. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00146">146</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -543,7 +606,7 @@
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -553,7 +616,7 @@
 <p>This calls the PreRender Callback and returns true if the callback intends to continue with the mainloop, and false if the callback intend to end the mainloop. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A bool that represents whether the mainloop should end. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00206">206</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00208">208</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -567,7 +630,7 @@
           <td class="paramtype">bool(*)()&nbsp;</td>
           <td class="paramname"> <em>Callback</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -582,7 +645,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00127">127</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00129">129</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -596,7 +659,7 @@
           <td class="paramtype">bool(*)()&nbsp;</td>
           <td class="paramname"> <em>Callback</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -611,7 +674,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00189">189</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00191">191</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -625,7 +688,7 @@
           <td class="paramtype">bool(*)()&nbsp;</td>
           <td class="paramname"> <em>Callback</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -640,7 +703,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00252">252</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00254">254</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -654,7 +717,7 @@
           <td class="paramtype">bool(*)()&nbsp;</td>
           <td class="paramname"> <em>Callback</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -669,7 +732,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00094">94</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00096">96</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -683,7 +746,7 @@
           <td class="paramtype">bool(*)()&nbsp;</td>
           <td class="paramname"> <em>Callback</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -698,7 +761,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00158">158</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00160">160</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -712,7 +775,7 @@
           <td class="paramtype">bool(*)()&nbsp;</td>
           <td class="paramname"> <em>Callback</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -727,7 +790,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00220">220</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html#l00222">222</a> of file <a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -736,7 +799,7 @@
 <li><a class="el" href="../../da/d57/callbackmanager_8cpp_source.html">callbackmanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:01 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:05 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

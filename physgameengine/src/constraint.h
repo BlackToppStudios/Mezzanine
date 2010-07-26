@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -43,7 +43,10 @@
 #include "datatypes.h"
 #include "quaternion.h"
 #include "vector3.h"
-#include "actorrigid.h"
+namespace phys
+{
+    class ActorRigid;
+}
 
 class btRigidBody;
 class btTypedConstraint;
@@ -61,8 +64,11 @@ namespace phys
     class TypedConstraint
     {
         protected:
+            friend class World;
+            friend class PhysicsManager;
             btRigidBody* BodyA;
             btRigidBody* BodyB;
+            btTypedConstraint* ConstraintBase;
         public:
             TypedConstraint();
             virtual ~TypedConstraint();
@@ -107,6 +113,8 @@ namespace phys
             Generic6DofConstraint(ActorRigid* ActorB, Vector3 Vectorb, Quaternion QuaternionB, bool UseLinearReferenceB);
             Generic6DofConstraint(btGeneric6DofConstraint* Constraint);
             virtual ~Generic6DofConstraint();
+            void SetOffsetALocation(Vector3 Location);
+            void SetOffsetBLocation(Vector3 Location);
             void SetLinearUpperLimit(Vector3 Limit);
             void SetLinearLowerLimit(Vector3 Limit);
             void SetAngularUpperLimit(Vector3 Limit);
@@ -144,6 +152,8 @@ namespace phys
             HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA=false);
             HingeConstraint(btHingeConstraint* Constraint);
             virtual ~HingeConstraint();
+            void SetAPivotLocation(Vector3 Location);
+            void SetBPivotLocation(Vector3 Location);
             void SetAngularOnly(bool AngularOnly);
             void EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
             void EnableMotor(bool EnableMotor);
@@ -193,6 +203,8 @@ namespace phys
             SliderConstraint(ActorRigid* ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceA);
             SliderConstraint(btSliderConstraint* Constraint);
             virtual ~SliderConstraint();
+            void SetFrameOffsetALocation(Vector3 Location);
+            void SetFrameOffsetBLocation(Vector3 Location);
             void SetUpperLinLimit(Real UpperLimit);
             void SetUpperAngLimit(Real UpperLimit);
             void SetLowerLinLimit(Real LowerLimit);

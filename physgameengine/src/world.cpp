@@ -1,4 +1,4 @@
-//� Copyright 2010 Joseph Toppi and John Blackwood
+//� Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -62,6 +62,7 @@
 #include "ray.h"
 #include "actorrigid.h"
 #include "vector3wactor.h"
+#include "plane.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -115,6 +116,7 @@ namespace phys
 
         this->Actors = new ActorContainerVector(this);
         this->Graphics = new GraphicsManager();
+        this->Sounds = new SoundManager(this);
 
         //We create our Ogre environment
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
@@ -191,7 +193,7 @@ namespace phys
         ActorRigid temp24(1.0,"Robot24","robot.mesh","RobotTest",this); */ /// @todo TODO: remove robot and come up with another solution
         ActorRigid* temp24=0;
         Vector3WActor temp25( temp24, Vector3(0,2,5));
-
+        Plane temp26(Vector3(2.0, 6.0, 2.0), 6.0);
         //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
         /// @todo TODO add each type of event here (logtest) to make it really easy to log events
 		Log(system("pwd"));
@@ -222,7 +224,8 @@ namespace phys
         OneLogTest("temp23","<char const*>");
         OneLogTest(temp24,"ActorBase");
         OneLogTest(temp25,"Vector3WActor");
-
+        OneLogTest(temp26,"Plane");
+        OneLogTest('7',"const char");
         //this->RemoveActor(&temp24);
     }
 
@@ -252,6 +255,7 @@ namespace phys
         delete Events;
         delete Graphics;
         delete Physics;
+        delete Sounds;
 
         //remove sdl stuff
         SDL_FreeSurface(SDLscreen);
@@ -263,7 +267,8 @@ namespace phys
     template <class T> void World::Log(T Message)
     {
         stringstream temp;
-        temp << Message;
+        temp << this->LogStream << Message;
+        this->LogStream.str("");
         Ogre::LogManager::getSingleton().logMessage(temp.str());
     }
 
@@ -299,8 +304,10 @@ namespace phys
         //Initiliaze the Managers
         this->Physics->Initialize(); //Initialize the Debug drawer.
         this->CallBacks->Initialize();
-        //this->Actors->Initialize();
-
+        this->Actors->Initialize();
+        this->Graphics->Initialize();
+        this->Cameras->Initialize();
+        this->Events->Initialize();
 
         if(CallMainLoop)
             { this->MainLoop(); }
@@ -414,6 +421,8 @@ namespace phys
                 this->DoMainLoopWindowManagerBuffering();
             }
 
+            this->DoMainLoopLogging();
+
             //Render the frame and figure the amount of time it took //By default Limit frame rate to 62.5
             this->DoMainLoopRender();
 
@@ -439,16 +448,12 @@ namespace phys
                 Callbackbools[5] = this->CallBacks->PostRender();
             }
 
+
+
         }//End of main loop
 
         //Some after loop cleanup
         this->DestroyRenderWindow();
-    }
-
-    void World::MoveCamera(const Vector3 &Position, const Vector3 &LookAt)
-    {
-        this->OgreCamera->setPosition(Ogre::Vector3(Position.X,Position.Y,Position.Z));
-        this->OgreCamera->lookAt(Ogre::Vector3(LookAt.X,LookAt.Y,LookAt.Z));
     }
 
     void World::DoMainLoopAllItems(const Real &PreviousFrameTime)
@@ -463,6 +468,12 @@ namespace phys
     {
         this->Physics->DoMainLoopItems(TimeElapsed);
         Log("Updated Physics");
+    }
+
+    void  World::DoMainLoopLogging()
+    {
+        this->Log(this->LogStream.str());
+        this->LogStream.str("");
     }
 
     void World::DoMainLoopWindowManagerBuffering()
@@ -493,7 +504,7 @@ namespace phys
             //if we can't do that then lets make new settings
             if (!this->ShowSystemSettingDialog())
             {
-                this->LogAndThrow("Error 1: Could not setup Ogre.");
+                this->LogAndThrow("Error: Could not setup Ogre.");
             }
         }
     }
@@ -535,8 +546,6 @@ namespace phys
         this->OgreCamera->setNearClipDistance(5.0f);
         this->OgreCamera->setFarClipDistance(5000.0f);
 
-        //this->MoveCamera(Vector3(0.0f,0.0f,500.0f), Vector3(0.0f,0.0f,0.0f));
-
         //viewport connects camera and render window
         this->OgreViewport = this->OgreGameWindow->addViewport(OgreCamera);
 
@@ -547,22 +556,6 @@ namespace phys
     void World::DestroyRenderWindow()
     {
         this->OgreGameWindow->destroy();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Bullet Related Public Members
-    ///////////////////////////////////////
-
-    void World::AddActor(ActorBase* ActorToAdd)
-    {
-        ActorToAdd->AddObjectToWorld(this, this->Physics->BulletDynamicsWorld);
-        this->Actors->AddActor(ActorToAdd);
-    }
-
-    void World::RemoveActor(ActorBase* ActorToRemove)
-    {
-        ActorToRemove->RemoveObjectFromWorld(this, this->Physics->BulletDynamicsWorld);
-        this->Actors->RemoveActor(ActorToRemove);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="TiCPP" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="libticppd.a" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="obj/Debug" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DTIXML_USE_TICPP" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DDEBUG" />
+					<Add option="-D_DEBUG" />
+					<Add option="-O0" />
+				</Compiler>
+				<Linker>
+					<Add directory="../lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="libticpp.a" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wall" />
+					<Add option="-DTIXML_USE_TICPP" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-DNDEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add directory="../lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="tinyxmlpp/ticpp.cpp" />
+		<Unit filename="tinyxmlpp/ticpp.h" />
+		<Unit filename="tinyxmlpp/ticpprc.h" />
+		<Unit filename="tinyxmlpp/tinystr.cpp" />
+		<Unit filename="tinyxmlpp/tinystr.h" />
+		<Unit filename="tinyxmlpp/tinyxml.cpp" />
+		<Unit filename="tinyxmlpp/tinyxml.h" />
+		<Unit filename="tinyxmlpp/tinyxmlerror.cpp" />
+		<Unit filename="tinyxmlpp/tinyxmlparser.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

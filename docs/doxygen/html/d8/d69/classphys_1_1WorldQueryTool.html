@@ -53,9 +53,13 @@
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139">GetFirstActorOnRayByPolygon</a> (<a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> ActorRay)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will find the first Actor to intesect the Given ray.  <a href="#a256022003d64756b0b5c5706aefd5139"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf">GetFirstActorOnRayByAABB</a> (<a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> ActorRay)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">unimplemented  <a href="#a67575416c2e9c652bbd873649ee38baf"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Partially implemented. This should find the first Actor that is on or almost on the a given <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>.  <a href="#a67575416c2e9c652bbd873649ee38baf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html">Vector3WActor</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a8efba55076bad228d7cda0b82895f32a">GetActorUnderMouse</a> (<a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> RayLength=1000.0, bool UsePolygon=true)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will find the actor under the mouse.  <a href="#a8efba55076bad228d7cda0b82895f32a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#adfc5ea4a115ad8bb716dea87d8419e6f">RayPlaneIntersection</a> (const <a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> &amp;QueryRay, const <a class="el" href="../../d1/d0c/classphys_1_1Plane.html">Plane</a> &amp;QueryPlane)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Where does this <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> Meet this <a class="el" href="../../d1/d0c/classphys_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a>?  <a href="#adfc5ea4a115ad8bb716dea87d8419e6f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a567b20eb6ba6f17961f5cd892bd5a0ed">GetMouseRay</a> (<a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Length=1000)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get a <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> from the current viewport, following the mouse.  <a href="#a567b20eb6ba6f17961f5cd892bd5a0ed"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ae387ff047f3cdf408d8959b8cbf4cc57">GatherEvents</a> (bool ClearEventsFromEventMgr=false)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This gathers any user-input/event data that might be queryed.  <a href="#ae387ff047f3cdf408d8959b8cbf4cc57"></a><br/></td></tr>
 </table>
@@ -63,7 +67,7 @@
 <p>This provides a number of optional tools for working with a <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a>. </p>
 <p>Currently this allows for more seamless mouse use, including 'picking' of objects with the mouse, and associated functionality. </p>
 
-<p>Definition at line <a class="el" href="../../d1/dd1/worldquerytool_8h_source.html#l00068">68</a> of file <a class="el" href="../../d1/dd1/worldquerytool_8h_source.html">worldquerytool.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/dd1/worldquerytool_8h_source.html#l00069">69</a> of file <a class="el" href="../../d1/dd1/worldquerytool_8h_source.html">worldquerytool.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6b156ab7ea6236402c40467da7f11c0d"></a><!-- doxytag: member="phys::WorldQueryTool::WorldQueryTool" ref="a6b156ab7ea6236402c40467da7f11c0d" args="(World *GameWorld_)" -->
 <div class="memitem">
@@ -144,7 +148,7 @@
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000023">Todo:</a></b></dt><dd>Add support for joysticks events to <a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html" title="This provides a number of optional tools for working with a phys::World.">WorldQueryTool</a> </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000026">Todo:</a></b></dt><dd>Add support for joysticks events to <a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html" title="This provides a number of optional tools for working with a phys::World.">WorldQueryTool</a> </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00091">91</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
@@ -187,7 +191,7 @@
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a> which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00235">235</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00259">259</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -207,7 +211,8 @@
 </div>
 <div class="memdoc">
 
-<p>unimplemented </p>
+<p>Partially implemented. This should find the first Actor that is on or almost on the a given <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>. </p>
+<p>This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned. Presently this is untested and does not return the Offset of the intersection. This should perform faster than <a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a256022003d64756b0b5c5706aefd5139" title="This will find the first Actor to intesect the Given ray.">WorldQueryTool::GetFirstActorOnRayByPolygon</a> but not by a known amount. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>ActorRay</em>&nbsp;</td><td>The <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> to search along. </td></tr>
@@ -216,7 +221,8 @@
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray. </dd></dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000024">Todo:</a></b></dt><dd>TODO: Fix the <a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf" title="unimplemented">WorldQueryTool::GetFirstActorOnRayByAABB</a> stub </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000027">Todo:</a></b></dt><dd>TODO: The function <a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf" title="Partially implemented. This should find the first Actor that is on or almost on the...">WorldQueryTool::GetFirstActorOnRayByAABB</a> does not return an valid offset. This needs to be calculated somehow. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000028">Todo:</a></b></dt><dd>TODO: The function <a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf" title="Partially implemented. This should find the first Actor that is on or almost on the...">WorldQueryTool::GetFirstActorOnRayByAABB</a> has not been tested and needs to be tested </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00229">229</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
@@ -250,6 +256,36 @@
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to an <a class="el" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>, which contains the first actor along the ray and the point of intersection Relative to the actor </dd></dl>
 
 <p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00147">147</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a567b20eb6ba6f17961f5cd892bd5a0ed"></a><!-- doxytag: member="phys::WorldQueryTool::GetMouseRay" ref="a567b20eb6ba6f17961f5cd892bd5a0ed" args="(Real Length=1000)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> * phys::WorldQueryTool::GetMouseRay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td>
+          <td class="paramname"> <em>Length</em> = <code>1000</code></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get a <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> from the current viewport, following the mouse. </p>
+<p>This calls on the graphics subsystem to get a ray from the location of the current camera </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Length</em>&nbsp;</td><td>how long of a ray do you want? Thsi defaults to 1000 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00305">305</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -365,12 +401,52 @@
 
 </div>
 </div>
+<a class="anchor" id="adfc5ea4a115ad8bb716dea87d8419e6f"></a><!-- doxytag: member="phys::WorldQueryTool::RayPlaneIntersection" ref="adfc5ea4a115ad8bb716dea87d8419e6f" args="(const Ray &amp;QueryRay, const Plane &amp;QueryPlane)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> * phys::WorldQueryTool::RayPlaneIntersection </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>QueryRay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d1/d0c/classphys_1_1Plane.html">Plane</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>QueryPlane</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Where does this <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> Meet this <a class="el" href="../../d1/d0c/classphys_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">Plane</a>? </p>
+<p>This does some fancy math to return the point where the ray and the plane intersent. This returns a NULL pointer in the event the ray and plane do not meet, or are completely coterminous. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>QueryRay</em>&nbsp;</td><td>This is the <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> that could intersent the plane </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>QueryPlane</em>&nbsp;</td><td>This is the plane to be interesected. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a vector that matches where the intersection of the plane and <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>, if possible </dd></dl>
+
+<p>Definition at line <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html#l00276">276</a> of file <a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d1/dd1/worldquerytool_8h_source.html">worldquerytool.h</a></li>
 <li><a class="el" href="../../de/d1f/worldquerytool_8cpp_source.html">worldquerytool.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:01 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:13 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

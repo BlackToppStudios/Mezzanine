@@ -78,8 +78,8 @@ Inheritance diagram for phys::EventUserInput:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes a specific code or Adds it if not present.  <a href="#adf603505c43162cf9331a486d5832f75"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html#a1d6895e1b3814c1a63f5605b88ba85e5">operator+=</a> (const <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> &amp;Add)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This add all of one <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> to another.  <a href="#a1d6895e1b3814c1a63f5605b88ba85e5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html#ab31bb312cde99c0a2bf64af012ee4b87">getEventType</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the type of this event.  <a href="#ab31bb312cde99c0a2bf64af012ee4b87"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html#a3e803a8d9bcc1576fe04d2245a86ec80">GetType</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the type of this event.  <a href="#a3e803a8d9bcc1576fe04d2245a86ec80"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html">MetaCode</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9">Code</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This stores the MetaCodes in this event.  <a href="#aee3dc1d8cac82482651487c48c6c60c9"></a><br/></td></tr>
@@ -416,30 +416,6 @@ Inheritance diagram for phys::EventUserInput:</div>
 
 </div>
 </div>
-<a class="anchor" id="ab31bb312cde99c0a2bf64af012ee4b87"></a><!-- doxytag: member="phys::EventUserInput::getEventType" ref="ab31bb312cde99c0a2bf64af012ee4b87" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> phys::EventUserInput::getEventType </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Returns the type of this event. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns EventType::UserInput </dd></dl>
-
-<p>Implements <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a0f39a25f4b64f7cf701e174454616366">phys::EventBase</a>.</p>
-
-<p>Definition at line <a class="el" href="../../db/dc5/eventuserinput_8cpp_source.html#l00160">160</a> of file <a class="el" href="../../db/dc5/eventuserinput_8cpp_source.html">eventuserinput.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="aaf56168b98e339cec74ae862b64632ba"></a><!-- doxytag: member="phys::EventUserInput::GetMetaCode" ref="aaf56168b98e339cec74ae862b64632ba" args="(const unsigned int &amp;Index)" -->
 <div class="memitem">
 <div class="memproto">
@@ -485,6 +461,30 @@ Inheritance diagram for phys::EventUserInput:</div>
 <p>Retrieves a count of the stored Metacodes </p>
 
 <p>Definition at line <a class="el" href="../../db/dc5/eventuserinput_8cpp_source.html#l00092">92</a> of file <a class="el" href="../../db/dc5/eventuserinput_8cpp_source.html">eventuserinput.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e803a8d9bcc1576fe04d2245a86ec80"></a><!-- doxytag: member="phys::EventUserInput::GetType" ref="a3e803a8d9bcc1576fe04d2245a86ec80" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> phys::EventUserInput::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns the type of this event. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns EventType::UserInput </dd></dl>
+
+<p>Implements <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a1b3d29b6ecf30f18cc3e1825a515c508">phys::EventBase</a>.</p>
+
+<p>Definition at line <a class="el" href="../../db/dc5/eventuserinput_8cpp_source.html#l00160">160</a> of file <a class="el" href="../../db/dc5/eventuserinput_8cpp_source.html">eventuserinput.cpp</a>.</p>
 
 </div>
 </div>
@@ -571,7 +571,7 @@ Inheritance diagram for phys::EventUserInput:</div>
 <li><a class="el" href="../../db/dc5/eventuserinput_8cpp_source.html">eventuserinput.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Jun 30 10:21:01 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:11 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

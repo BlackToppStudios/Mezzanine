@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -95,9 +95,9 @@ namespace phys
 
     /// @todo TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
     /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
-    EventManager::EventManager(World* ParentWorld_)
+    EventManager::EventManager(World* ParentWorld_): ManagerBase(ParentWorld_)
     {
-        ParentWorld = ParentWorld_;
+        this->GameWorld = ParentWorld_;
         PollMouseHor = false;
         PollMouseVert = false;
     }
@@ -158,16 +158,16 @@ namespace phys
     void EventManager::UpdateSystemEvents()
     {
         this->PreProcessSDLEvents();
-        ParentWorld->Log("WM EventCount Pending:");
-        ParentWorld->Log(SDL_WmEvents.size());
+        this->GameWorld->Log("WM EventCount Pending:");
+        this->GameWorld->Log(SDL_WmEvents.size());
         /// @todo make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
     }
 
     void EventManager::UpdateUserInputEvents()
     {
         this->PreProcessSDLEvents();
-        ParentWorld->Log("User Input EventCount Pending:");
-        ParentWorld->Log(SDL_UserInputEvents.size());
+        this->GameWorld->Log("User Input EventCount Pending:");
+        this->GameWorld->Log(SDL_UserInputEvents.size());
 
         EventUserInput* FromSDLEvent = new EventUserInput();
         EventUserInput* FromSDLPolling = this->PollForUserInputEvents();
@@ -391,7 +391,7 @@ namespace phys
         }
 
         if (ItFailed)
-            this->ParentWorld->LogAndThrow("Unsupported Polling Check on this Platform");
+            this->GameWorld->LogAndThrow("Unsupported Polling Check on this Platform");
     }
 
     void EventManager::RemovePollingCheck(const MetaCode &InputToStopPolling)
@@ -450,9 +450,9 @@ namespace phys
         }
 
         if (!supported)
-            this->ParentWorld->LogAndThrow("Unsupported Polling Check on this Platform, Cannot Remove");
+            this->GameWorld->LogAndThrow("Unsupported Polling Check on this Platform, Cannot Remove");
         if (ItFailed)
-            this->ParentWorld->LogAndThrow("Polling Check did not exist, Cannot Remove");
+            this->GameWorld->LogAndThrow("Polling Check did not exist, Cannot Remove");
     }
 
 
@@ -593,6 +593,16 @@ namespace phys
             }
         }
     }
+
+    //Inherited From ManagerBase
+    void EventManager::Initialize()
+        {}
+
+    void EventManager::DoMainLoopItems()
+        {}
+
+    ManagerBase::ManagerTypeName EventManager::GetType() const
+        { return ManagerBase::EventManager; }
 
 } // /phys
 

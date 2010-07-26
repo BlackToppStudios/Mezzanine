@@ -11,6 +11,12 @@ This is simply a place for storing all the Physics Related functions.
 
 {\ttfamily \#include $<$physicsmanager.h$>$}
 
+Inheritance diagram for phys::PhysicsManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d3/dcc/classphys_1_1PhysicsManager}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -18,7 +24,7 @@ This is simply a place for storing all the Physics Related functions.
 \begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1PhysicsManager_aa2c37564d35c3b7266219812ee43717f}{PhysicsManager} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyLowerBounds\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-)
 \begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{Initialize} ()
+virtual void \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{Initialize} ()
 \begin{DoxyCompactList}\small\item\em This configures the Physics Manager to work with the Graphic settings. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}{$\sim$PhysicsManager} ()
 \begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
@@ -33,7 +39,11 @@ void \hyperlink{classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}{S
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}{GetDebugPhysicsWireCount} ()
 \begin{DoxyCompactList}\small\item\em This gets how many WireFrames are being drawn. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{DoMainLoopItems} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&TimeElapsed)
-\begin{DoxyCompactList}\small\item\em This does all the work reuired for the main loop to process physics. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This does all the work reuired for the main loop to process physics. \item\end{DoxyCompactList}\item 
+btSoftRigidDynamicsWorld $\ast$ \hyperlink{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}{GetPhysicsWorldPointer} ()
+\begin{DoxyCompactList}\small\item\em This returns a pointer to the bullet physics world. This is for internal use only. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -47,7 +57,7 @@ class {\bfseries World}}
 \subsection{Detailed Description}
 This is simply a place for storing all the Physics Related functions. This is a plage for storing items related to Debug physics drawing, Adding constraints, screwing with gravity and doing other physics Related features. 
 
-Definition at line 64 of file physicsmanager.h.
+Definition at line 66 of file physicsmanager.h.
 
 
 
@@ -148,16 +158,55 @@ This returns either 2 or the last amount passed into World::SetDebugPhysicsWireC
 
 Definition at line 373 of file physicsmanager.cpp.
 
+\hypertarget{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!GetPhysicsWorldPointer@{GetPhysicsWorldPointer}}
+\index{GetPhysicsWorldPointer@{GetPhysicsWorldPointer}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{GetPhysicsWorldPointer}]{\setlength{\rightskip}{0pt plus 5cm}btSoftRigidDynamicsWorld $\ast$ phys::PhysicsManager::GetPhysicsWorldPointer ()}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}
+
+
+This returns a pointer to the bullet physics world. This is for internal use only. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 378 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::PhysicsManager::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}
+
+
+This returns the type of this manager. 
+
+\begin{DoxyReturn}{Returns}
+This returns ManagerTypeName::PhysicsManager 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{phys::ManagerBase}.
+
+
+
+Definition at line 382 of file physicsmanager.cpp.
+
 \hypertarget{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!Initialize@{Initialize}}
 \index{Initialize@{Initialize}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::Initialize ()}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}
 
 
 This configures the Physics Manager to work with the Graphic settings. 
 
 This configures the Physics manager to work with the existing graphics settings. This must be called before the physics manager is used, but after the graphics have been initialized 
+
+Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
+
+
 
 Definition at line 310 of file physicsmanager.cpp.
 

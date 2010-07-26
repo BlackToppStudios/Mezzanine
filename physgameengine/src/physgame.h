@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -55,7 +55,9 @@
 #include "actorrigid.h"
 #include "actorsoft.h"
 #include "callbackmanager.h"
+#include "camera.h"
 #include "cameramanager.h"
+#include "constraint.h"
 #include "crossplatform.h"
 #include "datatypes.h"
 #include "eventbase.h"
@@ -68,12 +70,15 @@
 #include "managerbase.h"
 #include "metacode.h"
 #include "physicsmanager.h"
+#include "plane.h"
 #include "quaternion.h"
 #include "ray.h"
 //#include "sound.h"
+#include "soundmanager.h"
 #include "vector3.h"
 #include "vector3wactor.h"
 #include "world.h"
+#include "worldgetset.h"
 #include "worldquerytool.h"
 
 #endif

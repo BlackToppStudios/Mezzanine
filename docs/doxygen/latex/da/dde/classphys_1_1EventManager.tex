@@ -11,6 +11,12 @@ This is a container for Events and facilitates the transfer of data.
 
 {\ttfamily \#include $<$eventmanager.h$>$}
 
+Inheritance diagram for phys::EventManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{da/dde/classphys_1_1EventManager}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -73,7 +79,11 @@ void \hyperlink{classphys_1_1EventManager_a6ff66883358344908afd11204f79f196}{Add
 void \hyperlink{classphys_1_1EventManager_adaf7d5346932506ed43f893eb071fd39}{RemovePollingCheck} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&InputToStopPolling)
 \begin{DoxyCompactList}\small\item\em Removes Events from the list(s) of what needs to be polled. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_a983bc9f1933466491e6bf025b26a9023}{PollForUserInputEvents} ()
-\begin{DoxyCompactList}\small\item\em This activates the polling routines of the user input subsystems. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This activates the polling routines of the user input subsystems. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1EventManager_a194890f7f8be5d45aa98623481482696}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -339,6 +349,43 @@ This returns an unsigned integer with the amount of of total events
 
 
 Definition at line 108 of file eventmanager.cpp.
+
+\hypertarget{classphys_1_1EventManager_a194890f7f8be5d45aa98623481482696}{
+\index{phys::EventManager@{phys::EventManager}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::EventManager@{phys::EventManager}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::EventManager::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{da/dde/classphys_1_1EventManager_a194890f7f8be5d45aa98623481482696}
+
+
+This returns the type of this manager. 
+
+\begin{DoxyReturn}{Returns}
+This returns ManagerTypeName::EventManager 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{phys::ManagerBase}.
+
+
+
+Definition at line 601 of file eventmanager.cpp.
+
+\hypertarget{classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}{
+\index{phys::EventManager@{phys::EventManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!phys::EventManager@{phys::EventManager}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventManager::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{da/dde/classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}
+
+
+Empty Initializor. 
+
+This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason 
+
+Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
+
+
+
+Definition at line 598 of file eventmanager.cpp.
 
 \hypertarget{classphys_1_1EventManager_a983bc9f1933466491e6bf025b26a9023}{
 \index{phys::EventManager@{phys::EventManager}!PollForUserInputEvents@{PollForUserInputEvents}}

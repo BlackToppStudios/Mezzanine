@@ -23,18 +23,23 @@
 				<ExtraCommands>
 					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\windows\ogre\&quot; mkdir .\bin\WinDebug\data\windows\ogre' />
 					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\common&quot; mkdir .\bin\WinDebug\data\common' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\common\sounds&quot; mkdir .\bin\WinDebug\data\common\sounds' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\common\music&quot; mkdir .\bin\WinDebug\data\common\music' />
 					<Add after="cmd /c copy /y /v ..\physgameengine\bin\WinDebug\physgame.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\OgreMain.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\sdl\SDL.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\plugins.cfg .\bin\WinDebug\data\windows" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\settings.cfg .\bin\WinDebug\data\windows" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\cAudio.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v .\data\common\*.mesh .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.skeleton .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.material .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.jpg .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.psd .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /x .\data\common\*.tga .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.tga .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\sounds\*.wav .\bin\WinDebug\data\common\sounds" />
+					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinDebug\data\common\music" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
@@ -52,6 +57,7 @@
 				<Linker>
 					<Add library="physgame" />
 					<Add library="OgreMain" />
+					<Add library="cAudio" />
 					<Add directory="bin/LinuxDebug" />
 					<Add directory="." />
 				</Linker>
@@ -85,18 +91,23 @@
 				<ExtraCommands>
 					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\windows\ogre\&quot; mkdir .\bin\WinRelease\data\windows\ogre' />
 					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\common&quot; mkdir .\bin\WinRelease\data\common' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\common\sounds&quot; mkdir .\bin\WinDebug\data\common\sounds' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\common\music&quot; mkdir .\bin\WinDebug\data\common\music' />
 					<Add after="cmd /c copy /y /v ..\physgameengine\bin\WinRelease\physgame.dll .\bin\WinRelease" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\OgreMain.dll .\bin\WinRelease" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\sdl\SDL.dll .\bin\WinRelease" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\plugins.cfg .\bin\WinRelease\data\windows" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\settings.cfg .\bin\WinRelease\data\windows" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinRelease\data\windows\ogre" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\cAudio.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v .\data\common\*.mesh .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.skeleton .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.material .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.jpg .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.psd .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.tga .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\sounds\*.wav .\bin\WinDebug\data\common\sounds" />
+					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinDebug\data\common\music" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
@@ -114,6 +125,7 @@
 				<Linker>
 					<Add library="physgame" />
 					<Add library="OgreMain" />
+					<Add library="cAudio" />
 					<Add directory="bin/LinuxRelease" />
 					<Add directory="." />
 				</Linker>
