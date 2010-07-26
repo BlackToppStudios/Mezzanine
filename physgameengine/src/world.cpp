@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//ï¿½ Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -194,7 +194,8 @@ namespace phys
 
         //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
         /// @todo TODO add each type of event here (logtest) to make it really easy to log events
-
+		Log(system("pwd"));
+		Log("bundy");
         OneLogTest(temp0, "string");
         OneLogTest(temp1, "char");
         OneLogTest(temp2, "short int");
@@ -506,11 +507,15 @@ namespace phys
             this->LogAndThrow(SDL_GetError());
         }
         this->HasSDLBeenInitialized=true;
-
-        //Setup the SDL render window
-        this->SDLscreen = SDL_SetVideoMode( this->Graphics->getRenderWidth(), this->Graphics->getRenderHeight(),0, SDL_OPENGL);
-        SDL_WM_SetCaption(this->WindowName.c_str(), NULL);
-
+		
+		try
+		{
+			//Setup the SDL render window
+			this->SDLscreen = SDL_SetVideoMode( this->Graphics->getRenderWidth(), this->Graphics->getRenderHeight(),0, SDL_OPENGL);
+			SDL_WM_SetCaption(this->WindowName.c_str(), NULL);
+		}catch (exception& e) {
+			LogAndThrow(e.what());
+		}
         //Start Ogre Without a native render window
         this->OgreGameWindow = this->OgreRoot->initialise(false, this->WindowName);
 

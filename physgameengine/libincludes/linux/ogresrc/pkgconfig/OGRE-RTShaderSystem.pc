@@ -1,0 +1,11 @@
+prefix=/Users/hydrowolfy/Documents/physgame/physgame/physgameengine/libincludes/linux/ogresrc/sdk
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: OGRE-RTShaderSystem
+Description: Real time shader generation component for OGRE
+Version: 1.7.0 
+Requires: OGRE = 1.7.0 
+Libs: -L${libdir} -lOgreRTShaderSystem
+Cflags: -I${includedir}/OGRE/RTShaderSystem 

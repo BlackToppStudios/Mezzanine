@@ -1,0 +1,142 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeArchitecturePreference = i386;
+		activeBuildConfigurationName = Debug;
+		activeTarget = D2AAC045055464E500DB518D /* macphysgame */;
+		addToTargets = (
+			D2AAC045055464E500DB518D /* macphysgame */,
+		);
+		codeSenseManager = 911542EA11F93253007C41A6 /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					833,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 301643769;
+			PBXWorkspaceStateSaveDate = 301643769;
+		};
+		perUserProjectItems = {
+			91FD6E1211FAC03100E5E735 /* PBXTextBookmark */ = 91FD6E1211FAC03100E5E735 /* PBXTextBookmark */;
+			91FD6E1311FAC03100E5E735 /* PBXTextBookmark */ = 91FD6E1311FAC03100E5E735 /* PBXTextBookmark */;
+			91FD6E1D11FAC14D00E5E735 /* PBXTextBookmark */ = 91FD6E1D11FAC14D00E5E735 /* PBXTextBookmark */;
+			91FD6E1E11FAC14D00E5E735 /* XCBuildMessageTextBookmark */ = 91FD6E1E11FAC14D00E5E735 /* XCBuildMessageTextBookmark */;
+			91FD6E2A11FD107000E5E735 /* PBXTextBookmark */ = 91FD6E2A11FD107000E5E735 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 911542E911F93253007C41A6 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	911542E911F93253007C41A6 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	911542EA11F93253007C41A6 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	9153B6CA11F93796005CC20A /* actorrigid.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 3731}}";
+			sepNavSelRange = "{2070, 27}";
+			sepNavVisRange = "{1734, 613}";
+		};
+	};
+	9153B6D311F93796005CC20A /* cameramanager.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 5668}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 891}";
+		};
+	};
+	9153B6D711F93796005CC20A /* crossplatform.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {621, 1846}}";
+			sepNavSelRange = "{3368, 0}";
+			sepNavVisRange = "{3204, 481}";
+		};
+	};
+	9153B6D811F93796005CC20A /* crossplatform.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1111, 1664}}";
+			sepNavSelRange = "{3375, 6}";
+			sepNavVisRange = "{0, 2158}";
+		};
+	};
+	91FD6E1211FAC03100E5E735 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9153B6CA11F93796005CC20A /* actorrigid.cpp */;
+		name = "actorrigid.cpp: 47";
+		rLen = 27;
+		rLoc = 2070;
+		rType = 0;
+		vrLen = 613;
+		vrLoc = 1734;
+	};
+	91FD6E1311FAC03100E5E735 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9153B6D311F93796005CC20A /* cameramanager.cpp */;
+		name = "cameramanager.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 891;
+		vrLoc = 0;
+	};
+	91FD6E1D11FAC14D00E5E735 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9153B6D811F93796005CC20A /* crossplatform.h */;
+		name = "crossplatform.h: 65";
+		rLen = 6;
+		rLoc = 3375;
+		rType = 0;
+		vrLen = 2158;
+		vrLoc = 0;
+	};
+	91FD6E1E11FAC14D00E5E735 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Control reaches end of non-void function";
+		fRef = 9153B6D711F93796005CC20A /* crossplatform.cpp */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 96;
+		rType = 1;
+	};
+	91FD6E2A11FD107000E5E735 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 9153B6D711F93796005CC20A /* crossplatform.cpp */;
+		name = "crossplatform.cpp: 40";
+		rLen = 1;
+		rLoc = 1841;
+		rType = 0;
+		vrLen = 1257;
+		vrLoc = 1545;
+	};
+	D2AAC045055464E500DB518D /* macphysgame */ = {
+		activeExec = 0;
+	};
+}

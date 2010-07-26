@@ -1,0 +1,11 @@
+prefix=/Users/hydrowolfy/Documents/physgame/physgame/physgameengine/libincludes/linux/ogresrc/sdk
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: OGRE-PCZ
+Description: Portal-Connected Zone Scene Manager for OGRE
+Version: 1.7.0 
+Requires: OGRE = 1.7.0 
+Libs: ${libdir}/OGRE/Plugin_PCZSceneManager.so ${libdir}/OGRE/Plugin_OctreeZone.so
+Cflags: -I${includedir}/OGRE/PCZ 
