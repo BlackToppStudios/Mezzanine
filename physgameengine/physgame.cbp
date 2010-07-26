@@ -80,7 +80,7 @@
 					<Add library="OgreMain" />
 					<Add library="Bullet" />
 					<Add library="ticpp" />
-					<Add library="caudio" />
+					<Add library="cAudio" />
 					<Add directory="data/linux/bullet" />
 					<Add directory="data/linux/ogre" />
 					<Add directory="data/linux/convex decomp" />
@@ -93,6 +93,7 @@
 					<Add after="cp data/linux/plugins.cfg bin/LinuxDebug/data/linux/" />
 					<Add after="cp data/linux/settings.cfg bin/LinuxDebug/data/linux/" />
 					<Add after="cp data/linux/ogre/ bin/LinuxDebug/data/linux/ -r" />
+					<Add after="cp data/linux/caudio/*.s* bin/LinuxDebug/" />
 					<Add after="mv bin/LinuxDebug/data/linux/ogre/*Main* bin/LinuxDebug/" />
 					<Add after="rm bin//LinuxDebug/data/linux/ogre/Readme.txt" />
 					<Mode after="always" />
@@ -164,16 +165,19 @@
 					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
 					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
 					<Add directory="libincludes/common/tinyxmlppsrc/tinyxmlpp" />
+					<Add directory="libincludes/linux/caudiosrc/caudio/include" />
 				</Compiler>
 				<Linker>
 					<Add option="`sdl-config --libs`" />
 					<Add library="OgreMain" />
 					<Add library="Bullet" />
 					<Add library="ticpp" />
+					<Add library="cAudio" />
 					<Add directory="data/linux/bullet" />
 					<Add directory="data/linux/ogre" />
 					<Add directory="data/linux/convex decomp" />
 					<Add directory="data/linux/tinyxmlpp" />
+					<Add directory="data/linux/caudio" />
 				</Linker>
 				<ExtraCommands>
 					<Add before="data/linux/checklibs.sh" />
@@ -181,6 +185,7 @@
 					<Add after="cp data/linux/plugins.cfg bin/LinuxRelease/data/linux/" />
 					<Add after="cp data/linux/settings.cfg bin/LinuxRelease/data/linux/" />
 					<Add after="cp data/linux/ogre/ bin/LinuxRelease/data/linux/ -r" />
+					<Add after="cp data/linux/caudio/*.s* bin/LinuxRelease/" />
 					<Add after="mv bin/LinuxRelease/data/linux/ogre/*Main* bin/LinuxRelease/" />
 					<Add after="rm bin//LinuxRelease/data/linux/ogre/Readme.txt" />
 					<Mode after="always" />

@@ -74,6 +74,7 @@
 #include "quaternion.h"
 #include "ray.h"
 //#include "sound.h"
+#include "soundmanager.h"
 #include "vector3.h"
 #include "vector3wactor.h"
 #include "world.h"

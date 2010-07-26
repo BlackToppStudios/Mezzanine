@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -81,8 +81,12 @@ namespace phys
             /// @details The class destructor.
             ~SoundManager();
             /// @brief Inherited Initializer.
-            /// @details Written to all the class to compile, should be ignored.  Use InitializeManager() instead.
+            /// @details Written to allow the class to compile, this currently does nothing, but could be used to run code Use InitializeManager() instead.
             void Initialize();
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void DoMainLoopItems();
+
             /// @brief Initializes the Manager.
             /// @details This function will initialize the manager using the device and parameters provided.
             /// You need to call this function if you passed false into the sound manager constructor before

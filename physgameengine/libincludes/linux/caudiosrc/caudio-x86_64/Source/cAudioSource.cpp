@@ -556,11 +556,12 @@ namespace cAudio
 		return velocity;
 	}
 
-#ifdef CAUDIO_EFX_ENABLED
 	const char* cAudioSource::getName() const
 	{
 	    return mName.c_str();
 	}
+
+#ifdef CAUDIO_EFX_ENABLED
 
 	unsigned int cAudioSource::getNumEffectSlotsAvailable() const
 	{
