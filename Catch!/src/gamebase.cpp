@@ -17,8 +17,6 @@ const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1
 
 Generic6DofConstraint* Dragger=NULL;
 
-bool Mfirstrun=true;
-
 int main(int argc, char **argv)
 {
     // Set the Title
@@ -83,6 +81,8 @@ bool PostRender()
     std::stringstream timestream;
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
+
+    static bool Mfirstrun=true;
 
     if (1000<gametime && 1100>gametime && Mfirstrun)
     {
@@ -385,7 +385,7 @@ void LoadContent()
 
     Sound *sound1, *music1, *music2;
     TheWorld.Sounds->CreateSoundSet("Announcer");
-    sound1 = TheWorld.Sounds->CreateSound("Welcome", "data/common/sounds/welcomefun-1.wav", false);
+    sound1 = TheWorld.Sounds->CreateSound("Welcome", "data/common/sounds/welcomefun-1.ogg", false);
     TheWorld.Sounds->AddSoundToSoundSet("Announcer", sound1);
 
     TheWorld.Sounds->CreateSoundSet("SoundTrack");
