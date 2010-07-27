@@ -47,6 +47,9 @@ class btCollisionDispatcher;
 class btSequentialImpulseConstraintSolver;
 class btSoftRigidDynamicsWorld;
 class btDynamicsWorld;
+class btCollisionShape;
+
+#include <map>
 
 #include "managerbase.h"
 #include "constraint.h"
@@ -55,6 +58,7 @@ namespace phys
 {
     // internal forward declarations
     class World;
+    class ActorBase;
     namespace debug {
         class InternalDebugDrawer;
     }
@@ -76,6 +80,7 @@ namespace phys
             //Real PhysicsStepsize; // use this->GameWorld->TargetFrameLength instead
             unsigned short int CollisionAge;
             Real Impulse;
+            std::map< String, btCollisionShape* > PhysicsShapes;
 
             // Some Items bullet requires
             btAxisSweep3* BulletBroadphase;
@@ -166,10 +171,23 @@ namespace phys
             /// @param Constraint The constraint to be removed.
             void RemoveConstraint(TypedConstraint* Constraint);
 
+            /// @brief Stores an already generated physics shape.
+            /// @details This function will take an actors physics shape and store it for re-use in other actors, in case a shape is able to be re-used by other actors.
+            /// @param Actor The actor from which to store the shape.
+            /// @param ShapeName The name you wish to assign to the shape being stored.
+            void StorePhysicsShape(ActorBase* Actor, String &ShapeName);
+
+            /// @brief Applies a previously stored shape.
+            /// @details This function will take a stored shape and apply it to the actor provided.
+            /// @param Actor The actor to which you want to apply the shape.
+            /// @param ShapeName The name of the shape you wish to have applied to the actor.
+            void ApplyPhysicsShape(ActorBase* Actor, String &ShapeName);
+
             /// @brief Sets the Collision Parameters.
             /// @details Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events.  The lower these numbers, the more events will be generated.  @n
             /// These numbers both default to 1.
-            /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.
+            /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.  Default: 1
+            /// @param Force The amount of force applied in the collision to filter by.  This amount can vary more then the other param based on what you need.  Default: 1.0
             void SetCollisionParams(const unsigned short int Age, Real Force);
 
             /// @brief Gets the Collision Age limit.

@@ -57,13 +57,18 @@ namespace phys{
         this->MotionState = new internal::PhysMotionState(this->node);
         this->Shape = new btEmptyShape();
         this->CreateEntity(name, file, group);
-        ActorType=ActorBase::Actorbase;
+        ActorSounds = NULL;
+        ShapeIsSaved = false;
+        ActorType = ActorBase::Actorbase;
     }
 
     ActorBase::~ActorBase ()
     {
         delete MotionState;
-        delete Shape;
+        if(!ShapeIsSaved)
+        {
+            delete Shape;
+        };
         delete node;
         delete entity;
     }
@@ -288,6 +293,11 @@ namespace phys{
     int ActorBase::GetType()
     {
         return this->ActorType;
+    }
+
+    const bool ActorBase::GetShapeIsSaved()
+    {
+        return ShapeIsSaved;
     }
 
     ///////////////////////////////////

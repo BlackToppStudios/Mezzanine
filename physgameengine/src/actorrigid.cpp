@@ -148,6 +148,7 @@ namespace phys{
             compound->addChildShape(trans,convexShape);
         }
         Shape=compound;
+        ShapeIsSaved = false;
         this->physrigidbody->setCollisionShape(this->Shape);
 
         delete[] vertices;
@@ -174,7 +175,10 @@ namespace phys{
     {
         if(accuracy==1)
         {
-            delete Shape;
+            if(!ShapeIsSaved)
+            {
+                delete Shape;
+            }
             /// @todo - Check for thread safety
             btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateTrimesh());
             btShapeHull *hull = new btShapeHull(tmpshape);
@@ -193,6 +197,7 @@ namespace phys{
             btVector3 inertia(0,0,0);
             convexShape->calculateLocalInertia(mass, inertia);
             Shape = convexShape;
+            ShapeIsSaved = false;
             this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
             this->physrigidbody->setCollisionShape(this->Shape);
             this->physrigidbody->setMassProps(mass,inertia);
@@ -200,7 +205,10 @@ namespace phys{
         }
         if(accuracy==2)
         {
-            delete Shape;
+            if(!ShapeIsSaved)
+            {
+                delete Shape;
+            }
             int depth=5;
             float cpercent=5;
             float ppercent=15;
@@ -215,7 +223,10 @@ namespace phys{
         }
         if(accuracy==3)
         {
-            delete Shape;
+            if(!ShapeIsSaved)
+            {
+                delete Shape;
+            }
             int depth=7;
             float cpercent=5;
             float ppercent=10;
@@ -230,7 +241,10 @@ namespace phys{
         }
         if(accuracy==4)
         {
-            delete Shape;
+            if(!ShapeIsSaved)
+            {
+                delete Shape;
+            }
             btGImpactMeshShape* gimpact = new btGImpactMeshShape(this->CreateTrimesh());
             btScalar mass=this->physrigidbody->getInvMass();
             mass=1/mass;
@@ -240,6 +254,7 @@ namespace phys{
             gimpact->setMargin(0.04);
             gimpact->updateBound();
             Shape=gimpact;
+            ShapeIsSaved = false;
             this->physrigidbody->setCollisionShape(this->Shape);
             this->physrigidbody->setMassProps(mass,inertia);
             return;
@@ -253,6 +268,10 @@ namespace phys{
         test.ExtractOgreVector3(this->entity->getMesh()->getBounds().getSize());
         if(test.X==test.Y && test.Y==test.Z)
         {
+            if(!ShapeIsSaved)
+            {
+                delete Shape;
+            }
             Real radius=test.X*0.5;
             btSphereShape* sphereshape = new btSphereShape(radius);
             btScalar mass=this->physrigidbody->getInvMass();
@@ -260,6 +279,7 @@ namespace phys{
             btVector3 inertia(0,0,0);
             sphereshape->calculateLocalInertia(mass, inertia);
             Shape = sphereshape;
+            ShapeIsSaved = false;
             this->Shape->setLocalScaling(btVector3(1.f,1.f,1.f));
             this->physrigidbody->setCollisionShape(this->Shape);
             this->physrigidbody->setMassProps(mass,inertia);
@@ -273,11 +293,15 @@ namespace phys{
 
     void ActorRigid::CreateShapeFromMeshStatic()
     {
-        delete Shape;
+        if(!ShapeIsSaved)
+        {
+            delete Shape;
+        }
 
         /// @todo - Check for thread safety
         btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(this->CreateTrimesh(),true);
         this->Shape=tmpshape;
+        ShapeIsSaved = false;
         this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
         this->physrigidbody->setCollisionShape(this->Shape);
     }

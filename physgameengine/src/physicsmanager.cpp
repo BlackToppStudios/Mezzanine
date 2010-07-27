@@ -353,9 +353,9 @@ namespace phys
                     ActorBase* ActA = this->GameWorld->Actors->FindActor(objectA);
                     ActorBase* ActB = this->GameWorld->Actors->FindActor(objectB);
                     Vector3 emptyloc(0,0,0);
-                    //EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
+                    EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
                     //create collision event
-                    //this->GameWorld->Events->AddEvent(ColEvent);
+                    this->GameWorld->Events->AddEvent(ColEvent);
                     this->GameWorld->Log("Collision Event Logged at:");
                     this->GameWorld->Log(emptyloc);
                 }
@@ -413,6 +413,18 @@ namespace phys
     void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
     {
         this->BulletDynamicsWorld->removeConstraint(Constraint->ConstraintBase);
+    }
+
+    void PhysicsManager::StorePhysicsShape(ActorBase* Actor, String &ShapeName)
+    {
+        this->PhysicsShapes[ShapeName] = Actor->Shape;
+        Actor->ShapeIsSaved = true;
+    }
+
+    void PhysicsManager::ApplyPhysicsShape(ActorBase* Actor, String &ShapeName)
+    {
+        Actor->Shape = this->PhysicsShapes[ShapeName];
+        Actor->ShapeIsSaved = true;
     }
 
     void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)

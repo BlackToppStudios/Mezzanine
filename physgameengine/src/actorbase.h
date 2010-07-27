@@ -83,6 +83,7 @@ namespace phys
         private:
             friend class World;
             friend class ActorContainerBase;
+            friend class PhysicsManager;
 
         public:
             /// @enum ActorTypeName
@@ -120,6 +121,9 @@ namespace phys
 
             /// @brief This variable stores the type of actor that this class is.
             ActorTypeName ActorType;
+
+            /// @brief Stores whether or not the current physics shape has been saved in the manager.
+            bool ShapeIsSaved;
 
             /// @brief Creates a trimesh shape from the mesh file.
             /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n
@@ -189,10 +193,18 @@ namespace phys
             virtual void SetBulletOrientation (Quaternion Rotation);
 
         public:
+            ///@brief This is a collection of sounds for use with this actor.
+            SoundSet* ActorSounds;
+
             /// @brief Gets the type of actor this class is.
             /// @details This function will get the type of class that you are working with for checking and casting.
             /// @return ActorTypeName The type of actor that this is.
             virtual int GetType();
+
+            /// @brief Gets whether this actors current shape has been saved or not.
+            /// @details This function will tell you if it's current physics shape has been saved for later use or not.
+            /// @return Returns whether or not the shape of this actor has been saved.
+            const bool GetShapeIsSaved();
 
 ///////////////////////////////////////////////////////////////////////////////
 // Creation, Destruction and Initialization
