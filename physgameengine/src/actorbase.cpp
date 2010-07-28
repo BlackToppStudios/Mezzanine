@@ -58,6 +58,7 @@ namespace phys{
         this->Shape = new btEmptyShape();
         this->CreateEntity(name, file, group);
         ActorSounds = NULL;
+        Animation = NULL;
         ShapeIsSaved = false;
         ActorType = ActorBase::Actorbase;
     }
@@ -305,6 +306,53 @@ namespace phys{
     const bool ActorBase::GetShapeIsSaved()
     {
         return ShapeIsSaved;
+    }
+
+    void ActorBase::SetBasicCollisionParams(Real Friction, Real Restitution)
+    {
+        this->CollisionObject->setFriction(Friction);
+        this->CollisionObject->setRestitution(Restitution);
+    }
+
+    void ActorBase::SetAnimation(String &AnimationName, bool Loop)
+    {
+        Animation = entity->getAnimationState(AnimationName);
+        Animation->setLoop(Loop);
+    }
+
+    void ActorBase::EnableAnimation(bool Enable)
+    {
+        if(Animation)
+        {
+            Animation->setEnabled(Enable);
+        }
+    }
+
+    bool ActorBase::IsAnimated()
+    {
+        if(Animation)
+        {
+            return Animation->getEnabled();
+        }else{
+            return false;
+        }
+    }
+
+    void ActorBase::AdvanceAnimation(Real Time)
+    {
+        if(Animation)
+        {
+            Animation->addTime(Time);
+        }
+    }
+
+    void ActorBase::RemoveSetAnimation()
+    {
+        if(Animation)
+        {
+            Animation->setEnabled(false);
+            Animation = NULL;
+        }
     }
 
     ///////////////////////////////////

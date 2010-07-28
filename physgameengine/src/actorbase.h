@@ -53,6 +53,7 @@ class btTriangleMesh;
 
 namespace Ogre
 {
+    class AnimationState;
     class Entity;
     class SceneNode;
     class Vector3;
@@ -109,6 +110,9 @@ namespace phys
 
             ///@brief This class encapsulates the functionality of the Ogre::SceneNode using this
             Ogre::SceneNode* node;
+
+            ///@brief This class encapsulates the functionality of the Ogre::AnimationState using this
+            Ogre::AnimationState* Animation;
 
             ///@brief This class encapsulates the functionality of the btCollisionShape using this
             btCollisionShape* Shape;
@@ -205,6 +209,45 @@ namespace phys
             /// @details This function will tell you if it's current physics shape has been saved for later use or not.
             /// @return Returns whether or not the shape of this actor has been saved.
             const bool GetShapeIsSaved();
+
+            /// @brief Sets the basic parameters for more realistic collision behavior.
+            /// @details This function will set the Friction and Resititution of the actor, which will enable it to collide
+            /// and interact with other actors in a game world more realistically.
+            /// @param Friction Should be self explanitory, higher values will resist sliding across surfaces.  This number is the
+            /// coefficient of friction.  Range is from 0.0 to 2.0.  Behavior in this regard is determined by the friction of both
+            /// colliding bodies.  @n Default: 0.5
+            /// @param Restitution The coefficient of restitution determines how much energy is left after a collision with an object.
+            /// Range is from 0.0 to 1.0.  Behavior in this regard is determined by the restitution of both colliding bodies.
+            /// @n Default: 0.0
+            void SetBasicCollisionParams(Real Friction, Real Restitution);
+
+            /// @brief Sets the animation for this object.
+            /// @details This function will get the specified animation for this object stored in the mesh file, and will loop the
+            /// animation if specified.
+            /// @param AnimationName Name of the stored animation to be loaded.
+            /// @param Loop Whether or not you want the animation to loop.  For example, you would want an idle animation to loop,
+            /// but not a death animation.
+            void SetAnimation(String &AnimationName, bool Loop);
+
+            /// @brief Enables the animation if one is set.
+            /// @details This function will enable the animation if passed true, making the object animate.  If passed false will
+            /// disable the animation.
+            /// @param Enable True to enable the animation or false to disable the animation.
+            void EnableAnimation(bool Enable);
+
+            /// @brief Tells whether this actor is animated or not.
+            /// @details This function will return true if the actor has an animation set and it is enabled.
+            /// @return Returns true if an animation is set and enabled.
+            bool IsAnimated();
+
+            /// @brief Advances the animation, making it animate.
+            /// @details You need to call this every frame while the actor is to be animated, otherwise even with the animation
+            /// enabled you will see no change in the animation.
+            void AdvanceAnimation(Real Time);
+
+            /// @brief Unloads a loaded animation.
+            /// @details This function will remove the existing set animation.
+            void RemoveSetAnimation();
 
 ///////////////////////////////////////////////////////////////////////////////
 // Creation, Destruction and Initialization

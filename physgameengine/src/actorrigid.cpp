@@ -71,6 +71,10 @@ namespace phys{
         btScalar bmass=pmass;
         this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
         CollisionObject=physrigidbody;
+        if(0.0 == bmass)
+        {
+            CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+        }
     }
 
     void ActorRigid::PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent)
@@ -199,7 +203,7 @@ namespace phys{
             convexShape->calculateLocalInertia(mass, inertia);
             Shape = convexShape;
             ShapeIsSaved = false;
-            this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
+            this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
             this->physrigidbody->setCollisionShape(this->Shape);
             this->physrigidbody->setMassProps(mass,inertia);
             return;
@@ -302,7 +306,7 @@ namespace phys{
         btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(this->CreateTrimesh(),true);
         this->Shape=tmpshape;
         ShapeIsSaved = false;
-        this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
+        this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
         this->physrigidbody->setCollisionShape(this->Shape);
     }
 

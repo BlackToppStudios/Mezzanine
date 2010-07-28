@@ -67,6 +67,8 @@ bool PostRender()
 	//getting a message from the event manager
 	EventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
 
+    Whole LastFrame = CurrentTime->getMilliSecondsSinceLastFrame();
+
     // Is CurrentTime a valid event?
     while(0 != CurrentTime)
     {
@@ -82,16 +84,25 @@ bool PostRender()
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
 
-    static bool Mfirstrun=true;
+    ActorBase* Act1 = TheWorld.Actors->FindActor("RobotWayUpFrontLeft");
+    ActorBase* Act2 = TheWorld.Actors->FindActor("RobotWayUpFrontRight");
+    if (Act1->IsAnimated())
+    {
+        Act1->AdvanceAnimation((Real)0.001 * LastFrame);
+    }
 
-    if (1000<gametime && 1100>gametime && Mfirstrun)
+    if (Act2->IsAnimated())
+    {
+        Act2->AdvanceAnimation((Real)0.001 * LastFrame);
+    }
+
+    if (1000<gametime && 1040>gametime)
     {
         Sound* Welcome = NULL;
         Welcome = TheWorld.Sounds->GetSoundByName("Welcome");
         if(Welcome)
         {
             Welcome->Play2d(false);
-            Mfirstrun=false;
         }
     }
 
@@ -318,7 +329,7 @@ void LoadContent()
         namestream << robotprefix << (c+4);
         TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
         TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(3);
-        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -50.0, -PinSpacing));
+        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
     }
 
     for(unsigned int c=0; c<2; c++)     //the row with 2 pins
@@ -327,14 +338,14 @@ void LoadContent()
         namestream << robotprefix << (c+7);
         TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
         TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(2);
-        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), 0.0, -PinSpacing*2));
+        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -33.0, -PinSpacing*2));
     }
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
     TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
     TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-    TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 50.0, -PinSpacing*3));
+    TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
 
     object5 = new ActorRigid (0,"Plane","Plane.mesh",groupname,&TheWorld);
     object5->CreateShapeFromMeshStatic();
@@ -349,6 +360,8 @@ void LoadContent()
     object1->CreateShapeFromMeshDynamic(1);
     object1->SetInitLocation(Vector3(400,70,100));
     object1->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
+    object1->SetAnimation("Idle", true);
+    object1->EnableAnimation(true);
 
     object2 = new ActorRigid (150.0f,"WoodSphere","Sphere_Wood.mesh",groupname,&TheWorld);
     object2->CreateSphereShapeFromMesh();
@@ -364,6 +377,8 @@ void LoadContent()
     object4->CreateShapeFromMeshDynamic(4);
     object4->SetInitLocation(Vector3(-400,10, 100));
     object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
+    object4->SetAnimation("Idle", true);
+    object4->EnableAnimation(true);
 
     object7 = new ActorRigid (200.0f,"MetalSphere2","Sphere_Metal.mesh",groupname,&TheWorld);
     object7->CreateSphereShapeFromMesh();
