@@ -96,6 +96,7 @@ namespace phys
             {
                 Actorbase,
                 Actorrigid,
+                Actorragdoll,
                 Actorsoft,
                 Actorterrain
             };

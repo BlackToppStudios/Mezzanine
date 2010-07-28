@@ -316,6 +316,10 @@ namespace phys{
 
     void ActorBase::SetAnimation(String &AnimationName, bool Loop)
     {
+        if(this->IsAnimated())
+        {
+            Animation->setEnabled(false);
+        }
         Animation = entity->getAnimationState(AnimationName);
         Animation->setLoop(Loop);
     }
