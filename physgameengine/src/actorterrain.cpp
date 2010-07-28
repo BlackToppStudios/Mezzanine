@@ -59,6 +59,7 @@ namespace phys
     void ActorTerrain::CreateTerrain()
     {
         CollisionObject = new btCollisionObject();
+        ActorType = ActorBase::Actorterrain;
     }
 
     void ActorTerrain::CreateShapeFromMeshStatic()
