@@ -1,4 +1,4 @@
-//Â© Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -37,50 +37,61 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physgame_h
-#define _physgame_h
+#ifndef _actorterrain_cpp
+#define _actorterrain_cpp
 
-///////////////////////////////////////////////////////////////////////////////
-/// @file physgame.h
-/// @brief A single file that includes all of the physgame engine
-/// @details This file exists solely to make it easier for others to include
-/// parts of the physgame engine in their project with out needing to know or
-/// care about the internals of our projects.
-///////////////////////////////////////////////////////////////////////////////
+#include "btBulletDynamicsCommon.h"
+#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 
-// We put headers in our headers so we can include while we include
-#include "actorbase.h"
-#include "actorcontainerbase.h"
-#include "actorcontainervector.h"
-#include "actorrigid.h"
-#include "actorsoft.h"
 #include "actorterrain.h"
-#include "callbackmanager.h"
-#include "camera.h"
-#include "cameramanager.h"
-#include "constraint.h"
-#include "crossplatform.h"
-#include "datatypes.h"
-#include "eventbase.h"
-#include "eventmanager.h"
-#include "eventquit.h"
-#include "eventrendertime.h"
-#include "eventuserinput.h"
-#include "graphicsmanager.h"
-#include "linegroup.h"
-#include "managerbase.h"
-#include "metacode.h"
-#include "physicsmanager.h"
-#include "plane.h"
-#include "quaternion.h"
-#include "ray.h"
-#include "sound.h"
-#include "soundlistener.h"
-#include "soundmanager.h"
-#include "vector3.h"
-#include "vector3wactor.h"
-#include "world.h"
-#include "worldgetset.h"
-#include "worldquerytool.h"
+
+namespace phys
+{
+    ActorTerrain::ActorTerrain(String name, String file, String group, World* _World) : ActorBase(name, file, group, _World)
+    {
+        CreateTerrain();
+    }
+
+    ActorTerrain::~ActorTerrain()
+    {
+    }
+
+    void ActorTerrain::CreateTerrain()
+    {
+        CollisionObject = new btCollisionObject();
+    }
+
+    void ActorTerrain::CreateShapeFromMeshStatic()
+    {
+        if(!ShapeIsSaved)
+        {
+            delete Shape;
+        }
+        /// @todo - Check for thread safety
+        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(this->CreateTrimesh(),true);
+        this->Shape=tmpshape;
+        ShapeIsSaved = false;
+        this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
+        this->CollisionObject->setCollisionShape(this->Shape);
+    }
+
+    void ActorTerrain::CreateShapeFromMeshDynamic(short unsigned int accuracy)
+    {
+    }
+
+    void ActorTerrain::AddObjectToWorld (World *TargetWorld)
+    {
+        TargetWorld->Physics->GetPhysicsWorldPointer()->addCollisionObject(this->CollisionObject);
+        //TargetWorld->Physics->BulletDynamicsWorld->addRigidBody(this->CollisionObject);
+        this->AttachToGraphics();
+    }
+
+    void ActorTerrain::RemoveObjectFromWorld(World* TargetWorld)
+    {
+        TargetWorld->Physics->GetPhysicsWorldPointer()->removeCollisionObject(this->CollisionObject);
+        //TargetWorld->Physics->BulletDynamicsWorld->removeRigidBody(this->CollisionObject);
+        this->DetachFromGraphics();
+    }
+}
 
 #endif

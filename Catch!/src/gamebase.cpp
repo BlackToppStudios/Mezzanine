@@ -285,7 +285,8 @@ bool CheckForEsc()
 
 void LoadContent()
 {
-    ActorRigid *object1, *object2, *object3, *object4, *object5, *object6, *object7;
+    ActorRigid *object1, *object2, *object3, *object4, *object7;
+    ActorRigid *object5, *object6;
     //Ogre Setup Code
     String groupname ("Group1");
     String filerobot ("robot.mesh");
@@ -336,11 +337,11 @@ void LoadContent()
     TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 50.0, -PinSpacing*3));
 
     object5 = new ActorRigid (0,"Plane","Plane.mesh",groupname,&TheWorld);
-    object5->CreateShapeFromMeshDynamic(4);
+    object5->CreateShapeFromMeshStatic();
     object5->SetInitLocation(Vector3(0.0,-100,-300.0));
 
     object6 = new ActorRigid (0,"Ramp","Plane.mesh",groupname,&TheWorld);
-    object6->CreateShapeFromMeshDynamic(1);
+    object6->CreateShapeFromMeshStatic();
     object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
 
@@ -352,12 +353,12 @@ void LoadContent()
     object2 = new ActorRigid (150.0f,"WoodSphere","Sphere_Wood.mesh",groupname,&TheWorld);
     object2->CreateSphereShapeFromMesh();
     object2->SetActorScaling(Vector3(0.5,0.5,0.5));
-    object2->SetInitLocation(Vector3(-130.0,2800.0,-1150.0));
+    object2->SetInitLocation(Vector3(-140.0,2800.0,-1150.0));
 
     object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld); Schedule :
     object3->CreateSphereShapeFromMesh();
     object3->SetActorScaling(Vector3(0.7,0.7,0.7));
-    object3->SetInitLocation(Vector3(140.0,1800.0,-1300.0));
+    object3->SetInitLocation(Vector3(150.0,1800.0,-1300.0));
 
     object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname,&TheWorld);
     object4->CreateShapeFromMeshDynamic(4);

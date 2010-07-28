@@ -71,6 +71,10 @@ namespace phys{
         };
         delete node;
         delete entity;
+        if(CollisionObject)
+        {
+            delete CollisionObject;
+        }
     }
 
     ///////////////////////////////////
@@ -268,9 +272,12 @@ namespace phys{
 
     void ActorBase::AttachToGraphics ()
     {
-        Vector3 temp;
-        temp = GetBulletLocation();
-        this->node->setPosition(temp.GetOgreVector3());
+        Vector3 tempv;
+        Quaternion tempq;
+        tempv = GetBulletLocation();
+        tempq.ExtractBulletQuaternion(CollisionObject->getWorldTransform().getRotation());
+        this->node->setPosition(tempv.GetOgreVector3());
+        this->node->setOrientation(tempq.GetOgreQuaternion());
         this->node->attachObject(this->entity);
     }
 

@@ -63,6 +63,7 @@ namespace phys{
     ActorRigid::~ActorRigid ()
     {
         delete physrigidbody;
+        CollisionObject = NULL;
     }
 
     void ActorRigid::CreateRigidObject (Real pmass)
@@ -297,7 +298,6 @@ namespace phys{
         {
             delete Shape;
         }
-
         /// @todo - Check for thread safety
         btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(this->CreateTrimesh(),true);
         this->Shape=tmpshape;
