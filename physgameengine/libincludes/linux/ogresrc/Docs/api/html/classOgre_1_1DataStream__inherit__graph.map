@@ -1,5 +1,0 @@
-<area shape="rect" href="$classOgre_1_1FileHandleDataStream.html" title="Common subclass of DataStream for handling data from C&#45;style file handles." alt="" coords="347,5,549,32">
-<area shape="rect" href="$classOgre_1_1FileStreamDataStream.html" title="Common subclass of DataStream for handling data from std::basic_istream." alt="" coords="344,56,552,82">
-<area shape="rect" href="$classOgre_1_1MemoryDataStream.html" title="Common subclass of DataStream for handling data from chunks of memory." alt="" coords="352,106,544,133">
-<area shape="rect" href="$classOgre_1_1ZipDataStream.html" title="Dummy version of cache to test no caching." alt="" coords="368,157,528,184">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="7,81,105,108">

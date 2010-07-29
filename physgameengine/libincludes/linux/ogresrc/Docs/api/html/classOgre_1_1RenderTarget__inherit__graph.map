@@ -1,4 +1,0 @@
-<area shape="rect" href="$classOgre_1_1MultiRenderTarget.html" title="This class represents a render target that renders to multiple RenderTextures at..." alt="" coords="5,162,179,188">
-<area shape="rect" href="$classOgre_1_1RenderTexture.html" title="This class represents a RenderTarget that renders to a Texture." alt="" coords="203,162,352,188">
-<area shape="rect" href="$classOgre_1_1RenderWindow.html" title="Manages the target rendering window." alt="" coords="376,162,528,188">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="219,7,336,34">

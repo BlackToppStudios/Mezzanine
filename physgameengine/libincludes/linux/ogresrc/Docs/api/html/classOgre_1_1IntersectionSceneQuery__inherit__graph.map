@@ -1,4 +1,0 @@
-<area shape="rect" href="$classOgre_1_1DefaultIntersectionSceneQuery.html" title="Default implementation of IntersectionSceneQuery." alt="" coords="57,239,316,265">
-<area shape="rect" href="$classOgre_1_1SceneQuery.html" title="A class for performing queries on a scene." alt="" coords="5,84,144,111">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="17,7,132,33">
-<area shape="rect" href="$classOgre_1_1IntersectionSceneQueryListener.html" title="Alternative listener class for dealing with IntersectionSceneQuery." alt="" coords="168,84,432,111">

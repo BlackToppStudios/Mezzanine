@@ -1,3 +1,0 @@
-<area shape="rect" href="$classOgre_1_1ShadowRenderable.html" title="Class which represents the renderable aspects of a set of shadow volume faces." alt="" coords="57,84,239,111">
-<area shape="rect" href="$classOgre_1_1Renderable.html" title="Abstract class defining the interface all renderable objects must implement." alt="" coords="5,7,136,34">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="160,7,291,34">

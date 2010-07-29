@@ -1,3 +1,0 @@
-<area shape="rect" href="$classOgre_1_1DistanceLodStrategy.html" title="Level of detail strategy based on distance from camera." alt="" coords="5,162,200,188">
-<area shape="rect" href="$classOgre_1_1PixelCountLodStrategy.html" title="Level of detail strategy based on pixel count approximation from bounding sphere..." alt="" coords="224,162,429,188">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="177,7,252,34">

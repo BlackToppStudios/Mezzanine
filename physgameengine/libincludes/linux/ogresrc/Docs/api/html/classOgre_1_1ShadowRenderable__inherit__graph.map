@@ -1,5 +1,0 @@
-<area shape="rect" href="$classOgre_1_1Entity_1_1EntityShadowRenderable.html" title="Nested class to allow entity shadows." alt="" coords="493,6,752,32">
-<area shape="rect" href="$classOgre_1_1ManualObject_1_1ManualObjectSectionShadowRenderable.html" title="Nested class to allow shadows." alt="" coords="417,56,828,83">
-<area shape="rect" href="$classOgre_1_1StaticGeometry_1_1LODBucket_1_1LODShadowRenderable.html" title="Nested class to allow shadows." alt="" coords="425,107,820,134">
-<area shape="rect" href="$classOgre_1_1Renderable.html" title="Abstract class defining the interface all renderable objects must implement." alt="" coords="7,31,137,58">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="7,82,137,108">
