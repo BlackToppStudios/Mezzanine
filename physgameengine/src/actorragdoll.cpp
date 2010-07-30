@@ -40,6 +40,9 @@
 #ifndef _actorragdoll_cpp
 #define _actorragdoll_cpp
 
+#include "btBulletDynamicsCommon.h"
+#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+
 #include "actorragdoll.h"
 
 namespace phys
