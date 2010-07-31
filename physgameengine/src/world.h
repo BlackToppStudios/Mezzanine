@@ -187,6 +187,10 @@ namespace phys
             Ogre::Viewport* OgreViewport;
             Ogre::SceneManager* OgreSceneManager;
 
+            /// @internal
+            /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+            std::list< std::pair<short int, ManagerBase*> > ManagerList;
+
         public:
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -400,6 +404,8 @@ namespace phys
             /// use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of
             /// debugging data and creating in game logs and recreations, this can be very useful.
             std::stringstream LogStream;
+
+
     };
 }
 #endif
