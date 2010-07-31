@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #Check for bullet library
-	#requires automake freeglut3-dev
 if [ -f "data/linux/bullet/libBullet.a" ]
 then
 	echo "Bullet Library present."
@@ -74,13 +73,13 @@ else
 		ln -s libcAudio* libcAudio.so
 		cd ../../..
 	else
-		
+
 		echo "cAudio Missing, Beginning cAudio Build."
 		cd libincludes/linux/caudiosrc/
 		ln -s caudio-`uname -m` caudio
 		cd $caudiodir/Source/
 		make
-		cd ../../../../..				
+		cd ../../../../..
 		mkdir -p data/linux/caudio/
 		cp libincludes/linux/caudiosrc/$caudiodir/Source/libcAudio* data/linux/caudio/
 		cd data/linux/caudio/
@@ -101,11 +100,15 @@ else
 	else
 		echo "Ogre Missing, Beginning Ogre Build"
 		cd libincludes/linux/ogresrc/
+		if [ -f "`which cmake`" ]
+	        then
+        	    echo Cmake missing build will fail. Please install cmake.
+        	fi
 		cmake .
 		make
 	fi
 	cp -a lib/libOgreMain.* ../../../data/linux/ogre/
 	cp lib/RenderSystem_GL.so ../../../data/linux/ogre/
 	cd ../../..
-fi	
+fi
 
