@@ -42,10 +42,23 @@
 
 #include "actorbase.h"
 
+class btRigidBody;
+
 namespace phys
 {
+    typedef std::vector< btRigidBody* > BodyParts;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class ActorRagDoll
+    /// @headerfile actorragdoll.h
+    /// @brief This is the ragdoll class for actors.
+    /// @details The other actor class cannot support ragdolls as they all work with only
+    /// a single physics body.  Ragdolls explicitly need to work with multiple physics
+    /// bodies(the limbs), and so ragdolls get their own class.
+    ///////////////////////////////////////
     class ActorRagDoll : public ActorBase
     {
+        protected:
+            BodyParts* Limbs;
         public:
             ActorRagDoll(String name, String file, String group, World* _World);
             ~ActorRagDoll();

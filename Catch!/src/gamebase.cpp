@@ -93,7 +93,7 @@ bool PostRender()
 
     if (Act2->IsAnimated())
     {
-        Act2->AdvanceAnimation((Real)0.001 * LastFrame);
+        Act2->AdvanceAnimation((Real)0.0001 * LastFrame);
     }
 
     if (1000<gametime && 1040>gametime)

@@ -75,9 +75,9 @@ namespace phys
     /// @details The actor classes store and manage all the relevant data regarding
     /// objects inside the World.  They serve as a binder between the physics and
     /// graphics for objects and have functions that allow the manipulation of objects
-    /// loaded into the World.  Currently there are 3 actor classes: ActorBase,
-    /// ActorRigid, ActorSoft. @n
-    /// ActorBase is a base class that serves as a template for the other three actor classes. @n
+    /// loaded into the World.  Currently there are 5 actor classes: ActorBase,
+    /// ActorRigid, ActorSoft, ActorTerrain, ActorRagDoll. @n
+    /// ActorBase is a base class that serves as a template for the other four actor classes. @n
     /// ActorBase should never be created, as it lacks the functionality needed for most objects.
     ///////////////////////////////////////
     class ActorBase {
@@ -95,8 +95,8 @@ namespace phys
             enum ActorTypeName
             {
                 Actorbase,
-                Actorrigid,
                 Actorragdoll,
+                Actorrigid,
                 Actorsoft,
                 Actorterrain
             };
