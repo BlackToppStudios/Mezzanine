@@ -498,38 +498,38 @@ namespace phys
             /// @brief This gets the ActorManager from the manager list.
             /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
             /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
-            ActorContainerBase* GetActorManager(short unsigned int WhichOne=0);
+            ActorContainerBase* GetActorManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the CallbackManager from the manager list.
             /// @param WhichOne If you have multiple Managers this will choose which one to return.
             /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
-            CallBackManager* GetCallBackManager(short unsigned int WhichOne=0);
+            CallBackManager* GetCallBackManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the CameraManager from the manager list.
             /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.
             /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
-            CameraManager* GetCameraManager(short unsigned int WhichOne=0);
+            CameraManager* GetCameraManager(const short unsigned int &WhichOne=0);
 
 
             /// @brief This gets the EventManager from the manager list.
             /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
             /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
-            EventManager* GetEventManager(short unsigned int WhichOne=0);
+            EventManager* GetEventManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the GraphicsManager from the manager list.
             /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
             /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
-            GraphicsManager* GetGraphicsManager(short unsigned int WhichOne=0);
+            GraphicsManager* GetGraphicsManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the PhysicsManager from the manager list.
             /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.
             /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
-            PhysicsManager* GetPhysicsManager(short unsigned int WhichOne=0);
+            PhysicsManager* GetPhysicsManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the SoundManager from the manager list.
             /// @param WhichOne If you have multiple SoundManagers this will choose which one to return.
             /// @return This returns a pointer to a SoundManager, or a NULL pointer if no matching manager exists.
-            SoundManager* GetSoundManager(short unsigned int WhichOne=0);
+            SoundManager* GetSoundManager(const short unsigned int &WhichOne=0);
 
     };
 }

@@ -686,14 +686,24 @@ namespace phys
         return 0;
     }
 
-            /// @brief Changes a Manager's time of execution.
-            /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.
-            /// @param ManagerToChange A pointer to the manager that needs to be changed
-            /// @param Priority the new desire priority/execution order of the Manager
     void World::UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority)
     {
-
-
+        ManagerToChange->Priority=Priority;
+        if(this->ManagerList.empty())
+        {
+            ManagerList.push_back(ManagerToChange);
+        }else{
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
+                if( (*ManIter)->Priority > ManagerToChange->Priority )
+                {
+                    this->ManagerList.insert(ManIter,ManagerToChange);
+                }else if(*ManIter == ManagerToChange )
+                {
+                    this->ManagerList.erase(ManIter);
+                }
+            }
+        }
     }
 
     void World::UpdateManagerOrder()
@@ -711,44 +721,40 @@ namespace phys
         }
     }
 
+    ActorContainerBase* World::GetActorManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<ActorContainerBase*> (this->GetManager(ManagerBase::ActorContainerBase, WhichOne));
+    }
 
-/*
-            /// @brief This gets the ActorManager from the manager list.
-            /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
-            /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
-            ActorContainerBase* GetActorManager(short unsigned int WhichOne=0);
+    CallBackManager* World::GetCallBackManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<CallBackManager*> (this->GetManager(ManagerBase::CallBackManager, WhichOne));
+    }
 
-            /// @brief This gets the CallbackManager from the manager list.
-            /// @param WhichOne If you have multiple Managers this will choose which one to return.
-            /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
-            CallBackManager* GetCallBackManager(short unsigned int WhichOne=0);
+    CameraManager* World::GetCameraManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<CameraManager*> (this->GetManager(ManagerBase::CameraManager, WhichOne));
+    }
 
-            /// @brief This gets the CameraManager from the manager list.
-            /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.
-            /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
-            CameraManager* GetCameraManager(short unsigned int WhichOne=0);
+    EventManager* World::GetEventManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<EventManager*> (this->GetManager(ManagerBase::EventManager, WhichOne));
+    }
 
+    GraphicsManager* World::GetGraphicsManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<GraphicsManager*> (this->GetManager(ManagerBase::GraphicsManager, WhichOne));
+    }
 
-            /// @brief This gets the EventManager from the manager list.
-            /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
-            /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
-            EventManager* GetEventManager(short unsigned int WhichOne=0);
+    PhysicsManager* World::GetPhysicsManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));
+    }
 
-            /// @brief This gets the GraphicsManager from the manager list.
-            /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
-            /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
-            GraphicsManager* GetGraphicsManager(short unsigned int WhichOne=0);
-
-            /// @brief This gets the PhysicsManager from the manager list.
-            /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.
-            /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
-            PhysicsManager* GetPhysicsManager(short unsigned int WhichOne=0);
-
-            /// @brief This gets the SoundManager from the manager list.
-            /// @param WhichOne If you have multiple SoundManagers this will choose which one to return.
-            /// @return This returns a pointer to a SoundManager, or a NULL pointer if no matching manager exists.
-            SoundManager* GetSoundManager(short unsigned int WhichOne=0);
-*/
+    SoundManager* World::GetSoundManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<SoundManager*> (this->GetManager(ManagerBase::SoundManager, WhichOne));
+    }
 
 }
 #endif
