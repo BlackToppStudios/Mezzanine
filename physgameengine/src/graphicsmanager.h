@@ -95,6 +95,7 @@ namespace phys
             /// @details Gets the Fullscreen Setting
             /// @return This returns a bool, true if fullscreen is set, false otherwise
             bool getFullscreen() const;
+
             /// @brief Set the Fullscreen Setting
             /// @details Set the Fullscreen Setting
             /// @param Fullscreen_ This accepts a bool. True for fullscreen, false for windowed
@@ -104,6 +105,7 @@ namespace phys
             /// @details Gets the Height of the Rendering Area
             /// @return This returns the Height of the Rendering Area
             Whole getRenderHeight() const;
+
             /// @brief Sets the Height.
             /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
             /// @param Height_ This accepts a Whole.
@@ -123,6 +125,13 @@ namespace phys
             /// @param Width_ The new desired Width for the rendering area as a whole number
             /// @param Height_ The new desired Width for the rendering area as a whole number
             void setRenderResolution(const Whole &Width_, const Whole &Height_);
+
+            /// @brief This Shows an Engine Generated Configuration Screen
+            /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration
+            /// options, like Vsync and Resolution, But it might ask some really silly stuff. I think this would be fine for smaller simpler apps
+            /// Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage
+            /// user settings.
+            bool ShowGraphicsSettingDialog();
 
         //Inherited from ManagerBase
             /// @brief Empty Initializor

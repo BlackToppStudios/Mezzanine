@@ -80,34 +80,45 @@ namespace phys
     // Physworld constructor
     //this should create the basic objects for stroing and tracking the roots of
     //objects in the game
-    /// @todo TODO Fix the `const`ness of all methods to be as const as allowable
     World::World()
     {
         Vector3 Lbounds(-1000.0,-1000.0,-1000.0);
         Vector3 Ubounds(1000.0,1000.0,1000.0);
+        std::vector <ManagerBase*> temp;
 
-        this->Construct(
-            Lbounds,
-            Ubounds,
-            10
-            );
+        this->Construct(Lbounds, Ubounds, 10, "Physgame.log", temp);
     }
 
-    /// @todo TODO: adjust the constructors to allow for pointers to a callback manager and event manager
 
     World::World(   const Vector3 &GeographyLowerBounds_,
-                            const Vector3 &GeographyUpperbounds_,
-                            const unsigned short int  &MaxPhysicsProxies_)
+                    const Vector3 &GeographyUpperbounds_,
+                    const unsigned short int  &MaxPhysicsProxies_,
+                    std::string LogFileName)
     {
+        std::vector <ManagerBase*> temp;
         this->Construct(GeographyLowerBounds_,
                         GeographyUpperbounds_,
-                        MaxPhysicsProxies_
-                        );
+                        MaxPhysicsProxies_,
+                        LogFileName,
+                        temp );
     }
+
+    World::World(  const Vector3 &GeographyLowerBounds_,
+            const Vector3 &GeographyUpperbounds_,
+            const unsigned short int &MaxPhysicsProxies_,
+            const std::string &LogFileName,
+            const std::vector <ManagerBase*> &ManagerToBeAdded)
+    {
+
+
+    }
+
 
     void World::Construct(  const Vector3 &GeographyLowerBounds_,
                                 const Vector3 &GeographyUpperbounds_,
-                                const unsigned short int &MaxPhysicsProxies_)
+                                const unsigned short int &MaxPhysicsProxies_,
+                                std::string LogFileName,
+                                std::vector <ManagerBase*> ManagerToBeAdded)
     {
         //Set some sane Defaults for some values
         this->SetWindowName("AppName");
@@ -276,21 +287,6 @@ namespace phys
     {
         this->Log(Message);
         throw(Message);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    //Shows the ogre settings Dialog, and allows it to save settings to ogres
-    //preset save location
-    bool World::ShowSystemSettingDialog()
-    {
-        try
-        {
-            return this->OgreRoot->showConfigDialog();
-        } catch (exception& e) {
-            this->Log("Ogre settings windows from main UI or mandatory setting failure");
-            this->Log(e.what());
-            return false;
-        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -502,7 +498,7 @@ namespace phys
         if (!this->OgreRoot->restoreConfig())
         {
             //if we can't do that then lets make new settings
-            if (!this->ShowSystemSettingDialog())
+            if (!this->Graphics->ShowGraphicsSettingDialog())
             {
                 this->LogAndThrow("Error: Could not setup Ogre.");
             }
@@ -609,6 +605,97 @@ namespace phys
     {
         this->OgreResource->initialiseResourceGroup(Group);
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Upper Management
+    ///////////////////////////////////////
+    void World::AddManager(ManagerBase* ManagerToAdd)
+    {
+        if(this->ManagerList.empty())
+        {
+            ManagerList.push_back(ManagerToAdd);
+        }else{
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
+                if( (*ManIter)->Priority > ManagerToAdd->Priority )
+                {
+                    this->ManagerList.insert(ManIter,ManagerToAdd);
+                    break;
+                }
+            }
+        }
+    }
+
+    /// @brief This removes a manager by finding the matching pointer.
+    /// @details Currently this just iterates through the list looking for the matching pointer, at some future point
+    /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.
+    /// @param ManagerToAdd A pointer to the manager to be removed
+    void World::RemoveManager(ManagerBase* ManagerToRemove)
+    {
+        if(this->ManagerList.empty())
+        {
+            // do nothing
+        }else{
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
+                if( *ManIter == ManagerToAdd )
+                {
+                    this->ManagerList.erase(ManIter);
+                    break;
+                }
+            }
+        }
+    }
+
+/*
+            /// @brief This is will find the manager of a given type
+            /// @details Specifically this will iterate from lowest priority to highest priority, and return a pointer to the first Manager
+            /// with a matching type found. If you specify WhichOne, it will the Nth+1 in the list matching the type (kind of like array subscript).
+            /// @param ManagersToRemoveType
+            /// @param WhichOne If not getting the first/only manager of the given type, get one.
+            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists
+            ManagerBase* GetManager(ManagerBase::ManagerTypeName ManagersToRemoveType, short unsigned int WhichOne=0);
+
+            /// @brief This forces the list of managers to be resorted.
+            /// @details This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers
+            void UpdateManagerOrder();
+
+            /// @brief This gets the ActorManager from the manager list.
+            /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
+            /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
+            ActorContainerBase* GetActorManager(short unsigned int WhichOne=0);
+
+            /// @brief This gets the CallbackManager from the manager list.
+            /// @param WhichOne If you have multiple Managers this will choose which one to return.
+            /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
+            CallBackManager* GetCallBackManager(short unsigned int WhichOne=0);
+
+            /// @brief This gets the CameraManager from the manager list.
+            /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.
+            /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
+            CameraManager* GetCameraManager(short unsigned int WhichOne=0);
+
+
+            /// @brief This gets the EventManager from the manager list.
+            /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
+            /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
+            EventManager* GetEventManager(short unsigned int WhichOne=0);
+
+            /// @brief This gets the GraphicsManager from the manager list.
+            /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
+            /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
+            GraphicsManager* GetGraphicsManager(short unsigned int WhichOne=0);
+
+            /// @brief This gets the PhysicsManager from the manager list.
+            /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.
+            /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
+            PhysicsManager* GetPhysicsManager(short unsigned int WhichOne=0);
+
+            /// @brief This gets the SoundManager from the manager list.
+            /// @param WhichOne If you have multiple SoundManagers this will choose which one to return.
+            /// @return This returns a pointer to a SoundManager, or a NULL pointer if no matching manager exists.
+            SoundManager* GetSoundManager(short unsigned int WhichOne=0);
+*/
 
 }
 #endif
