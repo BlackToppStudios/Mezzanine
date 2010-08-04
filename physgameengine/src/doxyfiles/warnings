@@ -1,139 +1,136 @@
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:165: Warning: Compound phys::Hinge2Constraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:124: Warning: Compound phys::Generic6DofSpringConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:236: Warning: Compound phys::UniversalConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:76: Warning: Compound phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/internaldecompinterface.h.cpp:48: Warning: Compound phys::internal::PhysConvexDecomposition is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:62: Warning: Compound phys::TypedConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:192: Warning: Compound phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/worldgetset.h:54: Warning: Compound phys::WorldGetSet is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:140: Warning: Compound phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:100: Warning: Compound phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:177: Warning: Compound phys::Point2PointConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/actorrigid.h:78: Warning: Member PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent) (function) of class phys::ActorRigid is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/camera.h:66: Warning: Member Cam (variable) of class phys::Camera is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/camera.h:67: Warning: Member CamManager (variable) of class phys::Camera is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:69: Warning: Member TypedConstraint(ActorRigid *bodya, ActorRigid *bodyb) (function) of class phys::TypedConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:70: Warning: Member TypedConstraint(ActorRigid *bodya) (function) of class phys::TypedConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:71: Warning: Member SetParam(int num, Real value, int axis=-1)=0 (function) of class phys::TypedConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:72: Warning: Member GetParam(int num, int axis=-1)=0 (function) of class phys::TypedConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:64: Warning: Member BodyA (variable) of class phys::TypedConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:65: Warning: Member BodyB (variable) of class phys::TypedConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:80: Warning: Member ConeTwistConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 Vectorb, Quaternion QuaternionA, Quaternion QuaternionB) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:81: Warning: Member ConeTwistConstraint(ActorRigid *ActorA, Vector3 VectorA, Quaternion QuaternionA) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:82: Warning: Member ConeTwistConstraint(btConeTwistConstraint *Constraint) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:84: Warning: Member SetAngularOnly(bool AngularOnly) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:85: Warning: Member SetLimit(int LimitIndex, Real LimitValue) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:86: Warning: Member SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness=1.0, Real BiasFactor=0.3, Real RelaxationFactor=1.0) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:87: Warning: Member SetDamping(Real Damping) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:88: Warning: Member SetMaxMotorImpulse(Real MaxMotorImpulse) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:89: Warning: Member SetMaxMotorImpulseNormalized(Real MaxMotorImpulse) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:90: Warning: Member SetFixThresh(Real FixThresh) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:91: Warning: Member SetMotorTarget(Quaternion Quat) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:92: Warning: Member SetMotorTargetInConstraintSpace(Quaternion Quat) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:93: Warning: Member EnableMotor(bool Enable) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:94: Warning: Member IsPassedSwingLimit() (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:95: Warning: Member SetParam(int num, Real value, int axis=-1) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:96: Warning: Member GetParam(int num, int axis=-1) (function) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:78: Warning: Member ConeTwist (variable) of class phys::ConeTwistConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:105: Warning: Member Generic6DofConstraint(ActorRigid *ActorA, ActorRigid *ActorB) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:106: Warning: Member Generic6DofConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:107: Warning: Member Generic6DofConstraint(ActorRigid *ActorB, Vector3 Vectorb, Quaternion QuaternionB, bool UseLinearReferenceB) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:108: Warning: Member Generic6DofConstraint(btGeneric6DofConstraint *Constraint) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:110: Warning: Member SetOffsetALocation(Vector3 Location) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:111: Warning: Member SetOffsetBLocation(Vector3 Location) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:112: Warning: Member SetLinearUpperLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:113: Warning: Member SetLinearLowerLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:114: Warning: Member SetAngularUpperLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:115: Warning: Member SetAngularLowerLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:116: Warning: Member SetUseFrameOffset(bool UseOffset) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:117: Warning: Member SetLimit(int Axis, Real Low, Real High) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:118: Warning: Member CalculateTransforms() (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:119: Warning: Member SetParam(int num, Real value, int axis=-1) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:120: Warning: Member GetParam(int num, int axis=-1) (function) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:102: Warning: Member Generic6dof (variable) of class phys::Generic6DofConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:129: Warning: Member Generic6DofSpringConstraint(ActorRigid *ActorA, ActorRigid *ActorB) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:130: Warning: Member Generic6DofSpringConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:131: Warning: Member Generic6DofSpringConstraint(btGeneric6DofSpringConstraint *Constraint) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:133: Warning: Member SetStiffness(int Index, Real Stiffness) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:134: Warning: Member SetDamping(int Index, Real Damping) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:135: Warning: Member SetEquilibriumPoint(int Index) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:136: Warning: Member EnableSpring(int Index, bool Enable) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:126: Warning: Member Generic6dofSpring (variable) of class phys::Generic6DofSpringConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:144: Warning: Member HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 PivotInA, Vector3 PivotInB, Vector3 AxisInA, Vector3 AxisInB, bool UseReferenceA) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:145: Warning: Member HingeConstraint(ActorRigid *ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:146: Warning: Member HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA=false) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:147: Warning: Member HingeConstraint(btHingeConstraint *Constraint) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:149: Warning: Member SetAPivotLocation(Vector3 Location) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:150: Warning: Member SetBPivotLocation(Vector3 Location) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:151: Warning: Member SetAngularOnly(bool AngularOnly) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:152: Warning: Member EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:153: Warning: Member EnableMotor(bool EnableMotor) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:154: Warning: Member SetMaxMotorImpulse(Real MaxMotorImpulse) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:155: Warning: Member SetMotorTarget(Quaternion QuatAInB, Real Dt) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:156: Warning: Member SetMotorTarget(Real TargetAngle, Real Dt) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:157: Warning: Member SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:158: Warning: Member SetAxis(Vector3 AxisInA) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:159: Warning: Member SetUseFrameOffset(bool FrameOffset) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:160: Warning: Member SetParam(int num, Real value, int axis=-1) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:161: Warning: Member GetParam(int num, int axis=-1) (function) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:142: Warning: Member Hinge (variable) of class phys::HingeConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:169: Warning: Member Hinge2Constraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) (function) of class phys::Hinge2Constraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:170: Warning: Member Hinge2Constraint(btHinge2Constraint *Constraint) (function) of class phys::Hinge2Constraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:172: Warning: Member SetUpperLimit(Real Ang1Max) (function) of class phys::Hinge2Constraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:173: Warning: Member SetLowerLimit(Real Ang1Min) (function) of class phys::Hinge2Constraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:167: Warning: Member Hinge2 (variable) of class phys::Hinge2Constraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:181: Warning: Member Point2PointConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 PivotA, Vector3 PivotB) (function) of class phys::Point2PointConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:182: Warning: Member Point2PointConstraint(ActorRigid *ActorA, Vector3 PivotA) (function) of class phys::Point2PointConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:183: Warning: Member Point2PointConstraint(btPoint2PointConstraint *Constraint) (function) of class phys::Point2PointConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:185: Warning: Member SetPivotA(Vector3 PivotA) (function) of class phys::Point2PointConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:186: Warning: Member SetPivotB(Vector3 PivotB) (function) of class phys::Point2PointConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:187: Warning: Member SetParam(int num, Real value, int axis=-1) (function) of class phys::Point2PointConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:188: Warning: Member GetParam(int num, int axis=-1) (function) of class phys::Point2PointConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:179: Warning: Member Point2Point (variable) of class phys::Point2PointConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:196: Warning: Member SliderConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:197: Warning: Member SliderConstraint(ActorRigid *ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:198: Warning: Member SliderConstraint(btSliderConstraint *Constraint) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:200: Warning: Member SetFrameOffsetALocation(Vector3 Location) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:201: Warning: Member SetFrameOffsetBLocation(Vector3 Location) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:202: Warning: Member SetUpperLinLimit(Real UpperLimit) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:203: Warning: Member SetUpperAngLimit(Real UpperLimit) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:204: Warning: Member SetLowerLinLimit(Real LowerLimit) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:205: Warning: Member SetLowerAngLimit(Real LowerLimit) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:206: Warning: Member SetPoweredLinMotor(bool OnOff) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:207: Warning: Member SetTargetLinMotorVelocity(Real TargetLinMotorVelocity) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:208: Warning: Member SetMaxLinMotorForce(Real MaxLinMotorForce) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:209: Warning: Member SetPoweredAngMotor(bool OnOff) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:210: Warning: Member SetTargetAngMotorVelocity(Real TargetAngMotorVelocity) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:211: Warning: Member SetMaxAngMotorForce(Real MaxAngMotorForce) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:212: Warning: Member SetUseFrameOffset(bool FrameOffset) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:213: Warning: Member SetSoftnessDirLin(Real SoftnessDirLin) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:214: Warning: Member SetRestitutionDirLin(Real RestitutionDirLin) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:215: Warning: Member SetDampingDirLin(Real DampingDirLin) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:216: Warning: Member SetSoftnessDirAng(Real SoftnessDirAng) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:217: Warning: Member SetRestitutionDirAng(Real RestitutionDirAng) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:218: Warning: Member SetDampingDirAng(Real DampingDirAng) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:219: Warning: Member SetSoftnessLimLin(Real SoftnessLimLin) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:220: Warning: Member SetRestitutionLimLin(Real RestitutionLimLin) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:221: Warning: Member SetDampingLimLin(Real DampingLimLin) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:222: Warning: Member SetSoftnessLimAng(Real SoftnessLimAng) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:223: Warning: Member SetRestitutionLimAng(Real RestitutionLimAng) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:224: Warning: Member SetDampingLimAng(Real DampingLimAng) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:225: Warning: Member SetSoftnessOrthoLin(Real SoftnessOrthoLin) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:226: Warning: Member SetRestitutionOrthoLin(Real RestitutionOrthoLin) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:227: Warning: Member SetDampingOrthoLin(Real DampingOrthoLin) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:228: Warning: Member SetSoftnessOrthoAng(Real SoftnessOrthoAng) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:229: Warning: Member SetRestitutionOrthoAng(Real RestitutionOrthoAng) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:230: Warning: Member SetDampingOrthoAng(Real DampingOrthoAng) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:231: Warning: Member SetParam(int num, Real value, int axis=-1) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:232: Warning: Member GetParam(int num, int axis=-1) (function) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:194: Warning: Member Slider (variable) of class phys::SliderConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:240: Warning: Member UniversalConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) (function) of class phys::UniversalConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:241: Warning: Member UniversalConstraint(btUniversalConstraint *Constraint) (function) of class phys::UniversalConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:243: Warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class phys::UniversalConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:244: Warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class phys::UniversalConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/constraint.h:238: Warning: Member Universal (variable) of class phys::UniversalConstraint is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/internaldecompinterface.h.cpp:55: Warning: Member ConvexDecompResult(ConvexDecomposition::ConvexResult &result) (function) of class phys::internal::PhysConvexDecomposition is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/internaldecompinterface.h.cpp:51: Warning: Member m_convexShapes (variable) of class phys::internal::PhysConvexDecomposition is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/internaldecompinterface.h.cpp:52: Warning: Member m_convexCentroids (variable) of class phys::internal::PhysConvexDecomposition is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/internaldecompinterface.h.cpp:53: Warning: Member mBaseCount (variable) of class phys::internal::PhysConvexDecomposition is not documented.
-/home/jtoppi/Private/physgame/physgameengine/src/internaldecompinterface.h.cpp:54: Warning: Member mHullCount (variable) of class phys::internal::PhysConvexDecomposition is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/worldgetset.h:47: Warning: the name `WorldGetSet.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:227: Warning: Compound phys::Hinge2Constraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:170: Warning: Compound phys::Generic6DofSpringConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:316: Warning: Compound phys::UniversalConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:104: Warning: Compound phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/internaldecompinterface.h.cpp:48: Warning: Compound phys::internal::PhysConvexDecomposition is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:266: Warning: Compound phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:196: Warning: Compound phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:134: Warning: Compound phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:245: Warning: Compound phys::Point2PointConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/actorterrain.h:78: Warning: Found unknown command `\detailed'
+/home/sqeaky/Desktop/physgame/physgameengine/src/actorragdoll.h:49: Warning: Member BodyParts (typedef) of namespace phys is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/actorragdoll.h:63: Warning: Member ActorRagDoll(String name, String file, String group, World *_World) (function) of class phys::ActorRagDoll is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/actorragdoll.h:61: Warning: Member Limbs (variable) of class phys::ActorRagDoll is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/actorrigid.h:78: Warning: Member PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent) (function) of class phys::ActorRigid is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/actorterrain.h:78: Warning: Found unknown command `\detailed'
+/home/sqeaky/Desktop/physgame/physgameengine/src/actorterrain.h:57: Warning: Member CreateTerrain() (function) of class phys::ActorTerrain is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/camera.h:66: Warning: Member Cam (variable) of class phys::Camera is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/camera.h:67: Warning: Member CamManager (variable) of class phys::Camera is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:99: Warning: Member SetParam(int num, Real value, int axis=-1)=0 (function) of class phys::TypedConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:100: Warning: Member GetParam(int num, int axis=-1)=0 (function) of class phys::TypedConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:109: Warning: Member ConeTwistConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 Vectorb, Quaternion QuaternionA, Quaternion QuaternionB) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:110: Warning: Member ConeTwistConstraint(ActorRigid *ActorA, Vector3 VectorA, Quaternion QuaternionA) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:118: Warning: Member SetAngularOnly(bool AngularOnly) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:119: Warning: Member SetLimit(int LimitIndex, Real LimitValue) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:120: Warning: Member SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness=1.0, Real BiasFactor=0.3, Real RelaxationFactor=1.0) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:121: Warning: Member SetDamping(Real Damping) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:122: Warning: Member SetMaxMotorImpulse(Real MaxMotorImpulse) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:123: Warning: Member SetMaxMotorImpulseNormalized(Real MaxMotorImpulse) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:124: Warning: Member SetFixThresh(Real FixThresh) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:125: Warning: Member SetMotorTarget(Quaternion Quat) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:126: Warning: Member SetMotorTargetInConstraintSpace(Quaternion Quat) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:127: Warning: Member EnableMotor(bool Enable) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:128: Warning: Member IsPassedSwingLimit() (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:129: Warning: Member SetParam(int num, Real value, int axis=-1) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:130: Warning: Member GetParam(int num, int axis=-1) (function) of class phys::ConeTwistConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:147: Warning: Member Generic6DofConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:148: Warning: Member Generic6DofConstraint(ActorRigid *ActorB, Vector3 Vectorb, Quaternion QuaternionB, bool UseLinearReferenceB) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:156: Warning: Member SetOffsetALocation(Vector3 Location) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:157: Warning: Member SetOffsetBLocation(Vector3 Location) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:158: Warning: Member SetLinearUpperLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:159: Warning: Member SetLinearLowerLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:160: Warning: Member SetAngularUpperLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:161: Warning: Member SetAngularLowerLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:162: Warning: Member SetUseFrameOffset(bool UseOffset) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:163: Warning: Member SetLimit(int Axis, Real Low, Real High) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:164: Warning: Member CalculateTransforms() (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:165: Warning: Member SetParam(int num, Real value, int axis=-1) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:166: Warning: Member GetParam(int num, int axis=-1) (function) of class phys::Generic6DofConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:181: Warning: Member Generic6DofSpringConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::Generic6DofSpringConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:189: Warning: Member SetStiffness(int Index, Real Stiffness) (function) of class phys::Generic6DofSpringConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:190: Warning: Member SetDamping(int Index, Real Damping) (function) of class phys::Generic6DofSpringConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:191: Warning: Member SetEquilibriumPoint(int Index) (function) of class phys::Generic6DofSpringConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:192: Warning: Member EnableSpring(int Index, bool Enable) (function) of class phys::Generic6DofSpringConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:201: Warning: Member HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 PivotInA, Vector3 PivotInB, Vector3 AxisInA, Vector3 AxisInB, bool UseReferenceA) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:202: Warning: Member HingeConstraint(ActorRigid *ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:203: Warning: Member HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA=false) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:211: Warning: Member SetAPivotLocation(Vector3 Location) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:212: Warning: Member SetBPivotLocation(Vector3 Location) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:213: Warning: Member SetAngularOnly(bool AngularOnly) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:214: Warning: Member EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:215: Warning: Member EnableMotor(bool EnableMotor) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:216: Warning: Member SetMaxMotorImpulse(Real MaxMotorImpulse) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:217: Warning: Member SetMotorTarget(Quaternion QuatAInB, Real Dt) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:218: Warning: Member SetMotorTarget(Real TargetAngle, Real Dt) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:219: Warning: Member SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:220: Warning: Member SetAxis(Vector3 AxisInA) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:221: Warning: Member SetUseFrameOffset(bool FrameOffset) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:222: Warning: Member SetParam(int num, Real value, int axis=-1) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:223: Warning: Member GetParam(int num, int axis=-1) (function) of class phys::HingeConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:232: Warning: Member Hinge2Constraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) (function) of class phys::Hinge2Constraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:240: Warning: Member SetUpperLimit(Real Ang1Max) (function) of class phys::Hinge2Constraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:241: Warning: Member SetLowerLimit(Real Ang1Min) (function) of class phys::Hinge2Constraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:250: Warning: Member Point2PointConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 PivotA, Vector3 PivotB) (function) of class phys::Point2PointConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:251: Warning: Member Point2PointConstraint(ActorRigid *ActorA, Vector3 PivotA) (function) of class phys::Point2PointConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:259: Warning: Member SetPivotA(Vector3 PivotA) (function) of class phys::Point2PointConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:260: Warning: Member SetPivotB(Vector3 PivotB) (function) of class phys::Point2PointConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:261: Warning: Member SetParam(int num, Real value, int axis=-1) (function) of class phys::Point2PointConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:262: Warning: Member GetParam(int num, int axis=-1) (function) of class phys::Point2PointConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:271: Warning: Member SliderConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:272: Warning: Member SliderConstraint(ActorRigid *ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:280: Warning: Member SetFrameOffsetALocation(Vector3 Location) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:281: Warning: Member SetFrameOffsetBLocation(Vector3 Location) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:282: Warning: Member SetUpperLinLimit(Real UpperLimit) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:283: Warning: Member SetUpperAngLimit(Real UpperLimit) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:284: Warning: Member SetLowerLinLimit(Real LowerLimit) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:285: Warning: Member SetLowerAngLimit(Real LowerLimit) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:286: Warning: Member SetPoweredLinMotor(bool OnOff) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:287: Warning: Member SetTargetLinMotorVelocity(Real TargetLinMotorVelocity) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:288: Warning: Member SetMaxLinMotorForce(Real MaxLinMotorForce) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:289: Warning: Member SetPoweredAngMotor(bool OnOff) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:290: Warning: Member SetTargetAngMotorVelocity(Real TargetAngMotorVelocity) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:291: Warning: Member SetMaxAngMotorForce(Real MaxAngMotorForce) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:292: Warning: Member SetUseFrameOffset(bool FrameOffset) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:293: Warning: Member SetSoftnessDirLin(Real SoftnessDirLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:294: Warning: Member SetRestitutionDirLin(Real RestitutionDirLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:295: Warning: Member SetDampingDirLin(Real DampingDirLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:296: Warning: Member SetSoftnessDirAng(Real SoftnessDirAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:297: Warning: Member SetRestitutionDirAng(Real RestitutionDirAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:298: Warning: Member SetDampingDirAng(Real DampingDirAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:299: Warning: Member SetSoftnessLimLin(Real SoftnessLimLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:300: Warning: Member SetRestitutionLimLin(Real RestitutionLimLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:301: Warning: Member SetDampingLimLin(Real DampingLimLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:302: Warning: Member SetSoftnessLimAng(Real SoftnessLimAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:303: Warning: Member SetRestitutionLimAng(Real RestitutionLimAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:304: Warning: Member SetDampingLimAng(Real DampingLimAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:305: Warning: Member SetSoftnessOrthoLin(Real SoftnessOrthoLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:306: Warning: Member SetRestitutionOrthoLin(Real RestitutionOrthoLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:307: Warning: Member SetDampingOrthoLin(Real DampingOrthoLin) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:308: Warning: Member SetSoftnessOrthoAng(Real SoftnessOrthoAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:309: Warning: Member SetRestitutionOrthoAng(Real RestitutionOrthoAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:310: Warning: Member SetDampingOrthoAng(Real DampingOrthoAng) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:311: Warning: Member SetParam(int num, Real value, int axis=-1) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:312: Warning: Member GetParam(int num, int axis=-1) (function) of class phys::SliderConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:321: Warning: Member UniversalConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) (function) of class phys::UniversalConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:329: Warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class phys::UniversalConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/constraint.h:330: Warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class phys::UniversalConstraint is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/sound.h:65: Warning: Member SoundSource (variable) of class phys::Sound is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/sound.h:66: Warning: Member Manager (variable) of class phys::Sound is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/sound.h:71: Warning: The following parameters of phys::Sound::Sound(cAudio::IAudioSource *Source, cAudio::IAudioManager *manager) are not documented:
+  parameter 'manager'
+/home/sqeaky/Desktop/physgame/physgameengine/src/soundlistener.h:62: Warning: Member AudioListener (variable) of class phys::SoundListener is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/soundmanager.h:69: Warning: Member AudioManager (variable) of class phys::SoundManager is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/soundmanager.h:70: Warning: Member SoundSets (variable) of class phys::SoundManager is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/soundmanager.h:71: Warning: Member AudioListener (variable) of class phys::SoundManager is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/soundmanager.h:73: Warning: The following parameters of phys::SoundManager::SoundManager(World *ParentWorld, bool DefaultSettings=true) are not documented:
+  parameter 'ParentWorld'
+/home/sqeaky/Desktop/physgame/physgameengine/src/soundmanager.h:147: Warning: argument 'SoundName' of command @param is not found in the argument list of phys::SoundManager::AddSoundToSoundSet(String SoundSetName, Sound *SoundInst)
+/home/sqeaky/Desktop/physgame/physgameengine/src/soundmanager.h:147: Warning: The following parameters of phys::SoundManager::AddSoundToSoundSet(String SoundSetName, Sound *SoundInst) are not documented:
+  parameter 'SoundSetName'
+  parameter 'SoundInst'
+/home/sqeaky/Desktop/physgame/physgameengine/src/internaldecompinterface.h.cpp:55: Warning: Member ConvexDecompResult(ConvexDecomposition::ConvexResult &result) (function) of class phys::internal::PhysConvexDecomposition is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/internaldecompinterface.h.cpp:51: Warning: Member m_convexShapes (variable) of class phys::internal::PhysConvexDecomposition is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/internaldecompinterface.h.cpp:52: Warning: Member m_convexCentroids (variable) of class phys::internal::PhysConvexDecomposition is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/internaldecompinterface.h.cpp:53: Warning: Member mBaseCount (variable) of class phys::internal::PhysConvexDecomposition is not documented.
+/home/sqeaky/Desktop/physgame/physgameengine/src/internaldecompinterface.h.cpp:54: Warning: Member mHullCount (variable) of class phys::internal::PhysConvexDecomposition is not documented.

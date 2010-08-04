@@ -626,10 +626,6 @@ namespace phys
         }
     }
 
-    /// @brief This removes a manager by finding the matching pointer.
-    /// @details Currently this just iterates through the list looking for the matching pointer, at some future point
-    /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.
-    /// @param ManagerToAdd A pointer to the manager to be removed
     void World::RemoveManager(ManagerBase* ManagerToRemove)
     {
         if(this->ManagerList.empty())
@@ -638,7 +634,7 @@ namespace phys
         }else{
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
-                if( *ManIter == ManagerToAdd )
+                if( *ManIter == ManagerToRemove )
                 {
                     this->ManagerList.erase(ManIter);
                     break;
@@ -647,19 +643,76 @@ namespace phys
         }
     }
 
+    void World::RemoveManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne)
+    {
+        if(this->ManagerList.empty())
+        {
+            //do nothing
+        }else{
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
+                if( (*ManIter)->GetType() == ManagersToRemoveType )
+                {
+                    if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
+                    {
+                        this->ManagerList.erase(ManIter);
+                    }else{
+                        --WhichOne;
+                    }
+                }
+            }
+        }
+    }
+
+    ManagerBase* World::GetManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne)
+    {
+        if(this->ManagerList.empty())
+        {
+            return 0;
+        }else{
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
+                if( (*ManIter)->GetType() == ManagersToRemoveType )
+                {
+                    if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
+                    {
+                        return *ManIter;
+                    }else{
+                        --WhichOne;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+            /// @brief Changes a Manager's time of execution.
+            /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.
+            /// @param ManagerToChange A pointer to the manager that needs to be changed
+            /// @param Priority the new desire priority/execution order of the Manager
+    void World::UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority)
+    {
+
+
+    }
+
+    void World::UpdateManagerOrder()
+    {
+        if(this->ManagerList.empty())
+        {
+            //do nothing
+        }else{
+            std::list< ManagerBase* > temp; //(this->ManagerList.begin(),this->ManagerList.end());
+            temp.swap(this->ManagerList);
+            for(std::list< ManagerBase* >::iterator TempIter = temp.begin(); TempIter!=temp.end(); ++TempIter )
+            {
+                this->AddManager(*TempIter);
+            }
+        }
+    }
+
+
 /*
-            /// @brief This is will find the manager of a given type
-            /// @details Specifically this will iterate from lowest priority to highest priority, and return a pointer to the first Manager
-            /// with a matching type found. If you specify WhichOne, it will the Nth+1 in the list matching the type (kind of like array subscript).
-            /// @param ManagersToRemoveType
-            /// @param WhichOne If not getting the first/only manager of the given type, get one.
-            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists
-            ManagerBase* GetManager(ManagerBase::ManagerTypeName ManagersToRemoveType, short unsigned int WhichOne=0);
-
-            /// @brief This forces the list of managers to be resorted.
-            /// @details This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers
-            void UpdateManagerOrder();
-
             /// @brief This gets the ActorManager from the manager list.
             /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
             /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.

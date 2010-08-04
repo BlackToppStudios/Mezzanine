@@ -29,7 +29,12 @@
   </div>
 </div>
 <div class="contents">
-<h1>phys::TypedConstraint Class Reference</h1><!-- doxytag: class="phys::TypedConstraint" --><div class="dynheader">
+<h1>phys::TypedConstraint Class Reference</h1><!-- doxytag: class="phys::TypedConstraint" -->
+<p>This is the base class for all constraints supported.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for phys::TypedConstraint:</div>
 <div class="dynsection">
  <div class="center">
@@ -50,29 +55,158 @@ Inheritance diagram for phys::TypedConstraint:</div>
 <p><a href="../../d2/dae/classphys_1_1TypedConstraint-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50ca8631a6c75bbc609c8d4ed61fdcee"></a><!-- doxytag: member="phys::TypedConstraint::TypedConstraint" ref="a50ca8631a6c75bbc609c8d4ed61fdcee" args="(ActorRigid *bodya, ActorRigid *bodyb)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *bodya, <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *bodyb)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a41ad08bfde377e91f2b37b0af40a9d34"></a><!-- doxytag: member="phys::TypedConstraint::TypedConstraint" ref="a41ad08bfde377e91f2b37b0af40a9d34" args="(ActorRigid *bodya)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>TypedConstraint</b> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *bodya)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d17/classphys_1_1TypedConstraint.html#a499e2f94ca4ee111001efa0dd3862391">TypedConstraint</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">No initialization constructor.  <a href="#a499e2f94ca4ee111001efa0dd3862391"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d17/classphys_1_1TypedConstraint.html#abf1cb6e3cf5c62feac31805162ec2766">~TypedConstraint</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor.  <a href="#abf1cb6e3cf5c62feac31805162ec2766"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d17/classphys_1_1TypedConstraint.html#a50ca8631a6c75bbc609c8d4ed61fdcee">TypedConstraint</a> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *bodya, <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *bodyb)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Two body constructor.  <a href="#a50ca8631a6c75bbc609c8d4ed61fdcee"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d17/classphys_1_1TypedConstraint.html#a41ad08bfde377e91f2b37b0af40a9d34">TypedConstraint</a> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *bodya)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">One body constructor.  <a href="#a41ad08bfde377e91f2b37b0af40a9d34"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31a20a74094f0cb8e4f82d1f99725415"></a><!-- doxytag: member="phys::TypedConstraint::SetParam" ref="a31a20a74094f0cb8e4f82d1f99725415" args="(int num, Real value, int axis=&#45;1)=0" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetParam</b> (int num, <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> value, int axis=-1)=0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6140d40e9476c3dc46e2802e8097421"></a><!-- doxytag: member="phys::TypedConstraint::GetParam" ref="ab6140d40e9476c3dc46e2802e8097421" args="(int num, int axis=&#45;1)=0" -->
 virtual <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetParam</b> (int num, int axis=-1)=0</td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e4251df846e7afbab2e49039530a140"></a><!-- doxytag: member="phys::TypedConstraint::BodyA" ref="a5e4251df846e7afbab2e49039530a140" args="" -->
-btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>BodyA</b></td></tr>
+btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d17/classphys_1_1TypedConstraint.html#a5e4251df846e7afbab2e49039530a140">BodyA</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">First rigid body the constraint applies to. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab90a86274d18f45628e91a76d28c8278"></a><!-- doxytag: member="phys::TypedConstraint::BodyB" ref="ab90a86274d18f45628e91a76d28c8278" args="" -->
-btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>BodyB</b></td></tr>
+btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d17/classphys_1_1TypedConstraint.html#ab90a86274d18f45628e91a76d28c8278">BodyB</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Second rigid body the constraint applies to(if applicable). <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31527f4782a0861fd6fd4bb7e201b23f"></a><!-- doxytag: member="phys::TypedConstraint::ConstraintBase" ref="a31527f4782a0861fd6fd4bb7e201b23f" args="" -->
+btTypedConstraint *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d17/classphys_1_1TypedConstraint.html#a31527f4782a0861fd6fd4bb7e201b23f">ConstraintBase</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bullet constraint that this class encapsulates. <br/></td></tr>
+<tr><td colspan="2"><h2>Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b4bcdf992c21ae83363f25df05b1d25"></a><!-- doxytag: member="phys::TypedConstraint::World" ref="a7b4bcdf992c21ae83363f25df05b1d25" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a139cf05ac01161b7071c8a037c841683"></a><!-- doxytag: member="phys::TypedConstraint::PhysicsManager" ref="a139cf05ac01161b7071c8a037c841683" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>This is the base class for all constraints supported. </p>
+<p>This class provides the basis for all the other constraints. This is also a virtual class and provides no constraint properties of it's own, thus shouldn't/can't be called on manually. </p>
 
-<p>Definition at line <a class="el" href="../../dc/d4d/constraint_8h_source.html#l00061">61</a> of file <a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d4d/constraint_8h_source.html#l00072">72</a> of file <a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a499e2f94ca4ee111001efa0dd3862391"></a><!-- doxytag: member="phys::TypedConstraint::TypedConstraint" ref="a499e2f94ca4ee111001efa0dd3862391" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::TypedConstraint::TypedConstraint </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>No initialization constructor. </p>
+<p>The no initialization class constructor. </p>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00052">52</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abf1cb6e3cf5c62feac31805162ec2766"></a><!-- doxytag: member="phys::TypedConstraint::~TypedConstraint" ref="abf1cb6e3cf5c62feac31805162ec2766" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::TypedConstraint::~TypedConstraint </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Class destructor. </p>
+<p>The class destructor. </p>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a50ca8631a6c75bbc609c8d4ed61fdcee"></a><!-- doxytag: member="phys::TypedConstraint::TypedConstraint" ref="a50ca8631a6c75bbc609c8d4ed61fdcee" args="(ActorRigid *bodya, ActorRigid *bodyb)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::TypedConstraint::TypedConstraint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *&nbsp;</td>
+          <td class="paramname"> <em>bodya</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *&nbsp;</td>
+          <td class="paramname"> <em>bodyb</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Two body constructor. </p>
+<p>This constructor is used when the applicable constraint is applied to two bodies, as opposed to a point a world space. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>bodya</em>&nbsp;</td><td>First actor to be applied to. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>bodyb</em>&nbsp;</td><td>Second actor to be applied to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00056">56</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a41ad08bfde377e91f2b37b0af40a9d34"></a><!-- doxytag: member="phys::TypedConstraint::TypedConstraint" ref="a41ad08bfde377e91f2b37b0af40a9d34" args="(ActorRigid *bodya)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::TypedConstraint::TypedConstraint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *&nbsp;</td>
+          <td class="paramname"> <em>bodya</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>One body constructor. </p>
+<p>This constructor is used when the applicable constraint is applied to a body and a point in world space. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>bodya</em>&nbsp;</td><td>The actor to be constraint to a point in world space. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00063">63</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a></li>
 <li><a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:06 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:35 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

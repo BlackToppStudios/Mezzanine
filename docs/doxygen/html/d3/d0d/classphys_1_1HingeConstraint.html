@@ -49,8 +49,10 @@ Inheritance diagram for phys::HingeConstraint:</div>
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>HingeConstraint</b> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> PivotInA, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> AxisInA, bool UseReferenceA)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf99af18e95c5b42119d91aff8a02a2a"></a><!-- doxytag: member="phys::HingeConstraint::HingeConstraint" ref="acf99af18e95c5b42119d91aff8a02a2a" args="(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA=false)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>HingeConstraint</b> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorB, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> VectorA, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> VectorB, <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html">Quaternion</a> QuaternionA, <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html">Quaternion</a> QuaternionB, bool UseReferenceA=false)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab326e7128413aa3b737b726b3513c8df"></a><!-- doxytag: member="phys::HingeConstraint::HingeConstraint" ref="ab326e7128413aa3b737b726b3513c8df" args="(btHingeConstraint *Constraint)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>HingeConstraint</b> (btHingeConstraint *Constraint)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0d/classphys_1_1HingeConstraint.html#ab326e7128413aa3b737b726b3513c8df">HingeConstraint</a> (btHingeConstraint *Constraint)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal constructor.  <a href="#ab326e7128413aa3b737b726b3513c8df"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0d/classphys_1_1HingeConstraint.html#af97da06f82fa1903bb20393760f4ae34">~HingeConstraint</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor.  <a href="#af97da06f82fa1903bb20393760f4ae34"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa922bdd01eaa8e8c1bbafff1c5f7500"></a><!-- doxytag: member="phys::HingeConstraint::SetAPivotLocation" ref="afa922bdd01eaa8e8c1bbafff1c5f7500" args="(Vector3 Location)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetAPivotLocation</b> (<a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> Location)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6891924d55abb8a68195b4f5b08420b4"></a><!-- doxytag: member="phys::HingeConstraint::SetBPivotLocation" ref="a6891924d55abb8a68195b4f5b08420b4" args="(Vector3 Location)" -->
@@ -79,17 +81,70 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetParam</b> 
 virtual <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetParam</b> (int num, int axis=-1)</td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa4e4f1595d6420f21449d5e3b730f49"></a><!-- doxytag: member="phys::HingeConstraint::Hinge" ref="afa4e4f1595d6420f21449d5e3b730f49" args="" -->
-btHingeConstraint *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Hinge</b></td></tr>
+btHingeConstraint *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49">Hinge</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bullet constraint that this class encapsulates. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="../../dc/d4d/constraint_8h_source.html#l00139">139</a> of file <a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d4d/constraint_8h_source.html#l00195">195</a> of file <a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ab326e7128413aa3b737b726b3513c8df"></a><!-- doxytag: member="phys::HingeConstraint::HingeConstraint" ref="ab326e7128413aa3b737b726b3513c8df" args="(btHingeConstraint *Constraint)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::HingeConstraint::HingeConstraint </td>
+          <td>(</td>
+          <td class="paramtype">btHingeConstraint *&nbsp;</td>
+          <td class="paramname"> <em>Constraint</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal constructor. </p>
+<p>Constructs this class around a pre-built bullet constraint. This is an internal only constructor and shouldn't be called manually. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Constraint</em>&nbsp;</td><td>The constraint to be constructed around. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00341">341</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af97da06f82fa1903bb20393760f4ae34"></a><!-- doxytag: member="phys::HingeConstraint::~HingeConstraint" ref="af97da06f82fa1903bb20393760f4ae34" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::HingeConstraint::~HingeConstraint </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Class destructor. </p>
+<p>The class destructor. </p>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00347">347</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a></li>
 <li><a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:07 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:36 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

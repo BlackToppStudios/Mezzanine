@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>actorcontainervector.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>actorcontainervector.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -150,66 +150,79 @@
 <a name="l00125"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ae18c29b30d840e0f4fc9b553dd5ca32c">00125</a>     <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a211f6e419ef0b753cecf2c662a54511e" title="This gets the last actor in the container.">ActorContainerVector::GetLast</a>()<span class="keyword"> const</span>
 <a name="l00126"></a>00126 <span class="keyword">        </span>{ <span class="keywordflow">return</span> *(this-&gt;end()); }
 <a name="l00127"></a>00127 
-<a name="l00128"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc">00128</a>     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ae18c29b30d840e0f4fc9b553dd5ca32c" title="Which kind of container it this anyway.">ActorContainerVector::GetContainerType</a>()<span class="keyword"> const</span>
+<a name="l00128"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a5ebcdeb3018f3baf92154ddec79cd054">00128</a>     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ae18c29b30d840e0f4fc9b553dd5ca32c" title="Which kind of container it this anyway.">ActorContainerVector::GetContainerType</a>()<span class="keyword"> const</span>
 <a name="l00129"></a>00129 <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;phys::ActorContainerVector&quot;</span>); }
 <a name="l00130"></a>00130 
-<a name="l00131"></a>00131     <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">ActorContainerVector::FindActor</a>(Ogre::Node* GraphicsNode)
+<a name="l00131"></a>00131     <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">ActorContainerVector::FindActor</a>(btCollisionObject* PhysicsObject)
 <a name="l00132"></a>00132     {
 <a name="l00133"></a>00133         <span class="comment">//we need to iterate through and remove all items of that match the actor to match the description in the container base</span>
 <a name="l00134"></a>00134         <span class="keywordflow">for</span>( vector&lt;ActorBase*&gt;::iterator c=this-&gt;begin(); c!=this-&gt;end(); c++)
 <a name="l00135"></a>00135         {
-<a name="l00136"></a>00136             <span class="keywordflow">if</span> ( GraphicsNode == <a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a423b3f134370a51fde5496a41792b42c" title="Used to work around the scenenode of an Actor being private, so all derived Containers...">GetNode</a>(*c) )
+<a name="l00136"></a>00136             <span class="keywordflow">if</span> ( PhysicsObject == <a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a3f3d84f7775d2e8597290e214fedd5f9" title="Used to work around the collision object of an Actor being private, so all derived...">GetCollisionObject</a>(*c) )
 <a name="l00137"></a>00137             { <span class="keywordflow">return</span> *c; }
 <a name="l00138"></a>00138         }
-<a name="l00139"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ae04f8c6dd9b07ef9c1456707be9e155b">00139</a>         <span class="keywordflow">return</span> NULL;
+<a name="l00139"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc">00139</a>         <span class="keywordflow">return</span> NULL;
 <a name="l00140"></a>00140     }
 <a name="l00141"></a>00141 
-<a name="l00142"></a>00142     <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">ActorContainerVector::FindActor</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name)
+<a name="l00142"></a>00142     <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">ActorContainerVector::FindActor</a>(Ogre::Node* GraphicsNode)
 <a name="l00143"></a>00143     {
 <a name="l00144"></a>00144         <span class="comment">//we need to iterate through and remove all items of that match the actor to match the description in the container base</span>
 <a name="l00145"></a>00145         <span class="keywordflow">for</span>( vector&lt;ActorBase*&gt;::iterator c=this-&gt;begin(); c!=this-&gt;end(); c++)
 <a name="l00146"></a>00146         {
-<a name="l00147"></a>00147             <span class="keywordflow">if</span> ( Name == (*c)-&gt;GetName() )
+<a name="l00147"></a>00147             <span class="keywordflow">if</span> ( GraphicsNode == <a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a9813fe23051cc1a324bfedd4d35d27ad" title="Used to work around the scenenode of an Actor being private, so all derived Containers...">GetNode</a>(*c) )
 <a name="l00148"></a>00148             { <span class="keywordflow">return</span> *c; }
 <a name="l00149"></a>00149         }
-<a name="l00150"></a>00150         <span class="keywordflow">return</span> NULL;
+<a name="l00150"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ae04f8c6dd9b07ef9c1456707be9e155b">00150</a>         <span class="keywordflow">return</span> NULL;
 <a name="l00151"></a>00151     }
-<a name="l00152"></a>00152 <span class="comment"></span>
-<a name="l00153"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a5519eb0000073a2f397e158bfc368349">00153</a> <span class="comment">    ///////////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00154"></a>00154 <span class="comment"></span>    <span class="comment">// WorldGetSet/ManagerBase Members</span><span class="comment"></span>
-<a name="l00155"></a>00155 <span class="comment">    ///////////////////////////////////</span>
-<a name="l00156"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa">00156</a> <span class="comment"></span>    <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a5519eb0000073a2f397e158bfc368349" title="This gets the World that this class is working with.">ActorContainerVector::GetGameWorld</a>()<span class="keyword"> const</span>
-<a name="l00157"></a>00157 <span class="keyword">        </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>; }
-<a name="l00158"></a>00158 
-<a name="l00159"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a721d0cde6fc4f1e8d3b33867cd5c82df">00159</a>     <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa" title="This safely move all the Actors out of or into a phys::World.">ActorContainerVector::SetGameWorld</a>( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ )
-<a name="l00160"></a>00160         { this-&gt;<a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa" title="This safely move all the Actors out of or into a phys::World.">SetGameWorld</a>( GameWorld_, <span class="keyword">true</span>, <span class="keyword">true</span> ); }
-<a name="l00161"></a>00161 
-<a name="l00162"></a>00162     <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa" title="This safely move all the Actors out of or into a phys::World.">ActorContainerVector::SetGameWorld</a>( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_, <span class="keywordtype">bool</span> AddToWorld, <span class="keywordtype">bool</span> RemoveFromWorld)
-<a name="l00163"></a>00163     {
-<a name="l00164"></a>00164         <span class="keywordflow">if</span> (RemoveFromWorld &amp;&amp; this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> != NULL)
-<a name="l00165"></a>00165         {
-<a name="l00166"></a>00166             <span class="keywordflow">for</span>( vector&lt;ActorBase*&gt;::iterator c=this-&gt;begin(); c!=this-&gt;end(); c++)
-<a name="l00167"></a>00167                 { (*c)-&gt;RemoveObjectFromWorld(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>); }
-<a name="l00168"></a>00168         }
+<a name="l00152"></a>00152 
+<a name="l00153"></a>00153     <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">ActorContainerVector::FindActor</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name)
+<a name="l00154"></a>00154     {
+<a name="l00155"></a>00155         <span class="comment">//we need to iterate through and remove all items of that match the actor to match the description in the container base</span>
+<a name="l00156"></a>00156         <span class="keywordflow">for</span>( vector&lt;ActorBase*&gt;::iterator c=this-&gt;begin(); c!=this-&gt;end(); c++)
+<a name="l00157"></a>00157         {
+<a name="l00158"></a>00158             <span class="keywordflow">if</span> ( Name == (*c)-&gt;GetName() )
+<a name="l00159"></a>00159             { <span class="keywordflow">return</span> *c; }
+<a name="l00160"></a>00160         }
+<a name="l00161"></a>00161         <span class="keywordflow">return</span> NULL;
+<a name="l00162"></a>00162     }
+<a name="l00163"></a>00163 <span class="comment"></span>
+<a name="l00164"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a5519eb0000073a2f397e158bfc368349">00164</a> <span class="comment">    ///////////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00165"></a>00165 <span class="comment"></span>    <span class="comment">// WorldGetSet/ManagerBase Members</span><span class="comment"></span>
+<a name="l00166"></a>00166 <span class="comment">    ///////////////////////////////////</span>
+<a name="l00167"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa">00167</a> <span class="comment"></span>    <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a5519eb0000073a2f397e158bfc368349" title="This gets the World that this class is working with.">ActorContainerVector::GetGameWorld</a>()<span class="keyword"> const</span>
+<a name="l00168"></a>00168 <span class="keyword">        </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>; }
 <a name="l00169"></a>00169 
-<a name="l00170"></a>00170         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> = GameWorld_;
-<a name="l00171"></a>00171 
-<a name="l00172"></a>00172         <span class="keywordflow">if</span> (AddToWorld &amp;&amp; this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> != NULL)
-<a name="l00173"></a>00173         {
-<a name="l00174"></a>00174             <span class="keywordflow">for</span>( vector&lt;ActorBase*&gt;::iterator c=this-&gt;begin(); c!=this-&gt;end(); c++)
-<a name="l00175"></a>00175                 { (*c)-&gt;AddObjectToWorld(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>); }
-<a name="l00176"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c">00176</a>         }
-<a name="l00177"></a>00177     }
-<a name="l00178"></a>00178 
-<a name="l00179"></a>00179     <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c" title="Empty Initilizor.">ActorContainerVector::Initialize</a>()
-<a name="l00180"></a>00180         {}
-<a name="l00181"></a>00181 
-<a name="l00182"></a>00182 }
-<a name="l00183"></a>00183 
-<a name="l00184"></a>00184 
-<a name="l00185"></a>00185 <span class="preprocessor">#endif</span>
+<a name="l00170"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a721d0cde6fc4f1e8d3b33867cd5c82df">00170</a>     <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa" title="This safely move all the Actors out of or into a phys::World.">ActorContainerVector::SetGameWorld</a>( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ )
+<a name="l00171"></a>00171         { this-&gt;<a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa" title="This safely move all the Actors out of or into a phys::World.">SetGameWorld</a>( GameWorld_, <span class="keyword">true</span>, <span class="keyword">true</span> ); }
+<a name="l00172"></a>00172 
+<a name="l00173"></a>00173     <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa" title="This safely move all the Actors out of or into a phys::World.">ActorContainerVector::SetGameWorld</a>( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_, <span class="keywordtype">bool</span> AddToWorld, <span class="keywordtype">bool</span> RemoveFromWorld)
+<a name="l00174"></a>00174     {
+<a name="l00175"></a>00175         <span class="keywordflow">if</span> (RemoveFromWorld &amp;&amp; this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> != NULL)
+<a name="l00176"></a>00176         {
+<a name="l00177"></a>00177             <span class="keywordflow">for</span>( vector&lt;ActorBase*&gt;::iterator c=this-&gt;begin(); c!=this-&gt;end(); c++)
+<a name="l00178"></a>00178                 { (*c)-&gt;RemoveObjectFromWorld(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>); }
+<a name="l00179"></a>00179         }
+<a name="l00180"></a>00180 
+<a name="l00181"></a>00181         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> = GameWorld_;
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183         <span class="keywordflow">if</span> (AddToWorld &amp;&amp; this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> != NULL)
+<a name="l00184"></a>00184         {
+<a name="l00185"></a>00185             <span class="keywordflow">for</span>( vector&lt;ActorBase*&gt;::iterator c=this-&gt;begin(); c!=this-&gt;end(); c++)
+<a name="l00186"></a>00186                 { (*c)-&gt;AddObjectToWorld(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>); }
+<a name="l00187"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c">00187</a>         }
+<a name="l00188"></a>00188     }
+<a name="l00189"></a>00189 
+<a name="l00190"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a883e59ac1674421bac143088a6cf07c8">00190</a>     <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c" title="Empty Initilizor.">ActorContainerVector::Initialize</a>()
+<a name="l00191"></a>00191         {}
+<a name="l00192"></a>00192 
+<a name="l00193"></a>00193     <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a883e59ac1674421bac143088a6cf07c8" title="Empty MainLoopItems.">ActorContainerVector::DoMainLoopItems</a>()
+<a name="l00194"></a>00194         {}
+<a name="l00195"></a>00195 }
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197 
+<a name="l00198"></a>00198 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -154,7 +154,7 @@ namespace phys
             virtual void DoMainLoopItems() = 0;
 
             /// @brief This assigns a function to be the callback function to run prior to the main loop
-            /// @param PreMainCallback This is a pointer to a function that returns a bool and accepts no arguments, this is in the
+            /// @param PostMainCallback This is a pointer to a function that returns a bool and accepts no arguments, this is in the
             /// form of a ManagerBase::Callback. If SetPosMainLoopItems
             /// is passed 0, NULL or a null pointer, the callback will be forgetten and will not attempt to be called.
             virtual void SetPostMainLoopItems(Callback PostMainCallback);

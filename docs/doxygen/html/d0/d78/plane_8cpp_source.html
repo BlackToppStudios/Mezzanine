@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>plane.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>plane.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -74,40 +74,49 @@
 <a name="l00049"></a>00049 <span class="comment"></span>
 <a name="l00050"></a>00050 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00051"></a>00051 <span class="comment"></span>    <span class="comment">// Constructors</span>
-<a name="l00052"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a8896c8a09a604fff0668e5044889bea7">00052</a>     <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a8896c8a09a604fff0668e5044889bea7" title="Default constructor.">Plane::Plane</a>() : Gimbals(0,0,0),Distance(0)
+<a name="l00052"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a8896c8a09a604fff0668e5044889bea7">00052</a>     <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a8896c8a09a604fff0668e5044889bea7" title="Default constructor.">Plane::Plane</a>() : Normal(0,0,0), Distance(0)
 <a name="l00053"></a>00053         {}
 <a name="l00054"></a>00054 
-<a name="l00055"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a802a03592aa0ca1b287ad4e93b13188d">00055</a>     <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a8896c8a09a604fff0668e5044889bea7" title="Default constructor.">Plane::Plane</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Gimbals_, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Distance_) : Gimbals(Gimbals_),Distance(Distance_)
+<a name="l00055"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a921d5668dfee52875ba025528604182f">00055</a>     <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a8896c8a09a604fff0668e5044889bea7" title="Default constructor.">Plane::Plane</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Normal_, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Distance_) : Normal(Normal_),Distance(Distance_)
 <a name="l00056"></a>00056         {}
 <a name="l00057"></a>00057 
 <a name="l00058"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#aa6c075364461a2996a6575fb022c47a9">00058</a>     <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a8896c8a09a604fff0668e5044889bea7" title="Default constructor.">Plane::Plane</a>(Ogre::Plane Plane_)
 <a name="l00059"></a>00059         { this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a84b2378666a0e1c791f4f72d8df52c84" title="Changes this Plane to match the Ogre Plane.">ExtractOgrePlane</a>(Plane_); }
-<a name="l00060"></a>00060 <span class="comment"></span>
-<a name="l00061"></a>00061 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00062"></a>00062 <span class="comment"></span>    <span class="comment">// Conversions and adjustments</span>
-<a name="l00063"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#abbdcdd8d6e7c0d8de92cabd250ff41dc">00063</a>     Ogre::Plane <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#abbdcdd8d6e7c0d8de92cabd250ff41dc" title="Gets an Ogre::Plane that contains this Plane&amp;#39;s information.">Plane::GetOgrePlane</a>()<span class="keyword"> const</span>
-<a name="l00064"></a>00064 <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a8896c8a09a604fff0668e5044889bea7" title="Default constructor.">Ogre::Plane</a>( <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>(), <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac352595324c4df7f8385c3ad7014e65c" title="How from from the origin the plane is.">Distance</a>); }
-<a name="l00065"></a>00065 
-<a name="l00066"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a84b2378666a0e1c791f4f72d8df52c84">00066</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a84b2378666a0e1c791f4f72d8df52c84" title="Changes this Plane to match the Ogre Plane.">Plane::ExtractOgrePlane</a>(<span class="keyword">const</span> Ogre::Plane&amp; Plane2)
-<a name="l00067"></a>00067     {
-<a name="l00068"></a>00068         this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a>=Plane2.normal;
-<a name="l00069"></a>00069         this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac352595324c4df7f8385c3ad7014e65c" title="How from from the origin the plane is.">Distance</a>=Plane2.d;
-<a name="l00070"></a>00070     }
-<a name="l00071"></a>00071 
-<a name="l00072"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac045b7b0aac024a5fe771786d0c433f7">00072</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac045b7b0aac024a5fe771786d0c433f7" title="The assignment operator from Ogre::Plane to phys::Plane.">Plane::operator=</a>(<span class="keyword">const</span> Ogre::Plane&amp; Plane2)
-<a name="l00073"></a>00073         { this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a84b2378666a0e1c791f4f72d8df52c84" title="Changes this Plane to match the Ogre Plane.">ExtractOgrePlane</a>(Plane2); }
+<a name="l00060"></a>00060 
+<a name="l00061"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a9b0fde4e97a7391259b2e659e46b3c30">00061</a>     <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a8896c8a09a604fff0668e5044889bea7" title="Default constructor.">Plane::Plane</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; rkPoint0, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; rkPoint1, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; rkPoint2)
+<a name="l00062"></a>00062     {
+<a name="l00063"></a>00063         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> kEdge1 = rkPoint1 - rkPoint0;
+<a name="l00064"></a>00064                 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> kEdge2 = rkPoint2 - rkPoint0;
+<a name="l00065"></a>00065                 this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a> = kEdge1.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#ae98b11238914cd77a729053798ebf339" title="This is used to calculate the crossproduct of this and another vector.">CrossProduct</a>(kEdge2);
+<a name="l00066"></a>00066                 this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#ae39fe0545df88148bcd668b3bd2a4388" title="This will change this point into it&amp;#39;s own normal relative to the origin.">Normalize</a>();
+<a name="l00067"></a>00067                 this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac352595324c4df7f8385c3ad7014e65c" title="How from from the origin the plane is.">Distance</a> = -this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#ac30ef9729b1a4e6001f5f5219a88176d" title="This is used to calculate the dotproduct of this and another vector.">dotProduct</a>(rkPoint0);
+<a name="l00068"></a>00068     }
+<a name="l00069"></a>00069 <span class="comment"></span>
+<a name="l00070"></a>00070 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00071"></a>00071 <span class="comment"></span>    <span class="comment">// Conversions and adjustments</span>
+<a name="l00072"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#abbdcdd8d6e7c0d8de92cabd250ff41dc">00072</a>     Ogre::Plane <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#abbdcdd8d6e7c0d8de92cabd250ff41dc" title="Gets an Ogre::Plane that contains this Plane&amp;#39;s information.">Plane::GetOgrePlane</a>()<span class="keyword"> const</span>
+<a name="l00073"></a>00073 <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a8896c8a09a604fff0668e5044889bea7" title="Default constructor.">Ogre::Plane</a>( <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>(), <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac352595324c4df7f8385c3ad7014e65c" title="How from from the origin the plane is.">Distance</a>); }
 <a name="l00074"></a>00074 
-<a name="l00075"></a>00075 }
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d1/d0c/classphys_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">phys::Plane</a>&amp; x)
-<a name="l00078"></a>00078 {
-<a name="l00079"></a>00079     stream &lt;&lt; <span class="stringliteral">&quot;[Gimbals:&quot;</span> &lt;&lt; x.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#af293192230a8bb009c5e81900702c703" title="The rotation of the plane.">Gimbals</a> &lt;&lt; <span class="stringliteral">&quot;,Distance&quot;</span> &lt;&lt; x.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac352595324c4df7f8385c3ad7014e65c" title="How from from the origin the plane is.">Distance</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
-<a name="l00080"></a>00080     <span class="keywordflow">return</span> stream;
-<a name="l00081"></a>00081 }
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="preprocessor">#endif</span>
+<a name="l00075"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a84b2378666a0e1c791f4f72d8df52c84">00075</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a84b2378666a0e1c791f4f72d8df52c84" title="Changes this Plane to match the Ogre Plane.">Plane::ExtractOgrePlane</a>(<span class="keyword">const</span> Ogre::Plane&amp; Plane2)
+<a name="l00076"></a>00076     {
+<a name="l00077"></a>00077         this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a>=Plane2.normal;
+<a name="l00078"></a>00078         this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac352595324c4df7f8385c3ad7014e65c" title="How from from the origin the plane is.">Distance</a>=Plane2.d;
+<a name="l00079"></a>00079     }
+<a name="l00080"></a>00080 
+<a name="l00081"></a><a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac045b7b0aac024a5fe771786d0c433f7">00081</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac045b7b0aac024a5fe771786d0c433f7" title="The assignment operator from Ogre::Plane to phys::Plane.">Plane::operator=</a>(<span class="keyword">const</span> Ogre::Plane&amp; Plane2)
+<a name="l00082"></a>00082         { this-&gt;<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#a84b2378666a0e1c791f4f72d8df52c84" title="Changes this Plane to match the Ogre Plane.">ExtractOgrePlane</a>(Plane2); }
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 }
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d1/d0c/classphys_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">phys::Plane</a>&amp; x)
+<a name="l00087"></a>00087 {
+<a name="l00088"></a>00088     stream &lt;&lt; <span class="stringliteral">&quot;[Normal:&quot;</span> &lt;&lt; x.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a> &lt;&lt; <span class="stringliteral">&quot;,Distance: &quot;</span> &lt;&lt; x.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac352595324c4df7f8385c3ad7014e65c" title="How from from the origin the plane is.">Distance</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00089"></a>00089     <span class="keywordflow">return</span> stream;
+<a name="l00090"></a>00090 }
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:03 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

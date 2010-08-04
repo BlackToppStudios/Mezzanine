@@ -32,94 +32,124 @@
 <dt>Member <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac">phys::ActorRigid::CreateShapeFromMeshStatic</a> () </dt>
 <dd>- Check for thread safety </dd>
 </dl>
-<p><a class="anchor" id="_todo000007"></a> </p>
+<p><a class="anchor" id="_todo000003"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../de/d74/classphys_1_1ActorTerrain.html#a2403c40af6799e67c9aff1520b02dc0b">phys::ActorTerrain::CreateShapeFromMeshStatic</a> () </dt>
+<dd>- Check for thread safety </dd>
+</dl>
+<p><a class="anchor" id="_todo000008"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a148f8c559642d3d50206169b3d0406be">phys::EventManager::EventManager</a> (World *ParentWorld_) </dt>
 <dd><p class="startdd">TODO build a deconstructor that deletes all the events still in the queue </p>
 <p class="enddd">TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000005"></a> </p>
+<p><a class="anchor" id="_todo000006"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166">phys::EventManager::UpdateEvents</a> () </dt>
 <dd>There has got to be a more efficient way to do UpdateEvents() </dd>
 </dl>
-<p><a class="anchor" id="_todo000006"></a> </p>
+<p><a class="anchor" id="_todo000007"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5">phys::EventManager::UpdateSystemEvents</a> () </dt>
 <dd>make Physevents for each of the events in SDL_WmEvents(and delete the SDL events) </dd>
 </dl>
-<p><a class="anchor" id="_todo000008"></a> </p>
+<p><a class="anchor" id="_todo000009"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#aafcf1824190e44d42a9bfbea9cfbe1b2">phys::GraphicsManager::setFullscreen</a> (const bool &amp;Fullscreen_) </dt>
 <dd><p class="startdd">TODO: Need to attempt to switch to fullscreen here </p>
 <p class="enddd">TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000010"></a> </p>
+<p><a class="anchor" id="_todo000011"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a8d59e9a8aa2ae7f520d388a4c70f0623">phys::GraphicsManager::setRenderHeight</a> (const Whole &amp;Height_) </dt>
 <dd>TODO: Need to attempt to update resolution here </dd>
 </dl>
-<p><a class="anchor" id="_todo000012"></a> </p>
+<p><a class="anchor" id="_todo000013"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac6feb044d9ab394f3e65d51026a899a6">phys::GraphicsManager::setRenderResolution</a> (const Whole &amp;Width_, const Whole &amp;Height_) </dt>
 <dd>TODO: Need to attempt to update resolution here </dd>
 </dl>
-<p><a class="anchor" id="_todo000011"></a> </p>
+<p><a class="anchor" id="_todo000012"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#aea5fb5808a23fa29c8522c396ac0d6b5">phys::GraphicsManager::setRenderWidth</a> (const Whole &amp;Width_) </dt>
 <dd>TODO: Need to attempt to update resolution here </dd>
 </dl>
-<p><a class="anchor" id="_todo000013"></a> </p>
+<p><a class="anchor" id="_todo000014"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#a31bf19dc06547cbe042e1ddfbcf672f3">phys::internal::Line3D::drawLine</a> (const Vector3 &amp;start, const Vector3 &amp;end) </dt>
 <dd>TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen </dd>
 </dl>
-<p><a class="anchor" id="_todo000015"></a> </p>
+<p><a class="anchor" id="_todo000016"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html#a141db62ea17d94b9bce421e5df5a8d89">phys::LineGroup::drawLine</a> (const Vector3 &amp;start, const Vector3 &amp;end) </dt>
 <dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd>
 </dl>
-<p><a class="anchor" id="_todo000016"></a> </p>
+<p><a class="anchor" id="_todo000017"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html#ade1bb4f8e1164e1b8d7aeabbc970b79d">phys::LineGroup::drawLines</a> (void) </dt>
 <dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd>
 </dl>
-<p><a class="anchor" id="_todo000014"></a> </p>
+<p><a class="anchor" id="_todo000015"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html#a676039a6beec56d24c631e9da5fd7e76">phys::LineGroup::LineGroup</a> (World *Parent_) </dt>
 <dd>TODO: This class really should support rotation, the underlying implementation does. </dd>
 </dl>
-<p><a class="anchor" id="_todo000025"></a> </p>
+<p><a class="anchor" id="_todo000020"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba">phys::Ray::GetNormal</a> () const  </dt>
+<dd>discuss the merits throwing an error here. </dd>
+</dl>
+<p><a class="anchor" id="_todo000022"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a81e11f45378758391c97ec55b519951c">phys::Vector3::GetNormal</a> () const  </dt>
+<dd>discuss the merits throwing an error here. </dd>
+</dl>
+<p><a class="anchor" id="_todo000021"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#ae39fe0545df88148bcd668b3bd2a4388">phys::Vector3::Normalize</a> () </dt>
+<dd>discuss the merits throwing an error here. </dd>
+</dl>
+<p><a class="anchor" id="_todo000028"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#ab26033088abe4d60a40cf770dd1b0de8">phys::World::AddResourceLocation</a> (const String &amp;Location, const String &amp;Type, const String &amp;Group, const bool &amp;recursive=false) </dt>
+<dd>move these to the graphics manager </dd>
+</dl>
+<p><a class="anchor" id="_todo000029"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#a25c2583425bfe3d0d2bfce1093f0175e">phys::World::DoMainLoopAllItems</a> (const Real &amp;PreviousFrameTime) </dt>
+<dd>Remove this completely </dd>
+</dl>
+<p><a class="anchor" id="_todo000030"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#a4596a7bd1dc49c3b45b5562fcd0d08f2">phys::World::DoMainLoopPhysics</a> (const Real &amp;TimeElapsed) </dt>
+<dd>move these to the appropriate manager </dd>
+</dl>
+<p><a class="anchor" id="_todo000027"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#acd0dff342c08fe3008226488b7c53d97">phys::World::SetWindowName</a> (const String &amp;NewName) </dt>
 <dd>TODO Change the name of an application once it is running </dd>
 </dl>
-<p><a class="anchor" id="_todo000020"></a> </p>
-<dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#aa74e4e6053044c3ecec87fdbf7880c18">phys::World::World</a> (const Vector3 &amp;GeographyLowerBounds_, const Vector3 &amp;GeographyUpperbounds_, const unsigned short int &amp;MaxPhysicsProxies_=1024) </dt>
-<dd>TODO: adjust the constructors to allow for pointers to a callback manager and event manager </dd>
-</dl>
-<p><a class="anchor" id="_todo000019"></a> </p>
-<dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1World.html#a7f762724406c874250c3dc8910a1e695">phys::World::World</a> () </dt>
-<dd>TODO Fix the `const`ness of all methods to be as const as allowable </dd>
-</dl>
-<p><a class="anchor" id="_todo000026"></a> </p>
+<p><a class="anchor" id="_todo000031"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#ae387ff047f3cdf408d8959b8cbf4cc57">phys::WorldQueryTool::GatherEvents</a> (bool ClearEventsFromEventMgr=false) </dt>
 <dd>Add support for joysticks events to WorldQueryTool </dd>
 </dl>
-<p><a class="anchor" id="_todo000027"></a> </p>
+<p><a class="anchor" id="_todo000032"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf">phys::WorldQueryTool::GetFirstActorOnRayByAABB</a> (Ray ActorRay) </dt>
 <dd><p class="startdd">TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow. </p>
 <p class="enddd">TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested </p>
 </dd>
 </dl>
+<p><a class="anchor" id="_todo000034"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../d8/d69/classphys_1_1WorldQueryTool.html#adfc5ea4a115ad8bb716dea87d8419e6f">phys::WorldQueryTool::RayPlaneIntersection</a> (const Ray &amp;QueryRay, const Plane &amp;QueryPlane) </dt>
+<dd>Clean up code and return the answer </dd>
+</dl>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:03 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

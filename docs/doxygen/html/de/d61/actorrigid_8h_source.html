@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>actorrigid.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>actorrigid.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -88,9 +88,9 @@
 <a name="l00063"></a>00063 <span class="comment">    /// Rigid Object: Boxes, Car Frames, Chairs, etc.  For Semi Rigid bodies that are</span>
 <a name="l00064"></a>00064 <span class="comment">    /// deformable, like jello, it is better to use ActorSoft.</span>
 <a name="l00065"></a>00065 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00066"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html">00066</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>: <span class="keyword">public</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> {
+<a name="l00066"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html">00066</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a> : <span class="keyword">public</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> {
 <a name="l00067"></a>00067         <span class="keyword">protected</span>:
-<a name="l00068"></a>00068             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html">TypedConstraint</a>;<span class="comment"></span>
+<a name="l00068"></a>00068             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a>;<span class="comment"></span>
 <a name="l00069"></a>00069 <span class="comment">            /// @brief Used to simulate the behavior of a btRigidBody</span>
 <a name="l00070"></a><a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d">00070</a> <span class="comment"></span>            btRigidBody* <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>;
 <a name="l00071"></a>00071 <span class="comment"></span>
@@ -131,7 +131,7 @@
 <a name="l00106"></a>00106 <span class="comment">            /// @brief Creates a collision shape from mesh file.</span>
 <a name="l00107"></a>00107 <span class="comment">            /// @details This function will read the location of every verticy in the mesh file and use that to</span>
 <a name="l00108"></a>00108 <span class="comment">            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld</span>
-<a name="l00109"></a>00109 <span class="comment">            /// be used with only with Dynamic objects.</span>
+<a name="l00109"></a>00109 <span class="comment">            /// be used with only with Static objects.</span>
 <a name="l00110"></a>00110 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac" title="Creates a collision shape from mesh file.">CreateShapeFromMeshStatic</a>();
 <a name="l00111"></a>00111 <span class="comment"></span>
 <a name="l00112"></a>00112 <span class="comment">            /// @brief Restricts movement on the axis or axies of your choice.</span>
@@ -152,7 +152,7 @@
 <a name="l00127"></a>00127 }
 <a name="l00128"></a>00128 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

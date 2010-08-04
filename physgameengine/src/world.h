@@ -474,7 +474,8 @@ namespace phys
             /// @details This starts at the beginning (should be the lowest priority)of the list and iterates through looking for a matching type, at some future point
             /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.
             /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.
-            void RemoveManager(ManagerBase::ManagerTypeName ManagersToRemoveType);
+            /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
+            void RemoveManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne);
 
             /// @brief This is will find the manager of a given type
             /// @details Specifically this will iterate from lowest priority to highest priority, and return a pointer to the first Manager
@@ -482,7 +483,13 @@ namespace phys
             /// @param ManagersToRemoveType
             /// @param WhichOne If not getting the first/only manager of the given type, get one.
             /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists
-            ManagerBase* GetManager(ManagerBase::ManagerTypeName ManagersToRemoveType, short unsigned int WhichOne=0);
+            ManagerBase* GetManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne=0);
+
+            /// @brief Changes a Manager's time of execution.
+            /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.
+            /// @param ManagerToChange A pointer to the manager that needs to be changed
+            /// @param Priority the new desire priority/execution order of the Manager
+            void UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority);
 
             /// @brief This forces the list of managers to be resorted.
             /// @details This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers

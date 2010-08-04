@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>ray.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>ray.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -128,51 +128,52 @@
 <a name="l00103"></a>00103 <span class="comment"></span>
 <a name="l00104"></a>00104 <span class="comment">            /// @brief Turns this Ray into its own normal</span>
 <a name="l00105"></a>00105 <span class="comment">            /// @details This will change the ray to be exactly 1 unit long, but pointing the same direction.</span>
-<a name="l00106"></a>00106 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a2acbaef60718001a048db26ccaaef787" title="Turns this Ray into its own normal.">Normalize</a>();
-<a name="l00107"></a>00107 <span class="comment"></span>
-<a name="l00108"></a>00108 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00109"></a>00109 <span class="comment"></span>            <span class="comment">// Real Operators and assignments</span>
-<a name="l00110"></a>00110 <span class="comment"></span>
-<a name="l00111"></a>00111 <span class="comment">            /// @brief This returns a ray lengthened by the given multiple.</span>
-<a name="l00112"></a>00112 <span class="comment">            /// @details This returns a ray changed in length by the amount in the scalar. Specifically this subracts the From value</span>
-<a name="l00113"></a>00113 <span class="comment">            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.</span>
-<a name="l00114"></a>00114 <span class="comment">            /// @return This returns a copy of the ray scaled by the requested amount.</span>
-<a name="l00115"></a>00115 <span class="comment">            /// @param scalar The amount to multiply by.</span>
-<a name="l00116"></a>00116 <span class="comment"></span>            <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a6a47611776a9ab83d7ebc178a8d35b50" title="This returns a ray lengthened by the given multiple.">operator* </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar) <span class="keyword">const</span>;
-<a name="l00117"></a>00117 <span class="comment"></span>
-<a name="l00118"></a>00118 <span class="comment">            /// @brief This returns a ray scaled by the given divisor.</span>
-<a name="l00119"></a>00119 <span class="comment">            /// @details This returns an ray divided in length by the amount in the scalar. Specifically this subracts the From value</span>
-<a name="l00120"></a>00120 <span class="comment">            /// out of the To value, then divides the To value by the scalar, then adds the from value back in.</span>
-<a name="l00121"></a>00121 <span class="comment">            /// @return This returns a copy of the ray scaled by the requested amount.</span>
-<a name="l00122"></a>00122 <span class="comment">            /// @param scalar The amount to divide by.</span>
-<a name="l00123"></a>00123 <span class="comment"></span>            <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a126f8e4db94cccb5c0040db29c771a47" title="This returns a ray scaled by the given divisor.">operator/ </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar) <span class="keyword">const</span>;
-<a name="l00124"></a>00124 <span class="comment"></span>
-<a name="l00125"></a>00125 <span class="comment">            /// @brief This lengthens the Ray by the given multiple.</span>
-<a name="l00126"></a>00126 <span class="comment">            /// @details This ray  ischanged in length by the amount in the scalar. Specifically this subracts the From value</span>
-<a name="l00127"></a>00127 <span class="comment">            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.</span>
-<a name="l00128"></a>00128 <span class="comment">            /// @param scalar The amount to multiply by.</span>
-<a name="l00129"></a>00129 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#acc1ac010f02f61b3d5234a5b619e926a" title="This lengthens the Ray by the given multiple.">operator*= </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar);
-<a name="l00130"></a>00130 <span class="comment"></span>
-<a name="l00131"></a>00131 <span class="comment">            /// @brief This scales the Ray by the given divisor.</span>
-<a name="l00132"></a>00132 <span class="comment">            /// @details This ray is divided in length by the amount in the scalar. Specifically this subracts the From value</span>
-<a name="l00133"></a>00133 <span class="comment">            /// out of the To value, then divides the To value by the scalar, then adds the from value back in.</span>
-<a name="l00134"></a>00134 <span class="comment">            /// @param scalar The amount to divide by.</span>
-<a name="l00135"></a>00135 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a11f681152a5a39c36f2b398d44657ecd" title="This scales the Ray by the given divisor.">operator/= </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar);
-<a name="l00136"></a>00136 
-<a name="l00137"></a>00137     }; <span class="comment">// /Ray</span>
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139 }<span class="comment">// /phys</span>
-<a name="l00140"></a>00140 <span class="comment"></span>
-<a name="l00141"></a>00141 <span class="comment">/// @brief Streaming output operator</span>
-<a name="l00142"></a>00142 <span class="comment">/// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout</span>
-<a name="l00143"></a>00143 <span class="comment">/// @param stream This is the stream we send our data to.</span>
-<a name="l00144"></a>00144 <span class="comment">/// @return This returns an std::ostream which now contains our data.</span>
-<a name="l00145"></a>00145 <span class="comment"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">phys::Ray</a>&amp; x);
-<a name="l00146"></a>00146 
+<a name="l00106"></a>00106 <span class="comment"></span>            <span class="comment">// /// @return The is the length of the Ray after Normalizing. This could be useful for finding problems with 0 length rays.</span>
+<a name="l00107"></a>00107             <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a2acbaef60718001a048db26ccaaef787" title="Turns this Ray into its own normal.">Normalize</a>();
+<a name="l00108"></a>00108 <span class="comment"></span>
+<a name="l00109"></a>00109 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00110"></a>00110 <span class="comment"></span>            <span class="comment">// Real Operators and assignments</span>
+<a name="l00111"></a>00111 <span class="comment"></span>
+<a name="l00112"></a>00112 <span class="comment">            /// @brief This returns a ray lengthened by the given multiple.</span>
+<a name="l00113"></a>00113 <span class="comment">            /// @details This returns a ray changed in length by the amount in the scalar. Specifically this subracts the From value</span>
+<a name="l00114"></a>00114 <span class="comment">            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.</span>
+<a name="l00115"></a>00115 <span class="comment">            /// @return This returns a copy of the ray scaled by the requested amount.</span>
+<a name="l00116"></a>00116 <span class="comment">            /// @param scalar The amount to multiply by.</span>
+<a name="l00117"></a>00117 <span class="comment"></span>            <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a6a47611776a9ab83d7ebc178a8d35b50" title="This returns a ray lengthened by the given multiple.">operator* </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar) <span class="keyword">const</span>;
+<a name="l00118"></a>00118 <span class="comment"></span>
+<a name="l00119"></a>00119 <span class="comment">            /// @brief This returns a ray scaled by the given divisor.</span>
+<a name="l00120"></a>00120 <span class="comment">            /// @details This returns an ray divided in length by the amount in the scalar. Specifically this subracts the From value</span>
+<a name="l00121"></a>00121 <span class="comment">            /// out of the To value, then divides the To value by the scalar, then adds the from value back in.</span>
+<a name="l00122"></a>00122 <span class="comment">            /// @return This returns a copy of the ray scaled by the requested amount.</span>
+<a name="l00123"></a>00123 <span class="comment">            /// @param scalar The amount to divide by.</span>
+<a name="l00124"></a>00124 <span class="comment"></span>            <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a126f8e4db94cccb5c0040db29c771a47" title="This returns a ray scaled by the given divisor.">operator/ </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar) <span class="keyword">const</span>;
+<a name="l00125"></a>00125 <span class="comment"></span>
+<a name="l00126"></a>00126 <span class="comment">            /// @brief This lengthens the Ray by the given multiple.</span>
+<a name="l00127"></a>00127 <span class="comment">            /// @details This ray  ischanged in length by the amount in the scalar. Specifically this subracts the From value</span>
+<a name="l00128"></a>00128 <span class="comment">            /// out of the To value, then multiplies the To value by the scalar, then adds the from value back in.</span>
+<a name="l00129"></a>00129 <span class="comment">            /// @param scalar The amount to multiply by.</span>
+<a name="l00130"></a>00130 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#acc1ac010f02f61b3d5234a5b619e926a" title="This lengthens the Ray by the given multiple.">operator*= </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar);
+<a name="l00131"></a>00131 <span class="comment"></span>
+<a name="l00132"></a>00132 <span class="comment">            /// @brief This scales the Ray by the given divisor.</span>
+<a name="l00133"></a>00133 <span class="comment">            /// @details This ray is divided in length by the amount in the scalar. Specifically this subracts the From value</span>
+<a name="l00134"></a>00134 <span class="comment">            /// out of the To value, then divides the To value by the scalar, then adds the from value back in.</span>
+<a name="l00135"></a>00135 <span class="comment">            /// @param scalar The amount to divide by.</span>
+<a name="l00136"></a>00136 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a11f681152a5a39c36f2b398d44657ecd" title="This scales the Ray by the given divisor.">operator/= </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar);
+<a name="l00137"></a>00137 
+<a name="l00138"></a>00138     }; <span class="comment">// /Ray</span>
+<a name="l00139"></a>00139 
+<a name="l00140"></a>00140 }<span class="comment">// /phys</span>
+<a name="l00141"></a>00141 <span class="comment"></span>
+<a name="l00142"></a>00142 <span class="comment">/// @brief Streaming output operator</span>
+<a name="l00143"></a>00143 <span class="comment">/// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout</span>
+<a name="l00144"></a>00144 <span class="comment">/// @param stream This is the stream we send our data to.</span>
+<a name="l00145"></a>00145 <span class="comment">/// @return This returns an std::ostream which now contains our data.</span>
+<a name="l00146"></a>00146 <span class="comment"></span>std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">phys::Ray</a>&amp; x);
 <a name="l00147"></a>00147 
-<a name="l00148"></a>00148 <span class="preprocessor">#endif</span>
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:03 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
