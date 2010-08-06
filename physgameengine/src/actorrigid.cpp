@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -63,6 +63,7 @@ namespace phys{
     ActorRigid::~ActorRigid ()
     {
         delete physrigidbody;
+        CollisionObject = NULL;
     }
 
     void ActorRigid::CreateRigidObject (Real pmass)
@@ -70,6 +71,10 @@ namespace phys{
         btScalar bmass=pmass;
         this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
         CollisionObject=physrigidbody;
+        if(0.0 == bmass)
+        {
+            CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+        }
     }
 
     void ActorRigid::PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent)
@@ -84,18 +89,16 @@ namespace phys{
         Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
 
         unsigned int triCount = indexData->indexCount/3;
-        Ogre::Real* vertices = new Ogre::Real[vertexData->vertexCount*3];
+        Ogre::Vector3* vertices = new Ogre::Vector3[vertexData->vertexCount];
         unsigned int* indices = new unsigned int[indexData->indexCount];
         unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-        int vcount=0;
         float* pReal = NULL;
-        for (size_t j = 0; j < vertexData->vertexCount; j+=3, vertex += vBuffer->getVertexSize() )
+        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
         {
             posElem->baseVertexPointerToElement(vertex, &pReal);
-            vertices[j] = pReal[0];
-            vertices[j+1] = pReal[1];
-            vertices[j+2] = pReal[2];
-            vcount+=3;
+            vertices[j].x = *pReal++;
+            vertices[j].y = *pReal++;
+            vertices[j].z = *pReal++;
         }
         vBuffer->unlock();
         size_t index_offset = 0;
@@ -121,9 +124,9 @@ namespace phys{
         iBuffer->unlock();
 
         ConvexDecomposition::DecompDesc desc;
-        desc.mVcount = vcount;
+        desc.mVcount = vertexData->vertexCount;
         desc.mTcount = triCount;
-        desc.mVertices = &vertices[0];
+        desc.mVertices = &vertices[0].x;
         desc.mIndices = &indices[0];
         unsigned int maxv  = 16;
         float skinWidth    = 0.0;
@@ -150,6 +153,7 @@ namespace phys{
             compound->addChildShape(trans,convexShape);
         }
         Shape=compound;
+        ShapeIsSaved = false;
         this->physrigidbody->setCollisionShape(this->Shape);
 
         delete[] vertices;
@@ -176,7 +180,10 @@ namespace phys{
     {
         if(accuracy==1)
         {
-            delete Shape;
+            if(!ShapeIsSaved)
+            {
+                delete Shape;
+            }
             /// @todo - Check for thread safety
             btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateTrimesh());
             btShapeHull *hull = new btShapeHull(tmpshape);
@@ -195,14 +202,18 @@ namespace phys{
             btVector3 inertia(0,0,0);
             convexShape->calculateLocalInertia(mass, inertia);
             Shape = convexShape;
-            this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
+            ShapeIsSaved = false;
+            this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
             this->physrigidbody->setCollisionShape(this->Shape);
             this->physrigidbody->setMassProps(mass,inertia);
             return;
         }
         if(accuracy==2)
         {
-            delete Shape;
+            if(!ShapeIsSaved)
+            {
+                delete Shape;
+            }
             int depth=5;
             float cpercent=5;
             float ppercent=15;
@@ -217,7 +228,10 @@ namespace phys{
         }
         if(accuracy==3)
         {
-            delete Shape;
+            if(!ShapeIsSaved)
+            {
+                delete Shape;
+            }
             int depth=7;
             float cpercent=5;
             float ppercent=10;
@@ -232,7 +246,10 @@ namespace phys{
         }
         if(accuracy==4)
         {
-            delete Shape;
+            if(!ShapeIsSaved)
+            {
+                delete Shape;
+            }
             btGImpactMeshShape* gimpact = new btGImpactMeshShape(this->CreateTrimesh());
             btScalar mass=this->physrigidbody->getInvMass();
             mass=1/mass;
@@ -242,6 +259,7 @@ namespace phys{
             gimpact->setMargin(0.04);
             gimpact->updateBound();
             Shape=gimpact;
+            ShapeIsSaved = false;
             this->physrigidbody->setCollisionShape(this->Shape);
             this->physrigidbody->setMassProps(mass,inertia);
             return;
@@ -255,6 +273,10 @@ namespace phys{
         test.ExtractOgreVector3(this->entity->getMesh()->getBounds().getSize());
         if(test.X==test.Y && test.Y==test.Z)
         {
+            if(!ShapeIsSaved)
+            {
+                delete Shape;
+            }
             Real radius=test.X*0.5;
             btSphereShape* sphereshape = new btSphereShape(radius);
             btScalar mass=this->physrigidbody->getInvMass();
@@ -262,6 +284,7 @@ namespace phys{
             btVector3 inertia(0,0,0);
             sphereshape->calculateLocalInertia(mass, inertia);
             Shape = sphereshape;
+            ShapeIsSaved = false;
             this->Shape->setLocalScaling(btVector3(1.f,1.f,1.f));
             this->physrigidbody->setCollisionShape(this->Shape);
             this->physrigidbody->setMassProps(mass,inertia);
@@ -275,12 +298,15 @@ namespace phys{
 
     void ActorRigid::CreateShapeFromMeshStatic()
     {
-        delete Shape;
-
+        if(!ShapeIsSaved)
+        {
+            delete Shape;
+        }
         /// @todo - Check for thread safety
         btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(this->CreateTrimesh(),true);
         this->Shape=tmpshape;
-        this->Shape->setLocalScaling(btVector3(0.95,0.95,0.95));
+        ShapeIsSaved = false;
+        this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
         this->physrigidbody->setCollisionShape(this->Shape);
     }
 

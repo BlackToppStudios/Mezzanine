@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
                       "http://www.w3.org/TR/html40/loose.dtd">
 <HTML>
-<!-- Created on February 28 2010 by texi2html 1.66 -->
+<!-- Created on April 24 2010 by texi2html 1.66 -->
 <!--
 Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -505,6 +505,7 @@ Default: mipmap_bias 0
 <P>
 
 Determines how the colour of this texture layer is combined with the one below it (or the lighting effect on the geometry if this is the first layer).<BR><BR>
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a fragment program this will have no effect.<BR><BR>
 </P>
 <P>
 
@@ -535,6 +536,7 @@ Default: colour_op modulate
 <P>
 
 This is an extended version of the <A HREF="manual_17.html#SEC92">colour_op</A> attribute which allows extremely detailed control over the blending applied between this and earlier layers. Multitexturing hardware can apply more complex blending operations that multipass blending, but you are limited to the number of texture units which are available in hardware.<BR><BR>
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a fragment program this will have no effect.<BR><BR>
 </P>
 <P>
 
@@ -648,6 +650,7 @@ The parameters are the same as in the scene_blend attribute; this is because mul
 <P>
 
 Behaves in exactly the same away as <A HREF="manual_17.html#SEC93">colour_op_ex</A> except that it determines how alpha values are combined between texture layers rather than colour values.The only difference is that the 2 manual colours at the end of colour_op_ex are just single floating-point values in alpha_op_ex.
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a fragment program this will have no effect.<BR><BR>
 </P>
 <P>
 
@@ -658,6 +661,7 @@ Behaves in exactly the same away as <A HREF="manual_17.html#SEC93">colour_op_ex<
 <P>
 
 Turns on/off texture coordinate effect that makes this layer an environment map.<BR><BR>
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a vertex program this will have no effect.<BR><BR>
 </P>
 <P>
 
@@ -689,6 +693,7 @@ Default: env_map off<BR>
 <P>
 
 Sets a fixed scroll offset for the texture.<BR><BR>
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a vertex program this will have no effect unless you use the texture_matrix auto-param.<BR><BR>
 </P>
 <P>
 
@@ -707,6 +712,7 @@ This method offsets the texture in this layer by a fixed amount. Useful for smal
 <P>
 
 Sets up an animated scroll for the texture layer. Useful for creating fixed-speed scrolling effects on a texture layer (for varying scroll speeds, see <A HREF="manual_17.html#SEC102">wave_xform</A>).<BR><BR>
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a vertex program this will have no effect unless you use the texture_matrix auto-param.<BR><BR>
 </P>
 <P>
 
@@ -721,6 +727,7 @@ Format: scroll_anim &lt;xspeed&gt; &lt;yspeed&gt;<BR>
 <P>
 
 Rotates a texture to a fixed angle. This attribute changes the rotational orientation of a texture to a fixed angle, useful for fixed adjustments. If you wish to animate the rotation, see <A HREF="manual_17.html#SEC100">rotate_anim</A>.<BR><BR>
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a vertex program this will have no effect unless you use the texture_matrix auto-param.<BR><BR>
 </P>
 <P>
 
@@ -732,6 +739,10 @@ The parameter is a anti-clockwise angle in degrees.<BR><BR>
 </P>
 <P>
 
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a vertex shader this will have no effect unless you use the texture_matrix auto-param.<BR><BR>
+</P>
+<P>
+
 <A NAME="rotate_anim"></A>
 <A NAME="SEC100"></A>
 <H3> rotate_anim </H3>
@@ -739,6 +750,7 @@ The parameter is a anti-clockwise angle in degrees.<BR><BR>
 <P>
 
 Sets up an animated rotation effect of this layer. Useful for creating fixed-speed rotation animations (for varying speeds, see <A HREF="manual_17.html#SEC102">wave_xform</A>).<BR><BR>
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a vertex program this will have no effect unless you use the texture_matrix auto-param.<BR><BR>
 </P>
 <P>
 
@@ -757,6 +769,7 @@ The parameter is a number of anti-clockwise revolutions per second.<BR><BR>
 <P>
 
 Adjusts the scaling factor applied to this texture layer. Useful for adjusting the size of textures without making changes to geometry. This is a fixed scaling factor, if you wish to animate this see <A HREF="manual_17.html#SEC102">wave_xform</A>.<BR><BR>
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a vertex program this will have no effect unless you use the texture_matrix auto-param.<BR><BR>
 </P>
 <P>
 
@@ -775,6 +788,7 @@ Valid scale values are greater than 0, with a scale factor of 2 making the textu
 <P>
 
 Sets up a transformation animation based on a wave function. Useful for more advanced texture layer transform effects. You can add multiple instances of this attribute to a single texture layer if you wish.<BR><BR>
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a vertex program this will have no effect unless you use the texture_matrix auto-param.<BR><BR>
 </P>
 <P>
 
@@ -831,6 +845,7 @@ The range of the output of the wave will be {base, base+amplitude}. So the examp
 <P>
 
 This attribute allows you to specify a static 4x4 transformation matrix for the texture unit, thus replacing the individual scroll, rotate and scale attributes mentioned above. <BR><BR>
+<STRONG>Note:</STRONG> Only applies to the fixed-function pipeline, if you're using a vertex program this will have no effect unless you use the texture_matrix auto-param.<BR><BR>
 </P>
 <P>
 
@@ -856,7 +871,7 @@ The indexes of the 4x4 matrix value above are expressed as m&lt;row&gt;&lt;col&g
 <BR>
 <FONT SIZE="-1">
 This document was generated
-by <I>Steve Streeting</I> on <I>February 28 2010</I>
+by <I>Steve Streeting</I> on <I>April 24 2010</I>
 using <A HREF="http://texi2html.cvshome.org"><I>texi2html</I></A>
 </FONT>
 

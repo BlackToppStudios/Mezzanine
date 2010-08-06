@@ -47,8 +47,10 @@ Inheritance diagram for phys::Point2PointConstraint:</div>
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>Point2PointConstraint</b> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorB, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> PivotA, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> PivotB)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bcce8f4364fa9b305392082118c7f48"></a><!-- doxytag: member="phys::Point2PointConstraint::Point2PointConstraint" ref="a8bcce8f4364fa9b305392082118c7f48" args="(ActorRigid *ActorA, Vector3 PivotA)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>Point2PointConstraint</b> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> PivotA)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73c530c760f31032e23955567f634978"></a><!-- doxytag: member="phys::Point2PointConstraint::Point2PointConstraint" ref="a73c530c760f31032e23955567f634978" args="(btPoint2PointConstraint *Constraint)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>Point2PointConstraint</b> (btPoint2PointConstraint *Constraint)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/classphys_1_1Point2PointConstraint.html#a73c530c760f31032e23955567f634978">Point2PointConstraint</a> (btPoint2PointConstraint *Constraint)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal constructor.  <a href="#a73c530c760f31032e23955567f634978"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/classphys_1_1Point2PointConstraint.html#aa735ad83877ff57a8a49269a87a46253">~Point2PointConstraint</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor.  <a href="#aa735ad83877ff57a8a49269a87a46253"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2582531a664e1b05c6d50a2947dff1c5"></a><!-- doxytag: member="phys::Point2PointConstraint::SetPivotA" ref="a2582531a664e1b05c6d50a2947dff1c5" args="(Vector3 PivotA)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetPivotA</b> (<a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> PivotA)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6daf7e67fd6689dc18979fea5f745aa2"></a><!-- doxytag: member="phys::Point2PointConstraint::SetPivotB" ref="a6daf7e67fd6689dc18979fea5f745aa2" args="(Vector3 PivotB)" -->
@@ -59,17 +61,70 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetParam</b> 
 virtual <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetParam</b> (int num, int axis=-1)</td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa58b7fd9fe368c72d5bc5e1990bdf593"></a><!-- doxytag: member="phys::Point2PointConstraint::Point2Point" ref="aa58b7fd9fe368c72d5bc5e1990bdf593" args="" -->
-btPoint2PointConstraint *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Point2Point</b></td></tr>
+btPoint2PointConstraint *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/classphys_1_1Point2PointConstraint.html#aa58b7fd9fe368c72d5bc5e1990bdf593">Point2Point</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bullet constraint that this class encapsulates. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="../../dc/d4d/constraint_8h_source.html#l00176">176</a> of file <a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d4d/constraint_8h_source.html#l00244">244</a> of file <a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a73c530c760f31032e23955567f634978"></a><!-- doxytag: member="phys::Point2PointConstraint::Point2PointConstraint" ref="a73c530c760f31032e23955567f634978" args="(btPoint2PointConstraint *Constraint)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::Point2PointConstraint::Point2PointConstraint </td>
+          <td>(</td>
+          <td class="paramtype">btPoint2PointConstraint *&nbsp;</td>
+          <td class="paramname"> <em>Constraint</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal constructor. </p>
+<p>Constructs this class around a pre-built bullet constraint. This is an internal only constructor and shouldn't be called manually. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Constraint</em>&nbsp;</td><td>The constraint to be constructed around. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00470">470</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa735ad83877ff57a8a49269a87a46253"></a><!-- doxytag: member="phys::Point2PointConstraint::~Point2PointConstraint" ref="aa735ad83877ff57a8a49269a87a46253" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::Point2PointConstraint::~Point2PointConstraint </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Class destructor. </p>
+<p>The class destructor. </p>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00476">476</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a></li>
 <li><a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:08 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:36 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -44,6 +44,10 @@
 
 //Forward Declarations for wierd compatibility functions
 class btVector3;
+namespace cAudio
+{
+    class cVector3;
+}
 namespace Ogre
 {
     class Vector3;
@@ -85,13 +89,18 @@ namespace phys
 
         /// @brief Ogre Value Constructor.
         /// @details Constructor that sets all values to match the Ogre vector.
-        /// @param Vec The vector to be copied to make this vector
+        /// @param Vec The vector to be copied to make this vector.
         Vector3(Ogre::Vector3 Vec);
 
         /// @brief Bullet Value Constructor.
         /// @details Constructor that sets all values to match the Bullet vector.
-        /// @param Vec The vector to be copied to make this vector
+        /// @param Vec The vector to be copied to make this vector.
         Vector3(btVector3 Vec);
+
+        /// @brief cAudio Value Constructor.
+        /// @details Constructor that sets all values to match the cAudio vector.
+        /// @param Vec The vector to be copied to make this vector.
+        Vector3(cAudio::cVector3 Vec);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Assignment Operators
@@ -277,6 +286,16 @@ namespace phys
         /// and set the values of this class to be the same.
         /// @param temp The vector3 to be extracted.
         void ExtractOgreVector3(Ogre::Vector3 temp);
+
+        /// @brief Gets a cAudio vector3.
+        /// @details Creates a cAudio vector3 with values equal to this class and returns it.
+        cAudio::cVector3 GetcAudioVector3() const;
+
+        /// @brief Copies an existing cAudio vector3.
+        /// @details This function will copy the values stored in an existing cAudio vector3
+        /// and set the values of this class to be the same.
+        /// @param temp The vector3 to be extracted.
+        void ExtractcAudioVector3(cAudio::cVector3 temp);
 
         /// @brief This return the distance between this point and another
         /// @details This uses a 3d extension of pythagoras thereom to calculate the distance between

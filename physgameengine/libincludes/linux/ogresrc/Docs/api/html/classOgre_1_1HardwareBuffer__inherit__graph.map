@@ -1,6 +1,0 @@
-<area shape="rect" href="$classOgre_1_1HardwareIndexBuffer.html" title="Specialisation of HardwareBuffer for vertex index buffers, still abstract." alt="" coords="29,161,221,188">
-<area shape="rect" href="$classOgre_1_1HardwarePixelBuffer.html" title="Specialisation of HardwareBuffer for a pixel buffer." alt="" coords="245,161,432,188">
-<area shape="rect" href="$classOgre_1_1HardwareVertexBuffer.html" title="Specialisation of HardwareBuffer for a vertex buffer." alt="" coords="456,161,656,188">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="295,7,383,33">
-<area shape="rect" href="$classOgre_1_1DefaultHardwareIndexBuffer.html" title="Specialisation of HardwareIndexBuffer for emulation." alt="" coords="5,239,245,265">
-<area shape="rect" href="$classOgre_1_1DefaultHardwareVertexBuffer.html" title="Specialisation of HardwareVertexBuffer for emulation." alt="" coords="433,239,679,265">

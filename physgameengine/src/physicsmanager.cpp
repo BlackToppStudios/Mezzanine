@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -314,10 +314,10 @@ namespace phys
         // This came from the Game init function, and may need to go to a game init.
         this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
         this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
-
     }
 
-
+    void PhysicsManager::DoMainLoopItems()
+        {}
 
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
@@ -353,9 +353,9 @@ namespace phys
                     ActorBase* ActA = this->GameWorld->Actors->FindActor(objectA);
                     ActorBase* ActB = this->GameWorld->Actors->FindActor(objectB);
                     Vector3 emptyloc(0,0,0);
-                    //EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
+                    EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
                     //create collision event
-                    //this->GameWorld->Events->AddEvent(ColEvent);
+                    this->GameWorld->Events->AddEvent(ColEvent);
                     this->GameWorld->Log("Collision Event Logged at:");
                     this->GameWorld->Log(emptyloc);
                 }
@@ -413,6 +413,18 @@ namespace phys
     void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
     {
         this->BulletDynamicsWorld->removeConstraint(Constraint->ConstraintBase);
+    }
+
+    void PhysicsManager::StorePhysicsShape(ActorBase* Actor, String &ShapeName)
+    {
+        this->PhysicsShapes[ShapeName] = Actor->Shape;
+        Actor->ShapeIsSaved = true;
+    }
+
+    void PhysicsManager::ApplyPhysicsShape(ActorBase* Actor, String &ShapeName)
+    {
+        Actor->Shape = this->PhysicsShapes[ShapeName];
+        Actor->ShapeIsSaved = true;
     }
 
     void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)

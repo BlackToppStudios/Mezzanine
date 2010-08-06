@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -44,11 +44,11 @@ namespace phys
 {
     class World;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ManagerBase
-    /// @headerfile managerbase.h
-    /// @brief This is the base class from which all the World Managers inherit.
-    /// @details This creates a base set of functions that Managers are all
-    /// expected to implement.
+    /// @class WorldGetSet
+    /// @headerfile WorldGetSet.h
+    /// @brief A simple set of function to manage a pointer to the gameworld
+    /// @details This creates a common interface for all objects that are expected
+    /// to interact with the world.
     ///////////////////////////////////////
     class WorldGetSet
     {

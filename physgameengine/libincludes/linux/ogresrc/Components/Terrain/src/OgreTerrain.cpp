@@ -731,7 +731,8 @@ namespace Ogre
 		deriveUVMultipliers();
 		mMaxBatchSize = importData.maxBatchSize;
 		mMinBatchSize = importData.minBatchSize;
-		mPos = importData.pos;
+		setPosition(importData.pos);
+
 		updateBaseScale();
 		determineLodLevels();
 
@@ -1813,7 +1814,7 @@ namespace Ogre
 		mHeightData = 0;
 
 		OGRE_FREE(mDeltaData, MEMCATEGORY_GEOMETRY);
-		mHeightData = 0;
+		mDeltaData = 0;
 
 		OGRE_DELETE mQuadTree;
 		mQuadTree = 0;
@@ -2469,7 +2470,7 @@ namespace Ogre
 
             TerrainLayerBlendMapList::iterator bi = mLayerBlendMapList.begin();
             std::advance(bi, blendIndex);
-            mLayerBlendMapList.insert(bi, 0);
+            mLayerBlendMapList.insert(bi, static_cast<TerrainLayerBlendMap*>(0));
 		}
 		if (textureNames)
 		{
@@ -3324,6 +3325,11 @@ namespace Ogre
 				mLightmap->getBuffer()->blitFromMemory(*lightmapBox, dstBox);
 			}
 		}
+
+		// delete memory
+		OGRE_FREE(lightmapBox->data, MEMCATEGORY_GENERAL);
+		OGRE_DELETE(lightmapBox);
+
 
 	}
 	//---------------------------------------------------------------------

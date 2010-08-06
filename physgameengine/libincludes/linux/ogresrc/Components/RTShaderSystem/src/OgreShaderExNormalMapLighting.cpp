@@ -67,6 +67,11 @@ NormalMapLighting::NormalMapLighting()
 	mVSTexCoordSetIndex				= 0;
 	mSpecularEnable					= false;
 	mNormalMapSpace					= NMS_TANGENT;
+	mNormalMapMinFilter				= FO_LINEAR;
+	mNormalMapMagFilter				= FO_LINEAR;
+	mNormalMapMipFilter				= FO_POINT;
+	mNormalMapAnisotropy			= 1;
+	mNormalMapMipBias				= -1.0;
 
 	msBlankLight.setDiffuseColour(ColourValue::Black);
 	msBlankLight.setSpecularColour(ColourValue::Black);
@@ -465,7 +470,7 @@ bool NormalMapLighting::resolveGlobalParameters(ProgramSet* programSet)
 			return false;	
 
 		// Resolve inverse world rotation matrix.
-		mWorldInvRotMatrix = vsProgram->resolveParameter(GCT_MATRIX_4X4, -1, (uint16)GPV_PER_OBJECT, "gMatInvRotation");
+		mWorldInvRotMatrix = vsProgram->resolveParameter(GCT_MATRIX_4X4, -1, (uint16)GPV_PER_OBJECT, "inv_world_rotation_matrix");
 		if (mWorldInvRotMatrix.get() == NULL)		
 			return false;	
 		
@@ -489,7 +494,7 @@ bool NormalMapLighting::resolvePerLightParameters(ProgramSet* programSet)
 		switch (mLightParamsList[i].mType)
 		{
 		case Light::LT_DIRECTIONAL:
-			mLightParamsList[i].mDirection = vsProgram->resolveParameter(GCT_FLOAT4, -1, (uint16)GPV_LIGHTS, "light_direction_obj_space");
+			mLightParamsList[i].mDirection = vsProgram->resolveParameter(GCT_FLOAT4, -1, (uint16)GPV_LIGHTS|GPV_PER_OBJECT, "light_direction_obj_space");
 			if (mLightParamsList[i].mDirection.get() == NULL)
 				return false;
 
@@ -522,7 +527,7 @@ bool NormalMapLighting::resolvePerLightParameters(ProgramSet* programSet)
 			if (mVSInPosition.get() == NULL)
 				return false;
 
-			mLightParamsList[i].mPosition = vsProgram->resolveParameter(GCT_FLOAT4, -1, (uint16)GPV_LIGHTS, "light_position_world_space");
+			mLightParamsList[i].mPosition = vsProgram->resolveParameter(GCT_FLOAT4, -1, (uint16)GPV_LIGHTS|GPV_PER_OBJECT, "light_position_world_space");
 			if (mLightParamsList[i].mPosition.get() == NULL)
 				return false;
 
@@ -580,7 +585,7 @@ bool NormalMapLighting::resolvePerLightParameters(ProgramSet* programSet)
 			// Resolve inverse world rotation matrix.
 			if (mWorldInvRotMatrix.get() == NULL)
 			{				
-				mWorldInvRotMatrix = vsProgram->resolveParameter(GCT_MATRIX_4X4, -1, (uint16)GPV_GLOBAL, "inv_world_rotation_matrix");
+				mWorldInvRotMatrix = vsProgram->resolveParameter(GCT_MATRIX_4X4, -1, (uint16)GPV_PER_OBJECT, "inv_world_rotation_matrix");
 				if (mWorldInvRotMatrix.get() == NULL)		
 					return false;	
 			}				
@@ -591,7 +596,7 @@ bool NormalMapLighting::resolvePerLightParameters(ProgramSet* programSet)
 			if (mVSInPosition.get() == NULL)
 				return false;
 
-			mLightParamsList[i].mPosition = vsProgram->resolveParameter(GCT_FLOAT4, -1, (uint16)GPV_LIGHTS, "light_position_world_space");
+			mLightParamsList[i].mPosition = vsProgram->resolveParameter(GCT_FLOAT4, -1, (uint16)GPV_LIGHTS|GPV_PER_OBJECT, "light_position_world_space");
 			if (mLightParamsList[i].mPosition.get() == NULL)
 				return false;
 
@@ -617,7 +622,7 @@ bool NormalMapLighting::resolvePerLightParameters(ProgramSet* programSet)
 			if (mLightParamsList[i].mPSInToLightDir.get() == NULL)
 				return false;
 
-			mLightParamsList[i].mDirection = vsProgram->resolveParameter(GCT_FLOAT4, -1, (uint16)GPV_LIGHTS, "light_direction_obj_space");
+			mLightParamsList[i].mDirection = vsProgram->resolveParameter(GCT_FLOAT4, -1, (uint16)GPV_LIGHTS|GPV_PER_OBJECT, "light_direction_obj_space");
 			if (mLightParamsList[i].mDirection.get() == NULL)
 				return false;
 
@@ -679,7 +684,7 @@ bool NormalMapLighting::resolvePerLightParameters(ProgramSet* programSet)
 			// Resolve inverse world rotation matrix.
 			if (mWorldInvRotMatrix.get() == NULL)
 			{				
-				mWorldInvRotMatrix = vsProgram->resolveParameter(GCT_MATRIX_4X4, -1, (uint16)GPV_PER_OBJECT, "gMatInvRotation");
+				mWorldInvRotMatrix = vsProgram->resolveParameter(GCT_MATRIX_4X4, -1, (uint16)GPV_PER_OBJECT, "inv_world_rotation_matrix");
 				if (mWorldInvRotMatrix.get() == NULL)		
 					return false;	
 			}						
@@ -1173,6 +1178,10 @@ void NormalMapLighting::copyFrom(const SubRenderState& rhs)
 	mSpecularEnable = rhsLighting.mSpecularEnable;
 	mNormalMapSpace = rhsLighting.mNormalMapSpace;
 	mNormalMapTextureName = rhsLighting.mNormalMapTextureName;
+	mNormalMapMinFilter = rhsLighting.mNormalMapMinFilter;
+	mNormalMapMagFilter = rhsLighting.mNormalMapMagFilter;
+	mNormalMapMipFilter = rhsLighting.mNormalMapMipFilter;
+	mNormalMapMipBias = rhsLighting.mNormalMapMipBias;
 }
 
 //-----------------------------------------------------------------------
@@ -1188,7 +1197,9 @@ bool NormalMapLighting::preAddToRenderState(RenderState* renderState, Pass* srcP
 	TextureUnitState* normalMapTexture = dstPass->createTextureUnitState();
 
 	normalMapTexture->setTextureName(mNormalMapTextureName);	
-	normalMapTexture->setTextureMipmapBias(-1.0);
+	normalMapTexture->setTextureFiltering(mNormalMapMinFilter, mNormalMapMagFilter, mNormalMapMipFilter);
+	normalMapTexture->setTextureAnisotropy(mNormalMapAnisotropy);
+	normalMapTexture->setTextureMipmapBias(mNormalMapMipBias);
 	mNormalMapSamplerIndex = dstPass->getNumTextureUnitStates() - 1;
 
 	setTrackVertexColourType(srcPass->getVertexColourTracking());			
@@ -1321,7 +1332,7 @@ SubRenderState*	NormalMapLightingFactory::createInstance(ScriptCompiler* compile
 					return NULL;
 				}
 
-				unsigned int textureCoordinateIndex = 0;
+				
 				SubRenderState* subRenderState = SubRenderStateFactory::createInstance();
 				NormalMapLighting* normalMapSubRenderState = static_cast<NormalMapLighting*>(subRenderState);
 				
@@ -1353,11 +1364,68 @@ SubRenderState*	NormalMapLightingFactory::createInstance(ScriptCompiler* compile
 
 				// Read texture coordinate index.
 				if (prop->values.size() >= 4)
-				{					
+				{	
+					unsigned int textureCoordinateIndex = 0;
+
 					++it;
 					if (SGScriptTranslator::getUInt(*it, &textureCoordinateIndex))
 					{
 						normalMapSubRenderState->setTexCoordIndex(textureCoordinateIndex);
+					}
+				}
+
+				// Read texture filtering format.
+				if (prop->values.size() >= 5)
+				{					
+					++it;
+					if (false == SGScriptTranslator::getString(*it, &strValue))
+					{
+						compiler->addError(ScriptCompiler::CE_STRINGEXPECTED, prop->file, prop->line);
+						return NULL;
+					}
+
+					if (strValue == "none")
+					{
+						normalMapSubRenderState->setNormalMapFiltering(FO_POINT, FO_POINT, FO_NONE);
+					}
+
+					else if (strValue == "bilinear")
+					{
+						normalMapSubRenderState->setNormalMapFiltering(FO_LINEAR, FO_LINEAR, FO_POINT);
+					}
+
+					else if (strValue == "trilinear")
+					{
+						normalMapSubRenderState->setNormalMapFiltering(FO_LINEAR, FO_LINEAR, FO_LINEAR);
+					}
+
+					else if (strValue == "anisotropic")
+					{
+						normalMapSubRenderState->setNormalMapFiltering(FO_ANISOTROPIC, FO_ANISOTROPIC, FO_LINEAR);
+					}
+				}
+
+				// Read max anisotropy value.
+				if (prop->values.size() >= 6)
+				{	
+					unsigned int maxAnisotropy = 0;
+
+					++it;
+					if (SGScriptTranslator::getUInt(*it, &maxAnisotropy))
+					{
+						normalMapSubRenderState->setNormalMapAnisotropy(maxAnisotropy);
+					}
+				}
+
+				// Read mip bias value.
+				if (prop->values.size() >= 7)
+				{	
+					Real mipBias = 0;
+
+					++it;
+					if (SGScriptTranslator::getReal(*it, &mipBias))
+					{
+						normalMapSubRenderState->setNormalMapMipBias(mipBias);
 					}
 				}
 								

@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>actorcontainervector.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>actorcontainervector.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -121,48 +121,58 @@
 <a name="l00096"></a>00096 
 <a name="l00097"></a>00097             <span class="keyword">virtual</span> <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a5519eb0000073a2f397e158bfc368349" title="This gets the World that this class is working with.">GetGameWorld</a>() <span class="keyword">const</span>;
 <a name="l00098"></a>00098 <span class="comment"></span>
-<a name="l00099"></a>00099 <span class="comment">            /// @brief This finds an actor by searching for a graphics subsystem nodes</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @brief This finds an actor by searching for a graphics subsystem nodes.</span>
 <a name="l00100"></a>00100 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time.</span>
-<a name="l00101"></a>00101 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching node</span>
+<a name="l00101"></a>00101 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching node.</span>
 <a name="l00102"></a>00102 <span class="comment">            /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.</span>
 <a name="l00103"></a>00103 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">FindActor</a>(Ogre::Node* GraphicsNode);
 <a name="l00104"></a>00104 <span class="comment"></span>
-<a name="l00105"></a>00105 <span class="comment">            /// @brief This finds an actor based on its name</span>
-<a name="l00106"></a>00106 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time.</span>
-<a name="l00107"></a>00107 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching name</span>
-<a name="l00108"></a>00108 <span class="comment">            /// @param Name This is the name of the Actor you want to find</span>
-<a name="l00109"></a>00109 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">FindActor</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name);
+<a name="l00105"></a>00105 <span class="comment">            /// @brief This finds an actor by searching for a physics subsystem object.</span>
+<a name="l00106"></a>00106 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time.</span>
+<a name="l00107"></a>00107 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a physics object.</span>
+<a name="l00108"></a>00108 <span class="comment">            /// @param PhysicsObject This is a pointer to a physics object that the Actor you want to find will have.</span>
+<a name="l00109"></a>00109 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">FindActor</a>(btCollisionObject* PhysicsObject);
 <a name="l00110"></a>00110 <span class="comment"></span>
-<a name="l00111"></a>00111 <span class="comment">            /// @brief This is used to store information about the cursor</span>
-<a name="l00112"></a>00112 <span class="comment">            /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor</span>
-<a name="l00113"></a>00113 <span class="comment">            /// so feel free to use this instead.</span>
-<a name="l00114"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed">00114</a> <span class="comment"></span>            vector&lt;ActorBase*&gt;::iterator <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed" title="This is used to store information about the cursor.">cursor</a>;
-<a name="l00115"></a>00115 <span class="comment"></span>
-<a name="l00116"></a>00116 <span class="comment">            /// @brief This safely move all the Actors out of or into a phys::World</span>
-<a name="l00117"></a>00117 <span class="comment">            /// @details This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system</span>
-<a name="l00118"></a>00118 <span class="comment">            /// if a phys::World is present. Then this sets up all actors with the new World unless it is NULL</span>
-<a name="l00119"></a>00119 <span class="comment">            /// @param GameWorld_ This is a pointer to the new phys::World to work with.</span>
-<a name="l00120"></a>00120 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa" title="This safely move all the Actors out of or into a phys::World.">SetGameWorld</a>( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ );
+<a name="l00111"></a>00111 <span class="comment">            /// @brief This finds an actor based on its name.</span>
+<a name="l00112"></a>00112 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time.</span>
+<a name="l00113"></a>00113 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching name.</span>
+<a name="l00114"></a>00114 <span class="comment">            /// @param Name This is the name of the Actor you want to find.</span>
+<a name="l00115"></a>00115 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ad01cf1452bda36cee175ae0e54d509cc" title="This finds an actor by searching for a graphics subsystem nodes.">FindActor</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name);
+<a name="l00116"></a>00116 <span class="comment"></span>
+<a name="l00117"></a>00117 <span class="comment">            /// @brief This is used to store information about the cursor.</span>
+<a name="l00118"></a>00118 <span class="comment">            /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor</span>
+<a name="l00119"></a>00119 <span class="comment">            /// so feel free to use this instead.</span>
+<a name="l00120"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed">00120</a> <span class="comment"></span>            vector&lt;ActorBase*&gt;::iterator <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed" title="This is used to store information about the cursor.">cursor</a>;
 <a name="l00121"></a>00121 <span class="comment"></span>
-<a name="l00122"></a>00122 <span class="comment">            /// @brief Optionally move actors into or out of a physworld</span>
-<a name="l00123"></a>00123 <span class="comment">            /// @param GameWorld_ This is a pointer to the new phys::World to work with.</span>
-<a name="l00124"></a>00124 <span class="comment">            /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add</span>
-<a name="l00125"></a>00125 <span class="comment">            /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove</span>
-<a name="l00126"></a>00126 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa" title="This safely move all the Actors out of or into a phys::World.">SetGameWorld</a>( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ , <span class="keywordtype">bool</span> AddToWorld, <span class="keywordtype">bool</span> RemoveFromWorld);
+<a name="l00122"></a>00122 <span class="comment">            /// @brief This safely move all the Actors out of or into a phys::World</span>
+<a name="l00123"></a>00123 <span class="comment">            /// @details This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system</span>
+<a name="l00124"></a>00124 <span class="comment">            /// if a phys::World is present. Then this sets up all actors with the new World unless it is NULL</span>
+<a name="l00125"></a>00125 <span class="comment">            /// @param GameWorld_ This is a pointer to the new phys::World to work with.</span>
+<a name="l00126"></a>00126 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa" title="This safely move all the Actors out of or into a phys::World.">SetGameWorld</a>( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ );
 <a name="l00127"></a>00127 <span class="comment"></span>
-<a name="l00128"></a>00128 <span class="comment">            /// @brief Empty Initilizor</span>
-<a name="l00129"></a>00129 <span class="comment">            /// @details This class implements this for the sake of entension and compatibility this function does nothing</span>
-<a name="l00130"></a>00130 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c" title="Empty Initilizor.">Initialize</a>();
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132         <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00133"></a>00133 <span class="comment">            /// @brief This is used to implement LastActorAdded()</span>
-<a name="l00134"></a>00134 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* RecentlyAdded;
-<a name="l00135"></a>00135     };
-<a name="l00136"></a>00136 }
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138 <span class="preprocessor">#endif</span>
+<a name="l00128"></a>00128 <span class="comment">            /// @brief Optionally move actors into or out of a physworld</span>
+<a name="l00129"></a>00129 <span class="comment">            /// @param GameWorld_ This is a pointer to the new phys::World to work with.</span>
+<a name="l00130"></a>00130 <span class="comment">            /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add</span>
+<a name="l00131"></a>00131 <span class="comment">            /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove</span>
+<a name="l00132"></a>00132 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ab4c1394254057465f7a2f89b87dc49aa" title="This safely move all the Actors out of or into a phys::World.">SetGameWorld</a>( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ , <span class="keywordtype">bool</span> AddToWorld, <span class="keywordtype">bool</span> RemoveFromWorld);
+<a name="l00133"></a>00133 <span class="comment"></span>
+<a name="l00134"></a>00134 <span class="comment">            /// @brief Empty Initilizor</span>
+<a name="l00135"></a>00135 <span class="comment">            /// @details This class implements this for the sake of entension and compatibility this function does nothing</span>
+<a name="l00136"></a>00136 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c" title="Empty Initilizor.">Initialize</a>();
+<a name="l00137"></a>00137 <span class="comment"></span>
+<a name="l00138"></a>00138 <span class="comment">            /// @brief Empty MainLoopItems</span>
+<a name="l00139"></a>00139 <span class="comment">            /// @details This class implements this for the sake of entension and compatibility this function does nothing</span>
+<a name="l00140"></a>00140 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a883e59ac1674421bac143088a6cf07c8" title="Empty MainLoopItems.">DoMainLoopItems</a>();
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142         <span class="keyword">private</span>:<span class="comment"></span>
+<a name="l00143"></a>00143 <span class="comment">            /// @brief This is used to implement LastActorAdded()</span>
+<a name="l00144"></a>00144 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* RecentlyAdded;
+<a name="l00145"></a>00145     };
+<a name="l00146"></a>00146 }
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

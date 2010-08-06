@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -43,11 +43,14 @@
 //Any Special data types that we need will get declared right here
 ///////////////////////////////////////
 #include <string>
+#include <vector>
 
 union SDL_Event;
 
 namespace phys
 {
+    class Sound;
+
     /// @typedef Real
     /// @brief A Datatype used to represent a real floating point number
     /// @details This Datatype is currently a typedef to a float, This is to match
@@ -73,6 +76,11 @@ namespace phys
     /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details
     typedef SDL_Event RawEvent;
 
+    /// @typedef SoundSet
+    /// @brief This is a vector that stores sounds.
+    /// @details This is a vector and can be use to store sounds that can be grouped together
+    /// for similiar purposes or similiar content for easy tracking.
+    typedef std::vector< Sound* > SoundSet;
 
     //TODO make a typedef for RawEvent.type and a function that return that new datatype
     //  this will make it easier to swap out event subsystems when porting between platforms

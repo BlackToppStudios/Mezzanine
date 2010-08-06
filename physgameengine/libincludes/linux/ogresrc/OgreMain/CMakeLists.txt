@@ -449,6 +449,7 @@ if (WIN32)
     include/WIN32/OgreConfigDialogImp.h
     include/WIN32/OgreErrorDialogImp.h
     include/WIN32/OgreTimerImp.h
+    include/WIN32/OgreMinGWSupport.h
   )
   set(PLATFORM_SOURCE_FILES
     src/WIN32/OgreConfigDialog.cpp
@@ -549,7 +550,13 @@ elseif (UNIX)
     src/GLX/OgreTimer.cpp
     src/OgreSearchOps.cpp
   )
-  set(PLATFORM_LIBS ${X11_LIBRARIES} ${X11_Xt_LIB} ${XAW_LIBRARY} pthread dl)
+  set(PLATFORM_LIBS ${X11_LIBRARIES} ${X11_Xt_LIB} ${XAW_LIBRARY} pthread)
+  # some platforms require explicit linking to libdl, see if it's available
+  find_library(DL_LIBRARY NAMES dl dlsym)
+  mark_as_advanced(DL_LIBRARY)
+  if (DL_LIBRARY)
+    list(APPEND PLATFORM_LIBS dl)
+  endif ()
   set(PLATFORM_HEADER_INSTALL "GLX")
 
 endif(WIN32)
@@ -664,7 +671,6 @@ if (APPLE)
     set_target_properties(OgreMain PROPERTIES XCODE_ATTRIBUTE_GCC_UNROLL_LOOPS "YES")
     set_target_properties(OgreMain PROPERTIES XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer")
     set_target_properties(OgreMain PROPERTIES XCODE_ATTRIBUTE_GCC_PRECOMPILE_PREFIX_HEADER "YES")
-    set_target_properties(OgreMain PROPERTIES XCODE_ATTRIBUTE_GCC_PREFIX_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/include/OgreStableHeaders.h")
   endif ()
 
   # Framework is called 'Ogre'

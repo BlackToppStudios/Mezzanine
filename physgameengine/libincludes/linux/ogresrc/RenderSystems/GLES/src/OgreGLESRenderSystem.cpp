@@ -63,6 +63,8 @@ THE SOFTWARE.
 	PFNGLBLENDEQUATIONOESPROC glBlendEquationOES;
 	PFNGLBLENDFUNCSEPARATEOESPROC glBlendFuncSeparateOES;
 	PFNGLBLENDEQUATIONSEPARATEOESPROC glBlendEquationSeparateOES;
+    PFNGLMAPBUFFEROESPROC glMapBufferOES;
+    PFNGLUNMAPBUFFEROESPROC glUnmapBufferOES;
 #	endif
 
 #endif
@@ -72,6 +74,9 @@ THE SOFTWARE.
 
 // Convenience macro from ARB_vertex_buffer_object spec
 #define VBO_BUFFER_OFFSET(i) ((char *)NULL + (i))
+
+// Copy this definition from desktop GL.  Used for polygon modes.
+#define GL_FILL    0x1B02
 
 namespace Ogre {
     GLESRenderSystem::GLESRenderSystem()
@@ -102,6 +107,8 @@ namespace Ogre {
 			::glBlendEquationOES = (PFNGLBLENDEQUATIONOESPROC)eglGetProcAddress("glBlendEquationOES");
 			::glBlendFuncSeparateOES = (PFNGLBLENDFUNCSEPARATEOESPROC)eglGetProcAddress("glBlendFuncSeparateOES");
 			::glBlendEquationSeparateOES = (PFNGLBLENDEQUATIONSEPARATEOESPROC)eglGetProcAddress("glBlendEquationSeparateOES");
+            ::glMapBufferOES = (PFNGLMAPBUFFEROESPROC)eglGetProcAddress("glMapBufferOES");
+            ::glUnmapBufferOES = (PFNGLUNMAPBUFFEROESPROC)eglGetProcAddress("glUnmapBufferOES");
 #endif
         GL_CHECK_ERROR;
         size_t i;
@@ -135,6 +142,7 @@ namespace Ogre {
         mTextureMipmapCount = 0;
         mMinFilter = FO_LINEAR;
         mMipFilter = FO_POINT;
+        mPolygonMode = GL_FILL;
     }
 
     GLESRenderSystem::~GLESRenderSystem()
@@ -1827,7 +1835,19 @@ namespace Ogre {
 
     void GLESRenderSystem::_setPolygonMode(PolygonMode level)
     {
-        // Not supported
+        switch(level)
+        {
+        case PM_POINTS:
+            mPolygonMode = GL_POINTS;
+            break;
+        case PM_WIREFRAME:
+            mPolygonMode = GL_LINE_STRIP;
+            break;
+        default:
+        case PM_SOLID:
+            mPolygonMode = GL_FILL;
+            break;
+        }
     }
 
     void GLESRenderSystem::setStencilCheckEnabled(bool enabled)
@@ -2173,7 +2193,7 @@ namespace Ogre {
                                   mDerivedDepthBiasSlopeScale);
                 }
 				GL_CHECK_ERROR;
-                glDrawElements(primType, op.indexData->indexCount, indexType, pBufferData);
+                glDrawElements((_getPolygonMode() == GL_FILL) ? primType : _getPolygonMode(), op.indexData->indexCount, indexType, pBufferData);
                 GL_CHECK_ERROR;
             } while (updatePassIterationRenderState());
         }
@@ -2188,7 +2208,7 @@ namespace Ogre {
                                   mDerivedDepthBiasMultiplier * mCurrentPassIterationNum,
                                   mDerivedDepthBiasSlopeScale);
                 }
-                glDrawArrays(primType, 0, op.vertexData->vertexCount);
+                glDrawArrays((_getPolygonMode() == GL_FILL) ? primType : _getPolygonMode(), 0, op.vertexData->vertexCount);
                 GL_CHECK_ERROR;
             } while (updatePassIterationRenderState());
         }

@@ -30,6 +30,7 @@
       <li><a href="functions.html"><span>All</span></a></li>
       <li class="current"><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_type.html"><span>Typedefs</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
       <li><a href="functions_rela.html"><span>Related&nbsp;Functions</span></a></li>
@@ -43,6 +44,7 @@
       <li><a href="functions_func_0x65.html#index_e"><span>e</span></a></li>
       <li><a href="functions_func_0x66.html#index_f"><span>f</span></a></li>
       <li><a href="functions_func_0x67.html#index_g"><span>g</span></a></li>
+      <li><a href="functions_func_0x68.html#index_h"><span>h</span></a></li>
       <li><a href="functions_func_0x69.html#index_i"><span>i</span></a></li>
       <li><a href="functions_func_0x6c.html#index_l"><span>l</span></a></li>
       <li><a href="functions_func_0x6d.html#index_m"><span>m</span></a></li>
@@ -80,6 +82,9 @@
 <li>ClearNodes()
 : <a class="el" href="d9/d91/classphys_1_1CameraManager.html#a42d91612bbaa00187944290d6bfd44e9">phys::CameraManager</a>
 </li>
+<li>ConeTwistConstraint()
+: <a class="el" href="da/dbc/classphys_1_1ConeTwistConstraint.html#a38a9a0e7676d8ad8f77831a319bc007b">phys::ConeTwistConstraint</a>
+</li>
 <li>Construct()
 : <a class="el" href="dd/d63/classphys_1_1GraphicsManager.html#a0618579828f2eed0cb07fbe55fd15b3f">phys::GraphicsManager</a>
 </li>
@@ -105,14 +110,25 @@
 : <a class="el" href="d4/d23/classphys_1_1ActorSoft.html#a51d78e0f503c3c815511c3d246b426ae">phys::ActorSoft</a>
 </li>
 <li>CreateShapeFromMeshDynamic()
-: <a class="el" href="d8/d71/classphys_1_1ActorRigid.html#aab4a408ce0724be6adf4c9f51f55f8a1">phys::ActorRigid</a>
-, <a class="el" href="d8/d0f/classphys_1_1ActorBase.html#aa41370f6d2031a9dad8df45bd7f3bcc6">phys::ActorBase</a>
+: <a class="el" href="d8/d0f/classphys_1_1ActorBase.html#aa41370f6d2031a9dad8df45bd7f3bcc6">phys::ActorBase</a>
+, <a class="el" href="d8/d71/classphys_1_1ActorRigid.html#aab4a408ce0724be6adf4c9f51f55f8a1">phys::ActorRigid</a>
+, <a class="el" href="de/d74/classphys_1_1ActorTerrain.html#aa5f545a73da45ab219121c4b2cd0ded9">phys::ActorTerrain</a>
 </li>
 <li>CreateShapeFromMeshStatic()
 : <a class="el" href="d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac">phys::ActorRigid</a>
+, <a class="el" href="de/d74/classphys_1_1ActorTerrain.html#a2403c40af6799e67c9aff1520b02dc0b">phys::ActorTerrain</a>
 </li>
 <li>CreateSoftObject()
 : <a class="el" href="d4/d23/classphys_1_1ActorSoft.html#a04c98bb0ab9ed7c1dfc3435d49403ef4">phys::ActorSoft</a>
+</li>
+<li>CreateSound()
+: <a class="el" href="d1/dc4/classphys_1_1SoundManager.html#ac9e68fef909b72110e9b68ff2674bcbb">phys::SoundManager</a>
+</li>
+<li>CreateSoundFromMemory()
+: <a class="el" href="d1/dc4/classphys_1_1SoundManager.html#aa039c3d7a5ee961be0934a58fd3826fa">phys::SoundManager</a>
+</li>
+<li>CreateSoundSet()
+: <a class="el" href="d1/dc4/classphys_1_1SoundManager.html#afccb11a6f6d9aa9768a185febb0af45a">phys::SoundManager</a>
 </li>
 <li>CreateSphereShapeFromMesh()
 : <a class="el" href="d8/d71/classphys_1_1ActorRigid.html#ae401c116a07ee4ed3fc677e83308fba5">phys::ActorRigid</a>
@@ -121,7 +137,10 @@
 : <a class="el" href="d9/d91/classphys_1_1CameraManager.html#ab5f9ca6b053670e69f5812cf573d5972">phys::CameraManager</a>
 </li>
 <li>CreateTrimesh()
-: <a class="el" href="d8/d0f/classphys_1_1ActorBase.html#a4d2137276c50bbe5bc8cf9ecc66581b7">phys::ActorBase</a>
+: <a class="el" href="d8/d0f/classphys_1_1ActorBase.html#af869b78fcac01ee153d495953daab382">phys::ActorBase</a>
+</li>
+<li>CrossProduct()
+: <a class="el" href="d5/d6a/classphys_1_1Vector3.html#ae98b11238914cd77a729053798ebf339">phys::Vector3</a>
 </li>
 <li>CursorToFirst()
 : <a class="el" href="d3/d64/classphys_1_1ActorContainerVector.html#ad9c2eb2a9405dcf687c86745afc9c031">phys::ActorContainerVector</a>
@@ -136,12 +155,12 @@
 , <a class="el" href="d1/d00/classphys_1_1ActorContainerBase.html#a1aa337456a4e74cb5740dbae08778072">phys::ActorContainerBase</a>
 </li>
 <li>CursorToPrevious()
-: <a class="el" href="d1/d00/classphys_1_1ActorContainerBase.html#a7c424168c0bbd973b283a083714123b3">phys::ActorContainerBase</a>
-, <a class="el" href="d3/d64/classphys_1_1ActorContainerVector.html#ac483bcdf348f55dc8b04a8805a002413">phys::ActorContainerVector</a>
+: <a class="el" href="d3/d64/classphys_1_1ActorContainerVector.html#ac483bcdf348f55dc8b04a8805a002413">phys::ActorContainerVector</a>
+, <a class="el" href="d1/d00/classphys_1_1ActorContainerBase.html#a7c424168c0bbd973b283a083714123b3">phys::ActorContainerBase</a>
 </li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:03 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

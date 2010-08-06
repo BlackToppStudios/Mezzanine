@@ -49,6 +49,63 @@ protected:
 	ManualObject* mScissorRect;
 	void setupContent();
 };
+//---------------------------------------------------------------------
+class _OgreSampleClassExport PlayPen_testCameraSetDirection : public PlayPenBase
+{
+public:
+	PlayPen_testCameraSetDirection();
+
+	void buttonHit(OgreBites::Button* button);
+	void checkBoxToggled(OgreBites::CheckBox* box);
+protected:
+	bool mUseParentNode;
+	bool mUseFixedYaw;
+	SceneNode* mParentNode;
+	Vector3 mFocus;
+	void setupContent();
+	void toggleParentNode();
+	void toggleFixedYaw();
+	void track();
+
+};
+//---------------------------------------------------------------------
+class _OgreSampleClassExport PlayPen_testManualLOD : public PlayPenBase
+{
+public:
+	PlayPen_testManualLOD();
+	bool frameStarted(const Ogre::FrameEvent& evt);
+protected:
+	AnimationState* mAnimState;
+	void setupContent();
+	String getLODMesh();
+};
+//---------------------------------------------------------------------
+class _OgreSampleClassExport PlayPen_testManualLODFromFile : public PlayPen_testManualLOD
+{
+public:
+	PlayPen_testManualLODFromFile();
+protected:
+	String getLODMesh();
+};
+
+//---------------------------------------------------------------------
+class _OgreSampleClassExport PlayPen_testFullScreenSwitch : public PlayPenBase
+{
+public:
+	PlayPen_testFullScreenSwitch();
+
+	void buttonHit(OgreBites::Button* button);
+protected:
+	void setupContent();
+
+	OgreBites::Button* m640x480w;
+	OgreBites::Button* m800x600w;
+	OgreBites::Button* m1024x768w;
+	OgreBites::Button* m640x480fs;
+	OgreBites::Button* m800x600fs;
+	OgreBites::Button* m1024x768fs;
+
+};
 
 
 

@@ -168,6 +168,24 @@ namespace Ogre {
 		std::advance(i, index);
 		mSubMeshList.erase(i);
 		
+		// Fix up any name/index entries
+		for(SubMeshNameMap::iterator ni = mSubMeshNameMap.begin(); ni != mSubMeshNameMap.end();)
+		{
+			if (ni->second == index)
+			{
+				SubMeshNameMap::iterator eraseIt = ni++;
+				mSubMeshNameMap.erase(eraseIt);
+			}
+			else
+			{
+				// reduce indexes following
+				if (ni->second > index)
+					ni->second = ni->second - 1;
+
+				++ni;
+			}
+		}
+
 		if (isLoaded())
 			_dirtyState();
 		
@@ -535,10 +553,9 @@ namespace Ogre {
     void Mesh::_initAnimationState(AnimationStateSet* animSet)
     {
 		// Animation states for skeletal animation
-		if (hasSkeleton())
+		if (!mSkeleton.isNull())
 		{
 			// Delegate to Skeleton
-			assert(!mSkeleton.isNull() && "Skeleton not present");
 			mSkeleton->_initAnimationState(animSet);
 
 			// Take the opportunity to update the compiled bone assignments
@@ -565,7 +582,7 @@ namespace Ogre {
 	//---------------------------------------------------------------------
 	void Mesh::_refreshAnimationState(AnimationStateSet* animSet)
 	{
-		if (hasSkeleton())
+		if (!mSkeleton.isNull())
 		{
 			mSkeleton->_refreshAnimationState(animSet);
 		}
@@ -961,10 +978,12 @@ namespace Ogre {
         {
             // Load the mesh now
 			try {
+				String groupName = mMeshLodUsageList[index].manualGroup.empty() ? 
+					mGroup : mMeshLodUsageList[index].manualGroup;
 				mMeshLodUsageList[index].manualMesh =
 					MeshManager::getSingleton().load(
 						mMeshLodUsageList[index].manualName,
-						mMeshLodUsageList[index].manualGroup);
+						groupName);
 				// get the edge data, if required
 				if (!mMeshLodUsageList[index].edgeData)
 				{

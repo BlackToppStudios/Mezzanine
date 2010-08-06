@@ -1,5 +1,0 @@
-<area shape="rect" href="$classOgre_1_1DefaultAxisAlignedBoxSceneQuery.html" title="Default implementation of AxisAlignedBoxSceneQuery." alt="" coords="28,316,308,342">
-<area shape="rect" href="$classOgre_1_1RegionSceneQuery.html" title="Abstract class defining a query which returns single results from a region." alt="" coords="79,161,257,188">
-<area shape="rect" href="$classOgre_1_1SceneQuery.html" title="A class for performing queries on a scene." alt="" coords="5,84,144,110">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="17,6,132,33">
-<area shape="rect" href="$classOgre_1_1SceneQueryListener.html" title="This optional class allows you to receive per&#45;result callbacks from SceneQuery executions..." alt="" coords="168,84,357,110">

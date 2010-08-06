@@ -19,7 +19,7 @@
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_e6f3c38bab9f9b069801282b036dcd7e.html">OgreMain</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_fff653567ee624dbe60da7ff7e1cdacb.html">include</a>
+  <div class="navpath"><a class="el" href="dir_01e6e7a534a8af96fe061fa121fb6008.html">OgreMain</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_c4cafdf7fc9df105e9e8603dbbbb8a90.html">include</a>
   </div>
 </div>
 </div>
@@ -180,104 +180,113 @@
 <a name="l00155"></a>00155 <span class="preprocessor"></span>
 <a name="l00156"></a>00156 <span class="comment">// Disable unicode support on MingW for GCC 3, poorly supported in stdlibc++</span>
 <a name="l00157"></a>00157 <span class="comment">// STLPORT fixes this though so allow if found</span>
-<a name="l00158"></a>00158 <span class="comment">// MinGW C++ Toolkit supports unicode and sets the define __MINGW32_TOOLKIT_UNICODE__ in _mingw.h</span>
+<a name="l00158"></a>00158 <span class="comment">// MinGW C++ Toolkit supports unicode and sets the define __MINGW32_TOOLBOX_UNICODE__ in _mingw.h</span>
 <a name="l00159"></a>00159 <span class="comment">// GCC 4 is also fine</span>
-<a name="l00160"></a>00160 <span class="preprocessor">#if defined( __MINGW32__ ) &amp;&amp; !defined(_STLPORT_VERSION)</span>
-<a name="l00161"></a>00161 <span class="preprocessor"></span><span class="preprocessor">#   include&lt;_mingw.h&gt;</span>
-<a name="l00162"></a>00162 <span class="preprocessor">#   if defined(__MINGW32_TOOLBOX_UNICODE__) || OGRE_COMP_VER &gt; 345</span>
-<a name="l00163"></a>00163 <span class="preprocessor"></span><span class="preprocessor">#       define OGRE_UNICODE_SUPPORT 1</span>
-<a name="l00164"></a>00164 <span class="preprocessor"></span><span class="preprocessor">#   else</span>
-<a name="l00165"></a>00165 <span class="preprocessor"></span><span class="preprocessor">#       define OGRE_UNICODE_SUPPORT 0</span>
-<a name="l00166"></a>00166 <span class="preprocessor"></span><span class="preprocessor">#   endif</span>
-<a name="l00167"></a>00167 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00168"></a>00168 <span class="preprocessor"></span><span class="preprocessor">#   define OGRE_UNICODE_SUPPORT 1</span>
-<a name="l00169"></a>00169 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00170"></a>00170 <span class="preprocessor"></span>
-<a name="l00171"></a>00171 <span class="preprocessor">#endif</span>
-<a name="l00172"></a>00172 <span class="preprocessor"></span><span class="comment">//----------------------------------------------------------------------------</span>
-<a name="l00173"></a>00173 <span class="comment">// Symbian Settings</span>
-<a name="l00174"></a>00174 <span class="preprocessor">#if OGRE_PLATFORM == OGRE_PLATFORM_SYMBIAN</span>
-<a name="l00175"></a>00175 <span class="preprocessor"></span><span class="preprocessor">#   define OGRE_UNICODE_SUPPORT 1</span>
-<a name="l00176"></a>00176 <span class="preprocessor"></span><span class="preprocessor">#   define OGRE_DEBUG_MODE 0</span>
-<a name="l00177"></a>00177 <span class="preprocessor"></span><span class="preprocessor">#   define _OgreExport</span>
-<a name="l00178"></a>00178 <span class="preprocessor"></span><span class="preprocessor">#   define _OgrePrivate</span>
-<a name="l00179"></a>00179 <span class="preprocessor"></span><span class="preprocessor">#   define CLOCKS_PER_SEC  1000</span>
-<a name="l00180"></a>00180 <span class="preprocessor"></span><span class="comment">// pragma def were found here: http://www.inf.pucrs.br/~eduardob/disciplinas/SistEmbarcados/Mobile/Nokia/Tools/Carbide_vs/WINSCW/Help/PDF/C_Compilers_Reference_3.2.pdf</span>
-<a name="l00181"></a>00181 <span class="preprocessor">#   pragma warn_unusedarg off</span>
-<a name="l00182"></a>00182 <span class="preprocessor"></span><span class="preprocessor">#   pragma warn_emptydecl off</span>
-<a name="l00183"></a>00183 <span class="preprocessor"></span><span class="preprocessor">#   pragma warn_possunwant off</span>
-<a name="l00184"></a>00184 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00185"></a>00185 <span class="preprocessor"></span><span class="comment">//----------------------------------------------------------------------------</span>
-<a name="l00186"></a>00186 <span class="comment">// Linux/Apple/Symbian Settings</span>
-<a name="l00187"></a>00187 <span class="preprocessor">#if OGRE_PLATFORM == OGRE_PLATFORM_LINUX || OGRE_PLATFORM == OGRE_PLATFORM_APPLE || OGRE_PLATFORM == OGRE_PLATFORM_IPHONE || OGRE_PLATFORM == OGRE_PLATFORM_SYMBIAN</span>
-<a name="l00188"></a>00188 <span class="preprocessor"></span>
-<a name="l00189"></a>00189 <span class="comment">// Enable GCC symbol visibility</span>
-<a name="l00190"></a>00190 <span class="preprocessor">#   if defined( OGRE_GCC_VISIBILITY )</span>
-<a name="l00191"></a>00191 <span class="preprocessor"></span><span class="preprocessor">#       define _OgreExport  __attribute__ ((visibility("default")))</span>
-<a name="l00192"></a>00192 <span class="preprocessor"></span><span class="preprocessor">#       define _OgrePrivate __attribute__ ((visibility("hidden")))</span>
-<a name="l00193"></a>00193 <span class="preprocessor"></span><span class="preprocessor">#   else</span>
-<a name="l00194"></a><a class="code" href="OgrePlatform_8h.html#20566b1253bae200372ed9162489a663">00194</a> <span class="preprocessor"></span><span class="preprocessor">#       define _OgreExport</span>
-<a name="l00195"></a><a class="code" href="OgrePlatform_8h.html#f4c2f5df97e3050dd5266408be42db4b">00195</a> <span class="preprocessor"></span><span class="preprocessor">#       define _OgrePrivate</span>
-<a name="l00196"></a>00196 <span class="preprocessor"></span><span class="preprocessor">#   endif</span>
+<a name="l00160"></a>00160 <span class="preprocessor">#if defined(__MINGW32__)</span>
+<a name="l00161"></a>00161 <span class="preprocessor"></span><span class="preprocessor"># if OGRE_COMP_VER &lt; 400</span>
+<a name="l00162"></a>00162 <span class="preprocessor"></span><span class="preprocessor">#  if !defined(_STLPORT_VERSION)</span>
+<a name="l00163"></a>00163 <span class="preprocessor"></span><span class="preprocessor">#   include&lt;_mingw.h&gt;</span>
+<a name="l00164"></a>00164 <span class="preprocessor">#   if defined(__MINGW32_TOOLBOX_UNICODE__) || OGRE_COMP_VER &gt; 345</span>
+<a name="l00165"></a>00165 <span class="preprocessor"></span><span class="preprocessor">#    define OGRE_UNICODE_SUPPORT 1</span>
+<a name="l00166"></a>00166 <span class="preprocessor"></span><span class="preprocessor">#   else</span>
+<a name="l00167"></a>00167 <span class="preprocessor"></span><span class="preprocessor">#    define OGRE_UNICODE_SUPPORT 0</span>
+<a name="l00168"></a>00168 <span class="preprocessor"></span><span class="preprocessor">#   endif</span>
+<a name="l00169"></a>00169 <span class="preprocessor"></span><span class="preprocessor">#  else</span>
+<a name="l00170"></a>00170 <span class="preprocessor"></span><span class="preprocessor">#   define OGRE_UNICODE_SUPPORT 1</span>
+<a name="l00171"></a>00171 <span class="preprocessor"></span><span class="preprocessor">#  endif</span>
+<a name="l00172"></a>00172 <span class="preprocessor"></span><span class="preprocessor"># else</span>
+<a name="l00173"></a>00173 <span class="preprocessor"></span><span class="preprocessor">#  define OGRE_UNICODE_SUPPORT 1</span>
+<a name="l00174"></a>00174 <span class="preprocessor"></span><span class="preprocessor"># endif</span>
+<a name="l00175"></a>00175 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00176"></a>00176 <span class="preprocessor"></span><span class="preprocessor">#  define OGRE_UNICODE_SUPPORT 1</span>
+<a name="l00177"></a>00177 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00178"></a>00178 <span class="preprocessor"></span>
+<a name="l00179"></a>00179 <span class="preprocessor">#endif // OGRE_PLATFORM == OGRE_PLATFORM_WIN32</span>
+<a name="l00180"></a>00180 <span class="preprocessor"></span>
+<a name="l00181"></a>00181 <span class="comment">//----------------------------------------------------------------------------</span>
+<a name="l00182"></a>00182 <span class="comment">// Symbian Settings</span>
+<a name="l00183"></a>00183 <span class="preprocessor">#if OGRE_PLATFORM == OGRE_PLATFORM_SYMBIAN</span>
+<a name="l00184"></a>00184 <span class="preprocessor"></span><span class="preprocessor">#   define OGRE_UNICODE_SUPPORT 1</span>
+<a name="l00185"></a>00185 <span class="preprocessor"></span><span class="preprocessor">#   define OGRE_DEBUG_MODE 0</span>
+<a name="l00186"></a>00186 <span class="preprocessor"></span><span class="preprocessor">#   define _OgreExport</span>
+<a name="l00187"></a>00187 <span class="preprocessor"></span><span class="preprocessor">#   define _OgrePrivate</span>
+<a name="l00188"></a>00188 <span class="preprocessor"></span><span class="preprocessor">#   define CLOCKS_PER_SEC  1000</span>
+<a name="l00189"></a>00189 <span class="preprocessor"></span><span class="comment">// pragma def were found here: http://www.inf.pucrs.br/~eduardob/disciplinas/SistEmbarcados/Mobile/Nokia/Tools/Carbide_vs/WINSCW/Help/PDF/C_Compilers_Reference_3.2.pdf</span>
+<a name="l00190"></a>00190 <span class="preprocessor">#   pragma warn_unusedarg off</span>
+<a name="l00191"></a>00191 <span class="preprocessor"></span><span class="preprocessor">#   pragma warn_emptydecl off</span>
+<a name="l00192"></a>00192 <span class="preprocessor"></span><span class="preprocessor">#   pragma warn_possunwant off</span>
+<a name="l00193"></a>00193 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00194"></a>00194 <span class="preprocessor"></span><span class="comment">//----------------------------------------------------------------------------</span>
+<a name="l00195"></a>00195 <span class="comment">// Linux/Apple/Symbian Settings</span>
+<a name="l00196"></a>00196 <span class="preprocessor">#if OGRE_PLATFORM == OGRE_PLATFORM_LINUX || OGRE_PLATFORM == OGRE_PLATFORM_APPLE || OGRE_PLATFORM == OGRE_PLATFORM_IPHONE || OGRE_PLATFORM == OGRE_PLATFORM_SYMBIAN</span>
 <a name="l00197"></a>00197 <span class="preprocessor"></span>
-<a name="l00198"></a>00198 <span class="comment">// A quick define to overcome different names for the same function</span>
-<a name="l00199"></a><a class="code" href="OgrePlatform_8h.html#4e0be90a3757e352f42612d09a7d1aa5">00199</a> <span class="preprocessor">#   define stricmp strcasecmp</span>
-<a name="l00200"></a>00200 <span class="preprocessor"></span>
-<a name="l00201"></a>00201 <span class="comment">// Unlike the Win32 compilers, Linux compilers seem to use DEBUG for when</span>
-<a name="l00202"></a>00202 <span class="comment">// specifying a debug build.</span>
-<a name="l00203"></a>00203 <span class="comment">// (??? this is wrong, on Linux debug builds aren't marked in any way unless</span>
-<a name="l00204"></a>00204 <span class="comment">// you mark it yourself any way you like it -- zap ???)</span>
-<a name="l00205"></a>00205 <span class="preprocessor">#   ifdef DEBUG</span>
-<a name="l00206"></a>00206 <span class="preprocessor"></span><span class="preprocessor">#       define OGRE_DEBUG_MODE 1</span>
-<a name="l00207"></a>00207 <span class="preprocessor"></span><span class="preprocessor">#   else</span>
-<a name="l00208"></a><a class="code" href="OgrePlatform_8h.html#15ea2b61c3e8ac05db2972f528f94753">00208</a> <span class="preprocessor"></span><span class="preprocessor">#       define OGRE_DEBUG_MODE 0</span>
-<a name="l00209"></a>00209 <span class="preprocessor"></span><span class="preprocessor">#   endif</span>
-<a name="l00210"></a>00210 <span class="preprocessor"></span>
-<a name="l00211"></a>00211 <span class="preprocessor">#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE</span>
-<a name="l00212"></a>00212 <span class="preprocessor"></span><span class="preprocessor">    #define OGRE_PLATFORM_LIB "OgrePlatform.bundle"</span>
-<a name="l00213"></a>00213 <span class="preprocessor"></span><span class="preprocessor">#elif OGRE_PLATFORM == OGRE_PLATFORM_IPHONE</span>
-<a name="l00214"></a>00214 <span class="preprocessor"></span><span class="preprocessor">    #define OGRE_PLATFORM_LIB "OgrePlatform.a"</span>
-<a name="l00215"></a>00215 <span class="preprocessor"></span><span class="preprocessor">#else //OGRE_PLATFORM_LINUX</span>
-<a name="l00216"></a><a class="code" href="OgrePlatform_8h.html#bd45db57e45902634b2b9dbb7b2b9338">00216</a> <span class="preprocessor"></span><span class="preprocessor">    #define OGRE_PLATFORM_LIB "libOgrePlatform.so"</span>
-<a name="l00217"></a>00217 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00218"></a>00218 <span class="preprocessor"></span>
-<a name="l00219"></a>00219 <span class="comment">// Always enable unicode support for the moment</span>
-<a name="l00220"></a>00220 <span class="comment">// Perhaps disable in old versions of gcc if necessary</span>
-<a name="l00221"></a><a class="code" href="OgrePlatform_8h.html#6b22414ce99a335fea0f51584cb766e4">00221</a> <span class="preprocessor">#define OGRE_UNICODE_SUPPORT 1</span>
-<a name="l00222"></a>00222 <span class="preprocessor"></span>
-<a name="l00223"></a>00223 <span class="preprocessor">#endif</span>
-<a name="l00224"></a>00224 <span class="preprocessor"></span>
-<a name="l00225"></a>00225 <span class="comment">//----------------------------------------------------------------------------</span>
-<a name="l00226"></a>00226 
-<a name="l00227"></a>00227 <span class="comment">//----------------------------------------------------------------------------</span>
-<a name="l00228"></a>00228 <span class="comment">// Endian Settings</span>
-<a name="l00229"></a>00229 <span class="comment">// check for BIG_ENDIAN config flag, set OGRE_ENDIAN correctly</span>
-<a name="l00230"></a>00230 <span class="preprocessor">#ifdef OGRE_CONFIG_BIG_ENDIAN</span>
-<a name="l00231"></a>00231 <span class="preprocessor"></span><span class="preprocessor">#    define OGRE_ENDIAN OGRE_ENDIAN_BIG</span>
-<a name="l00232"></a>00232 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00233"></a><a class="code" href="OgrePlatform_8h.html#9af9f9208025e8051717aee67e4e7267">00233</a> <span class="preprocessor"></span><span class="preprocessor">#    define OGRE_ENDIAN OGRE_ENDIAN_LITTLE</span>
-<a name="l00234"></a>00234 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00235"></a>00235 <span class="preprocessor"></span>
-<a name="l00236"></a>00236 <span class="comment">// Integer formats of fixed bit width</span>
-<a name="l00237"></a><a class="code" href="namespaceOgre.html#df2a0cf2e77143b5ee1d38a75e289545">00237</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="namespaceOgre.html#df2a0cf2e77143b5ee1d38a75e289545">uint32</a>;
-<a name="l00238"></a><a class="code" href="namespaceOgre.html#a8263b218e7d187ad5ef03a73a6ad7fd">00238</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="namespaceOgre.html#a8263b218e7d187ad5ef03a73a6ad7fd">uint16</a>;
-<a name="l00239"></a><a class="code" href="namespaceOgre.html#119732ea9d1e88bbddc47b4ac0fa21cb">00239</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="namespaceOgre.html#119732ea9d1e88bbddc47b4ac0fa21cb">uint8</a>;
-<a name="l00240"></a><a class="code" href="namespaceOgre.html#1c37a43c04753c9ae0c17108c9e6c9d2">00240</a> <span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code" href="namespaceOgre.html#1c37a43c04753c9ae0c17108c9e6c9d2">int32</a>;
-<a name="l00241"></a><a class="code" href="namespaceOgre.html#5c8843f6e8086a9239fed14de8b9d859">00241</a> <span class="keyword">typedef</span> <span class="keywordtype">short</span> <a class="code" href="namespaceOgre.html#5c8843f6e8086a9239fed14de8b9d859">int16</a>;
-<a name="l00242"></a><a class="code" href="namespaceOgre.html#a258bf39b19d5814a79d6533763e02ba">00242</a> <span class="keyword">typedef</span> <span class="keywordtype">char</span> <a class="code" href="namespaceOgre.html#a258bf39b19d5814a79d6533763e02ba">int8</a>;
-<a name="l00243"></a>00243 <span class="comment">// define uint64 type</span>
-<a name="l00244"></a>00244 <span class="preprocessor">#if OGRE_COMPILER == OGRE_COMPILER_MSVC</span>
-<a name="l00245"></a>00245 <span class="preprocessor"></span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> __int64 <a class="code" href="namespaceOgre.html#7e1487b57f16a1479302d1896c6f4445">uint64</a>;
-<a name="l00246"></a>00246     <span class="keyword">typedef</span> __int64 <a class="code" href="namespaceOgre.html#44bca44dae060c979d0e74cbf77cf4dc">int64</a>;
-<a name="l00247"></a>00247 <span class="preprocessor">#else</span>
-<a name="l00248"></a><a class="code" href="namespaceOgre.html#7e1487b57f16a1479302d1896c6f4445">00248</a> <span class="preprocessor"></span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="namespaceOgre.html#7e1487b57f16a1479302d1896c6f4445">uint64</a>;
-<a name="l00249"></a><a class="code" href="namespaceOgre.html#44bca44dae060c979d0e74cbf77cf4dc">00249</a>     <span class="keyword">typedef</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="namespaceOgre.html#44bca44dae060c979d0e74cbf77cf4dc">int64</a>;
-<a name="l00250"></a>00250 <span class="preprocessor">#endif</span>
-<a name="l00251"></a>00251 <span class="preprocessor"></span>
-<a name="l00252"></a>00252 
-<a name="l00253"></a>00253 }
-<a name="l00254"></a>00254 
-<a name="l00255"></a>00255 <span class="preprocessor">#endif</span>
+<a name="l00198"></a>00198 <span class="comment">// Enable GCC symbol visibility</span>
+<a name="l00199"></a>00199 <span class="preprocessor">#   if defined( OGRE_GCC_VISIBILITY )</span>
+<a name="l00200"></a>00200 <span class="preprocessor"></span><span class="preprocessor">#       define _OgreExport  __attribute__ ((visibility("default")))</span>
+<a name="l00201"></a>00201 <span class="preprocessor"></span><span class="preprocessor">#       define _OgrePrivate __attribute__ ((visibility("hidden")))</span>
+<a name="l00202"></a>00202 <span class="preprocessor"></span><span class="preprocessor">#   else</span>
+<a name="l00203"></a><a class="code" href="OgrePlatform_8h.html#20566b1253bae200372ed9162489a663">00203</a> <span class="preprocessor"></span><span class="preprocessor">#       define _OgreExport</span>
+<a name="l00204"></a><a class="code" href="OgrePlatform_8h.html#f4c2f5df97e3050dd5266408be42db4b">00204</a> <span class="preprocessor"></span><span class="preprocessor">#       define _OgrePrivate</span>
+<a name="l00205"></a>00205 <span class="preprocessor"></span><span class="preprocessor">#   endif</span>
+<a name="l00206"></a>00206 <span class="preprocessor"></span>
+<a name="l00207"></a>00207 <span class="comment">// A quick define to overcome different names for the same function</span>
+<a name="l00208"></a><a class="code" href="OgrePlatform_8h.html#4e0be90a3757e352f42612d09a7d1aa5">00208</a> <span class="preprocessor">#   define stricmp strcasecmp</span>
+<a name="l00209"></a>00209 <span class="preprocessor"></span>
+<a name="l00210"></a>00210 <span class="comment">// Unlike the Win32 compilers, Linux compilers seem to use DEBUG for when</span>
+<a name="l00211"></a>00211 <span class="comment">// specifying a debug build.</span>
+<a name="l00212"></a>00212 <span class="comment">// (??? this is wrong, on Linux debug builds aren't marked in any way unless</span>
+<a name="l00213"></a>00213 <span class="comment">// you mark it yourself any way you like it -- zap ???)</span>
+<a name="l00214"></a>00214 <span class="preprocessor">#   ifdef DEBUG</span>
+<a name="l00215"></a>00215 <span class="preprocessor"></span><span class="preprocessor">#       define OGRE_DEBUG_MODE 1</span>
+<a name="l00216"></a>00216 <span class="preprocessor"></span><span class="preprocessor">#   else</span>
+<a name="l00217"></a><a class="code" href="OgrePlatform_8h.html#15ea2b61c3e8ac05db2972f528f94753">00217</a> <span class="preprocessor"></span><span class="preprocessor">#       define OGRE_DEBUG_MODE 0</span>
+<a name="l00218"></a>00218 <span class="preprocessor"></span><span class="preprocessor">#   endif</span>
+<a name="l00219"></a>00219 <span class="preprocessor"></span>
+<a name="l00220"></a>00220 <span class="preprocessor">#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE</span>
+<a name="l00221"></a>00221 <span class="preprocessor"></span><span class="preprocessor">    #define OGRE_PLATFORM_LIB "OgrePlatform.bundle"</span>
+<a name="l00222"></a>00222 <span class="preprocessor"></span><span class="preprocessor">#elif OGRE_PLATFORM == OGRE_PLATFORM_IPHONE</span>
+<a name="l00223"></a>00223 <span class="preprocessor"></span><span class="preprocessor">    #define OGRE_PLATFORM_LIB "OgrePlatform.a"</span>
+<a name="l00224"></a>00224 <span class="preprocessor"></span><span class="preprocessor">#else //OGRE_PLATFORM_LINUX</span>
+<a name="l00225"></a><a class="code" href="OgrePlatform_8h.html#bd45db57e45902634b2b9dbb7b2b9338">00225</a> <span class="preprocessor"></span><span class="preprocessor">    #define OGRE_PLATFORM_LIB "libOgrePlatform.so"</span>
+<a name="l00226"></a>00226 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00227"></a>00227 <span class="preprocessor"></span>
+<a name="l00228"></a>00228 <span class="comment">// Always enable unicode support for the moment</span>
+<a name="l00229"></a>00229 <span class="comment">// Perhaps disable in old versions of gcc if necessary</span>
+<a name="l00230"></a><a class="code" href="OgrePlatform_8h.html#6b22414ce99a335fea0f51584cb766e4">00230</a> <span class="preprocessor">#define OGRE_UNICODE_SUPPORT 1</span>
+<a name="l00231"></a>00231 <span class="preprocessor"></span>
+<a name="l00232"></a>00232 <span class="preprocessor">#endif</span>
+<a name="l00233"></a>00233 <span class="preprocessor"></span>
+<a name="l00234"></a>00234 <span class="comment">//----------------------------------------------------------------------------</span>
+<a name="l00235"></a>00235 
+<a name="l00236"></a>00236 <span class="comment">//----------------------------------------------------------------------------</span>
+<a name="l00237"></a>00237 <span class="comment">// Endian Settings</span>
+<a name="l00238"></a>00238 <span class="comment">// check for BIG_ENDIAN config flag, set OGRE_ENDIAN correctly</span>
+<a name="l00239"></a>00239 <span class="preprocessor">#ifdef OGRE_CONFIG_BIG_ENDIAN</span>
+<a name="l00240"></a>00240 <span class="preprocessor"></span><span class="preprocessor">#    define OGRE_ENDIAN OGRE_ENDIAN_BIG</span>
+<a name="l00241"></a>00241 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00242"></a><a class="code" href="OgrePlatform_8h.html#9af9f9208025e8051717aee67e4e7267">00242</a> <span class="preprocessor"></span><span class="preprocessor">#    define OGRE_ENDIAN OGRE_ENDIAN_LITTLE</span>
+<a name="l00243"></a>00243 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00244"></a>00244 <span class="preprocessor"></span>
+<a name="l00245"></a>00245 <span class="comment">// Integer formats of fixed bit width</span>
+<a name="l00246"></a><a class="code" href="namespaceOgre.html#df2a0cf2e77143b5ee1d38a75e289545">00246</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="namespaceOgre.html#df2a0cf2e77143b5ee1d38a75e289545">uint32</a>;
+<a name="l00247"></a><a class="code" href="namespaceOgre.html#a8263b218e7d187ad5ef03a73a6ad7fd">00247</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="namespaceOgre.html#a8263b218e7d187ad5ef03a73a6ad7fd">uint16</a>;
+<a name="l00248"></a><a class="code" href="namespaceOgre.html#119732ea9d1e88bbddc47b4ac0fa21cb">00248</a> <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="namespaceOgre.html#119732ea9d1e88bbddc47b4ac0fa21cb">uint8</a>;
+<a name="l00249"></a><a class="code" href="namespaceOgre.html#1c37a43c04753c9ae0c17108c9e6c9d2">00249</a> <span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code" href="namespaceOgre.html#1c37a43c04753c9ae0c17108c9e6c9d2">int32</a>;
+<a name="l00250"></a><a class="code" href="namespaceOgre.html#5c8843f6e8086a9239fed14de8b9d859">00250</a> <span class="keyword">typedef</span> <span class="keywordtype">short</span> <a class="code" href="namespaceOgre.html#5c8843f6e8086a9239fed14de8b9d859">int16</a>;
+<a name="l00251"></a><a class="code" href="namespaceOgre.html#a258bf39b19d5814a79d6533763e02ba">00251</a> <span class="keyword">typedef</span> <span class="keywordtype">char</span> <a class="code" href="namespaceOgre.html#a258bf39b19d5814a79d6533763e02ba">int8</a>;
+<a name="l00252"></a>00252 <span class="comment">// define uint64 type</span>
+<a name="l00253"></a>00253 <span class="preprocessor">#if OGRE_COMPILER == OGRE_COMPILER_MSVC</span>
+<a name="l00254"></a>00254 <span class="preprocessor"></span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> __int64 <a class="code" href="namespaceOgre.html#7e1487b57f16a1479302d1896c6f4445">uint64</a>;
+<a name="l00255"></a>00255     <span class="keyword">typedef</span> __int64 <a class="code" href="namespaceOgre.html#44bca44dae060c979d0e74cbf77cf4dc">int64</a>;
+<a name="l00256"></a>00256 <span class="preprocessor">#else</span>
+<a name="l00257"></a><a class="code" href="namespaceOgre.html#7e1487b57f16a1479302d1896c6f4445">00257</a> <span class="preprocessor"></span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="namespaceOgre.html#7e1487b57f16a1479302d1896c6f4445">uint64</a>;
+<a name="l00258"></a><a class="code" href="namespaceOgre.html#44bca44dae060c979d0e74cbf77cf4dc">00258</a>     <span class="keyword">typedef</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="namespaceOgre.html#44bca44dae060c979d0e74cbf77cf4dc">int64</a>;
+<a name="l00259"></a>00259 <span class="preprocessor">#endif</span>
+<a name="l00260"></a>00260 <span class="preprocessor"></span>
+<a name="l00261"></a>00261 
+<a name="l00262"></a>00262 }
+<a name="l00263"></a>00263 
+<a name="l00264"></a>00264 <span class="preprocessor">#endif</span>
 </pre></div></div>
 <hr>
 <p>
@@ -291,7 +300,7 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 		</Work>
 		<License rdf:about="http://creativecommons.org/licenses/by-sa/2.5/"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/><requires rdf:resource="http://web.resource.org/cc/ShareAlike"/></License></rdf:RDF> -->
 
-Last modified Sun Feb 28 21:10:39 2010
+Last modified Sat Apr 24 18:00:35 2010
 </p>
 </body>
 </html>

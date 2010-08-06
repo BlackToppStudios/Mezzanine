@@ -1,4 +1,0 @@
-<area shape="rect" href="$classOgre_1_1TerrainMaterialGeneratorA_1_1SM2Profile_1_1ShaderHelperCg.html" title="Utility class to help with generating shaders for Cg / HLSL." alt="" coords="603,5,1019,32">
-<area shape="rect" href="$classOgre_1_1TerrainMaterialGeneratorA_1_1SM2Profile_1_1ShaderHelperGLSL.html" title="Utility class to help with generating shaders for GLSL." alt="" coords="595,56,1027,83">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="5,31,99,57">
-<area shape="rect" href="$classOgre_1_1TerrainMaterialGeneratorA_1_1SM2Profile_1_1ShaderHelperHLSL.html" title="Ogre::TerrainMaterialGeneratorA::SM2Profile::ShaderHelperHLSL" alt="" coords="1075,5,1507,32">

@@ -1,0 +1,398 @@
+\hypertarget{classphys_1_1SoundManager}{
+\section{phys::SoundManager Class Reference}
+\label{d1/dc4/classphys_1_1SoundManager}\index{phys::SoundManager@{phys::SoundManager}}
+}
+
+
+This is simply a place for storing all the \hyperlink{classphys_1_1Sound}{Sound} utilities and functions.  
+
+
+
+
+{\ttfamily \#include $<$soundmanager.h$>$}
+
+Inheritance diagram for phys::SoundManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d1/dc4/classphys_1_1SoundManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1SoundManager_a134f60dd79d8049f37b076f63b5e7eaf}{SoundManager} (\hyperlink{classphys_1_1World}{World} $\ast$ParentWorld, bool DefaultSettings=true)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1SoundManager_af557110e5f0eccc7be861f163e1670d0}{$\sim$SoundManager} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Inherited Initializer. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_aa0fc07170611851f3fa888c8e28d99df}{InitializeManager} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&DeviceName, int OutputFrequency=-\/1, int EAXEffectSlots=4)
+\begin{DoxyCompactList}\small\item\em Initializes the Manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Sound}{Sound} $\ast$ \hyperlink{classphys_1_1SoundManager_ac9e68fef909b72110e9b68ff2674bcbb}{CreateSound} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&SoundName, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FilePath, bool Stream)
+\begin{DoxyCompactList}\small\item\em Creates a sound instance from a file that can be used to play sounds. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Sound}{Sound} $\ast$ \hyperlink{classphys_1_1SoundManager_aa039c3d7a5ee961be0934a58fd3826fa}{CreateSoundFromMemory} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&SoundName, const char $\ast$Data, int Size, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Extension)
+\begin{DoxyCompactList}\small\item\em Creates a sound instance from a memory buffer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_a6a996829cab647ccf1ca401361af7167}{DestroySound} (\hyperlink{classphys_1_1Sound}{Sound} $\ast$SoundName)
+\begin{DoxyCompactList}\small\item\em Deletes a \hyperlink{classphys_1_1Sound}{Sound}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Sound}{Sound} $\ast$ \hyperlink{classphys_1_1SoundManager_aa325440a688757ad74812b7f093e2423}{GetSoundByName} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundName)
+\begin{DoxyCompactList}\small\item\em Gets a sound by it's name. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_a0f523240530abd5ab437c9eace78056a}{DestroyAllSounds} ()
+\begin{DoxyCompactList}\small\item\em Deletes all stored sounds. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_ab780c3162da5699fe421f3739ba03fc4}{SoundSet} $\ast$ \hyperlink{classphys_1_1SoundManager_afccb11a6f6d9aa9768a185febb0af45a}{CreateSoundSet} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundSetName)
+\begin{DoxyCompactList}\small\item\em Creates a sound set. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_ab780c3162da5699fe421f3739ba03fc4}{SoundSet} $\ast$ \hyperlink{classphys_1_1SoundManager_a419edd2aed481ed7eff4beb11c9a6cf2}{GetSoundSet} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundSetName)
+\begin{DoxyCompactList}\small\item\em Gets an existing sound set. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundManager_a89c05a5628e187939ea30b0e4b149931}{AddSoundToSoundSet} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} SoundSetName, \hyperlink{classphys_1_1Sound}{Sound} $\ast$SoundInst)
+\begin{DoxyCompactList}\small\item\em Add's a sound to the defined set. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1SoundManager_a842f7cba6b12585bca77f642ecb8be79}{GetAvailableDeviceNameByIndex} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets the name of an available device. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1SoundManager_ac4814331683597034b26fac5c1c69bfa}{GetDefaultDeviceName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of the default device. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SoundManager_adb5717af71da8829600fd613a2ce615b}{GetAvailableDeviceCount} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of available devices. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1SoundListener}{SoundListener} $\ast$ \hyperlink{classphys_1_1SoundManager_af0c700e283c44c20466185e1150fc6a3}{GetListener} ()
+\begin{DoxyCompactList}\small\item\em Retrieve's the listener for this sound manager. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em Gets the manager type. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1SoundManager_a16bf0c35e031e2359d27c6b12536c98d}{
+cAudio::IAudioManager $\ast$ {\bfseries AudioManager}}
+\label{d1/dc4/classphys_1_1SoundManager_a16bf0c35e031e2359d27c6b12536c98d}
+
+\item 
+\hypertarget{classphys_1_1SoundManager_a7a8e89ec9886d28cf6331930b4269fb3}{
+std::map$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}, \hyperlink{namespacephys_ab780c3162da5699fe421f3739ba03fc4}{SoundSet} $\ast$ $>$ {\bfseries SoundSets}}
+\label{d1/dc4/classphys_1_1SoundManager_a7a8e89ec9886d28cf6331930b4269fb3}
+
+\item 
+\hypertarget{classphys_1_1SoundManager_a5b882ae37b8fbe843eee1f865be72a51}{
+cAudio::IListener $\ast$ {\bfseries AudioListener}}
+\label{d1/dc4/classphys_1_1SoundManager_a5b882ae37b8fbe843eee1f865be72a51}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is simply a place for storing all the \hyperlink{classphys_1_1Sound}{Sound} utilities and functions. This is a place for loading, storing, and running sound files as necessary in a given game. 
+
+Definition at line 66 of file soundmanager.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1SoundManager_a134f60dd79d8049f37b076f63b5e7eaf}{
+\index{phys::SoundManager@{phys::SoundManager}!SoundManager@{SoundManager}}
+\index{SoundManager@{SoundManager}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{SoundManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::SoundManager::SoundManager ({\bf World} $\ast$ {\em ParentWorld}, \/  bool {\em DefaultSettings} = {\ttfamily true})}}
+\label{d1/dc4/classphys_1_1SoundManager_a134f60dd79d8049f37b076f63b5e7eaf}
+
+
+Class Constructor. 
+
+This is the class constructor. It gives you the option to start up the manager with default values if you choose. If not then you'll need to setup and initialize the manager yourself after it is constructed. 
+\begin{DoxyParams}{Parameters}
+\item[{\em DefaultSettings}]Whether or not to load default settings and initialize the manager immediately. \end{DoxyParams}
+
+
+Definition at line 49 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_af557110e5f0eccc7be861f163e1670d0}{
+\index{phys::SoundManager@{phys::SoundManager}!$\sim$SoundManager@{$\sim$SoundManager}}
+\index{$\sim$SoundManager@{$\sim$SoundManager}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{$\sim$SoundManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::SoundManager::$\sim$SoundManager ()}}
+\label{d1/dc4/classphys_1_1SoundManager_af557110e5f0eccc7be861f163e1670d0}
+
+
+Class Destructor. 
+
+The class destructor. 
+
+Definition at line 55 of file soundmanager.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1SoundManager_a89c05a5628e187939ea30b0e4b149931}{
+\index{phys::SoundManager@{phys::SoundManager}!AddSoundToSoundSet@{AddSoundToSoundSet}}
+\index{AddSoundToSoundSet@{AddSoundToSoundSet}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{AddSoundToSoundSet}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundManager::AddSoundToSoundSet ({\bf String} {\em SoundSetName}, \/  {\bf Sound} $\ast$ {\em SoundInst})}}
+\label{d1/dc4/classphys_1_1SoundManager_a89c05a5628e187939ea30b0e4b149931}
+
+
+Add's a sound to the defined set. 
+
+This function will add a sound instance to a created sound set. 
+\begin{DoxyParams}{Parameters}
+\item[{\em SoundName}]The sound instance to be added. \end{DoxyParams}
+
+
+Definition at line 149 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_ac9e68fef909b72110e9b68ff2674bcbb}{
+\index{phys::SoundManager@{phys::SoundManager}!CreateSound@{CreateSound}}
+\index{CreateSound@{CreateSound}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{CreateSound}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sound} $\ast$ phys::SoundManager::CreateSound ({\bf String} \& {\em SoundName}, \/  {\bf String} \& {\em FilePath}, \/  bool {\em Stream})}}
+\label{d1/dc4/classphys_1_1SoundManager_ac9e68fef909b72110e9b68ff2674bcbb}
+
+
+Creates a sound instance from a file that can be used to play sounds. 
+
+This function will create a \hyperlink{classphys_1_1Sound}{Sound} from a file and returns a pointer to that \hyperlink{classphys_1_1Sound}{Sound}. You can also specify if you want the sound to be streamed from the disk so that it doesn't have to load the entire song from disk first. 
+\begin{DoxyParams}{Parameters}
+\item[{\em SoundName}]The name of the \hyperlink{classphys_1_1Sound}{Sound} instance. \item[{\em FilePath}]The path to the file AND the name of the file. \item[{\em Stream}]Whether or not to stream the audio from the disk. Otherwise it has be completely loaded into memory before it can be used. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the \hyperlink{classphys_1_1Sound}{Sound} Instance that was created. 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_aa039c3d7a5ee961be0934a58fd3826fa}{
+\index{phys::SoundManager@{phys::SoundManager}!CreateSoundFromMemory@{CreateSoundFromMemory}}
+\index{CreateSoundFromMemory@{CreateSoundFromMemory}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{CreateSoundFromMemory}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sound} $\ast$ phys::SoundManager::CreateSoundFromMemory ({\bf String} \& {\em SoundName}, \/  const char $\ast$ {\em Data}, \/  int {\em Size}, \/  {\bf String} \& {\em Extension})}}
+\label{d1/dc4/classphys_1_1SoundManager_aa039c3d7a5ee961be0934a58fd3826fa}
+
+
+Creates a sound instance from a memory buffer. 
+
+This function allows you to create a sound instance from a sound that is already loaded into memory. 
+\begin{DoxyParams}{Parameters}
+\item[{\em SoundName}]The name of the sound instance. \item[{\em Data}]Pointer to the char array (buffer). \item[{\em Size}]Size of the char array (buffer). \item[{\em Extension}]The extension of the file used to load that sound (wav, ogg). \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the \hyperlink{classphys_1_1Sound}{Sound} Instance that was created. 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_afccb11a6f6d9aa9768a185febb0af45a}{
+\index{phys::SoundManager@{phys::SoundManager}!CreateSoundSet@{CreateSoundSet}}
+\index{CreateSoundSet@{CreateSoundSet}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{CreateSoundSet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SoundSet} $\ast$ phys::SoundManager::CreateSoundSet ({\bf String} {\em SoundSetName})}}
+\label{d1/dc4/classphys_1_1SoundManager_afccb11a6f6d9aa9768a185febb0af45a}
+
+
+Creates a sound set. 
+
+This function will create a sound set vector you can use to store similiar sound instances. 
+\begin{DoxyParams}{Parameters}
+\item[{\em SoundSetName}]The name you wish the sound set to have. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created Vector. 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_a0f523240530abd5ab437c9eace78056a}{
+\index{phys::SoundManager@{phys::SoundManager}!DestroyAllSounds@{DestroyAllSounds}}
+\index{DestroyAllSounds@{DestroyAllSounds}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{DestroyAllSounds}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundManager::DestroyAllSounds ()}}
+\label{d1/dc4/classphys_1_1SoundManager_a0f523240530abd5ab437c9eace78056a}
+
+
+Deletes all stored sounds. 
+
+This function will delete every \hyperlink{classphys_1_1Sound}{Sound} that is stored in the manager. 
+
+Definition at line 120 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_a6a996829cab647ccf1ca401361af7167}{
+\index{phys::SoundManager@{phys::SoundManager}!DestroySound@{DestroySound}}
+\index{DestroySound@{DestroySound}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{DestroySound}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundManager::DestroySound ({\bf Sound} $\ast$ {\em SoundName})}}
+\label{d1/dc4/classphys_1_1SoundManager_a6a996829cab647ccf1ca401361af7167}
+
+
+Deletes a \hyperlink{classphys_1_1Sound}{Sound}. 
+
+Deletes a single \hyperlink{classphys_1_1Sound}{Sound} via a pointer. 
+\begin{DoxyParams}{Parameters}
+\item[{\em SoundName}]A pointer to the \hyperlink{classphys_1_1Sound}{Sound} you want deleted. \end{DoxyParams}
+
+
+Definition at line 115 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{
+\index{phys::SoundManager@{phys::SoundManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundManager::DoMainLoopItems ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d1/dc4/classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}
+
+
+Empty MainLoopItems. 
+
+This class implements this for the sake of entension and compatibility this function does nothing 
+
+Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{phys::ManagerBase}.
+
+
+
+Definition at line 64 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_adb5717af71da8829600fd613a2ce615b}{
+\index{phys::SoundManager@{phys::SoundManager}!GetAvailableDeviceCount@{GetAvailableDeviceCount}}
+\index{GetAvailableDeviceCount@{GetAvailableDeviceCount}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{GetAvailableDeviceCount}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::SoundManager::GetAvailableDeviceCount ()}}
+\label{d1/dc4/classphys_1_1SoundManager_adb5717af71da8829600fd613a2ce615b}
+
+
+Gets the number of available devices. 
+
+This function will return the total number of available devices, including the default. \begin{DoxyReturn}{Returns}
+Returns the number of available devices. 
+\end{DoxyReturn}
+
+
+Definition at line 169 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_a842f7cba6b12585bca77f642ecb8be79}{
+\index{phys::SoundManager@{phys::SoundManager}!GetAvailableDeviceNameByIndex@{GetAvailableDeviceNameByIndex}}
+\index{GetAvailableDeviceNameByIndex@{GetAvailableDeviceNameByIndex}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{GetAvailableDeviceNameByIndex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::SoundManager::GetAvailableDeviceNameByIndex ({\bf Whole} {\em Index})}}
+\label{d1/dc4/classphys_1_1SoundManager_a842f7cba6b12585bca77f642ecb8be79}
+
+
+Gets the name of an available device. 
+
+This function will retrieve the name of a device by it's index on the sound managers device list. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Index}]The position on the device list you wish to access the name of. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the name of the device. 
+\end{DoxyReturn}
+
+
+Definition at line 155 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_ac4814331683597034b26fac5c1c69bfa}{
+\index{phys::SoundManager@{phys::SoundManager}!GetDefaultDeviceName@{GetDefaultDeviceName}}
+\index{GetDefaultDeviceName@{GetDefaultDeviceName}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{GetDefaultDeviceName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::SoundManager::GetDefaultDeviceName ()}}
+\label{d1/dc4/classphys_1_1SoundManager_ac4814331683597034b26fac5c1c69bfa}
+
+
+Gets the name of the default device. 
+
+This function will return the name of the system default device. \begin{DoxyReturn}{Returns}
+Returns the name of the default device. 
+\end{DoxyReturn}
+
+
+Definition at line 162 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_af0c700e283c44c20466185e1150fc6a3}{
+\index{phys::SoundManager@{phys::SoundManager}!GetListener@{GetListener}}
+\index{GetListener@{GetListener}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{GetListener}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SoundListener} $\ast$ phys::SoundManager::GetListener ()}}
+\label{d1/dc4/classphys_1_1SoundManager_af0c700e283c44c20466185e1150fc6a3}
+
+
+Retrieve's the listener for this sound manager. 
+
+This function will return the listener for this manager which can be used to help create 3D sound. \begin{DoxyReturn}{Returns}
+Returns a pointer to the managers \hyperlink{classphys_1_1Sound}{Sound} Listener. 
+\end{DoxyReturn}
+
+
+Definition at line 174 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_aa325440a688757ad74812b7f093e2423}{
+\index{phys::SoundManager@{phys::SoundManager}!GetSoundByName@{GetSoundByName}}
+\index{GetSoundByName@{GetSoundByName}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{GetSoundByName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sound} $\ast$ phys::SoundManager::GetSoundByName ({\bf String} {\em SoundName})}}
+\label{d1/dc4/classphys_1_1SoundManager_aa325440a688757ad74812b7f093e2423}
+
+
+Gets a sound by it's name. 
+
+This function will find and return the sound with the speicified name. \begin{DoxyReturn}{Returns}
+Returns a pointer to the specified sound. 
+\end{DoxyReturn}
+
+
+Definition at line 125 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_a419edd2aed481ed7eff4beb11c9a6cf2}{
+\index{phys::SoundManager@{phys::SoundManager}!GetSoundSet@{GetSoundSet}}
+\index{GetSoundSet@{GetSoundSet}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{GetSoundSet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SoundSet} $\ast$ phys::SoundManager::GetSoundSet ({\bf String} {\em SoundSetName})}}
+\label{d1/dc4/classphys_1_1SoundManager_a419edd2aed481ed7eff4beb11c9a6cf2}
+
+
+Gets an existing sound set. 
+
+This function will find the specified sound set and return a pointer to it. 
+\begin{DoxyParams}{Parameters}
+\item[{\em SoundSetName}]The name of the sound set to retrieve. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the named Vector. 
+\end{DoxyReturn}
+
+
+Definition at line 143 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}{
+\index{phys::SoundManager@{phys::SoundManager}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::SoundManager::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d1/dc4/classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}
+
+
+Gets the manager type. 
+
+Gets the type of manager that this is. \begin{DoxyReturn}{Returns}
+Returns the manager type. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{phys::ManagerBase}.
+
+
+
+Definition at line 180 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{
+\index{phys::SoundManager@{phys::SoundManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundManager::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d1/dc4/classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}
+
+
+Inherited Initializer. 
+
+Written to allow the class to compile, this currently does nothing, but could be used to run code Use \hyperlink{classphys_1_1SoundManager_aa0fc07170611851f3fa888c8e28d99df}{InitializeManager()} instead. 
+
+Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
+
+
+
+Definition at line 60 of file soundmanager.cpp.
+
+\hypertarget{classphys_1_1SoundManager_aa0fc07170611851f3fa888c8e28d99df}{
+\index{phys::SoundManager@{phys::SoundManager}!InitializeManager@{InitializeManager}}
+\index{InitializeManager@{InitializeManager}!phys::SoundManager@{phys::SoundManager}}
+\subsubsection[{InitializeManager}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundManager::InitializeManager ({\bf String} \& {\em DeviceName}, \/  int {\em OutputFrequency} = {\ttfamily -\/1}, \/  int {\em EAXEffectSlots} = {\ttfamily 4})}}
+\label{d1/dc4/classphys_1_1SoundManager_aa0fc07170611851f3fa888c8e28d99df}
+
+
+Initializes the Manager. 
+
+This function will initialize the manager using the device and parameters provided. You need to call this function if you passed false into the sound manager constructor before you can use the manager. 
+\begin{DoxyParams}{Parameters}
+\item[{\em DeviceName}]The name of the device you wish to have this manager interface with/use. \item[{\em OutputFrequency}]Frequency of the output audio, -\/1 for the devices default. \item[{\em EAXEffectSlots}]The number of effects per sound allowed to be applied. \end{DoxyParams}
+
+
+Definition at line 68 of file soundmanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+soundmanager.h\item 
+soundmanager.cpp\end{DoxyCompactItemize}

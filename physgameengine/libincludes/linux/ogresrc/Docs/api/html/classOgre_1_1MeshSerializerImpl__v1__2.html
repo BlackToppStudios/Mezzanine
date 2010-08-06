@@ -44,7 +44,7 @@ Inheritance diagram for Ogre::MeshSerializerImpl_v1_2:</div>
 <div class="dynsection">
 <p><center><img src="classOgre_1_1MeshSerializerImpl__v1__2__inherit__graph.gif" border="0" usemap="#Ogre_1_1MeshSerializerImpl__v1__2__inherit__map" alt="Inheritance graph"></center>
 <map name="Ogre_1_1MeshSerializerImpl__v1__2__inherit__map">
-<area shape="rect" href="classOgre_1_1MeshSerializerImpl__v1__1.html" title="Class for providing backwards&#45;compatibility for loading version 1.1 of the .mesh..." alt="" coords="5,316,221,342"><area shape="rect" href="classOgre_1_1MeshSerializerImpl__v1__3.html" title="Class for providing backwards&#45;compatibility for loading version 1.3 of the .mesh..." alt="" coords="5,161,221,188"><area shape="rect" href="classOgre_1_1MeshSerializerImpl.html" title="Internal implementation of Mesh reading / writing for the latest version of the ..." alt="" coords="24,84,203,110"><area shape="rect" href="classOgre_1_1Serializer.html" title="Generic class for serialising data to / from binary stream&#45;based files." alt="" coords="53,6,173,33"></map>
+<area shape="rect" href="classOgre_1_1MeshSerializerImpl__v1__1.html" title="Class for providing backwards&#45;compatibility for loading version 1.1 of the .mesh..." alt="" coords="5,316,221,342"><area shape="rect" href="classOgre_1_1MeshSerializerImpl__v1__3.html" title="Class for providing backwards&#45;compatibility for loading version 1.3 of the .mesh..." alt="" coords="5,161,221,188"><area shape="rect" href="classOgre_1_1MeshSerializerImpl__v1__4.html" title="Class for providing backwards&#45;compatibility for loading version 1.4 of the .mesh..." alt="" coords="5,84,221,110"><area shape="rect" href="classOgre_1_1MeshSerializerImpl.html" title="Internal implementation of Mesh reading / writing for the latest version of the ..." alt="" coords="24,6,203,33"></map>
 <center><font size="2">[<a href="graph_legend.html">legend</a>]</font></center></div>
 
 <p>
@@ -109,6 +109,10 @@ Inheritance diagram for Ogre::MeshSerializerImpl_v1_2:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl__v1__3.html#9b47de19742cb463b20da07248b025a5">reorganiseTriangles</a> (<a class="el" href="classOgre_1_1EdgeData.html">EdgeData</a> *edgeData)</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reorganise triangles of the edge <a class="el" href="structOgre_1_1list.html">list</a> to group by vertex <a class="el" href="structOgre_1_1set.html">set</a>.  <a href="#9b47de19742cb463b20da07248b025a5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl__v1__4.html#54e17ef8ef5f436d2c0731082e803fb9">writeLodSummary</a> (unsigned short numLevels, bool manual, const <a class="el" href="classOgre_1_1LodStrategy.html">LodStrategy</a> *strategy)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl__v1__4.html#9ae1ffcc15e139dc1d3635543abcd208">readMeshLodInfo</a> (<a class="el" href="classOgre_1_1SharedPtr.html">DataStreamPtr</a> &amp;stream, <a class="el" href="classOgre_1_1Mesh.html">Mesh</a> *pMesh)</td></tr>
+
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl.html#76f548fdcc7505fb1071b59ce08bdbdd">writeSubMeshNameTable</a> (const <a class="el" href="classOgre_1_1Mesh.html">Mesh</a> *pMesh)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl.html#49c56af82c5edff7ddd48a36511ee87f">writeMesh</a> (const <a class="el" href="classOgre_1_1Mesh.html">Mesh</a> *pMesh)</td></tr>
@@ -128,8 +132,6 @@ Inheritance diagram for Ogre::MeshSerializerImpl_v1_2:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl.html#bd69984f3c3f98e2bbe071ff2c4d3633">writeSubMeshBoneAssignment</a> (const <a class="el" href="structOgre_1_1VertexBoneAssignment__s.html">VertexBoneAssignment</a> &amp;assign)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl.html#5dcc5ebdf9f9ddeb72e74bcd4ece1e20">writeLodInfo</a> (const <a class="el" href="classOgre_1_1Mesh.html">Mesh</a> *pMesh)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl.html#b7e189cad04a455c4a9341cb443f60e1">writeLodSummary</a> (unsigned short numLevels, bool manual, const <a class="el" href="classOgre_1_1LodStrategy.html">LodStrategy</a> *strategy)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl.html#71a34b4f7414b943df1b4143e4d5f4c6">writeLodUsageManual</a> (const <a class="el" href="structOgre_1_1MeshLodUsage.html">MeshLodUsage</a> &amp;usage)</td></tr>
 
@@ -220,8 +222,6 @@ Inheritance diagram for Ogre::MeshSerializerImpl_v1_2:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl.html#9c1fd835deff64453954b6688bbae290">readMeshBoneAssignment</a> (<a class="el" href="classOgre_1_1SharedPtr.html">DataStreamPtr</a> &amp;stream, <a class="el" href="classOgre_1_1Mesh.html">Mesh</a> *pMesh)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl.html#ee15094b8b4937849a03cf7efa1c7d86">readSubMeshBoneAssignment</a> (<a class="el" href="classOgre_1_1SharedPtr.html">DataStreamPtr</a> &amp;stream, <a class="el" href="classOgre_1_1Mesh.html">Mesh</a> *pMesh, <a class="el" href="classOgre_1_1SubMesh.html">SubMesh</a> *sub)</td></tr>
-
-<tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl.html#9a045c67cf9e8afa77dbe950d40c06f1">readMeshLodInfo</a> (<a class="el" href="classOgre_1_1SharedPtr.html">DataStreamPtr</a> &amp;stream, <a class="el" href="classOgre_1_1Mesh.html">Mesh</a> *pMesh)</td></tr>
 
 <tr><td class="memItemLeft" nowrap align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1MeshSerializerImpl.html#1b526fbe2e45f362792ccefa3490d4c1">readMeshLodUsageManual</a> (<a class="el" href="classOgre_1_1SharedPtr.html">DataStreamPtr</a> &amp;stream, <a class="el" href="classOgre_1_1Mesh.html">Mesh</a> *pMesh, unsigned short lodNum, <a class="el" href="structOgre_1_1MeshLodUsage.html">MeshLodUsage</a> &amp;usage)</td></tr>
 
@@ -698,6 +698,74 @@ Reorganise triangles of the edge <a class="el" href="structOgre_1_1list.html">li
 
 </div>
 </div><p>
+<a class="anchor" name="54e17ef8ef5f436d2c0731082e803fb9"></a><!-- doxytag: member="Ogre::MeshSerializerImpl_v1_2::writeLodSummary" ref="54e17ef8ef5f436d2c0731082e803fb9" args="(unsigned short numLevels, bool manual, const LodStrategy *strategy)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Ogre::MeshSerializerImpl_v1_4::writeLodSummary           </td>
+          <td>(</td>
+          <td class="paramtype">unsigned short&nbsp;</td>
+          <td class="paramname"> <em>numLevels</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>manual</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classOgre_1_1LodStrategy.html">LodStrategy</a> *&nbsp;</td>
+          <td class="paramname"> <em>strategy</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [protected, virtual, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Reimplemented from <a class="el" href="classOgre_1_1MeshSerializerImpl.html#b7e189cad04a455c4a9341cb443f60e1">Ogre::MeshSerializerImpl</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9ae1ffcc15e139dc1d3635543abcd208"></a><!-- doxytag: member="Ogre::MeshSerializerImpl_v1_2::readMeshLodInfo" ref="9ae1ffcc15e139dc1d3635543abcd208" args="(DataStreamPtr &amp;stream, Mesh *pMesh)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Ogre::MeshSerializerImpl_v1_4::readMeshLodInfo           </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classOgre_1_1SharedPtr.html">DataStreamPtr</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classOgre_1_1Mesh.html">Mesh</a> *&nbsp;</td>
+          <td class="paramname"> <em>pMesh</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"><code> [protected, virtual, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+
+<p>Reimplemented from <a class="el" href="classOgre_1_1MeshSerializerImpl.html#9a045c67cf9e8afa77dbe950d40c06f1">Ogre::MeshSerializerImpl</a>.</p>
+
+</div>
+</div><p>
 <a class="anchor" name="1bc27ac6fbb500ff4454f44bd39398ad"></a><!-- doxytag: member="Ogre::MeshSerializerImpl_v1_2::exportMesh" ref="1bc27ac6fbb500ff4454f44bd39398ad" args="(const Mesh *pMesh, const String &amp;filename, Endian endianMode=ENDIAN_NATIVE)" -->
 <div class="memitem">
 <div class="memproto">
@@ -984,43 +1052,6 @@ Imports <a class="el" href="classOgre_1_1Mesh.html">Mesh</a> and (optionally) <a
 <div class="memdoc">
 
 <p>
-
-</div>
-</div><p>
-<a class="anchor" name="b7e189cad04a455c4a9341cb443f60e1"></a><!-- doxytag: member="Ogre::MeshSerializerImpl_v1_2::writeLodSummary" ref="b7e189cad04a455c4a9341cb443f60e1" args="(unsigned short numLevels, bool manual, const LodStrategy *strategy)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Ogre::MeshSerializerImpl::writeLodSummary           </td>
-          <td>(</td>
-          <td class="paramtype">unsigned short&nbsp;</td>
-          <td class="paramname"> <em>numLevels</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>manual</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classOgre_1_1LodStrategy.html">LodStrategy</a> *&nbsp;</td>
-          <td class="paramname"> <em>strategy</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [protected, virtual, inherited]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Reimplemented in <a class="el" href="classOgre_1_1MeshSerializerImpl__v1__4.html#54e17ef8ef5f436d2c0731082e803fb9">Ogre::MeshSerializerImpl_v1_4</a>.</p>
 
 </div>
 </div><p>
@@ -2125,37 +2156,6 @@ Imports <a class="el" href="classOgre_1_1Mesh.html">Mesh</a> and (optionally) <a
 <div class="memdoc">
 
 <p>
-
-</div>
-</div><p>
-<a class="anchor" name="9a045c67cf9e8afa77dbe950d40c06f1"></a><!-- doxytag: member="Ogre::MeshSerializerImpl_v1_2::readMeshLodInfo" ref="9a045c67cf9e8afa77dbe950d40c06f1" args="(DataStreamPtr &amp;stream, Mesh *pMesh)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Ogre::MeshSerializerImpl::readMeshLodInfo           </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classOgre_1_1SharedPtr.html">DataStreamPtr</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>stream</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classOgre_1_1Mesh.html">Mesh</a> *&nbsp;</td>
-          <td class="paramname"> <em>pMesh</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td width="100%"><code> [protected, virtual, inherited]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>
-
-<p>Reimplemented in <a class="el" href="classOgre_1_1MeshSerializerImpl__v1__4.html#9ae1ffcc15e139dc1d3635543abcd208">Ogre::MeshSerializerImpl_v1_4</a>.</p>
 
 </div>
 </div><p>
@@ -3887,7 +3887,7 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 		</Work>
 		<License rdf:about="http://creativecommons.org/licenses/by-sa/2.5/"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/><requires rdf:resource="http://web.resource.org/cc/ShareAlike"/></License></rdf:RDF> -->
 
-Last modified Sun Feb 28 21:13:32 2010
+Last modified Sat Apr 24 18:03:33 2010
 </p>
 </body>
 </html>

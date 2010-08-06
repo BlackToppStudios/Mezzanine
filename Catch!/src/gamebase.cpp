@@ -67,6 +67,8 @@ bool PostRender()
 	//getting a message from the event manager
 	EventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
 
+    Whole LastFrame = CurrentTime->getMilliSecondsSinceLastFrame();
+
     // Is CurrentTime a valid event?
     while(0 != CurrentTime)
     {
@@ -82,12 +84,34 @@ bool PostRender()
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
 
+    ActorBase* Act1 = TheWorld.Actors->FindActor("RobotWayUpFrontLeft");
+    ActorBase* Act2 = TheWorld.Actors->FindActor("RobotWayUpFrontRight");
+    if (Act1->IsAnimated())
+    {
+        Act1->AdvanceAnimation((Real)0.001 * LastFrame);
+    }
+
+    if (Act2->IsAnimated())
+    {
+        Act2->AdvanceAnimation((Real)0.0001 * LastFrame);
+    }
+
+    if (1000<gametime && 1040>gametime)
+    {
+        Sound* Welcome = NULL;
+        Welcome = TheWorld.Sounds->GetSoundByName("Welcome");
+        if(Welcome)
+        {
+            Welcome->Play2d(false);
+        }
+    }
+
     // Turn on the Wireframe
     if (30000<gametime)
         { TheWorld.Physics->SetDebugPhysicsRendering(1); }
 
-    //IF the game has gone on for 60 or more seconds close it.
-	if (60000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
+    //IF the game has gone on for 150 or more seconds close it.
+	if (150000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
         { return false; }
 
     return true;
@@ -137,6 +161,14 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld.Cameras->ResetZoom(); }
 
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_m) )
+        {
+            Sound* Theme = TheWorld.Sounds->GetSoundByName("Theme2");
+            if(!Theme->IsPlaying())
+            {
+                Theme->Play2d(false);
+            }
+        }
 
     // Make a declaration for a static constrain so it survives the function lifetime
     // static *constraint MouseDragger = 0;
@@ -264,7 +296,8 @@ bool CheckForEsc()
 
 void LoadContent()
 {
-    ActorRigid *object1, *object2, *object3, *object4, *object5, *object6, *object7, *objectJames, *object9, *object10, *object11, *object12;
+    ActorRigid *object1, *object2, *object3, *object4, *object7;
+    ActorRigid *object5, *object6;
     //Ogre Setup Code
     String groupname ("Group1");
     String filerobot ("robot.mesh");
@@ -295,8 +328,8 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
         TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -50.0, -PinSpacing));
+        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(3);
+        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
     }
 
     for(unsigned int c=0; c<2; c++)     //the row with 2 pins
@@ -304,22 +337,22 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
         TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), 0.0, -PinSpacing*2));
+        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(2);
+        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -33.0, -PinSpacing*2));
     }
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
     TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
     TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-    TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 50.0, -PinSpacing*3));
+    TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
 
     object5 = new ActorRigid (0,"Plane","Plane.mesh",groupname,&TheWorld);
-    object5->CreateShapeFromMeshDynamic(4);
+    object5->CreateShapeFromMeshStatic();
     object5->SetInitLocation(Vector3(0.0,-100,-300.0));
 
     object6 = new ActorRigid (0,"Ramp","Plane.mesh",groupname,&TheWorld);
-    object6->CreateShapeFromMeshDynamic(1);
+    object6->CreateShapeFromMeshStatic();
     object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
 
@@ -327,56 +360,35 @@ void LoadContent()
     object1->CreateShapeFromMeshDynamic(1);
     object1->SetInitLocation(Vector3(400,70,100));
     object1->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
+    object1->SetAnimation("Idle", true);
+    object1->EnableAnimation(true);
 
     object2 = new ActorRigid (150.0f,"WoodSphere","Sphere_Wood.mesh",groupname,&TheWorld);
     object2->CreateSphereShapeFromMesh();
     object2->SetActorScaling(Vector3(0.5,0.5,0.5));
-    object2->SetInitLocation(Vector3(-130.0,2800.0,-1150.0));
+    object2->SetInitLocation(Vector3(-140.0,2800.0,-1150.0));
 
     object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld); Schedule :
     object3->CreateSphereShapeFromMesh();
     object3->SetActorScaling(Vector3(0.7,0.7,0.7));
-    object3->SetInitLocation(Vector3(140.0,1800.0,-1300.0));
+    object3->SetInitLocation(Vector3(150.0,1800.0,-1300.0));
 
     object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname,&TheWorld);
     object4->CreateShapeFromMeshDynamic(4);
     object4->SetInitLocation(Vector3(-400,10, 100));
     object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
+    object4->SetAnimation("Idle", true);
+    object4->EnableAnimation(true);
 
     object7 = new ActorRigid (200.0f,"MetalSphere2","Sphere_Metal.mesh",groupname,&TheWorld);
     object7->CreateSphereShapeFromMesh();
     object7->SetActorScaling(Vector3(0.3,0.3,0.3));
     object7->SetInitLocation(Vector3(10.0,25000.0,-1300.0));
 
-    objectJames = new ActorRigid (200.0f,"MetalSphereJames","Sphere_Metal.mesh",groupname,&TheWorld);
-    objectJames->CreateSphereShapeFromMesh();
-    objectJames->SetActorScaling(Vector3(0.3,0.3,0.3));
-    objectJames->SetInitLocation(Vector3(-20.0,28000.0,-100.0));
-
-
-    object9 = new ActorRigid (200.0f,"MetalSphereJames2","Sphere_Metal.mesh",groupname,&TheWorld);
-    object9->CreateSphereShapeFromMesh();
-    object9->SetActorScaling(Vector3(0.3,0.3,0.3));
-    object9->SetInitLocation(Vector3(-20.0,29000.0,-100.0));
-
-    object10 = new ActorRigid (200.0f,"MetalSphereJames3","Sphere_Metal.mesh",groupname,&TheWorld);
-    object10->CreateSphereShapeFromMesh();
-    object10->SetActorScaling(Vector3(0.3,0.3,0.3));
-    object10->SetInitLocation(Vector3(-20.0,30000.0,-100.0));
-
-    object11 = new ActorRigid (200.0f,"MetalSphereJames4","Sphere_Metal.mesh",groupname,&TheWorld);
-    object11->CreateSphereShapeFromMesh();
-    object11->SetActorScaling(Vector3(1000,0.1,0.1));
-    object11->SetInitLocation(Vector3(0.0,0.0,-5.0));
-
-    object12 = new ActorRigid (0,"Ramp2","Plane.mesh",groupname,&TheWorld);
-    object12->CreateShapeFromMeshDynamic(1);
-    object12->SetInitLocation(Vector3(00.0,300.0,-1100.0));
-    object12->SetInitOrientation(Quaternion(0, 0.0, 0.0, 0));
     //Final Steps
     Vector3 grav;
     grav.X=0.0;
-    grav.Y=-70000.0;
+    grav.Y=-10000.0;
     grav.Z=0.0;
 
     TheWorld.Actors->AddActor(object1);
@@ -386,11 +398,17 @@ void LoadContent()
     TheWorld.Actors->AddActor(object5);
     TheWorld.Actors->AddActor(object6);
     TheWorld.Actors->AddActor(object7);
-    TheWorld.Actors->AddActor(objectJames);
-    TheWorld.Actors->AddActor(object9);
-    TheWorld.Actors->AddActor(object10);
-    TheWorld.Actors->AddActor(object11);
-   // TheWorld.Actors->AddActor(object12);
+
+    Sound *sound1, *music1, *music2;
+    TheWorld.Sounds->CreateSoundSet("Announcer");
+    sound1 = TheWorld.Sounds->CreateSound("Welcome", "data/common/sounds/welcomefun-1.ogg", false);
+    TheWorld.Sounds->AddSoundToSoundSet("Announcer", sound1);
+
+    TheWorld.Sounds->CreateSoundSet("SoundTrack");
+    music1 = TheWorld.Sounds->CreateSound("Theme1", "data/common/music/cAudioTheme1.ogg", true);
+    TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music1);
+    music2 = TheWorld.Sounds->CreateSound("Theme2", "data/common/music/cAudioTheme2.ogg", true);
+    TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music2);
 
     TheWorld.Log("Actor Count");
     TheWorld.Log( TheWorld.Actors->GetActorCount() );

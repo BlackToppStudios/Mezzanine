@@ -148,6 +148,194 @@ bool PlayPen_testProjectSphere::frameStarted(const Ogre::FrameEvent& evt)
 
 }
 
+//---------------------------------------------------------------------
+PlayPen_testCameraSetDirection::PlayPen_testCameraSetDirection()
+: mUseParentNode(false)
+, mUseFixedYaw(true)
+, mFocus(100,200,-300)
+{
+	mInfo["Title"] = "PlayPen: Camera Set Direction";
+	mInfo["Description"] = "Testing various settings for Camera::setDirection";
+
+}
+void PlayPen_testCameraSetDirection::setupContent()
+{
+	mSceneMgr->setAmbientLight(ColourValue::White);
+
+	Entity* e = mSceneMgr->createEntity("1", "knot.mesh");
+	mSceneMgr->getRootSceneNode()->createChildSceneNode(mFocus)->attachObject(e);
+
+
+	mCamera->setPosition(200,1000,1000);
+	mCamera->lookAt(mFocus);
+
+	mTrayMgr->createButton(OgreBites::TL_BOTTOM, "Look At", "Look At");
+	mTrayMgr->createCheckBox(OgreBites::TL_BOTTOM, "tglParent", "Use Parent Node");
+	OgreBites::CheckBox* chk = mTrayMgr->createCheckBox(OgreBites::TL_BOTTOM, "tglFixedYaw", "Use Fixed Yaw");
+	chk->setChecked(true, false);
+	mTrayMgr->showCursor();
+	setDragLook(true);
+
+	mParentNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(Vector3(1000, 2000, -1000));
+
+}
+void PlayPen_testCameraSetDirection::buttonHit(OgreBites::Button* button)
+{
+	mCamera->lookAt(mFocus);
+}
+
+void PlayPen_testCameraSetDirection::checkBoxToggled(OgreBites::CheckBox* box)
+{
+	if (box->getName() == "tglParent")
+	{
+		mUseParentNode = !mUseParentNode;
+
+		if (mUseParentNode)
+			mParentNode->attachObject(mCamera);
+		else
+			mParentNode->detachAllObjects();
+	}
+	else if (box->getName() == "tglFixedYaw")
+	{
+		mUseFixedYaw = !mUseFixedYaw;
+		if (mUseFixedYaw)
+			mCamera->setFixedYawAxis(true);
+		else
+			mCamera->setFixedYawAxis(false);
+
+	}
+}
+//---------------------------------------------------------------------
+PlayPen_testManualLOD::PlayPen_testManualLOD()
+{
+	mInfo["Title"] = "PlayPen: Test Manual LOD";
+	mInfo["Description"] = "Testing meshes with manual LODs assigned";
+}
+//---------------------------------------------------------------------
+String PlayPen_testManualLOD::getLODMesh()
+{
+	MeshPtr msh1 = (MeshPtr)MeshManager::getSingleton().load("robot.mesh", 
+		ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
+	msh1->createManualLodLevel(200, "razor.mesh");
+	msh1->createManualLodLevel(500, "sphere.mesh");
+
+	return msh1->getName();
+
+}
+//---------------------------------------------------------------------
+void PlayPen_testManualLOD::setupContent()
+{
+	String meshName = getLODMesh();
+
+	Entity *ent;
+	for (int i = 0; i < 5; ++i)
+	{
+		ent = mSceneMgr->createEntity("robot" + StringConverter::toString(i), meshName);
+		// Add entity to the scene node
+		mSceneMgr->getRootSceneNode()->createChildSceneNode(
+			Vector3(0,0,(i*50)-(5*50/2)))->attachObject(ent);
+	}
+	mAnimState = ent->getAnimationState("Walk");
+	mAnimState->setEnabled(true);
+
+
+
+	// Give it a little ambience with lights
+	Light* l;
+	l = mSceneMgr->createLight("BlueLight");
+	l->setPosition(-200,-80,-100);
+	l->setDiffuseColour(0.5, 0.5, 1.0);
+
+	l = mSceneMgr->createLight("GreenLight");
+	l->setPosition(0,0,-100);
+	l->setDiffuseColour(0.5, 1.0, 0.5);
+
+	// Position the camera
+	mCamera->setPosition(100,50,100);
+	mCamera->lookAt(-50,50,0);
+
+	mSceneMgr->setAmbientLight(ColourValue::White);
+
+}
+//---------------------------------------------------------------------
+bool PlayPen_testManualLOD::frameStarted(const Ogre::FrameEvent& evt)
+{
+	mAnimState->addTime(evt.timeSinceLastFrame);
+
+	return PlayPenBase::frameStarted(evt);
+}
+//---------------------------------------------------------------------
+PlayPen_testManualLODFromFile::PlayPen_testManualLODFromFile()
+{
+	mInfo["Title"] = "PlayPen: Test Manual LOD (file)";
+	mInfo["Description"] = "Testing meshes with manual LODs assigned, loaded from a file";
+}
+//---------------------------------------------------------------------
+String PlayPen_testManualLODFromFile::getLODMesh()
+{
+	MeshPtr msh1 = (MeshPtr)MeshManager::getSingleton().load("robot.mesh", 
+		ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+
+	msh1->createManualLodLevel(200, "razor.mesh");
+	msh1->createManualLodLevel(500, "sphere.mesh");
+
+	// this time, we save this data to a file and re-load it
+
+	MeshSerializer ser;
+	const ResourceGroupManager::LocationList& ll = 
+		ResourceGroupManager::getSingleton().getResourceLocationList(ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	String prefix;
+	for (ResourceGroupManager::LocationList::const_iterator i = ll.begin(); i != ll.end(); ++i)
+	{
+		if (StringUtil::endsWith((*i)->archive->getName(), "media"))
+		{
+			prefix = (*i)->archive->getName();
+		}
+	}
+	ser.exportMesh(msh1.get(), prefix + "/testlod.mesh");
+
+	MeshManager::getSingleton().removeAll();
+
+	return "testlod.mesh";
+
+}
+//---------------------------------------------------------------------
+PlayPen_testFullScreenSwitch::PlayPen_testFullScreenSwitch()
+{
+	mInfo["Title"] = "PlayPen: Test full screen";
+	mInfo["Description"] = "Testing switching full screen modes without re-initialisation";
+
+}
+//---------------------------------------------------------------------
+void PlayPen_testFullScreenSwitch::setupContent()
+{
+	m640x480w = mTrayMgr->createButton(TL_CENTER, "m640x480w", "640 x 480 (windowed)", 300);
+	m640x480fs = mTrayMgr->createButton(TL_CENTER, "m640x480fs", "640 x 480 (fullscreen)", 300);
+	m800x600w = mTrayMgr->createButton(TL_CENTER, "m800x600w", "800 x 600 (windowed)", 300);
+	m800x600fs = mTrayMgr->createButton(TL_CENTER, "m800x600fs", "800 x 600 (fullscreen)", 300);
+	m1024x768w = mTrayMgr->createButton(TL_CENTER, "m1024x768w", "1024 x 768 (windowed)", 300);
+	m1024x768fs = mTrayMgr->createButton(TL_CENTER, "m1024x768fs", "1024 x 768 (fullscreen)", 300);
+
+	mTrayMgr->showCursor();
+
+}
+//---------------------------------------------------------------------
+void PlayPen_testFullScreenSwitch::buttonHit(OgreBites::Button* button)
+{
+	if (button == m640x480w)
+		mWindow->setFullscreen(false, 640, 480);
+	else if (button == m640x480fs)
+		mWindow->setFullscreen(true, 640, 480);
+	else if (button == m800x600w)
+		mWindow->setFullscreen(false, 800, 600);
+	else if (button == m800x600fs)
+		mWindow->setFullscreen(true, 800, 600);
+	else if (button == m1024x768w)
+		mWindow->setFullscreen(false, 1024, 768);
+	else if (button == m1024x768fs)
+		mWindow->setFullscreen(true, 1024, 768);
+}
 
 
 

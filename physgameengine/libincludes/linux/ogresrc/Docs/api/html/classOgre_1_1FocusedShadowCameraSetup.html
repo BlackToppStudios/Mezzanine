@@ -92,9 +92,9 @@ Inheritance diagram for Ogre::FocusedShadowCameraSetup:</div>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1FocusedShadowCameraSetup.html#7236f92a6006f84b7441adce882713df">calculateShadowMappingMatrix</a> (const <a class="el" href="classOgre_1_1SceneManager.html">SceneManager</a> &amp;sm, const <a class="el" href="classOgre_1_1Camera.html">Camera</a> &amp;cam, const <a class="el" href="classOgre_1_1Light.html">Light</a> &amp;light, <a class="el" href="classOgre_1_1Matrix4.html">Matrix4</a> *out_view, <a class="el" href="classOgre_1_1Matrix4.html">Matrix4</a> *out_proj, <a class="el" href="classOgre_1_1Camera.html">Camera</a> *out_cam) const </td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calculates the standard shadow mapping matrix.  <a href="#7236f92a6006f84b7441adce882713df"></a><br></td></tr>
-<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1FocusedShadowCameraSetup.html#561c5825cdc94896a738e4eb3a0b8852">calculateB</a> (const <a class="el" href="classOgre_1_1SceneManager.html">SceneManager</a> &amp;sm, const <a class="el" href="classOgre_1_1Camera.html">Camera</a> &amp;cam, const <a class="el" href="classOgre_1_1Light.html">Light</a> &amp;light, const <a class="el" href="classOgre_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;sceneBB, <a class="el" href="classOgre_1_1FocusedShadowCameraSetup_1_1PointListBody.html">PointListBody</a> *out_bodyB) const </td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1FocusedShadowCameraSetup.html#f13f2303f0a347a74aaca487482d40ba">calculateB</a> (const <a class="el" href="classOgre_1_1SceneManager.html">SceneManager</a> &amp;sm, const <a class="el" href="classOgre_1_1Camera.html">Camera</a> &amp;cam, const <a class="el" href="classOgre_1_1Light.html">Light</a> &amp;light, const <a class="el" href="classOgre_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;sceneBB, const <a class="el" href="classOgre_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;receiverBB, <a class="el" href="classOgre_1_1FocusedShadowCameraSetup_1_1PointListBody.html">PointListBody</a> *out_bodyB) const </td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calculates the intersection bodyB.  <a href="#561c5825cdc94896a738e4eb3a0b8852"></a><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calculates the intersection bodyB.  <a href="#f13f2303f0a347a74aaca487482d40ba"></a><br></td></tr>
 <tr><td class="memItemLeft" nowrap align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOgre_1_1FocusedShadowCameraSetup.html#0706a0e7b7ec6aecf9639dbe5b9cc7a2">calculateLVS</a> (const <a class="el" href="classOgre_1_1SceneManager.html">SceneManager</a> &amp;sm, const <a class="el" href="classOgre_1_1Camera.html">Camera</a> &amp;cam, const <a class="el" href="classOgre_1_1Light.html">Light</a> &amp;light, const <a class="el" href="classOgre_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;sceneBB, <a class="el" href="classOgre_1_1FocusedShadowCameraSetup_1_1PointListBody.html">PointListBody</a> *out_LVS) const </td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calculates the bodyLVS.  <a href="#0706a0e7b7ec6aecf9639dbe5b9cc7a2"></a><br></td></tr>
@@ -261,7 +261,7 @@ Calculates the standard shadow mapping matrix.
 
 </div>
 </div><p>
-<a class="anchor" name="561c5825cdc94896a738e4eb3a0b8852"></a><!-- doxytag: member="Ogre::FocusedShadowCameraSetup::calculateB" ref="561c5825cdc94896a738e4eb3a0b8852" args="(const SceneManager &amp;sm, const Camera &amp;cam, const Light &amp;light, const AxisAlignedBox &amp;sceneBB, PointListBody *out_bodyB) const " -->
+<a class="anchor" name="f13f2303f0a347a74aaca487482d40ba"></a><!-- doxytag: member="Ogre::FocusedShadowCameraSetup::calculateB" ref="f13f2303f0a347a74aaca487482d40ba" args="(const SceneManager &amp;sm, const Camera &amp;cam, const Light &amp;light, const AxisAlignedBox &amp;sceneBB, const AxisAlignedBox &amp;receiverBB, PointListBody *out_bodyB) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -292,6 +292,12 @@ Calculates the standard shadow mapping matrix.
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="classOgre_1_1AxisAlignedBox.html">AxisAlignedBox</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>receiverBB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="classOgre_1_1FocusedShadowCameraSetup_1_1PointListBody.html">PointListBody</a> *&nbsp;</td>
           <td class="paramname"> <em>out_bodyB</em></td><td>&nbsp;</td>
         </tr>
@@ -314,6 +320,7 @@ Calculates the intersection bodyB.
     <tr><td valign="top"></td><td valign="top"><em>cam,:</em>&nbsp;</td><td>currently active camera </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>light,:</em>&nbsp;</td><td>currently active light </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>sceneBB,:</em>&nbsp;</td><td>scene bounding box for clipping operations </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>receiverAABB,:</em>&nbsp;</td><td>bounding information for just the receivers </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>out_bodyB,:</em>&nbsp;</td><td>final intersection bodyB point <a class="el" href="structOgre_1_1list.html">list</a> </td></tr>
   </table>
 </dl>
@@ -622,7 +629,7 @@ Sets whether or not to use the more aggressive approach to deciding on the focus
   </table>
 </dl>
 
-<p>Definition at line <a class="el" href="OgreShadowCameraSetupFocused_8h-source.html#l00277">277</a> of file <a class="el" href="OgreShadowCameraSetupFocused_8h-source.html">OgreShadowCameraSetupFocused.h</a>.</p>
+<p>Definition at line <a class="el" href="OgreShadowCameraSetupFocused_8h-source.html#l00278">278</a> of file <a class="el" href="OgreShadowCameraSetupFocused_8h-source.html">OgreShadowCameraSetupFocused.h</a>.</p>
 
 </div>
 </div><p>
@@ -643,7 +650,7 @@ Sets whether or not to use the more aggressive approach to deciding on the focus
 
 <p>
 
-<p>Definition at line <a class="el" href="OgreShadowCameraSetupFocused_8h-source.html#l00279">279</a> of file <a class="el" href="OgreShadowCameraSetupFocused_8h-source.html">OgreShadowCameraSetupFocused.h</a>.</p>
+<p>Definition at line <a class="el" href="OgreShadowCameraSetupFocused_8h-source.html#l00280">280</a> of file <a class="el" href="OgreShadowCameraSetupFocused_8h-source.html">OgreShadowCameraSetupFocused.h</a>.</p>
 
 </div>
 </div><p>
@@ -1173,7 +1180,7 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 		</Work>
 		<License rdf:about="http://creativecommons.org/licenses/by-sa/2.5/"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/><requires rdf:resource="http://web.resource.org/cc/ShareAlike"/></License></rdf:RDF> -->
 
-Last modified Sun Feb 28 21:16:44 2010
+Last modified Sat Apr 24 18:06:46 2010
 </p>
 </body>
 </html>

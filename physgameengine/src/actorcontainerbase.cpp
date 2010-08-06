@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -76,6 +76,8 @@ namespace phys
         if(this->GameWorld != NULL)
             { ActorToAdd->RemoveObjectFromWorld(this->GameWorld); }
     }
+
+
 }// \phys
 
 

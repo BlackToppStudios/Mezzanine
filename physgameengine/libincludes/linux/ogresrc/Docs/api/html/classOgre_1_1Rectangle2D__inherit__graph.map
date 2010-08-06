@@ -1,6 +1,0 @@
-<area shape="rect" href="$classOgre_1_1SimpleRenderable.html" title="Simple implementation of MovableObject and Renderable for single&#45;part custom objects..." alt="" coords="256,161,432,188">
-<area shape="rect" href="$classOgre_1_1MovableObject.html" title="Abstract class defining a movable object in a scene." alt="" coords="184,84,339,111">
-<area shape="rect" href="$classOgre_1_1ShadowCaster.html" title="This class defines the interface that must be implemented by shadow casters." alt="" coords="5,7,157,33">
-<area shape="rect" href="$classOgre_1_1AnimableObject.html" title="Defines an interface to classes which have one or more AnimableValue instances to..." alt="" coords="181,7,341,33">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="365,7,469,33">
-<area shape="rect" href="$classOgre_1_1Renderable.html" title="Abstract class defining the interface all renderable objects must implement." alt="" coords="363,84,493,111">

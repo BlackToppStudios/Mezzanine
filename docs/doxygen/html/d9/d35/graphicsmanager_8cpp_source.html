@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>graphicsmanager.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>graphicsmanager.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -69,92 +69,113 @@
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;graphicsmanager.h&quot;</span>
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="keyword">namespace </span>phys
-<a name="l00048"></a>00048 {
-<a name="l00049"></a>00049 <span class="comment"></span>
-<a name="l00050"></a>00050 <span class="comment">    ///////////////////////////////////////////////////////////////////////////</span>
-<a name="l00051"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1">00051</a> <span class="comment"></span>    <span class="comment">// Creation and Deletion functions</span><span class="comment"></span>
-<a name="l00052"></a>00052 <span class="comment">    ///////////////////////////////////</span>
-<a name="l00053"></a>00053 <span class="comment"></span>    <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1" title="Default constructor.">GraphicsManager::GraphicsManager</a>()
-<a name="l00054"></a>00054     {
-<a name="l00055"></a>00055         <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a0618579828f2eed0cb07fbe55fd15b3f" title="Adjust all Settings.">Construct</a>(640,480,<span class="keyword">false</span>);
-<a name="l00056"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#af9ac5e5f56e5eb2f94c16d594e70123b">00056</a>     }
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058     <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1" title="Default constructor.">GraphicsManager::GraphicsManager</a>( <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_ )
-<a name="l00059"></a>00059     {
-<a name="l00060"></a>00060         <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a0618579828f2eed0cb07fbe55fd15b3f" title="Adjust all Settings.">Construct</a>( Width_, Height_, FullScreen_ );
-<a name="l00061"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a0618579828f2eed0cb07fbe55fd15b3f">00061</a>     }
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a0618579828f2eed0cb07fbe55fd15b3f" title="Adjust all Settings.">GraphicsManager::Construct</a>( <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_ )
-<a name="l00064"></a>00064     {
-<a name="l00065"></a>00065         this-&gt;Fullscreen = FullScreen_;
-<a name="l00066"></a>00066         this-&gt;RenderHeight = Height_;
-<a name="l00067"></a>00067         this-&gt;RenderWidth = Width_;
-<a name="l00068"></a>00068     }
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="comment"></span>
-<a name="l00071"></a>00071 <span class="comment">    ///////////////////////////////////////////////////////////////////////////</span>
-<a name="l00072"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad126eedb81e3f0304731ddd33b617593">00072</a> <span class="comment"></span>    <span class="comment">// Fullscreen functions</span><span class="comment"></span>
-<a name="l00073"></a>00073 <span class="comment">    ///////////////////////////////////</span>
-<a name="l00074"></a>00074 <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad126eedb81e3f0304731ddd33b617593" title="Gets the Fullscreen Setting.">GraphicsManager::getFullscreen</a>()<span class="keyword"> const</span>
-<a name="l00075"></a>00075 <span class="keyword">    </span>{
-<a name="l00076"></a>00076         <span class="keywordflow">return</span> this-&gt;Fullscreen;
-<a name="l00077"></a>00077     }
-<a name="l00078"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aafcf1824190e44d42a9bfbea9cfbe1b2">00078</a> 
-<a name="l00079"></a>00079     <span class="comment">//returns: false if changes could not be made</span>
-<a name="l00080"></a>00080     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aafcf1824190e44d42a9bfbea9cfbe1b2" title="Set the Fullscreen Setting.">GraphicsManager::setFullscreen</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;Fullscreen_)
-<a name="l00081"></a>00081     {<span class="comment"></span>
-<a name="l00082"></a>00082 <span class="comment">        /// @todo TODO: Need to attempt to switch to fullscreen here</span>
-<a name="l00083"></a>00083 <span class="comment">        /// @todo TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games</span>
-<a name="l00084"></a>00084 <span class="comment"></span>        this-&gt;Fullscreen = Fullscreen_;
-<a name="l00085"></a>00085     }
-<a name="l00086"></a>00086 <span class="comment"></span>
-<a name="l00087"></a>00087 <span class="comment">    ///////////////////////////////////////////////////////////////////////////</span>
-<a name="l00088"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a38ee0f8a8a7d8ba861b1c6cfe579443e">00088</a> <span class="comment"></span>    <span class="comment">// Resolution functions</span><span class="comment"></span>
-<a name="l00089"></a>00089 <span class="comment">    ///////////////////////////////////</span>
-<a name="l00090"></a>00090 <span class="comment"></span>    <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a38ee0f8a8a7d8ba861b1c6cfe579443e" title="Gets the Height of the Rendering Area.">GraphicsManager::getRenderHeight</a>()<span class="keyword"> const</span>
-<a name="l00091"></a>00091 <span class="keyword">    </span>{
-<a name="l00092"></a>00092         <span class="keywordflow">return</span> this-&gt;RenderHeight;
-<a name="l00093"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9e1ce1f9f8bcff7712fd5beaf7cf2337">00093</a>     }
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9e1ce1f9f8bcff7712fd5beaf7cf2337" title="Gets the Width of the Rendering Area.">GraphicsManager::getRenderWidth</a>()<span class="keyword"> const</span>
-<a name="l00096"></a>00096 <span class="keyword">    </span>{
-<a name="l00097"></a>00097         <span class="keywordflow">return</span> this-&gt;RenderWidth;
-<a name="l00098"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a8d59e9a8aa2ae7f520d388a4c70f0623">00098</a>     }
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a8d59e9a8aa2ae7f520d388a4c70f0623" title="Sets the Height.">GraphicsManager::setRenderHeight</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_)
-<a name="l00101"></a>00101     {<span class="comment"></span>
-<a name="l00102"></a>00102 <span class="comment">        /// @todo TODO: Need to attempt to update resolution here</span>
-<a name="l00103"></a>00103 <span class="comment"></span>        this-&gt;RenderHeight = Height_;
-<a name="l00104"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aea5fb5808a23fa29c8522c396ac0d6b5">00104</a>     }
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aea5fb5808a23fa29c8522c396ac0d6b5" title="Sets the Width.">GraphicsManager::setRenderWidth</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_)
-<a name="l00107"></a>00107     {<span class="comment"></span>
-<a name="l00108"></a>00108 <span class="comment">        /// @todo TODO: Need to attempt to update resolution here</span>
-<a name="l00109"></a>00109 <span class="comment"></span>        this-&gt;RenderWidth = Width_;
-<a name="l00110"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac6feb044d9ab394f3e65d51026a899a6">00110</a>     }
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac6feb044d9ab394f3e65d51026a899a6" title="Changes the X and Y Resolution at the same time.">GraphicsManager::setRenderResolution</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_)
-<a name="l00113"></a>00113     {<span class="comment"></span>
-<a name="l00114"></a>00114 <span class="comment">        /// @todo TODO: Need to attempt to update resolution here</span>
-<a name="l00115"></a>00115 <span class="comment"></span>        this-&gt;RenderWidth = Width_;
-<a name="l00116"></a>00116         this-&gt;RenderHeight = Height_;
-<a name="l00117"></a>00117     }
-<a name="l00118"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">00118</a> 
-<a name="l00119"></a>00119     <span class="comment">//Inherited From ManagerBase</span>
-<a name="l00120"></a>00120     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c" title="Empty Initializor.">GraphicsManager::Initialize</a>()
-<a name="l00121"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">00121</a>         {}
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58" title="This returns the type of this manager.">GraphicsManager::GetType</a>()<span class="keyword"> const</span>
-<a name="l00124"></a>00124 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::GraphicsManager; }
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128 }
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130 <span class="preprocessor">#endif</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;Ogre.h&quot;</span>
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="keyword">namespace </span>phys
+<a name="l00050"></a>00050 {
+<a name="l00051"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1">00051</a> <span class="comment"></span>
+<a name="l00052"></a>00052 <span class="comment">    ///////////////////////////////////////////////////////////////////////////</span>
+<a name="l00053"></a>00053 <span class="comment"></span>    <span class="comment">// Creation and Deletion functions</span><span class="comment"></span>
+<a name="l00054"></a>00054 <span class="comment">    ///////////////////////////////////</span>
+<a name="l00055"></a>00055 <span class="comment"></span>    <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1" title="Default constructor.">GraphicsManager::GraphicsManager</a>()
+<a name="l00056"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#af9ac5e5f56e5eb2f94c16d594e70123b">00056</a>     {
+<a name="l00057"></a>00057         <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a0618579828f2eed0cb07fbe55fd15b3f" title="Adjust all Settings.">Construct</a>(640,480,<span class="keyword">false</span>);
+<a name="l00058"></a>00058     }
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060     <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1" title="Default constructor.">GraphicsManager::GraphicsManager</a>( <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_ )
+<a name="l00061"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a0618579828f2eed0cb07fbe55fd15b3f">00061</a>     {
+<a name="l00062"></a>00062         <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a0618579828f2eed0cb07fbe55fd15b3f" title="Adjust all Settings.">Construct</a>( Width_, Height_, FullScreen_ );
+<a name="l00063"></a>00063     }
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a0618579828f2eed0cb07fbe55fd15b3f" title="Adjust all Settings.">GraphicsManager::Construct</a>( <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_ )
+<a name="l00066"></a>00066     {
+<a name="l00067"></a>00067         this-&gt;Fullscreen = FullScreen_;
+<a name="l00068"></a>00068         this-&gt;RenderHeight = Height_;
+<a name="l00069"></a>00069         this-&gt;RenderWidth = Width_;
+<a name="l00070"></a>00070     }
+<a name="l00071"></a>00071 
+<a name="l00072"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad126eedb81e3f0304731ddd33b617593">00072</a> <span class="comment"></span>
+<a name="l00073"></a>00073 <span class="comment">    ///////////////////////////////////////////////////////////////////////////</span>
+<a name="l00074"></a>00074 <span class="comment"></span>    <span class="comment">// Fullscreen functions</span><span class="comment"></span>
+<a name="l00075"></a>00075 <span class="comment">    ///////////////////////////////////</span>
+<a name="l00076"></a>00076 <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad126eedb81e3f0304731ddd33b617593" title="Gets the Fullscreen Setting.">GraphicsManager::getFullscreen</a>()<span class="keyword"> const</span>
+<a name="l00077"></a>00077 <span class="keyword">    </span>{
+<a name="l00078"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aafcf1824190e44d42a9bfbea9cfbe1b2">00078</a>         <span class="keywordflow">return</span> this-&gt;Fullscreen;
+<a name="l00079"></a>00079     }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081     <span class="comment">//returns: false if changes could not be made</span>
+<a name="l00082"></a>00082     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aafcf1824190e44d42a9bfbea9cfbe1b2" title="Set the Fullscreen Setting.">GraphicsManager::setFullscreen</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;Fullscreen_)
+<a name="l00083"></a>00083     {<span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment">        /// @todo TODO: Need to attempt to switch to fullscreen here</span>
+<a name="l00085"></a>00085 <span class="comment">        /// @todo TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games</span>
+<a name="l00086"></a>00086 <span class="comment"></span>        this-&gt;Fullscreen = Fullscreen_;
+<a name="l00087"></a>00087     }
+<a name="l00088"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a38ee0f8a8a7d8ba861b1c6cfe579443e">00088</a> <span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment">    ///////////////////////////////////////////////////////////////////////////</span>
+<a name="l00090"></a>00090 <span class="comment"></span>    <span class="comment">// Resolution functions</span><span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">    ///////////////////////////////////</span>
+<a name="l00092"></a>00092 <span class="comment"></span>    <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a38ee0f8a8a7d8ba861b1c6cfe579443e" title="Gets the Height of the Rendering Area.">GraphicsManager::getRenderHeight</a>()<span class="keyword"> const</span>
+<a name="l00093"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9e1ce1f9f8bcff7712fd5beaf7cf2337">00093</a> <span class="keyword">    </span>{
+<a name="l00094"></a>00094         <span class="keywordflow">return</span> this-&gt;RenderHeight;
+<a name="l00095"></a>00095     }
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9e1ce1f9f8bcff7712fd5beaf7cf2337" title="Gets the Width of the Rendering Area.">GraphicsManager::getRenderWidth</a>()<span class="keyword"> const</span>
+<a name="l00098"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a8d59e9a8aa2ae7f520d388a4c70f0623">00098</a> <span class="keyword">    </span>{
+<a name="l00099"></a>00099         <span class="keywordflow">return</span> this-&gt;RenderWidth;
+<a name="l00100"></a>00100     }
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a8d59e9a8aa2ae7f520d388a4c70f0623" title="Sets the Height.">GraphicsManager::setRenderHeight</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_)
+<a name="l00103"></a>00103     {<span class="comment"></span>
+<a name="l00104"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aea5fb5808a23fa29c8522c396ac0d6b5">00104</a> <span class="comment">        /// @todo TODO: Need to attempt to update resolution here</span>
+<a name="l00105"></a>00105 <span class="comment"></span>        this-&gt;RenderHeight = Height_;
+<a name="l00106"></a>00106     }
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aea5fb5808a23fa29c8522c396ac0d6b5" title="Sets the Width.">GraphicsManager::setRenderWidth</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_)
+<a name="l00109"></a>00109     {<span class="comment"></span>
+<a name="l00110"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac6feb044d9ab394f3e65d51026a899a6">00110</a> <span class="comment">        /// @todo TODO: Need to attempt to update resolution here</span>
+<a name="l00111"></a>00111 <span class="comment"></span>        this-&gt;RenderWidth = Width_;
+<a name="l00112"></a>00112     }
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac6feb044d9ab394f3e65d51026a899a6" title="Changes the X and Y Resolution at the same time.">GraphicsManager::setRenderResolution</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_)
+<a name="l00115"></a>00115     {<span class="comment"></span>
+<a name="l00116"></a>00116 <span class="comment">        /// @todo TODO: Need to attempt to update resolution here</span>
+<a name="l00117"></a>00117 <span class="comment"></span>        this-&gt;RenderWidth = Width_;
+<a name="l00118"></a>00118         this-&gt;RenderHeight = Height_;
+<a name="l00119"></a>00119     }
+<a name="l00120"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#adcded385b6442aa5da6097f1edd5471a">00120</a> <span class="comment"></span>
+<a name="l00121"></a>00121 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00122"></a>00122 <span class="comment"></span>    <span class="comment">//Shows the ogre settings Dialog, and allows it to save settings to ogres</span>
+<a name="l00123"></a>00123     <span class="comment">//preset save location</span>
+<a name="l00124"></a>00124     <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#adcded385b6442aa5da6097f1edd5471a" title="This Shows an Engine Generated Configuration Screen.">GraphicsManager::ShowGraphicsSettingDialog</a>()
+<a name="l00125"></a>00125     {
+<a name="l00126"></a>00126         <span class="keywordflow">try</span>
+<a name="l00127"></a>00127         {
+<a name="l00128"></a>00128             <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a07bd53ea67c1a956004a007f99f7fc5b">OgreRoot</a>-&gt;showConfigDialog();
+<a name="l00129"></a>00129         } <span class="keywordflow">catch</span> (exception&amp; e) {
+<a name="l00130"></a>00130             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;Ogre settings windows from main UI or mandatory setting failure&quot;</span>);
+<a name="l00131"></a>00131             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime Event logging Function.">Log</a>(e.what());
+<a name="l00132"></a>00132             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00133"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">00133</a>         }
+<a name="l00134"></a>00134     }
+<a name="l00135"></a>00135 
+<a name="l00136"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">00136</a>     <span class="comment">//Inherited From ManagerBase</span>
+<a name="l00137"></a>00137     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c" title="Empty Initializor.">GraphicsManager::Initialize</a>()
+<a name="l00138"></a>00138         {}
+<a name="l00139"></a>00139 
+<a name="l00140"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">00140</a>     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee" title="Empty MainLoopItems.">GraphicsManager::DoMainLoopItems</a>()
+<a name="l00141"></a>00141         {}
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58" title="This returns the type of this manager.">GraphicsManager::GetType</a>()<span class="keyword"> const</span>
+<a name="l00145"></a>00145 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::GraphicsManager; }
+<a name="l00146"></a>00146 
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149 }
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

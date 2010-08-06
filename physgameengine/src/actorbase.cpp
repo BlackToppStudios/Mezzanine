@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//Â© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -57,15 +57,25 @@ namespace phys{
         this->MotionState = new internal::PhysMotionState(this->node);
         this->Shape = new btEmptyShape();
         this->CreateEntity(name, file, group);
-        ActorType=ActorBase::Actorbase;
+        ActorSounds = NULL;
+        Animation = NULL;
+        ShapeIsSaved = false;
+        ActorType = ActorBase::Actorbase;
     }
 
     ActorBase::~ActorBase ()
     {
         delete MotionState;
-        delete Shape;
+        if(!ShapeIsSaved)
+        {
+            delete Shape;
+        };
         delete node;
         delete entity;
+        if(CollisionObject)
+        {
+            delete CollisionObject;
+        }
     }
 
     ///////////////////////////////////
@@ -263,9 +273,12 @@ namespace phys{
 
     void ActorBase::AttachToGraphics ()
     {
-        Vector3 temp;
-        temp = GetBulletLocation();
-        this->node->setPosition(temp.GetOgreVector3());
+        Vector3 tempv;
+        Quaternion tempq;
+        tempv = GetBulletLocation();
+        tempq.ExtractBulletQuaternion(CollisionObject->getWorldTransform().getRotation());
+        this->node->setPosition(tempv.GetOgreVector3());
+        this->node->setOrientation(tempq.GetOgreQuaternion());
         this->node->attachObject(this->entity);
     }
 
@@ -288,6 +301,62 @@ namespace phys{
     int ActorBase::GetType()
     {
         return this->ActorType;
+    }
+
+    const bool ActorBase::GetShapeIsSaved()
+    {
+        return ShapeIsSaved;
+    }
+
+    void ActorBase::SetBasicCollisionParams(Real Friction, Real Restitution)
+    {
+        this->CollisionObject->setFriction(Friction);
+        this->CollisionObject->setRestitution(Restitution);
+    }
+
+    void ActorBase::SetAnimation(String &AnimationName, bool Loop)
+    {
+        if(this->IsAnimated())
+        {
+            Animation->setEnabled(false);
+        }
+        Animation = entity->getAnimationState(AnimationName);
+        Animation->setLoop(Loop);
+    }
+
+    void ActorBase::EnableAnimation(bool Enable)
+    {
+        if(Animation)
+        {
+            Animation->setEnabled(Enable);
+        }
+    }
+
+    bool ActorBase::IsAnimated()
+    {
+        if(Animation)
+        {
+            return Animation->getEnabled();
+        }else{
+            return false;
+        }
+    }
+
+    void ActorBase::AdvanceAnimation(Real Time)
+    {
+        if(Animation)
+        {
+            Animation->addTime(Time);
+        }
+    }
+
+    void ActorBase::RemoveSetAnimation()
+    {
+        if(Animation)
+        {
+            Animation->setEnabled(false);
+            Animation = NULL;
+        }
     }
 
     ///////////////////////////////////

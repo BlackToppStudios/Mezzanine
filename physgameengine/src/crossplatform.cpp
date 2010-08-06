@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -73,6 +73,10 @@ namespace phys
             #ifdef WINDOWS
                 return "data/windows/plugins.cfg";
             #endif
+			#ifdef MACOSX
+				return "data/macosx/plugins.cfg";
+			#endif
+			
 
         }
 
@@ -87,6 +91,9 @@ namespace phys
             #ifdef WINDOWS
                 return "data/windows/settings.cfg";
             #endif
+			#ifdef MACOSX
+				return "data/macosx/settings.cfg";
+			#endif
         }
 
         string GetDataDirectory()

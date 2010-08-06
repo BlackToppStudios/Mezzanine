@@ -242,7 +242,7 @@ namespace Ogre
 		// We do this rather than having a specific technique for it since it's simpler
 		GpuProgramManager& gmgr = GpuProgramManager::getSingleton();
 		if (!gmgr.isSyntaxSupported("ps_3_0") && !gmgr.isSyntaxSupported("ps_2_x")
-			&& !gmgr.isSyntaxSupported("fp40"))
+			&& !gmgr.isSyntaxSupported("fp40") && !gmgr.isSyntaxSupported("arbfp1"))
 		{
 			setLayerNormalMappingEnabled(false);
 			setLayerParallaxMappingEnabled(false);
@@ -309,11 +309,11 @@ namespace Ogre
 		if (!mShaderGen)
 		{
 			bool check2x = mLayerNormalMappingEnabled || mLayerParallaxMappingEnabled;
-			if (hmgr.isLanguageSupported("cg") && 
-				(check2x && (gmgr.isSyntaxSupported("fp40") || gmgr.isSyntaxSupported("ps_2_x"))) ||
-				(gmgr.isSyntaxSupported("ps_2_0")))
+			if (hmgr.isLanguageSupported("cg"))
 				mShaderGen = OGRE_NEW ShaderHelperCg();
-			else if (hmgr.isLanguageSupported("hlsl"))
+			else if (hmgr.isLanguageSupported("hlsl") &&
+				((check2x && gmgr.isSyntaxSupported("ps_2_x")) ||
+				(!check2x && gmgr.isSyntaxSupported("ps_2_0"))))
 				mShaderGen = OGRE_NEW ShaderHelperHLSL();
 			else if (hmgr.isLanguageSupported("glsl"))
 				mShaderGen = OGRE_NEW ShaderHelperGLSL();
@@ -738,9 +738,9 @@ namespace Ogre
 		}
 		
 		if(prof->isLayerNormalMappingEnabled() || prof->isLayerParallaxMappingEnabled())
-			ret->setParameter("profiles", "ps_3_0 ps_2_x fp40");
+			ret->setParameter("profiles", "ps_3_0 ps_2_x fp40 arbfp1");
 		else
-			ret->setParameter("profiles", "ps_3_0 ps_2_0 fp30");
+			ret->setParameter("profiles", "ps_3_0 ps_2_0 fp30 arbfp1");
 		ret->setParameter("entry_point", "main_fp");
 
 		return ret;
@@ -850,11 +850,13 @@ namespace Ogre
 			switch (terrain->getAlignment())
 			{
 			case Terrain::ALIGN_X_Y:
+				outStream << "	worldPos.z += delta.x * toMorph * lodMorph.x;\n";
 				break;
 			case Terrain::ALIGN_X_Z:
 				outStream << "	worldPos.y += delta.x * toMorph * lodMorph.x;\n";
 				break;
 			case Terrain::ALIGN_Y_Z:
+				outStream << "	worldPos.x += delta.x * toMorph * lodMorph.x;\n";
 				break;
 			};
 		}

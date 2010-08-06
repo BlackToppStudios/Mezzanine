@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -106,7 +106,7 @@ namespace phys
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
-            /// be used with only with Dynamic objects.
+            /// be used with only with Static objects.
             void CreateShapeFromMeshStatic();
 
             /// @brief Restricts movement on the axis or axies of your choice.

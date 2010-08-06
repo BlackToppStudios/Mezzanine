@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>callbackmanager.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>callbackmanager.cpp</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -96,204 +96,207 @@
 <a name="l00071"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a3d2af4e3c947b14f628c3e09a96af2f9">00071</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a3d2af4e3c947b14f628c3e09a96af2f9" title="Empty Initilizor.">CallBackManager::Initialize</a>()
 <a name="l00072"></a>00072         {}
 <a name="l00073"></a>00073 
-<a name="l00074"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa0568dd5c2d1bb6dc669dfa2ca3486ad">00074</a>     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa0568dd5c2d1bb6dc669dfa2ca3486ad" title="This returns the type of this manager.">CallBackManager::GetType</a>()<span class="keyword"> const</span>
-<a name="l00075"></a>00075 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::CallBackManager; }
-<a name="l00076"></a>00076 <span class="comment"></span>
-<a name="l00077"></a>00077 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00078"></a>00078 <span class="comment"></span>    <span class="comment">//Preinput callback will be called in the main loop first</span><span class="comment"></span>
-<a name="l00079"></a>00079 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00080"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84e782f8729f49b296691763351ee2b1">00080</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84e782f8729f49b296691763351ee2b1" title="This calls the PreInput Callback.">CallBackManager::PreInput</a>()
-<a name="l00081"></a>00081     {
-<a name="l00082"></a>00082         <span class="comment">//If a call back has been set then we use it, otherwise we can</span>
-<a name="l00083"></a>00083         <span class="comment">//assume that we should just keep execute the main loop</span>
-<a name="l00084"></a>00084         <span class="keywordflow">if</span>(NULL!=PreInputCallback)
-<a name="l00085"></a>00085         {
-<a name="l00086"></a>00086             <span class="keywordflow">return</span> (*PreInputCallback)();
-<a name="l00087"></a>00087         }
-<a name="l00088"></a>00088         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00089"></a>00089     }
-<a name="l00090"></a>00090 
-<a name="l00091"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ae3da6f1eb10cdf4d8551aaeeda73053c">00091</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ae3da6f1eb10cdf4d8551aaeeda73053c" title="Drops the PreInput pointer.">CallBackManager::ErasePreInput</a>()
-<a name="l00092"></a>00092     {
-<a name="l00093"></a>00093         this-&gt;PreInputCallback = NULL;
-<a name="l00094"></a>00094     }
-<a name="l00095"></a>00095 
-<a name="l00096"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1efb0c185304376986093beebf08a277">00096</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1efb0c185304376986093beebf08a277" title="This assigns a function to be the callback function for PreInput.">CallBackManager::SetPreInput</a>(<span class="keywordtype">bool</span> (*Callback)())
-<a name="l00097"></a>00097     {
-<a name="l00098"></a>00098         this-&gt;PreInputCallback = Callback;
-<a name="l00099"></a>00099     }
-<a name="l00100"></a>00100 
-<a name="l00101"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adf39c71f0be97bcceb364621d1ccd77e">00101</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adf39c71f0be97bcceb364621d1ccd77e" title="Is the PreInput callback set or not.">CallBackManager::IsPreInputCallbackSet</a>()<span class="keyword"> const</span>
-<a name="l00102"></a>00102 <span class="keyword">    </span>{
-<a name="l00103"></a>00103         <span class="keywordflow">if</span>(NULL==PreInputCallback)
-<a name="l00104"></a>00104         {
-<a name="l00105"></a>00105             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00106"></a>00106         }
-<a name="l00107"></a>00107         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00108"></a>00108     }
-<a name="l00109"></a>00109 <span class="comment"></span>
-<a name="l00110"></a>00110 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00111"></a>00111 <span class="comment"></span>    <span class="comment">//Postinput callback will be called in the main loop right after input</span><span class="comment"></span>
-<a name="l00112"></a>00112 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00113"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a83afb36cfc7e71863d68a8b4c1d5e9d2">00113</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a83afb36cfc7e71863d68a8b4c1d5e9d2" title="This calls the PostInput Callback.">CallBackManager::PostInput</a>()
-<a name="l00114"></a>00114     {
-<a name="l00115"></a>00115         <span class="comment">//If a call back has been set then we use it, otherwise we can</span>
-<a name="l00116"></a>00116         <span class="comment">//assume that we should just keep execute the main loop</span>
-<a name="l00117"></a>00117         <span class="keywordflow">if</span>(NULL!=PostInputCallback)
-<a name="l00118"></a>00118         {
-<a name="l00119"></a>00119             <span class="keywordflow">return</span> (*PostInputCallback)();
-<a name="l00120"></a>00120         }
-<a name="l00121"></a>00121         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00122"></a>00122     }
-<a name="l00123"></a>00123 
-<a name="l00124"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84ccf382be58b42439869ec9b77a0f89">00124</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84ccf382be58b42439869ec9b77a0f89" title="Drops the PostInput pointer.">CallBackManager::ErasePostInput</a>()
-<a name="l00125"></a>00125     {
-<a name="l00126"></a>00126         this-&gt;PostInputCallback = NULL;
-<a name="l00127"></a>00127     }
-<a name="l00128"></a>00128 
-<a name="l00129"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#abbf73a7199a64d6a2a39c7de44c5acd6">00129</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#abbf73a7199a64d6a2a39c7de44c5acd6" title="This assigns a function to be the callback function for PostInput.">CallBackManager::SetPostInput</a>(<span class="keywordtype">bool</span> (*Callback)())
-<a name="l00130"></a>00130     {
-<a name="l00131"></a>00131         this-&gt;PostInputCallback = Callback;
-<a name="l00132"></a>00132     }
-<a name="l00133"></a>00133 
-<a name="l00134"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afa96dbc0779e5fa386546502b3db6c39">00134</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afa96dbc0779e5fa386546502b3db6c39" title="Is the PostInput callback set or not.">CallBackManager::IsPostInputCallbackSet</a>()<span class="keyword"> const</span>
-<a name="l00135"></a>00135 <span class="keyword">    </span>{
-<a name="l00136"></a>00136         <span class="keywordflow">if</span>(NULL==PostInputCallback)
-<a name="l00137"></a>00137         {
-<a name="l00138"></a>00138             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00139"></a>00139         }
-<a name="l00140"></a>00140         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00141"></a>00141     }
-<a name="l00142"></a>00142 <span class="comment"></span>
-<a name="l00143"></a>00143 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00144"></a>00144 <span class="comment"></span>    <span class="comment">// These functions manage the pre physics functions</span><span class="comment"></span>
-<a name="l00145"></a>00145 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00146"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a65867cc4855f0f8cd84a2b4a8bbf0fd6">00146</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a65867cc4855f0f8cd84a2b4a8bbf0fd6" title="This calls the PrePhysics Callback.">CallBackManager::PrePhysics</a>()
-<a name="l00147"></a>00147     {
-<a name="l00148"></a>00148         <span class="keywordflow">if</span>(NULL!=PrePhysicsCallback)
-<a name="l00149"></a>00149         {
-<a name="l00150"></a>00150             <span class="keywordflow">return</span> (*PrePhysicsCallback)();
-<a name="l00151"></a>00151         }
-<a name="l00152"></a>00152         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00153"></a>00153     }
-<a name="l00154"></a>00154 
-<a name="l00155"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afaeba4d6ae245d1560b76799417cce40">00155</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afaeba4d6ae245d1560b76799417cce40" title="Drops the PrePhysics pointer.">CallBackManager::ErasePrePhysics</a>()
-<a name="l00156"></a>00156     {
-<a name="l00157"></a>00157         this-&gt;PrePhysicsCallback = NULL;
-<a name="l00158"></a>00158     }
-<a name="l00159"></a>00159 
-<a name="l00160"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a3f06ccacd416b3109f20c30cd30f9efe">00160</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a3f06ccacd416b3109f20c30cd30f9efe" title="This assigns a function to be the callback function for PrePhysics.">CallBackManager::SetPrePhysics</a>(<span class="keywordtype">bool</span> (*Callback)())
-<a name="l00161"></a>00161     {
-<a name="l00162"></a>00162         this-&gt;PrePhysicsCallback = Callback;
-<a name="l00163"></a>00163     }
-<a name="l00164"></a>00164 
-<a name="l00165"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a8684425c42a4416a204852ce6a246dc6">00165</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a8684425c42a4416a204852ce6a246dc6" title="Is the PrePhysics callback set or not.">CallBackManager::IsPrePhysicsCallbackSet</a>()<span class="keyword"> const</span>
-<a name="l00166"></a>00166 <span class="keyword">    </span>{
-<a name="l00167"></a>00167         <span class="keywordflow">if</span>(NULL==PrePhysicsCallback)
-<a name="l00168"></a>00168         {
-<a name="l00169"></a>00169             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00170"></a>00170         }
-<a name="l00171"></a>00171         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00172"></a>00172     }
-<a name="l00173"></a>00173 <span class="comment"></span>
-<a name="l00174"></a>00174 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00175"></a>00175 <span class="comment"></span>    <span class="comment">// These functions manage the Post physics functions</span><span class="comment"></span>
-<a name="l00176"></a>00176 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00177"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a06bf0e8787f21caf31bf428727155084">00177</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a06bf0e8787f21caf31bf428727155084" title="This calls the PostPhysics Callback.">CallBackManager::PostPhysics</a>()
-<a name="l00178"></a>00178     {
-<a name="l00179"></a>00179         <span class="keywordflow">if</span>(NULL!=PostPhysicsCallback)
-<a name="l00180"></a>00180         {
-<a name="l00181"></a>00181             <span class="keywordflow">return</span> (*PostPhysicsCallback)();
-<a name="l00182"></a>00182         }
-<a name="l00183"></a>00183         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00184"></a>00184     }
-<a name="l00185"></a>00185 
-<a name="l00186"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a2d03573a93606e9d3fcd7adad5c8c397">00186</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a2d03573a93606e9d3fcd7adad5c8c397" title="Drops the PostPhysics pointer.">CallBackManager::ErasePostPhysics</a>()
-<a name="l00187"></a>00187     {
-<a name="l00188"></a>00188         this-&gt;PostPhysicsCallback = NULL;
-<a name="l00189"></a>00189     }
-<a name="l00190"></a>00190 
-<a name="l00191"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a17687cd04807dfc80a25847be830c2f2">00191</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a17687cd04807dfc80a25847be830c2f2" title="This assigns a function to be the callback function for PostPhysics.">CallBackManager::SetPostPhysics</a>(<span class="keywordtype">bool</span> (*Callback)())
-<a name="l00192"></a>00192     {
-<a name="l00193"></a>00193         this-&gt;PostPhysicsCallback = Callback;
-<a name="l00194"></a>00194     }
-<a name="l00195"></a>00195 
-<a name="l00196"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ad1e2131d792c6813caae4be4d5c4e5fb">00196</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ad1e2131d792c6813caae4be4d5c4e5fb" title="Is the PostPhysics callback set or not.">CallBackManager::IsPostPhysicsCallbackSet</a>()<span class="keyword"> const</span>
-<a name="l00197"></a>00197 <span class="keyword">    </span>{
-<a name="l00198"></a>00198         <span class="keywordflow">if</span>(NULL==PostPhysicsCallback)
-<a name="l00199"></a>00199         {
-<a name="l00200"></a>00200             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00201"></a>00201         }
-<a name="l00202"></a>00202         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00203"></a>00203     }
-<a name="l00204"></a>00204 <span class="comment"></span>
-<a name="l00205"></a>00205 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00206"></a>00206 <span class="comment"></span>    <span class="comment">// These functions manage the pre render functions</span><span class="comment"></span>
-<a name="l00207"></a>00207 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00208"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a244c88b8a06f68a4f4bcff6253bf6806">00208</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a244c88b8a06f68a4f4bcff6253bf6806" title="This calls the PreRender Callback.">CallBackManager::PreRender</a>()
-<a name="l00209"></a>00209     {
-<a name="l00210"></a>00210         <span class="keywordflow">if</span>(NULL!=PreRenderCallback)
-<a name="l00211"></a>00211         {
-<a name="l00212"></a>00212             <span class="keywordflow">return</span> (*PreRenderCallback)();
-<a name="l00213"></a>00213         }
-<a name="l00214"></a>00214         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00215"></a>00215     }
-<a name="l00216"></a>00216 
-<a name="l00217"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adadf16f3f38398c9593646416ef18499">00217</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adadf16f3f38398c9593646416ef18499" title="Drops the PreRender pointer.">CallBackManager::ErasePreRender</a>()
-<a name="l00218"></a>00218     {
-<a name="l00219"></a>00219         this-&gt;PreRenderCallback = NULL;
-<a name="l00220"></a>00220     }
-<a name="l00221"></a>00221 
-<a name="l00222"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1e060fd479413457a798ea3c6b2bcb4d">00222</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1e060fd479413457a798ea3c6b2bcb4d" title="This assigns a function to be the callback function for PreRender.">CallBackManager::SetPreRender</a>(<span class="keywordtype">bool</span> (*Callback)())
-<a name="l00223"></a>00223     {
-<a name="l00224"></a>00224         this-&gt;PreRenderCallback = Callback;
-<a name="l00225"></a>00225     }
-<a name="l00226"></a>00226 
-<a name="l00227"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a91017cc0aa4a04e74fd8f9ca0895b6f8">00227</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a91017cc0aa4a04e74fd8f9ca0895b6f8" title="Is the PreRender callback set or not.">CallBackManager::IsPreRenderCallbackSet</a>()<span class="keyword"> const</span>
-<a name="l00228"></a>00228 <span class="keyword">    </span>{
-<a name="l00229"></a>00229         <span class="keywordflow">if</span>(NULL==PreRenderCallback)
-<a name="l00230"></a>00230         {
-<a name="l00231"></a>00231             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00232"></a>00232         }
-<a name="l00233"></a>00233         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00234"></a>00234     }
-<a name="l00235"></a>00235 
-<a name="l00236"></a>00236 <span class="comment"></span>
-<a name="l00237"></a>00237 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00238"></a>00238 <span class="comment"></span>    <span class="comment">// These functions manage the posy render functions</span><span class="comment"></span>
-<a name="l00239"></a>00239 <span class="comment">    /////////////////////////////////////// PostRenderCallback</span>
-<a name="l00240"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa1a1132e877d989ecea08a16ee4b3ac1">00240</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa1a1132e877d989ecea08a16ee4b3ac1" title="This calls the PostRender Callback.">CallBackManager::PostRender</a>()
-<a name="l00241"></a>00241     {
-<a name="l00242"></a>00242         <span class="keywordflow">if</span>(NULL!=PostRenderCallback)
-<a name="l00243"></a>00243         {
-<a name="l00244"></a>00244             <span class="keywordflow">return</span> (*PostRenderCallback)();
-<a name="l00245"></a>00245         }
-<a name="l00246"></a>00246         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00247"></a>00247     }
-<a name="l00248"></a>00248 
-<a name="l00249"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a0eef22a8df4dc87289a18f0e6a1d0baf">00249</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a0eef22a8df4dc87289a18f0e6a1d0baf" title="Drops the PostRender pointer.">CallBackManager::ErasePostRender</a>()
-<a name="l00250"></a>00250     {
-<a name="l00251"></a>00251         this-&gt;PostRenderCallback = NULL;
-<a name="l00252"></a>00252     }
-<a name="l00253"></a>00253 
-<a name="l00254"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afe6a91491f3872599d2c5784a902361a">00254</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afe6a91491f3872599d2c5784a902361a" title="This assigns a function to be the callback function for PostRender.">CallBackManager::SetPostRender</a>(<span class="keywordtype">bool</span> (*Callback)())
-<a name="l00255"></a>00255     {
-<a name="l00256"></a>00256         this-&gt;PostRenderCallback = Callback;
-<a name="l00257"></a>00257     }
-<a name="l00258"></a>00258 
-<a name="l00259"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aab2be377bc741b893e83dc69cadc0f76">00259</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aab2be377bc741b893e83dc69cadc0f76" title="Is the PostRender callback set or not.">CallBackManager::IsPostRenderCallbackSet</a>()<span class="keyword"> const</span>
-<a name="l00260"></a>00260 <span class="keyword">    </span>{
-<a name="l00261"></a>00261         <span class="keywordflow">if</span>(NULL==PostRenderCallback)
-<a name="l00262"></a>00262         {
-<a name="l00263"></a>00263             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00264"></a>00264         }
-<a name="l00265"></a>00265         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00266"></a>00266     }
-<a name="l00267"></a>00267 }
-<a name="l00268"></a>00268 
-<a name="l00269"></a>00269 <span class="preprocessor">#endif</span>
+<a name="l00074"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#acaa942de1f6f8b42d06d981121d501e0">00074</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#acaa942de1f6f8b42d06d981121d501e0" title="Empty MainLoopItems.">CallBackManager::DoMainLoopItems</a>()
+<a name="l00075"></a>00075         {}
+<a name="l00076"></a>00076 
+<a name="l00077"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa0568dd5c2d1bb6dc669dfa2ca3486ad">00077</a>     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa0568dd5c2d1bb6dc669dfa2ca3486ad" title="This returns the type of this manager.">CallBackManager::GetType</a>()<span class="keyword"> const</span>
+<a name="l00078"></a>00078 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::CallBackManager; }
+<a name="l00079"></a>00079 <span class="comment"></span>
+<a name="l00080"></a>00080 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00081"></a>00081 <span class="comment"></span>    <span class="comment">//Preinput callback will be called in the main loop first</span><span class="comment"></span>
+<a name="l00082"></a>00082 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00083"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84e782f8729f49b296691763351ee2b1">00083</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84e782f8729f49b296691763351ee2b1" title="This calls the PreInput Callback.">CallBackManager::PreInput</a>()
+<a name="l00084"></a>00084     {
+<a name="l00085"></a>00085         <span class="comment">//If a call back has been set then we use it, otherwise we can</span>
+<a name="l00086"></a>00086         <span class="comment">//assume that we should just keep execute the main loop</span>
+<a name="l00087"></a>00087         <span class="keywordflow">if</span>(NULL!=PreInputCallback)
+<a name="l00088"></a>00088         {
+<a name="l00089"></a>00089             <span class="keywordflow">return</span> (*PreInputCallback)();
+<a name="l00090"></a>00090         }
+<a name="l00091"></a>00091         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00092"></a>00092     }
+<a name="l00093"></a>00093 
+<a name="l00094"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ae3da6f1eb10cdf4d8551aaeeda73053c">00094</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ae3da6f1eb10cdf4d8551aaeeda73053c" title="Drops the PreInput pointer.">CallBackManager::ErasePreInput</a>()
+<a name="l00095"></a>00095     {
+<a name="l00096"></a>00096         this-&gt;PreInputCallback = NULL;
+<a name="l00097"></a>00097     }
+<a name="l00098"></a>00098 
+<a name="l00099"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1efb0c185304376986093beebf08a277">00099</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1efb0c185304376986093beebf08a277" title="This assigns a function to be the callback function for PreInput.">CallBackManager::SetPreInput</a>(<span class="keywordtype">bool</span> (*Callback)())
+<a name="l00100"></a>00100     {
+<a name="l00101"></a>00101         this-&gt;PreInputCallback = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b" title="This makes working with Callback function pointer a bit easier.">Callback</a>;
+<a name="l00102"></a>00102     }
+<a name="l00103"></a>00103 
+<a name="l00104"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adf39c71f0be97bcceb364621d1ccd77e">00104</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adf39c71f0be97bcceb364621d1ccd77e" title="Is the PreInput callback set or not.">CallBackManager::IsPreInputCallbackSet</a>()<span class="keyword"> const</span>
+<a name="l00105"></a>00105 <span class="keyword">    </span>{
+<a name="l00106"></a>00106         <span class="keywordflow">if</span>(NULL==PreInputCallback)
+<a name="l00107"></a>00107         {
+<a name="l00108"></a>00108             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00109"></a>00109         }
+<a name="l00110"></a>00110         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00111"></a>00111     }
+<a name="l00112"></a>00112 <span class="comment"></span>
+<a name="l00113"></a>00113 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00114"></a>00114 <span class="comment"></span>    <span class="comment">//Postinput callback will be called in the main loop right after input</span><span class="comment"></span>
+<a name="l00115"></a>00115 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00116"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a83afb36cfc7e71863d68a8b4c1d5e9d2">00116</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a83afb36cfc7e71863d68a8b4c1d5e9d2" title="This calls the PostInput Callback.">CallBackManager::PostInput</a>()
+<a name="l00117"></a>00117     {
+<a name="l00118"></a>00118         <span class="comment">//If a call back has been set then we use it, otherwise we can</span>
+<a name="l00119"></a>00119         <span class="comment">//assume that we should just keep execute the main loop</span>
+<a name="l00120"></a>00120         <span class="keywordflow">if</span>(NULL!=PostInputCallback)
+<a name="l00121"></a>00121         {
+<a name="l00122"></a>00122             <span class="keywordflow">return</span> (*PostInputCallback)();
+<a name="l00123"></a>00123         }
+<a name="l00124"></a>00124         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00125"></a>00125     }
+<a name="l00126"></a>00126 
+<a name="l00127"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84ccf382be58b42439869ec9b77a0f89">00127</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a84ccf382be58b42439869ec9b77a0f89" title="Drops the PostInput pointer.">CallBackManager::ErasePostInput</a>()
+<a name="l00128"></a>00128     {
+<a name="l00129"></a>00129         this-&gt;PostInputCallback = NULL;
+<a name="l00130"></a>00130     }
+<a name="l00131"></a>00131 
+<a name="l00132"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#abbf73a7199a64d6a2a39c7de44c5acd6">00132</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#abbf73a7199a64d6a2a39c7de44c5acd6" title="This assigns a function to be the callback function for PostInput.">CallBackManager::SetPostInput</a>(<span class="keywordtype">bool</span> (*Callback)())
+<a name="l00133"></a>00133     {
+<a name="l00134"></a>00134         this-&gt;PostInputCallback = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b" title="This makes working with Callback function pointer a bit easier.">Callback</a>;
+<a name="l00135"></a>00135     }
+<a name="l00136"></a>00136 
+<a name="l00137"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afa96dbc0779e5fa386546502b3db6c39">00137</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afa96dbc0779e5fa386546502b3db6c39" title="Is the PostInput callback set or not.">CallBackManager::IsPostInputCallbackSet</a>()<span class="keyword"> const</span>
+<a name="l00138"></a>00138 <span class="keyword">    </span>{
+<a name="l00139"></a>00139         <span class="keywordflow">if</span>(NULL==PostInputCallback)
+<a name="l00140"></a>00140         {
+<a name="l00141"></a>00141             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00142"></a>00142         }
+<a name="l00143"></a>00143         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00144"></a>00144     }
+<a name="l00145"></a>00145 <span class="comment"></span>
+<a name="l00146"></a>00146 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00147"></a>00147 <span class="comment"></span>    <span class="comment">// These functions manage the pre physics functions</span><span class="comment"></span>
+<a name="l00148"></a>00148 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00149"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a65867cc4855f0f8cd84a2b4a8bbf0fd6">00149</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a65867cc4855f0f8cd84a2b4a8bbf0fd6" title="This calls the PrePhysics Callback.">CallBackManager::PrePhysics</a>()
+<a name="l00150"></a>00150     {
+<a name="l00151"></a>00151         <span class="keywordflow">if</span>(NULL!=PrePhysicsCallback)
+<a name="l00152"></a>00152         {
+<a name="l00153"></a>00153             <span class="keywordflow">return</span> (*PrePhysicsCallback)();
+<a name="l00154"></a>00154         }
+<a name="l00155"></a>00155         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00156"></a>00156     }
+<a name="l00157"></a>00157 
+<a name="l00158"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afaeba4d6ae245d1560b76799417cce40">00158</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afaeba4d6ae245d1560b76799417cce40" title="Drops the PrePhysics pointer.">CallBackManager::ErasePrePhysics</a>()
+<a name="l00159"></a>00159     {
+<a name="l00160"></a>00160         this-&gt;PrePhysicsCallback = NULL;
+<a name="l00161"></a>00161     }
+<a name="l00162"></a>00162 
+<a name="l00163"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a3f06ccacd416b3109f20c30cd30f9efe">00163</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a3f06ccacd416b3109f20c30cd30f9efe" title="This assigns a function to be the callback function for PrePhysics.">CallBackManager::SetPrePhysics</a>(<span class="keywordtype">bool</span> (*Callback)())
+<a name="l00164"></a>00164     {
+<a name="l00165"></a>00165         this-&gt;PrePhysicsCallback = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b" title="This makes working with Callback function pointer a bit easier.">Callback</a>;
+<a name="l00166"></a>00166     }
+<a name="l00167"></a>00167 
+<a name="l00168"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a8684425c42a4416a204852ce6a246dc6">00168</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a8684425c42a4416a204852ce6a246dc6" title="Is the PrePhysics callback set or not.">CallBackManager::IsPrePhysicsCallbackSet</a>()<span class="keyword"> const</span>
+<a name="l00169"></a>00169 <span class="keyword">    </span>{
+<a name="l00170"></a>00170         <span class="keywordflow">if</span>(NULL==PrePhysicsCallback)
+<a name="l00171"></a>00171         {
+<a name="l00172"></a>00172             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00173"></a>00173         }
+<a name="l00174"></a>00174         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00175"></a>00175     }
+<a name="l00176"></a>00176 <span class="comment"></span>
+<a name="l00177"></a>00177 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00178"></a>00178 <span class="comment"></span>    <span class="comment">// These functions manage the Post physics functions</span><span class="comment"></span>
+<a name="l00179"></a>00179 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00180"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a06bf0e8787f21caf31bf428727155084">00180</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a06bf0e8787f21caf31bf428727155084" title="This calls the PostPhysics Callback.">CallBackManager::PostPhysics</a>()
+<a name="l00181"></a>00181     {
+<a name="l00182"></a>00182         <span class="keywordflow">if</span>(NULL!=PostPhysicsCallback)
+<a name="l00183"></a>00183         {
+<a name="l00184"></a>00184             <span class="keywordflow">return</span> (*PostPhysicsCallback)();
+<a name="l00185"></a>00185         }
+<a name="l00186"></a>00186         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00187"></a>00187     }
+<a name="l00188"></a>00188 
+<a name="l00189"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a2d03573a93606e9d3fcd7adad5c8c397">00189</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a2d03573a93606e9d3fcd7adad5c8c397" title="Drops the PostPhysics pointer.">CallBackManager::ErasePostPhysics</a>()
+<a name="l00190"></a>00190     {
+<a name="l00191"></a>00191         this-&gt;PostPhysicsCallback = NULL;
+<a name="l00192"></a>00192     }
+<a name="l00193"></a>00193 
+<a name="l00194"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a17687cd04807dfc80a25847be830c2f2">00194</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a17687cd04807dfc80a25847be830c2f2" title="This assigns a function to be the callback function for PostPhysics.">CallBackManager::SetPostPhysics</a>(<span class="keywordtype">bool</span> (*Callback)())
+<a name="l00195"></a>00195     {
+<a name="l00196"></a>00196         this-&gt;PostPhysicsCallback = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b" title="This makes working with Callback function pointer a bit easier.">Callback</a>;
+<a name="l00197"></a>00197     }
+<a name="l00198"></a>00198 
+<a name="l00199"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ad1e2131d792c6813caae4be4d5c4e5fb">00199</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#ad1e2131d792c6813caae4be4d5c4e5fb" title="Is the PostPhysics callback set or not.">CallBackManager::IsPostPhysicsCallbackSet</a>()<span class="keyword"> const</span>
+<a name="l00200"></a>00200 <span class="keyword">    </span>{
+<a name="l00201"></a>00201         <span class="keywordflow">if</span>(NULL==PostPhysicsCallback)
+<a name="l00202"></a>00202         {
+<a name="l00203"></a>00203             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00204"></a>00204         }
+<a name="l00205"></a>00205         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00206"></a>00206     }
+<a name="l00207"></a>00207 <span class="comment"></span>
+<a name="l00208"></a>00208 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00209"></a>00209 <span class="comment"></span>    <span class="comment">// These functions manage the pre render functions</span><span class="comment"></span>
+<a name="l00210"></a>00210 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00211"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a244c88b8a06f68a4f4bcff6253bf6806">00211</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a244c88b8a06f68a4f4bcff6253bf6806" title="This calls the PreRender Callback.">CallBackManager::PreRender</a>()
+<a name="l00212"></a>00212     {
+<a name="l00213"></a>00213         <span class="keywordflow">if</span>(NULL!=PreRenderCallback)
+<a name="l00214"></a>00214         {
+<a name="l00215"></a>00215             <span class="keywordflow">return</span> (*PreRenderCallback)();
+<a name="l00216"></a>00216         }
+<a name="l00217"></a>00217         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00218"></a>00218     }
+<a name="l00219"></a>00219 
+<a name="l00220"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adadf16f3f38398c9593646416ef18499">00220</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#adadf16f3f38398c9593646416ef18499" title="Drops the PreRender pointer.">CallBackManager::ErasePreRender</a>()
+<a name="l00221"></a>00221     {
+<a name="l00222"></a>00222         this-&gt;PreRenderCallback = NULL;
+<a name="l00223"></a>00223     }
+<a name="l00224"></a>00224 
+<a name="l00225"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1e060fd479413457a798ea3c6b2bcb4d">00225</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a1e060fd479413457a798ea3c6b2bcb4d" title="This assigns a function to be the callback function for PreRender.">CallBackManager::SetPreRender</a>(<span class="keywordtype">bool</span> (*Callback)())
+<a name="l00226"></a>00226     {
+<a name="l00227"></a>00227         this-&gt;PreRenderCallback = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b" title="This makes working with Callback function pointer a bit easier.">Callback</a>;
+<a name="l00228"></a>00228     }
+<a name="l00229"></a>00229 
+<a name="l00230"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a91017cc0aa4a04e74fd8f9ca0895b6f8">00230</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a91017cc0aa4a04e74fd8f9ca0895b6f8" title="Is the PreRender callback set or not.">CallBackManager::IsPreRenderCallbackSet</a>()<span class="keyword"> const</span>
+<a name="l00231"></a>00231 <span class="keyword">    </span>{
+<a name="l00232"></a>00232         <span class="keywordflow">if</span>(NULL==PreRenderCallback)
+<a name="l00233"></a>00233         {
+<a name="l00234"></a>00234             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00235"></a>00235         }
+<a name="l00236"></a>00236         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00237"></a>00237     }
+<a name="l00238"></a>00238 
+<a name="l00239"></a>00239 <span class="comment"></span>
+<a name="l00240"></a>00240 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00241"></a>00241 <span class="comment"></span>    <span class="comment">// These functions manage the posy render functions</span><span class="comment"></span>
+<a name="l00242"></a>00242 <span class="comment">    /////////////////////////////////////// PostRenderCallback</span>
+<a name="l00243"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa1a1132e877d989ecea08a16ee4b3ac1">00243</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aa1a1132e877d989ecea08a16ee4b3ac1" title="This calls the PostRender Callback.">CallBackManager::PostRender</a>()
+<a name="l00244"></a>00244     {
+<a name="l00245"></a>00245         <span class="keywordflow">if</span>(NULL!=PostRenderCallback)
+<a name="l00246"></a>00246         {
+<a name="l00247"></a>00247             <span class="keywordflow">return</span> (*PostRenderCallback)();
+<a name="l00248"></a>00248         }
+<a name="l00249"></a>00249         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00250"></a>00250     }
+<a name="l00251"></a>00251 
+<a name="l00252"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a0eef22a8df4dc87289a18f0e6a1d0baf">00252</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#a0eef22a8df4dc87289a18f0e6a1d0baf" title="Drops the PostRender pointer.">CallBackManager::ErasePostRender</a>()
+<a name="l00253"></a>00253     {
+<a name="l00254"></a>00254         this-&gt;PostRenderCallback = NULL;
+<a name="l00255"></a>00255     }
+<a name="l00256"></a>00256 
+<a name="l00257"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afe6a91491f3872599d2c5784a902361a">00257</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#afe6a91491f3872599d2c5784a902361a" title="This assigns a function to be the callback function for PostRender.">CallBackManager::SetPostRender</a>(<span class="keywordtype">bool</span> (*Callback)())
+<a name="l00258"></a>00258     {
+<a name="l00259"></a>00259         this-&gt;PostRenderCallback = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b" title="This makes working with Callback function pointer a bit easier.">Callback</a>;
+<a name="l00260"></a>00260     }
+<a name="l00261"></a>00261 
+<a name="l00262"></a><a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aab2be377bc741b893e83dc69cadc0f76">00262</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d1/d47/classphys_1_1CallBackManager.html#aab2be377bc741b893e83dc69cadc0f76" title="Is the PostRender callback set or not.">CallBackManager::IsPostRenderCallbackSet</a>()<span class="keyword"> const</span>
+<a name="l00263"></a>00263 <span class="keyword">    </span>{
+<a name="l00264"></a>00264         <span class="keywordflow">if</span>(NULL==PostRenderCallback)
+<a name="l00265"></a>00265         {
+<a name="l00266"></a>00266             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00267"></a>00267         }
+<a name="l00268"></a>00268         <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00269"></a>00269     }
+<a name="l00270"></a>00270 }
+<a name="l00271"></a>00271 
+<a name="l00272"></a>00272 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

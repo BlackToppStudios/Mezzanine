@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>physicsmanager.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>physicsmanager.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -71,122 +71,174 @@
 <a name="l00046"></a>00046 <span class="keyword">class </span>btCollisionDispatcher;
 <a name="l00047"></a>00047 <span class="keyword">class </span>btSequentialImpulseConstraintSolver;
 <a name="l00048"></a>00048 <span class="keyword">class </span>btSoftRigidDynamicsWorld;
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;managerbase.h&quot;</span>
+<a name="l00049"></a>00049 <span class="keyword">class </span>btDynamicsWorld;
+<a name="l00050"></a>00050 <span class="keyword">class </span>btCollisionShape;
 <a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="keyword">namespace </span>phys
-<a name="l00053"></a>00053 {
-<a name="l00054"></a>00054     <span class="comment">// internal forward declarations</span>
-<a name="l00055"></a>00055     <span class="keyword">class </span>World;
-<a name="l00056"></a>00056     <span class="keyword">namespace </span>debug {
-<a name="l00057"></a>00057         <span class="keyword">class </span>InternalDebugDrawer;
-<a name="l00058"></a>00058     }<span class="comment"></span>
-<a name="l00059"></a>00059 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00060"></a>00060 <span class="comment">    /// @class PhysicsManager</span>
-<a name="l00061"></a>00061 <span class="comment">    /// @headerfile physicsmanager.h</span>
-<a name="l00062"></a>00062 <span class="comment">    /// @brief This is simply a place for storing all the Physics Related functions</span>
-<a name="l00063"></a>00063 <span class="comment">    /// @details This is a plage for storing items related to Debug physics</span>
-<a name="l00064"></a>00064 <span class="comment">    /// drawing, Adding constraints, screwing with gravity and doing other physics</span>
-<a name="l00065"></a>00065 <span class="comment">    /// Related features.</span>
-<a name="l00066"></a><a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html">00066</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a> : <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>
-<a name="l00067"></a>00067     {
-<a name="l00068"></a>00068         <span class="keyword">private</span>:
-<a name="l00069"></a>00069             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>;
-<a name="l00070"></a>00070             <span class="comment">//Some Data Items</span>
-<a name="l00071"></a>00071             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GeographyLowerBounds;
-<a name="l00072"></a>00072             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GeographyUpperBounds;
-<a name="l00073"></a>00073             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span>  MaxPhysicsProxies;
-<a name="l00074"></a>00074             <span class="comment">//Real PhysicsStepsize; // use this-&gt;GameWorld-&gt;TargetFrameLength instead</span>
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076             <span class="comment">// Some Items bullet requires</span>
-<a name="l00077"></a>00077             btAxisSweep3* BulletBroadphase;
-<a name="l00078"></a>00078             btDefaultCollisionConfiguration* BulletCollisionConfiguration;
-<a name="l00079"></a>00079             btCollisionDispatcher* BulletDispatcher;
-<a name="l00080"></a>00080             btSequentialImpulseConstraintSolver* BulletSolver;
-<a name="l00081"></a>00081             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
-<a name="l00082"></a>00082             <a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem.">debug::InternalDebugDrawer</a>* BulletDrawer;
-<a name="l00083"></a>00083 <span class="comment"></span>
-<a name="l00084"></a>00084 <span class="comment">            /// @brief This takes care of all the real work in contructing this</span>
-<a name="l00085"></a>00085 <span class="comment">            /// @details This method is called by all the constructors to insure consistent behavior.</span>
-<a name="l00086"></a>00086 <span class="comment">            /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with</span>
-<a name="l00087"></a>00087 <span class="comment">            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world</span>
-<a name="l00088"></a>00088 <span class="comment">            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world</span>
-<a name="l00089"></a>00089 <span class="comment">            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world</span>
-<a name="l00090"></a>00090 <span class="comment"></span>            <span class="keywordtype">void</span> Construct(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_);
-<a name="l00091"></a>00091         <span class="keyword">public</span>:
+<a name="l00052"></a>00052 <span class="preprocessor">#include &lt;map&gt;</span>
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="preprocessor">#include &quot;managerbase.h&quot;</span>
+<a name="l00055"></a>00055 <span class="preprocessor">#include &quot;constraint.h&quot;</span>
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="keyword">namespace </span>phys
+<a name="l00058"></a>00058 {
+<a name="l00059"></a>00059     <span class="comment">// internal forward declarations</span>
+<a name="l00060"></a>00060     <span class="keyword">class </span>World;
+<a name="l00061"></a>00061     <span class="keyword">class </span>ActorBase;
+<a name="l00062"></a>00062     <span class="keyword">namespace </span>debug {
+<a name="l00063"></a>00063         <span class="keyword">class </span>InternalDebugDrawer;
+<a name="l00064"></a>00064     }<span class="comment"></span>
+<a name="l00065"></a>00065 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00066"></a>00066 <span class="comment">    /// @class PhysicsManager</span>
+<a name="l00067"></a>00067 <span class="comment">    /// @headerfile physicsmanager.h</span>
+<a name="l00068"></a>00068 <span class="comment">    /// @brief This is simply a place for storing all the Physics Related functions</span>
+<a name="l00069"></a>00069 <span class="comment">    /// @details This is a plage for storing items related to Debug physics</span>
+<a name="l00070"></a>00070 <span class="comment">    /// drawing, Adding constraints, screwing with gravity and doing other physics</span>
+<a name="l00071"></a>00071 <span class="comment">    /// Related features.</span>
+<a name="l00072"></a><a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html">00072</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a> : <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>
+<a name="l00073"></a>00073     {
+<a name="l00074"></a>00074         <span class="keyword">private</span>:
+<a name="l00075"></a>00075             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>;
+<a name="l00076"></a>00076             <span class="comment">//Some Data Items</span>
+<a name="l00077"></a>00077             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GeographyLowerBounds;
+<a name="l00078"></a>00078             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GeographyUpperBounds;
+<a name="l00079"></a>00079             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span>  MaxPhysicsProxies;
+<a name="l00080"></a>00080             <span class="comment">//Real PhysicsStepsize; // use this-&gt;GameWorld-&gt;TargetFrameLength instead</span>
+<a name="l00081"></a>00081             <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> CollisionAge;
+<a name="l00082"></a>00082             <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Impulse;
+<a name="l00083"></a>00083             std::map&lt; String, btCollisionShape* &gt; PhysicsShapes;
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085             <span class="comment">// Some Items bullet requires</span>
+<a name="l00086"></a>00086             btAxisSweep3* BulletBroadphase;
+<a name="l00087"></a>00087             btDefaultCollisionConfiguration* BulletCollisionConfiguration;
+<a name="l00088"></a>00088             btCollisionDispatcher* BulletDispatcher;
+<a name="l00089"></a>00089             btSequentialImpulseConstraintSolver* BulletSolver;
+<a name="l00090"></a>00090             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
+<a name="l00091"></a>00091             <a class="code" href="../../db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem.">debug::InternalDebugDrawer</a>* BulletDrawer;
 <a name="l00092"></a>00092 <span class="comment"></span>
-<a name="l00093"></a>00093 <span class="comment">            /// @brief Simple Constructor</span>
-<a name="l00094"></a>00094 <span class="comment">            /// @details This constructor will assign some sane default values and will create a physics</span>
-<a name="l00095"></a>00095 <span class="comment">            /// world that can be used immediately</span>
-<a name="l00096"></a>00096 <span class="comment">            /// @param GameWorld_ This is a pointer to the game world this PhysicsManager will work with</span>
-<a name="l00097"></a>00097 <span class="comment"></span>            <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a3c78a0773d6a544aa6ea06b12ffc5fee" title="Simple Constructor.">PhysicsManager</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_);
-<a name="l00098"></a>00098 <span class="comment"></span>
-<a name="l00099"></a>00099 <span class="comment">            /// @brief Simple Constructor</span>
-<a name="l00100"></a>00100 <span class="comment">            /// @details This constructor will assign some sane default values and will create a physics</span>
-<a name="l00101"></a>00101 <span class="comment">            /// world that can be used immediately</span>
-<a name="l00102"></a>00102 <span class="comment">            /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with</span>
-<a name="l00103"></a>00103 <span class="comment">            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world</span>
-<a name="l00104"></a>00104 <span class="comment">            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world</span>
-<a name="l00105"></a>00105 <span class="comment">            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world</span>
-<a name="l00106"></a>00106 <span class="comment"></span>            <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a3c78a0773d6a544aa6ea06b12ffc5fee" title="Simple Constructor.">PhysicsManager</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_);
+<a name="l00093"></a>00093 <span class="comment">            /// @brief This takes care of all the real work in contructing this</span>
+<a name="l00094"></a>00094 <span class="comment">            /// @details This method is called by all the constructors to insure consistent behavior.</span>
+<a name="l00095"></a>00095 <span class="comment">            /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with</span>
+<a name="l00096"></a>00096 <span class="comment">            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world</span>
+<a name="l00097"></a>00097 <span class="comment">            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world</span>
+<a name="l00098"></a>00098 <span class="comment">            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world</span>
+<a name="l00099"></a>00099 <span class="comment"></span>            <span class="keywordtype">void</span> Construct(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_);
+<a name="l00100"></a>00100         <span class="keyword">public</span>:
+<a name="l00101"></a>00101 <span class="comment"></span>
+<a name="l00102"></a>00102 <span class="comment">            /// @brief Simple Constructor</span>
+<a name="l00103"></a>00103 <span class="comment">            /// @details This constructor will assign some sane default values and will create a physics</span>
+<a name="l00104"></a>00104 <span class="comment">            /// world that can be used immediately</span>
+<a name="l00105"></a>00105 <span class="comment">            /// @param GameWorld_ This is a pointer to the game world this PhysicsManager will work with</span>
+<a name="l00106"></a>00106 <span class="comment"></span>            <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a3c78a0773d6a544aa6ea06b12ffc5fee" title="Simple Constructor.">PhysicsManager</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_);
 <a name="l00107"></a>00107 <span class="comment"></span>
-<a name="l00108"></a>00108 <span class="comment">            /// @brief This configures the Physics Manager to work with the Graphic settings</span>
-<a name="l00109"></a>00109 <span class="comment">            /// @details This configures the Physics manager to work with the existing graphics settings. This must</span>
-<a name="l00110"></a>00110 <span class="comment">            /// be called before the physics manager is used, but after the graphics have been initialized</span>
-<a name="l00111"></a>00111 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a28885be750bb763d957f122593815388" title="This configures the Physics Manager to work with the Graphic settings.">Initialize</a>();
-<a name="l00112"></a>00112 <span class="comment"></span>
-<a name="l00113"></a>00113 <span class="comment">            /// @brief Deconstructor</span>
-<a name="l00114"></a>00114 <span class="comment">            /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.</span>
-<a name="l00115"></a>00115 <span class="comment"></span>            <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4898702f889c6b4aa7c0b59991d310b0" title="Deconstructor.">~PhysicsManager</a>();
+<a name="l00108"></a>00108 <span class="comment">            /// @brief Simple Constructor</span>
+<a name="l00109"></a>00109 <span class="comment">            /// @details This constructor will assign some sane default values and will create a physics</span>
+<a name="l00110"></a>00110 <span class="comment">            /// world that can be used immediately</span>
+<a name="l00111"></a>00111 <span class="comment">            /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with</span>
+<a name="l00112"></a>00112 <span class="comment">            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world</span>
+<a name="l00113"></a>00113 <span class="comment">            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world</span>
+<a name="l00114"></a>00114 <span class="comment">            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world</span>
+<a name="l00115"></a>00115 <span class="comment"></span>            <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a3c78a0773d6a544aa6ea06b12ffc5fee" title="Simple Constructor.">PhysicsManager</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_);
 <a name="l00116"></a>00116 <span class="comment"></span>
-<a name="l00117"></a>00117 <span class="comment">            /// @brief Sets the gravity.</span>
-<a name="l00118"></a>00118 <span class="comment">            /// @details Sets the strength and direction of gravity within the world.</span>
-<a name="l00119"></a>00119 <span class="comment">            /// @param pgrav Vector3 representing the strength and direction of gravity.</span>
-<a name="l00120"></a>00120 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a3e74f3e0288706d44dc90657a8fa1118" title="Sets the gravity.">SetGravity</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> pgrav);
+<a name="l00117"></a>00117 <span class="comment">            /// @brief This configures the Physics Manager to work with the Graphic settings</span>
+<a name="l00118"></a>00118 <span class="comment">            /// @details This configures the Physics manager to work with the existing graphics settings. This must</span>
+<a name="l00119"></a>00119 <span class="comment">            /// be called before the physics manager is used, but after the graphics have been initialized</span>
+<a name="l00120"></a>00120 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a28885be750bb763d957f122593815388" title="This configures the Physics Manager to work with the Graphic settings.">Initialize</a>();
 <a name="l00121"></a>00121 <span class="comment"></span>
-<a name="l00122"></a>00122 <span class="comment">            /// @brief Enables and Disables Physics Debug Drawing</span>
-<a name="l00123"></a>00123 <span class="comment">            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics</span>
-<a name="l00124"></a>00124 <span class="comment">            /// subsytem pixel for pixel.</span>
-<a name="l00125"></a>00125 <span class="comment">            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control</span>
-<a name="l00126"></a>00126 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a67fb59148a94ced0a92b288a638f89db" title="Enables and Disables Physics Debug Drawing.">SetDebugPhysicsRendering</a>(<span class="keywordtype">int</span> ToBeEnabled);
-<a name="l00127"></a>00127 <span class="comment"></span>
-<a name="l00128"></a>00128 <span class="comment">            /// @brief Is Physics Debug Drawing currently enabled?</span>
-<a name="l00129"></a>00129 <span class="comment">            /// @details lets you check if Physics Debug Drawing is enabled or not.</span>
-<a name="l00130"></a>00130 <span class="comment">            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features</span>
-<a name="l00131"></a>00131 <span class="comment"></span>            <span class="keywordtype">int</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a64f96d2e4b25c2b9a66042998bf334ff" title="Is Physics Debug Drawing currently enabled?">GetDebugPhysicsRendering</a>();
-<a name="l00132"></a>00132 <span class="comment"></span>
-<a name="l00133"></a>00133 <span class="comment">            /// @brief How many Wireframes do you want drawn from previous events</span>
-<a name="l00134"></a>00134 <span class="comment">            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount</span>
-<a name="l00135"></a>00135 <span class="comment">            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()</span>
-<a name="l00136"></a>00136 <span class="comment">            /// In conjunction with this to specify an amout of seconds worth of wireframes.</span>
-<a name="l00137"></a>00137 <span class="comment">            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don&#39;t forget to be mindful of the framerate,</span>
-<a name="l00138"></a>00138 <span class="comment">            /// Any amount more than just a few seconds worth can be cumbersome.</span>
-<a name="l00139"></a>00139 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#ab43a963cf26ca4293a7c34a2a68c4f2c" title="How many Wireframes do you want drawn from previous events.">SetDebugPhysicsWireCount</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> WireFrameCount_);
+<a name="l00122"></a>00122 <span class="comment">            /// @brief Empty MainLoopItems</span>
+<a name="l00123"></a>00123 <span class="comment">            /// @details This class implements this for the sake of entension and compatibility this function does nothing</span>
+<a name="l00124"></a>00124 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a62741a2582ac9bfd0255cf8a3ad2310c" title="Empty MainLoopItems.">DoMainLoopItems</a>();
+<a name="l00125"></a>00125 <span class="comment"></span>
+<a name="l00126"></a>00126 <span class="comment">            /// @brief Deconstructor</span>
+<a name="l00127"></a>00127 <span class="comment">            /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.</span>
+<a name="l00128"></a>00128 <span class="comment"></span>            <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4898702f889c6b4aa7c0b59991d310b0" title="Deconstructor.">~PhysicsManager</a>();
+<a name="l00129"></a>00129 <span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">            /// @brief Sets the gravity.</span>
+<a name="l00131"></a>00131 <span class="comment">            /// @details Sets the strength and direction of gravity within the world.</span>
+<a name="l00132"></a>00132 <span class="comment">            /// @param pgrav Vector3 representing the strength and direction of gravity.</span>
+<a name="l00133"></a>00133 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a3e74f3e0288706d44dc90657a8fa1118" title="Sets the gravity.">SetGravity</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> pgrav);
+<a name="l00134"></a>00134 <span class="comment"></span>
+<a name="l00135"></a>00135 <span class="comment">            /// @brief Enables and Disables Physics Debug Drawing</span>
+<a name="l00136"></a>00136 <span class="comment">            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics</span>
+<a name="l00137"></a>00137 <span class="comment">            /// subsytem pixel for pixel.</span>
+<a name="l00138"></a>00138 <span class="comment">            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control</span>
+<a name="l00139"></a>00139 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a67fb59148a94ced0a92b288a638f89db" title="Enables and Disables Physics Debug Drawing.">SetDebugPhysicsRendering</a>(<span class="keywordtype">int</span> ToBeEnabled);
 <a name="l00140"></a>00140 <span class="comment"></span>
-<a name="l00141"></a>00141 <span class="comment">            /// @brief This gets how many WireFrames are being drawn.</span>
-<a name="l00142"></a>00142 <span class="comment">            /// @details This will tell you how many frames worth of previous in game events are being drawn.</span>
-<a name="l00143"></a>00143 <span class="comment">            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .</span>
-<a name="l00144"></a>00144 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a8f46e55e4cadfcd1c2c03bcdbfe6c06f" title="This gets how many WireFrames are being drawn.">GetDebugPhysicsWireCount</a>();
+<a name="l00141"></a>00141 <span class="comment">            /// @brief Is Physics Debug Drawing currently enabled?</span>
+<a name="l00142"></a>00142 <span class="comment">            /// @details lets you check if Physics Debug Drawing is enabled or not.</span>
+<a name="l00143"></a>00143 <span class="comment">            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features</span>
+<a name="l00144"></a>00144 <span class="comment"></span>            <span class="keywordtype">int</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a64f96d2e4b25c2b9a66042998bf334ff" title="Is Physics Debug Drawing currently enabled?">GetDebugPhysicsRendering</a>();
 <a name="l00145"></a>00145 <span class="comment"></span>
-<a name="l00146"></a>00146 <span class="comment">            /// @brief This does all the work reuired for the main loop to process physics</span>
-<a name="l00147"></a>00147 <span class="comment">            /// @details</span>
-<a name="l00148"></a>00148 <span class="comment">            /// @param TimeElapsed This is a real that represents the amount of time we need to simulate</span>
-<a name="l00149"></a>00149 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#ad363d6683a0276395eeb2c42a56f95fc" title="This does all the work reuired for the main loop to process physics.">DoMainLoopItems</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;TimeElapsed);
-<a name="l00150"></a>00150 <span class="comment"></span>
-<a name="l00151"></a>00151 <span class="comment">            /// @internal</span>
-<a name="l00152"></a>00152 <span class="comment">            /// @brief This returns a pointer to the bullet physics world. This is for internal use only</span>
-<a name="l00153"></a>00153 <span class="comment"></span>            btSoftRigidDynamicsWorld* <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only...">GetPhysicsWorldPointer</a>();
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155         <span class="comment">//Inherited from ManagerBase</span><span class="comment"></span>
-<a name="l00156"></a>00156 <span class="comment">            /// @brief This returns the type of this manager.</span>
-<a name="l00157"></a>00157 <span class="comment">            /// @return This returns ManagerTypeName::PhysicsManager</span>
-<a name="l00158"></a>00158 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerTypeName</a> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4d151cd24052ef3cccde6b66b8745be6" title="This returns the type of this manager.">GetType</a>() <span class="keyword">const</span>;
-<a name="l00159"></a>00159     };
-<a name="l00160"></a>00160 }
-<a name="l00161"></a>00161 
-<a name="l00162"></a>00162 <span class="preprocessor">#endif</span>
+<a name="l00146"></a>00146 <span class="comment">            /// @brief How many Wireframes do you want drawn from previous events</span>
+<a name="l00147"></a>00147 <span class="comment">            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount</span>
+<a name="l00148"></a>00148 <span class="comment">            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()</span>
+<a name="l00149"></a>00149 <span class="comment">            /// In conjunction with this to specify an amout of seconds worth of wireframes.</span>
+<a name="l00150"></a>00150 <span class="comment">            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don&#39;t forget to be mindful of the framerate,</span>
+<a name="l00151"></a>00151 <span class="comment">            /// Any amount more than just a few seconds worth can be cumbersome.</span>
+<a name="l00152"></a>00152 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#ab43a963cf26ca4293a7c34a2a68c4f2c" title="How many Wireframes do you want drawn from previous events.">SetDebugPhysicsWireCount</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> WireFrameCount_);
+<a name="l00153"></a>00153 <span class="comment"></span>
+<a name="l00154"></a>00154 <span class="comment">            /// @brief This gets how many WireFrames are being drawn.</span>
+<a name="l00155"></a>00155 <span class="comment">            /// @details This will tell you how many frames worth of previous in game events are being drawn.</span>
+<a name="l00156"></a>00156 <span class="comment">            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .</span>
+<a name="l00157"></a>00157 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a8f46e55e4cadfcd1c2c03bcdbfe6c06f" title="This gets how many WireFrames are being drawn.">GetDebugPhysicsWireCount</a>();
+<a name="l00158"></a>00158 <span class="comment"></span>
+<a name="l00159"></a>00159 <span class="comment">            /// @brief This does all the work reuired for the main loop to process physics</span>
+<a name="l00160"></a>00160 <span class="comment">            /// @details</span>
+<a name="l00161"></a>00161 <span class="comment">            /// @param TimeElapsed This is a real that represents the amount of time we need to simulate</span>
+<a name="l00162"></a>00162 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a62741a2582ac9bfd0255cf8a3ad2310c" title="Empty MainLoopItems.">DoMainLoopItems</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;TimeElapsed);
+<a name="l00163"></a>00163 <span class="comment"></span>
+<a name="l00164"></a>00164 <span class="comment">            /// @brief Adds a constraint to the world.</span>
+<a name="l00165"></a>00165 <span class="comment">            /// @details Adds the constraint to the world so that it can/will take effect.</span>
+<a name="l00166"></a>00166 <span class="comment">            /// @param Constraint The constraint to be added.</span>
+<a name="l00167"></a>00167 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#ab31bf38e9ed68c484946731546425691" title="Adds a constraint to the world.">AddConstraint</a>(<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a>* Constraint);
+<a name="l00168"></a>00168 <span class="comment"></span>
+<a name="l00169"></a>00169 <span class="comment">            /// @brief Removes a constraint from the world.</span>
+<a name="l00170"></a>00170 <span class="comment">            /// @details Removes a constraint from the world so that it will have no effect.</span>
+<a name="l00171"></a>00171 <span class="comment">            /// @param Constraint The constraint to be removed.</span>
+<a name="l00172"></a>00172 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#ace94aa20b5191b01630e7a5046cb7af6" title="Removes a constraint from the world.">RemoveConstraint</a>(<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a>* Constraint);
+<a name="l00173"></a>00173 <span class="comment"></span>
+<a name="l00174"></a>00174 <span class="comment">            /// @brief Stores an already generated physics shape.</span>
+<a name="l00175"></a>00175 <span class="comment">            /// @details This function will take an actors physics shape and store it for re-use in other actors, in case a shape is able to be re-used by other actors.</span>
+<a name="l00176"></a>00176 <span class="comment">            /// @param Actor The actor from which to store the shape.</span>
+<a name="l00177"></a>00177 <span class="comment">            /// @param ShapeName The name you wish to assign to the shape being stored.</span>
+<a name="l00178"></a>00178 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a24fae734b5750db6fc1d2b1e3656bb71" title="Stores an already generated physics shape.">StorePhysicsShape</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;ShapeName);
+<a name="l00179"></a>00179 <span class="comment"></span>
+<a name="l00180"></a>00180 <span class="comment">            /// @brief Applies a previously stored shape.</span>
+<a name="l00181"></a>00181 <span class="comment">            /// @details This function will take a stored shape and apply it to the actor provided.</span>
+<a name="l00182"></a>00182 <span class="comment">            /// @param Actor The actor to which you want to apply the shape.</span>
+<a name="l00183"></a>00183 <span class="comment">            /// @param ShapeName The name of the shape you wish to have applied to the actor.</span>
+<a name="l00184"></a>00184 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a58653c59133900a432169a7c980105ce" title="Applies a previously stored shape.">ApplyPhysicsShape</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;ShapeName);
+<a name="l00185"></a>00185 <span class="comment"></span>
+<a name="l00186"></a>00186 <span class="comment">            /// @brief Sets the Collision Parameters.</span>
+<a name="l00187"></a>00187 <span class="comment">            /// @details Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events.  The lower these numbers, the more events will be generated.  @n</span>
+<a name="l00188"></a>00188 <span class="comment">            /// These numbers both default to 1.</span>
+<a name="l00189"></a>00189 <span class="comment">            /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.  Default: 1</span>
+<a name="l00190"></a>00190 <span class="comment">            /// @param Force The amount of force applied in the collision to filter by.  This amount can vary more then the other param based on what you need.  Default: 1.0</span>
+<a name="l00191"></a>00191 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a98ee9704eec230ff759850ffa8394489" title="Sets the Collision Parameters.">SetCollisionParams</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> Age, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Force);
+<a name="l00192"></a>00192 <span class="comment"></span>
+<a name="l00193"></a>00193 <span class="comment">            /// @brief Gets the Collision Age limit.</span>
+<a name="l00194"></a>00194 <span class="comment">            /// @details Gets the CollisionAge used in filtering out collision contacts used to make events.</span>
+<a name="l00195"></a>00195 <span class="comment">            /// @return This function will return the number of physics ticks the collision has to have existed to be used.</span>
+<a name="l00196"></a>00196 <span class="comment"></span>            <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4232e8cd52e70b623ef30c40be6cdb4a" title="Gets the Collision Age limit.">GetCollisionAge</a>();
+<a name="l00197"></a>00197 <span class="comment"></span>
+<a name="l00198"></a>00198 <span class="comment">            /// @brief Gets the Collision Impulse limit.</span>
+<a name="l00199"></a>00199 <span class="comment">            /// @details Gets the Collision Impulse used in filtering out collision contacts used to make events.</span>
+<a name="l00200"></a>00200 <span class="comment">            /// @return This function will return the lower limit of the allowed force of the collision to generate an event.</span>
+<a name="l00201"></a>00201 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#ad11ee3904e1725f95ce9bd58f4ee3925" title="Gets the Collision Impulse limit.">GetImpulse</a>();
+<a name="l00202"></a>00202 <span class="comment"></span>
+<a name="l00203"></a>00203 <span class="comment">            /// @internal</span>
+<a name="l00204"></a>00204 <span class="comment">            /// @brief This returns a pointer to the bullet physics world. This is for internal use only</span>
+<a name="l00205"></a>00205 <span class="comment"></span>            btSoftRigidDynamicsWorld* <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only...">GetPhysicsWorldPointer</a>();
+<a name="l00206"></a>00206 
+<a name="l00207"></a>00207         <span class="comment">//Inherited from ManagerBase</span><span class="comment"></span>
+<a name="l00208"></a>00208 <span class="comment">            /// @brief This returns the type of this manager.</span>
+<a name="l00209"></a>00209 <span class="comment">            /// @return This returns ManagerTypeName::PhysicsManager</span>
+<a name="l00210"></a>00210 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerTypeName</a> <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4d151cd24052ef3cccde6b66b8745be6" title="This returns the type of this manager.">GetType</a>() <span class="keyword">const</span>;
+<a name="l00211"></a>00211     };
+<a name="l00212"></a>00212 }
+<a name="l00213"></a>00213 
+<a name="l00214"></a>00214 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:03 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

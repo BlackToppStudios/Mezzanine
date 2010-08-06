@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -43,6 +43,8 @@
 #include "world.h"
 #include "eventmanager.h"
 #include "graphicsmanager.h"
+
+#include "Ogre.h"
 
 namespace phys
 {
@@ -116,9 +118,28 @@ namespace phys
         this->RenderHeight = Height_;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    //Shows the ogre settings Dialog, and allows it to save settings to ogres
+    //preset save location
+    bool GraphicsManager::ShowGraphicsSettingDialog()
+    {
+        try
+        {
+            return this->GameWorld->OgreRoot->showConfigDialog();
+        } catch (exception& e) {
+            this->GameWorld->Log("Ogre settings windows from main UI or mandatory setting failure");
+            this->GameWorld->Log(e.what());
+            return false;
+        }
+    }
+
     //Inherited From ManagerBase
     void GraphicsManager::Initialize()
         {}
+
+    void GraphicsManager::DoMainLoopItems()
+        {}
+
 
     ManagerBase::ManagerTypeName GraphicsManager::GetType() const
         { return ManagerBase::GraphicsManager; }

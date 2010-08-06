@@ -33,7 +33,11 @@
 - (id)initWithSection:(id)parent
 {
     if((self = [super initWithSection:parent]))
-        validSDKChosen = NO;
+    {
+        validOSXSDKChosen = NO;
+        validiPhoneSDKChosen = NO;
+        isChoosingiPhoneSDK = NO;
+    }
     
     return self;
 }
@@ -45,14 +49,14 @@
 
 - (BOOL)shouldExitPane:(InstallerSectionDirection)dir
 {
-    if(!validSDKChosen)
+    if(!validOSXSDKChosen && !validiPhoneSDKChosen)
     {
         NSAlert *alert = [[[NSAlert alloc] init] autorelease];
         [alert addButtonWithTitle:@"OK"];
         [alert setMessageText:@"No SDK chosen!"];
         [alert setInformativeText:@"Please choose the location of your OGRE SDK."];
         [alert setAlertStyle:NSWarningAlertStyle];
-        [alert beginSheetModalForWindow:[ogreLocationLabel window]
+        [alert beginSheetModalForWindow:[ogreOSXLocationLabel window]
                           modalDelegate:self
                          didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
                             contextInfo:nil];
@@ -66,42 +70,43 @@
     [[alert window] orderOut:nil];
 }
 
-- (IBAction)chooseOgreSDKLocation:(id)sender
+- (IBAction)chooseOSXOgreSDKLocation:(id)sender
 {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     [openPanel setDelegate:self];
     [openPanel setCanChooseFiles:NO];
     [openPanel setCanChooseDirectories:YES];
     [openPanel setAllowsMultipleSelection:NO];
-    [openPanel setMessage:@"Select where the OGRE SDK is installed."];
+    [openPanel setMessage:@"Select where the Mac OS X OGRE SDK is installed."];
+    isChoosingiPhoneSDK = NO;
 
     [openPanel beginSheetForDirectory:nil
                                  file:nil
                                 types:nil
-                       modalForWindow:[ogreLocationLabel window]
+                       modalForWindow:[ogreOSXLocationLabel window]
                         modalDelegate:self
                        didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)
                           contextInfo:nil];
 }
 
-// Method to validate directories
-// Just check if Ogre.h 
-//- (BOOL)panel:(id)sender shouldShowFilename:(NSString *)filename
-//{
-//    BOOL isDir;
-//
-//    if([[NSFileManager defaultManager] fileExistsAtPath:filename isDirectory:&isDir] && isDir) {
-//        NSMutableString *depsPath = [NSMutableString stringWithFormat:@"%@%@", filename, @"/Dependencies"];
-////        [filename appendString:@"/Dependencies"];
-//        if([[NSFileManager defaultManager] fileExistsAtPath:depsPath isDirectory:&isDir] && isDir)
-//            return YES;
-////        NSArray *array = [[NSFileManager defaultManager] directoryContentsAtPath:filename];
-////        if(([array indexOfObjectIdenticalTo:@"Dependencies"] != NSNotFound) || 
-////           ([array indexOfObjectIdenticalTo:@"iPhoneDependencies"] != NSNotFound))
-////            return YES;
-//    }
-//    return NO;
-//}
+- (IBAction)chooseiPhoneOgreSDKLocation:(id)sender
+{
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    [openPanel setDelegate:self];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setAllowsMultipleSelection:NO];
+    [openPanel setMessage:@"Select where the iPhone OGRE SDK is installed."];
+    isChoosingiPhoneSDK = YES;
+
+    [openPanel beginSheetForDirectory:nil
+                                 file:nil
+                                types:nil
+                       modalForWindow:[ogreOSXLocationLabel window]
+                        modalDelegate:self
+                       didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)
+                          contextInfo:nil];
+}
 
 - (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
@@ -112,61 +117,137 @@
         NSMutableString *configFilePath = [ogreDirectory mutableCopy];
         NSString *fileContents = nil;
         NSArray *lines = nil;
-        [configFilePath appendString:@"/Dependencies/Ogre.framework/Headers/config.h"];
-        fileContents = [NSString stringWithContentsOfFile:configFilePath];
-        lines = [fileContents componentsSeparatedByString:@"\n"];
-        
-        for(int i = 0; i < [lines count]; i++)
-        {
-            if([[lines objectAtIndex:i] rangeOfString:@"#define VERSION"].length > 0)
-            {
-                NSArray *components = [[lines objectAtIndex:i] componentsSeparatedByString:@"\""];
 
-                [ogreInfoLabel setStringValue:[NSString stringWithFormat:@"%@%@", @"Found Ogre version ", [components objectAtIndex:1]]];
+        // Validate that this folder contains a valid SDK
+
+        // Using contextInfo to determine whether we're searching for iPhone or Mac
+        // YES means iPhone
+        if(isChoosingiPhoneSDK)
+        {
+            // iPhone:
+            // lib/release/libOgreMainStatic.a
+            // include/OGRE/Ogre.h
+            NSString *iPhoneLibPath = [ogreDirectory stringByAppendingString:@"/lib/release/libOgreMainStatic.a"];
+            NSString *iPhoneHeaderPath = [ogreDirectory stringByAppendingString:@"/include/OGRE/Ogre.h"];
+
+            if(([[NSFileManager defaultManager] fileExistsAtPath:iPhoneLibPath]) &&
+                ([[NSFileManager defaultManager] fileExistsAtPath:iPhoneHeaderPath]))
+            {
+                // Set the flag to show that will be ok to move on to the next installer section
+                validiPhoneSDKChosen = YES;
+                
+                [configFilePath appendString:@"/include/OGRE/OgrePrerequisites.h"];
+                fileContents = [NSString stringWithContentsOfFile:configFilePath];
+                lines = [fileContents componentsSeparatedByString:@"\n"];
+
+                NSString *version = [self extractOGREVersionFromLines:lines];
+                
+                // Update the GUI
+                // TODO: Localize this
+                [ogreiPhoneLocationLabel setStringValue:[NSString stringWithFormat:@"%@%@ @ %@", @"Found Ogre version ", version, ogreDirectory]];
+
+                // Replace the placeholder string in the project files with the SDK root chosen by the user
+                NSMutableString *projectFileContents = [NSMutableString stringWithContentsOfFile:@"/Library/Application Support/Developer/Shared/Xcode/Project Templates/Ogre/Mac OS X/___PROJECTNAME___.xcodeproj/project.pbxproj"];
+                projectFileContents = [NSMutableString stringWithContentsOfFile:@"/Library/Application Support/Developer/Shared/Xcode/Project Templates/Ogre/iPhone OS/___PROJECTNAME___.xcodeproj/project.pbxproj"];
+                [projectFileContents replaceOccurrencesOfString:@"_OGRESDK_ROOT_"
+                                                     withString:ogreDirectory
+                                                        options:NSLiteralSearch
+                                                          range:NSMakeRange(0, [projectFileContents length])];
+                [projectFileContents writeToFile:@"/Library/Application Support/Developer/Shared/Xcode/Project Templates/Ogre/iPhone OS/___PROJECTNAME___.xcodeproj/project.pbxproj" atomically:YES];
+            }
+            else
+            {
+                validiPhoneSDKChosen = NO;
             }
         }
-        
-        // Update the GUI
-        [ogreLocationLabel setStringValue:ogreDirectory];
+        else
+        {
+            BOOL isDir = NO;
+            // Files/folders to look for:
+            //
+            // OS X:
+            // lib/release/Ogre.framework
+            NSString *frameworkPath = [ogreDirectory stringByAppendingString:@"/lib/release/Ogre.framework"];
+            if(([[NSFileManager defaultManager] fileExistsAtPath:frameworkPath isDirectory:&isDir] && isDir))
+            {
+                // Set the flag to show that will be ok to move on to the next installer section
+                validOSXSDKChosen = YES;
 
-        // Set the flag to show that will be ok to move on to the next installer section
-        validSDKChosen = YES;
+                [configFilePath appendString:@"/lib/release/Ogre.framework/Headers/OgrePrerequisites.h"];
+                fileContents = [NSString stringWithContentsOfFile:configFilePath];
+                lines = [fileContents componentsSeparatedByString:@"\n"];
 
-        // Replace the placeholder string in the project files with the SDK root chosen by the user
-        NSMutableString *projectFileContents = [NSMutableString stringWithContentsOfFile:@"/Library/Application Support/Developer/Shared/Xcode/Project Templates/Ogre/Mac OS X/___PROJECTNAME___.xcodeproj/project.pbxproj"];
-        [projectFileContents replaceOccurrencesOfString:@"_OGRESDK_ROOT_"
-                                             withString:ogreDirectory
-                                                options:NSLiteralSearch
-                                                  range:NSMakeRange(0, [projectFileContents length])];
-        [projectFileContents writeToFile:@"/Library/Application Support/Developer/Shared/Xcode/Project Templates/Ogre/Mac OS X/___PROJECTNAME___.xcodeproj/project.pbxproj" atomically:YES];
+                NSString *version = [self extractOGREVersionFromLines:lines];
 
-        projectFileContents = [NSMutableString stringWithContentsOfFile:@"/Library/Application Support/Developer/Shared/Xcode/Project Templates/Ogre/iPhone OS/___PROJECTNAME___.xcodeproj/project.pbxproj"];
-        [projectFileContents replaceOccurrencesOfString:@"_OGRESDK_ROOT_"
-                                             withString:ogreDirectory
-                                                options:NSLiteralSearch
-                                                  range:NSMakeRange(0, [projectFileContents length])];
-        [projectFileContents writeToFile:@"/Library/Application Support/Developer/Shared/Xcode/Project Templates/Ogre/iPhone OS/___PROJECTNAME___.xcodeproj/project.pbxproj" atomically:YES];
+                // Update the GUI
+                // TODO: Localize this
+                [ogreOSXLocationLabel setStringValue:[NSString stringWithFormat:@"%@%@ @ %@", @"Found Ogre version ", version, ogreDirectory]];
 
-        // Register the file type from extension.  Create a Uniform Type Identifier for each one
-        CFStringRef particleUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("particle"), kUTTypePlainText);
-        CFStringRef materialUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("material"), kUTTypePlainText);
-        CFStringRef compositorUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("compositor"), kUTTypePlainText);
-        CFStringRef fontdefUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("fontdef"), kUTTypePlainText);
-        CFStringRef overlayUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("overlay"), kUTTypePlainText);
-        CFStringRef programUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("program"), kUTTypePlainText);
-        CFStringRef genericScriptUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("os"), kUTTypePlainText);
+                // Replace the placeholder string in the project files with the SDK root chosen by the user
+                NSMutableString *projectFileContents = [NSMutableString stringWithContentsOfFile:@"/Library/Application Support/Developer/Shared/Xcode/Project Templates/Ogre/Mac OS X/___PROJECTNAME___.xcodeproj/project.pbxproj"];
+                [projectFileContents replaceOccurrencesOfString:@"_OGRESDK_ROOT_"
+                                                     withString:ogreDirectory
+                                                        options:NSLiteralSearch
+                                                          range:NSMakeRange(0, [projectFileContents length])];
+                [projectFileContents writeToFile:@"/Library/Application Support/Developer/Shared/Xcode/Project Templates/Ogre/Mac OS X/___PROJECTNAME___.xcodeproj/project.pbxproj" atomically:YES];
+            }
+            else
+            {
+                validOSXSDKChosen = NO;
+            }
+        }
 
-        // Register Xcode as the default editor
-        LSSetDefaultRoleHandlerForContentType(particleUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
-        LSSetDefaultRoleHandlerForContentType(materialUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
-        LSSetDefaultRoleHandlerForContentType(compositorUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
-        LSSetDefaultRoleHandlerForContentType(fontdefUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
-        LSSetDefaultRoleHandlerForContentType(overlayUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
-        LSSetDefaultRoleHandlerForContentType(programUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
-        LSSetDefaultRoleHandlerForContentType(genericScriptUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
+        if(validOSXSDKChosen || validiPhoneSDKChosen)
+        {
+            // Register the file type from extension.  Create a Uniform Type Identifier for each one
+            CFStringRef particleUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("particle"), kUTTypePlainText);
+            CFStringRef materialUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("material"), kUTTypePlainText);
+            CFStringRef compositorUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("compositor"), kUTTypePlainText);
+            CFStringRef fontdefUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("fontdef"), kUTTypePlainText);
+            CFStringRef overlayUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("overlay"), kUTTypePlainText);
+            CFStringRef programUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("program"), kUTTypePlainText);
+            CFStringRef genericScriptUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, CFSTR("os"), kUTTypePlainText);
 
+            // Register Xcode as the default editor
+            LSSetDefaultRoleHandlerForContentType(particleUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
+            LSSetDefaultRoleHandlerForContentType(materialUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
+            LSSetDefaultRoleHandlerForContentType(compositorUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
+            LSSetDefaultRoleHandlerForContentType(fontdefUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
+            LSSetDefaultRoleHandlerForContentType(overlayUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
+            LSSetDefaultRoleHandlerForContentType(programUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
+            LSSetDefaultRoleHandlerForContentType(genericScriptUTI, (kLSRolesEditor | kLSRolesViewer), CFSTR("com.apple.Xcode"));
+        }
         [panel close];
     }
+}
+
+- (NSString *)extractOGREVersionFromLines:(NSArray *)lines
+{
+    NSString *version = @"";
+    int ogreMajor = 0;
+    int ogreMinor = 0;
+    int ogrePatch = 0;
+    for(int i = 0; i < [lines count]; i++)
+    {
+        if([[lines objectAtIndex:i] rangeOfString:@"#define OGRE_VERSION_MAJOR"].length > 0)
+        {
+            ogreMajor = [[[[[lines objectAtIndex:i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
+                           componentsSeparatedByString:@" "] objectAtIndex:2] intValue];
+        }
+        if([[lines objectAtIndex:i] rangeOfString:@"define OGRE_VERSION_MINOR"].length > 0)
+        {
+            ogreMinor = [[[[[lines objectAtIndex:i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
+                           componentsSeparatedByString:@" "] objectAtIndex:2] intValue];
+        }
+        if([[lines objectAtIndex:i] rangeOfString:@"define OGRE_VERSION_PATCH"].length > 0)
+        {
+            ogrePatch = [[[[[lines objectAtIndex:i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
+                           componentsSeparatedByString:@" "] objectAtIndex:2] intValue];
+        }
+    }
+    version = [NSString stringWithFormat:@"%i.%i.%i", ogreMajor, ogreMinor, ogrePatch];
+
+    return version;
 }
 
 @end

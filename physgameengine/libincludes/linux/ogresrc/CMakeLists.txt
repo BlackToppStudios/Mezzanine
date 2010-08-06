@@ -26,6 +26,23 @@ if(WIN32)
   set(CMAKE_SUPPRESS_REGENERATION true)
 endif()
 
+# Assign compiler for Mac OS X-based systems
+# NOTE: This logic is order-dependent and must occur here because the
+# configuration phase of CMake projects will fall into an infinite loop
+# if compiler assignments are modified after issuing a project(...) command.
+#
+if (OGRE_BUILD_PLATFORM_IPHONE)
+  # Force gcc <= 4.2 on iPhone
+  include(CMakeForceCompiler)
+  CMAKE_FORCE_C_COMPILER(gcc-4.2 GNU)
+  CMAKE_FORCE_CXX_COMPILER(gcc-4.2 GNU)
+elseif (APPLE AND NOT OGRE_BUILD_PLATFORM_IPHONE)
+  # Force gcc <= 4.0 on Mac OS X because 4.2 is not supported prior to Mac OS X 10.5
+  include(CMakeForceCompiler)
+  CMAKE_FORCE_C_COMPILER(gcc-4.0 GNU)
+  CMAKE_FORCE_CXX_COMPILER(gcc-4.0 GNU)
+endif ()
+
 project(OGRE)
 
 # Include necessary submodules
@@ -50,7 +67,7 @@ set(OGRE_WORK_DIR ${OGRE_BINARY_DIR})
 if (CMAKE_BUILD_TYPE STREQUAL "")
   # CMake defaults to leaving CMAKE_BUILD_TYPE empty. This screws up
   # differentiation between debug and release builds.
-  set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel." FORCE)
+  set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel." FORCE)
 endif ()
 
 # determine Ogre version numbers
@@ -128,6 +145,9 @@ include_directories("${OGRE_BINARY_DIR}/include")
 if (APPLE)
   if (OGRE_BUILD_PLATFORM_IPHONE)
     include_directories("${OGRE_SOURCE_DIR}/OgreMain/include/iPhone")
+
+    # Set static early for proper dependency detection
+    set(OGRE_STATIC TRUE)
   else ()
     include_directories("${OGRE_SOURCE_DIR}/OgreMain/include/OSX")
   endif ()
@@ -157,42 +177,35 @@ endif(WIN32 OR APPLE)
 
 # Set up iPhone overrides.
 if (OGRE_BUILD_PLATFORM_IPHONE)
-  # Force gcc <= 4.2 on iPhone
-  include(CMakeForceCompiler)
-  CMAKE_FORCE_C_COMPILER(gcc-4.2 GNU)
-  CMAKE_FORCE_CXX_COMPILER(gcc-4.2 GNU)
-
   include_directories("${OGRE_SOURCE_DIR}/OgreMain/include/iPhone")
 
   # Set build variables
   set(CMAKE_OSX_SYSROOT iphoneos3.0)
   set(CMAKE_OSX_DEPLOYMENT_TARGET "")
   set(CMAKE_OSX_ARCHITECTURES "$(ARCHS_UNIVERSAL_IPHONE_OS)")
-  set(CMAKE_EXE_LINKER_FLAGS "-framework Foundation -framework CoreGraphics -framework QuartzCore -framework UIKit ${OGRE_SOURCE_DIR}/iPhoneDependencies/lib/release/libboost_date_time.a ${OGRE_SOURCE_DIR}/iPhoneDependencies/lib/release/libboost_thread.a")
+  set(CMAKE_EXE_LINKER_FLAGS "-framework Foundation -framework CoreGraphics -framework QuartzCore -framework UIKit")
   set(XCODE_ATTRIBUTE_SDKROOT iphoneos3.0)
   set(OGRE_BUILD_RENDERSYSTEM_GLES TRUE CACHE BOOL "Forcing OpenGL ES RenderSystem for iPhone" FORCE)
-  set(OGRE_STATIC False CACHE BOOL "Forcing static build for iPhone" FORCE)
-  set(OGRE_SET_USE_BOOST TRUE CACHE BOOL "Forcing use of Boost libraries for iPhone" FORCE)
-  set(OGRE_USE_BOOST TRUE CACHE BOOL "Forcing use of Boost libraries for iPhone" FORCE)
-  set(Boost_FOUND TRUE CACHE BOOL "Forcing use of Boost libraries for iPhone" FORCE)
+  set(OGRE_STATIC TRUE CACHE BOOL "Forcing static build for iPhone" FORCE)
   set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.yourcompany.\${PRODUCT_NAME:rfc1034identifier}")
-  set(OGRE_CONFIG_DISABLE_VIEWPORT_ORIENTATIONMODE FALSE CACHE BOOL "Forcing viewport orientation support for iPhone" FORCE)
+  set(OGRE_CONFIG_ENABLE_VIEWPORT_ORIENTATIONMODE TRUE CACHE BOOL "Forcing viewport orientation support for iPhone" FORCE)
 
   add_definitions(-fno-regmove)
   remove_definitions(-msse)
 elseif (APPLE AND NOT OGRE_BUILD_PLATFORM_IPHONE)
-  # Force gcc <= 4.0 on Mac OS X because 4.2 is not supported prior to Mac OS X 10.5
-  include(CMakeForceCompiler)
-  CMAKE_FORCE_C_COMPILER(gcc-4.0 GNU)
-  CMAKE_FORCE_CXX_COMPILER(gcc-4.0 GNU)
 
   # Set 10.4 as the base SDK by default
   set(XCODE_ATTRIBUTE_SDKROOT macosx10.4)
 
+  if (NOT CMAKE_OSX_ARCHITECTURES)
+    set(CMAKE_OSX_ARCHITECTURES "i386")
+  endif()
+  
   # 10.6 sets x86_64 as the default architecture.
   # Because Carbon isn't supported on 64-bit and we still need it, force the architectures to ppc and i386
-  if(CMAKE_OSX_DEPLOYMENT_TARGET STREQUAL "10.6")
-	  set(CMAKE_OSX_ARCHITECTURES "ppc i386")
+  if(CMAKE_OSX_ARCHITECTURES MATCHES "x86_64" OR CMAKE_OSX_ARCHITECTURES MATCHES "ppc64")
+    string(REPLACE "x86_64" "" CMAKE_OSX_ARCHITECTURES ${CMAKE_OSX_ARCHITECTURES})
+    string(REPLACE "ppc64" "" CMAKE_OSX_ARCHITECTURES ${CMAKE_OSX_ARCHITECTURES})
   endif()
 
   # Make sure that the OpenGL render system is selected for non-iPhone Apple builds
@@ -202,7 +215,7 @@ endif ()
 
 # Enable the PVRTC codec if OpenGL ES is being built
 if(OGRE_BUILD_RENDERSYSTEM_GLES)
-  set(OGRE_CONFIG_DISABLE_PVRTC FALSE CACHE BOOL "Forcing PVRTC codec for OpenGL ES" FORCE)
+  set(OGRE_CONFIG_ENABLE_PVRTC TRUE CACHE BOOL "Forcing PVRTC codec for OpenGL ES" FORCE)
 endif()
 
 ######################################################################
@@ -210,7 +223,7 @@ endif()
 ######################################################################
 
 # Customise what to build
-option(OGRE_STATIC "Static build" False)
+option(OGRE_STATIC "Static build" FALSE)
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_D3D9 "Build Direct3D9 RenderSystem" TRUE "WIN32;DirectX_FOUND" FALSE)
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_D3D10 "Build Direct3D10 RenderSystem [EXPERIMENTAL]" FALSE "WIN32;DirectX_D3D10_FOUND" FALSE)
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_D3D11 "Build Direct3D11 RenderSystem [EXPERIMENTAL]" FALSE "WIN32;DirectX_D3D11_FOUND" FALSE)
@@ -229,7 +242,7 @@ option(OGRE_BUILD_COMPONENT_RTSHADERSYSTEM "Build RTShader System component" TRU
 cmake_dependent_option(OGRE_BUILD_RTSHADERSYSTEM_CORE_SHADERS "Build RTShader System FFP core shaders" TRUE "OGRE_BUILD_COMPONENT_RTSHADERSYSTEM" FALSE)
 cmake_dependent_option(OGRE_BUILD_RTSHADERSYSTEM_EXT_SHADERS "Build RTShader System extensions shaders" TRUE "OGRE_BUILD_COMPONENT_RTSHADERSYSTEM" FALSE)
 
-option(OGRE_BUILD_SAMPLES "Build Ogre demos" False)
+option(OGRE_BUILD_SAMPLES "Build Ogre demos" TRUE)
 cmake_dependent_option(OGRE_BUILD_TOOLS "Build the command-line tools" TRUE "NOT OGRE_BUILD_PLATFORM_IPHONE" FALSE)
 option(OGRE_BUILD_TESTS "Build the unit tests & PlayPen" FALSE)
 option(OGRE_CONFIG_DOUBLE "Use doubles instead of floats in Ogre" FALSE)
@@ -262,6 +275,7 @@ cmake_dependent_option(OGRE_INSTALL_PDB "Install debug pdb files" FALSE "MSVC" F
 cmake_dependent_option(OGRE_FULL_RPATH "Build executables with the full required RPATH to run from their install location." FALSE "NOT WIN32" FALSE)
 option(OGRE_PROFILING "Enable internal profiling support." FALSE)
 cmake_dependent_option(OGRE_CONFIG_STATIC_LINK_CRT "Statically link the MS CRT dlls (msvcrt)" FALSE "MSVC" FALSE)
+set(OGRE_LIB_DIRECTORY "lib" CACHE STRING "Install path for libraries, e.g. 'lib64' on some 64-bit Linux distros.")
 
 # hide advanced options
 mark_as_advanced(
@@ -274,10 +288,17 @@ mark_as_advanced(
   OGRE_CONFIG_MEMTRACK_DEBUG
   OGRE_CONFIG_MEMTRACK_RELEASE
   OGRE_CONFIG_NEW_COMPILERS
+  OGRE_CONFIG_ENABLE_DDS
+  OGRE_CONFIG_ENABLE_FREEIMAGE
+  OGRE_CONFIG_ENABLE_PVRTC
+  OGRE_CONFIG_ENABLE_VIEWPORT_ORIENTATIONMODE
+  OGRE_CONFIG_ENABLE_ZIP
+  OGRE_USE_BOOST
   OGRE_INSTALL_SAMPLES_SOURCE
   OGRE_FULL_RPATH
   OGRE_PROFILING
   OGRE_CONFIG_STATIC_LINK_CRT
+  OGRE_LIB_DIRECTORY
 )
 
 ###################################################################

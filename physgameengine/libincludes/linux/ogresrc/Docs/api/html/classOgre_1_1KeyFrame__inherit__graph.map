@@ -1,5 +1,0 @@
-<area shape="rect" href="$classOgre_1_1NumericKeyFrame.html" title="Specialised KeyFrame which stores any numeric value." alt="" coords="356,5,532,32">
-<area shape="rect" href="$classOgre_1_1TransformKeyFrame.html" title="Specialised KeyFrame which stores a full transform." alt="" coords="352,56,536,82">
-<area shape="rect" href="$classOgre_1_1VertexMorphKeyFrame.html" title="Specialised KeyFrame which stores absolute vertex positions for a complete buffer..." alt="" coords="343,106,545,133">
-<area shape="rect" href="$classOgre_1_1VertexPoseKeyFrame.html" title="Specialised KeyFrame which references a Mesh::Pose at a certain influence level,..." alt="" coords="347,157,541,184">
-<area shape="rect" href="$classOgre_1_1AllocatedObject.html" title="Superclass for all objects that wish to use custom memory allocators when their new..." alt="" coords="7,81,121,108">

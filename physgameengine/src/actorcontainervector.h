@@ -1,4 +1,4 @@
-//© Copyright 2010 Joseph Toppi and John Blackwood
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -134,6 +134,10 @@ namespace phys
             /// @brief Empty Initilizor
             /// @details This class implements this for the sake of entension and compatibility this function does nothing
             virtual void Initialize();
+
+            /// @brief Empty MainLoopItems
+            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            virtual void DoMainLoopItems();
 
         private:
             /// @brief This is used to implement LastActorAdded()

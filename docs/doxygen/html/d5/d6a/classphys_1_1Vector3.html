@@ -46,6 +46,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ogre Value Constructor.  <a href="#ad19c9ae00070b3aad5799e1f8c00bd34"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a8ff2e969410341eaf328ab76fb3099ed">Vector3</a> (btVector3 Vec)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bullet Value Constructor.  <a href="#a8ff2e969410341eaf328ab76fb3099ed"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a0ed3fe0518fc5e29544234bd41091401">Vector3</a> (cAudio::cVector3 Vec)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">cAudio Value Constructor.  <a href="#a0ed3fe0518fc5e29544234bd41091401"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a7163daa9f9bee5214cc740f9d5ce9ed3">operator=</a> (const btVector3 &amp;bt3)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Assignment operator to convert from Bullet Vectors.  <a href="#a7163daa9f9bee5214cc740f9d5ce9ed3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#aea33e020934fe37bb415b034f3d057f1">operator=</a> (const Ogre::Vector3 &amp;OVec3)</td></tr>
@@ -90,6 +92,16 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bullet Multiplication Operator.  <a href="#a34014be39219a1ad3d4808b9614ac80d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a4f9f3240dab2277e8a9b80f6c7235e5b">operator/</a> (const Ogre::Vector3 &amp;Vec2)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bullet Division Operator.  <a href="#a4f9f3240dab2277e8a9b80f6c7235e5b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#ae98b11238914cd77a729053798ebf339">CrossProduct</a> (const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> &amp;rkVector) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is used to calculate the crossproduct of this and another vector.  <a href="#ae98b11238914cd77a729053798ebf339"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#ac30ef9729b1a4e6001f5f5219a88176d">dotProduct</a> (const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> &amp;vec) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is used to calculate the dotproduct of this and another vector.  <a href="#ac30ef9729b1a4e6001f5f5219a88176d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#ae39fe0545df88148bcd668b3bd2a4388">Normalize</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will change this point into it's own normal relative to the origin.  <a href="#ae39fe0545df88148bcd668b3bd2a4388"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a81e11f45378758391c97ec55b519951c">GetNormal</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns the normal for this relative to the origin.  <a href="#a81e11f45378758391c97ec55b519951c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a30af9c8ae51596fa00fa7f350f9668f5">Inverse</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will inverse the reals in the vector.  <a href="#a30af9c8ae51596fa00fa7f350f9668f5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">btVector3&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41">GetBulletVector3</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets a Bullet vector3.  <a href="#adf4129007ee41f5a03e97502f2df9c41"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a24ae86b068340be6727877f8c6c1a313">ExtractBulletVector3</a> (btVector3 temp)</td></tr>
@@ -98,6 +110,10 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets a Ogre vector3.  <a href="#a17265d86a74139398d310b56ba7e89b8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a09a31cb8fe491f61e0cc10d21705a0df">ExtractOgreVector3</a> (Ogre::Vector3 temp)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copies an existing Ogre vector3.  <a href="#a09a31cb8fe491f61e0cc10d21705a0df"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">cAudio::cVector3&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a58b1ac39dfee4c360c16944a7e7f657d">GetcAudioVector3</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets a cAudio vector3.  <a href="#a58b1ac39dfee4c360c16944a7e7f657d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#aa12021e9cdc092c8628ced1c5910c04c">ExtractcAudioVector3</a> (cAudio::cVector3 temp)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copies an existing cAudio vector3.  <a href="#aa12021e9cdc092c8628ced1c5910c04c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f">Distance</a> (const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> &amp;Vec2) const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This return the distance between this point and another.  <a href="#a6388c8993a8f09ba2f7fef366858634f"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
@@ -115,7 +131,7 @@
 <p>This is used to represent a point in space, or a vector through space. </p>
 <p>This contains an X, Y and a Z value used to represent coordinates. This also has a number of facilities to make converting from Physics subsystem vectors or graphics subsystems as easy as possible </p>
 
-<p>Definition at line <a class="el" href="../../d0/d7e/vector3_8h_source.html#l00061">61</a> of file <a class="el" href="../../d0/d7e/vector3_8h_source.html">vector3.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d7e/vector3_8h_source.html#l00065">65</a> of file <a class="el" href="../../d0/d7e/vector3_8h_source.html">vector3.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="af328c400a03fdb8d2a99fd58382d61cb"></a><!-- doxytag: member="phys::Vector3::Vector3" ref="af328c400a03fdb8d2a99fd58382d61cb" args="()" -->
 <div class="memitem">
@@ -135,7 +151,7 @@
 <p>Default Constructor. </p>
 <p>Basic all zero initialization constructor. </p>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00052">52</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00053">53</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -181,7 +197,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00059">59</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00060">60</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -205,12 +221,12 @@
 <p>Constructor that sets all values to match the Ogre vector. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Vec</em>&nbsp;</td><td>The vector to be copied to make this vector </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Vec</em>&nbsp;</td><td>The vector to be copied to make this vector. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00067">67</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -234,16 +250,77 @@
 <p>Constructor that sets all values to match the Bullet vector. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Vec</em>&nbsp;</td><td>The vector to be copied to make this vector </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Vec</em>&nbsp;</td><td>The vector to be copied to make this vector. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00072">72</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0ed3fe0518fc5e29544234bd41091401"></a><!-- doxytag: member="phys::Vector3::Vector3" ref="a0ed3fe0518fc5e29544234bd41091401" args="(cAudio::cVector3 Vec)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::Vector3::Vector3 </td>
+          <td>(</td>
+          <td class="paramtype">cAudio::cVector3&nbsp;</td>
+          <td class="paramname"> <em>Vec</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>cAudio Value Constructor. </p>
+<p>Constructor that sets all values to match the cAudio vector. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Vec</em>&nbsp;</td><td>The vector to be copied to make this vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00077">77</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ae98b11238914cd77a729053798ebf339"></a><!-- doxytag: member="phys::Vector3::CrossProduct" ref="ae98b11238914cd77a729053798ebf339" args="(const Vector3 &amp;rkVector) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> phys::Vector3::CrossProduct </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>rkVector</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This is used to calculate the crossproduct of this and another vector. </p>
+<p>This creates a third vector, which should be on a line perpendicular to lines that contain the origin and the other vectors <br/>
+<br/>
+ Thanks to the guys at Ogre3d for the well written version of this function that we based this on. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rkVector</em>&nbsp;</td><td>the Vector to work with to create the cross product </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This is the crossproduct of this vector and rkVector </dd></dl>
+
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00281">281</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a6388c8993a8f09ba2f7fef366858634f"></a><!-- doxytag: member="phys::Vector3::Distance" ref="a6388c8993a8f09ba2f7fef366858634f" args="(const Vector3 &amp;Vec2) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -270,7 +347,39 @@
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a Real number which is the distance. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00311">311</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00376">376</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac30ef9729b1a4e6001f5f5219a88176d"></a><!-- doxytag: member="phys::Vector3::dotProduct" ref="ac30ef9729b1a4e6001f5f5219a88176d" args="(const Vector3 &amp;vec) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> phys::Vector3::dotProduct </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>vec</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This is used to calculate the dotproduct of this and another vector. </p>
+<p>This calculates the sum of the products of X, Y and Z. <br/>
+<br/>
+ Thanks to the guys at Ogre3d for the well written version of this function that we based this on. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>vec</em>&nbsp;</td><td>The vector to work with to create the cross product </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This is the dotproduct of this vector and vec </dd></dl>
+
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00290">290</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -299,7 +408,36 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00284">284</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00337">337</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa12021e9cdc092c8628ced1c5910c04c"></a><!-- doxytag: member="phys::Vector3::ExtractcAudioVector3" ref="aa12021e9cdc092c8628ced1c5910c04c" args="(cAudio::cVector3 temp)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::Vector3::ExtractcAudioVector3 </td>
+          <td>(</td>
+          <td class="paramtype">cAudio::cVector3&nbsp;</td>
+          <td class="paramname"> <em>temp</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Copies an existing cAudio vector3. </p>
+<p>This function will copy the values stored in an existing cAudio vector3 and set the values of this class to be the same. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>temp</em>&nbsp;</td><td>The vector3 to be extracted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00369">369</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -328,7 +466,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00300">300</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00353">353</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -350,7 +488,55 @@
 <p>Gets a Bullet vector3. </p>
 <p>Creates a Bullet vector3 with values equal to this class and returns it. </p>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00274">274</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00327">327</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a58b1ac39dfee4c360c16944a7e7f657d"></a><!-- doxytag: member="phys::Vector3::GetcAudioVector3" ref="a58b1ac39dfee4c360c16944a7e7f657d" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cAudio::cVector3 phys::Vector3::GetcAudioVector3 </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets a cAudio vector3. </p>
+<p>Creates a cAudio vector3 with values equal to this class and returns it. </p>
+
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00360">360</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a81e11f45378758391c97ec55b519951c"></a><!-- doxytag: member="phys::Vector3::GetNormal" ref="a81e11f45378758391c97ec55b519951c" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> phys::Vector3::GetNormal </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This returns the normal for this relative to the origin. </p>
+<p>This will return a vector that is 1 unit in away from the origin, if a line were starting and the origin it would pass through both the normal and the original point. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>At a vector3 that is the normal of this <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> or 0,0,0 if the current Vector is all 0s </dd></dl>
+
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000022">Todo:</a></b></dt><dd>discuss the merits throwing an error here. </dd></dl>
+</p>
+
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00306">306</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,7 +558,54 @@
 <p>Gets a Ogre vector3. </p>
 <p>Creates a Ogre vector3 with values equal to this class and returns it. </p>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00291">291</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00344">344</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a30af9c8ae51596fa00fa7f350f9668f5"></a><!-- doxytag: member="phys::Vector3::Inverse" ref="a30af9c8ae51596fa00fa7f350f9668f5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::Vector3::Inverse </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This will inverse the reals in the vector. </p>
+<p>This function will inverse all the reals in the vector. </p>
+
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00318">318</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae39fe0545df88148bcd668b3bd2a4388"></a><!-- doxytag: member="phys::Vector3::Normalize" ref="ae39fe0545df88148bcd668b3bd2a4388" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::Vector3::Normalize </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This will change this point into it's own normal relative to the origin. </p>
+<p>This will change this vector into one that is the same direction from the origin, but only one unit a away. </p>
+
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000021">Todo:</a></b></dt><dd>discuss the merits throwing an error here. </dd></dl>
+</p>
+
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00295">295</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -401,7 +634,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00254">254</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00260">260</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -430,7 +663,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00215">215</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00221">221</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -459,7 +692,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00176">176</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00182">182</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -489,7 +722,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00098">98</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00104">104</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -518,7 +751,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00118">118</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00124">124</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -547,7 +780,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00236">236</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00242">242</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -576,7 +809,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00197">197</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00203">203</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -605,7 +838,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00158">158</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00164">164</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -634,7 +867,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00245">245</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00251">251</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -663,7 +896,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00206">206</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00212">212</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -692,7 +925,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00167">167</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00173">173</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -714,7 +947,7 @@
 <p>Additive Inverse Operator. </p>
 <p>Returns the opposite <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> relative to 0,0,0 </p>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00090">90</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00096">96</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -743,7 +976,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00263">263</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00269">269</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -772,7 +1005,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00224">224</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00230">230</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -801,7 +1034,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00185">185</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00191">191</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -831,7 +1064,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00107">107</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00113">113</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -860,7 +1093,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00125">125</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -889,7 +1122,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00083">83</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00089">89</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -918,7 +1151,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00078">78</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00084">84</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -947,7 +1180,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00148">148</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00154">154</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -976,7 +1209,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00141">141</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00147">147</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -1005,7 +1238,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00134">134</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
 
 </div>
 </div>
@@ -1014,7 +1247,7 @@
 <li><a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:13 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:38 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

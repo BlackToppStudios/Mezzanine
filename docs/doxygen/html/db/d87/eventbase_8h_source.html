@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>eventbase.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>eventbase.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -82,17 +82,17 @@
 <a name="l00057"></a>00057 <span class="comment">    /// that inherit from this are expected to implement getEventType().</span>
 <a name="l00058"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html">00058</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">EventBase</a>
 <a name="l00059"></a>00059     {
-<a name="l00060"></a>00060         <span class="keyword">public</span>:
-<a name="l00061"></a>00061 <span class="comment"></span>
-<a name="l00062"></a>00062 <span class="comment">            /// @enum EventType</span>
-<a name="l00063"></a>00063 <span class="comment">            /// @brief A listing of values that can be used to identify Events.</span>
-<a name="l00064"></a>00064 <span class="comment">            /// @details A listing of values that can be used to identify Events.</span>
-<a name="l00065"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">00065</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventType</a>
-<a name="l00066"></a>00066             {
-<a name="l00067"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5">00067</a>                 <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5">RenderTime</a>,     <span class="comment">/**&lt; Indicates the Event is a PhysEventRenderTime */</span>
-<a name="l00068"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">00068</a>                 <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">UserInput</a>,      <span class="comment">/**&lt; Indicates the Event is a EventUserInput */</span>
-<a name="l00069"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9">00069</a>                 <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9">QuitMessage</a>,    <span class="comment">/**&lt; Indicates the Event is a phys::EventQuit */</span>
-<a name="l00070"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08">00070</a>                 <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08">SystemMessage</a>,  <span class="comment">/**&lt; Indicates the Event has not been coded yet */</span>
+<a name="l00060"></a>00060         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00061"></a>00061 <span class="comment">            /// @enum EventType</span>
+<a name="l00062"></a>00062 <span class="comment">            /// @brief A listing of values that can be used to identify Events.</span>
+<a name="l00063"></a>00063 <span class="comment">            /// @details A listing of values that can be used to identify Events.</span>
+<a name="l00064"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">00064</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventType</a>
+<a name="l00065"></a>00065             {
+<a name="l00066"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5">00066</a>                 <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5">RenderTime</a>,     <span class="comment">/**&lt; Indicates the Event is a PhysEventRenderTime */</span>
+<a name="l00067"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">00067</a>                 <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">UserInput</a>,      <span class="comment">/**&lt; Indicates the Event is a EventUserInput */</span>
+<a name="l00068"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9">00068</a>                 <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9">QuitMessage</a>,    <span class="comment">/**&lt; Indicates the Event is a phys::EventQuit */</span>
+<a name="l00069"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08">00069</a>                 <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08">SystemMessage</a>,  <span class="comment">/**&lt; Indicates the Event has not been coded yet */</span>
+<a name="l00070"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5">00070</a>                 <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5">Collision</a>,      <span class="comment">/**&lt; Indicates the Event is a Physics Collision Event */</span>
 <a name="l00071"></a>00071                 Other
 <a name="l00072"></a>00072             };
 <a name="l00073"></a>00073 <span class="comment"></span>
@@ -111,7 +111,7 @@
 <a name="l00086"></a>00086 
 <a name="l00087"></a>00087 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
