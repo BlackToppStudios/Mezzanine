@@ -125,7 +125,9 @@ namespace phys
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
 
-        this->Actors = new ActorContainerVector(this);
+        this->AddManager(new ActorContainerVector(this));
+        this->Actors = this->GetActorManager();
+
         this->Graphics = new GraphicsManager();
         this->Sounds = new SoundManager(this);
 
@@ -257,7 +259,6 @@ namespace phys
     World::~World()
     {
 
-
         //All the pointers Ogre made should get taken care of by OGRE
         delete OgreRoot;
 
@@ -298,9 +299,14 @@ namespace phys
         this->CreateRenderWindow();
 
         //Initiliaze the Managers
+        for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
+        {
+            (*Iter)->Initialize();
+        }
+
         this->Physics->Initialize(); //Initialize the Debug drawer.
         this->CallBacks->Initialize();
-        this->Actors->Initialize();
+        //this->Actors->Initialize();
         this->Graphics->Initialize();
         this->Cameras->Initialize();
         this->Events->Initialize();
@@ -388,7 +394,8 @@ namespace phys
          on a mobile, or underperforming gaming platform.
         */
         //As long as all the CallBacks return true the game continues
-        while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3] && Callbackbools[4] && Callbackbools[5])
+        bool DoNotBreak=true;
+        while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3] && Callbackbools[4] && Callbackbools[5] && DoNotBreak)
         {
             //Input buffering Callbacks
             if( this->CallBacks->IsPreInputCallbackSet() || this->CallBacks->IsPostInputCallbackSet() )
@@ -408,6 +415,18 @@ namespace phys
                 this->DoMainLoopPhysics(FrameTime);
                 if( this->CallBacks->IsPostPhysicsCallbackSet() )
                     { Callbackbools[3] = this->CallBacks->PostPhysics(); }
+            }
+
+            // new main on frastructure
+            for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
+            {
+                if((*Iter)->PreMainLoopItems())
+                    { DoNotBreak=false; }
+
+                (*Iter)->PreMainLoopItems();
+
+                if((*Iter)->PostMainLoopItems())
+                    { DoNotBreak=false; }
             }
 
             //PreRender callback

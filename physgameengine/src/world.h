@@ -510,7 +510,6 @@ namespace phys
             /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
             CameraManager* GetCameraManager(const short unsigned int &WhichOne=0);
 
-
             /// @brief This gets the EventManager from the manager list.
             /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
             /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.

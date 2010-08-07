@@ -46,7 +46,7 @@
 namespace phys
 {
     ActorContainerVector::ActorContainerVector (World* Parent_) : phys::ActorContainerBase (Parent_)
-        {}
+        { this->Priority = -20; }
 
     void ActorContainerVector::AddActor(ActorBase* ActorToAdd)
     {
