@@ -61,10 +61,10 @@ bool PostRender()
 	//Lets set a variable for the time
 	static Whole gametime = 0;
 
-	TheWorld.Log("---------- Starting PosterRender CallBack -------------");
-    TheWorld.Log("Current Game Time ");
+	TheWorld.Log(String("---------- Starting PosterRender CallBack -------------"));
+    TheWorld.Log(String("Current Game Time "));
 
-	//getting a message from the event manager
+	//getting a message from the event manager)
 	EventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
 
     Whole LastFrame = CurrentTime->getMilliSecondsSinceLastFrame();

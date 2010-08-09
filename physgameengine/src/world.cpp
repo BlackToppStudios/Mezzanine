@@ -57,6 +57,7 @@
 #include "graphicsmanager.h"
 #include "actorbase.h"
 #include "eventuserinput.h"
+#include "managerbase.h"
 
 #include "actorcontainervector.h"
 #include "ray.h"
@@ -127,8 +128,11 @@ namespace phys
 
         this->AddManager(new ActorContainerVector(this));
         this->Actors = this->GetActorManager();
+        //this->Actors = new ActorContainerVector(this);
 
         this->Graphics = new GraphicsManager();
+
+
         this->Sounds = new SoundManager(this);
 
         //We create our Ogre environment
@@ -140,7 +144,10 @@ namespace phys
         //Events are the main way for the game using the world to  get information about the various subsystems
         this->Events = new EventManager(this);
 
-        this->Physics = new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_);
+        this->AddManager(new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_));
+        this->Physics = this->GetPhysicsManager();
+        //this->Physics=new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_);
+
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -191,7 +198,7 @@ namespace phys
         Real temp14 = 1.4;
         Whole temp15 = 15;
         String temp16("16 or so");
-        Vector3 temp17(0,1,7);
+        const Vector3 temp17(0,1,7);
         RawEvent temp18;
             temp18.type = SDL_KEYDOWN;
             temp18.key.keysym.sym = SDLK_BACKSPACE;
@@ -207,10 +214,9 @@ namespace phys
         ActorRigid* temp24=0;
         Vector3WActor temp25( temp24, Vector3(0,2,5));
         Plane temp26(Vector3(2.0, 6.0, 2.0), 6.0);
+
         //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
         /// @todo TODO add each type of event here (logtest) to make it really easy to log events
-		Log(system("pwd"));
-		Log("bundy");
         OneLogTest(temp0, "string");
         OneLogTest(temp1, "char");
         OneLogTest(temp2, "short int");
@@ -239,7 +245,6 @@ namespace phys
         OneLogTest(temp25,"Vector3WActor");
         OneLogTest(temp26,"Plane");
         OneLogTest('7',"const char");
-        //this->RemoveActor(&temp24);
     }
 
     template <class T> void World::OneLogTest(T Data, string DataType, string Message1, string Message2)
@@ -279,7 +284,7 @@ namespace phys
     template <class T> void World::Log(T Message)
     {
         stringstream temp;
-        temp << this->LogStream << Message;
+        temp << this->LogStream.str() << Message;
         this->LogStream.str("");
         Ogre::LogManager::getSingleton().logMessage(temp.str());
     }
@@ -325,7 +330,7 @@ namespace phys
         //Used for tracking times to prevent Infinite render loops in graphically simple games
         //Whole Times[] = {0,0,0,0};
 
-        this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
+         this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 
         Whole FrameDelay = 0;
         Whole FrameTime = 0;
@@ -421,12 +426,12 @@ namespace phys
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
                 if((*Iter)->PreMainLoopItems())
-                    { DoNotBreak=false; }
+                    { DoNotBreak=true; }
 
-                (*Iter)->PreMainLoopItems();
+                (*Iter)->DoMainLoopItems();
 
                 if((*Iter)->PostMainLoopItems())
-                    { DoNotBreak=false; }
+                    { DoNotBreak=true; }
             }
 
             //PreRender callback
@@ -630,19 +635,28 @@ namespace phys
     ///////////////////////////////////////
     void World::AddManager(ManagerBase* ManagerToAdd)
     {
-        if(this->ManagerList.empty())
+        #define PHYSDEBUG
+        #ifdef PHYSDEBUG
+        this->LogStream << "Calling World::AddManager("<<ManagerToAdd<<") size before:" <<this->ManagerList.size();
+        #endif
+        if(!this->ManagerList.empty())
         {
-            ManagerList.push_back(ManagerToAdd);
-        }else{
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
-                if( (*ManIter)->Priority > ManagerToAdd->Priority )
+                if( (*ManIter)->Priority > ManagerToAdd->Priority)
                 {
                     this->ManagerList.insert(ManIter,ManagerToAdd);
-                    break;
+                    #ifdef PHYSDEBUG
+                    this->LogStream << " - Added by sorted insertion:"<<ManagerToAdd<<" - size after:" <<this->ManagerList.size() ;
+                    #endif
+                    return;
                 }
             }
         }
+        ManagerList.push_back(ManagerToAdd);
+        #ifdef PHYSDEBUG
+        this->LogStream << " - Added by push_back:"<<ManagerToAdd<<" - size after:" <<this->ManagerList.size() << endl;
+        #endif
     }
 
     void World::RemoveManager(ManagerBase* ManagerToRemove)
@@ -685,6 +699,9 @@ namespace phys
 
     ManagerBase* World::GetManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne)
     {
+        #ifdef PHYSDEBUG
+        this->LogStream << "Calling World::GetManager(Type:"<<ManagersToRemoveType<<") searching through "<<this->ManagerList.size()<<" Items.";
+        #endif
         if(this->ManagerList.empty())
         {
             return 0;
@@ -695,6 +712,9 @@ namespace phys
                 {
                     if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
                     {
+                        #ifdef PHYSDEBUG
+                        this->LogStream << " - Got:" << *ManIter <<endl;
+                        #endif
                         return *ManIter;
                     }else{
                         --WhichOne;
@@ -702,6 +722,9 @@ namespace phys
                 }
             }
         }
+        #ifdef PHYSDEBUG
+        this->LogStream << " - Got:Nothing" << endl;
+        #endif
         return 0;
     }
 

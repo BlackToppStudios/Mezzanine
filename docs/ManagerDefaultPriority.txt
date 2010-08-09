@@ -1,4 +1,4 @@
-Actors -20
+-20	Actors
 
-
-Logging (even though it is not a manager) -5
+-5	Physics
+0	GraphicsLogging (even though it is not a manager)

@@ -152,6 +152,7 @@ namespace phys
             /// @brief Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
             /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectl
             friend void crossplatform::RenderPhysWorld(World *TheWorld); // Needs ogre access for making window
+
             friend class ActorBase; //Several items from Ogre and Bullet
             friend class LineGroup; //Needs the debug::InternalDebugDrawer* BulletDrawer
             friend class WorldQueryTool; // Needs to access various Ogre internals

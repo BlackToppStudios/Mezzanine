@@ -42,6 +42,8 @@
 
 #include "worldgetset.h"
 
+#include <iostream>
+
 namespace phys
 {
     class World;
@@ -191,8 +193,11 @@ namespace phys
             /// @internal
             /// @brief This is a function pointer to the function that should be called after running Main Loop Items
             Callback PostMainLoop;
-
     };// /ManagerBase
+
+    //@brief The << operator required to enable logging of Manager's to get types
+    //std::ostream& operator << (std::ostream& stream, const ManagerBase& ManagerToGuess);
+
 } // /phys
 
 #endif

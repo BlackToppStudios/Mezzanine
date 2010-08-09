@@ -48,16 +48,16 @@ namespace phys
     ManagerBase::ManagerBase()
         {
             this->GameWorld = 0;
-            this->PreMainLoop = 0;
-            this->PostMainLoop = 0;
+            this->PreMainLoop = NULL;
+            this->PostMainLoop = NULL;
             this->Priority = 0;
         }
 
     ManagerBase::ManagerBase(World* GameWorld_)
         {
             this->GameWorld = GameWorld_;
-            this->PreMainLoop = 0;
-            this->PostMainLoop = 0;
+            this->PreMainLoop = NULL;
+            this->PostMainLoop = NULL;
             this->Priority = 0;
         }
 
@@ -106,6 +106,41 @@ namespace phys
 
     void ManagerBase::ErasePostMainLoopItems()
         { this->SetPostMainLoopItems(0); }
+/*
+    std::ostream& operator << (std::ostream& stream, const ManagerBase& ManagerToGuess)
+    {
+        switch (ManagerToGuess.GetType())
+        {
+            case ManagerBase::ActorContainerBase:
+                stream << "ActorContainerBase Manager";
+                break;
+            case ManagerBase::CallBackManager:
+                stream << "CallBackManager";
+                break;
+            case ManagerBase::CameraManager:
+                stream << "CameraManager";
+                break;
+            case ManagerBase::EventManager:
+                stream << "EventManager";
+                break;
+            case ManagerBase::GraphicsManager:
+                stream << "GraphicsManager";
+                break;
+            case ManagerBase::PhysicsManager:
+                stream << "PhysicsManager";
+                break;
+            case ManagerBase::SoundManager:
+                stream << "SoundManager";
+                break;
+            case ManagerBase::UserCreated:
+                stream << "UserCreated";
+                break;
+            default:
+                stream << "Unknown Manager";
+                break;
+        }
+        return stream;
+    }// */
 
 }// /phys
 
