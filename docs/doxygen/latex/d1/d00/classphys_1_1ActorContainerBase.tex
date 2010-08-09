@@ -50,6 +50,8 @@ virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphy
 \begin{DoxyCompactList}\small\item\em This gets the last actor in the container. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}{FindActor} (Ogre::Node $\ast$GraphicsNode)=0
 \begin{DoxyCompactList}\small\item\em This finds an actor by searching for a graphics subsystem nodes. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a9ba6e38e0f12ada968cfee72fe5144d4}{FindActor} (btCollisionObject $\ast$PhysicsObject)=0
+\begin{DoxyCompactList}\small\item\em This finds an actor by searching for a physics subsystem object. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}{FindActor} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)=0
 \begin{DoxyCompactList}\small\item\em This finds an actor based on its name. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1ActorContainerBase_a0ed43bc828aaee8ee33152970c3cc16d}{GetContainerType} () const =0
@@ -63,12 +65,16 @@ virtual void \hyperlink{classphys_1_1ActorContainerBase_a366c1797bef08f3a1846bf0
 virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1ActorContainerBase_aa86380fd1b18d660f68b60f075967cf8}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4e62642e0928}{Initialize} ()=0
-\begin{DoxyCompactList}\small\item\em Configure Items requiring other Managers. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Configure Items requiring other Managers. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd0416bdc2f}{DoMainLoopItems} ()=0
+\begin{DoxyCompactList}\small\item\em The main loop calls this once per frame. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-Ogre::Node $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a423b3f134370a51fde5496a41792b42c}{GetNode} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$actor)
-\begin{DoxyCompactList}\small\item\em Used to work around the scenenode of an Actor being private, so all derived Containers can access it. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+Ogre::Node $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a9813fe23051cc1a324bfedd4d35d27ad}{GetNode} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$actor) const 
+\begin{DoxyCompactList}\small\item\em Used to work around the scenenode of an Actor being private, so all derived Containers can access it. \item\end{DoxyCompactList}\item 
+btCollisionObject $\ast$ \hyperlink{classphys_1_1ActorContainerBase_a3f3d84f7775d2e8597290e214fedd5f9}{GetCollisionObject} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$actor) const 
+\begin{DoxyCompactList}\small\item\em Used to work around the collision object of an Actor being private, so all derived Containers can access it. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -141,7 +147,7 @@ Reimplemented in \hyperlink{classphys_1_1ActorContainerVector_a4bc3e38f16caddee0
 
 
 
-Definition at line 61 of file actorcontainerbase.cpp.
+Definition at line 64 of file actorcontainerbase.cpp.
 
 \hypertarget{classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de47424c3}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!CursorToFirst@{CursorToFirst}}
@@ -195,6 +201,23 @@ This moves the cursor to the previous item in the container, and if you started 
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b04a8805a002413}{phys::ActorContainerVector}.
 
+\hypertarget{classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd0416bdc2f}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::DoMainLoopItems ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd0416bdc2f}
+
+
+The main loop calls this once per frame. 
+
+This is where each manager is expected to put anything that needs to be run each iteration of the main loop 
+
+Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{phys::ManagerBase}.
+
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a883e59ac1674421bac143088a6cf07c8}{phys::ActorContainerVector}.
+
 \hypertarget{classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!FindActor@{FindActor}}
 \index{FindActor@{FindActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
@@ -213,6 +236,25 @@ This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that
 
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a9ba6e38e0f12ada968cfee72fe5144d4}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!FindActor@{FindActor}}
+\index{FindActor@{FindActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::FindActor (btCollisionObject $\ast$ {\em PhysicsObject})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a9ba6e38e0f12ada968cfee72fe5144d4}
+
+
+This finds an actor by searching for a physics subsystem object. 
+
+This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time. \begin{DoxyReturn}{Returns}
+This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that has a physics object. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em PhysicsObject}]This is a pointer to a physics object that the Actor you want to find will have. \end{DoxyParams}
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_a5ebcdeb3018f3baf92154ddec79cd054}{phys::ActorContainerVector}.
 
 \hypertarget{classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!FindActor@{FindActor}}
@@ -264,6 +306,21 @@ This returns a pointer to an \hyperlink{classphys_1_1ActorBase}{ActorBase}.
 
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_a280700490b368a963dd8feae044c7a6d}{phys::ActorContainerVector}.
+
+\hypertarget{classphys_1_1ActorContainerBase_a3f3d84f7775d2e8597290e214fedd5f9}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetCollisionObject@{GetCollisionObject}}
+\index{GetCollisionObject@{GetCollisionObject}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{GetCollisionObject}]{\setlength{\rightskip}{0pt plus 5cm}btCollisionObject $\ast$ phys::ActorContainerBase::GetCollisionObject ({\bf ActorBase} $\ast$ {\em actor}) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a3f3d84f7775d2e8597290e214fedd5f9}
+
+
+Used to work around the collision object of an Actor being private, so all derived Containers can access it. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 58 of file actorcontainerbase.cpp.
 
 \hypertarget{classphys_1_1ActorContainerBase_a0ed43bc828aaee8ee33152970c3cc16d}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetContainerType@{GetContainerType}}
@@ -333,11 +390,11 @@ This returns a pointer to an \hyperlink{classphys_1_1ActorBase}{ActorBase}. Will
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}{phys::ActorContainerVector}.
 
-\hypertarget{classphys_1_1ActorContainerBase_a423b3f134370a51fde5496a41792b42c}{
+\hypertarget{classphys_1_1ActorContainerBase_a9813fe23051cc1a324bfedd4d35d27ad}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetNode@{GetNode}}
 \index{GetNode@{GetNode}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Node $\ast$ phys::ActorContainerBase::GetNode ({\bf ActorBase} $\ast$ {\em actor})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
-\label{d1/d00/classphys_1_1ActorContainerBase_a423b3f134370a51fde5496a41792b42c}
+\subsubsection[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Node $\ast$ phys::ActorContainerBase::GetNode ({\bf ActorBase} $\ast$ {\em actor}) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a9813fe23051cc1a324bfedd4d35d27ad}
 
 
 Used to work around the scenenode of an Actor being private, so all derived Containers can access it. 
@@ -366,7 +423,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3
 
 
 
-Definition at line 58 of file actorcontainerbase.cpp.
+Definition at line 61 of file actorcontainerbase.cpp.
 
 \hypertarget{classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4e62642e0928}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!Initialize@{Initialize}}
@@ -418,7 +475,7 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_aeee5bd81601faed85e6
 
 
 
-Definition at line 67 of file actorcontainerbase.cpp.
+Definition at line 70 of file actorcontainerbase.cpp.
 
 \hypertarget{classphys_1_1ActorContainerBase_a60f37a056e8750f3b389c5ceed14520c}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!RemoveActorAtCursor@{RemoveActorAtCursor}}

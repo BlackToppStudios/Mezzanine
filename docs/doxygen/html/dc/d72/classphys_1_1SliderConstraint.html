@@ -47,8 +47,10 @@ Inheritance diagram for phys::SliderConstraint:</div>
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>SliderConstraint</b> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorB, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> VectorA, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> VectorB, <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html">Quaternion</a> QuaternionA, <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html">Quaternion</a> QuaternionB, bool UseLinearReferenceA)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4727dc39e3ac0ab553aa6a1cff00fc4e"></a><!-- doxytag: member="phys::SliderConstraint::SliderConstraint" ref="a4727dc39e3ac0ab553aa6a1cff00fc4e" args="(ActorRigid *ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceA)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>SliderConstraint</b> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorB, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> VectorB, <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html">Quaternion</a> QuaternionB, bool UseLinearReferenceA)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a142708184f0a445edadddc4ad5ca08b5"></a><!-- doxytag: member="phys::SliderConstraint::SliderConstraint" ref="a142708184f0a445edadddc4ad5ca08b5" args="(btSliderConstraint *Constraint)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>SliderConstraint</b> (btSliderConstraint *Constraint)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d72/classphys_1_1SliderConstraint.html#a142708184f0a445edadddc4ad5ca08b5">SliderConstraint</a> (btSliderConstraint *Constraint)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal constructor.  <a href="#a142708184f0a445edadddc4ad5ca08b5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d72/classphys_1_1SliderConstraint.html#a11f32500c6cb4ec89e7eb6160842ba35">~SliderConstraint</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor.  <a href="#a11f32500c6cb4ec89e7eb6160842ba35"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a815265abaf184340aef505eaf82775e2"></a><!-- doxytag: member="phys::SliderConstraint::SetFrameOffsetALocation" ref="a815265abaf184340aef505eaf82775e2" args="(Vector3 Location)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetFrameOffsetALocation</b> (<a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> Location)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a828eb0ffac6d95ce2d8d9690a12ca722"></a><!-- doxytag: member="phys::SliderConstraint::SetFrameOffsetBLocation" ref="a828eb0ffac6d95ce2d8d9690a12ca722" args="(Vector3 Location)" -->
@@ -117,17 +119,70 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetParam</b> 
 virtual <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetParam</b> (int num, int axis=-1)</td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae99629f3e87f72d3271ff82137fa81e2"></a><!-- doxytag: member="phys::SliderConstraint::Slider" ref="ae99629f3e87f72d3271ff82137fa81e2" args="" -->
-btSliderConstraint *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Slider</b></td></tr>
+btSliderConstraint *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d72/classphys_1_1SliderConstraint.html#ae99629f3e87f72d3271ff82137fa81e2">Slider</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bullet constraint that this class encapsulates. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="../../dc/d4d/constraint_8h_source.html#l00191">191</a> of file <a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d4d/constraint_8h_source.html#l00265">265</a> of file <a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a142708184f0a445edadddc4ad5ca08b5"></a><!-- doxytag: member="phys::SliderConstraint::SliderConstraint" ref="a142708184f0a445edadddc4ad5ca08b5" args="(btSliderConstraint *Constraint)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::SliderConstraint::SliderConstraint </td>
+          <td>(</td>
+          <td class="paramtype">btSliderConstraint *&nbsp;</td>
+          <td class="paramname"> <em>Constraint</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal constructor. </p>
+<p>Constructs this class around a pre-built bullet constraint. This is an internal only constructor and shouldn't be called manually. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Constraint</em>&nbsp;</td><td>The constraint to be constructed around. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00519">519</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a11f32500c6cb4ec89e7eb6160842ba35"></a><!-- doxytag: member="phys::SliderConstraint::~SliderConstraint" ref="a11f32500c6cb4ec89e7eb6160842ba35" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::SliderConstraint::~SliderConstraint </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Class destructor. </p>
+<p>The class destructor. </p>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00525">525</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a></li>
 <li><a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:09 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:36 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

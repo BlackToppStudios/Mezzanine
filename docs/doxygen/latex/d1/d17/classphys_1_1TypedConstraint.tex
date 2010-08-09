@@ -2,6 +2,15 @@
 \section{phys::TypedConstraint Class Reference}
 \label{d1/d17/classphys_1_1TypedConstraint}\index{phys::TypedConstraint@{phys::TypedConstraint}}
 }
+
+
+This is the base class for all constraints supported.  
+
+
+
+
+{\ttfamily \#include $<$constraint.h$>$}
+
 Inheritance diagram for phys::TypedConstraint:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,16 +20,14 @@ Inheritance diagram for phys::TypedConstraint:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1TypedConstraint_a50ca8631a6c75bbc609c8d4ed61fdcee}{
-{\bfseries TypedConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$bodya, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$bodyb)}
-\label{d1/d17/classphys_1_1TypedConstraint_a50ca8631a6c75bbc609c8d4ed61fdcee}
-
-\item 
-\hypertarget{classphys_1_1TypedConstraint_a41ad08bfde377e91f2b37b0af40a9d34}{
-{\bfseries TypedConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$bodya)}
-\label{d1/d17/classphys_1_1TypedConstraint_a41ad08bfde377e91f2b37b0af40a9d34}
-
-\item 
+\hyperlink{classphys_1_1TypedConstraint_a499e2f94ca4ee111001efa0dd3862391}{TypedConstraint} ()
+\begin{DoxyCompactList}\small\item\em No initialization constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1TypedConstraint_abf1cb6e3cf5c62feac31805162ec2766}{$\sim$TypedConstraint} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1TypedConstraint_a50ca8631a6c75bbc609c8d4ed61fdcee}{TypedConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$bodya, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$bodyb)
+\begin{DoxyCompactList}\small\item\em Two body constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1TypedConstraint_a41ad08bfde377e91f2b37b0af40a9d34}{TypedConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$bodya)
+\begin{DoxyCompactList}\small\item\em One body constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1TypedConstraint_a31a20a74094f0cb8e4f82d1f99725415}{
 virtual void {\bfseries SetParam} (int num, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} value, int axis=-\/1)=0}
 \label{d1/d17/classphys_1_1TypedConstraint_a31a20a74094f0cb8e4f82d1f99725415}
@@ -35,21 +42,100 @@ virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfse
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classphys_1_1TypedConstraint_a5e4251df846e7afbab2e49039530a140}{
-btRigidBody $\ast$ {\bfseries BodyA}}
+btRigidBody $\ast$ \hyperlink{classphys_1_1TypedConstraint_a5e4251df846e7afbab2e49039530a140}{BodyA}}
 \label{d1/d17/classphys_1_1TypedConstraint_a5e4251df846e7afbab2e49039530a140}
 
-\item 
+\begin{DoxyCompactList}\small\item\em First rigid body the constraint applies to. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1TypedConstraint_ab90a86274d18f45628e91a76d28c8278}{
-btRigidBody $\ast$ {\bfseries BodyB}}
+btRigidBody $\ast$ \hyperlink{classphys_1_1TypedConstraint_ab90a86274d18f45628e91a76d28c8278}{BodyB}}
 \label{d1/d17/classphys_1_1TypedConstraint_ab90a86274d18f45628e91a76d28c8278}
+
+\begin{DoxyCompactList}\small\item\em Second rigid body the constraint applies to(if applicable). \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1TypedConstraint_a31527f4782a0861fd6fd4bb7e201b23f}{
+btTypedConstraint $\ast$ \hyperlink{classphys_1_1TypedConstraint_a31527f4782a0861fd6fd4bb7e201b23f}{ConstraintBase}}
+\label{d1/d17/classphys_1_1TypedConstraint_a31527f4782a0861fd6fd4bb7e201b23f}
+
+\begin{DoxyCompactList}\small\item\em Bullet constraint that this class encapsulates. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1TypedConstraint_a7b4bcdf992c21ae83363f25df05b1d25}{
+class {\bfseries World}}
+\label{d1/d17/classphys_1_1TypedConstraint_a7b4bcdf992c21ae83363f25df05b1d25}
+
+\item 
+\hypertarget{classphys_1_1TypedConstraint_a139cf05ac01161b7071c8a037c841683}{
+class {\bfseries PhysicsManager}}
+\label{d1/d17/classphys_1_1TypedConstraint_a139cf05ac01161b7071c8a037c841683}
 
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+This is the base class for all constraints supported. This class provides the basis for all the other constraints. This is also a virtual class and provides no constraint properties of it's own, thus shouldn't/can't be called on manually. 
+
+Definition at line 72 of file constraint.h.
 
 
-Definition at line 61 of file constraint.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1TypedConstraint_a499e2f94ca4ee111001efa0dd3862391}{
+\index{phys::TypedConstraint@{phys::TypedConstraint}!TypedConstraint@{TypedConstraint}}
+\index{TypedConstraint@{TypedConstraint}!phys::TypedConstraint@{phys::TypedConstraint}}
+\subsubsection[{TypedConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::TypedConstraint::TypedConstraint ()}}
+\label{d1/d17/classphys_1_1TypedConstraint_a499e2f94ca4ee111001efa0dd3862391}
+
+
+No initialization constructor. 
+
+The no initialization class constructor. 
+
+Definition at line 52 of file constraint.cpp.
+
+\hypertarget{classphys_1_1TypedConstraint_abf1cb6e3cf5c62feac31805162ec2766}{
+\index{phys::TypedConstraint@{phys::TypedConstraint}!$\sim$TypedConstraint@{$\sim$TypedConstraint}}
+\index{$\sim$TypedConstraint@{$\sim$TypedConstraint}!phys::TypedConstraint@{phys::TypedConstraint}}
+\subsubsection[{$\sim$TypedConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::TypedConstraint::$\sim$TypedConstraint ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d1/d17/classphys_1_1TypedConstraint_abf1cb6e3cf5c62feac31805162ec2766}
+
+
+Class destructor. 
+
+The class destructor. 
+
+Definition at line 69 of file constraint.cpp.
+
+\hypertarget{classphys_1_1TypedConstraint_a50ca8631a6c75bbc609c8d4ed61fdcee}{
+\index{phys::TypedConstraint@{phys::TypedConstraint}!TypedConstraint@{TypedConstraint}}
+\index{TypedConstraint@{TypedConstraint}!phys::TypedConstraint@{phys::TypedConstraint}}
+\subsubsection[{TypedConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::TypedConstraint::TypedConstraint ({\bf ActorRigid} $\ast$ {\em bodya}, \/  {\bf ActorRigid} $\ast$ {\em bodyb})}}
+\label{d1/d17/classphys_1_1TypedConstraint_a50ca8631a6c75bbc609c8d4ed61fdcee}
+
+
+Two body constructor. 
+
+This constructor is used when the applicable constraint is applied to two bodies, as opposed to a point a world space. 
+\begin{DoxyParams}{Parameters}
+\item[{\em bodya}]First actor to be applied to. \item[{\em bodyb}]Second actor to be applied to. \end{DoxyParams}
+
+
+Definition at line 56 of file constraint.cpp.
+
+\hypertarget{classphys_1_1TypedConstraint_a41ad08bfde377e91f2b37b0af40a9d34}{
+\index{phys::TypedConstraint@{phys::TypedConstraint}!TypedConstraint@{TypedConstraint}}
+\index{TypedConstraint@{TypedConstraint}!phys::TypedConstraint@{phys::TypedConstraint}}
+\subsubsection[{TypedConstraint}]{\setlength{\rightskip}{0pt plus 5cm}phys::TypedConstraint::TypedConstraint ({\bf ActorRigid} $\ast$ {\em bodya})}}
+\label{d1/d17/classphys_1_1TypedConstraint_a41ad08bfde377e91f2b37b0af40a9d34}
+
+
+One body constructor. 
+
+This constructor is used when the applicable constraint is applied to a body and a point in world space. 
+\begin{DoxyParams}{Parameters}
+\item[{\em bodya}]The actor to be constraint to a point in world space. \end{DoxyParams}
+
+
+Definition at line 63 of file constraint.cpp.
 
 
 

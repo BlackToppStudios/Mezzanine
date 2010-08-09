@@ -47,8 +47,10 @@ Inheritance diagram for phys::ConeTwistConstraint:</div>
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>ConeTwistConstraint</b> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorB, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> VectorA, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> Vectorb, <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html">Quaternion</a> QuaternionA, <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html">Quaternion</a> QuaternionB)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9c2ee7346f1b862d508cbefe22e54e0"></a><!-- doxytag: member="phys::ConeTwistConstraint::ConeTwistConstraint" ref="ab9c2ee7346f1b862d508cbefe22e54e0" args="(ActorRigid *ActorA, Vector3 VectorA, Quaternion QuaternionA)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>ConeTwistConstraint</b> (<a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> VectorA, <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html">Quaternion</a> QuaternionA)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38a9a0e7676d8ad8f77831a319bc007b"></a><!-- doxytag: member="phys::ConeTwistConstraint::ConeTwistConstraint" ref="a38a9a0e7676d8ad8f77831a319bc007b" args="(btConeTwistConstraint *Constraint)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>ConeTwistConstraint</b> (btConeTwistConstraint *Constraint)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dbc/classphys_1_1ConeTwistConstraint.html#a38a9a0e7676d8ad8f77831a319bc007b">ConeTwistConstraint</a> (btConeTwistConstraint *Constraint)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal constructor.  <a href="#a38a9a0e7676d8ad8f77831a319bc007b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dbc/classphys_1_1ConeTwistConstraint.html#aae5d4aeeff871a2ec79bdb7d493588df">~ConeTwistConstraint</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor.  <a href="#aae5d4aeeff871a2ec79bdb7d493588df"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e2ffb465a8ceab4b77663b9e446a3ae"></a><!-- doxytag: member="phys::ConeTwistConstraint::SetAngularOnly" ref="a1e2ffb465a8ceab4b77663b9e446a3ae" args="(bool AngularOnly)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetAngularOnly</b> (bool AngularOnly)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8519afb837606a39dfaef447ae96888"></a><!-- doxytag: member="phys::ConeTwistConstraint::SetLimit" ref="ae8519afb837606a39dfaef447ae96888" args="(int LimitIndex, Real LimitValue)" -->
@@ -77,17 +79,70 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetParam</b> 
 virtual <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetParam</b> (int num, int axis=-1)</td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6bb25f6554b09cc9ce3afb7e1c46f074"></a><!-- doxytag: member="phys::ConeTwistConstraint::ConeTwist" ref="a6bb25f6554b09cc9ce3afb7e1c46f074" args="" -->
-btConeTwistConstraint *&nbsp;</td><td class="memItemRight" valign="bottom"><b>ConeTwist</b></td></tr>
+btConeTwistConstraint *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dbc/classphys_1_1ConeTwistConstraint.html#a6bb25f6554b09cc9ce3afb7e1c46f074">ConeTwist</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bullet constraint that this class encapsulates. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="../../dc/d4d/constraint_8h_source.html#l00075">75</a> of file <a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d4d/constraint_8h_source.html#l00103">103</a> of file <a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a38a9a0e7676d8ad8f77831a319bc007b"></a><!-- doxytag: member="phys::ConeTwistConstraint::ConeTwistConstraint" ref="a38a9a0e7676d8ad8f77831a319bc007b" args="(btConeTwistConstraint *Constraint)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::ConeTwistConstraint::ConeTwistConstraint </td>
+          <td>(</td>
+          <td class="paramtype">btConeTwistConstraint *&nbsp;</td>
+          <td class="paramname"> <em>Constraint</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal constructor. </p>
+<p>Constructs this class around a pre-built bullet constraint. This is an internal only constructor and shouldn't be called manually. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Constraint</em>&nbsp;</td><td>The constraint to be constructed around. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00092">92</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aae5d4aeeff871a2ec79bdb7d493588df"></a><!-- doxytag: member="phys::ConeTwistConstraint::~ConeTwistConstraint" ref="aae5d4aeeff871a2ec79bdb7d493588df" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::ConeTwistConstraint::~ConeTwistConstraint </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Class destructor. </p>
+<p>The class destructor. </p>
+
+<p>Definition at line <a class="el" href="../../d9/dab/constraint_8cpp_source.html#l00098">98</a> of file <a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../dc/d4d/constraint_8h_source.html">constraint.h</a></li>
 <li><a class="el" href="../../d9/dab/constraint_8cpp_source.html">constraint.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:06 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:35 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

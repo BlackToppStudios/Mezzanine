@@ -1,4 +1,4 @@
-//� Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -80,34 +80,45 @@ namespace phys
     // Physworld constructor
     //this should create the basic objects for stroing and tracking the roots of
     //objects in the game
-    /// @todo TODO Fix the `const`ness of all methods to be as const as allowable
     World::World()
     {
         Vector3 Lbounds(-1000.0,-1000.0,-1000.0);
         Vector3 Ubounds(1000.0,1000.0,1000.0);
+        std::vector <ManagerBase*> temp;
 
-        this->Construct(
-            Lbounds,
-            Ubounds,
-            10
-            );
+        this->Construct(Lbounds, Ubounds, 10, "Physgame.log", temp);
     }
 
-    /// @todo TODO: adjust the constructors to allow for pointers to a callback manager and event manager
 
     World::World(   const Vector3 &GeographyLowerBounds_,
-                            const Vector3 &GeographyUpperbounds_,
-                            const unsigned short int  &MaxPhysicsProxies_)
+                    const Vector3 &GeographyUpperbounds_,
+                    const unsigned short int  &MaxPhysicsProxies_,
+                    std::string LogFileName)
     {
+        std::vector <ManagerBase*> temp;
         this->Construct(GeographyLowerBounds_,
                         GeographyUpperbounds_,
-                        MaxPhysicsProxies_
-                        );
+                        MaxPhysicsProxies_,
+                        LogFileName,
+                        temp );
     }
+
+    World::World(  const Vector3 &GeographyLowerBounds_,
+            const Vector3 &GeographyUpperbounds_,
+            const unsigned short int &MaxPhysicsProxies_,
+            const std::string &LogFileName,
+            const std::vector <ManagerBase*> &ManagerToBeAdded)
+    {
+
+
+    }
+
 
     void World::Construct(  const Vector3 &GeographyLowerBounds_,
                                 const Vector3 &GeographyUpperbounds_,
-                                const unsigned short int &MaxPhysicsProxies_)
+                                const unsigned short int &MaxPhysicsProxies_,
+                                std::string LogFileName,
+                                std::vector <ManagerBase*> ManagerToBeAdded)
     {
         //Set some sane Defaults for some values
         this->SetWindowName("AppName");
@@ -276,21 +287,6 @@ namespace phys
     {
         this->Log(Message);
         throw(Message);
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    //Shows the ogre settings Dialog, and allows it to save settings to ogres
-    //preset save location
-    bool World::ShowSystemSettingDialog()
-    {
-        try
-        {
-            return this->OgreRoot->showConfigDialog();
-        } catch (exception& e) {
-            this->Log("Ogre settings windows from main UI or mandatory setting failure");
-            this->Log(e.what());
-            return false;
-        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -502,7 +498,7 @@ namespace phys
         if (!this->OgreRoot->restoreConfig())
         {
             //if we can't do that then lets make new settings
-            if (!this->ShowSystemSettingDialog())
+            if (!this->Graphics->ShowGraphicsSettingDialog())
             {
                 this->LogAndThrow("Error: Could not setup Ogre.");
             }
@@ -608,6 +604,156 @@ namespace phys
     void World::InitResourceGroup(String Group)
     {
         this->OgreResource->initialiseResourceGroup(Group);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Upper Management
+    ///////////////////////////////////////
+    void World::AddManager(ManagerBase* ManagerToAdd)
+    {
+        if(this->ManagerList.empty())
+        {
+            ManagerList.push_back(ManagerToAdd);
+        }else{
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
+                if( (*ManIter)->Priority > ManagerToAdd->Priority )
+                {
+                    this->ManagerList.insert(ManIter,ManagerToAdd);
+                    break;
+                }
+            }
+        }
+    }
+
+    void World::RemoveManager(ManagerBase* ManagerToRemove)
+    {
+        if(this->ManagerList.empty())
+        {
+            // do nothing
+        }else{
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
+                if( *ManIter == ManagerToRemove )
+                {
+                    this->ManagerList.erase(ManIter);
+                    break;
+                }
+            }
+        }
+    }
+
+    void World::RemoveManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne)
+    {
+        if(this->ManagerList.empty())
+        {
+            //do nothing
+        }else{
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
+                if( (*ManIter)->GetType() == ManagersToRemoveType )
+                {
+                    if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
+                    {
+                        this->ManagerList.erase(ManIter);
+                    }else{
+                        --WhichOne;
+                    }
+                }
+            }
+        }
+    }
+
+    ManagerBase* World::GetManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne)
+    {
+        if(this->ManagerList.empty())
+        {
+            return 0;
+        }else{
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
+                if( (*ManIter)->GetType() == ManagersToRemoveType )
+                {
+                    if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
+                    {
+                        return *ManIter;
+                    }else{
+                        --WhichOne;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    void World::UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority)
+    {
+        ManagerToChange->Priority=Priority;
+        if(this->ManagerList.empty())
+        {
+            ManagerList.push_back(ManagerToChange);
+        }else{
+            for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
+            {
+                if( (*ManIter)->Priority > ManagerToChange->Priority )
+                {
+                    this->ManagerList.insert(ManIter,ManagerToChange);
+                }else if(*ManIter == ManagerToChange )
+                {
+                    this->ManagerList.erase(ManIter);
+                }
+            }
+        }
+    }
+
+    void World::UpdateManagerOrder()
+    {
+        if(this->ManagerList.empty())
+        {
+            //do nothing
+        }else{
+            std::list< ManagerBase* > temp; //(this->ManagerList.begin(),this->ManagerList.end());
+            temp.swap(this->ManagerList);
+            for(std::list< ManagerBase* >::iterator TempIter = temp.begin(); TempIter!=temp.end(); ++TempIter )
+            {
+                this->AddManager(*TempIter);
+            }
+        }
+    }
+
+    ActorContainerBase* World::GetActorManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<ActorContainerBase*> (this->GetManager(ManagerBase::ActorContainerBase, WhichOne));
+    }
+
+    CallBackManager* World::GetCallBackManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<CallBackManager*> (this->GetManager(ManagerBase::CallBackManager, WhichOne));
+    }
+
+    CameraManager* World::GetCameraManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<CameraManager*> (this->GetManager(ManagerBase::CameraManager, WhichOne));
+    }
+
+    EventManager* World::GetEventManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<EventManager*> (this->GetManager(ManagerBase::EventManager, WhichOne));
+    }
+
+    GraphicsManager* World::GetGraphicsManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<GraphicsManager*> (this->GetManager(ManagerBase::GraphicsManager, WhichOne));
+    }
+
+    PhysicsManager* World::GetPhysicsManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));
+    }
+
+    SoundManager* World::GetSoundManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<SoundManager*> (this->GetManager(ManagerBase::SoundManager, WhichOne));
     }
 
 }

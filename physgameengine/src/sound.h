@@ -65,6 +65,8 @@ namespace phys
             cAudio::IAudioSource* SoundSource;
             cAudio::IAudioManager* Manager;
         public:
+            /// @brief Class Constructor.  Internal use only.
+            /// @details The Class costructor.  Should not be called manually, use the sound manager instead.
             Sound();
             /// @brief Class Constructor.  Internal use only.
             /// @details The Class costructor.  Should not be called manually, use the sound manager instead.

@@ -44,6 +44,8 @@
 #include "eventmanager.h"
 #include "graphicsmanager.h"
 
+#include "Ogre.h"
+
 namespace phys
 {
 
@@ -114,6 +116,21 @@ namespace phys
         /// @todo TODO: Need to attempt to update resolution here
         this->RenderWidth = Width_;
         this->RenderHeight = Height_;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //Shows the ogre settings Dialog, and allows it to save settings to ogres
+    //preset save location
+    bool GraphicsManager::ShowGraphicsSettingDialog()
+    {
+        try
+        {
+            return this->GameWorld->OgreRoot->showConfigDialog();
+        } catch (exception& e) {
+            this->GameWorld->Log("Ogre settings windows from main UI or mandatory setting failure");
+            this->GameWorld->Log(e.what());
+            return false;
+        }
     }
 
     //Inherited From ManagerBase

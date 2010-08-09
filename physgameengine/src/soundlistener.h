@@ -74,7 +74,7 @@ namespace phys
             void SetPosition(Vector3 Position);
             /// @brief Sets the direction the listener is facing.
             /// @details Sets the direction the listener is facing.
-            /// @param Position The new direction for the listener.
+            /// @param Direction The new direction for the listener.
             void SetDirection(Vector3 Direction);
             /// @brief Sets the up direction for the listener.
             /// @details Sets the direction that is up relative to the orientation of the listener.  Default: +Y

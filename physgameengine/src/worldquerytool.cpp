@@ -275,95 +275,86 @@ namespace phys
 
     Vector3* WorldQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
     {
-        //Prepare for fancy math and therefore division by 0
-        try
-        {
-            /// @todo Clean up code and return the answer
-            this->GameWorld->LogStream << " Plane: " << QueryPlane << endl << " Ray: " << QueryRay << endl;
 
-            this->GameWorld->LogStream << "X:" << QueryPlane.Normal.X << " Y:" << QueryPlane.Normal.Y << " Z:" << QueryPlane.Normal.Z << " D:" << QueryPlane.Distance;
-
-            Real mousex1 = QueryRay.From.X;
-            Real mousey1 = QueryRay.From.Y;
-            Real mousez1 = QueryRay.From.Z;
-
-            Real mousex2 = QueryRay.From.X - QueryRay.To.X;
-            Real mousey2 = QueryRay.From.Y - QueryRay.To.Y;
-            Real mousez2 = QueryRay.From.Z - QueryRay.To.Z;
-
-            Vector3 Mouse2 = QueryRay.From - QueryRay.To;
+        this->GameWorld->Log("WorldQueryTool CLICK:\n");
+        try{
+            Vector3 u = QueryRay.To - QueryRay.From;
+            Vector3 p0 = Vector3(0,0,0);
 
 
-            Real planex = QueryPlane.Normal.X;
-            Real planey = QueryPlane.Normal.Y;
-            Real planez = QueryPlane.Normal.Z;
-            Real planed = QueryPlane.Distance;
-
-            mousex1 = mousex1 * planex;
-            mousey1 = mousey1 * planey;
-            mousez1 = mousez1 * planez;
-
-            mousex2 = mousex2 * planex;
-            mousey2 = mousey2 * planey;
-            mousez2 = mousez2 * planez;
-
-            Real T = (planed - mousex1 - mousey1 - mousez1) / (mousex2 + mousey2 + mousez2);
-
-            Real pointA = QueryRay.From.X + ((QueryRay.From.X - QueryRay.To.X) * T);
-            Real pointB = QueryRay.From.Y + ((QueryRay.From.Y - QueryRay.To.Y) * T);
-            Real pointC = QueryRay.From.Z + ((QueryRay.From.Z - QueryRay.To.Z) * T);
-
-
-
-
-
-
-            this->GameWorld->LogStream << "JAMES RESULTS:------------:X:" << pointA << " Y:" << pointB << " Z:" << pointC << " D:" << planed;
-
-
-
-
-
-
-            //Figure out the distance from the origin of the ray to the plane along the ray.
-            Real MyDistance = (   (QueryPlane.Normal.X*QueryRay.To.X - QueryPlane.Normal.X*QueryRay.From.X) +
-                                (QueryPlane.Normal.Y*QueryRay.To.Y - QueryPlane.Normal.Y*QueryRay.From.Y) +
-                                (QueryPlane.Normal.Z*QueryRay.To.Z - QueryPlane.Normal.Z*QueryRay.From.Z)
-                            )/(
-                                (QueryPlane.Normal.X*QueryRay.From.X - QueryPlane.Normal.Y*QueryRay.From.Y - QueryPlane.Normal.Z*QueryRay.From.Z - QueryPlane.Distance)
-                            );
-
-
-
-
-
-
-            std::pair< bool, Real > Answer = Ogre::Math::intersects(QueryRay.GetNormal().GetOgreRay(), QueryPlane.GetOgrePlane());
-            Real Distance = Answer.second;
-            this->GameWorld->LogStream << " Distances[ Ogre:"<<Distance<<", Math:"<<MyDistance<<"]"<<endl;
-            if(Answer.first)
+            if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
             {
-                if ( Distance > 0)
-                {
-                    //Ray TempRay()
-                    Vector3 *value = new Vector3( (QueryRay.GetNormal()*Distance).To );
-                    //this->GameWorld->Log()
-                    return value;
-                }else{
-                    return 0;
-                    //intersection is behind ray
-                }
-            }else{
-                //No valid intersection
+                this->GameWorld->Log("WorldQueryTool Error:Invalid Plane. Plane contains no points.\n");
                 return 0;
             }
-        } catch(exception e) {
-            //In case we divide b
-            this->GameWorld->Log("Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
-            this->GameWorld->Log(e.what());
-            return 0;
-        }
+            else{
+                if(QueryPlane.Normal.X != 0)
+                {
+                     p0 = Vector3(QueryPlane.Distance,0,0);
+                }
+                else if(QueryPlane.Normal.Y != 0)
+                {
+                     p0 = Vector3(0,QueryPlane.Distance,0);
+                }
+                else
+                {
+                     p0 = Vector3(0,0,QueryPlane.Distance);
+                }
+            }
 
+            GameWorld->LogStream << "WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance;
+
+            Vector3 w = QueryRay.From - p0;
+
+            Real D = u.dotProduct(QueryPlane.Normal);
+            Real N = -1 * w.dotProduct(QueryPlane.Normal);
+
+            Real SMALL_NUM = 0.00000001;
+
+            if( (D<0? -D : D) < SMALL_NUM)
+            {
+                if(N == 0)
+                {
+                    return new Vector3(QueryRay.From);
+                }
+                else
+                {
+                    this->GameWorld->Log("WorldQueryTool Error: num<SMALL_NUM: Ray casted with no intersection point.\n");
+                    return 0;
+                }
+            }
+
+            Real sI = N/D;
+
+            if(sI < 0 || sI > 1) //checks if the ray is too long
+            {
+                this->GameWorld->Log("WorldQueryTool Error:(si<0 || si > 1: Ray casted with no intersection point.\n");
+                return 0;
+            }
+
+            Vector3 test =  Vector3(QueryRay.From + (u * sI));
+
+            this->GameWorld->LogStream << "WorldQueryTool: RayPlane Intersection RESULTS   X:" << test.X << " Y:" << test.Y << " Z:" << test.Z;
+
+            Vector3* return_vector = new Vector3(QueryRay.From + (u * sI));
+
+            Real distance = return_vector->Distance(QueryRay.From);
+
+            if(distance > QueryRay.From.Distance(QueryRay.To))
+            {
+                this->GameWorld->Log("WorldQueryTool Error:Ray casted hits plane but is not long enough.\n");
+                return 0;
+            }
+
+            this->GameWorld->LogStream << "Distance:" << distance << "\n";
+
+             return return_vector;
+            } catch(exception e) {
+                //In case we divide b
+                this->GameWorld->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
+                this->GameWorld->Log(e.what());
+                return 0;
+            }
     }
 
     Ray* WorldQueryTool::GetMouseRay(Real Length)

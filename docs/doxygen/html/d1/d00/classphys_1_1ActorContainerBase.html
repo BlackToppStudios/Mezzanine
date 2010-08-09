@@ -79,6 +79,8 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This gets the last actor in the container.  <a href="#a8efeffd5ae22085fe01af791b3ea559e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a2e4652bf92f24a0ff20bdc4a7173b567">FindActor</a> (Ogre::Node *GraphicsNode)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This finds an actor by searching for a graphics subsystem nodes.  <a href="#a2e4652bf92f24a0ff20bdc4a7173b567"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a9ba6e38e0f12ada968cfee72fe5144d4">FindActor</a> (btCollisionObject *PhysicsObject)=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This finds an actor by searching for a physics subsystem object.  <a href="#a9ba6e38e0f12ada968cfee72fe5144d4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a91223cbaebb8e5f11a4f971d7e5b64b6">FindActor</a> (<a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> Name)=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This finds an actor based on its name.  <a href="#a91223cbaebb8e5f11a4f971d7e5b64b6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a0ed43bc828aaee8ee33152970c3cc16d">GetContainerType</a> () const =0</td></tr>
@@ -93,9 +95,13 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns the type of this manager.  <a href="#aa86380fd1b18d660f68b60f075967cf8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#af36d5866e0ee9f6f450a4e62642e0928">Initialize</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Configure Items requiring other Managers.  <a href="#af36d5866e0ee9f6f450a4e62642e0928"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a67fbde6a61602253f66fecd0416bdc2f">DoMainLoopItems</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The main loop calls this once per frame.  <a href="#a67fbde6a61602253f66fecd0416bdc2f"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Ogre::Node *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a423b3f134370a51fde5496a41792b42c">GetNode</a> (<a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *actor)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to work around the scenenode of an Actor being private, so all derived Containers can access it.  <a href="#a423b3f134370a51fde5496a41792b42c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Ogre::Node *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a9813fe23051cc1a324bfedd4d35d27ad">GetNode</a> (<a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *actor) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to work around the scenenode of an Actor being private, so all derived Containers can access it.  <a href="#a9813fe23051cc1a324bfedd4d35d27ad"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">btCollisionObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a3f3d84f7775d2e8597290e214fedd5f9">GetCollisionObject</a> (<a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *actor) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to work around the collision object of an Actor being private, so all derived Containers can access it.  <a href="#a3f3d84f7775d2e8597290e214fedd5f9"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>A base class to unify the interface for different kinds of containers for holding actors. </p>
@@ -194,7 +200,7 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 <p>Reimplemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a4bc3e38f16caddee021a97739bebaf6e">phys::ActorContainerVector</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00061">61</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -286,6 +292,30 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 </div>
 </div>
+<a class="anchor" id="a67fbde6a61602253f66fecd0416bdc2f"></a><!-- doxytag: member="phys::ActorContainerBase::DoMainLoopItems" ref="a67fbde6a61602253f66fecd0416bdc2f" args="()=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void phys::ActorContainerBase::DoMainLoopItems </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The main loop calls this once per frame. </p>
+<p>This is where each manager is expected to put anything that needs to be run each iteration of the main loop </p>
+
+<p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aa9e13a3f7c398b708f0f242610b5abf7">phys::ManagerBase</a>.</p>
+
+<p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a883e59ac1674421bac143088a6cf07c8">phys::ActorContainerVector</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a91223cbaebb8e5f11a4f971d7e5b64b6"></a><!-- doxytag: member="phys::ActorContainerBase::FindActor" ref="a91223cbaebb8e5f11a4f971d7e5b64b6" args="(String Name)=0" -->
 <div class="memitem">
 <div class="memproto">
@@ -312,6 +342,36 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 </dl>
 
 <p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#ae04f8c6dd9b07ef9c1456707be9e155b">phys::ActorContainerVector</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9ba6e38e0f12ada968cfee72fe5144d4"></a><!-- doxytag: member="phys::ActorContainerBase::FindActor" ref="a9ba6e38e0f12ada968cfee72fe5144d4" args="(btCollisionObject *PhysicsObject)=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a>* phys::ActorContainerBase::FindActor </td>
+          <td>(</td>
+          <td class="paramtype">btCollisionObject *&nbsp;</td>
+          <td class="paramname"> <em>PhysicsObject</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This finds an actor by searching for a physics subsystem object. </p>
+<p>This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to and <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> that has a physics object. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>PhysicsObject</em>&nbsp;</td><td>This is a pointer to a physics object that the Actor you want to find will have. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a5ebcdeb3018f3baf92154ddec79cd054">phys::ActorContainerVector</a>.</p>
 
 </div>
 </div>
@@ -386,6 +446,29 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to an <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>. </dd></dl>
 
 <p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a280700490b368a963dd8feae044c7a6d">phys::ActorContainerVector</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3f3d84f7775d2e8597290e214fedd5f9"></a><!-- doxytag: member="phys::ActorContainerBase::GetCollisionObject" ref="a3f3d84f7775d2e8597290e214fedd5f9" args="(ActorBase *actor) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">btCollisionObject * phys::ActorContainerBase::GetCollisionObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td>
+          <td class="paramname"> <em>actor</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Used to work around the collision object of an Actor being private, so all derived Containers can access it. </p>
+<p><b>For internal use only.</b></p>
+
+<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -483,7 +566,7 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 </div>
 </div>
-<a class="anchor" id="a423b3f134370a51fde5496a41792b42c"></a><!-- doxytag: member="phys::ActorContainerBase::GetNode" ref="a423b3f134370a51fde5496a41792b42c" args="(ActorBase *actor)" -->
+<a class="anchor" id="a9813fe23051cc1a324bfedd4d35d27ad"></a><!-- doxytag: member="phys::ActorContainerBase::GetNode" ref="a9813fe23051cc1a324bfedd4d35d27ad" args="(ActorBase *actor) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -493,7 +576,7 @@ Inheritance diagram for phys::ActorContainerBase:</div>
           <td class="paramtype"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *&nbsp;</td>
           <td class="paramname"> <em>actor</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [protected]</code></td>
+          <td> const<code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -526,7 +609,7 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00058">58</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00061">61</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -600,7 +683,7 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 
 <p>Implemented in <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#aeee5bd81601faed85e6a35f576c8d476">phys::ActorContainerVector</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00067">67</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html#l00070">70</a> of file <a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -708,7 +791,7 @@ Inheritance diagram for phys::ActorContainerBase:</div>
 <li><a class="el" href="../../d9/deb/actorcontainerbase_8cpp_source.html">actorcontainerbase.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:04 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

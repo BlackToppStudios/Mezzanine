@@ -23,7 +23,7 @@
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
     </ul>
   </div>
-<h1>eventmanager.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 Joseph Toppi and John Blackwood</span>
+<h1>eventmanager.h</h1><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -371,15 +371,20 @@
 <a name="l00346"></a>00346 <span class="comment">            /// in case a derived class wants to override it for some reason</span>
 <a name="l00347"></a>00347 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0" title="Empty Initializor.">Initialize</a>();
 <a name="l00348"></a>00348 <span class="comment"></span>
-<a name="l00349"></a>00349 <span class="comment">            /// @brief This returns the type of this manager.</span>
-<a name="l00350"></a>00350 <span class="comment">            /// @return This returns ManagerTypeName::EventManager</span>
-<a name="l00351"></a>00351 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerTypeName</a> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696" title="This returns the type of this manager.">GetType</a>() <span class="keyword">const</span>;
-<a name="l00352"></a>00352 
-<a name="l00353"></a>00353     };
-<a name="l00354"></a>00354 }
-<a name="l00355"></a>00355 <span class="preprocessor">#endif</span>
+<a name="l00349"></a>00349 <span class="comment">            /// @brief Empty MainLoopItems</span>
+<a name="l00350"></a>00350 <span class="comment">            /// @details This class implements this for the sake of entension and compatibility this function does nothing. This is just empty during this round of refactoring,</span>
+<a name="l00351"></a>00351 <span class="comment">            /// and this will get all the functionality that currently should be here, but is in the world</span>
+<a name="l00352"></a>00352 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#aca8fb3d285484dcdb943824bf11f3596" title="Empty MainLoopItems.">DoMainLoopItems</a>();
+<a name="l00353"></a>00353 <span class="comment"></span>
+<a name="l00354"></a>00354 <span class="comment">            /// @brief This returns the type of this manager.</span>
+<a name="l00355"></a>00355 <span class="comment">            /// @return This returns ManagerTypeName::EventManager</span>
+<a name="l00356"></a>00356 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerTypeName</a> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696" title="This returns the type of this manager.">GetType</a>() <span class="keyword">const</span>;
+<a name="l00357"></a>00357 
+<a name="l00358"></a>00358     };
+<a name="l00359"></a>00359 }
+<a name="l00360"></a>00360 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Thu Jul 8 22:35:02 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

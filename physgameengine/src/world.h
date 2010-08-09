@@ -169,7 +169,19 @@ namespace phys
             void DestroyRenderWindow();
 
             //Used by the constructors
-            void Construct(const Vector3 &GeographyLowerBounds, const Vector3 &GeographyUpperbounds, const unsigned short int &MaxPhysicsProxies);
+            /// @internal
+            /// @brief This is called by all the constructors so that the is one unified place to have all the settings made.
+            /// @param GeographyLowerBounds This is the lower boundary of the phyiscs estimation.
+            /// @param GeographyUpperbounds This is the upper boundary of the phyiscs estimation.
+            /// @param MaxPhysicsProxies This is an estimation of the limit of bodies in the physics world.
+            /// @param LogFileName This is the place that log messages get sent to.
+            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
+            void Construct( const Vector3 &GeographyLowerBounds,
+                            const Vector3 &GeographyUpperbounds,
+                            const unsigned short int &MaxPhysicsProxies,
+                            std::string LogFileName,
+                            std::vector < ManagerBase* > ManagerToBeAdded);
+
             void SanityChecks();
             void TestLogger();
             template <class T> void OneLogTest(T Data, string DataType,string Message1 = "Logging and Throwing a ", string Message2 = "Logging a ");
@@ -178,27 +190,71 @@ namespace phys
             string WindowName;
             Whole TargetFrameLength;
 
-            //Ogre objects
-            Ogre::Root* OgreRoot;
-            Ogre::RenderSystem* OgreRenderSystem;
-            Ogre::RenderWindow* OgreGameWindow;
-            Ogre::ResourceGroupManager* OgreResource;
-            Ogre::Camera* OgreCamera;
-            Ogre::Viewport* OgreViewport;
-            Ogre::SceneManager* OgreSceneManager;
+            /// @internal
+            /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
+            std::list< ManagerBase* > ManagerList;
 
         public:
+
+            //Ogre objects
+            /// @internal
+            /// @brief
+            Ogre::Root* OgreRoot;
+
+            /// @internal
+            /// @brief
+            Ogre::RenderSystem* OgreRenderSystem;
+
+            /// @internal
+            /// @brief
+            Ogre::RenderWindow* OgreGameWindow;
+
+            /// @internal
+            /// @brief
+            Ogre::ResourceGroupManager* OgreResource;
+
+            /// @internal
+            /// @brief
+            Ogre::Camera* OgreCamera;
+
+            /// @internal
+            /// @brief
+            Ogre::Viewport* OgreViewport;
+
+            /// @internal
+            /// @brief
+            Ogre::SceneManager* OgreSceneManager;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion methods
         ///////////////////////////////////////
 
+            /// @brief Descriptive constructor With Manager Pointers
+            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
+            /// @param GeographyLowerBounds_ The lower limiasked Jan 29 '09 at 9:27ts for the size of the physics simulation
+            /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
+            /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
+            /// @param LogFileName This is the place that log messages get sent to.
+            World(  const Vector3 &GeographyLowerBounds_,
+                    const Vector3 &GeographyUpperbounds_,
+                    const unsigned short int &MaxPhysicsProxies_=1024,
+                    std::string LogFileName="Physgame.log" );
+
+
             /// @brief Descriptive constructor
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
+            /// This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other
+            /// constructors this one can accept a vector of pointers to managers. They will be add
             /// @param GeographyLowerBounds_ The lower limits for the size of the physics simulation
             /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
             /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
-            World( const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_=1024);
+            /// @param LogFileName This is the place that log messages get sent to.
+            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
+            World(  const Vector3 &GeographyLowerBounds_,
+                    const Vector3 &GeographyUpperbounds_,
+                    const unsigned short int &MaxPhysicsProxies_,
+                    const std::string &LogFileName,
+                    const std::vector <ManagerBase*> &ManagerToBeAdded);
 
             /// @brief Default constructor
             /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
@@ -241,7 +297,7 @@ namespace phys
             void SetWindowName(const String &NewName);
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Graphics system methods
+        // Timing system methods
         ///////////////////////////////////////
             /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be
             /// @details In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
@@ -264,15 +320,9 @@ namespace phys
             /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
             void SetTargetFrameRate(const Whole &NewFrameRate);
 
-            /// @brief This Shows an Engine Generated Configuration Screen
-            /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration
-            /// options, like Vsync and Resolution, But it might ask some really silly stuff. I thnk this would be fine for smaller simpler
-            /// Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage
-            /// user settings.
-            bool ShowSystemSettingDialog();
-
         ///////////////////////////////////////////////////////////////////////////////
         // Graphics system loading methods
+        /// @todo move these to the graphics manager
         ///////////////////////////////////////
             /// @brief Adds a location for graphical resources.
             /// @details This function will add a location on the disk to find files needed to create and
@@ -315,6 +365,8 @@ namespace phys
             /// @details By default this is called from the function World.GameInit() this is were the bulk of the simulation is ran from, see @ref mainloop1
             void MainLoop();
 
+
+        /// @todo Remove this completely
             /// @brief Performs all the items that would normally be performed during the game loop
             /// @param PreviousFrameTime This is the amount of time that has elapsed since this function was last called, so that physics can be done properly.
             /// @details This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is
@@ -322,6 +374,7 @@ namespace phys
             /// each iteration of the main loop.
             void DoMainLoopAllItems(const Real &PreviousFrameTime);
 
+        /// @todo move these to the appropriate manager
             /// @brief Increments physics by one step
             /// @param TimeElapsed This is the amount of time that has elapsed since this function was last called, required for proper physics
             /// @details Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre/Post-Physics Callback is
@@ -352,21 +405,22 @@ namespace phys
         ///////////////////////////////////////////////////////////////////////////////
         // Actor Methods
         ///////////////////////////////////////
-            /// @brief The adds and Actor to the physworld.
-            /// @details This adds, and makes sure that it's physics status and 3d graphics status are
-            /// properly handled. The phys::World will delete any actor still left in it upon deconstruction.
-            /// @param ActorToAdd This is a pointer to the actor to be added.
+            // @brief The adds and Actor to the physworld.
+            // @details This adds, and makes sure that it's physics status and 3d graphics status are
+            // properly handled. The phys::World will delete any actor still left in it upon deconstruction.
+            // @param ActorToAdd This is a pointer to the actor to be added.
             //void AddActor(ActorBase* ActorToAdd);
 
-            /// @brief The Removes an Actor from the physworld.
-            /// @details This removes the actor to the internal graphics and physics systems, and drops the pointer. This does not delete
-            /// The Actor.
-            /// @param ActorToRemove This is a pointer to the actor to be removed
+            // @brief The Removes an Actor from the physworld.
+            // @details This removes the actor to the internal graphics and physics systems, and drops the pointer. This does not delete
+            // The Actor.
+            // @param ActorToRemove This is a pointer to the actor to be removed
             //void RemoveActor(ActorBase* ActorToRemove);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Feature Manager Pointers
         ///////////////////////////////////////
+
             /// @brief This is a convienient place to keep pointer to our Actors
             /// @details Whenever an actor is added, a pointer to it will be stored here.
             ActorContainerBase* Actors;
@@ -400,6 +454,85 @@ namespace phys
             /// use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of
             /// debugging data and creating in game logs and recreations, this can be very useful.
             std::stringstream LogStream;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Upper Management
+        ///////////////////////////////////////
+            /// @brief This adds a manager, in the correct order, to the list that the world calls on
+            /// @details Internally the world had a list of managers that is sorted by the ManagerBase::Priority. Everytime a manager is added,
+            /// the list is searched for the sorted point to insert the manager at.
+            /// @param ManagerToAdd The pointer to the manager to be added
+            void AddManager(ManagerBase* ManagerToAdd);
+
+            /// @brief This removes a manager by finding the matching pointer.
+            /// @details Currently this just iterates through the list looking for the matching pointer, at some future point
+            /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.
+            /// @param ManagerToRemove A pointer to the manager to be removed
+            void RemoveManager(ManagerBase* ManagerToRemove);
+
+            /// @brief This removes a manager of a specific type from the list
+            /// @details This starts at the beginning (should be the lowest priority)of the list and iterates through looking for a matching type, at some future point
+            /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.
+            /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.
+            /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
+            void RemoveManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne);
+
+            /// @brief This is will find the manager of a given type
+            /// @details Specifically this will iterate from lowest priority to highest priority, and return a pointer to the first Manager
+            /// with a matching type found. If you specify WhichOne, it will the Nth+1 in the list matching the type (kind of like array subscript).
+            /// @param ManagersToRemoveType
+            /// @param WhichOne If not getting the first/only manager of the given type, get one.
+            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists
+            ManagerBase* GetManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne=0);
+
+            /// @brief Changes a Manager's time of execution.
+            /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.
+            /// @param ManagerToChange A pointer to the manager that needs to be changed
+            /// @param Priority the new desire priority/execution order of the Manager
+            void UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority);
+
+            /// @brief This forces the list of managers to be resorted.
+            /// @details This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers
+            void UpdateManagerOrder();
+
+            /// @brief This gets the ActorManager from the manager list.
+            /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
+            /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
+            ActorContainerBase* GetActorManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the CallbackManager from the manager list.
+            /// @param WhichOne If you have multiple Managers this will choose which one to return.
+            /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
+            CallBackManager* GetCallBackManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the CameraManager from the manager list.
+            /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.
+            /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
+            CameraManager* GetCameraManager(const short unsigned int &WhichOne=0);
+
+
+            /// @brief This gets the EventManager from the manager list.
+            /// @param WhichOne If you have multiple EventManagers this will choose which one to return.
+            /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.
+            EventManager* GetEventManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the GraphicsManager from the manager list.
+            /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
+            /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
+            GraphicsManager* GetGraphicsManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the PhysicsManager from the manager list.
+            /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.
+            /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
+            PhysicsManager* GetPhysicsManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the SoundManager from the manager list.
+            /// @param WhichOne If you have multiple SoundManagers this will choose which one to return.
+            /// @return This returns a pointer to a SoundManager, or a NULL pointer if no matching manager exists.
+            SoundManager* GetSoundManager(const short unsigned int &WhichOne=0);
+
     };
 }
 #endif
+
+
