@@ -518,7 +518,7 @@ namespace phys
             this->LogAndThrow(SDL_GetError());
         }
         this->HasSDLBeenInitialized=true;
-		
+
 		try
 		{
 			//Setup the SDL render window
@@ -540,7 +540,7 @@ namespace phys
         this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
 
         //setup a default camera
-        this->Cameras = new CameraManager (this->OgreSceneManager);
+        this->Cameras = new CameraManager (this->OgreSceneManager, this);
         this->Cameras->CreateCamera();
         this->OgreCamera = this->Cameras->DefaultCamera;
         this->OgreCamera->setNearClipDistance(5.0f);
