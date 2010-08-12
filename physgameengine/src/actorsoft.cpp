@@ -40,43 +40,359 @@
 #ifndef _physactorsoft_cpp
 #define _physactorsoft_cpp
 
-//#include <Ogre.h>
+#include <Ogre.h>
 //#include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+#include "BulletSoftBody/btSoftBodyHelpers.h"
 //#include "BulletCollision/CollisionShapes/btShapeHull.h"
 //#include "BulletCollision/Gimpact/btGImpactShape.h"
 
 #include "actorsoft.h"
 namespace phys{
+
+    /// @brief This is a helper data structure for gathering mesh information.
+    /// @details As the class is gathering information from the mesh to use in a soft body, it'll store the values here so that the entity can be safely removed.
+    struct MeshInfo
+    {
+        ~MeshInfo();
+        Ogre::Vector3* Verticies;
+        int* Indicies;
+        Ogre::Vector3* Normals;
+        Ogre::Vector2* Textures;
+        int VCount;
+        int ICount;
+        Ogre::String Name;
+        Ogre::String Material;
+        Ogre::String MaterialFile;
+        Ogre::String Group;
+        Ogre::RenderOperation::OperationType RendOp;
+    };
+
+    MeshInfo::~MeshInfo()
+    {
+        delete[] Verticies;
+        delete[] Indicies;
+        delete[] Normals;
+        delete[] Textures;
+    }
+
     ///////////////////////////////////
     // ActorSoft class functions
 
-    /*ActorSoft::ActorSoft ()
+    ActorSoft::ActorSoft (Real mass, String name, String file, String group, World* _World) : ActorBase (name, file, group, _World)
     {
+        CreateSoftObject(mass);
         ActorType=ActorBase::Actorsoft;
-    }*/
+    }
 
     ActorSoft::~ActorSoft ()
     {
         delete physsoftbody;
     }
 
-    void ActorSoft::CreateSoftObject (btSoftBodyWorldInfo* softworldinfo, int nodecount, btVector3* nodearray, btScalar* massarray)
+    void ActorSoft::CreateSoftObject (Real mass)
     {
-        this->physsoftbody = new btSoftBody (softworldinfo, nodecount, nodearray, massarray);
+        MeshInfo CurMesh;
+        GetMeshVerticies(CurMesh);
+        GetMeshIndicies(CurMesh);
+        GetMeshNormals(CurMesh);
+        GetMeshTextures(CurMesh);
+        GetOtherMeshInfo(CurMesh);
+
+        delete entity;
+        entity = NULL;
+        this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh (this->GameWorld->Physics->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         CollisionObject=physsoftbody;
+        Shape = physsoftbody->getCollisionShape();
+        physsoftbody->setTotalMass(mass, true);
+        physsoftbody->generateClusters(1);
+
+        CreateManualObject(CurMesh);
+
+        /*Normals = new Ogre::Vector3[CurMesh.VCount];
+        Textures = new Ogre::Vector2[CurMesh.VCount];
+        Indicies = new int{ICount};
+        for ( int x=0 ; x < CurMesh.VCount ; x++ )
+        {
+            Normals[x] = CurMesh.Normals[x];
+            Textures[x] = CurMesh.Textures[x];
+        }
+        for ( int y=0 ; y < CurMesh.ICount ; y++ )
+        {
+            Indicies[y] = CurMesh.Indicies[y];
+        }*/
+    }
+
+    void ActorSoft::CreateManualObject (MeshInfo &TheMesh)
+    {
+        ManualEntity = new Ogre::ManualObject(TheMesh.Name);
+        ManualEntity->setDynamic(true);
+        ManualEntity->estimateVertexCount(TheMesh.VCount);
+        ManualEntity->estimateIndexCount(TheMesh.ICount);
+
+        ManualEntity->begin(TheMesh.Material, TheMesh.RendOp, TheMesh.Group);
+        for( int x=0 ; x < TheMesh.VCount ; x++ )
+        {
+            ManualEntity->position(TheMesh.Verticies[x]);
+            ManualEntity->normal(TheMesh.Normals[x]);
+            ManualEntity->textureCoord(TheMesh.Textures[x]);
+        }
+        for( int y=0 ; y < TheMesh.ICount ; y++ )
+        {
+            ManualEntity->index(TheMesh.Indicies[y]);
+        }
+        ManualEntity->end();
+    }
+
+    void ActorSoft::GetMeshVerticies (MeshInfo &TheMesh)
+    {
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        Ogre::VertexData* vertexData = subMesh->vertexData;
+
+        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+
+        TheMesh.Verticies = new Ogre::Vector3[vertexData->vertexCount];
+        TheMesh.VCount = vertexData->vertexCount;
+
+        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+        float* pReal = NULL;
+        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
+        {
+            posElem->baseVertexPointerToElement(vertex, &pReal);
+            TheMesh.Verticies[j].x = *pReal++;
+            TheMesh.Verticies[j].y = *pReal++;
+            TheMesh.Verticies[j].z = *pReal++;
+        }
+        vBuffer->unlock();
+    }
+
+    void ActorSoft::GetMeshIndicies (MeshInfo &TheMesh)
+    {
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        Ogre::IndexData*  indexData = subMesh->indexData;
+
+        Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
+
+        TheMesh.Indicies = new int[indexData->indexCount];
+        TheMesh.ICount = indexData->indexCount;
+
+        size_t index_offset = 0;
+        bool use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
+
+        long* pLong = static_cast<long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+        short* pShort = reinterpret_cast<short*>(pLong);
+
+        if (use32bitindexes)
+        {
+            for (size_t k = 0; k < indexData->indexCount; ++k)
+            {
+                TheMesh.Indicies[index_offset++] = pLong[k];
+            }
+        }
+        else
+        {
+            for (size_t k = 0; k < indexData->indexCount; ++k)
+            {
+                TheMesh.Indicies[index_offset++] = static_cast<unsigned long>(pShort[k]);
+            }
+        }
+        iBuffer->unlock();
+    }
+
+    void ActorSoft::GetMeshNormals (MeshInfo &TheMesh)
+    {
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        Ogre::VertexData* vertexData = subMesh->vertexData;
+
+        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_NORMAL);
+        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+
+        TheMesh.Normals = new Ogre::Vector3[vertexData->vertexCount];
+
+        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+        float* pReal = NULL;
+        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
+        {
+            posElem->baseVertexPointerToElement(vertex, &pReal);
+            TheMesh.Normals[j].x = *pReal++;
+            TheMesh.Normals[j].y = *pReal++;
+            TheMesh.Normals[j].z = *pReal++;
+        }
+        vBuffer->unlock();
+    }
+
+    void ActorSoft::GetMeshTextures (MeshInfo &TheMesh)
+    {
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        Ogre::VertexData* vertexData = subMesh->vertexData;
+
+        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_TEXTURE_COORDINATES);
+        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+
+        TheMesh.Textures = new Ogre::Vector2[vertexData->vertexCount];
+
+        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+        float* pReal = NULL;
+        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
+        {
+            posElem->baseVertexPointerToElement(vertex, &pReal);
+            TheMesh.Textures[j].x = *pReal++;
+            TheMesh.Textures[j].y = *pReal++;
+        }
+        vBuffer->unlock();
+    }
+
+    void ActorSoft::GetOtherMeshInfo(MeshInfo &TheMesh)
+    {
+        // Entity Name
+        TheMesh.Name = entity->getName();
+        // Material Name
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        TheMesh.Material = subMesh->getMaterialName();
+        // Material File Name
+        Ogre::ResourcePtr Mat = ActorBase::GetOgreResourceManager()->_getResourceManager("Material")->getByName(TheMesh.Material);
+        TheMesh.MaterialFile = Mat.getPointer()->getOrigin();
+        // Group Name
+        TheMesh.Group = ActorBase::GetOgreResourceManager()->findGroupContainingResource(TheMesh.MaterialFile);
+        // Render Operation
+        Ogre::RenderOperation Render;
+        subMesh->_getRenderOperation(Render);
+        TheMesh.RendOp = Render.operationType;
+    }
+
+    void ActorSoft::AttachToGraphics ()
+    {
+        //Vector3 tempv;
+        Quaternion tempq;
+        btTransform temp = this->physsoftbody->m_clusters[0]->m_framexform;
+        //tempv.ExtractBulletVector3(temp.getOrigin());
+        tempq.ExtractBulletQuaternion(temp.getRotation());
+        //this->node->setPosition(tempv.GetOgreVector3());
+        this->node->setOrientation(tempq.GetOgreQuaternion());
+        this->node->attachObject(this->ManualEntity);
+    }
+
+    void ActorSoft::DetachFromGraphics ()
+    {
+        this->node->detachObject(this->ManualEntity);
+    }
+
+    void ActorSoft::SetBulletLocation (Vector3 Location)
+    {
+        this->physsoftbody->m_clusters[0]->m_framexform.setOrigin(Location.GetBulletVector3());
+    }
+
+    Vector3 ActorSoft::GetBulletLocation() const
+    {
+        Vector3 temp;
+        temp.ExtractBulletVector3(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin());
+        return temp;
+    }
+
+    void ActorSoft::SetBulletOrientation (Quaternion Rotation)
+    {
+        this->physsoftbody->m_clusters[0]->m_framexform.setRotation(Rotation.GetBulletQuaternion(true));
+    }
+
+    ///////////////////////////////////////
+    // Public Functions
+
+    void ActorSoft::UpdateSoftBody()
+    {
+        ManualEntity->beginUpdate(0);
+        Ogre::Vector3 temp;
+        for( int x=0 ; x < this->physsoftbody->m_nodes.size() ; x++ )
+        {
+            ManualEntity->position(temp<<(this->physsoftbody->m_nodes[x].m_x));
+            //ManualEntity->normal(Normals[x]);
+            //ManualEntity->textureCoord(Textures[x]);
+        }
+        //for ( int y ; y < this->ICount ; y++)
+        //{
+            //ManualEntity->index(Indicies[y]);
+        //}
+        ManualEntity->end();
+        //Ogre::Vector3 temp2;
+        //this->node->setPosition(temp2<<(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin()));
+        btVector3 position = this->physsoftbody->m_clusters[0]->m_framexform.getOrigin();
+        this->node->setPosition(position.x(), position.y(), position.z());
+        btQuaternion rotation = this->physsoftbody->m_clusters[0]->m_framexform.getRotation();
+        this->node->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
+    }
+
+    std::string ActorSoft::GetName () const
+    {
+        return this->ManualEntity->getName();
+    }
+
+    void ActorSoft::SetActorScaling(Vector3 scaling)
+    {
+        this->node->setScale(scaling.GetOgreVector3());
+        this->Shape->setLocalScaling(scaling.GetBulletVector3());
+    }
+
+    void ActorSoft::SetInitLocation(Vector3 Location)
+    {
+        this->SetBulletLocation(Location);
+        //ActorBase::SetBulletLocation(Location);
+        physsoftbody->translate(Location.GetBulletVector3());
+        this->node->setPosition(Location.GetOgreVector3());
+    }
+
+    void ActorSoft::SetInitOrientation(Quaternion Orientation)
+    {
+        this->SetBulletOrientation(Orientation);
+    }
+
+    void ActorSoft::SetLocation (Real x, Real y, Real z)
+    {
+        Vector3 temp(x,y,z);
+        this->SetLocation(temp);
+    }
+
+    void ActorSoft::SetLocation (Vector3 Place)
+    {
+        this->SetBulletLocation(Place);
+        this->SetOgreLocation(Place);
+    }
+
+    Vector3 ActorSoft::GetLocation() const
+    {
+        return this->GetBulletLocation();
+    }
+
+    void ActorSoft::SetOrientation (Real x, Real y, Real z, Real w)
+    {
+        Quaternion temp(x,y,z,w);
+        this->SetOrientation(temp);
+    }
+
+    void ActorSoft::SetOrientation (Quaternion Rotation)
+    {
+        this->SetBulletOrientation(Rotation);
+        this->SetOgreOrientation(Rotation);
+    }
+
+    void ActorSoft::CreateShapeFromMeshDynamic(short unsigned int accuracy)
+    {
     }
 
     void ActorSoft::AddObjectToWorld (World *TargetWorld)
-        { TargetWorld->Physics->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody); }
+    {
+        TargetWorld->Physics->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody);
+        this->AttachToGraphics();
+    }
 
     void ActorSoft::RemoveObjectFromWorld(World* TargetWorld)
-        { TargetWorld->Physics->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody); }
-
-    void ActorSoft::CreateShapeFromMesh()
     {
-        this->CreateTrimesh();
-        this->physsoftbody->setCollisionShape(this->Shape);
+        TargetWorld->Physics->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody);
+        this->DetachFromGraphics();
     }
 }
 #endif

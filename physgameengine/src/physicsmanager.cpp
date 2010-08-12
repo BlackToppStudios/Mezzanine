@@ -51,6 +51,7 @@
 
 #include <btBulletDynamicsCommon.h>
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
+#include <BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h>
 #include "BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
 
 
@@ -295,7 +296,8 @@ namespace phys
                                                  );
 
         this->BulletSolver = new btSequentialImpulseConstraintSolver;
-        this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
+        //this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
+        this->BulletCollisionConfiguration = new btSoftBodyRigidBodyCollisionConfiguration();
         this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
         btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
 
@@ -304,6 +306,12 @@ namespace phys
                                                     BulletBroadphase,
                                                     BulletSolver,
                                                     BulletCollisionConfiguration);
+
+        this->BulletDynamicsWorld->getWorldInfo().m_dispatcher = this->BulletDispatcher;
+        this->BulletDynamicsWorld->getWorldInfo().m_broadphase = this->BulletBroadphase;
+        this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.Initialize();
+
+        this->BulletDynamicsWorld->getDispatchInfo().m_enableSPU = true;
 
         CollisionAge=1;
         Impulse=1.0;
@@ -368,6 +376,10 @@ namespace phys
         this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
     }
 
+    void PhysicsManager::SetSoftGravity(Vector3 sgrav)
+    {
+        this->BulletDynamicsWorld->getWorldInfo().m_gravity = sgrav.GetBulletVector3();
+    }
 
     //Bullet Debug Drawing
 

@@ -57,6 +57,7 @@ namespace Ogre
     class Entity;
     class SceneNode;
     class Vector3;
+    class ResourceGroupManager;
 }
 
 ///////////////////////////////////
@@ -138,6 +139,11 @@ namespace phys
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
 ///////////////////////////////////////
+            /// @brief Gets the ogre resource manager pointer.
+            /// @details This function is needed for the ActorSoft implementation.
+            /// @return Returns a pointer to the ogre resource group manager.
+            Ogre::ResourceGroupManager* GetOgreResourceManager();
+
             /// @brief Creates an entity for the mesh file to be placed on a scene node.
             /// @details Creates an entity in the scene manager from the mesh file provided to be attached to a node in the graphical world. @n
             /// This function is called on by the Constructor, and shouldn't be called manually.
@@ -171,12 +177,12 @@ namespace phys
             /// @brief Makes the actor visable.
             /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n
             /// This is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually.
-            void AttachToGraphics();
+            virtual void AttachToGraphics();
 
             /// @brief Makes the actor invisable.
             /// @details This is the inverse of the AttachToGraphics function.  This will effectively remove the object from the graphics world and make it no longer visable. @n
             /// This is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually.
-            void DetachFromGraphics();
+            virtual void DetachFromGraphics();
 
 //////////////////////////////////////////////////////////////////////////////
 // Bullet Management
@@ -270,13 +276,13 @@ namespace phys
             /// @details Calling this function after adding it to the World will have no effect. @n
             /// This function will set where the actor will be located in the World when it is first placed inside the world.
             /// @param Location The Vector3 representing the location.
-            void SetInitLocation(Vector3 Location);
+            virtual void SetInitLocation(Vector3 Location);
 
             /// @brief Sets the starting orientation of the actor.
             /// @details Calling this function after adding it to the World will have no effect. @n
             /// This function will set where the actor is facing in the World when it is first placed inside the world.
             /// @param Orientation The PhysQuaternion representing the Orientation.
-            void SetInitOrientation(Quaternion Orientation);
+            virtual void SetInitOrientation(Quaternion Orientation);
 
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
@@ -284,21 +290,21 @@ namespace phys
             /// @param x Location on the X vector.
             /// @param y Location on the Y vector.
             /// @param z Location on the Z vector.
-            void SetLocation(Real x, Real y, Real z);
+            virtual void SetLocation(Real x, Real y, Real z);
 
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
             /// In most situations you won't want to use this function, and instead produce movement through physics functions.
             /// @param Place The Vector3 representing the location.
-            void SetLocation(Vector3 Place);
+            virtual void SetLocation(Vector3 Place);
 
             /// @brief Retrieves the location of the object.
             /// @details This function will retrieve the location of the object within the world.
-            Vector3 GetLocation() const;
+            virtual Vector3 GetLocation() const;
 
             /// @brief Retrieves the name of the object.
             /// @details This function will retrieve the name of the object,
-            std::string GetName() const;
+            virtual std::string GetName() const = 0;
 
             /// @brief Sets the orientation of the actor.
             /// @details Sets the orientation of the actor via Quaternion parameters.
@@ -306,12 +312,12 @@ namespace phys
             /// @param y Where the Y vector is rotated about.
             /// @param z Where the Z vector is rotated about.
             /// @param w How much to about the x, y, z.
-            void SetOrientation(Real x, Real y, Real z, Real w);
+            virtual void SetOrientation(Real x, Real y, Real z, Real w);
 
             /// @brief Sets the orientation of the actor.
             /// @details Sets the orientation of the actor via a Quaternion.
             /// @param Rotation The Quaternion representing the Rotation.
-            void SetOrientation(Quaternion Rotation);
+            virtual void SetOrientation(Quaternion Rotation);
 
             /// @brief Sets the scale of the actor.
             /// @details This function will alter the scaling/size of the actor with the given vector3.

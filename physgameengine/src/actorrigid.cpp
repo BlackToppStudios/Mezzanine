@@ -310,6 +310,11 @@ namespace phys{
         this->physrigidbody->setCollisionShape(this->Shape);
     }
 
+    std::string ActorRigid::GetName () const
+    {
+        return this->entity->getName();
+    }
+
     void ActorRigid::LimitMovementOnAxis(bool x, bool y, bool z)
     {
         btVector3 LinFact(x,y,z);

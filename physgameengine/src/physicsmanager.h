@@ -48,6 +48,7 @@ class btSequentialImpulseConstraintSolver;
 class btSoftRigidDynamicsWorld;
 class btDynamicsWorld;
 class btCollisionShape;
+class btSoftBodyRigidBodyCollisionConfiguration;
 
 #include <map>
 
@@ -84,7 +85,8 @@ namespace phys
 
             // Some Items bullet requires
             btAxisSweep3* BulletBroadphase;
-            btDefaultCollisionConfiguration* BulletCollisionConfiguration;
+            //btDefaultCollisionConfiguration* BulletCollisionConfiguration;
+            btSoftBodyRigidBodyCollisionConfiguration* BulletCollisionConfiguration;
             btCollisionDispatcher* BulletDispatcher;
             btSequentialImpulseConstraintSolver* BulletSolver;
             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
@@ -131,6 +133,12 @@ namespace phys
             /// @details Sets the strength and direction of gravity within the world.
             /// @param pgrav Vector3 representing the strength and direction of gravity.
             void SetGravity(Vector3 pgrav);
+
+            /// @brief Sets the gravity for soft bodies.
+            /// @details Gravity for soft bodies is stored separately from rigid bodies.  So if you plan to use soft bodies in your game/simulation
+            /// you need to call this function otherwise they won't fall.
+            /// @param sgrav Vector3 representing the strength and direction of gravity.
+            void SetSoftGravity(Vector3 sgrav);
 
             /// @brief Enables and Disables Physics Debug Drawing
             /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics

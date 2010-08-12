@@ -168,6 +168,11 @@ namespace phys{
         return trimesh;
     }
 
+    Ogre::ResourceGroupManager* ActorBase::GetOgreResourceManager()
+    {
+        return this->GameWorld->OgreResource;
+    }
+
     ///////////////////////////////////
     // ActorBase Constructor functions
 
@@ -285,11 +290,6 @@ namespace phys{
     void ActorBase::DetachFromGraphics ()
     {
         this->node->detachObject(this->entity);
-    }
-
-    std::string ActorBase::GetName () const
-    {
-        return this->entity->getName();
     }
 
     void ActorBase::SetActorScaling(Vector3 scaling)

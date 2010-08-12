@@ -27,6 +27,7 @@ int main(int argc, char **argv)
     TheWorld.CallBacks->SetPreInput(&PreInput);
     TheWorld.CallBacks->SetPostInput(&PostInput);
     TheWorld.CallBacks->SetPrePhysics(&PrePhysics);
+    TheWorld.CallBacks->SetPostPhysics(&PostPhysics);
 
     //give the World our function to execute after renderingg
     TheWorld.CallBacks->SetPostRender(&PostRender);
@@ -122,6 +123,15 @@ bool PrePhysics()
     TheWorld.Log("Object Locations");
     //Replace this with something that uses the actor container and logs the location of everything
     TheWorld.Log(TheWorld.Actors->FindActor("MetalSphere2")->GetLocation());
+    return true;
+}
+
+bool PostPhysics()
+{
+    //ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("MetalSphere2"));
+    //ActS->UpdateSoftBody();
+    ActorSoft* ActS2 = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("Robot9"));
+    ActS2->UpdateSoftBody();
     return true;
 }
 
@@ -296,8 +306,9 @@ bool CheckForEsc()
 
 void LoadContent()
 {
-    ActorRigid *object1, *object2, *object3, *object4, *object7;
+    ActorRigid *object1, *object2, *object3, *object4;
     ActorRigid *object5, *object6;
+    ActorRigid *object7;
     //Ogre Setup Code
     String groupname ("Group1");
     String filerobot ("robot.mesh");
@@ -343,9 +354,11 @@ void LoadContent()
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-    TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-    TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+    TheWorld.Actors->AddActor( new ActorSoft (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+    //TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+    //TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+    ActorSoft* Act9 = static_cast < ActorSoft* > (TheWorld.Actors->LastActorAdded());
+    Act9->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
 
     object5 = new ActorRigid (0,"Plane","Plane.mesh",groupname,&TheWorld);
     object5->CreateShapeFromMeshStatic();
@@ -414,5 +427,6 @@ void LoadContent()
     TheWorld.Log( TheWorld.Actors->GetActorCount() );
 
     TheWorld.Physics->SetGravity(grav);
+    TheWorld.Physics->SetSoftGravity(grav);
 }
 #endif

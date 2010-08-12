@@ -5,6 +5,7 @@
 bool PreInput();
 bool PostInput();
 bool PrePhysics();
+bool PostPhysics();
 bool PostRender();
 
 //Functions that protocatch uses

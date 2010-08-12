@@ -79,6 +79,10 @@ namespace phys
             /// allow the engine to compile.
             void CreateShapeFromMeshDynamic(short unsigned int accuracy);
 
+            /// @brief Retrieves the name of the object.
+            /// @details This function will retrieve the name of the object,
+            std::string GetName() const;
+
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);
     };

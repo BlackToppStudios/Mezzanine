@@ -40,6 +40,7 @@
 #ifndef _actorterrain_cpp
 #define _actorterrain_cpp
 
+#include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 
@@ -78,6 +79,11 @@ namespace phys
 
     void ActorTerrain::CreateShapeFromMeshDynamic(short unsigned int accuracy)
     {
+    }
+
+    std::string ActorTerrain::GetName () const
+    {
+        return this->entity->getName();
     }
 
     void ActorTerrain::AddObjectToWorld (World *TargetWorld)
