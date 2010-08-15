@@ -79,7 +79,9 @@ namespace Ogre
 // Actual code
 namespace phys
 {
-    struct MeshInfo;
+    namespace internal{
+        struct MeshInfo;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorSoft
     /// @headerfile actorsoft.h
@@ -96,12 +98,6 @@ namespace phys
             btSoftBody* physsoftbody;
             ///@brief Used to simulate the rendering portion of a softbody.
             Ogre::ManualObject* ManualEntity;
-            //Ogre::Vector3* Normals;
-            //Ogre::Vector2* Textures;
-            //int* Indicies;
-            //int ICount;
-            /*///@brief Completed, renderable version of our Manual Object.
-            Ogre::ManualObject::ManualObjectSection* ManualSection;*/
             /// @brief Creates a soft object for the actor.
             /// @details Creates a soft object to be placed in the physics world later. @n
             /// This is automatically called by the Constructor and shouldn't be called manually.
@@ -110,27 +106,7 @@ namespace phys
             /// @brief Creates and configures a manual object for rendering.
             /// @details This function will create and configure an Ogre manual object based on the mesh provided, that will be updateable each frame.
             /// @param TheMesh The struct with all the appropriate mesh information to base the manual object on.
-            void CreateManualObject (MeshInfo &TheMesh);
-            /// @brief Gets the verticy information of the mesh this soft body is based on.
-            /// @details This function will read the mesh provided and gather the verticies inside it for re-use.
-            /// @param TheMesh The struct to populate with the information gathered.
-            void GetMeshVerticies (MeshInfo &TheMesh);
-            /// @brief Gets the indicy information of the mesh this soft body is based on.
-            /// @details This function will read the mesh provided and gather the indicies inside it for re-use.
-            /// @param TheMesh The struct to populate with the information gathered.
-            void GetMeshIndicies (MeshInfo &TheMesh);
-            /// @brief Gets the normals information of the mesh this soft body is based on.
-            /// @details This function will read the mesh provided and gather the normals of each verticy inside it for re-use.
-            /// @param TheMesh The struct to populate with the information gathered.
-            void GetMeshNormals (MeshInfo &TheMesh);
-            /// @brief Gets the texture coordinates information of the mesh this soft body is based on.
-            /// @details This function will read the mesh provided and gather the texture coordinates inside it for re-use.
-            /// @param TheMesh The struct to populate with the information gathered.
-            void GetMeshTextures (MeshInfo &TheMesh);
-            /// @brief Gets other information not related to the verticies from the mesh.
-            /// @details This function will get the Render Operation, Material Name, and Entity Name from the entity for re-use.
-            /// @param TheMesh The struct to populate with the information gathered.
-            void GetOtherMeshInfo (MeshInfo &TheMesh);
+            void CreateManualMesh (internal::MeshInfo &TheMesh);
             /// @brief Makes the actor visable.
             /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n
             /// This is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually.

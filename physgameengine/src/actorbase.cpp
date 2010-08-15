@@ -45,6 +45,7 @@
 
 #include "actorbase.h"
 #include "internalmotionstate.h.cpp"
+#include "internalmeshinfo.h.cpp"
 
 namespace phys{
     ///////////////////////////////////
@@ -168,6 +169,128 @@ namespace phys{
         return trimesh;
     }
 
+    void ActorBase::GetMeshVerticies (internal::MeshInfo &TheMesh)
+    {
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        Ogre::VertexData* vertexData = subMesh->vertexData;
+
+        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+
+        TheMesh.Verticies = new Ogre::Vector3[vertexData->vertexCount];
+        TheMesh.VCount = vertexData->vertexCount;
+
+        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+        float* pReal = NULL;
+        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
+        {
+            posElem->baseVertexPointerToElement(vertex, &pReal);
+            TheMesh.Verticies[j].x = *pReal++;
+            TheMesh.Verticies[j].y = *pReal++;
+            TheMesh.Verticies[j].z = *pReal++;
+        }
+        vBuffer->unlock();
+    }
+
+    void ActorBase::GetMeshIndicies (internal::MeshInfo &TheMesh)
+    {
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        Ogre::IndexData*  indexData = subMesh->indexData;
+
+        Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
+
+        TheMesh.Indicies = new int[indexData->indexCount];
+        TheMesh.ICount = indexData->indexCount;
+
+        size_t index_offset = 0;
+        bool use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
+
+        long* pLong = static_cast<long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+        short* pShort = reinterpret_cast<short*>(pLong);
+
+        if (use32bitindexes)
+        {
+            for (size_t k = 0; k < indexData->indexCount; ++k)
+            {
+                TheMesh.Indicies[index_offset++] = pLong[k];
+            }
+        }
+        else
+        {
+            for (size_t k = 0; k < indexData->indexCount; ++k)
+            {
+                TheMesh.Indicies[index_offset++] = static_cast<unsigned long>(pShort[k]);
+            }
+        }
+        iBuffer->unlock();
+    }
+
+    void ActorBase::GetMeshNormals (internal::MeshInfo &TheMesh)
+    {
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        Ogre::VertexData* vertexData = subMesh->vertexData;
+
+        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_NORMAL);
+        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+
+        TheMesh.Normals = new Ogre::Vector3[vertexData->vertexCount];
+
+        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+        float* pReal = NULL;
+        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
+        {
+            posElem->baseVertexPointerToElement(vertex, &pReal);
+            TheMesh.Normals[j].x = *pReal++;
+            TheMesh.Normals[j].y = *pReal++;
+            TheMesh.Normals[j].z = *pReal++;
+        }
+        vBuffer->unlock();
+    }
+
+    void ActorBase::GetMeshTextures (internal::MeshInfo &TheMesh)
+    {
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        Ogre::VertexData* vertexData = subMesh->vertexData;
+
+        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_TEXTURE_COORDINATES);
+        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+
+        TheMesh.Textures = new Ogre::Vector2[vertexData->vertexCount];
+
+        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+        float* pReal = NULL;
+        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
+        {
+            posElem->baseVertexPointerToElement(vertex, &pReal);
+            TheMesh.Textures[j].x = *pReal++;
+            TheMesh.Textures[j].y = *pReal++;
+        }
+        vBuffer->unlock();
+    }
+
+    void ActorBase::GetOtherMeshInfo(internal::MeshInfo &TheMesh)
+    {
+        // Entity Name
+        TheMesh.Name = entity->getName();
+        // Material Name
+        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
+        TheMesh.Material = subMesh->getMaterialName();
+        // Material File Name
+        Ogre::ResourcePtr Mat = ActorBase::GetOgreResourceManager()->_getResourceManager("Material")->getByName(TheMesh.Material);
+        TheMesh.MaterialFile = Mat.getPointer()->getOrigin();
+        // Group Name
+        TheMesh.Group = ActorBase::GetOgreResourceManager()->findGroupContainingResource(TheMesh.MaterialFile);
+        // Render Operation
+        Ogre::RenderOperation Render;
+        subMesh->_getRenderOperation(Render);
+        TheMesh.RendOp = Render.operationType;
+    }
+
     Ogre::ResourceGroupManager* ActorBase::GetOgreResourceManager()
     {
         return this->GameWorld->OgreResource;
@@ -251,6 +374,11 @@ namespace phys{
     void ActorBase::SetInitLocation(Vector3 Location)
     {
         this->SetBulletLocation(Location);
+        if ( btCollisionObject::CO_RIGID_BODY == this->CollisionObject->getInternalType() )
+        {
+            btRigidBody* Rigid = static_cast< btRigidBody* > (this->CollisionObject);
+            Rigid->updateInertiaTensor();
+        }
     }
 
     ///////////////////////////////////

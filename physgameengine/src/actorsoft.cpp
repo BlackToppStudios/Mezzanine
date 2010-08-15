@@ -47,35 +47,9 @@
 //#include "BulletCollision/CollisionShapes/btShapeHull.h"
 //#include "BulletCollision/Gimpact/btGImpactShape.h"
 
+#include "internalmeshinfo.h.cpp"
 #include "actorsoft.h"
 namespace phys{
-
-    /// @brief This is a helper data structure for gathering mesh information.
-    /// @details As the class is gathering information from the mesh to use in a soft body, it'll store the values here so that the entity can be safely removed.
-    struct MeshInfo
-    {
-        ~MeshInfo();
-        Ogre::Vector3* Verticies;
-        int* Indicies;
-        Ogre::Vector3* Normals;
-        Ogre::Vector2* Textures;
-        int VCount;
-        int ICount;
-        Ogre::String Name;
-        Ogre::String Material;
-        Ogre::String MaterialFile;
-        Ogre::String Group;
-        Ogre::RenderOperation::OperationType RendOp;
-    };
-
-    MeshInfo::~MeshInfo()
-    {
-        delete[] Verticies;
-        delete[] Indicies;
-        delete[] Normals;
-        delete[] Textures;
-    }
-
     ///////////////////////////////////
     // ActorSoft class functions
 
@@ -88,18 +62,21 @@ namespace phys{
     ActorSoft::~ActorSoft ()
     {
         delete physsoftbody;
+        delete ManualEntity;
     }
 
     void ActorSoft::CreateSoftObject (Real mass)
     {
-        MeshInfo CurMesh;
+        //this->entity->getMesh()->getSubMesh(0)->useSharedVertices = false;
+        internal::MeshInfo CurMesh;
         GetMeshVerticies(CurMesh);
         GetMeshIndicies(CurMesh);
         GetMeshNormals(CurMesh);
         GetMeshTextures(CurMesh);
         GetOtherMeshInfo(CurMesh);
 
-        delete entity;
+        //delete entity;
+        GameWorld->OgreSceneManager->destroyEntity(entity);
         entity = NULL;
         this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh (this->GameWorld->Physics->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         CollisionObject=physsoftbody;
@@ -107,7 +84,9 @@ namespace phys{
         physsoftbody->setTotalMass(mass, true);
         physsoftbody->generateClusters(1);
 
-        CreateManualObject(CurMesh);
+        CreateManualMesh(CurMesh);
+
+        CreateEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
 
         /*Normals = new Ogre::Vector3[CurMesh.VCount];
         Textures = new Ogre::Vector2[CurMesh.VCount];
@@ -123,7 +102,7 @@ namespace phys{
         }*/
     }
 
-    void ActorSoft::CreateManualObject (MeshInfo &TheMesh)
+    void ActorSoft::CreateManualMesh (internal::MeshInfo &TheMesh)
     {
         ManualEntity = new Ogre::ManualObject(TheMesh.Name);
         ManualEntity->setDynamic(true);
@@ -142,128 +121,7 @@ namespace phys{
             ManualEntity->index(TheMesh.Indicies[y]);
         }
         ManualEntity->end();
-    }
-
-    void ActorSoft::GetMeshVerticies (MeshInfo &TheMesh)
-    {
-        Ogre::MeshPtr myMesh = entity->getMesh();
-        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-        Ogre::VertexData* vertexData = subMesh->vertexData;
-
-        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
-        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
-
-        TheMesh.Verticies = new Ogre::Vector3[vertexData->vertexCount];
-        TheMesh.VCount = vertexData->vertexCount;
-
-        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-        float* pReal = NULL;
-        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
-        {
-            posElem->baseVertexPointerToElement(vertex, &pReal);
-            TheMesh.Verticies[j].x = *pReal++;
-            TheMesh.Verticies[j].y = *pReal++;
-            TheMesh.Verticies[j].z = *pReal++;
-        }
-        vBuffer->unlock();
-    }
-
-    void ActorSoft::GetMeshIndicies (MeshInfo &TheMesh)
-    {
-        Ogre::MeshPtr myMesh = entity->getMesh();
-        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-        Ogre::IndexData*  indexData = subMesh->indexData;
-
-        Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
-
-        TheMesh.Indicies = new int[indexData->indexCount];
-        TheMesh.ICount = indexData->indexCount;
-
-        size_t index_offset = 0;
-        bool use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
-
-        long* pLong = static_cast<long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-        short* pShort = reinterpret_cast<short*>(pLong);
-
-        if (use32bitindexes)
-        {
-            for (size_t k = 0; k < indexData->indexCount; ++k)
-            {
-                TheMesh.Indicies[index_offset++] = pLong[k];
-            }
-        }
-        else
-        {
-            for (size_t k = 0; k < indexData->indexCount; ++k)
-            {
-                TheMesh.Indicies[index_offset++] = static_cast<unsigned long>(pShort[k]);
-            }
-        }
-        iBuffer->unlock();
-    }
-
-    void ActorSoft::GetMeshNormals (MeshInfo &TheMesh)
-    {
-        Ogre::MeshPtr myMesh = entity->getMesh();
-        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-        Ogre::VertexData* vertexData = subMesh->vertexData;
-
-        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_NORMAL);
-        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
-
-        TheMesh.Normals = new Ogre::Vector3[vertexData->vertexCount];
-
-        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-        float* pReal = NULL;
-        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
-        {
-            posElem->baseVertexPointerToElement(vertex, &pReal);
-            TheMesh.Normals[j].x = *pReal++;
-            TheMesh.Normals[j].y = *pReal++;
-            TheMesh.Normals[j].z = *pReal++;
-        }
-        vBuffer->unlock();
-    }
-
-    void ActorSoft::GetMeshTextures (MeshInfo &TheMesh)
-    {
-        Ogre::MeshPtr myMesh = entity->getMesh();
-        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-        Ogre::VertexData* vertexData = subMesh->vertexData;
-
-        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_TEXTURE_COORDINATES);
-        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
-
-        TheMesh.Textures = new Ogre::Vector2[vertexData->vertexCount];
-
-        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-        float* pReal = NULL;
-        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
-        {
-            posElem->baseVertexPointerToElement(vertex, &pReal);
-            TheMesh.Textures[j].x = *pReal++;
-            TheMesh.Textures[j].y = *pReal++;
-        }
-        vBuffer->unlock();
-    }
-
-    void ActorSoft::GetOtherMeshInfo(MeshInfo &TheMesh)
-    {
-        // Entity Name
-        TheMesh.Name = entity->getName();
-        // Material Name
-        Ogre::MeshPtr myMesh = entity->getMesh();
-        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-        TheMesh.Material = subMesh->getMaterialName();
-        // Material File Name
-        Ogre::ResourcePtr Mat = ActorBase::GetOgreResourceManager()->_getResourceManager("Material")->getByName(TheMesh.Material);
-        TheMesh.MaterialFile = Mat.getPointer()->getOrigin();
-        // Group Name
-        TheMesh.Group = ActorBase::GetOgreResourceManager()->findGroupContainingResource(TheMesh.MaterialFile);
-        // Render Operation
-        Ogre::RenderOperation Render;
-        subMesh->_getRenderOperation(Render);
-        TheMesh.RendOp = Render.operationType;
+        ManualEntity->convertToMesh(TheMesh.Name + "M", TheMesh.Group);
     }
 
     void ActorSoft::AttachToGraphics ()
@@ -275,7 +133,7 @@ namespace phys{
         tempq.ExtractBulletQuaternion(temp.getRotation());
         //this->node->setPosition(tempv.GetOgreVector3());
         this->node->setOrientation(tempq.GetOgreQuaternion());
-        this->node->attachObject(this->ManualEntity);
+        this->node->attachObject(this->entity);
     }
 
     void ActorSoft::DetachFromGraphics ()
@@ -305,7 +163,22 @@ namespace phys{
 
     void ActorSoft::UpdateSoftBody()
     {
-        ManualEntity->beginUpdate(0);
+        Ogre::VertexData* vertexData = entity->getMesh()->getSubMesh(0)->vertexData;
+
+        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+
+        unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL));
+        float* pReal = NULL;
+        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
+        {
+            posElem->baseVertexPointerToElement(vertex, &pReal);
+            *pReal++ = this->physsoftbody->m_nodes[j].m_x.x();
+            *pReal++ = this->physsoftbody->m_nodes[j].m_x.y();
+            *pReal++ = this->physsoftbody->m_nodes[j].m_x.z();
+        }
+        vBuffer->unlock();
+        /*ManualEntity->beginUpdate(0);
         Ogre::Vector3 temp;
         for( int x=0 ; x < this->physsoftbody->m_nodes.size() ; x++ )
         {
@@ -313,13 +186,13 @@ namespace phys{
             //ManualEntity->normal(Normals[x]);
             //ManualEntity->textureCoord(Textures[x]);
         }
-        //for ( int y ; y < this->ICount ; y++)
-        //{
-            //ManualEntity->index(Indicies[y]);
-        //}
+        for ( int y ; y < this->ICount ; y++)
+        {
+            ManualEntity->index(Indicies[y]);
+        }
         ManualEntity->end();
-        //Ogre::Vector3 temp2;
-        //this->node->setPosition(temp2<<(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin()));
+        Ogre::Vector3 temp2;
+        this->node->setPosition(temp2<<(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin()));*/
         btVector3 position = this->physsoftbody->m_clusters[0]->m_framexform.getOrigin();
         this->node->setPosition(position.x(), position.y(), position.z());
         btQuaternion rotation = this->physsoftbody->m_clusters[0]->m_framexform.getRotation();
@@ -328,7 +201,7 @@ namespace phys{
 
     std::string ActorSoft::GetName () const
     {
-        return this->ManualEntity->getName();
+        return this->entity->getName();
     }
 
     void ActorSoft::SetActorScaling(Vector3 scaling)
@@ -340,8 +213,8 @@ namespace phys{
     void ActorSoft::SetInitLocation(Vector3 Location)
     {
         this->SetBulletLocation(Location);
-        //ActorBase::SetBulletLocation(Location);
-        physsoftbody->translate(Location.GetBulletVector3());
+        ActorBase::SetBulletLocation(Location);
+        //physsoftbody->translate(Location.GetBulletVector3());
         this->node->setPosition(Location.GetOgreVector3());
     }
 

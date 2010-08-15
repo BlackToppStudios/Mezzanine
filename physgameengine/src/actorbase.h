@@ -68,6 +68,7 @@ namespace phys
     namespace internal
     {
         class PhysMotionState;
+        struct MeshInfo;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorBase
@@ -143,6 +144,31 @@ namespace phys
             /// @details This function is needed for the ActorSoft implementation.
             /// @return Returns a pointer to the ogre resource group manager.
             Ogre::ResourceGroupManager* GetOgreResourceManager();
+
+            /// @brief Gets the verticy information of the mesh this soft body is based on.
+            /// @details This function will read the mesh provided and gather the verticies inside it for re-use.
+            /// @param TheMesh The struct to populate with the information gathered.
+            void GetMeshVerticies (internal::MeshInfo &TheMesh);
+
+            /// @brief Gets the indicy information of the mesh this soft body is based on.
+            /// @details This function will read the mesh provided and gather the indicies inside it for re-use.
+            /// @param TheMesh The struct to populate with the information gathered.
+            void GetMeshIndicies (internal::MeshInfo &TheMesh);
+
+            /// @brief Gets the normals information of the mesh this soft body is based on.
+            /// @details This function will read the mesh provided and gather the normals of each verticy inside it for re-use.
+            /// @param TheMesh The struct to populate with the information gathered.
+            void GetMeshNormals (internal::MeshInfo &TheMesh);
+
+            /// @brief Gets the texture coordinates information of the mesh this soft body is based on.
+            /// @details This function will read the mesh provided and gather the texture coordinates inside it for re-use.
+            /// @param TheMesh The struct to populate with the information gathered.
+            void GetMeshTextures (internal::MeshInfo &TheMesh);
+
+            /// @brief Gets other information not related to the verticies from the mesh.
+            /// @details This function will get the Render Operation, Material Name, and Entity Name from the entity for re-use.
+            /// @param TheMesh The struct to populate with the information gathered.
+            void GetOtherMeshInfo (internal::MeshInfo &TheMesh);
 
             /// @brief Creates an entity for the mesh file to be placed on a scene node.
             /// @details Creates an entity in the scene manager from the mesh file provided to be attached to a node in the graphical world. @n
