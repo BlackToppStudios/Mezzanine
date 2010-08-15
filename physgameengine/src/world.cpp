@@ -309,7 +309,7 @@ namespace phys
             (*Iter)->Initialize();
         }
 
-        this->Physics->Initialize(); //Initialize the Debug drawer.
+        //this->Physics->Initialize(); //Initialize the Debug drawer.
         this->CallBacks->Initialize();
         //this->Actors->Initialize();
         this->Graphics->Initialize();
