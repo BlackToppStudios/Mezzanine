@@ -67,7 +67,7 @@ namespace phys
             CameraManager* CamManager;
         public:
             /// @brief Basic Camera Constructor.
-            /// @details This is the basic constructor for the Camera class.  Unique name is needed.
+            /// @details This is the basic constructor for the Camera class.
             Camera(CameraManager* Manager);
             /// @brief Ogre Cam Constructor.
             /// @details This is for internal use only and shouldn't be called manually.

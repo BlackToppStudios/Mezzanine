@@ -50,7 +50,7 @@
 
 namespace phys
 {
-    CameraManager::CameraManager (Ogre::SceneManager* SManager)
+    CameraManager::CameraManager (Ogre::SceneManager* SManager, World* world) : ManagerBase(world)
     {
         this->SceneManager = SManager;
         this->DefaultCamera = NULL;

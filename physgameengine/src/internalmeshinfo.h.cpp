@@ -37,23 +37,35 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorragdoll_cpp
-#define _actorragdoll_cpp
+#ifndef _internalmeshinfo_h_cpp
+#define _internalmeshinfo_h_cpp
 
-#include "btBulletDynamicsCommon.h"
-#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+#include <Ogre.h>
 
-#include "actorragdoll.h"
-
-namespace phys
-{
-    ActorRagDoll::ActorRagDoll(String name, String file, String group, World* _World) : ActorBase(name, file, group, _World)
+namespace phys{
+    namespace internal
     {
-    }
-
-    ActorRagDoll::~ActorRagDoll()
-    {
-
+        /// @internal
+        /// @struct This struct helps stored collected info of a mesh.
+        /// @headerfile internalmeshinfo.h.cpp
+        /// @brief This is a helper data structure for gathering mesh information.
+        /// @details As the class is gathering information from the mesh to use in a soft body, it'll store the values here so that the entity can be safely removed.
+        struct MeshInfo
+        {
+            MeshInfo();
+            ~MeshInfo();
+            Ogre::Vector3* Verticies;
+            int* Indicies;
+            Ogre::Vector3* Normals;
+            Ogre::Vector2* Textures;
+            int VCount;
+            int ICount;
+            Ogre::String Name;
+            Ogre::String Material;
+            Ogre::String MaterialFile;
+            Ogre::String Group;
+            Ogre::RenderOperation::OperationType RendOp;
+        };
     }
 }
 

@@ -37,23 +37,31 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorragdoll_cpp
-#define _actorragdoll_cpp
+#ifndef _internalmeshinfo_cpp
+#define _internalmeshinfo_cpp
 
-#include "btBulletDynamicsCommon.h"
-#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+#include "internalmeshinfo.h.cpp"
 
-#include "actorragdoll.h"
-
-namespace phys
-{
-    ActorRagDoll::ActorRagDoll(String name, String file, String group, World* _World) : ActorBase(name, file, group, _World)
+namespace phys{
+    namespace internal
     {
-    }
+        MeshInfo::MeshInfo()
+        {
+            Verticies = NULL;
+            Indicies = NULL;
+            Normals = NULL;
+            Textures = NULL;
+            VCount = 0;
+            ICount = 0;
+        }
 
-    ActorRagDoll::~ActorRagDoll()
-    {
-
+        MeshInfo::~MeshInfo()
+        {
+            delete[] Verticies;
+            delete[] Indicies;
+            delete[] Normals;
+            delete[] Textures;
+        }
     }
 }
 

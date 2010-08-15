@@ -109,6 +109,10 @@ namespace phys
             /// be used with only with Static objects.
             void CreateShapeFromMeshStatic();
 
+            /// @brief Retrieves the name of the object.
+            /// @details This function will retrieve the name of the object,
+            std::string GetName() const;
+
             /// @brief Restricts movement on the axis or axies of your choice.
             /// @details This function will lock any and all axies you define you want to be locked.
             /// Simply pass true to allow movement on that axis, false if you don't.  This function
