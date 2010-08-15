@@ -130,8 +130,8 @@ bool PostPhysics()
 {
     //ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("MetalSphere2"));
     //ActS->UpdateSoftBody();
-    ActorSoft* ActS2 = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("Robot9"));
-    ActS2->UpdateSoftBody();
+    //ActorSoft* ActS2 = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("Robot9"));
+    //ActS2->UpdateSoftBody();
     return true;
 }
 
@@ -354,11 +354,11 @@ void LoadContent()
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    TheWorld.Actors->AddActor( new ActorSoft (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-    //TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-    //TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
-    ActorSoft* Act9 = static_cast < ActorSoft* > (TheWorld.Actors->LastActorAdded());
-    Act9->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+    TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+    TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+    TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+    //ActorSoft* Act9 = static_cast < ActorSoft* > (TheWorld.Actors->LastActorAdded());
+    //Act9->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
 
     object5 = new ActorRigid (0,"Plane","Plane.mesh",groupname,&TheWorld);
     object5->CreateShapeFromMeshStatic();
