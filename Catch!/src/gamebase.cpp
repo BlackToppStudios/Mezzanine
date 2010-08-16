@@ -330,7 +330,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << c;
         TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-        TheWorld.Actors->LastActorAdded ()->CreateShapeFromMeshDynamic(4);
+        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(4);
         TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -100.0, 0));
     }
 

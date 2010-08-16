@@ -70,7 +70,7 @@ namespace phys
     /// @details This is a plage for storing items related to Debug physics
     /// drawing, Adding constraints, screwing with gravity and doing other physics
     /// Related features.
-    class PhysicsManager : ManagerBase
+    class PhysicsManager : public ManagerBase
     {
         private:
             friend class World;
@@ -127,7 +127,7 @@ namespace phys
 
             /// @brief Deconstructor
             /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
-            ~PhysicsManager();
+            virtual ~PhysicsManager();
 
             /// @brief Sets the gravity.
             /// @details Sets the strength and direction of gravity within the world.

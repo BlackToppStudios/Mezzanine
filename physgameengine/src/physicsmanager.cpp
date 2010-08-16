@@ -313,8 +313,8 @@ namespace phys
 
         this->BulletDynamicsWorld->getDispatchInfo().m_enableSPU = true;
 
-        CollisionAge=1;
-        Impulse=1.0;
+        this->CollisionAge=1;
+        this->Impulse=1.0;
     }
 
     void PhysicsManager::Initialize()
@@ -415,7 +415,9 @@ namespace phys
     }
 
     btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
-        { return this->BulletDynamicsWorld; }
+    {
+        return this->BulletDynamicsWorld;
+    }
 
     void PhysicsManager::AddConstraint(TypedConstraint* Constraint)
     {

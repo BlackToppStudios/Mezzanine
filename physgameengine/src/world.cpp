@@ -144,7 +144,8 @@ namespace phys
         //Events are the main way for the game using the world to  get information about the various subsystems
         this->Events = new EventManager(this);
 
-        this->AddManager(new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_));
+        ManagerBase* temp2 = new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_);
+        this->AddManager(temp2);
         this->Physics = this->GetPhysicsManager();
         //this->Physics=new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_);
 
@@ -697,10 +698,10 @@ namespace phys
         }
     }
 
-    ManagerBase* World::GetManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne)
+    ManagerBase* World::GetManager(const ManagerBase::ManagerTypeName &ManagersToGet, short unsigned int WhichOne)
     {
         #ifdef PHYSDEBUG
-        this->LogStream << "Calling World::GetManager(Type:"<<ManagersToRemoveType<<") searching through "<<this->ManagerList.size()<<" Items.";
+        this->LogStream << "Calling World::GetManager(Type:"<<ManagersToGet<<") searching through "<<this->ManagerList.size()<<" Items.";
         #endif
         if(this->ManagerList.empty())
         {
@@ -708,7 +709,7 @@ namespace phys
         }else{
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
-                if( (*ManIter)->GetType() == ManagersToRemoveType )
+                if( (*ManIter)->GetType() == ManagersToGet )
                 {
                     if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
                     {

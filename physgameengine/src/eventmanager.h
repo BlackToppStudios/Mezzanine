@@ -81,7 +81,7 @@ namespace phys
     /// the events.
     /// @warning Currently this is not thread safe, even though it should be.
     ///////////////////////////////////////////////////////////////////////////////
-    class EventManager: ManagerBase
+    class EventManager: public ManagerBase
     {
         private:
             //The Default Physics worlds that this Eventmanager is expected to interact with

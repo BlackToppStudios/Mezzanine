@@ -46,9 +46,9 @@
  libraries and the game you want to make. If we do our jobs right this will save time and effort making and porting
  games between a variety of platforms. If you link only against this library, not a single line of your
  Standard compliant C++ code should need to change between platforms. At this early stage we are proving the
- concept with "Catch!" our first sample game. It Currently runs on Linux and Windows with an Identical
+ concept with "Catch!" our first sample game. It Currently runs on Linux, Windows and Mac OS X with an Identical
  codebase, when we are done with "Catch!" We want it to have one codebase, and downloadable in the Iphone
- app store, the Xbox store, on the PS3, on Steam, and in a variety of linux repositories.
+ app store, on the PS3, Wii downloadon Steam, and in a variety of linux repositories.
 
  To get the latest news on development checkout: http://gitorious.org/physgame
  Or check the webpage http://www.blacktoppstudios.com

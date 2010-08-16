@@ -1,4 +1,3 @@
 -20	Actors
-
 -5	Physics
 0	GraphicsLogging (even though it is not a manager)
