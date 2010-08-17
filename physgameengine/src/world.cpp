@@ -125,6 +125,7 @@ namespace phys
         this->SetWindowName("AppName");
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
+        this->FrameTime = 0;
 
         this->AddManager(new ActorContainerVector(this));
         this->Actors = this->GetActorManager();
@@ -148,7 +149,6 @@ namespace phys
         this->AddManager(temp2);
         this->Physics = this->GetPhysicsManager();
         //this->Physics=new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_);
-
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -334,7 +334,6 @@ namespace phys
          this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 
         Whole FrameDelay = 0;
-        Whole FrameTime = 0;
 
         /*! @page mainloop1 Main Loop Structure and Flow
          The MainLoop is heart of most vidoe games and simulations.
@@ -414,16 +413,16 @@ namespace phys
             }
 
             //Physics & Physics Callbacks
-            if( this->CallBacks->IsPrePhysicsCallbackSet() || this->CallBacks->IsPostPhysicsCallbackSet() )
+            /*if( this->CallBacks->IsPrePhysicsCallbackSet() || this->CallBacks->IsPostPhysicsCallbackSet() )
             {
                 if( this->CallBacks->IsPrePhysicsCallbackSet() )
                     { Callbackbools[2] = this->CallBacks->PrePhysics(); }
-                this->DoMainLoopPhysics(FrameTime);
+                //Ŕthis->DoMainLoopPhysics(this->GetFrameTime());
                 if( this->CallBacks->IsPostPhysicsCallbackSet() )
                     { Callbackbools[3] = this->CallBacks->PostPhysics(); }
-            }
+            }*/
 
-            // new main on frastructure
+            // new main infrastructure
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
                 if((*Iter)->PreMainLoopItems())
@@ -448,7 +447,7 @@ namespace phys
             this->DoMainLoopRender();
 
             // Do Time Calculations to Determine Rendering Time
-            FrameTime = RenderTimer.getMilliseconds();
+            this->FrameTime = RenderTimer.getMilliseconds();
             RenderTimer.reset();
             if(this->TargetFrameLength>FrameTime){
                 FrameDelay++;
@@ -487,8 +486,8 @@ namespace phys
 
     void World::DoMainLoopPhysics(const Real &TimeElapsed)
     {
-        this->Physics->DoMainLoopItems(TimeElapsed);
-        Log("Updated Physics");
+        //this->Physics->DoMainLoopItems(TimeElapsed);
+        //Log("Updated Physics");
     }
 
     void  World::DoMainLoopLogging()
@@ -610,6 +609,11 @@ namespace phys
     void World::SetTargetFrameRate(const Whole &NewFrameRate)
     {
         this->SetTargetFrameTime( 1000/NewFrameRate );
+    }
+
+    Whole World::GetFrameTime()
+    {
+        return this->FrameTime;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

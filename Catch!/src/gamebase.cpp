@@ -26,8 +26,10 @@ int main(int argc, char **argv)
     //Give the world functions to run before and after input and physics
     TheWorld.CallBacks->SetPreInput(&PreInput);
     TheWorld.CallBacks->SetPostInput(&PostInput);
-    TheWorld.CallBacks->SetPrePhysics(&PrePhysics);
-    TheWorld.CallBacks->SetPostPhysics(&PostPhysics);
+    //TheWorld.CallBacks->SetPrePhysics(&PrePhysics);
+    //TheWorld.CallBacks->SetPostPhysics(&PostPhysics);
+    TheWorld.GetPhysicsManager()->SetPreMainLoopItems(&PrePhysics);
+    TheWorld.GetPhysicsManager()->SetPostMainLoopItems(&PostPhysics);
 
     //give the World our function to execute after renderingg
     TheWorld.CallBacks->SetPostRender(&PostRender);

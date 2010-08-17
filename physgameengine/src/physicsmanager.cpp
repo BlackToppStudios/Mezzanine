@@ -325,7 +325,9 @@ namespace phys
     }
 
     void PhysicsManager::DoMainLoopItems()
-        {}
+    {
+        this->DoMainLoopItems(this->GameWorld->GetFrameTime());
+    }
 
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {

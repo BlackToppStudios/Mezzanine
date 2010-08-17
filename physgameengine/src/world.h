@@ -190,6 +190,7 @@ namespace phys
             //Settings for Engine Functionality
             string WindowName;
             Whole TargetFrameLength;
+            Whole FrameTime;
 
             /// @internal
             /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
@@ -320,6 +321,11 @@ namespace phys
             /// @param NewFrameRate The new desired frame rate.
             /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
             void SetTargetFrameRate(const Whole &NewFrameRate);
+
+            /// @brief Gets the amount of time since the last time Rendering began.
+            /// @details This returns, in milliseconds the amount of time since the frame started (since the last rendering began)
+            /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
+            Whole GetFrameTime();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Graphics system loading methods
