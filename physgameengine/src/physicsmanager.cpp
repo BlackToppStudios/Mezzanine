@@ -347,7 +347,10 @@ namespace phys
             this->BulletDynamicsWorld->debugDrawWorld();
         }
 
+        #ifdef PHYSDEBUG
         this->GameWorld->Log("Checking for Collisions.");
+        #endif
+
         int numManifolds = BulletDynamicsWorld->getDispatcher()->getNumManifolds();
         for (int i=0;i<numManifolds;i++)
         {
@@ -366,8 +369,10 @@ namespace phys
                     EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
                     //create collision event
                     this->GameWorld->Events->AddEvent(ColEvent);
+                    #ifdef PHYSDEBUG
                     this->GameWorld->Log("Collision Event Logged at:");
                     this->GameWorld->Log(emptyloc);
+                    #endif
                 }
             }
         }

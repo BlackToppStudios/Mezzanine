@@ -425,16 +425,12 @@ namespace phys
             // new main infrastructure
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
-                if((*Iter)->PreMainLoopItems() && DoNotBreak)
-                    { DoNotBreak=true; }
-                else
+                if( !(*Iter)->PreMainLoopItems() )
                     { DoNotBreak=false; }
 
                 (*Iter)->DoMainLoopItems();
 
-                if((*Iter)->PostMainLoopItems() && DoNotBreak)
-                    { DoNotBreak=true; }
-                else
+                if( !(*Iter)->PostMainLoopItems() )
                     { DoNotBreak=false; }
             }
 

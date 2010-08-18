@@ -227,6 +227,9 @@ namespace phys
 
     Vector3WActor* WorldQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay)
     {
+        #ifdef PHYSDEBUG
+        this->GameWorld->Log("WorldQueryTool::GetFirstActorOnRayByAABB:");
+        #endif
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
         if(NULL != this->RayQuery)          //Double check that the Rayquery is valid
@@ -274,8 +277,9 @@ namespace phys
 
     Vector3* WorldQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
     {
+        #define PHYSDEBUG
         #ifdef PHYSDEBUG
-        this->GameWorld->Log("WorldQueryTool CLICK:");
+        this->GameWorld->LogStream << "WorldQueryTool::RayPlaneIntersection("<< QueryRay << ", " << QueryPlane << ")" << endl;
         #endif
         try{
             Vector3 u = QueryRay.To - QueryRay.From;
@@ -304,7 +308,7 @@ namespace phys
             }
 
             #ifdef PHYSDEBUG
-            GameWorld->LogStream << endl << " WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance;
+            GameWorld->LogStream << " WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance << endl;
             #endif
 
             Vector3 w = QueryRay.From - p0;
@@ -342,7 +346,7 @@ namespace phys
             Vector3 test =  Vector3(QueryRay.From + (u * sI));
 
             #ifdef PHYSDEBUG
-            this->GameWorld->LogStream << endl << "WorldQueryTool: RayPlane Intersection RESULTS   X:" << test.X << " Y:" << test.Y << " Z:" << test.Z;
+            this->GameWorld->LogStream << "WorldQueryTool: RayPlane Intersection RESULTS   X:" << test.X << " Y:" << test.Y << " Z:" << test.Z << endl;
             #endif
 
             Vector3* return_vector = new Vector3(QueryRay.From + (u * sI));
@@ -358,7 +362,7 @@ namespace phys
             }
 
             #ifdef PHYSDEBUG
-            this->GameWorld->LogStream << endl << "Distance:" << distance;
+            this->GameWorld->LogStream << "Distance:" << distance << endl;
             #endif
 
             return return_vector;
@@ -369,6 +373,7 @@ namespace phys
             return 0;
         }
     }
+#undef PHYSDEBUG
 
     Ray* WorldQueryTool::GetMouseRay(Real Length)
     {

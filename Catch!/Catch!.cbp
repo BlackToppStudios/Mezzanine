@@ -38,7 +38,7 @@
 					<Add after="cmd /c copy /y /v .\data\common\*.jpg .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.psd .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.tga .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\sounds\*.wav .\bin\WinDebug\data\common\sounds" />
+					<Add after="cmd /c copy /y /v .\data\common\sounds\*.ogg .\bin\WinDebug\data\common\sounds" />
 					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinDebug\data\common\music" />
 					<Mode after="always" />
 				</ExtraCommands>
@@ -71,6 +71,8 @@
 					<Add before="cp data/common/*.mesh bin/LinuxDebug/data/common/" />
 					<Add before="cp data/common/*.skeleton bin/LinuxDebug/data/common/" />
 					<Add before="cp data/common/*.material bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/music/*.ogg bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/sounds/*.ogg bin/LinuxDebug/data/common/" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
@@ -106,7 +108,7 @@
 					<Add after="cmd /c copy /y /v .\data\common\*.jpg .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.psd .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.tga .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\sounds\*.wav .\bin\WinDebug\data\common\sounds" />
+					<Add after="cmd /c copy /y /v .\data\common\sounds\*.ogg .\bin\WinDebug\data\common\sounds" />
 					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinDebug\data\common\music" />
 					<Mode after="always" />
 				</ExtraCommands>
@@ -139,6 +141,8 @@
 					<Add before="cp data/common/*.mesh bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.skeleton bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.material bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/music/*.ogg bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/sounds/*.ogg bin/LinuxRelease/data/common/" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>

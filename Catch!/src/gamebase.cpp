@@ -99,14 +99,21 @@ bool PostRender()
         Act2->AdvanceAnimation((Real)0.0001 * LastFrame);
     }
 
-    if (1000<gametime && 1040>gametime)
+    static bool notplayed=true;
+    if (/*1000<gametime &&*/ notplayed)
     {
+        #define PHYSDEBUG
+        notplayed=false;
         Sound* Welcome = NULL;
         Welcome = TheWorld.Sounds->GetSoundByName("Welcome");
         if(Welcome)
         {
             Welcome->Play2d(false);
         }
+        #ifdef PHYSDEBUG
+        TheWorld.Log("Played Welcome Fun:");
+        #endif
+
     }
 
     // Turn on the Wireframe
@@ -174,13 +181,13 @@ bool PostInput()
         { TheWorld.Cameras->ResetZoom(); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_m) )
+    {
+        Sound* Theme = TheWorld.Sounds->GetSoundByName("Theme2");
+        if(!Theme->IsPlaying())
         {
-            Sound* Theme = TheWorld.Sounds->GetSoundByName("Theme2");
-            if(!Theme->IsPlaying())
-            {
-                Theme->Play2d(false);
-            }
+            Theme->Play2d(false);
         }
+    }
 
     // Make a declaration for a static constrain so it survives the function lifetime
     // static *constraint MouseDragger = 0;
@@ -189,27 +196,38 @@ bool PostInput()
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
-        TheWorld.Log("Begin Mouse Dragging");
+        #ifdef PHYSDEBUG
+        TheWorld.Log("Gamebase CLICK:");
+        TheWorld.LogStream << "Camera Location: " << TheWorld.Cameras->GetCameraGlobalLocation() << endl;
+        #endif
+
         Ray *MouseRay = Queryer.GetMouseRay();
-        TheWorld.Log("MouseRay");
-        TheWorld.Log(*MouseRay);
-        TheWorld.Log("PlaneOfPlay");
-        TheWorld.Log(PlaneOfPlay);
+        //*MouseRay *= 1000;
 
         Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
 
         bool firstframe=false;
         if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
         {
+            #ifdef PHYSDEBUG
             TheWorld.Log("No Actor Clicked on");
+            #endif
         }else{
+            #ifdef PHYSDEBUG
             TheWorld.Log("Actor Clicked on");
             TheWorld.Log(*ClickOnActor);
+            TheWorld.Log("MouseRay");
+            TheWorld.Log(*MouseRay);
+            TheWorld.Log("PlaneOfPlay");
+            TheWorld.Log(PlaneOfPlay);
+            TheWorld.Log("ClickOnActor");
+            TheWorld.Log(*ClickOnActor);
+            #endif
             if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
             {
-                if(!Dragger)
+                if(!Dragger) //If we have a dragger, then this is dragging, not clicking
                 {
-                    if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid)
+                    if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid) //This is Dragging let's do some checks for sanity
                     {
                         Vector3 LocalPivot = ClickOnActor->Actor->GetLocation();
                         LocalPivot.Inverse();
@@ -222,47 +240,47 @@ bool PostInput()
                         Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
                         Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
                         TheWorld.Physics->AddConstraint(Dragger);
-                        Dragger->SetParam(4,0.8,0);
-                        Dragger->SetParam(4,0.8,1);
-                        Dragger->SetParam(4,0.8,2);
-                        Dragger->SetParam(4,0.8,3);
-                        Dragger->SetParam(4,0.8,4);
-                        Dragger->SetParam(4,0.8,5);
-                        Dragger->SetParam(2,0.1,0);
-                        Dragger->SetParam(2,0.1,1);
-                        Dragger->SetParam(2,0.1,2);
-                        Dragger->SetParam(2,0.1,3);
-                        Dragger->SetParam(2,0.1,4);
-                        Dragger->SetParam(2,0.1,5);
+                        Dragger->SetParam(4,0.8,0); Dragger->SetParam(4,0.8,1); Dragger->SetParam(4,0.8,2); Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
+                        Dragger->SetParam(2,0.1,0); Dragger->SetParam(2,0.1,1); Dragger->SetParam(2,0.1,2); Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
                         firstframe=true;
-                    }else{
+                    }else{  // since we don't
+                        #ifdef PHYSDEBUG
                         TheWorld.Log("Actor is not an ActorRigid.  Aborting.");
+                        #endif
                     }
                 }
             }else{
-                TheWorld.Log("Actor is Static or Kinematic.  Aborting.");
+                #ifdef PHYSDEBUG
+                TheWorld.Log("Actor is Static/Kinematic.  Aborting.");
+                #endif
             }
         }
+
+        // This chunk of code calculates the 3d point that the actor needs to be dragged to
         Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
         if (0 == DragTo)
         {
+            #ifdef PHYSDEBUG
             TheWorld.Log("PlaneOfPlay Not Clicked on");
+            #endif
         }else{
             if(Dragger && !firstframe)
             {
+                #ifdef PHYSDEBUG
                 TheWorld.Log("Dragged To");
                 TheWorld.Log(*DragTo);
+                #endif
                 Dragger->SetOffsetALocation(*DragTo);
             }
         }
 
+        // Here we cleanup everything we needed for the clicking/dragging
         if ( DragTo )
             { delete DragTo; }
-
         if ( MouseRay )
             { delete MouseRay; }
 
-    }else{
+    }else{  //Since we are no longer clicking we need to setup for the next clicking
         if(Dragger)
         {
             TheWorld.Physics->RemoveConstraint(Dragger);
@@ -271,6 +289,7 @@ bool PostInput()
         }
     }
 
+    #undef PHYSDEBUG
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
         return false;

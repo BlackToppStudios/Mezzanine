@@ -81,7 +81,7 @@ namespace phys
         Ray Temp = this->GetNormal();
         return Ogre::Ray(
             Temp.From.GetOgreVector3(),
-            Temp.To.GetOgreVector3()
+            Temp.To.GetNormal().GetOgreVector3()
         );// */
         /*
         return Ogre::Ray(
