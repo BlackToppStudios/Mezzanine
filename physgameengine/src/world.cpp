@@ -143,7 +143,9 @@ namespace phys
         //Callbacks are the main way that a game using the World will be able to have their code run at custom times
         this->CallBacks = new CallBackManager(this);
         //Events are the main way for the game using the world to  get information about the various subsystems
-        this->Events = new EventManager(this);
+
+        this->AddManager(new EventManager(this));
+        this->Events = this->GetEventManager();//new EventManager(this);
 
         ManagerBase* temp2 = new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_);
         this->AddManager(temp2);
@@ -157,7 +159,7 @@ namespace phys
 
     void World::SanityChecks()
     {
-        //Perform a Test that only needs to be done once for the SDL/Physuserinputevent system.
+        //Perform a Test that only needs to be done once for the SDL/Physuserinputevent system.`
         Log("Verifying size of userinput events:");
         Log(sizeof(MetaCode::InputCode));
         Log(sizeof(SDLKey));
@@ -339,15 +341,13 @@ namespace phys
          The MainLoop is heart of most vidoe games and simulations.
 
          @section mainloopoverview1 Main loop Overview
-         The Main loop runs in World.MainLoop() which is called by default from @ref World.GameInit(). By default this Method also starts the render, the physics andthe input systems. It does very little
-         on it's own. It uses the default callback manager (which you can swap out if you want), which is the callback manager point to by World::CallBacks . Once started it runs the
+         The Main loop runs in World.MainLoop() which is called by default from @ref World.GameInit(). By default this Method also starts the render, the physics andthe input systems. It does very
+         little on it's own. The main loop then calls the PreMainLoopItems(), DoMainLoopItems and PreMainLoopItems(), for each manager in the order of their priority from Lowest to Highest.
+         \nHere is a listing of season
+
+         t uses the default callback manager (which you can swap out if you want), which is the callback manager point to by World::CallBacks . Once started it runs the
          callbacks present in the callback manager until one of them returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback
          before and after each of these tasks.
-         \n \n The user input task is never started if there is no Pre or Post callback set. It won't crash or throw any weird error condtions, it was specifically designed this way. This
-         allows the input buffering to be turned off by simply removing the callbacks. This might not sound like much, but if you simply don't need input this can be a little performance bump.
-         It sounds even better when we say it works the same way for physics. If you do not have a pre or post physic callback set physics simply is not run. This allows for easy control over
-         the state of motion  in a world. Currently Rendering is performed each iteration of the main loop, regardless of what Callbacks are set. This may be changed at some point in the future,
-         but no immediate plans to change it are in the works.
          \n \n One iteration of the main loops is about 1/60 of a second (by default) and will render 1 frame and step physics about 1/60 (1/62.5 usually) of a second. Currently there is no way to uncap
          the framerate, we did not see a need for more (but the cap can be adjusted using World::SetTargetFrameTime or World::SetTargetFrameRate ). Situations with low performance should
          automatically be handled but increasing the size of physics
@@ -403,14 +403,14 @@ namespace phys
         while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3] && Callbackbools[4] && Callbackbools[5] && DoNotBreak)
         {
             //Input buffering Callbacks
-            if( this->CallBacks->IsPreInputCallbackSet() || this->CallBacks->IsPostInputCallbackSet() )
+            /*if( this->CallBacks->IsPreInputCallbackSet() || this->CallBacks->IsPostInputCallbackSet() )
             {
                 if( this->CallBacks->IsPreInputCallbackSet() )
                     { Callbackbools[0] = this->CallBacks->PreInput(); }
                 this->DoMainLoopInputBuffering();
                 if( this->CallBacks->IsPostInputCallbackSet() )
                     { Callbackbools[1] = this->CallBacks->PostInput(); }
-            }
+            }//*/
 
             //Physics & Physics Callbacks
             /*if( this->CallBacks->IsPrePhysicsCallbackSet() || this->CallBacks->IsPostPhysicsCallbackSet() )
@@ -425,13 +425,17 @@ namespace phys
             // new main infrastructure
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
-                if((*Iter)->PreMainLoopItems())
+                if((*Iter)->PreMainLoopItems() && DoNotBreak)
                     { DoNotBreak=true; }
+                else
+                    { DoNotBreak=false; }
 
                 (*Iter)->DoMainLoopItems();
 
-                if((*Iter)->PostMainLoopItems())
+                if((*Iter)->PostMainLoopItems() && DoNotBreak)
                     { DoNotBreak=true; }
+                else
+                    { DoNotBreak=false; }
             }
 
             //PreRender callback
@@ -449,9 +453,9 @@ namespace phys
             // Do Time Calculations to Determine Rendering Time
             this->FrameTime = RenderTimer.getMilliseconds();
             RenderTimer.reset();
-            if(this->TargetFrameLength>FrameTime){
+            if(this->TargetFrameLength>this->GetFrameTime()){
                 FrameDelay++;
-            }else if(this->TargetFrameLength==FrameTime){
+            }else if(this->TargetFrameLength==this->GetFrameTime()){
             }else{
                 if (0<FrameDelay){
                     FrameDelay--;
@@ -503,7 +507,7 @@ namespace phys
 
     void World::DoMainLoopInputBuffering()
     {
-        this->Events->UpdateUserInputEvents();
+        //this->Events->UpdateUserInputEvents();
     }
 
     void World::DoMainLoopRender()
@@ -640,7 +644,6 @@ namespace phys
     ///////////////////////////////////////
     void World::AddManager(ManagerBase* ManagerToAdd)
     {
-        #define PHYSDEBUG
         #ifdef PHYSDEBUG
         this->LogStream << "Calling World::AddManager("<<ManagerToAdd<<") size before:" <<this->ManagerList.size();
         #endif

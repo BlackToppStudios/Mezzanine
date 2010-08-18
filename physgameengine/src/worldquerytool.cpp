@@ -143,7 +143,6 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     // Raycasting Nonsense goe here
-
     Vector3WActor* WorldQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay)
     {
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
@@ -275,16 +274,18 @@ namespace phys
 
     Vector3* WorldQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
     {
-
-        this->GameWorld->Log("WorldQueryTool CLICK:\n");
+        #ifdef PHYSDEBUG
+        this->GameWorld->Log("WorldQueryTool CLICK:");
+        #endif
         try{
             Vector3 u = QueryRay.To - QueryRay.From;
             Vector3 p0 = Vector3(0,0,0);
 
-
             if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
             {
-                this->GameWorld->Log("WorldQueryTool Error:Invalid Plane. Plane contains no points.\n");
+                #ifdef PHYSDEBUG
+                this->GameWorld->Log("WorldQueryTool Error:Invalid Plane. Plane contains no points.");
+                #endif
                 return 0;
             }
             else{
@@ -302,7 +303,9 @@ namespace phys
                 }
             }
 
-            GameWorld->LogStream << "WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance;
+            #ifdef PHYSDEBUG
+            GameWorld->LogStream << endl << " WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance;
+            #endif
 
             Vector3 w = QueryRay.From - p0;
 
@@ -311,7 +314,7 @@ namespace phys
 
             Real SMALL_NUM = 0.00000001;
 
-            if( (D<0? -D : D) < SMALL_NUM)
+            if( (D<0? -D : D) < SMALL_NUM)  //Checks if the Plane behind the RAy
             {
                 if(N == 0)
                 {
@@ -319,7 +322,9 @@ namespace phys
                 }
                 else
                 {
-                    this->GameWorld->Log("WorldQueryTool Error: num<SMALL_NUM: Ray casted with no intersection point.\n");
+                    #ifdef PHYSDEBUG
+                    this->GameWorld->Log("WorldQueryTool Error: num<SMALL_NUM: Ray casted with no intersection point.");
+                    #endif
                     return 0;
                 }
             }
@@ -328,13 +333,17 @@ namespace phys
 
             if(sI < 0 || sI > 1) //checks if the ray is too long
             {
-                this->GameWorld->Log("WorldQueryTool Error:(si<0 || si > 1: Ray casted with no intersection point.\n");
+                #ifdef PHYSDEBUG
+                this->GameWorld->Log("WorldQueryTool Error:(si<0 || si > 1: Ray casted with no intersection point.");
+                #endif
                 return 0;
             }
 
             Vector3 test =  Vector3(QueryRay.From + (u * sI));
 
-            this->GameWorld->LogStream << "WorldQueryTool: RayPlane Intersection RESULTS   X:" << test.X << " Y:" << test.Y << " Z:" << test.Z;
+            #ifdef PHYSDEBUG
+            this->GameWorld->LogStream << endl << "WorldQueryTool: RayPlane Intersection RESULTS   X:" << test.X << " Y:" << test.Y << " Z:" << test.Z;
+            #endif
 
             Vector3* return_vector = new Vector3(QueryRay.From + (u * sI));
 
@@ -342,19 +351,23 @@ namespace phys
 
             if(distance > QueryRay.From.Distance(QueryRay.To))
             {
-                this->GameWorld->Log("WorldQueryTool Error:Ray casted hits plane but is not long enough.\n");
+                #ifdef PHYSDEBUG
+                this->GameWorld->Log("WorldQueryTool Error:Ray casted hits plane but is not long enough.");
+                #endif
                 return 0;
             }
 
-            this->GameWorld->LogStream << "Distance:" << distance << "\n";
+            #ifdef PHYSDEBUG
+            this->GameWorld->LogStream << endl << "Distance:" << distance;
+            #endif
 
-             return return_vector;
-            } catch(exception e) {
-                //In case we divide b
-                this->GameWorld->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
-                this->GameWorld->Log(e.what());
-                return 0;
-            }
+            return return_vector;
+        } catch(exception e) {
+            //In case we divide b
+            this->GameWorld->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
+            this->GameWorld->Log(e.what());
+            return 0;
+        }
     }
 
     Ray* WorldQueryTool::GetMouseRay(Real Length)

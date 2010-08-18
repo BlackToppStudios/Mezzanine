@@ -15,8 +15,6 @@ World TheWorld( Vector3(-10000.0,-10000.0,-10000.0), Vector3(10000.0,10000.0,100
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
-Generic6DofConstraint* Dragger=NULL;
-
 int main(int argc, char **argv)
 {
     // Set the Title
@@ -24,8 +22,10 @@ int main(int argc, char **argv)
     TheWorld.SetTargetFrameRate(40);
 
     //Give the world functions to run before and after input and physics
-    TheWorld.CallBacks->SetPreInput(&PreInput);
-    TheWorld.CallBacks->SetPostInput(&PostInput);
+    //TheWorld.CallBacks->SetPreInput(&PreInput);
+    //TheWorld.CallBacks->SetPostInput(&PostInput);
+    TheWorld.GetEventManager()->SetPreMainLoopItems(&PreInput);
+    TheWorld.GetEventManager()->SetPostMainLoopItems(&PostInput);
     //TheWorld.CallBacks->SetPrePhysics(&PrePhysics);
     //TheWorld.CallBacks->SetPostPhysics(&PostPhysics);
     TheWorld.GetPhysicsManager()->SetPreMainLoopItems(&PrePhysics);
@@ -185,6 +185,8 @@ bool PostInput()
     // Make a declaration for a static constrain so it survives the function lifetime
     // static *constraint MouseDragger = 0;
 
+    static Generic6DofConstraint* Dragger=NULL;
+
     if( Queryer.IsMouseButtonPushed(1) )
     {
         TheWorld.Log("Begin Mouse Dragging");
@@ -193,7 +195,6 @@ bool PostInput()
         TheWorld.Log(*MouseRay);
         TheWorld.Log("PlaneOfPlay");
         TheWorld.Log(PlaneOfPlay);
-
 
         Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
 
@@ -214,7 +215,7 @@ bool PostInput()
                         LocalPivot.Inverse();
                         Vector3 Clickloc = ClickOnActor->Vector;
                         LocalPivot = LocalPivot * Clickloc;
-                        ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                        ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);https://m
                         Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,0), false);
                         Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
                         Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
@@ -286,12 +287,16 @@ bool CheckForEsc()
     //We check each Event
     while(0 != OneInput)
     {
+        #ifdef PHYSDEBUG
         TheWorld.Log("Input Events Processed");
+        #endif
 
         //we check each MetaCode in each Event
         for (int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
-            TheWorld.Log(OneInput->GetMetaCode(c));
+            #ifdef PHYSDEBUG
+            TheWorld.LogStream << Metacode << "(" << c << ")" = << OneInput->GetMetaCode(c));
+            #endif
             //Is the key we just pushed ESCAPE
             if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode())
             {

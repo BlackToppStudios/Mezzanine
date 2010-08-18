@@ -100,6 +100,7 @@ namespace phys
         this->GameWorld = ParentWorld_;
         PollMouseHor = false;
         PollMouseVert = false;
+        this->Priority=-40;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -599,7 +600,9 @@ namespace phys
         {}
 
     void EventManager::DoMainLoopItems()
-        {}
+    {
+        this->UpdateUserInputEvents();
+    }
 
     ManagerBase::ManagerTypeName EventManager::GetType() const
         { return ManagerBase::EventManager; }
