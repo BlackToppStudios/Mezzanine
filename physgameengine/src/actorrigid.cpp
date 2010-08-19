@@ -56,6 +56,7 @@ namespace phys{
 
     ActorRigid::ActorRigid (Real mass, String name, String file, String group, World* _World) : ActorBase (name, file, group, _World)
     {
+        this->CreateMotionState(this->node);
         this->CreateRigidObject(mass);
         ActorType=ActorBase::Actorrigid;
     }
@@ -206,6 +207,7 @@ namespace phys{
             this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
             this->physrigidbody->setCollisionShape(this->Shape);
             this->physrigidbody->setMassProps(mass,inertia);
+            this->physrigidbody->updateInertiaTensor();
             return;
         }
         if(accuracy==2)
@@ -224,6 +226,7 @@ namespace phys{
             btVector3 inertia(0,0,0);
             Shape->calculateLocalInertia(mass, inertia);
             this->physrigidbody->setMassProps(mass,inertia);
+            this->physrigidbody->updateInertiaTensor();
             return;
         }
         if(accuracy==3)
@@ -242,6 +245,7 @@ namespace phys{
             btVector3 inertia(0,0,0);
             Shape->calculateLocalInertia(mass, inertia);
             this->physrigidbody->setMassProps(mass,inertia);
+            this->physrigidbody->updateInertiaTensor();
             return;
         }
         if(accuracy==4)
@@ -262,6 +266,7 @@ namespace phys{
             ShapeIsSaved = false;
             this->physrigidbody->setCollisionShape(this->Shape);
             this->physrigidbody->setMassProps(mass,inertia);
+            this->physrigidbody->updateInertiaTensor();
             return;
         }
         return;
@@ -288,6 +293,7 @@ namespace phys{
             this->Shape->setLocalScaling(btVector3(1.f,1.f,1.f));
             this->physrigidbody->setCollisionShape(this->Shape);
             this->physrigidbody->setMassProps(mass,inertia);
+            this->physrigidbody->updateInertiaTensor();
             return;
         }
         else
@@ -308,6 +314,7 @@ namespace phys{
         ShapeIsSaved = false;
         this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
         this->physrigidbody->setCollisionShape(this->Shape);
+        this->physrigidbody->updateInertiaTensor();
     }
 
     std::string ActorRigid::GetName () const

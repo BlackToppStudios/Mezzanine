@@ -42,6 +42,8 @@
 
 #include "actorbase.h"
 
+class btRigidBody;
+
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
@@ -54,15 +56,17 @@ namespace phys
     ///////////////////////////////////////
     class ActorTerrain : public ActorBase {
         protected:
-            void CreateTerrain();
+            btRigidBody* RigidBody;
+            void CreateCollisionTerrain();
         public:
             /// @brief Class constructor.
             /// @details The class constructor.
+            /// @param Initposition The location for this terrain.
             /// @param name The name of the actor.
             /// @param file The 3d mesh file that contains the 3d model the actor will use.
             /// @param group The resource group where the 3d mesh and other related files can be found.
             /// @param _World Pointer to the World this object will be added to.
-            ActorTerrain(String name, String file, String group, World* _World);
+            ActorTerrain(Vector3 InitPosition, String name, String file, String group, World* _World);
 
             /// @brief Class destructor.
             /// @details The class destructor.

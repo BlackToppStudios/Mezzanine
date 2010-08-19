@@ -55,9 +55,10 @@ namespace phys{
         this->GameWorld = _World;
         this->node = this->GameWorld->OgreSceneManager->createSceneNode();
         this->GameWorld->OgreSceneManager->getRootSceneNode()->addChild(this->node);
-        this->MotionState = new internal::PhysMotionState(this->node);
+        //this->MotionState = new internal::PhysMotionState(this->node);
         this->Shape = new btEmptyShape();
         this->CreateEntity(name, file, group);
+        MotionState = NULL;
         ActorSounds = NULL;
         Animation = NULL;
         ShapeIsSaved = false;
@@ -70,7 +71,7 @@ namespace phys{
         if(!ShapeIsSaved)
         {
             delete Shape;
-        };
+        }
         delete node;
         delete entity;
         if(CollisionObject)
@@ -309,6 +310,24 @@ namespace phys{
         this->node = this->GameWorld->OgreSceneManager->createSceneNode();
     }
 
+    void ActorBase::CreateMotionState(Ogre::SceneNode* Node)
+    {
+        this->MotionState = new internal::PhysMotionState(Node);
+    }
+
+    void ActorBase::CreateMotionState(Ogre::SceneNode* Node, Vector3 InitPosition)
+    {
+        this->MotionState = new internal::PhysMotionState(Node);
+        this->MotionState->SetPosition(InitPosition);
+    }
+
+    void ActorBase::CreateMotionState(Ogre::SceneNode* Node, Vector3 InitPosition, Quaternion InitOrientation)
+    {
+        this->MotionState = new internal::PhysMotionState(Node);
+        this->MotionState->SetPosition(InitPosition);
+        this-<MotionState->SetOrientation(InitOrientation);
+    }
+
     ///////////////////////////////////
     // ActorBase Private Location Functions
 
@@ -374,11 +393,6 @@ namespace phys{
     void ActorBase::SetInitLocation(Vector3 Location)
     {
         this->SetBulletLocation(Location);
-        if ( btCollisionObject::CO_RIGID_BODY == this->CollisionObject->getInternalType() )
-        {
-            btRigidBody* Rigid = static_cast< btRigidBody* > (this->CollisionObject);
-            Rigid->updateInertiaTensor();
-        }
     }
 
     ///////////////////////////////////

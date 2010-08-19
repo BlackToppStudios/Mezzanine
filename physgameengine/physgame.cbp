@@ -242,6 +242,7 @@
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="src\internalmeshinfo.cpp" />
 		<Unit filename="src\internalmeshinfo.h.cpp">
 			<Option compile="0" />
 			<Option link="0" />
