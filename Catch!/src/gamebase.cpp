@@ -203,8 +203,14 @@ bool PostInput()
 
         Ray *MouseRay = Queryer.GetMouseRay();
         //*MouseRay *= 1000;
+        //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
 
         Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
+        #ifdef PHYSDEBUG
+        TheWorld.LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
+        #endif
+
+        //ActorBase *temp = ClickOnActor->Actor;
 
         bool firstframe=false;
         if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
@@ -214,14 +220,10 @@ bool PostInput()
             #endif
         }else{
             #ifdef PHYSDEBUG
-            TheWorld.Log("Actor Clicked on");
-            TheWorld.Log(*ClickOnActor);
-            TheWorld.Log("MouseRay");
-            TheWorld.Log(*MouseRay);
-            TheWorld.Log("PlaneOfPlay");
-            TheWorld.Log(PlaneOfPlay);
-            TheWorld.Log("ClickOnActor");
-            TheWorld.Log(*ClickOnActor);
+            TheWorld.Log("Actor Clicked on"); TheWorld.Log(*ClickOnActor);
+            TheWorld.Log("MouseRay"); TheWorld.Log(*MouseRay);
+            TheWorld.Log("PlaneOfPlay"); TheWorld.Log(PlaneOfPlay);
+            TheWorld.Log("ClickOnActor"); TheWorld.Log(*ClickOnActor);
             #endif
             if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
             {
