@@ -85,7 +85,7 @@ bool PostRender()
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
 
-    /*ActorBase* Act1 = TheWorld.Actors->FindActor("RobotWayUpFrontLeft");
+    ActorBase* Act1 = TheWorld.Actors->FindActor("RobotWayUpFrontLeft");
     ActorBase* Act2 = TheWorld.Actors->FindActor("RobotWayUpFrontRight");
     if (Act1->IsAnimated())
     {
@@ -95,7 +95,7 @@ bool PostRender()
     if (Act2->IsAnimated())
     {
         Act2->AdvanceAnimation((Real)0.0001 * LastFrame);
-    }*/
+    }
 
     if (1000<gametime && 1040>gametime)
     {
@@ -108,7 +108,7 @@ bool PostRender()
     }
 
     // Turn on the Wireframe
-    if (300<gametime)
+    if (30000<gametime)
         { TheWorld.Physics->SetDebugPhysicsRendering(1); }
 
     //IF the game has gone on for 150 or more seconds close it.
@@ -122,16 +122,15 @@ bool PrePhysics()
 {
     TheWorld.Log("Object Locations");
     //Replace this with something that uses the actor container and logs the location of everything
-    //TheWorld.Log(TheWorld.Actors->FindActor("MetalSphere2")->GetLocation());
+    TheWorld.Log(TheWorld.Actors->FindActor("MetalSphere2")->GetLocation());
     return true;
 }
 
 bool PostPhysics()
 {
-    //ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("MetalSphere2"));
+    //// Updating functions to be used when a suitable mesh is found/created.
+    //ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("Column1"));
     //ActS->UpdateSoftBody();
-    ActorSoft* ActS2 = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("Robot9"));
-    ActS2->UpdateSoftBody();
     return true;
 }
 
@@ -354,19 +353,22 @@ void LoadContent()
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    TheWorld.Actors->AddActor( new ActorSoft (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-    //TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-    //TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
-    ActorSoft* Act9 = static_cast < ActorSoft* > (TheWorld.Actors->LastActorAdded());
-    Act9->SetInitLocation(Vector3( (-0.5*PinSpacing), 100.0, -PinSpacing*3));
+    TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+    TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+    TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+
+    //// The simulations soft body, to be used once a suitable mesh is found/created.
+    //TheWorld.Actors->AddActor( new ActorSoft (51,"Column1","column.mesh",groupname,&TheWorld) );
+    //ActorSoft* Act9 = static_cast < ActorSoft* > (TheWorld.Actors->LastActorAdded());
+    //Act9->SetInitLocation(Vector3( (-0.5*PinSpacing), 100.0, -PinSpacing*4));
 
     object5 = new ActorTerrain (Vector3(0.0,-100,-300.0),"Plane","Plane.mesh",groupname,&TheWorld);
     object5->CreateShapeFromMeshStatic();
     //object5->SetInitLocation(Vector3(0.0,-100,-300.0));
-/*
-    object6 = new ActorRigid (0,"Ramp","Plane.mesh",groupname,&TheWorld);
+
+    object6 = new ActorTerrain (Vector3(00.0,300.0,-1100.0),"Ramp","Plane.mesh",groupname,&TheWorld);
     object6->CreateShapeFromMeshStatic();
-    object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
+    //object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
 
     object1 = new ActorRigid (mass,"RobotWayUpFrontRight",filerobot,groupname,&TheWorld);
@@ -397,20 +399,20 @@ void LoadContent()
     object7->CreateSphereShapeFromMesh();
     object7->SetActorScaling(Vector3(0.3,0.3,0.3));
     object7->SetInitLocation(Vector3(10.0,25000.0,-1300.0));
-*/
+
     //Final Steps
     Vector3 grav;
     grav.X=0.0;
     grav.Y=-10000.0;
     grav.Z=0.0;
 
-    //TheWorld.Actors->AddActor(object1);
-    //TheWorld.Actors->AddActor(object2);
-    //TheWorld.Actors->AddActor(object3);
-    //TheWorld.Actors->AddActor(object4);
+    TheWorld.Actors->AddActor(object1);
+    TheWorld.Actors->AddActor(object2);
+    TheWorld.Actors->AddActor(object3);
+    TheWorld.Actors->AddActor(object4);
     TheWorld.Actors->AddActor(object5);
-    //TheWorld.Actors->AddActor(object6);
-    //TheWorld.Actors->AddActor(object7);
+    TheWorld.Actors->AddActor(object6);
+    TheWorld.Actors->AddActor(object7);
 
     Sound *sound1, *music1, *music2;
     TheWorld.Sounds->CreateSoundSet("Announcer");

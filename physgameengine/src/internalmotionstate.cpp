@@ -57,14 +57,6 @@ namespace phys{
             this->worldtrans.setIdentity();
         }
 
-        PhysMotionState::PhysMotionState(Ogre::SceneNode* scenenode, Vector3 position, Quaternion orientation)
-        {
-            this->snode = scenenode;
-            worldtrans.setIdentity();
-            worldtrans.setOrigin(position.GetBulletVector3());
-            worldtrans.setRotation(orientation.GetBulletQuaternion());
-        }
-
         PhysMotionState::~PhysMotionState()
         {
             if (snode!=NULL)

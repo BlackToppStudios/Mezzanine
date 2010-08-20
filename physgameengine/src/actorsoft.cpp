@@ -92,19 +92,6 @@ namespace phys{
         CreateEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
 
         //this->physsoftbody->m_clusters[0]->m_collide = true;
-
-        /*Normals = new Ogre::Vector3[CurMesh.VCount];
-        Textures = new Ogre::Vector2[CurMesh.VCount];
-        Indicies = new int{ICount};
-        for ( int x=0 ; x < CurMesh.VCount ; x++ )
-        {
-            Normals[x] = CurMesh.Normals[x];
-            Textures[x] = CurMesh.Textures[x];
-        }
-        for ( int y=0 ; y < CurMesh.ICount ; y++ )
-        {
-            Indicies[y] = CurMesh.Indicies[y];
-        }*/
     }
 
     void ActorSoft::CreateManualMesh (internal::MeshInfo &TheMesh)
@@ -150,6 +137,7 @@ namespace phys{
     void ActorSoft::SetBulletLocation (Vector3 Location)
     {
         //this->physsoftbody->m_clusters[0]->m_framexform.setOrigin(Location.GetBulletVector3());
+        ActorBase::SetBulletLocation(Location);
     }
 
     Vector3 ActorSoft::GetBulletLocation() const
@@ -186,21 +174,6 @@ namespace phys{
             *pReal++ = this->physsoftbody->m_nodes[j].m_x.z();
         }
         vBuffer->unlock();
-        /*ManualEntity->beginUpdate(0);
-        Ogre::Vector3 temp;
-        for( int x=0 ; x < this->physsoftbody->m_nodes.size() ; x++ )
-        {
-            ManualEntity->position(temp<<(this->physsoftbody->m_nodes[x].m_x));
-            //ManualEntity->normal(Normals[x]);
-            //ManualEntity->textureCoord(Textures[x]);
-        }
-        for ( int y ; y < this->ICount ; y++)
-        {
-            ManualEntity->index(Indicies[y]);
-        }
-        ManualEntity->end();
-        Ogre::Vector3 temp2;
-        this->node->setPosition(temp2<<(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin()));*/
 
         btVector3 position = this->physsoftbody->getWorldTransform().getOrigin();
         //btVector3 position = this->physsoftbody->m_clusters[0]->m_framexform.getOrigin();

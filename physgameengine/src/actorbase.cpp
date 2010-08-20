@@ -325,7 +325,7 @@ namespace phys{
     {
         this->MotionState = new internal::PhysMotionState(Node);
         this->MotionState->SetPosition(InitPosition);
-        this-<MotionState->SetOrientation(InitOrientation);
+        this->MotionState->SetOrientation(InitOrientation);
     }
 
     ///////////////////////////////////
