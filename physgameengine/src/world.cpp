@@ -129,10 +129,9 @@ namespace phys
 
         this->AddManager(new ActorContainerVector(this));
         this->Actors = this->GetActorManager();
-        //this->Actors = new ActorContainerVector(this);
 
-        this->Graphics = new GraphicsManager();
-
+        this->AddManager(new GraphicsManager(this));
+        this->Graphics = this->GetGraphicsManager();
 
         this->Sounds = new SoundManager(this);
 
@@ -142,8 +141,8 @@ namespace phys
 
         //Callbacks are the main way that a game using the World will be able to have their code run at custom times
         this->CallBacks = new CallBackManager(this);
-        //Events are the main way for the game using the world to  get information about the various subsystems
 
+        //Events are the main way for the game using the world to  get information about the various subsystems
         this->AddManager(new EventManager(this));
         this->Events = this->GetEventManager();//new EventManager(this);
 
@@ -266,7 +265,6 @@ namespace phys
     //tears the world down
     World::~World()
     {
-
         //All the pointers Ogre made should get taken care of by OGRE
         delete OgreRoot;
 
@@ -315,7 +313,7 @@ namespace phys
         //this->Physics->Initialize(); //Initialize the Debug drawer.
         this->CallBacks->Initialize();
         //this->Actors->Initialize();
-        this->Graphics->Initialize();
+        //this->Graphics->Initialize();
         this->Cameras->Initialize();
         this->Events->Initialize();
 
@@ -325,9 +323,6 @@ namespace phys
 
     void World::MainLoop()
     {
-        //Create a the RenderTimer, which will be used to measure the time
-        Ogre::Timer RenderTimer;
-
         bool Callbackbools[] = {true, true, true, true, true, true};
 
         //Used for tracking times to prevent Infinite render loops in graphically simple games
@@ -335,7 +330,7 @@ namespace phys
 
          this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 
-        Whole FrameDelay = 0;
+
 
         /*! @page mainloop1 Main Loop Structure and Flow
          The MainLoop is heart of most vidoe games and simulations.
@@ -444,22 +439,8 @@ namespace phys
             this->DoMainLoopLogging();
 
             //Render the frame and figure the amount of time it took //By default Limit frame rate to 62.5
-            this->DoMainLoopRender();
+            //this->DoMainLoopRender();
 
-            // Do Time Calculations to Determine Rendering Time
-            this->FrameTime = RenderTimer.getMilliseconds();
-            RenderTimer.reset();
-            if(this->TargetFrameLength>this->GetFrameTime()){
-                FrameDelay++;
-            }else if(this->TargetFrameLength==this->GetFrameTime()){
-            }else{
-                if (0<FrameDelay){
-                    FrameDelay--;
-                }else{
-                    FrameDelay=0;
-                }
-            }
-            crossplatform::WaitMilliseconds( FrameDelay );
 
             //PostRender Callback
             if(this->CallBacks->IsPostRenderCallbackSet())
@@ -468,21 +449,19 @@ namespace phys
                 Callbackbools[5] = this->CallBacks->PostRender();
             }
 
-
-
         }//End of main loop
 
         //Some after loop cleanup
         this->DestroyRenderWindow();
     }
 
-    void World::DoMainLoopAllItems(const Real &PreviousFrameTime)
+   /* void World::DoMainLoopAllItems(const Real &PreviousFrameTime)
     {
         this->DoMainLoopPhysics(PreviousFrameTime);
         this->DoMainLoopWindowManagerBuffering();
         this->DoMainLoopInputBuffering();
         this->DoMainLoopRender();
-    }
+    }*/
 
     void World::DoMainLoopPhysics(const Real &TimeElapsed)
     {
@@ -498,7 +477,7 @@ namespace phys
 
     void World::DoMainLoopWindowManagerBuffering()
     {
-        this->Events->UpdateSystemEvents();
+
     }
 
     void World::DoMainLoopInputBuffering()
@@ -508,7 +487,9 @@ namespace phys
 
     void World::DoMainLoopRender()
     {
-        crossplatform::RenderPhysWorld(this);
+        this->Graphics->DoMainLoopItems();
+        //this->GetGraphicsManager()->DoMainLoopItems();
+        //crossplatform::RenderPhysWorld(this);
     }
     ///////////////////////////////////////////////////////////////////////////////
     // Private Functions
@@ -615,6 +596,12 @@ namespace phys
     {
         return this->FrameTime;
     }
+
+    void World::SetFrameTime( const Whole &FrameTime_ )
+    {
+        this->FrameTime = FrameTime_;
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////////
     // Ogre Resource Related Public Members

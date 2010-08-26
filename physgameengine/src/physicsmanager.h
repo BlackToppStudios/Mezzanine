@@ -121,8 +121,8 @@ namespace phys
             /// be called before the physics manager is used, but after the graphics have been initialized
             virtual void Initialize();
 
-            /// @brief Empty MainLoopItems
-            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            /// @brief Physics stepping during the main loop
+            /// @details This increments the the physics world the required amount to keep it in sync with the Graphics/Timing.
             virtual void DoMainLoopItems();
 
             /// @brief Deconstructor

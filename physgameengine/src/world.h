@@ -327,6 +327,13 @@ namespace phys
             /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.
             Whole GetFrameTime();
 
+            /// @internal
+            /// @brief Sets the amount of time since the last time Rendering began.
+            /// @param FrameTime_ This is the amount of time in  milliseconds.
+            /// @details This sets, in milliseconds the amount of time since the frame started (since the last rendering began). Don't set this carelessely can screw up a lot of
+            /// stuff, for the most part this should be by the rendering manager during the rendering process.
+            void SetFrameTime( const Whole &FrameTime_ );
+
         ///////////////////////////////////////////////////////////////////////////////
         // Graphics system loading methods
         /// @todo move these to the graphics manager

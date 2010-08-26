@@ -19,20 +19,22 @@ int main(int argc, char **argv)
 {
     // Set the Title
     TheWorld.SetWindowName("Catch!... The Game!");
-    TheWorld.SetTargetFrameRate(40);
+    TheWorld.SetTargetFrameRate(50);
 
     //Give the world functions to run before and after input and physics
     //TheWorld.CallBacks->SetPreInput(&PreInput);
     //TheWorld.CallBacks->SetPostInput(&PostInput);
     TheWorld.GetEventManager()->SetPreMainLoopItems(&PreInput);
     TheWorld.GetEventManager()->SetPostMainLoopItems(&PostInput);
+
     //TheWorld.CallBacks->SetPrePhysics(&PrePhysics);
     //TheWorld.CallBacks->SetPostPhysics(&PostPhysics);
     TheWorld.GetPhysicsManager()->SetPreMainLoopItems(&PrePhysics);
     TheWorld.GetPhysicsManager()->SetPostMainLoopItems(&PostPhysics);
 
     //give the World our function to execute after renderingg
-    TheWorld.CallBacks->SetPostRender(&PostRender);
+    //TheWorld.CallBacks->SetPostRender(&PostRender);
+    TheWorld.GetGraphicsManager()->SetPostMainLoopItems(&PostRender);
 
     //Set the Make the RenderWindow and load system stuff
 	TheWorld.GameInit(false);

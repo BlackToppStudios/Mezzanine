@@ -52,7 +52,7 @@ namespace phys
     /// settings. This is intended to make it easy for developers to pass/move around
     /// complex graphics settings. We hope to eventually include other items like
     /// shader settings, rendering API, and maybe other settings too.
-    class GraphicsManager: ManagerBase
+    class GraphicsManager: public ManagerBase
     {
         private:
 
@@ -68,28 +68,31 @@ namespace phys
             /// @brief This stores the Width of the renderwindow
             Whole RenderWidth;
 
-        public:
-            /// @brief Default constructor
-            /// @details This creates a default Graphics Settings with resolution 640x480 with fullscreen set to false
-            GraphicsManager();
-
-            /// @brief Versatile Constructor
-            /// @param Width_ The desired width.
-            /// @param Height_ The desired height.
-            /// @param FullScreen_ True if fullscreen, false if not.
-            /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the
-            /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support
-            /// arbitrary resolutions in fullscreen mode.
-            GraphicsManager(const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
-
             /// @brief Adjust all Settings
+            /// @param GameWorld_ This is a pointer to the phys::World to which this GrapchisManager will be attached
             /// @param Width_ The desired width.
             /// @param Height_ The desired height.
             /// @param FullScreen_ True if fullscreen, false if not.
             /// @details This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be
             /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens
             /// do not support arbitrary resolutions in fullscreen mode.
-            void Construct(const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
+            void Construct( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
+
+        public:
+            /// @brief Basic constructor
+            /// @param GameWorld_ This is a pointer to the phys::World to which this GrapchisManager will be attached
+            /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false
+            GraphicsManager(World* GameWorld_);
+
+            /// @brief Versatile Constructor
+            /// @param GameWorld_ This is a pointer to the phys::World to which this GrapchisManager will be attached
+            /// @param Width_ The desired width.
+            /// @param Height_ The desired height.
+            /// @param FullScreen_ True if fullscreen, false if not.
+            /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the
+            /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support
+            /// arbitrary resolutions in fullscreen mode.
+            GraphicsManager( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
 
             /// @brief Gets the Fullscreen Setting
             /// @details Gets the Fullscreen Setting
@@ -139,8 +142,8 @@ namespace phys
             /// in case a derived class wants to override it for some reason
             virtual void Initialize();
 
-            /// @brief Empty MainLoopItems
-            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            /// @brief This is where the rendering takes place.
+            /// @details This does the rendering for the game using all the actors in the actormanager.
             virtual void DoMainLoopItems();
 
             /// @brief This returns the type of this manager.

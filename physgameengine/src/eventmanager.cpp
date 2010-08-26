@@ -601,6 +601,7 @@ namespace phys
 
     void EventManager::DoMainLoopItems()
     {
+        this->UpdateSystemEvents();
         this->UpdateUserInputEvents();
     }
 

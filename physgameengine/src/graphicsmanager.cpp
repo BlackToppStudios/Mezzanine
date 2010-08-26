@@ -52,21 +52,23 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////
     // Creation and Deletion functions
     ///////////////////////////////////
-    GraphicsManager::GraphicsManager()
+    GraphicsManager::GraphicsManager( World* GameWorld_ )
     {
-        Construct(640,480,false);
+        Construct( GameWorld_, 640, 480, false );
     }
 
-    GraphicsManager::GraphicsManager( const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
+    GraphicsManager::GraphicsManager( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
     {
-        Construct( Width_, Height_, FullScreen_ );
+        Construct( GameWorld_, Width_, Height_, FullScreen_ );
     }
 
-    void GraphicsManager::Construct( const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
+    void GraphicsManager::Construct( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
     {
+        this->GameWorld = GameWorld_;
         this->Fullscreen = FullScreen_;
         this->RenderHeight = Height_;
         this->RenderWidth = Width_;
+        this->Priority = 0;
     }
 
 
@@ -138,7 +140,28 @@ namespace phys
         {}
 
     void GraphicsManager::DoMainLoopItems()
-        {}
+    {
+        //Create a the RenderTimer, which will be used to measure the time
+        static Ogre::Timer RenderTimer;
+        static Whole FrameDelay = 0;
+
+        crossplatform::RenderPhysWorld(this->GameWorld);
+
+        //Do Time Calculations to Determine Rendering Time
+        this->GameWorld->SetFrameTime( RenderTimer.getMilliseconds() );
+        RenderTimer.reset();
+        if(this->GameWorld->GetTargetFrameTime() > this->GameWorld->GetFrameTime()){
+            FrameDelay++;
+        }else if(this->GameWorld->GetTargetFrameTime() == this->GameWorld->GetFrameTime()){
+        }else{
+            if (0<FrameDelay){
+                FrameDelay--;
+            }else{
+                FrameDelay=0;
+            }
+        }
+        crossplatform::WaitMilliseconds( FrameDelay );
+    }
 
 
     ManagerBase::ManagerTypeName GraphicsManager::GetType() const
