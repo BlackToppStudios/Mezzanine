@@ -139,10 +139,9 @@ bool PrePhysics()
 
 bool PostPhysics()
 {
-    //ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("MetalSphere2"));
+    //// Updating functions to be used when a suitable mesh is found/created.
+    //ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("Column1"));
     //ActS->UpdateSoftBody();
-    //ActorSoft* ActS2 = static_cast< ActorSoft* > (TheWorld.Actors->FindActor("Robot9"));
-    //ActS2->UpdateSoftBody();
     return true;
 }
 
@@ -337,7 +336,7 @@ bool CheckForEsc()
 void LoadContent()
 {
     ActorRigid *object1, *object2, *object3, *object4;
-    ActorRigid *object5, *object6;
+    ActorTerrain *object5, *object6;
     ActorRigid *object7;
     //Ogre Setup Code
     String groupname ("Group1");
@@ -387,16 +386,19 @@ void LoadContent()
     TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
     TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
     TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+
+    //// The simulations soft body, to be used once a suitable mesh is found/created.
+    //TheWorld.Actors->AddActor( new ActorSoft (51,"Column1","column.mesh",groupname,&TheWorld) );
     //ActorSoft* Act9 = static_cast < ActorSoft* > (TheWorld.Actors->LastActorAdded());
-    //Act9->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+    //Act9->SetInitLocation(Vector3( (-0.5*PinSpacing), 100.0, -PinSpacing*4));
 
-    object5 = new ActorRigid (0,"Plane","Plane.mesh",groupname,&TheWorld);
+    object5 = new ActorTerrain (Vector3(0.0,-100,-300.0),"Plane","Plane.mesh",groupname,&TheWorld);
     object5->CreateShapeFromMeshStatic();
-    object5->SetInitLocation(Vector3(0.0,-100,-300.0));
+    //object5->SetInitLocation(Vector3(0.0,-100,-300.0));
 
-    object6 = new ActorRigid (0,"Ramp","Plane.mesh",groupname,&TheWorld);
+    object6 = new ActorTerrain (Vector3(00.0,300.0,-1100.0),"Ramp","Plane.mesh",groupname,&TheWorld);
     object6->CreateShapeFromMeshStatic();
-    object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
+    //object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
 
     object1 = new ActorRigid (mass,"RobotWayUpFrontRight",filerobot,groupname,&TheWorld);

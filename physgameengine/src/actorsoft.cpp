@@ -82,24 +82,16 @@ namespace phys{
         CollisionObject=physsoftbody;
         Shape = physsoftbody->getCollisionShape();
         physsoftbody->setTotalMass(mass, true);
-        physsoftbody->generateClusters(1);
+        physsoftbody->m_cfg.collisions = btSoftBody::fCollision::CL_SS + btSoftBody::fCollision::CL_RS;
+        physsoftbody->m_cfg.piterations = 5;
+        physsoftbody->generateBendingConstraints(2);
+        physsoftbody->generateClusters(20);
 
         CreateManualMesh(CurMesh);
 
         CreateEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
 
-        /*Normals = new Ogre::Vector3[CurMesh.VCount];
-        Textures = new Ogre::Vector2[CurMesh.VCount];
-        Indicies = new int{ICount};
-        for ( int x=0 ; x < CurMesh.VCount ; x++ )
-        {
-            Normals[x] = CurMesh.Normals[x];
-            Textures[x] = CurMesh.Textures[x];
-        }
-        for ( int y=0 ; y < CurMesh.ICount ; y++ )
-        {
-            Indicies[y] = CurMesh.Indicies[y];
-        }*/
+        //this->physsoftbody->m_clusters[0]->m_collide = true;
     }
 
     void ActorSoft::CreateManualMesh (internal::MeshInfo &TheMesh)
@@ -126,36 +118,40 @@ namespace phys{
 
     void ActorSoft::AttachToGraphics ()
     {
-        //Vector3 tempv;
+        /*Vector3 tempv;
         Quaternion tempq;
         btTransform temp = this->physsoftbody->m_clusters[0]->m_framexform;
-        //tempv.ExtractBulletVector3(temp.getOrigin());
+        tempv.ExtractBulletVector3(temp.getOrigin());
         tempq.ExtractBulletQuaternion(temp.getRotation());
-        //this->node->setPosition(tempv.GetOgreVector3());
+        this->node->setPosition(tempv.GetOgreVector3());
         this->node->setOrientation(tempq.GetOgreQuaternion());
-        this->node->attachObject(this->entity);
+        this->node->attachObject(this->entity);*/
+        ActorBase::AttachToGraphics();
     }
 
     void ActorSoft::DetachFromGraphics ()
     {
-        this->node->detachObject(this->ManualEntity);
+        this->node->detachObject(this->entity);
     }
 
     void ActorSoft::SetBulletLocation (Vector3 Location)
     {
-        this->physsoftbody->m_clusters[0]->m_framexform.setOrigin(Location.GetBulletVector3());
+        //this->physsoftbody->m_clusters[0]->m_framexform.setOrigin(Location.GetBulletVector3());
+        ActorBase::SetBulletLocation(Location);
     }
 
     Vector3 ActorSoft::GetBulletLocation() const
     {
-        Vector3 temp;
-        temp.ExtractBulletVector3(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin());
-        return temp;
+        //Vector3 temp;
+        //temp.ExtractBulletVector3(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin());
+        //return temp;
+        return ActorBase::GetBulletLocation();
     }
 
     void ActorSoft::SetBulletOrientation (Quaternion Rotation)
     {
-        this->physsoftbody->m_clusters[0]->m_framexform.setRotation(Rotation.GetBulletQuaternion(true));
+        //this->physsoftbody->m_clusters[0]->m_framexform.setRotation(Rotation.GetBulletQuaternion(true));
+        ActorBase::SetBulletOrientation(Rotation);
     }
 
     ///////////////////////////////////////
@@ -178,24 +174,12 @@ namespace phys{
             *pReal++ = this->physsoftbody->m_nodes[j].m_x.z();
         }
         vBuffer->unlock();
-        /*ManualEntity->beginUpdate(0);
-        Ogre::Vector3 temp;
-        for( int x=0 ; x < this->physsoftbody->m_nodes.size() ; x++ )
-        {
-            ManualEntity->position(temp<<(this->physsoftbody->m_nodes[x].m_x));
-            //ManualEntity->normal(Normals[x]);
-            //ManualEntity->textureCoord(Textures[x]);
-        }
-        for ( int y ; y < this->ICount ; y++)
-        {
-            ManualEntity->index(Indicies[y]);
-        }
-        ManualEntity->end();
-        Ogre::Vector3 temp2;
-        this->node->setPosition(temp2<<(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin()));*/
-        btVector3 position = this->physsoftbody->m_clusters[0]->m_framexform.getOrigin();
+
+        btVector3 position = this->physsoftbody->getWorldTransform().getOrigin();
+        //btVector3 position = this->physsoftbody->m_clusters[0]->m_framexform.getOrigin();
         this->node->setPosition(position.x(), position.y(), position.z());
-        btQuaternion rotation = this->physsoftbody->m_clusters[0]->m_framexform.getRotation();
+        btQuaternion rotation = this->physsoftbody->getWorldTransform().getRotation();
+        //btQuaternion rotation = this->physsoftbody->m_clusters[0]->m_framexform.getRotation();
         this->node->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
     }
 
@@ -212,15 +196,17 @@ namespace phys{
 
     void ActorSoft::SetInitLocation(Vector3 Location)
     {
-        this->SetBulletLocation(Location);
-        ActorBase::SetBulletLocation(Location);
-        //physsoftbody->translate(Location.GetBulletVector3());
-        this->node->setPosition(Location.GetOgreVector3());
+        //this->SetBulletLocation(Location);
+        //ActorBase::SetBulletLocation(Location);
+        physsoftbody->translate(Location.GetBulletVector3());
+        this->physsoftbody->m_initialWorldTransform.setOrigin(Location.GetBulletVector3());
+        //this->node->setPosition(Location.GetOgreVector3());
     }
 
     void ActorSoft::SetInitOrientation(Quaternion Orientation)
     {
         this->SetBulletOrientation(Orientation);
+        this->physsoftbody->m_initialWorldTransform.setRotation(Orientation.GetBulletQuaternion());
     }
 
     void ActorSoft::SetLocation (Real x, Real y, Real z)

@@ -213,6 +213,24 @@ namespace phys
 //////////////////////////////////////////////////////////////////////////////
 // Bullet Management
 ///////////////////////////////////////
+            /// @brief Creates a motion state for use with syncronizing physics and graphics.
+            /// @details This is a helper function that will create a motionstate for the class.  This is called on by the constructor.
+            /// @param Node The node to be syncronized with physics data.
+            virtual void CreateMotionState(Ogre::SceneNode* Node);
+
+            /// @brief Creates a motion state for use with syncronizing physics and graphics.
+            /// @details This is a helper function that will create a motionstate for the class.  This is called on by the constructor.
+            /// @param Node The node to be syncronized with physics data.
+            /// @param InitPosition The starting location for the object that will be given this motionstate.
+            virtual void CreateMotionState(Ogre::SceneNode* Node, Vector3 InitPosition);
+
+            /// @brief Creates a motion state for use with syncronizing physics and graphics.
+            /// @details This is a helper function that will create a motionstate for the class.  This is called on by the constructor.
+            /// @param Node The node to be syncronized with physics data.
+            /// @param InitPosition The starting location for the object that will be given this motionstate.
+            /// @param InitOrientation The starting orientation for the object that will be given this motionstate.
+            virtual void CreateMotionState(Ogre::SceneNode* Node, Vector3 InitPosition, Quaternion InitOrientation);
+
             /// @brief Sets the location of the physics body.
             /// @details This will take a Vector3 and set the location of the actor within the physics world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.

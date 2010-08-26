@@ -48,13 +48,13 @@ namespace phys{
         // PhysMotionState
         PhysMotionState::PhysMotionState()
         {
-            this->initposition.setIdentity();
+            this->worldtrans.setIdentity();
         }
 
         PhysMotionState::PhysMotionState(Ogre::SceneNode* scenenode)
         {
-            this->snode=scenenode;
-            this->initposition.setIdentity();
+            this->snode = scenenode;
+            this->worldtrans.setIdentity();
         }
 
         PhysMotionState::~PhysMotionState()
@@ -67,22 +67,22 @@ namespace phys{
 
         void PhysMotionState::SetNode(Ogre::SceneNode* scenenode)
         {
-            this->snode=scenenode;
+            this->snode = scenenode;
         }
 
         void PhysMotionState::SetPosition(Vector3 position)
         {
-            this->initposition.setOrigin(position.GetBulletVector3());
+            this->worldtrans.setOrigin(position.GetBulletVector3());
         }
 
         void PhysMotionState::SetOrientation(Quaternion orientation)
         {
-            this->initposition.setRotation(orientation.GetBulletQuaternion());
+            this->worldtrans.setRotation(orientation.GetBulletQuaternion());
         }
 
         void PhysMotionState::getWorldTransform(btTransform &worldTrans) const
         {
-            worldTrans=initposition;
+            worldTrans = worldtrans;
         }
 
         void PhysMotionState::setWorldTransform(const btTransform &worldTrans)

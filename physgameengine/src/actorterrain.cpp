@@ -45,21 +45,26 @@
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 
 #include "actorterrain.h"
+#include "internalmotionstate.h.cpp"
 
 namespace phys
 {
-    ActorTerrain::ActorTerrain(String name, String file, String group, World* _World) : ActorBase(name, file, group, _World)
+    ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group, World* _World) : ActorBase(name, file, group, _World)
     {
-        CreateTerrain();
+        CreateMotionState(this->node, InitPosition);
+        CreateCollisionTerrain();
     }
 
     ActorTerrain::~ActorTerrain()
     {
     }
 
-    void ActorTerrain::CreateTerrain()
+    void ActorTerrain::CreateCollisionTerrain()
     {
-        CollisionObject = new btCollisionObject();
+        //CollisionObject = new btCollisionObject();
+        btScalar mass = 0.f;
+        RigidBody = new btRigidBody(mass, this->MotionState, this->Shape);
+        CollisionObject = RigidBody;
         ActorType = ActorBase::Actorterrain;
     }
 
@@ -75,6 +80,7 @@ namespace phys
         ShapeIsSaved = false;
         this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
         this->CollisionObject->setCollisionShape(this->Shape);
+        this->RigidBody->updateInertiaTensor();
     }
 
     void ActorTerrain::CreateShapeFromMeshDynamic(short unsigned int accuracy)
