@@ -20,6 +20,7 @@
 					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src" />
 					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src\LinearMath" />
 					<Add directory="libincludes\common\bulletsrc\convexdecomp" />
+					<Add directory="libincludes\common\bulletsrc\bulletserializer" />
 					<Add directory="libincludes\windows\tinyxml" />
 					<Add directory="libincludes\windows\caudio\Headers" />
 					<Add directory="libincludes\windows\caudio\include" />
@@ -112,6 +113,7 @@
 					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src" />
 					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src\LinearMath" />
 					<Add directory="libincludes\common\bulletsrc\convexdecomp" />
+					<Add directory="libincludes\common\bulletsrc\bulletserializer" />
 					<Add directory="libincludes\windows\tinyxml" />
 					<Add directory="libincludes\windows\caudio\Headers" />
 					<Add directory="libincludes\windows\caudio\include" />
