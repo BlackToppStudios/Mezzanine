@@ -71,12 +71,13 @@ bool PostRender()
 
 	//getting a message from the event manager)
 	EventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
-
-    Whole LastFrame = CurrentTime->getMilliSecondsSinceLastFrame();
+    Whole LastFrame = 0;
 
     // Is CurrentTime a valid event?
     while(0 != CurrentTime)
     {
+        LastFrame = CurrentTime->getMilliSecondsSinceLastFrame();
+
         TheWorld.Log(gametime);
         gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
 

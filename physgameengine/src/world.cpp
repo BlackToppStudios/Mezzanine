@@ -420,7 +420,6 @@ namespace phys
             // new main infrastructure
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
-                #define PHYSDEBUG
                 #ifdef PHYSDEBUG
                 this->LogStream << "Current Manager: " << (*Iter)->GetTypeName() << " ";
                 this->Log( (*Iter)->GetPriority() );
@@ -433,29 +432,30 @@ namespace phys
 
                 if( !(*Iter)->PostMainLoopItems() )
                     { DoNotBreak=false; }
+
+                this->DoMainLoopLogging();
             }
 
-            #undef PHYSDEBUG
 
             //PreRender callback
-            if(this->CallBacks->IsPreRenderCallbackSet())
+            /*if(this->CallBacks->IsPreRenderCallbackSet())
             {
                 Callbackbools[4] = this->CallBacks->PreRender();
                 this->DoMainLoopWindowManagerBuffering();
-            }
+            }*/
 
-            this->DoMainLoopLogging();
+
 
             //Render the frame and figure the amount of time it took //By default Limit frame rate to 62.5
             //this->DoMainLoopRender();
 
 
             //PostRender Callback
-            if(this->CallBacks->IsPostRenderCallbackSet())
+            /*if(this->CallBacks->IsPostRenderCallbackSet())
             {
                 this->Events->AddEvent(new EventRenderTime(FrameTime));
                 Callbackbools[5] = this->CallBacks->PostRender();
-            }
+            }*/
 
         }//End of main loop
 

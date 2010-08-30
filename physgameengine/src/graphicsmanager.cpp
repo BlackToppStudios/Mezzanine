@@ -166,6 +166,11 @@ namespace phys
     ManagerBase::ManagerTypeName GraphicsManager::GetType() const
         { return ManagerBase::GraphicsManager; }
 
+    bool GraphicsManager::PostMainLoopItems()
+    {
+        this->GameWorld->GetEventManager()->AddEvent(new EventRenderTime(this->GameWorld->GetFrameTime()));
+        return ManagerBase::PostMainLoopItems();
+    }
 
 
 }

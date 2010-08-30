@@ -160,6 +160,10 @@ namespace phys
             /// @return This returns ManagerTypeName::GraphicsManager
             virtual ManagerTypeName GetType() const;
 
+            /// @brief This is derived from and uses the ManagerBase to perform the the post main loop callbacks
+            /// @return This returns a true or false depending on what the callback returns
+            virtual bool PostMainLoopItems();
+
     };
 }
 #endif
