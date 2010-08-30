@@ -90,7 +90,7 @@ namespace phys
 
 
     void ManagerBase::SetPostMainLoopItems( ManagerBase::Callback PostMainCallback )
-        { this->PreMainLoop=PostMainCallback; }
+        { this->PostMainLoop=PostMainCallback; }
 
     bool ManagerBase::PostMainLoopItems()
     {
