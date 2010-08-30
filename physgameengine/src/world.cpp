@@ -420,6 +420,12 @@ namespace phys
             // new main infrastructure
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
+                #define PHYSDEBUG
+                #ifdef PHYSDEBUG
+                this->LogStream << "Current Manager: " << (*Iter)->GetTypeName() << " ";
+                this->Log( (*Iter)->GetPriority() );
+                #endif
+
                 if( !(*Iter)->PreMainLoopItems() )
                     { DoNotBreak=false; }
 
@@ -428,6 +434,8 @@ namespace phys
                 if( !(*Iter)->PostMainLoopItems() )
                     { DoNotBreak=false; }
             }
+
+            #undef PHYSDEBUG
 
             //PreRender callback
             if(this->CallBacks->IsPreRenderCallbackSet())
@@ -634,9 +642,9 @@ namespace phys
         {
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
-                if( (*ManIter)->Priority > ManagerToAdd->Priority)
+                if( (*ManIter)->GetPriority() > ManagerToAdd->GetPriority())
                 {
-                    this->ManagerList.insert(ManIter,ManagerToAdd);
+                    this->ManagerList.insert(ManIter, ManagerToAdd);
                     #ifdef PHYSDEBUG
                     this->LogStream << " - Added by sorted insertion:"<<ManagerToAdd<<" - size after:" <<this->ManagerList.size() ;
                     #endif
@@ -719,16 +727,16 @@ namespace phys
         return 0;
     }
 
-    void World::UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority)
+    void World::UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority_)
     {
-        ManagerToChange->Priority=Priority;
+        ManagerToChange->SetPriority(Priority_);
         if(this->ManagerList.empty())
         {
             ManagerList.push_back(ManagerToChange);
         }else{
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
-                if( (*ManIter)->Priority > ManagerToChange->Priority )
+                if( (*ManIter)->GetPriority() > ManagerToChange->GetPriority() )
                 {
                     this->ManagerList.insert(ManIter,ManagerToChange);
                 }else if(*ManIter == ManagerToChange )

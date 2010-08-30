@@ -100,6 +100,7 @@
 #include "cameramanager.h"
 #include "physicsmanager.h"
 #include "soundmanager.h"
+#include "graphicsmanager.h"
 
 #include <string>
 #include <sstream>
@@ -503,7 +504,7 @@ namespace phys
             /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.
             /// @param ManagerToChange A pointer to the manager that needs to be changed
             /// @param Priority the new desire priority/execution order of the Manager
-            void UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority);
+            void UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority_);
 
             /// @brief This forces the list of managers to be resorted.
             /// @details This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers
@@ -547,5 +548,3 @@ namespace phys
     };
 }
 #endif
-
-

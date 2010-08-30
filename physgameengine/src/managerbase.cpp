@@ -106,41 +106,50 @@ namespace phys
 
     void ManagerBase::ErasePostMainLoopItems()
         { this->SetPostMainLoopItems(0); }
-/*
-    std::ostream& operator << (std::ostream& stream, const ManagerBase& ManagerToGuess)
+
+    std::string ManagerBase::GetTypeName()
     {
-        switch (ManagerToGuess.GetType())
+        switch (this->GetType())
         {
             case ManagerBase::ActorContainerBase:
-                stream << "ActorContainerBase Manager";
+                return "ActorContainerBase Manager";
                 break;
             case ManagerBase::CallBackManager:
-                stream << "CallBackManager";
+                return "CallBackManager";
                 break;
             case ManagerBase::CameraManager:
-                stream << "CameraManager";
+                return "CameraManager";
                 break;
             case ManagerBase::EventManager:
-                stream << "EventManager";
+                return "EventManager";
                 break;
             case ManagerBase::GraphicsManager:
-                stream << "GraphicsManager";
+                return "GraphicsManager";
                 break;
             case ManagerBase::PhysicsManager:
-                stream << "PhysicsManager";
+                return "PhysicsManager";
                 break;
             case ManagerBase::SoundManager:
-                stream << "SoundManager";
+                return "SoundManager";
                 break;
             case ManagerBase::UserCreated:
-                stream << "UserCreated";
+                return "UserCreated";
                 break;
             default:
-                stream << "Unknown Manager";
+                return "Unknown Manager";
                 break;
         }
-        return stream;
     }// */
+
+    short int ManagerBase::GetPriority()
+    {
+        return this->Priority;
+    }
+
+    void ManagerBase::SetPriority(short int Priority_)
+    {
+        this->Priority = Priority_;
+    }
 
 }// /phys
 

@@ -64,13 +64,13 @@ namespace phys
 
     void GraphicsManager::Construct( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
     {
+        this->FrameDelay = 0;
         this->GameWorld = GameWorld_;
         this->Fullscreen = FullScreen_;
         this->RenderHeight = Height_;
         this->RenderWidth = Width_;
         this->Priority = 0;
     }
-
 
     ///////////////////////////////////////////////////////////////////////////
     // Fullscreen functions
@@ -137,19 +137,19 @@ namespace phys
 
     //Inherited From ManagerBase
     void GraphicsManager::Initialize()
-        {}
+    {
+        this->RenderTimer = new Ogre::Timer();
+    }
 
     void GraphicsManager::DoMainLoopItems()
     {
         //Create a the RenderTimer, which will be used to measure the time
-        static Ogre::Timer RenderTimer;
-        static Whole FrameDelay = 0;
 
         crossplatform::RenderPhysWorld(this->GameWorld);
 
         //Do Time Calculations to Determine Rendering Time
-        this->GameWorld->SetFrameTime( RenderTimer.getMilliseconds() );
-        RenderTimer.reset();
+        this->GameWorld->SetFrameTime( this->RenderTimer->getMilliseconds() );
+        this->RenderTimer->reset();
         if(this->GameWorld->GetTargetFrameTime() > this->GameWorld->GetFrameTime()){
             FrameDelay++;
         }else if(this->GameWorld->GetTargetFrameTime() == this->GameWorld->GetFrameTime()){
@@ -162,7 +162,6 @@ namespace phys
         }
         crossplatform::WaitMilliseconds( FrameDelay );
     }
-
 
     ManagerBase::ManagerTypeName GraphicsManager::GetType() const
         { return ManagerBase::GraphicsManager; }

@@ -42,6 +42,11 @@
 
 #include "managerbase.h"
 
+namespace Ogre
+{
+    class Timer;
+}
+
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
@@ -77,6 +82,10 @@ namespace phys
             /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens
             /// do not support arbitrary resolutions in fullscreen mode.
             void Construct( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
+
+            Ogre::Timer *RenderTimer;
+
+            Whole FrameDelay;
 
         public:
             /// @brief Basic constructor
@@ -118,6 +127,7 @@ namespace phys
             /// @details Gets the Width of the Rendering Area
             /// @return This returns the Width of the Rendering Area
             Whole getRenderWidth() const;
+
             /// @brief Sets the Width.
             /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
             /// @param Width_ This accepts a Whole.

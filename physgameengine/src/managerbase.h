@@ -171,16 +171,28 @@ namespace phys
             virtual bool PostMainLoopItems();
 
             /// @brief This returns the Callback that would be called before the main loop items
-            /// @return This returns a ManagerBase::Callback which is a pointer to the callback function that will be called after the main loop items
+            /// @return This returns a ManagerBase::Callback which is a p ointer to the callback function that will be called after the main loop items
             virtual Callback GetPostMainLoopItems() const;
 
             /// @brief This simply calls SetPostMainLoopItems() passing it 0.
             virtual void ErasePostMainLoopItems();
 
-            /// @brief This is a weighting used by the main loop to decide what order the managers should be called in.
-            /// @details A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at
-            /// priority 0.
-            short int Priority;
+            /// @brief This gets the Priority of this manager.
+            /// @details This has no Set counterpart to allow the changing of a manager's priority. This is expected to be set by the manager, or expose a safe method
+            /// to change it at that level.
+            /// @return This returns a short int that represents the priority of the manager. Lower is executed first.
+            virtual short int GetPriority();
+
+            /// @brief This gets the Priority of this manager.
+            /// @details This has no Set counterpart to allow the changing of a manager's priority. This is expected to be set by the manager, or expose a safe method
+            /// to change it at that level.
+            /// @return This returns a short int that represents the priority of the manager. Lower is executed first.
+            virtual void SetPriority( short int Priority_ );
+
+            /// @brief This Allows any manager to be sent to a stream. Primarily used for logging
+            /// @return This returns a std::ostream& that contains the name, and maybe some data for the the streammed manager.
+            std::string GetTypeName();
+
         protected:
             /// @internal
             /// @brief The actual pointer to the world
@@ -193,6 +205,11 @@ namespace phys
             /// @internal
             /// @brief This is a function pointer to the function that should be called after running Main Loop Items
             Callback PostMainLoop;
+
+            /// @brief This is a weighting used by the main loop to decide what order the managers should be called in.
+            /// @details A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at
+            /// priority 0.
+            short int Priority;
     };// /ManagerBase
 
     //@brief The << operator required to enable logging of Manager's to get types
