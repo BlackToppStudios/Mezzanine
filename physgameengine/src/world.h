@@ -303,7 +303,7 @@ namespace phys
         // Timing system methods
         ///////////////////////////////////////
             /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be
-            /// @details In practice hardware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
+            /// @details In practice harI've done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn't mind that shouldn't be there.  like there was a " Schedule : " right after a line where a pointer was initialized.  I only found such occurrences in gamebase.cpp though, removed them and did two tests.  First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over.  Second time I ran the game trying to click stuff, I simply couldn't click anything.  I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven't done yet, but there were no results with the Robots.  The third time I was successfully able to stop two spheres and move them around the platform quite smoothly.  These spheres were slightly further away from the camera compared to the first run.  I stopped the wooden sphere and the second metal sphere.  I included a screen shot and a copy of my log for the third run.  The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually
             /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.
             /// @return This returns a Whole with the current Value
             Whole GetTargetFrameTime();
@@ -380,42 +380,9 @@ namespace phys
             /// @details By default this is called from the function World.GameInit() this is were the bulk of the simulation is ran from, see @ref mainloop1
             void MainLoop();
 
-
-        /// @todo Remove this completely
-            /// @brief Performs all the items that would normally be performed during the game loop
-            /// @param PreviousFrameTime This is the amount of time that has elapsed since this function was last called, so that physics can be done properly.
-            /// @details This simply calls: DoMainLoopPhysics, DoMainLoopInputBuffering, DoMainLoopWindowManagerBuffering, DoMainLoopRender. This is
-            /// useful for anyone wants to use as little of the existing main loop structure as possible, or does not want to run a certain Items
-            /// each iteration of the main loop.
-            void DoMainLoopAllItems(const Real &PreviousFrameTime);
-
-        /// @todo move these to the appropriate manager
-            /// @brief Increments physics by one step
-            /// @param TimeElapsed This is the amount of time that has elapsed since this function was last called, required for proper physics
-            /// @details Currently one step is about 1/60 of a second. This function is automatically called in the main loop if a Pre/Post-Physics Callback is
-            /// set. This is the second step in the main loop chain of events. This is where we expect the majority of our collision events to come
-            /// from although it is concievable that a game could manually insert those manually. This will not delete events it places
-            /// in the event manager, that is the responsibility of the code that pulls out the event out.
-            void DoMainLoopPhysics(const Real &TimeElapsed);
-
-            /// @brief Gathers user input from the OS and places events in the event manager
-            /// @details This this is automatically called during the mainloop if you have set a Pre/PostInput callback. This will not delete events it places
-            /// in the event manager, that is the responsibility of the code tnly actor your query tool can find are the plahat pulls out the event out.
-            void DoMainLoopInputBuffering();
-
             /// @brief This commits the log stream to the log
             /// @details This is called automatically during the main loop just before rendering.
             void DoMainLoopLogging();
-
-            /// @brief Creates events for each Window manger
-            /// @details This gather information from system/windows manager events, such as windows  minimization, maximization, program exit, window hidden
-            /// window shown, and a few other similar types of events. This makes events out of the information and places them in the event manager
-            /// This will not delete events it places in the event manager, that is the responsibility of the code that pulls out the event out.
-            void DoMainLoopWindowManagerBuffering();
-
-            /// @brief This forces the screen to be re-rendered
-            /// @details This renders the screen based on the status of all in game actors. This is automatically called in the main loop.
-            void DoMainLoopRender();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Feature Manager Pointers

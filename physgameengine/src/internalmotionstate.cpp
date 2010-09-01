@@ -82,7 +82,7 @@ namespace phys{
 
         void PhysMotionState::getWorldTransform(btTransform &worldTrans) const
         {
-            worldTrans = worldtrans;
+            worldTrans = this->worldtrans;
         }
 
         void PhysMotionState::setWorldTransform(const btTransform &worldTrans)

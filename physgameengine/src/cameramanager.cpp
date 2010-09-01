@@ -57,6 +57,7 @@ namespace phys
         this->DefaultCamera = NULL;
         this->ONodes=0;
         this->SNodes=0;
+        this->Priority = -20;
     }
 
     CameraManager::~CameraManager ()

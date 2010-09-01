@@ -139,9 +139,6 @@ namespace phys
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
         this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
 
-        //Callbacks are the main way that a game using the World will be able to have their code run at custom times
-        //this->CallBacks = new CallBackManager(this);
-
         //Events are the main way for the game using the world to  get information about the various subsystems
         this->AddManager(new EventManager(this));
         this->Events = this->GetEventManager();//new EventManager(this);
@@ -296,7 +293,7 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     // Start the Game already
-    void World::GameInit(const bool &CallMainLoop )
+    void World::GameInit( const bool &CallMainLoop )
     {
         //try to load the ogre config
         this->LoadOgreSettings();
@@ -307,9 +304,6 @@ namespace phys
         {
             (*Iter)->Initialize();
         }
-
-//        this->Cameras->Initialize();
-//        this->Events->Initialize();
 
         if(CallMainLoop)
             { this->MainLoop(); }
@@ -332,10 +326,10 @@ namespace phys
             -30	Physics
             -20 Camera
             -10 Lighting (Not yet implemented)
-            0	Graphics
-            10	Sound
-
+              0 Graphics
+             10	Sound
         */
+
         //As long as all the CallBacks return true the game continues
         bool DoNotBreak=true;
         while (DoNotBreak)
@@ -364,42 +358,12 @@ namespace phys
         this->DestroyRenderWindow();
     }
 
-   /* void World::DoMainLoopAllItems(const Real &PreviousFrameTime)
-    {
-        this->DoMainLoopPhysics(PreviousFrameTime);
-        this->DoMainLoopWindowManagerBuffering();
-        this->DoMainLoopInputBuffering();
-        this->DoMainLoopRender();
-    }*/
-
-    void World::DoMainLoopPhysics(const Real &TimeElapsed)
-    {
-        //this->Physics->DoMainLoopItems(TimeElapsed);
-        //Log("Updated Physics");
-    }
-
     void  World::DoMainLoopLogging()
     {
         this->Log(this->LogStream.str());
         this->LogStream.str("");
     }
 
-    void World::DoMainLoopWindowManagerBuffering()
-    {
-
-    }
-
-    void World::DoMainLoopInputBuffering()
-    {
-        //this->Events->UpdateUserInputEvents();
-    }
-
-    void World::DoMainLoopRender()
-    {
-        this->Graphics->DoMainLoopItems();
-        //this->GetGraphicsManager()->DoMainLoopItems();
-        //crossplatform::RenderPhysWorld(this);
-    }
     ///////////////////////////////////////////////////////////////////////////////
     // Private Functions
     ///////////////////////////////////////
@@ -450,9 +414,9 @@ namespace phys
         this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
 
         //setup a default camera
-
-        this->Cameras = new CameraManager (this);
-        this->Cameras->CreateCamera();
+        this->AddManager(new CameraManager (this));
+        this->Cameras = this->GetCameraManager();
+        this->GetCameraManager()->CreateCamera();
         this->OgreCamera = this->Cameras->DefaultCamera;
         this->OgreCamera->setNearClipDistance(5.0f);
         this->OgreCamera->setFarClipDistance(5000.0f);
@@ -511,7 +475,6 @@ namespace phys
     {
         this->FrameTime = FrameTime_;
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////
     // Ogre Resource Related Public Members

@@ -281,7 +281,7 @@ namespace phys
     void PhysicsManager::Construct(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
     {
         this->GameWorld = GameWorld_;
-        this->Priority = -10;
+        this->Priority = -30;
 
         //instantiate the Physics engine and related items
         //this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
