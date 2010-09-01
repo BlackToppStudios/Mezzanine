@@ -363,8 +363,8 @@ namespace phys
                 {
                     btCollisionObject* objectA = static_cast<btCollisionObject*>(contactManifold->getBody0());
                     btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
-                    ActorBase* ActA = this->GameWorld->Actors->FindActor(objectA);
-                    ActorBase* ActB = this->GameWorld->Actors->FindActor(objectB);
+                    ActorBase* ActA = this->GameWorld->GetActorManager()->FindActor(objectA);
+                    ActorBase* ActB = this->GameWorld->GetActorManager()->FindActor(objectB);
                     Vector3 emptyloc(0,0,0);
                     EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
                     //create collision event

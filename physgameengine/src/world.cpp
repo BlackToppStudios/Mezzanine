@@ -127,7 +127,7 @@ namespace phys
         this->FrameTime = 0;
 
         this->AddManager(new ActorContainerVector(this));
-        this->Actors = this->GetActorManager();
+        //this->Actors = this->GetActorManager();
 
         this->AddManager(new GraphicsManager(this));
         this->Graphics = this->GetGraphicsManager();

@@ -214,7 +214,7 @@ namespace phys
                 if (new_closest_found)
                 {
                     closest_result = Ooray.getPoint(closest_distance);
-                    ClosestActor->Actor = this->GameWorld->Actors->FindActor( pentity->getParentNode() );
+                    ClosestActor->Actor = this->GameWorld->GetActorManager()->FindActor( pentity->getParentNode() );
                 }
             } // \if entity
         } // \if qr_idx
@@ -249,7 +249,7 @@ namespace phys
         {
             Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[0].movable);
             Vector3WActor* ClosestActor = new Vector3WActor();
-            ClosestActor->Actor = this->GameWorld->Actors->FindActor( pentity->getParentNode() );
+            ClosestActor->Actor = this->GameWorld->GetActorManager()->FindActor( pentity->getParentNode() );
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
             return ClosestActor;

@@ -390,7 +390,7 @@ namespace phys
 
             /// @brief This is a convienient place to keep pointer to our Actors
             /// @details Whenever an actor is added, a pointer to it will be stored here.
-            ActorContainerBase* Actors;
+            //ActorContainerBase* Actors;
 
             /// @brief This is a pointer to the Camera Manager.
             /// @details This is a pointer to the camera management class for the engine.

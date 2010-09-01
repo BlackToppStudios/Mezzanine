@@ -90,8 +90,8 @@ bool PostRender()
     timestream << "Catch!... " << gametime;
     TheWorld.SetWindowName( timestream.str() );
 
-    ActorBase* Act1 = TheWorld.Actors->FindActor("RobotWayUpFrontLeft");
-    ActorBase* Act2 = TheWorld.Actors->FindActor("RobotWayUpFrontRight");
+    ActorBase* Act1 = TheWorld.GetActorManager()->FindActor("RobotWayUpFrontLeft");
+    ActorBase* Act2 = TheWorld.GetActorManager()->FindActor("RobotWayUpFrontRight");
     if (Act1->IsAnimated())
     {
         Act1->AdvanceAnimation((Real)0.001 * LastFrame);
@@ -134,7 +134,7 @@ bool PrePhysics()
 {
     TheWorld.Log("Object Locations");
     //Replace this with something that uses the actor container and logs the location of everything
-    TheWorld.Log(TheWorld.Actors->FindActor("MetalSphere2")->GetLocation());
+    TheWorld.Log(TheWorld.GetActorManager()->FindActor("MetalSphere2")->GetLocation());
     return true;
 }
 
@@ -359,34 +359,34 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(4);
-        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -100.0, 0));
+        TheWorld.GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(4);
+        TheWorld.GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -100.0, 0));
     }
 
     for(unsigned int c=0; c<3; c++)     //the row with three pins
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(3);
-        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
+        TheWorld.GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(3);
+        TheWorld.GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
     }
 
     for(unsigned int c=0; c<2; c++)     //the row with 2 pins
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-        TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(2);
-        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -33.0, -PinSpacing*2));
+        TheWorld.GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+        TheWorld.GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
+        TheWorld.GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -33.0, -PinSpacing*2));
     }
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
-    TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-    TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+    TheWorld.GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
+    TheWorld.GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+    TheWorld.GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
 
     //// The simulations soft body, to be used once a suitable mesh is found/created.
     //TheWorld.Actors->AddActor( new ActorSoft (51,"Column1","column.mesh",groupname,&TheWorld) );
@@ -437,13 +437,13 @@ void LoadContent()
     grav.Y=-10000.0;
     grav.Z=0.0;
 
-    TheWorld.Actors->AddActor(object1);
-    TheWorld.Actors->AddActor(object2);
-    TheWorld.Actors->AddActor(object3);
-    TheWorld.Actors->AddActor(object4);
-    TheWorld.Actors->AddActor(object5);
-    TheWorld.Actors->AddActor(object6);
-    TheWorld.Actors->AddActor(object7);
+    TheWorld.GetActorManager()->AddActor(object1);
+    TheWorld.GetActorManager()->AddActor(object2);
+    TheWorld.GetActorManager()->AddActor(object3);
+    TheWorld.GetActorManager()->AddActor(object4);
+    TheWorld.GetActorManager()->AddActor(object5);
+    TheWorld.GetActorManager()->AddActor(object6);
+    TheWorld.GetActorManager()->AddActor(object7);
 
     Sound *sound1, *music1, *music2;
     TheWorld.Sounds->CreateSoundSet("Announcer");
@@ -457,7 +457,7 @@ void LoadContent()
     TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music2);
 
     TheWorld.Log("Actor Count");
-    TheWorld.Log( TheWorld.Actors->GetActorCount() );
+    TheWorld.Log( TheWorld.GetActorManager()->GetActorCount() );
 
     TheWorld.Physics->SetGravity(grav);
     TheWorld.Physics->SetSoftGravity(grav);
