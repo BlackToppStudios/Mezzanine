@@ -46,6 +46,7 @@
 #include "vector3.h"
 #include "actorcontainerbase.h"
 #include "eventcollision.h"
+#include "vector3wactor.h"
 
 #include <queue>
 
@@ -424,6 +425,19 @@ namespace phys
     btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
     {
         return this->BulletDynamicsWorld;
+    }
+
+    Vector3 PhysicsManager::GetActorOffset(const Vector3WActor &OffsetInfo)
+    {
+        if(ActorBase::Actorrigid==OffsetInfo.Actor->GetType())
+        {
+            btRigidBody* Rigid = static_cast< btRigidBody* > (OffsetInfo.Actor->CollisionObject);
+            Vector3 Offset(Rigid->getCenterOfMassTransform().inverse() * OffsetInfo.Vector.GetBulletVector3());
+            return Offset;
+        }else{
+            Vector3 Offset(0,0,0);
+            return Offset;
+        }
     }
 
     void PhysicsManager::AddConstraint(TypedConstraint* Constraint)

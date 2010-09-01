@@ -60,6 +60,7 @@ namespace phys
     // internal forward declarations
     class World;
     class ActorBase;
+    class Vector3WActor;
     namespace debug {
         class InternalDebugDrawer;
     }
@@ -168,6 +169,12 @@ namespace phys
             /// @details
             /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
             void DoMainLoopItems(const Real &TimeElapsed);
+
+            /// @brief Gets the offset between a point and an actor.
+            /// @details This function will return the offset between the specified world point and the specified actors center of mass.
+            /// @param OffsetInfo The vector and actor to compare for offset data.
+            /// @return Returns the Vector3 representing the actors offset from the world point.
+            Vector3 GetActorOffset(const Vector3WActor &OffsetInfo);
 
             /// @brief Adds a constraint to the world.
             /// @details Adds the constraint to the world so that it can/will take effect.

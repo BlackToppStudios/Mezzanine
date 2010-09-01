@@ -8,10 +8,12 @@
 #include <physgame.h>       //Physgame include
 #include <sstream>          //STL includes
 
+#define PHYSDEBUG
+
 using namespace phys;
 
 //Create the World Globally! and set it to hold some actors
-World TheWorld( Vector3(-10000.0,-10000.0,-10000.0), Vector3(10000.0,10000.0,10000.0), 30);
+World TheWorld( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), 30);
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
@@ -105,7 +107,6 @@ bool PostRender()
     static bool notplayed=true;
     if (/*1000<gametime &&*/ notplayed)
     {
-        #define PHYSDEBUG
         notplayed=false;
         Sound* Welcome = NULL;
         Welcome = TheWorld.Sounds->GetSoundByName("Welcome");
@@ -203,7 +204,7 @@ bool PostInput()
         TheWorld.LogStream << "Camera Location: " << TheWorld.Cameras->GetCameraGlobalLocation() << endl;
         #endif
 
-        Ray *MouseRay = Queryer.GetMouseRay();
+        Ray *MouseRay = Queryer.GetMouseRay(5000);
         //*MouseRay *= 1000;
         //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
 
@@ -233,12 +234,9 @@ bool PostInput()
                 {
                     if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid) //This is Dragging let's do some checks for sanity
                     {
-                        Vector3 LocalPivot = ClickOnActor->Actor->GetLocation();
-                        LocalPivot.Inverse();
-                        Vector3 Clickloc = ClickOnActor->Vector;
-                        LocalPivot = LocalPivot * Clickloc;
-                        ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);https://m
-                        Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,0), false);
+                        Vector3 LocalPivot = ClickOnActor->Vector;
+                        ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                        Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                         Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
                         Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
                         Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
@@ -361,7 +359,7 @@ void LoadContent()
         namestream << robotprefix << c;
         TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
         TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(4);
-        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -100.0, 0));
+        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
     }
 
     for(unsigned int c=0; c<3; c++)     //the row with three pins
@@ -379,7 +377,7 @@ void LoadContent()
         namestream << robotprefix << (c+7);
         TheWorld.Actors->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
         TheWorld.Actors->LastActorAdded()->CreateShapeFromMeshDynamic(2);
-        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -33.0, -PinSpacing*2));
+        TheWorld.Actors->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
     }
 
     std::stringstream namestream;           //make the front pin
@@ -414,7 +412,7 @@ void LoadContent()
     object2->SetActorScaling(Vector3(0.5,0.5,0.5));
     object2->SetInitLocation(Vector3(-140.0,2800.0,-1150.0));
 
-    object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld); Schedule :
+    object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld);
     object3->CreateSphereShapeFromMesh();
     object3->SetActorScaling(Vector3(0.7,0.7,0.7));
     object3->SetInitLocation(Vector3(150.0,1800.0,-1300.0));
@@ -447,7 +445,7 @@ void LoadContent()
 
     Sound *sound1, *music1, *music2;
     TheWorld.Sounds->CreateSoundSet("Announcer");
-    sound1 = TheWorld.Sounds->CreateSound("Welcome", "data/common/sounds/welcomefun-1.ogg", false);
+    sound1 = TheWorld.Sounds->CreateSound("Welcome", "data/common/sounds/welcomefun-1.ogg", true);
     TheWorld.Sounds->AddSoundToSoundSet("Announcer", sound1);
 
     TheWorld.Sounds->CreateSoundSet("SoundTrack");
