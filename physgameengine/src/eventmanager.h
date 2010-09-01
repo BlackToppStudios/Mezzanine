@@ -49,6 +49,7 @@
 
 using namespace std;
 
+#include "managerbase.h"
 #include "eventbase.h"
 #include "eventrendertime.h"
 #include "eventuserinput.h"

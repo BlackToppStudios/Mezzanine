@@ -50,6 +50,7 @@ namespace phys
     {
         AudioManager = cAudio::createAudioManager(DefaultSettings);
         AudioListener = AudioManager->getListener();
+        this->Priority = 10;
     }
 
     SoundManager::~SoundManager()

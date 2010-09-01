@@ -42,6 +42,7 @@
 
 #include "cameramanager.h"
 #include "camera.h"
+#include "world.h"
 
 #include <Ogre.h>
 
@@ -50,9 +51,9 @@
 
 namespace phys
 {
-    CameraManager::CameraManager (Ogre::SceneManager* SManager, World* world) : ManagerBase(world)
+    CameraManager::CameraManager (World* world) : ManagerBase(world)
     {
-        this->SceneManager = SManager;
+        this->SceneManager = world->OgreSceneManager;
         this->DefaultCamera = NULL;
         this->ONodes=0;
         this->SNodes=0;

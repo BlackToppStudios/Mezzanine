@@ -92,7 +92,6 @@
 
 //Includes and Forward Declarations
 #include "crossplatform.h"
-#include "callbackmanager.h"
 #include "eventbase.h"
 #include "eventmanager.h"
 #include "datatypes.h"
@@ -198,10 +197,11 @@ namespace phys
             std::list< ManagerBase* > ManagerList;
 
         public:
-
             //Ogre objects
             /// @internal
-            /// @brief
+            /// @brief This is the core of the Ogre rendering system.
+            /// @details Even thought the largest part of ogre is 3d rendering, it does not belong in the graphics manager. It is also responsible for a
+            /// large number other services, such as logging, multithreading, and timing.
             Ogre::Root* OgreRoot;
 
             /// @internal
@@ -418,31 +418,12 @@ namespace phys
             void DoMainLoopRender();
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Actor Methods
-        ///////////////////////////////////////
-            // @brief The adds and Actor to the physworld.
-            // @details This adds, and makes sure that it's physics status and 3d graphics status are
-            // properly handled. The phys::World will delete any actor still left in it upon deconstruction.
-            // @param ActorToAdd This is a pointer to the actor to be added.
-            //void AddActor(ActorBase* ActorToAdd);
-
-            // @brief The Removes an Actor from the physworld.
-            // @details This removes the actor to the internal graphics and physics systems, and drops the pointer. This does not delete
-            // The Actor.
-            // @param ActorToRemove This is a pointer to the actor to be removed
-            //void RemoveActor(ActorBase* ActorToRemove);
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Feature Manager Pointers
         ///////////////////////////////////////
 
             /// @brief This is a convienient place to keep pointer to our Actors
             /// @details Whenever an actor is added, a pointer to it will be stored here.
             ActorContainerBase* Actors;
-
-            /// @brief This is a point to the default Call BackManager
-            /// @details All the callbacks that the main loop and the rest of physgame use are will be found in the callback manager point to by this.
-            CallBackManager* CallBacks;
 
             /// @brief This is a pointer to the Camera Manager.
             /// @details This is a pointer to the camera management class for the engine.
@@ -514,11 +495,6 @@ namespace phys
             /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
             /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
             ActorContainerBase* GetActorManager(const short unsigned int &WhichOne=0);
-
-            /// @brief This gets the CallbackManager from the manager list.
-            /// @param WhichOne If you have multiple Managers this will choose which one to return.
-            /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
-            CallBackManager* GetCallBackManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the CameraManager from the manager list.
             /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.

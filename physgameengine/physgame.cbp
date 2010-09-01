@@ -15,16 +15,16 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DWINDOWS" />
-					<Add directory="libincludes\windows\ogre" />
-					<Add directory="libincludes\windows\sdl" />
-					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src" />
-					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src\LinearMath" />
-					<Add directory="libincludes\common\bulletsrc\convexdecomp" />
-					<Add directory="libincludes\common\bulletsrc\bulletserializer" />
-					<Add directory="libincludes\windows\tinyxml" />
-					<Add directory="libincludes\windows\caudio\Headers" />
-					<Add directory="libincludes\windows\caudio\include" />
-					<Add directory="libincludes\windows\caudio\Source" />
+					<Add directory="libincludes/windows/ogre" />
+					<Add directory="libincludes/windows/sdl" />
+					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src" />
+					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
+					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
+					<Add directory="libincludes/common/bulletsrc/bulletserializer" />
+					<Add directory="libincludes/windows/tinyxml" />
+					<Add directory="libincludes/windows/caudio/Headers" />
+					<Add directory="libincludes/windows/caudio/include" />
+					<Add directory="libincludes/windows/caudio/Source" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,--enable-runtime-pseudo-reloc" />
@@ -108,8 +108,6 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DWINDOWS" />
-<<<<<<< HEAD
-					<Add directory="libincludes/windows/ogre" />
 					<Add directory="libincludes/windows/sdl" />
 					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src" />
 					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
@@ -118,18 +116,8 @@
 					<Add directory="libincludes/windows/caudio/Headers" />
 					<Add directory="libincludes/windows/caudio/include" />
 					<Add directory="libincludes/windows/caudio/Source" />
-=======
-					<Add directory="libincludes\windows\ogre" />
-					<Add directory="libincludes\windows\sdl" />
-					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src" />
-					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src\LinearMath" />
-					<Add directory="libincludes\common\bulletsrc\convexdecomp" />
-					<Add directory="libincludes\common\bulletsrc\bulletserializer" />
-					<Add directory="libincludes\windows\tinyxml" />
-					<Add directory="libincludes\windows\caudio\Headers" />
-					<Add directory="libincludes\windows\caudio\include" />
-					<Add directory="libincludes\windows\caudio\Source" />
->>>>>>> 2a9d4dd0408d354c137b61c53dba1c15a099226f
+					<Add directory="libincludes/windows/ogre" />
+					<Add directory="libincludes/common/bulletsrc/bulletserializer" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,--enable-runtime-pseudo-reloc" />
@@ -223,8 +211,6 @@
 		<Unit filename="src/actorsoft.h" />
 		<Unit filename="src/actorterrain.cpp" />
 		<Unit filename="src/actorterrain.h" />
-		<Unit filename="src/callbackmanager.cpp" />
-		<Unit filename="src/callbackmanager.h" />
 		<Unit filename="src/camera.cpp" />
 		<Unit filename="src/camera.h" />
 		<Unit filename="src/cameramanager.cpp" />

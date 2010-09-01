@@ -53,7 +53,6 @@
 #include "world.h"
 #include "vector3.h"
 #include "crossplatform.h"
-#include "callbackmanager.h"
 #include "graphicsmanager.h"
 #include "actorbase.h"
 #include "eventuserinput.h"
@@ -133,23 +132,22 @@ namespace phys
         this->AddManager(new GraphicsManager(this));
         this->Graphics = this->GetGraphicsManager();
 
-        this->Sounds = new SoundManager(this);
+        this->AddManager(new SoundManager(this));
+        this->Sounds = this->GetSoundManager();
 
         //We create our Ogre environment
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
         this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
 
         //Callbacks are the main way that a game using the World will be able to have their code run at custom times
-        this->CallBacks = new CallBackManager(this);
+        //this->CallBacks = new CallBackManager(this);
 
         //Events are the main way for the game using the world to  get information about the various subsystems
         this->AddManager(new EventManager(this));
         this->Events = this->GetEventManager();//new EventManager(this);
 
-        ManagerBase* temp2 = new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_);
-        this->AddManager(temp2);
+        this->AddManager(new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_));
         this->Physics = this->GetPhysicsManager();
-        //this->Physics=new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_);
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -269,7 +267,7 @@ namespace phys
         delete OgreRoot;
 
         //clear up our objects
-        delete CallBacks;
+//        delete CallBacks;
         delete Events;
         delete Graphics;
         delete Physics;
@@ -310,12 +308,8 @@ namespace phys
             (*Iter)->Initialize();
         }
 
-        //this->Physics->Initialize(); //Initialize the Debug drawer.
-        this->CallBacks->Initialize();
-        //this->Actors->Initialize();
-        //this->Graphics->Initialize();
-        this->Cameras->Initialize();
-        this->Events->Initialize();
+//        this->Cameras->Initialize();
+//        this->Events->Initialize();
 
         if(CallMainLoop)
             { this->MainLoop(); }
@@ -323,101 +317,29 @@ namespace phys
 
     void World::MainLoop()
     {
-        bool Callbackbools[] = {true, true, true, true, true, true};
-
-        //Used for tracking times to prevent Infinite render loops in graphically simple games
-        //Whole Times[] = {0,0,0,0};
-
-         this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
-
-
+        /// @todo create a lighting manager and put this in there
+        this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 
         /*! @page mainloop1 Main Loop Structure and Flow
-         The MainLoop is heart of most vidoe games and simulations.
+         The MainLoop is heart of most video games and simulations.
 
          @section mainloopoverview1 Main loop Overview
          The Main loop runs in World.MainLoop() which is called by default from @ref World.GameInit(). By default this Method also starts the render, the physics andthe input systems. It does very
          little on it's own. The main loop then calls the PreMainLoopItems(), DoMainLoopItems and PreMainLoopItems(), for each manager in the order of their priority from Lowest to Highest.
-         \nHere is a listing of season
+         \nHere is a listing of  default priorities for each of the managers the a world intantiates by default:
+            -50	User Input and events
+            -40	Actors
+            -30	Physics
+            -20 Camera
+            -10 Lighting (Not yet implemented)
+            0	Graphics
+            10	Sound
 
-         t uses the default callback manager (which you can swap out if you want), which is the callback manager point to by World::CallBacks . Once started it runs the
-         callbacks present in the callback manager until one of them returns false. It has a pretty specific work flow. Starting with input, then physics, then rendering. There is a callback
-         before and after each of these tasks.
-         \n \n One iteration of the main loops is about 1/60 of a second (by default) and will render 1 frame and step physics about 1/60 (1/62.5 usually) of a second. Currently there is no way to uncap
-         the framerate, we did not see a need for more (but the cap can be adjusted using World::SetTargetFrameTime or World::SetTargetFrameRate ). Situations with low performance should
-         automatically be handled but increasing the size of physics
-         steps and automatically not rendering frames when not appropriate. There will be fewer calls on callbacks, but the engine will not inhibit gameplay below the the target framerate.
-        \n
-         @section callbacks1 1) Input Callbacks and Buffering
-         User input is the first task performed each main loop. This was done because in most games and simulations everything depends on the user input.
-         @subsection input1 1.A) PreInputCallback
-         This can be set using the function in PhysWorldCallBackManager that have "PreInput" in their names. This is a great place to to do begining of loop items, like gathering data for
-         computer controlled characters, checking if game goals are met, and other items that needs to be done it iteration of the game loop and don't directly relate to physics or Rendering.
-         @subsection input2 1.B) Input Buffering
-         During this step Input events are gathered fromt the input Subsystem (which could be any of a number of user input libraries), which are ultimately made by the Operating System and
-         processed into EventUserInput objects, and placed in the Default event manager ( check the pointer World::Events ).
-         @subsection input3 1.C) PostInputCallback
-         This callback is your first chance to access the userinput Events and try to use them. This callback can be managed by using methods in PhysWorldCallBackManager that have "PostInput"
-         in their names. The functionality of this Callback slightly overlaps with the Prephysics Callbacks due to the timing of using them both. If both are used, one will be called
-         immediately after the other.
-        \n
-         @section callbacks2 2) Physics callbacks and Event Buffering
-         This step runs between user input and rendering to allow for changes caused by user input to be immediately visible to the user.
-         @subsection physics1 2.A) PrePhysicsCallback
-         The funtionality of this callback overlaps a great deal with the PostInputCallBack, but they both still exist to make organization easier when needed. You probably should have figured
-         out by now how the Callbackmanager functions are named, the ones for this are ituitively named with "PrePhysics" in their name.
-         @subsection physics2 2.B) Physics calculations and Event Buffering
-         Physics will be run here, but currently is not fully implemented. But eventually physics event will be generated here. Including a system for checking for certain types of collisions.
-         @subsection physics3 2.C) PostPhysicsCallback
-         This Callback is you first chance to work with the physics events just generated. This is a good place to check if you want items to adjust hitpoints, explode, die or take some other
-         action based on physics.
-        \n
-         @section callbacks3 3) Rendering
-         Unlike Input and Physics this rendering will be performed each Frame regardless of what callbacks are set. Rendering is done
-         last so that any changes to the game world physics makes are made visible in the same loop iteration.
-         @subsection rendering1 3.A) PerRenderCallback
-         Any tasks that could not be complete in the PostPhysics Callback can be performed here or you use this to make last minute
-         preparations for rendering.
-         @subsection rendering2 3.B) Rendering
-         This is where the rendering actually occurs. The state of all the items in the world is grabbed from the physics subsystem
-         and rendered. Additionally this is where the FrameDelay is calculated and acted on, so the frame rate can stay consistent.
-         @subsection rendering3 3.C) PostRenderCallback
-         This is a great place to switch out the Callback Manager, for accomplishing tasks like switching between in game menus and
-         actual gameplay. This is also a decent place to get a head start on anything that would be run in the PreInputCallback.
-        \n
-         @section endingmainloop1 Ending the Main Loop
-         The main loop stores the return values of each of the 6 callbacks. If they are all true the mainloop continues to it's
-         next iteration. If one or more of any of the callbacks returns false then the main loop ends, and the game engine exits
-         gracefully, cleanly up the physics, graphics and any others subsystems it opened.
-         No attempt will be made by the engine to clean up data in the callback manager. If the game code does not free these items
-         the operating system had better do it automatically. On most PC platform this is not an issue, but it could be disastrous
-         on a mobile, or underperforming gaming platform.
         */
         //As long as all the CallBacks return true the game continues
         bool DoNotBreak=true;
-        while (Callbackbools[0] && Callbackbools[1] && Callbackbools[2] && Callbackbools[3] && Callbackbools[4] && Callbackbools[5] && DoNotBreak)
+        while (DoNotBreak)
         {
-            //Input buffering Callbacks
-            /*if( this->CallBacks->IsPreInputCallbackSet() || this->CallBacks->IsPostInputCallbackSet() )
-            {
-                if( this->CallBacks->IsPreInputCallbackSet() )
-                    { Callbackbools[0] = this->CallBacks->PreInput(); }
-                this->DoMainLoopInputBuffering();
-                if( this->CallBacks->IsPostInputCallbackSet() )
-                    { Callbackbools[1] = this->CallBacks->PostInput(); }
-            }//*/
-
-            //Physics & Physics Callbacks
-            /*if( this->CallBacks->IsPrePhysicsCallbackSet() || this->CallBacks->IsPostPhysicsCallbackSet() )
-            {
-                if( this->CallBacks->IsPrePhysicsCallbackSet() )
-                    { Callbackbools[2] = this->CallBacks->PrePhysics(); }
-                //Ŕthis->DoMainLoopPhysics(this->GetFrameTime());
-                if( this->CallBacks->IsPostPhysicsCallbackSet() )
-                    { Callbackbools[3] = this->CallBacks->PostPhysics(); }
-            }*/
-
-            // new main infrastructure
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
                 #ifdef PHYSDEBUG
@@ -435,27 +357,6 @@ namespace phys
 
                 this->DoMainLoopLogging();
             }
-
-
-            //PreRender callback
-            /*if(this->CallBacks->IsPreRenderCallbackSet())
-            {
-                Callbackbools[4] = this->CallBacks->PreRender();
-                this->DoMainLoopWindowManagerBuffering();
-            }*/
-
-
-
-            //Render the frame and figure the amount of time it took //By default Limit frame rate to 62.5
-            //this->DoMainLoopRender();
-
-
-            //PostRender Callback
-            /*if(this->CallBacks->IsPostRenderCallbackSet())
-            {
-                this->Events->AddEvent(new EventRenderTime(FrameTime));
-                Callbackbools[5] = this->CallBacks->PostRender();
-            }*/
 
         }//End of main loop
 
@@ -549,7 +450,8 @@ namespace phys
         this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
 
         //setup a default camera
-        this->Cameras = new CameraManager (this->OgreSceneManager, this);
+
+        this->Cameras = new CameraManager (this);
         this->Cameras->CreateCamera();
         this->OgreCamera = this->Cameras->DefaultCamera;
         this->OgreCamera->setNearClipDistance(5.0f);
@@ -765,11 +667,6 @@ namespace phys
     ActorContainerBase* World::GetActorManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<ActorContainerBase*> (this->GetManager(ManagerBase::ActorContainerBase, WhichOne));
-    }
-
-    CallBackManager* World::GetCallBackManager(const short unsigned int &WhichOne)
-    {
-        return dynamic_cast<CallBackManager*> (this->GetManager(ManagerBase::CallBackManager, WhichOne));
     }
 
     CameraManager* World::GetCameraManager(const short unsigned int &WhichOne)

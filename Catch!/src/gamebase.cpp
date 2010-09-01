@@ -414,7 +414,7 @@ void LoadContent()
     object2->SetActorScaling(Vector3(0.5,0.5,0.5));
     object2->SetInitLocation(Vector3(-140.0,2800.0,-1150.0));
 
-    object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld); Schedule :
+    object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,&TheWorld);
     object3->CreateSphereShapeFromMesh();
     object3->SetActorScaling(Vector3(0.7,0.7,0.7));
     object3->SetInitLocation(Vector3(150.0,1800.0,-1300.0));

@@ -83,7 +83,7 @@ namespace phys
             /// @details This is the class constructor.  This is automatcally called in the World.CreateRenderWindow()
             /// function and should never need to be called manually.
             /// @param SManager A pointer to the Scenemanager where you will be creating/manipulating all the cameras.
-            CameraManager(Ogre::SceneManager* SManager, World* world);
+            CameraManager(World* world);
             /// @brief Class Destructor.
             /// @details The calss Destuctor
             virtual ~CameraManager();

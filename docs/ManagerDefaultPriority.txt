@@ -1,8 +1,10 @@
--40	User Input
+-40	User Input and events
 
 -20	Actors
 
--5	Physics
+-10	Physics
 
 0	Graphics
+
+10	Sound
 
