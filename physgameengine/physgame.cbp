@@ -8,23 +8,23 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="WinDebug">
-				<Option output="bin/WinDebug/physgame.dll" prefix_auto="1" extension_auto="0" />
-				<Option object_output="obj/WinDebug/" />
+				<Option output="bin\WinDebug\physgame.dll" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj\WinDebug\" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DWINDOWS" />
-					<Add directory="libincludes/windows/ogre" />
-					<Add directory="libincludes/windows/sdl" />
-					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src" />
-					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
-					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
-					<Add directory="libincludes/common/bulletsrc/bulletserializer" />
-					<Add directory="libincludes/windows/tinyxml" />
-					<Add directory="libincludes/windows/caudio/Headers" />
-					<Add directory="libincludes/windows/caudio/include" />
-					<Add directory="libincludes/windows/caudio/Source" />
+					<Add directory="libincludes\windows\ogre" />
+					<Add directory="libincludes\windows\sdl" />
+					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src" />
+					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src\LinearMath" />
+					<Add directory="libincludes\common\bulletsrc\convexdecomp" />
+					<Add directory="libincludes\common\bulletsrc\bulletserializer" />
+					<Add directory="libincludes\windows\tinyxml" />
+					<Add directory="libincludes\windows\caudio\Headers" />
+					<Add directory="libincludes\windows\caudio\include" />
+					<Add directory="libincludes\windows\caudio\Source" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,--enable-runtime-pseudo-reloc" />
@@ -33,16 +33,16 @@
 					<Add option="-Wl,--enable-auto-import" />
 					<Add library="SDL" />
 					<Add library="OgreMain" />
-					<Add library="data/windows/bullet/libBulletDebug.a" />
-					<Add library="data/windows/convex decomp/libConvex Decomposition.a" />
-					<Add library="data/windows/tinyxml/libTinyXMLpp.a" />
-					<Add library="data/windows/caudio/cAudio.dll" />
-					<Add directory="data/windows/sdl" />
-					<Add directory="data/windows/ogre" />
-					<Add directory="data/windows/bullet" />
-					<Add directory="data/windows/convex decomp" />
-					<Add directory="data/windows/tinyxml" />
-					<Add directory="data/windows/caudio" />
+					<Add library="data\windows\bullet\libBullet.a" />
+					<Add library="data\windows\convex decomp\libConvex Decomposition.a" />
+					<Add library="data\windows\tinyxml\libTinyXMLpp.a" />
+					<Add library="data\windows\caudio\cAudio.dll" />
+					<Add directory="data\windows\sdl" />
+					<Add directory="data\windows\ogre" />
+					<Add directory="data\windows\bullet" />
+					<Add directory="data\windows\convex decomp" />
+					<Add directory="data\windows\tinyxml" />
+					<Add directory="data\windows\caudio" />
 				</Linker>
 				<ExtraCommands>
 					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\windows\ogre&quot; mkdir .\bin\WinDebug\data\windows\ogre' />
@@ -56,8 +56,8 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="LinuxDebug">
-				<Option output="bin/LinuxDebug/libphysgame.so" prefix_auto="1" extension_auto="0" />
-				<Option object_output="obj/LinuxDebug/" />
+				<Option output="bin\LinuxDebug\libphysgame.so" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj\LinuxDebug\" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -68,13 +68,13 @@
 					<Add option="-fPIC" />
 					<Add option="-DOGRE_GUI_GLX" />
 					<Add option="-DLINUX" />
-					<Add directory="libincludes/linux/ogresrc/OgreMain/include" />
-					<Add directory="libincludes/linux/ogresrc/include" />
-					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src" />
-					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
-					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
-					<Add directory="libincludes/common/tinyxmlppsrc/tinyxmlpp" />
-					<Add directory="libincludes/linux/caudiosrc/caudio/include" />
+					<Add directory="libincludes\linux\ogresrc\OgreMain\include" />
+					<Add directory="libincludes\linux\ogresrc\include" />
+					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src" />
+					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src\LinearMath" />
+					<Add directory="libincludes\common\bulletsrc\convexdecomp" />
+					<Add directory="libincludes\common\tinyxmlppsrc\tinyxmlpp" />
+					<Add directory="libincludes\linux\caudiosrc\caudio\include" />
 				</Compiler>
 				<Linker>
 					<Add option="`sdl-config --libs`" />
@@ -82,11 +82,11 @@
 					<Add library="Bullet" />
 					<Add library="ticpp" />
 					<Add library="cAudio" />
-					<Add directory="data/linux/bullet" />
-					<Add directory="data/linux/ogre" />
-					<Add directory="data/linux/convex decomp" />
-					<Add directory="data/linux/tinyxmlpp" />
-					<Add directory="data/linux/caudio" />
+					<Add directory="data\linux\bullet" />
+					<Add directory="data\linux\ogre" />
+					<Add directory="data\linux\convex decomp" />
+					<Add directory="data\linux\tinyxmlpp" />
+					<Add directory="data\linux\caudio" />
 				</Linker>
 				<ExtraCommands>
 					<Add before="data/linux/checklibs.sh" />
@@ -101,23 +101,23 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="WinRelease">
-				<Option output="bin/WinRelease/physgame.dll" prefix_auto="1" extension_auto="0" />
-				<Option object_output="obj/WinRelease/" />
+				<Option output="bin\WinRelease\physgame.dll" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj\WinRelease\" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-DWINDOWS" />
-					<Add directory="libincludes/windows/sdl" />
-					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src" />
-					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
-					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
-					<Add directory="libincludes/windows/tinyxml" />
-					<Add directory="libincludes/windows/caudio/Headers" />
-					<Add directory="libincludes/windows/caudio/include" />
-					<Add directory="libincludes/windows/caudio/Source" />
-					<Add directory="libincludes/windows/ogre" />
-					<Add directory="libincludes/common/bulletsrc/bulletserializer" />
+					<Add directory="libincludes\windows\sdl" />
+					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src" />
+					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src\LinearMath" />
+					<Add directory="libincludes\common\bulletsrc\convexdecomp" />
+					<Add directory="libincludes\windows\tinyxml" />
+					<Add directory="libincludes\windows\caudio\Headers" />
+					<Add directory="libincludes\windows\caudio\include" />
+					<Add directory="libincludes\windows\caudio\Source" />
+					<Add directory="libincludes\windows\ogre" />
+					<Add directory="libincludes\common\bulletsrc\bulletserializer" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,--enable-runtime-pseudo-reloc" />
@@ -126,16 +126,16 @@
 					<Add option="-Wl,--enable-auto-import" />
 					<Add library="SDL" />
 					<Add library="OgreMain" />
-					<Add library="data/windows/bullet/libBulletDebug.a" />
-					<Add library="data/windows/convex decomp/libConvex Decomposition.a" />
-					<Add library="data/windows/tinyxml/libTinyXMLpp.a" />
-					<Add library="data/windows/caudio/cAudio.dll" />
-					<Add directory="data/windows/sdl" />
-					<Add directory="data/windows/ogre" />
-					<Add directory="data/windows/bullet" />
-					<Add directory="data/windows/convex decomp" />
-					<Add directory="data/windows/tinyxml" />
-					<Add directory="data/windows/caudio" />
+					<Add library="data\windows\bullet\libBullet.a" />
+					<Add library="data\windows\convex decomp\libConvex Decomposition.a" />
+					<Add library="data\windows\tinyxml\libTinyXMLpp.a" />
+					<Add library="data\windows\caudio\cAudio.dll" />
+					<Add directory="data\windows\sdl" />
+					<Add directory="data\windows\ogre" />
+					<Add directory="data\windows\bullet" />
+					<Add directory="data\windows\convex decomp" />
+					<Add directory="data\windows\tinyxml" />
+					<Add directory="data\windows\caudio" />
 				</Linker>
 				<ExtraCommands>
 					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\windows\ogre&quot; mkdir .\bin\WinRelease\data\windows\ogre' />
@@ -149,8 +149,8 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="LinuxRelease">
-				<Option output="bin/LinuxRelease/libphysgame.so" prefix_auto="1" extension_auto="0" />
-				<Option object_output="obj/LinuxRelease/" />
+				<Option output="bin\LinuxRelease\libphysgame.so" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj\LinuxRelease\" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -161,13 +161,13 @@
 					<Add option="-fPIC" />
 					<Add option="-DOGRE_GUI_GLX" />
 					<Add option="-DLINUX" />
-					<Add directory="libincludes/linux/ogresrc/OgreMain/include" />
-					<Add directory="libincludes/linux/ogresrc/include" />
-					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src" />
-					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
-					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
-					<Add directory="libincludes/common/tinyxmlppsrc/tinyxmlpp" />
-					<Add directory="libincludes/linux/caudiosrc/caudio/include" />
+					<Add directory="libincludes\linux\ogresrc\OgreMain\include" />
+					<Add directory="libincludes\linux\ogresrc\include" />
+					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src" />
+					<Add directory="libincludes\common\bulletsrc\bullet-2.76\src\LinearMath" />
+					<Add directory="libincludes\common\bulletsrc\convexdecomp" />
+					<Add directory="libincludes\common\tinyxmlppsrc\tinyxmlpp" />
+					<Add directory="libincludes\linux\caudiosrc\caudio\include" />
 				</Compiler>
 				<Linker>
 					<Add option="`sdl-config --libs`" />
@@ -175,11 +175,11 @@
 					<Add library="Bullet" />
 					<Add library="ticpp" />
 					<Add library="cAudio" />
-					<Add directory="data/linux/bullet" />
-					<Add directory="data/linux/ogre" />
-					<Add directory="data/linux/convex decomp" />
-					<Add directory="data/linux/tinyxmlpp" />
-					<Add directory="data/linux/caudio" />
+					<Add directory="data\linux\bullet" />
+					<Add directory="data\linux\ogre" />
+					<Add directory="data\linux\convex decomp" />
+					<Add directory="data\linux\tinyxmlpp" />
+					<Add directory="data\linux\caudio" />
 				</Linker>
 				<ExtraCommands>
 					<Add before="data/linux/checklibs.sh" />
@@ -197,92 +197,94 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="src/actorbase.cpp" />
-		<Unit filename="src/actorbase.h" />
-		<Unit filename="src/actorcontainerbase.cpp" />
-		<Unit filename="src/actorcontainerbase.h" />
-		<Unit filename="src/actorcontainervector.cpp" />
-		<Unit filename="src/actorcontainervector.h" />
-		<Unit filename="src/actorragdoll.cpp" />
-		<Unit filename="src/actorragdoll.h" />
-		<Unit filename="src/actorrigid.cpp" />
-		<Unit filename="src/actorrigid.h" />
-		<Unit filename="src/actorsoft.cpp" />
-		<Unit filename="src/actorsoft.h" />
-		<Unit filename="src/actorterrain.cpp" />
-		<Unit filename="src/actorterrain.h" />
-		<Unit filename="src/camera.cpp" />
-		<Unit filename="src/camera.h" />
-		<Unit filename="src/cameramanager.cpp" />
-		<Unit filename="src/cameramanager.h" />
-		<Unit filename="src/constraint.cpp" />
-		<Unit filename="src/constraint.h" />
-		<Unit filename="src/containerbase.cpp" />
-		<Unit filename="src/containerbase.h" />
-		<Unit filename="src/crossplatform.cpp" />
-		<Unit filename="src/crossplatform.h" />
-		<Unit filename="src/datatypes.cpp" />
-		<Unit filename="src/datatypes.h" />
-		<Unit filename="src/eventbase.cpp" />
-		<Unit filename="src/eventbase.h" />
-		<Unit filename="src/eventcollision.cpp" />
-		<Unit filename="src/eventcollision.h" />
-		<Unit filename="src/eventmanager.cpp" />
-		<Unit filename="src/eventmanager.h" />
-		<Unit filename="src/eventquit.cpp" />
-		<Unit filename="src/eventquit.h" />
-		<Unit filename="src/eventrendertime.cpp" />
-		<Unit filename="src/eventrendertime.h" />
-		<Unit filename="src/eventuserinput.cpp" />
-		<Unit filename="src/eventuserinput.h" />
-		<Unit filename="src/graphicsmanager.cpp" />
-		<Unit filename="src/graphicsmanager.h" />
-		<Unit filename="src/internaldecompinterface.cpp" />
-		<Unit filename="src/internaldecompinterface.h.cpp">
+		<Unit filename="src\actorbase.cpp" />
+		<Unit filename="src\actorbase.h" />
+		<Unit filename="src\actorcontainerbase.cpp" />
+		<Unit filename="src\actorcontainerbase.h" />
+		<Unit filename="src\actorcontainervector.cpp" />
+		<Unit filename="src\actorcontainervector.h" />
+		<Unit filename="src\actorragdoll.cpp" />
+		<Unit filename="src\actorragdoll.h" />
+		<Unit filename="src\actorrigid.cpp" />
+		<Unit filename="src\actorrigid.h" />
+		<Unit filename="src\actorsoft.cpp" />
+		<Unit filename="src\actorsoft.h" />
+		<Unit filename="src\actorterrain.cpp" />
+		<Unit filename="src\actorterrain.h" />
+		<Unit filename="src\camera.cpp" />
+		<Unit filename="src\camera.h" />
+		<Unit filename="src\cameramanager.cpp" />
+		<Unit filename="src\cameramanager.h" />
+		<Unit filename="src\constraint.cpp" />
+		<Unit filename="src\constraint.h" />
+		<Unit filename="src\containerbase.cpp" />
+		<Unit filename="src\containerbase.h" />
+		<Unit filename="src\crossplatform.cpp" />
+		<Unit filename="src\crossplatform.h" />
+		<Unit filename="src\datatypes.cpp" />
+		<Unit filename="src\datatypes.h" />
+		<Unit filename="src\eventbase.cpp" />
+		<Unit filename="src\eventbase.h" />
+		<Unit filename="src\eventcollision.cpp" />
+		<Unit filename="src\eventcollision.h" />
+		<Unit filename="src\eventmanager.cpp" />
+		<Unit filename="src\eventmanager.h" />
+		<Unit filename="src\eventquit.cpp" />
+		<Unit filename="src\eventquit.h" />
+		<Unit filename="src\eventrendertime.cpp" />
+		<Unit filename="src\eventrendertime.h" />
+		<Unit filename="src\eventuserinput.cpp" />
+		<Unit filename="src\eventuserinput.h" />
+		<Unit filename="src\graphicsmanager.cpp" />
+		<Unit filename="src\graphicsmanager.h" />
+		<Unit filename="src\internaldecompinterface.cpp" />
+		<Unit filename="src\internaldecompinterface.h.cpp">
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
-		<Unit filename="src/internalmeshinfo.cpp" />
-		<Unit filename="src/internalmeshinfo.h.cpp">
+		<Unit filename="src\internalmeshinfo.cpp" />
+		<Unit filename="src\internalmeshinfo.h.cpp">
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
-		<Unit filename="src/internalmotionstate.cpp" />
-		<Unit filename="src/internalmotionstate.h.cpp">
+		<Unit filename="src\internalmotionstate.cpp" />
+		<Unit filename="src\internalmotionstate.h.cpp">
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
-		<Unit filename="src/linegroup.cpp" />
-		<Unit filename="src/linegroup.h" />
-		<Unit filename="src/managerbase.cpp" />
-		<Unit filename="src/managerbase.h" />
-		<Unit filename="src/metacode.cpp" />
-		<Unit filename="src/metacode.h" />
-		<Unit filename="src/physgame.h" />
-		<Unit filename="src/physicsmanager.cpp" />
-		<Unit filename="src/physicsmanager.h" />
-		<Unit filename="src/plane.cpp" />
-		<Unit filename="src/plane.h" />
-		<Unit filename="src/quaternion.cpp" />
-		<Unit filename="src/quaternion.h" />
-		<Unit filename="src/ray.cpp" />
-		<Unit filename="src/ray.h" />
-		<Unit filename="src/sound.cpp" />
-		<Unit filename="src/sound.h" />
-		<Unit filename="src/soundlistener.cpp" />
-		<Unit filename="src/soundlistener.h" />
-		<Unit filename="src/soundmanager.cpp" />
-		<Unit filename="src/soundmanager.h" />
-		<Unit filename="src/vector3.cpp" />
-		<Unit filename="src/vector3.h" />
-		<Unit filename="src/vector3wactor.cpp" />
-		<Unit filename="src/vector3wactor.h" />
-		<Unit filename="src/world.cpp" />
-		<Unit filename="src/world.h" />
-		<Unit filename="src/worldgetset.cpp" />
-		<Unit filename="src/worldgetset.h" />
-		<Unit filename="src/worldquerytool.cpp" />
-		<Unit filename="src/worldquerytool.h" />
+		<Unit filename="src\linegroup.cpp" />
+		<Unit filename="src\linegroup.h" />
+		<Unit filename="src\managerbase.cpp" />
+		<Unit filename="src\managerbase.h" />
+		<Unit filename="src\metacode.cpp" />
+		<Unit filename="src\metacode.h" />
+		<Unit filename="src\physgame.h" />
+		<Unit filename="src\physicsmanager.cpp" />
+		<Unit filename="src\physicsmanager.h" />
+		<Unit filename="src\plane.cpp" />
+		<Unit filename="src\plane.h" />
+		<Unit filename="src\quaternion.cpp" />
+		<Unit filename="src\quaternion.h" />
+		<Unit filename="src\ray.cpp" />
+		<Unit filename="src\ray.h" />
+		<Unit filename="src\resourcemanager.cpp" />
+		<Unit filename="src\resourcemanager.h" />
+		<Unit filename="src\sound.cpp" />
+		<Unit filename="src\sound.h" />
+		<Unit filename="src\soundlistener.cpp" />
+		<Unit filename="src\soundlistener.h" />
+		<Unit filename="src\soundmanager.cpp" />
+		<Unit filename="src\soundmanager.h" />
+		<Unit filename="src\vector3.cpp" />
+		<Unit filename="src\vector3.h" />
+		<Unit filename="src\vector3wactor.cpp" />
+		<Unit filename="src\vector3wactor.h" />
+		<Unit filename="src\world.cpp" />
+		<Unit filename="src\world.h" />
+		<Unit filename="src\worldgetset.cpp" />
+		<Unit filename="src\worldgetset.h" />
+		<Unit filename="src\worldquerytool.cpp" />
+		<Unit filename="src\worldquerytool.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

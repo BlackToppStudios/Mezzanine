@@ -137,6 +137,10 @@ namespace phys
 
         //We create our Ogre environment
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
+
+        this->Resources = new ResourceManager(this);
+        this->AddManager(Resources);
+
         this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
 
         //Events are the main way for the game using the world to  get information about the various subsystems
@@ -474,25 +478,6 @@ namespace phys
     void World::SetFrameTime( const Whole &FrameTime_ )
     {
         this->FrameTime = FrameTime_;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Ogre Resource Related Public Members
-    ///////////////////////////////////////
-
-    void World::AddResourceLocation(const String &Location, const String &Type, const String &Group, const bool &recursive)
-    {
-        this->OgreRoot->addResourceLocation(Location, Type, Group, recursive);
-    }
-
-    void World::DeclareResource(String Name, String Type, String Group)
-    {
-        this->OgreResource->declareResource(Name, Type, Group);
-    }
-
-    void World::InitResourceGroup(String Group)
-    {
-        this->OgreResource->initialiseResourceGroup(Group);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -87,6 +87,7 @@ namespace phys
             friend class World;
             friend class ActorContainerBase;
             friend class PhysicsManager;
+            friend class ResourceManager;
 
         public:
             /// @enum ActorTypeName

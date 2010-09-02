@@ -100,6 +100,7 @@
 #include "physicsmanager.h"
 #include "soundmanager.h"
 #include "graphicsmanager.h"
+#include "resourcemanager.h"
 
 #include <string>
 #include <sstream>
@@ -336,37 +337,6 @@ namespace phys
             void SetFrameTime( const Whole &FrameTime_ );
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Graphics system loading methods
-        /// @todo move these to the graphics manager
-        ///////////////////////////////////////
-            /// @brief Adds a location for graphical resources.
-            /// @details This function will add a location on the disk to find files needed to create and
-            /// manipulate graphical objects.
-            /// @param Location The location on the file system the resource can be found.
-            /// @param Type The kind of file system the location can be found in. @n
-            /// Options are: filesystem, zip.
-            /// @param Group The name of the group the resources at this location belong to.
-            /// @param recursive Whether or not to search sub-directories.
-            void AddResourceLocation(const String &Location, const String &Type, const String &Group, const bool &recursive=false);
-
-            /// @brief Prepares the resource for use.
-            /// @details This function can be thought of as a preloader.  This will prepare the defined
-            /// resource located on the disk for use.
-            /// @param Name Name of the file/resource to be 'prepared'.
-            /// @param Type The type of resource that the file is. @n
-            /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.
-            /// @param Group Name of the group the resource belongs to.
-            void DeclareResource(String Name, String Type, String Group);
-
-            /// @brief Makes a resource group ready to use.
-            /// @details After adding all of your resources and declaring them as nessessary, this function
-            /// is the final step.  After calling this function any and all resources within the defined group
-            /// will be ready to use.  Do not initialize any more groups then you need to however, as that will
-            /// take up memory and drop performance.
-            /// @param Name Name of the resource group.
-            void InitResourceGroup(String Name);
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Main Loop and Initialization
         ///////////////////////////////////////
             /// @brief This creates the game window and starts the game.
@@ -402,6 +372,10 @@ namespace phys
             /// @brief This will keep track of world wide phyiscs settings
             /// @details This will keep track constraints, gravity, and other settings that affect multiple actors
             PhysicsManager* Physics;
+
+            /// @brief This is a pointer to the resource manager.
+            /// @details This is responsible for reading and writing files on the disk.
+            ResourceManager* Resources;
 
             /// @brief This is a pointer to the sound subsystem.
             /// @details This will keep track of and have functions available to manipulate sounds.
