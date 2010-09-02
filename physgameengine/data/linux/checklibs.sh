@@ -102,10 +102,13 @@ else
 		cd libincludes/linux/ogresrc/
 		if [ -f "`which cmake`" ]
 	        then
-        	    echo Cmake missing build will fail. Please install cmake.
+        		echo "Found cmake. Building"
+			cmake .
+			make
+		else
+			echo "Cmake missing build will fail. Please install cmake."
         	fi
-		cmake .
-		make
+		
 	fi
 	cp -a lib/libOgreMain.* ../../../data/linux/ogre/
 	cp lib/RenderSystem_GL.so ../../../data/linux/ogre/
