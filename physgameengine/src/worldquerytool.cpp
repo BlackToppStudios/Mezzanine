@@ -378,8 +378,8 @@ namespace phys
     Ray* WorldQueryTool::GetMouseRay(Real Length)
     {
         Ray* MouseRay = new Ray( this->GameWorld->Cameras->GetCameraToViewportRay(
-                float(this->GetMouseX()) / float( this->GameWorld->Graphics->getRenderWidth() ) ,
-                float(this->GetMouseY()) / float( this->GameWorld->Graphics->getRenderHeight() )
+                float(this->GetMouseX()) / float( this->GameWorld->GetGraphicsManager()->getRenderWidth() ) ,
+                float(this->GetMouseY()) / float( this->GameWorld->GetGraphicsManager()->getRenderHeight() )
             ) );
 
         (*MouseRay) *= Length;

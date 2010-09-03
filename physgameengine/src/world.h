@@ -58,8 +58,6 @@
 
   @ref phys::World "World - It integrates everything"
 
-  @ref phys::CallBackManager "Call Backs - Running Game code from the engine"
-
   @ref phys::EventManager "Events - Handling messages, event and interupts from the outisde"
 
   @subpage actorcontainer1 "Actor Container - Keeping track of our in game objects"
@@ -126,7 +124,7 @@ namespace Ogre
 ///////////////////////////////////////////////////////////////////////////////
 /// @namespace phys
 /// @brief The bulk of the engine components go in this namspace
-/// @details This is where imporant classes like World, CallBackManager, and
+/// @details This is where imporant classes like World, GraphicsManager, and
 /// The eventmanager reside. For more detailed usage information please refer
 /// to individual class documentation or the @ref index main page.
 ///////////////////////////////////////
@@ -365,17 +363,9 @@ namespace phys
             /// @details This is the Event manager that all physworld members will place any events into.
             EventManager* Events;
 
-            /// @brief A pointer to the graphics settings Manager, or it will be soon
-            /// @details This will be the point that graphics settings will be managed from
-            GraphicsManager* Graphics;
-
             /// @brief This will keep track of world wide phyiscs settings
             /// @details This will keep track constraints, gravity, and other settings that affect multiple actors
             PhysicsManager* Physics;
-
-            /// @brief This is a pointer to the resource manager.
-            /// @details This is responsible for reading and writing files on the disk.
-            ResourceManager* Resources;
 
             /// @brief This is a pointer to the sound subsystem.
             /// @details This will keep track of and have functions available to manipulate sounds.
@@ -434,7 +424,7 @@ namespace phys
 
             /// @brief This gets the CameraManager from the manager list.
             /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.
-            /// @return This returns a pointer to a CallbackManager, or a NULL pointer if no matching manager exists.
+            /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.
             CameraManager* GetCameraManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the EventManager from the manager list.
@@ -457,6 +447,10 @@ namespace phys
             /// @return This returns a pointer to a SoundManager, or a NULL pointer if no matching manager exists.
             SoundManager* GetSoundManager(const short unsigned int &WhichOne=0);
 
+            /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.
+            /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
+            /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
+            ResourceManager* GetResourceManager(const short unsigned int &WhichOne=0);
     };
 }
 #endif

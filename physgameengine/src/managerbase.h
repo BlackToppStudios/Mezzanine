@@ -65,7 +65,6 @@ namespace phys
             enum ManagerTypeName
             {
                 ActorContainerBase,
-                CallBackManager,
                 CameraManager,
                 EventManager,
                 GraphicsManager,

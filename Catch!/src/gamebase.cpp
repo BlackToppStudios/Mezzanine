@@ -344,9 +344,9 @@ void LoadContent()
     String robotprefix ("Robot");
 
     Real mass=5.0;
-    TheWorld.Resources->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
-    TheWorld.Resources->DeclareResource(filerobot, "Mesh", groupname);
-    TheWorld.Resources->InitResourceGroup(groupname);
+    TheWorld.GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
+    TheWorld.GetResourceManager()->DeclareResource(filerobot, "Mesh", groupname);
+    TheWorld.GetResourceManager()->InitResourceGroup(groupname);
 
     // Now Lets make some bowling pins
     Real PinSpacing=75.0;           //This is how far apart we want the pins
@@ -365,7 +365,7 @@ void LoadContent()
         namestream << robotprefix << (c+4);
         TheWorld.GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,&TheWorld) );
         //TheWorld.GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(3);
-        TheWorld.Resources->ImportShapeData(TheWorld.GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
+        TheWorld.GetResourceManager()->ImportShapeData(TheWorld.GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
         TheWorld.GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
     }
     //TheWorld.Resources->ImportShapeData(TheWorld.GetActorManager()->LastActorAdded(), "RobotDecomp3.bullet");
