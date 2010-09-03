@@ -332,6 +332,7 @@ namespace phys
             -10 Lighting (Not yet implemented)
               0 Graphics
              10	Sound
+             20 Resources
         */
 
         //As long as all the CallBacks return true the game continues

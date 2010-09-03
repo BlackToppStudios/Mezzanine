@@ -5,3 +5,4 @@
 -10	Lighting (Not yet implemented)
 0	Graphics
 10	Sound
+20  Resource
