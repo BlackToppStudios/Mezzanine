@@ -43,7 +43,7 @@
 #include <iostream>
 #include <fstream>
 
-#include <ogre.h>
+#include <Ogre.h>
 #include <btBulletWorldImporter.h>
 #include <btBulletDynamicsCommon.h>
 
@@ -54,6 +54,7 @@ namespace phys {
 
     ResourceManager::ResourceManager(World* _World) : ManagerBase(_World)
     {
+        this->Priority = 20;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
     }
 
