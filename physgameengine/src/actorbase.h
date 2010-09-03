@@ -84,7 +84,7 @@ namespace phys
     ///////////////////////////////////////
     class ActorBase {
         private:
-            friend class World;
+            //friend class World;
             friend class ActorContainerBase;
             friend class PhysicsManager;
             friend class ResourceManager;
