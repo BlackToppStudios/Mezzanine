@@ -127,10 +127,9 @@ namespace phys
         this->FrameTime = 0;
 
         this->AddManager(new ActorContainerVector(this));
-        //this->Actors = this->GetActorManager();
 
         this->AddManager(new GraphicsManager(this));
-        this->Graphics = this->GetGraphicsManager();
+        //this->Graphics = this->GetGraphicsManager();
 
         this->AddManager(new SoundManager(this));
         this->Sounds = this->GetSoundManager();
@@ -268,7 +267,7 @@ namespace phys
 
         //clear up our objects
         delete Events;
-        delete Graphics;
+        //delete Graphics;
         delete Physics;
         delete Sounds;
 
@@ -379,7 +378,7 @@ namespace phys
         if (!this->OgreRoot->restoreConfig())
         {
             //if we can't do that then lets make new settings
-            if (!this->Graphics->ShowGraphicsSettingDialog())
+            if (!this->GetGraphicsManager()->ShowGraphicsSettingDialog())
             {
                 this->LogAndThrow("Error: Could not setup Ogre.");
             }
@@ -399,7 +398,7 @@ namespace phys
 		try
 		{
 			//Setup the SDL render window
-			this->SDLscreen = SDL_SetVideoMode( this->Graphics->getRenderWidth(), this->Graphics->getRenderHeight(),0, SDL_OPENGL);
+			this->SDLscreen = SDL_SetVideoMode( this->GetGraphicsManager()->getRenderWidth(), this->GetGraphicsManager()->getRenderHeight(),0, SDL_OPENGL);
 			SDL_WM_SetCaption(this->WindowName.c_str(), NULL);
 		}catch (exception& e) {
 			LogAndThrow(e.what());
@@ -411,7 +410,7 @@ namespace phys
         Ogre::NameValuePairList *misc;
         misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
         (*misc)["title"] = Ogre::String(this->WindowName);
-        this->OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, this->Graphics->getRenderHeight(), this->Graphics->getRenderWidth(), this->Graphics->getFullscreen(), misc);
+        this->OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, this->GetGraphicsManager()->getRenderHeight(), this->GetGraphicsManager()->getRenderWidth(), this->GetGraphicsManager()->getFullscreen(), misc);
 
         //prepare a scenemanager
         this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");

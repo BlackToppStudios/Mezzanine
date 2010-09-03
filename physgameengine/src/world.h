@@ -363,10 +363,6 @@ namespace phys
             /// @details This is the Event manager that all physworld members will place any events into.
             EventManager* Events;
 
-            /// @brief A pointer to the graphics settings Manager, or it will be soon
-            /// @details This will be the point that graphics settings will be managed from
-            GraphicsManager* Graphics;
-
             /// @brief This will keep track of world wide phyiscs settings
             /// @details This will keep track constraints, gravity, and other settings that affect multiple actors
             PhysicsManager* Physics;
