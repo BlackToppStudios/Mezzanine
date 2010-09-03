@@ -328,5 +328,10 @@ namespace phys{
         this->physrigidbody->setLinearFactor(LinFact);
         return;
     }
+
+    void ActorRigid::DisableDeactivation()
+    {
+        this->physrigidbody->setActivationState(DISABLE_DEACTIVATION);
+    }
 }
 #endif
