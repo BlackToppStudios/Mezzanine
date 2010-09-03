@@ -138,8 +138,7 @@ namespace phys
         //We create our Ogre environment
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
 
-        this->Resources = new ResourceManager(this);
-        this->AddManager(Resources);
+        this->AddManager(new ResourceManager(this));
 
         this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
 
@@ -268,7 +267,6 @@ namespace phys
         delete OgreRoot;
 
         //clear up our objects
-//        delete CallBacks;
         delete Events;
         delete Graphics;
         delete Physics;
@@ -642,6 +640,12 @@ namespace phys
     {
         return dynamic_cast<SoundManager*> (this->GetManager(ManagerBase::SoundManager, WhichOne));
     }
+
+    ResourceManager* World::GetResourceManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<ResourceManager*> (this->GetManager(ManagerBase::ResourceManager, WhichOne));
+    }
+
 
 }
 #endif
