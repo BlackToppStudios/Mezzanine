@@ -42,20 +42,20 @@ int main(int argc, char **argv)
 	TheWorld.GameInit(false);
 
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
-    TheWorld.Events->AddPollingCheck( MetaCode(0, 1, MetaCode::KEY_q) );
-    TheWorld.Events->AddPollingCheck( MetaCode(0, 3, MetaCode::MOUSEBUTTON) );
-    TheWorld.Events->AddPollingCheck( MetaCode(0, 0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );
+    TheWorld.GetEventManager()->AddPollingCheck( MetaCode(0, 1, MetaCode::KEY_q) );
+    TheWorld.GetEventManager()->AddPollingCheck( MetaCode(0, 3, MetaCode::MOUSEBUTTON) );
+    TheWorld.GetEventManager()->AddPollingCheck( MetaCode(0, 0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );
 
     //Actually Load the game stuff
     LoadContent();
 
     //Configure the wireframe Drawer
-    TheWorld.Physics->SetDebugPhysicsWireCount(2);
-    TheWorld.Physics->SetDebugPhysicsRendering(0);
+    TheWorld.GetPhysicsManager()->SetDebugPhysicsWireCount(2);
+    TheWorld.GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
     //Setup some camera tricks
-    String CameraNode = TheWorld.Cameras->CreateOrbitingNode( Vector3(0,0,0), Vector3(0.0,200.0,750.0) );
-    TheWorld.Cameras->AttachCameraToNode(CameraNode);
+    String CameraNode = TheWorld.GetCameraManager()->CreateOrbitingNode( Vector3(0,0,0), Vector3(0.0,200.0,750.0) );
+    TheWorld.GetCameraManager()->AttachCameraToNode(CameraNode);
 
 	//Start the Main Loop
 	TheWorld.MainLoop();
@@ -72,7 +72,7 @@ bool PostRender()
     TheWorld.Log(String("Current Game Time "));
 
 	//getting a message from the event manager)
-	EventRenderTime* CurrentTime = TheWorld.Events->PopNextRenderTimeEvent();
+	EventRenderTime* CurrentTime = TheWorld.GetEventManager()->PopNextRenderTimeEvent();
     Whole LastFrame = 0;
 
     // Is CurrentTime a valid event?
@@ -84,7 +84,7 @@ bool PostRender()
         gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
 
         delete CurrentTime;
-        CurrentTime = TheWorld.Events->GetNextRenderTimeEvent();
+        CurrentTime = TheWorld.GetEventManager()->GetNextRenderTimeEvent();
     }
 
     //Play around with the title bar
@@ -109,7 +109,7 @@ bool PostRender()
     {
         notplayed=false;
         Sound* Welcome = NULL;
-        Welcome = TheWorld.Sounds->GetSoundByName("Welcome");
+        Welcome = TheWorld.GetSoundManager()->GetSoundByName("Welcome");
         if(Welcome)
         {
             Welcome->Play2d(false);
@@ -122,10 +122,10 @@ bool PostRender()
 
     // Turn on the Wireframe
     if (30000<gametime)
-        { TheWorld.Physics->SetDebugPhysicsRendering(1); }
+        { TheWorld.GetPhysicsManager()->SetDebugPhysicsRendering(1); }
 
     //IF the game has gone on for 150 or more seconds close it.
-	if (150000<gametime || (TheWorld.Events->GetNextQuitEvent()!=0) )
+	if (150000<gametime || (TheWorld.GetEventManager()->GetNextQuitEvent()!=0) )
         { return false; }
 
     return true;
@@ -169,23 +169,23 @@ bool PostInput()
         {TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() );}*/
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
-        { TheWorld.Cameras->IncrementYOrbit(-0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
+        { TheWorld.GetCameraManager()->IncrementYOrbit(-0.01, TheWorld.GetCameraManager()->GetNodeAttachedToCamera() ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
-        { TheWorld.Cameras->IncrementYOrbit(0.01, TheWorld.Cameras->GetNodeAttachedToCamera() ); }
+        { TheWorld.GetCameraManager()->IncrementYOrbit(0.01, TheWorld.GetCameraManager()->GetNodeAttachedToCamera() ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) )
-        { TheWorld.Cameras->ZoomCamera( -12.0 ); }
+        { TheWorld.GetCameraManager()->ZoomCamera( -12.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN) )
-        { TheWorld.Cameras->ZoomCamera( 12.0 ); }
+        { TheWorld.GetCameraManager()->ZoomCamera( 12.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
-        { TheWorld.Cameras->ResetZoom(); }
+        { TheWorld.GetCameraManager()->ResetZoom(); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_m) )
     {
-        Sound* Theme = TheWorld.Sounds->GetSoundByName("Theme2");
+        Sound* Theme = TheWorld.GetSoundManager()->GetSoundByName("Theme2");
         if(!Theme->IsPlaying())
         {
             Theme->Play2d(false);
@@ -201,7 +201,7 @@ bool PostInput()
     {
         #ifdef PHYSDEBUG
         TheWorld.Log("Gamebase CLICK:");
-        TheWorld.LogStream << "Camera Location: " << TheWorld.Cameras->GetCameraGlobalLocation() << endl;
+        TheWorld.LogStream << "Camera Location: " << TheWorld.GetCameraManager()->GetCameraGlobalLocation() << endl;
         #endif
 
         Ray *MouseRay = Queryer.GetMouseRay(5000);
@@ -242,7 +242,7 @@ bool PostInput()
                         Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
                         Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
                         Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
-                        TheWorld.Physics->AddConstraint(Dragger);
+                        TheWorld.GetPhysicsManager()->AddConstraint(Dragger);
                         Dragger->SetParam(4,0.8,0); Dragger->SetParam(4,0.8,1); Dragger->SetParam(4,0.8,2); Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
                         Dragger->SetParam(2,0.1,0); Dragger->SetParam(2,0.1,1); Dragger->SetParam(2,0.1,2); Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
                         firstframe=true;
@@ -286,7 +286,7 @@ bool PostInput()
     }else{  //Since we are no longer clicking we need to setup for the next clicking
         if(Dragger)
         {
-            TheWorld.Physics->RemoveConstraint(Dragger);
+            TheWorld.GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
         }
@@ -304,7 +304,7 @@ bool PostInput()
 bool CheckForEsc()
 {
     //this will either set the pointer to 0 or return a valid pointer to work with.
-    EventUserInput* OneInput = TheWorld.Events->PopNextUserInputEvent();
+    EventUserInput* OneInput = TheWorld.GetEventManager()->PopNextUserInputEvent();
 
     //We check each Event
     while(0 != OneInput)
@@ -327,7 +327,7 @@ bool CheckForEsc()
         }
 
         delete OneInput;
-        OneInput = TheWorld.Events->PopNextUserInputEvent();
+        OneInput = TheWorld.GetEventManager()->PopNextUserInputEvent();
     }
 
     return true;
@@ -443,21 +443,21 @@ void LoadContent()
     TheWorld.GetActorManager()->AddActor(object7);
 
     Sound *sound1, *music1, *music2;
-    TheWorld.Sounds->CreateSoundSet("Announcer");
-    sound1 = TheWorld.Sounds->CreateSound("Welcome", "data/common/sounds/welcomefun-1.ogg", true);
-    TheWorld.Sounds->AddSoundToSoundSet("Announcer", sound1);
+    TheWorld.GetSoundManager()->CreateSoundSet("Announcer");
+    sound1 = TheWorld.GetSoundManager()->CreateSound("Welcome", "data/common/sounds/welcomefun-1.ogg", true);
+    TheWorld.GetSoundManager()->AddSoundToSoundSet("Announcer", sound1);
 
-    TheWorld.Sounds->CreateSoundSet("SoundTrack");
-    music1 = TheWorld.Sounds->CreateSound("Theme1", "data/common/music/cAudioTheme1.ogg", true);
-    TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music1);
-    music2 = TheWorld.Sounds->CreateSound("Theme2", "data/common/music/cAudioTheme2.ogg", true);
-    TheWorld.Sounds->AddSoundToSoundSet("SoundTrack", music2);
+    TheWorld.GetSoundManager()->CreateSoundSet("SoundTrack");
+    music1 = TheWorld.GetSoundManager()->CreateSound("Theme1", "data/common/music/cAudioTheme1.ogg", true);
+    TheWorld.GetSoundManager()->AddSoundToSoundSet("SoundTrack", music1);
+    music2 = TheWorld.GetSoundManager()->CreateSound("Theme2", "data/common/music/cAudioTheme2.ogg", true);
+    TheWorld.GetSoundManager()->AddSoundToSoundSet("SoundTrack", music2);
 
     TheWorld.Log("Actor Count");
     TheWorld.Log( TheWorld.GetActorManager()->GetActorCount() );
 
-    TheWorld.Physics->SetGravity(grav);
-    TheWorld.Physics->SetSoftGravity(grav);
+    TheWorld.GetPhysicsManager()->SetGravity(grav);
+    TheWorld.GetPhysicsManager()->SetSoftGravity(grav);
 }
 #endif
 

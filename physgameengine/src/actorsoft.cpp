@@ -78,7 +78,7 @@ namespace phys{
         //delete entity;
         GameWorld->OgreSceneManager->destroyEntity(entity);
         entity = NULL;
-        this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh (this->GameWorld->Physics->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
+        this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh (this->GameWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         CollisionObject=physsoftbody;
         Shape = physsoftbody->getCollisionShape();
         physsoftbody->setTotalMass(mass, true);
@@ -244,13 +244,13 @@ namespace phys{
 
     void ActorSoft::AddObjectToWorld (World *TargetWorld)
     {
-        TargetWorld->Physics->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody);
+        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody);
         this->AttachToGraphics();
     }
 
     void ActorSoft::RemoveObjectFromWorld(World* TargetWorld)
     {
-        TargetWorld->Physics->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody);
+        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody);
         this->DetachFromGraphics();
     }
 }

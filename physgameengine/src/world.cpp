@@ -132,7 +132,6 @@ namespace phys
         //this->Graphics = this->GetGraphicsManager();
 
         this->AddManager(new SoundManager(this));
-        this->Sounds = this->GetSoundManager();
 
         //We create our Ogre environment
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
@@ -143,10 +142,8 @@ namespace phys
 
         //Events are the main way for the game using the world to  get information about the various subsystems
         this->AddManager(new EventManager(this));
-        this->Events = this->GetEventManager();//new EventManager(this);
 
         this->AddManager(new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_));
-        this->Physics = this->GetPhysicsManager();
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -264,12 +261,6 @@ namespace phys
     {
         //All the pointers Ogre made should get taken care of by OGRE
         delete OgreRoot;
-
-        //clear up our objects
-        delete Events;
-        //delete Graphics;
-        delete Physics;
-        delete Sounds;
 
         //remove sdl stuff
         SDL_FreeSurface(SDLscreen);
@@ -417,9 +408,8 @@ namespace phys
 
         //setup a default camera
         this->AddManager(new CameraManager (this));
-        this->Cameras = this->GetCameraManager();
         this->GetCameraManager()->CreateCamera();
-        this->OgreCamera = this->Cameras->DefaultCamera;
+        this->OgreCamera = this->GetCameraManager()->DefaultCamera;
         this->OgreCamera->setNearClipDistance(5.0f);
         this->OgreCamera->setFarClipDistance(5000.0f);
 
