@@ -236,6 +236,7 @@ bool PostInput()
                     {
                         Vector3 LocalPivot = ClickOnActor->Vector;
                         ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                        rigid->DisableDeactivation();
                         Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                         Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
                         Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
