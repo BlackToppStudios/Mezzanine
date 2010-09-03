@@ -57,7 +57,7 @@ namespace Ogre
     class Entity;
     class SceneNode;
     class Vector3;
-    class ResourceGroupManager;
+//    class ResourceGroupManager;
 }
 
 ///////////////////////////////////

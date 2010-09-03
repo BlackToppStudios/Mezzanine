@@ -62,9 +62,22 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     class Camera
     {
+        private:
+            /// @internal
+            /// @brief This is called by the called by the constructors, it is a single point of class initialization.
+            /// @param Camera A pointer the graphics subsystem camera
+            /// @param Manager The camera manager this wil
+            void Construct(Ogre::Camera* Camera, CameraManager* Manager);
+
         protected:
+            /// @internal
+            /// @brief This is the Camera used by the graphics Subsystem, that this class wraps
             Ogre::Camera* Cam;
+
+            /// @internal
+            /// @brief This is the Camera manager that this camera is attached to.
             CameraManager* CamManager;
+
         public:
             /// @brief Basic Camera Constructor.
             /// @details This is the basic constructor for the Camera class.

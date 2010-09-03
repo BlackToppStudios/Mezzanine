@@ -125,25 +125,25 @@ namespace phys
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
-
-        this->AddManager(new ActorContainerVector(this));
-
-        this->AddManager(new GraphicsManager(this));
-        //this->Graphics = this->GetGraphicsManager();
-
-        this->AddManager(new SoundManager(this));
-
-        //We create our Ogre environment
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
 
-        this->AddManager(new ResourceManager(this));
+        //add each manager that was passed in to the manager list
+        for(std::vector<ManagerBase*>::iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
+            { this->AddManager(*iter); }
 
-        this->OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-
-        //Events are the main way for the game using the world to  get information about the various subsystems
-        this->AddManager(new EventManager(this));
-
-        this->AddManager(new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_));
+        //Create and add any managers that have not been taken care of yet.
+        if(this->GetActorManager()==0)
+            { this->AddManager(new ActorContainerVector(this)); }
+        if(this->GetGraphicsManager()==0)
+            { this->AddManager(new GraphicsManager(this)); }
+        if(this->GetSoundManager()==0)
+            { this->AddManager(new SoundManager(this)); }
+        if(this->GetResourceManager()==0)
+            { this->AddManager(new ResourceManager(this)); }
+        if(this->GetEventManager()==0)
+            { this->AddManager(new EventManager(this)); }
+        if(this->GetPhysicsManager()==0)
+            { this->AddManager(new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_)); }
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -261,6 +261,11 @@ namespace phys
     {
         //All the pointers Ogre made should get taken care of by OGRE
         delete OgreRoot;
+
+        for(std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); iter!= ManagerList.end(); iter++)
+        {
+            this->ManagerList.erase(iter);
+        }
 
         //remove sdl stuff
         SDL_FreeSurface(SDLscreen);
@@ -406,12 +411,13 @@ namespace phys
         //prepare a scenemanager
         this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
 
-        //setup a default camera
-        this->AddManager(new CameraManager (this));
-        this->GetCameraManager()->CreateCamera();
+        //setup a default camera unless has been setup yet
+        if(this->GetCameraManager()==0)
+        {
+            this->AddManager(new CameraManager (this));
+            this->GetCameraManager()->CreateCamera();
+        }
         this->OgreCamera = this->GetCameraManager()->DefaultCamera;
-        this->OgreCamera->setNearClipDistance(5.0f);
-        this->OgreCamera->setFarClipDistance(5000.0f);
 
         //viewport connects camera and render window
         this->OgreViewport = this->OgreGameWindow->addViewport(OgreCamera);

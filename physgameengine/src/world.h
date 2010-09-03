@@ -168,7 +168,7 @@ namespace phys
             /// @param GeographyUpperbounds This is the upper boundary of the phyiscs estimation.
             /// @param MaxPhysicsProxies This is an estimation of the limit of bodies in the physics world.
             /// @param LogFileName This is the place that log messages get sent to.
-            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
+            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
             void Construct( const Vector3 &GeographyLowerBounds,
                             const Vector3 &GeographyUpperbounds,
                             const unsigned short int &MaxPhysicsProxies,
@@ -206,7 +206,7 @@ namespace phys
 
             /// @internal
             /// @brief
-            Ogre::ResourceGroupManager* OgreResource;
+            //Ogre::ResourceGroupManager* OgreResource;
 
             /// @internal
             /// @brief
@@ -425,7 +425,6 @@ namespace phys
             /// use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of
             /// debugging data and creating in game logs and recreations, this can be very useful.
             std::stringstream LogStream;
-
     };
 }
 #endif
