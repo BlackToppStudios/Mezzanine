@@ -148,13 +148,6 @@ namespace phys
     class World
     {
         private:
-            /// @brief Do Not Use this, This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectly
-            /// @warning This should be treated as an internal function, it is \b subject \b to \b change \b without \b warning and could be \b harmful to overall stability if used incorrectl
-            friend void crossplatform::RenderPhysWorld(World *TheWorld); // Needs ogre access for making window
-
-            friend class ActorBase; //Several items from Ogre and Bullet
-            friend class LineGroup; //Needs the debug::InternalDebugDrawer* BulletDrawer
-            friend class WorldQueryTool; // Needs to access various Ogre internals
             friend class PhysicsManager;
 
             //SDL Objects
@@ -175,7 +168,7 @@ namespace phys
             /// @param GeographyUpperbounds This is the upper boundary of the phyiscs estimation.
             /// @param MaxPhysicsProxies This is an estimation of the limit of bodies in the physics world.
             /// @param LogFileName This is the place that log messages get sent to.
-            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
+            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
             void Construct( const Vector3 &GeographyLowerBounds,
                             const Vector3 &GeographyUpperbounds,
                             const unsigned short int &MaxPhysicsProxies,
@@ -213,7 +206,7 @@ namespace phys
 
             /// @internal
             /// @brief
-            Ogre::ResourceGroupManager* OgreResource;
+            //Ogre::ResourceGroupManager* OgreResource;
 
             /// @internal
             /// @brief
@@ -353,31 +346,6 @@ namespace phys
             void DoMainLoopLogging();
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Feature Manager Pointers
-        ///////////////////////////////////////
-            /// @brief This is a pointer to the Camera Manager.
-            /// @details This is a pointer to the camera management class for the engine.
-            CameraManager* Cameras;
-
-            /// @brief This is the default pointer to the Event Manager.
-            /// @details This is the Event manager that all physworld members will place any events into.
-            EventManager* Events;
-
-            /// @brief This will keep track of world wide phyiscs settings
-            /// @details This will keep track constraints, gravity, and other settings that affect multiple actors
-            PhysicsManager* Physics;
-
-            /// @brief This is a pointer to the sound subsystem.
-            /// @details This will keep track of and have functions available to manipulate sounds.
-            SoundManager* Sounds;
-
-            /// @brief This is another way to put data in the log.
-            /// @details The contents of this will be commited to the log once per frame, just before rendering. Because of that do not
-            /// use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of
-            /// debugging data and creating in game logs and recreations, this can be very useful.
-            std::stringstream LogStream;
-
-        ///////////////////////////////////////////////////////////////////////////////
         // Upper Management
         ///////////////////////////////////////
             /// @brief This adds a manager, in the correct order, to the list that the world calls on
@@ -451,6 +419,12 @@ namespace phys
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
             /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
             ResourceManager* GetResourceManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This is another way to put data in the log.
+            /// @details The contents of this will be commited to the log once per frame, just before rendering. Because of that do not
+            /// use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of
+            /// debugging data and creating in game logs and recreations, this can be very useful.
+            std::stringstream LogStream;
     };
 }
 #endif

@@ -165,14 +165,14 @@ namespace phys{
 
     void ActorRigid::AddObjectToWorld (World *TargetWorld)
     {
-        TargetWorld->Physics->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody);
+        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody);
         //TargetWorld->Physics->BulletDynamicsWorld->addRigidBody(this->physrigidbody);
         this->AttachToGraphics();
     }
 
     void ActorRigid::RemoveObjectFromWorld(World* TargetWorld)
     {
-        TargetWorld->Physics->GetPhysicsWorldPointer()->removeRigidBody(this->physrigidbody);
+        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeRigidBody(this->physrigidbody);
         //TargetWorld->Physics->BulletDynamicsWorld->removeRigidBody(this->physrigidbody);
         this->DetachFromGraphics();
     }
@@ -332,6 +332,12 @@ namespace phys{
     void ActorRigid::DisableDeactivation()
     {
         this->physrigidbody->setActivationState(DISABLE_DEACTIVATION);
+    }
+
+    void ActorRigid::RestoreActivation()
+    {
+        this->physrigidbody->forceActivationState(ACTIVE_TAG);
+		this->physrigidbody->setDeactivationTime( 0.f );
     }
 }
 #endif

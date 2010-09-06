@@ -294,7 +294,7 @@ namespace phys{
 
     Ogre::ResourceGroupManager* ActorBase::GetOgreResourceManager()
     {
-        return this->GameWorld->OgreResource;
+        return Ogre::ResourceGroupManager::getSingletonPtr();
     }
 
     ///////////////////////////////////

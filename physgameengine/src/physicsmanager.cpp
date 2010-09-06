@@ -369,7 +369,7 @@ namespace phys
                     Vector3 emptyloc(0,0,0);
                     EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
                     //create collision event
-                    this->GameWorld->Events->AddEvent(ColEvent);
+                    this->GameWorld->GetEventManager()->AddEvent(ColEvent);
                     #ifdef PHYSDEBUG
                     this->GameWorld->Log("Collision Event Logged at:");
                     this->GameWorld->Log(emptyloc);

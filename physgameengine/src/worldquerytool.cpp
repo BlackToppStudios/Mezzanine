@@ -92,9 +92,9 @@ namespace phys
     {
         //this->KeyboardButtonCache.reset();
 
-        std::list<EventUserInput*>* UserInput = this->GameWorld->Events->GetAllUserInputEvents();   // Get the updated list of events
+        std::list<EventUserInput*>* UserInput = this->GameWorld->GetEventManager()->GetAllUserInputEvents();   // Get the updated list of events
         if( ClearEventsFromEventMgr )
-            { this->GameWorld->Events->RemoveAllSpecificEvents(EventBase::UserInput); }
+            { this->GameWorld->GetEventManager()->RemoveAllSpecificEvents(EventBase::UserInput); }
 
         //For each metacode adjust any needed info
         for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); Iter!=UserInput->end(); Iter++) //for each event
@@ -377,7 +377,7 @@ namespace phys
 
     Ray* WorldQueryTool::GetMouseRay(Real Length)
     {
-        Ray* MouseRay = new Ray( this->GameWorld->Cameras->GetCameraToViewportRay(
+        Ray* MouseRay = new Ray( this->GameWorld->GetCameraManager()->GetCameraToViewportRay(
                 float(this->GetMouseX()) / float( this->GameWorld->GetGraphicsManager()->getRenderWidth() ) ,
                 float(this->GetMouseY()) / float( this->GameWorld->GetGraphicsManager()->getRenderHeight() )
             ) );

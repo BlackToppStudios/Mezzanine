@@ -94,14 +94,14 @@ namespace phys
 
     void ActorTerrain::AddObjectToWorld (World *TargetWorld)
     {
-        TargetWorld->Physics->GetPhysicsWorldPointer()->addCollisionObject(this->CollisionObject);
+        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addCollisionObject(this->CollisionObject);
         //TargetWorld->Physics->BulletDynamicsWorld->addRigidBody(this->CollisionObject);
         this->AttachToGraphics();
     }
 
     void ActorTerrain::RemoveObjectFromWorld(World* TargetWorld)
     {
-        TargetWorld->Physics->GetPhysicsWorldPointer()->removeCollisionObject(this->CollisionObject);
+        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeCollisionObject(this->CollisionObject);
         //TargetWorld->Physics->BulletDynamicsWorld->removeRigidBody(this->CollisionObject);
         this->DetachFromGraphics();
     }

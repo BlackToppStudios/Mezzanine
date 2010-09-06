@@ -49,14 +49,20 @@ namespace phys
     Camera::Camera(CameraManager* Manager)
     {
         String Name = Manager->CreateCamera();
-        Cam = Manager->FindCamera(Name);
-        CamManager=Manager;
+        this->Construct(Manager->FindCamera(Name), Manager);
     }
 
     Camera::Camera(Ogre::Camera* Camera, CameraManager* Manager)
     {
-        Cam=Camera;
-        CamManager=Manager;
+        this->Construct(Camera, Manager);
+    }
+
+    void Camera::Construct(Ogre::Camera* Camera, CameraManager* Manager)
+    {
+        this->Cam = Camera;
+        this->CamManager = Manager;
+        this->SetNearClipDistance(5.0f);
+        this->SetFarClipDistance(5000.0f);
     }
 
     Camera::~Camera()

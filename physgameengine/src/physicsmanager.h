@@ -74,7 +74,6 @@ namespace phys
     class PhysicsManager : public ManagerBase
     {
         private:
-            friend class World;
             //Some Data Items
             Vector3 GeographyLowerBounds;
             Vector3 GeographyUpperBounds;

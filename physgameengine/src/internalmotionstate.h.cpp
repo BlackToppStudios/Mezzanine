@@ -60,7 +60,6 @@ namespace phys{
         ///////////////////////////////////////
         class PhysMotionState : public btMotionState {
             private:
-                friend class ActorBase;
                 Ogre::SceneNode* snode;
                 btTransform worldtrans;
 
