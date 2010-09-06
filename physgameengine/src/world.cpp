@@ -292,18 +292,41 @@ namespace phys
     // Start the Game already
     void World::GameInit( const bool &CallMainLoop )
     {
-        //try to load the ogre config
-        this->LoadOgreSettings();
-        this->CreateRenderWindow();
+        #define PHYSDEBUG
 
-        //Initiliaze the Managers
+        #ifdef PHYSDEBUG
+        this->Log("Entering GameInit");
+        #endif
+
+        this->LoadOgreSettings();
+        #ifdef PHYSDEBUG
+        this->Log("Loaded Graphics Settings");
+        #endif
+
+        this->CreateRenderWindow();
+        #ifdef PHYSDEBUG
+        this->Log("Created the Render Work");
+        #endif
+
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
             (*Iter)->Initialize();
+            #ifdef PHYSDEBUG
+            this->LogStream << "Initializing " << (*Iter)->GetTypeName() << " Manager";
+            #endif
         }
 
         if(CallMainLoop)
-            { this->MainLoop(); }
+        {
+            #ifdef PHYSDEBUG
+            this->Log("Starting the main loop");
+            #endif
+            this->MainLoop();
+        }else{
+            #ifdef PHYSDEBUG
+            this->Log("Not calling the main loop");
+            #endif
+        }
     }
 
     void World::MainLoop()
@@ -383,6 +406,11 @@ namespace phys
 
     void World::CreateRenderWindow()
     {
+         #define PHYSDEBUG
+
+        #ifdef PHYSDEBUG
+        this->Log("Entering GameInit");
+        #endif
         /// @todo TODO set multithreaded SDL so it will the run event manager in another thread
         //Get what is needed for SDL started
         if (SDL_Init(SDL_INIT_VIDEO) < 0) {
