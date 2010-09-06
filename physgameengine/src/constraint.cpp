@@ -55,6 +55,8 @@ namespace phys
 
     TypedConstraint::TypedConstraint (ActorRigid* bodya, ActorRigid* bodyb)
     {
+        ActorA=bodya;
+        ActorB=bodyb;
         BodyA=bodya->physrigidbody;
         BodyB=bodyb->physrigidbody;
         ConstraintBase=NULL;
@@ -62,12 +64,25 @@ namespace phys
 
     TypedConstraint::TypedConstraint (ActorRigid* bodya)
     {
+        ActorA=bodya;
+        ActorB=NULL;
         BodyA=bodya->physrigidbody;
+        BodyB=NULL;
         ConstraintBase=NULL;
     }
 
     TypedConstraint::~TypedConstraint ()
     {
+    }
+
+    ActorRigid* TypedConstraint::GetActorA()
+    {
+        return ActorA;
+    }
+
+    ActorRigid* TypedConstraint::GetActorB()
+    {
+        return ActorB;
     }
 
     /////////////////////////////////////////
@@ -486,6 +501,28 @@ namespace phys
     void Point2PointConstraint::SetPivotB(Vector3 PivotB)
     {
         this->Point2Point->setPivotB(PivotB.GetBulletVector3());
+    }
+
+    Vector3 Point2PointConstraint::GetPivotInA()
+    {
+        Vector3 Pivot(this->Point2Point->getPivotInA());
+        return Pivot;
+    }
+
+    Vector3 Point2PointConstraint::GetPivotInB()
+    {
+        Vector3 Pivot(this->Point2Point->getPivotInB());
+        return Pivot;
+    }
+
+    void Point2PointConstraint::SetImpulseClamping(Real Clamping)
+    {
+        this->Point2Point->m_setting.m_impulseClamp = Clamping;
+    }
+
+    void Point2PointConstraint::SetTAU(Real TAU)
+    {
+        this->Point2Point->m_setting.m_tau = TAU;
     }
 
     void Point2PointConstraint::SetParam(int num, Real value, int axis)

@@ -195,7 +195,8 @@ bool PostInput()
     // Make a declaration for a static constrain so it survives the function lifetime
     // static *constraint MouseDragger = 0;
 
-    static Generic6DofConstraint* Dragger=NULL;
+    //static Generic6DofConstraint* Dragger=NULL;
+    static Point2PointConstraint* Dragger=NULL;
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
@@ -237,14 +238,16 @@ bool PostInput()
                         Vector3 LocalPivot = ClickOnActor->Vector;
                         ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
                         rigid->DisableDeactivation();
-                        Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
-                        Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
-                        Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
-                        Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
-                        Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
+                        //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
+                        Dragger = new Point2PointConstraint(rigid, LocalPivot);
+                        Dragger->SetTAU(0.001);
+                        //Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
+                        //Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
+                        //Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
+                        //Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
                         TheWorld.GetPhysicsManager()->AddConstraint(Dragger);
-                        Dragger->SetParam(4,0.8,0); Dragger->SetParam(4,0.8,1); Dragger->SetParam(4,0.8,2); Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
-                        Dragger->SetParam(2,0.1,0); Dragger->SetParam(2,0.1,1); Dragger->SetParam(2,0.1,2); Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
+                        Dragger->SetParam(4,0.8,0); Dragger->SetParam(4,0.8,1); Dragger->SetParam(4,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
+                        Dragger->SetParam(2,0.1,0); Dragger->SetParam(2,0.1,1); Dragger->SetParam(2,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
                         firstframe=true;
                     }else{  // since we don't
                         #ifdef PHYSDEBUG
@@ -273,7 +276,8 @@ bool PostInput()
                 TheWorld.Log("Dragged To");
                 TheWorld.Log(*DragTo);
                 #endif
-                Dragger->SetOffsetALocation(*DragTo);
+                //Dragger->SetOffsetALocation(*DragTo);
+                Dragger->SetPivotB(*DragTo);
             }
         }
 
@@ -286,9 +290,11 @@ bool PostInput()
     }else{  //Since we are no longer clicking we need to setup for the next clicking
         if(Dragger)
         {
+            ActorRigid* Act = Dragger->GetActorA();
             TheWorld.GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
+            Act->RestoreActivation();
         }
     }
 

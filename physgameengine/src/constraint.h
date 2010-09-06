@@ -78,6 +78,10 @@ namespace phys
             btRigidBody* BodyA;
             /// @brief Second rigid body the constraint applies to(if applicable).
             btRigidBody* BodyB;
+            /// @brief First Actor the constraint applies to.
+            ActorRigid* ActorA;
+            /// @brief Second Actor the constraint applies to.
+            ActorRigid* ActorB;
             /// @brief Bullet constraint that this class encapsulates.
             btTypedConstraint* ConstraintBase;
         public:
@@ -96,7 +100,23 @@ namespace phys
             /// @details This constructor is used when the applicable constraint is applied to a body and a point in world space.
             /// @param bodya The actor to be constraint to a point in world space.
             TypedConstraint(ActorRigid* bodya);
+            /// @brief Gets the first actor this constraint applies to.
+            /// @return Returns a pointer to the first actor this constraint applies to.
+            ActorRigid* GetActorA();
+            /// @brief Gets the second actor this constraint applies to.
+            /// @return Returns a pointer to the second actor this constraint applies to.
+            ActorRigid* GetActorB();
+            /// @brief Provides override of constraint parameters.
+            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @param num The parameter to override.
+            /// @param value The new value for the parameter.
+            /// @param axis Optional axis.
             virtual void SetParam(int num, Real value, int axis=-1) = 0;
+            /// @brief Gets value of constraint parameters.
+            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
+            /// @param num The parameter to get information for.
+            /// @param axis Optional axis.
+            /// @return Returns the value for the requested parameter.
             virtual Real GetParam(int num, int axis=-1) = 0;
     };
 
@@ -126,7 +146,17 @@ namespace phys
             void SetMotorTargetInConstraintSpace(Quaternion Quat);
             void EnableMotor(bool Enable);
             bool IsPassedSwingLimit();
+            /// @brief Provides override of constraint parameters.
+            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @param num The parameter to override.
+            /// @param value The new value for the parameter.
+            /// @param axis Optional axis.
             virtual void SetParam(int num, Real value, int axis=-1);
+            /// @brief Gets value of constraint parameters.
+            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
+            /// @param num The parameter to get information for.
+            /// @param axis Optional axis.
+            /// @return Returns the value for the requested parameter.
             virtual Real GetParam(int num, int axis=-1);
     };
 
@@ -162,7 +192,17 @@ namespace phys
             void SetUseFrameOffset(bool UseOffset);
             void SetLimit(int Axis, Real Low, Real High);
             void CalculateTransforms();
+            /// @brief Provides override of constraint parameters.
+            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @param num The parameter to override.
+            /// @param value The new value for the parameter.
+            /// @param axis Optional axis.
             virtual void SetParam(int num, Real value, int axis=-1);
+            /// @brief Gets value of constraint parameters.
+            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
+            /// @param num The parameter to get information for.
+            /// @param axis Optional axis.
+            /// @return Returns the value for the requested parameter.
             virtual Real GetParam(int num, int axis=-1);
     };
 
@@ -219,7 +259,17 @@ namespace phys
             void SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
             void SetAxis(Vector3 AxisInA);
             void SetUseFrameOffset(bool FrameOffset);
+            /// @brief Provides override of constraint parameters.
+            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @param num The parameter to override.
+            /// @param value The new value for the parameter.
+            /// @param axis Optional axis.
             virtual void SetParam(int num, Real value, int axis=-1);
+            /// @brief Gets value of constraint parameters.
+            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
+            /// @param num The parameter to get information for.
+            /// @param axis Optional axis.
+            /// @return Returns the value for the requested parameter.
             virtual Real GetParam(int num, int axis=-1);
     };
 
@@ -258,7 +308,21 @@ namespace phys
             virtual ~Point2PointConstraint();
             void SetPivotA(Vector3 PivotA);
             void SetPivotB(Vector3 PivotB);
+            Vector3 GetPivotInA();
+            Vector3 GetPivotInB();
+            void SetImpulseClamping(Real Clamping);
+            void SetTAU(Real TAU);
+            /// @brief Provides override of constraint parameters.
+            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @param num The parameter to override.
+            /// @param value The new value for the parameter.
+            /// @param axis Optional axis.
             virtual void SetParam(int num, Real value, int axis=-1);
+            /// @brief Gets value of constraint parameters.
+            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
+            /// @param num The parameter to get information for.
+            /// @param axis Optional axis.
+            /// @return Returns the value for the requested parameter.
             virtual Real GetParam(int num, int axis=-1);
     };
 
@@ -308,7 +372,17 @@ namespace phys
             void SetSoftnessOrthoAng(Real SoftnessOrthoAng);
             void SetRestitutionOrthoAng(Real RestitutionOrthoAng);
             void SetDampingOrthoAng(Real DampingOrthoAng);
+            /// @brief Provides override of constraint parameters.
+            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @param num The parameter to override.
+            /// @param value The new value for the parameter.
+            /// @param axis Optional axis.
             virtual void SetParam(int num, Real value, int axis=-1);
+            /// @brief Gets value of constraint parameters.
+            /// @details See SetParam() for clarification.  Gets information on constraint parameters.
+            /// @param num The parameter to get information for.
+            /// @param axis Optional axis.
+            /// @return Returns the value for the requested parameter.
             virtual Real GetParam(int num, int axis=-1);
     };
 
