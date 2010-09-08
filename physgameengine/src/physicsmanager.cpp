@@ -389,6 +389,15 @@ namespace phys
         this->BulletDynamicsWorld->getWorldInfo().m_gravity = sgrav.GetBulletVector3();
     }
 
+    void PhysicsManager::SetIndividualGravity(ActorBase* Actor, Vector3 igrav)
+    {
+        if (ActorBase::Actorrigid==Actor->GetType())
+        {
+            btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->CollisionObject);
+            Rigid->setGravity(igrav.GetBulletVector3());
+        }
+    }
+
     //Bullet Debug Drawing
 
 

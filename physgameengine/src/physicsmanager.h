@@ -140,6 +140,12 @@ namespace phys
             /// @param sgrav Vector3 representing the strength and direction of gravity.
             void SetSoftGravity(Vector3 sgrav);
 
+            /// @brief Sets the gravity to be applied to a single object.
+            /// @details This function does not change the global gravity, only how gravity behaves for this specific object.  Note: This function only works on ActorRigid's.
+            /// @param Actor The actor whos gravity is to be changed.
+            /// @param igrav The value of the gravity to be applied.
+            void SetIndividualGravity(ActorBase* Actor, Vector3 igrav);
+
             /// @brief Enables and Disables Physics Debug Drawing
             /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics
             /// subsytem pixel for pixel.
