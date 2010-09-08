@@ -65,6 +65,7 @@ namespace phys
         btScalar mass = 0.f;
         RigidBody = new btRigidBody(mass, this->MotionState, this->Shape);
         CollisionObject = RigidBody;
+        CollisionObject->setUserPointer(this);
         ActorType = ActorBase::Actorterrain;
     }
 

@@ -80,6 +80,7 @@ namespace phys{
         entity = NULL;
         this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh (this->GameWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         CollisionObject=physsoftbody;
+        CollisionObject->setUserPointer(this);
         Shape = physsoftbody->getCollisionShape();
         physsoftbody->setTotalMass(mass, true);
         physsoftbody->m_cfg.collisions = btSoftBody::fCollision::CL_SS + btSoftBody::fCollision::CL_RS;

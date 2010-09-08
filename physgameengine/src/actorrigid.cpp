@@ -72,6 +72,7 @@ namespace phys{
         btScalar bmass=pmass;
         this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
         CollisionObject=physrigidbody;
+        CollisionObject->setUserPointer(this);
         if(0.0 == bmass)
         {
             CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
