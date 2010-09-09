@@ -54,6 +54,7 @@
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 #include <BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h>
 #include "BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
+#include <BulletCollision/CollisionDispatch/btGhostObject.h>
 
 
 namespace phys
@@ -295,6 +296,7 @@ namespace phys
                                                     GeographyUpperBounds.GetBulletVector3(),
                                                     MaxPhysicsProxies
                                                  );
+        this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
 
         this->BulletSolver = new btSequentialImpulseConstraintSolver;
         //this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
