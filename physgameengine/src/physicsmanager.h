@@ -51,6 +51,7 @@ class btCollisionShape;
 class btSoftBodyRigidBodyCollisionConfiguration;
 
 #include <map>
+#include <vector>
 
 #include "managerbase.h"
 #include "constraint.h"
@@ -61,6 +62,7 @@ namespace phys
     class World;
     class ActorBase;
     class Vector3WActor;
+    class AreaEffect;
     namespace debug {
         class InternalDebugDrawer;
     }
@@ -82,6 +84,7 @@ namespace phys
             unsigned short int CollisionAge;
             Real Impulse;
             std::map< String, btCollisionShape* > PhysicsShapes;
+            std::vector < AreaEffect* > AreaEffects;
 
             // Some Items bullet requires
             btAxisSweep3* BulletBroadphase;
@@ -99,6 +102,10 @@ namespace phys
             /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
             /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
             void Construct(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
+
+            /// @brief Calls the ApplyEffects() function of every stored AreaEffect instance.
+            /// @details This function is automatically called every step.
+            void ApplyAllEffects();
         public:
 
             /// @brief Simple Constructor
@@ -202,6 +209,22 @@ namespace phys
             /// @param Actor The actor to which you want to apply the shape.
             /// @param ShapeName The name of the shape you wish to have applied to the actor.
             void ApplyPhysicsShape(ActorBase* Actor, String &ShapeName);
+
+            /// @brief Adds an area effect to the world.
+            /// @details Adds an area effect to the world so that it can/will take effect.
+            /// @param AE The area effect to be added.
+            void AddAreaEffect(AreaEffect* AE);
+
+            /// @brief Removes an area effect from the world.
+            /// @details Removes an area effect from the world so that it will have no effect.
+            /// @param AE The area effect to be removed.
+            void RemoveAreaEffect(AreaEffect* AE);
+
+            /// @brief Gets an Area Effect by name.
+            /// @details This function will return the named area effect if it is stored.
+            /// @param Name The name of the area effect to find.
+            /// @return Returns a pointer to the named area effect.
+            AreaEffect* GetAreaEffect(String Name);
 
             /// @brief Sets the Collision Parameters.
             /// @details Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events.  The lower these numbers, the more events will be generated.  @n

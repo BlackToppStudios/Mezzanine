@@ -61,6 +61,8 @@ namespace phys{
     {
         friend class PhysicsManager;
         protected:
+            /// @brief The name of the Area Effect.
+            String Name;
             /// @brief Stores the shape of the AE field.
             btCollisionShape* Shape;
             /// @brief The object representing the AE field itself.
@@ -77,7 +79,8 @@ namespace phys{
             /// @details Class destructor.
             virtual ~AreaEffect();
             /// @brief Defines and applies the effect of the field.
-            /// @details When inheriting this class, this function is what defines the effect the field has.
+            /// @details When inheriting this class, this function is what defines the effect the field has. @n
+            /// This function will be called on by the physics manager and shouldn't be called manually.
             virtual void ApplyEffect() = 0;
             /// @brief Creates a Sphere shape for the field.
             /// @param Radius The radius of the sphere you want to create.
@@ -96,6 +99,9 @@ namespace phys{
             /// @param Filename The name of the .mesh file to be used.
             /// @param Group The resource group where the mesh can be found.
             void CreateShapeFromMesh(String Filename, String Group);
+            /// @brief Gets the Area Effects name.
+            /// @return Returns the name of the Area Effect.
+            String& GetName();
     };//areaeffect
 }//phys
 

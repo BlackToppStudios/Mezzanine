@@ -150,6 +150,11 @@ namespace phys{
         Shape = new btGImpactMeshShape(trimesh);
         Ghost->setCollisionShape(Shape);
     }
+
+    String& AreaEffect::GetName()
+    {
+        return Name;
+    }
 }
 
 #endif

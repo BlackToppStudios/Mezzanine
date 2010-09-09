@@ -47,6 +47,7 @@
 #include "actorcontainerbase.h"
 #include "eventcollision.h"
 #include "vector3wactor.h"
+#include "areaeffect.h"
 
 #include <queue>
 
@@ -334,6 +335,8 @@ namespace phys
 
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
+        ApplyAllEffects();
+
         Real FloatTime = TimeElapsed;
         FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
 
@@ -459,6 +462,44 @@ namespace phys
     void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
     {
         this->BulletDynamicsWorld->removeConstraint(Constraint->ConstraintBase);
+    }
+
+    void PhysicsManager::AddAreaEffect(AreaEffect* AE)
+    {
+        this->AreaEffects.push_back(AE);
+        this->BulletDynamicsWorld->addCollisionObject(AE->Ghost);
+    }
+
+    void PhysicsManager::RemoveAreaEffect(AreaEffect* AE)
+    {
+        this->BulletDynamicsWorld->removeCollisionObject(AE->Ghost);
+        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+        {
+            if ( AE == *c )
+            {
+                c=AreaEffects.erase(c);
+            }
+        }
+    }
+
+    AreaEffect* PhysicsManager::GetAreaEffect(String Name)
+    {
+        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+        {
+            if ( Name == (*c)->GetName() )
+            {
+                return *c;
+            }
+        }
+        return NULL;
+    }
+
+    void PhysicsManager::ApplyAllEffects()
+    {
+        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+        {
+            (*c)->ApplyEffect();
+        }
     }
 
     void PhysicsManager::StorePhysicsShape(ActorBase* Actor, String &ShapeName)
