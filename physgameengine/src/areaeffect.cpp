@@ -49,7 +49,8 @@
 
 namespace phys{
 
-    AreaEffect::AreaEffect(Vector3 Location)
+    AreaEffect::AreaEffect(const String &name, Vector3 Location)
+        : Name (name)
     {
         CreateGhostObject(Location);
     }
@@ -65,6 +66,7 @@ namespace phys{
         Ghost = new btGhostObject();
         Ghost->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
+        Ghost->setUserPointer(this);
     }
 
     void AreaEffect::CreateSphereShape(Real Radius)

@@ -69,12 +69,12 @@ namespace phys{
             btGhostObject* Ghost;
             /// @brief Constructor Function.
             /// @param Location The location of the AE field.
-            void CreateGhostObject(Vector3 Location);
+            virtual void CreateGhostObject(Vector3 Location);
         public:
             /// @brief Constructor.
             /// @details Basic initialization constructor.
             /// @param Location The location of the AE field.
-            AreaEffect(Vector3 Location);
+            AreaEffect(const String &name, Vector3 Location);
             /// @brief Destructor.
             /// @details Class destructor.
             virtual ~AreaEffect();
