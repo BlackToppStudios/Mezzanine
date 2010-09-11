@@ -460,6 +460,10 @@ void LoadContent()
     TheWorld->GetActorManager()->AddActor(object6);
     TheWorld->GetActorManager()->AddActor(object7);
 
+    AreaEffect* TestField = new TestAE("Tester", Vector3(0,0,150), TheWorld);
+    TestField->CreateBoxShape(Vector3(500,80,80));
+    TheWorld->GetPhysicsManager()->AddAreaEffect(TestField);
+
     Sound *sound1, *music1, *music2;
     TheWorld->GetSoundManager()->CreateSoundSet("Announcer");
     sound1 = TheWorld->GetSoundManager()->CreateSound("Welcome", "data/common/sounds/welcomefun-1.ogg", true);

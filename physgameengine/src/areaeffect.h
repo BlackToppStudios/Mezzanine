@@ -136,6 +136,19 @@ namespace phys{
             /// @return Returns the vector storing all the actors that have been removed from the list since the last simulation step.
             std::vector<ActorBase*>& GetRemovedActors();
     };//areaeffect
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class TestAE
+    /// @headerfile areaeffect.h
+    /// @brief This is a dummy class to test if the AE field works.  Details will be output to the log.
+    ///////////////////////////////////////
+    class TestAE : public AreaEffect
+    {
+        public:
+            TestAE(const String &name, Vector3 Location, World* world);
+            ~TestAE();
+            void ApplyEffect();
+    };
 }//phys
 
 #endif

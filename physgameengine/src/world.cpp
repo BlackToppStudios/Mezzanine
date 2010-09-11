@@ -210,6 +210,7 @@ namespace phys
         ActorRigid* temp24=0;
         Vector3WActor temp25( temp24, Vector3(0,2,5));
         Plane temp26(Vector3(2.0, 6.0, 2.0), 6.0);
+        ActorBase* temp27=0;
 
         //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
         /// @todo TODO add each type of event here (logtest) to make it really easy to log events
@@ -237,9 +238,10 @@ namespace phys
         OneLogTest(temp21, "Ogre::Vector3");
         OneLogTest(temp22,"Ray");
         OneLogTest("temp23","<char const*>");
-        OneLogTest(temp24,"ActorBase");
+        OneLogTest(temp24,"ActorRigid");
         OneLogTest(temp25,"Vector3WActor");
         OneLogTest(temp26,"Plane");
+        OneLogTest(temp27,"ActorBase");
         OneLogTest('7',"const char");
     }
 

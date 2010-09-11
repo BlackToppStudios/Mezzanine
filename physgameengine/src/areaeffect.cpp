@@ -42,6 +42,7 @@
 
 #include "areaeffect.h"
 #include "world.h"
+#include "actorbase.h"
 
 #include <Ogre.h>
 #include <btBulletDynamicsCommon.h>
@@ -132,15 +133,20 @@ namespace phys{
             }
         }
         // Verify they are the same size.  Then remove items from the list as necessary.
-        if ( !(OverlappingActors.size() == Tracker.size()) )
+        if ( OverlappingActors.size() == Tracker.size() )
         {
-            for ( it = OverlappingActors.begin(), bit = Tracker.begin() ; bit != Tracker.end() ; it++, bit++ )
+            std::list<ActorBase*>::iterator sit = OverlappingActors.begin();
+            for ( bit = Tracker.begin() ; bit != Tracker.end() ; )
             {
                 if ( (*bit) == false )
                 {
-                    Tracker.erase(bit);
-                    RemovedActors.push_back(*it);
-                    OverlappingActors.erase(it);
+                    bit = Tracker.erase(bit);
+                    ActorBase* Act = (*sit);
+                    RemovedActors.push_back(Act);
+                    sit = OverlappingActors.erase(sit);
+                }else{
+                    sit++;
+                    bit++;
                 }
             }
         }
@@ -253,6 +259,57 @@ namespace phys{
     std::vector<ActorBase*>& AreaEffect::GetRemovedActors()
     {
         return RemovedActors;
+    }
+
+    ///////////////////////////////////
+    // TestAE functions
+
+    TestAE::TestAE(const String &name, Vector3 Location, World* world) : AreaEffect(name, Location, world)
+    {
+    }
+
+    TestAE::~TestAE()
+    {
+    }
+
+    void TestAE::ApplyEffect()
+    {
+        std::vector<ActorBase*>* Added = &(GetAddedActors());
+        std::vector<ActorBase*>* Removed = &(GetRemovedActors());
+        std::list<ActorBase*>* Current = &(GetOverlappingActors());
+
+        std::vector<ActorBase*>::iterator AaRIt;
+        std::list<ActorBase*>::iterator CurrIt;
+
+        ActorBase* Act = NULL;
+
+        if ( !(Added->empty()) )
+        {
+            TheWorld->Log("Actors Added to field this frame:");
+            for ( AaRIt = Added->begin() ; AaRIt != Added->end() ; AaRIt++ )
+            {
+                Act = (*AaRIt);
+                TheWorld->Log(Act);
+            }
+        }
+        if ( !(Removed->empty()) )
+        {
+            TheWorld->Log("Actors Removed from field this frame:");
+            for ( AaRIt = Removed->begin() ; AaRIt != Removed->end() ; AaRIt++ )
+            {
+                Act = (*AaRIt);
+                TheWorld->Log(Act);
+            }
+        }
+        if ( !(Current->empty()) )
+        {
+            TheWorld->Log("Actors Currently in field this frame:");
+            for ( CurrIt = Current->begin() ; CurrIt != Current->end() ; CurrIt++ )
+            {
+                Act = (*CurrIt);
+                TheWorld->Log(Act);
+            }
+        }
     }
 }
 
