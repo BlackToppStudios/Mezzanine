@@ -297,7 +297,9 @@ namespace phys
                                                     GeographyUpperBounds.GetBulletVector3(),
                                                     MaxPhysicsProxies
                                                  );
-        this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
+
+        this->GhostCallback = new btGhostPairCallback();
+        this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(GhostCallback);
 
         this->BulletSolver = new btSequentialImpulseConstraintSolver;
         //this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
@@ -335,7 +337,7 @@ namespace phys
 
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
-        ApplyAllEffects();
+        ProcessAllEffects();
 
         Real FloatTime = TimeElapsed;
         FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
@@ -365,7 +367,7 @@ namespace phys
             for (int j=0;j<numContacts;j++)
             {
                 btManifoldPoint& pt = contactManifold->getContactPoint(j);
-                if (pt.m_lifeTime>=CollisionAge && pt.m_appliedImpulse>=Impulse)
+                if (pt.m_lifeTime==CollisionAge && pt.m_appliedImpulse>=Impulse)
                 {
                     btCollisionObject* objectA = static_cast<btCollisionObject*>(contactManifold->getBody0());
                     btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
@@ -467,7 +469,7 @@ namespace phys
     void PhysicsManager::AddAreaEffect(AreaEffect* AE)
     {
         this->AreaEffects.push_back(AE);
-        this->BulletDynamicsWorld->addCollisionObject(AE->Ghost);
+        this->BulletDynamicsWorld->addCollisionObject(AE->Ghost,btBroadphaseProxy::SensorTrigger,btBroadphaseProxy::AllFilter & ~btBroadphaseProxy::SensorTrigger);
     }
 
     void PhysicsManager::RemoveAreaEffect(AreaEffect* AE)
@@ -494,11 +496,15 @@ namespace phys
         return NULL;
     }
 
-    void PhysicsManager::ApplyAllEffects()
+    void PhysicsManager::ProcessAllEffects()
     {
-        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+        if( !AreaEffects.empty() )
         {
-            (*c)->ApplyEffect();
+            for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+            {
+                (*c)->UpdateActorList();
+                (*c)->ApplyEffect();
+            }
         }
     }
 

@@ -49,6 +49,7 @@ class btSoftRigidDynamicsWorld;
 class btDynamicsWorld;
 class btCollisionShape;
 class btSoftBodyRigidBodyCollisionConfiguration;
+class btGhostPairCallback;
 
 #include <map>
 #include <vector>
@@ -87,6 +88,7 @@ namespace phys
             std::vector < AreaEffect* > AreaEffects;
 
             // Some Items bullet requires
+            btGhostPairCallback* GhostCallback;
             btAxisSweep3* BulletBroadphase;
             //btDefaultCollisionConfiguration* BulletCollisionConfiguration;
             btSoftBodyRigidBodyCollisionConfiguration* BulletCollisionConfiguration;
@@ -103,9 +105,9 @@ namespace phys
             /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
             void Construct(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
 
-            /// @brief Calls the ApplyEffects() function of every stored AreaEffect instance.
+            /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect instance.
             /// @details This function is automatically called every step.
-            void ApplyAllEffects();
+            void ProcessAllEffects();
         public:
 
             /// @brief Simple Constructor

@@ -41,17 +41,20 @@
 #define _areaeffect_cpp
 
 #include "areaeffect.h"
+#include "world.h"
 
 #include <Ogre.h>
 #include <btBulletDynamicsCommon.h>
 #include <BulletCollision/CollisionDispatch/btGhostObject.h>
 #include <BulletCollision/Gimpact/btGImpactShape.h>
+#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 
 namespace phys{
 
-    AreaEffect::AreaEffect(const String &name, Vector3 Location)
+    AreaEffect::AreaEffect(const String &name, Vector3 Location, World *world)
         : Name (name)
     {
+        TheWorld = world;
         CreateGhostObject(Location);
     }
 
@@ -63,10 +66,84 @@ namespace phys{
 
     void AreaEffect::CreateGhostObject(Vector3 Location)
     {
-        Ghost = new btGhostObject();
-        Ghost->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
+        Ghost = new btPairCachingGhostObject();
+        Ghost->setCollisionFlags(Ghost->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
         Ghost->setUserPointer(this);
+    }
+
+    void AreaEffect::AddActorToList(ActorBase* Actor)
+    {
+        AddedActors.push_back(Actor);
+        OverlappingActors.push_back(Actor);
+    }
+
+    void AreaEffect::RemoveActorFromList(ActorBase* Actor)
+    {
+        RemovedActors.push_back(Actor);
+        for( std::list<ActorBase*>::iterator c=OverlappingActors.begin(); c!=OverlappingActors.end(); c++)
+        {
+            if ( Actor == (*c) )
+            {
+                OverlappingActors.erase(c);
+            }
+        }
+    }
+
+    void AreaEffect::UpdateActorList()
+    {
+        if ( !(AddedActors.empty()) )
+            AddedActors.clear();
+        if ( !(RemovedActors.empty()) )
+            RemovedActors.clear();
+        btSoftRigidDynamicsWorld* PhysWorld = TheWorld->GetPhysicsManager()->GetPhysicsWorldPointer();
+        PhysWorld->getDispatcher()->dispatchAllCollisionPairs(Ghost->getOverlappingPairCache(), PhysWorld->getDispatchInfo(), PhysWorld->getDispatcher());
+
+        int OverlappingPairs = Ghost->getOverlappingPairCache()->getNumOverlappingPairs();
+        btBroadphasePair* Pair = Ghost->getOverlappingPairCache()->getOverlappingPairArrayPtr();
+        std::list<ActorBase*>::iterator it = OverlappingActors.begin();
+        // Make a bool vector to keep track of which actors to keep when updating.
+        std::vector<bool> Tracker;
+        Tracker.resize(OverlappingActors.size());
+        std::vector<bool>::iterator bit;
+        for ( bit = Tracker.begin() ; bit != Tracker.end() ; bit++ )
+        {
+            (*bit) = false;
+        }
+        // Add objects to the necessary lists as needed.  Also track what needs to be removed for later.
+        for ( int x=0 ; x<OverlappingPairs ; x++ )
+        {
+            // Get the non-ghost object from a given pair and cast it to a usable pointer.
+            btCollisionObject* ColObj = Pair[x].m_pProxy0->m_clientObject != Ghost ? (btCollisionObject*)(Pair[x].m_pProxy0->m_clientObject) : (btCollisionObject*)(Pair[x].m_pProxy1->m_clientObject);
+            ActorBase* Actor = (ActorBase*)(ColObj->getUserPointer());
+            // Check list for the actor in the pair.
+            for( it = OverlappingActors.begin(), bit = Tracker.begin() ; it != OverlappingActors.end() ; it++, bit++ )
+            {
+                if ( Actor == (*it) )
+                {
+                    (*bit) = true;
+                    break;
+                }
+            }
+            if ( it == OverlappingActors.end() )
+            {
+                AddActorToList(Actor);
+                Tracker.push_back(true);
+            }
+        }
+        // Verify they are the same size.  Then remove items from the list as necessary.
+        if ( !(OverlappingActors.size() == Tracker.size()) )
+        {
+            for ( it = OverlappingActors.begin(), bit = Tracker.begin() ; bit != Tracker.end() ; it++, bit++ )
+            {
+                if ( (*bit) == false )
+                {
+                    Tracker.erase(bit);
+                    RemovedActors.push_back(*it);
+                    OverlappingActors.erase(it);
+                }
+            }
+        }
     }
 
     void AreaEffect::CreateSphereShape(Real Radius)
@@ -153,9 +230,29 @@ namespace phys{
         Ghost->setCollisionShape(Shape);
     }
 
+    void AreaEffect::SetLocation(Vector3 Location)
+    {
+        Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
+    }
+
     String& AreaEffect::GetName()
     {
         return Name;
+    }
+
+    std::list<ActorBase*>& AreaEffect::GetOverlappingActors()
+    {
+        return OverlappingActors;
+    }
+
+    std::vector<ActorBase*>& AreaEffect::GetAddedActors()
+    {
+        return AddedActors;
+    }
+
+    std::vector<ActorBase*>& AreaEffect::GetRemovedActors()
+    {
+        return RemovedActors;
     }
 }
 
