@@ -317,6 +317,53 @@ namespace phys{
             }
         }
     }
+
+    ///////////////////////////////////
+    // GravityField functions
+
+    GravityField::GravityField(const String &name, Vector3 Location, World* world) : AreaEffect(name, Location, world)
+    {
+    }
+
+    GravityField::~GravityField()
+    {
+    }
+
+    void GravityField::ApplyEffect()
+    {
+        std::vector<ActorBase*>* Added = &(GetAddedActors());
+        std::vector<ActorBase*>* Removed = &(GetRemovedActors());
+        std::vector<ActorBase*>::iterator It;
+        PhysicsManager* Physics = TheWorld->GetPhysicsManager();
+        ActorBase* Act = NULL;
+
+        if ( !(Added->empty()) )
+        {
+            for ( It = Added->begin() ; It != Added->end() ; It++ )
+            {
+                Act = (*It);
+                Physics->SetIndividualGravity(Act, Grav);
+            }
+        }
+        if ( !(Removed->empty()) )
+        {
+            for ( It = Removed->begin() ; It != Removed->end() ; It++ )
+            {
+                Act = (*It);
+                Physics->SetIndividualGravity(Act, Physics->GetGravity());
+            }
+        }
+    }
+
+    void GravityField::SetFieldGravity(Vector3 Gravity)
+    {
+        Grav = Gravity;
+    }
+
+    Vector3 GravityField::GetFieldGravity()
+    {
+        return Grav;
+    }
 }
 
 #endif
