@@ -89,7 +89,9 @@ namespace phys{
         public:
             /// @brief Constructor.
             /// @details Basic initialization constructor.
+            /// @param name The name of the field.
             /// @param Location The location of the AE field.
+            /// @param world Pointer to the world class, to allow any kind of manipulation of objects inside.
             AreaEffect(const String &name, Vector3 Location, World* world);
             /// @brief Destructor.
             /// @details Class destructor.
@@ -149,10 +151,54 @@ namespace phys{
     class TestAE : public AreaEffect
     {
         public:
+            /// @brief Constructor.
+            /// @details Basic initialization constructor.
+            /// @param name The name of the field.
+            /// @param Location The location of the AE field.
+            /// @param world Pointer to the world class, to allow any kind of manipulation of objects inside.
             TestAE(const String &name, Vector3 Location, World* world);
+            /// @brief Destructor.
+            /// @details Class destructor.
             ~TestAE();
+            /// @brief Applies the effect this field has to object inside.
+            /// @details This function defines the behavior for the class.
             void ApplyEffect();
-    };
+    };//testAE
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class GravityField
+    /// @headerfile areaeffect.h
+    /// @brief This is a gravity field implementation of the AreaEffect class.
+    /// @details This class is not a gravity well, where gravity is pulling to one point.  Instead this class uniformly
+    /// pulls gravity in one direction that is different from the world gravity.
+    ///////////////////////////////////////
+    class GravityField : public AreaEffect
+    {
+        protected:
+            /// @brief The stored value for this fields gravity.
+            Vector3 Grav;
+        public:
+            /// @brief Constructor.
+            /// @details Basic initialization constructor.
+            /// @param name The name of the field.
+            /// @param Location The location of the AE field.
+            /// @param world Pointer to the world class, to allow any kind of manipulation of objects inside.
+            GravityField(const String &name, Vector3 Location, World* world);
+            /// @brief Destructor.
+            /// @details Class destructor.
+            ~GravityField();
+            /// @brief Applies the effect this field has to object inside.
+            /// @details This function defines the behavior for the class.
+            void ApplyEffect();
+            /// @brief Sets the gravity force for this field.
+            /// @details Sets the strength and direction of gravity this field will have.
+            /// @param Gravity The vector3 representing the force and direction of gravity this field will have.
+            void SetFieldGravity(Vector3 Gravity);
+            /// @brief Gets the gravity of this field.
+            /// @details Gets the strength and direction of gravity this field has.
+            /// @return Returns a vector3 representing the force and direction of gravity this field has.
+            Vector3 GetFieldGravity();
+    };//GravityField
 }//phys
 
 #endif
