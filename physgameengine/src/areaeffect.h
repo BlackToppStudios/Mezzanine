@@ -121,6 +121,10 @@ namespace phys{
             /// @param Filename The name of the .mesh file to be used.
             /// @param Group The resource group where the mesh can be found.
             void CreateShapeFromMesh(String Filename, String Group);
+            /// @brief Sets the scale of the shape of the field.
+            /// @details The default scale is 1.0.
+            /// @param Scale The vector3 representing the scale you wish to apply to each axis of the field shape.
+            void ScaleFieldShape(Vector3 Scale);
             /// @brief Sets the origin for the area effect.
             /// @details In most cases you won't want to call this, with the exception of when you want a field to follow/track an actor.
             /// @param Location The updated location of the origin for the field.
