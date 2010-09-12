@@ -143,11 +143,21 @@ namespace phys
             /// @param pgrav Vector3 representing the strength and direction of gravity.
             void SetGravity(Vector3 pgrav);
 
+            /// @brief Gets the gravity.
+            /// @details Gets the currently set world gravity.
+            /// @return Returns the currently set world gravity.
+            Vector3 GetGravity();
+
             /// @brief Sets the gravity for soft bodies.
             /// @details Gravity for soft bodies is stored separately from rigid bodies.  So if you plan to use soft bodies in your game/simulation
             /// you need to call this function otherwise they won't fall.
             /// @param sgrav Vector3 representing the strength and direction of gravity.
             void SetSoftGravity(Vector3 sgrav);
+
+            /// @brief Gets the soft body gravity.
+            /// @details Gets the currently set soft body world gravity.
+            /// @return Returns the currently set soft body world gravity.
+            Vector3 GetSoftGravity();
 
             /// @brief Sets the gravity to be applied to a single object.
             /// @details This function does not change the global gravity, only how gravity behaves for this specific object.  Note: This function only works on ActorRigid's.

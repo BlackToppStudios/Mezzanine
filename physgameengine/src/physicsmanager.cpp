@@ -391,9 +391,21 @@ namespace phys
         this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
     }
 
+    Vector3 PhysicsManager::GetGravity()
+    {
+        Vector3 grav(this->BulletDynamicsWorld->getGravity());
+        return grav;
+    }
+
     void PhysicsManager::SetSoftGravity(Vector3 sgrav)
     {
         this->BulletDynamicsWorld->getWorldInfo().m_gravity = sgrav.GetBulletVector3();
+    }
+
+    Vector3 PhysicsManager::GetSoftGravity()
+    {
+        Vector3 sgrav(this->BulletDynamicsWorld->getWorldInfo().m_gravity);
+        return sgrav;
     }
 
     void PhysicsManager::SetIndividualGravity(ActorBase* Actor, Vector3 igrav)
