@@ -73,6 +73,11 @@ namespace phys
 
     Sound* SoundManager::CreateSound(String &SoundName, String &FilePath, bool Stream)
     {
+        #define PHYSDEBUG
+        #ifdef PHYSDEBUG
+        this->GameWorld->LogStream<< "Entering: SoundManager::CreateSound( " << SoundName << ", " << FilePath << ", " << Stream << ");" << endl;
+        this->GameWorld->Log("Attempting to create Sound");
+        #endif
         cAudio::IAudioSource* IAudio = AudioManager->create(SoundName.c_str(), FilePath.c_str(), Stream);
         Sound* pSound = new Sound(IAudio, AudioManager);
         return pSound;

@@ -294,8 +294,7 @@ namespace phys
     // Start the Game already
     void World::GameInit( const bool &CallMainLoop )
     {
-        #define PHYSDEBUG
-
+        //#define PHYSDEBUG
         #ifdef PHYSDEBUG
         this->Log("Entering GameInit()");
         #endif
@@ -410,7 +409,7 @@ namespace phys
 
     void World::CreateRenderWindow()
     {
-         #define PHYSDEBUG
+         //#define PHYSDEBUG
 
         #ifdef PHYSDEBUG
         this->Log("Entering CreateRenderWindow()");

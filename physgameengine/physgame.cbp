@@ -75,7 +75,7 @@
 					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
 					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
 					<Add directory="libincludes/common/tinyxmlppsrc/tinyxmlpp" />
-					<Add directory="libincludes/linux/caudiosrc/caudio/include" />
+					<Add directory="libincludes/common/caudiosrc/include" />
 					<Add directory="libincludes/common/bulletsrc/bulletserializer" />
 				</Compiler>
 				<Linker>
@@ -97,7 +97,7 @@
 					<Add after="cp data/linux/settings.cfg bin/LinuxDebug/data/linux/" />
 					<Add after="cp data/linux/ogre/ bin/LinuxDebug/data/linux/ -r" />
 					<Add after="cp data/common/ bin/LinuxDebug/data/ -r" />
-					<Add after="cp data/linux/caudio/*.s* bin/LinuxDebug/" />
+					<Add after="cp data/linux/caudio/*.s* bin/LinuxDebug/ -a" />
 					<Add after="mv bin/LinuxDebug/data/linux/ogre/*Main* bin/LinuxDebug/" />
 					<Add after="rm bin//LinuxDebug/data/linux/ogre/Readme.txt" />
 					<Mode after="always" />
@@ -171,7 +171,7 @@
 					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
 					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
 					<Add directory="libincludes/common/tinyxmlppsrc/tinyxmlpp" />
-					<Add directory="libincludes/linux/caudiosrc/caudio/include" />
+					<Add directory="libincludes/common/caudiosrc/include" />
 					<Add directory="libincludes/common/bulletsrc/bulletserializer" />
 				</Compiler>
 				<Linker>
