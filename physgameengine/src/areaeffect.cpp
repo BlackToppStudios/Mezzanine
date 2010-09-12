@@ -241,6 +241,12 @@ namespace phys{
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
     }
 
+    Vector3 AreaEffect::GetLocation()
+    {
+        Vector3 Loc(Ghost->getWorldTransform().getOrigin());
+        return Loc;
+    }
+
     String& AreaEffect::GetName()
     {
         return Name;

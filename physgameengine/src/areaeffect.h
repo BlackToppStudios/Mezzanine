@@ -123,6 +123,10 @@ namespace phys{
             /// @details In most cases you won't want to call this, with the exception of when you want a field to follow/track an actor.
             /// @param Location The updated location of the origin for the field.
             void SetLocation(Vector3 Location);
+            /// @brief Gets the origin for the area effect.
+            /// @details This function is particularly useful when making fields such as gravity wells, that have continuous effects centering on one location.
+            /// @return Returns the vector3 representing the location of the area effect.
+            Vector3 GetLocation();
             /// @brief Gets the Area Effects name.
             /// @return Returns the name of the Area Effect.
             String& GetName();
