@@ -330,6 +330,11 @@ namespace phys{
         return;
     }
 
+    void ActorRigid::SetDamping(Real LinDamping, Real AngDamping)
+    {
+        this->physrigidbody->setDamping(LinDamping, AngDamping);
+    }
+
     void ActorRigid::DisableDeactivation()
     {
         this->physrigidbody->setActivationState(DISABLE_DEACTIVATION);

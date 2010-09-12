@@ -445,6 +445,7 @@ void LoadContent()
     object7->CreateSphereShapeFromMesh();
     object7->SetActorScaling(Vector3(0.3,0.3,0.3));
     object7->SetInitLocation(Vector3(10.0,25000.0,-1300.0));
+    object7->SetDamping(0.3,0.0);
 
     //Final Steps
     Vector3 grav;
