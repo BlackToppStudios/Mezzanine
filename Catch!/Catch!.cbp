@@ -64,8 +64,8 @@
 					<Add directory="." />
 				</Linker>
 				<ExtraCommands>
-					<Add before="mkdir bin/LinuxDebug/data/common -p" />
-					<Add before="cp ../physgameengine/bin/LinuxDebug/* ./bin/LinuxDebug/ -r" />
+					<Add before="mkdir bin/LinuxDebug/data -p" />
+					<Add before="cp ../physgameengine/bin/LinuxDebug/* bin/LinuxDebug/ -r" />
 					<Add before="cp data/linux/Catch! bin/LinuxDebug/" />
 					<Add before="cp data/common/*.jpg bin/LinuxDebug/data/common/" />
 					<Add before="cp data/common/*.psd bin/LinuxDebug/data/common/" />
@@ -137,8 +137,8 @@
 					<Add directory="." />
 				</Linker>
 				<ExtraCommands>
-					<Add before="mkdir bin/LinuxRelease/data/common -p" />
-					<Add before="cp ../physgameengine/bin/LinuxRelease/* ./bin/LinuxRelease/ -r" />
+					<Add before="mkdir bin/LinuxRelease/data -p" />
+					<Add before="cp ../physgameengine/bin/LinuxRelease/* bin/LinuxRelease/ -r" />
 					<Add before="cp data/linux/Catch! bin/LinuxRelease/" />
 					<Add before="cp data/common/*.jpg bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.psd bin/LinuxRelease/data/common/" />
