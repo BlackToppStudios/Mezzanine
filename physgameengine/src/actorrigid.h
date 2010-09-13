@@ -116,6 +116,22 @@ namespace phys
             /// @param AngDamping Real representing the amount of Angular Damping to be applied.
             void SetDamping(Real LinDamping, Real AngDamping);
 
+            /// @brief Sets the Linear Velocity of this object.
+            /// @param LinVel Vector3 representing the Linear Velocity to be set.
+            void SetLinearVelocity(Vector3 LinVel);
+
+            /// @brief Gets the Linear Velocity of this object.
+            /// @return Returns the currently set Linear Velocity of this object.
+            Vector3 GetLinearVelocity();
+
+            /// @brief Sets the Angular Velocity of this object.
+            /// @param AngVel Vector3 representing the Angular Velocity to be set.
+            void SetAngularVelocity(Vector3 AngVel);
+
+            /// @brief Gets the Angular Velocity of this object.
+            /// @return Returns the currently set Angular Velocity of this object.
+            Vector3 GetAngularVelocity();
+
             /// @brief Retrieves the name of the object.
             /// @details This function will retrieve the name of the object,
             std::string GetName() const;

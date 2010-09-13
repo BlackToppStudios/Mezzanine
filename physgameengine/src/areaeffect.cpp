@@ -236,6 +236,11 @@ namespace phys{
         Ghost->setCollisionShape(Shape);
     }
 
+    void AreaEffect::ScaleFieldShape(Vector3 Scale)
+    {
+        Ghost->getCollisionShape()->setLocalScaling(Scale.GetBulletVector3());
+    }
+
     void AreaEffect::SetLocation(Vector3 Location)
     {
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());

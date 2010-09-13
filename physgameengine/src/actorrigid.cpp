@@ -335,6 +335,28 @@ namespace phys{
         this->physrigidbody->setDamping(LinDamping, AngDamping);
     }
 
+    void ActorRigid::SetLinearVelocity(Vector3 LinVel)
+    {
+        this->physrigidbody->setLinearVelocity(LinVel.GetBulletVector3());
+    }
+
+    Vector3 ActorRigid::GetLinearVelocity()
+    {
+        Vector3 LinVel(this->physrigidbody->getLinearVelocity());
+        return LinVel;
+    }
+
+    void ActorRigid::SetAngularVelocity(Vector3 AngVel)
+    {
+        this->physrigidbody->setAngularVelocity(AngVel.GetBulletVector3());
+    }
+
+    Vector3 ActorRigid::GetAngularVelocity()
+    {
+        Vector3 AngVel(this->physrigidbody->getAngularVelocity());
+        return AngVel;
+    }
+
     void ActorRigid::DisableDeactivation()
     {
         this->physrigidbody->setActivationState(DISABLE_DEACTIVATION);
