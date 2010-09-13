@@ -1,11 +1,10 @@
 Large Colored fields
 Greenish - Starting Area
 Bluish - Ending/Landing Area
-
-Objects
 Brown	Wood
 Black	Lead	Note: If used outside the Starting area is assumed to be pinned to the background
 Yellow	Gold
 Blue	N/A Maybe plastic or aluminium\
+Pink	Rubber
 
 Use the Gimp to work with xcf files
