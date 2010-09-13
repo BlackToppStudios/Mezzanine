@@ -74,8 +74,8 @@
 					<Add before="cp data/common/*.skeleton bin/LinuxDebug/data/common/" />
 					<Add before="cp data/common/*.material bin/LinuxDebug/data/common/" />
 					<Add before="cp data/common/*.bullet bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/music/*.ogg bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/sounds/*.ogg bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/music/ bin/LinuxDebug/data/common/ -r" />
+					<Add before="cp data/common/sounds/ bin/LinuxDebug/data/common/ -r" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>

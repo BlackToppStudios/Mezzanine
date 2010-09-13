@@ -7,18 +7,18 @@
 
 #include "../include/ILogReceiver.h"
 #include "../include/cAudioDefines.h"
+#include <sstream>
 
 #ifdef CAUDIO_COMPILE_WITH_FILE_LOG_RECEIVER
 namespace cAudio
 {
-	
 	class cFileLogReceiver : public ILogReceiver
 	{
 	public:
 		cFileLogReceiver();
 		~cFileLogReceiver();
 
-		bool OnLogMessage(const char* sender, const char* message, LogLevel level, float time);
+		bool OnLogMessage(const char* sender, const char* message, LogLevel level, float time);		
 
 	private:
 

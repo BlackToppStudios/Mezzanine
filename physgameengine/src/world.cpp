@@ -278,10 +278,21 @@ namespace phys
     //appends to the gamelog which is managed by Ogre
     template <class T> void World::Log(T Message)
     {
-        stringstream temp;
-        temp << this->LogStream.str() << Message;
+        static stringstream Converter;
+
+        static std::stringstream* Audiolog = 0;
+        if (0 == Audiolog)
+        {
+            Audiolog = this->GetSoundManager()->GetLogs();
+        }else{
+            Converter << Audiolog->str();
+            Audiolog->str("");
+        }
+
+        Converter << this->LogStream.str() << Message;
         this->LogStream.str("");
-        Ogre::LogManager::getSingleton().logMessage(temp.str());
+        Ogre::LogManager::getSingleton().logMessage(Converter.str());
+        Converter.str("");
     }
 
     template <class T> void World::LogAndThrow(T Message)
@@ -303,8 +314,6 @@ namespace phys
         #ifdef PHYSDEBUG
         this->Log("Loaded Graphics Settings");
         #endif
-
-
 
         this->CreateRenderWindow();
         #ifdef PHYSDEBUG
@@ -444,10 +453,10 @@ namespace phys
             //crossplatform::WaitMilliseconds(1000);
             this->OgreGameWindow = this->OgreRoot->initialise(false, this->WindowName);
             #ifdef PHYSDEBUG
-            this->Log("Setup Ogre");
+            this->Log("Setup Ogre Window");
             #endif
         }catch (exception& e) {
-		    this->Log("Failed to Setup Ogre");
+		    this->Log("Failed to Setup Ogre Window");
 			LogAndThrow(e.what());
 		}
 

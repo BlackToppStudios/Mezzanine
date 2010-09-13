@@ -156,7 +156,25 @@ namespace cAudio
 
 		Initialized = true;
 		return true;
-    }
+	}
+
+	//Added by BlackTopp Studios to allow tighter integration into the physgame engine
+	std::stringstream* cAudioManager::GetLogs()
+	{
+		return getLogger()->LogStream;
+	}
+
+	//Added by BlackTopp Studios to allow tighter integration into the physgame engine
+	void cAudioManager::ClearLogs()
+	{
+		if(NULL!=getLogger()->LogStream)
+		{
+			Mutex.lock();
+			return getLogger()->LogStream->str("");
+			Mutex.unlock();
+		}
+	}
+
 
     IAudioSource* cAudioManager::create(const char* name, const char* filename, bool stream)
     {

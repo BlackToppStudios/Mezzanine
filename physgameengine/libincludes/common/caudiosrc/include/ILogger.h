@@ -7,6 +7,7 @@
 
 #include "ILogReceiver.h"
 #include "cAudioDefines.h"
+#include <sstream>
 
 namespace cAudio
 {
@@ -16,6 +17,9 @@ namespace cAudio
     public:
 		ILogger() { }
 		virtual ~ILogger() { }
+
+		//Added by BlackTopp Studios to allow tighter integration into the physgame engine
+		std::stringstream* LogStream;
 
 		//! Used to log a critical error message to the logging system.
 		/** 

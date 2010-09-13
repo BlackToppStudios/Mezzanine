@@ -110,7 +110,7 @@ namespace phys
         {
             cAudio::IAudioSource* IAudio = AudioManager->createFromMemory(SoundName.c_str(), Data, Size, Frequency, cAudio::EAF_16BIT_MONO);
         }
-        if(Quality==4)
+        if(Quality==4)LogStream
         {
             cAudio::IAudioSource* IAudio = AudioManager->createFromMemory(SoundName.c_str(), Data, Size, Frequency, cAudio::EAF_16BIT_Stereo);
         }
@@ -185,6 +185,16 @@ namespace phys
 
     ManagerBase::ManagerTypeName SoundManager::GetType() const
         { return ManagerBase::SoundManager; }
+
+    std::stringstream* SoundManager::GetLogs()
+        {
+            return AudioManager->GetLogs();
+    }
+
+    void SoundManager::ClearLogs()
+    {
+        AudioManager->ClearLogs();
+    }
 }
 
 #endif

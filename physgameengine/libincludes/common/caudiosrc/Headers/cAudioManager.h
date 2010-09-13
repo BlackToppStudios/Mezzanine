@@ -16,6 +16,7 @@
 
 #include <AL/al.h>
 #include <AL/alc.h>
+#include <sstream>
 
 #ifdef CAUDIO_PLATFORM_LINUX
 #include <AL/alext.h>
@@ -80,6 +81,9 @@ namespace cAudio
 		virtual IAudioEffects* getEffects() { return &initEffects; }
 #endif
 
+		//Added by BlackTopp Studios to allow tighter integration into the physgame engine
+		virtual std::stringstream* GetLogs();
+		virtual void ClearLogs();
 	private:
 		//! Mutex for thread syncronization
 		cAudioMutex Mutex;

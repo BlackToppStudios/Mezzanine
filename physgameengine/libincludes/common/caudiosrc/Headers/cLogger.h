@@ -6,6 +6,7 @@
 #define CLOGGER_H_INCLUDED
 
 #include <stdarg.h>
+#include <sstream>
 
 #include "../include/ILogger.h"
 #include "../Headers/cMutex.h"
@@ -18,6 +19,9 @@ namespace cAudio
     public:
 		cLogger();
 		virtual ~cLogger() { }
+
+		//Added by BlackTopp Studios to allow tighter integration into the physgame engine
+		std::stringstream* LogStream;
 
 		virtual void logCritical( const char* sender, const char *msg, ... );
 		virtual void logError( const char* sender, const char *msg, ... );

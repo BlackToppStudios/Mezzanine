@@ -25,6 +25,7 @@ namespace cAudio
 	cLogger::cLogger() : StartTime(0), MinLogLevel(ELL_INFO)
 	{
 		StartTime = clock();
+		LogStream = new std::stringstream("");
 	}
 
 	void cLogger::logCritical( const char* sender, const char *msg, ... )
@@ -38,6 +39,7 @@ namespace cAudio
 			va_end( args );
 			Mutex.unlock();
 		}
+		delete LogStream;
 	}
 	void cLogger::logError( const char* sender, const char *msg, ... )
 	{
@@ -99,10 +101,12 @@ namespace cAudio
 		vsnprintf( TempTextBuf, 2048, msg, args );
 
 		ReceiversIterator it = Receivers.begin();
-        for (it = Receivers.begin(); it != Receivers.end(); it++)
-        {
-            it->second->OnLogMessage(sender, TempTextBuf, level, messageTime);
-        }
+		for (it = Receivers.begin(); it != Receivers.end(); it++)
+		{
+		    //The compiler had better know to how to optimize this nonsense
+		    it->second->LogStream = this->LogStream;
+		    it->second->OnLogMessage(sender, TempTextBuf, level, messageTime);
+		}
 	}
 	bool cLogger::registerLogReceiver(ILogReceiver* receiver, const char* name)
     {

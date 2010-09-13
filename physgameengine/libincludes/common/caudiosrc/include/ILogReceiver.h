@@ -5,6 +5,8 @@
 #ifndef ILOGRECEIVER_H_INCLUDED
 #define ILOGRECEIVER_H_INCLUDED
 
+#include <sstream>
+
 namespace cAudio
 {
 	//! Enum of all supported log levels in cAudio.
@@ -35,6 +37,9 @@ namespace cAudio
 	public:
 		ILogReceiver() { }
 		~ILogReceiver() { }
+
+		//Added by BlackTopp Studios to allow tighter integration into the physgame engine
+		std::stringstream* LogStream;
 
 		//! Called on every logged message that is greater than or equal to the minimum log level.
 		/**

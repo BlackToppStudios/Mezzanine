@@ -25,6 +25,10 @@ namespace cAudio
 		IAudioManager() { }
 		virtual ~IAudioManager() { }
 
+		//Added by BlackTopp Studios to allow tighter integration into the physgame engine
+		virtual std::stringstream* GetLogs()=0;
+		virtual void ClearLogs()=0;
+
 		//! Initializes the manager.
 		/**
 		\param deviceName: Name of the device to create this manager for.
