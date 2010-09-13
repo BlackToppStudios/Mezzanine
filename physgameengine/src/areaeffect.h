@@ -125,6 +125,10 @@ namespace phys{
             /// @details The default scale is 1.0.
             /// @param Scale The vector3 representing the scale you wish to apply to each axis of the field shape.
             void ScaleFieldShape(Vector3 Scale);
+            /// @brief Gets the scale of the shape of the field.
+            /// @details The default scale is 1.0.
+            /// @return Returns the current scale applied to the fields shape.
+            Vector3 GetFieldShapeScale();
             /// @brief Sets the origin for the area effect.
             /// @details In most cases you won't want to call this, with the exception of when you want a field to follow/track an actor.
             /// @param Location The updated location of the origin for the field.
