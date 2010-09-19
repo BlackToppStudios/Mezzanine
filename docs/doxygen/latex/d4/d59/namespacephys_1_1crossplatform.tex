@@ -17,7 +17,7 @@ string \hyperlink{namespacephys_1_1crossplatform_a2d43f3aa5a485564c3f375b36a0815
 string \hyperlink{namespacephys_1_1crossplatform_ac73c7f2db76ddfeb41723d72decc1366}{GetDataDirectory} ()
 \begin{DoxyCompactList}\small\item\em Gets the Default Data Directory. \item\end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b64a8ed9}{GetSDLOgreBinder} ()
-\begin{DoxyCompactList}\small\item\em This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). \item\end{DoxyCompactList}\item 
 void \hyperlink{namespacephys_1_1crossplatform_ab5287fc10a132457a1309e1f5645347a}{WaitMilliseconds} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&WaitTime)
 \begin{DoxyCompactList}\small\item\em Pauses the program for a given period of time. \item\end{DoxyCompactList}\item 
 void \hyperlink{namespacephys_1_1crossplatform_aa80d0a5289b00daad110fd29bf23c5e7}{RenderPhysWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TheWorld)
@@ -54,7 +54,7 @@ A string containing the path to the default Data Directory.
 Returns a string with a path/filename to the default Plugins config file. 
 
 \begin{DoxyInternal}{For internal use only.}
-Plugins.cfg is the file that determines which graphics plugins are loaded. This is a feature of the graphics subsystem and is generally not needed outside of engine code. \begin{DoxyReturn}{Returns}
+Plugins.cfg is the file that determines which graphics plugins are loaded. \hyperlink{structThis}{This} is a feature of the graphics subsystem and is generally not needed outside of engine code. \begin{DoxyReturn}{Returns}
 A string which contains the path and filename of the plugins file 
 \end{DoxyReturn}
 \end{DoxyInternal}
@@ -65,11 +65,11 @@ A string which contains the path and filename of the plugins file
 \label{d4/d59/namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b64a8ed9}
 
 
-This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). 
+\hyperlink{structThis}{This} creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). 
 
 \begin{DoxyInternal}{For internal use only.}
-This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) This returns a named parameter list with valid settings to use Ogre rendering on a pre-\/existing SDL context \begin{DoxyWarning}{Warning}
-This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish 
+\hyperlink{structThis}{This} creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) \hyperlink{structThis}{This} returns a named parameter list with valid settings to use Ogre rendering on a pre-\/existing SDL context \begin{DoxyWarning}{Warning}
+\hyperlink{structThis}{This} is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish 
 \end{DoxyWarning}
 \end{DoxyInternal}
 \hypertarget{namespacephys_1_1crossplatform_a2d43f3aa5a485564c3f375b36a08152f}{
@@ -82,7 +82,7 @@ This is an engine internal, and shouldn't be used anywhere else. For all practic
 Returns a string with a path/filename to the default Graphics Subsytem settings file. 
 
 \begin{DoxyInternal}{For internal use only.}
-Settings.cfg is the file that determines how graphics settings are configured by default. This is a feature of the graphics subsystem and is generally not needed outside of engine code. \begin{DoxyReturn}{Returns}
+Settings.cfg is the file that determines how graphics settings are configured by default. \hyperlink{structThis}{This} is a feature of the graphics subsystem and is generally not needed outside of engine code. \begin{DoxyReturn}{Returns}
 A string which contains the path and filename of the graphics setts file 
 \end{DoxyReturn}
 \end{DoxyInternal}
@@ -95,9 +95,9 @@ A string which contains the path and filename of the graphics setts file
 
 Renders the current world contents to the screen. 
 
-This makes use of \hyperlink{classphys_1_1World}{World} internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Handles the actual cross platform swapping of graphics buffers. 
+\hyperlink{structThis}{This} makes use of \hyperlink{classphys_1_1World}{World} internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Handles the actual cross platform swapping of graphics buffers. 
 \begin{DoxyParams}{Parameters}
-\item[{\em TheWorld}]This is a pointer to the \hyperlink{classphys_1_1World}{World} to be rendered. \end{DoxyParams}
+\item[{\em TheWorld}]\hyperlink{structThis}{This} is a pointer to the \hyperlink{classphys_1_1World}{World} to be rendered. \end{DoxyParams}
 \hypertarget{namespacephys_1_1crossplatform_ab5287fc10a132457a1309e1f5645347a}{
 \index{phys::crossplatform@{phys::crossplatform}!WaitMilliseconds@{WaitMilliseconds}}
 \index{WaitMilliseconds@{WaitMilliseconds}!phys::crossplatform@{phys::crossplatform}}

@@ -4,7 +4,7 @@
 }
 
 
-This is a container for MetaCodes that is used in the physEventManager.  
+\hyperlink{structThis}{This} is a container for MetaCodes that is used in the physEventManager.  
 
 
 
@@ -49,18 +49,18 @@ void \hyperlink{classphys_1_1EventUserInput_a583084578443019d6e286b8f0e02ce58}{E
 void \hyperlink{classphys_1_1EventUserInput_adf603505c43162cf9331a486d5832f75}{ToggleCode} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&Code\_\-)
 \begin{DoxyCompactList}\small\item\em Removes a specific code or Adds it if not present. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventUserInput}{EventUserInput} \& \hyperlink{classphys_1_1EventUserInput_a1d6895e1b3814c1a63f5605b88ba85e5}{operator+=} (const \hyperlink{classphys_1_1EventUserInput}{EventUserInput} \&Add)
-\begin{DoxyCompactList}\small\item\em This add all of one \hyperlink{classphys_1_1EventUserInput}{EventUserInput} to another. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} add all of one \hyperlink{classphys_1_1EventUserInput}{EventUserInput} to another. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventType} \hyperlink{classphys_1_1EventUserInput_a3e803a8d9bcc1576fe04d2245a86ec80}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em Returns the type of this event. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 vector$<$ \hyperlink{classphys_1_1MetaCode}{MetaCode} $>$ \hyperlink{classphys_1_1EventUserInput_aee3dc1d8cac82482651487c48c6c60c9}{Code}
-\begin{DoxyCompactList}\small\item\em This stores the MetaCodes in this event. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} stores the MetaCodes in this event. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-This is a container for MetaCodes that is used in the physEventManager. The \hyperlink{classphys_1_1EventUserInput}{EventUserInput} is the container for information about how a user enters data and commands into a program. By Default one is inserted into event manager the with all the user input from the last run of the main loop. These can be manually inserted into the \hyperlink{classphys_1_1EventManager}{EventManager} to simulate input from other sources. If setup properly this can allow computer controlled characters to use the same interface players, allowing for more realistic response from them. This is not limited to the tricks discussed here. 
+\hyperlink{structThis}{This} is a container for MetaCodes that is used in the physEventManager. The \hyperlink{classphys_1_1EventUserInput}{EventUserInput} is the container for information about how a user enters data and commands into a program. By Default one is inserted into event manager the with all the user input from the last run of the main loop. These can be manually inserted into the \hyperlink{classphys_1_1EventManager}{EventManager} to simulate input from other sources. If setup properly this can allow computer controlled characters to use the same interface players, allowing for more realistic response from them. \hyperlink{structThis}{This} is not limited to the tricks discussed here. 
 
 Definition at line 95 of file eventuserinput.h.
 
@@ -76,7 +76,7 @@ Definition at line 95 of file eventuserinput.h.
 
 Default constructor. 
 
-This creates a perfectly functional, but empty \hyperlink{classphys_1_1EventUserInput}{EventUserInput}. 
+\hyperlink{structThis}{This} creates a perfectly functional, but empty \hyperlink{classphys_1_1EventUserInput}{EventUserInput}. 
 
 Definition at line 67 of file eventuserinput.cpp.
 
@@ -91,8 +91,8 @@ Single Data Point constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Code\_\-}]This \hyperlink{classphys_1_1MetaCode}{MetaCode} will be added to the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} during creation.\end{DoxyParams}
-This creates a functional \hyperlink{classphys_1_1EventUserInput}{EventUserInput} which already contains one metacode. 
+\item[{\em Code\_\-}]\hyperlink{structThis}{This} \hyperlink{classphys_1_1MetaCode}{MetaCode} will be added to the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} during creation.\end{DoxyParams}
+\hyperlink{structThis}{This} creates a functional \hyperlink{classphys_1_1EventUserInput}{EventUserInput} which already contains one metacode. 
 
 Definition at line 72 of file eventuserinput.cpp.
 
@@ -108,7 +108,7 @@ Multi Data Point constructor.
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Codes\_\-}]The MetaCodes in this vecotor will be added to the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} during creation.\end{DoxyParams}
-This creates a ready to use \hyperlink{classphys_1_1EventUserInput}{EventUserInput} which already contains all the metacodes included. 
+\hyperlink{structThis}{This} creates a ready to use \hyperlink{classphys_1_1EventUserInput}{EventUserInput} which already contains all the metacodes included. 
 
 Definition at line 77 of file eventuserinput.cpp.
 
@@ -121,7 +121,7 @@ Definition at line 77 of file eventuserinput.cpp.
 
 Default desstructor. 
 
-This tears down the 
+\hyperlink{structThis}{This} tears down the 
 
 Definition at line 82 of file eventuserinput.cpp.
 
@@ -140,7 +140,7 @@ Add Several MetaCodes from a vector.
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Codes}]A vector of MetaCodes to be added to this event\end{DoxyParams}
-This adds several existing metacodes to this event. 
+\hyperlink{structThis}{This} adds several existing metacodes to this event. 
 
 Definition at line 114 of file eventuserinput.cpp.
 
@@ -156,8 +156,8 @@ Adds a \hyperlink{classphys_1_1MetaCode}{MetaCode} created from a RawEvent.
 
 \begin{DoxyParams}{Parameters}
 \item[{\em RawEvent\_\-}]The RawEvent which will be translated into exactly One \hyperlink{classphys_1_1MetaCode}{MetaCode}\end{DoxyParams}
-This will add \hyperlink{classphys_1_1MetaCode}{MetaCode} to this event which will be create from a RawEvent which can produce Exactly one \hyperlink{classphys_1_1MetaCode}{MetaCode}. This is used by engine internals, it is recommended to not use this in game code. \begin{DoxyWarning}{Warning}
-Do not use this without reading and fully understanding the warnings on \hyperlink{classphys_1_1MetaCode_ad9a618b5cc6f9d0cf0a4bc4f47bf98e8}{MetaCode::MetaCode(const RawEvent \&RawEvent\_\-)} . This function has all the same Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must it should use \hyperlink{classphys_1_1EventUserInput_a26a39a23deab9e54c140cc0a1cbbe6a9}{EventUserInput::AddCodesFromRawEvent} instead, as it can make the needed determinations automatically and in a platform agnostic way. 
+\hyperlink{structThis}{This} will add \hyperlink{classphys_1_1MetaCode}{MetaCode} to this event which will be create from a RawEvent which can produce Exactly one \hyperlink{classphys_1_1MetaCode}{MetaCode}. \hyperlink{structThis}{This} is used by engine internals, it is recommended to not use this in game code. \begin{DoxyWarning}{Warning}
+Do not use this without reading and fully understanding the warnings on \hyperlink{classphys_1_1MetaCode_ad9a618b5cc6f9d0cf0a4bc4f47bf98e8}{MetaCode::MetaCode(const RawEvent \&RawEvent\_\-)} . \hyperlink{structThis}{This} function has all the same Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must it should use \hyperlink{classphys_1_1EventUserInput_a26a39a23deab9e54c140cc0a1cbbe6a9}{EventUserInput::AddCodesFromRawEvent} instead, as it can make the needed determinations automatically and in a platform agnostic way. 
 \end{DoxyWarning}
 
 
@@ -175,7 +175,7 @@ Adds a Created From Raw Values.
 
 \begin{DoxyParams}{Parameters}
 \item[{\em MetaValue\_\-}]The MetaValue that will be in the \hyperlink{classphys_1_1MetaCode}{MetaCode} \item[{\em ID\_\-}]The ID that will be in the \hyperlink{classphys_1_1MetaCode}{MetaCode} \item[{\em Code\_\-}]The InputCode that will be in the \hyperlink{classphys_1_1MetaCode}{MetaCode}\end{DoxyParams}
-This creates metacode a metacode and adds it to this event. 
+\hyperlink{structThis}{This} creates metacode a metacode and adds it to this event. 
 
 Definition at line 108 of file eventuserinput.cpp.
 
@@ -191,7 +191,7 @@ Adds a \hyperlink{classphys_1_1MetaCode}{MetaCode}.
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Code\_\-}]The User Input \hyperlink{classphys_1_1MetaCode}{MetaCode} tobe added\end{DoxyParams}
-This adds an existing metacode to this event. 
+\hyperlink{structThis}{This} adds an existing metacode to this event. 
 
 Definition at line 97 of file eventuserinput.cpp.
 
@@ -207,9 +207,9 @@ Adds all possible MetaCodes that can be created from the given RawEvent.
 
 \begin{DoxyParams}{Parameters}
 \item[{\em RawEvent\_\-}]The RawEvent which will be translated into a group of metacodes and added to this\end{DoxyParams}
-This will add \hyperlink{classphys_1_1MetaCode}{MetaCode} to this event which will be create from a RawEvent which can produce Exactly one \hyperlink{classphys_1_1MetaCode}{MetaCode}. This is used by engine internals, it is recommended to not use this in game code. \begin{DoxyWarning}{Warning}
-If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must them this is the correct function to use. This will work same on a all platforms. However, the binary format of the Rawevent could chnage meaning you would have to recompile the game code to work with new version of the engine \par
- This Function is currently incomplete, and does not yet process all events such as joysticks events and some mouse events. 
+\hyperlink{structThis}{This} will add \hyperlink{classphys_1_1MetaCode}{MetaCode} to this event which will be create from a RawEvent which can produce Exactly one \hyperlink{classphys_1_1MetaCode}{MetaCode}. \hyperlink{structThis}{This} is used by engine internals, it is recommended to not use this in game code. \begin{DoxyWarning}{Warning}
+If game code is using RawEvents at all, the game logic should be scrutinized carefully, it is probably wrong, but if it must them this is the correct function to use. \hyperlink{structThis}{This} will work same on a all platforms. However, the binary format of the Rawevent could chnage meaning you would have to recompile the game code to work with new version of the engine \par
+ \hyperlink{structThis}{This} Function is currently incomplete, and does not yet process all events such as joysticks events and some mouse events. 
 \end{DoxyWarning}
 
 
@@ -226,7 +226,7 @@ Removes a specific code from storage.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Index}]This is the location to removed from\end{DoxyParams}
+\item[{\em Index}]\hyperlink{structThis}{This} is the location to removed from\end{DoxyParams}
 The \hyperlink{classphys_1_1MetaCode}{MetaCode} at and only at the given Index will be deleted. 
 
 Definition at line 136 of file eventuserinput.cpp.
@@ -242,7 +242,7 @@ Removes a specific code from storage.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Code\_\-}]This will search for all matching copies of this\end{DoxyParams}
+\item[{\em Code\_\-}]\hyperlink{structThis}{This} will search for all matching copies of this\end{DoxyParams}
 All MetaCodes that are equal to Code\_\- will simply be erased. 
 
 Definition at line 123 of file eventuserinput.cpp.
@@ -259,8 +259,8 @@ Single Data Point constructor.
 \begin{DoxyReturn}{Returns}
 Index The requested \hyperlink{classphys_1_1MetaCode}{MetaCode} to return.
 \end{DoxyReturn}
-This function simply retrieves the requested \hyperlink{classphys_1_1MetaCode}{MetaCode}. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists \par
- This is useful for accessing each \hyperlink{classphys_1_1MetaCode}{MetaCode} stored in this physUserInputEvent. 
+\hyperlink{structThis}{This} function simply retrieves the requested \hyperlink{classphys_1_1MetaCode}{MetaCode}. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists \par
+ \hyperlink{structThis}{This} is useful for accessing each \hyperlink{classphys_1_1MetaCode}{MetaCode} stored in this physUserInputEvent. 
 
 Definition at line 87 of file eventuserinput.cpp.
 
@@ -307,12 +307,12 @@ Definition at line 160 of file eventuserinput.cpp.
 \label{d7/df5/classphys_1_1EventUserInput_a1d6895e1b3814c1a63f5605b88ba85e5}
 
 
-This add all of one \hyperlink{classphys_1_1EventUserInput}{EventUserInput} to another. 
+\hyperlink{structThis}{This} add all of one \hyperlink{classphys_1_1EventUserInput}{EventUserInput} to another. 
 
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Add}]is the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} on the right hand side of +=\end{DoxyParams}
-This simply copies all the MetaCodes from one \hyperlink{classphys_1_1EventUserInput}{EventUserInput} to the other. \begin{DoxyReturn}{Returns}
+\hyperlink{structThis}{This} simply copies all the MetaCodes from one \hyperlink{classphys_1_1EventUserInput}{EventUserInput} to the other. \begin{DoxyReturn}{Returns}
 The \hyperlink{classphys_1_1EventUserInput}{EventUserInput} on the left ahnd side will now contain a set of both items MetaCodes 
 \end{DoxyReturn}
 
@@ -330,7 +330,7 @@ Removes a specific code or Adds it if not present.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Code\_\-}]This will search for all matching copies of this.\end{DoxyParams}
+\item[{\em Code\_\-}]\hyperlink{structThis}{This} will search for all matching copies of this.\end{DoxyParams}
 All MetaCodes that are equal to Code\_\- will simply be erased. 
 
 Definition at line 141 of file eventuserinput.cpp.
@@ -345,9 +345,9 @@ Definition at line 141 of file eventuserinput.cpp.
 \label{d7/df5/classphys_1_1EventUserInput_aee3dc1d8cac82482651487c48c6c60c9}
 
 
-This stores the MetaCodes in this event. 
+\hyperlink{structThis}{This} stores the MetaCodes in this event. 
 
-This stores the MetaCodes in this event. This represents a snapshot of the user input for the moment. 
+\hyperlink{structThis}{This} stores the MetaCodes in this event. \hyperlink{structThis}{This} represents a snapshot of the user input for the moment. 
 
 Definition at line 106 of file eventuserinput.h.
 

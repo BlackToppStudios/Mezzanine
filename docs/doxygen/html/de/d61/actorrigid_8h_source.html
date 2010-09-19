@@ -134,25 +134,60 @@
 <a name="l00109"></a>00109 <span class="comment">            /// be used with only with Static objects.</span>
 <a name="l00110"></a>00110 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a84554dcaaf2475ba0ec7dcb9235050ac" title="Creates a collision shape from mesh file.">CreateShapeFromMeshStatic</a>();
 <a name="l00111"></a>00111 <span class="comment"></span>
-<a name="l00112"></a>00112 <span class="comment">            /// @brief Restricts movement on the axis or axies of your choice.</span>
-<a name="l00113"></a>00113 <span class="comment">            /// @details This function will lock any and all axies you define you want to be locked.</span>
-<a name="l00114"></a>00114 <span class="comment">            /// Simply pass true to allow movement on that axis, false if you don&#39;t.  This function</span>
-<a name="l00115"></a>00115 <span class="comment">            /// is primarily useful for 2D games, in which if you are viewing the playing area from</span>
-<a name="l00116"></a>00116 <span class="comment">            /// the side you can pass in LimitMovementOnAxis(true,true,false) and the object will</span>
-<a name="l00117"></a>00117 <span class="comment">            /// only be able to move up, down, or side to side, but not in or out.</span>
-<a name="l00118"></a>00118 <span class="comment">            /// @param x Allow or Disallow use of the X axis for movement.</span>
-<a name="l00119"></a>00119 <span class="comment">            /// @param y Allow or Disallow use of the Y axis for movement.</span>
-<a name="l00120"></a>00120 <span class="comment">            /// @param z Allow or Disallow use of the Z axis for movement.</span>
-<a name="l00121"></a>00121 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#adaed962ee8ed788612e541fb00867c78" title="Restricts movement on the axis or axies of your choice.">LimitMovementOnAxis</a>(<span class="keywordtype">bool</span> x, <span class="keywordtype">bool</span> y, <span class="keywordtype">bool</span> z);
-<a name="l00122"></a>00122 
-<a name="l00123"></a>00123             <span class="comment">// Inherited from ActorBase</span>
-<a name="l00124"></a>00124             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#acaf29ca7058b39185dd09a5059200e91" title="Adds the actor to the physics world.">AddObjectToWorld</a> (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld);
-<a name="l00125"></a>00125             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a7101df2a149e0ccb3678b7c2c00998f8" title="Removes the actor from the physics world.">RemoveObjectFromWorld</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld);
-<a name="l00126"></a>00126     };
-<a name="l00127"></a>00127 }
-<a name="l00128"></a>00128 <span class="preprocessor">#endif</span>
+<a name="l00112"></a>00112 <span class="comment">            /// @brief Sets the Damping for this object.</span>
+<a name="l00113"></a>00113 <span class="comment">            /// @default Both of Linear Damping and Angular Damping default to zero.  This is usful if you wish to simulate</span>
+<a name="l00114"></a>00114 <span class="comment">            /// something like air resistance.  Values can range from 0.0 to 1.0.</span>
+<a name="l00115"></a>00115 <span class="comment">            /// @param LinDamping Real representing the amount of Linear Damping to be applied.</span>
+<a name="l00116"></a>00116 <span class="comment">            /// @param AngDamping Real representing the amount of Angular Damping to be applied.</span>
+<a name="l00117"></a>00117 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a228fc92e7db56d07e441e6812ac28288" title="Sets the Damping for this object.  Both of Linear Damping and Angular Damping default...">SetDamping</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> LinDamping, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> AngDamping);
+<a name="l00118"></a>00118 <span class="comment"></span>
+<a name="l00119"></a>00119 <span class="comment">            /// @brief Sets the Linear Velocity of this object.</span>
+<a name="l00120"></a>00120 <span class="comment">            /// @param LinVel Vector3 representing the Linear Velocity to be set.</span>
+<a name="l00121"></a>00121 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a2b25eed4dcd594796c35a549d1c87559" title="Sets the Linear Velocity of this object.">SetLinearVelocity</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> LinVel);
+<a name="l00122"></a>00122 <span class="comment"></span>
+<a name="l00123"></a>00123 <span class="comment">            /// @brief Gets the Linear Velocity of this object.</span>
+<a name="l00124"></a>00124 <span class="comment">            /// @return Returns the currently set Linear Velocity of this object.</span>
+<a name="l00125"></a>00125 <span class="comment"></span>            <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#add50c9f86048470de3e04e0de1e0e498" title="Gets the Linear Velocity of this object.">GetLinearVelocity</a>();
+<a name="l00126"></a>00126 <span class="comment"></span>
+<a name="l00127"></a>00127 <span class="comment">            /// @brief Sets the Angular Velocity of this object.</span>
+<a name="l00128"></a>00128 <span class="comment">            /// @param AngVel Vector3 representing the Angular Velocity to be set.</span>
+<a name="l00129"></a>00129 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a00ae9cd063f7f879d6bee15c807101d2" title="Sets the Angular Velocity of this object.">SetAngularVelocity</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> AngVel);
+<a name="l00130"></a>00130 <span class="comment"></span>
+<a name="l00131"></a>00131 <span class="comment">            /// @brief Gets the Angular Velocity of this object.</span>
+<a name="l00132"></a>00132 <span class="comment">            /// @return Returns the currently set Angular Velocity of this object.</span>
+<a name="l00133"></a>00133 <span class="comment"></span>            <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a54393bf3756324875497960bd9215b2e" title="Gets the Angular Velocity of this object.">GetAngularVelocity</a>();
+<a name="l00134"></a>00134 <span class="comment"></span>
+<a name="l00135"></a>00135 <span class="comment">            /// @brief Retrieves the name of the object.</span>
+<a name="l00136"></a>00136 <span class="comment">            /// @details This function will retrieve the name of the object,</span>
+<a name="l00137"></a>00137 <span class="comment"></span>            std::string <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a63952e0b7ab7176ae60d96756dd84b43" title="Retrieves the name of the object.">GetName</a>() <span class="keyword">const</span>;
+<a name="l00138"></a>00138 <span class="comment"></span>
+<a name="l00139"></a>00139 <span class="comment">            /// @brief Restricts movement on the axis or axies of your choice.</span>
+<a name="l00140"></a>00140 <span class="comment">            /// @details This function will lock any and all axies you define you want to be locked.</span>
+<a name="l00141"></a>00141 <span class="comment">            /// Simply pass true to allow movement on that axis, false if you don&#39;t.  This function</span>
+<a name="l00142"></a>00142 <span class="comment">            /// is primarily useful for 2D games, in which if you are viewing the playing area from</span>
+<a name="l00143"></a>00143 <span class="comment">            /// the side you can pass in LimitMovementOnAxis(true,true,false) and the object will</span>
+<a name="l00144"></a>00144 <span class="comment">            /// only be able to move up, down, or side to side, but not in or out.</span>
+<a name="l00145"></a>00145 <span class="comment">            /// @param x Allow or Disallow use of the X axis for movement.</span>
+<a name="l00146"></a>00146 <span class="comment">            /// @param y Allow or Disallow use of the Y axis for movement.</span>
+<a name="l00147"></a>00147 <span class="comment">            /// @param z Allow or Disallow use of the Z axis for movement.</span>
+<a name="l00148"></a>00148 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#adaed962ee8ed788612e541fb00867c78" title="Restricts movement on the axis or axies of your choice.">LimitMovementOnAxis</a>(<span class="keywordtype">bool</span> x, <span class="keywordtype">bool</span> y, <span class="keywordtype">bool</span> z);
+<a name="l00149"></a>00149 <span class="comment"></span>
+<a name="l00150"></a>00150 <span class="comment">            /// @brief Disables the deactivation of the physics body.</span>
+<a name="l00151"></a>00151 <span class="comment">            /// @details This function is useful when using constraints to prevent it from locking in situations where it shouldn&#39;t.</span>
+<a name="l00152"></a>00152 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#ad74da4da12bbb44b3e5ae22007c98573" title="Disables the deactivation of the physics body.">DisableDeactivation</a>();
+<a name="l00153"></a>00153 <span class="comment"></span>
+<a name="l00154"></a>00154 <span class="comment">            /// @brief Restores the activation state of the physics body to normal.</span>
+<a name="l00155"></a>00155 <span class="comment">            /// @details This function is useful when you are done applying a constraint to a body, or any other effect that would have you call DisableDeactivation().</span>
+<a name="l00156"></a>00156 <span class="comment"></span>            <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a99af341e186505a330f6634b7f6ad542" title="Restores the activation state of the physics body to normal.">RestoreActivation</a>();
+<a name="l00157"></a>00157 
+<a name="l00158"></a>00158             <span class="comment">// Inherited from ActorBase</span>
+<a name="l00159"></a>00159             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#acaf29ca7058b39185dd09a5059200e91" title="Adds the actor to the physics world.">AddObjectToWorld</a> (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld);
+<a name="l00160"></a>00160             <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a7101df2a149e0ccb3678b7c2c00998f8" title="Removes the actor from the physics world.">RemoveObjectFromWorld</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld);
+<a name="l00161"></a>00161     };
+<a name="l00162"></a>00162 }
+<a name="l00163"></a>00163 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Sep 18 21:34:24 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

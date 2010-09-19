@@ -4,7 +4,7 @@
 }
 
 
-This is used to draw wireframse for the Physics subsystem.  
+\hyperlink{structThis}{This} is used to draw wireframse for the Physics subsystem.  
 
 
 \subsection*{Public Member Functions}
@@ -15,13 +15,13 @@ This is used to draw wireframse for the Physics subsystem.
 \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a9b5cb5ec48541effddb305de12508323}{$\sim$InternalDebugDrawer} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}{drawLine} (const btVector3 \&from, const btVector3 \&to, const btVector3 \&color)
-\begin{DoxyCompactList}\small\item\em This will prepare a line segment for being drawn. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} will prepare a line segment for being drawn. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}{PrepareForRendering} ()
-\begin{DoxyCompactList}\small\item\em This add all the rendering information to the graphics subsystem. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} add all the rendering information to the graphics subsystem. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{SetWireFrameCount} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-)
 \begin{DoxyCompactList}\small\item\em Sets the amount of previous wireframes to leave visible. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_aa1666e636e6ff81813c0b1a85d7bc157}{GetWireFrameCount} ()
-\begin{DoxyCompactList}\small\item\em This returns the amount of wireframes to be drawn. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} returns the amount of wireframes to be drawn. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a8b912aaff8dfd9f4e97ffb2d867121b2}{drawContactPoint} (const btVector3 \&PointOnB, const btVector3 \&normalOnB, btScalar distance, int lifeTime, const btVector3 \&color)
 \begin{DoxyCompactList}\small\item\em Currently Unused. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a4e3b4cbc861f76696b4d32f0cf068ea6}{reportErrorWarning} (const char $\ast$warningString)
@@ -29,17 +29,17 @@ virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a4e3b4cbc861f7
 virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a1266d3fad8868ade2d515e9c92e76b4a}{draw3dText} (const btVector3 \&location, const char $\ast$textString)
 \begin{DoxyCompactList}\small\item\em Currently Unused. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a63059b273ed6031a393b2d994b820bcc}{setDebugMode} (int debugMode)
-\begin{DoxyCompactList}\small\item\em This is used to decide how much the debug render should draw. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} is used to decide how much the debug render should draw. \item\end{DoxyCompactList}\item 
 virtual int \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_aba329861569d741e970ce5aafb668e84}{getDebugMode} () const 
-\begin{DoxyCompactList}\small\item\em This will return the current debug mode. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} will return the current debug mode. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-This is used to draw wireframse for the Physics subsystem. \begin{DoxyInternal}{For internal use only.}
+\hyperlink{structThis}{This} is used to draw wireframse for the Physics subsystem. \begin{DoxyInternal}{For internal use only.}
 \end{DoxyInternal}
 
 
-Definition at line 69 of file physicsmanager.cpp.
+Definition at line 73 of file physicsmanager.cpp.
 
 
 
@@ -56,11 +56,11 @@ Basic Constructor.
 \begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em ParentWorld\_\-}]This is a Pointer to the world to be rendered \item[{\em WireFrameCount\_\-}]This sets the amount of previous Wireframes to be rendered, see \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{InternalDebugDrawer::SetWireFrameCount} for details.\end{DoxyParams}
-This creates a basic Debug Drawer which works with the \hyperlink{classphys_1_1World}{phys::World} that was passed. With a new \end{DoxyInternal}
+\item[{\em ParentWorld\_\-}]\hyperlink{structThis}{This} is a Pointer to the world to be rendered \item[{\em WireFrameCount\_\-}]\hyperlink{structThis}{This} sets the amount of previous Wireframes to be rendered, see \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{InternalDebugDrawer::SetWireFrameCount} for details.\end{DoxyParams}
+\hyperlink{structThis}{This} creates a basic Debug Drawer which works with the \hyperlink{classphys_1_1World}{phys::World} that was passed. With a new \end{DoxyInternal}
 
 
-Definition at line 168 of file physicsmanager.cpp.
+Definition at line 172 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a9b5cb5ec48541effddb305de12508323}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!$\sim$InternalDebugDrawer@{$\sim$InternalDebugDrawer}}
@@ -72,10 +72,10 @@ Definition at line 168 of file physicsmanager.cpp.
 Destructor. 
 
 \begin{DoxyInternal}{For internal use only.}
-This deletes all the Wireframes and will stop wireframe rendering \end{DoxyInternal}
+\hyperlink{structThis}{This} deletes all the Wireframes and will stop wireframe rendering \end{DoxyInternal}
 
 
-Definition at line 179 of file physicsmanager.cpp.
+Definition at line 183 of file physicsmanager.cpp.
 
 
 
@@ -96,7 +96,7 @@ Currently Unused
 \end{DoxyInternal}
 
 
-Definition at line 211 of file physicsmanager.cpp.
+Definition at line 215 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a8b912aaff8dfd9f4e97ffb2d867121b2}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!drawContactPoint@{drawContactPoint}}
@@ -114,7 +114,7 @@ Currently Unused
 \end{DoxyInternal}
 
 
-Definition at line 200 of file physicsmanager.cpp.
+Definition at line 204 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!drawLine@{drawLine}}
@@ -123,16 +123,16 @@ Definition at line 200 of file physicsmanager.cpp.
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}
 
 
-This will prepare a line segment for being drawn. 
+\hyperlink{structThis}{This} will prepare a line segment for being drawn. 
 
 \begin{DoxyInternal}{For internal use only.}
-This adds the points for a line to the internal list of points to be rendered. 
+\hyperlink{structThis}{This} adds the points for a line to the internal list of points to be rendered. 
 \begin{DoxyParams}{Parameters}
 \item[{\em from}]The first point of the line \item[{\em to}]The second point of the line \item[{\em color}]Currently ignored \end{DoxyParams}
 \end{DoxyInternal}
 
 
-Definition at line 188 of file physicsmanager.cpp.
+Definition at line 192 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_aba329861569d741e970ce5aafb668e84}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!getDebugMode@{getDebugMode}}
@@ -141,7 +141,7 @@ Definition at line 188 of file physicsmanager.cpp.
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_aba329861569d741e970ce5aafb668e84}
 
 
-This will return the current debug mode. 
+\hyperlink{structThis}{This} will return the current debug mode. 
 
 \begin{DoxyInternal}{For internal use only.}
 Currently this can only return btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe \begin{DoxyReturn}{Returns}
@@ -150,7 +150,7 @@ Returns the Current debug mode, currently either btIDebugDraw::DBG\_\-NoDebug or
 \end{DoxyInternal}
 
 
-Definition at line 219 of file physicsmanager.cpp.
+Definition at line 223 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_aa1666e636e6ff81813c0b1a85d7bc157}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!GetWireFrameCount@{GetWireFrameCount}}
@@ -159,16 +159,16 @@ Definition at line 219 of file physicsmanager.cpp.
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_aa1666e636e6ff81813c0b1a85d7bc157}
 
 
-This returns the amount of wireframes to be drawn. 
+\hyperlink{structThis}{This} returns the amount of wireframes to be drawn. 
 
 \begin{DoxyInternal}{For internal use only.}
-This returns either 2 or the amount last set by \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{InternalDebugDrawer::SetWireFrameCount} . \begin{DoxyReturn}{Returns}
-This returns a whole number with the wireframe limit. 
+\hyperlink{structThis}{This} returns either 2 or the amount last set by \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{InternalDebugDrawer::SetWireFrameCount} . \begin{DoxyReturn}{Returns}
+\hyperlink{structThis}{This} returns a whole number with the wireframe limit. 
 \end{DoxyReturn}
 \end{DoxyInternal}
 
 
-Definition at line 248 of file physicsmanager.cpp.
+Definition at line 252 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!PrepareForRendering@{PrepareForRendering}}
@@ -177,13 +177,13 @@ Definition at line 248 of file physicsmanager.cpp.
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}
 
 
-This add all the rendering information to the graphics subsystem. 
+\hyperlink{structThis}{This} add all the rendering information to the graphics subsystem. 
 
 \begin{DoxyInternal}{For internal use only.}
-This sends all the points in the list of lines to the rendering subsystem(currently ogre), where they will stay until deleted \end{DoxyInternal}
+\hyperlink{structThis}{This} sends all the points in the list of lines to the rendering subsystem(currently ogre), where they will stay until deleted \end{DoxyInternal}
 
 
-Definition at line 224 of file physicsmanager.cpp.
+Definition at line 228 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a4e3b4cbc861f76696b4d32f0cf068ea6}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!reportErrorWarning@{reportErrorWarning}}
@@ -201,7 +201,7 @@ We $\ast$Believe$\ast$ that this is used by the physics subsystem to report erro
 \end{DoxyInternal}
 
 
-Definition at line 205 of file physicsmanager.cpp.
+Definition at line 209 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a63059b273ed6031a393b2d994b820bcc}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!setDebugMode@{setDebugMode}}
@@ -210,7 +210,7 @@ Definition at line 205 of file physicsmanager.cpp.
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a63059b273ed6031a393b2d994b820bcc}
 
 
-This is used to decide how much the debug render should draw. 
+\hyperlink{structThis}{This} is used to decide how much the debug render should draw. 
 
 \begin{DoxyInternal}{For internal use only.}
 Currently this accepts btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe and setting these will either start or stop Wireframe rendering. All other btIDebugDraw values are ignored. 
@@ -219,7 +219,7 @@ Currently this accepts btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-Draw
 \end{DoxyInternal}
 
 
-Definition at line 214 of file physicsmanager.cpp.
+Definition at line 218 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!SetWireFrameCount@{SetWireFrameCount}}
@@ -231,13 +231,13 @@ Definition at line 214 of file physicsmanager.cpp.
 Sets the amount of previous wireframes to leave visible. 
 
 \begin{DoxyInternal}{For internal use only.}
-This will limit the amount of previous wireframes drawn. Setting this will cause all the extra wireframes to be deleted \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}{InternalDebugDrawer::PrepareForRendering()} is next called, which should happen just before everything is rendered. 
+\hyperlink{structThis}{This} will limit the amount of previous wireframes drawn. Setting this will cause all the extra wireframes to be deleted \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}{InternalDebugDrawer::PrepareForRendering()} is next called, which should happen just before everything is rendered. 
 \begin{DoxyParams}{Parameters}
-\item[{\em WireFrameCount\_\-}]This is a whole number which is limit. \end{DoxyParams}
+\item[{\em WireFrameCount\_\-}]\hyperlink{structThis}{This} is a whole number which is limit. \end{DoxyParams}
 \end{DoxyInternal}
 
 
-Definition at line 243 of file physicsmanager.cpp.
+Definition at line 247 of file physicsmanager.cpp.
 
 
 

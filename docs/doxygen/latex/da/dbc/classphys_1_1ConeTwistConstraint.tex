@@ -12,12 +12,12 @@ Inheritance diagram for phys::ConeTwistConstraint:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classphys_1_1ConeTwistConstraint_ab72e1489ea91e47ebbeee41dee116040}{
-{\bfseries ConeTwistConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, \hyperlink{classphys_1_1Vector3}{Vector3} VectorA, \hyperlink{classphys_1_1Vector3}{Vector3} Vectorb, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionA, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionB)}
+{\bfseries ConeTwistConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a0fefb80c80d433bec9942b851b2f5a8a}{ActorA}, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a04d2c49698d9a161e92112dd1efc1dcd}{ActorB}, \hyperlink{classphys_1_1Vector3}{Vector3} VectorA, \hyperlink{classphys_1_1Vector3}{Vector3} Vectorb, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionA, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionB)}
 \label{da/dbc/classphys_1_1ConeTwistConstraint_ab72e1489ea91e47ebbeee41dee116040}
 
 \item 
 \hypertarget{classphys_1_1ConeTwistConstraint_ab9c2ee7346f1b862d508cbefe22e54e0}{
-{\bfseries ConeTwistConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1Vector3}{Vector3} VectorA, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionA)}
+{\bfseries ConeTwistConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a0fefb80c80d433bec9942b851b2f5a8a}{ActorA}, \hyperlink{classphys_1_1Vector3}{Vector3} VectorA, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionA)}
 \label{da/dbc/classphys_1_1ConeTwistConstraint_ab9c2ee7346f1b862d508cbefe22e54e0}
 
 \item 
@@ -80,16 +80,10 @@ bool {\bfseries IsPassedSwingLimit} ()}
 \label{da/dbc/classphys_1_1ConeTwistConstraint_ab7306ac08c3fd61cf88567b4e70702c0}
 
 \item 
-\hypertarget{classphys_1_1ConeTwistConstraint_a555fc33b10a0c156e0ac93b94587098a}{
-virtual void {\bfseries SetParam} (int num, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} value, int axis=-\/1)}
-\label{da/dbc/classphys_1_1ConeTwistConstraint_a555fc33b10a0c156e0ac93b94587098a}
-
-\item 
-\hypertarget{classphys_1_1ConeTwistConstraint_aab54f6c56622cef4314d3bbff194421e}{
-virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries GetParam} (int num, int axis=-\/1)}
-\label{da/dbc/classphys_1_1ConeTwistConstraint_aab54f6c56622cef4314d3bbff194421e}
-
-\end{DoxyCompactItemize}
+virtual void \hyperlink{classphys_1_1ConeTwistConstraint_a555fc33b10a0c156e0ac93b94587098a}{SetParam} (int num, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} value, int axis=-\/1)
+\begin{DoxyCompactList}\small\item\em Provides override of constraint parameters. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ConeTwistConstraint_aab54f6c56622cef4314d3bbff194421e}{GetParam} (int num, int axis=-\/1)
+\begin{DoxyCompactList}\small\item\em Gets value of constraint parameters. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -103,7 +97,7 @@ btConeTwistConstraint $\ast$ \hyperlink{classphys_1_1ConeTwistConstraint_a6bb25f
 \subsection{Detailed Description}
 
 
-Definition at line 103 of file constraint.h.
+Definition at line 123 of file constraint.h.
 
 
 
@@ -117,12 +111,12 @@ Definition at line 103 of file constraint.h.
 
 Internal constructor. 
 
-Constructs this class around a pre-\/built bullet constraint. This is an internal only constructor and shouldn't be called manually. 
+Constructs this class around a pre-\/built bullet constraint. \hyperlink{structThis}{This} is an internal only constructor and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Constraint}]The constraint to be constructed around. \end{DoxyParams}
 
 
-Definition at line 92 of file constraint.cpp.
+Definition at line 107 of file constraint.cpp.
 
 \hypertarget{classphys_1_1ConeTwistConstraint_aae5d4aeeff871a2ec79bdb7d493588df}{
 \index{phys::ConeTwistConstraint@{phys::ConeTwistConstraint}!$\sim$ConeTwistConstraint@{$\sim$ConeTwistConstraint}}
@@ -135,7 +129,53 @@ Class destructor.
 
 The class destructor. 
 
-Definition at line 98 of file constraint.cpp.
+Definition at line 113 of file constraint.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1ConeTwistConstraint_aab54f6c56622cef4314d3bbff194421e}{
+\index{phys::ConeTwistConstraint@{phys::ConeTwistConstraint}!GetParam@{GetParam}}
+\index{GetParam@{GetParam}!phys::ConeTwistConstraint@{phys::ConeTwistConstraint}}
+\subsubsection[{GetParam}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::ConeTwistConstraint::GetParam (int {\em num}, \/  int {\em axis} = {\ttfamily -\/1})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_aab54f6c56622cef4314d3bbff194421e}
+
+
+Gets value of constraint parameters. 
+
+See \hyperlink{classphys_1_1ConeTwistConstraint_a555fc33b10a0c156e0ac93b94587098a}{SetParam()} for clarification. Gets information on constraint parameters. 
+\begin{DoxyParams}{Parameters}
+\item[{\em num}]The parameter to get information for. \item[{\em axis}]Optional axis. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the value for the requested parameter. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1TypedConstraint_ab6140d40e9476c3dc46e2802e8097421}{phys::TypedConstraint}.
+
+
+
+Definition at line 179 of file constraint.cpp.
+
+\hypertarget{classphys_1_1ConeTwistConstraint_a555fc33b10a0c156e0ac93b94587098a}{
+\index{phys::ConeTwistConstraint@{phys::ConeTwistConstraint}!SetParam@{SetParam}}
+\index{SetParam@{SetParam}!phys::ConeTwistConstraint@{phys::ConeTwistConstraint}}
+\subsubsection[{SetParam}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ConeTwistConstraint::SetParam (int {\em num}, \/  {\bf Real} {\em value}, \/  int {\em axis} = {\ttfamily -\/1})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{da/dbc/classphys_1_1ConeTwistConstraint_a555fc33b10a0c156e0ac93b94587098a}
+
+
+Provides override of constraint parameters. 
+
+Parameters such as ERP and CFM can be altered with this function. Optionally provide axis. 
+\begin{DoxyParams}{Parameters}
+\item[{\em num}]The parameter to override. \item[{\em value}]The new value for the parameter. \item[{\em axis}]Optional axis. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1TypedConstraint_a31a20a74094f0cb8e4f82d1f99725415}{phys::TypedConstraint}.
+
+
+
+Definition at line 174 of file constraint.cpp.
 
 
 

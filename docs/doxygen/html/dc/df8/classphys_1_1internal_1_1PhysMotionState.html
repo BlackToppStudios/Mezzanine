@@ -30,7 +30,7 @@
 </div>
 <div class="contents">
 <h1>phys::internal::PhysMotionState Class Reference</h1><!-- doxytag: class="phys::internal::PhysMotionState" -->
-<p>This class is used by the actor class to sync between the physics world and the graphical world.  
+<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> class is used by the actor class to sync between the physics world and the graphical world.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d4/dcc/internalmotionstate_8h_8cpp_source.html">internalmotionstate.h.cpp</a>&gt;</code></p>
@@ -54,17 +54,14 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the initial position.  <a href="#a8daeae588d49f07da6c6dfec83de45c3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a1fe29e3e661cdbbfb846fbd0ac91ec37">setWorldTransform</a> (const btTransform &amp;worldTrans)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updates the position and orientation.  <a href="#a1fe29e3e661cdbbfb846fbd0ac91ec37"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac09063d4b0192680ba3aa0bd4003a274"></a><!-- doxytag: member="phys::internal::PhysMotionState::ActorBase" ref="ac09063d4b0192680ba3aa0bd4003a274" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorBase</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>This class is used by the actor class to sync between the physics world and the graphical world. </p>
+<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> class is used by the actor class to sync between the physics world and the graphical world. </p>
 <p><b>For internal use only.</b></p>
-<p>This class provides the link for position and orientation between the two worlds in the engine. This is called on every step(frame) of the world to sync the actor if it has moved. </p>
-<dl class="attention"><dt><b>Attention:</b></dt><dd>This filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a source file and should not shipped with the DLL whe the SDK is released. This is used for engine internals that need to be used by multiple classes. </dd></dl>
+<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> class provides the link for position and orientation between the two worlds in the engine. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is called on every step(frame) of the world to sync the actor if it has moved. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a source file and should not shipped with the DLL when the SDK is released. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is used for engine internals that need to be used by multiple classes. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/dcc/internalmotionstate_8h_8cpp_source.html#l00060">60</a> of file <a class="el" href="../../d4/dcc/internalmotionstate_8h_8cpp_source.html">internalmotionstate.h.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/dcc/internalmotionstate_8h_8cpp_source.html#l00061">61</a> of file <a class="el" href="../../d4/dcc/internalmotionstate_8h_8cpp_source.html">internalmotionstate.h.cpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a64d423e8d2ccec0c7acce7701c898dd0"></a><!-- doxytag: member="phys::internal::PhysMotionState::PhysMotionState" ref="a64d423e8d2ccec0c7acce7701c898dd0" args="()" -->
 <div class="memitem">
@@ -158,7 +155,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorBase</b></td></
 <div class="memdoc">
 
 <p>Sets the initial position. </p>
-<p>This function is called on by the physics world upon adding the actor to the world. This function uses the previous set vector3 that was set with SetInitPosition(). <br/>
+<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function is called on by the physics world upon adding the actor to the world. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function uses the previous set vector3 that was set with SetInitPosition(). <br/>
  Default position is (0,0,0). </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -217,7 +214,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorBase</b></td></
 <div class="memdoc">
 
 <p>Sets the initial orientation. </p>
-<p>Sets the orientation the actor will have when it is added to the world. This function is called on by the <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> function SetInitOrientation(). </p>
+<p>Sets the orientation the actor will have when it is added to the world. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function is called on by the <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> function SetInitOrientation(). </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>orientation</em>&nbsp;</td><td>The vector3 representing the orientation to be used. </td></tr>
@@ -246,7 +243,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorBase</b></td></
 <div class="memdoc">
 
 <p>Sets the initial position. </p>
-<p>Sets the position the actor will be placed in when it is added to the world. This function is called on by the <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> function SetInitPosition(). </p>
+<p>Sets the position the actor will be placed in when it is added to the world. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function is called on by the <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> function SetInitPosition(). </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>position</em>&nbsp;</td><td>The vector3 representing the location to be used. </td></tr>
@@ -275,7 +272,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorBase</b></td></
 <div class="memdoc">
 
 <p>Updates the position and orientation. </p>
-<p>This function is called each step(frame) by the physics world to sync the physics and graphical worlds. </p>
+<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function is called each step(frame) by the physics world to sync the physics and graphical worlds. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>worldTrans</em>&nbsp;</td><td>The location and orientation data. </td></tr>
@@ -292,7 +289,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorBase</b></td></
 <li><a class="el" href="../../d3/d6b/internalmotionstate_8cpp_source.html">internalmotionstate.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:38 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Sep 18 21:34:25 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

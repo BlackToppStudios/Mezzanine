@@ -33,7 +33,6 @@
       <li><a href="functions_type.html"><span>Typedefs</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
-      <li><a href="functions_rela.html"><span>Related&nbsp;Functions</span></a></li>
     </ul>
   </div>
   <div class="tabs">
@@ -68,7 +67,7 @@
 
 <h3><a class="anchor" id="index_d">- d -</a></h3><ul>
 <li>DeclareResource()
-: <a class="el" href="da/ddf/classphys_1_1World.html#ad8c9834c1b9a0de437a0b29f17c0c48e">phys::World</a>
+: <a class="el" href="d1/d35/classphys_1_1ResourceManager.html#abdb95affe5556ff2ff9aa312e740e584">phys::ResourceManager</a>
 </li>
 <li>DestroyAllSounds()
 : <a class="el" href="d1/dc4/classphys_1_1SoundManager.html#a0f523240530abd5ab437c9eace78056a">phys::SoundManager</a>
@@ -81,22 +80,21 @@
 </li>
 <li>DetachFromGraphics()
 : <a class="el" href="d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec">phys::ActorBase</a>
+, <a class="el" href="d4/d23/classphys_1_1ActorSoft.html#a568b070c746775b73a3aa8ab33d6cc58">phys::ActorSoft</a>
+</li>
+<li>DisableDeactivation()
+: <a class="el" href="d8/d71/classphys_1_1ActorRigid.html#ad74da4da12bbb44b3e5ae22007c98573">phys::ActorRigid</a>
 </li>
 <li>Distance()
 : <a class="el" href="d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f">phys::Vector3</a>
 </li>
-<li>DoMainLoopAllItems()
-: <a class="el" href="da/ddf/classphys_1_1World.html#a25c2583425bfe3d0d2bfce1093f0175e">phys::World</a>
-</li>
-<li>DoMainLoopInputBuffering()
-: <a class="el" href="da/ddf/classphys_1_1World.html#af4204b587fcc71e8313dd97d476378d6">phys::World</a>
-</li>
 <li>DoMainLoopItems()
-: <a class="el" href="d3/dcc/classphys_1_1PhysicsManager.html#a62741a2582ac9bfd0255cf8a3ad2310c">phys::PhysicsManager</a>
+: <a class="el" href="d3/dcc/classphys_1_1PhysicsManager.html#ad363d6683a0276395eeb2c42a56f95fc">phys::PhysicsManager</a>
+, <a class="el" href="d1/d35/classphys_1_1ResourceManager.html#a2114714999441c095bc28d3673c2490e">phys::ResourceManager</a>
 , <a class="el" href="d1/d00/classphys_1_1ActorContainerBase.html#a67fbde6a61602253f66fecd0416bdc2f">phys::ActorContainerBase</a>
 , <a class="el" href="d1/dc4/classphys_1_1SoundManager.html#a577b228753ea19856b8476ab831e547e">phys::SoundManager</a>
 , <a class="el" href="d3/d64/classphys_1_1ActorContainerVector.html#a883e59ac1674421bac143088a6cf07c8">phys::ActorContainerVector</a>
-, <a class="el" href="d1/d47/classphys_1_1CallBackManager.html#acaa942de1f6f8b42d06d981121d501e0">phys::CallBackManager</a>
+, <a class="el" href="d3/dcc/classphys_1_1PhysicsManager.html#a62741a2582ac9bfd0255cf8a3ad2310c">phys::PhysicsManager</a>
 , <a class="el" href="d9/d91/classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3">phys::CameraManager</a>
 , <a class="el" href="da/dde/classphys_1_1EventManager.html#aca8fb3d285484dcdb943824bf11f3596">phys::EventManager</a>
 , <a class="el" href="dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">phys::GraphicsManager</a>
@@ -104,15 +102,6 @@
 </li>
 <li>DoMainLoopLogging()
 : <a class="el" href="da/ddf/classphys_1_1World.html#a1461e6c9d16214aa2cc310035b149378">phys::World</a>
-</li>
-<li>DoMainLoopPhysics()
-: <a class="el" href="da/ddf/classphys_1_1World.html#a4596a7bd1dc49c3b45b5562fcd0d08f2">phys::World</a>
-</li>
-<li>DoMainLoopRender()
-: <a class="el" href="da/ddf/classphys_1_1World.html#a34133dd084f575a51209458dbe9ecdac">phys::World</a>
-</li>
-<li>DoMainLoopWindowManagerBuffering()
-: <a class="el" href="da/ddf/classphys_1_1World.html#af7bc68e5a19fd4c9c8cc2437485096e1">phys::World</a>
 </li>
 <li>dotProduct()
 : <a class="el" href="d5/d6a/classphys_1_1Vector3.html#ac30ef9729b1a4e6001f5f5219a88176d">phys::Vector3</a>
@@ -124,9 +113,9 @@
 : <a class="el" href="db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html#a8b912aaff8dfd9f4e97ffb2d867121b2">phys::debug::InternalDebugDrawer</a>
 </li>
 <li>drawLine()
-: <a class="el" href="db/ddb/classphys_1_1LineGroup.html#a141db62ea17d94b9bce421e5df5a8d89">phys::LineGroup</a>
+: <a class="el" href="d4/db5/classphys_1_1internal_1_1Line3D.html#a31bf19dc06547cbe042e1ddfbcf672f3">phys::internal::Line3D</a>
 , <a class="el" href="db/d27/classphys_1_1debug_1_1InternalDebugDrawer.html#a8a35c3c80fddaaec8e21f737ed1b3938">phys::debug::InternalDebugDrawer</a>
-, <a class="el" href="d4/db5/classphys_1_1internal_1_1Line3D.html#a31bf19dc06547cbe042e1ddfbcf672f3">phys::internal::Line3D</a>
+, <a class="el" href="db/ddb/classphys_1_1LineGroup.html#a141db62ea17d94b9bce421e5df5a8d89">phys::LineGroup</a>
 </li>
 <li>drawLines()
 : <a class="el" href="d4/db5/classphys_1_1internal_1_1Line3D.html#a008f0874c2213002e0c39330561f80f2">phys::internal::Line3D</a>
@@ -134,7 +123,7 @@
 </li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Sep 18 21:34:24 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

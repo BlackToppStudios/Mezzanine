@@ -71,20 +71,20 @@
 <a name="l00046"></a>00046 <span class="keyword">namespace </span>phys
 <a name="l00047"></a>00047 {
 <a name="l00048"></a><a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a80c0d01d0dc19511cd08fc6ac805a616">00048</a>     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a80c0d01d0dc19511cd08fc6ac805a616" title="Default Constructor.">ManagerBase::ManagerBase</a>()
-<a name="l00049"></a>00049         {
-<a name="l00050"></a>00050             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> = 0;
-<a name="l00051"></a>00051             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a93eb2f1a30d913a4e99180b0965eb5db" title="This is a function pointer to the function that should be called before running Main...">PreMainLoop</a> = 0;
-<a name="l00052"></a>00052             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aa1e80a30f151c07e06d1f4650f315da5" title="This is a function pointer to the function that should be called after running Main...">PostMainLoop</a> = 0;
-<a name="l00053"></a>00053             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef" title="This is a weighting used by the main loop to decide what order the managers should...">Priority</a> = 0;
-<a name="l00054"></a>00054         }
+<a name="l00049"></a>00049     {
+<a name="l00050"></a>00050         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> = 0;
+<a name="l00051"></a>00051         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a93eb2f1a30d913a4e99180b0965eb5db" title="This is a function pointer to the function that should be called before running Main...">PreMainLoop</a> = NULL;
+<a name="l00052"></a>00052         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aa1e80a30f151c07e06d1f4650f315da5" title="This is a function pointer to the function that should be called after running Main...">PostMainLoop</a> = NULL;
+<a name="l00053"></a>00053         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef" title="This is a weighting used by the main loop to decide what order the managers should...">Priority</a> = 0;
+<a name="l00054"></a>00054     }
 <a name="l00055"></a>00055 
 <a name="l00056"></a><a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ab9ad12416f771d95fe8a6d953923c634">00056</a>     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a80c0d01d0dc19511cd08fc6ac805a616" title="Default Constructor.">ManagerBase::ManagerBase</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_)
-<a name="l00057"></a>00057         {
-<a name="l00058"></a>00058             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> = GameWorld_;
-<a name="l00059"></a>00059             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a93eb2f1a30d913a4e99180b0965eb5db" title="This is a function pointer to the function that should be called before running Main...">PreMainLoop</a> = 0;
-<a name="l00060"></a>00060             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aa1e80a30f151c07e06d1f4650f315da5" title="This is a function pointer to the function that should be called after running Main...">PostMainLoop</a> = 0;
-<a name="l00061"></a>00061             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef" title="This is a weighting used by the main loop to decide what order the managers should...">Priority</a> = 0;
-<a name="l00062"></a>00062         }
+<a name="l00057"></a>00057     {
+<a name="l00058"></a>00058         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a> = GameWorld_;
+<a name="l00059"></a>00059         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a93eb2f1a30d913a4e99180b0965eb5db" title="This is a function pointer to the function that should be called before running Main...">PreMainLoop</a> = NULL;
+<a name="l00060"></a>00060         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aa1e80a30f151c07e06d1f4650f315da5" title="This is a function pointer to the function that should be called after running Main...">PostMainLoop</a> = NULL;
+<a name="l00061"></a>00061         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef" title="This is a weighting used by the main loop to decide what order the managers should...">Priority</a> = 0;
+<a name="l00062"></a>00062     }
 <a name="l00063"></a>00063 
 <a name="l00064"></a><a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#addfd62fbc444ca4c2aba40768d1b284e">00064</a>     <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#addfd62fbc444ca4c2aba40768d1b284e" title="This gets the World that this manager is working with.">ManagerBase::GetGameWorld</a>()<span class="keyword"> const</span>
 <a name="l00065"></a>00065 <span class="keyword">        </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>; }
@@ -115,7 +115,7 @@
 <a name="l00090"></a>00090 
 <a name="l00091"></a>00091 
 <a name="l00092"></a><a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a673b3adef73c467f4d90514a5133bf7c">00092</a>     <span class="keywordtype">void</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a673b3adef73c467f4d90514a5133bf7c" title="This assigns a function to be the callback function to run prior to the main loop...">ManagerBase::SetPostMainLoopItems</a>( <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b" title="This makes working with Callback function pointer a bit easier.">ManagerBase::Callback</a> PostMainCallback )
-<a name="l00093"></a>00093         { this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a93eb2f1a30d913a4e99180b0965eb5db" title="This is a function pointer to the function that should be called before running Main...">PreMainLoop</a>=PostMainCallback; }
+<a name="l00093"></a>00093         { this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aa1e80a30f151c07e06d1f4650f315da5" title="This is a function pointer to the function that should be called after running Main...">PostMainLoop</a>=PostMainCallback; }
 <a name="l00094"></a>00094 
 <a name="l00095"></a><a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#afc3572602f96bdeb8215c386ff870820">00095</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#afc3572602f96bdeb8215c386ff870820" title="This runs any callback that is required after the mainloop items are run.">ManagerBase::PostMainLoopItems</a>()
 <a name="l00096"></a>00096     {
@@ -132,11 +132,55 @@
 <a name="l00107"></a><a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a9306dafe9ffe52916b84cf157fbc12d8">00107</a>     <span class="keywordtype">void</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a9306dafe9ffe52916b84cf157fbc12d8" title="This simply calls SetPostMainLoopItems() passing it 0.">ManagerBase::ErasePostMainLoopItems</a>()
 <a name="l00108"></a>00108         { this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a673b3adef73c467f4d90514a5133bf7c" title="This assigns a function to be the callback function to run prior to the main loop...">SetPostMainLoopItems</a>(0); }
 <a name="l00109"></a>00109 
-<a name="l00110"></a>00110 }<span class="comment">// /phys</span>
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112 <span class="preprocessor">#endif</span>
+<a name="l00110"></a><a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a5b4c1105696b868b7858c59541af4756">00110</a>     std::string <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a5b4c1105696b868b7858c59541af4756" title="This Allows any manager to be sent to a stream. Primarily used for logging.">ManagerBase::GetTypeName</a>()
+<a name="l00111"></a>00111     {
+<a name="l00112"></a>00112         <span class="keywordflow">switch</span> (this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3" title="This returns the type of this manager.">GetType</a>())
+<a name="l00113"></a>00113         {
+<a name="l00114"></a>00114             <span class="keywordflow">case</span> ManagerBase::ActorContainerBase:
+<a name="l00115"></a>00115                 <span class="keywordflow">return</span> <span class="stringliteral">&quot;ActorContainerBase Manager&quot;</span>;
+<a name="l00116"></a>00116                 <span class="keywordflow">break</span>;
+<a name="l00117"></a>00117             <span class="keywordflow">case</span> ManagerBase::CameraManager:
+<a name="l00118"></a>00118                 <span class="keywordflow">return</span> <span class="stringliteral">&quot;CameraManager&quot;</span>;
+<a name="l00119"></a>00119                 <span class="keywordflow">break</span>;
+<a name="l00120"></a>00120             <span class="keywordflow">case</span> ManagerBase::EventManager:
+<a name="l00121"></a>00121                 <span class="keywordflow">return</span> <span class="stringliteral">&quot;EventManager&quot;</span>;
+<a name="l00122"></a>00122                 <span class="keywordflow">break</span>;
+<a name="l00123"></a>00123             <span class="keywordflow">case</span> ManagerBase::GraphicsManager:
+<a name="l00124"></a>00124                 <span class="keywordflow">return</span> <span class="stringliteral">&quot;GraphicsManager&quot;</span>;
+<a name="l00125"></a>00125                 <span class="keywordflow">break</span>;
+<a name="l00126"></a>00126             <span class="keywordflow">case</span> ManagerBase::PhysicsManager:
+<a name="l00127"></a>00127                 <span class="keywordflow">return</span> <span class="stringliteral">&quot;PhysicsManager&quot;</span>;
+<a name="l00128"></a>00128                 <span class="keywordflow">break</span>;
+<a name="l00129"></a>00129             <span class="keywordflow">case</span> ManagerBase::SoundManager:
+<a name="l00130"></a>00130                 <span class="keywordflow">return</span> <span class="stringliteral">&quot;SoundManager&quot;</span>;
+<a name="l00131"></a>00131                 <span class="keywordflow">break</span>;
+<a name="l00132"></a>00132             <span class="keywordflow">case</span> ManagerBase::ResourceManager:
+<a name="l00133"></a>00133                 <span class="keywordflow">return</span> <span class="stringliteral">&quot;ResourceManager&quot;</span>;
+<a name="l00134"></a>00134                 <span class="keywordflow">break</span>;
+<a name="l00135"></a>00135             <span class="keywordflow">case</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5a3239296e554feede76c4bcb6f824c66c" title="This is what User created managers that do not derive from any other managers are...">ManagerBase::UserCreated</a>:
+<a name="l00136"></a>00136                 <span class="keywordflow">return</span> <span class="stringliteral">&quot;UserCreated&quot;</span>;
+<a name="l00137"></a>00137                 <span class="keywordflow">break</span>;
+<a name="l00138"></a>00138             <span class="keywordflow">default</span>:
+<a name="l00139"></a>00139                 <span class="keywordflow">return</span> <span class="stringliteral">&quot;Unknown Manager&quot;</span>;
+<a name="l00140"></a>00140                 <span class="keywordflow">break</span>;
+<a name="l00141"></a>00141         }
+<a name="l00142"></a>00142     }<span class="comment">// */</span>
+<a name="l00143"></a>00143 
+<a name="l00144"></a><a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#af1798db3b808a658bdf14d8914d9b91d">00144</a>     <span class="keywordtype">short</span> <span class="keywordtype">int</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#af1798db3b808a658bdf14d8914d9b91d" title="This gets the Priority of this manager.">ManagerBase::GetPriority</a>()
+<a name="l00145"></a>00145     {
+<a name="l00146"></a>00146         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef" title="This is a weighting used by the main loop to decide what order the managers should...">Priority</a>;
+<a name="l00147"></a>00147     }
+<a name="l00148"></a>00148 
+<a name="l00149"></a><a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a6e30dc5f2a9c64f95efb2ef4428b0f98">00149</a>     <span class="keywordtype">void</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a6e30dc5f2a9c64f95efb2ef4428b0f98" title="This gets the Priority of this manager.">ManagerBase::SetPriority</a>(<span class="keywordtype">short</span> <span class="keywordtype">int</span> Priority_)
+<a name="l00150"></a>00150     {
+<a name="l00151"></a>00151         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef" title="This is a weighting used by the main loop to decide what order the managers should...">Priority</a> = Priority_;
+<a name="l00152"></a>00152     }
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154 }<span class="comment">// /phys</span>
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Sep 18 21:34:24 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

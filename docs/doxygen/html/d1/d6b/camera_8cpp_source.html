@@ -74,120 +74,126 @@
 <a name="l00049"></a>00049     <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a1309e4191b22440035e360c205b81472" title="Basic Camera Constructor.">Camera::Camera</a>(<a class="code" href="../../d9/d91/classphys_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* Manager)
 <a name="l00050"></a>00050     {
 <a name="l00051"></a>00051         <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name = Manager-&gt;<a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#ac6ff80c91fa5a2cd21ebd8b78db9add2" title="Creates a camera.">CreateCamera</a>();
-<a name="l00052"></a>00052         Cam = Manager-&gt;FindCamera(Name);
-<a name="l00053"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a0510d4f9bf6fb195115272cbd116e8dd">00053</a>         CamManager=Manager;
-<a name="l00054"></a>00054     }
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056     <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a1309e4191b22440035e360c205b81472" title="Basic Camera Constructor.">Camera::Camera</a>(Ogre::Camera* <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>, <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* Manager)
-<a name="l00057"></a>00057     {
-<a name="l00058"></a>00058         Cam=Camera;
-<a name="l00059"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#aa45f340a6f7ba0970aa2602a928463ea">00059</a>         CamManager=Manager;
-<a name="l00060"></a>00060     }
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062     <a class="code" href="../../d9/df8/classphys_1_1Camera.html#aa45f340a6f7ba0970aa2602a928463ea" title="Class Destructor.">Camera::~Camera</a>()
-<a name="l00063"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#ab1fb572982464212b2fa33e2df6f688b">00063</a>     {
-<a name="l00064"></a>00064     }
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#ab1fb572982464212b2fa33e2df6f688b" title="Sets the location of a camera.">Camera::SetLocation</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Location)
-<a name="l00067"></a>00067     {
-<a name="l00068"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a50746cdd4f7d483edffe87d24d2b4bc6">00068</a>         this-&gt;Cam-&gt;setPosition(Location.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00069"></a>00069     }
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a50746cdd4f7d483edffe87d24d2b4bc6" title="Sets the Direction for the camera.">Camera::SetDirection</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Direction)
-<a name="l00072"></a>00072     {
-<a name="l00073"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#af0822410414622c2a3c8b4da207b53ab">00073</a>         this-&gt;Cam-&gt;setDirection(Direction.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00074"></a>00074     }
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#af0822410414622c2a3c8b4da207b53ab" title="Sets the orientation of the camera.">Camera::SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Orientation)
-<a name="l00077"></a>00077     {
-<a name="l00078"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#aff7cb792640b250cafdfbc333de4bbeb">00078</a>         this-&gt;Cam-&gt;setOrientation(Orientation.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad7501687205092c203d2358ca53d3bfe" title="Gets a Ogre quaternion.">GetOgreQuaternion</a>());
-<a name="l00079"></a>00079     }
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#aff7cb792640b250cafdfbc333de4bbeb" title="Sets the short range clip distance.">Camera::SetNearClipDistance</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> NearDist)
-<a name="l00082"></a>00082     {
-<a name="l00083"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a25408db8110ac5035fafbd58a5b1106d">00083</a>         this-&gt;Cam-&gt;setNearClipDistance(NearDist);
-<a name="l00084"></a>00084     }
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a25408db8110ac5035fafbd58a5b1106d" title="Sets the long range clip distance.">Camera::SetFarClipDistance</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> FarDist)
-<a name="l00087"></a>00087     {
-<a name="l00088"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a6f895759e653eedb985217c621b265f6">00088</a>         this-&gt;Cam-&gt;setFarClipDistance (FarDist);
-<a name="l00089"></a>00089     }
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a6f895759e653eedb985217c621b265f6" title="Sets the aspect ratio of the cameras veiw.">Camera::SetAspectRatio</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Ratio)
-<a name="l00092"></a>00092     {
-<a name="l00093"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a6534be5001bf06ab4c4b32a084629842">00093</a>         this-&gt;Cam-&gt;setAspectRatio(Ratio);
-<a name="l00094"></a>00094     }
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a6534be5001bf06ab4c4b32a084629842" title="Sets the direction the camera faces.">Camera::LookAt</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> TargetLoc)
-<a name="l00097"></a>00097     {
-<a name="l00098"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a0fe097fbabbe1a88881f25bc827cabf5">00098</a>         this-&gt;Cam-&gt;lookAt(TargetLoc.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00099"></a>00099     }
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a0fe097fbabbe1a88881f25bc827cabf5" title="Sets whether to lock rotation around the Y axis.">Camera::SetFixedYawAxis</a>(<span class="keywordtype">bool</span> UseFixed, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Axis)
-<a name="l00102"></a>00102     {
-<a name="l00103"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a1b4d5be85c528541c7a1cbebb41bfd89">00103</a>         this-&gt;Cam-&gt;setFixedYawAxis(UseFixed, Axis.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00104"></a>00104     }
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a0fe097fbabbe1a88881f25bc827cabf5" title="Sets whether to lock rotation around the Y axis.">Camera::SetFixedYawAxis</a>(<span class="keywordtype">bool</span> UseFixed)
-<a name="l00107"></a>00107     {
-<a name="l00108"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#ad49538281af9940dca156113cf006137">00108</a>         this-&gt;Cam-&gt;setFixedYawAxis(UseFixed);
-<a name="l00109"></a>00109     }
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#ad49538281af9940dca156113cf006137" title="Enables or disables auto tracking for the camera.">Camera::SetAutoTracking</a>(<span class="keywordtype">bool</span> Enabled, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Target, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Offset)
-<a name="l00112"></a>00112     {
-<a name="l00113"></a>00113         Ogre::SceneNode* Trgt = CamManager-&gt;FindNode(Target);
-<a name="l00114"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a5f66e37056f03767b6048f8bd4465983">00114</a>         this-&gt;Cam-&gt;setAutoTracking(Enabled, Trgt, Offset.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00052"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a0510d4f9bf6fb195115272cbd116e8dd">00052</a>         this-&gt;Construct(Manager-&gt;FindCamera(Name), Manager);
+<a name="l00053"></a>00053     }
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055     <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a1309e4191b22440035e360c205b81472" title="Basic Camera Constructor.">Camera::Camera</a>(Ogre::Camera* <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>, <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* Manager)
+<a name="l00056"></a>00056     {
+<a name="l00057"></a>00057         this-&gt;Construct(Camera, Manager);
+<a name="l00058"></a>00058     }
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060     <span class="keywordtype">void</span> Camera::Construct(Ogre::Camera* Camera, CameraManager* Manager)
+<a name="l00061"></a>00061     {
+<a name="l00062"></a>00062         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a> = Camera;
+<a name="l00063"></a>00063         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a909203ede748deb1b587a8758ba8cec4" title="This is the Camera manager that this camera is attached to.">CamManager</a> = Manager;
+<a name="l00064"></a>00064         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#aff7cb792640b250cafdfbc333de4bbeb" title="Sets the short range clip distance.">SetNearClipDistance</a>(5.0f);
+<a name="l00065"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#aa45f340a6f7ba0970aa2602a928463ea">00065</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a25408db8110ac5035fafbd58a5b1106d" title="Sets the long range clip distance.">SetFarClipDistance</a>(5000.0f);
+<a name="l00066"></a>00066     }
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068     <a class="code" href="../../d9/df8/classphys_1_1Camera.html#aa45f340a6f7ba0970aa2602a928463ea" title="Class Destructor.">Camera::~Camera</a>()
+<a name="l00069"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#ab1fb572982464212b2fa33e2df6f688b">00069</a>     {
+<a name="l00070"></a>00070     }
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#ab1fb572982464212b2fa33e2df6f688b" title="Sets the location of a camera.">Camera::SetLocation</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Location)
+<a name="l00073"></a>00073     {
+<a name="l00074"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a50746cdd4f7d483edffe87d24d2b4bc6">00074</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setPosition(Location.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00075"></a>00075     }
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a50746cdd4f7d483edffe87d24d2b4bc6" title="Sets the Direction for the camera.">Camera::SetDirection</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Direction)
+<a name="l00078"></a>00078     {
+<a name="l00079"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#af0822410414622c2a3c8b4da207b53ab">00079</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setDirection(Direction.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00080"></a>00080     }
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#af0822410414622c2a3c8b4da207b53ab" title="Sets the orientation of the camera.">Camera::SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> Orientation)
+<a name="l00083"></a>00083     {
+<a name="l00084"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#aff7cb792640b250cafdfbc333de4bbeb">00084</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setOrientation(Orientation.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#ad7501687205092c203d2358ca53d3bfe" title="Gets a Ogre quaternion.">GetOgreQuaternion</a>());
+<a name="l00085"></a>00085     }
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#aff7cb792640b250cafdfbc333de4bbeb" title="Sets the short range clip distance.">Camera::SetNearClipDistance</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> NearDist)
+<a name="l00088"></a>00088     {
+<a name="l00089"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a25408db8110ac5035fafbd58a5b1106d">00089</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setNearClipDistance(NearDist);
+<a name="l00090"></a>00090     }
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a25408db8110ac5035fafbd58a5b1106d" title="Sets the long range clip distance.">Camera::SetFarClipDistance</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> FarDist)
+<a name="l00093"></a>00093     {
+<a name="l00094"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a6f895759e653eedb985217c621b265f6">00094</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setFarClipDistance (FarDist);
+<a name="l00095"></a>00095     }
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a6f895759e653eedb985217c621b265f6" title="Sets the aspect ratio of the cameras veiw.">Camera::SetAspectRatio</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Ratio)
+<a name="l00098"></a>00098     {
+<a name="l00099"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a6534be5001bf06ab4c4b32a084629842">00099</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setAspectRatio(Ratio);
+<a name="l00100"></a>00100     }
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a6534be5001bf06ab4c4b32a084629842" title="Sets the direction the camera faces.">Camera::LookAt</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> TargetLoc)
+<a name="l00103"></a>00103     {
+<a name="l00104"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a0fe097fbabbe1a88881f25bc827cabf5">00104</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;lookAt(TargetLoc.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00105"></a>00105     }
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a0fe097fbabbe1a88881f25bc827cabf5" title="Sets whether to lock rotation around the Y axis.">Camera::SetFixedYawAxis</a>(<span class="keywordtype">bool</span> UseFixed, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Axis)
+<a name="l00108"></a>00108     {
+<a name="l00109"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a1b4d5be85c528541c7a1cbebb41bfd89">00109</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setFixedYawAxis(UseFixed, Axis.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
+<a name="l00110"></a>00110     }
+<a name="l00111"></a>00111 
+<a name="l00112"></a>00112     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a0fe097fbabbe1a88881f25bc827cabf5" title="Sets whether to lock rotation around the Y axis.">Camera::SetFixedYawAxis</a>(<span class="keywordtype">bool</span> UseFixed)
+<a name="l00113"></a>00113     {
+<a name="l00114"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#ad49538281af9940dca156113cf006137">00114</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setFixedYawAxis(UseFixed);
 <a name="l00115"></a>00115     }
 <a name="l00116"></a>00116 
-<a name="l00117"></a>00117     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#ad49538281af9940dca156113cf006137" title="Enables or disables auto tracking for the camera.">Camera::SetAutoTracking</a>(<span class="keywordtype">bool</span> Enabled, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Target)
+<a name="l00117"></a>00117     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#ad49538281af9940dca156113cf006137" title="Enables or disables auto tracking for the camera.">Camera::SetAutoTracking</a>(<span class="keywordtype">bool</span> Enabled, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Target, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Offset)
 <a name="l00118"></a>00118     {
-<a name="l00119"></a>00119         Ogre::SceneNode* Trgt = CamManager-&gt;FindNode(Target);
-<a name="l00120"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a47c437c8755301512c2757f879e03e73">00120</a>         this-&gt;Cam-&gt;setAutoTracking(Enabled, Trgt);
+<a name="l00119"></a>00119         Ogre::SceneNode* Trgt = <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a909203ede748deb1b587a8758ba8cec4" title="This is the Camera manager that this camera is attached to.">CamManager</a>-&gt;FindNode(Target);
+<a name="l00120"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a5f66e37056f03767b6048f8bd4465983">00120</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setAutoTracking(Enabled, Trgt, Offset.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
 <a name="l00121"></a>00121     }
 <a name="l00122"></a>00122 
-<a name="l00123"></a>00123     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a47c437c8755301512c2757f879e03e73" title="Gets a Ray from the camera to the viewport.">Camera::GetCameraToViewportRay</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Screenx, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Screeny)
+<a name="l00123"></a>00123     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#ad49538281af9940dca156113cf006137" title="Enables or disables auto tracking for the camera.">Camera::SetAutoTracking</a>(<span class="keywordtype">bool</span> Enabled, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Target)
 <a name="l00124"></a>00124     {
-<a name="l00125"></a>00125         <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> R(this-&gt;Cam-&gt;getCameraToViewportRay(Screenx, Screeny));
-<a name="l00126"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#ab32a8c708e5e22f65dde9ab821ea20fc">00126</a>         <span class="keywordflow">return</span> R;
+<a name="l00125"></a>00125         Ogre::SceneNode* Trgt = <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a909203ede748deb1b587a8758ba8cec4" title="This is the Camera manager that this camera is attached to.">CamManager</a>-&gt;FindNode(Target);
+<a name="l00126"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a47c437c8755301512c2757f879e03e73">00126</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setAutoTracking(Enabled, Trgt);
 <a name="l00127"></a>00127     }
 <a name="l00128"></a>00128 
-<a name="l00129"></a>00129     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#ab32a8c708e5e22f65dde9ab821ea20fc" title="Gets the node attached to a camera.">Camera::GetNodeAttachedToCamera</a>()
+<a name="l00129"></a>00129     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a47c437c8755301512c2757f879e03e73" title="Gets a Ray from the camera to the viewport.">Camera::GetCameraToViewportRay</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Screenx, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Screeny)
 <a name="l00130"></a>00130     {
-<a name="l00131"></a>00131         Ogre::SceneNode* tempnode = this-&gt;Cam-&gt;getParentSceneNode();
-<a name="l00132"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a771fc7005191c3f83ac1fedb09699943">00132</a>         <span class="keywordflow">return</span> tempnode-&gt;getName();
+<a name="l00131"></a>00131         <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> R(this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getCameraToViewportRay(Screenx, Screeny));
+<a name="l00132"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#ab32a8c708e5e22f65dde9ab821ea20fc">00132</a>         <span class="keywordflow">return</span> R;
 <a name="l00133"></a>00133     }
 <a name="l00134"></a>00134 
-<a name="l00135"></a>00135     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a771fc7005191c3f83ac1fedb09699943" title="Gets the relative location of a camera.">Camera::GetCameraRelativeLocation</a>()
+<a name="l00135"></a>00135     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#ab32a8c708e5e22f65dde9ab821ea20fc" title="Gets the node attached to a camera.">Camera::GetNodeAttachedToCamera</a>()
 <a name="l00136"></a>00136     {
-<a name="l00137"></a>00137         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> camloc(this-&gt;Cam-&gt;getPosition());
-<a name="l00138"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a53b61b6c163270ffb4f46eb66a973b10">00138</a>         <span class="keywordflow">return</span> camloc;
+<a name="l00137"></a>00137         Ogre::SceneNode* tempnode = this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getParentSceneNode();
+<a name="l00138"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a771fc7005191c3f83ac1fedb09699943">00138</a>         <span class="keywordflow">return</span> tempnode-&gt;getName();
 <a name="l00139"></a>00139     }
 <a name="l00140"></a>00140 
-<a name="l00141"></a>00141     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a53b61b6c163270ffb4f46eb66a973b10" title="Gets the global location of a camera.">Camera::GetCameraGlobalLocation</a>()
+<a name="l00141"></a>00141     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a771fc7005191c3f83ac1fedb09699943" title="Gets the relative location of a camera.">Camera::GetCameraRelativeLocation</a>()
 <a name="l00142"></a>00142     {
-<a name="l00143"></a>00143         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> camloc(this-&gt;Cam-&gt;getRealPosition());
-<a name="l00144"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a1cb593d12be4e6e1e51cb8f74ce2d97c">00144</a>         <span class="keywordflow">return</span> camloc;
+<a name="l00143"></a>00143         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> camloc(this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getPosition());
+<a name="l00144"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a53b61b6c163270ffb4f46eb66a973b10">00144</a>         <span class="keywordflow">return</span> camloc;
 <a name="l00145"></a>00145     }
 <a name="l00146"></a>00146 
-<a name="l00147"></a>00147     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a1cb593d12be4e6e1e51cb8f74ce2d97c" title="Will zoom in or out the camera.">Camera::ZoomCamera</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Zoom)
+<a name="l00147"></a>00147     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a53b61b6c163270ffb4f46eb66a973b10" title="Gets the global location of a camera.">Camera::GetCameraGlobalLocation</a>()
 <a name="l00148"></a>00148     {
-<a name="l00149"></a>00149         Ogre::Vector3 zoomlevel(0,0,Zoom);
-<a name="l00150"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a181465e6add36c07a63fdd26aee7c69a">00150</a>         this-&gt;Cam-&gt;moveRelative(zoomlevel);
+<a name="l00149"></a>00149         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> camloc(this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getRealPosition());
+<a name="l00150"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a1cb593d12be4e6e1e51cb8f74ce2d97c">00150</a>         <span class="keywordflow">return</span> camloc;
 <a name="l00151"></a>00151     }
 <a name="l00152"></a>00152 
-<a name="l00153"></a>00153     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a181465e6add36c07a63fdd26aee7c69a" title="Resets the zoom level back to the default.">Camera::ResetZoom</a>()
+<a name="l00153"></a>00153     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a1cb593d12be4e6e1e51cb8f74ce2d97c" title="Will zoom in or out the camera.">Camera::ZoomCamera</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Zoom)
 <a name="l00154"></a>00154     {
-<a name="l00155"></a>00155         Ogre::Vector3 loc;
-<a name="l00156"></a>00156         loc = this-&gt;Cam-&gt;getPosition();
-<a name="l00157"></a>00157         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> zoom=loc.z;
-<a name="l00158"></a>00158         zoom=0-zoom;
-<a name="l00159"></a>00159         this-&gt;Cam-&gt;moveRelative(Ogre::Vector3(0,0,zoom));
-<a name="l00160"></a>00160     }
-<a name="l00161"></a>00161 }<span class="comment">//phys</span>
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163 <span class="preprocessor">#endif</span>
+<a name="l00155"></a>00155         Ogre::Vector3 zoomlevel(0,0,Zoom);
+<a name="l00156"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a181465e6add36c07a63fdd26aee7c69a">00156</a>         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;moveRelative(zoomlevel);
+<a name="l00157"></a>00157     }
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159     <span class="keywordtype">void</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a181465e6add36c07a63fdd26aee7c69a" title="Resets the zoom level back to the default.">Camera::ResetZoom</a>()
+<a name="l00160"></a>00160     {
+<a name="l00161"></a>00161         Ogre::Vector3 loc;
+<a name="l00162"></a>00162         loc = this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getPosition();
+<a name="l00163"></a>00163         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> zoom=loc.z;
+<a name="l00164"></a>00164         zoom=0-zoom;
+<a name="l00165"></a>00165         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;moveRelative(Ogre::Vector3(0,0,zoom));
+<a name="l00166"></a>00166     }
+<a name="l00167"></a>00167 }<span class="comment">//phys</span>
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Sep 18 21:34:24 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -40,7 +40,7 @@
 <tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#ac73c7f2db76ddfeb41723d72decc1366">GetDataDirectory</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the Default Data Directory.  <a href="#ac73c7f2db76ddfeb41723d72decc1366"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#a596ed780d507e681d9261d26b64a8ed9">GetSDLOgreBinder</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem).  <a href="#a596ed780d507e681d9261d26b64a8ed9"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem).  <a href="#a596ed780d507e681d9261d26b64a8ed9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab5287fc10a132457a1309e1f5645347a">WaitMilliseconds</a> (const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;WaitTime)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pauses the program for a given period of time.  <a href="#ab5287fc10a132457a1309e1f5645347a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#aa80d0a5289b00daad110fd29bf23c5e7">RenderPhysWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *TheWorld)</td></tr>
@@ -92,7 +92,7 @@
 
 <p>Returns a string with a path/filename to the default Plugins config file. </p>
 <p><b>For internal use only.</b></p>
-<p>Plugins.cfg is the file that determines which graphics plugins are loaded. This is a feature of the graphics subsystem and is generally not needed outside of engine code. </p>
+<p>Plugins.cfg is the file that determines which graphics plugins are loaded. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is a feature of the graphics subsystem and is generally not needed outside of engine code. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A string which contains the path and filename of the plugins file </dd></dl>
 
 </div>
@@ -112,10 +112,10 @@
 </div>
 <div class="memdoc">
 
-<p>This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). </p>
+<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). </p>
 <p><b>For internal use only.</b></p>
-<p>This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) This returns a named parameter list with valid settings to use Ogre rendering on a pre-existing SDL context </p>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish </dd></dl>
+<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> returns a named parameter list with valid settings to use Ogre rendering on a pre-existing SDL context </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish </dd></dl>
 
 </div>
 </div>
@@ -136,7 +136,7 @@
 
 <p>Returns a string with a path/filename to the default Graphics Subsytem settings file. </p>
 <p><b>For internal use only.</b></p>
-<p>Settings.cfg is the file that determines how graphics settings are configured by default. This is a feature of the graphics subsystem and is generally not needed outside of engine code. </p>
+<p>Settings.cfg is the file that determines how graphics settings are configured by default. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is a feature of the graphics subsystem and is generally not needed outside of engine code. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A string which contains the path and filename of the graphics setts file </dd></dl>
 
 </div>
@@ -158,10 +158,10 @@
 <div class="memdoc">
 
 <p>Renders the current world contents to the screen. </p>
-<p>This makes use of <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Handles the actual cross platform swapping of graphics buffers. </p>
+<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> makes use of <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Handles the actual cross platform swapping of graphics buffers. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>TheWorld</em>&nbsp;</td><td>This is a pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> to be rendered. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>TheWorld</em>&nbsp;</td><td><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is a pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> to be rendered. </td></tr>
   </table>
   </dd>
 </dl>
@@ -196,7 +196,7 @@
 </div>
 </div>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:38 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Sep 18 21:34:25 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

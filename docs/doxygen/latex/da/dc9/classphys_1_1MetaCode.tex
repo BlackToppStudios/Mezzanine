@@ -4,7 +4,7 @@
 }
 
 
-This Determines the kind of user input.  
+\hyperlink{structThis}{This} Determines the kind of user input.  
 
 
 
@@ -380,17 +380,17 @@ enum \hyperlink{classphys_1_1MetaCode_af9ba277d1ef071be8861e35c2b7d82d6}{MouseWh
 \hyperlink{classphys_1_1MetaCode_ad9a618b5cc6f9d0cf0a4bc4f47bf98e8}{MetaCode} (const \hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{RawEvent} \&RawEvent\_\-)
 \begin{DoxyCompactList}\small\item\em The Heavy Lifting Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \hyperlink{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{GetCode} () const 
-\begin{DoxyCompactList}\small\item\em This Returns the Inputcode. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} Returns the Inputcode. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}{SetCode} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code\_\-)
-\begin{DoxyCompactList}\small\item\em This Sets The InputCode. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} Sets The InputCode. \item\end{DoxyCompactList}\item 
 int \hyperlink{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{GetMetaValue} () const 
-\begin{DoxyCompactList}\small\item\em This Returns the MetaValue. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} Returns the MetaValue. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}{SetMetaValue} (const int \&MetaValue\_\-)
-\begin{DoxyCompactList}\small\item\em This Sets The MetaValue. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} Sets The MetaValue. \item\end{DoxyCompactList}\item 
 short unsigned int \hyperlink{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{GetID} () const 
-\begin{DoxyCompactList}\small\item\em This Returns the Input ID. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} Returns the Input ID. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1MetaCode_a0ef70c11c06f0e3015121985cb1b6153}{SetID} (const short unsigned int \&ID\_\-)
-\begin{DoxyCompactList}\small\item\em This Sets The input ID. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} Sets The input ID. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1MetaCode_ad86e1599eccea8edecb721eb84c06c72}{IsKeyboardButton} () const 
 \begin{DoxyCompactList}\small\item\em Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent a state of a keyboard key. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1MetaCode_a506486e5a6f08d50a5af42fa6d48a7f5}{operator==} (const \hyperlink{classphys_1_1MetaCode}{MetaCode} \&other) const 
@@ -398,7 +398,7 @@ bool \hyperlink{classphys_1_1MetaCode_a506486e5a6f08d50a5af42fa6d48a7f5}{operato
 
 
 \subsection{Detailed Description}
-This Determines the kind of user input. A Metacode contains the data that is passed around with an input event. It stores one type of button press or analog representation (Mouse move, joystick tilt, wheel spin, etc...). If it is an analog representation it will also store how far or how it is pushed, pressed, rotated, or whatever. Several of these can be used in combination to represent button combinations, or complex input combination (like portions of fighter game moves). The first 127 character line up with Ascii, Currently upper lase are omitted for brevity. 
+\hyperlink{structThis}{This} Determines the kind of user input. A Metacode contains the data that is passed around with an input event. It stores one type of button press or analog representation (Mouse move, joystick tilt, wheel spin, etc...). If it is an analog representation it will also store how far or how it is pushed, pressed, rotated, or whatever. Several of these can be used in combination to represent button combinations, or complex input combination (like portions of fighter game moves). The first 127 character line up with Ascii, Currently upper lase are omitted for brevity. 
 
 Definition at line 89 of file metacode.h.
 
@@ -414,7 +414,7 @@ Definition at line 89 of file metacode.h.
 
 An Optional listing of value that can be used in a metacode to represent the information of a button press. 
 
-This is optional set of values that can make working with buttons easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
+\hyperlink{structThis}{This} is optional set of values that can make working with buttons easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
 \item[Enumerator: ]\par
 \begin{description}
 \index{BUTTON\_\-LIFTING@{BUTTON\_\-LIFTING}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!BUTTON\_\-LIFTING@{BUTTON\_\-LIFTING}}\item[{\em 
@@ -429,11 +429,11 @@ BUTTON\_\-UP}
 \hypertarget{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d}{
 BUTTON\_\-PRESSING}
 \label{da/dc9/classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d}
-}]This is used at the exact point in time that a key goes from unpressed to pressed. \index{BUTTON\_\-DOWN@{BUTTON\_\-DOWN}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!BUTTON\_\-DOWN@{BUTTON\_\-DOWN}}\item[{\em 
+}]\hyperlink{structThis}{This} is used at the exact point in time that a key goes from unpressed to pressed. \index{BUTTON\_\-DOWN@{BUTTON\_\-DOWN}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!BUTTON\_\-DOWN@{BUTTON\_\-DOWN}}\item[{\em 
 \hypertarget{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438}{
 BUTTON\_\-DOWN}
 \label{da/dc9/classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438}
-}]This is used the entire time a key is down. \end{description}
+}]\hyperlink{structThis}{This} is used the entire time a key is down. \end{description}
 \end{Desc}
 
 
@@ -456,7 +456,7 @@ It has one entry for each key on a most keyboards. Then it has an entry for most
 \hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f}{
 KEY\_\-UNKNOWN}
 \label{da/dc9/classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f}
-}]KEY\_\-UNKNOWN This is used for unsupported keys or keys that are not in Unicode. \index{KEY\_\-FIRST@{KEY\_\-FIRST}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!KEY\_\-FIRST@{KEY\_\-FIRST}}\item[{\em 
+}]KEY\_\-UNKNOWN \hyperlink{structThis}{This} is used for unsupported keys or keys that are not in Unicode. \index{KEY\_\-FIRST@{KEY\_\-FIRST}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!KEY\_\-FIRST@{KEY\_\-FIRST}}\item[{\em 
 \hypertarget{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5}{
 KEY\_\-FIRST}
 \label{da/dc9/classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5}
@@ -544,7 +544,7 @@ Definition at line 96 of file metacode.h.
 
 An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel. 
 
-This is optional set of values that can make working with the MouseWheel easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
+\hyperlink{structThis}{This} is optional set of values that can make working with the MouseWheel easier. The values the engine pass via the the event manager will all use these whereever appropriate. \begin{Desc}
 \item[Enumerator: ]\par
 \begin{description}
 \index{MOUSEWHEEL\_\-UP@{MOUSEWHEEL\_\-UP}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!MOUSEWHEEL\_\-UP@{MOUSEWHEEL\_\-UP}}\item[{\em 
@@ -555,7 +555,7 @@ MOUSEWHEEL\_\-UP}
 \hypertarget{classphys_1_1MetaCode_af9ba277d1ef071be8861e35c2b7d82d6aa3d86fe74d1c191d7c57f886c0b8d99a}{
 MOUSEWHEEL\_\-UNCHANGED}
 \label{da/dc9/classphys_1_1MetaCode_af9ba277d1ef071be8861e35c2b7d82d6aa3d86fe74d1c191d7c57f886c0b8d99a}
-}]This really isn't used in normal situations, but if a mousewheel event is ever needed when the MouseWheel is unspun \index{MOUSEWHEEL\_\-DOWN@{MOUSEWHEEL\_\-DOWN}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!MOUSEWHEEL\_\-DOWN@{MOUSEWHEEL\_\-DOWN}}\item[{\em 
+}]\hyperlink{structThis}{This} really isn't used in normal situations, but if a mousewheel event is ever needed when the MouseWheel is unspun \index{MOUSEWHEEL\_\-DOWN@{MOUSEWHEEL\_\-DOWN}!phys::MetaCode@{phys::MetaCode}}\index{phys::MetaCode@{phys::MetaCode}!MOUSEWHEEL\_\-DOWN@{MOUSEWHEEL\_\-DOWN}}\item[{\em 
 \hypertarget{classphys_1_1MetaCode_af9ba277d1ef071be8861e35c2b7d82d6ab6edd0886d2ec2d2917bbad96ce3d510}{
 MOUSEWHEEL\_\-DOWN}
 \label{da/dc9/classphys_1_1MetaCode_af9ba277d1ef071be8861e35c2b7d82d6ab6edd0886d2ec2d2917bbad96ce3d510}
@@ -578,7 +578,7 @@ Definition at line 411 of file metacode.h.
 
 Default constructor. 
 
-This sets nothing on the \hyperlink{classphys_1_1MetaCode}{MetaCode} and leaves it completely unassigned. Accessing a data member could cause problems 
+\hyperlink{structThis}{This} sets nothing on the \hyperlink{classphys_1_1MetaCode}{MetaCode} and leaves it completely unassigned. Accessing a data member could cause problems 
 
 Definition at line 71 of file metacode.cpp.
 
@@ -591,7 +591,7 @@ Definition at line 71 of file metacode.cpp.
 
 Descriptive Constructor. 
 
-This sets all values in the \hyperlink{classphys_1_1MetaCode}{MetaCode}, leaving it in completely ready state. This is the ideal constructor for simulating user input. 
+\hyperlink{structThis}{This} sets all values in the \hyperlink{classphys_1_1MetaCode}{MetaCode}, leaving it in completely ready state. \hyperlink{structThis}{This} is the ideal constructor for simulating user input. 
 \begin{DoxyParams}{Parameters}
 \item[{\em MetaValue\_\-}]How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed. \item[{\em ID\_\-}]Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item. \item[{\em Code\_\-}]Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support. \end{DoxyParams}
 
@@ -607,8 +607,8 @@ Definition at line 74 of file metacode.cpp.
 
 The Heavy Lifting Constructor. 
 
-This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. \par
- This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of Metacode. Depending on the User input subsystem, this could be all RawEvents, or even just some RawEvents. 
+\hyperlink{structThis}{This} contructor accepts a RawEvent from the input event subsystem internal to the engine. \hyperlink{structThis}{This} converts all the required information from the lower level format and store what is needed in the event that is created. \hyperlink{structThis}{This} is used heavily by engine internals. \par
+ \hyperlink{structThis}{This} constructor expects to receive a type of RawEvent that can be converted into exactly one kind of Metacode. Depending on the User input subsystem, this could be all RawEvents, or even just some RawEvents. 
 \begin{DoxyExceptions}{Exceptions}
 \item[{\em RawEvent which creates Multiple Metacodes inserted into Metacode}]-\/ Thrown when passed a certain (system dependant) incorrect type of RawEvent. \item[{\em Unknown User Input Inserted into Metacode}]-\/ Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent. \end{DoxyExceptions}
 \begin{DoxyWarning}{Warning}
@@ -628,10 +628,10 @@ Definition at line 79 of file metacode.cpp.
 \label{da/dc9/classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}
 
 
-This Returns the Inputcode. 
+\hyperlink{structThis}{This} Returns the Inputcode. 
 
-This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. This value can be set with \hyperlink{classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}{SetCode} . \begin{DoxyReturn}{Returns}
-This returns the input code for this \hyperlink{classphys_1_1MetaCode}{MetaCode} 
+\hyperlink{structThis}{This} Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred. \hyperlink{structThis}{This} value can be set with \hyperlink{classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}{SetCode} . \begin{DoxyReturn}{Returns}
+\hyperlink{structThis}{This} returns the input code for this \hyperlink{classphys_1_1MetaCode}{MetaCode} 
 \end{DoxyReturn}
 
 
@@ -644,10 +644,10 @@ Definition at line 153 of file metacode.cpp.
 \label{da/dc9/classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}
 
 
-This Returns the Input ID. 
+\hyperlink{structThis}{This} Returns the Input ID. 
 
-The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed. On systems that support multiple keyboards this will even differentiate between those. This value can be set with \hyperlink{classphys_1_1MetaCode_a0ef70c11c06f0e3015121985cb1b6153}{SetID} . \begin{DoxyReturn}{Returns}
-This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis, JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this can identify from unique input sources and InputCode. 
+The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed. On systems that support multiple keyboards this will even differentiate between those. \hyperlink{structThis}{This} value can be set with \hyperlink{classphys_1_1MetaCode_a0ef70c11c06f0e3015121985cb1b6153}{SetID} . \begin{DoxyReturn}{Returns}
+\hyperlink{structThis}{This} returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis, JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this can identify from unique input sources and InputCode. 
 \end{DoxyReturn}
 
 
@@ -660,10 +660,10 @@ Definition at line 158 of file metacode.cpp.
 \label{da/dc9/classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}
 
 
-This Returns the MetaValue. 
+\hyperlink{structThis}{This} Returns the MetaValue. 
 
-The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value. This value can be set with \hyperlink{classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}{SetMetaValue} . \begin{DoxyReturn}{Returns}
-This returns the input code for this \hyperlink{classphys_1_1MetaCode}{MetaCode}. For keyboard Buttons this will be 0 if not pressed, 1 if pressed, and -\/1 if it was pressed and just released. This could return any number inside a range (depending on hardware and configuration) to represent how tilted a joystick or how much a mouse moved. 
+The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value. \hyperlink{structThis}{This} value can be set with \hyperlink{classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}{SetMetaValue} . \begin{DoxyReturn}{Returns}
+\hyperlink{structThis}{This} returns the input code for this \hyperlink{classphys_1_1MetaCode}{MetaCode}. For keyboard Buttons this will be 0 if not pressed, 1 if pressed, and -\/1 if it was pressed and just released. \hyperlink{structThis}{This} could return any number inside a range (depending on hardware and configuration) to represent how tilted a joystick or how much a mouse moved. 
 \end{DoxyReturn}
 
 
@@ -679,7 +679,7 @@ Definition at line 148 of file metacode.cpp.
 Does this \hyperlink{classphys_1_1MetaCode}{MetaCode} Represent a state of a keyboard key. 
 
 Returns true if this \hyperlink{classphys_1_1MetaCode}{MetaCode} pertains to a keyboard key being up, polled, down, pressed, or lifted. \begin{DoxyReturn}{Returns}
-This returns a bool which will be true if this is keyboard event. 
+\hyperlink{structThis}{This} returns a bool which will be true if this is keyboard event. 
 \end{DoxyReturn}
 
 
@@ -694,7 +694,7 @@ Definition at line 178 of file metacode.cpp.
 
 Compares two MetaCodes for equality. 
 
-This returns true if the MetaValue and Code are the Same, this ignores ID. 
+\hyperlink{structThis}{This} returns true if the MetaValue and Code are the Same, this ignores ID. 
 
 Definition at line 187 of file metacode.cpp.
 
@@ -705,9 +705,9 @@ Definition at line 187 of file metacode.cpp.
 \label{da/dc9/classphys_1_1MetaCode_ab6759fbee9d039cf248bf76dde0f33dd}
 
 
-This Sets The InputCode. 
+\hyperlink{structThis}{This} Sets The InputCode. 
 
-See \hyperlink{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{GetCode} to see exactly what the Code is. This will Set the code stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{GetCode} . 
+See \hyperlink{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{GetCode} to see exactly what the Code is. \hyperlink{structThis}{This} will Set the code stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. \hyperlink{structThis}{This} value can be retrieved with \hyperlink{classphys_1_1MetaCode_a5835a05391cbb5a3dc83534a7bcf87d3}{GetCode} . 
 \begin{DoxyParams}{Parameters}
 \item[{\em Code\_\-}]The value you want the stored code to become. \end{DoxyParams}
 
@@ -721,9 +721,9 @@ Definition at line 168 of file metacode.cpp.
 \label{da/dc9/classphys_1_1MetaCode_a0ef70c11c06f0e3015121985cb1b6153}
 
 
-This Sets The input ID. 
+\hyperlink{structThis}{This} Sets The input ID. 
 
-See \hyperlink{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{GetID} to see exactly what the input ID is. This will set the ID stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{GetID} . 
+See \hyperlink{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{GetID} to see exactly what the input ID is. \hyperlink{structThis}{This} will set the ID stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. \hyperlink{structThis}{This} value can be retrieved with \hyperlink{classphys_1_1MetaCode_a70389ebd99493248fe93c598e2fe06c9}{GetID} . 
 \begin{DoxyParams}{Parameters}
 \item[{\em ID\_\-}]The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. \end{DoxyParams}
 
@@ -737,9 +737,9 @@ Definition at line 173 of file metacode.cpp.
 \label{da/dc9/classphys_1_1MetaCode_a31a6390626b08c1bbf08e3f68d2ea764}
 
 
-This Sets The MetaValue. 
+\hyperlink{structThis}{This} Sets The MetaValue. 
 
-See \hyperlink{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{GetMetaValue} to see exactly what the MetaValue is. This will set the MetaValue stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. This value can be retrieved with \hyperlink{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{GetMetaValue} . 
+See \hyperlink{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{GetMetaValue} to see exactly what the MetaValue is. \hyperlink{structThis}{This} will set the MetaValue stored in this \hyperlink{classphys_1_1MetaCode}{MetaCode}. \hyperlink{structThis}{This} value can be retrieved with \hyperlink{classphys_1_1MetaCode_ad8e7e4e7c6cdc6a05b8522910ce90cd4}{GetMetaValue} . 
 \begin{DoxyParams}{Parameters}
 \item[{\em MetaValue\_\-}]Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to. \end{DoxyParams}
 

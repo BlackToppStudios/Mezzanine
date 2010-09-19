@@ -4,7 +4,7 @@
 }
 
 
-This class is used by the actor class to sync between the physics world and the graphical world.  
+\hyperlink{structThis}{This} class is used by the actor class to sync between the physics world and the graphical world.  
 
 
 
@@ -30,25 +30,17 @@ virtual void \hyperlink{classphys_1_1internal_1_1PhysMotionState_a8daeae588d49f0
 \begin{DoxyCompactList}\small\item\em Sets the initial position. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1internal_1_1PhysMotionState_a1fe29e3e661cdbbfb846fbd0ac91ec37}{setWorldTransform} (const btTransform \&worldTrans)
 \begin{DoxyCompactList}\small\item\em Updates the position and orientation. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Friends}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1internal_1_1PhysMotionState_ac09063d4b0192680ba3aa0bd4003a274}{
-class {\bfseries ActorBase}}
-\label{dc/df8/classphys_1_1internal_1_1PhysMotionState_ac09063d4b0192680ba3aa0bd4003a274}
-
-\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-This class is used by the actor class to sync between the physics world and the graphical world. \begin{DoxyInternal}{For internal use only.}
-This class provides the link for position and orientation between the two worlds in the engine. This is called on every step(frame) of the world to sync the actor if it has moved. \begin{DoxyAttention}{Attention}
-This filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a source file and should not shipped with the DLL whe the SDK is released. This is used for engine internals that need to be used by multiple classes. 
+\hyperlink{structThis}{This} class is used by the actor class to sync between the physics world and the graphical world. \begin{DoxyInternal}{For internal use only.}
+\hyperlink{structThis}{This} class provides the link for position and orientation between the two worlds in the engine. \hyperlink{structThis}{This} is called on every step(frame) of the world to sync the actor if it has moved. \begin{DoxyAttention}{Attention}
+\hyperlink{structThis}{This} filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a source file and should not shipped with the DLL when the SDK is released. \hyperlink{structThis}{This} is used for engine internals that need to be used by multiple classes. 
 \end{DoxyAttention}
 \end{DoxyInternal}
 
 
-Definition at line 60 of file internalmotionstate.h.cpp.
+Definition at line 61 of file internalmotionstate.h.cpp.
 
 
 
@@ -109,7 +101,7 @@ Definition at line 60 of file internalmotionstate.cpp.
 
 Sets the initial position. 
 
-This function is called on by the physics world upon adding the actor to the world. This function uses the previous set vector3 that was set with SetInitPosition(). \par
+\hyperlink{structThis}{This} function is called on by the physics world upon adding the actor to the world. \hyperlink{structThis}{This} function uses the previous set vector3 that was set with SetInitPosition(). \par
  Default position is (0,0,0). 
 \begin{DoxyParams}{Parameters}
 \item[{\em worldTrans}]The location and orientation data. \end{DoxyParams}
@@ -142,7 +134,7 @@ Definition at line 68 of file internalmotionstate.cpp.
 
 Sets the initial orientation. 
 
-Sets the orientation the actor will have when it is added to the world. This function is called on by the \hyperlink{classphys_1_1ActorBase}{ActorBase} function SetInitOrientation(). 
+Sets the orientation the actor will have when it is added to the world. \hyperlink{structThis}{This} function is called on by the \hyperlink{classphys_1_1ActorBase}{ActorBase} function SetInitOrientation(). 
 \begin{DoxyParams}{Parameters}
 \item[{\em orientation}]The vector3 representing the orientation to be used. \end{DoxyParams}
 
@@ -158,7 +150,7 @@ Definition at line 78 of file internalmotionstate.cpp.
 
 Sets the initial position. 
 
-Sets the position the actor will be placed in when it is added to the world. This function is called on by the \hyperlink{classphys_1_1ActorBase}{ActorBase} function SetInitPosition(). 
+Sets the position the actor will be placed in when it is added to the world. \hyperlink{structThis}{This} function is called on by the \hyperlink{classphys_1_1ActorBase}{ActorBase} function SetInitPosition(). 
 \begin{DoxyParams}{Parameters}
 \item[{\em position}]The vector3 representing the location to be used. \end{DoxyParams}
 
@@ -174,7 +166,7 @@ Definition at line 73 of file internalmotionstate.cpp.
 
 Updates the position and orientation. 
 
-This function is called each step(frame) by the physics world to sync the physics and graphical worlds. 
+\hyperlink{structThis}{This} function is called each step(frame) by the physics world to sync the physics and graphical worlds. 
 \begin{DoxyParams}{Parameters}
 \item[{\em worldTrans}]The location and orientation data. \end{DoxyParams}
 
