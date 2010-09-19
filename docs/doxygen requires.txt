@@ -1,0 +1,2 @@
+texlive-font-utils
+doxygen

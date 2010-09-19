@@ -1,5 +1,3 @@
-Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
-/home/dev/physgame/physgameengine/src/worldgetset.h:47: Warning: the name `WorldGetSet.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/dev/physgame/physgameengine/src/constraint.h:277: Warning: Compound phys::Hinge2Constraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:210: Warning: Compound phys::Generic6DofSpringConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:390: Warning: Compound phys::UniversalConstraint is not documented.
@@ -10,51 +8,19 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/dev/physgame/physgameengine/src/constraint.h:236: Warning: Compound phys::HingeConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:164: Warning: Compound phys::Generic6DofConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:295: Warning: Compound phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/actorrigid.h:113: Warning: Found unknown command `\default'
-/home/dev/physgame/physgameengine/src/actorterrain.h:82: Warning: Found unknown command `\detailed'
-/home/dev/physgame/physgameengine/src/world.cpp:357: Warning: Found unknown command `\nHere'
 /home/dev/physgame/physgameengine/src/actorragdoll.h:49: Warning: Member BodyParts (typedef) of namespace phys is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/actorragdoll.h:63: Warning: Member ActorRagDoll(String name, String file, String group, World *_World) (function) of class phys::ActorRagDoll is not documented.
 /home/dev/physgame/physgameengine/src/actorragdoll.h:61: Warning: Member Limbs (variable) of class phys::ActorRagDoll is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-/home/dev/physgame/physgameengine/src/actorrigid.h:113: Warning: Found unknown command `\default'
 /home/dev/physgame/physgameengine/src/actorrigid.h:78: Warning: Member PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent) (function) of class phys::ActorRigid is not documented.
-/home/dev/physgame/physgameengine/src/actorrigid.h:113: Warning: Found unknown command `\default'
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/actorsoft.h:133: Warning: Member ActorSoft(Real mass, String name, String file, String group, World *_World) (function) of class phys::ActorSoft is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-/home/dev/physgame/physgameengine/src/actorterrain.h:82: Warning: Found unknown command `\detailed'
 /home/dev/physgame/physgameengine/src/actorterrain.h:60: Warning: Member CreateCollisionTerrain() (function) of class phys::ActorTerrain is not documented.
 /home/dev/physgame/physgameengine/src/actorterrain.h:59: Warning: Member RigidBody (variable) of class phys::ActorTerrain is not documented.
 /home/dev/physgame/physgameengine/src/actorterrain.h:62: Warning: argument 'Initposition' of command @param is not found in the argument list of phys::ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group, World *_World)
 /home/dev/physgame/physgameengine/src/actorterrain.h:62: Warning: The following parameters of phys::ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group, World *_World) are not documented:
   parameter 'InitPosition'
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/cameramanager.h:82: Warning: argument 'SManager' of command @param is not found in the argument list of phys::CameraManager::CameraManager(World *world)
 /home/dev/physgame/physgameengine/src/cameramanager.h:82: Warning: The following parameters of phys::CameraManager::CameraManager(World *world) are not documented:
   parameter 'world'
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:129: Warning: Member ConeTwistConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 Vectorb, Quaternion QuaternionA, Quaternion QuaternionB) (function) of class phys::ConeTwistConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:130: Warning: Member ConeTwistConstraint(ActorRigid *ActorA, Vector3 VectorA, Quaternion QuaternionA) (function) of class phys::ConeTwistConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:138: Warning: Member SetAngularOnly(bool AngularOnly) (function) of class phys::ConeTwistConstraint is not documented.
@@ -68,8 +34,6 @@ Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:146: Warning: Member SetMotorTargetInConstraintSpace(Quaternion Quat) (function) of class phys::ConeTwistConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:147: Warning: Member EnableMotor(bool Enable) (function) of class phys::ConeTwistConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:148: Warning: Member IsPassedSwingLimit() (function) of class phys::ConeTwistConstraint is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:177: Warning: Member Generic6DofConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::Generic6DofConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:178: Warning: Member Generic6DofConstraint(ActorRigid *ActorB, Vector3 Vectorb, Quaternion QuaternionB, bool UseLinearReferenceB) (function) of class phys::Generic6DofConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:186: Warning: Member SetOffsetALocation(Vector3 Location) (function) of class phys::Generic6DofConstraint is not documented.
@@ -81,15 +45,11 @@ Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:192: Warning: Member SetUseFrameOffset(bool UseOffset) (function) of class phys::Generic6DofConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:193: Warning: Member SetLimit(int Axis, Real Low, Real High) (function) of class phys::Generic6DofConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:194: Warning: Member CalculateTransforms() (function) of class phys::Generic6DofConstraint is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:221: Warning: Member Generic6DofSpringConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::Generic6DofSpringConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:229: Warning: Member SetStiffness(int Index, Real Stiffness) (function) of class phys::Generic6DofSpringConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:230: Warning: Member SetDamping(int Index, Real Damping) (function) of class phys::Generic6DofSpringConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:231: Warning: Member SetEquilibriumPoint(int Index) (function) of class phys::Generic6DofSpringConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:232: Warning: Member EnableSpring(int Index, bool Enable) (function) of class phys::Generic6DofSpringConstraint is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:241: Warning: Member HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 PivotInA, Vector3 PivotInB, Vector3 AxisInA, Vector3 AxisInB, bool UseReferenceA) (function) of class phys::HingeConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:242: Warning: Member HingeConstraint(ActorRigid *ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA) (function) of class phys::HingeConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:243: Warning: Member HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA=false) (function) of class phys::HingeConstraint is not documented.
@@ -104,13 +64,9 @@ Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:259: Warning: Member SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0) (function) of class phys::HingeConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:260: Warning: Member SetAxis(Vector3 AxisInA) (function) of class phys::HingeConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:261: Warning: Member SetUseFrameOffset(bool FrameOffset) (function) of class phys::HingeConstraint is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:282: Warning: Member Hinge2Constraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) (function) of class phys::Hinge2Constraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:290: Warning: Member SetUpperLimit(Real Ang1Max) (function) of class phys::Hinge2Constraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:291: Warning: Member SetLowerLimit(Real Ang1Min) (function) of class phys::Hinge2Constraint is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:300: Warning: Member Point2PointConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 PivotA, Vector3 PivotB) (function) of class phys::Point2PointConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:301: Warning: Member Point2PointConstraint(ActorRigid *ActorA, Vector3 PivotA) (function) of class phys::Point2PointConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:309: Warning: Member SetPivotA(Vector3 PivotA) (function) of class phys::Point2PointConstraint is not documented.
@@ -119,8 +75,6 @@ Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:312: Warning: Member GetPivotInB() (function) of class phys::Point2PointConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:313: Warning: Member SetImpulseClamping(Real Clamping) (function) of class phys::Point2PointConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:314: Warning: Member SetTAU(Real TAU) (function) of class phys::Point2PointConstraint is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:335: Warning: Member SliderConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:336: Warning: Member SliderConstraint(ActorRigid *ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:344: Warning: Member SetFrameOffsetALocation(Vector3 Location) (function) of class phys::SliderConstraint is not documented.
@@ -154,38 +108,14 @@ Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:372: Warning: Member SetSoftnessOrthoAng(Real SoftnessOrthoAng) (function) of class phys::SliderConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:373: Warning: Member SetRestitutionOrthoAng(Real RestitutionOrthoAng) (function) of class phys::SliderConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:374: Warning: Member SetDampingOrthoAng(Real DampingOrthoAng) (function) of class phys::SliderConstraint is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/constraint.h:395: Warning: Member UniversalConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) (function) of class phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:403: Warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:404: Warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class phys::UniversalConstraint is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/sound.h:65: Warning: Member SoundSource (variable) of class phys::Sound is not documented.
 /home/dev/physgame/physgameengine/src/sound.h:66: Warning: Member Manager (variable) of class phys::Sound is not documented.
 /home/dev/physgame/physgameengine/src/sound.h:71: Warning: The following parameters of phys::Sound::Sound(cAudio::IAudioSource *Source, cAudio::IAudioManager *manager) are not documented:
   parameter 'manager'
 /home/dev/physgame/physgameengine/src/soundlistener.h:62: Warning: Member AudioListener (variable) of class phys::SoundListener is not documented.
-sh: epstopdf: not found
-Error: Problems running epstopdf. Check your TeX installation!
 /home/dev/physgame/physgameengine/src/soundmanager.h:71: Warning: Member AudioManager (variable) of class phys::SoundManager is not documented.
 /home/dev/physgame/physgameengine/src/soundmanager.h:72: Warning: Member SoundSets (variable) of class phys::SoundManager is not documented.
 /home/dev/physgame/physgameengine/src/soundmanager.h:73: Warning: Member AudioListener (variable) of class phys::SoundManager is not documented.

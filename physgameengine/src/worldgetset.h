@@ -45,7 +45,7 @@ namespace phys
     class World;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class WorldGetSet
-    /// @headerfile WorldGetSet.h
+    /// @headerfile worldgetset.h
     /// @brief A simple set of function to manage a pointer to the gameworld
     /// @details This creates a common interface for all objects that are expected
     /// to interact with the world.

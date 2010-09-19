@@ -83,5 +83,6 @@
 #include "world.h"
 #include "worldgetset.h"
 #include "worldquerytool.h"
+#include "xmldocument.h"
 
 #endif

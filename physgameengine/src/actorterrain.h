@@ -79,7 +79,7 @@ namespace phys
             void CreateShapeFromMeshStatic();
 
             /// @brief Compatability function.
-            /// @detailed This function does nothing, as this class isn't dynamic.  This is simply here to
+            /// @details This function does nothing, as this class isn't dynamic.  This is simply here to
             /// allow the engine to compile.
             void CreateShapeFromMeshDynamic(short unsigned int accuracy);
 

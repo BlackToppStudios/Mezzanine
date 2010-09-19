@@ -352,7 +352,7 @@ namespace phys
          @section mainloopoverview1 Main loop Overview
          The Main loop runs in World.MainLoop() which is called by default from @ref World.GameInit(). By default this Method also starts the render, the physics andthe input systems. It does very
          little on it's own. The main loop then calls the PreMainLoopItems(), DoMainLoopItems and PreMainLoopItems(), for each manager in the order of their priority from Lowest to Highest.
-         \nHere is a listing of  default priorities for each of the managers the a world intantiates by default:
+         \n Here is a listing of  default priorities for each of the managers the a world intantiates by default:
             -50	User Input and events
             -40	Actors
             -30	Physics
