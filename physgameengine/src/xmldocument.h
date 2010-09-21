@@ -41,6 +41,8 @@
 #ifndef _xmldocument_h
 #define _xmldocument_h
 
+#include <ostream>
+
 namespace phys
 {
     namespace xml
@@ -61,7 +63,8 @@ namespace phys
 /// @details This converts the data of an XML Document into a stream Ideal for sending to a log or cout
 /// @param stream This is the stream we send our data to.
 /// @return This returns an std::ostream which now contains our data.
-std::ostream& operator << (std::ostream& stream, const phys::xml::document& x);
+// Commented out due to compiler error, despite above include the compiler doesn't seem to know what an ostream is.
+//std::ostream& operator<< (std::ostream& stream, const phys::xml::document& x);
 
 
 #endif
