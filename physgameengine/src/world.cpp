@@ -86,12 +86,14 @@ namespace phys
         Vector3 Ubounds(1000.0,1000.0,1000.0);
         std::vector <ManagerBase*> temp;
 
-        this->Construct(Lbounds, Ubounds, 10, "Physgame.log", temp);
+        this->Construct(Lbounds, Ubounds, 10, "SceneManager", SceneManager::Generic, "Physgame.log", temp);
     }
 
 
     World::World(   const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
+                    std::string SceneManagerName,
+                    SceneManager::SceneManagerType SceneType,
                     const unsigned short int  &MaxPhysicsProxies_,
                     std::string LogFileName)
     {
@@ -99,6 +101,8 @@ namespace phys
         this->Construct(GeographyLowerBounds_,
                         GeographyUpperbounds_,
                         MaxPhysicsProxies_,
+                        SceneManagerName,
+                        SceneType,
                         LogFileName,
                         temp );
     }
@@ -106,6 +110,8 @@ namespace phys
     World::World(  const Vector3 &GeographyLowerBounds_,
             const Vector3 &GeographyUpperbounds_,
             const unsigned short int &MaxPhysicsProxies_,
+            std::string SceneManagerName,
+            SceneManager::SceneManagerType SceneType,
             const std::string &LogFileName,
             const std::vector <ManagerBase*> &ManagerToBeAdded)
     {
@@ -117,6 +123,8 @@ namespace phys
     void World::Construct(  const Vector3 &GeographyLowerBounds_,
                                 const Vector3 &GeographyUpperbounds_,
                                 const unsigned short int &MaxPhysicsProxies_,
+                                std::string SceneManagerName,
+                                SceneManager::SceneManagerType SceneType,
                                 std::string LogFileName,
                                 std::vector <ManagerBase*> ManagerToBeAdded)
     {
@@ -144,6 +152,8 @@ namespace phys
             { this->AddManager(new EventManager(this)); }
         if(this->GetPhysicsManager()==0)
             { this->AddManager(new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_)); }
+        if(this->GetSceneManager()==0)
+            { this->AddManager(new SceneManager(SceneManagerName, SceneType, this)); }
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -344,7 +354,7 @@ namespace phys
     void World::MainLoop()
     {
         /// @todo create a lighting manager and put this in there
-        this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
+        //this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 
         /*! @page mainloop1 Main Loop Structure and Flow
          The MainLoop is heart of most video games and simulations.
@@ -470,7 +480,7 @@ namespace phys
         #endif
 
         //prepare a scenemanager
-        this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
+        //this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
         #ifdef PHYSDEBUG
         this->Log("Created the Ogre Scenemanager");
         #endif
@@ -478,7 +488,7 @@ namespace phys
         //setup a default camera unless has been setup yet
         if(this->GetCameraManager()==0)
         {
-            this->AddManager(new CameraManager (this));
+            this->AddManager(new CameraManager (this->GetSceneManager()->GetName(),this));
             this->GetCameraManager()->CreateCamera();
         }
         this->OgreCamera = this->GetCameraManager()->DefaultCamera;
@@ -699,6 +709,11 @@ namespace phys
     PhysicsManager* World::GetPhysicsManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));
+    }
+
+    SceneManager* World::GetSceneManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<SceneManager*> (this->GetManager(ManagerBase::SceneManager, WhichOne));
     }
 
     SoundManager* World::GetSoundManager(const short unsigned int &WhichOne)

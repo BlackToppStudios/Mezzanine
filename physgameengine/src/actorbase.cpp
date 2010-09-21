@@ -53,8 +53,8 @@ namespace phys{
     ActorBase::ActorBase (String name, String file, String group, World* _World)
     {
         this->GameWorld = _World;
-        this->node = this->GameWorld->OgreSceneManager->createSceneNode();
-        this->GameWorld->OgreSceneManager->getRootSceneNode()->addChild(this->node);
+        this->node = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createSceneNode();
+        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->addChild(this->node);
         //this->MotionState = new internal::PhysMotionState(this->node);
         this->Shape = new btEmptyShape();
         this->CreateEntity(name, file, group);
@@ -302,12 +302,12 @@ namespace phys{
 
     void ActorBase::CreateEntity (String name, String file, String group)
     {
-        this->entity = this->GameWorld->OgreSceneManager->createEntity(name, file, group);
+        this->entity = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
     }
 
     void ActorBase::CreateSceneNode ()
     {
-        this->node = this->GameWorld->OgreSceneManager->createSceneNode();
+        this->node = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createSceneNode();
     }
 
     void ActorBase::CreateMotionState(Ogre::SceneNode* Node)

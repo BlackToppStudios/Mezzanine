@@ -51,9 +51,9 @@
 
 namespace phys
 {
-    CameraManager::CameraManager (World* world) : ManagerBase(world)
+    CameraManager::CameraManager (const String& SceneManagerName, World* world) : ManagerBase(world)
     {
-        this->SceneManager = world->OgreSceneManager;
+        this->SceneManager = Ogre::Root::getSingleton().getSceneManager(SceneManagerName);
         this->DefaultCamera = NULL;
         this->ONodes=0;
         this->SNodes=0;
@@ -173,13 +173,25 @@ namespace phys
 
     void CameraManager::ClearNodes ()
     {
-        this->Nodes.erase(Nodes.begin(), Nodes.end());
+        Ogre::SceneNode* Node = NULL;
+        for( std::vector< Ogre::SceneNode* >::iterator it = Nodes.begin() ; it != Nodes.end() ; it++ )
+        {
+            Node = (*it);
+            SceneManager->destroySceneNode(Node);
+            Nodes.erase(it);
+        }
         return;
     }
 
     void CameraManager::ClearCameras ()
     {
-        this->Cameras.erase(Cameras.begin(), Cameras.end());
+        Ogre::Camera* Camera = NULL;
+        for( std::vector< Ogre::Camera* >::iterator it = Cameras.begin() ; it != Cameras.end() ; it++ )
+        {
+            Camera = (*it);
+            SceneManager->destroyCamera(Camera);
+            Cameras.erase(it);
+        }
         return;
     }
 

@@ -187,13 +187,13 @@ namespace phys
         { return ManagerBase::SoundManager; }
 
     std::stringstream* SoundManager::GetLogs()
-        {
-            return AudioManager->GetLogs();
+    {
+        return 0; //AudioManager->GetLogs();
     }
 
     void SoundManager::ClearLogs()
     {
-        AudioManager->ClearLogs();
+        //AudioManager->ClearLogs();
     }
 }
 

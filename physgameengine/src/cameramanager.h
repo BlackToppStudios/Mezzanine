@@ -64,7 +64,8 @@ namespace phys
     /// @brief This is the manager class for all camera functions.
     /// @details This class contains all the functionality of the use and manipulation of the camera. @n
     /// All functions that manipulate the camera will default to the default camera, so if you only use
-    /// one camera you should never have to name the camera you want to use.
+    /// one camera you should never have to name the camera you want to use. @n
+    /// This class should only be created after the SceneManager has been created.
     ///////////////////////////////////////////////////////////////////////////////
     class CameraManager : public ManagerBase {
         private:
@@ -82,8 +83,9 @@ namespace phys
             /// @brief Class Constructor.
             /// @details This is the class constructor.  This is automatcally called in the World.CreateRenderWindow()
             /// function and should never need to be called manually.
+            /// @param SceneManagerName Name of the created SceneManager for this camera manager to use.
             /// @param SManager A pointer to the Scenemanager where you will be creating/manipulating all the cameras.
-            CameraManager(World* world);
+            CameraManager(const String& SceneManagerName, World* world);
             /// @brief Class Destructor.
             /// @details The calss Destuctor
             virtual ~CameraManager();

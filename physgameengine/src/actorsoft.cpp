@@ -76,7 +76,7 @@ namespace phys{
         GetOtherMeshInfo(CurMesh);
 
         //delete entity;
-        GameWorld->OgreSceneManager->destroyEntity(entity);
+        GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(entity);
         entity = NULL;
         this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh (this->GameWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         CollisionObject=physsoftbody;

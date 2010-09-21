@@ -60,7 +60,7 @@ namespace phys
         this->MouseYCache=0;
 
         // create the ray scene query object
-        this->RayQuery = this->GameWorld->OgreSceneManager->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+        this->RayQuery = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
         if (NULL == this->RayQuery)
             {this->GameWorld->LogAndThrow("Failed to create RaySceneQuery instance in WorldQueryTool"); }
         this->RayQuery->setSortByDistance(true);

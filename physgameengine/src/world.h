@@ -99,6 +99,7 @@
 #include "soundmanager.h"
 #include "graphicsmanager.h"
 #include "resourcemanager.h"
+#include "scenemanager.h"
 
 #include <string>
 #include <sstream>
@@ -167,11 +168,15 @@ namespace phys
             /// @param GeographyLowerBounds This is the lower boundary of the phyiscs estimation.
             /// @param GeographyUpperbounds This is the upper boundary of the phyiscs estimation.
             /// @param MaxPhysicsProxies This is an estimation of the limit of bodies in the physics world.
+            /// @param SceneManagerName This is the name to be given to the created Scene Manager.
+            /// @param SceneType This is the type of Scene Manager to be created.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
             void Construct( const Vector3 &GeographyLowerBounds,
                             const Vector3 &GeographyUpperbounds,
                             const unsigned short int &MaxPhysicsProxies,
+                            std::string SceneManagerName,
+                            SceneManager::SceneManagerType SceneType,
                             std::string LogFileName,
                             std::vector < ManagerBase* > ManagerToBeAdded);
 
@@ -218,7 +223,7 @@ namespace phys
 
             /// @internal
             /// @brief
-            Ogre::SceneManager* OgreSceneManager;
+            //Ogre::SceneManager* OgreSceneManager;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion methods
@@ -232,6 +237,8 @@ namespace phys
             /// @param LogFileName This is the place that log messages get sent to.
             World(  const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
+                    std::string SceneManagerName,
+                    SceneManager::SceneManagerType SceneType,
                     const unsigned short int &MaxPhysicsProxies_=1024,
                     std::string LogFileName="Physgame.log" );
 
@@ -248,6 +255,8 @@ namespace phys
             World(  const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
                     const unsigned short int &MaxPhysicsProxies_,
+                    std::string SceneManagerName,
+                    SceneManager::SceneManagerType SceneType,
                     const std::string &LogFileName,
                     const std::vector <ManagerBase*> &ManagerToBeAdded);
 
@@ -409,6 +418,11 @@ namespace phys
             /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.
             /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
             PhysicsManager* GetPhysicsManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the SceneManager from the manager list.
+            /// @param WhichOne If you have multiple SceneManagers this will choose which one to return.
+            /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
+            SceneManager* GetSceneManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the SoundManager from the manager list.
             /// @param WhichOne If you have multiple SoundManagers this will choose which one to return.

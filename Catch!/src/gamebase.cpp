@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 {
     try
     {
-        TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), 30);
+        TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), "SceneManager", SceneManager::Generic, 30);
     }catch( exception x){
         //could not created world
     }
