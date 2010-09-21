@@ -42,6 +42,7 @@
 
 #include "scenemanager.h"
 #include "light.h"
+#include "plane.h"
 #include <Ogre.h>
 
 namespace phys
@@ -80,6 +81,37 @@ namespace phys
 
     void SceneManager::DoMainLoopItems()
     {
+    }
+
+    void SceneManager::CreateSkyPlane(Plane& SkyPlane, String& Material, String& Group, Real Scale, Real Tiling, bool DrawFirst, Real Bow, int XSegments, int YSegments)
+    {
+        this->OgreManager->setSkyPlane(true, SkyPlane.GetOgrePlane(), Material, Scale, Tiling, DrawFirst, Bow, XSegments, YSegments, Group);
+    }
+
+    void SceneManager::DisableSkyPlane()
+    {
+        this->OgreManager->setSkyPlane(false, Ogre::Plane(), "");
+    }
+
+    void SceneManager::CreateSkyBox(String& Material, String& Group, Real Distance, bool DrawFirst, Quaternion Orientation)
+    {
+        this->OgreManager->setSkyBox(true, Material, Distance, DrawFirst, Orientation.GetOgreQuaternion(), Group);
+    }
+
+    void SceneManager::DisableSkyBox()
+    {
+        this->OgreManager->setSkyBox(false, "");
+    }
+
+    void SceneManager::CreateSkyDome(String& Material, String& Group, Real Distance, Real Curvature, Real Tiling, bool DrawFirst,
+                                    Quaternion Orientation, int XSegments, int YSegments)
+    {
+        this->OgreManager->setSkyDome(true, Material, Curvature, Tiling, Distance, DrawFirst, Orientation.GetOgreQuaternion(), XSegments, YSegments, -1, Group);
+    }
+
+    void SceneManager::DisableSkyDome()
+    {
+        this->OgreManager->setSkyDome(false, "");
     }
 
     void SceneManager::SetAmbientLight(Real Red, Real Green, Real Blue, Real Alpha)

@@ -52,7 +52,7 @@ namespace phys
         X=0;
         Y=0;
         Z=0;
-        W=0;
+        W=1;
     }
 
     Quaternion::Quaternion(const Real &x, const Real &y, const Real &z, const Real &w)
