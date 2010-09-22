@@ -37,39 +37,41 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _particleeffect_cpp
-#define _particleeffect_cpp
-
-#include "particleeffect.h"
-#include "scenemanager.h"
-
-#include <Ogre.h>
+#ifndef _attachable_h
+#define _attachable_h
 
 namespace phys
 {
-    ParticleEffect::ParticleEffect(const String& Name, const String& Template, SceneManager* manager)
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class Attachable
+    /// @headerfile attachable.h
+    /// @brief This is just a base class to be used by elements that are attachable to nodes.
+    /// @details This class is useless on it's own and should not be created manually.
+    ///////////////////////////////////////
+    class Attachable
     {
-        Manager = manager;
-        OgreParticle = Manager->GetGraphicsWorldPointer()->createParticleSystem(Name, Template);
-        SetElementType(Attachable::ParticleEffect);
-    }
-
-    ParticleEffect::ParticleEffect(Ogre::ParticleSystem* System, SceneManager* manager)
-    {
-        OgreParticle = System;
-        Manager = manager;
-        SetElementType(Attachable::ParticleEffect);
-    }
-
-    ParticleEffect::~ParticleEffect()
-    {
-        Manager->GetGraphicsWorldPointer()->destroyParticleSystem(OgreParticle);
-    }
-
-    String& ParticleEffect::GetName()
-    {
-        return OgreParticle->getName();
-    }
-}
+        public:
+            enum AttachableElement
+            {
+                Camera,
+                Light,
+                ParticleEffect
+            };
+        protected:
+            /// @brief Enum value representing the type of element this is.
+            Attachable::AttachableElement ElementType;
+            /// @brief Sets the type of element this class is.
+            /// @param Enum value representing the type of element to be set.
+            void SetElementType(Attachable::AttachableElement Type);
+        public:
+            /// @brief No initialization class constructor.
+            Attachable();
+            /// @brief Class destructor.
+            ~Attachable();
+            /// @brief Gets the type of element this is.
+            /// @return Returns an enum value indicating what type of element this is.
+            Attachable::AttachableElement GetElementType();
+    };
+}//phys
 
 #endif

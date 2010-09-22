@@ -37,39 +37,30 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _particleeffect_cpp
-#define _particleeffect_cpp
+#ifndef _attachable_cpp
+#define _attachable_cpp
 
-#include "particleeffect.h"
-#include "scenemanager.h"
-
-#include <Ogre.h>
+#include "attachable.h"
 
 namespace phys
 {
-    ParticleEffect::ParticleEffect(const String& Name, const String& Template, SceneManager* manager)
+    Attachable::Attachable()
     {
-        Manager = manager;
-        OgreParticle = Manager->GetGraphicsWorldPointer()->createParticleSystem(Name, Template);
-        SetElementType(Attachable::ParticleEffect);
     }
 
-    ParticleEffect::ParticleEffect(Ogre::ParticleSystem* System, SceneManager* manager)
+    Attachable::~Attachable()
     {
-        OgreParticle = System;
-        Manager = manager;
-        SetElementType(Attachable::ParticleEffect);
     }
 
-    ParticleEffect::~ParticleEffect()
+    void Attachable::SetElementType(Attachable::AttachableElement Type)
     {
-        Manager->GetGraphicsWorldPointer()->destroyParticleSystem(OgreParticle);
+        ElementType = Type;
     }
 
-    String& ParticleEffect::GetName()
+    Attachable::AttachableElement Attachable::GetElementType()
     {
-        return OgreParticle->getName();
+        return ElementType;
     }
-}
+}//phys
 
 #endif

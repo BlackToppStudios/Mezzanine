@@ -43,6 +43,7 @@
 #include "datatypes.h"
 #include "colourvalue.h"
 #include "vector3.h"
+#include "attachable.h"
 
 namespace Ogre
 {
@@ -64,7 +65,7 @@ namespace phys
     /// Spotlight - Used to simulate local light sources that emit light in one direction, such as a flashlight.
     /// Needs both a position and direction.  In addition needs values for falloff.
     ///////////////////////////////////////
-    class Light
+    class Light : public Attachable
     {
         public:
             enum LightType
@@ -74,6 +75,7 @@ namespace phys
                 Spotlight
             };
         protected:
+            friend class Node;
             /// @brief The ogre light this class gets it's functionality from.
             Ogre::Light* OgreLight;
             /// @brief Pointer to the manager that created this class.

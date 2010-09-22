@@ -41,6 +41,7 @@
 #define _node_h
 
 #include "datatypes.h"
+#include "attachable.h"
 
 namespace Ogre
 {
@@ -50,19 +51,24 @@ namespace Ogre
 namespace phys
 {
     class SceneManager;
+    class Camera;
+    class Light;
+    class ParticleEffect;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Node
     /// @headerfile node.h
     /// @brief This is a helper class which non-physicsl objects, such as lights, cameras, ribbon trails, and
     /// particle effects may be attached to for enhanced effects.
     /// @details This class simply contains a group of functions for easy manipulation of movement and orientation
-    /// as well as attaching objects to them.  This class should only be created through the scene manager. @n
+    /// as well as attaching elements to them.  This class should only be created through the scene manager. @n
     /// There are 4 types of nodes: @n
     /// Center - Works in conjunction with the orbit node and serves as it's center point for the orbit node to
     /// rotate around. @n
     /// Orbit - Counterpart to the Center node, this type does the orbiting. @n
     /// Stand - Stationary node that points in one direction, that is it. @n
-    /// Free - A node with no rules governing how it moves.
+    /// Free - A node with no rules governing how it moves. @n
+    /// Note:  There are no rules restricting the use of nodes anyway, this enum is here simply to help
+    /// indicate the intended use upon creation.
     ///////////////////////////////////////
     class Node
     {
@@ -81,6 +87,8 @@ namespace phys
             SceneManager* Manager;
             /// @brief Enum value storing the type of node this class is.
             Node::NodeType Type;
+            /// @brief Vector storing all attached cameras.
+            std::vector< Attachable* > Elements;
         public:
             /// @brief Standard initialization constructor.
             /// @param Name The name of this node.
@@ -96,6 +104,14 @@ namespace phys
             /// @brief Gets the name of this node.
             /// @return Returns a string containing the name given to this node.
             String& GetName();
+            /// @brief Attaches an attachable element to this Node.
+            /// @param Element The Element to be attached.
+            void AttachElement(Attachable* Element);
+            /// @brief Detaches an attachable element from this Node.
+            /// @param Element The Element to be detached.
+            void DetachElement(Attachable* Element);
+            /// @brief Detaches all attached cameras, lights, and particle effects.
+            void DetachAllElements();
     };//node
 }//phys
 

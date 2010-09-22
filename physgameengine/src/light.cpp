@@ -50,12 +50,14 @@ namespace phys
     {
         Manager = manager;
         OgreLight = Manager->GetGraphicsWorldPointer()->createLight(Name);
+        SetElementType(Attachable::Light);
     }
 
     Light::Light(Ogre::Light* light, SceneManager* manager)
     {
         OgreLight = light;
         Manager = manager;
+        SetElementType(Attachable::Light);
     }
 
     Light::~Light()

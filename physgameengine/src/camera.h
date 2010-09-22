@@ -45,6 +45,7 @@
 #include "quaternion.h"
 #include "ray.h"
 #include "cameramanager.h"
+#include "attachable.h"
 
 namespace Ogre
 {
@@ -60,7 +61,7 @@ namespace phys
     /// @details This class contains all the functionality needed to manipulate an
     /// individual camera that has been created.
     ///////////////////////////////////////////////////////////////////////////////
-    class Camera
+    class Camera : public Attachable
     {
         private:
             /// @internal
@@ -70,6 +71,7 @@ namespace phys
             void Construct(Ogre::Camera* Camera, CameraManager* Manager);
 
         protected:
+            friend class Node;
             /// @internal
             /// @brief This is the Camera used by the graphics Subsystem, that this class wraps
             Ogre::Camera* Cam;

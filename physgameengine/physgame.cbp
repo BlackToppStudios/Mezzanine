@@ -219,6 +219,8 @@
 		<Unit filename="src\actorterrain.h" />
 		<Unit filename="src\areaeffect.cpp" />
 		<Unit filename="src\areaeffect.h" />
+		<Unit filename="src\attachable.cpp" />
+		<Unit filename="src\attachable.h" />
 		<Unit filename="src\camera.cpp" />
 		<Unit filename="src\camera.h" />
 		<Unit filename="src\cameramanager.cpp" />

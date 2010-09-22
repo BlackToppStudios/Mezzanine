@@ -63,6 +63,7 @@ namespace phys
         this->CamManager = Manager;
         this->SetNearClipDistance(5.0f);
         this->SetFarClipDistance(5000.0f);
+        SetElementType(Attachable::Camera);
     }
 
     Camera::~Camera()

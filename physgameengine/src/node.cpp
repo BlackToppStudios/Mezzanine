@@ -52,12 +52,14 @@ namespace phys
     {
         Manager = manager;
         OgreNode = Manager->GetGraphicsWorldPointer()->createSceneNode(Name);
+        Type = Node::Free;
     }
 
     Node::Node(Ogre::SceneNode* snode, SceneManager* manager)
     {
         OgreNode = snode;
         Manager = manager;
+        Type = Node::Free;
     }
 
     Node::~Node()
@@ -68,6 +70,21 @@ namespace phys
     String& Node::GetName()
     {
         return OgreNode->getName();
+    }
+
+    void Node::AttachElement(Attachable* Element)
+    {
+
+    }
+
+    void Node::DetachElement(Attachable* Element)
+    {
+
+    }
+
+    void Node::DetachAllElements()
+    {
+
     }
 }
 
