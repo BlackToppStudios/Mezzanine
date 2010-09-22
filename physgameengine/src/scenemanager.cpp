@@ -43,6 +43,8 @@
 #include "scenemanager.h"
 #include "light.h"
 #include "plane.h"
+#include "particleeffect.h"
+#include "node.h"
 #include <Ogre.h>
 
 namespace phys
@@ -155,9 +157,55 @@ namespace phys
         }
     }
 
+    ParticleEffect* SceneManager::CreateParticleEffect(const String& Name, const String& Template)
+    {
+        ParticleEffect* Particle = new ParticleEffect(this->OgreManager->createParticleSystem(Name, Template), this);
+        Particles.push_back(Particle);
+        return Particle;
+    }
+
+    ParticleEffect* SceneManager::GetParticleEffect(const String& Name)
+    {
+        if(Particles.empty())
+            return 0;
+        for( std::vector<ParticleEffect*>::iterator it = Particles.begin() ; it != Particles.end() ; it++ )
+        {
+            if( Name == (*it)->GetName() )
+            {
+                return (*it);
+            }
+        }
+        return 0;
+    }
+
+    void SceneManager::DestroyParticleEffect(ParticleEffect* particleeffect)
+    {
+        if(Particles.empty())
+            return;
+        for( std::vector<ParticleEffect*>::iterator it = Particles.begin() ; it != Particles.end() ; it++ )
+        {
+            if( particleeffect == (*it) )
+            {
+                delete (*it);
+                Particles.erase(it);
+                return;
+            }
+        }
+    }
+
     String& SceneManager::GetName()
     {
         return this->OgreManager->getName();
+    }
+
+    Node* CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc)
+    {
+
+    }
+
+    Node* CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location)
+    {
+
     }
 
     ManagerBase::ManagerTypeName SceneManager::GetType() const

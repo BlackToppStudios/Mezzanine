@@ -43,6 +43,7 @@
 #include "datatypes.h"
 #include "managerbase.h"
 #include "quaternion.h"
+#include "vector3.h"
 
 namespace Ogre
 {
@@ -54,6 +55,8 @@ namespace phys
     class World;
     class Light;
     class Plane;
+    class ParticleEffect;
+    class Node;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class SceneManager
     /// @headerfile scenemanager.h
@@ -77,6 +80,8 @@ namespace phys
             Ogre::SceneManager* OgreManager;
             /// @brief Vector storing all the lights in use by this class.
             std::vector< Light* > Lights;
+            /// @brief Vector storing all the particle effects in use by this class.
+            std::vector< ParticleEffect* > Particles;
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -171,6 +176,32 @@ namespace phys
             /// @brief Deletes a light and removes all trace of it from the manager.
             /// @param light The light to be destroyed.
             void DestroyLight(Light* light);
+            /// @brief Creates a particle effect.
+            /// @details Particle effects are useful when trying to create visual effects for rain, smoke, explosions, fireworks, etc..
+            /// @param Name The name to be given to this particle effect.
+            /// @param Template The particle script (from a .particle file) to base this particle effect on.
+            /// @return Returns a pointer to the particle effect class which was created by this function.
+            ParticleEffect* CreateParticleEffect(const String& Name, const String& Template);
+            /// @brief Gets an already created particle effect by name.
+            /// @return Returns a pointer to the particle effect of the specified name.
+            ParticleEffect* GetParticleEffect(const String& Name);
+            /// @brief Deletes a particle effect and removes all trace of it from the manager.
+            /// @param particleeffect The particle effect to be destroyed.
+            void DestroyParticleEffect(ParticleEffect* particleeffect);
+            /// @brief Creates a node that will orbit around a point.
+            /// @details This will create 2 nodes in the scene, the first being the point in the world you want to orbit
+            /// the second node around.  The second being the node that does the orbiting.  You can then attach a light,
+            /// particle effect, or ribbon trail to the orbiting node .
+            /// @param Target The location of the first node which you will be orbiting around.
+            /// @param RelativeLoc The location of the node that will be in orbit relative to the first node.  Assume the
+            /// first node is at Origin (0,0,0).
+            Node* CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc);
+            /// @brief Creates a stationary node that will look at a location.
+            /// @details This will create a node that doesn't move, and will look at one location that you specify.  This
+            /// node can then have lights, particle effects, or ribbon trails attached to it.
+            /// @param LookAt The location you want the node to look at.  Automatically handles orientation.
+            /// @param Location The location of the node itself.
+            Node* CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location);
             /// @brief Gets the name of this manager.
             /// @return Returns the name of this manager.
             String& GetName();

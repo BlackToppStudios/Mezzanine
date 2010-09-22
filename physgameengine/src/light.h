@@ -80,15 +80,15 @@ namespace phys
             SceneManager* Manager;
         public:
             /// @brief Standard initialization constructor.
-            /// @param Name The name of this camera.
+            /// @param Name The name of this light.
             /// @param manager Pointer to the manager that this light is to be used in.
             Light(const String& Name, SceneManager* manager);
             /// @brief Internal Constructor
+            /// @details This constructor should not be called on manually.
             /// @param light The Ogre light this class is based on.
             /// @param manager Pointer to the manager that this light is to be used in.
             Light(Ogre::Light* light, SceneManager* manager);
             /// @brief Class destructor.
-            /// @details Calling this destructor will not destroy the Ogre light.
             ~Light();
             /// @brief Gets the name of this light.
             /// @return Returns a string containing the name given to this light.

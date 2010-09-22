@@ -48,7 +48,7 @@ namespace phys
 {
     Light::Light(const String& Name, SceneManager* manager)
     {
-        Manager = Manager;
+        Manager = manager;
         OgreLight = Manager->GetGraphicsWorldPointer()->createLight(Name);
     }
 

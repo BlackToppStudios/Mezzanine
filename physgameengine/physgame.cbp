@@ -270,6 +270,10 @@
 		<Unit filename="src\managerbase.h" />
 		<Unit filename="src\metacode.cpp" />
 		<Unit filename="src\metacode.h" />
+		<Unit filename="src\node.cpp" />
+		<Unit filename="src\node.h" />
+		<Unit filename="src\particleeffect.cpp" />
+		<Unit filename="src\particleeffect.h" />
 		<Unit filename="src\physgame.h" />
 		<Unit filename="src\physicsmanager.cpp" />
 		<Unit filename="src\physicsmanager.h" />
