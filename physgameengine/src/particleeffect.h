@@ -46,6 +46,7 @@
 namespace Ogre
 {
     class ParticleSystem;
+    class SceneNode;
 }
 
 namespace phys
@@ -55,7 +56,7 @@ namespace phys
     /// @class ParticleEffect
     /// @headerfile particleeffect.h
     /// @brief This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.
-    /// @details
+    /// @details Particle effects are loaded from particle scripts which are contained in particle files(*.particle).
     ///////////////////////////////////////
     class ParticleEffect : public Attachable
     {
@@ -63,6 +64,8 @@ namespace phys
             friend class Node;
             /// @brief Pointer to the ogre ParticleSystem from which this class gets it's functionality.
             Ogre::ParticleSystem* OgreParticle;
+            /// @brief Pointer to the ogre Scenenode to which this object is attached.
+            Ogre::SceneNode* OgreNode;
             /// @brief Pointer to the manager that created this class.
             SceneManager* Manager;
         public:
@@ -81,6 +84,10 @@ namespace phys
             /// @brief Gets the name of this particle effect.
             /// @return Returns a string containing the name given to this particle effect.
             String& GetName();
+            /// @brief Enables the particle effect, allowing it to render.
+            void EnableParticleEffect();
+            /// @brief Disables the particle effect, preventing it from rendering.
+            void DisableParticleEffect();
     };
 }
 

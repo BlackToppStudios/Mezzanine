@@ -63,6 +63,16 @@ namespace phys
         W=w;
     }
 
+    Quaternion::Quaternion(const btQuaternion& Theirs)
+    {
+        ExtractBulletQuaternion(Theirs);
+    }
+
+    Quaternion::Quaternion(const Ogre::Quaternion& Theirs)
+    {
+        ExtractOgreQuaternion(Theirs);
+    }
+
     btQuaternion Quaternion::GetBulletQuaternion(bool normalize)
     {
         btQuaternion Theirs;

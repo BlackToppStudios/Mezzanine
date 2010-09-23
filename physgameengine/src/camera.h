@@ -90,6 +90,9 @@ namespace phys
             /// @brief Class Destructor.
             /// @details The Class Destructor.
             ~Camera();
+            /// @brief Gets the camera's set name.
+            /// @return Returns a string containing the camera's name.
+            String& GetName();
             /// @brief Sets the location of a camera.
             /// @details Sets the location of the specified camera.
             /// @param Location The new location for the camera.

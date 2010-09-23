@@ -42,6 +42,8 @@
 
 #include "datatypes.h"
 #include "attachable.h"
+#include "vector3.h"
+#include "quaternion.h"
 
 namespace Ogre
 {
@@ -54,6 +56,7 @@ namespace phys
     class Camera;
     class Light;
     class ParticleEffect;
+    class ActorBase;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Node
     /// @headerfile node.h
@@ -112,6 +115,49 @@ namespace phys
             void DetachElement(Attachable* Element);
             /// @brief Detaches all attached cameras, lights, and particle effects.
             void DetachAllElements();
+            /// @brief Gets the number of elements attached to this node.
+            /// @return Returns the number of elements attached to this node.
+            Whole GetNumAttachedElements();
+            /// @brief Sets the position of this node.
+            /// @param Position A vector3 representing the location of this node.
+            void SetPosition(Vector3 Position);
+            /// @brief Gets the position of this node.
+            /// @return Returns a vector3 representing the location of this node.
+            Vector3 GetPosition();
+            /// @brief Sets the orientation of this node.
+            /// @param Position A Quaternion representing the orientation of this node.
+            void SetOrientation(Quaternion Orientation);
+            /// @brief Gets the orientation of this node.
+            /// @return Returns a quaternion representing the orientation of this node.
+            Quaternion GetOrientation();
+            /// @brief Automatically sets the orientation needed to point this node at a location in the world.
+            /// @param LookAt The location in world space to point at.
+            void LookAt(Vector3 LookAt);
+            /// @brief Makes this node autotrack another node.
+            /// @details This function will make this node update it's orientation every frame automatically so
+            /// that it's always facing the target node.
+            /// @param node The node to be tracked.
+            /// @param Offset A vector3 representing the offset from the nodes location to be tracked.
+            void SetAutoTracking(Node* node, Vector3 Offset=Vector3());
+            /// @brief Makes this node autotrack an actor.
+            /// @details This function will make this node update it's orientation every frame automatically so
+            /// that it's always facing the target actor.
+            /// @param Actor The actor to be tracked.
+            /// @param Offset A vector3 representing the offset from the actor's location to be tracked.
+            void SetAutoTracking(ActorBase* Actor, Vector3 Offset=Vector3());
+            /// @brief Disables any active autotracking for this node.
+            void DisableAutoTracking();
+            /// @brief Increments the orbit of this node if this is an orbiting node.
+            /// @details This function has no effect if this isn't an orbiting node.
+            /// @param Radians A real reprsenting the amount of orbit to increment in radians.
+            void IncrementOrbit(Real Radians);
+            /// @brief Sets the type of node that this is.
+            /// @details This is intended for internal/expert use only.  Manually calling this could disrupt normal function.
+            /// @param type The type of node this is to be set as.
+            void SetType(Node::NodeType type);
+            /// @brief Gets the type of node that this is.
+            /// @return Returns the type of node this is set as.
+            Node::NodeType GetType();
     };//node
 }//phys
 

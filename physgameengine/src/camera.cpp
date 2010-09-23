@@ -70,6 +70,11 @@ namespace phys
     {
     }
 
+    String& Camera::GetName()
+    {
+        return this->Cam->getName();
+    }
+
     void Camera::SetLocation(Vector3 Location)
     {
         this->Cam->setPosition(Location.GetOgreVector3());

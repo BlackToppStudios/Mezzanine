@@ -78,6 +78,8 @@ namespace phys
         protected:
             /// @brief Pointer for the Ogre Scenemanager, where this manager gets it's functionality.
             Ogre::SceneManager* OgreManager;
+            /// @brief Vector storing all the nodes in use by this class.
+            std::vector< Node* > Nodes;
             /// @brief Vector storing all the lights in use by this class.
             std::vector< Light* > Lights;
             /// @brief Vector storing all the particle effects in use by this class.
@@ -173,6 +175,12 @@ namespace phys
             /// @brief Gets an already created light by name.
             /// @return Returns a pointer to the light of the specified name.
             Light* GetLight(const String& Name);
+            /// @brief Gets an already created light by index.
+            /// @return Returns a pointer to the light at the specified index.
+            Light* GetLight(Whole Index);
+            /// @brief Gets the number of lights created and stored in this manager.
+            /// @return Returns the number of lights this manager is storing.
+            Whole GetNumLights();
             /// @brief Deletes a light and removes all trace of it from the manager.
             /// @param light The light to be destroyed.
             void DestroyLight(Light* light);
@@ -185,6 +193,12 @@ namespace phys
             /// @brief Gets an already created particle effect by name.
             /// @return Returns a pointer to the particle effect of the specified name.
             ParticleEffect* GetParticleEffect(const String& Name);
+            /// @brief Gets an already created particle effect by index.
+            /// @return Returns a pointer to the particle effect at the specified index.
+            ParticleEffect* GetParticleEffect(Whole Index);
+            /// @brief Gets the number of particle effects created and stored in this manager.
+            /// @return Returns the number of particle effects this manager is storing.
+            Whole GetNumParticleEffects();
             /// @brief Deletes a particle effect and removes all trace of it from the manager.
             /// @param particleeffect The particle effect to be destroyed.
             void DestroyParticleEffect(ParticleEffect* particleeffect);
@@ -195,13 +209,31 @@ namespace phys
             /// @param Target The location of the first node which you will be orbiting around.
             /// @param RelativeLoc The location of the node that will be in orbit relative to the first node.  Assume the
             /// first node is at Origin (0,0,0).
-            Node* CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc);
+            Node* CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack);
             /// @brief Creates a stationary node that will look at a location.
             /// @details This will create a node that doesn't move, and will look at one location that you specify.  This
             /// node can then have lights, particle effects, or ribbon trails attached to it.
             /// @param LookAt The location you want the node to look at.  Automatically handles orientation.
             /// @param Location The location of the node itself.
             Node* CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location);
+            /// @brief Gets an already created node by name.
+            /// @return Returns a pointer to the node of the specified name.
+            Node* GetNode(const String& Name);
+            /// @brief Gets an already created node by index.
+            /// @return Returns a pointer to the node at the specified index.
+            Node* GetNode(Whole Index);
+            /// @brief Gets the number of nodes created and stored in this manager.
+            /// @return Returns the number of nodes this manager is storing.
+            Whole GetNumNodes();
+            /// @brief Gets the number of stand type nodes created and stored in this manager.
+            /// @return Returns the number of stand type nodes this manager is storing.
+            Whole GetNumStandNodes();
+            /// @brief Gets the number of orbit type nodes created and stored in this manager.
+            /// @return Returns the number of orbit type nodes this manager is storing.
+            Whole GetNumOrbitNodes();
+            /// @brief Deletes a node and removes all trace of it from the manager.
+            /// @param node The node to be destroyed.
+            void DestroyNode(Node* node);
             /// @brief Gets the name of this manager.
             /// @return Returns the name of this manager.
             String& GetName();

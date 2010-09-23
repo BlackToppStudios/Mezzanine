@@ -85,8 +85,7 @@ namespace phys
                 OgreType = Ogre::Light::LT_SPOTLIGHT;
                 break;
             default:
-                OgreType = Ogre::Light::LT_POINT;
-                break;
+                return;
         }
         OgreLight->setType(OgreType);
     }
@@ -167,8 +166,11 @@ namespace phys
             case Ogre::Light::LT_DIRECTIONAL:
                 PhysType = Light::Directional;
                 break;
-            default:
+            case Ogre::Light::LT_SPOTLIGHT:
                 PhysType = Light::Spotlight;
+                break;
+            default:
+                return Light::Point;
         }
         return PhysType;
     }

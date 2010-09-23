@@ -142,6 +142,16 @@ namespace phys
         return 0;
     }
 
+    Light* SceneManager::GetLight(Whole Index)
+    {
+        return Lights[Index];
+    }
+
+    Whole SceneManager::GetNumLights()
+    {
+        return Lights.size();
+    }
+
     void SceneManager::DestroyLight(Light* light)
     {
         if(Lights.empty())
@@ -178,6 +188,16 @@ namespace phys
         return 0;
     }
 
+    ParticleEffect* SceneManager::GetParticleEffect(Whole Index)
+    {
+        return Particles[Index];
+    }
+
+    Whole SceneManager::GetNumParticleEffects()
+    {
+        return Particles.size();
+    }
+
     void SceneManager::DestroyParticleEffect(ParticleEffect* particleeffect)
     {
         if(Particles.empty())
@@ -198,14 +218,104 @@ namespace phys
         return this->OgreManager->getName();
     }
 
-    Node* CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc)
+    Node* SceneManager::CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack)
     {
-
+        Ogre::SceneNode* OgreCNode = OgreManager->createSceneNode(Name + "C");
+        OgreManager->getRootSceneNode()->addChild(OgreCNode);
+        OgreCNode->setPosition(Target.GetOgreVector3());
+        Ogre::SceneNode* OgreONode = OgreManager->createSceneNode(Name);
+        OgreCNode->addChild(OgreONode);
+        OgreONode->setPosition(RelativeLoc.GetOgreVector3());
+        if(AutoTrack)
+        {
+            OgreONode->setAutoTracking(true, OgreCNode);
+        }
+        Node* PhysONode = new Node(OgreONode, this);
+        PhysONode->SetType(Node::Orbit);
+        Nodes.push_back(PhysONode);
+        return PhysONode;
     }
 
-    Node* CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location)
+    Node* SceneManager::CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location)
     {
+        Ogre::SceneNode* OgreNode = OgreManager->createSceneNode(Name);
+        OgreManager->getRootSceneNode()->addChild(OgreNode);
+        OgreNode->setPosition(Location.GetOgreVector3());
+        OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD);
+        Node* PhysNode = new Node(OgreNode, this);
+        PhysNode->SetType(Node::Stand);
+        Nodes.push_back(PhysNode);
+        return PhysNode;
+    }
 
+    Node* SceneManager::GetNode(const String& Name)
+    {
+        if(Nodes.empty())
+            return 0;
+        for( std::vector<Node*>::iterator it = Nodes.begin() ; it != Nodes.end() ; it++ )
+        {
+            if( Name == (*it)->GetName() )
+            {
+                Node* node = (*it);
+                return node;
+            }
+        }
+        return 0;
+    }
+
+    Node* SceneManager::GetNode(Whole Index)
+    {
+        return Nodes[Index];
+    }
+
+    Whole SceneManager::GetNumNodes()
+    {
+        return Nodes.size();
+    }
+
+    Whole SceneManager::GetNumStandNodes()
+    {
+        if(Nodes.empty())
+            return 0;
+        Whole Num = 0;
+        for( std::vector<Node*>::iterator it = Nodes.begin() ; it != Nodes.end() ; it++ )
+        {
+            if( Node::Stand == (*it)->GetType() )
+            {
+                Num++;
+            }
+        }
+        return Num;
+    }
+
+    Whole SceneManager::GetNumOrbitNodes()
+    {
+        if(Nodes.empty())
+            return 0;
+        Whole Num = 0;
+        for( std::vector<Node*>::iterator it = Nodes.begin() ; it != Nodes.end() ; it++ )
+        {
+            if( Node::Orbit == (*it)->GetType() )
+            {
+                Num++;
+            }
+        }
+        return Num;
+    }
+
+    void SceneManager::DestroyNode(Node* node)
+    {
+        if(Nodes.empty())
+            return;
+        for( std::vector<Node*>::iterator it = Nodes.begin() ; it != Nodes.end() ; it++ )
+        {
+            if( node == (*it) )
+            {
+                delete (*it);
+                Nodes.erase(it);
+                return;
+            }
+        }
     }
 
     ManagerBase::ManagerTypeName SceneManager::GetType() const

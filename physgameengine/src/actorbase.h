@@ -41,8 +41,9 @@
 #define _physactorbase_h
 
 //#include "vector3.h"
-#include "quaternion.h"
+//#include "quaternion.h"
 #include "world.h"
+#include "node.h"
 
 ///////////////////////////////////
 // Forward Declares
@@ -84,7 +85,7 @@ namespace phys
     ///////////////////////////////////////
     class ActorBase {
         private:
-            //friend class World;
+            friend class Node;
             friend class ActorContainerBase;
             friend class PhysicsManager;
             friend class ResourceManager;

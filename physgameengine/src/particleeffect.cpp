@@ -50,7 +50,10 @@ namespace phys
     ParticleEffect::ParticleEffect(const String& Name, const String& Template, SceneManager* manager)
     {
         Manager = manager;
-        OgreParticle = Manager->GetGraphicsWorldPointer()->createParticleSystem(Name, Template);
+        Ogre::SceneManager* OgreManager = Manager->GetGraphicsWorldPointer();
+        OgreParticle = OgreManager->createParticleSystem(Name, Template);
+        OgreNode = OgreManager->createSceneNode();
+        OgreManager->getRootSceneNode()->addChild(OgreNode);
         SetElementType(Attachable::ParticleEffect);
     }
 
@@ -58,6 +61,9 @@ namespace phys
     {
         OgreParticle = System;
         Manager = manager;
+        Ogre::SceneManager* OgreManager = Manager->GetGraphicsWorldPointer();
+        OgreNode = OgreManager->createSceneNode();
+        OgreManager->getRootSceneNode()->addChild(OgreNode);
         SetElementType(Attachable::ParticleEffect);
     }
 
@@ -69,6 +75,16 @@ namespace phys
     String& ParticleEffect::GetName()
     {
         return OgreParticle->getName();
+    }
+
+    void ParticleEffect::EnableParticleEffect()
+    {
+        OgreNode->attachObject(OgreParticle);
+    }
+
+    void ParticleEffect::DisableParticleEffect()
+    {
+        OgreNode->detachObject(OgreParticle);
     }
 }
 

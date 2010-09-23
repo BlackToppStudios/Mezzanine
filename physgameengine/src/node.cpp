@@ -43,6 +43,10 @@
 
 #include "node.h"
 #include "scenemanager.h"
+#include "camera.h"
+#include "light.h"
+#include "particleeffect.h"
+#include "actorbase.h"
 
 #include <Ogre.h>
 
@@ -74,17 +78,141 @@ namespace phys
 
     void Node::AttachElement(Attachable* Element)
     {
-
+        Attachable::AttachableElement Type = Element->GetElementType();
+        switch (Type)
+        {
+            case Attachable::ParticleEffect:
+            {
+                ParticleEffect* particle = static_cast< ParticleEffect* > (Element);
+                OgreNode->attachObject(particle->OgreParticle);
+            }
+            break;
+            case Attachable::Camera:
+            {
+                Camera* camera = static_cast< Camera* > (Element);
+                OgreNode->attachObject(camera->Cam);
+            }
+            break;
+            case Attachable::Light:
+            {
+                Light* light = static_cast< Light* > (Element);
+                OgreNode->attachObject(light->OgreLight);
+            }
+            break;
+            default:
+                return;
+        }
+        Elements.push_back(Element);
+        return;
     }
 
     void Node::DetachElement(Attachable* Element)
     {
-
+        Attachable::AttachableElement Type = Element->GetElementType();
+        switch (Type)
+        {
+            case Attachable::ParticleEffect:
+            {
+                ParticleEffect* particle = static_cast< ParticleEffect* > (Element);
+                OgreNode->detachObject(particle->OgreParticle);
+            }
+            break;
+            case Attachable::Camera:
+            {
+                Camera* camera = static_cast< Camera* > (Element);
+                OgreNode->detachObject(camera->Cam);
+            }
+            break;
+            case Attachable::Light:
+            {
+                Light* light = static_cast< Light* > (Element);
+                OgreNode->detachObject(light->OgreLight);
+            }
+            break;
+            default:
+                return;
+        }
+        for( std::vector< Attachable* >::iterator it = Elements.begin() ; it != Elements.end() ; it++ )
+        {
+            if( Element == (*it) )
+            {
+                Elements.erase(it);
+                return;
+            }
+        }
+        return;
     }
 
     void Node::DetachAllElements()
     {
+        OgreNode->detachAllObjects();
+        Elements.clear();
+    }
 
+    Whole Node::GetNumAttachedElements()
+    {
+        return Elements.size();
+    }
+
+    void Node::SetPosition(Vector3 Position)
+    {
+        OgreNode->setPosition(Position.GetOgreVector3());
+    }
+
+    Vector3 Node::GetPosition()
+    {
+        Vector3 Pos(OgreNode->getPosition());
+        return Pos;
+    }
+
+    void Node::SetOrientation(Quaternion Orientation)
+    {
+        OgreNode->setOrientation(Orientation.GetOgreQuaternion());
+    }
+
+    Quaternion Node::GetOrientation()
+    {
+        Quaternion Ori(OgreNode->getOrientation());
+        return Ori;
+    }
+
+    void Node::LookAt(Vector3 LookAt)
+    {
+        OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD);
+    }
+
+    void Node::SetAutoTracking(Node* node, Vector3 Offset)
+    {
+        OgreNode->setAutoTracking(true, node->OgreNode, Ogre::Vector3::NEGATIVE_UNIT_Z, Offset.GetOgreVector3());
+    }
+
+    void Node::SetAutoTracking(ActorBase* Actor, Vector3 Offset)
+    {
+        OgreNode->setAutoTracking(true, Actor->node, Ogre::Vector3::NEGATIVE_UNIT_Z, Offset.GetOgreVector3());
+    }
+
+    void Node::DisableAutoTracking()
+    {
+        OgreNode->setAutoTracking(false);
+    }
+
+    void Node::IncrementOrbit(Real Radians)
+    {
+        if( Node::Orbit == this->Type )
+        {
+            Ogre::Radian Rad(Radians);
+            OgreNode->getParentSceneNode()->yaw(Rad);
+        }
+    }
+
+    void Node::SetType(Node::NodeType type)
+    {
+        Type = type;
+    }
+
+    Node::NodeType Node::GetType()
+    {
+        return Type;
     }
 }
 

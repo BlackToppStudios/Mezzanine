@@ -40,6 +40,8 @@
 #ifndef _attachable_h
 #define _attachable_h
 
+#include "datatypes.h"
+
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
@@ -71,6 +73,8 @@ namespace phys
             /// @brief Gets the type of element this is.
             /// @return Returns an enum value indicating what type of element this is.
             Attachable::AttachableElement GetElementType();
+            /// @brief Gets the name of the attachable element.
+            virtual String& GetName() = 0;
     };
 }//phys
 
