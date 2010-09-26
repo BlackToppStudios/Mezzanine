@@ -353,6 +353,7 @@ bool CheckForEsc()
 
 void LoadContent()
 {
+    TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
     ActorRigid *object1, *object2, *object3, *object4;
     ActorTerrain *object5, *object6;
     ActorRigid *object7;

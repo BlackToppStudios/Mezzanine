@@ -84,7 +84,8 @@ namespace phys
             case Attachable::ParticleEffect:
             {
                 ParticleEffect* particle = static_cast< ParticleEffect* > (Element);
-                OgreNode->attachObject(particle->OgreParticle);
+                OgreNode->addChild(particle->OgreNode);
+                //OgreNode->attachObject(particle->OgreParticle);
             }
             break;
             case Attachable::Camera:

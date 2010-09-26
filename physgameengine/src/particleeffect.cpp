@@ -70,6 +70,7 @@ namespace phys
     ParticleEffect::~ParticleEffect()
     {
         Manager->GetGraphicsWorldPointer()->destroyParticleSystem(OgreParticle);
+        Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
     }
 
     String& ParticleEffect::GetName()

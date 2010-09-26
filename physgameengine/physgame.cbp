@@ -249,6 +249,11 @@
 		<Unit filename="src\eventuserinput.h" />
 		<Unit filename="src\graphicsmanager.cpp" />
 		<Unit filename="src\graphicsmanager.h" />
+		<Unit filename="src\internalGorilla.cpp" />
+		<Unit filename="src\internalGorilla.h.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src\internaldecompinterface.cpp" />
 		<Unit filename="src\internaldecompinterface.h.cpp">
 			<Option compile="0" />

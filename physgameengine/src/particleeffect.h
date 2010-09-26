@@ -56,7 +56,9 @@ namespace phys
     /// @class ParticleEffect
     /// @headerfile particleeffect.h
     /// @brief This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.
-    /// @details Particle effects are loaded from particle scripts which are contained in particle files(*.particle).
+    /// @details Particle effects are loaded from particle scripts which are contained in particle files(*.particle). @n
+    /// Note: If attaching a particle effect to a node, all transform information(position and orientation) becomes relative
+    /// to the nodes transform.
     ///////////////////////////////////////
     class ParticleEffect : public Attachable
     {
