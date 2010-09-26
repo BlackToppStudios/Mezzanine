@@ -672,7 +672,7 @@ namespace Gorilla
  }
 
  LayerContainer::LayerContainer(TextureAtlas* atlas)
- : mAtlas(atlas), mIndexRedrawAll(false)
+ : mIndexRedrawAll(false), mAtlas(atlas)
  {
  }
 

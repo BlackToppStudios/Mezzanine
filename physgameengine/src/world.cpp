@@ -154,6 +154,8 @@ namespace phys
             { this->AddManager(new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_)); }
         if(this->GetSceneManager()==0)
             { this->AddManager(new SceneManager(SceneManagerName, SceneType, this)); }
+        if(this->GetUIManager()==0)
+            { this->AddManager(new UIManager()); }
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -726,6 +728,10 @@ namespace phys
         return dynamic_cast<ResourceManager*> (this->GetManager(ManagerBase::ResourceManager, WhichOne));
     }
 
+    UIManager* World::GetUIManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<UIManager*> (this->GetManager(ManagerBase::UIManager, WhichOne));
+    }
 
 }
 #endif

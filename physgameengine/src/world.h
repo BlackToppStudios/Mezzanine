@@ -100,6 +100,7 @@
 #include "graphicsmanager.h"
 #include "resourcemanager.h"
 #include "scenemanager.h"
+#include "uimanager.h"
 
 #include <string>
 #include <sstream>
@@ -433,6 +434,11 @@ namespace phys
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
             /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
             ResourceManager* GetResourceManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the UIManager from the manager list.
+            /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
+            /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.
+            UIManager* GetUIManager(const short unsigned int &WhichOne=0);
 
             /// @brief This is another way to put data in the log.
             /// @details The contents of this will be commited to the log once per frame, just before rendering. Because of that do not

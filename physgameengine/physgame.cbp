@@ -300,6 +300,8 @@
 		<Unit filename="src\soundlistener.h" />
 		<Unit filename="src\soundmanager.cpp" />
 		<Unit filename="src\soundmanager.h" />
+		<Unit filename="src\uimanager.cpp" />
+		<Unit filename="src\uimanager.h" />
 		<Unit filename="src\vector3.cpp" />
 		<Unit filename="src\vector3.h" />
 		<Unit filename="src\vector3wactor.cpp" />
