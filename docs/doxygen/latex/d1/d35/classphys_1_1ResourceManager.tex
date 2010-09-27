@@ -1,0 +1,231 @@
+\hypertarget{classphys_1_1ResourceManager}{
+\section{phys::ResourceManager Class Reference}
+\label{d1/d35/classphys_1_1ResourceManager}\index{phys::ResourceManager@{phys::ResourceManager}}
+}
+
+
+This is the manager responsible for the loading and unloading of files.  
+
+
+
+
+{\ttfamily \#include $<$resourcemanager.h$>$}
+
+Inheritance diagram for phys::ResourceManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d1/d35/classphys_1_1ResourceManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1ResourceManager_aee07d73a8abc74398c3e0a1d62195fc9}{ResourceManager} (\hyperlink{classphys_1_1World}{World} $\ast$\_\-World)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ResourceManager_a426d4d684a9ecf98359362243ce01072}{$\sim$ResourceManager} ()
+\item 
+bool \hyperlink{classphys_1_1ResourceManager_a3b3f3b97be1bcac74171a9fbfa90ebe7}{ExportShapeData} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName)
+\begin{DoxyCompactList}\small\item\em Exports an actors shape data to a file. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ResourceManager_a98cee7034bdf66a5cca1de8ade33139d}{ImportShapeData} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FileName)
+\begin{DoxyCompactList}\small\item\em Imports serialized shape data from the disk to be used in an Actor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ResourceManager_a0d7d3adce2ad4c70a3e867396e17b090}{AddResourceLocation} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Location, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Type, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group, const bool \&recursive=false)
+\begin{DoxyCompactList}\small\item\em Adds a location for graphical resources. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ResourceManager_abdb95affe5556ff2ff9aa312e740e584}{DeclareResource} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Type, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Group)
+\begin{DoxyCompactList}\small\item\em Prepares the resource for use. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ResourceManager_add022c243265fa397d91da3b3cbcce88}{InitResourceGroup} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)
+\begin{DoxyCompactList}\small\item\em Makes a resource group ready to use. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \hyperlink{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ResourceManager_a1823d2d08fc3b6052ed893896eef6291}{
+void \hyperlink{classphys_1_1ResourceManager_a1823d2d08fc3b6052ed893896eef6291}{ApplyShapeToActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, btCollisionShape $\ast$ColShape)}
+\label{d1/d35/classphys_1_1ResourceManager_a1823d2d08fc3b6052ed893896eef6291}
+
+\begin{DoxyCompactList}\small\item\em Applies a saved shape to an Actor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ResourceManager_af19bf0549a0896cf84696a39f4ca817d}{
+Ogre::ResourceGroupManager $\ast$ \hyperlink{classphys_1_1ResourceManager_af19bf0549a0896cf84696a39f4ca817d}{OgreResource}}
+\label{d1/d35/classphys_1_1ResourceManager_af19bf0549a0896cf84696a39f4ca817d}
+
+\begin{DoxyCompactList}\small\item\em Encapsulates the functionality of the ogre resource group manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the manager responsible for the loading and unloading of files. This class is responsible for the reading and writing of files of all kinds, be it graphical meshes, physics data, or XMl files. 
+
+Definition at line 63 of file resourcemanager.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ResourceManager_aee07d73a8abc74398c3e0a1d62195fc9}{
+\index{phys::ResourceManager@{phys::ResourceManager}!ResourceManager@{ResourceManager}}
+\index{ResourceManager@{ResourceManager}!phys::ResourceManager@{phys::ResourceManager}}
+\subsubsection[{ResourceManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::ResourceManager::ResourceManager ({\bf World} $\ast$ {\em \_\-World})}}
+\label{d1/d35/classphys_1_1ResourceManager_aee07d73a8abc74398c3e0a1d62195fc9}
+
+
+Class constructor. 
+
+Standard manager constructor with \hyperlink{classphys_1_1World}{World} pointer. 
+
+Definition at line 55 of file resourcemanager.cpp.
+
+\hypertarget{classphys_1_1ResourceManager_a426d4d684a9ecf98359362243ce01072}{
+\index{phys::ResourceManager@{phys::ResourceManager}!$\sim$ResourceManager@{$\sim$ResourceManager}}
+\index{$\sim$ResourceManager@{$\sim$ResourceManager}!phys::ResourceManager@{phys::ResourceManager}}
+\subsubsection[{$\sim$ResourceManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::ResourceManager::$\sim$ResourceManager ()}}
+\label{d1/d35/classphys_1_1ResourceManager_a426d4d684a9ecf98359362243ce01072}
+Class Destructor. 
+
+Definition at line 61 of file resourcemanager.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1ResourceManager_a0d7d3adce2ad4c70a3e867396e17b090}{
+\index{phys::ResourceManager@{phys::ResourceManager}!AddResourceLocation@{AddResourceLocation}}
+\index{AddResourceLocation@{AddResourceLocation}!phys::ResourceManager@{phys::ResourceManager}}
+\subsubsection[{AddResourceLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ResourceManager::AddResourceLocation (const {\bf String} \& {\em Location}, \/  const {\bf String} \& {\em Type}, \/  const {\bf String} \& {\em Group}, \/  const bool \& {\em recursive} = {\ttfamily false})}}
+\label{d1/d35/classphys_1_1ResourceManager_a0d7d3adce2ad4c70a3e867396e17b090}
+
+
+Adds a location for graphical resources. 
+
+This function will add a location on the disk to find files needed to create and manipulate graphical objects. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Location}]The location on the file system the resource can be found. \item[{\em Type}]The kind of file system the location can be found in. \par
+ Options are: filesystem, zip. \item[{\em Group}]The name of the group the resources at this location belong to. \item[{\em recursive}]Whether or not to search sub-\/directories. \end{DoxyParams}
+
+
+Definition at line 147 of file resourcemanager.cpp.
+
+\hypertarget{classphys_1_1ResourceManager_abdb95affe5556ff2ff9aa312e740e584}{
+\index{phys::ResourceManager@{phys::ResourceManager}!DeclareResource@{DeclareResource}}
+\index{DeclareResource@{DeclareResource}!phys::ResourceManager@{phys::ResourceManager}}
+\subsubsection[{DeclareResource}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ResourceManager::DeclareResource ({\bf String} {\em Name}, \/  {\bf String} {\em Type}, \/  {\bf String} {\em Group})}}
+\label{d1/d35/classphys_1_1ResourceManager_abdb95affe5556ff2ff9aa312e740e584}
+
+
+Prepares the resource for use. 
+
+This function can be thought of as a preloader. This will prepare the defined resource located on the disk for use. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]Name of the file/resource to be 'prepared'. \item[{\em Type}]The type of resource that the file is. \par
+ Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture. \item[{\em Group}]Name of the group the resource belongs to. \end{DoxyParams}
+
+
+Definition at line 152 of file resourcemanager.cpp.
+
+\hypertarget{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{
+\index{phys::ResourceManager@{phys::ResourceManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!phys::ResourceManager@{phys::ResourceManager}}
+\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ResourceManager::DoMainLoopItems ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d1/d35/classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}
+
+
+Empty MainLoopItems. 
+
+This class implements this for the sake of entension and compatibility this function does nothing. This is just empty during this round of refactoring, and this will get all the functionality that currently should be here, but is in the world. 
+
+Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{phys::ManagerBase}.
+
+
+
+Definition at line 166 of file resourcemanager.cpp.
+
+\hypertarget{classphys_1_1ResourceManager_a3b3f3b97be1bcac74171a9fbfa90ebe7}{
+\index{phys::ResourceManager@{phys::ResourceManager}!ExportShapeData@{ExportShapeData}}
+\index{ExportShapeData@{ExportShapeData}!phys::ResourceManager@{phys::ResourceManager}}
+\subsubsection[{ExportShapeData}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ResourceManager::ExportShapeData ({\bf ActorBase} $\ast$ {\em Actor}, \/  {\bf String} \& {\em FileName})}}
+\label{d1/d35/classphys_1_1ResourceManager_a3b3f3b97be1bcac74171a9fbfa90ebe7}
+
+
+Exports an actors shape data to a file. 
+
+Remember to include a \char`\"{}.bullet\char`\"{} extension to the filename when serializing. 
+
+Definition at line 87 of file resourcemanager.cpp.
+
+\hypertarget{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{
+\index{phys::ResourceManager@{phys::ResourceManager}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::ResourceManager@{phys::ResourceManager}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::ResourceManager::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d1/d35/classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}
+
+
+This returns the type of this manager. 
+
+\begin{DoxyReturn}{Returns}
+This returns ManagerTypeName::ResourceManager 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{phys::ManagerBase}.
+
+
+
+Definition at line 170 of file resourcemanager.cpp.
+
+\hypertarget{classphys_1_1ResourceManager_a98cee7034bdf66a5cca1de8ade33139d}{
+\index{phys::ResourceManager@{phys::ResourceManager}!ImportShapeData@{ImportShapeData}}
+\index{ImportShapeData@{ImportShapeData}!phys::ResourceManager@{phys::ResourceManager}}
+\subsubsection[{ImportShapeData}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ResourceManager::ImportShapeData ({\bf ActorBase} $\ast$ {\em Actor}, \/  {\bf String} \& {\em FileName})}}
+\label{d1/d35/classphys_1_1ResourceManager_a98cee7034bdf66a5cca1de8ade33139d}
+
+
+Imports serialized shape data from the disk to be used in an Actor. 
+
+Remember to include a \char`\"{}.bullet\char`\"{} extension to the filename when loading. 
+
+Definition at line 106 of file resourcemanager.cpp.
+
+\hypertarget{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{
+\index{phys::ResourceManager@{phys::ResourceManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!phys::ResourceManager@{phys::ResourceManager}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ResourceManager::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d1/d35/classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}
+
+
+Empty Initializor. 
+
+Functions inherited from \hyperlink{classphys_1_1ManagerBase}{ManagerBase}
+
+This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason. 
+
+Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
+
+
+
+Definition at line 162 of file resourcemanager.cpp.
+
+\hypertarget{classphys_1_1ResourceManager_add022c243265fa397d91da3b3cbcce88}{
+\index{phys::ResourceManager@{phys::ResourceManager}!InitResourceGroup@{InitResourceGroup}}
+\index{InitResourceGroup@{InitResourceGroup}!phys::ResourceManager@{phys::ResourceManager}}
+\subsubsection[{InitResourceGroup}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ResourceManager::InitResourceGroup ({\bf String} {\em Name})}}
+\label{d1/d35/classphys_1_1ResourceManager_add022c243265fa397d91da3b3cbcce88}
+
+
+Makes a resource group ready to use. 
+
+After adding all of your resources and declaring them as nessessary, this function is the final step. After calling this function any and all resources within the defined group will be ready to use. Do not initialize any more groups then you need to however, as that will take up memory and drop performance. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]Name of the resource group. \end{DoxyParams}
+
+
+Definition at line 157 of file resourcemanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+resourcemanager.h\item 
+resourcemanager.cpp\end{DoxyCompactItemize}

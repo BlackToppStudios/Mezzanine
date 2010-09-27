@@ -1,0 +1,623 @@
+\hypertarget{classphys_1_1CameraManager}{
+\section{phys::CameraManager Class Reference}
+\label{d9/d91/classphys_1_1CameraManager}\index{phys::CameraManager@{phys::CameraManager}}
+}
+
+
+This is the manager class for all camera functions.  
+
+
+
+
+{\ttfamily \#include $<$cameramanager.h$>$}
+
+Inheritance diagram for phys::CameraManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d9/d91/classphys_1_1CameraManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1CameraManager_a1e659b4a07645965194a33f8439fa4ea}{CameraManager} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&SceneManagerName, \hyperlink{classphys_1_1World}{World} $\ast$world)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1CameraManager_a0b0f032477309eb47b0302fd5eef198c}{$\sim$CameraManager} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1CameraManager_ac6ff80c91fa5a2cd21ebd8b78db9add2}{CreateCamera} ()
+\begin{DoxyCompactList}\small\item\em Creates a camera. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Camera}{Camera} $\ast$ \hyperlink{classphys_1_1CameraManager_ae51f79b63b5c34959bc4cfbef34b8f08}{CreateCameraPtr} ()
+\begin{DoxyCompactList}\small\item\em Creates a camera and returns a pointer. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1CameraManager_a9a696ea09f174a69bbc6d0bb179b3de4}{CreateOrbitingNode} (\hyperlink{classphys_1_1Vector3}{Vector3} Target, \hyperlink{classphys_1_1Vector3}{Vector3} RelativeLoc)
+\begin{DoxyCompactList}\small\item\em Creates a node that will orbit around a point. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1CameraManager_ab5f9ca6b053670e69f5812cf573d5972}{CreateStandNode} (\hyperlink{classphys_1_1Vector3}{Vector3} LookAt, \hyperlink{classphys_1_1Vector3}{Vector3} Location)
+\begin{DoxyCompactList}\small\item\em Creates a stationary node that will look at a location. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a42d91612bbaa00187944290d6bfd44e9}{ClearNodes} ()
+\begin{DoxyCompactList}\small\item\em Deletes all nodes created by this manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a76bebee0820fcfa462412cb112b1b874}{ClearCameras} ()
+\begin{DoxyCompactList}\small\item\em Deletes all cameras except for the first camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a3f1b48057ca2c1cd79f3e61c9fcbe1b4}{SetLocation} (\hyperlink{classphys_1_1Vector3}{Vector3} Location, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the location of a camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_aaee96e189230c020d6f7b6fe439e0812}{SetDirection} (\hyperlink{classphys_1_1Vector3}{Vector3} Direction, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the Direction for the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a9d0fac66fbc2eb4b7247c9661427afb8}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_ad639c275a2bb1c6c05a8800f8e8412c6}{SetNearClipDistance} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} NearDist, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the short range clip distance. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a809e4e31a9ad42afd620e95508ad78d7}{SetFarClipDistance} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} FarDist, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the long range clip distance. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_af16862039fffd900b9c7acc20527cac8}{SetAspectRatio} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Ratio, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the aspect ratio of the cameras veiw. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a885a499a53c3543b6bf429583a2cb54c}{LookAt} (\hyperlink{classphys_1_1Vector3}{Vector3} TargetLoc, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the direction the camera faces. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_ac29a1b3cd34ff2810bee170aa233c77e}{SetFixedYawAxis} (bool UseFixed, \hyperlink{classphys_1_1Vector3}{Vector3} Axis, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_aa7370f2239e88ab151b72c4171afea07}{SetFixedYawAxis} (bool UseFixed, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a43d55c71817096add5dad1552239fc74}{SetAutoTracking} (bool Enabled, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Target, \hyperlink{classphys_1_1Vector3}{Vector3} Offset, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Enables or disables auto tracking for the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a6edd94b6e8d9f2fa1e0b84554b367933}{SetAutoTracking} (bool Enabled, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Target, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Enables or disables auto tracking for the camera. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1CameraManager_a1a631eee22a0e45e2e72727d0bcc3560}{GetCameraToViewportRay} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Screenx, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Screeny, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1Ray}{Ray} from the camera to the viewport. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1CameraManager_a52a62fcfbeed45a2f527f626731ddcc1}{GetNodeAttachedToCamera} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Gets the node attached to a camera. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1CameraManager_af5fcec9bebd90b8e98b0d2f4def97ea1}{GetNodeLocation} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)
+\begin{DoxyCompactList}\small\item\em Gets the location of a node. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1CameraManager_a8557218460fbc94a029f74945fa2517c}{GetCameraRelativeLocation} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Gets the relative location of a camera. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1CameraManager_a53ef7e8f0a4227a5a35db88fe74772fa}{GetCameraGlobalLocation} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Gets the global location of a camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_aa5a37dbdd45a53bc3dfd4cfa0a94bd42}{ZoomCamera} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Zoom, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Will zoom in or out the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a1cfaf4720fa9af7c0f234d6a2f26e179}{ResetZoom} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Resets the zoom level back to the default. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a1cde365b6cab80a33ddf7046489f7af9}{AttachCameraToNode} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} NodeName, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} CamName=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Attaches a camera to a node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a5137bdb9dec706fa0fafec665d4f71c8}{DetachCameraFromNode} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} NodeName, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} CamName=\char`\"{}DefaultCamera\char`\"{})
+\begin{DoxyCompactList}\small\item\em Detaches a camera from a node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraManager_a82001f0874a090717ced3fbe78ce795b}{IncrementYOrbit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Radian, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)
+\begin{DoxyCompactList}\small\item\em Increments the orbit by the amount specified. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1CameraManager_a7b4bcdf992c21ae83363f25df05b1d25}{
+class {\bfseries World}}
+\label{d9/d91/classphys_1_1CameraManager_a7b4bcdf992c21ae83363f25df05b1d25}
+
+\item 
+\hypertarget{classphys_1_1CameraManager_ad8bd9afbbd7af19d996da80e9d25890d}{
+class {\bfseries Camera}}
+\label{d9/d91/classphys_1_1CameraManager_ad8bd9afbbd7af19d996da80e9d25890d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the manager class for all camera functions. This class contains all the functionality of the use and manipulation of the camera. \par
+ All functions that manipulate the camera will default to the default camera, so if you only use one camera you should never have to name the camera you want to use. \par
+ This class should only be created after the \hyperlink{classphys_1_1SceneManager}{SceneManager} has been created. 
+
+Definition at line 70 of file cameramanager.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1CameraManager_a1e659b4a07645965194a33f8439fa4ea}{
+\index{phys::CameraManager@{phys::CameraManager}!CameraManager@{CameraManager}}
+\index{CameraManager@{CameraManager}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{CameraManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::CameraManager::CameraManager (const {\bf String} \& {\em SceneManagerName}, \/  {\bf World} $\ast$ {\em world})}}
+\label{d9/d91/classphys_1_1CameraManager_a1e659b4a07645965194a33f8439fa4ea}
+
+
+Class Constructor. 
+
+This is the class constructor. This is automatcally called in the World.CreateRenderWindow() function and should never need to be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em SceneManagerName}]Name of the created \hyperlink{classphys_1_1SceneManager}{SceneManager} for this camera manager to use. \item[{\em SManager}]A pointer to the Scenemanager where you will be creating/manipulating all the cameras. \end{DoxyParams}
+
+
+Definition at line 54 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a0b0f032477309eb47b0302fd5eef198c}{
+\index{phys::CameraManager@{phys::CameraManager}!$\sim$CameraManager@{$\sim$CameraManager}}
+\index{$\sim$CameraManager@{$\sim$CameraManager}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{$\sim$CameraManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::CameraManager::$\sim$CameraManager ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d9/d91/classphys_1_1CameraManager_a0b0f032477309eb47b0302fd5eef198c}
+
+
+Class Destructor. 
+
+The calss Destuctor 
+
+Definition at line 63 of file cameramanager.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1CameraManager_a1cde365b6cab80a33ddf7046489f7af9}{
+\index{phys::CameraManager@{phys::CameraManager}!AttachCameraToNode@{AttachCameraToNode}}
+\index{AttachCameraToNode@{AttachCameraToNode}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{AttachCameraToNode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::AttachCameraToNode ({\bf String} {\em NodeName}, \/  {\bf String} {\em CamName} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a1cde365b6cab80a33ddf7046489f7af9}
+
+
+Attaches a camera to a node. 
+
+Attaches the specified camera to the specified node. 
+\begin{DoxyParams}{Parameters}
+\item[{\em NodeName}]The name of the node to attach the camera to. \item[{\em CamName}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 422 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a76bebee0820fcfa462412cb112b1b874}{
+\index{phys::CameraManager@{phys::CameraManager}!ClearCameras@{ClearCameras}}
+\index{ClearCameras@{ClearCameras}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{ClearCameras}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::ClearCameras ()}}
+\label{d9/d91/classphys_1_1CameraManager_a76bebee0820fcfa462412cb112b1b874}
+
+
+Deletes all cameras except for the first camera. 
+
+This will clear the container of cameras. The default camera is not stored in this container however, so it is spared from this wipe. 
+
+Definition at line 186 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a42d91612bbaa00187944290d6bfd44e9}{
+\index{phys::CameraManager@{phys::CameraManager}!ClearNodes@{ClearNodes}}
+\index{ClearNodes@{ClearNodes}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{ClearNodes}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::ClearNodes ()}}
+\label{d9/d91/classphys_1_1CameraManager_a42d91612bbaa00187944290d6bfd44e9}
+
+
+Deletes all nodes created by this manager. 
+
+This will clear the container of nodes. Including Orbiting nodes, Center nodes, and Stand nodes. 
+
+Definition at line 174 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_ac6ff80c91fa5a2cd21ebd8b78db9add2}{
+\index{phys::CameraManager@{phys::CameraManager}!CreateCamera@{CreateCamera}}
+\index{CreateCamera@{CreateCamera}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{CreateCamera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::CameraManager::CreateCamera ()}}
+\label{d9/d91/classphys_1_1CameraManager_ac6ff80c91fa5a2cd21ebd8b78db9add2}
+
+
+Creates a camera. 
+
+This function will create a camera in the scene and return the string that is name of the camera created. The first camera created will always be the Default camera, and is also created just after this class is constructed in the World.CreateRenderWindow() function. 
+
+Definition at line 103 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_ae51f79b63b5c34959bc4cfbef34b8f08}{
+\index{phys::CameraManager@{phys::CameraManager}!CreateCameraPtr@{CreateCameraPtr}}
+\index{CreateCameraPtr@{CreateCameraPtr}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{CreateCameraPtr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ phys::CameraManager::CreateCameraPtr ()}}
+\label{d9/d91/classphys_1_1CameraManager_ae51f79b63b5c34959bc4cfbef34b8f08}
+
+
+Creates a camera and returns a pointer. 
+
+This function does the same as the other CreateCamera function but will also return a pointer to the camera class instead of a string(being the name of the camera). 
+
+Definition at line 119 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a9a696ea09f174a69bbc6d0bb179b3de4}{
+\index{phys::CameraManager@{phys::CameraManager}!CreateOrbitingNode@{CreateOrbitingNode}}
+\index{CreateOrbitingNode@{CreateOrbitingNode}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{CreateOrbitingNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::CameraManager::CreateOrbitingNode ({\bf Vector3} {\em Target}, \/  {\bf Vector3} {\em RelativeLoc})}}
+\label{d9/d91/classphys_1_1CameraManager_a9a696ea09f174a69bbc6d0bb179b3de4}
+
+
+Creates a node that will orbit around a point. 
+
+This will create 2 nodes in the scene, the first being the point in the world you want to orbit the second node around. The second being the node that does the orbiting. You can then attach a camera to the orbiting node for some interesting visuals of your scene. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Target}]The location of the first node which you will be orbiting around. \item[{\em RelativeLoc}]The location of the node that will be in orbit relative to the first node. Assume the first node is at Origin (0,0,0). \end{DoxyParams}
+
+
+Definition at line 137 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_ab5f9ca6b053670e69f5812cf573d5972}{
+\index{phys::CameraManager@{phys::CameraManager}!CreateStandNode@{CreateStandNode}}
+\index{CreateStandNode@{CreateStandNode}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{CreateStandNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::CameraManager::CreateStandNode ({\bf Vector3} {\em LookAt}, \/  {\bf Vector3} {\em Location})}}
+\label{d9/d91/classphys_1_1CameraManager_ab5f9ca6b053670e69f5812cf573d5972}
+
+
+Creates a stationary node that will look at a location. 
+
+This will create a node that doesn't move, and will look at one location that you specify. This node can then have cameras attached to it. 
+\begin{DoxyParams}{Parameters}
+\item[{\em LookAt}]The location you want the node to look at. Automatically handles orientation. \item[{\em Location}]The location of the node itself. \end{DoxyParams}
+
+
+Definition at line 160 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a5137bdb9dec706fa0fafec665d4f71c8}{
+\index{phys::CameraManager@{phys::CameraManager}!DetachCameraFromNode@{DetachCameraFromNode}}
+\index{DetachCameraFromNode@{DetachCameraFromNode}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{DetachCameraFromNode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::DetachCameraFromNode ({\bf String} {\em NodeName}, \/  {\bf String} {\em CamName} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a5137bdb9dec706fa0fafec665d4f71c8}
+
+
+Detaches a camera from a node. 
+
+Detaches the specified camera from the specified node. 
+\begin{DoxyParams}{Parameters}
+\item[{\em NodeName}]The name of the node to detach the camera from. \item[{\em CamName}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 436 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}{
+\index{phys::CameraManager@{phys::CameraManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::DoMainLoopItems ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d9/d91/classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}
+
+
+Empty MainLoopItems. 
+
+This class implements this for the sake of entension and compatibility this function does nothing 
+
+Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{phys::ManagerBase}.
+
+
+
+Definition at line 455 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a53ef7e8f0a4227a5a35db88fe74772fa}{
+\index{phys::CameraManager@{phys::CameraManager}!GetCameraGlobalLocation@{GetCameraGlobalLocation}}
+\index{GetCameraGlobalLocation@{GetCameraGlobalLocation}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{GetCameraGlobalLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::CameraManager::GetCameraGlobalLocation ({\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a53ef7e8f0a4227a5a35db88fe74772fa}
+
+
+Gets the global location of a camera. 
+
+Gets the real world location of the camera specified. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 378 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a8557218460fbc94a029f74945fa2517c}{
+\index{phys::CameraManager@{phys::CameraManager}!GetCameraRelativeLocation@{GetCameraRelativeLocation}}
+\index{GetCameraRelativeLocation@{GetCameraRelativeLocation}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{GetCameraRelativeLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::CameraManager::GetCameraRelativeLocation ({\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a8557218460fbc94a029f74945fa2517c}
+
+
+Gets the relative location of a camera. 
+
+Gets the location of the camera, relative to any connected nodes, specified. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 366 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a1a631eee22a0e45e2e72727d0bcc3560}{
+\index{phys::CameraManager@{phys::CameraManager}!GetCameraToViewportRay@{GetCameraToViewportRay}}
+\index{GetCameraToViewportRay@{GetCameraToViewportRay}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{GetCameraToViewportRay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} phys::CameraManager::GetCameraToViewportRay ({\bf Real} {\em Screenx}, \/  {\bf Real} {\em Screeny}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a1a631eee22a0e45e2e72727d0bcc3560}
+
+
+Gets a \hyperlink{classphys_1_1Ray}{Ray} from the camera to the viewport. 
+
+This will cast a ray from the camera to the viewport and return it. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Screenx}]A Real representing the relative location on screen, on the x axis(0.0-\/1.0). \item[{\em Screeny}]A Real representing the relative location on screen, on the y axis(0.0-\/1.0). \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 334 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a52a62fcfbeed45a2f527f626731ddcc1}{
+\index{phys::CameraManager@{phys::CameraManager}!GetNodeAttachedToCamera@{GetNodeAttachedToCamera}}
+\index{GetNodeAttachedToCamera@{GetNodeAttachedToCamera}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{GetNodeAttachedToCamera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::CameraManager::GetNodeAttachedToCamera ({\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a52a62fcfbeed45a2f527f626731ddcc1}
+
+
+Gets the node attached to a camera. 
+
+This will return a string that is the name of the node the specified camera is attached to if any. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 346 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_af5fcec9bebd90b8e98b0d2f4def97ea1}{
+\index{phys::CameraManager@{phys::CameraManager}!GetNodeLocation@{GetNodeLocation}}
+\index{GetNodeLocation@{GetNodeLocation}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{GetNodeLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::CameraManager::GetNodeLocation ({\bf String} {\em Name})}}
+\label{d9/d91/classphys_1_1CameraManager_af5fcec9bebd90b8e98b0d2f4def97ea1}
+
+
+Gets the location of a node. 
+
+Gets the location of the node specified. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]Name of the node to get the location of. \end{DoxyParams}
+
+
+Definition at line 358 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}{
+\index{phys::CameraManager@{phys::CameraManager}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::CameraManager::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d9/d91/classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}
+
+
+This returns the type of this manager. 
+
+\begin{DoxyReturn}{Returns}
+This returns ManagerTypeName::CameraManager 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{phys::ManagerBase}.
+
+
+
+Definition at line 458 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a82001f0874a090717ced3fbe78ce795b}{
+\index{phys::CameraManager@{phys::CameraManager}!IncrementYOrbit@{IncrementYOrbit}}
+\index{IncrementYOrbit@{IncrementYOrbit}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{IncrementYOrbit}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::IncrementYOrbit ({\bf Real} {\em Radian}, \/  {\bf String} {\em Name})}}
+\label{d9/d91/classphys_1_1CameraManager_a82001f0874a090717ced3fbe78ce795b}
+
+
+Increments the orbit by the amount specified. 
+
+Increments the orbit of the specified node by the amount specified. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Radian}]The amount you wish to increment the orbit in Radians. \item[{\em Name}]The name of the orbiting node you wish to increment the orbit for. \end{DoxyParams}
+
+
+Definition at line 444 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}{
+\index{phys::CameraManager@{phys::CameraManager}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d9/d91/classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}
+
+
+Empty Initializor. 
+
+This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason 
+
+Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
+
+
+
+Definition at line 452 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a885a499a53c3543b6bf429583a2cb54c}{
+\index{phys::CameraManager@{phys::CameraManager}!LookAt@{LookAt}}
+\index{LookAt@{LookAt}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{LookAt}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::LookAt ({\bf Vector3} {\em TargetLoc}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a885a499a53c3543b6bf429583a2cb54c}
+
+
+Sets the direction the camera faces. 
+
+Sets the direction the camera faces. Will also take orientation into account. 
+\begin{DoxyParams}{Parameters}
+\item[{\em TargetLoc}]The location in the game world to look at. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 270 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a1cfaf4720fa9af7c0f234d6a2f26e179}{
+\index{phys::CameraManager@{phys::CameraManager}!ResetZoom@{ResetZoom}}
+\index{ResetZoom@{ResetZoom}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{ResetZoom}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::ResetZoom ({\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a1cfaf4720fa9af7c0f234d6a2f26e179}
+
+
+Resets the zoom level back to the default. 
+
+This function will return the zoom level back to normal. Note this function will only work if the camera is attached to a node. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 403 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_af16862039fffd900b9c7acc20527cac8}{
+\index{phys::CameraManager@{phys::CameraManager}!SetAspectRatio@{SetAspectRatio}}
+\index{SetAspectRatio@{SetAspectRatio}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{SetAspectRatio}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::SetAspectRatio ({\bf Real} {\em Ratio}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_af16862039fffd900b9c7acc20527cac8}
+
+
+Sets the aspect ratio of the cameras veiw. 
+
+This function will set the aspect ratio between the width and height of the cameras viewing area. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Ratio}]A Real that represents the aspect ratio, where Ratio = width / height. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 258 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a6edd94b6e8d9f2fa1e0b84554b367933}{
+\index{phys::CameraManager@{phys::CameraManager}!SetAutoTracking@{SetAutoTracking}}
+\index{SetAutoTracking@{SetAutoTracking}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{SetAutoTracking}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::SetAutoTracking (bool {\em Enabled}, \/  {\bf String} {\em Target}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a6edd94b6e8d9f2fa1e0b84554b367933}
+
+
+Enables or disables auto tracking for the camera. 
+
+This function can enable auto tracking of a given node you have created. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Enabled}]Bool value to enable or disable auto tracking for this camera. \item[{\em Target}]Name of the node to be tracked. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 320 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a43d55c71817096add5dad1552239fc74}{
+\index{phys::CameraManager@{phys::CameraManager}!SetAutoTracking@{SetAutoTracking}}
+\index{SetAutoTracking@{SetAutoTracking}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{SetAutoTracking}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::SetAutoTracking (bool {\em Enabled}, \/  {\bf String} {\em Target}, \/  {\bf Vector3} {\em Offset}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a43d55c71817096add5dad1552239fc74}
+
+
+Enables or disables auto tracking for the camera. 
+
+This function can enable auto tracking of a given node you have created. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Enabled}]Bool value to enable or disable auto tracking for this camera. \item[{\em Target}]Name of the node to be tracked. \item[{\em Offset}]The offset of where the camera is to look from the target. I.E. Always 5 units ahead, etc.. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 306 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_aaee96e189230c020d6f7b6fe439e0812}{
+\index{phys::CameraManager@{phys::CameraManager}!SetDirection@{SetDirection}}
+\index{SetDirection@{SetDirection}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{SetDirection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::SetDirection ({\bf Vector3} {\em Direction}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_aaee96e189230c020d6f7b6fe439e0812}
+
+
+Sets the Direction for the camera. 
+
+Sets which axis the camera will look down for rendering. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Direction}]The vector3 representing the axis to be used. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 210 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a809e4e31a9ad42afd620e95508ad78d7}{
+\index{phys::CameraManager@{phys::CameraManager}!SetFarClipDistance@{SetFarClipDistance}}
+\index{SetFarClipDistance@{SetFarClipDistance}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{SetFarClipDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::SetFarClipDistance ({\bf Real} {\em FarDist}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a809e4e31a9ad42afd620e95508ad78d7}
+
+
+Sets the long range clip distance. 
+
+Sets the distance at which objects are considered too far to render. 
+\begin{DoxyParams}{Parameters}
+\item[{\em FarDist}]A Real representing the distance. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 246 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_aa7370f2239e88ab151b72c4171afea07}{
+\index{phys::CameraManager@{phys::CameraManager}!SetFixedYawAxis@{SetFixedYawAxis}}
+\index{SetFixedYawAxis@{SetFixedYawAxis}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{SetFixedYawAxis}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::SetFixedYawAxis (bool {\em UseFixed}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_aa7370f2239e88ab151b72c4171afea07}
+
+
+Sets whether to lock rotation around the Y axis. 
+
+This function will lock rotations around the Y axis. This function is automatically called on by the camera constructor. 
+\begin{DoxyParams}{Parameters}
+\item[{\em UseFixed}]Enable or disable the locking of the axis. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 294 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_ac29a1b3cd34ff2810bee170aa233c77e}{
+\index{phys::CameraManager@{phys::CameraManager}!SetFixedYawAxis@{SetFixedYawAxis}}
+\index{SetFixedYawAxis@{SetFixedYawAxis}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{SetFixedYawAxis}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::SetFixedYawAxis (bool {\em UseFixed}, \/  {\bf Vector3} {\em Axis}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_ac29a1b3cd34ff2810bee170aa233c77e}
+
+
+Sets whether to lock rotation around the Y axis. 
+
+This function will lock rotations around the Y axis (or another axis if you specify). This function is automatically called on by the camera constructor. 
+\begin{DoxyParams}{Parameters}
+\item[{\em UseFixed}]Enable or disable the locking of the axis. \item[{\em Axis}]The axis to lock, defaults to the Y axis. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 282 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a3f1b48057ca2c1cd79f3e61c9fcbe1b4}{
+\index{phys::CameraManager@{phys::CameraManager}!SetLocation@{SetLocation}}
+\index{SetLocation@{SetLocation}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::SetLocation ({\bf Vector3} {\em Location}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a3f1b48057ca2c1cd79f3e61c9fcbe1b4}
+
+
+Sets the location of a camera. 
+
+Sets the location of the specified camera. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Location}]The new location for the camera. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 198 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_ad639c275a2bb1c6c05a8800f8e8412c6}{
+\index{phys::CameraManager@{phys::CameraManager}!SetNearClipDistance@{SetNearClipDistance}}
+\index{SetNearClipDistance@{SetNearClipDistance}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{SetNearClipDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::SetNearClipDistance ({\bf Real} {\em NearDist}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_ad639c275a2bb1c6c05a8800f8e8412c6}
+
+
+Sets the short range clip distance. 
+
+Sets the distance at which objects are considered too close to render. 
+\begin{DoxyParams}{Parameters}
+\item[{\em NearDist}]A Real representing the distance. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 234 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_a9d0fac66fbc2eb4b7247c9661427afb8}{
+\index{phys::CameraManager@{phys::CameraManager}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::SetOrientation ({\bf Quaternion} {\em Orientation}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_a9d0fac66fbc2eb4b7247c9661427afb8}
+
+
+Sets the orientation of the camera. 
+
+This function will set the orientation of the specified camera via a quaternion. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Orientation}]The quaternion representing the new orientation. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 222 of file cameramanager.cpp.
+
+\hypertarget{classphys_1_1CameraManager_aa5a37dbdd45a53bc3dfd4cfa0a94bd42}{
+\index{phys::CameraManager@{phys::CameraManager}!ZoomCamera@{ZoomCamera}}
+\index{ZoomCamera@{ZoomCamera}!phys::CameraManager@{phys::CameraManager}}
+\subsubsection[{ZoomCamera}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::ZoomCamera ({\bf Real} {\em Zoom}, \/  {\bf String} {\em Name} = {\ttfamily \char`\"{}DefaultCamera\char`\"{}})}}
+\label{d9/d91/classphys_1_1CameraManager_aa5a37dbdd45a53bc3dfd4cfa0a94bd42}
+
+
+Will zoom in or out the camera. 
+
+This function will zoom in the camera by the amount specified. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Zoom}]A Real of how much to zoom in by. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \item[{\em Name}]The name of the camera to be manipulated. Defaults to the Default camera. \end{DoxyParams}
+
+
+Definition at line 390 of file cameramanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+cameramanager.h\item 
+cameramanager.cpp\end{DoxyCompactItemize}

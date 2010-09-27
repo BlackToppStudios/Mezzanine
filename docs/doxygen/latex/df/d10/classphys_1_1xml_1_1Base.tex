@@ -1,0 +1,259 @@
+\hypertarget{classphys_1_1xml_1_1Base}{
+\section{phys::xml::Base Class Reference}
+\label{df/d10/classphys_1_1xml_1_1Base}\index{phys::xml::Base@{phys::xml::Base}}
+}
+
+
+A set of all functionality that all XML components must implement.  
+
+
+
+
+{\ttfamily \#include $<$xmlbase.h$>$}
+
+Inheritance diagram for phys::xml::Base:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{df/d10/classphys_1_1xml_1_1Base}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320}{XMLComponentType} \{ \par
+\hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320af75393e041247190be1c922d0b3faf07}{isAttribute}, 
+\hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a0a38c5c0a9d182f57db5a6d4a3e68306}{isNode}, 
+\hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a38fcb00bdd7a8786331b6e716b958e95}{isComment}, 
+\hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320ae3e48e223c26f696ddeca851a43407ea}{isDeclaration}, 
+\par
+\hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320ac0126857d5de86b032851a39e0b32cc3}{isDocument}, 
+\hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a334e5f8fbb7ca85f3e371c19b6aefd10}{isElement}, 
+\hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a8d59420a41bc7e19906ffa74390266e8}{isStyleSheetReference}, 
+\hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320aba278067c2045c663334b7333c6b5f8f}{isText}, 
+\par
+\hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a00d10833cc80d919d22793cb52c20e92}{isUnknown}
+ \}
+\begin{DoxyCompactList}\small\item\em This is used to identify what kind of component you are working with, in conjunction with the \hyperlink{classphys_1_1xml_1_1Base_af2821c239b5eb31c2524a499bf3ff19f}{GetType()} function. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320}{XMLComponentType} \hyperlink{classphys_1_1xml_1_1Base_af2821c239b5eb31c2524a499bf3ff19f}{GetType} ()=0
+\begin{DoxyCompactList}\small\item\em This Will be by Child classes to aid in identification. \item\end{DoxyCompactList}\item 
+int \hyperlink{classphys_1_1xml_1_1Base_adc2f732f1f37ef7bae5b701a84470754}{Row} () const 
+\begin{DoxyCompactList}\small\item\em Return the position, in the original source file, of this node or attribute. \item\end{DoxyCompactList}\item 
+int \hyperlink{classphys_1_1xml_1_1Base_a7ef4a2c8165c6bb63f75fdc9f2231948}{Column} () const 
+\begin{DoxyCompactList}\small\item\em Return the position, in the original source file, of this node or attribute. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Base_af5412e64fd83a5193e28a20df462b9a6}{operator==} (const \hyperlink{classphys_1_1xml_1_1Base}{Base} \&OtherBase) const 
+\begin{DoxyCompactList}\small\item\em Equality comparison operation based on internal data. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Base_a45216237a77d457ceda41f40583f80ac}{operator!=} (const \hyperlink{classphys_1_1xml_1_1Base}{Base} \&OtherBase) const 
+\begin{DoxyCompactList}\small\item\em Inquality comparison operation based on internal data. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1xml_1_1Base_a08794e2e0e61e5f7e58a665025466891}{BuildDetailedErrorString} () const 
+\begin{DoxyCompactList}\small\item\em Used to get details about issues suitable for the the user or detailed logs. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1Base_a5748d180a12bbef51a7b61dc3e814364}{
+virtual \hyperlink{classphys_1_1xml_1_1Base_a5748d180a12bbef51a7b61dc3e814364}{$\sim$Base} ()}
+\label{df/d10/classphys_1_1xml_1_1Base_a5748d180a12bbef51a7b61dc3e814364}
+
+\begin{DoxyCompactList}\small\item\em A simple empty virtual destructor for compatibility and ease of customization. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ticpp::Base $\ast$ \hyperlink{classphys_1_1xml_1_1Base_a95edc995971b4ed433945a1a8843127e}{Wrapped}
+\begin{DoxyCompactList}\small\item\em A pointer to the Library level object we are wrapping to implement this functionality. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A set of all functionality that all XML components must implement. All XML components inherit from this. This is the most basic level of functionality that all XML components will implement 
+
+Definition at line 108 of file xmlbase.h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320}{
+\index{phys::xml::Base@{phys::xml::Base}!XMLComponentType@{XMLComponentType}}
+\index{XMLComponentType@{XMLComponentType}!phys::xml::Base@{phys::xml::Base}}
+\subsubsection[{XMLComponentType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::xml::Base::XMLComponentType}}}
+\label{df/d10/classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320}
+
+
+This is used to identify what kind of component you are working with, in conjunction with the \hyperlink{classphys_1_1xml_1_1Base_af2821c239b5eb31c2524a499bf3ff19f}{GetType()} function. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{isAttribute@{isAttribute}!phys::xml::Base@{phys::xml::Base}}\index{phys::xml::Base@{phys::xml::Base}!isAttribute@{isAttribute}}\item[{\em 
+\hypertarget{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320af75393e041247190be1c922d0b3faf07}{
+isAttribute}
+\label{df/d10/classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320af75393e041247190be1c922d0b3faf07}
+}]Indicates the XMLComponent is an attribute, and not a node \index{isNode@{isNode}!phys::xml::Base@{phys::xml::Base}}\index{phys::xml::Base@{phys::xml::Base}!isNode@{isNode}}\item[{\em 
+\hypertarget{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a0a38c5c0a9d182f57db5a6d4a3e68306}{
+isNode}
+\label{df/d10/classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a0a38c5c0a9d182f57db5a6d4a3e68306}
+}]Indicates the XMLComponent is a node and nothing else \index{isComment@{isComment}!phys::xml::Base@{phys::xml::Base}}\index{phys::xml::Base@{phys::xml::Base}!isComment@{isComment}}\item[{\em 
+\hypertarget{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a38fcb00bdd7a8786331b6e716b958e95}{
+isComment}
+\label{df/d10/classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a38fcb00bdd7a8786331b6e716b958e95}
+}]Indicates the XMLComponent is a node and \index{isDeclaration@{isDeclaration}!phys::xml::Base@{phys::xml::Base}}\index{phys::xml::Base@{phys::xml::Base}!isDeclaration@{isDeclaration}}\item[{\em 
+\hypertarget{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320ae3e48e223c26f696ddeca851a43407ea}{
+isDeclaration}
+\label{df/d10/classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320ae3e48e223c26f696ddeca851a43407ea}
+}]Indicates the XMLComponent is a node and \index{isDocument@{isDocument}!phys::xml::Base@{phys::xml::Base}}\index{phys::xml::Base@{phys::xml::Base}!isDocument@{isDocument}}\item[{\em 
+\hypertarget{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320ac0126857d5de86b032851a39e0b32cc3}{
+isDocument}
+\label{df/d10/classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320ac0126857d5de86b032851a39e0b32cc3}
+}]Indicates the XMLComponent is a node and \index{isElement@{isElement}!phys::xml::Base@{phys::xml::Base}}\index{phys::xml::Base@{phys::xml::Base}!isElement@{isElement}}\item[{\em 
+\hypertarget{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a334e5f8fbb7ca85f3e371c19b6aefd10}{
+isElement}
+\label{df/d10/classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a334e5f8fbb7ca85f3e371c19b6aefd10}
+}]Indicates the XMLComponent is a node and \index{isStyleSheetReference@{isStyleSheetReference}!phys::xml::Base@{phys::xml::Base}}\index{phys::xml::Base@{phys::xml::Base}!isStyleSheetReference@{isStyleSheetReference}}\item[{\em 
+\hypertarget{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a8d59420a41bc7e19906ffa74390266e8}{
+isStyleSheetReference}
+\label{df/d10/classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a8d59420a41bc7e19906ffa74390266e8}
+}]Indicates the XMLComponent is a node and \index{isText@{isText}!phys::xml::Base@{phys::xml::Base}}\index{phys::xml::Base@{phys::xml::Base}!isText@{isText}}\item[{\em 
+\hypertarget{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320aba278067c2045c663334b7333c6b5f8f}{
+isText}
+\label{df/d10/classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320aba278067c2045c663334b7333c6b5f8f}
+}]Indicates the XMLComponent is a node and \index{isUnknown@{isUnknown}!phys::xml::Base@{phys::xml::Base}}\index{phys::xml::Base@{phys::xml::Base}!isUnknown@{isUnknown}}\item[{\em 
+\hypertarget{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a00d10833cc80d919d22793cb52c20e92}{
+isUnknown}
+\label{df/d10/classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a00d10833cc80d919d22793cb52c20e92}
+}]Indicates the XMLComponent is a node and \end{description}
+\end{Desc}
+
+
+
+Definition at line 119 of file xmlbase.h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1Base_a08794e2e0e61e5f7e58a665025466891}{
+\index{phys::xml::Base@{phys::xml::Base}!BuildDetailedErrorString@{BuildDetailedErrorString}}
+\index{BuildDetailedErrorString@{BuildDetailedErrorString}!phys::xml::Base@{phys::xml::Base}}
+\subsubsection[{BuildDetailedErrorString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::xml::Base::BuildDetailedErrorString () const}}
+\label{df/d10/classphys_1_1xml_1_1Base_a08794e2e0e61e5f7e58a665025466891}
+
+
+Used to get details about issues suitable for the the user or detailed logs. 
+
+Builds detailed error string using TiXmlDocument::Error() and others. \begin{DoxyReturn}{Returns}
+This returns a string that contains the current error information \mbox{[}I think that is what happens anyway.\mbox{]} 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file xmlbase.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Base_a7ef4a2c8165c6bb63f75fdc9f2231948}{
+\index{phys::xml::Base@{phys::xml::Base}!Column@{Column}}
+\index{Column@{Column}!phys::xml::Base@{phys::xml::Base}}
+\subsubsection[{Column}]{\setlength{\rightskip}{0pt plus 5cm}int phys::xml::Base::Column () const}}
+\label{df/d10/classphys_1_1xml_1_1Base_a7ef4a2c8165c6bb63f75fdc9f2231948}
+
+
+Return the position, in the original source file, of this node or attribute. 
+
+See \hyperlink{classphys_1_1xml_1_1Base_adc2f732f1f37ef7bae5b701a84470754}{Row()} \begin{DoxyReturn}{Returns}
+Returns an int. 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file xmlbase.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Base_af2821c239b5eb31c2524a499bf3ff19f}{
+\index{phys::xml::Base@{phys::xml::Base}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::xml::Base@{phys::xml::Base}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf XMLComponentType} phys::xml::Base::GetType ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{df/d10/classphys_1_1xml_1_1Base_af2821c239b5eb31c2524a499bf3ff19f}
+
+
+This Will be by Child classes to aid in identification. 
+
+\begin{DoxyReturn}{Returns}
+Classes that inherit from this are expected to return an XMLComponentType that indicates what kind of XML component they are. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1xml_1_1Base_a45216237a77d457ceda41f40583f80ac}{
+\index{phys::xml::Base@{phys::xml::Base}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!phys::xml::Base@{phys::xml::Base}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Base::operator!= (const {\bf Base} \& {\em OtherBase}) const}}
+\label{df/d10/classphys_1_1xml_1_1Base_a45216237a77d457ceda41f40583f80ac}
+
+
+Inquality comparison operation based on internal data. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em OtherBase}]Another XML object that will be compared\end{DoxyParams}
+Compare internal TiXml pointers to determine if both are wrappers around the same node. \begin{DoxyReturn}{Returns}
+A bool containing false if the internal pointers match 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file xmlbase.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Base_af5412e64fd83a5193e28a20df462b9a6}{
+\index{phys::xml::Base@{phys::xml::Base}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::xml::Base@{phys::xml::Base}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Base::operator== (const {\bf Base} \& {\em OtherBase}) const}}
+\label{df/d10/classphys_1_1xml_1_1Base_af5412e64fd83a5193e28a20df462b9a6}
+
+
+Equality comparison operation based on internal data. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em OtherBase}]Another XML object that will be compared\end{DoxyParams}
+Compare internal TiXml pointers to determine if both are wrappers around the same node. \begin{DoxyReturn}{Returns}
+A bool containing true if the internal pointers match
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000032}{Todo}]TODO: Decide what to do with User data... I think remove it, even from the TiXML we are shipping with, then wrap the following SetCondenseWhiteSpace, IsWhiteSpaceCondensed, EncodeString, and those listed on \href{http://ticpp.googlecode.com/svn/docs/classticpp_1_1Base-members.html}{\tt http://ticpp.googlecode.com/svn/docs/classticpp\_\-1\_\-1Base-\/members.html} \end{Desc}
+
+
+Definition at line 72 of file xmlbase.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Base_adc2f732f1f37ef7bae5b701a84470754}{
+\index{phys::xml::Base@{phys::xml::Base}!Row@{Row}}
+\index{Row@{Row}!phys::xml::Base@{phys::xml::Base}}
+\subsubsection[{Row}]{\setlength{\rightskip}{0pt plus 5cm}int phys::xml::Base::Row () const}}
+\label{df/d10/classphys_1_1xml_1_1Base_adc2f732f1f37ef7bae5b701a84470754}
+
+
+Return the position, in the original source file, of this node or attribute. 
+
+Return the position, in the original source file, of this node or attribute. The row and column are 1-\/based. (That is the first row and first column is 1,1). If the returns values are 0 or less, then the parser does not have a row and column value. \par
+ \par
+ Generally, the row and column value will be set when the Document::Load(), Document::LoadFile(), or any Node::Parse() is called. It will NOT be set when the DOM was created from operator$>$$>$. \par
+ \par
+ The values reflect the initial load. Once the DOM is modified programmatically (by adding or changing nodes and attributes) the new values will NOT update to reflect changes in the document. \par
+ \par
+ There is a minor performance cost to computing the row and column. Computationcan be disabled if Document::SetTabSize() is called with 0 as the value. \begin{DoxyReturn}{Returns}
+Returns an int. 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file xmlbase.cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classphys_1_1xml_1_1Base_a95edc995971b4ed433945a1a8843127e}{
+\index{phys::xml::Base@{phys::xml::Base}!Wrapped@{Wrapped}}
+\index{Wrapped@{Wrapped}!phys::xml::Base@{phys::xml::Base}}
+\subsubsection[{Wrapped}]{\setlength{\rightskip}{0pt plus 5cm}ticpp::Base$\ast$ {\bf phys::xml::Base::Wrapped}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{df/d10/classphys_1_1xml_1_1Base_a95edc995971b4ed433945a1a8843127e}
+
+
+A pointer to the Library level object we are wrapping to implement this functionality. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 113 of file xmlbase.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+xmlbase.h\item 
+xmlbase.cpp\end{DoxyCompactItemize}
