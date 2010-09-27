@@ -46,6 +46,9 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Compiler>
+			<Add option="-fPIC" />
+		</Compiler>
 		<Unit filename="tinyxmlpp/ticpp.cpp" />
 		<Unit filename="tinyxmlpp/ticpp.h" />
 		<Unit filename="tinyxmlpp/ticpprc.h" />

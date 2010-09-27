@@ -42,6 +42,9 @@
 
 #include "internaldecompinterface.h.cpp"
 
+// Keeps this file form being documented by doxygen
+/// @cond 0
+
 namespace phys{
     namespace internal{
         PhysConvexDecomposition::PhysConvexDecomposition()

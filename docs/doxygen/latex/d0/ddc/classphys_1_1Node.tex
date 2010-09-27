@@ -1,0 +1,376 @@
+\hypertarget{classphys_1_1Node}{
+\section{phys::Node Class Reference}
+\label{d0/ddc/classphys_1_1Node}\index{phys::Node@{phys::Node}}
+}
+
+
+This is a helper class which non-\/physicsl objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects.  
+
+
+
+
+{\ttfamily \#include $<$node.h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries NodeType} \{ {\bfseries Center}, 
+{\bfseries Orbit}, 
+{\bfseries Stand}, 
+{\bfseries Free}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1Node_a09393f483ab4bb2fdb74b26a59ffd37e}{Node} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Node_af0f42610cf0adcef9e4dea16013cbaf2}{Node} (Ogre::SceneNode $\ast$snode, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Node_af933598679e73d1e440f264f83e9d563}{
+\hyperlink{classphys_1_1Node_af933598679e73d1e440f264f83e9d563}{$\sim$Node} ()}
+\label{d0/ddc/classphys_1_1Node_af933598679e73d1e440f264f83e9d563}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1Node_a2c834fe00f2f80aa6c0bb62648f9bdb5}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Node_a8de0f86b08510a08a6e6c0912c9caddb}{AttachElement} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Element)
+\begin{DoxyCompactList}\small\item\em Attaches an attachable element to this \hyperlink{classphys_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Node_afdafaa00a4c6873211968529993a2b48}{DetachElement} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Element)
+\begin{DoxyCompactList}\small\item\em Detaches an attachable element from this \hyperlink{classphys_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Node_a8c0da465ac3b751cd4c124bf3157ce6b}{
+void \hyperlink{classphys_1_1Node_a8c0da465ac3b751cd4c124bf3157ce6b}{DetachAllElements} ()}
+\label{d0/ddc/classphys_1_1Node_a8c0da465ac3b751cd4c124bf3157ce6b}
+
+\begin{DoxyCompactList}\small\item\em Detaches all attached cameras, lights, and particle effects. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1Node_ae4ee282575f7b1e6bb9dfcda15fcfd47}{GetNumAttachedElements} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of elements attached to this node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Node_ab8dc3aa58292b0156e67dc3684099bbe}{SetPosition} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
+\begin{DoxyCompactList}\small\item\em Sets the position of this node. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Node_adbb895705afa97bd5d824f0abf59e11a}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the position of this node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Node_a3799cc7b685a4bbbb16b6f9b917824a8}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of this node. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Node_af9bda096f298c0ae692d52dd3b7c3733}{GetOrientation} ()
+\begin{DoxyCompactList}\small\item\em Gets the orientation of this node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Node_a545f5696660b3e7c07154b29421ab179}{LookAt} (\hyperlink{classphys_1_1Vector3}{Vector3} LookAt)
+\begin{DoxyCompactList}\small\item\em Automatically sets the orientation needed to point this node at a location in the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Node_a0e652a52ea7d6e18280d1fc4b283c86a}{SetAutoTracking} (\hyperlink{classphys_1_1Node}{Node} $\ast$node, \hyperlink{classphys_1_1Vector3}{Vector3} Offset=\hyperlink{classphys_1_1Vector3}{Vector3}())
+\begin{DoxyCompactList}\small\item\em Makes this node autotrack another node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Node_adc570391b491821a13b58e15e0dc2cac}{SetAutoTracking} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{classphys_1_1Vector3}{Vector3} Offset=\hyperlink{classphys_1_1Vector3}{Vector3}())
+\begin{DoxyCompactList}\small\item\em Makes this node autotrack an actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Node_a5571ede65a6edf20788700b5d408bf04}{
+void \hyperlink{classphys_1_1Node_a5571ede65a6edf20788700b5d408bf04}{DisableAutoTracking} ()}
+\label{d0/ddc/classphys_1_1Node_a5571ede65a6edf20788700b5d408bf04}
+
+\begin{DoxyCompactList}\small\item\em Disables any active autotracking for this node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Node_a93fbb2b20f3cab180f7bdd39299c252e}{IncrementOrbit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Radians)
+\begin{DoxyCompactList}\small\item\em Increments the orbit of this node if this is an orbiting node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Node_afbc58e8c751f617c89a2246c397c679e}{SetType} (Node::NodeType type)
+\begin{DoxyCompactList}\small\item\em Sets the type of node that this is. \item\end{DoxyCompactList}\item 
+Node::NodeType \hyperlink{classphys_1_1Node_aee8632b4db2accd810afd096247252c2}{GetType} ()
+\begin{DoxyCompactList}\small\item\em Gets the type of node that this is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Node_ad3206b5ec36cb374e01cb8e822616c45}{
+Ogre::SceneNode $\ast$ \hyperlink{classphys_1_1Node_ad3206b5ec36cb374e01cb8e822616c45}{OgreNode}}
+\label{d0/ddc/classphys_1_1Node_ad3206b5ec36cb374e01cb8e822616c45}
+
+\begin{DoxyCompactList}\small\item\em Pointer to the ogre scenenode from which this class gets it's functionality. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Node_a7bb7fd7fc172f155d205512ef65f62a8}{
+\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ \hyperlink{classphys_1_1Node_a7bb7fd7fc172f155d205512ef65f62a8}{Manager}}
+\label{d0/ddc/classphys_1_1Node_a7bb7fd7fc172f155d205512ef65f62a8}
+
+\begin{DoxyCompactList}\small\item\em Pointer to the manager that created this class. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Node_a25ef0ab80e0dc257ecc3d3ce38f3236d}{
+Node::NodeType \hyperlink{classphys_1_1Node_a25ef0ab80e0dc257ecc3d3ce38f3236d}{Type}}
+\label{d0/ddc/classphys_1_1Node_a25ef0ab80e0dc257ecc3d3ce38f3236d}
+
+\begin{DoxyCompactList}\small\item\em Enum value storing the type of node this class is. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Node_a98c80724ecec3696aaa4c50574b522b4}{
+std::vector$<$ \hyperlink{classphys_1_1Attachable}{Attachable} $\ast$ $>$ \hyperlink{classphys_1_1Node_a98c80724ecec3696aaa4c50574b522b4}{Elements}}
+\label{d0/ddc/classphys_1_1Node_a98c80724ecec3696aaa4c50574b522b4}
+
+\begin{DoxyCompactList}\small\item\em Vector storing all attached cameras. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is a helper class which non-\/physicsl objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects. This class simply contains a group of functions for easy manipulation of movement and orientation as well as attaching elements to them. This class should only be created through the scene manager. \par
+ There are 4 types of nodes: \par
+ Center -\/ Works in conjunction with the orbit node and serves as it's center point for the orbit node to rotate around. \par
+ Orbit -\/ Counterpart to the Center node, this type does the orbiting. \par
+ Stand -\/ Stationary node that points in one direction, that is it. \par
+ Free -\/ A node with no rules governing how it moves. \par
+ Note: There are no rules restricting the use of nodes anyway, this enum is here simply to help indicate the intended use upon creation. 
+
+Definition at line 76 of file node.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1Node_a09393f483ab4bb2fdb74b26a59ffd37e}{
+\index{phys::Node@{phys::Node}!Node@{Node}}
+\index{Node@{Node}!phys::Node@{phys::Node}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}phys::Node::Node (const {\bf String} \& {\em Name}, \/  {\bf SceneManager} $\ast$ {\em manager})}}
+\label{d0/ddc/classphys_1_1Node_a09393f483ab4bb2fdb74b26a59ffd37e}
+
+
+Standard initialization constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of this node. \item[{\em manager}]Pointer to the manager that this node is to be used in. \end{DoxyParams}
+
+
+Definition at line 50 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_af0f42610cf0adcef9e4dea16013cbaf2}{
+\index{phys::Node@{phys::Node}!Node@{Node}}
+\index{Node@{Node}!phys::Node@{phys::Node}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}phys::Node::Node (Ogre::SceneNode $\ast$ {\em snode}, \/  {\bf SceneManager} $\ast$ {\em manager})}}
+\label{d0/ddc/classphys_1_1Node_af0f42610cf0adcef9e4dea16013cbaf2}
+
+
+Internal constructor. 
+
+This constructor should not be called on manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em snode}]Pointer to the Ogre SceneNode this class is based on. \item[{\em manager}]Pointer to the manager that this node is to be used in. \end{DoxyParams}
+
+
+Definition at line 57 of file node.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1Node_a8de0f86b08510a08a6e6c0912c9caddb}{
+\index{phys::Node@{phys::Node}!AttachElement@{AttachElement}}
+\index{AttachElement@{AttachElement}!phys::Node@{phys::Node}}
+\subsubsection[{AttachElement}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Node::AttachElement ({\bf Attachable} $\ast$ {\em Element})}}
+\label{d0/ddc/classphys_1_1Node_a8de0f86b08510a08a6e6c0912c9caddb}
+
+
+Attaches an attachable element to this \hyperlink{classphys_1_1Node}{Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Element}]The Element to be attached. \end{DoxyParams}
+
+
+Definition at line 74 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_afdafaa00a4c6873211968529993a2b48}{
+\index{phys::Node@{phys::Node}!DetachElement@{DetachElement}}
+\index{DetachElement@{DetachElement}!phys::Node@{phys::Node}}
+\subsubsection[{DetachElement}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Node::DetachElement ({\bf Attachable} $\ast$ {\em Element})}}
+\label{d0/ddc/classphys_1_1Node_afdafaa00a4c6873211968529993a2b48}
+
+
+Detaches an attachable element from this \hyperlink{classphys_1_1Node}{Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Element}]The Element to be detached. \end{DoxyParams}
+
+
+Definition at line 105 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_a2c834fe00f2f80aa6c0bb62648f9bdb5}{
+\index{phys::Node@{phys::Node}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::Node@{phys::Node}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::Node::GetName ()}}
+\label{d0/ddc/classphys_1_1Node_a2c834fe00f2f80aa6c0bb62648f9bdb5}
+
+
+Gets the name of this node. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name given to this node. 
+\end{DoxyReturn}
+
+
+Definition at line 69 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_ae4ee282575f7b1e6bb9dfcda15fcfd47}{
+\index{phys::Node@{phys::Node}!GetNumAttachedElements@{GetNumAttachedElements}}
+\index{GetNumAttachedElements@{GetNumAttachedElements}!phys::Node@{phys::Node}}
+\subsubsection[{GetNumAttachedElements}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::Node::GetNumAttachedElements ()}}
+\label{d0/ddc/classphys_1_1Node_ae4ee282575f7b1e6bb9dfcda15fcfd47}
+
+
+Gets the number of elements attached to this node. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of elements attached to this node. 
+\end{DoxyReturn}
+
+
+Definition at line 148 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_af9bda096f298c0ae692d52dd3b7c3733}{
+\index{phys::Node@{phys::Node}!GetOrientation@{GetOrientation}}
+\index{GetOrientation@{GetOrientation}!phys::Node@{phys::Node}}
+\subsubsection[{GetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} phys::Node::GetOrientation ()}}
+\label{d0/ddc/classphys_1_1Node_af9bda096f298c0ae692d52dd3b7c3733}
+
+
+Gets the orientation of this node. 
+
+\begin{DoxyReturn}{Returns}
+Returns a quaternion representing the orientation of this node. 
+\end{DoxyReturn}
+
+
+Definition at line 169 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_adbb895705afa97bd5d824f0abf59e11a}{
+\index{phys::Node@{phys::Node}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!phys::Node@{phys::Node}}
+\subsubsection[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Node::GetPosition ()}}
+\label{d0/ddc/classphys_1_1Node_adbb895705afa97bd5d824f0abf59e11a}
+
+
+Gets the position of this node. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 representing the location of this node. 
+\end{DoxyReturn}
+
+
+Definition at line 158 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_aee8632b4db2accd810afd096247252c2}{
+\index{phys::Node@{phys::Node}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::Node@{phys::Node}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}Node::NodeType phys::Node::GetType ()}}
+\label{d0/ddc/classphys_1_1Node_aee8632b4db2accd810afd096247252c2}
+
+
+Gets the type of node that this is. 
+
+\begin{DoxyReturn}{Returns}
+Returns the type of node this is set as. 
+\end{DoxyReturn}
+
+
+Definition at line 209 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_a93fbb2b20f3cab180f7bdd39299c252e}{
+\index{phys::Node@{phys::Node}!IncrementOrbit@{IncrementOrbit}}
+\index{IncrementOrbit@{IncrementOrbit}!phys::Node@{phys::Node}}
+\subsubsection[{IncrementOrbit}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Node::IncrementOrbit ({\bf Real} {\em Radians})}}
+\label{d0/ddc/classphys_1_1Node_a93fbb2b20f3cab180f7bdd39299c252e}
+
+
+Increments the orbit of this node if this is an orbiting node. 
+
+This function has no effect if this isn't an orbiting node. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Radians}]A real reprsenting the amount of orbit to increment in radians. \end{DoxyParams}
+
+
+Definition at line 195 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_a545f5696660b3e7c07154b29421ab179}{
+\index{phys::Node@{phys::Node}!LookAt@{LookAt}}
+\index{LookAt@{LookAt}!phys::Node@{phys::Node}}
+\subsubsection[{LookAt}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Node::LookAt ({\bf Vector3} {\em LookAt})}}
+\label{d0/ddc/classphys_1_1Node_a545f5696660b3e7c07154b29421ab179}
+
+
+Automatically sets the orientation needed to point this node at a location in the world. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em LookAt}]The location in world space to point at. \end{DoxyParams}
+
+
+Definition at line 175 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_adc570391b491821a13b58e15e0dc2cac}{
+\index{phys::Node@{phys::Node}!SetAutoTracking@{SetAutoTracking}}
+\index{SetAutoTracking@{SetAutoTracking}!phys::Node@{phys::Node}}
+\subsubsection[{SetAutoTracking}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Node::SetAutoTracking ({\bf ActorBase} $\ast$ {\em Actor}, \/  {\bf Vector3} {\em Offset} = {\ttfamily {\bf Vector3}()})}}
+\label{d0/ddc/classphys_1_1Node_adc570391b491821a13b58e15e0dc2cac}
+
+
+Makes this node autotrack an actor. 
+
+This function will make this node update it's orientation every frame automatically so that it's always facing the target actor. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Actor}]The actor to be tracked. \item[{\em Offset}]A vector3 representing the offset from the actor's location to be tracked. \end{DoxyParams}
+
+
+Definition at line 185 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_a0e652a52ea7d6e18280d1fc4b283c86a}{
+\index{phys::Node@{phys::Node}!SetAutoTracking@{SetAutoTracking}}
+\index{SetAutoTracking@{SetAutoTracking}!phys::Node@{phys::Node}}
+\subsubsection[{SetAutoTracking}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Node::SetAutoTracking ({\bf Node} $\ast$ {\em node}, \/  {\bf Vector3} {\em Offset} = {\ttfamily {\bf Vector3}()})}}
+\label{d0/ddc/classphys_1_1Node_a0e652a52ea7d6e18280d1fc4b283c86a}
+
+
+Makes this node autotrack another node. 
+
+This function will make this node update it's orientation every frame automatically so that it's always facing the target node. 
+\begin{DoxyParams}{Parameters}
+\item[{\em node}]The node to be tracked. \item[{\em Offset}]A vector3 representing the offset from the nodes location to be tracked. \end{DoxyParams}
+
+
+Definition at line 180 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_a3799cc7b685a4bbbb16b6f9b917824a8}{
+\index{phys::Node@{phys::Node}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!phys::Node@{phys::Node}}
+\subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Node::SetOrientation ({\bf Quaternion} {\em Orientation})}}
+\label{d0/ddc/classphys_1_1Node_a3799cc7b685a4bbbb16b6f9b917824a8}
+
+
+Sets the orientation of this node. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]A \hyperlink{classphys_1_1Quaternion}{Quaternion} representing the orientation of this node. \end{DoxyParams}
+
+
+Definition at line 164 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_ab8dc3aa58292b0156e67dc3684099bbe}{
+\index{phys::Node@{phys::Node}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!phys::Node@{phys::Node}}
+\subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Node::SetPosition ({\bf Vector3} {\em Position})}}
+\label{d0/ddc/classphys_1_1Node_ab8dc3aa58292b0156e67dc3684099bbe}
+
+
+Sets the position of this node. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]A vector3 representing the location of this node. \end{DoxyParams}
+
+
+Definition at line 153 of file node.cpp.
+
+\hypertarget{classphys_1_1Node_afbc58e8c751f617c89a2246c397c679e}{
+\index{phys::Node@{phys::Node}!SetType@{SetType}}
+\index{SetType@{SetType}!phys::Node@{phys::Node}}
+\subsubsection[{SetType}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Node::SetType (Node::NodeType {\em type})}}
+\label{d0/ddc/classphys_1_1Node_afbc58e8c751f617c89a2246c397c679e}
+
+
+Sets the type of node that this is. 
+
+This is intended for internal/expert use only. Manually calling this could disrupt normal function. 
+\begin{DoxyParams}{Parameters}
+\item[{\em type}]The type of node this is to be set as. \end{DoxyParams}
+
+
+Definition at line 204 of file node.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+node.h\item 
+node.cpp\end{DoxyCompactItemize}

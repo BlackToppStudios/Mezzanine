@@ -4,7 +4,7 @@
 }
 
 
-\hyperlink{structThis}{This} is the manager responsible for the loading and unloading of files.  
+This is the manager responsible for the loading and unloading of files.  
 
 
 
@@ -39,7 +39,7 @@ void \hyperlink{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{
 void \hyperlink{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{DoMainLoopItems} ()
 \begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \hyperlink{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -59,7 +59,7 @@ Ogre::ResourceGroupManager $\ast$ \hyperlink{classphys_1_1ResourceManager_af19bf
 
 
 \subsection{Detailed Description}
-\hyperlink{structThis}{This} is the manager responsible for the loading and unloading of files. \hyperlink{structThis}{This} class is responsible for the reading and writing of files of all kinds, be it graphical meshes, physics data, or XMl files. 
+This is the manager responsible for the loading and unloading of files. This class is responsible for the reading and writing of files of all kinds, be it graphical meshes, physics data, or XMl files. 
 
 Definition at line 63 of file resourcemanager.h.
 
@@ -100,7 +100,7 @@ Definition at line 61 of file resourcemanager.cpp.
 
 Adds a location for graphical resources. 
 
-\hyperlink{structThis}{This} function will add a location on the disk to find files needed to create and manipulate graphical objects. 
+This function will add a location on the disk to find files needed to create and manipulate graphical objects. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Location}]The location on the file system the resource can be found. \item[{\em Type}]The kind of file system the location can be found in. \par
  Options are: filesystem, zip. \item[{\em Group}]The name of the group the resources at this location belong to. \item[{\em recursive}]Whether or not to search sub-\/directories. \end{DoxyParams}
@@ -117,7 +117,7 @@ Definition at line 147 of file resourcemanager.cpp.
 
 Prepares the resource for use. 
 
-\hyperlink{structThis}{This} function can be thought of as a preloader. \hyperlink{structThis}{This} will prepare the defined resource located on the disk for use. 
+This function can be thought of as a preloader. This will prepare the defined resource located on the disk for use. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Name}]Name of the file/resource to be 'prepared'. \item[{\em Type}]The type of resource that the file is. \par
  Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture. \item[{\em Group}]Name of the group the resource belongs to. \end{DoxyParams}
@@ -134,7 +134,7 @@ Definition at line 152 of file resourcemanager.cpp.
 
 Empty MainLoopItems. 
 
-\hyperlink{structThis}{This} class implements this for the sake of entension and compatibility this function does nothing. \hyperlink{structThis}{This} is just empty during this round of refactoring, and this will get all the functionality that currently should be here, but is in the world. 
+This class implements this for the sake of entension and compatibility this function does nothing. This is just empty during this round of refactoring, and this will get all the functionality that currently should be here, but is in the world. 
 
 Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{phys::ManagerBase}.
 
@@ -162,10 +162,10 @@ Definition at line 87 of file resourcemanager.cpp.
 \label{d1/d35/classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}
 
 
-\hyperlink{structThis}{This} returns the type of this manager. 
+This returns the type of this manager. 
 
 \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns ManagerTypeName::ResourceManager 
+This returns ManagerTypeName::ResourceManager 
 \end{DoxyReturn}
 
 
@@ -199,7 +199,7 @@ Empty Initializor.
 
 Functions inherited from \hyperlink{classphys_1_1ManagerBase}{ManagerBase}
 
-\hyperlink{structThis}{This} specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason. 
+This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason. 
 
 Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
 

@@ -30,7 +30,7 @@
 </div>
 <div class="contents">
 <h1>phys::ActorTerrain Class Reference</h1><!-- doxytag: class="phys::ActorTerrain" --><!-- doxytag: inherits="phys::ActorBase" -->
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is actor class for terrain.  
+<p>This is actor class for terrain.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../db/d2f/actorterrain_8h_source.html">actorterrain.h</a>&gt;</code></p>
@@ -70,8 +70,8 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><b>CreateCollisionTerrai
 btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is actor class for terrain. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> class is intended to be used for terrain. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> class uses sub-classes with fewer features, but still more then enough features for static terrain. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> helps reduce the memory footprint of the class as well as processing speed. </p>
+<p>This is actor class for terrain. </p>
+<p>This class is intended to be used for terrain. This class uses sub-classes with fewer features, but still more then enough features for static terrain. This helps reduce the memory footprint of the class as well as processing speed. </p>
 
 <p>Definition at line <a class="el" href="../../db/d2f/actorterrain_8h_source.html#l00057">57</a> of file <a class="el" href="../../db/d2f/actorterrain_8h_source.html">actorterrain.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
@@ -176,7 +176,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 
 <p>Adds the actor to the physics world. </p>
 <p>Adds the actor to the physics world. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. </p>
+ This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> class. </td></tr>
@@ -207,7 +207,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 <div class="memdoc">
 
 <p>Compatability function. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function does nothing, as this class isn't dynamic. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is simply here to allow the engine to compile. </p>
+<p>This function does nothing, as this class isn't dynamic. This is simply here to allow the engine to compile. </p>
 
 <p>Implements <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#aa41370f6d2031a9dad8df45bd7f3bcc6">phys::ActorBase</a>.</p>
 
@@ -231,7 +231,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 <div class="memdoc">
 
 <p>Creates a collision shape from mesh file. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> shoiuld be used with only with Static objects. </p>
+<p>This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Static objects. </p>
 
 <p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000003">Todo:</a></b></dt><dd><ul>
 <li>Check for thread safety </li>
@@ -259,7 +259,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 <div class="memdoc">
 
 <p>Retrieves the name of the object. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will retrieve the name of the object, </p>
+<p>This function will retrieve the name of the object, </p>
 
 <p>Implements <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a8309f5bd133c936abe3a856b0240159f">phys::ActorBase</a>.</p>
 
@@ -285,7 +285,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 
 <p>Removes the actor from the physics world. </p>
 <p>Removes the actor from the physics world. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. </p>
+ This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> class. </td></tr>
@@ -304,7 +304,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 <li><a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Sep 19 15:51:42 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:51 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

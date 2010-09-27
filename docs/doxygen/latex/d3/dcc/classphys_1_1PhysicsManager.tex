@@ -4,7 +4,7 @@
 }
 
 
-\hyperlink{structThis}{This} is simply a place for storing all the Physics Related functions.  
+This is simply a place for storing all the Physics Related functions.  
 
 
 
@@ -25,7 +25,7 @@ Inheritance diagram for phys::PhysicsManager:\begin{figure}[H]
 \hyperlink{classphys_1_1PhysicsManager_aa2c37564d35c3b7266219812ee43717f}{PhysicsManager} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyLowerBounds\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-)
 \begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{Initialize} ()
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} configures the Physics Manager to work with the Graphic settings. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This configures the Physics Manager to work with the Graphic settings. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{DoMainLoopItems} ()
 \begin{DoxyCompactList}\small\item\em Physics stepping during the main loop. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}{$\sim$PhysicsManager} ()
@@ -47,9 +47,9 @@ int \hyperlink{classphys_1_1PhysicsManager_a64f96d2e4b25c2b9a66042998bf334ff}{Ge
 void \hyperlink{classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}{SetDebugPhysicsWireCount} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} WireFrameCount\_\-)
 \begin{DoxyCompactList}\small\item\em How many Wireframes do you want drawn from previous events. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}{GetDebugPhysicsWireCount} ()
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} gets how many WireFrames are being drawn. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This gets how many WireFrames are being drawn. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{DoMainLoopItems} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&TimeElapsed)
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} does all the work reuired for the main loop to process physics. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This does all the work reuired for the main loop to process physics. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsManager_a54a48fdfd9db914c25a0f892c2f56301}{GetActorOffset} (const \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} \&OffsetInfo)
 \begin{DoxyCompactList}\small\item\em Gets the offset between a point and an actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1PhysicsManager_ab31bf38e9ed68c484946731546425691}{AddConstraint} (\hyperlink{classphys_1_1TypedConstraint}{TypedConstraint} $\ast$Constraint)
@@ -73,13 +73,13 @@ unsigned short int \hyperlink{classphys_1_1PhysicsManager_a4232e8cd52e70b623ef30
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1PhysicsManager_ad11ee3904e1725f95ce9bd58f4ee3925}{GetImpulse} ()
 \begin{DoxyCompactList}\small\item\em Gets the Collision Impulse limit. \item\end{DoxyCompactList}\item 
 btSoftRigidDynamicsWorld $\ast$ \hyperlink{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}{GetPhysicsWorldPointer} ()
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} returns a pointer to the bullet physics world. \hyperlink{structThis}{This} is for internal use only. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This returns a pointer to the bullet physics world. This is for internal use only. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\hyperlink{structThis}{This} is simply a place for storing all the Physics Related functions. \hyperlink{structThis}{This} is a plage for storing items related to Debug physics drawing, Adding constraints, screwing with gravity and doing other physics Related features. 
+This is simply a place for storing all the Physics Related functions. This is a plage for storing items related to Debug physics drawing, Adding constraints, screwing with gravity and doing other physics Related features. 
 
 Definition at line 77 of file physicsmanager.h.
 
@@ -95,9 +95,9 @@ Definition at line 77 of file physicsmanager.h.
 
 Simple Constructor. 
 
-\hyperlink{structThis}{This} constructor will assign some sane default values and will create a physics world that can be used immediately 
+This constructor will assign some sane default values and will create a physics world that can be used immediately 
 \begin{DoxyParams}{Parameters}
-\item[{\em GameWorld\_\-}]\hyperlink{structThis}{This} is a pointer to the game world this \hyperlink{classphys_1_1PhysicsManager}{PhysicsManager} will work with \end{DoxyParams}
+\item[{\em GameWorld\_\-}]This is a pointer to the game world this \hyperlink{classphys_1_1PhysicsManager}{PhysicsManager} will work with \end{DoxyParams}
 
 
 Definition at line 262 of file physicsmanager.cpp.
@@ -111,9 +111,9 @@ Definition at line 262 of file physicsmanager.cpp.
 
 Simple Constructor. 
 
-\hyperlink{structThis}{This} constructor will assign some sane default values and will create a physics world that can be used immediately 
+This constructor will assign some sane default values and will create a physics world that can be used immediately 
 \begin{DoxyParams}{Parameters}
-\item[{\em GameWorld\_\-}]\hyperlink{structThis}{This} is a pointer to the \hyperlink{classphys_1_1World}{phys::World} that this manager will work with \item[{\em GeographyLowerBounds\_\-}]\hyperlink{structThis}{This} \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the lower right conrer of the world \item[{\em GeographyUpperbounds\_\-}]\hyperlink{structThis}{This} \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the upper left conrer of the world \item[{\em MaxPhysicsProxies\_\-}]\hyperlink{structThis}{This} approximates the maximum amount of items allowed in the physics world \end{DoxyParams}
+\item[{\em GameWorld\_\-}]This is a pointer to the \hyperlink{classphys_1_1World}{phys::World} that this manager will work with \item[{\em GeographyLowerBounds\_\-}]This \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the lower right conrer of the world \item[{\em GeographyUpperbounds\_\-}]This \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the upper left conrer of the world \item[{\em MaxPhysicsProxies\_\-}]This approximates the maximum amount of items allowed in the physics world \end{DoxyParams}
 
 
 Definition at line 267 of file physicsmanager.cpp.
@@ -127,7 +127,7 @@ Definition at line 267 of file physicsmanager.cpp.
 
 Deconstructor. 
 
-\hyperlink{structThis}{This} deletes all those crazy pointers that Bullet, the physics subsystem need. 
+This deletes all those crazy pointers that Bullet, the physics subsystem need. 
 
 Definition at line 272 of file physicsmanager.cpp.
 
@@ -175,7 +175,7 @@ Definition at line 471 of file physicsmanager.cpp.
 
 Applies a previously stored shape. 
 
-\hyperlink{structThis}{This} function will take a stored shape and apply it to the actor provided. 
+This function will take a stored shape and apply it to the actor provided. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Actor}]The actor to which you want to apply the shape. \item[{\em ShapeName}]The name of the shape you wish to have applied to the actor. \end{DoxyParams}
 
@@ -189,11 +189,11 @@ Definition at line 529 of file physicsmanager.cpp.
 \label{d3/dcc/classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}
 
 
-\hyperlink{structThis}{This} does all the work reuired for the main loop to process physics. 
+This does all the work reuired for the main loop to process physics. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em TimeElapsed}]\hyperlink{structThis}{This} is a real that represents the amount of time we need to simulate \end{DoxyParams}
+\item[{\em TimeElapsed}]This is a real that represents the amount of time we need to simulate \end{DoxyParams}
 
 
 Definition at line 338 of file physicsmanager.cpp.
@@ -207,7 +207,7 @@ Definition at line 338 of file physicsmanager.cpp.
 
 Physics stepping during the main loop. 
 
-\hyperlink{structThis}{This} increments the the physics world the required amount to keep it in sync with the Graphics/Timing. 
+This increments the the physics world the required amount to keep it in sync with the Graphics/Timing. 
 
 Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{phys::ManagerBase}.
 
@@ -224,7 +224,7 @@ Definition at line 333 of file physicsmanager.cpp.
 
 Gets the offset between a point and an actor. 
 
-\hyperlink{structThis}{This} function will return the offset between the specified world point and the specified actors center of mass. 
+This function will return the offset between the specified world point and the specified actors center of mass. 
 \begin{DoxyParams}{Parameters}
 \item[{\em OffsetInfo}]The vector and actor to compare for offset data. \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -243,7 +243,7 @@ Definition at line 458 of file physicsmanager.cpp.
 
 Gets an Area Effect by name. 
 
-\hyperlink{structThis}{This} function will return the named area effect if it is stored. 
+This function will return the named area effect if it is stored. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Name}]The name of the area effect to find. \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -263,7 +263,7 @@ Definition at line 499 of file physicsmanager.cpp.
 Gets the Collision Age limit. 
 
 Gets the CollisionAge used in filtering out collision contacts used to make events. \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} function will return the number of physics ticks the collision has to have existed to be used. 
+This function will return the number of physics ticks the collision has to have existed to be used. 
 \end{DoxyReturn}
 
 
@@ -292,10 +292,10 @@ Definition at line 433 of file physicsmanager.cpp.
 \label{d3/dcc/classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}
 
 
-\hyperlink{structThis}{This} gets how many WireFrames are being drawn. 
+This gets how many WireFrames are being drawn. 
 
-\hyperlink{structThis}{This} will tell you how many frames worth of previous in game events are being drawn. \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount . 
+This will tell you how many frames worth of previous in game events are being drawn. \begin{DoxyReturn}{Returns}
+This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount . 
 \end{DoxyReturn}
 
 
@@ -327,7 +327,7 @@ Definition at line 394 of file physicsmanager.cpp.
 Gets the Collision Impulse limit. 
 
 Gets the Collision Impulse used in filtering out collision contacts used to make events. \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} function will return the lower limit of the allowed force of the collision to generate an event. 
+This function will return the lower limit of the allowed force of the collision to generate an event. 
 \end{DoxyReturn}
 
 
@@ -340,7 +340,7 @@ Definition at line 546 of file physicsmanager.cpp.
 \label{d3/dcc/classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}
 
 
-\hyperlink{structThis}{This} returns a pointer to the bullet physics world. \hyperlink{structThis}{This} is for internal use only. 
+This returns a pointer to the bullet physics world. This is for internal use only. 
 
 \begin{DoxyInternal}{For internal use only.}
 \end{DoxyInternal}
@@ -371,10 +371,10 @@ Definition at line 405 of file physicsmanager.cpp.
 \label{d3/dcc/classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}
 
 
-\hyperlink{structThis}{This} returns the type of this manager. 
+This returns the type of this manager. 
 
 \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns ManagerTypeName::PhysicsManager 
+This returns ManagerTypeName::PhysicsManager 
 \end{DoxyReturn}
 
 
@@ -391,9 +391,9 @@ Definition at line 552 of file physicsmanager.cpp.
 \label{d3/dcc/classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}
 
 
-\hyperlink{structThis}{This} configures the Physics Manager to work with the Graphic settings. 
+This configures the Physics Manager to work with the Graphic settings. 
 
-\hyperlink{structThis}{This} configures the Physics manager to work with the existing graphics settings. \hyperlink{structThis}{This} must be called before the physics manager is used, but after the graphics have been initialized 
+This configures the Physics manager to work with the existing graphics settings. This must be called before the physics manager is used, but after the graphics have been initialized 
 
 Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
 
@@ -445,7 +445,7 @@ Sets the Collision Parameters.
 Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events. The lower these numbers, the more events will be generated. \par
  These numbers both default to 1. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Age}]The number of physics ticks the collision has to have existed to be used. Usually you want 1 or 2. Default: 1 \item[{\em Force}]The amount of force applied in the collision to filter by. \hyperlink{structThis}{This} amount can vary more then the other param based on what you need. Default: 1.0 \end{DoxyParams}
+\item[{\em Age}]The number of physics ticks the collision has to have existed to be used. Usually you want 1 or 2. Default: 1 \item[{\em Force}]The amount of force applied in the collision to filter by. This amount can vary more then the other param based on what you need. Default: 1.0 \end{DoxyParams}
 
 
 Definition at line 535 of file physicsmanager.cpp.
@@ -459,7 +459,7 @@ Definition at line 535 of file physicsmanager.cpp.
 
 Enables and Disables Physics Debug Drawing. 
 
-Enables and Disables Physics Debug Drawing using default wireframes. \hyperlink{structThis}{This} will force renderings that match the physics subsytem pixel for pixel. 
+Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics subsytem pixel for pixel. 
 \begin{DoxyParams}{Parameters}
 \item[{\em ToBeEnabled}]1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control \end{DoxyParams}
 
@@ -477,7 +477,7 @@ How many Wireframes do you want drawn from previous events.
 
 Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount set this to 2, as the first wireframe is commonly entirely inside the the rendered 3d mesh. You can use \hyperlink{classphys_1_1World_aa063ace52be484c7b03ec5859453f48b}{World::GetTargetFrameTime()} In conjunction with this to specify an amout of seconds worth of wireframes. 
 \begin{DoxyParams}{Parameters}
-\item[{\em WireFrameCount\_\-}]\hyperlink{structThis}{This} is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate, Any amount more than just a few seconds worth can be cumbersome. \end{DoxyParams}
+\item[{\em WireFrameCount\_\-}]This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate, Any amount more than just a few seconds worth can be cumbersome. \end{DoxyParams}
 
 
 Definition at line 443 of file physicsmanager.cpp.
@@ -507,7 +507,7 @@ Definition at line 389 of file physicsmanager.cpp.
 
 Sets the gravity to be applied to a single object. 
 
-\hyperlink{structThis}{This} function does not change the global gravity, only how gravity behaves for this specific object. Note: \hyperlink{structThis}{This} function only works on ActorRigid's. 
+This function does not change the global gravity, only how gravity behaves for this specific object. Note: This function only works on ActorRigid's. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Actor}]The actor whos gravity is to be changed. \item[{\em igrav}]The value of the gravity to be applied. \end{DoxyParams}
 
@@ -539,7 +539,7 @@ Definition at line 400 of file physicsmanager.cpp.
 
 Stores an already generated physics shape. 
 
-\hyperlink{structThis}{This} function will take an actors physics shape and store it for re-\/use in other actors, in case a shape is able to be re-\/used by other actors. 
+This function will take an actors physics shape and store it for re-\/use in other actors, in case a shape is able to be re-\/used by other actors. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Actor}]The actor from which to store the shape. \item[{\em ShapeName}]The name you wish to assign to the shape being stored. \end{DoxyParams}
 

@@ -4,13 +4,19 @@
 }
 
 
-\hyperlink{structThis}{This} is the camera class.  
+This is the camera class.  
 
 
 
 
 {\ttfamily \#include $<$camera.h$>$}
 
+Inheritance diagram for phys::Camera:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d9/df8/classphys_1_1Camera}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -20,6 +26,8 @@
 \begin{DoxyCompactList}\small\item\em Ogre Cam Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Camera_aa45f340a6f7ba0970aa2602a928463ea}{$\sim$Camera} ()
 \begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1Camera_aee08e3932237c76d2b59652878f2bdf6}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the camera's set name. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Camera_ab1fb572982464212b2fa33e2df6f688b}{SetLocation} (\hyperlink{classphys_1_1Vector3}{Vector3} Location)
 \begin{DoxyCompactList}\small\item\em Sets the location of a camera. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Camera_a50746cdd4f7d483edffe87d24d2b4bc6}{SetDirection} (\hyperlink{classphys_1_1Vector3}{Vector3} Direction)
@@ -58,15 +66,23 @@ void \hyperlink{classphys_1_1Camera_a181465e6add36c07a63fdd26aee7c69a}{ResetZoom
 \begin{DoxyCompactItemize}
 \item 
 Ogre::Camera $\ast$ \hyperlink{classphys_1_1Camera_a91622148b9b9a9ae1554c828f7e2fc89}{Cam}
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} is the \hyperlink{classphys_1_1Camera}{Camera} used by the graphics Subsystem, that this class wraps. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This is the \hyperlink{classphys_1_1Camera}{Camera} used by the graphics Subsystem, that this class wraps. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1CameraManager}{CameraManager} $\ast$ \hyperlink{classphys_1_1Camera_a909203ede748deb1b587a8758ba8cec4}{CamManager}
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} is the \hyperlink{classphys_1_1Camera}{Camera} manager that this camera is attached to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This is the \hyperlink{classphys_1_1Camera}{Camera} manager that this camera is attached to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Camera_a6db9d28bd448a131448276ee03de1e6d}{
+class {\bfseries Node}}
+\label{d9/df8/classphys_1_1Camera_a6db9d28bd448a131448276ee03de1e6d}
+
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\hyperlink{structThis}{This} is the camera class. \hyperlink{structThis}{This} class contains all the functionality needed to manipulate an individual camera that has been created. 
+This is the camera class. This class contains all the functionality needed to manipulate an individual camera that has been created. 
 
-Definition at line 63 of file camera.h.
+Definition at line 64 of file camera.h.
 
 
 
@@ -80,7 +96,7 @@ Definition at line 63 of file camera.h.
 
 Basic \hyperlink{classphys_1_1Camera}{Camera} Constructor. 
 
-\hyperlink{structThis}{This} is the basic constructor for the \hyperlink{classphys_1_1Camera}{Camera} class. 
+This is the basic constructor for the \hyperlink{classphys_1_1Camera}{Camera} class. 
 
 Definition at line 46 of file camera.cpp.
 
@@ -93,7 +109,7 @@ Definition at line 46 of file camera.cpp.
 
 Ogre Cam Constructor. 
 
-\hyperlink{structThis}{This} is for internal use only and shouldn't be called manually. 
+This is for internal use only and shouldn't be called manually. 
 
 Definition at line 52 of file camera.cpp.
 
@@ -108,7 +124,7 @@ Class Destructor.
 
 The Class Destructor. 
 
-Definition at line 65 of file camera.cpp.
+Definition at line 66 of file camera.cpp.
 
 
 
@@ -124,7 +140,7 @@ Gets the global location of a camera.
 
 Gets the real world location of the camera specified. 
 
-Definition at line 144 of file camera.cpp.
+Definition at line 150 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a771fc7005191c3f83ac1fedb09699943}{
 \index{phys::Camera@{phys::Camera}!GetCameraRelativeLocation@{GetCameraRelativeLocation}}
@@ -137,7 +153,7 @@ Gets the relative location of a camera.
 
 Gets the location of the camera, relative to any connected nodes, specified. 
 
-Definition at line 138 of file camera.cpp.
+Definition at line 144 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a47c437c8755301512c2757f879e03e73}{
 \index{phys::Camera@{phys::Camera}!GetCameraToViewportRay@{GetCameraToViewportRay}}
@@ -148,12 +164,32 @@ Definition at line 138 of file camera.cpp.
 
 Gets a \hyperlink{classphys_1_1Ray}{Ray} from the camera to the viewport. 
 
-\hyperlink{structThis}{This} will cast a ray from the camera to the viewport and return it. 
+This will cast a ray from the camera to the viewport and return it. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Screenx}]A Real representing the relative location on screen, on the x axis(0.0-\/1.0). \item[{\em Screeny}]A Real representing the relative location on screen, on the y axis(0.0-\/1.0). \end{DoxyParams}
 
 
-Definition at line 126 of file camera.cpp.
+Definition at line 132 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_aee08e3932237c76d2b59652878f2bdf6}{
+\index{phys::Camera@{phys::Camera}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::Camera@{phys::Camera}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::Camera::GetName ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d9/df8/classphys_1_1Camera_aee08e3932237c76d2b59652878f2bdf6}
+
+
+Gets the camera's set name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the camera's name. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1Attachable_ad1a9bbd300fe21c5cc7e5aa7e2c95b85}{phys::Attachable}.
+
+
+
+Definition at line 70 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_ab32a8c708e5e22f65dde9ab821ea20fc}{
 \index{phys::Camera@{phys::Camera}!GetNodeAttachedToCamera@{GetNodeAttachedToCamera}}
@@ -164,9 +200,9 @@ Definition at line 126 of file camera.cpp.
 
 Gets the node attached to a camera. 
 
-\hyperlink{structThis}{This} will return a string that is the name of the node the specified camera is attached to if any. 
+This will return a string that is the name of the node the specified camera is attached to if any. 
 
-Definition at line 132 of file camera.cpp.
+Definition at line 138 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a6534be5001bf06ab4c4b32a084629842}{
 \index{phys::Camera@{phys::Camera}!LookAt@{LookAt}}
@@ -182,7 +218,7 @@ Sets the direction the camera faces. Will also take orientation into account.
 \item[{\em TargetLoc}]The location in the game world to look at. \end{DoxyParams}
 
 
-Definition at line 99 of file camera.cpp.
+Definition at line 105 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a181465e6add36c07a63fdd26aee7c69a}{
 \index{phys::Camera@{phys::Camera}!ResetZoom@{ResetZoom}}
@@ -193,9 +229,9 @@ Definition at line 99 of file camera.cpp.
 
 Resets the zoom level back to the default. 
 
-\hyperlink{structThis}{This} function will return the zoom level back to normal. Note this function will only work if the camera is attached to a node. 
+This function will return the zoom level back to normal. Note this function will only work if the camera is attached to a node. 
 
-Definition at line 156 of file camera.cpp.
+Definition at line 162 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a6f895759e653eedb985217c621b265f6}{
 \index{phys::Camera@{phys::Camera}!SetAspectRatio@{SetAspectRatio}}
@@ -206,12 +242,12 @@ Definition at line 156 of file camera.cpp.
 
 Sets the aspect ratio of the cameras veiw. 
 
-\hyperlink{structThis}{This} function will set the aspect ratio between the width and height of the cameras viewing area. 
+This function will set the aspect ratio between the width and height of the cameras viewing area. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Ratio}]A Real that represents the aspect ratio, where Ratio = width / height. \end{DoxyParams}
 
 
-Definition at line 94 of file camera.cpp.
+Definition at line 100 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a5f66e37056f03767b6048f8bd4465983}{
 \index{phys::Camera@{phys::Camera}!SetAutoTracking@{SetAutoTracking}}
@@ -222,12 +258,12 @@ Definition at line 94 of file camera.cpp.
 
 Enables or disables auto tracking for the camera. 
 
-\hyperlink{structThis}{This} function can enable auto tracking of a given node you have created. 
+This function can enable auto tracking of a given node you have created. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Enabled}]Bool value to enable or disable auto tracking for this camera. \item[{\em Target}]Name of the node to be tracked. \end{DoxyParams}
 
 
-Definition at line 120 of file camera.cpp.
+Definition at line 126 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_ad49538281af9940dca156113cf006137}{
 \index{phys::Camera@{phys::Camera}!SetAutoTracking@{SetAutoTracking}}
@@ -238,12 +274,12 @@ Definition at line 120 of file camera.cpp.
 
 Enables or disables auto tracking for the camera. 
 
-\hyperlink{structThis}{This} function can enable auto tracking of a given node you have created. 
+This function can enable auto tracking of a given node you have created. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Enabled}]Bool value to enable or disable auto tracking for this camera. \item[{\em Target}]Name of the node to be tracked. \item[{\em Offset}]The offset of where the camera is to look from the target. I.E. Always 5 units ahead, etc.. \end{DoxyParams}
 
 
-Definition at line 114 of file camera.cpp.
+Definition at line 120 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a50746cdd4f7d483edffe87d24d2b4bc6}{
 \index{phys::Camera@{phys::Camera}!SetDirection@{SetDirection}}
@@ -259,7 +295,7 @@ Sets which axis the camera will look down for rendering.
 \item[{\em Direction}]The vector3 representing the axis to be used. \end{DoxyParams}
 
 
-Definition at line 74 of file camera.cpp.
+Definition at line 80 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a25408db8110ac5035fafbd58a5b1106d}{
 \index{phys::Camera@{phys::Camera}!SetFarClipDistance@{SetFarClipDistance}}
@@ -272,10 +308,10 @@ Sets the long range clip distance.
 
 Sets the distance at which objects are considered too far to render. 
 \begin{DoxyParams}{Parameters}
-\item[{\em FarDist}]A Real representing the distance. Note: \hyperlink{structThis}{This} number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \end{DoxyParams}
+\item[{\em FarDist}]A Real representing the distance. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \end{DoxyParams}
 
 
-Definition at line 89 of file camera.cpp.
+Definition at line 95 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a1b4d5be85c528541c7a1cbebb41bfd89}{
 \index{phys::Camera@{phys::Camera}!SetFixedYawAxis@{SetFixedYawAxis}}
@@ -286,12 +322,12 @@ Definition at line 89 of file camera.cpp.
 
 Sets whether to lock rotation around the Y axis. 
 
-\hyperlink{structThis}{This} function will lock rotations around the Y axis. \hyperlink{structThis}{This} function is automatically called on by the camera constructor. 
+This function will lock rotations around the Y axis. This function is automatically called on by the camera constructor. 
 \begin{DoxyParams}{Parameters}
 \item[{\em UseFixed}]Enable or disable the locking of the axis. \end{DoxyParams}
 
 
-Definition at line 109 of file camera.cpp.
+Definition at line 115 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a0fe097fbabbe1a88881f25bc827cabf5}{
 \index{phys::Camera@{phys::Camera}!SetFixedYawAxis@{SetFixedYawAxis}}
@@ -302,12 +338,12 @@ Definition at line 109 of file camera.cpp.
 
 Sets whether to lock rotation around the Y axis. 
 
-\hyperlink{structThis}{This} function will lock rotations around the Y axis (or another axis if you specify). \hyperlink{structThis}{This} function is automatically called on by the camera constructor. 
+This function will lock rotations around the Y axis (or another axis if you specify). This function is automatically called on by the camera constructor. 
 \begin{DoxyParams}{Parameters}
 \item[{\em UseFixed}]Enable or disable the locking of the axis. \item[{\em Axis}]The axis to lock, defaults to the Y axis. \end{DoxyParams}
 
 
-Definition at line 104 of file camera.cpp.
+Definition at line 110 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_ab1fb572982464212b2fa33e2df6f688b}{
 \index{phys::Camera@{phys::Camera}!SetLocation@{SetLocation}}
@@ -323,7 +359,7 @@ Sets the location of the specified camera.
 \item[{\em Location}]The new location for the camera. \end{DoxyParams}
 
 
-Definition at line 69 of file camera.cpp.
+Definition at line 75 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_aff7cb792640b250cafdfbc333de4bbeb}{
 \index{phys::Camera@{phys::Camera}!SetNearClipDistance@{SetNearClipDistance}}
@@ -336,10 +372,10 @@ Sets the short range clip distance.
 
 Sets the distance at which objects are considered too close to render. 
 \begin{DoxyParams}{Parameters}
-\item[{\em NearDist}]A Real representing the distance. Note: \hyperlink{structThis}{This} number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \end{DoxyParams}
+\item[{\em NearDist}]A Real representing the distance. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \end{DoxyParams}
 
 
-Definition at line 84 of file camera.cpp.
+Definition at line 90 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_af0822410414622c2a3c8b4da207b53ab}{
 \index{phys::Camera@{phys::Camera}!SetOrientation@{SetOrientation}}
@@ -350,12 +386,12 @@ Definition at line 84 of file camera.cpp.
 
 Sets the orientation of the camera. 
 
-\hyperlink{structThis}{This} function will set the orientation of the specified camera via a quaternion. 
+This function will set the orientation of the specified camera via a quaternion. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Orientation}]The quaternion representing the new orientation. \end{DoxyParams}
 
 
-Definition at line 79 of file camera.cpp.
+Definition at line 85 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a1cb593d12be4e6e1e51cb8f74ce2d97c}{
 \index{phys::Camera@{phys::Camera}!ZoomCamera@{ZoomCamera}}
@@ -366,12 +402,12 @@ Definition at line 79 of file camera.cpp.
 
 Will zoom in or out the camera. 
 
-\hyperlink{structThis}{This} function will zoom in the camera by the amount specified. 
+This function will zoom in the camera by the amount specified. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Zoom}]A Real of how much to zoom in by. Note: \hyperlink{structThis}{This} number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \end{DoxyParams}
+\item[{\em Zoom}]A Real of how much to zoom in by. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \end{DoxyParams}
 
 
-Definition at line 150 of file camera.cpp.
+Definition at line 156 of file camera.cpp.
 
 
 
@@ -383,13 +419,13 @@ Definition at line 150 of file camera.cpp.
 \label{d9/df8/classphys_1_1Camera_a91622148b9b9a9ae1554c828f7e2fc89}
 
 
-\hyperlink{structThis}{This} is the \hyperlink{classphys_1_1Camera}{Camera} used by the graphics Subsystem, that this class wraps. 
+This is the \hyperlink{classphys_1_1Camera}{Camera} used by the graphics Subsystem, that this class wraps. 
 
 \begin{DoxyInternal}{For internal use only.}
 \end{DoxyInternal}
 
 
-Definition at line 75 of file camera.h.
+Definition at line 77 of file camera.h.
 
 \hypertarget{classphys_1_1Camera_a909203ede748deb1b587a8758ba8cec4}{
 \index{phys::Camera@{phys::Camera}!CamManager@{CamManager}}
@@ -398,13 +434,13 @@ Definition at line 75 of file camera.h.
 \label{d9/df8/classphys_1_1Camera_a909203ede748deb1b587a8758ba8cec4}
 
 
-\hyperlink{structThis}{This} is the \hyperlink{classphys_1_1Camera}{Camera} manager that this camera is attached to. 
+This is the \hyperlink{classphys_1_1Camera}{Camera} manager that this camera is attached to. 
 
 \begin{DoxyInternal}{For internal use only.}
 \end{DoxyInternal}
 
 
-Definition at line 79 of file camera.h.
+Definition at line 81 of file camera.h.
 
 
 

@@ -212,19 +212,19 @@
 <a name="l00187"></a>00187 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::SoundManager; }
 <a name="l00188"></a>00188 
 <a name="l00189"></a><a class="code" href="../../d1/dc4/classphys_1_1SoundManager.html#a284fbc2fdbecdf66e717366b09e2c9da">00189</a>     std::stringstream* <a class="code" href="../../d1/dc4/classphys_1_1SoundManager.html#a284fbc2fdbecdf66e717366b09e2c9da" title="This gets the logs that the audio subystem creates.">SoundManager::GetLogs</a>()
-<a name="l00190"></a>00190         {
-<a name="l00191"></a>00191             <span class="keywordflow">return</span> AudioManager-&gt;GetLogs();
+<a name="l00190"></a>00190     {
+<a name="l00191"></a>00191         <span class="keywordflow">return</span> 0; <span class="comment">//AudioManager-&gt;GetLogs();</span>
 <a name="l00192"></a>00192     }
 <a name="l00193"></a>00193 
 <a name="l00194"></a><a class="code" href="../../d1/dc4/classphys_1_1SoundManager.html#acc3551bcda7b1c681d83d81cc25747ae">00194</a>     <span class="keywordtype">void</span> <a class="code" href="../../d1/dc4/classphys_1_1SoundManager.html#acc3551bcda7b1c681d83d81cc25747ae" title="This empties logs that the audio subystem creates.">SoundManager::ClearLogs</a>()
 <a name="l00195"></a>00195     {
-<a name="l00196"></a>00196         AudioManager-&gt;ClearLogs();
+<a name="l00196"></a>00196         <span class="comment">//AudioManager-&gt;ClearLogs();</span>
 <a name="l00197"></a>00197     }
 <a name="l00198"></a>00198 }
 <a name="l00199"></a>00199 
 <a name="l00200"></a>00200 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Sep 19 15:51:41 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:50 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -4,7 +4,7 @@
 }
 
 
-\hyperlink{structThis}{This} is the actor class for Soft Objects.  
+This is the actor class for Soft Objects.  
 
 
 
@@ -61,7 +61,7 @@ virtual void \hyperlink{classphys_1_1ActorSoft_ab65d106fcc1ee5243a990e7b42326bf0
 \item 
 void \hyperlink{classphys_1_1ActorSoft_acc0ff92e2dcc0e5d99ca62f07bc9174d}{CreateSoftObject} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} mass)
 \begin{DoxyCompactList}\small\item\em Creates a soft object for the actor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ActorSoft_a341d9124acd59a4597745c3eff06dfc8}{CreateManualMesh} (\hyperlink{structphys_1_1internal_1_1MeshInfo}{internal::MeshInfo} \&TheMesh)
+void \hyperlink{classphys_1_1ActorSoft_a341d9124acd59a4597745c3eff06dfc8}{CreateManualMesh} (internal::MeshInfo \&TheMesh)
 \begin{DoxyCompactList}\small\item\em Creates and configures a manual object for rendering. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorSoft_a37b3bf631e8f73b3f19c3bb043d011c3}{AttachToGraphics} ()
 \begin{DoxyCompactList}\small\item\em Makes the actor visable. \item\end{DoxyCompactList}\item 
@@ -89,7 +89,7 @@ Ogre::ManualObject $\ast$ \hyperlink{classphys_1_1ActorSoft_abe0900674a3a46883a7
 
 
 \subsection{Detailed Description}
-\hyperlink{structThis}{This} is the actor class for Soft Objects. \hyperlink{structThis}{This} class should be used to make any soft object that, like \hyperlink{classphys_1_1ActorRigid}{ActorRigid}, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. \begin{DoxyWarning}{Warning}
+This is the actor class for Soft Objects. This class should be used to make any soft object that, like \hyperlink{classphys_1_1ActorRigid}{ActorRigid}, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. \begin{DoxyWarning}{Warning}
 Currently this is not fully implemented and will likely cause errors if used. 
 \end{DoxyWarning}
 
@@ -125,7 +125,7 @@ Definition at line 62 of file actorsoft.cpp.
 Adds the actor to the physics world. 
 
 Adds the actor to the physics world. \par
- \hyperlink{structThis}{This} is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. 
+ This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \end{DoxyParams}
 
@@ -146,7 +146,7 @@ Definition at line 246 of file actorsoft.cpp.
 Makes the actor visable. 
 
 Adds the actor to all the nessessary graphics elements to make it visable on screen. \par
- \hyperlink{structThis}{This} is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually. 
+ This is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually. 
 
 Reimplemented from \hyperlink{classphys_1_1ActorBase_a45f190cb9b647bb3385d1298f9dab589}{phys::ActorBase}.
 
@@ -157,13 +157,13 @@ Definition at line 120 of file actorsoft.cpp.
 \hypertarget{classphys_1_1ActorSoft_a341d9124acd59a4597745c3eff06dfc8}{
 \index{phys::ActorSoft@{phys::ActorSoft}!CreateManualMesh@{CreateManualMesh}}
 \index{CreateManualMesh@{CreateManualMesh}!phys::ActorSoft@{phys::ActorSoft}}
-\subsubsection[{CreateManualMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorSoft::CreateManualMesh ({\bf internal::MeshInfo} \& {\em TheMesh})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{CreateManualMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorSoft::CreateManualMesh (internal::MeshInfo \& {\em TheMesh})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d4/d23/classphys_1_1ActorSoft_a341d9124acd59a4597745c3eff06dfc8}
 
 
 Creates and configures a manual object for rendering. 
 
-\hyperlink{structThis}{This} function will create and configure an Ogre manual object based on the mesh provided, that will be updateable each frame. 
+This function will create and configure an Ogre manual object based on the mesh provided, that will be updateable each frame. 
 \begin{DoxyParams}{Parameters}
 \item[{\em TheMesh}]The struct with all the appropriate mesh information to base the manual object on. \end{DoxyParams}
 
@@ -180,7 +180,7 @@ Definition at line 98 of file actorsoft.cpp.
 Creates a soft object for the actor. 
 
 Creates a soft object to be placed in the physics world later. \par
- \hyperlink{structThis}{This} is automatically called by the Constructor and shouldn't be called manually. 
+ This is automatically called by the Constructor and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em mass}]The desired total mass of the soft object. \end{DoxyParams}
 
@@ -196,8 +196,8 @@ Definition at line 68 of file actorsoft.cpp.
 
 Makes the actor invisable. 
 
-\hyperlink{structThis}{This} is the inverse of the AttachToGraphics function. \hyperlink{structThis}{This} will effectively remove the object from the graphics world and make it no longer visable. \par
- \hyperlink{structThis}{This} is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually. 
+This is the inverse of the AttachToGraphics function. This will effectively remove the object from the graphics world and make it no longer visable. \par
+ This is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually. 
 
 Reimplemented from \hyperlink{classphys_1_1ActorBase_acc352d14b6d7f15694ea108ec1c281ec}{phys::ActorBase}.
 
@@ -214,7 +214,7 @@ Definition at line 133 of file actorsoft.cpp.
 
 Retrieves the location of the physics body. 
 
-\hyperlink{structThis}{This} function will retrieve the location of the object within the physics world. 
+This function will retrieve the location of the object within the physics world. 
 
 Reimplemented from \hyperlink{classphys_1_1ActorBase_a9b32df1efdc346f5d6c0920b959c09a3}{phys::ActorBase}.
 
@@ -231,7 +231,7 @@ Definition at line 144 of file actorsoft.cpp.
 
 Retrieves the location of the object. 
 
-\hyperlink{structThis}{This} function will retrieve the location of the object within the world. 
+This function will retrieve the location of the object within the world. 
 
 Reimplemented from \hyperlink{classphys_1_1ActorBase_a777b4ea4d6881af76c646b1ba9324d96}{phys::ActorBase}.
 
@@ -248,7 +248,7 @@ Definition at line 225 of file actorsoft.cpp.
 
 Retrieves the name of the object. 
 
-\hyperlink{structThis}{This} function will retrieve the name of the object, 
+This function will retrieve the name of the object, 
 
 Implements \hyperlink{classphys_1_1ActorBase_a8309f5bd133c936abe3a856b0240159f}{phys::ActorBase}.
 
@@ -266,7 +266,7 @@ Definition at line 187 of file actorsoft.cpp.
 Removes the actor from the physics world. 
 
 Removes the actor from the physics world. \par
- \hyperlink{structThis}{This} is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. 
+ This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \end{DoxyParams}
 
@@ -286,7 +286,7 @@ Definition at line 252 of file actorsoft.cpp.
 
 Sets the scale of the actor. 
 
-\hyperlink{structThis}{This} function will alter the scaling/size of the actor with the given vector3. 
+This function will alter the scaling/size of the actor with the given vector3. 
 \begin{DoxyParams}{Parameters}
 \item[{\em scale}]The vector3 by which to apply the scale. Will scale each axis' accordingly. \end{DoxyParams}
 
@@ -306,8 +306,8 @@ Definition at line 192 of file actorsoft.cpp.
 
 Sets the location of the physics body. 
 
-\hyperlink{structThis}{This} will take a \hyperlink{classphys_1_1Vector3}{Vector3} and set the location of the actor within the physics world. \par
- \hyperlink{structThis}{This} function is called on by the SetLocation function, and shouldn't be called manually. 
+This will take a \hyperlink{classphys_1_1Vector3}{Vector3} and set the location of the actor within the physics world. \par
+ This function is called on by the SetLocation function, and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Location}]The \hyperlink{classphys_1_1Vector3}{Vector3} representing the location. \end{DoxyParams}
 
@@ -327,8 +327,8 @@ Definition at line 138 of file actorsoft.cpp.
 
 Sets the orientation of the physics body. 
 
-\hyperlink{structThis}{This} will take a PhysQuaternion and set the orientation of the actor within the physics world. \par
- \hyperlink{structThis}{This} function is called on by the SetOrientation function, and shouldn't be called manually. 
+This will take a PhysQuaternion and set the orientation of the actor within the physics world. \par
+ This function is called on by the SetOrientation function, and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Rotation}]The quaternion representing the rotation of the actor. \end{DoxyParams}
 
@@ -349,7 +349,7 @@ Definition at line 152 of file actorsoft.cpp.
 Sets the starting location of the actor. 
 
 Calling this function after adding it to the \hyperlink{classphys_1_1World}{World} will have no effect. \par
- \hyperlink{structThis}{This} function will set where the actor will be located in the \hyperlink{classphys_1_1World}{World} when it is first placed inside the world. 
+ This function will set where the actor will be located in the \hyperlink{classphys_1_1World}{World} when it is first placed inside the world. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Location}]The \hyperlink{classphys_1_1Vector3}{Vector3} representing the location. \end{DoxyParams}
 
@@ -370,7 +370,7 @@ Definition at line 198 of file actorsoft.cpp.
 Sets the starting orientation of the actor. 
 
 Calling this function after adding it to the \hyperlink{classphys_1_1World}{World} will have no effect. \par
- \hyperlink{structThis}{This} function will set where the actor is facing in the \hyperlink{classphys_1_1World}{World} when it is first placed inside the world. 
+ This function will set where the actor is facing in the \hyperlink{classphys_1_1World}{World} when it is first placed inside the world. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Orientation}]The PhysQuaternion representing the Orientation. \end{DoxyParams}
 
@@ -472,7 +472,7 @@ Definition at line 230 of file actorsoft.cpp.
 
 Updates the rendering info with physics info. 
 
-\hyperlink{structThis}{This} function needs to be called every frame, otherwise your soft bodies won't appear to move. 
+This function needs to be called every frame, otherwise your soft bodies won't appear to move. 
 
 Definition at line 161 of file actorsoft.cpp.
 

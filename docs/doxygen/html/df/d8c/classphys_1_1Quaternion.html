@@ -30,7 +30,7 @@
 </div>
 <div class="contents">
 <h1>phys::Quaternion Class Reference</h1><!-- doxytag: class="phys::Quaternion" -->
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is used to store information about rotation in 3d space.  
+<p>This is used to store information about rotation in 3d space.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../da/d07/quaternion_8h_source.html">quaternion.h</a>&gt;</code></p>
@@ -42,6 +42,10 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Blank Constructor.  <a href="#aca4ee6fd6d3967f06cc4a32361fa5a62"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8c/classphys_1_1Quaternion.html#ac8037875c08ce10c0195f3e6fd08b172">Quaternion</a> (const <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;x, const <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;y, const <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;z, const <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;w)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#ac8037875c08ce10c0195f3e6fd08b172"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8c/classphys_1_1Quaternion.html#ab9f13d19fe7d602d7c5feaed0aaf4620">Quaternion</a> (const btQuaternion &amp;Theirs)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Bullet <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> constructor.  <a href="#ab9f13d19fe7d602d7c5feaed0aaf4620"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8c/classphys_1_1Quaternion.html#a4902c05489ebae03a55433d947c53d03">Quaternion</a> (const Ogre::Quaternion &amp;Theirs)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ogre <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> constructor.  <a href="#a4902c05489ebae03a55433d947c53d03"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">btQuaternion&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8c/classphys_1_1Quaternion.html#a30944ae1fe905ee4f5c946c9a0b354f7">GetBulletQuaternion</a> (bool normalize=false)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets a Bullet quaternion.  <a href="#a30944ae1fe905ee4f5c946c9a0b354f7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d8c/classphys_1_1Quaternion.html#a10d3582b2731e70279d7bab43173f317">ExtractBulletQuaternion</a> (const btQuaternion &amp;Ours)</td></tr>
@@ -52,8 +56,8 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copies an existing Ogre quaternion.  <a href="#a942fab675a0b124e1dc5e2febab113e6"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is used to store information about rotation in 3d space. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is used to store information about rotation in 3d space. The X, Y and Z are used to identify a ray from the origin (0,0,0), about which W represents an amount of rotation. </p>
+<p>This is used to store information about rotation in 3d space. </p>
+<p>This is used to store information about rotation in 3d space. The X, Y and Z are used to identify a ray from the origin (0,0,0), about which W represents an amount of rotation. </p>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>The Documentation for this class needs to be revised. It describes 2 mutually exclusive means of storing </dd></dl>
 
 <p>Definition at line <a class="el" href="../../da/d07/quaternion_8h_source.html#l00061">61</a> of file <a class="el" href="../../da/d07/quaternion_8h_source.html">quaternion.h</a>.</p>
@@ -133,6 +137,64 @@
 
 </div>
 </div>
+<a class="anchor" id="ab9f13d19fe7d602d7c5feaed0aaf4620"></a><!-- doxytag: member="phys::Quaternion::Quaternion" ref="ab9f13d19fe7d602d7c5feaed0aaf4620" args="(const btQuaternion &amp;Theirs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::Quaternion::Quaternion </td>
+          <td>(</td>
+          <td class="paramtype">const btQuaternion &amp;&nbsp;</td>
+          <td class="paramname"> <em>Theirs</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Bullet <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> constructor. </p>
+<p>Constructor that sets all values to match the Bullet quaternion. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Theirs</em>&nbsp;</td><td>The quaternion to be copied to make this quaternion. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../da/d59/quaternion_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4902c05489ebae03a55433d947c53d03"></a><!-- doxytag: member="phys::Quaternion::Quaternion" ref="a4902c05489ebae03a55433d947c53d03" args="(const Ogre::Quaternion &amp;Theirs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::Quaternion::Quaternion </td>
+          <td>(</td>
+          <td class="paramtype">const Ogre::Quaternion &amp;&nbsp;</td>
+          <td class="paramname"> <em>Theirs</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Ogre <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> constructor. </p>
+<p>Constructor that sets all values to match the Ogre quaternion. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Theirs</em>&nbsp;</td><td>The quaternion to be copied to make this quaternion. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../da/d59/quaternion_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a10d3582b2731e70279d7bab43173f317"></a><!-- doxytag: member="phys::Quaternion::ExtractBulletQuaternion" ref="a10d3582b2731e70279d7bab43173f317" args="(const btQuaternion &amp;Ours)" -->
 <div class="memitem">
@@ -151,7 +213,7 @@
 <div class="memdoc">
 
 <p>Copies an existing Bullet quaternion. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will copy the values stored in an existing Bullet quaternion and set the values of this class to be the same. </p>
+<p>This function will copy the values stored in an existing Bullet quaternion and set the values of this class to be the same. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Ours</em>&nbsp;</td><td>The quaternion to be extracted. </td></tr>
@@ -159,7 +221,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d59/quaternion_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d59/quaternion_8cpp_source.html#l00090">90</a> of file <a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
 
 </div>
 </div>
@@ -180,7 +242,7 @@
 <div class="memdoc">
 
 <p>Copies an existing Ogre quaternion. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will copy the values stored in an existing Ogre quaternion and set the values of this class to be the same. </p>
+<p>This function will copy the values stored in an existing Ogre quaternion and set the values of this class to be the same. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Ours</em>&nbsp;</td><td>The quaternion to be extracted. </td></tr>
@@ -188,7 +250,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d59/quaternion_8cpp_source.html#l00102">102</a> of file <a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d59/quaternion_8cpp_source.html#l00112">112</a> of file <a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
 
 </div>
 </div>
@@ -217,7 +279,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d59/quaternion_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d59/quaternion_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
 
 </div>
 </div>
@@ -246,7 +308,7 @@
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d59/quaternion_8cpp_source.html#l00088">88</a> of file <a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d59/quaternion_8cpp_source.html#l00098">98</a> of file <a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a>.</p>
 
 </div>
 </div>
@@ -255,7 +317,7 @@
 <li><a class="el" href="../../da/d59/quaternion_8cpp_source.html">quaternion.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Sep 19 15:51:46 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:56 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

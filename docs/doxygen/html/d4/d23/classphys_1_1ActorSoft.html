@@ -30,7 +30,7 @@
 </div>
 <div class="contents">
 <h1>phys::ActorSoft Class Reference</h1><!-- doxytag: class="phys::ActorSoft" --><!-- doxytag: inherits="phys::ActorBase" -->
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is the actor class for Soft Objects.  
+<p>This is the actor class for Soft Objects.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../da/d20/actorsoft_8h_source.html">actorsoft.h</a>&gt;</code></p>
@@ -82,7 +82,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d23/classphys_1_1ActorSoft.html#acc0ff92e2dcc0e5d99ca62f07bc9174d">CreateSoftObject</a> (<a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> mass)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a soft object for the actor.  <a href="#acc0ff92e2dcc0e5d99ca62f07bc9174d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d23/classphys_1_1ActorSoft.html#a341d9124acd59a4597745c3eff06dfc8">CreateManualMesh</a> (<a class="el" href="../../d2/d55/structphys_1_1internal_1_1MeshInfo.html">internal::MeshInfo</a> &amp;TheMesh)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d23/classphys_1_1ActorSoft.html#a341d9124acd59a4597745c3eff06dfc8">CreateManualMesh</a> (internal::MeshInfo &amp;TheMesh)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates and configures a manual object for rendering.  <a href="#a341d9124acd59a4597745c3eff06dfc8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d23/classphys_1_1ActorSoft.html#a37b3bf631e8f73b3f19c3bb043d011c3">AttachToGraphics</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Makes the actor visable.  <a href="#a37b3bf631e8f73b3f19c3bb043d011c3"></a><br/></td></tr>
@@ -103,8 +103,8 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to simulate the rendering portion of a softbody. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is the actor class for Soft Objects. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> class should be used to make any soft object that, like <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. </p>
+<p>This is the actor class for Soft Objects. </p>
+<p>This class should be used to make any soft object that, like <a class="el" href="../../d8/d71/classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>, can be moved or manipulated as a result of force. Examples of soft objects are: Paper, Rope, and Cloth. Semi Rigid bodies that are still somewhat deformable, like Jello, should be made as a soft object. </p>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Currently this is not fully implemented and will likely cause errors if used. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../da/d20/actorsoft_8h_source.html#l00095">95</a> of file <a class="el" href="../../da/d20/actorsoft_8h_source.html">actorsoft.h</a>.</p>
@@ -150,7 +150,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 
 <p>Adds the actor to the physics world. </p>
 <p>Adds the actor to the physics world. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. </p>
+ This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> class. </td></tr>
@@ -181,7 +181,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 
 <p>Makes the actor visable. </p>
 <p>Adds the actor to all the nessessary graphics elements to make it visable on screen. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually. </p>
+ This is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually. </p>
 
 <p>Reimplemented from <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a45f190cb9b647bb3385d1298f9dab589">phys::ActorBase</a>.</p>
 
@@ -196,7 +196,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
         <tr>
           <td class="memname">void phys::ActorSoft::CreateManualMesh </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d2/d55/structphys_1_1internal_1_1MeshInfo.html">internal::MeshInfo</a> &amp;&nbsp;</td>
+          <td class="paramtype">internal::MeshInfo &amp;&nbsp;</td>
           <td class="paramname"> <em>TheMesh</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td><code> [protected]</code></td>
@@ -206,7 +206,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <div class="memdoc">
 
 <p>Creates and configures a manual object for rendering. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will create and configure an Ogre manual object based on the mesh provided, that will be updateable each frame. </p>
+<p>This function will create and configure an Ogre manual object based on the mesh provided, that will be updateable each frame. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>TheMesh</em>&nbsp;</td><td>The struct with all the appropriate mesh information to base the manual object on. </td></tr>
@@ -236,7 +236,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 
 <p>Creates a soft object for the actor. </p>
 <p>Creates a soft object to be placed in the physics world later. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is automatically called by the Constructor and shouldn't be called manually. </p>
+ This is automatically called by the Constructor and shouldn't be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>mass</em>&nbsp;</td><td>The desired total mass of the soft object. </td></tr>
@@ -264,8 +264,8 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <div class="memdoc">
 
 <p>Makes the actor invisable. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is the inverse of the AttachToGraphics function. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will effectively remove the object from the graphics world and make it no longer visable. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually. </p>
+<p>This is the inverse of the AttachToGraphics function. This will effectively remove the object from the graphics world and make it no longer visable. <br/>
+ This is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually. </p>
 
 <p>Reimplemented from <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec">phys::ActorBase</a>.</p>
 
@@ -289,7 +289,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <div class="memdoc">
 
 <p>Retrieves the location of the physics body. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will retrieve the location of the object within the physics world. </p>
+<p>This function will retrieve the location of the object within the physics world. </p>
 
 <p>Reimplemented from <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a9b32df1efdc346f5d6c0920b959c09a3">phys::ActorBase</a>.</p>
 
@@ -313,7 +313,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <div class="memdoc">
 
 <p>Retrieves the location of the object. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will retrieve the location of the object within the world. </p>
+<p>This function will retrieve the location of the object within the world. </p>
 
 <p>Reimplemented from <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a777b4ea4d6881af76c646b1ba9324d96">phys::ActorBase</a>.</p>
 
@@ -337,7 +337,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <div class="memdoc">
 
 <p>Retrieves the name of the object. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will retrieve the name of the object, </p>
+<p>This function will retrieve the name of the object, </p>
 
 <p>Implements <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a8309f5bd133c936abe3a856b0240159f">phys::ActorBase</a>.</p>
 
@@ -363,7 +363,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 
 <p>Removes the actor from the physics world. </p>
 <p>Removes the actor from the physics world. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. </p>
+ This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>TargetWorld</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> class. </td></tr>
@@ -394,7 +394,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <div class="memdoc">
 
 <p>Sets the scale of the actor. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will alter the scaling/size of the actor with the given vector3. </p>
+<p>This function will alter the scaling/size of the actor with the given vector3. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>scale</em>&nbsp;</td><td>The vector3 by which to apply the scale. Will scale each axis' accordingly. </td></tr>
@@ -425,8 +425,8 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <div class="memdoc">
 
 <p>Sets the location of the physics body. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will take a <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> and set the location of the actor within the physics world. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function is called on by the SetLocation function, and shouldn't be called manually. </p>
+<p>This will take a <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> and set the location of the actor within the physics world. <br/>
+ This function is called on by the SetLocation function, and shouldn't be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Location</em>&nbsp;</td><td>The <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the location. </td></tr>
@@ -457,8 +457,8 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <div class="memdoc">
 
 <p>Sets the orientation of the physics body. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will take a PhysQuaternion and set the orientation of the actor within the physics world. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function is called on by the SetOrientation function, and shouldn't be called manually. </p>
+<p>This will take a PhysQuaternion and set the orientation of the actor within the physics world. <br/>
+ This function is called on by the SetOrientation function, and shouldn't be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Rotation</em>&nbsp;</td><td>The quaternion representing the rotation of the actor. </td></tr>
@@ -490,7 +490,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 
 <p>Sets the starting location of the actor. </p>
 <p>Calling this function after adding it to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> will have no effect. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will set where the actor will be located in the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> when it is first placed inside the world. </p>
+ This function will set where the actor will be located in the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> when it is first placed inside the world. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Location</em>&nbsp;</td><td>The <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the location. </td></tr>
@@ -522,7 +522,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 
 <p>Sets the starting orientation of the actor. </p>
 <p>Calling this function after adding it to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> will have no effect. <br/>
- <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will set where the actor is facing in the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> when it is first placed inside the world. </p>
+ This function will set where the actor is facing in the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> when it is first placed inside the world. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Orientation</em>&nbsp;</td><td>The PhysQuaternion representing the Orientation. </td></tr>
@@ -719,7 +719,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <div class="memdoc">
 
 <p>Updates the rendering info with physics info. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function needs to be called every frame, otherwise your soft bodies won't appear to move. </p>
+<p>This function needs to be called every frame, otherwise your soft bodies won't appear to move. </p>
 
 <p>Definition at line <a class="el" href="../../de/d41/actorsoft_8cpp_source.html#l00161">161</a> of file <a class="el" href="../../de/d41/actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
@@ -730,7 +730,7 @@ Ogre::ManualObject *&nbsp;</td><td class="memItemRight" valign="bottom"><a class
 <li><a class="el" href="../../de/d41/actorsoft_8cpp_source.html">actorsoft.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Sep 19 15:51:42 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:51 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

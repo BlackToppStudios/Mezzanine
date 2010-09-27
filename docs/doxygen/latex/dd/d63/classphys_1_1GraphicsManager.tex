@@ -4,7 +4,7 @@
 }
 
 
-\hyperlink{structThis}{This} is intended to store basic graphics setting for the user.  
+This is intended to store basic graphics setting for the user.  
 
 
 
@@ -39,19 +39,19 @@ void \hyperlink{classphys_1_1GraphicsManager_aea5fb5808a23fa29c8522c396ac0d6b5}{
 void \hyperlink{classphys_1_1GraphicsManager_ac6feb044d9ab394f3e65d51026a899a6}{setRenderResolution} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width\_\-, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height\_\-)
 \begin{DoxyCompactList}\small\item\em Changes the X and Y Resolution at the same time. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1GraphicsManager_adcded385b6442aa5da6097f1edd5471a}{ShowGraphicsSettingDialog} ()
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} Shows an Engine Generated Configuration Screen. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This Shows an Engine Generated Configuration Screen. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{Initialize} ()
 \begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{DoMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} is where the rendering takes place. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This is where the rendering takes place. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} returns the type of this manager. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1GraphicsManager_ae2330172be150cd4d12aa2ed62b0474c}{PostMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} is derived from and uses the \hyperlink{classphys_1_1ManagerBase}{ManagerBase} to perform the the post main loop callbacks. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This is derived from and uses the \hyperlink{classphys_1_1ManagerBase}{ManagerBase} to perform the the post main loop callbacks. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\hyperlink{structThis}{This} is intended to store basic graphics setting for the user. \hyperlink{structThis}{This} stores x/y resolution, fullscreen and in the future other settings. \hyperlink{structThis}{This} is intended to make it easy for developers to pass/move around complex graphics settings. We hope to eventually include other items like shader settings, rendering API, and maybe other settings too. 
+This is intended to store basic graphics setting for the user. This stores x/y resolution, fullscreen and in the future other settings. This is intended to make it easy for developers to pass/move around complex graphics settings. We hope to eventually include other items like shader settings, rendering API, and maybe other settings too. 
 
 Definition at line 60 of file graphicsmanager.h.
 
@@ -69,8 +69,8 @@ Basic constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em GameWorld\_\-}]\hyperlink{structThis}{This} is a pointer to the \hyperlink{classphys_1_1World}{phys::World} to which this GrapchisManager will be attached\end{DoxyParams}
-\hyperlink{structThis}{This} creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false 
+\item[{\em GameWorld\_\-}]This is a pointer to the \hyperlink{classphys_1_1World}{phys::World} to which this GrapchisManager will be attached\end{DoxyParams}
+This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false 
 
 Definition at line 55 of file graphicsmanager.cpp.
 
@@ -85,8 +85,8 @@ Versatile Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em GameWorld\_\-}]\hyperlink{structThis}{This} is a pointer to the \hyperlink{classphys_1_1World}{phys::World} to which this GrapchisManager will be attached \item[{\em Width\_\-}]The desired width. \item[{\em Height\_\-}]The desired height. \item[{\em FullScreen\_\-}]True if fullscreen, false if not.\end{DoxyParams}
-\hyperlink{structThis}{This} creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support arbitrary resolutions in fullscreen mode. 
+\item[{\em GameWorld\_\-}]This is a pointer to the \hyperlink{classphys_1_1World}{phys::World} to which this GrapchisManager will be attached \item[{\em Width\_\-}]The desired width. \item[{\em Height\_\-}]The desired height. \item[{\em FullScreen\_\-}]True if fullscreen, false if not.\end{DoxyParams}
+This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support arbitrary resolutions in fullscreen mode. 
 
 Definition at line 60 of file graphicsmanager.cpp.
 
@@ -100,9 +100,9 @@ Definition at line 60 of file graphicsmanager.cpp.
 \label{dd/d63/classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}
 
 
-\hyperlink{structThis}{This} is where the rendering takes place. 
+This is where the rendering takes place. 
 
-\hyperlink{structThis}{This} does the rendering for the game using all the actors in the actormanager. 
+This does the rendering for the game using all the actors in the actormanager. 
 
 Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{phys::ManagerBase}.
 
@@ -120,7 +120,7 @@ Definition at line 144 of file graphicsmanager.cpp.
 Gets the Fullscreen Setting. 
 
 Gets the Fullscreen Setting \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns a bool, true if fullscreen is set, false otherwise 
+This returns a bool, true if fullscreen is set, false otherwise 
 \end{DoxyReturn}
 
 
@@ -136,7 +136,7 @@ Definition at line 78 of file graphicsmanager.cpp.
 Gets the Height of the Rendering Area. 
 
 Gets the Height of the Rendering Area \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns the Height of the Rendering Area 
+This returns the Height of the Rendering Area 
 \end{DoxyReturn}
 
 
@@ -152,7 +152,7 @@ Definition at line 94 of file graphicsmanager.cpp.
 Gets the Width of the Rendering Area. 
 
 Gets the Width of the Rendering Area \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns the Width of the Rendering Area 
+This returns the Width of the Rendering Area 
 \end{DoxyReturn}
 
 
@@ -165,10 +165,10 @@ Definition at line 99 of file graphicsmanager.cpp.
 \label{dd/d63/classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}
 
 
-\hyperlink{structThis}{This} returns the type of this manager. 
+This returns the type of this manager. 
 
 \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns ManagerTypeName::GraphicsManager 
+This returns ManagerTypeName::GraphicsManager 
 \end{DoxyReturn}
 
 
@@ -187,7 +187,7 @@ Definition at line 166 of file graphicsmanager.cpp.
 
 Empty Initializor. 
 
-\hyperlink{structThis}{This} specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason 
+This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason 
 
 Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
 
@@ -202,10 +202,10 @@ Definition at line 139 of file graphicsmanager.cpp.
 \label{dd/d63/classphys_1_1GraphicsManager_ae2330172be150cd4d12aa2ed62b0474c}
 
 
-\hyperlink{structThis}{This} is derived from and uses the \hyperlink{classphys_1_1ManagerBase}{ManagerBase} to perform the the post main loop callbacks. 
+This is derived from and uses the \hyperlink{classphys_1_1ManagerBase}{ManagerBase} to perform the the post main loop callbacks. 
 
 \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns a true or false depending on what the callback returns 
+This returns a true or false depending on what the callback returns 
 \end{DoxyReturn}
 
 
@@ -226,7 +226,7 @@ Set the Fullscreen Setting.
 
 Set the Fullscreen Setting 
 \begin{DoxyParams}{Parameters}
-\item[{\em Fullscreen\_\-}]\hyperlink{structThis}{This} accepts a bool. True for fullscreen, false for windowed \end{DoxyParams}
+\item[{\em Fullscreen\_\-}]This accepts a bool. True for fullscreen, false for windowed \end{DoxyParams}
 
 
 \begin{Desc}
@@ -250,7 +250,7 @@ Sets the Height.
 
 Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen 
 \begin{DoxyParams}{Parameters}
-\item[{\em Height\_\-}]\hyperlink{structThis}{This} accepts a Whole. \end{DoxyParams}
+\item[{\em Height\_\-}]This accepts a Whole. \end{DoxyParams}
 
 
 \begin{Desc}
@@ -270,7 +270,7 @@ Definition at line 104 of file graphicsmanager.cpp.
 
 Changes the X and Y Resolution at the same time. 
 
-\hyperlink{structThis}{This} should be useful in situations where it is not possible to update the width and hright separately. 
+This should be useful in situations where it is not possible to update the width and hright separately. 
 \begin{DoxyParams}{Parameters}
 \item[{\em Width\_\-}]The new desired Width for the rendering area as a whole number \item[{\em Height\_\-}]The new desired Width for the rendering area as a whole number \end{DoxyParams}
 
@@ -294,7 +294,7 @@ Sets the Width.
 
 Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen 
 \begin{DoxyParams}{Parameters}
-\item[{\em Width\_\-}]\hyperlink{structThis}{This} accepts a Whole. \end{DoxyParams}
+\item[{\em Width\_\-}]This accepts a Whole. \end{DoxyParams}
 
 
 \begin{Desc}
@@ -312,9 +312,9 @@ Definition at line 110 of file graphicsmanager.cpp.
 \label{dd/d63/classphys_1_1GraphicsManager_adcded385b6442aa5da6097f1edd5471a}
 
 
-\hyperlink{structThis}{This} Shows an Engine Generated Configuration Screen. 
+This Shows an Engine Generated Configuration Screen. 
 
-\hyperlink{structThis}{This} could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I think this would be fine for smaller simpler apps Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. 
+This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I think this would be fine for smaller simpler apps Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. 
 
 Definition at line 126 of file graphicsmanager.cpp.
 

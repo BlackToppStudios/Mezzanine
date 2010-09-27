@@ -67,61 +67,67 @@
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;internalmotionstate.h.cpp&quot;</span>
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="keyword">namespace </span>phys{
-<a name="l00046"></a>00046     <span class="keyword">namespace </span>internal{<span class="comment"></span>
-<a name="l00047"></a>00047 <span class="comment">        ///////////////////////////////////</span>
-<a name="l00048"></a>00048 <span class="comment"></span>        <span class="comment">// PhysMotionState</span>
-<a name="l00049"></a><a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a64d423e8d2ccec0c7acce7701c898dd0">00049</a>         <a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a64d423e8d2ccec0c7acce7701c898dd0" title="Default Constructor.">PhysMotionState::PhysMotionState</a>()
-<a name="l00050"></a>00050         {
-<a name="l00051"></a>00051             this-&gt;worldtrans.setIdentity();
-<a name="l00052"></a>00052         }
-<a name="l00053"></a>00053 
-<a name="l00054"></a><a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a604ffb6d4d121ec548d780a515f77dc6">00054</a>         <a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a64d423e8d2ccec0c7acce7701c898dd0" title="Default Constructor.">PhysMotionState::PhysMotionState</a>(Ogre::SceneNode* scenenode)
-<a name="l00055"></a>00055         {
-<a name="l00056"></a>00056             this-&gt;snode = scenenode;
-<a name="l00057"></a>00057             this-&gt;worldtrans.setIdentity();
-<a name="l00058"></a>00058         }
-<a name="l00059"></a>00059 
-<a name="l00060"></a><a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a46f94854cc2d758a2adae412dea6def7">00060</a>         <a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a46f94854cc2d758a2adae412dea6def7" title="Destructor.">PhysMotionState::~PhysMotionState</a>()
-<a name="l00061"></a>00061         {
-<a name="l00062"></a>00062             <span class="keywordflow">if</span> (snode!=NULL)
-<a name="l00063"></a>00063             {
-<a name="l00064"></a>00064                 <span class="keyword">delete</span> snode;
-<a name="l00065"></a>00065             }
-<a name="l00066"></a>00066         }
-<a name="l00067"></a>00067 
-<a name="l00068"></a><a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a22ca36a454168e74f73d297c9747d86a">00068</a>         <span class="keywordtype">void</span> <a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a22ca36a454168e74f73d297c9747d86a" title="Sets the scenenode.">PhysMotionState::SetNode</a>(Ogre::SceneNode* scenenode)
-<a name="l00069"></a>00069         {
-<a name="l00070"></a>00070             this-&gt;snode = scenenode;
-<a name="l00071"></a>00071         }
-<a name="l00072"></a>00072 
-<a name="l00073"></a><a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#ad5c5142565ce4b5cd52d2f377ce4da10">00073</a>         <span class="keywordtype">void</span> <a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#ad5c5142565ce4b5cd52d2f377ce4da10" title="Sets the initial position.">PhysMotionState::SetPosition</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> position)
-<a name="l00074"></a>00074         {
-<a name="l00075"></a>00075             this-&gt;worldtrans.setOrigin(position.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
-<a name="l00076"></a>00076         }
-<a name="l00077"></a>00077 
-<a name="l00078"></a><a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a5beba7c161a09b90b5a301585a509be6">00078</a>         <span class="keywordtype">void</span> <a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a5beba7c161a09b90b5a301585a509be6" title="Sets the initial orientation.">PhysMotionState::SetOrientation</a>(<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> orientation)
-<a name="l00079"></a>00079         {
-<a name="l00080"></a>00080             this-&gt;worldtrans.setRotation(orientation.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a30944ae1fe905ee4f5c946c9a0b354f7" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>());
-<a name="l00081"></a>00081         }
-<a name="l00082"></a>00082 
-<a name="l00083"></a><a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a8daeae588d49f07da6c6dfec83de45c3">00083</a>         <span class="keywordtype">void</span> <a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a8daeae588d49f07da6c6dfec83de45c3" title="Sets the initial position.">PhysMotionState::getWorldTransform</a>(btTransform &amp;worldTrans)<span class="keyword"> const</span>
-<a name="l00084"></a>00084 <span class="keyword">        </span>{
-<a name="l00085"></a>00085             worldTrans = this-&gt;worldtrans;
-<a name="l00086"></a>00086         }
-<a name="l00087"></a>00087 
-<a name="l00088"></a><a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a1fe29e3e661cdbbfb846fbd0ac91ec37">00088</a>         <span class="keywordtype">void</span> <a class="code" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#a1fe29e3e661cdbbfb846fbd0ac91ec37" title="Updates the position and orientation.">PhysMotionState::setWorldTransform</a>(<span class="keyword">const</span> btTransform &amp;worldTrans)
-<a name="l00089"></a>00089         {
-<a name="l00090"></a>00090             btQuaternion rotation = worldTrans.getRotation();
-<a name="l00091"></a>00091             this-&gt;snode-&gt;setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
-<a name="l00092"></a>00092             btVector3 position = worldTrans.getOrigin();
-<a name="l00093"></a>00093             this-&gt;snode-&gt;setPosition(position.x(), position.y(), position.z());
-<a name="l00094"></a>00094         }
-<a name="l00095"></a>00095     }<span class="comment">// /internal</span>
-<a name="l00096"></a>00096 }<span class="comment">// /phys</span>
-<a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
+<a name="l00045"></a>00045 <span class="comment">// Keeps this file form being documented by doxygen</span><span class="comment"></span>
+<a name="l00046"></a>00046 <span class="comment">/// @cond 0</span>
+<a name="l00047"></a>00047 <span class="comment"></span>
+<a name="l00048"></a>00048 <span class="keyword">namespace </span>phys{
+<a name="l00049"></a>00049     <span class="keyword">namespace </span>internal{<span class="comment"></span>
+<a name="l00050"></a>00050 <span class="comment">        ///////////////////////////////////</span>
+<a name="l00051"></a>00051 <span class="comment"></span>        <span class="comment">// PhysMotionState</span>
+<a name="l00052"></a>00052         PhysMotionState::PhysMotionState()
+<a name="l00053"></a>00053         {
+<a name="l00054"></a>00054             this-&gt;worldtrans.setIdentity();
+<a name="l00055"></a>00055         }
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057         PhysMotionState::PhysMotionState(Ogre::SceneNode* scenenode)
+<a name="l00058"></a>00058         {
+<a name="l00059"></a>00059             this-&gt;snode = scenenode;
+<a name="l00060"></a>00060             this-&gt;worldtrans.setIdentity();
+<a name="l00061"></a>00061         }
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063         PhysMotionState::~PhysMotionState()
+<a name="l00064"></a>00064         {
+<a name="l00065"></a>00065             <span class="keywordflow">if</span> (snode!=NULL)
+<a name="l00066"></a>00066             {
+<a name="l00067"></a>00067                 <span class="keyword">delete</span> snode;
+<a name="l00068"></a>00068             }
+<a name="l00069"></a>00069         }
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071         <span class="keywordtype">void</span> PhysMotionState::SetNode(Ogre::SceneNode* scenenode)
+<a name="l00072"></a>00072         {
+<a name="l00073"></a>00073             this-&gt;snode = scenenode;
+<a name="l00074"></a>00074         }
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076         <span class="keywordtype">void</span> PhysMotionState::SetPosition(Vector3 position)
+<a name="l00077"></a>00077         {
+<a name="l00078"></a>00078             this-&gt;worldtrans.setOrigin(position.GetBulletVector3());
+<a name="l00079"></a>00079         }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081         <span class="keywordtype">void</span> PhysMotionState::SetOrientation(Quaternion orientation)
+<a name="l00082"></a>00082         {
+<a name="l00083"></a>00083             this-&gt;worldtrans.setRotation(orientation.GetBulletQuaternion());
+<a name="l00084"></a>00084         }
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086         <span class="keywordtype">void</span> PhysMotionState::getWorldTransform(btTransform &amp;worldTrans)<span class="keyword"> const</span>
+<a name="l00087"></a>00087 <span class="keyword">        </span>{
+<a name="l00088"></a>00088             worldTrans = this-&gt;worldtrans;
+<a name="l00089"></a>00089         }
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091         <span class="keywordtype">void</span> PhysMotionState::setWorldTransform(<span class="keyword">const</span> btTransform &amp;worldTrans)
+<a name="l00092"></a>00092         {
+<a name="l00093"></a>00093             btQuaternion rotation = worldTrans.getRotation();
+<a name="l00094"></a>00094             this-&gt;snode-&gt;setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
+<a name="l00095"></a>00095             btVector3 position = worldTrans.getOrigin();
+<a name="l00096"></a>00096             this-&gt;snode-&gt;setPosition(position.x(), position.y(), position.z());
+<a name="l00097"></a>00097         }
+<a name="l00098"></a>00098     }<span class="comment">// /internal</span>
+<a name="l00099"></a>00099 }<span class="comment">// /phys</span>
+<a name="l00100"></a>00100 <span class="comment"></span>
+<a name="l00101"></a>00101 <span class="comment">/// @endcond</span>
+<a name="l00102"></a>00102 <span class="comment"></span>
+<a name="l00103"></a>00103 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Sep 19 15:51:41 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:49 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

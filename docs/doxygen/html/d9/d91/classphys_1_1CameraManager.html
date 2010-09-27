@@ -30,7 +30,7 @@
 </div>
 <div class="contents">
 <h1>phys::CameraManager Class Reference</h1><!-- doxytag: class="phys::CameraManager" --><!-- doxytag: inherits="phys::ManagerBase" -->
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is the manager class for all camera functions.  
+<p>This is the manager class for all camera functions.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="../../d9/d02/cameramanager_8h_source.html">cameramanager.h</a>&gt;</code></p>
@@ -48,8 +48,8 @@ Inheritance diagram for phys::CameraManager:</div>
 <p><a href="../../d8/d56/classphys_1_1CameraManager-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a22d9c117e4f7f7e8d043a9d13070391c">CameraManager</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *world)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class Constructor.  <a href="#a22d9c117e4f7f7e8d043a9d13070391c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a1e659b4a07645965194a33f8439fa4ea">CameraManager</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;SceneManagerName, <a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *world)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class Constructor.  <a href="#a1e659b4a07645965194a33f8439fa4ea"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a0b0f032477309eb47b0302fd5eef198c">~CameraManager</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class Destructor.  <a href="#a0b0f032477309eb47b0302fd5eef198c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#ac6ff80c91fa5a2cd21ebd8b78db9add2">CreateCamera</a> ()</td></tr>
@@ -111,7 +111,7 @@ Inheritance diagram for phys::CameraManager:</div>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3">DoMainLoopItems</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Empty MainLoopItems.  <a href="#aaae22266bccc43f6efa66d2735d7d1d3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739">GetType</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> returns the type of this manager.  <a href="#a8412ea634307aa280b615a3cc7c9b739"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns the type of this manager.  <a href="#a8412ea634307aa280b615a3cc7c9b739"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b4bcdf992c21ae83363f25df05b1d25"></a><!-- doxytag: member="phys::CameraManager::World" ref="a7b4bcdf992c21ae83363f25df05b1d25" args="" -->
 class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
@@ -119,32 +119,43 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is the manager class for all camera functions. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> class contains all the functionality of the use and manipulation of the camera. <br/>
- All functions that manipulate the camera will default to the default camera, so if you only use one camera you should never have to name the camera you want to use. </p>
+<p>This is the manager class for all camera functions. </p>
+<p>This class contains all the functionality of the use and manipulation of the camera. <br/>
+ All functions that manipulate the camera will default to the default camera, so if you only use one camera you should never have to name the camera you want to use. <br/>
+ This class should only be created after the <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical...">SceneManager</a> has been created. </p>
 
-<p>Definition at line <a class="el" href="../../d9/d02/cameramanager_8h_source.html#l00069">69</a> of file <a class="el" href="../../d9/d02/cameramanager_8h_source.html">cameramanager.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d02/cameramanager_8h_source.html#l00070">70</a> of file <a class="el" href="../../d9/d02/cameramanager_8h_source.html">cameramanager.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a22d9c117e4f7f7e8d043a9d13070391c"></a><!-- doxytag: member="phys::CameraManager::CameraManager" ref="a22d9c117e4f7f7e8d043a9d13070391c" args="(World *world)" -->
+<a class="anchor" id="a1e659b4a07645965194a33f8439fa4ea"></a><!-- doxytag: member="phys::CameraManager::CameraManager" ref="a1e659b4a07645965194a33f8439fa4ea" args="(const String &amp;SceneManagerName, World *world)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">phys::CameraManager::CameraManager </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td>
-          <td class="paramname"> <em>world</em></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>SceneManagerName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td>
+          <td class="paramname"> <em>world</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>Class Constructor. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is the class constructor. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is automatcally called in the World.CreateRenderWindow() function and should never need to be called manually. </p>
+<p>This is the class constructor. This is automatcally called in the World.CreateRenderWindow() function and should never need to be called manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>SceneManagerName</em>&nbsp;</td><td>Name of the created <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical...">SceneManager</a> for this camera manager to use. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>SManager</em>&nbsp;</td><td>A pointer to the Scenemanager where you will be creating/manipulating all the cameras. </td></tr>
   </table>
   </dd>
@@ -212,7 +223,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00410">410</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00422">422</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -232,9 +243,9 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Deletes all cameras except for the first camera. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will clear the container of cameras. The default camera is not stored in this container however, so it is spared from this wipe. </p>
+<p>This will clear the container of cameras. The default camera is not stored in this container however, so it is spared from this wipe. </p>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00180">180</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00186">186</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +265,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Deletes all nodes created by this manager. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will clear the container of nodes. Including Orbiting nodes, Center nodes, and Stand nodes. </p>
+<p>This will clear the container of nodes. Including Orbiting nodes, Center nodes, and Stand nodes. </p>
 
 <p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00174">174</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
@@ -276,7 +287,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Creates a camera. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will create a camera in the scene and return the string that is name of the camera created. The first camera created will always be the Default camera, and is also created just after this class is constructed in the World.CreateRenderWindow() function. </p>
+<p>This function will create a camera in the scene and return the string that is name of the camera created. The first camera created will always be the Default camera, and is also created just after this class is constructed in the World.CreateRenderWindow() function. </p>
 
 <p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00103">103</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
@@ -298,7 +309,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Creates a camera and returns a pointer. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function does the same as the other CreateCamera function but will also return a pointer to the camera class instead of a string(being the name of the camera). </p>
+<p>This function does the same as the other CreateCamera function but will also return a pointer to the camera class instead of a string(being the name of the camera). </p>
 
 <p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00119">119</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
@@ -330,7 +341,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Creates a node that will orbit around a point. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will create 2 nodes in the scene, the first being the point in the world you want to orbit the second node around. The second being the node that does the orbiting. You can then attach a camera to the orbiting node for some interesting visuals of your scene. </p>
+<p>This will create 2 nodes in the scene, the first being the point in the world you want to orbit the second node around. The second being the node that does the orbiting. You can then attach a camera to the orbiting node for some interesting visuals of your scene. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Target</em>&nbsp;</td><td>The location of the first node which you will be orbiting around. </td></tr>
@@ -369,7 +380,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Creates a stationary node that will look at a location. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will create a node that doesn't move, and will look at one location that you specify. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> node can then have cameras attached to it. </p>
+<p>This will create a node that doesn't move, and will look at one location that you specify. This node can then have cameras attached to it. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>LookAt</em>&nbsp;</td><td>The location you want the node to look at. Automatically handles orientation. </td></tr>
@@ -417,7 +428,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00424">424</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00436">436</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -437,11 +448,11 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Empty MainLoopItems. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> class implements this for the sake of entension and compatibility this function does nothing </p>
+<p>This class implements this for the sake of entension and compatibility this function does nothing </p>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aa9e13a3f7c398b708f0f242610b5abf7">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00443">443</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00455">455</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -470,7 +481,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00366">366</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00378">378</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -499,7 +510,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00354">354</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00366">366</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -535,7 +546,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Gets a <a class="el" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> from the camera to the viewport. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will cast a ray from the camera to the viewport and return it. </p>
+<p>This will cast a ray from the camera to the viewport and return it. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Screenx</em>&nbsp;</td><td>A Real representing the relative location on screen, on the x axis(0.0-1.0). </td></tr>
@@ -545,7 +556,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00322">322</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00334">334</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -566,7 +577,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Gets the node attached to a camera. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will return a string that is the name of the node the specified camera is attached to if any. </p>
+<p>This will return a string that is the name of the node the specified camera is attached to if any. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of the camera to be manipulated. Defaults to the Default camera. </td></tr>
@@ -574,7 +585,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00334">334</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00346">346</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -603,7 +614,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00346">346</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00358">358</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -622,12 +633,12 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 </div>
 <div class="memdoc">
 
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> returns the type of this manager. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> returns ManagerTypeName::CameraManager </dd></dl>
+<p>This returns the type of this manager. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns ManagerTypeName::CameraManager </dd></dl>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00446">446</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00458">458</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -666,7 +677,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00432">432</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00444">444</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -686,11 +697,11 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Empty Initializor. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason </p>
+<p>This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason </p>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00440">440</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00452">452</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -729,7 +740,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00258">258</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00270">270</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -750,7 +761,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Resets the zoom level back to the default. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will return the zoom level back to normal. Note this function will only work if the camera is attached to a node. </p>
+<p>This function will return the zoom level back to normal. Note this function will only work if the camera is attached to a node. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of the camera to be manipulated. Defaults to the Default camera. </td></tr>
@@ -758,7 +769,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00391">391</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00403">403</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -788,7 +799,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Sets the aspect ratio of the cameras veiw. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will set the aspect ratio between the width and height of the cameras viewing area. </p>
+<p>This function will set the aspect ratio between the width and height of the cameras viewing area. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Ratio</em>&nbsp;</td><td>A Real that represents the aspect ratio, where Ratio = width / height. </td></tr>
@@ -797,7 +808,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00246">246</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00258">258</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -833,7 +844,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Enables or disables auto tracking for the camera. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function can enable auto tracking of a given node you have created. </p>
+<p>This function can enable auto tracking of a given node you have created. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Enabled</em>&nbsp;</td><td>Bool value to enable or disable auto tracking for this camera. </td></tr>
@@ -843,7 +854,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00308">308</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00320">320</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -885,7 +896,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Enables or disables auto tracking for the camera. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function can enable auto tracking of a given node you have created. </p>
+<p>This function can enable auto tracking of a given node you have created. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Enabled</em>&nbsp;</td><td>Bool value to enable or disable auto tracking for this camera. </td></tr>
@@ -896,7 +907,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00294">294</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00306">306</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -935,7 +946,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00198">198</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00210">210</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -968,13 +979,13 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <p>Sets the distance at which objects are considered too far to render. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>FarDist</em>&nbsp;</td><td>A Real representing the distance. Note: <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>FarDist</em>&nbsp;</td><td>A Real representing the distance. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of the camera to be manipulated. Defaults to the Default camera. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00234">234</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00246">246</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1004,7 +1015,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Sets whether to lock rotation around the Y axis. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will lock rotations around the Y axis. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function is automatically called on by the camera constructor. </p>
+<p>This function will lock rotations around the Y axis. This function is automatically called on by the camera constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>UseFixed</em>&nbsp;</td><td>Enable or disable the locking of the axis. </td></tr>
@@ -1013,7 +1024,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00282">282</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00294">294</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1049,7 +1060,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Sets whether to lock rotation around the Y axis. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will lock rotations around the Y axis (or another axis if you specify). <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function is automatically called on by the camera constructor. </p>
+<p>This function will lock rotations around the Y axis (or another axis if you specify). This function is automatically called on by the camera constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>UseFixed</em>&nbsp;</td><td>Enable or disable the locking of the axis. </td></tr>
@@ -1059,7 +1070,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00270">270</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00282">282</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1098,7 +1109,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00186">186</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00198">198</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1131,13 +1142,13 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <p>Sets the distance at which objects are considered too close to render. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>NearDist</em>&nbsp;</td><td>A Real representing the distance. Note: <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>NearDist</em>&nbsp;</td><td>A Real representing the distance. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of the camera to be manipulated. Defaults to the Default camera. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00222">222</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00234">234</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1167,7 +1178,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Sets the orientation of the camera. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will set the orientation of the specified camera via a quaternion. </p>
+<p>This function will set the orientation of the specified camera via a quaternion. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Orientation</em>&nbsp;</td><td>The quaternion representing the new orientation. </td></tr>
@@ -1176,7 +1187,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00210">210</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00222">222</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1206,16 +1217,16 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <div class="memdoc">
 
 <p>Will zoom in or out the camera. </p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> function will zoom in the camera by the amount specified. </p>
+<p>This function will zoom in the camera by the amount specified. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Zoom</em>&nbsp;</td><td>A Real of how much to zoom in by. Note: <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Zoom</em>&nbsp;</td><td>A Real of how much to zoom in by. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of the camera to be manipulated. Defaults to the Default camera. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00378">378</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html#l00390">390</a> of file <a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1224,7 +1235,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Camera</b></td></tr>
 <li><a class="el" href="../../d9/d60/cameramanager_8cpp_source.html">cameramanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Sep 19 15:51:43 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:52 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

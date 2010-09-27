@@ -45,10 +45,15 @@
 #include <string>
 #include <vector>
 
+
+/// @internal
+/// @brief Forward declaration for SDL compatibilty
 union SDL_Event;
 
 namespace phys
 {
+    /// @internal
+    /// @brief Forward declaration for use with soundset
     class Sound;
 
     /// @typedef Real

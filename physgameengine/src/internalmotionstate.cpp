@@ -42,6 +42,9 @@
 
 #include "internalmotionstate.h.cpp"
 
+// Keeps this file form being documented by doxygen
+/// @cond 0
+
 namespace phys{
     namespace internal{
         ///////////////////////////////////
@@ -94,4 +97,7 @@ namespace phys{
         }
     }// /internal
 }// /phys
+
+/// @endcond
+
 #endif

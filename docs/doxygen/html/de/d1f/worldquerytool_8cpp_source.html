@@ -85,7 +85,7 @@
 <a name="l00060"></a>00060         this-&gt;MouseYCache=0;
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062         <span class="comment">// create the ray scene query object</span>
-<a name="l00063"></a>00063         this-&gt;RayQuery = this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ad90c8938abf8d159722ad5dfacb18cea">OgreSceneManager</a>-&gt;createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+<a name="l00063"></a>00063         this-&gt;RayQuery = this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a86a86a78851845837ccc43da8b3a3019" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#af3e5081f780b6527f075d1bb579f0601" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
 <a name="l00064"></a>00064         <span class="keywordflow">if</span> (NULL == this-&gt;RayQuery)
 <a name="l00065"></a>00065             {this-&gt;GameWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Failed to create RaySceneQuery instance in WorldQueryTool&quot;</span>); }
 <a name="l00066"></a>00066         this-&gt;RayQuery-&gt;setSortByDistance(<span class="keyword">true</span>);
@@ -551,7 +551,7 @@
 <a name="l00526"></a>00526 
 <a name="l00527"></a>00527 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Sep 19 15:51:41 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:50 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -29,14 +29,10 @@
 </div>
 <div class="contents">
 <h1>phys::internal Namespace Reference</h1>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> namespace is used for internal helper classes, and in general it should be ignored by game developers.  
+<p>This namespace is used for internal helper classes, and in general it should be ignored by game developers.  
 <a href="#_details">More...</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d61/classphys_1_1internal_1_1PhysConvexDecomposition.html">PhysConvexDecomposition</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d55/structphys_1_1internal_1_1MeshInfo.html">MeshInfo</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html">PhysMotionState</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> class is used by the actor class to sync between the physics world and the graphical world.  <a href="../../dc/df8/classphys_1_1internal_1_1PhysMotionState.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/db5/classphys_1_1internal_1_1Line3D.html">Line3D</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Does the bulk of the work that that the <a class="el" href="../../db/ddb/classphys_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">phys::LineGroup</a> performs.  <a href="../../d4/db5/classphys_1_1internal_1_1Line3D.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
@@ -44,9 +40,9 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">SDL uses this to filter events it presents to applications.  <a href="#aae2a1133a05c67ac3062038c0c5dad4a"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> namespace is used for internal helper classes, and in general it should be ignored by game developers. </p>
+<p>This namespace is used for internal helper classes, and in general it should be ignored by game developers. </p>
 <p><b>For internal use only.</b></p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> whole internal namespace is a dirty hack. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is where code goes that must implement classes or functions for the various subsytems the Physgame engine draws on. </p>
+<p>This whole internal namespace is a dirty hack. This is where code goes that must implement classes or functions for the various subsytems the Physgame engine draws on. </p>
 <hr/><h2>Function Documentation</h2>
 <a class="anchor" id="aae2a1133a05c67ac3062038c0c5dad4a"></a><!-- doxytag: member="phys::internal::PhysSDLFilter" ref="aae2a1133a05c67ac3062038c0c5dad4a" args="(const RawEvent *event)" -->
 <div class="memitem">
@@ -66,22 +62,22 @@
 
 <p>SDL uses this to filter events it presents to applications. </p>
 <p><b>For internal use only.</b></p>
-<p><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is used used to filter out SQL_quit messages, and generate appropriate messages for the game developer to use. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will always drop quit events, and store that information for later use. </p>
+<p>This is used used to filter out SQL_quit messages, and generate appropriate messages for the game developer to use. This will always drop quit events, and store that information for later use. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>event</em>&nbsp;</td><td><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>event</em>&nbsp;</td><td>This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="warning"><dt><b>Warning:</b></dt><dd>Do not use this. It can only cause problems. <a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> is for SDL, the user input subsystem, to filter certain events. </dd></dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="../../d3/d63/structThis.html" title="This is a helper data structure for gathering mesh information.">This</a> will always return either 0 or 1 to SDL. 0 if it should drop the event, which it does to all SDL_quit events, 1 if the event should be allowed, which it does to all events which are not SDL_quit events. If a null pointer was passed, then this will return 4 if it dropped an SDL_Quit, and 2 if it has not droppped an SDL_quit. </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Do not use this. It can only cause problems. This is for SDL, the user input subsystem, to filter certain events. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This will always return either 0 or 1 to SDL. 0 if it should drop the event, which it does to all SDL_quit events, 1 if the event should be allowed, which it does to all events which are not SDL_quit events. If a null pointer was passed, then this will return 4 if it dropped an SDL_Quit, and 2 if it has not droppped an SDL_quit. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00073">73</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sun Sep 19 15:51:46 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:57 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

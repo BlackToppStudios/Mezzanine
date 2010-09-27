@@ -1,0 +1,141 @@
+\hypertarget{classphys_1_1ParticleEffect}{
+\section{phys::ParticleEffect Class Reference}
+\label{d2/d69/classphys_1_1ParticleEffect}\index{phys::ParticleEffect@{phys::ParticleEffect}}
+}
+
+
+This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.  
+
+
+
+
+{\ttfamily \#include $<$particleeffect.h$>$}
+
+Inheritance diagram for phys::ParticleEffect:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d2/d69/classphys_1_1ParticleEffect}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1ParticleEffect_a42d17b7cd81968603c70920c30e6f812}{ParticleEffect} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Template, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ParticleEffect_a112c7e4b2ec7c34c3aba3bd422ef8a1c}{ParticleEffect} (Ogre::ParticleSystem $\ast$System, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}{
+\hyperlink{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}{$\sim$ParticleEffect} ()}
+\label{d2/d69/classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1ParticleEffect_a0e1a6f5fe489fc6e82c91df50fdab3c4}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this particle effect. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ParticleEffect_aee95ac9b688885361d3066a5a4b83965}{
+void \hyperlink{classphys_1_1ParticleEffect_aee95ac9b688885361d3066a5a4b83965}{EnableParticleEffect} ()}
+\label{d2/d69/classphys_1_1ParticleEffect_aee95ac9b688885361d3066a5a4b83965}
+
+\begin{DoxyCompactList}\small\item\em Enables the particle effect, allowing it to render. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ParticleEffect_abd9f2339d22582055fe4ae45f986ff8c}{
+void \hyperlink{classphys_1_1ParticleEffect_abd9f2339d22582055fe4ae45f986ff8c}{DisableParticleEffect} ()}
+\label{d2/d69/classphys_1_1ParticleEffect_abd9f2339d22582055fe4ae45f986ff8c}
+
+\begin{DoxyCompactList}\small\item\em Disables the particle effect, preventing it from rendering. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ParticleEffect_a187582776f54626a02638263ccae85d4}{
+Ogre::ParticleSystem $\ast$ \hyperlink{classphys_1_1ParticleEffect_a187582776f54626a02638263ccae85d4}{OgreParticle}}
+\label{d2/d69/classphys_1_1ParticleEffect_a187582776f54626a02638263ccae85d4}
+
+\begin{DoxyCompactList}\small\item\em Pointer to the ogre ParticleSystem from which this class gets it's functionality. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ParticleEffect_acd59a6f4ca0ae96802f5a26d0b8ed5a6}{
+Ogre::SceneNode $\ast$ \hyperlink{classphys_1_1ParticleEffect_acd59a6f4ca0ae96802f5a26d0b8ed5a6}{OgreNode}}
+\label{d2/d69/classphys_1_1ParticleEffect_acd59a6f4ca0ae96802f5a26d0b8ed5a6}
+
+\begin{DoxyCompactList}\small\item\em Pointer to the ogre Scenenode to which this object is attached. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ParticleEffect_a3bd2292e7835d7816b3e74d6926acfa2}{
+\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ \hyperlink{classphys_1_1ParticleEffect_a3bd2292e7835d7816b3e74d6926acfa2}{Manager}}
+\label{d2/d69/classphys_1_1ParticleEffect_a3bd2292e7835d7816b3e74d6926acfa2}
+
+\begin{DoxyCompactList}\small\item\em Pointer to the manager that created this class. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ParticleEffect_a6db9d28bd448a131448276ee03de1e6d}{
+class {\bfseries Node}}
+\label{d2/d69/classphys_1_1ParticleEffect_a6db9d28bd448a131448276ee03de1e6d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions. Particle effects are loaded from particle scripts which are contained in particle files($\ast$.particle). \par
+ Note: If attaching a particle effect to a node, all transform information(position and orientation) becomes relative to the nodes transform. 
+
+Definition at line 63 of file particleeffect.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ParticleEffect_a42d17b7cd81968603c70920c30e6f812}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!ParticleEffect@{ParticleEffect}}
+\index{ParticleEffect@{ParticleEffect}!phys::ParticleEffect@{phys::ParticleEffect}}
+\subsubsection[{ParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}phys::ParticleEffect::ParticleEffect (const {\bf String} \& {\em Name}, \/  const {\bf String} \& {\em Template}, \/  {\bf SceneManager} $\ast$ {\em manager})}}
+\label{d2/d69/classphys_1_1ParticleEffect_a42d17b7cd81968603c70920c30e6f812}
+
+
+Standard initialization constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of this particle effect. \item[{\em Template}]Name of the particle script to be used in creating this particle effect. \item[{\em manager}]Pointer to the manager that this node is to be used in. \end{DoxyParams}
+
+
+Definition at line 50 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_a112c7e4b2ec7c34c3aba3bd422ef8a1c}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!ParticleEffect@{ParticleEffect}}
+\index{ParticleEffect@{ParticleEffect}!phys::ParticleEffect@{phys::ParticleEffect}}
+\subsubsection[{ParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}phys::ParticleEffect::ParticleEffect (Ogre::ParticleSystem $\ast$ {\em System}, \/  {\bf SceneManager} $\ast$ {\em manager})}}
+\label{d2/d69/classphys_1_1ParticleEffect_a112c7e4b2ec7c34c3aba3bd422ef8a1c}
+
+
+Internal constructor. 
+
+This constructor should not be called on manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em System}]Pointer to the Ogre ParticleSystem this class is based on. \item[{\em manager}]Pointer to the manager that this particle effect is to be used in. \end{DoxyParams}
+
+
+Definition at line 60 of file particleeffect.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1ParticleEffect_a0e1a6f5fe489fc6e82c91df50fdab3c4}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::ParticleEffect@{phys::ParticleEffect}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::ParticleEffect::GetName ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d2/d69/classphys_1_1ParticleEffect_a0e1a6f5fe489fc6e82c91df50fdab3c4}
+
+
+Gets the name of this particle effect. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name given to this particle effect. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1Attachable_ad1a9bbd300fe21c5cc7e5aa7e2c95b85}{phys::Attachable}.
+
+
+
+Definition at line 76 of file particleeffect.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+particleeffect.h\item 
+particleeffect.cpp\end{DoxyCompactItemize}

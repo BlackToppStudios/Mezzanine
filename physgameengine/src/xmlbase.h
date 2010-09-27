@@ -41,17 +41,19 @@
 #ifndef _xmlbase_h
 #define _xmlbase_h
 
-//This next line is required for TiCPP to function
-#define TIXML_USE_TICPP
+#include "datatypes.h"
 
-#include <ticpp.h>
 
-ticpp::Base* Wrapped;
+// Forward declarations
+namespace ticpp
+{
+    class Base;
+}
 
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @namespace xml
+    /// @namespace phys::xml
     /// @brief The components to load, save, modify, and use XML will be stored here
     /// @details This is where objects that help with loading, saving, and
     /// manipulating xml documents will reside. This components found here are simply
@@ -101,10 +103,11 @@ namespace phys
         /// @class Base
         /// @headerfile xmlbase.h
         /// @brief A set of all functionality that all XML components must implement
-        /// @details
+        /// @details All XML components inherit from this. This is the most basic level
+        /// of functionality that all XML components will implement
         class Base
         {
-            private:
+            protected:
                 /// @internal
                 /// @brief A pointer to the Library level object we are wrapping to implement this functionality
                 ticpp::Base* Wrapped;
@@ -115,15 +118,15 @@ namespace phys
                 /// @brief This is used to identify what kind of component you are working with, in conjunction with the GetType() function
                 enum XMLComponentType
                 {
-                    Attribute,              /**< Indicates the XMLComponent is an attribute, and not a node */
-                    Node,                   /**< Indicates the XMLComponent is a node and nothing else */
-                    Comment,                /**< Indicates the XMLComponent is a node and */
-                    Declaration,            /**< Indicates the XMLComponent is a node and */
-                    Document,               /**< Indicates the XMLComponent is a node and */
-                    Element,                /**< Indicates the XMLComponent is a node and */
-                    StyleSheetReference,    /**< Indicates the XMLComponent is a node and */
-                    Text,                   /**< Indicates the XMLComponent is a node and */
-                    Unknown                 /**< Indicates the XMLComponent is a node and */
+                    isAttribute,              /**< Indicates the XMLComponent is an attribute, and not a node */
+                    isNode,                   /**< Indicates the XMLComponent is a node and nothing else */
+                    isComment,                /**< Indicates the XMLComponent is a node and */
+                    isDeclaration,            /**< Indicates the XMLComponent is a node and */
+                    isDocument,               /**< Indicates the XMLComponent is a node and */
+                    isElement,                /**< Indicates the XMLComponent is a node and */
+                    isStyleSheetReference,    /**< Indicates the XMLComponent is a node and */
+                    isText,                   /**< Indicates the XMLComponent is a node and */
+                    isUnknown                 /**< Indicates the XMLComponent is a node and */
                 };
 
                 /// @brief This Will be by Child classes to aid in identification
@@ -160,11 +163,26 @@ namespace phys
                 // @brief See GetUserData()
                 //const void* GetUserData () const;
 
+                /// @brief Equality comparison operation based on internal data
+                /// @param OtherBase Another XML object that will be compared
+                /// @details Compare internal TiXml pointers to determine if both are wrappers around the same node.
+                /// @return A bool containing true if the internal pointers match
+                bool operator== (const Base &OtherBase) const;
+
+                /// @brief Inquality comparison operation based on internal data
+                /// @param OtherBase Another XML object that will be compared
+                /// @details Compare internal TiXml pointers to determine if both are wrappers around the same node.
+                /// @return A bool containing false if the internal pointers match
+                bool operator!= (const Base &OtherBase) const;
+
+
+                /// @brief Used to get details about issues suitable for the the user or detailed logs
+                /// @details Builds detailed error string using TiXmlDocument::Error() and others.
+                /// @return This returns a string that contains the current error information [I think that is what happens anyway.]
+                String BuildDetailedErrorString() const;
 
                 /// @brief A simple empty virtual destructor for compatibility and ease of customization.
                 virtual ~Base();
-
-
 
         }; // /Base
     }// /xml

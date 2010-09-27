@@ -4,7 +4,7 @@
 }
 
 
-\hyperlink{structThis}{This} is the actor class for Rigid Objects.  
+This is the actor class for Rigid Objects.  
 
 
 
@@ -81,7 +81,7 @@ class {\bfseries TypedConstraint}}
 
 
 \subsection{Detailed Description}
-\hyperlink{structThis}{This} is the actor class for Rigid Objects. \hyperlink{structThis}{This} class should be used to make any rigid object that can be moved as a result of force. Most objects will fall into this catagory. A few examples of a Rigid Object: Boxes, Car Frames, Chairs, etc. For Semi Rigid bodies that are deformable, like jello, it is better to use \hyperlink{classphys_1_1ActorSoft}{ActorSoft}. 
+This is the actor class for Rigid Objects. This class should be used to make any rigid object that can be moved as a result of force. Most objects will fall into this catagory. A few examples of a Rigid Object: Boxes, Car Frames, Chairs, etc. For Semi Rigid bodies that are deformable, like jello, it is better to use \hyperlink{classphys_1_1ActorSoft}{ActorSoft}. 
 
 Definition at line 66 of file actorrigid.h.
 
@@ -97,8 +97,8 @@ Definition at line 66 of file actorrigid.h.
 
 Descriptive constructor. 
 
-\hyperlink{structThis}{This} constructor contains the basic information needed to make a Rigid Object. \par
- \hyperlink{structThis}{This} class inherits from \hyperlink{classphys_1_1ActorBase}{ActorBase}. 
+This constructor contains the basic information needed to make a Rigid Object. \par
+ This class inherits from \hyperlink{classphys_1_1ActorBase}{ActorBase}. 
 \begin{DoxyParams}{Parameters}
 \item[{\em mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
 
@@ -131,7 +131,7 @@ Definition at line 63 of file actorrigid.cpp.
 Adds the actor to the physics world. 
 
 Adds the actor to the physics world. \par
- \hyperlink{structThis}{This} is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. 
+ This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \end{DoxyParams}
 
@@ -152,7 +152,7 @@ Definition at line 166 of file actorrigid.cpp.
 Creates a rigid object for the actor. 
 
 Creates a rigid object to be placed in the physics world later. \par
- \hyperlink{structThis}{This} is automaticly called by the Constructor and shouldn't be called manually. 
+ This is automaticly called by the Constructor and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em pmass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
 
@@ -168,7 +168,7 @@ Definition at line 69 of file actorrigid.cpp.
 
 Creates a collision shape from mesh file. 
 
-\hyperlink{structThis}{This} function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. \hyperlink{structThis}{This} shoiuld be used with only with Dynamic objects. 
+This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Dynamic objects. 
 \begin{DoxyParams}{Parameters}
 \item[{\em accuracy}]A value from 1 to 4. The higher the more accurate, but the more resource intensive \end{DoxyParams}
 
@@ -197,7 +197,7 @@ Definition at line 180 of file actorrigid.cpp.
 
 Creates a collision shape from mesh file. 
 
-\hyperlink{structThis}{This} function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. \hyperlink{structThis}{This} shoiuld be used with only with Static objects. 
+This function will read the location of every verticy in the mesh file and use that to construct a triangle mesh shape and attach it to this objects collision shape. This shoiuld be used with only with Static objects. 
 
 \begin{Desc}
 \item[\hyperlink{todo__todo000002}{Todo}]
@@ -232,7 +232,7 @@ Definition at line 275 of file actorrigid.cpp.
 
 Disables the deactivation of the physics body. 
 
-\hyperlink{structThis}{This} function is useful when using constraints to prevent it from locking in situations where it shouldn't. 
+This function is useful when using constraints to prevent it from locking in situations where it shouldn't. 
 
 Definition at line 359 of file actorrigid.cpp.
 
@@ -277,7 +277,7 @@ Definition at line 342 of file actorrigid.cpp.
 
 Retrieves the name of the object. 
 
-\hyperlink{structThis}{This} function will retrieve the name of the object, 
+This function will retrieve the name of the object, 
 
 Implements \hyperlink{classphys_1_1ActorBase_a8309f5bd133c936abe3a856b0240159f}{phys::ActorBase}.
 
@@ -294,7 +294,7 @@ Definition at line 320 of file actorrigid.cpp.
 
 Restricts movement on the axis or axies of your choice. 
 
-\hyperlink{structThis}{This} function will lock any and all axies you define you want to be locked. Simply pass true to allow movement on that axis, false if you don't. \hyperlink{structThis}{This} function is primarily useful for 2D games, in which if you are viewing the playing area from the side you can pass in LimitMovementOnAxis(true,true,false) and the object will only be able to move up, down, or side to side, but not in or out. 
+This function will lock any and all axies you define you want to be locked. Simply pass true to allow movement on that axis, false if you don't. This function is primarily useful for 2D games, in which if you are viewing the playing area from the side you can pass in LimitMovementOnAxis(true,true,false) and the object will only be able to move up, down, or side to side, but not in or out. 
 \begin{DoxyParams}{Parameters}
 \item[{\em x}]Allow or Disallow use of the X axis for movement. \item[{\em y}]Allow or Disallow use of the Y axis for movement. \item[{\em z}]Allow or Disallow use of the Z axis for movement. \end{DoxyParams}
 
@@ -311,7 +311,7 @@ Definition at line 325 of file actorrigid.cpp.
 Removes the actor from the physics world. 
 
 Removes the actor from the physics world. \par
- \hyperlink{structThis}{This} is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. 
+ This is automatically called by the phys::Actors::AddActor function and Doesn't neet to be called manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em TargetWorld}]Pointer to the \hyperlink{classphys_1_1World}{World} class. \end{DoxyParams}
 
@@ -331,7 +331,7 @@ Definition at line 173 of file actorrigid.cpp.
 
 Restores the activation state of the physics body to normal. 
 
-\hyperlink{structThis}{This} function is useful when you are done applying a constraint to a body, or any other effect that would have you call \hyperlink{classphys_1_1ActorRigid_ad74da4da12bbb44b3e5ae22007c98573}{DisableDeactivation()}. 
+This function is useful when you are done applying a constraint to a body, or any other effect that would have you call \hyperlink{classphys_1_1ActorRigid_ad74da4da12bbb44b3e5ae22007c98573}{DisableDeactivation()}. 
 
 Definition at line 364 of file actorrigid.cpp.
 
@@ -360,7 +360,7 @@ Definition at line 348 of file actorrigid.cpp.
 
 Sets the Damping for this object. 
 
-Both of Linear Damping and Angular Damping default to zero. \hyperlink{structThis}{This} is usful if you wish to simulate something like air resistance. Values can range from 0.0 to 1.0. 
+Both of Linear Damping and Angular Damping default to zero. This is usful if you wish to simulate something like air resistance. Values can range from 0.0 to 1.0. 
 \begin{DoxyParams}{Parameters}
 \item[{\em LinDamping}]Real representing the amount of Linear Damping to be applied. \item[{\em AngDamping}]Real representing the amount of Angular Damping to be applied. \end{DoxyParams}
 

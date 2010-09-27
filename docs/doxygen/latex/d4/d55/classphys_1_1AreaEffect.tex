@@ -4,7 +4,7 @@
 }
 
 
-\hyperlink{structThis}{This} class is used to define area's in the world that have unique effects.  
+This class is used to define area's in the world that have unique effects.  
 
 
 
@@ -116,8 +116,8 @@ class {\bfseries PhysicsManager}}
 
 
 \subsection{Detailed Description}
-\hyperlink{structThis}{This} class is used to define area's in the world that have unique effects. Common uses for this class are for gravity fields, and explosions. But can be made to do more. \par
- Note: \hyperlink{structThis}{This} is a base class intended to be derived from. \hyperlink{structThis}{This} class cannot be created itself. To make an \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class that does what you want it to, simple inherit from this class with an AE class of your own, and define the \hyperlink{classphys_1_1AreaEffect_a3b285ecfcf9c9200662d510e48dd222a}{ApplyEffect()} function to do what you want your effect to do. 
+This class is used to define area's in the world that have unique effects. Common uses for this class are for gravity fields, and explosions. But can be made to do more. \par
+ Note: This is a base class intended to be derived from. This class cannot be created itself. To make an \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class that does what you want it to, simple inherit from this class with an AE class of your own, and define the \hyperlink{classphys_1_1AreaEffect_a3b285ecfcf9c9200662d510e48dd222a}{ApplyEffect()} function to do what you want your effect to do. 
 
 Definition at line 64 of file areaeffect.h.
 
@@ -166,7 +166,7 @@ Definition at line 53 of file areaeffect.cpp.
 Defines and applies the effect of the field. 
 
 When inheriting this class, this function is what defines the effect the field has. \par
- \hyperlink{structThis}{This} function will be called on by the physics manager and shouldn't be called manually. 
+ This function will be called on by the physics manager and shouldn't be called manually. 
 
 Implemented in \hyperlink{classphys_1_1TestAE_a191c60dbfa277e850ea392d9ab774c42}{phys::TestAE}, and \hyperlink{classphys_1_1GravityField_a0322cb1635bbcb951493d9e17cc9acb1}{phys::GravityField}.
 
@@ -195,7 +195,7 @@ Definition at line 158 of file areaeffect.cpp.
 
 Creates a Cylinder shape for the field. 
 
-\hyperlink{structThis}{This} function assumes the cylinder will be upright, meaning \char`\"{}up\char`\"{} will be on the positive Y axis. \par
+This function assumes the cylinder will be upright, meaning \char`\"{}up\char`\"{} will be on the positive Y axis. \par
  When making the vector to be passed in, remember the layout should be as such: (radius, height$\ast$0.5, radius). 
 \begin{DoxyParams}{Parameters}
 \item[{\em HalfExtents}]The vector representing the size of the shape. \end{DoxyParams}
@@ -292,7 +292,7 @@ Definition at line 235 of file areaeffect.cpp.
 
 Gets the origin for the area effect. 
 
-\hyperlink{structThis}{This} function is particularly useful when making fields such as gravity wells, that have continuous effects centering on one location. \begin{DoxyReturn}{Returns}
+This function is particularly useful when making fields such as gravity wells, that have continuous effects centering on one location. \begin{DoxyReturn}{Returns}
 Returns the vector3 representing the location of the area effect. 
 \end{DoxyReturn}
 
@@ -388,7 +388,7 @@ Definition at line 241 of file areaeffect.cpp.
 
 Updates the actors listed as within the field. 
 
-\hyperlink{structThis}{This} function is automatically called once every simulation step. \hyperlink{structThis}{This} shouldn't be called manually unless your usage of this class requires more then one update per step. 
+This function is automatically called once every simulation step. This shouldn't be called manually unless your usage of this class requires more then one update per step. 
 
 Definition at line 85 of file areaeffect.cpp.
 

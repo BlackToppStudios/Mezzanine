@@ -15,7 +15,7 @@ Does the bulk of the work that that the \hyperlink{classphys_1_1LineGroup}{phys:
 \hyperlink{classphys_1_1internal_1_1Line3D_acddc95dd5f319d6afc68260af8bea39c}{$\sim$Line3D} (void)
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1internal_1_1Line3D_aeb3b828b35b4c8ed76158285be6ddc67}{addPoint} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&p)
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} adds a point to the list of what should be rendered. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This adds a point to the list of what should be rendered. \item\end{DoxyCompactList}\item 
 const \hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1internal_1_1Line3D_a190af0e38be28297ed2f6a7aecf0c316}{getPoint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} index) const 
 \begin{DoxyCompactList}\small\item\em Access a specific point by index. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1internal_1_1Line3D_ab72a9dab3a355035c24c15e4a737ea2f}{getNumPoints} (void) const 
@@ -41,14 +41,14 @@ const \hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1inter
 \begin{DoxyCompactItemize}
 \item 
 std::vector$<$ \hyperlink{classphys_1_1Vector3}{Vector3} $>$ \hyperlink{classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}{mPoints}
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} is a vector which stores the point data. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This is a vector which stores the point data. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1internal_1_1Line3D_a7f3a190db3c0cd83ff4fdf3d95d6f0ee}{mDrawn}
-\begin{DoxyCompactList}\small\item\em \hyperlink{structThis}{This} indicates whether or not the the line have been done yet. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This indicates whether or not the the line have been done yet. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Does the bulk of the work that that the \hyperlink{classphys_1_1LineGroup}{phys::LineGroup} performs. \begin{DoxyInternal}{For internal use only.}
-\hyperlink{classphys_1_1LineGroup}{phys::LineGroup} is a simple wrapper around this to perform precise low level interactions with Ogre, the rendering subsystem. \hyperlink{structThis}{This} uses too much stuff from ogre to use publicly. so we need to hide it here in the \hyperlink{namespacephys_1_1internal}{phys::internal} namespace. \end{DoxyInternal}
+\hyperlink{classphys_1_1LineGroup}{phys::LineGroup} is a simple wrapper around this to perform precise low level interactions with Ogre, the rendering subsystem. This uses too much stuff from ogre to use publicly. so we need to hide it here in the \hyperlink{namespacephys_1_1internal}{phys::internal} namespace. \end{DoxyInternal}
 
 
 Definition at line 69 of file linegroup.cpp.
@@ -66,7 +66,7 @@ Definition at line 69 of file linegroup.cpp.
 Default Constructor. 
 
 \begin{DoxyInternal}{For internal use only.}
-\hyperlink{structThis}{This} creates an empty \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}. \end{DoxyInternal}
+This creates an empty \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}. \end{DoxyInternal}
 
 
 Definition at line 150 of file linegroup.cpp.
@@ -81,7 +81,7 @@ Definition at line 150 of file linegroup.cpp.
 Destructor. 
 
 \begin{DoxyInternal}{For internal use only.}
-\hyperlink{structThis}{This} safely tears down the \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}. \end{DoxyInternal}
+This safely tears down the \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}. \end{DoxyInternal}
 
 
 Definition at line 158 of file linegroup.cpp.
@@ -96,7 +96,7 @@ Definition at line 158 of file linegroup.cpp.
 \label{d4/db5/classphys_1_1internal_1_1Line3D_aeb3b828b35b4c8ed76158285be6ddc67}
 
 
-\hyperlink{structThis}{This} adds a point to the list of what should be rendered. 
+This adds a point to the list of what should be rendered. 
 
 \begin{DoxyInternal}{For internal use only.}
 
@@ -117,7 +117,7 @@ Definition at line 163 of file linegroup.cpp.
 Adds two points. 
 
 \begin{DoxyInternal}{For internal use only.}
-\hyperlink{structThis}{This} adds to points, to guarantee that a specific line segment is drawn. 
+This adds to points, to guarantee that a specific line segment is drawn. 
 \begin{DoxyParams}{Parameters}
 \item[{\em start}]The first point to be added \item[{\em end}]The first point to be added \end{DoxyParams}
 \end{DoxyInternal}
@@ -141,7 +141,7 @@ Definition at line 187 of file linegroup.cpp.
 Renders this. 
 
 \begin{DoxyInternal}{For internal use only.}
-\hyperlink{structThis}{This} does the actual rendering. \end{DoxyInternal}
+This does the actual rendering. \end{DoxyInternal}
 
 
 Definition at line 199 of file linegroup.cpp.
@@ -156,8 +156,8 @@ Definition at line 199 of file linegroup.cpp.
 How big would a circle need to be to encapsulate this. 
 
 \begin{DoxyInternal}{For internal use only.}
-\hyperlink{structThis}{This} returns the radius the a circle would need to have to surround this line group. \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns a real number which indicates the radius. 
+This returns the radius the a circle would need to have to surround this line group. \begin{DoxyReturn}{Returns}
+This returns a real number which indicates the radius. 
 \end{DoxyReturn}
 \end{DoxyInternal}
 
@@ -175,7 +175,7 @@ How many points are in this \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}.
 
 \begin{DoxyInternal}{For internal use only.}
 \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns the amount of points stored in this class. 
+This returns the amount of points stored in this class. 
 \end{DoxyReturn}
 \end{DoxyInternal}
 
@@ -192,8 +192,8 @@ Definition at line 175 of file linegroup.cpp.
 Access a specific point by index. 
 
 \begin{DoxyInternal}{For internal use only.}
-\hyperlink{structThis}{This} really does just access the underlying vector. \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} Returns the specific \hyperlink{classphys_1_1Vector3}{Vector3} requested. 
+This really does just access the underlying vector. \begin{DoxyReturn}{Returns}
+This Returns the specific \hyperlink{classphys_1_1Vector3}{Vector3} requested. 
 \end{DoxyReturn}
 \end{DoxyInternal}
 
@@ -247,7 +247,7 @@ Get the position of this Line3d.
 
 \begin{DoxyInternal}{For internal use only.}
 \begin{DoxyReturn}{Returns}
-\hyperlink{structThis}{This} returns a \hyperlink{classphys_1_1Vector3}{Vector3} with the Position relative to the world Origin 
+This returns a \hyperlink{classphys_1_1Vector3}{Vector3} with the Position relative to the world Origin 
 \end{DoxyReturn}
 \end{DoxyInternal}
 \hypertarget{classphys_1_1internal_1_1Line3D_a4b2dec1619e4456ab0cb034ad34eb9d1}{
@@ -260,7 +260,7 @@ Get the position of this Line3d.
 Change an existing point. 
 
 \begin{DoxyInternal}{For internal use only.}
-\hyperlink{structThis}{This} replaces a point specified by index with a new point 
+This replaces a point specified by index with a new point 
 \begin{DoxyParams}{Parameters}
 \item[{\em index}]The index of the point to replace. \item[{\em value}]A point to replace the existing point with \end{DoxyParams}
 \end{DoxyInternal}
@@ -278,7 +278,7 @@ Definition at line 180 of file linegroup.cpp.
 \label{d4/db5/classphys_1_1internal_1_1Line3D_a7f3a190db3c0cd83ff4fdf3d95d6f0ee}
 
 
-\hyperlink{structThis}{This} indicates whether or not the the line have been done yet. 
+This indicates whether or not the the line have been done yet. 
 
 \begin{DoxyInternal}{For internal use only.}
 \end{DoxyInternal}
@@ -293,7 +293,7 @@ Definition at line 147 of file linegroup.cpp.
 \label{d4/db5/classphys_1_1internal_1_1Line3D_acb6b813e2d713dbad02fe5a5ca1af97e}
 
 
-\hyperlink{structThis}{This} is a vector which stores the point data. 
+This is a vector which stores the point data. 
 
 \begin{DoxyInternal}{For internal use only.}
 \end{DoxyInternal}
