@@ -40,6 +40,9 @@
 #ifndef _internalmeshinfo_cpp
 #define _internalmeshinfo_cpp
 
+// Keeps this file form being documented by doxygen
+/// @cond 0
+
 #include "internalmeshinfo.h.cpp"
 
 namespace phys{
@@ -64,5 +67,7 @@ namespace phys{
         }
     }
 }
+
+/// @endcond
 
 #endif

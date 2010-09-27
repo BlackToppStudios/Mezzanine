@@ -23,6 +23,8 @@
     THE SOFTWARE.
 
 */
+// Keeps this file form being documented by doxygen
+/// @cond 0
 
 #include "internalGorilla.h.cpp"
 
@@ -2358,4 +2360,6 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
  }
 
 } // namespace Gorilla
+
+/// @endcond
 

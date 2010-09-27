@@ -40,6 +40,9 @@
 #ifndef _internalmeshinfo_h_cpp
 #define _internalmeshinfo_h_cpp
 
+// Keeps this file form being documented by doxygen
+/// @cond 0
+
 #include <Ogre.h>
 
 namespace phys{
@@ -68,5 +71,7 @@ namespace phys{
         };
     }
 }
+
+/// @endcond
 
 #endif

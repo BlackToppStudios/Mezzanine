@@ -1,10 +1,9 @@
+/home/dev/physgame/physgameengine/src/internaldecompinterface.cpp:46: Conditional section does not have a corresponding \endcond command within this file.
 /home/dev/physgame/physgameengine/src/constraint.h:277: Warning: Compound phys::Hinge2Constraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:210: Warning: Compound phys::Generic6DofSpringConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:390: Warning: Compound phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:124: Warning: Compound phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/internaldecompinterface.h.cpp:48: Warning: Compound phys::internal::PhysConvexDecomposition is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:330: Warning: Compound phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:54: Warning: Compound phys::internal::MeshInfo is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:236: Warning: Compound phys::HingeConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:164: Warning: Compound phys::Generic6DofConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:295: Warning: Compound phys::Point2PointConstraint is not documented.
@@ -18,8 +17,12 @@
 /home/dev/physgame/physgameengine/src/actorterrain.h:62: Warning: argument 'Initposition' of command @param is not found in the argument list of phys::ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group, World *_World)
 /home/dev/physgame/physgameengine/src/actorterrain.h:62: Warning: The following parameters of phys::ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group, World *_World) are not documented:
   parameter 'InitPosition'
-/home/dev/physgame/physgameengine/src/cameramanager.h:82: Warning: argument 'SManager' of command @param is not found in the argument list of phys::CameraManager::CameraManager(World *world)
-/home/dev/physgame/physgameengine/src/cameramanager.h:82: Warning: The following parameters of phys::CameraManager::CameraManager(World *world) are not documented:
+/home/dev/physgame/physgameengine/src/attachable.h:57: Warning: Member AttachableElement (enumeration) of class phys::Attachable is not documented.
+/home/dev/physgame/physgameengine/src/attachable.h:65: Warning: argument 'Enum' of command @param is not found in the argument list of phys::Attachable::SetElementType(Attachable::AttachableElement Type)
+/home/dev/physgame/physgameengine/src/attachable.h:65: Warning: The following parameters of phys::Attachable::SetElementType(Attachable::AttachableElement Type) are not documented:
+  parameter 'Type'
+/home/dev/physgame/physgameengine/src/cameramanager.h:83: Warning: argument 'SManager' of command @param is not found in the argument list of phys::CameraManager::CameraManager(const String &SceneManagerName, World *world)
+/home/dev/physgame/physgameengine/src/cameramanager.h:83: Warning: The following parameters of phys::CameraManager::CameraManager(const String &SceneManagerName, World *world) are not documented:
   parameter 'world'
 /home/dev/physgame/physgameengine/src/constraint.h:129: Warning: Member ConeTwistConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 Vectorb, Quaternion QuaternionA, Quaternion QuaternionB) (function) of class phys::ConeTwistConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:130: Warning: Member ConeTwistConstraint(ActorRigid *ActorA, Vector3 VectorA, Quaternion QuaternionA) (function) of class phys::ConeTwistConstraint is not documented.
@@ -111,6 +114,23 @@
 /home/dev/physgame/physgameengine/src/constraint.h:395: Warning: Member UniversalConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) (function) of class phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:403: Warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:404: Warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class phys::UniversalConstraint is not documented.
+/home/dev/physgame/physgameengine/src/light.h:74: Warning: Member LightType (enumeration) of class phys::Light is not documented.
+/home/dev/physgame/physgameengine/src/light.h:110: Warning: The following parameters of phys::Light::SetDiffuseColour(Real Red, Real Green, Real Blue) are not documented:
+  parameter 'Green'
+  parameter 'Blue'
+/home/dev/physgame/physgameengine/src/light.h:121: Warning: The following parameters of phys::Light::SetSpecularColour(Real Red, Real Green, Real Blue) are not documented:
+  parameter 'Green'
+  parameter 'Blue'
+/home/dev/physgame/physgameengine/src/node.h:80: Warning: Member NodeType (enumeration) of class phys::Node is not documented.
+/home/dev/physgame/physgameengine/src/node.h:127: Warning: argument 'Position' of command @param is not found in the argument list of phys::Node::SetOrientation(Quaternion Orientation)
+/home/dev/physgame/physgameengine/src/node.h:127: Warning: The following parameters of phys::Node::SetOrientation(Quaternion Orientation) are not documented:
+  parameter 'Orientation'
+/home/dev/physgame/physgameengine/src/scenemanager.h:72: Warning: Member SceneManagerType (enumeration) of class phys::SceneManager is not documented.
+/home/dev/physgame/physgameengine/src/scenemanager.h:205: Warning: The following parameters of phys::SceneManager::CreateOrbitingNode(const String &Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack) are not documented:
+  parameter 'Name'
+  parameter 'AutoTrack'
+/home/dev/physgame/physgameengine/src/scenemanager.h:213: Warning: The following parameters of phys::SceneManager::CreateStandNode(const String &Name, Vector3 LookAt, Vector3 Location) are not documented:
+  parameter 'Name'
 /home/dev/physgame/physgameengine/src/sound.h:65: Warning: Member SoundSource (variable) of class phys::Sound is not documented.
 /home/dev/physgame/physgameengine/src/sound.h:66: Warning: Member Manager (variable) of class phys::Sound is not documented.
 /home/dev/physgame/physgameengine/src/sound.h:71: Warning: The following parameters of phys::Sound::Sound(cAudio::IAudioSource *Source, cAudio::IAudioManager *manager) are not documented:
@@ -125,22 +145,9 @@
 /home/dev/physgame/physgameengine/src/soundmanager.h:150: Warning: The following parameters of phys::SoundManager::AddSoundToSoundSet(String SoundSetName, Sound *SoundInst) are not documented:
   parameter 'SoundSetName'
   parameter 'SoundInst'
-/home/dev/physgame/physgameengine/src/world.h:378: Warning: argument 'Priority' of command @param is not found in the argument list of phys::World::UpdateManagerOrder(ManagerBase *ManagerToChange, short int Priority_)
-/home/dev/physgame/physgameengine/src/world.h:378: Warning: The following parameters of phys::World::UpdateManagerOrder(ManagerBase *ManagerToChange, short int Priority_) are not documented:
-  parameter 'Priority_'
-/home/dev/physgame/physgameengine/src/internaldecompinterface.h.cpp:55: Warning: Member ConvexDecompResult(ConvexDecomposition::ConvexResult &result) (function) of class phys::internal::PhysConvexDecomposition is not documented.
-/home/dev/physgame/physgameengine/src/internaldecompinterface.h.cpp:51: Warning: Member m_convexShapes (variable) of class phys::internal::PhysConvexDecomposition is not documented.
-/home/dev/physgame/physgameengine/src/internaldecompinterface.h.cpp:52: Warning: Member m_convexCentroids (variable) of class phys::internal::PhysConvexDecomposition is not documented.
-/home/dev/physgame/physgameengine/src/internaldecompinterface.h.cpp:53: Warning: Member mBaseCount (variable) of class phys::internal::PhysConvexDecomposition is not documented.
-/home/dev/physgame/physgameengine/src/internaldecompinterface.h.cpp:54: Warning: Member mHullCount (variable) of class phys::internal::PhysConvexDecomposition is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:57: Warning: Member Verticies (variable) of class phys::internal::MeshInfo is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:58: Warning: Member Indicies (variable) of class phys::internal::MeshInfo is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:59: Warning: Member Normals (variable) of class phys::internal::MeshInfo is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:60: Warning: Member Textures (variable) of class phys::internal::MeshInfo is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:61: Warning: Member VCount (variable) of class phys::internal::MeshInfo is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:62: Warning: Member ICount (variable) of class phys::internal::MeshInfo is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:63: Warning: Member Name (variable) of class phys::internal::MeshInfo is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:64: Warning: Member Material (variable) of class phys::internal::MeshInfo is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:65: Warning: Member MaterialFile (variable) of class phys::internal::MeshInfo is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:66: Warning: Member Group (variable) of class phys::internal::MeshInfo is not documented.
-/home/dev/physgame/physgameengine/src/internalmeshinfo.h.cpp:67: Warning: Member RendOp (variable) of class phys::internal::MeshInfo is not documented.
+/home/dev/physgame/physgameengine/src/world.h:233: Warning: The following parameters of phys::World::World(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, std::string SceneManagerName, SceneManager::SceneManagerType SceneType, const unsigned short int &MaxPhysicsProxies_=1024, std::string LogFileName="Physgame.log") are not documented:
+  parameter 'SceneManagerName'
+  parameter 'SceneType'
+/home/dev/physgame/physgameengine/src/world.h:247: Warning: The following parameters of phys::World::World(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_, std::string SceneManagerName, SceneManager::SceneManagerType SceneType, const std::string &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded) are not documented:
+  parameter 'SceneManagerName'
+  parameter 'SceneType'

@@ -388,7 +388,7 @@ namespace phys
             /// @brief Changes a Manager's time of execution.
             /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.
             /// @param ManagerToChange A pointer to the manager that needs to be changed
-            /// @param Priority the new desire priority/execution order of the Manager
+            /// @param Priority_ the new desire priority/execution order of the Manager
             void UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority_);
 
             /// @brief This forces the list of managers to be resorted.

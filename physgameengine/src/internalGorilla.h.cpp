@@ -27,6 +27,9 @@
 #ifndef GORILLA_H_CPP
 #define GORILLA_H_CPP
 
+// Keeps this file form being documented by doxygen
+/// @cond 0
+
 #include <Ogre.h>
 
 #define GORILLA_USES_EXCEPTIONS 0
@@ -2896,5 +2899,6 @@ namespace Gorilla
   };
 }
 
+/// @endcond
 
 #endif

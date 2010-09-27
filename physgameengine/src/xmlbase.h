@@ -43,15 +43,17 @@
 
 #include "datatypes.h"
 
-//This next line is required for TiCPP to function
-#define TIXML_USE_TICPP
 
-#include <ticpp.h>
+// Forward declarations
+namespace ticpp
+{
+    class Base;
+}
 
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @namespace xml
+    /// @namespace phys::xml
     /// @brief The components to load, save, modify, and use XML will be stored here
     /// @details This is where objects that help with loading, saving, and
     /// manipulating xml documents will reside. This components found here are simply
@@ -101,7 +103,8 @@ namespace phys
         /// @class Base
         /// @headerfile xmlbase.h
         /// @brief A set of all functionality that all XML components must implement
-        /// @details
+        /// @details All XML components inherit from this. This is the most basic level
+        /// of functionality that all XML components will implement
         class Base
         {
             protected:
@@ -115,15 +118,15 @@ namespace phys
                 /// @brief This is used to identify what kind of component you are working with, in conjunction with the GetType() function
                 enum XMLComponentType
                 {
-                    Attribute,              /**< Indicates the XMLComponent is an attribute, and not a node */
-                    Node,                   /**< Indicates the XMLComponent is a node and nothing else */
-                    Comment,                /**< Indicates the XMLComponent is a node and */
-                    Declaration,            /**< Indicates the XMLComponent is a node and */
-                    Document,               /**< Indicates the XMLComponent is a node and */
-                    Element,                /**< Indicates the XMLComponent is a node and */
-                    StyleSheetReference,    /**< Indicates the XMLComponent is a node and */
-                    Text,                   /**< Indicates the XMLComponent is a node and */
-                    Unknown                 /**< Indicates the XMLComponent is a node and */
+                    isAttribute,              /**< Indicates the XMLComponent is an attribute, and not a node */
+                    isNode,                   /**< Indicates the XMLComponent is a node and nothing else */
+                    isComment,                /**< Indicates the XMLComponent is a node and */
+                    isDeclaration,            /**< Indicates the XMLComponent is a node and */
+                    isDocument,               /**< Indicates the XMLComponent is a node and */
+                    isElement,                /**< Indicates the XMLComponent is a node and */
+                    isStyleSheetReference,    /**< Indicates the XMLComponent is a node and */
+                    isText,                   /**< Indicates the XMLComponent is a node and */
+                    isUnknown                 /**< Indicates the XMLComponent is a node and */
                 };
 
                 /// @brief This Will be by Child classes to aid in identification

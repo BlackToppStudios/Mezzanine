@@ -48,7 +48,6 @@
 
 namespace phys
 {
-
     namespace xml
     {
         Base::~Base()
@@ -68,7 +67,7 @@ namespace phys
         const void* Base::GetUserData () const
             { this->Wrapped->GetUserData(); }
         */
-        /// @TODO Decide what to do with User data... I think remove it, even from the TiXML we are shipping with, then wrap the following SetCondenseWhiteSpace, IsWhiteSpaceCondensed, EncodeString, and those listed on http://ticpp.googlecode.com/svn/docs/classticpp_1_1Base-members.html
+        /// @todo TODO: Decide what to do with User data... I think remove it, even from the TiXML we are shipping with, then wrap the following SetCondenseWhiteSpace, IsWhiteSpaceCondensed, EncodeString, and those listed on http://ticpp.googlecode.com/svn/docs/classticpp_1_1Base-members.html
 
         bool Base::operator== (const Base &OtherBase) const
             { return ( this->Wrapped == OtherBase.Wrapped ); }
@@ -84,6 +83,5 @@ namespace phys
 
 //std::ostream& operator << (std::ostream& stream, const phys::xml::Base& x)
 //{}
-
 
 #endif
