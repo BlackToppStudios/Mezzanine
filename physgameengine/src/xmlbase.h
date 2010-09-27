@@ -41,12 +41,12 @@
 #ifndef _xmlbase_h
 #define _xmlbase_h
 
+#include "datatypes.h"
+
 //This next line is required for TiCPP to function
 #define TIXML_USE_TICPP
 
 #include <ticpp.h>
-
-ticpp::Base* Wrapped;
 
 namespace phys
 {
@@ -104,7 +104,7 @@ namespace phys
         /// @details
         class Base
         {
-            private:
+            protected:
                 /// @internal
                 /// @brief A pointer to the Library level object we are wrapping to implement this functionality
                 ticpp::Base* Wrapped;
@@ -160,6 +160,24 @@ namespace phys
                 // @brief See GetUserData()
                 //const void* GetUserData () const;
 
+
+                /// @brief Equality comparison operation based on internal data
+                /// @param OtherBase Another XML object that will be compared
+                /// @details Compare internal TiXml pointers to determine if both are wrappers around the same node.
+                /// @return A bool containing true if the internal pointers match
+                bool operator== (const Base &OtherBase) const;
+
+                /// @brief Inquality comparison operation based on internal data
+                /// @param OtherBase Another XML object that will be compared
+                /// @details Compare internal TiXml pointers to determine if both are wrappers around the same node.
+                /// @return A bool containing false if the internal pointers match
+                bool operator!= (const Base &OtherBase) const;
+
+
+                /// @brief Used to get details about issues suitable for the the user or detailed logs
+                /// @details Builds detailed error string using TiXmlDocument::Error() and others.
+                /// @return This returns a string that contains the current error information [I think that is what happens anyway.]
+                String BuildDetailedErrorString() const;
 
                 /// @brief A simple empty virtual destructor for compatibility and ease of customization.
                 virtual ~Base();
