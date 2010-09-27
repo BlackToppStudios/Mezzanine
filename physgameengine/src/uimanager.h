@@ -41,10 +41,15 @@
 #define _uimanager_h
 
 #include "managerbase.h"
+#include "datatypes.h"
+
+#include <map>
 
 namespace Gorilla
 {
     class Silverback;
+    class Layer;
+    class Screen;
 }
 
 namespace phys
@@ -59,11 +64,14 @@ namespace phys
     {
         protected:
             /// @brief Pointer for the Gorilla core class, where this manager gets it's functionality.
-            Gorilla::Silverback* Gorilla;
+            Gorilla::Silverback* Silver;
+            String Atlas;
+            std::map< String, Gorilla::Screen* > Screens;
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
-            UIManager();
+            /// @param Name The name of the .gorilla file to load with this manager.
+            UIManager(const String& Name);
             /// @brief Class Destructor.
             /// @details The class destructor.
             ~UIManager();
@@ -71,10 +79,15 @@ namespace phys
             void Initialize();
             /// @brief Inherited from ManagerBase.
             void DoMainLoopItems();
+            /// @brief Creates an internal HUD screen.
+            /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI's
+            /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.
+            /// @param Name The name to be given to the screen.
+            void CreateScreen(const String& Name);
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;
-    };
+    };//uimanager
 }//phys
 
 #endif

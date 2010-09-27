@@ -47,14 +47,16 @@
 
 namespace phys
 {
-    UIManager::UIManager()
+    UIManager::UIManager(const String& Name)
+        : Atlas (Name)
     {
-
+        Silver = new Gorilla::Silverback();
+        Silver->loadAtlas(Name);
     }
 
     UIManager::~UIManager()
     {
-
+        delete Silver;
     }
 
     void UIManager::Initialize()
@@ -63,6 +65,12 @@ namespace phys
 
     void UIManager::DoMainLoopItems()
     {
+    }
+
+    void UIManager::CreateScreen(const String& Name)
+    {
+        Gorilla::Screen* guiscreen = Silver->createScreen( , Atlas)
+        Screens[Name] = guiscreen;
     }
 
     ManagerBase::ManagerTypeName UIManager::GetType() const
