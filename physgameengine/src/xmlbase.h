@@ -163,7 +163,6 @@ namespace phys
                 // @brief See GetUserData()
                 //const void* GetUserData () const;
 
-
                 /// @brief Equality comparison operation based on internal data
                 /// @param OtherBase Another XML object that will be compared
                 /// @details Compare internal TiXml pointers to determine if both are wrappers around the same node.
@@ -184,8 +183,6 @@ namespace phys
 
                 /// @brief A simple empty virtual destructor for compatibility and ease of customization.
                 virtual ~Base();
-
-
 
         }; // /Base
     }// /xml

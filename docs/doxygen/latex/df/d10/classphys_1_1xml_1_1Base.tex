@@ -141,7 +141,7 @@ This returns a string that contains the current error information \mbox{[}I thin
 \end{DoxyReturn}
 
 
-Definition at line 78 of file xmlbase.cpp.
+Definition at line 68 of file xmlbase.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Base_a7ef4a2c8165c6bb63f75fdc9f2231948}{
 \index{phys::xml::Base@{phys::xml::Base}!Column@{Column}}
@@ -171,6 +171,10 @@ This Will be by Child classes to aid in identification.
 \begin{DoxyReturn}{Returns}
 Classes that inherit from this are expected to return an XMLComponentType that indicates what kind of XML component they are. 
 \end{DoxyReturn}
+
+
+Implemented in \hyperlink{classphys_1_1xml_1_1Attribute_a58ebb56547b77dad9c8cb11eb4558cc9}{phys::xml::Attribute}.
+
 \hypertarget{classphys_1_1xml_1_1Base_a45216237a77d457ceda41f40583f80ac}{
 \index{phys::xml::Base@{phys::xml::Base}!operator!=@{operator!=}}
 \index{operator!=@{operator!=}!phys::xml::Base@{phys::xml::Base}}
@@ -188,7 +192,7 @@ A bool containing false if the internal pointers match
 \end{DoxyReturn}
 
 
-Definition at line 75 of file xmlbase.cpp.
+Definition at line 65 of file xmlbase.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Base_af5412e64fd83a5193e28a20df462b9a6}{
 \index{phys::xml::Base@{phys::xml::Base}!operator==@{operator==}}
@@ -203,13 +207,11 @@ Equality comparison operation based on internal data.
 \begin{DoxyParams}{Parameters}
 \item[{\em OtherBase}]Another XML object that will be compared\end{DoxyParams}
 Compare internal TiXml pointers to determine if both are wrappers around the same node. \begin{DoxyReturn}{Returns}
-A bool containing true if the internal pointers match
+A bool containing true if the internal pointers match 
 \end{DoxyReturn}
-\begin{Desc}
-\item[\hyperlink{todo__todo000032}{Todo}]TODO: Decide what to do with User data... I think remove it, even from the TiXML we are shipping with, then wrap the following SetCondenseWhiteSpace, IsWhiteSpaceCondensed, EncodeString, and those listed on \href{http://ticpp.googlecode.com/svn/docs/classticpp_1_1Base-members.html}{\tt http://ticpp.googlecode.com/svn/docs/classticpp\_\-1\_\-1Base-\/members.html} \end{Desc}
 
 
-Definition at line 72 of file xmlbase.cpp.
+Definition at line 62 of file xmlbase.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Base_adc2f732f1f37ef7bae5b701a84470754}{
 \index{phys::xml::Base@{phys::xml::Base}!Row@{Row}}

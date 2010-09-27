@@ -25,33 +25,227 @@ Inheritance diagram for phys::xml::Attribute:\begin{figure}[H]
 \label{da/ddf/classphys_1_1xml_1_1Attribute_a962ad273e447bb714925c331e00cc3e7}
 
 \begin{DoxyCompactList}\small\item\em Construct an empty attribute. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1Attribute_a564df51f8b32ffd1fbd6c69bd278c9a5}{Attribute} (const std::string \&name, const std::string \&value)
-\begin{DoxyCompactList}\small\item\em Construct an attribute with name and value. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{classphys_1_1xml_1_1Attribute_a2918dbce8208751944d3803a1300a914}{
+\hyperlink{classphys_1_1xml_1_1Attribute_a2918dbce8208751944d3803a1300a914}{$\sim$Attribute} ()}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a2918dbce8208751944d3803a1300a914}
+
+\begin{DoxyCompactList}\small\item\em Tears down an attribute and removes the node from the DOM. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Attribute_abce6652f3a2ca2cf5a5d46b7ceb1e108}{Attribute} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&value)
+\begin{DoxyCompactList}\small\item\em Construct an attribute with name and value. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1xml_1_1Attribute_a9fda8a6a6a292639e2ef88c479c80d88}{GetValue} () const 
+\begin{DoxyCompactList}\small\item\em Get the value of this attribute. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1xml_1_1Attribute_a45b441e83fb3c6e0cc911019b61039ba}{SetValue} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&value)
+\begin{DoxyCompactList}\small\item\em Set the value of this node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1xml_1_1Attribute_ad2ba3ccf96388f0c859bc90e45ed94ab}{SetValue} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&value)
+\begin{DoxyCompactList}\small\item\em Set the value of this node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1xml_1_1Attribute_ad06e8d677bfa76d43936bd97ac3e62ef}{SetValue} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&value)
+\begin{DoxyCompactList}\small\item\em Set the value of this node. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1xml_1_1Attribute_a9c90f6c8b6c409309fd503e1fe4a71bd}{SetName} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Set the Name of this attribute. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1xml_1_1Attribute_a30314ef60f51e5e161ee4d9e2b6fbd6c}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Get the Name of this attribute. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} $\ast$ \hyperlink{classphys_1_1xml_1_1Attribute_aadf4930c5c1cd8aa140bea3c05253446}{Next} (bool throwIfNoAttribute=true) const 
+\begin{DoxyCompactList}\small\item\em Get the next sibling attribute in the DOM. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} $\ast$ \hyperlink{classphys_1_1xml_1_1Attribute_a3c9fdaa3f88cdf90d61af77cb33e022e}{Previous} (bool throwIfNoAttribute=true) const 
+\begin{DoxyCompactList}\small\item\em Get the Previous sibling attribute in the DOM. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320}{XMLComponentType} \hyperlink{classphys_1_1xml_1_1Attribute_a58ebb56547b77dad9c8cb11eb4558cc9}{GetType} ()
+\begin{DoxyCompactList}\small\item\em This identifies what kind of child of xml::base this is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_aeea008baed4c687e9ed9e1f3563f0c01}{
+\hyperlink{classphys_1_1xml_1_1Attribute_aeea008baed4c687e9ed9e1f3563f0c01}{Attribute} (ticpp::Attribute $\ast$Meta)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_aeea008baed4c687e9ed9e1f3563f0c01}
+
+\begin{DoxyCompactList}\small\item\em Construct an attribute using meta data from a TiCPP pointer. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 This represents the attributes that could exist on an XML element. 
 
-Definition at line 54 of file xmlattribute.h.
+Definition at line 59 of file xmlattribute.h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1xml_1_1Attribute_a564df51f8b32ffd1fbd6c69bd278c9a5}{
+\hypertarget{classphys_1_1xml_1_1Attribute_abce6652f3a2ca2cf5a5d46b7ceb1e108}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!Attribute@{Attribute}}
 \index{Attribute@{Attribute}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{Attribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Attribute (const std::string \& {\em name}, \/  const std::string \& {\em value})}}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a564df51f8b32ffd1fbd6c69bd278c9a5}
+\subsubsection[{Attribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Attribute (const {\bf String} \& {\em name}, \/  const {\bf String} \& {\em value})}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_abce6652f3a2ca2cf5a5d46b7ceb1e108}
 
 
 Construct an attribute with name and value. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em name}]What the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is called for example in Content \item[{\em value}]\end{DoxyParams}
+\item[{\em name}]What the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is called for example in \char`\"{} $<$div style=\char`\"{}14\char`\"{}$>$Content$<$/div$>$ \char`\"{} the word \char`\"{}style\char`\"{} is the attribute name \item[{\em value}]What the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is called for example in \char`\"{} $<$div style=\char`\"{}14\char`\"{}$>$Content$<$/div$>$ \char`\"{} the word \char`\"{}14\char`\"{} is the attribute value \end{DoxyParams}
 
 
-Definition at line 60 of file xmlattribute.cpp.
+Definition at line 56 of file xmlattribute.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1Attribute_a30314ef60f51e5e161ee4d9e2b6fbd6c}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::xml::Attribute::GetName () const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a30314ef60f51e5e161ee4d9e2b6fbd6c}
+
+
+Get the Name of this attribute. 
+
+\begin{DoxyReturn}{Returns}
+This returns a String containing the name 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file xmlattribute.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a58ebb56547b77dad9c8cb11eb4558cc9}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute::XMLComponentType} phys::xml::Attribute::GetType ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a58ebb56547b77dad9c8cb11eb4558cc9}
+
+
+This identifies what kind of child of xml::base this is. 
+
+\begin{DoxyReturn}{Returns}
+This returns \hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320af75393e041247190be1c922d0b3faf07}{Base::isAttribute} 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1xml_1_1Base_af2821c239b5eb31c2524a499bf3ff19f}{phys::xml::Base}.
+
+
+
+Definition at line 89 of file xmlattribute.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a9fda8a6a6a292639e2ef88c479c80d88}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!GetValue@{GetValue}}
+\index{GetValue@{GetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{GetValue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::xml::Attribute::GetValue () const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a9fda8a6a6a292639e2ef88c479c80d88}
+
+
+Get the value of this attribute. 
+
+\begin{DoxyReturn}{Returns}
+this returns a String containing the value of this attribute. 
+\end{DoxyReturn}
+
+
+Definition at line 65 of file xmlattribute.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_aadf4930c5c1cd8aa140bea3c05253446}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!Next@{Next}}
+\index{Next@{Next}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{Next}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} $\ast$ phys::xml::Attribute::Next (bool {\em throwIfNoAttribute} = {\ttfamily true}) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_aadf4930c5c1cd8aa140bea3c05253446}
+
+
+Get the next sibling attribute in the DOM. 
+
+\begin{DoxyWarning}{Warning}
+This will cause memory leaks if the created pointer is not deleted 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em throwIfNo}]\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} Should this function throw an exception if it fails, or silently fail. Defaults to true so it throws errors on failure. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to an XML::Attribute that comes after this one, but still on the same element 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file xmlattribute.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a3c9fdaa3f88cdf90d61af77cb33e022e}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!Previous@{Previous}}
+\index{Previous@{Previous}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{Previous}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} $\ast$ phys::xml::Attribute::Previous (bool {\em throwIfNoAttribute} = {\ttfamily true}) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a3c9fdaa3f88cdf90d61af77cb33e022e}
+
+
+Get the Previous sibling attribute in the DOM. 
+
+\begin{DoxyWarning}{Warning}
+This will cause memory leaks if the created pointer is not deleted 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em throwIfNo}]\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} Should this function throw an exception if it fails, or silently fail. Defaults to true so it throws errors on failure. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to an XML::Attribute that comes before this one, but still on the same element. 
+\end{DoxyReturn}
+
+
+Definition at line 86 of file xmlattribute.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a9c90f6c8b6c409309fd503e1fe4a71bd}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!SetName@{SetName}}
+\index{SetName@{SetName}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{SetName}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Attribute::SetName (const {\bf String} \& {\em Name})}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a9c90f6c8b6c409309fd503e1fe4a71bd}
+
+
+Set the Name of this attribute. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em name}]A String that is the name the attribute will have. \end{DoxyParams}
+
+
+Definition at line 77 of file xmlattribute.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_ad06e8d677bfa76d43936bd97ac3e62ef}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Attribute::SetValue (const {\bf String} \& {\em value})}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ad06e8d677bfa76d43936bd97ac3e62ef}
+
+
+Set the value of this node. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em value}]A String number to be inserted into the XML document \end{DoxyParams}
+
+
+Definition at line 74 of file xmlattribute.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_ad2ba3ccf96388f0c859bc90e45ed94ab}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Attribute::SetValue (const {\bf Real} \& {\em value})}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ad2ba3ccf96388f0c859bc90e45ed94ab}
+
+
+Set the value of this node. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em value}]A Real number to be inserted into the XML document \end{DoxyParams}
+
+
+Definition at line 71 of file xmlattribute.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a45b441e83fb3c6e0cc911019b61039ba}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Attribute::SetValue (const {\bf Whole} \& {\em value})}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a45b441e83fb3c6e0cc911019b61039ba}
+
+
+Set the value of this node. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em value}]A Whole number to be inserted into the XML document \end{DoxyParams}
+
+
+Definition at line 68 of file xmlattribute.cpp.
 
 
 

@@ -312,6 +312,8 @@
 		<Unit filename="src/worldgetset.h" />
 		<Unit filename="src/worldquerytool.cpp" />
 		<Unit filename="src/worldquerytool.h" />
+		<Unit filename="src/xmlattribute.cpp" />
+		<Unit filename="src/xmlattribute.h" />
 		<Unit filename="src/xmlbase.cpp" />
 		<Unit filename="src/xmlbase.h" />
 		<Unit filename="src/xmldocument.h" />

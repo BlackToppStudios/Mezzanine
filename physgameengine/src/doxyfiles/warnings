@@ -151,3 +151,12 @@
 /home/dev/physgame/physgameengine/src/world.h:247: Warning: The following parameters of phys::World::World(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_, std::string SceneManagerName, SceneManager::SceneManagerType SceneType, const std::string &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded) are not documented:
   parameter 'SceneManagerName'
   parameter 'SceneType'
+/home/dev/physgame/physgameengine/src/xmlattribute.h:100: Warning: argument 'throwIfNo' of command @param is not found in the argument list of phys::xml::Attribute::Next(bool throwIfNoAttribute=true) const
+/home/dev/physgame/physgameengine/src/xmlattribute.h:100: Warning: The following parameters of phys::xml::Attribute::Next(bool throwIfNoAttribute=true) const are not documented:
+  parameter 'throwIfNoAttribute'
+/home/dev/physgame/physgameengine/src/xmlattribute.h:106: Warning: argument 'throwIfNo' of command @param is not found in the argument list of phys::xml::Attribute::Previous(bool throwIfNoAttribute=true) const
+/home/dev/physgame/physgameengine/src/xmlattribute.h:106: Warning: The following parameters of phys::xml::Attribute::Previous(bool throwIfNoAttribute=true) const are not documented:
+  parameter 'throwIfNoAttribute'
+/home/dev/physgame/physgameengine/src/xmlattribute.h:92: Warning: argument 'name' of command @param is not found in the argument list of phys::xml::Attribute::SetName(const String &Name)
+/home/dev/physgame/physgameengine/src/xmlattribute.h:92: Warning: The following parameters of phys::xml::Attribute::SetName(const String &Name) are not documented:
+  parameter 'Name'
