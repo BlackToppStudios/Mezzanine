@@ -47,11 +47,9 @@
 
 namespace phys
 {
-    UIManager::UIManager(const String& Name)
-        : Atlas (Name)
+    UIManager::UIManager(World* World_) : ManagerBase(World_)
     {
         Silver = new Gorilla::Silverback();
-        Silver->loadAtlas(Name);
     }
 
     UIManager::~UIManager()
@@ -67,9 +65,15 @@ namespace phys
     {
     }
 
-    void UIManager::CreateScreen(const String& Name)
+    void UIManager::LoadGorilla(const String& Name)
     {
-        Gorilla::Screen* guiscreen = Silver->createScreen( , Atlas)
+        Silver->loadAtlas(Name);
+    }
+
+    void UIManager::CreateScreen(const String& Name, const String& Atlas)
+    {
+        Ogre::Viewport* OgrePort = NULL;
+        Gorilla::Screen* guiscreen = Silver->createScreen(OgrePort, Atlas);
         Screens[Name] = guiscreen;
     }
 

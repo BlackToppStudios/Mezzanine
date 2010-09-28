@@ -46,6 +46,8 @@
 #include "BulletCollision/Gimpact/btGImpactShape.h"
 #include "ConvexBuilder.h"
 
+#include "world.h"
+#include "physicsmanager.h"
 #include "actorrigid.h"
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "internaldecompinterface.h.cpp"

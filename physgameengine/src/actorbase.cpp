@@ -44,6 +44,7 @@
 #include "btBulletDynamicsCommon.h"
 
 #include "actorbase.h"
+#include "world.h"
 #include "internalmotionstate.h.cpp"
 #include "internalmeshinfo.h.cpp"
 

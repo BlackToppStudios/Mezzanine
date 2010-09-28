@@ -65,13 +65,12 @@ namespace phys
         protected:
             /// @brief Pointer for the Gorilla core class, where this manager gets it's functionality.
             Gorilla::Silverback* Silver;
-            String Atlas;
             std::map< String, Gorilla::Screen* > Screens;
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
             /// @param Name The name of the .gorilla file to load with this manager.
-            UIManager(const String& Name);
+            UIManager(World* World_);
             /// @brief Class Destructor.
             /// @details The class destructor.
             ~UIManager();
@@ -79,11 +78,15 @@ namespace phys
             void Initialize();
             /// @brief Inherited from ManagerBase.
             void DoMainLoopItems();
+            /// @brief Loads a Gorilla file for use with this manager.
+            /// @param Name The name of the file to be loaded, not including the extension.
+            void LoadGorilla(const String& Name);
             /// @brief Creates an internal HUD screen.
             /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI's
             /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.
             /// @param Name The name to be given to the screen.
-            void CreateScreen(const String& Name);
+            /// @param Atlas The name of a previously loaded Gorilla file to be used with this screen.
+            void CreateScreen(const String& Name, const String& Atlas);
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;

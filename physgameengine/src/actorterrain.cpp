@@ -45,6 +45,8 @@
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 
 #include "actorterrain.h"
+#include "world.h"
+#include "physicsmanager.h"
 #include "internalmotionstate.h.cpp"
 
 namespace phys

@@ -57,12 +57,20 @@
 #include "actorbase.h"
 #include "eventuserinput.h"
 #include "managerbase.h"
+#include "eventmanager.h"
+#include "cameramanager.h"
+#include "physicsmanager.h"
+#include "soundmanager.h"
+#include "resourcemanager.h"
+#include "scenemanager.h"
+#include "uimanager.h"
 
 #include "actorcontainervector.h"
 #include "ray.h"
 #include "actorrigid.h"
 #include "vector3wactor.h"
 #include "plane.h"
+#include "camera.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -139,6 +147,8 @@ namespace phys
         for(std::vector<ManagerBase*>::iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
             { this->AddManager(*iter); }
 
+        /// @todo With the removal of the public ogre pointers, and increased dependancy of managers on other managers as a result, a re-examining of the order managers
+        /// and components are initialized is in order.
         //Create and add any managers that have not been taken care of yet.
         if(this->GetActorManager()==0)
             { this->AddManager(new ActorContainerVector(this)); }
@@ -155,7 +165,7 @@ namespace phys
         if(this->GetSceneManager()==0)
             { this->AddManager(new SceneManager(SceneManagerName, SceneType, this)); }
         if(this->GetUIManager()==0)
-            { this->AddManager(new UIManager()); }
+            { this->AddManager(new UIManager(this)); }
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -460,10 +470,11 @@ namespace phys
 		}
 
         //Start Ogre Without a native render window
+        Ogre::RenderWindow* OgreGameWindow = NULL;
         try
         {
             //crossplatform::WaitMilliseconds(1000);
-            this->OgreGameWindow = this->OgreRoot->initialise(false, this->WindowName);
+            OgreGameWindow = this->OgreRoot->initialise(false, this->WindowName);
             #ifdef PHYSDEBUG
             this->Log("Setup Ogre Window");
             #endif
@@ -476,11 +487,12 @@ namespace phys
         Ogre::NameValuePairList *misc;
         misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
         (*misc)["title"] = Ogre::String(this->WindowName);
-        this->OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, this->GetGraphicsManager()->getRenderHeight(), this->GetGraphicsManager()->getRenderWidth(), this->GetGraphicsManager()->getFullscreen(), misc);
+        OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, this->GetGraphicsManager()->getRenderHeight(), this->GetGraphicsManager()->getRenderWidth(), this->GetGraphicsManager()->getFullscreen(), misc);
         #ifdef PHYSDEBUG
         this->Log("Bound Ogre to an SDL window");
         #endif
 
+        this->GetGraphicsManager()->SetOgreWindowPointer(OgreGameWindow);
         //prepare a scenemanager
         //this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
         #ifdef PHYSDEBUG
@@ -488,29 +500,33 @@ namespace phys
         #endif
 
         //setup a default camera unless has been setup yet
+        Camera* camera = NULL;
         if(this->GetCameraManager()==0)
         {
-            this->AddManager(new CameraManager (this->GetSceneManager()->GetName(),this));
-            this->GetCameraManager()->CreateCamera();
+            this->AddManager(new CameraManager (0,this));
+            this->GetCameraManager()->CreateDefaultCamera();
         }
-        this->OgreCamera = this->GetCameraManager()->DefaultCamera;
+        camera = this->GetCameraManager()->DefaultCamera;
         #ifdef PHYSDEBUG
         this->Log("Created Default Camera");
         #endif
 
         //viewport connects camera and render window
-        this->OgreViewport = this->OgreGameWindow->addViewport(OgreCamera);
+        Ogre::Viewport* OgreViewport = NULL;
+        OgreViewport = this->GetGraphicsManager()->GetOgreWindowPointer()->addViewport(camera->Cam);
+        this->GetCameraManager()->Veiwports["DefaultViewport"] = OgreViewport;
 
         //setting the aspect ratio must be done after we setup the viewport
-        this->OgreCamera->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
+        camera->Cam->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
         #ifdef PHYSDEBUG
         this->Log("Configured Viewport and Aspect Ratio");
         #endif
     }
 
+    /// @todo Possibly move this function, along with the corresponding create function to the graphics manager as well.
     void World::DestroyRenderWindow()
     {
-        this->OgreGameWindow->destroy();
+        this->GetGraphicsManager()->GetOgreWindowPointer()->destroy();
     }
 
     ///////////////////////////////////////////////////////////////////////////////

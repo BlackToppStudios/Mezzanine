@@ -91,17 +91,20 @@
 //Includes and Forward Declarations
 #include "crossplatform.h"
 #include "eventbase.h"
-#include "eventmanager.h"
 #include "datatypes.h"
 #include "vector3.h"
-#include "cameramanager.h"
-#include "physicsmanager.h"
-#include "soundmanager.h"
-#include "graphicsmanager.h"
-#include "resourcemanager.h"
 #include "scenemanager.h"
-#include "uimanager.h"
-
+namespace phys
+{
+    class EventManager;
+    class CameraManager;
+    class PhysicsManager;
+    class GraphicsManager;
+    class SoundManager;
+    class ResourceManager;
+    class UIManager;
+}
+#include <list>
 #include <string>
 #include <sstream>
 
@@ -208,7 +211,7 @@ namespace phys
 
             /// @internal
             /// @brief
-            Ogre::RenderWindow* OgreGameWindow;
+            //Ogre::RenderWindow* OgreGameWindow;
 
             /// @internal
             /// @brief
@@ -216,11 +219,11 @@ namespace phys
 
             /// @internal
             /// @brief
-            Ogre::Camera* OgreCamera;
+            //Ogre::Camera* OgreCamera;
 
             /// @internal
             /// @brief
-            Ogre::Viewport* OgreViewport;
+            //Ogre::Viewport* OgreViewport;
 
             /// @internal
             /// @brief
