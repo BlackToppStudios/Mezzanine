@@ -51,7 +51,10 @@ namespace phys
     namespace xml
     {
         Base::~Base()
-        { }
+        {
+            //this looks really wierd, deleting a smart pointer. We are actually using a pointer to a smart pointer, so this is required.
+            delete this->Wrapped;
+        }
 
         int Base::Row () const
         { return this->Wrapped->Row();}
@@ -67,6 +70,9 @@ namespace phys
 
         String Base::BuildDetailedErrorString() const
             { return this->Wrapped->BuildDetailedErrorString(); }
+
+        Base::XMLComponentType Base::GetType()
+                { return Base::isBase; }
 
     }// /xml
 }// /phys
