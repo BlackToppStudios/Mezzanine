@@ -43,6 +43,7 @@
 #include "areaeffect.h"
 #include "world.h"
 #include "actorbase.h"
+#include "physicsmanager.h"
 
 #include <Ogre.h>
 #include <btBulletDynamicsCommon.h>

@@ -41,23 +41,23 @@
 #define _CameraManager_h
 
 #include "vector3.h"
-#include "datatypes.h"
 #include "quaternion.h"
 #include "ray.h"
 #include "managerbase.h"
 
-#include <vector>
+#include <map>
 
 namespace Ogre
 {
     class Camera;
     class SceneNode;
-    class SceneManager;
+    class Viewport;
 }
 
 namespace phys
 {
     class Camera;
+    class SceneManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CameraManager
     /// @headerfile cameramanager.h
@@ -68,170 +68,53 @@ namespace phys
     /// This class should only be created after the SceneManager has been created.
     ///////////////////////////////////////////////////////////////////////////////
     class CameraManager : public ManagerBase {
-        private:
+        protected:
             friend class World;
             friend class Camera;
-            Ogre::SceneManager* SceneManager;
-            Ogre::Camera* DefaultCamera;
-            std::vector< Ogre::Camera* > Cameras;
-            std::vector< Ogre::SceneNode* > Nodes;
-            unsigned short ONodes;
-            unsigned short SNodes;
-            Ogre::Camera* FindCamera(String Name);
-            Ogre::SceneNode* FindNode(String Name);
+            std::map< String, Ogre::Viewport* > Viewports;
+            phys::SceneManager* SManager;
+            Camera* DefaultCamera;
+            std::vector< Camera* > Cameras;
+            Camera* FindCamera(String Name);
         public:
             /// @brief Class Constructor.
             /// @details This is the class constructor.  This is automatcally called in the World.CreateRenderWindow()
             /// function and should never need to be called manually.
             /// @param SceneManagerName Name of the created SceneManager for this camera manager to use.
             /// @param SManager A pointer to the Scenemanager where you will be creating/manipulating all the cameras.
-            CameraManager(const String& SceneManagerName, World* world);
+            CameraManager(Whole SceneManagerIndex, World* world);
             /// @brief Class Destructor.
             /// @details The calss Destuctor
             virtual ~CameraManager();
-            /// @brief Creates a camera.
-            /// @details This function will create a camera in the scene and return the string that is name of the
-            /// camera created.  The first camera created will always be the Default camera, and is also created just
-            /// after this class is constructed in the World.CreateRenderWindow() function.
-            String CreateCamera();
+            /// @brief Creates (or recreates) the default camera for this manager.
+            /// @details If this function is called while there is a valid default camera already created, it will delete that camera.
+            /// @return Returns a pointer to the created camera.
+            Camera* CreateDefaultCamera();
+            /// @brief Gets the default camera if it has been initialized.
+            /// @return Returns the Default Camera or a null point if it hasn't been created yet.
+            Camera* GetDefaultCamera();
             /// @brief Creates a camera and returns a pointer.
             /// @details This function does the same as the other CreateCamera function but will also return a pointer to
             /// the camera class instead of a string(being the name of the camera).
-            Camera* CreateCameraPtr();
-            /// @brief Creates a node that will orbit around a point.
-            /// @details This will create 2 nodes in the scene, the first being the point in the world you want to orbit
-            /// the second node around.  The second being the node that does the orbiting.  You can then attach a camera
-            /// to the orbiting node for some interesting visuals of your scene.
-            /// @param Target The location of the first node which you will be orbiting around.
-            /// @param RelativeLoc The location of the node that will be in orbit relative to the first node.  Assume the
-            /// first node is at Origin (0,0,0).
-            String CreateOrbitingNode(Vector3 Target, Vector3 RelativeLoc);
-            /// @brief Creates a stationary node that will look at a location.
-            /// @details This will create a node that doesn't move, and will look at one location that you specify.  This
-            /// node can then have cameras attached to it.
-            /// @param LookAt The location you want the node to look at.  Automatically handles orientation.
-            /// @param Location The location of the node itself.
-            String CreateStandNode(Vector3 LookAt, Vector3 Location);
-            /// @brief Deletes all nodes created by this manager.
-            /// @details This will clear the container of nodes.  Including Orbiting nodes, Center nodes, and Stand nodes.
-            void ClearNodes();
+            Camera* CreateCamera(const String& Name);
+            /// @brief Gets an already created camera by namr.
+            /// @return Returns a pointer to the camera of the specified name.
+            Camera* GetCamera(const String& Name);
+            /// @brief Gets an already created camera by index.
+            /// @return Returns a pointer to the camera at the specified index.
+            Camera* GetCamera(Whole Index);
+            /// @brief Gets the number of cameras created and stored in this manager.
+            /// @return Returns the number of cameras this manager is storing.
+            Whole GetNumCameras();
             /// @brief Deletes all cameras except for the first camera.
             /// @details This will clear the container of cameras.  The default camera is not stored in this container
             /// however, so it is spared from this wipe.
             void ClearCameras();
-            /// @brief Sets the location of a camera.
-            /// @details Sets the location of the specified camera.
-            /// @param Location The new location for the camera.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void SetLocation(Vector3 Location, String Name="DefaultCamera");
-            /// @brief Sets the Direction for the camera.
-            /// @details Sets which axis the camera will look down for rendering.
-            /// @param Direction The vector3 representing the axis to be used.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void SetDirection(Vector3 Direction, String Name="DefaultCamera");
-            /// @brief Sets the orientation of the camera.
-            /// @details This function will set the orientation of the specified camera via a quaternion.
-            /// @param Orientation The quaternion representing the new orientation.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void SetOrientation(Quaternion Orientation, String Name="DefaultCamera");
-            /// @brief Sets the short range clip distance.
-            /// @details Sets the distance at which objects are considered too close to render.
-            /// @param NearDist A Real representing the distance.  Note:  This number directly corolates to the dimentions
-            /// you provide in the constructor for the physgame.  You should understand your games scale before setting
-            /// this number.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void SetNearClipDistance(Real NearDist, String Name="DefaultCamera");
-            /// @brief Sets the long range clip distance.
-            /// @details Sets the distance at which objects are considered too far to render.
-            /// @param FarDist A Real representing the distance.  Note:  This number directly corolates to the dimentions
-            /// you provide in the constructor for the physgame.  You should understand your games scale before setting
-            /// this number.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void SetFarClipDistance(Real FarDist, String Name="DefaultCamera");
-            /// @brief Sets the aspect ratio of the cameras veiw.
-            /// @details This function will set the aspect ratio between the width and height of the cameras viewing area.
-            /// @param Ratio A Real that represents the aspect ratio, where Ratio = width / height.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void SetAspectRatio(Real Ratio, String Name="DefaultCamera");
-            /// @brief Sets the direction the camera faces.
-            /// @details Sets the direction the camera faces.  Will also take orientation into account.
-            /// @param TargetLoc The location in the game world to look at.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void LookAt(Vector3 TargetLoc, String Name="DefaultCamera");
-            /// @brief Sets whether to lock rotation around the Y axis.
-            /// @details This function will lock rotations around the Y axis (or another axis if you specify).  This
-            /// function is automatically called on by the camera constructor.
-            /// @param UseFixed Enable or disable the locking of the axis.
-            /// @param Axis The axis to lock, defaults to the Y axis.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void SetFixedYawAxis(bool UseFixed, Vector3 Axis, String Name="DefaultCamera");
-            /// @brief Sets whether to lock rotation around the Y axis.
-            /// @details This function will lock rotations around the Y axis.  This function is automatically called
-            /// on by the camera constructor.
-            /// @param UseFixed Enable or disable the locking of the axis.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void SetFixedYawAxis(bool UseFixed, String Name="DefaultCamera");
-            /// @brief Enables or disables auto tracking for the camera.
-            /// @details This function can enable auto tracking of a given node you have created.
-            /// @param Enabled Bool value to enable or disable auto tracking for this camera.
-            /// @param Target Name of the node to be tracked.
-            /// @param Offset The offset of where the camera is to look from the target.  I.E. Always 5 units ahead, etc..
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void SetAutoTracking(bool Enabled, String Target, Vector3 Offset, String Name="DefaultCamera");
-            /// @brief Enables or disables auto tracking for the camera.
-            /// @details This function can enable auto tracking of a given node you have created.
-            /// @param Enabled Bool value to enable or disable auto tracking for this camera.
-            /// @param Target Name of the node to be tracked.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void SetAutoTracking(bool Enabled, String Target, String Name="DefaultCamera");
-            /// @brief Gets a Ray from the camera to the viewport.
-            /// @details This will cast a ray from the camera to the viewport and return it.
-            /// @param Screenx A Real representing the relative location on screen, on the x axis(0.0-1.0).
-            /// @param Screeny A Real representing the relative location on screen, on the y axis(0.0-1.0).
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            Ray GetCameraToViewportRay(Real Screenx, Real Screeny, String Name="DefaultCamera");
-            /// @brief Gets the node attached to a camera.
-            /// @details This will return a string that is the name of the node the specified camera is attached to if any.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            String GetNodeAttachedToCamera(String Name="DefaultCamera");
-            /// @brief Gets the location of a node.
-            /// @details Gets the location of the node specified.
-            /// @param Name Name of the node to get the location of.
-            Vector3 GetNodeLocation(String Name);
-            /// @brief Gets the relative location of a camera.
-            /// @details Gets the location of the camera, relative to any connected nodes, specified.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            Vector3 GetCameraRelativeLocation(String Name="DefaultCamera");
-            /// @brief Gets the global location of a camera.
-            /// @details Gets the real world location of the camera specified.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            Vector3 GetCameraGlobalLocation(String Name="DefaultCamera");
-            /// @brief Will zoom in or out the camera.
-            /// @details This function will zoom in the camera by the amount specified.
-            /// @param Zoom A Real of how much to zoom in by.  Note:  This number directly corolates to the dimentions
-            /// you provide in the constructor for the physgame.  You should understand your games scale before setting
-            /// this number.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void ZoomCamera(Real Zoom, String Name="DefaultCamera");
-            /// @brief Resets the zoom level back to the default.
-            /// @details This function will return the zoom level back to normal.  Note this function will only work if the camera is attached to a node.
-            /// @param Name The name of the camera to be manipulated.  Defaults to the Default camera.
-            void ResetZoom(String Name="DefaultCamera");
-            /// @brief Attaches a camera to a node.
-            /// @details Attaches the specified camera to the specified node.
-            /// @param NodeName The name of the node to attach the camera to.
-            /// @param CamName The name of the camera to be manipulated.  Defaults to the Default camera.
-            void AttachCameraToNode(String NodeName, String CamName="DefaultCamera");
-            /// @brief Detaches a camera from a node.
-            /// @details Detaches the specified camera from the specified node.
-            /// @param NodeName The name of the node to detach the camera from.
-            /// @param CamName The name of the camera to be manipulated.  Defaults to the Default camera.
-            void DetachCameraFromNode(String NodeName, String CamName="DefaultCamera");
-            /// @brief Increments the orbit by the amount specified.
-            /// @details Increments the orbit of the specified node by the amount specified.
-            /// @param Radian The amount you wish to increment the orbit in Radians.
-            /// @param Name The name of the orbiting node you wish to increment the orbit for.
-            void IncrementYOrbit(Real Radian, String Name);
+            /// @brief Creates an additional Viewport within the set render window.
+            /// @details Like cameras, by default there is one veiwport already made when this class is made, called DefaultViewport.
+            /// @param Name The name of the new veiwport.
+            /// @param VeiwportCam The camera that is to be attached to this Viewport.
+            void CreateViewport(const String& Name, Camera* ViewportCam);
 
             //Inherited From ManagerBase
             /// @brief Empty Initializor
@@ -247,6 +130,9 @@ namespace phys
             /// @return This returns ManagerTypeName::CameraManager
             virtual ManagerTypeName GetType() const;
 
+            /// @brief Gets the internal Ogre viewport.
+            /// @return Returns the Ogre viewport of the specified name.
+            Ogre::Viewport* GetOgreViewport(const String& Name);
     };
 }//phys
 #endif

@@ -48,6 +48,8 @@
 //#include "BulletCollision/Gimpact/btGImpactShape.h"
 
 #include "internalmeshinfo.h.cpp"
+#include "world.h"
+#include "physicsmanager.h"
 #include "actorsoft.h"
 namespace phys{
     ///////////////////////////////////

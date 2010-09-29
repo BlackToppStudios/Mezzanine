@@ -74,7 +74,7 @@ namespace phys
             /// @brief Standard initialization constructor.
             /// @param Name The name of this particle effect.
             /// @param Template Name of the particle script to be used in creating this particle effect.
-            /// @param manager Pointer to the manager that this node is to be used in.
+            /// @param manager Pointer to the manager that this particle effect is to be used in.
             ParticleEffect(const String& Name, const String& Template, SceneManager* manager);
             /// @brief Internal constructor.
             /// @details This constructor should not be called on manually.

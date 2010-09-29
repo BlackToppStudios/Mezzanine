@@ -48,6 +48,7 @@
 #include "eventcollision.h"
 #include "vector3wactor.h"
 #include "areaeffect.h"
+#include "eventmanager.h"
 
 #include <queue>
 

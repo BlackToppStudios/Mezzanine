@@ -44,7 +44,6 @@
 #include "vector3.h"
 #include "quaternion.h"
 #include "ray.h"
-#include "cameramanager.h"
 #include "attachable.h"
 
 namespace Ogre
@@ -54,6 +53,8 @@ namespace Ogre
 
 namespace phys
 {
+    class CameraManager;
+    class World;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Camera
     /// @headerfile camera.h
@@ -71,7 +72,10 @@ namespace phys
             void Construct(Ogre::Camera* Camera, CameraManager* Manager);
 
         protected:
+            //needed mostly just for initialization of the world class when defaults are being made.
+            friend class World;
             friend class Node;
+            friend class CameraManager;
             /// @internal
             /// @brief This is the Camera used by the graphics Subsystem, that this class wraps
             Ogre::Camera* Cam;
@@ -83,7 +87,7 @@ namespace phys
         public:
             /// @brief Basic Camera Constructor.
             /// @details This is the basic constructor for the Camera class.
-            Camera(CameraManager* Manager);
+            Camera(const String& Name, CameraManager* Manager);
             /// @brief Ogre Cam Constructor.
             /// @details This is for internal use only and shouldn't be called manually.
             Camera(Ogre::Camera* Camera, CameraManager* Manager);
@@ -141,12 +145,12 @@ namespace phys
             /// @param Enabled Bool value to enable or disable auto tracking for this camera.
             /// @param Target Name of the node to be tracked.
             /// @param Offset The offset of where the camera is to look from the target.  I.E. Always 5 units ahead, etc..
-            void SetAutoTracking(bool Enabled, String Target, Vector3 Offset);
+            //void SetAutoTracking(bool Enabled, String Target, Vector3 Offset);
             /// @brief Enables or disables auto tracking for the camera.
             /// @details This function can enable auto tracking of a given node you have created.
             /// @param Enabled Bool value to enable or disable auto tracking for this camera.
             /// @param Target Name of the node to be tracked.
-            void SetAutoTracking(bool Enabled, String Target);
+            //void SetAutoTracking(bool Enabled, String Target);
             /// @brief Gets a Ray from the camera to the viewport.
             /// @details This will cast a ray from the camera to the viewport and return it.
             /// @param Screenx A Real representing the relative location on screen, on the x axis(0.0-1.0).

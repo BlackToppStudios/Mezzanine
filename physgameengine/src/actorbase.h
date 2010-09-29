@@ -42,7 +42,7 @@
 
 //#include "vector3.h"
 //#include "quaternion.h"
-#include "world.h"
+//#include "world.h"
 #include "node.h"
 
 ///////////////////////////////////
@@ -58,7 +58,7 @@ namespace Ogre
     class Entity;
     class SceneNode;
     class Vector3;
-//    class ResourceGroupManager;
+    class ResourceGroupManager;
 }
 
 ///////////////////////////////////
@@ -66,6 +66,7 @@ namespace Ogre
 namespace phys
 {
     class ActorContainerBase;
+    class World;
     namespace internal
     {
         class PhysMotionState;

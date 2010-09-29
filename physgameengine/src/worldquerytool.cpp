@@ -43,6 +43,9 @@
 #include "worldquerytool.h"
 #include "actorcontainerbase.h"
 #include "graphicsmanager.h"
+#include "eventmanager.h"
+#include "cameramanager.h"
+#include "camera.h"
 
 #include <Ogre.h>
 
@@ -377,7 +380,7 @@ namespace phys
 
     Ray* WorldQueryTool::GetMouseRay(Real Length)
     {
-        Ray* MouseRay = new Ray( this->GameWorld->GetCameraManager()->GetCameraToViewportRay(
+        Ray* MouseRay = new Ray( this->GameWorld->GetCameraManager()->GetDefaultCamera()->GetCameraToViewportRay(
                 float(this->GetMouseX()) / float( this->GameWorld->GetGraphicsManager()->getRenderWidth() ) ,
                 float(this->GetMouseY()) / float( this->GameWorld->GetGraphicsManager()->getRenderHeight() )
             ) );

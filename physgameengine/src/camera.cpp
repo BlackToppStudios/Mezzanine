@@ -42,14 +42,16 @@
 #define _Camera_cpp
 
 #include "camera.h"
+#include "cameramanager.h"
+#include "scenemanager.h"
 #include <Ogre.h>
 
 namespace phys
 {
-    Camera::Camera(CameraManager* Manager)
+    Camera::Camera(const String& Name, CameraManager* Manager)
     {
-        String Name = Manager->CreateCamera();
-        this->Construct(Manager->FindCamera(Name), Manager);
+        Ogre::Camera* OgreCam = Manager->SManager->GetGraphicsWorldPointer()->createCamera(Name);
+        this->Construct(OgreCam, Manager);
     }
 
     Camera::Camera(Ogre::Camera* Camera, CameraManager* Manager)
@@ -68,6 +70,7 @@ namespace phys
 
     Camera::~Camera()
     {
+        CamManager->SManager->GetGraphicsWorldPointer()->destroyCamera(Cam);
     }
 
     String& Camera::GetName()
@@ -120,7 +123,7 @@ namespace phys
         this->Cam->setFixedYawAxis(UseFixed);
     }
 
-    void Camera::SetAutoTracking(bool Enabled, String Target, Vector3 Offset)
+    /*void Camera::SetAutoTracking(bool Enabled, String Target, Vector3 Offset)
     {
         Ogre::SceneNode* Trgt = CamManager->FindNode(Target);
         this->Cam->setAutoTracking(Enabled, Trgt, Offset.GetOgreVector3());
@@ -130,7 +133,7 @@ namespace phys
     {
         Ogre::SceneNode* Trgt = CamManager->FindNode(Target);
         this->Cam->setAutoTracking(Enabled, Trgt);
-    }
+    }*/
 
     Ray Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
     {

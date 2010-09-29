@@ -37,50 +37,38 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uimanager_cpp
-#define _uimanager_cpp
+#ifndef _uibutton_h
+#define _uibutton_h
 
-#include "uimanager.h"
-#include "internalGorilla.h.cpp"
-#include "world.h"
-#include "cameramanager.h"
+#include "datatypes.h"
 
-#include <Ogre.h>
+namespace Gorilla
+{
+    class Caption;
+}
 
 namespace phys
 {
-    UIManager::UIManager(World* World_) : ManagerBase(World_)
+    class UIManager;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class UIButton
+    /// @headerfile uibutton.h
+    /// @brief This class is a helper class, specifically for use with buttons.
+    /// @details
+    ///////////////////////////////////////
+    class UIButton
     {
-        Silver = new Gorilla::Silverback();
-    }
-
-    UIManager::~UIManager()
-    {
-        delete Silver;
-    }
-
-    void UIManager::Initialize()
-    {
-    }
-
-    void UIManager::DoMainLoopItems()
-    {
-    }
-
-    void UIManager::LoadGorilla(const String& Name)
-    {
-        Silver->loadAtlas(Name);
-    }
-
-    void UIManager::CreateScreen(const String& Screen, const String& Atlas, const String& Viewport)
-    {
-        Ogre::Viewport* OgrePort = GameWorld->GetCameraManager()->GetOgreViewport(Viewport);
-        Gorilla::Screen* guiscreen = Silver->createScreen(OgrePort, Atlas);
-        Screens[Screen] = guiscreen;
-    }
-
-    ManagerBase::ManagerTypeName UIManager::GetType() const
-        { return ManagerBase::UIManager; }
+        protected:
+            Gorilla::Caption* GorillaButton;
+            UIManager* Manager;
+        public:
+            /// @brief Internal constructor
+            /// @param GButton The Gorilla Caption this button is based on.
+            /// @param manager Pointer to the manager that created this button.
+            UIButton(Gorilla::Caption* GButton, UIManager* manager);
+            /// @brief Class destructor.
+            ~UIButton();
+    };//uibutton
 }//phys
 
 #endif

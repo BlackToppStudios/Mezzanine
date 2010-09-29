@@ -172,7 +172,15 @@ namespace phys
         return ManagerBase::PostMainLoopItems();
     }
 
+    void GraphicsManager::SetOgreWindowPointer(Ogre::RenderWindow* OgreWindow)
+    {
+        OgreGameWindow = OgreWindow;
+    }
 
+    Ogre::RenderWindow* GraphicsManager::GetOgreWindowPointer()
+    {
+        return OgreGameWindow;
+    }
 }
 
 #endif

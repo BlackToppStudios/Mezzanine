@@ -37,50 +37,24 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uimanager_cpp
-#define _uimanager_cpp
+#ifndef _uiscreen_cpp
+#define _uiscreen_cpp
 
-#include "uimanager.h"
+#include "uiscreen.h"
 #include "internalGorilla.h.cpp"
-#include "world.h"
-#include "cameramanager.h"
-
-#include <Ogre.h>
 
 namespace phys
 {
-    UIManager::UIManager(World* World_) : ManagerBase(World_)
+    UIScreen::UIScreen(Gorilla::Screen* GScreen, UIManager* manager)
     {
-        Silver = new Gorilla::Silverback();
+        GorillaScreen = GScreen;
+        Manager = manager;
     }
 
-    UIManager::~UIManager()
+    UIScreen::~UIScreen()
     {
-        delete Silver;
-    }
 
-    void UIManager::Initialize()
-    {
     }
-
-    void UIManager::DoMainLoopItems()
-    {
-    }
-
-    void UIManager::LoadGorilla(const String& Name)
-    {
-        Silver->loadAtlas(Name);
-    }
-
-    void UIManager::CreateScreen(const String& Screen, const String& Atlas, const String& Viewport)
-    {
-        Ogre::Viewport* OgrePort = GameWorld->GetCameraManager()->GetOgreViewport(Viewport);
-        Gorilla::Screen* guiscreen = Silver->createScreen(OgrePort, Atlas);
-        Screens[Screen] = guiscreen;
-    }
-
-    ManagerBase::ManagerTypeName UIManager::GetType() const
-        { return ManagerBase::UIManager; }
-}//phys
+}
 
 #endif

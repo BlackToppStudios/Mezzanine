@@ -37,50 +37,40 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uimanager_cpp
-#define _uimanager_cpp
+#ifndef _uiscreen_h
+#define _uiscreen_h
 
-#include "uimanager.h"
-#include "internalGorilla.h.cpp"
-#include "world.h"
-#include "cameramanager.h"
+#include "datatypes.h"
 
-#include <Ogre.h>
+namespace Gorilla
+{
+    class Screen;
+}
 
 namespace phys
 {
-    UIManager::UIManager(World* World_) : ManagerBase(World_)
+    class UIManager;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class UIScreen
+    /// @headerfile uiscreen.h
+    /// @brief This class is a helper class for creating UI's.  It is responsible for storing and keeping
+    /// track of all the elements of a single UI screen.
+    /// @details UI's can optionally be divided up into Screens, or "pages".  Each screen is batched together
+    /// for rendering, so keeping the amount of screens to a minimum will improve performance.
+    ///////////////////////////////////////
+    class UIScreen
     {
-        Silver = new Gorilla::Silverback();
-    }
-
-    UIManager::~UIManager()
-    {
-        delete Silver;
-    }
-
-    void UIManager::Initialize()
-    {
-    }
-
-    void UIManager::DoMainLoopItems()
-    {
-    }
-
-    void UIManager::LoadGorilla(const String& Name)
-    {
-        Silver->loadAtlas(Name);
-    }
-
-    void UIManager::CreateScreen(const String& Screen, const String& Atlas, const String& Viewport)
-    {
-        Ogre::Viewport* OgrePort = GameWorld->GetCameraManager()->GetOgreViewport(Viewport);
-        Gorilla::Screen* guiscreen = Silver->createScreen(OgrePort, Atlas);
-        Screens[Screen] = guiscreen;
-    }
-
-    ManagerBase::ManagerTypeName UIManager::GetType() const
-        { return ManagerBase::UIManager; }
+        protected:
+            Gorilla::Screen* GorillaScreen;
+            UIManager* Manager;
+        public:
+            /// @brief Internal constructor
+            /// @param GScreen The Gorilla Screen this Screen is based on.
+            /// @param manager Pointer to the manager that created this Screen.
+            UIScreen(Gorilla::Screen* GScreen, UIManager* manager);
+            /// @brief Class destructor.
+            ~UIScreen();
+    };//uiscreen
 }//phys
 
 #endif
