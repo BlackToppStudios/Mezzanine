@@ -75,6 +75,7 @@ namespace phys
             //needed mostly just for initialization of the world class when defaults are being made.
             friend class World;
             friend class Node;
+            friend class CameraManager;
             /// @internal
             /// @brief This is the Camera used by the graphics Subsystem, that this class wraps
             Ogre::Camera* Cam;

@@ -84,9 +84,10 @@ namespace phys
             /// @brief Creates an internal HUD screen.
             /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI's
             /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.
-            /// @param Name The name to be given to the screen.
+            /// @param Screen The name to be given to the screen.
             /// @param Atlas The name of a previously loaded Gorilla file to be used with this screen.
-            void CreateScreen(const String& Name, const String& Atlas);
+            /// @param Viewport The name of the viewport to create this screen in.
+            void CreateScreen(const String& Screen, const String& Atlas, const String& Viewport="DefaultViewport");
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;

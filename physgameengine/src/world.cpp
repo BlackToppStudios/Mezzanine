@@ -504,7 +504,6 @@ namespace phys
         if(this->GetCameraManager()==0)
         {
             this->AddManager(new CameraManager (0,this));
-            this->GetCameraManager()->CreateDefaultCamera();
         }
         camera = this->GetCameraManager()->DefaultCamera;
         #ifdef PHYSDEBUG
@@ -514,7 +513,7 @@ namespace phys
         //viewport connects camera and render window
         Ogre::Viewport* OgreViewport = NULL;
         OgreViewport = this->GetGraphicsManager()->GetOgreWindowPointer()->addViewport(camera->Cam);
-        this->GetCameraManager()->Veiwports["DefaultViewport"] = OgreViewport;
+        this->GetCameraManager()->Viewports["DefaultViewport"] = OgreViewport;
 
         //setting the aspect ratio must be done after we setup the viewport
         camera->Cam->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
