@@ -44,12 +44,31 @@
 
 namespace Gorilla
 {
-
+    class Caption;
 }
 
 namespace phys
 {
-
+    class UIManager;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class UIButton
+    /// @headerfile uibutton.h
+    /// @brief This class is a helper class, specifically for use with buttons.
+    /// @details
+    ///////////////////////////////////////
+    class UIButton
+    {
+        protected:
+            Gorilla::Caption* GorillaButton;
+            UIManager* Manager;
+        public:
+            /// @brief Internal constructor
+            /// @param GButton The Gorilla Caption this button is based on.
+            /// @param manager Pointer to the manager that created this button.
+            UIButton(Gorilla::Caption* GButton, UIManager* manager);
+            /// @brief Class destructor.
+            ~UIButton();
+    };//uibutton
 }//phys
 
 #endif

@@ -37,24 +37,24 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uibutton_cpp
-#define _uibutton_cpp
+#ifndef _uiscreen_cpp
+#define _uiscreen_cpp
 
-#include "uibutton.h"
+#include "uiscreen.h"
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
-    UIButton::UIButton(Gorilla::Caption* GButton, UIManager* manager)
+    UIScreen::UIScreen(Gorilla::Screen* GScreen, UIManager* manager)
     {
-        GorillaButton = GButton;
+        GorillaScreen = GScreen;
         Manager = manager;
     }
 
-    UIButton::~UIButton()
+    UIScreen::~UIScreen()
     {
 
     }
-}//phys
+}
 
 #endif

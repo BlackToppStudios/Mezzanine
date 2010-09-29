@@ -37,24 +37,40 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uibutton_cpp
-#define _uibutton_cpp
+#ifndef _uiscreen_h
+#define _uiscreen_h
 
-#include "uibutton.h"
-#include "internalGorilla.h.cpp"
+#include "datatypes.h"
+
+namespace Gorilla
+{
+    class Screen;
+}
 
 namespace phys
 {
-    UIButton::UIButton(Gorilla::Caption* GButton, UIManager* manager)
+    class UIManager;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class UIScreen
+    /// @headerfile uiscreen.h
+    /// @brief This class is a helper class for creating UI's.  It is responsible for storing and keeping
+    /// track of all the elements of a single UI screen.
+    /// @details UI's can optionally be divided up into Screens, or "pages".  Each screen is batched together
+    /// for rendering, so keeping the amount of screens to a minimum will improve performance.
+    ///////////////////////////////////////
+    class UIScreen
     {
-        GorillaButton = GButton;
-        Manager = manager;
-    }
-
-    UIButton::~UIButton()
-    {
-
-    }
+        protected:
+            Gorilla::Screen* GorillaScreen;
+            UIManager* Manager;
+        public:
+            /// @brief Internal constructor
+            /// @param GScreen The Gorilla Screen this Screen is based on.
+            /// @param manager Pointer to the manager that created this Screen.
+            UIScreen(Gorilla::Screen* GScreen, UIManager* manager);
+            /// @brief Class destructor.
+            ~UIScreen();
+    };//uiscreen
 }//phys
 
 #endif
