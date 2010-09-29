@@ -66,8 +66,8 @@ int main(int argc, char **argv)
     TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
     //Setup some camera tricks
-    String CameraNode = TheWorld->GetCameraManager()->CreateOrbitingNode( Vector3(0,0,0), Vector3(0.0,200.0,750.0) );
-    TheWorld->GetCameraManager()->AttachCameraToNode(CameraNode);
+    Node* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
+    CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
 
 	//Start the Main Loop
 	TheWorld->MainLoop();
@@ -181,19 +181,19 @@ bool PostInput()
         {TheWorld->Cameras->IncrementYOrbit(0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}*/
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
-        { TheWorld->GetCameraManager()->IncrementYOrbit(-0.01, TheWorld->GetCameraManager()->GetNodeAttachedToCamera() ); }
+        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
-        { TheWorld->GetCameraManager()->IncrementYOrbit(0.01, TheWorld->GetCameraManager()->GetNodeAttachedToCamera() ); }
+        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) )
-        { TheWorld->GetCameraManager()->ZoomCamera( -12.0 ); }
+        { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( -12.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN) )
-        { TheWorld->GetCameraManager()->ZoomCamera( 12.0 ); }
+        { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( 12.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
-        { TheWorld->GetCameraManager()->ResetZoom(); }
+        { TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom(); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_m) )
     {
@@ -214,7 +214,7 @@ bool PostInput()
     {
         #ifdef PHYSDEBUG
         TheWorld->Log("Gamebase CLICK:");
-        TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetCameraGlobalLocation() << endl;
+        TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetCameraGlobalLocation() << endl;
         #endif
 
         Ray *MouseRay = Queryer.GetMouseRay(5000);
