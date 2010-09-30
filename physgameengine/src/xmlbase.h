@@ -49,14 +49,13 @@ namespace ticpp
     class Base;
 }
 
-/*namespace boost
+namespace boost
 {
-    template class shared_ptr<ticpp::Base>;
+    template <class> class shared_ptr;
 }
 
-
 typedef boost::shared_ptr<ticpp::Base> BasePointer;
-*/
+
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////

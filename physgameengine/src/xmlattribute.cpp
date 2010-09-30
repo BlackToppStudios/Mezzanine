@@ -56,7 +56,7 @@ namespace phys
             Attribute::Attribute()
                 {
 
-                    //boost::shared_ptr< ticpp:: > temp( new ticpp::Attribute() );
+                    //BasePointer temp = ( new ticpp::Attribute() );
                     //this->Wrapped = &temp;
 
                     }

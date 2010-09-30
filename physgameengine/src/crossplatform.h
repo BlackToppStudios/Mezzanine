@@ -75,6 +75,13 @@
 
 using namespace std;
 
+
+/// Forward declaration for compatibility
+namespace Ogre
+{
+    class RenderWindow;
+}
+
 namespace phys
 {
     //Forward Declarations should go here
@@ -118,10 +125,11 @@ namespace phys
         /// @brief Renders the current world contents to the screen.
         /// @details This makes use of World internals to Render to the screen, So it is advised against calling this directly.
         /// Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop
-        /// at the aproppriate times.
+        /// at the aproppriate times. Currently this references Ogre systems, that makes this internal
         /// Handles the actual cross platform swapping of graphics buffers.
         /// @param TheWorld This is a pointer to the World to be rendered.
-        void RenderPhysWorld(World *TheWorld);
-        }
+        /// @param TheWorld A pointer to the game window to be update to be rendered. This is considered an internal component
+        void RenderPhysWorld(World *TheWorld, Ogre::RenderWindow* TheOgreWindow);
+    }
 }
 #endif
