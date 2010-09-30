@@ -57,6 +57,11 @@ namespace phys
     {
         Parent->destroyRectangle(GRectangle);
     }
+
+    void UIRectangle::SetBackgroundColour(ColourValue& Colour)
+    {
+        GRectangle->background_colour(Colour.GetOgreColourValue());
+    }
 }
 
 #endif

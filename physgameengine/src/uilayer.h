@@ -68,6 +68,7 @@ namespace phys
             Gorilla::Layer* GorillaLayer;
             Gorilla::Screen* Parent;
             UIManager* Manager;
+            std::vector<UIButton*> Buttons;
         public:
             /// @brief Internal constructor
             /// @param GScreen The Gorilla Layer this Layer is based on.
@@ -93,7 +94,7 @@ namespace phys
             /// @param Width The width of the button in pixels.
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
             /// @param Text Any text you want printed on the button.
-            UIButton* CreateButton(Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text);
+            UIButton* CreateButton(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text);
             /// @brief Creates a rectangle within this layer.
             /// @details Rectangles are innately put behind all captions, so z-order is not necessary.
             /// @param X The position on screen in pixels for the left side of the rectangle.
@@ -101,6 +102,10 @@ namespace phys
             /// @param Height The height of the rectangle in pixels.
             /// @param Width The width of the rectangle in pixels.
             UIRectangle* CreateRectangle(Real X, Real Y, Real Width, Real Height);
+            /// @brief Gets the button the mouse is over if any.
+            /// @details This function searches only the buttons contained in this layer.
+            /// @return Returns the button the mouse is over, or NULL if there are none.
+            UIButton* GetButtonMouseIsOver(Whole MouseX, Whole MouseY);
     };//uilayer
 }//phys
 

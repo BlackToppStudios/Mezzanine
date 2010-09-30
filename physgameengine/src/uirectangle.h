@@ -41,6 +41,7 @@
 #define _uirectangle_h
 
 #include "datatypes.h"
+#include "colourvalue.h"
 
 namespace Gorilla
 {
@@ -70,6 +71,9 @@ namespace phys
             UIRectangle(Gorilla::Rectangle* GRect, Gorilla::Layer* GLayer, UIManager* manager);
             /// @brief Class destructor.
             ~UIRectangle();
+            /// @brief Sets the background colour of the rectangle.
+            /// @param Colour A colour value representing the colour to be set.
+            void SetBackgroundColour(ColourValue& Colour);
     };//uirectangle
 }//phys
 

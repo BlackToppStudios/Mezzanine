@@ -80,11 +80,12 @@ namespace phys
         GorillaLayer->hide();
     }
 
-    UIButton* UILayer::CreateButton(Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text)
+    UIButton* UILayer::CreateButton(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text)
     {
         Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, X, Y, Text);
         GCaption->size(Width, Height);
-        UIButton* Button = new UIButton(GCaption, GorillaLayer, Manager);
+        UIButton* Button = new UIButton(Name, GCaption, GorillaLayer, Manager);
+        Buttons.push_back(Button);
         return Button;
     }
 
@@ -93,6 +94,20 @@ namespace phys
         Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(X, Y, Width, Height);
         UIRectangle* Rectangle = new UIRectangle(GRectangle, GorillaLayer, Manager);
         return Rectangle;
+    }
+
+    UIButton* UILayer::GetButtonMouseIsOver(Whole MouseX, Whole MouseY)
+    {
+        UIButton* Button = NULL;
+        for( std::vector<UIButton*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+        {
+            Button = (*it);
+            if(Button->MouseIsOver(MouseX, MouseY))
+            {
+                return Button;
+            }
+        }
+        return 0;
     }
 }//phys
 

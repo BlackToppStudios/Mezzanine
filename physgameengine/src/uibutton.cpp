@@ -46,7 +46,8 @@
 
 namespace phys
 {
-    UIButton::UIButton(Gorilla::Caption* GButton, Gorilla::Layer* GLayer, UIManager* manager)
+    UIButton::UIButton(String& name, Gorilla::Caption* GButton, Gorilla::Layer* GLayer, UIManager* manager)
+        : Name(name)
     {
         GorillaButton = GButton;
         Parent = GLayer;
@@ -56,6 +57,23 @@ namespace phys
     UIButton::~UIButton()
     {
         Parent->destroyCaption(GorillaButton);
+    }
+
+    String& UIButton::GetName()
+    {
+        return Name;
+    }
+
+    bool UIButton::MouseIsOver(Whole MouseX, Whole MouseY)
+    {
+        Ogre::Vector2 MouseLoc((Real)MouseX,(Real)MouseY);
+        MouseOver = GorillaButton->intersects(MouseLoc);
+        return MouseOver;
+    }
+
+    bool UIButton::GetMouseOver()
+    {
+        return MouseOver;
     }
 
     void UIButton::SetBackgroundColour(ColourValue& Colour)

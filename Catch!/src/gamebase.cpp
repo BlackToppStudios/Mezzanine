@@ -215,103 +215,134 @@ bool PostInput()
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
-        #ifdef PHYSDEBUG
-        TheWorld->Log("Gamebase CLICK:");
-        TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetCameraGlobalLocation() << endl;
-        #endif
-
-        Ray *MouseRay = Queryer.GetMouseRay(5000);
-        //*MouseRay *= 1000;
-        //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
-
-        Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
-        #ifdef PHYSDEBUG
-        TheWorld->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
-        #endif
-
-        //ActorBase *temp = ClickOnActor->Actor;
-
-        bool firstframe=false;
-        if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
+        UIButton* MouseButton = NULL;
+        Whole MouseX = Queryer.GetMouseX();
+        Whole MouseY = Queryer.GetMouseY();
+        UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
+        for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
         {
-            #ifdef PHYSDEBUG
-            TheWorld->Log("No Actor Clicked on");
-            #endif
+            UILayer* Layer = Screen->GetLayer(x);
+            MouseButton = Layer->GetButtonMouseIsOver(MouseX, MouseY);
+            if(MouseButton)
+            {
+                break;
+            }
+        }
+        if(MouseButton)
+        {
+            if("Menu" == MouseButton->GetName())
+            {
+                UILayer* Layer = Screen->GetLayer("MenuLayer");
+                Layer->Show();
+            }
+            if("Return" == MouseButton->GetName())
+            {
+                UILayer* Layer = Screen->GetLayer("MenuLayer");
+                Layer->Hide();
+            }
+            if("Exit" == MouseButton->GetName())
+            {
+                return false;
+            }
         }else{
             #ifdef PHYSDEBUG
-            TheWorld->Log("Actor Clicked on"); TheWorld->Log(*ClickOnActor);
-            TheWorld->Log("MouseRay"); TheWorld->Log(*MouseRay);
-            TheWorld->Log("PlaneOfPlay"); TheWorld->Log(PlaneOfPlay);
-            TheWorld->Log("ClickOnActor"); TheWorld->Log(*ClickOnActor);
+            TheWorld->Log("Gamebase CLICK:");
+            TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetCameraGlobalLocation() << endl;
             #endif
-            if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
+
+            Ray *MouseRay = Queryer.GetMouseRay(5000);
+            //*MouseRay *= 1000;
+            //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
+
+            Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
+            #ifdef PHYSDEBUG
+            TheWorld->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
+            #endif
+
+            //ActorBase *temp = ClickOnActor->Actor;
+
+            bool firstframe=false;
+            if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
             {
-                if(!Dragger) //If we have a dragger, then this is dragging, not clicking
-                {
-                    if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid) //This is Dragging let's do some checks for sanity
-                    {
-                        Vector3 LocalPivot = ClickOnActor->Vector;
-                        ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                        rigid->DisableDeactivation();
-                        //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
-                        Dragger = new Point2PointConstraint(rigid, LocalPivot);
-                        Dragger->SetTAU(0.001);
-                        //Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
-                        //Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
-                        //Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
-                        //Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
-                        TheWorld->GetPhysicsManager()->AddConstraint(Dragger);
-                        Dragger->SetParam(4,0.8,0); Dragger->SetParam(4,0.8,1); Dragger->SetParam(4,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
-                        Dragger->SetParam(2,0.1,0); Dragger->SetParam(2,0.1,1); Dragger->SetParam(2,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
-                        firstframe=true;
-                    }else{  // since we don't
-                        #ifdef PHYSDEBUG
-                        TheWorld->Log("Actor is not an ActorRigid.  Aborting.");
-                        #endif
-                    }
-                }
+                #ifdef PHYSDEBUG
+                TheWorld->Log("No Actor Clicked on");
+                #endif
             }else{
                 #ifdef PHYSDEBUG
-                TheWorld->Log("Actor is Static/Kinematic.  Aborting.");
+                TheWorld->Log("Actor Clicked on"); TheWorld->Log(*ClickOnActor);
+                TheWorld->Log("MouseRay"); TheWorld->Log(*MouseRay);
+                TheWorld->Log("PlaneOfPlay"); TheWorld->Log(PlaneOfPlay);
+                TheWorld->Log("ClickOnActor"); TheWorld->Log(*ClickOnActor);
                 #endif
+                if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
+                {
+                    if(!Dragger) //If we have a dragger, then this is dragging, not clicking
+                    {
+                        if(ClickOnActor->Actor->GetType()==ActorBase::Actorrigid) //This is Dragging let's do some checks for sanity
+                        {
+                            Vector3 LocalPivot = ClickOnActor->Vector;
+                            ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
+                            rigid->DisableDeactivation();
+                            //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
+                            Dragger = new Point2PointConstraint(rigid, LocalPivot);
+                            Dragger->SetTAU(0.001);
+                            //Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
+                            //Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
+                            //Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
+                            //Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
+                            TheWorld->GetPhysicsManager()->AddConstraint(Dragger);
+                            Dragger->SetParam(4,0.8,0); Dragger->SetParam(4,0.8,1); Dragger->SetParam(4,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
+                            Dragger->SetParam(2,0.1,0); Dragger->SetParam(2,0.1,1); Dragger->SetParam(2,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
+                            firstframe=true;
+                        }else{  // since we don't
+                            #ifdef PHYSDEBUG
+                            TheWorld->Log("Actor is not an ActorRigid.  Aborting.");
+                            #endif
+                        }
+                    }
+                }else{
+                    #ifdef PHYSDEBUG
+                    TheWorld->Log("Actor is Static/Kinematic.  Aborting.");
+                    #endif
+                }
             }
-        }
 
-        // This chunk of code calculates the 3d point that the actor needs to be dragged to
-        Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
-        if (0 == DragTo)
-        {
-            #ifdef PHYSDEBUG
-            TheWorld->Log("PlaneOfPlay Not Clicked on");
-            #endif
-        }else{
-            if(Dragger && !firstframe)
+            // This chunk of code calculates the 3d point that the actor needs to be dragged to
+            Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
+            if (0 == DragTo)
             {
                 #ifdef PHYSDEBUG
-                TheWorld->Log("Dragged To");
-                TheWorld->Log(*DragTo);
+                TheWorld->Log("PlaneOfPlay Not Clicked on");
                 #endif
-                //Dragger->SetOffsetALocation(*DragTo);
-                Dragger->SetPivotB(*DragTo);
+            }else{
+                if(Dragger && !firstframe)
+                {
+                    #ifdef PHYSDEBUG
+                    TheWorld->Log("Dragged To");
+                    TheWorld->Log(*DragTo);
+                    #endif
+                    //Dragger->SetOffsetALocation(*DragTo);
+                    Dragger->SetPivotB(*DragTo);
+                }
+            }
+
+            // Here we cleanup everything we needed for the clicking/dragging
+            if ( DragTo )
+                { delete DragTo; }
+            if ( MouseRay )
+                { delete MouseRay; }
+        }
+
+        }else{  //Since we are no longer clicking we need to setup for the next clicking
+            if(Dragger)
+            {
+                ActorRigid* Act = Dragger->GetActorA();
+                TheWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
+                delete Dragger;
+                Dragger=NULL;
+                Act->RestoreActivation();
             }
         }
-
-        // Here we cleanup everything we needed for the clicking/dragging
-        if ( DragTo )
-            { delete DragTo; }
-        if ( MouseRay )
-            { delete MouseRay; }
-
-    }else{  //Since we are no longer clicking we need to setup for the next clicking
-        if(Dragger)
-        {
-            ActorRigid* Act = Dragger->GetActorA();
-            TheWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
-            delete Dragger;
-            Dragger=NULL;
-            Act->RestoreActivation();
-        }
-    }
 
     #undef PHYSDEBUG
     // using the Raw Event Manager, and deleting the events
@@ -504,7 +535,7 @@ void MakeGUI()
     UILayer* Menu = Screen->CreateLayer(MenuLayer, 2);
 
     //Build the HUD layer
-    UIButton* MenuButton = HUD->CreateButton( 0.0, WHeight * 0.92,
+    UIButton* MenuButton = HUD->CreateButton( "Menu", 0.0, WHeight * 0.92,
                                             WWidth * 0.2, WHeight * 0.08,
                                             24, "Menu");
     MenuButton->HorizontallyAlign(UIButton::Middle);
@@ -516,6 +547,24 @@ void MakeGUI()
     ItemShop->Hide();
 
     //Build the Menu Layer
+    UIRectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
+                                                         WWidth * 0.5, WHeight * 0.7 );
+    ColourValue Colours(0.4,0.8,0.3,1.0);
+    MenuBackground->SetBackgroundColour(Colours);
+    UIButton* ReturnButton = Menu->CreateButton( "Return", WWidth * 0.30, WHeight * 0.61,
+                                            WWidth * 0.4, WHeight * 0.08,
+                                            24, "Return to Game");
+    ReturnButton->HorizontallyAlign(UIButton::Middle);
+    ReturnButton->VerticallyAlign(UIButton::Center);
+    Colours = ColourValue(0.6,0.2,0.2,1.0);
+    ReturnButton->SetBackgroundColour(Colours);
+    UIButton* ExitButton = Menu->CreateButton( "Exit", WWidth * 0.30, WHeight * 0.73,
+                                            WWidth * 0.4, WHeight * 0.08,
+                                            24, "Exit Game");
+    ExitButton->HorizontallyAlign(UIButton::Middle);
+    ExitButton->VerticallyAlign(UIButton::Center);
+    Colours = ColourValue(0.6,0.2,0.2,1.0);
+    ExitButton->SetBackgroundColour(Colours);
     Menu->Hide();
 }
 #endif

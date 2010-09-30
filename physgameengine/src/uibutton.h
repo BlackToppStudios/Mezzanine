@@ -78,13 +78,27 @@ namespace phys
             Gorilla::Caption* GorillaButton;
             Gorilla::Layer* Parent;
             UIManager* Manager;
+            bool MouseOver;
+            String Name;
         public:
             /// @brief Internal constructor
             /// @param GButton The Gorilla Caption this button is based on.
             /// @param manager Pointer to the manager that created this button.
-            UIButton(Gorilla::Caption* GButton, Gorilla::Layer* GLayer, UIManager* manager);
+            UIButton(String& name, Gorilla::Caption* GButton, Gorilla::Layer* GLayer, UIManager* manager);
             /// @brief Class destructor.
             ~UIButton();
+            /// @brief Gets the name of this button.
+            /// @return Returns a string containing the name of this button.
+            String& GetName();
+            /// @brief Determines whether the mouse is over this button.
+            /// @return Returns a bool indicating whether the mouse is over this button.
+            /// @param MouseX The mouse position on screen on the x axis.
+            /// @param MouseY The mouse position on screen on the y axis.
+            bool MouseIsOver(Whole MouseX, Whole MouseY);
+            /// @brief Gets the stored value of whether or not the mouse is over the button.
+            /// @details This function does not perform any checks.  If you want to do a manual check, call MouseIsOver().
+            /// @return Returns the stored value of whether or not the mouse is over the button.
+            bool GetMouseOver();
             /// @brief Sets the background colour of the button.
             /// @param Colour A colour value representing the colour to be set.
             void SetBackgroundColour(ColourValue& Colour);
