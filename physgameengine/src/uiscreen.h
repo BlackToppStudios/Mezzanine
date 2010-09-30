@@ -42,14 +42,18 @@
 
 #include "datatypes.h"
 
+#include <map>
+
 namespace Gorilla
 {
     class Screen;
+    class Layer;
 }
 
 namespace phys
 {
     class UIManager;
+    class UILayer;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIScreen
     /// @headerfile uiscreen.h
@@ -63,6 +67,7 @@ namespace phys
         protected:
             Gorilla::Screen* GorillaScreen;
             UIManager* Manager;
+            std::map< String, Gorilla::Layer* > GUILayers;
         public:
             /// @brief Internal constructor
             /// @param GScreen The Gorilla Screen this Screen is based on.
@@ -70,6 +75,31 @@ namespace phys
             UIScreen(Gorilla::Screen* GScreen, UIManager* manager);
             /// @brief Class destructor.
             ~UIScreen();
+            /// @brief Sets the screens visability.
+            /// @param Visable A bool representing the visability of the screen.
+            void SetVisable(bool Visable);
+            /// @brief Gets the screens visability.
+            /// @return Returns a bool representing the visability of the screen.
+            bool IsVisable();
+            /// @brief Forces the screen to be shown.
+            void Show();
+            /// @brief Forces the screen to hide.
+            void Hide();
+            /// @brief Creates a layer in the GUI screen to place GUI objects in.
+            /// @details A GUI layer is exactly that, a layer of GUI objects.  You can have multiple GUI
+            /// layers per screen.  The index of the layer determines it's visability if there are multiple
+            /// layers.  If the index of one layer is higher then another in the same space, then the index
+            /// with the higher index will be rendered...giving it the appearance of being on top of the other
+            /// GUI object or objects.
+            /// @param Name The name to be given to the layer.
+            /// @param Index The layers index, aka it's "Z-order".
+            UILayer* CreateLayer(const String& Name, Whole Index);
+            /// @brief Gets an already created layer by name.
+            /// @return Returns a pointer to the layer of the specified name.
+            UILayer* GetLayer(const String& Name);
+            /// @brief Destroy's a previously created layer.
+            /// @param Name The name of the layer to be destroyed.
+            void DestroyLayer(UILayer* Layer);
     };//uiscreen
 }//phys
 

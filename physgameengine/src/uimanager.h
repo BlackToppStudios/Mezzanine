@@ -54,6 +54,7 @@ namespace Gorilla
 
 namespace phys
 {
+    class UIScreen;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIManager
     /// @headerfile uimanager.h
@@ -65,7 +66,7 @@ namespace phys
         protected:
             /// @brief Pointer for the Gorilla core class, where this manager gets it's functionality.
             Gorilla::Silverback* Silver;
-            std::map< String, Gorilla::Screen* > Screens;
+            std::map< String, UIScreen* > Screens;
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -87,10 +88,22 @@ namespace phys
             /// @param Screen The name to be given to the screen.
             /// @param Atlas The name of a previously loaded Gorilla file to be used with this screen.
             /// @param Viewport The name of the viewport to create this screen in.
-            void CreateScreen(const String& Screen, const String& Atlas, const String& Viewport="DefaultViewport");
+            UIScreen* CreateScreen(const String& Screen, const String& Atlas, const String& Viewport="DefaultViewport");
+            /// @brief Gets an already created screen by name.
+            /// @return Returns a pointer to the screen of the specified name.
+            UIScreen* GetScreen(const String& Name);
+            /// @brief Deletes a screen and removes all trace of it from the manager.
+            /// @details Destroying a screen will also destroy all of it's layers, and everything contained in those layers.
+            /// @param Screen The screen to be destroyed.
+            void DestroyScreen(UIScreen* Screen);
+            /// @brief Deletes all screens stored in this manager.
+            void DestroyAllScreens();
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;
+            /// @brief Gets the internal silverback pointer.
+            /// @return Returns a pointer to the internal silverback class.
+            Gorilla::Silverback* GetSilverbackPointer();
     };//uimanager
 }//phys
 

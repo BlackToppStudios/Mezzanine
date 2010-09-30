@@ -37,73 +37,46 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uiscreen_cpp
-#define _uiscreen_cpp
+#ifndef _uilayer_cpp
+#define _uilayer_cpp
 
-#include "uiscreen.h"
-#include "uimanager.h"
+#include "uilayer.h"
+
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
-    UIScreen::UIScreen(Gorilla::Screen* GScreen, UIManager* manager)
+    UILayer::UILayer(Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager)
     {
-        GorillaScreen = GScreen;
+        GorillaLayer = GLayer;
+        Parent = GScreen;
         Manager = manager;
     }
 
-    UIScreen::~UIScreen()
+    UILayer::~UILayer()
     {
-        Manager->GetSilverbackPointer()->destroyScreen(GorillaScreen);
+        Parent->destroy(GorillaLayer);
     }
 
-    void UIScreen::SetVisable(bool Visable)
+    void UILayer::SetVisable(bool Visable)
     {
-        GorillaScreen->setVisible(Visable);
+        GorillaLayer->setVisible(Visable);
     }
 
-    bool UIScreen::IsVisable()
+    bool UILayer::GetVisable()
     {
-        return GorillaScreen->isVisible();
+        return GorillaLayer->getVisable();
     }
 
-    void UIScreen::Show()
+    void UILayer::Show()
     {
-        GorillaScreen->show();
+        GorillaLayer->show();
     }
 
-    void UIScreen::Hide()
+    void UILayer::Hide()
     {
-        GorillaScreen->hide();
+        GorillaLayer->hide();
     }
-
-    UILayer* UIScreen::CreateLayer(const String& Name, Whole Index)
-    {
-        Gorilla::Layer* layer = GorillaScreen->createLayer(Index);
-        UILayer* physlayer = new UILayer(layer, this, Manager);
-        GUILayers[Name] = physlayer;
-        return physlayer;
-    }
-
-    UILayer* UIScreen::GetLayer(const String& Name)
-    {
-        return GUILayers[Name];
-    }
-
-    void UIScreen::DestroyLayer(UILayer* Layer)
-    {
-        if(GUILayers.empty())
-            return;
-        for( std::map<String,UILayer*>::iterator it = GUILayers.begin() ; it != GUILayers.end() ; it++ )
-        {
-            if( Layer == (*it).second )
-            {
-                delete (*it).second;
-                GUILayers.erase(it);
-                return;
-            }
-        }
-    }
-}
+}//phys
 
 #endif

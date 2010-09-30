@@ -37,73 +37,53 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uiscreen_cpp
-#define _uiscreen_cpp
+#ifndef _uilayer_h
+#define _uilayer_h
 
-#include "uiscreen.h"
-#include "uimanager.h"
-#include "internalGorilla.h.cpp"
+#include "datatypes.h"
+
+#include <map>
+
+namespace Gorilla
+{
+    class Screen;
+    class Layer;
+}
 
 namespace phys
 {
-    UIScreen::UIScreen(Gorilla::Screen* GScreen, UIManager* manager)
+    class UIButton;
+    class UIManager;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class UIButton
+    /// @headerfile uibutton.h
+    /// @brief This class is a helper class, specifically for use with buttons.
+    /// @details
+    ///////////////////////////////////////
+    class UILayer
     {
-        GorillaScreen = GScreen;
-        Manager = manager;
-    }
-
-    UIScreen::~UIScreen()
-    {
-        Manager->GetSilverbackPointer()->destroyScreen(GorillaScreen);
-    }
-
-    void UIScreen::SetVisable(bool Visable)
-    {
-        GorillaScreen->setVisible(Visable);
-    }
-
-    bool UIScreen::IsVisable()
-    {
-        return GorillaScreen->isVisible();
-    }
-
-    void UIScreen::Show()
-    {
-        GorillaScreen->show();
-    }
-
-    void UIScreen::Hide()
-    {
-        GorillaScreen->hide();
-    }
-
-    UILayer* UIScreen::CreateLayer(const String& Name, Whole Index)
-    {
-        Gorilla::Layer* layer = GorillaScreen->createLayer(Index);
-        UILayer* physlayer = new UILayer(layer, this, Manager);
-        GUILayers[Name] = physlayer;
-        return physlayer;
-    }
-
-    UILayer* UIScreen::GetLayer(const String& Name)
-    {
-        return GUILayers[Name];
-    }
-
-    void UIScreen::DestroyLayer(UILayer* Layer)
-    {
-        if(GUILayers.empty())
-            return;
-        for( std::map<String,UILayer*>::iterator it = GUILayers.begin() ; it != GUILayers.end() ; it++ )
-        {
-            if( Layer == (*it).second )
-            {
-                delete (*it).second;
-                GUILayers.erase(it);
-                return;
-            }
-        }
-    }
-}
+        protected:
+            Gorilla::Layer* GorillaLayer;
+            Gorilla::Screen* Parent;
+            UIManager* Manager;
+        public:
+            /// @brief Internal constructor
+            /// @param GScreen The Gorilla Layer this Layer is based on.
+            /// @param manager Pointer to the manager this layer belongs to..
+            UILayer(Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager);
+            /// @brief Class destructor.
+            ~UILayer();
+            /// @brief Sets the layers' visability.
+            /// @param Visable A bool representing the visability of the layer.
+            void SetVisable(bool Visable);
+            /// @brief Gets the layers' visability.
+            /// @return Returns a bool representing the visability of the layer.
+            bool GetVisable();
+            /// @brief Forces the layer to be shown.
+            void Show();
+            /// @brief Forces the layer to hide.
+            void Hide();
+    };//uilayer
+}//phys
 
 #endif

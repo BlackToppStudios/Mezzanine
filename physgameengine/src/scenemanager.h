@@ -241,7 +241,6 @@ namespace phys
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;
             /// @brief Gets the internal Ogre Scene Manager pointer.
-            /// @details This function returns the internal Ogre Scene Manager pointer.
             /// @return Returns a pointer to the ogre Scene Manager.
             Ogre::SceneManager* GetGraphicsWorldPointer();
     };//scenemanager

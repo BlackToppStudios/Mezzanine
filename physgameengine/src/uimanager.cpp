@@ -44,6 +44,8 @@
 #include "internalGorilla.h.cpp"
 #include "world.h"
 #include "cameramanager.h"
+#include "uiscreen.h"
+#include "uibutton.h"
 
 #include <Ogre.h>
 
@@ -56,6 +58,7 @@ namespace phys
 
     UIManager::~UIManager()
     {
+        DestroyAllScreens();
         delete Silver;
     }
 
@@ -72,15 +75,54 @@ namespace phys
         Silver->loadAtlas(Name);
     }
 
-    void UIManager::CreateScreen(const String& Screen, const String& Atlas, const String& Viewport)
+    UIScreen* UIManager::CreateScreen(const String& Screen, const String& Atlas, const String& Viewport)
     {
         Ogre::Viewport* OgrePort = GameWorld->GetCameraManager()->GetOgreViewport(Viewport);
         Gorilla::Screen* guiscreen = Silver->createScreen(OgrePort, Atlas);
-        Screens[Screen] = guiscreen;
+        UIScreen* physscreen = new UIScreen(guiscreen, this);
+        Screens[Screen] = physscreen;
+        return physscreen;
+    }
+
+    UIScreen* UIManager::GetScreen(const String& Name)
+    {
+        return Screens[Name];
+    }
+
+    void UIManager::DestroyScreen(UIScreen* Screen)
+    {
+        if(Screens.empty())
+            return;
+        for( std::map<String,UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        {
+            if( Screen == (*it).second )
+            {
+                delete (*it).second;
+                Screens.erase(it);
+                return;
+            }
+        }
+    }
+
+    void UIManager::DestroyAllScreens()
+    {
+        if(Screens.empty())
+            return;
+        for( std::map<String,UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        {
+            delete (*it).second;
+            Screens.erase(it);
+        }
+        return;
     }
 
     ManagerBase::ManagerTypeName UIManager::GetType() const
         { return ManagerBase::UIManager; }
+
+    Gorilla::Silverback* UIManager::GetSilverbackPointer()
+    {
+        return Silver;
+    }
 }//phys
 
 #endif
