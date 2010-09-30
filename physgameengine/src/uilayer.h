@@ -48,12 +48,14 @@ namespace Gorilla
 {
     class Screen;
     class Layer;
+    class Rectangle;
 }
 
 namespace phys
 {
     class UIButton;
     class UIManager;
+    class UIRectangle;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIButton
     /// @headerfile uibutton.h
@@ -83,6 +85,22 @@ namespace phys
             void Show();
             /// @brief Forces the layer to hide.
             void Hide();
+            /// @brief Creates a button within this layer.
+            /// @return Returns a pointer to the created button.
+            /// @param X The position on screen in pixels for the left side of the button.
+            /// @param Y The position on screen in pixels for the top side of the button.
+            /// @param Height The height of the button in pixels.
+            /// @param Width The width of the button in pixels.
+            /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+            /// @param Text Any text you want printed on the button.
+            UIButton* CreateButton(Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text);
+            /// @brief Creates a rectangle within this layer.
+            /// @details Rectangles are innately put behind all captions, so z-order is not necessary.
+            /// @param X The position on screen in pixels for the left side of the rectangle.
+            /// @param Y The position on screen in pixels for the top side of the rectangle.
+            /// @param Height The height of the rectangle in pixels.
+            /// @param Width The width of the rectangle in pixels.
+            UIRectangle* CreateRectangle(Real X, Real Y, Real Width, Real Height);
     };//uilayer
 }//phys
 

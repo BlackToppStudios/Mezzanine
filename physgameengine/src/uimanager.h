@@ -92,6 +92,12 @@ namespace phys
             /// @brief Gets an already created screen by name.
             /// @return Returns a pointer to the screen of the specified name.
             UIScreen* GetScreen(const String& Name);
+            /// @brief Gets an already created screen by index.
+            /// @return Returns a pointer to the screen at the specified index.
+            UIScreen* GetScreen(Whole Index);
+            /// @brief Gets the number of screens created and stored in this manager.
+            /// @return Returns the number of screens this manager is storing.
+            Whole GetNumScreens();
             /// @brief Deletes a screen and removes all trace of it from the manager.
             /// @details Destroying a screen will also destroy all of it's layers, and everything contained in those layers.
             /// @param Screen The screen to be destroyed.

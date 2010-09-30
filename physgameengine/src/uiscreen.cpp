@@ -42,6 +42,7 @@
 
 #include "uiscreen.h"
 #include "uimanager.h"
+#include "uilayer.h"
 #include "internalGorilla.h.cpp"
 
 namespace phys
@@ -80,7 +81,7 @@ namespace phys
     UILayer* UIScreen::CreateLayer(const String& Name, Whole Index)
     {
         Gorilla::Layer* layer = GorillaScreen->createLayer(Index);
-        UILayer* physlayer = new UILayer(layer, this, Manager);
+        UILayer* physlayer = new UILayer(layer, this->GorillaScreen, Manager);
         GUILayers[Name] = physlayer;
         return physlayer;
     }
@@ -88,6 +89,22 @@ namespace phys
     UILayer* UIScreen::GetLayer(const String& Name)
     {
         return GUILayers[Name];
+    }
+
+    UILayer* UIScreen::GetLayer(Whole Index)
+    {
+        std::map<String,UILayer*>::iterator it = GUILayers.begin();
+        for ( Whole x=0 ; x != Index ; x++ )
+        {
+            it++;
+        }
+        UILayer* Layer = (*it).second;
+        return Layer;
+    }
+
+    Whole UIScreen::GetNumLayers()
+    {
+        return GUILayers.size();
     }
 
     void UIScreen::DestroyLayer(UILayer* Layer)

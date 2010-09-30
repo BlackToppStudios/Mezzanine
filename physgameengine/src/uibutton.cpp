@@ -41,19 +41,66 @@
 #define _uibutton_cpp
 
 #include "uibutton.h"
+#include "uilayer.h"
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
-    UIButton::UIButton(Gorilla::Caption* GButton, UIManager* manager)
+    UIButton::UIButton(Gorilla::Caption* GButton, Gorilla::Layer* GLayer, UIManager* manager)
     {
         GorillaButton = GButton;
+        Parent = GLayer;
         Manager = manager;
     }
 
     UIButton::~UIButton()
     {
+        Parent->destroyCaption(GorillaButton);
+    }
 
+    void UIButton::SetBackgroundColour(ColourValue& Colour)
+    {
+        GorillaButton->background(Colour.GetOgreColourValue());
+    }
+
+    void UIButton::HorizontallyAlign(HorizontalAlign Align)
+    {
+        Gorilla::TextAlignment HA;
+        switch (Align)
+        {
+            case Left:
+                HA = Gorilla::TextAlign_Left;
+                break;
+            case Right:
+                HA = Gorilla::TextAlign_Right;
+                break;
+            case Middle:
+                HA = Gorilla::TextAlign_Centre;
+                break;
+            default:
+                return;
+        }
+        GorillaButton->align(HA);
+    }
+
+    void UIButton::VerticallyAlign(VerticalAlign Align)
+    {
+        Gorilla::VerticalAlignment VA;
+        switch (Align)
+        {
+            case Top:
+                VA = Gorilla::VerticalAlign_Top;
+                break;
+            case Bottom:
+                VA = Gorilla::VerticalAlign_Bottom;
+                break;
+            case Center:
+                VA = Gorilla::VerticalAlign_Middle;
+                break;
+            default:
+                return;
+        }
+        GorillaButton->vertical_align(VA);
     }
 }//phys
 

@@ -61,6 +61,9 @@ int main(int argc, char **argv)
     //Actually Load the game stuff
     LoadContent();
 
+    //Generate the UI
+    MakeGUI();
+
     //Configure the wireframe Drawer
     TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(2);
     TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
@@ -482,5 +485,37 @@ void LoadContent()
 
     TheWorld->GetPhysicsManager()->SetGravity(grav);
     TheWorld->GetPhysicsManager()->SetSoftGravity(grav);
+}
+
+void MakeGUI()
+{
+    String DefaultScreen = "DefaultScreen";
+    String MenuLayer = "MenuLayer";
+    String HUDLayer = "HUDLayer";
+    String ItemShopLayer = "ItemShopLayer";
+    UIManager* GUI = TheWorld->GetUIManager();
+    Real WHeight = (Real)(TheWorld->GetGraphicsManager()->getRenderHeight());
+    Real WWidth = (Real)(TheWorld->GetGraphicsManager()->getRenderWidth());
+    GUI->LoadGorilla("Dejavu");
+
+    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "Dejavu");
+    UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
+    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 1);
+    UILayer* Menu = Screen->CreateLayer(MenuLayer, 2);
+
+    //Build the HUD layer
+    UIButton* MenuButton = HUD->CreateButton( 0.0, WHeight * 0.92,
+                                            WWidth * 0.2, WHeight * 0.08,
+                                            24, "Menu");
+    MenuButton->HorizontallyAlign(UIButton::Middle);
+    MenuButton->VerticallyAlign(UIButton::Center);
+    ColourValue MenuColour(0.1,0.3,0.8,1.0);
+    MenuButton->SetBackgroundColour(MenuColour);
+
+    //Build the ItemShop Layer
+    ItemShop->Hide();
+
+    //Build the Menu Layer
+    Menu->Hide();
 }
 #endif

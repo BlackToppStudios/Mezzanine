@@ -41,15 +41,18 @@
 #define _uibutton_h
 
 #include "datatypes.h"
+#include "colourvalue.h"
 
 namespace Gorilla
 {
     class Caption;
+    class Layer;
 }
 
 namespace phys
 {
     class UIManager;
+    class UILayer;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIButton
     /// @headerfile uibutton.h
@@ -58,16 +61,39 @@ namespace phys
     ///////////////////////////////////////
     class UIButton
     {
+        public:
+            enum VerticalAlign
+            {
+                Top,
+                Bottom,
+                Center
+            };
+            enum HorizontalAlign
+            {
+                Left,
+                Right,
+                Middle
+            };
         protected:
             Gorilla::Caption* GorillaButton;
+            Gorilla::Layer* Parent;
             UIManager* Manager;
         public:
             /// @brief Internal constructor
             /// @param GButton The Gorilla Caption this button is based on.
             /// @param manager Pointer to the manager that created this button.
-            UIButton(Gorilla::Caption* GButton, UIManager* manager);
+            UIButton(Gorilla::Caption* GButton, Gorilla::Layer* GLayer, UIManager* manager);
             /// @brief Class destructor.
             ~UIButton();
+            /// @brief Sets the background colour of the button.
+            /// @param Colour A colour value representing the colour to be set.
+            void SetBackgroundColour(ColourValue& Colour);
+            /// @brief Aligns the text of the button.
+            /// @param Align The enum value representing the horizontal alignment to be set.
+            void HorizontallyAlign(HorizontalAlign Align);
+            /// @brief Aligns the text of the button.
+            /// @param Align The enum value representing the vertical alignment to be set.
+            void VerticallyAlign(VerticalAlign Align);
     };//uibutton
 }//phys
 

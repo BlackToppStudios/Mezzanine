@@ -11,5 +11,6 @@ bool PostRender();
 //Functions that protocatch uses
 bool CheckForEsc();
 void LoadContent();
+void MakeGUI();
 
 #endif

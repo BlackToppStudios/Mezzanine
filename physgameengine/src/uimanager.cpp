@@ -89,6 +89,22 @@ namespace phys
         return Screens[Name];
     }
 
+    UIScreen* UIManager::GetScreen(Whole Index)
+    {
+        std::map<String,UIScreen*>::iterator it = Screens.begin();
+        for ( int x=0 ; x != Index ; x++ )
+        {
+            it++;
+        }
+        UIScreen* Screen = (*it).second;
+        return Screen;
+    }
+
+    Whole UIManager::GetNumScreens()
+    {
+        return Screens.size();
+    }
+
     void UIManager::DestroyScreen(UIScreen* Screen)
     {
         if(Screens.empty())

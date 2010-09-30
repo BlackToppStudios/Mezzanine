@@ -37,63 +37,26 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uilayer_cpp
-#define _uilayer_cpp
+#ifndef _uirectangle_cpp
+#define _uirectangle_cpp
 
-#include "uilayer.h"
-#include "uibutton.h"
 #include "uirectangle.h"
 
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
-    UILayer::UILayer(Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager)
+    UIRectangle::UIRectangle(Gorilla::Rectangle* GRect, Gorilla::Layer* GLayer, UIManager* manager)
     {
-        GorillaLayer = GLayer;
-        Parent = GScreen;
+        GRectangle = GRect;
+        Parent = GLayer;
         Manager = manager;
     }
 
-    UILayer::~UILayer()
+    UIRectangle::~UIRectangle()
     {
-        Parent->destroy(GorillaLayer);
+        Parent->destroyRectangle(GRectangle);
     }
-
-    void UILayer::SetVisable(bool Visable)
-    {
-        GorillaLayer->setVisible(Visable);
-    }
-
-    bool UILayer::GetVisable()
-    {
-        return GorillaLayer->isVisible();
-    }
-
-    void UILayer::Show()
-    {
-        GorillaLayer->show();
-    }
-
-    void UILayer::Hide()
-    {
-        GorillaLayer->hide();
-    }
-
-    UIButton* UILayer::CreateButton(Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text)
-    {
-        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, X, Y, Text);
-        GCaption->size(Width, Height);
-        UIButton* Button = new UIButton(GCaption, GorillaLayer, Manager);
-        return Button;
-    }
-
-    UIRectangle* UILayer::CreateRectangle(Real X, Real Y, Real Width, Real Height)
-    {
-        Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(X, Y, Width, Height);
-        UIRectangle* Rectangle = new UIRectangle(GRectangle, GorillaLayer, Manager);
-        return Rectangle;
-    }
-}//phys
+}
 
 #endif

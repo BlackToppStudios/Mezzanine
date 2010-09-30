@@ -67,7 +67,7 @@ namespace phys
         protected:
             Gorilla::Screen* GorillaScreen;
             UIManager* Manager;
-            std::map< String, Gorilla::Layer* > GUILayers;
+            std::map< String, UILayer* > GUILayers;
         public:
             /// @brief Internal constructor
             /// @param GScreen The Gorilla Screen this Screen is based on.
@@ -97,6 +97,12 @@ namespace phys
             /// @brief Gets an already created layer by name.
             /// @return Returns a pointer to the layer of the specified name.
             UILayer* GetLayer(const String& Name);
+            /// @brief Gets an already created layer by index.
+            /// @return Returns a pointer to the layer at the specified index.
+            UILayer* GetLayer(Whole Index);
+            /// @brief Gets the number of layerss created and stored in this class.
+            /// @return Returns the number of layers this class is storing.
+            Whole GetNumLayers();
             /// @brief Destroy's a previously created layer.
             /// @param Name The name of the layer to be destroyed.
             void DestroyLayer(UILayer* Layer);

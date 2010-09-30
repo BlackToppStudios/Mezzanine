@@ -37,63 +37,40 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uilayer_cpp
-#define _uilayer_cpp
+#ifndef _uirectangle_h
+#define _uirectangle_h
 
-#include "uilayer.h"
-#include "uibutton.h"
-#include "uirectangle.h"
+#include "datatypes.h"
 
-#include "internalGorilla.h.cpp"
+namespace Gorilla
+{
+    class Rectangle;
+    class Layer;
+}
 
 namespace phys
 {
-    UILayer::UILayer(Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager)
+    class UIManager;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class UIRectangle
+    /// @headerfile uirectangle.h
+    /// @brief This class is a helper class, specifically for use with background rectangle shapes.
+    /// @details
+    ///////////////////////////////////////
+    class UIRectangle
     {
-        GorillaLayer = GLayer;
-        Parent = GScreen;
-        Manager = manager;
-    }
-
-    UILayer::~UILayer()
-    {
-        Parent->destroy(GorillaLayer);
-    }
-
-    void UILayer::SetVisable(bool Visable)
-    {
-        GorillaLayer->setVisible(Visable);
-    }
-
-    bool UILayer::GetVisable()
-    {
-        return GorillaLayer->isVisible();
-    }
-
-    void UILayer::Show()
-    {
-        GorillaLayer->show();
-    }
-
-    void UILayer::Hide()
-    {
-        GorillaLayer->hide();
-    }
-
-    UIButton* UILayer::CreateButton(Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text)
-    {
-        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, X, Y, Text);
-        GCaption->size(Width, Height);
-        UIButton* Button = new UIButton(GCaption, GorillaLayer, Manager);
-        return Button;
-    }
-
-    UIRectangle* UILayer::CreateRectangle(Real X, Real Y, Real Width, Real Height)
-    {
-        Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(X, Y, Width, Height);
-        UIRectangle* Rectangle = new UIRectangle(GRectangle, GorillaLayer, Manager);
-        return Rectangle;
-    }
+        protected:
+            Gorilla::Rectangle* GRectangle;
+            Gorilla::Layer* Parent;
+            UIManager* Manager;
+        public:
+            /// @brief Internal constructor
+            /// @param GRect The Gorilla Rectangle this rectangle is based on.
+            /// @param manager Pointer to the manager that created this rectangle.
+            UIRectangle(Gorilla::Rectangle* GRect, Gorilla::Layer* GLayer, UIManager* manager);
+            /// @brief Class destructor.
+            ~UIRectangle();
+    };//uirectangle
 }//phys
 
 #endif
