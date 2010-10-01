@@ -67,7 +67,12 @@ namespace phys
     bool UIButton::MouseIsOver(Whole MouseX, Whole MouseY)
     {
         Ogre::Vector2 MouseLoc((Real)MouseX,(Real)MouseY);
-        MouseOver = GorillaButton->intersects(MouseLoc);
+        if(GorillaButton->intersects(MouseLoc) && Parent->isVisible())
+        {
+            MouseOver = true;
+        }else{
+            MouseOver = false;
+        }
         return MouseOver;
     }
 

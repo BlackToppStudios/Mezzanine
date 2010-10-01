@@ -530,9 +530,9 @@ void MakeGUI()
     GUI->LoadGorilla("Dejavu");
 
     UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "Dejavu");
-    UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
-    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 1);
     UILayer* Menu = Screen->CreateLayer(MenuLayer, 2);
+    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 1);
+    UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     //Build the HUD layer
     UIButton* MenuButton = HUD->CreateButton( "Menu", 0.0, WHeight * 0.92,
