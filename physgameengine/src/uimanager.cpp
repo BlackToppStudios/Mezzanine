@@ -92,7 +92,7 @@ namespace phys
     UIScreen* UIManager::GetScreen(Whole Index)
     {
         std::map<String,UIScreen*>::iterator it = Screens.begin();
-        for ( int x=0 ; x != Index ; x++ )
+        for ( Whole x=0 ; x != Index ; x++ )
         {
             it++;
         }

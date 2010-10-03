@@ -78,6 +78,33 @@ namespace phys
         return this->Cam->getName();
     }
 
+    void Camera::SetCameraType(ProjectionType Type)
+    {
+        if( Camera::Orthographic == Type )
+        {
+            this->Cam->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
+        }
+        else if( Camera::Perspective == Type )
+        {
+            this->Cam->setProjectionType(Ogre::PT_PERSPECTIVE);
+        }
+    }
+
+    void Camera::SetOrthoWindow(Real Width, Real Height)
+    {
+        this->Cam->setOrthoWindow(Width, Height);
+    }
+
+    void Camera::SetOrthoWindowHeight(Real Height)
+    {
+        this->Cam->setOrthoWindowHeight(Height);
+    }
+
+    void Camera::SetOrthoWindowWidth(Real Width)
+    {
+        this->Cam->setOrthoWindowWidth(Width);
+    }
+
     void Camera::SetLocation(Vector3 Location)
     {
         this->Cam->setPosition(Location.GetOgreVector3());

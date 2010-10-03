@@ -64,6 +64,12 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     class Camera : public Attachable
     {
+        public:
+            enum ProjectionType
+            {
+                Orthographic,
+                Perspective
+            };
         private:
             /// @internal
             /// @brief This is called by the called by the constructors, it is a single point of class initialization.
@@ -97,6 +103,30 @@ namespace phys
             /// @brief Gets the camera's set name.
             /// @return Returns a string containing the camera's name.
             String& GetName();
+            /// @brief Sets the type of projection to be used with this camera.
+            /// @details By default, all cameras are enabled with Perspective projection.  This is the standard 3-dimentional
+            /// view anyone would expect in a 3D world.  Orthographic projection is useful when displaying 2D worlds, or only
+            /// 2 dimentions of a 3D world.  It enables you to see the entire side of an object without regard for camera perspective.
+            /// Perspective can be thought of as a pyramid, with the camera at the top of the cone.  Orthographic would instead be a
+            /// cube.
+            /// @param Type The type of projection to be used.
+            void SetCameraType(ProjectionType Type);
+            /// @brief Defines the size of the Orthographic projection window.
+            /// @details This function will change the aspect ratio of the screen, determined by the values passed in.  To set the
+            /// window size without changing the aspect ratio, call either the SetOrthoWindowHeight, or SetOrthoWindowWidth functions.
+            /// @param Width The new width of the projection window.
+            /// @param Height The new height of the projection window.
+            void SetOrthoWindow(Real Width, Real Height);
+            /// @brief Defines the size of the Orthographic projection window.
+            /// @details This function will not change the aspect ratio of the screen, unlike SetOrthoWindow.  The aspect ratio will be
+            /// preserved and the Width of the screen automatically recalculated based on the Height passed in.
+            /// @param Height The new height of the projection window.
+            void SetOrthoWindowHeight(Real Height);
+            /// @brief Defines the size of the Orthographic projection window.
+            /// @details This function will not change the aspect ratio of the screen, unlike SetOrthoWindow.  The aspect ratio will be
+            /// preserved and the Height of the screen automatically recalculated based on the Width passed in.
+            /// @param Width The new width of the projection window.
+            void SetOrthoWindowWidth(Real Width);
             /// @brief Sets the location of a camera.
             /// @details Sets the location of the specified camera.
             /// @param Location The new location for the camera.
