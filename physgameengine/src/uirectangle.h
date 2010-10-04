@@ -37,78 +37,44 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uibutton_h
-#define _uibutton_h
+#ifndef _uirectangle_h
+#define _uirectangle_h
 
 #include "datatypes.h"
 #include "colourvalue.h"
 
 namespace Gorilla
 {
-    class Caption;
+    class Rectangle;
     class Layer;
 }
 
 namespace phys
 {
     class UIManager;
-    class UILayer;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class UIButton
-    /// @headerfile uibutton.h
-    /// @brief This class is a helper class, specifically for use with buttons.
+    /// @class UIRectangle
+    /// @headerfile uirectangle.h
+    /// @brief This class is a helper class, specifically for use with background rectangle shapes.
     /// @details
     ///////////////////////////////////////
-    class UIButton
+    class UIRectangle
     {
-        public:
-            enum VerticalAlign
-            {
-                Top,
-                Bottom,
-                Center
-            };
-            enum HorizontalAlign
-            {
-                Left,
-                Right,
-                Middle
-            };
         protected:
-            Gorilla::Caption* GorillaButton;
+            Gorilla::Rectangle* GRectangle;
             Gorilla::Layer* Parent;
             UIManager* Manager;
-            bool MouseOver;
-            String Name;
         public:
             /// @brief Internal constructor
-            /// @param GButton The Gorilla Caption this button is based on.
-            /// @param manager Pointer to the manager that created this button.
-            UIButton(String& name, Gorilla::Caption* GButton, Gorilla::Layer* GLayer, UIManager* manager);
+            /// @param GRect The Gorilla Rectangle this rectangle is based on.
+            /// @param manager Pointer to the manager that created this rectangle.
+            UIRectangle(Gorilla::Rectangle* GRect, Gorilla::Layer* GLayer, UIManager* manager);
             /// @brief Class destructor.
-            ~UIButton();
-            /// @brief Gets the name of this button.
-            /// @return Returns a string containing the name of this button.
-            String& GetName();
-            /// @brief Determines whether the mouse is over this button.
-            /// @return Returns a bool indicating whether the mouse is over this button.
-            /// @param MouseX The mouse position on screen on the x axis.
-            /// @param MouseY The mouse position on screen on the y axis.
-            bool MouseIsOver(Whole MouseX, Whole MouseY);
-            /// @brief Gets the stored value of whether or not the mouse is over the button.
-            /// @details This function does not perform any checks.  If you want to do a manual check, call MouseIsOver().
-            /// @return Returns the stored value of whether or not the mouse is over the button.
-            bool GetMouseOver();
-            /// @brief Sets the background colour of the button.
+            ~UIRectangle();
+            /// @brief Sets the background colour of the rectangle.
             /// @param Colour A colour value representing the colour to be set.
             void SetBackgroundColour(ColourValue& Colour);
-            /// @brief Aligns the text of the button.
-            /// @param Align The enum value representing the horizontal alignment to be set.
-            void HorizontallyAlign(HorizontalAlign Align);
-            /// @brief Aligns the text of the button.
-            /// @param Align The enum value representing the vertical alignment to be set.
-            void VerticallyAlign(VerticalAlign Align);
-    };//uibutton
+    };//uirectangle
 }//phys
 
 #endif

@@ -362,7 +362,7 @@ namespace Gorilla
      return 0;
     for (size_t i=0;i < kerning.size();i++)
     {
-     if (kerning[i].character == left_of)
+     if ((int)(kerning[i].character) == left_of)
       return kerning[i].kerning;
     }
     return 0;

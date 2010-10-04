@@ -37,90 +37,78 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uiscreen_cpp
-#define _uiscreen_cpp
+#ifndef _uilayer_cpp
+#define _uilayer_cpp
 
-#include "uiscreen.h"
-#include "uimanager.h"
 #include "uilayer.h"
+#include "uibutton.h"
+#include "uirectangle.h"
+
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
-    UIScreen::UIScreen(Gorilla::Screen* GScreen, UIManager* manager)
+    UILayer::UILayer(Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager)
     {
-        GorillaScreen = GScreen;
+        GorillaLayer = GLayer;
+        Parent = GScreen;
         Manager = manager;
     }
 
-    UIScreen::~UIScreen()
+    UILayer::~UILayer()
     {
-        Manager->GetSilverbackPointer()->destroyScreen(GorillaScreen);
+        Parent->destroy(GorillaLayer);
     }
 
-    void UIScreen::SetVisable(bool Visable)
+    void UILayer::SetVisable(bool Visable)
     {
-        GorillaScreen->setVisible(Visable);
+        GorillaLayer->setVisible(Visable);
     }
 
-    bool UIScreen::IsVisable()
+    bool UILayer::GetVisable()
     {
-        return GorillaScreen->isVisible();
+        return GorillaLayer->isVisible();
     }
 
-    void UIScreen::Show()
+    void UILayer::Show()
     {
-        GorillaScreen->show();
+        GorillaLayer->show();
     }
 
-    void UIScreen::Hide()
+    void UILayer::Hide()
     {
-        GorillaScreen->hide();
+        GorillaLayer->hide();
     }
 
-    UILayer* UIScreen::CreateLayer(const String& Name, Whole Index)
+    UIButton* UILayer::CreateButton(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text)
     {
-        Gorilla::Layer* layer = GorillaScreen->createLayer(Index);
-        UILayer* physlayer = new UILayer(layer, this->GorillaScreen, Manager);
-        GUILayers[Name] = physlayer;
-        return physlayer;
+        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, X, Y, Text);
+        GCaption->size(Width, Height);
+        UIButton* Button = new UIButton(Name, GCaption, GorillaLayer, Manager);
+        Buttons.push_back(Button);
+        return Button;
     }
 
-    UILayer* UIScreen::GetLayer(const String& Name)
+    UIRectangle* UILayer::CreateRectangle(Real X, Real Y, Real Width, Real Height)
     {
-        return GUILayers[Name];
+        Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(X, Y, Width, Height);
+        UIRectangle* Rectangle = new UIRectangle(GRectangle, GorillaLayer, Manager);
+        return Rectangle;
     }
 
-    UILayer* UIScreen::GetLayer(Whole Index)
+    UIButton* UILayer::GetButtonMouseIsOver(Whole MouseX, Whole MouseY)
     {
-        std::map<String,UILayer*>::iterator it = GUILayers.begin();
-        for ( Whole x=0 ; x != Index ; x++ )
+        UIButton* Button = NULL;
+        for( std::vector<UIButton*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
         {
-            it++;
-        }
-        UILayer* Layer = (*it).second;
-        return Layer;
-    }
-
-    Whole UIScreen::GetNumLayers()
-    {
-        return GUILayers.size();
-    }
-
-    void UIScreen::DestroyLayer(UILayer* Layer)
-    {
-        if(GUILayers.empty())
-            return;
-        for( std::map<String,UILayer*>::iterator it = GUILayers.begin() ; it != GUILayers.end() ; it++ )
-        {
-            if( Layer == (*it).second )
+            Button = (*it);
+            if(Button->MouseIsOver(MouseX, MouseY))
             {
-                delete (*it).second;
-                GUILayers.erase(it);
-                return;
+                return Button;
             }
         }
+        return 0;
     }
-}
+}//phys
 
 #endif
