@@ -48,7 +48,8 @@
 
 namespace phys
 {
-    UILayer::UILayer(Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager)
+    UILayer::UILayer(const String& name, Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager)
+        : Name(name)
     {
         GorillaLayer = GLayer;
         Parent = GScreen;
@@ -58,6 +59,11 @@ namespace phys
     UILayer::~UILayer()
     {
         Parent->destroy(GorillaLayer);
+    }
+
+    String& UILayer::GetName()
+    {
+        return Name;
     }
 
     void UILayer::SetVisable(bool Visable)

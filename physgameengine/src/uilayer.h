@@ -68,14 +68,18 @@ namespace phys
             Gorilla::Layer* GorillaLayer;
             Gorilla::Screen* Parent;
             UIManager* Manager;
+            String Name;
             std::vector<UIButton*> Buttons;
         public:
             /// @brief Internal constructor
             /// @param GScreen The Gorilla Layer this Layer is based on.
             /// @param manager Pointer to the manager this layer belongs to..
-            UILayer(Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager);
+            UILayer(const String& name, Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager);
             /// @brief Class destructor.
             ~UILayer();
+            /// @brief Gets the name of this layer.
+            /// @return Returns a string containing the name of this layer.
+            String& GetName();
             /// @brief Sets the layers' visability.
             /// @param Visable A bool representing the visability of the layer.
             void SetVisable(bool Visable);
