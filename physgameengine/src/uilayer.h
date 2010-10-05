@@ -56,6 +56,7 @@ namespace phys
     class UIButton;
     class UIManager;
     class UIRectangle;
+    class UICaption;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIButton
     /// @headerfile uibutton.h

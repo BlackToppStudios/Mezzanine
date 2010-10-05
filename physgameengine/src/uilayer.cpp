@@ -95,7 +95,7 @@ namespace phys
         return Button;
     }
 
-    UIButton* GetButton(String& Name)
+    UIButton* UILayer::GetButton(String& Name)
     {
         for ( std::vector<UIButton*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
         {
@@ -108,12 +108,12 @@ namespace phys
         return 0;
     }
 
-    UIButton* GetButton(Whole Index)
+    UIButton* UILayer::GetButton(Whole Index)
     {
         return Buttons[Index];
     }
 
-    Whole GetNumButtons()
+    Whole UILayer::GetNumButtons()
     {
         return Buttons.size();
     }
