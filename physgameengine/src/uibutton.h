@@ -90,6 +90,12 @@ namespace phys
             /// @brief Gets the name of this button.
             /// @return Returns a string containing the name of this button.
             String& GetName();
+            /// @brief Sets the text displayed within the button.
+            /// @param Text The text to be displayed.
+            void SetText(String& Text);
+            /// @brief Gets the text displayed within the button.
+            /// @return Returns the text being displayed.
+            String& GetText();
             /// @brief Determines whether the mouse is over this button.
             /// @return Returns a bool indicating whether the mouse is over this button.
             /// @param MouseX The mouse position on screen on the x axis.

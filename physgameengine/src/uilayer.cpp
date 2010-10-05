@@ -95,10 +95,34 @@ namespace phys
         return Button;
     }
 
+    UIButton* GetButton(String& Name)
+    {
+        for ( std::vector<UIButton*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+        {
+            if ( Name == (*it)->GetName() )
+            {
+                UIButton* Button = (*it);
+                return Button;
+            }
+        }
+        return 0;
+    }
+
+    UIButton* GetButton(Whole Index)
+    {
+        return Buttons[Index];
+    }
+
+    Whole GetNumButtons()
+    {
+        return Buttons.size();
+    }
+
     UIRectangle* UILayer::CreateRectangle(Real X, Real Y, Real Width, Real Height)
     {
         Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(X, Y, Width, Height);
         UIRectangle* Rectangle = new UIRectangle(GRectangle, GorillaLayer, Manager);
+        Rectangles.push_back(Rectangle);
         return Rectangle;
     }
 

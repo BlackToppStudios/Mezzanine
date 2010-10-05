@@ -70,6 +70,8 @@ namespace phys
             UIManager* Manager;
             String Name;
             std::vector<UIButton*> Buttons;
+            std::vector<UIRectangle*> Rectangles;
+            std::vector<UICaption*> Captions;
         public:
             /// @brief Internal constructor
             /// @param GScreen The Gorilla Layer this Layer is based on.
@@ -99,6 +101,15 @@ namespace phys
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
             /// @param Text Any text you want printed on the button.
             UIButton* CreateButton(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text);
+            /// @brief Gets an already created button by name.
+            /// @return Returns a pointer to the button of the specified name.
+            UIButton* GetButton(String& Name);
+            /// @brief Gets an already created button by index.
+            /// @return Returns a pointer to the button at the specified index.
+            UIButton* GetButton(Whole Index);
+            /// @brief Gets the number of buttons created and stored in this class.
+            /// @return Returns the number of buttons this class is storing.
+            Whole GetNumButtons();
             /// @brief Creates a rectangle within this layer.
             /// @details Rectangles are innately put behind all captions, so z-order is not necessary.
             /// @param X The position on screen in pixels for the left side of the rectangle.

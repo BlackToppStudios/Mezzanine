@@ -105,7 +105,7 @@ namespace phys
             /// @brief Gets an already created layer by index.
             /// @return Returns a pointer to the layer at the specified index.
             UILayer* GetLayer(Whole Index);
-            /// @brief Gets the number of layerss created and stored in this class.
+            /// @brief Gets the number of layers created and stored in this class.
             /// @return Returns the number of layers this class is storing.
             Whole GetNumLayers();
             /// @brief Destroy's a previously created layer.
