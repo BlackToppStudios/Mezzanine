@@ -77,7 +77,7 @@
 #include "plane.h"
 #include "quaternion.h"
 #include "ray.h"
-#include "resourceManager.h"
+#include "resourcemanager.h"
 #include "scenemanager.h"
 #include "sound.h"
 #include "soundlistener.h"

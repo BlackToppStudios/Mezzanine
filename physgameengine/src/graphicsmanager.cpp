@@ -145,7 +145,7 @@ namespace phys
     {
         //Create a the RenderTimer, which will be used to measure the time
 
-        crossplatform::RenderPhysWorld(this->GameWorld);
+        crossplatform::RenderPhysWorld(this->GameWorld, this->OgreGameWindow);
 
         //Do Time Calculations to Determine Rendering Time
         this->GameWorld->SetFrameTime( this->RenderTimer->getMilliseconds() );

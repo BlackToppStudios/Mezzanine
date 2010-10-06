@@ -58,6 +58,14 @@ namespace phys
         /// @details This wraps ticpp::Attribute tighlty to help make the interface cleaner and easier to use
         class Attribute : public Base
         {
+            private:
+                /// @internal
+                /// @brief Tracks whether or not we are responsible for deleted the Wrapped pointer.
+                /// @details Since this is a simple wrapper around a ticpp object it is possible multiple instances of this class wrap one ticpp::attribute.
+                /// If this class created it, then this bit will equal true and it will be deleted in the destructor. However, if it was made with the copy
+                /// constructor or somehow handed a pointer to the wrapped object, then this assumes no responsibility for deleting it.
+                bool ResponsibleForDelete;
+
             protected:
                 /// @brief Construct an attribute using meta data from a TiCPP pointer
                 Attribute (ticpp::Attribute* Meta);
@@ -74,6 +82,10 @@ namespace phys
                 /// @param name What the Attribute is called for example in " \<div style="14"\>Content\</div\> " the word "style" is the attribute name
                 /// @param value What the Attribute is called for example in " \<div style="14"\>Content\</div\> " the word "14" is the attribute value
                 Attribute (const String &name, const String &value);
+
+                /// @brief Copy Constructor
+                /// @param CopiedAttribute The attribute we are copying.
+                Attribute (const Attribute &CopiedAttribute);
 
                 /// @brief Get the value of this attribute.
                 /// @return this returns a String containing the value of this attribute.
