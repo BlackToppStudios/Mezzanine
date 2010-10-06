@@ -49,13 +49,6 @@ namespace ticpp
     class Base;
 }
 
-namespace boost
-{
-    template <class> class shared_ptr;
-}
-
-typedef boost::shared_ptr<ticpp::Base> BasePointer;
-
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
@@ -112,17 +105,16 @@ namespace phys
         /// @details All XML components inherit from this. This is the most basic level
         /// of functionality that all XML components will implement. Even though it is
         /// has no pure virtual methods, this class should still not be instantiated.
-        /// Not that doing so would damage anything, it just wasn't designed that way.
+        /// Not that doing so would damage anything, it just wasn't designed to be used
+        /// that way.
         class Base
         {
             protected:
                 /// @internal
                 /// @brief A pointer to the Library level object we are wrapping to implement this functionality
-                //BasePointer *Wrapped;
                 ticpp::Base *Wrapped;
 
             public:
-
                 /// @brief This is used to identify what kind of component you are working with, in conjunction with the GetType() function
                 enum XMLComponentType
                 {
