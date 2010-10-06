@@ -118,7 +118,7 @@ namespace phys
                 /// @brief This is used to identify what kind of component you are working with, in conjunction with the GetType() function
                 enum XMLComponentType
                 {
-                    isBase,                   /**< Indicates the XMLComponent is a Base, and not a node, and should never exist like this. */
+                    //isBase,                   /*< Indicates the XMLComponent is a Base, and not a node, and should never exist like this. */
                     isAttribute,              /**< Indicates the XMLComponent is an attribute, and not a node */
                     isNode,                   /**< Indicates the XMLComponent is a node and nothing else */
                     isComment,                /**< Indicates the XMLComponent is a node and */
@@ -129,10 +129,6 @@ namespace phys
                     isText,                   /**< Indicates the XMLComponent is a node and */
                     isUnknown                 /**< Indicates the XMLComponent is a node and */
                 };
-
-                /// @brief This Will be by Child classes to aid in identification
-                /// @return Classes that inherit from this are expected to return an XMLComponentType that indicates what kind of XML component they are.
-                virtual XMLComponentType GetType();
 
                 /// @brief Return the position, in the original source file, of this node or attribute.
                 /// @details Return the position, in the original source file, of this node or attribute. The row and column are 1-based.
@@ -176,7 +172,6 @@ namespace phys
                 /// @return A bool containing false if the internal pointers match
                 bool operator!= (const Base &OtherBase) const;
 
-
                 /// @brief Used to get details about issues suitable for the the user or detailed logs
                 /// @details Builds detailed error string using TiXmlDocument::Error() and others.
                 /// @return This returns a string that contains the current error information [I think that is what happens anyway.]
@@ -185,15 +180,33 @@ namespace phys
                 /// @brief A simple empty virtual destructor for compatibility and ease of customization.
                 virtual ~Base();
 
+
+                /// @brief This Will be by Child classes to aid in identification
+                /// @return Classes that inherit from this are expected to return an XMLComponentType that indicates what kind of XML component they are.
+                virtual XMLComponentType GetType() = 0;
+
+                /// @brief Get the value of this XML Object.
+                /// @return this returns a String containing the value of this attribute.
+                virtual String GetValueAsString() const = 0;
+
+                /// @brief Get the value of this XML Object converted to a Whole Number.
+                /// @return this returns a Whole containing the value of this attribute.
+                virtual Whole GetValueAsWhole() const = 0;
+
+                /// @brief Get the value of this XML Object converted to a Real Number.
+                /// @return this returns a Real containing the value of this attribute.
+                virtual Real GetValueAsReal() const = 0;
+
+
         }; // /Base
     }// /xml
 }// /phys
 
-/// @brief Streaming output operator for XML Documents
-/// @details This converts the data of an XML Document into a stream Ideal for sending to a log or cout
-/// @param stream This is the stream we send our data to.
-/// @return This returns an std::ostream which now contains our data.
-std::ostream& operator << (std::ostream& stream, const phys::xml::Base& x);
+// @brief Streaming output operator for XML Documents
+// @details This converts the data of an XML Document into a stream Ideal for sending to a log or cout
+// @param stream This is the stream we send our data to.
+// @return This returns an std::ostream which now contains our data.
+//std::ostream& operator << (std::ostream& stream, const phys::xml::Base& x);
 
 
 #endif

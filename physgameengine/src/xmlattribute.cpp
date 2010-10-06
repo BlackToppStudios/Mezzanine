@@ -43,9 +43,6 @@
 
 #include "xmlattribute.h"
 
-// Included for BasePointer
-#include <boost/shared_ptr.hpp>
-
 #define TIXML_USE_TICPP
 #include <ticpp.h>
 
@@ -71,9 +68,9 @@ namespace phys
                 //this->Wrapped = new BasePointer(new ticpp::Attribute(name,value));
             }
 
-            Attribute::Attribute(ticpp::Attribute* Meta)
+            Attribute::Attribute(ticpp::Attribute* Meta, bool FirstTimeUsed)
             {
-                this->ResponsibleForDelete=false;
+                this->ResponsibleForDelete=FirstTimeUsed;
                 this->Wrapped = Meta;
 
                 //alternative shared_ptr code
@@ -151,7 +148,7 @@ namespace phys
 
             Attribute::XMLComponentType Attribute::GetType()
                 { return Base::isAttribute; }
-    }
-}
+    } // \xml
+}//\phys
 
 #endif

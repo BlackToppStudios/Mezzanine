@@ -71,8 +71,8 @@ namespace phys
         String Base::BuildDetailedErrorString() const
             { return this->Wrapped->BuildDetailedErrorString(); }
 
-        Base::XMLComponentType Base::GetType()
-                { return Base::isBase; }
+        //Base::XMLComponentType Base::GetType()
+        //        { return Base::isBase; }
 
     }// /xml
 }// /phys

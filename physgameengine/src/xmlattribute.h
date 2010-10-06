@@ -68,7 +68,9 @@ namespace phys
 
             protected:
                 /// @brief Construct an attribute using meta data from a TiCPP pointer
-                Attribute (ticpp::Attribute* Meta);
+                /// @param Meta A pointer to a ticpp::Attribute that this class will wrap.
+                /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in and phys::xml::base
+                Attribute (ticpp::Attribute* Meta, bool FirstTimeUsed = false);
 
             public:
 
@@ -139,8 +141,8 @@ namespace phys
                 //virtual void 	Print (FILE *file, int depth) const
             */
 
-        };
-    }
-}
+        };// \Attribute
+    }// \xml
+}// \phys
 
 #endif
