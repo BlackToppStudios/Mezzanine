@@ -539,9 +539,9 @@ void MakeGUI()
     UIManager* GUI = TheWorld->GetUIManager();
     Real WHeight = (Real)(TheWorld->GetGraphicsManager()->getRenderHeight());
     Real WWidth = (Real)(TheWorld->GetGraphicsManager()->getRenderWidth());
-    GUI->LoadGorilla("Dejavu");
+    GUI->LoadGorilla("dejavu");
 
-    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "Dejavu");
+    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "dejavu");
     UILayer* Menu = Screen->CreateLayer(MenuLayer, 2);
     UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 1);
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
