@@ -48,7 +48,8 @@
 
 namespace phys
 {
-    UILayer::UILayer(Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager)
+    UILayer::UILayer(const String& name, Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager)
+        : Name(name)
     {
         GorillaLayer = GLayer;
         Parent = GScreen;
@@ -58,6 +59,11 @@ namespace phys
     UILayer::~UILayer()
     {
         Parent->destroy(GorillaLayer);
+    }
+
+    String& UILayer::GetName()
+    {
+        return Name;
     }
 
     void UILayer::SetVisable(bool Visable)
@@ -89,10 +95,34 @@ namespace phys
         return Button;
     }
 
+    UIButton* UILayer::GetButton(String& Name)
+    {
+        for ( std::vector<UIButton*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+        {
+            if ( Name == (*it)->GetName() )
+            {
+                UIButton* Button = (*it);
+                return Button;
+            }
+        }
+        return 0;
+    }
+
+    UIButton* UILayer::GetButton(Whole Index)
+    {
+        return Buttons[Index];
+    }
+
+    Whole UILayer::GetNumButtons()
+    {
+        return Buttons.size();
+    }
+
     UIRectangle* UILayer::CreateRectangle(Real X, Real Y, Real Width, Real Height)
     {
         Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(X, Y, Width, Height);
         UIRectangle* Rectangle = new UIRectangle(GRectangle, GorillaLayer, Manager);
+        Rectangles.push_back(Rectangle);
         return Rectangle;
     }
 

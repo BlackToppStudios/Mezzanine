@@ -54,6 +54,7 @@ namespace phys
 {
     class UIManager;
     class UILayer;
+    class UIButton;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIScreen
     /// @headerfile uiscreen.h
@@ -67,14 +68,18 @@ namespace phys
         protected:
             Gorilla::Screen* GorillaScreen;
             UIManager* Manager;
-            std::map< String, UILayer* > GUILayers;
+            String Name;
+            std::vector< UILayer* > Layers;
         public:
             /// @brief Internal constructor
             /// @param GScreen The Gorilla Screen this Screen is based on.
             /// @param manager Pointer to the manager that created this Screen.
-            UIScreen(Gorilla::Screen* GScreen, UIManager* manager);
+            UIScreen(const String& name, Gorilla::Screen* GScreen, UIManager* manager);
             /// @brief Class destructor.
             ~UIScreen();
+            /// @brief Gets the name of this screen.
+            /// @return Returns a string containing the name of this screen.
+            String& GetName();
             /// @brief Sets the screens visability.
             /// @param Visable A bool representing the visability of the screen.
             void SetVisable(bool Visable);
@@ -87,25 +92,29 @@ namespace phys
             void Hide();
             /// @brief Creates a layer in the GUI screen to place GUI objects in.
             /// @details A GUI layer is exactly that, a layer of GUI objects.  You can have multiple GUI
-            /// layers per screen.  The index of the layer determines it's visability if there are multiple
-            /// layers.  If the index of one layer is higher then another in the same space, then the index
-            /// with the higher index will be rendered...giving it the appearance of being on top of the other
+            /// layers per screen.  The Zorder of the layer determines it's visability if there are multiple
+            /// layers.  If the Zorder of one layer is higher then another in the same space, then the Zorder
+            /// with the higher Zorder will be rendered...giving it the appearance of being on top of the other
             /// GUI object or objects.
             /// @param Name The name to be given to the layer.
-            /// @param Index The layers index, aka it's "Z-order".
-            UILayer* CreateLayer(const String& Name, Whole Index);
+            /// @param Zorder The layers Zorder, as explained above.
+            UILayer* CreateLayer(const String& Name, Whole Zorder);
             /// @brief Gets an already created layer by name.
             /// @return Returns a pointer to the layer of the specified name.
             UILayer* GetLayer(const String& Name);
             /// @brief Gets an already created layer by index.
             /// @return Returns a pointer to the layer at the specified index.
             UILayer* GetLayer(Whole Index);
-            /// @brief Gets the number of layerss created and stored in this class.
+            /// @brief Gets the number of layers created and stored in this class.
             /// @return Returns the number of layers this class is storing.
             Whole GetNumLayers();
             /// @brief Destroy's a previously created layer.
             /// @param Name The name of the layer to be destroyed.
             void DestroyLayer(UILayer* Layer);
+            /// @brief Gets the button the mouse is over if any.
+            /// @details This function searches only the visable layers contained in this screen.
+            /// @return Returns the button the mouse is over, or NULL if there are none.
+            UIButton* GetButtonMouseIsOver(Whole MouseX, Whole MouseY);
     };//uiscreen
 }//phys
 

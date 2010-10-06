@@ -79,25 +79,28 @@ namespace phys
     {
         Ogre::Viewport* OgrePort = GameWorld->GetCameraManager()->GetOgreViewport(Viewport);
         Gorilla::Screen* guiscreen = Silver->createScreen(OgrePort, Atlas);
-        UIScreen* physscreen = new UIScreen(guiscreen, this);
-        Screens[Screen] = physscreen;
+        UIScreen* physscreen = new UIScreen(Screen, guiscreen, this);
+        Screens.push_back(physscreen);
         return physscreen;
     }
 
     UIScreen* UIManager::GetScreen(const String& Name)
     {
-        return Screens[Name];
+        std::vector<UIScreen*>::iterator it = Screens.begin();
+        for ( std::vector<UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        {
+            if ( Name == (*it)->GetName() )
+            {
+                UIScreen* Screen = (*it);
+                return Screen;
+            }
+        }
+        return 0;
     }
 
     UIScreen* UIManager::GetScreen(Whole Index)
     {
-        std::map<String,UIScreen*>::iterator it = Screens.begin();
-        for ( Whole x=0 ; x != Index ; x++ )
-        {
-            it++;
-        }
-        UIScreen* Screen = (*it).second;
-        return Screen;
+        return Screens[Index];
     }
 
     Whole UIManager::GetNumScreens()
@@ -109,11 +112,11 @@ namespace phys
     {
         if(Screens.empty())
             return;
-        for( std::map<String,UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        for( std::vector<UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
         {
-            if( Screen == (*it).second )
+            if( Screen == (*it) )
             {
-                delete (*it).second;
+                delete (*it);
                 Screens.erase(it);
                 return;
             }
@@ -124,9 +127,9 @@ namespace phys
     {
         if(Screens.empty())
             return;
-        for( std::map<String,UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        for( std::vector<UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
         {
-            delete (*it).second;
+            delete (*it);
             Screens.erase(it);
         }
         return;

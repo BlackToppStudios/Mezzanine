@@ -64,6 +64,16 @@ namespace phys
         return Name;
     }
 
+    void UIButton::SetText(String& Text)
+    {
+        GorillaButton->text(Text);
+    }
+
+    String& UIButton::GetText()
+    {
+        return GorillaButton->text();
+    }
+
     bool UIButton::MouseIsOver(Whole MouseX, Whole MouseY)
     {
         Ogre::Vector2 MouseLoc((Real)MouseX,(Real)MouseY);

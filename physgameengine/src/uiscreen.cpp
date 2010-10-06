@@ -43,11 +43,13 @@
 #include "uiscreen.h"
 #include "uimanager.h"
 #include "uilayer.h"
+#include "uibutton.h"
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
-    UIScreen::UIScreen(Gorilla::Screen* GScreen, UIManager* manager)
+    UIScreen::UIScreen(const String& name, Gorilla::Screen* GScreen, UIManager* manager)
+        : Name(name)
     {
         GorillaScreen = GScreen;
         Manager = manager;
@@ -56,6 +58,11 @@ namespace phys
     UIScreen::~UIScreen()
     {
         Manager->GetSilverbackPointer()->destroyScreen(GorillaScreen);
+    }
+
+    String& UIScreen::GetName()
+    {
+        return Name;
     }
 
     void UIScreen::SetVisable(bool Visable)
@@ -78,48 +85,66 @@ namespace phys
         GorillaScreen->hide();
     }
 
-    UILayer* UIScreen::CreateLayer(const String& Name, Whole Index)
+    UILayer* UIScreen::CreateLayer(const String& Name, Whole Zorder)
     {
-        Gorilla::Layer* layer = GorillaScreen->createLayer(Index);
-        UILayer* physlayer = new UILayer(layer, this->GorillaScreen, Manager);
-        GUILayers[Name] = physlayer;
+        Gorilla::Layer* layer = GorillaScreen->createLayer(Zorder);
+        UILayer* physlayer = new UILayer(Name, layer, this->GorillaScreen, Manager);
+        Layers.push_back(physlayer);
         return physlayer;
     }
 
     UILayer* UIScreen::GetLayer(const String& Name)
     {
-        return GUILayers[Name];
+        for ( std::vector<UILayer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
+        {
+            if ( Name == (*it)->GetName() )
+            {
+                UILayer* Layer = (*it);
+                return Layer;
+            }
+        }
+        return 0;
     }
 
     UILayer* UIScreen::GetLayer(Whole Index)
     {
-        std::map<String,UILayer*>::iterator it = GUILayers.begin();
-        for ( Whole x=0 ; x != Index ; x++ )
-        {
-            it++;
-        }
-        UILayer* Layer = (*it).second;
-        return Layer;
+        return Layers[Index];
     }
 
     Whole UIScreen::GetNumLayers()
     {
-        return GUILayers.size();
+        return Layers.size();
     }
 
     void UIScreen::DestroyLayer(UILayer* Layer)
     {
-        if(GUILayers.empty())
+        if(Layers.empty())
             return;
-        for( std::map<String,UILayer*>::iterator it = GUILayers.begin() ; it != GUILayers.end() ; it++ )
+        for( std::vector<UILayer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
         {
-            if( Layer == (*it).second )
+            if( Layer == (*it) )
             {
-                delete (*it).second;
-                GUILayers.erase(it);
+                delete (*it);
+                Layers.erase(it);
                 return;
             }
         }
+    }
+
+    UIButton* UIScreen::GetButtonMouseIsOver(Whole MouseX, Whole MouseY)
+    {
+        for( Whole x=0 ; x != Layers.size() ; x++ )
+        {
+            if( Layers[x]->GetVisable() )
+            {
+                UIButton* Button = Layers[x]->GetButtonMouseIsOver(MouseX, MouseY);
+                if(Button)
+                {
+                    return Button;
+                }
+            }
+        }
+        return 0;
     }
 }
 

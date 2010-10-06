@@ -66,7 +66,7 @@ namespace phys
         protected:
             /// @brief Pointer for the Gorilla core class, where this manager gets it's functionality.
             Gorilla::Silverback* Silver;
-            std::map< String, UIScreen* > Screens;
+            std::vector< UIScreen* > Screens;
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.

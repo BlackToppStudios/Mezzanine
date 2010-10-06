@@ -1,0 +1,154 @@
+[Texture]
+file Tahoma12.png
+whitepixel 254 254
+
+[Font.1]
+lineheight 19
+spacelength 5
+baseline 16
+kerning -1
+monowidth 15
+range 33 126
+glyph_33 0 0 6 20 5
+glyph_34 6 0 7 20 6
+glyph_35 13 0 12 20 11
+glyph_36 25 0 9 20 8
+glyph_37 34 0 16 20 15
+glyph_38 50 0 11 20 10
+glyph_39 61 0 4 20 3
+glyph_40 65 0 6 20 6
+glyph_41 71 0 6 20 6
+glyph_42 77 0 9 20 8
+glyph_43 86 0 12 20 11
+glyph_44 98 0 5 20 4
+glyph_45 103 0 6 20 5
+glyph_46 109 0 5 20 4
+glyph_47 114 0 6 20 6
+glyph_48 120 0 9 20 8
+glyph_49 129 0 9 20 8
+glyph_50 138 0 9 20 8
+glyph_51 147 0 9 20 8
+glyph_52 156 0 9 20 8
+glyph_53 165 0 9 20 8
+glyph_54 174 0 9 20 8
+glyph_55 183 0 9 20 8
+glyph_56 192 0 9 20 8
+glyph_57 201 0 9 20 8
+glyph_58 210 0 6 20 5
+glyph_59 216 0 6 20 5
+glyph_60 222 0 12 20 11
+glyph_61 234 0 12 20 11
+glyph_62 0 20 12 20 11
+glyph_63 12 20 8 20 7
+glyph_64 20 20 15 20 14
+glyph_65 35 20 10 20 9
+glyph_66 45 20 10 20 9
+glyph_67 55 20 10 20 9
+glyph_68 65 20 11 20 10
+glyph_69 76 20 9 20 8
+glyph_70 85 20 9 20 8
+glyph_71 94 20 11 20 10
+glyph_72 105 20 11 20 10
+glyph_73 116 20 6 20 5
+glyph_74 122 20 7 20 6
+glyph_75 129 20 10 20 9
+glyph_76 139 20 8 20 7
+glyph_77 147 20 13 20 12
+glyph_78 160 20 11 20 10
+glyph_79 171 20 12 20 11
+glyph_80 183 20 9 20 8
+glyph_81 192 20 12 20 11
+glyph_82 204 20 10 20 9
+glyph_83 214 20 9 20 8
+glyph_84 223 20 10 20 9
+glyph_85 233 20 11 20 10
+glyph_86 244 20 10 20 9
+glyph_87 0 40 15 20 14
+glyph_88 15 40 10 20 9
+glyph_89 25 40 10 20 9
+glyph_90 35 40 9 20 8
+glyph_91 44 40 6 20 6
+glyph_92 50 40 6 20 6
+glyph_93 56 40 6 20 6
+glyph_94 62 40 12 20 11
+glyph_95 74 40 9 20 8
+glyph_96 83 40 9 20 8
+glyph_97 92 40 9 20 8
+glyph_98 101 40 9 20 8
+glyph_99 110 40 8 20 7
+glyph_100 118 40 9 20 8
+glyph_101 127 40 9 20 8
+glyph_102 136 40 5 20 5
+glyph_103 141 40 9 20 8
+glyph_104 150 40 9 20 8
+glyph_105 159 40 4 20 3
+glyph_106 163 40 5 20 4
+glyph_107 168 40 8 20 7
+glyph_108 176 40 4 20 3
+glyph_109 180 40 14 20 13
+glyph_110 194 40 9 20 8
+glyph_111 203 40 9 20 8
+glyph_112 212 40 9 20 8
+glyph_113 221 40 9 20 8
+glyph_114 230 40 6 20 5
+glyph_115 236 40 7 20 7
+glyph_116 243 40 6 20 5
+glyph_117 0 60 9 20 8
+glyph_118 9 60 8 20 7
+glyph_119 17 60 12 20 11
+glyph_120 29 60 8 20 7
+glyph_121 37 60 8 20 7
+glyph_122 45 60 7 20 7
+glyph_123 52 60 8 20 7
+glyph_124 60 60 6 20 6
+glyph_125 66 60 8 20 7
+glyph_126 74 60 12 20 11
+kerning_45 84 -1
+kerning_45 89 -1
+kerning_46 44 -1
+kerning_46 45 -1
+kerning_55 44 -1
+kerning_55 46 -1
+kerning_70 44 -2
+kerning_70 46 -2
+kerning_76 45 -1
+kerning_76 84 -1
+kerning_76 89 -1
+kerning_80 44 -2
+kerning_80 46 -2
+kerning_84 44 -2
+kerning_84 45 -1
+kerning_84 46 -2
+kerning_84 58 -1
+kerning_84 59 -1
+kerning_84 97 -1
+kerning_84 99 -1
+kerning_84 101 -1
+kerning_84 103 -1
+kerning_84 111 -1
+kerning_84 114 -1
+kerning_84 115 -1
+kerning_84 117 -1
+kerning_84 118 -1
+kerning_84 119 -1
+kerning_84 121 -1
+kerning_84 122 -1
+kerning_86 44 -2
+kerning_86 46 -2
+kerning_87 44 -2
+kerning_87 46 -1
+kerning_89 44 -2
+kerning_89 45 -1
+kerning_89 46 -2
+kerning_89 58 -1
+kerning_89 59 -1
+kerning_89 97 -1
+kerning_101 84 -1
+kerning_102 44 -1
+kerning_102 46 -1
+kerning_114 44 -2
+kerning_114 46 -2
+kerning_118 44 -1
+kerning_118 46 -1
+kerning_121 44 -1
+kerning_121 46 -1
