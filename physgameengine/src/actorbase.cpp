@@ -44,6 +44,9 @@
 #include "btBulletDynamicsCommon.h"
 
 #include "actorbase.h"
+#include "actorrigid.h"
+#include "actorterrain.h"
+#include "actorsoft.h"
 #include "world.h"
 #include "internalmotionstate.h.cpp"
 #include "internalmeshinfo.h.cpp"
@@ -520,6 +523,93 @@ namespace phys{
     {
         //bool result = this->CollisionObject->isStaticOrKinematicObject();
         return this->CollisionObject->isStaticOrKinematicObject();
+    }
+
+    void ActorBase::EnableCollisionResponse()
+    {
+        switch (ActorType)
+        {
+            case ActorBase::Actorrigid:
+            {
+                ActorRigid* Rigid = static_cast<ActorRigid*> (this);
+                Rigid->RemoveObjectFromWorld(GameWorld);
+                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                Rigid->AddObjectToWorld(GameWorld);
+                break;
+            }
+            case ActorBase::Actorsoft:
+            {
+                ActorSoft* Soft = static_cast<ActorSoft*> (this);
+                Soft->RemoveObjectFromWorld(GameWorld);
+                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                Soft->AddObjectToWorld(GameWorld);
+                break;
+            }
+            case ActorBase::Actorterrain:
+            {
+                ActorTerrain* Terrain = static_cast<ActorTerrain*> (this);
+                Terrain->RemoveObjectFromWorld(GameWorld);
+                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                Terrain->AddObjectToWorld(GameWorld);
+                break;
+            }
+            case ActorBase::Actorragdoll:
+            {
+                return;
+                break;
+            }
+            default:
+                return;
+        }
+    }
+
+    void ActorBase::DisableCollisionResponse()
+    {
+        switch (ActorType)
+        {
+            case ActorBase::Actorrigid:
+            {
+                ActorRigid* Rigid = static_cast<ActorRigid*> (this);
+                Rigid->RemoveObjectFromWorld(GameWorld);
+                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                Rigid->AddObjectToWorld(GameWorld);
+                break;
+            }
+            case ActorBase::Actorsoft:
+            {
+                ActorSoft* Soft = static_cast<ActorSoft*> (this);
+                Soft->RemoveObjectFromWorld(GameWorld);
+                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                Soft->AddObjectToWorld(GameWorld);
+                break;
+            }
+            case ActorBase::Actorterrain:
+            {
+                ActorTerrain* Terrain = static_cast<ActorTerrain*> (this);
+                Terrain->RemoveObjectFromWorld(GameWorld);
+                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                Terrain->AddObjectToWorld(GameWorld);
+                break;
+            }
+            case ActorBase::Actorragdoll:
+            {
+                return;
+                break;
+            }
+            default:
+                return;
+        }
+    }
+
+    bool ActorBase::CheckActivation()
+    {
+        int Activation = this->CollisionObject->getActivationState();
+        if( ACTIVE_TAG == Activation )
+        {
+            return true;
+        }else{
+            return false;
+        }
     }
 }// /phys
 
