@@ -1,0 +1,51 @@
+#This file is tab delimited and generated with the assistance of renameandcomment
+#the first column is the filename without extension
+#the second column is are the formats/extensions the file is available in
+#The third column is comments, and should include voice stressing and how usable we think the sound file is
+oneminuteleft-1	aif,wav,mp3	One MINute Left    One,Needs second One removed
+oneminuteleft-2 aif,wav,mp3	ONE Minute Left
+oneminuteleft-3 aif,wav,mp3	One MINute Left, Good
+secondsleft-1	aif,wav,mp3	Seconds Left,Good
+secondsleft-2	aif,wav,mp3	SEConds Left,Good
+secondsleft-3	aif,wav,mp3	seconds Left,Cautious, Good, sounds like a warning
+thirtysecondsleft-1	aif,wav,mp3	thirty SEConds first
+thirtysecondsleft-2	aif,wav,mp3	Thirty Seconds Left,Good
+thirtysecondsleft-3	aif,wav,mp3	Thirty Seconds Left,Good but not as good as two
+ten-1	aif,wav,mp3	Ten,Good
+nine-1	aif,wav,mp3	nine,Good
+eight-1	aif,wav,mp3	Eight,Good
+seven-1	aif,wav,mp3	Seven,Good
+six-1	aif,wav,mp3	Six,Good
+five-1	aif,wav,mp3	five,Good
+four-1	aif,wav,mp3	Four,Good
+three-1	aif,wav,mp3	Three,Good
+two-1	aif,wav,mp3	Two,Good
+one-1	aif,wav,mp3	one,Good
+catch-1	aif,wav,mp3	Catch,Good
+catch-2	aif,wav,mp3	catch,mellow
+catch-3	aif,wav,mp3	CatCH,Good
+catch-4	aif,wav,mp3	Catch, Bold, but not over the top, best yet
+catch-5	aif,wav,mp3	cAtch, good but sounds forced
+catch-6	aif,wav,mp3	cATch, The sounds even more stressed still good enough to use
+minutesleft-1	aif,wav,mp3	Minutes Left, Even, Good
+minutesleft-2	aif,wav,mp3	minutes LEFt, Anticipatory, Usable
+minutesleft-3	aif,wav,mp3	Minutes Left, Even, Good
+minutesremaining-1	aif,wav,mp3	Minutes ReMAINing, Good
+minutesremaining-2	aif,wav,mp3	MInutes RemAINMng, Good
+minutesremaining-3	aif,wav,mp3	Minutes Remaining, Even, Good
+c-c-c-combobreaker-1	aif,wav,mp3	c-c-c-Combo Breaker, Even, but forced sounding
+c-c-c-combobreaker-2	aif,wav,mp3	c-c-c-Combo Breaaaaker, really long eak
+combo-1	aif,wav,mp3	Combo, Even
+combo-2	aif,wav,mp3	COMbo, Bright, Good
+combo-3	aif,wav,mp3	ComBO, Bright
+bigcombo-1	aif,wav,mp3	Big Combo, even
+bigcombo-2	aif,wav,mp3	BIG combo, even
+bigcombo-3	aif,wav,mp3	Big Combo, Loud and Proud
+falconpunch-1	aif,wav,mp3	Falcon Punch, Even
+falconpunch-2	aif,wav,mp3	Falcon PunCH, Even but faster
+falconpunch-3	aif,wav,mp3	FALcon Punch, Even but faster
+falconpunch-4	aif,wav,mp3	FALCON PUNCH, Even and loud, probably the best
+moreadvancedpong-1	aif,wav,mp3	This Game is Even more Advanced than Pong, Even
+moreadvancedpong-2	aif,wav,mp3	THIS Game is Even MOre Advanced than Pong, 
+welcomefun-1	aif,wav,mp3	Welcome Fun, Falcon Punch Parody
+captainpunch-1	aif,wav,mp3	CaptAIn Punch, Falcon Punch Parody
