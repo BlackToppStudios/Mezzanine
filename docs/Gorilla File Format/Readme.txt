@@ -42,4 +42,16 @@ Here we care about all the data fields.  Sadly though, we have to translate the 
 
 Only other thing for info at the top, is the actual name.  It has to be in the "[Font.X]" format, where X is any number you want.  This comes into play when making a caption or button and want to select the text to use.  Thats it for font info.
 
-Next for the actual textures for the Atlas, use another .exe provided, Texture Atlas Generator.exe(again, this is windows only, sorry).  
+Next for the actual textures for the Atlas, use another .exe provided, VAtlas.exe(again, this is windows only, sorry).  I included the readme file for in this directory, it's more or less a full reference for the very simple program.  The program does not automatically resize to accomodate all the images requested, so if you have a number of large pictures or large pictures then be sure to define the size of the Atlas in the command as mentioned in the program's readme file.  Also, by default the program will export to a .DDS file.  We want PNG's so be sure to use the "-png" option.
+
+One of the files that will be exported will be a .vaf file.  This is a plain text file that can be opened by notepad or whatever equivalent.  At the bottom of this file contains the information that you want.  The lines should look something like this:
+
+0 0 0 : 810 294 : "filename1.jpg"
+0 296 0 : 450 369 : "filename2.jpg"
+
+You want to convert them into lines that look more like this(lines are equivalent):
+
+spritename1 0 0 810 294
+spritename2 0 296 450 369
+
+The third number before the first colon is it's location on the images Z axis.  Gorilla doesn't use that or have any sense of it, so it is ignored.  If you incidentally create an atlas that stores an image on anything but the default Z axis...tinker with it so it doesn't do that.  Probably increase the image size...maybe.  Be sure to include the sprites under the sprite section, and mention the texture all these things are in in the Texture section of the Gorilla file.  When determining the whitepixel value under the texture, just put width-2, height-2.
