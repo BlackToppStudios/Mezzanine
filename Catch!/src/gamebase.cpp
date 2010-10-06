@@ -5,6 +5,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "gamebase.h"       //Game Include
+#include "startingarea.h"
 #include <physgame.h>       //Physgame include
 #include <sstream>          //STL includes
 
