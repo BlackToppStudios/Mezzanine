@@ -18,9 +18,8 @@ StartingArea::~StartingArea()
 
 void StartingArea::Initialize()
 {
-    std::list<ActorBase*>* ActorList = &(GetOverlappingActors());
     ActorBase* Act = NULL;
-    for( std::list<ActorBase*>::iterator it = ActorList->begin() ; it != ActorList->end() ; it++ )
+    for( std::list<ActorBase*>::iterator it = OverlappingActors.begin() ; it != OverlappingActors.end() ; it++ )
     {
         Act = (*it);
         Act->DisableCollisionResponse();
@@ -30,10 +29,9 @@ void StartingArea::Initialize()
 
 void StartingArea::ApplyEffect()
 {
-    std::vector<ActorBase*>* ActorList = &(GetRemovedActors());
     ActorBase* Act = NULL;
     PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    for( std::vector<ActorBase*>::iterator it = ActorList->begin() ; it != ActorList->end() ; it++ )
+    for( std::vector<ActorBase*>::iterator it = RemovedActors.begin() ; it != RemovedActors.end() ; it++ )
     {
         Act = (*it);
         Act->EnableCollisionResponse();
@@ -43,8 +41,7 @@ void StartingArea::ApplyEffect()
 
 bool StartingArea::IsEmpty()
 {
-    std::list<ActorBase*>* ActorList = &(GetOverlappingActors());
-    return ActorList->empty();
+    return OverlappingActors.empty();
 }
 
 #endif

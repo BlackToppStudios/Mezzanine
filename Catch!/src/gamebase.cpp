@@ -56,7 +56,8 @@ int main(int argc, char **argv)
     TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(2);
     TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
-    //Setup some light
+    //Setup some light and configure the camera.
+    TheWorld->GetCameraManager()->GetDefaultCamera()->SetCameraType(Camera::Orthographic);
     TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
 
 	//Start the Main Loop
@@ -88,6 +89,26 @@ bool PostRender()
         delete CurrentTime;
         CurrentTime = TheWorld->GetEventManager()->GetNextRenderTimeEvent();
     }
+
+    // Update the timer
+    UIButton* Timer = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer")->GetButton("Timer");
+    std::stringstream time;
+    Whole TotalSeconds = gametime/1000;
+    Whole Minutes = TotalSeconds/60;
+    Whole Seconds;
+    if(60>TotalSeconds)
+    {
+        Seconds = TotalSeconds;
+    }else{
+        Seconds = TotalSeconds%60;
+    }
+    if(10>Seconds)
+    {
+        time << Minutes << ":" << 0 << Seconds;
+    }else{
+        time << Minutes << ":" << Seconds;
+    }
+    Timer->SetText(time.str());
 
     // Turn on the Wireframe
     if (30000<gametime)
@@ -260,16 +281,6 @@ bool PostInput()
         }
     }
 
-    if(0)//check for joystick inputs first
-    {
-        UILayer* HUD = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer");
-        UIButton* JoyMo = HUD->GetButton("JoystickM");
-        UIButton* JoyBu = HUD->GetButton("JoystickB");
-        //get the input events, whatever info you want to show up in the captions.
-        JoyMo->SetText(" ");
-        JoyBu->SetText(" ");
-    }
-
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
         return false;
@@ -312,7 +323,19 @@ bool CheckForEsc()
 
 void LoadContent()
 {
+    String groupname ("Group1");
+    TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
+    TheWorld->GetResourceManager()->InitResourceGroup(groupname);
 
+    /*ActorRigid *object1 = new ActorRigid (10,"Robot","robot.mesh","Group1",TheWorld);
+    object1->CreateShapeFromMeshDynamic(1);
+    object1->SetInitLocation(Vector3(0,0,0));
+    object1->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
+    TheWorld->GetActorManager()->AddActor(object1);
+    TheWorld->GetPhysicsManager()->SetGravity(Vector3(0,0,0));
+
+    TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0,0,-500));
+    TheWorld->GetCameraManager()->GetDefaultCamera()->LookAt(Vector3(0,0,0));*/
 }
 
 void MakeGUI()
@@ -324,44 +347,51 @@ void MakeGUI()
     UIManager* GUI = TheWorld->GetUIManager();
     Real WHeight = (Real)(TheWorld->GetGraphicsManager()->getRenderHeight());
     Real WWidth = (Real)(TheWorld->GetGraphicsManager()->getRenderWidth());
-    GUI->LoadGorilla("dejavu");
+    GUI->LoadGorilla("Catch!");
 
-    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "dejavu");
-    UILayer* Menu = Screen->CreateLayer(MenuLayer, 2);
-    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 1);
+    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "Catch!");
+    UILayer* Menu = Screen->CreateLayer(MenuLayer, 10);
+    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 4);
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     //Build the HUD layer
-    UIButton* MenuButton = HUD->CreateButton( "Menu", 0.0, WHeight * 0.92,
-                                            WWidth * 0.2, WHeight * 0.08,
-                                            24, "Menu");
-    MenuButton->HorizontallyAlign(UIButton::Middle);
-    MenuButton->VerticallyAlign(UIButton::Center);
-    ColourValue MenuColour(0.1,0.3,0.8,1.0);
-    MenuButton->SetBackgroundColour(MenuColour);
+    UIRectangle* Panel = HUD->CreateRectangle( 0, 0, WWidth+2, WHeight);
+    Panel->SetBackgroundSprite("Panel");
+
+    UIButton* Timer = HUD->CreateButton( "Timer", WWidth * 0.8995, WHeight * 0.006, WWidth * 0.0965, WHeight * 0.06, 1, "0:00");
+    Timer->SetAsCaption(true);
+    Timer->HorizontallyAlign(UIButton::Middle);
+    Timer->VerticallyAlign(UIButton::Center);
+    Timer->SetBackgroundSprite("Timer");
+
+    UIRectangle* TIcon = HUD->CreateRectangle( WWidth * 0.8515, WHeight * 0.006, WWidth * 0.0482, WHeight * 0.06);
+    TIcon->SetBackgroundSprite("TimerIcon");
+
+    UIButton* MenuButton = HUD->CreateButton( "Menu", WWidth * 0.008, WHeight * 0.922, WWidth * 0.16, WHeight * 0.07, 1, " ");
+    MenuButton->SetBackgroundSprite("MenuButton");
 
     //Build the ItemShop Layer
     ItemShop->Hide();
 
     //Build the Menu Layer
-    UIRectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
+    /*UIRectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
                                                          WWidth * 0.5, WHeight * 0.7 );
     ColourValue Colours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(Colours);
     UIButton* ReturnButton = Menu->CreateButton( "Return", WWidth * 0.30, WHeight * 0.61,
                                             WWidth * 0.4, WHeight * 0.08,
-                                            24, "Return to Game");
+                                            1, "Return to Game");
     ReturnButton->HorizontallyAlign(UIButton::Middle);
     ReturnButton->VerticallyAlign(UIButton::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(Colours);
     UIButton* ExitButton = Menu->CreateButton( "Exit", WWidth * 0.30, WHeight * 0.73,
                                             WWidth * 0.4, WHeight * 0.08,
-                                            24, "Exit Game");
+                                            1, "Exit Game");
     ExitButton->HorizontallyAlign(UIButton::Middle);
     ExitButton->VerticallyAlign(UIButton::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
-    ExitButton->SetBackgroundColour(Colours);
+    ExitButton->SetBackgroundColour(Colours);*/
     Menu->Hide();
 }
 #endif

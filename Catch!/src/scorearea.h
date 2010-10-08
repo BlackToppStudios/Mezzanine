@@ -12,6 +12,7 @@ class ScoreArea : public AreaEffect
         ScoreArea(const String &name, Vector3 Location, World* world);
         ~ScoreArea();
         void ApplyEffect();
+        bool AllObjectsAtRest();
 };
 
 #endif

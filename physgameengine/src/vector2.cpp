@@ -37,52 +37,44 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uirectangle_h
-#define _uirectangle_h
+#ifndef _vector2_cpp
+#define _vector2_cpp
 
-#include "datatypes.h"
-#include "colourvalue.h"
-
-namespace Gorilla
-{
-    class Rectangle;
-    class Layer;
-}
+#include "vector2.h"
+#include <Ogre.h>
 
 namespace phys
 {
-    class UIManager;
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class UIRectangle
-    /// @headerfile uirectangle.h
-    /// @brief This class is a helper class, specifically for use with background rectangle shapes.
-    /// @details
-    ///////////////////////////////////////
-    class UIRectangle
+    Vector2::Vector2()
     {
-        protected:
-            Gorilla::Rectangle* GRectangle;
-            Gorilla::Layer* Parent;
-            UIManager* Manager;
-        public:
-            /// @brief Internal constructor
-            /// @param GRect The Gorilla Rectangle this rectangle is based on.
-            /// @param manager Pointer to the manager that created this rectangle.
-            UIRectangle(Gorilla::Rectangle* GRect, Gorilla::Layer* GLayer, UIManager* manager);
-            /// @brief Class destructor.
-            ~UIRectangle();
-            /// @brief Sets the background colour of the rectangle.
-            /// @param Colour A colour value representing the colour to be set.
-            void SetBackgroundColour(ColourValue& Colour);
-            /// @brief Sets the background image(if provided in the atlas) of the rectangle.
-            /// @param Name The name of the sprite to set as the background.
-            void SetBackgroundSprite(const String& Name);
-            /// @brief Enables a border and sets it's colour.
-            /// @param Colour A colour value representing the colour to be set.
-            void SetBorder(Real Width, ColourValue& Colour);
-            Real GetLeftPosition();
-            Real GetTopPosition();
-    };//uirectangle
-}//phys
+        X = 0;
+        Y = 0;
+    }
+
+    Vector2::Vector2(Real x, Real y)
+    {
+        X = x;
+        Y = y;
+    }
+
+    Vector2::Vector2(Ogre::Vector2 Vec)
+    {
+        ExtractOgreVector2(Vec);
+    }
+
+    Ogre::Vector2 Vector2::GetOgreVector2() const
+    {
+        Ogre::Vector2 Theirs;
+        Theirs.x=this->X;
+        Theirs.y=this->Y;
+        return Theirs;
+    }
+
+    void Vector2::ExtractOgreVector2(Ogre::Vector2 Ours)
+    {
+        this->X=Ours.x;
+        this->Y=Ours.y;
+    }
+}
 
 #endif

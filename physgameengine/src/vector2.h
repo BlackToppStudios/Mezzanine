@@ -37,52 +37,54 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uirectangle_h
-#define _uirectangle_h
+#ifndef _vector2_h
+#define _vector2_h
 
 #include "datatypes.h"
-#include "colourvalue.h"
 
-namespace Gorilla
+namespace Ogre
 {
-    class Rectangle;
-    class Layer;
+    class Vector2;
 }
 
 namespace phys
 {
-    class UIManager;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class UIRectangle
-    /// @headerfile uirectangle.h
-    /// @brief This class is a helper class, specifically for use with background rectangle shapes.
-    /// @details
+    /// @class Vector2
+    /// @headerfile vector2.h
+    /// @brief This is used to represent a point on a 2 dimentional area, such as a screen.
+    /// @details This contains an X and Y value used to represent coordinates.
+    /// This also has a number of facilities to make converting to graphics subsystems
+    /// as easy as possible.
     ///////////////////////////////////////
-    class UIRectangle
+    class Vector2
     {
-        protected:
-            Gorilla::Rectangle* GRectangle;
-            Gorilla::Layer* Parent;
-            UIManager* Manager;
         public:
-            /// @brief Internal constructor
-            /// @param GRect The Gorilla Rectangle this rectangle is based on.
-            /// @param manager Pointer to the manager that created this rectangle.
-            UIRectangle(Gorilla::Rectangle* GRect, Gorilla::Layer* GLayer, UIManager* manager);
-            /// @brief Class destructor.
-            ~UIRectangle();
-            /// @brief Sets the background colour of the rectangle.
-            /// @param Colour A colour value representing the colour to be set.
-            void SetBackgroundColour(ColourValue& Colour);
-            /// @brief Sets the background image(if provided in the atlas) of the rectangle.
-            /// @param Name The name of the sprite to set as the background.
-            void SetBackgroundSprite(const String& Name);
-            /// @brief Enables a border and sets it's colour.
-            /// @param Colour A colour value representing the colour to be set.
-            void SetBorder(Real Width, ColourValue& Colour);
-            Real GetLeftPosition();
-            Real GetTopPosition();
-    };//uirectangle
-}//phys
+            /// @brief Coordinate on the X vector.
+            Real X;
+            /// @brief Coordinate on the Y vector.
+            Real Y;
+            /// @brief Default Constructor.
+            /// @details Basic all zero initialization constructor.
+            Vector2();
+            /// @brief Real value Constructor.
+            /// @details Constructor that sets both vectors.
+            /// @param X Coordinate on the X vector.
+            /// @param Y Coordinate on the Y vector.
+            Vector2(Real x, Real y);
+            /// @brief Ogre Value Constructor.
+            /// @details Constructor that sets all values to match the Ogre vector.
+            /// @param Vec The vector to be copied to make this vector.
+            Vector2(Ogre::Vector2 Vec);
+            /// @brief Gets a Ogre vector2.
+            /// @details Creates a Ogre vector2 with values equal to this class and returns it.
+            Ogre::Vector2 GetOgreVector2() const;
+            /// @brief Copies an existing Ogre vector2.
+            /// @details This function will copy the values stored in an existing Ogre vector2
+            /// and set the values of this class to be the same.
+            /// @param temp The vector2 to be extracted.
+            void ExtractOgreVector2(Ogre::Vector2 Ours);
+    };
+}
 
 #endif

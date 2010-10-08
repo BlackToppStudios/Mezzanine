@@ -54,7 +54,7 @@ namespace phys
     ///////////////////////////////////
     GraphicsManager::GraphicsManager( World* GameWorld_ )
     {
-        Construct( GameWorld_, 640, 480, false );
+        Construct( GameWorld_, 1024, 768, false );
     }
 
     GraphicsManager::GraphicsManager( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )

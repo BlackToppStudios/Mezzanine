@@ -56,7 +56,7 @@ namespace phys
     class UIButton;
     class UIManager;
     class UIRectangle;
-    class UICaption;
+    class UIItemList;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIButton
     /// @headerfile uibutton.h
@@ -72,7 +72,7 @@ namespace phys
             String Name;
             std::vector<UIButton*> Buttons;
             std::vector<UIRectangle*> Rectangles;
-            std::vector<UICaption*> Captions;
+            std::vector<UIItemList*> ItemLists;
         public:
             /// @brief Internal constructor
             /// @param GScreen The Gorilla Layer this Layer is based on.

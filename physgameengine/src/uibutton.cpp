@@ -50,8 +50,11 @@ namespace phys
         : Name(name)
     {
         GorillaButton = GButton;
+        GorillaRectangle = GLayer->createRectangle(GButton->left(),GButton->top(),GButton->width(),GButton->height());
         Parent = GLayer;
         Manager = manager;
+        Caption = false;
+        MouseOver = false;
     }
 
     UIButton::~UIButton()
@@ -64,12 +67,22 @@ namespace phys
         return Name;
     }
 
+    void UIButton::SetAsCaption(bool caption)
+    {
+        this->Caption = caption;
+    }
+
+    bool UIButton::IsCaption()
+    {
+        return Caption;
+    }
+
     void UIButton::SetText(String& Text)
     {
         GorillaButton->text(Text);
     }
 
-    String& UIButton::GetText()
+    String UIButton::GetText()
     {
         return GorillaButton->text();
     }
@@ -94,6 +107,17 @@ namespace phys
     void UIButton::SetBackgroundColour(ColourValue& Colour)
     {
         GorillaButton->background(Colour.GetOgreColourValue());
+    }
+
+    void UIButton::SetBackgroundSprite(const String& Name)
+    {
+        Gorilla::Sprite* GSprite = Parent->_getSprite(Name);
+        GorillaRectangle->background_image(GSprite);
+    }
+
+    void UIButton::SetBorder(Real Width, ColourValue& Colour)
+    {
+        GorillaRectangle->border(Width, Colour.GetOgreColourValue());
     }
 
     void UIButton::HorizontallyAlign(HorizontalAlign Align)

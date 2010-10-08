@@ -9,7 +9,7 @@ ScoreArea::ScoreArea(const String &name, Vector3 Location, World* world) : AreaE
 
 }
 
-ScoreArea::~ScoreArea
+ScoreArea::~ScoreArea()
 {
 
 }
@@ -17,6 +17,20 @@ ScoreArea::~ScoreArea
 void ScoreArea::ApplyEffect()
 {
 
+}
+
+bool ScoreArea::AllObjectsAtRest()
+{
+    ActorBase* Act = NULL;
+    if(OverlappingActors.empty())
+        return false;
+    for ( std::list<ActorBase*>::iterator it = OverlappingActors.begin() ; it != OverlappingActors.end() ; it++ )
+    {
+        Act = (*it);
+        if( Act->CheckActivation() )
+            return false;
+    }
+    return true;
 }
 
 #endif

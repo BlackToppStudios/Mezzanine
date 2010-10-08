@@ -62,6 +62,17 @@ namespace phys
     {
         GRectangle->background_colour(Colour.GetOgreColourValue());
     }
+
+    void UIRectangle::SetBackgroundSprite(const String& Name)
+    {
+        Gorilla::Sprite* GSprite = Parent->_getSprite(Name);
+        GRectangle->background_image(GSprite);
+    }
+
+    void UIRectangle::SetBorder(Real Width, ColourValue& Colour)
+    {
+        GRectangle->border(Width, Colour.GetOgreColourValue());
+    }
 }
 
 #endif
