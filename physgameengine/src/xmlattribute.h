@@ -61,8 +61,13 @@ namespace phys
             protected:
                 /// @brief Construct an attribute using meta data from a TiCPP pointer
                 /// @param Meta A pointer to a ticpp::Attribute that this class will wrap.
-                /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in and phys::xml::base
+                /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
                 Attribute (ticpp::Attribute* Meta, bool FirstTimeUsed = false);
+
+                /// @brief This will find or create a pointer to the
+                /// @param Meta A pointer to a ticpp::Attribute that returned Attribute will wrap
+                /// @return A pointer the request phys::xml::Attribute
+                static Attribute* GetPointerFromWrapped(ticpp::Attribute* Meta);
 
             public:
 

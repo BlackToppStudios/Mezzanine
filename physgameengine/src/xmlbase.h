@@ -143,7 +143,7 @@ namespace phys
                 {
                     //isBase,                   /*< Indicates the XMLComponent is a Base, and not a node, and should never exist like this. */
                     isAttribute,              /**< Indicates the XMLComponent is an attribute, and not a node */
-                    isNode,                   /**< Indicates the XMLComponent is a node and nothing else and should be used*/
+                    //isNode,                   /**< Indicates the XMLComponent is a node and nothing else and should be used*/
                     isComment,                /**< Indicates the XMLComponent is a node and */
                     isDeclaration,            /**< Indicates the XMLComponent is a node and */
                     isDocument,               /**< Indicates the XMLComponent is a node and */

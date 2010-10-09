@@ -59,22 +59,11 @@ namespace phys
         class Node : public Base
         {
             protected:
-                /// @brief Construct an attribute using meta data from a TiCPP pointer
-                /// @param Meta A pointer to a ticpp::Node that this class will wrap.
-                /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in and phys::xml::base
-                Node (ticpp::Node* Meta, bool FirstTimeUsed = false);
 
             public:
-                /// @brief Construct an empty Node.
-                Node ();
 
                 /// @brief Tears down an Node and removes the node from the DOM
                 virtual ~Node ();
-
-                /// @brief Copy Constructor
-                /// @param CopiedNode The Node we are copying.
-                Node (const Node &CopiedNode);
-
 
                 /// @brief Get the value of this Node.
                 /// @return this returns a String containing the value of this attribute.
@@ -104,9 +93,30 @@ namespace phys
                 /// @details Leaves this node intact, but deletes all lower in the XML tree
                 void Clear();
 
+                /// @brief Adds a child node to the end of the list
+                /// @param AddThis The Node to be added
+                /// @warning Throws an error if you try to insert a Document
+                void AppendChild (Node &AddThis);
+
+                /// @brief Adds a child node after a specified node
+                /// @param AfterThis A Pointer to a node already a child, that is to preceed the added node
+                /// @param AddThis The Node to be added.
+                /// @warning Throws an error if you try to insert a Document
+                void InsertAfterChild (Node *AfterThis, Node &AddThis);
+
+                /// @brief Adds a child node before a specified node
+                /// @param BeforeThis A Pointer to a node already a child, that is to follow the added node.
+                /// @param AddThis The Node to be added.
+                /// @warning Throws an error if you try to insert a Document.
+                void InsertBeforeChild (Node *BeforeThis, Node &AddThis);
+
+                /// @brief Remove a child node
+                /// @param RemoveThis A Pointer to the child node to be removed.
+                void RemoveChild (Node *RemoveThis);
+
                 /// @brief This identifies what kind of child of xml::base this is
-                /// @return This returns Base::isNode
-                virtual XMLComponentType GetType();
+                /// @return This returns the appropriate value for what this class is.
+                virtual XMLComponentType GetType() = 0;
 
                 /// @brief Returns the Parent Node of this Node Throws an exception if none exists
                 /// @return This returns a pointer to a phys::xml::node. Specifically the node that considers this Node it's child.
@@ -136,33 +146,25 @@ namespace phys
                 //Node * 	IterateChildren (const std::string &value, Node *previous) const
                 // 	This flavor of IterateChildren searches for children with a particular value.
 
-                /// @brief Adds a child node to the end of the list
-                /// @param AddThis The Node to be added
-                /// @warning Throws an error if you try to insert a Document
-                void AppendChild (Node &AddThis);
-
-                /// @brief Adds a child node after a specified node
-                /// @param AfterThis A Pointer to a node already a child, that is to preceed the added node
-                /// @param AddThis The Node to be added.
-                /// @warning Throws an error if you try to insert a Document
-                void InsertAfterChild (Node *AfterThis, Node &AddThis);
-
-                /// @brief Adds a child node before a specified node
-                /// @param BeforeThis A Pointer to a node already a child, that is to follow the added node.
-                /// @param AddThis The Node to be added.
-                /// @warning Throws an error if you try to insert a Document.
-                void InsertBeforeChild (Node *BeforeThis, Node &AddThis);
-
-                /// @brief Remove a child node
-                /// @param RemoveThis A Pointer to the child node to be removed.
-                void RemoveChild (Node *RemoveThis);
-
                 //not implementing
                 //Node * 	ReplaceChild (Node *replaceThis, Node &withThis)
                 //int 	Type () const
                 //Query the type (as TiXmlNode::NodeType ) of this node.
 
-                /// @brief
+                /// @brief Navigate to previous sibling node.
+                /// @return A pointer to the previous sibling
+                virtual Node * 	PreviousSibling () const = 0;
+
+                /// @brief Navigate to the closest previous sibling node with matching Data.
+                /// @param Value
+                /// @return A pointer to the previous sibling
+                virtual Node * 	PreviousSibling (const std::string &Value) const = 0;
+
+                virtual Node * 	NextSibling () const = 0;
+
+                virtual Node * 	NextSibling (const std::string &Value) const = 0;
+
+
 
 /*
 

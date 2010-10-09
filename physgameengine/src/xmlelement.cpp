@@ -42,6 +42,9 @@
 #define _xmlelement_cpp
 
 #include "xmlelement.h"
+#include "exception.h"
+
+#include <sstream>
 
 #define TIXML_USE_TICPP
 #include <ticpp.h>
@@ -50,6 +53,54 @@ namespace phys
 {
     namespace xml
     {
+        Element::Element (ticpp::Element *Meta, bool FirstTimeUsed)
+        {
+            this->Wrapped = Meta;
+            if (FirstTimeUsed)
+                { this->TakeOwnerOfWrapped(); }
+        }
+
+        Element::Element ()
+        {
+            this->Wrapped = new ticpp::Element();
+            this->TakeOwnerOfWrapped();
+        }
+
+        Element::Element (const std::string &Value)
+        {
+            this->Wrapped = new ticpp::Element(Value);
+            this->TakeOwnerOfWrapped();
+        }
+
+        Element::Element (const std::string &Value, const std::string &Text)
+        {
+            this->Wrapped = new ticpp::Element(Value, Text);
+            this->TakeOwnerOfWrapped();
+        }
+
+        Element::~Element()
+            {}
+
+        Element* Element::GetPointerFromWrapped(ticpp::Element* Meta)
+        {
+            Element* Other;
+            try {
+                //Most likely cause of failure is ticpp::Node::GetBasePointer() returns 0
+                Other = static_cast<Element*>( Meta->GetBasePointer()->GetUserData() );
+            } catch (ticpp::Exception e) {
+                std::stringstream temp;
+                temp << "Could not Create phys::xml::Element from invalid pointer." << std::endl << e.what() << std::endl << "Details: " << e.m_details;
+                throw Exception (temp.str());
+            }
+
+            //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
+
+            /// @todo TODO: Actually create our Element here
+            //if(0 == Other)
+            //    { Other = new Element(Meta, true); }
+            return Other;
+        }
+
 
     }// \xml
 }// \phys

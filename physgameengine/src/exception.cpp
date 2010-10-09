@@ -37,65 +37,31 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physgame_h
-#define _physgame_h
 
-///////////////////////////////////////////////////////////////////////////////
-/// @file physgame.h
-/// @brief A single file that includes all of the physgame engine
-/// @details This file exists solely to make it easier for others to include
-/// parts of the physgame engine in their project with out needing to know or
-/// care about the internals of our projects.
-///////////////////////////////////////////////////////////////////////////////
+#ifndef _exception_cpp
+#define _exception_cpp
 
-// We put headers in our headers so we can include while we include
-#include "actorbase.h"
-#include "actorcontainerbase.h"
-#include "actorcontainervector.h"
-#include "actorragdoll.h"
-#include "actorrigid.h"
-#include "actorsoft.h"
-#include "actorterrain.h"
-#include "areaeffect.h"
-#include "camera.h"
-#include "cameramanager.h"
-#include "colourvalue.h"
-#include "constraint.h"
-#include "crossplatform.h"
-#include "datatypes.h"
-#include "eventbase.h"
-#include "eventmanager.h"
-#include "eventquit.h"
-#include "eventrendertime.h"
-#include "eventuserinput.h"
 #include "exception.h"
-#include "graphicsmanager.h"
-#include "light.h"
-#include "linegroup.h"
-#include "managerbase.h"
-#include "metacode.h"
-#include "physicsmanager.h"
-#include "plane.h"
-#include "quaternion.h"
-#include "ray.h"
-#include "resourcemanager.h"
-#include "scenemanager.h"
-#include "sound.h"
-#include "soundlistener.h"
-#include "soundmanager.h"
-#include "uibutton.h"
-#include "uilayer.h"
-#include "uimanager.h"
-#include "uirectangle.h"
-#include "uiscreen.h"
-#include "vector3.h"
-#include "vector3wactor.h"
-#include "world.h"
-#include "worldgetset.h"
-#include "worldquerytool.h"
-#include "xmlattribute.h"
-#include "xmlbase.h"
-#include "xmldocument.h"
-#include "xmlelement.h"
 
-#endif
+
+namespace phys
+{
+    Exception::Exception(const String &Message):ErrorMessage(Message)
+    {
+
+    }
+
+    String Exception::what() throw()
+    {
+        return this->ErrorMessage;
+    }
+
+    Exception::~Exception() throw()
+    {
+
+    }
+
+
+} // \phys
+
+#endif // \exception_cpp

@@ -43,116 +43,120 @@
 
 #include "xmlattribute.h"
 
+#include <sstream>
+#include <exception>
+
 #define TIXML_USE_TICPP
 #include <ticpp.h>
+
+
 
 namespace phys
 {
     namespace xml
     {
-            Attribute::Attribute()
-            {
-                this->Wrapped = new ticpp::Attribute();
-                this->TakeOwnerOfWrapped();
+        Attribute::Attribute()
+        {
+            this->Wrapped = new ticpp::Attribute();
+            this->TakeOwnerOfWrapped();
+        }
+
+        Attribute::Attribute (const String &name, const String &value)
+        {
+            this->Wrapped = new ticpp::Attribute(name,value);
+            this->TakeOwnerOfWrapped();
+        }
+
+        Attribute::Attribute(ticpp::Attribute* Meta, bool FirstTimeUsed)
+        {
+            this->Wrapped = Meta;
+            if (FirstTimeUsed)
+                { this->TakeOwnerOfWrapped(); }
+        }
+
+        Attribute::Attribute (const Attribute &CopiedAttribute)
+        {
+            this->Wrapped = CopiedAttribute.Wrapped;
+
+            //alternative shared_ptr code
+            //this->Wrapped = new BasePointer(CopiedAttribute.Wrapped);
+        }
+
+        Attribute::~Attribute()
+            { /* Attribute have no children and phys::xml::Base will handle deleting wrapped, so we have very little to do*/}
+
+        Attribute* Attribute::GetPointerFromWrapped(ticpp::Attribute* Meta)
+        {
+            Attribute* Other;
+            try {
+                //Most likely cause of failure is ticpp::Node::GetBasePointer() returns 0
+                Other = static_cast<Attribute*>( Meta->GetBasePointer()->GetUserData() );
+            } catch (ticpp::Exception e) {
+                std::stringstream temp;
+                temp << "Could not Create phys::xml::Attribute from invalid pointer." << std::endl << e.what() << std::endl << "Details: " << e.m_details;
+                //throw new std::exception(temp.str());
             }
 
-            Attribute::Attribute (const String &name, const String &value)
-            {
-                this->Wrapped = new ticpp::Attribute(name,value);
-                this->TakeOwnerOfWrapped();
-            }
+            //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
+            if(0 == Other)
+                { Other = new Attribute(Meta, true); }
+            return Other;
+        }
 
-            Attribute::Attribute(ticpp::Attribute* Meta, bool FirstTimeUsed)
-            {
-                this->Wrapped = Meta;
-                if (FirstTimeUsed)
-                    { this->TakeOwnerOfWrapped(); }
-            }
+        String Attribute::GetValueAsString() const
+        {
+            return static_cast<ticpp::Attribute*> (this->Wrapped)->Value();
+            //alternative shared_ptr code
+            //return static_cast<ticpp::Attribute*> ((*(this->Wrapped)).get())->Value();
+            // please let me explain the above line.
+            // 1. "this->Wrapped" - This deep down is the Object we want to run a method on.
+            // 2. "*(this->Wrapped)" - It is really a pointer so we dereference it.
+            // 3. "(*(this->Wrapped)).get()" - After dereference this pointer we are given a boost::shared_ptr which is a reference counting pointer.
+            //      So now we call ".get()" to return the actual pointer we need.
+            // 4. "static_cast<ticpp::Attribute*> (AboveGibberish)" - Since The pointer is a base class, but we know it is pointer to a derived class
+            //      we cast it to the appropriate class
+            // 5. "AboveGibberish->Value()" - This is the only part that actually performs work, this calls the Value() method on the buried object
+            // 6. return AboveGibberish; - Finally we return whatever that method we ran spat out.
+        }
 
-            Attribute::Attribute (const Attribute &CopiedAttribute)
-            {
-                this->Wrapped = CopiedAttribute.Wrapped;
+        Whole Attribute::GetValueAsWhole() const
+        {
+            Whole Temp=0;
+            static_cast<ticpp::Attribute*> (this->Wrapped)->GetValue(&Temp);
+            return Temp;
+        }
 
-                //alternative shared_ptr code
-                //this->Wrapped = new BasePointer(CopiedAttribute.Wrapped);
-            }
+        Real Attribute::GetValueAsReal() const
+        {
+            Real Temp=0;
+            static_cast<ticpp::Attribute*> (this->Wrapped)->GetValue(&Temp);
+            return Temp;
+        }
 
-            Attribute::~Attribute()
-                { }
+        void Attribute::SetValue (const Whole &value)
+            { static_cast<ticpp::Attribute*> (this->Wrapped)->SetValue(value); }
 
-            String Attribute::GetValueAsString() const
-            {
-                return static_cast<ticpp::Attribute*> (this->Wrapped)->Value();
-                //alternative shared_ptr code
-                //return static_cast<ticpp::Attribute*> ((*(this->Wrapped)).get())->Value();
-                // please let me explain the above line.
-                // 1. "this->Wrapped" - This deep down is the Object we want to run a method on.
-                // 2. "*(this->Wrapped)" - It is really a pointer so we dereference it.
-                // 3. "(*(this->Wrapped)).get()" - After dereference this pointer we are given a boost::shared_ptr which is a reference counting pointer.
-                //      So now we call ".get()" to return the actual pointer we need.
-                // 4. "static_cast<ticpp::Attribute*> (AboveGibberish)" - Since The pointer is a base class, but we know it is pointer to a derived class
-                //      we cast it to the appropriate class
-                // 5. "AboveGibberish->Value()" - This is the only part that actually performs work, this calls the Value() method on the buried object
-                // 6. return AboveGibberish; - Finally we return whatever that method we ran spat out.
-            }
+        void Attribute::SetValue (const Real &value)
+            { static_cast<ticpp::Attribute*> (this->Wrapped)->SetValue(value); }
 
-            Whole Attribute::GetValueAsWhole() const
-            {
-                Whole Temp=0;
-                static_cast<ticpp::Attribute*> (this->Wrapped)->GetValue(&Temp);
-                return Temp;
-            }
+        void Attribute::SetValue (const String &value)
+            { static_cast<ticpp::Attribute*> (this->Wrapped)->SetValue(value); }
 
-            Real Attribute::GetValueAsReal() const
-            {
-                Real Temp=0;
-                static_cast<ticpp::Attribute*> (this->Wrapped)->GetValue(&Temp);
-                return Temp;
-            }
+        void Attribute::SetName(const String &Name)
+            { static_cast<ticpp::Attribute*> (this->Wrapped)->SetName(Name);}
 
-            void Attribute::SetValue (const Whole &value)
-                { static_cast<ticpp::Attribute*> (this->Wrapped)->SetValue(value); }
+        String Attribute::GetName() const
+            { return static_cast<ticpp::Attribute*> (this->Wrapped)->Name();}
 
-            void Attribute::SetValue (const Real &value)
-                { static_cast<ticpp::Attribute*> (this->Wrapped)->SetValue(value); }
+        Attribute* Attribute::Next() const
+            { return this->GetPointerFromWrapped(static_cast<ticpp::Attribute*> (this->Wrapped)->Next(true)); }
 
-            void Attribute::SetValue (const String &value)
-                { static_cast<ticpp::Attribute*> (this->Wrapped)->SetValue(value); }
+            //Should add exception handling to the navigation functions
+        Attribute* Attribute::Previous() const
+            { return this->GetPointerFromWrapped(static_cast<ticpp::Attribute*> (this->Wrapped)->Previous(true)); }
 
-            void Attribute::SetName(const String &Name)
-                { static_cast<ticpp::Attribute*> (this->Wrapped)->SetName(Name);}
-
-            String Attribute::GetName() const
-                { return static_cast<ticpp::Attribute*> (this->Wrapped)->Name();}
-
-            Attribute* Attribute::Next() const
-            {
-                ticpp::Attribute* OtherWrappped = static_cast<ticpp::Attribute*> (this->Wrapped)->Next(true);
-                Attribute* Other = static_cast<Attribute*>( OtherWrappped->GetBasePointer()->GetUserData() );
-
-                if(0 == Other)
-                {
-                    Other = new Attribute(OtherWrappped, true);
-                }
-                return Other;
-                //Copy constucted code
-                //return new Attribute(static_cast<ticpp::Attribute*> (this->Wrapped)->Next(throwIfNoAttribute));
-            }
-
-            Attribute* Attribute::Previous() const
-            {
-                ticpp::Attribute* OtherWrappped = static_cast<ticpp::Attribute*> (this->Wrapped)->Previous(true);
-                Attribute* Other = static_cast<Attribute*>( OtherWrappped->GetBasePointer()->GetUserData() );
-
-                if(0 == Other)
-                {
-                    Other = new Attribute(OtherWrappped, true);
-                }
-                return Other;
-            }
-
-            Attribute::XMLComponentType Attribute::GetType()
-                { return Base::isAttribute; }
+        Attribute::XMLComponentType Attribute::GetType()
+            { return Base::isAttribute; }
     } // \xml
 }//\phys
 

@@ -82,8 +82,8 @@ namespace phys
             void Node::SetValue (const String &value)
                 { static_cast<ticpp::Node*> (this->Wrapped)->SetValue(value); }
 
-            Attribute::XMLComponentType Node::GetType()
-                { return Base::isNode; }
+            /* Attribute::XMLComponentType Node::GetType()
+                { return Base::isNode; } */
 
             void Node::Clear()
             {
@@ -101,7 +101,6 @@ namespace phys
                 AddThis.TakeOwnerOfWrapped();
             }
 
-
             void Node::InsertAfterChild (Node *AfterThis, Node &AddThis)
             {
                 static_cast<ticpp::Node*> (this->Wrapped)->InsertAfterChild( static_cast<ticpp::Node*>(AfterThis->Wrapped), *(static_cast<ticpp::Node*>(AddThis.Wrapped)) );
@@ -113,6 +112,9 @@ namespace phys
                 static_cast<ticpp::Node*> (this->Wrapped)->InsertBeforeChild( static_cast<ticpp::Node*>(BeforeThis->Wrapped), *(static_cast<ticpp::Node*>(AddThis.Wrapped)) );
                 AddThis.TakeOwnerOfWrapped();
             }
+
+
+
 
     } // \xml
 }//\phys
