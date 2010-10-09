@@ -159,6 +159,34 @@ namespace phys
         }
         GorillaButton->vertical_align(VA);
     }
+
+    void UIButton::SetPosition(Vector2 Position)
+    {
+        GorillaButton->left(Position.X);
+        GorillaButton->top(Position.Y);
+        GorillaRectangle->left(Position.X);
+        GorillaRectangle->top(Position.Y);
+    }
+
+    Vector2 UIButton::GetPosition()
+    {
+        Vector2 Pos(GorillaButton->left(), GorillaButton->top());
+        return Pos;
+    }
+
+    void UIButton::SetSize(Vector2 Size)
+    {
+        GorillaButton->width(Size.X);
+        GorillaButton->height(Size.Y);
+        GorillaRectangle->width(Size.X);
+        GorillaRectangle->height(Size.Y);
+    }
+
+    Vector2 UIButton::GetSize()
+    {
+        Vector2 Pos(GorillaButton->width(), GorillaButton->height());
+        return Pos;
+    }
 }//phys
 
 #endif

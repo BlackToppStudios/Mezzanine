@@ -42,6 +42,7 @@
 
 #include "datatypes.h"
 #include "colourvalue.h"
+#include "vector2.h"
 
 namespace Gorilla
 {
@@ -130,6 +131,18 @@ namespace phys
             /// @brief Aligns the text of the button.
             /// @param Align The enum value representing the vertical alignment to be set.
             void VerticallyAlign(VerticalAlign Align);
+            /// @brief Sets the top left position of this button in pixels.
+            /// @param Position A Vector2 representing the location of this button.
+            void SetPosition(Vector2 Position);
+            /// @brief Gets the top left position of this button.
+            /// @return Returns a Vector2 representing the location of this button.
+            Vector2 GetPosition();
+            /// @brief Sets the size of this button in pixels.
+            /// @param Size A vector2 representing the size of this button.
+            void SetSize(Vector2 Size);
+            /// @brief Gets the size of this button in pixels.
+            /// @return Returns a vector2 representing the size of this button.
+            Vector2 GetSize();
     };//uibutton
 }//phys
 

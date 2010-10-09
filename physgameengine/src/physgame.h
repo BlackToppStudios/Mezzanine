@@ -87,6 +87,7 @@
 #include "uimanager.h"
 #include "uirectangle.h"
 #include "uiscreen.h"
+#include "vector2.h"
 #include "vector3.h"
 #include "vector3wactor.h"
 #include "world.h"
