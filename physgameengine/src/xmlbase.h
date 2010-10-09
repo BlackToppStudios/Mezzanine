@@ -58,7 +58,12 @@ namespace phys
     /// manipulating xml documents will reside. This components found here are simply
     /// a tight wrapper around TinyXMLcpp with some integration with the rest of the
     /// physgame engine to allow some enhanced functionality (like using Ogre's nifty
-    /// File loading system).\n
+    /// File loading system). The only changes made to TiCPP were to remove the
+    /// private and protected Sections of TiCPP::Base and make all the members public
+    /// so that phys::xml could tightly integrate with them. We did this
+    /// So we could avoid reimplementing certain case functionality and make use of
+    /// TinyXML better. \n \n
+    ///
     /// Here is the original Copyright notice that came with our copy of TiCPP, and show
     /// That the huge copy pastes we performed are ok. This license does not apply
     /// to our code and is shown here explicitly show that we are in compliance with
@@ -107,6 +112,9 @@ namespace phys
         /// has no pure virtual methods, this class should still not be instantiated.
         /// Not that doing so would damage anything, it just wasn't designed to be used
         /// that way.
+        ///
+        /// @warning All Member that inherit from this class are expected to behave a
+        /// certain way with respect the
         class Base
         {
             protected:
@@ -114,13 +122,28 @@ namespace phys
                 /// @brief A pointer to the Library level object we are wrapping to implement this functionality
                 ticpp::Base *Wrapped;
 
+                /// @internal
+                /// @brief Become responsible for deleting shared data.
+                /// @details Each TinyXML class instance can store a pointer to anything. When one of our classes is being deconstructed, if that pointer
+                /// points the the member being deconstructed, then it gets deleted too. This assumes that ownershipA\n
+                /// Non-Thread safe, this is one of those items that would have to be  Mutex encapsulated to  be made thread safe
+                void TakeOwnerOfWrapped();
+
+                /// @internal
+                /// @brief Stop being responsible for deleting shared data.
+                /// @details Each TinyXML class instance can store a pointer to anything. When one of our classes is being deconstructed, if that pointer
+                /// points the the member being deconstructed, then it gets deleted too. By default this removes that ownener\n
+                /// Non-Thread safe, this is one of those items that would have to be  Mutex encapsulated to  be made thread safe
+                /// @param WhoIsResponsible A Void Pointer that default to 0, this can be used to make the TinyXML node think something else wraps which will have specific effects in phys::xml::base derived code.
+                void DropOwnerShipOfWrapped(void* WhoIsResponsible=0);
+
             public:
                 /// @brief This is used to identify what kind of component you are working with, in conjunction with the GetType() function
                 enum XMLComponentType
                 {
                     //isBase,                   /*< Indicates the XMLComponent is a Base, and not a node, and should never exist like this. */
                     isAttribute,              /**< Indicates the XMLComponent is an attribute, and not a node */
-                    isNode,                   /**< Indicates the XMLComponent is a node and nothing else */
+                    isNode,                   /**< Indicates the XMLComponent is a node and nothing else and should be used*/
                     isComment,                /**< Indicates the XMLComponent is a node and */
                     isDeclaration,            /**< Indicates the XMLComponent is a node and */
                     isDocument,               /**< Indicates the XMLComponent is a node and */
@@ -177,9 +200,8 @@ namespace phys
                 /// @return This returns a string that contains the current error information [I think that is what happens anyway.]
                 virtual String BuildDetailedErrorString() const;
 
-                /// @brief A simple empty virtual destructor for compatibility and ease of customization.
+                /// @brief Handles the deleting of enclosed data
                 virtual ~Base();
-
 
                 /// @brief This Will be by Child classes to aid in identification
                 /// @return Classes that inherit from this are expected to return an XMLComponentType that indicates what kind of XML component they are.
@@ -196,6 +218,18 @@ namespace phys
                 /// @brief Get the value of this XML Object converted to a Real Number.
                 /// @return this returns a Real containing the value of this attribute.
                 virtual Real GetValueAsReal() const = 0;
+
+                /// @brief Set the value of this XML Object.
+                /// @param value A Whole number to be inserted into the XML document
+                virtual void SetValue(const Whole &value) = 0;
+
+                /// @brief Set the value of this XML Object.
+                /// @param value A Real number to be inserted into the XML document
+                virtual void SetValue(const Real &value) = 0;
+
+                /// @brief Set the value of this XML Object.
+                /// @param value A String number to be inserted into the XML document
+                virtual void SetValue(const String &value) = 0;
 
 
         }; // /Base

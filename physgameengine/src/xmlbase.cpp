@@ -52,12 +52,21 @@ namespace phys
     {
         Base::~Base()
         {
-            //this looks really wierd, deleting a smart pointer. We are actually using a pointer to a smart pointer, so this is required.
-            delete this->Wrapped;
+            //If we have ownership then delete the data
+            if (this == this->Wrapped->GetBasePointer()->GetUserData());
+            {
+                delete this->Wrapped;
+            }
         }
 
+        void Base::TakeOwnerOfWrapped()
+            { this->Wrapped->GetBasePointer()->SetUserData(this); }
+
+        void Base::DropOwnerShipOfWrapped(void* WhoIsResponsible)
+            { this->Wrapped->GetBasePointer()->SetUserData(WhoIsResponsible); }
+
         int Base::Row () const
-        { return this->Wrapped->Row();}
+            { return this->Wrapped->Row();}
 
         int Base::Column () const
             { return this->Wrapped->Column(); }

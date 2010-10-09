@@ -52,34 +52,25 @@ namespace phys
     {
             Attribute::Attribute()
             {
-                this->ResponsibleForDelete=true;
                 this->Wrapped = new ticpp::Attribute();
-
-                //alternative shared_ptr code
-                //this->Wrapped = new BasePointer(new ticpp::Attribute());
+                this->TakeOwnerOfWrapped();
             }
 
             Attribute::Attribute (const String &name, const String &value)
             {
-                this->ResponsibleForDelete=true;
                 this->Wrapped = new ticpp::Attribute(name,value);
-
-                //alternative shared_ptr code
-                //this->Wrapped = new BasePointer(new ticpp::Attribute(name,value));
+                this->TakeOwnerOfWrapped();
             }
 
             Attribute::Attribute(ticpp::Attribute* Meta, bool FirstTimeUsed)
             {
-                this->ResponsibleForDelete=FirstTimeUsed;
                 this->Wrapped = Meta;
-
-                //alternative shared_ptr code
-                //this->Wrapped = new BasePointer(Meta);
+                if (FirstTimeUsed)
+                    { this->TakeOwnerOfWrapped(); }
             }
 
             Attribute::Attribute (const Attribute &CopiedAttribute)
             {
-                this->ResponsibleForDelete=false;
                 this->Wrapped = CopiedAttribute.Wrapped;
 
                 //alternative shared_ptr code
@@ -87,13 +78,7 @@ namespace phys
             }
 
             Attribute::~Attribute()
-            {
-                if(this->ResponsibleForDelete)
-                    { delete Wrapped; }
-
-                // alternative shared_ptr code  //This is actually required. Even though we are using a reference counting pointer, this->Wrapped is pointer to that. Each instance of this class will have one of it's own. So we simply delete thatand it will manage the underlying data.
-                //delete Wrapped;
-            }
+                { }
 
             String Attribute::GetValueAsString() const
             {
@@ -140,11 +125,31 @@ namespace phys
             String Attribute::GetName() const
                 { return static_cast<ticpp::Attribute*> (this->Wrapped)->Name();}
 
-            Attribute* Attribute::Next(bool throwIfNoAttribute) const
-                { return new Attribute(static_cast<ticpp::Attribute*> (this->Wrapped)->Next(throwIfNoAttribute));}
+            Attribute* Attribute::Next() const
+            {
+                ticpp::Attribute* OtherWrappped = static_cast<ticpp::Attribute*> (this->Wrapped)->Next(true);
+                Attribute* Other = static_cast<Attribute*>( OtherWrappped->GetBasePointer()->GetUserData() );
 
-            Attribute* Attribute::Previous (bool throwIfNoAttribute) const
-                { return new Attribute(static_cast<ticpp::Attribute*> (this->Wrapped)->Previous(throwIfNoAttribute));}
+                if(0 == Other)
+                {
+                    Other = new Attribute(OtherWrappped, true);
+                }
+                return Other;
+                //Copy constucted code
+                //return new Attribute(static_cast<ticpp::Attribute*> (this->Wrapped)->Next(throwIfNoAttribute));
+            }
+
+            Attribute* Attribute::Previous() const
+            {
+                ticpp::Attribute* OtherWrappped = static_cast<ticpp::Attribute*> (this->Wrapped)->Previous(true);
+                Attribute* Other = static_cast<Attribute*>( OtherWrappped->GetBasePointer()->GetUserData() );
+
+                if(0 == Other)
+                {
+                    Other = new Attribute(OtherWrappped, true);
+                }
+                return Other;
+            }
 
             Attribute::XMLComponentType Attribute::GetType()
                 { return Base::isAttribute; }

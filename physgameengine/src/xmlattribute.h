@@ -58,14 +58,6 @@ namespace phys
         /// @details This wraps ticpp::Attribute tighlty to help make the interface cleaner and easier to use
         class Attribute : public Base
         {
-            private:
-                /// @internal
-                /// @brief Tracks whether or not we are responsible for deleted the Wrapped pointer.
-                /// @details Since this is a simple wrapper around a ticpp object it is possible multiple instances of this class wrap one ticpp::attribute.
-                /// If this class created it, then this bit will equal true and it will be deleted in the destructor. However, if it was made with the copy
-                /// constructor or somehow handed a pointer to the wrapped object, then this assumes no responsibility for deleting it.
-                bool ResponsibleForDelete;
-
             protected:
                 /// @brief Construct an attribute using meta data from a TiCPP pointer
                 /// @param Meta A pointer to a ticpp::Attribute that this class will wrap.
@@ -91,25 +83,27 @@ namespace phys
 
                 /// @brief Get the value of this attribute.
                 /// @return this returns a String containing the value of this attribute.
-                String GetValueAsString() const;
+                virtual String GetValueAsString() const;
 
                 /// @brief Get the value of this attribute converted to a Whole Number.
                 /// @return this returns a Whole containing the value of this attribute.
-                Whole GetValueAsWhole() const;
+                virtual Whole GetValueAsWhole() const;
 
                 /// @brief Get the value of this attribute converted to a Real Number.
                 /// @return this returns a Real containing the value of this attribute.
-                Real GetValueAsReal() const;
+                virtual Real GetValueAsReal() const;
 
-                /// @brief Set the value of this node.
+                /// @brief Set the value of this attribute.
                 /// @param value A Whole number to be inserted into the XML document
-                void SetValue(const Whole &value);
-                /// @brief Set the value of this node.
+                virtual void SetValue(const Whole &value);
+
+                /// @brief Set the value of this attribute.
                 /// @param value A Real number to be inserted into the XML document
-                void SetValue(const Real &value);
-                /// @brief Set the value of this node.
+                virtual void SetValue(const Real &value);
+
+                /// @brief Set the value of this attribute.
                 /// @param value A String number to be inserted into the XML document
-                void SetValue(const String &value);
+                virtual void SetValue(const String &value);
 
                 /// @brief Set the Name of this attribute.
                 /// @param name A String that is the name the attribute will have.
@@ -120,16 +114,12 @@ namespace phys
                 String GetName() const;
 
                 /// @brief Get the next sibling attribute in the DOM.
-                /// @warning This will cause memory leaks if the created pointer is not deleted
-                /// @param throwIfNo Attribute Should this function throw an exception if it fails, or silently fail. Defaults to true so it throws errors on failure.
                 /// @return Returns a pointer to an XML::Attribute that comes after this one, but still on the same element
-                Attribute* Next(bool throwIfNoAttribute=true) const;
+                Attribute* Next() const;
 
                 /// @brief Get the Previous sibling attribute in the DOM.
-                /// @warning This will cause memory leaks if the created pointer is not deleted
-                /// @param throwIfNo Attribute Should this function throw an exception if it fails, or silently fail. Defaults to true so it throws errors on failure.
                 /// @return Returns a pointer to an XML::Attribute that comes before this one, but still on the same element.
-                Attribute* Previous (bool throwIfNoAttribute=true) const;
+                Attribute* Previous () const;
 
                 /// @brief This identifies what kind of child of xml::base this is
                 /// @return This returns Base::isAttribute
