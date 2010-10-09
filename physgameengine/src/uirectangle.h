@@ -42,6 +42,7 @@
 
 #include "datatypes.h"
 #include "colourvalue.h"
+#include "vector2.h"
 
 namespace Gorilla
 {
@@ -74,6 +75,24 @@ namespace phys
             /// @brief Sets the background colour of the rectangle.
             /// @param Colour A colour value representing the colour to be set.
             void SetBackgroundColour(ColourValue& Colour);
+            /// @brief Sets the background image(if provided in the atlas) of the rectangle.
+            /// @param Name The name of the sprite to set as the background.
+            void SetBackgroundSprite(const String& Name);
+            /// @brief Enables a border and sets it's colour.
+            /// @param Colour A colour value representing the colour to be set.
+            void SetBorder(Real Width, ColourValue& Colour);
+            /// @brief Sets the top left position of this rectangle in pixels.
+            /// @param Position A Vector2 representing the location of this rectangle.
+            void SetPosition(Vector2 Position);
+            /// @brief Gets the top left position of this rectangle in pixels.
+            /// @return Returns a Vector2 representing the location of this rectangle.
+            Vector2 GetPosition();
+            /// @brief Sets the size of this rectangle in pixels.
+            /// @param Size A vector2 representing the size of this rectangle.
+            void SetSize(Vector2 Size);
+            /// @brief Gets the size of this rectangle in pixels.
+            /// @return Returns a vector2 representing the size of this rectangle.
+            Vector2 GetSize();
     };//uirectangle
 }//phys
 

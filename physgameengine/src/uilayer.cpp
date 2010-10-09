@@ -132,9 +132,12 @@ namespace phys
         for( std::vector<UIButton*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
         {
             Button = (*it);
-            if(Button->MouseIsOver(MouseX, MouseY))
+            if(!Button->IsCaption())
             {
-                return Button;
+                if(Button->MouseIsOver(MouseX, MouseY))
+                {
+                    return Button;
+                }
             }
         }
         return 0;

@@ -1,0 +1,22 @@
+
+material SphereWood
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588235 0.588235 0.588235 1
+			diffuse 0.588235 0.588235 0.588235 1
+			specular 0 0 0 10 0
+
+			texture_unit
+			{
+				texture wood-texture.jpg
+			}
+		}
+
+	}
+
+}
+
+

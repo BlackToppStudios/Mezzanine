@@ -62,6 +62,40 @@ namespace phys
     {
         GRectangle->background_colour(Colour.GetOgreColourValue());
     }
+
+    void UIRectangle::SetBackgroundSprite(const String& Name)
+    {
+        Gorilla::Sprite* GSprite = Parent->_getSprite(Name);
+        GRectangle->background_image(GSprite);
+    }
+
+    void UIRectangle::SetBorder(Real Width, ColourValue& Colour)
+    {
+        GRectangle->border(Width, Colour.GetOgreColourValue());
+    }
+
+    void UIRectangle::SetPosition(Vector2 Position)
+    {
+        GRectangle->position(Position.GetOgreVector2());
+    }
+
+    Vector2 UIRectangle::GetPosition()
+    {
+        Vector2 Pos(GRectangle->left(), GRectangle->top());
+        return Pos;
+    }
+
+    void UIRectangle::SetSize(Vector2 Size)
+    {
+        GRectangle->width(Size.X);
+        GRectangle->height(Size.Y);
+    }
+
+    Vector2 UIRectangle::GetSize()
+    {
+        Vector2 Pos(GRectangle->width(), GRectangle->height());
+        return Pos;
+    }
 }
 
 #endif

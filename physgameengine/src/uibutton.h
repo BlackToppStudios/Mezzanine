@@ -42,11 +42,13 @@
 
 #include "datatypes.h"
 #include "colourvalue.h"
+#include "vector2.h"
 
 namespace Gorilla
 {
     class Caption;
     class Layer;
+    class Rectangle;
 }
 
 namespace phys
@@ -76,9 +78,11 @@ namespace phys
             };
         protected:
             Gorilla::Caption* GorillaButton;
+            Gorilla::Rectangle* GorillaRectangle;
             Gorilla::Layer* Parent;
             UIManager* Manager;
             bool MouseOver;
+            bool Caption;
             String Name;
         public:
             /// @brief Internal constructor
@@ -90,12 +94,19 @@ namespace phys
             /// @brief Gets the name of this button.
             /// @return Returns a string containing the name of this button.
             String& GetName();
+            /// @brief Sets this class as a caption instead of a button.
+            /// @details This will cause this class to be skipped by automatic mouse click checks.
+            /// @param Caption Whether or not to set this button as a caption.
+            void SetAsCaption(bool caption);
+            /// @brief Gets whether or not this button is just a caption.
+            /// @return Returns a bool, true if this is a caption, false if it's a button.
+            bool IsCaption();
             /// @brief Sets the text displayed within the button.
             /// @param Text The text to be displayed.
             void SetText(String& Text);
             /// @brief Gets the text displayed within the button.
             /// @return Returns the text being displayed.
-            String& GetText();
+            String GetText();
             /// @brief Determines whether the mouse is over this button.
             /// @return Returns a bool indicating whether the mouse is over this button.
             /// @param MouseX The mouse position on screen on the x axis.
@@ -108,12 +119,30 @@ namespace phys
             /// @brief Sets the background colour of the button.
             /// @param Colour A colour value representing the colour to be set.
             void SetBackgroundColour(ColourValue& Colour);
+            /// @brief Sets the background image(if provided in the atlas) of the rectangle.
+            /// @param Name The name of the sprite to set as the background.
+            void SetBackgroundSprite(const String& Name);
+            /// @brief Enables a border and sets it's colour.
+            /// @param Colour A colour value representing the colour to be set.
+            void SetBorder(Real Width, ColourValue& Colour);
             /// @brief Aligns the text of the button.
             /// @param Align The enum value representing the horizontal alignment to be set.
             void HorizontallyAlign(HorizontalAlign Align);
             /// @brief Aligns the text of the button.
             /// @param Align The enum value representing the vertical alignment to be set.
             void VerticallyAlign(VerticalAlign Align);
+            /// @brief Sets the top left position of this button in pixels.
+            /// @param Position A Vector2 representing the location of this button.
+            void SetPosition(Vector2 Position);
+            /// @brief Gets the top left position of this button.
+            /// @return Returns a Vector2 representing the location of this button.
+            Vector2 GetPosition();
+            /// @brief Sets the size of this button in pixels.
+            /// @param Size A vector2 representing the size of this button.
+            void SetSize(Vector2 Size);
+            /// @brief Gets the size of this button in pixels.
+            /// @return Returns a vector2 representing the size of this button.
+            Vector2 GetSize();
     };//uibutton
 }//phys
 

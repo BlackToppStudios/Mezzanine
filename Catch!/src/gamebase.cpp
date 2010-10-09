@@ -5,10 +5,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "gamebase.h"       //Game Include
+#include "startingarea.h"
 #include <physgame.h>       //Physgame include
 #include <sstream>          //STL includes
-
-#define PHYSDEBUG
 
 using namespace phys;
 
@@ -21,21 +20,14 @@ int main(int argc, char **argv)
 {
     try
     {
-        TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), "SceneManager", SceneManager::Generic, 30);
+        TheWorld = new World( Vector3(-1000.0,-1000.0,-1000.0), Vector3(1000.0,1000.0,1000.0), "SceneManager", SceneManager::Generic, 50);
     }catch( exception x){
-        //could not created world
+        //could not create world
     }
-    #ifdef PHYSDEBUG
-    TheWorld->Log("World Created:");
-    #endif
 
     // Set the Title
     TheWorld->SetWindowName("Catch!... The Game!");
     TheWorld->SetTargetFrameRate(50);
-    #ifdef PHYSDEBUG
-    TheWorld->Log("Framerate and Title set");
-    #endif
-
 
     //Give the world functions to run before and after input and physics
     TheWorld->GetEventManager()->SetPreMainLoopItems(&PreInput);
@@ -43,15 +35,11 @@ int main(int argc, char **argv)
     TheWorld->GetPhysicsManager()->SetPreMainLoopItems(&PrePhysics);
     TheWorld->GetPhysicsManager()->SetPostMainLoopItems(&PostPhysics);
     TheWorld->GetGraphicsManager()->SetPostMainLoopItems(&PostRender);
-    #ifdef PHYSDEBUG
-    TheWorld->Log("Managers Created");
-    #endif
 
     //Set the Make the RenderWindow and load system stuff
 	TheWorld->GameInit(false);
-    #ifdef PHYSDEBUG
-    TheWorld->Log("Initialized games");
-    #endif
+
+	TheWorld->SetWindowName( "Catch!" );
 
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
     TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, 1, MetaCode::KEY_q) );
@@ -68,9 +56,9 @@ int main(int argc, char **argv)
     TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(2);
     TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
-    //Setup some camera tricks
-    Node* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
-    CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
+    //Setup some light and configure the camera.
+    TheWorld->GetCameraManager()->GetDefaultCamera()->SetCameraType(Camera::Orthographic);
+    TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
 
 	//Start the Main Loop
 	TheWorld->MainLoop();
@@ -102,42 +90,29 @@ bool PostRender()
         CurrentTime = TheWorld->GetEventManager()->GetNextRenderTimeEvent();
     }
 
-    //Play around with the title bar
-    std::stringstream timestream;
-    timestream << "Catch!... " << gametime;
-    TheWorld->SetWindowName( timestream.str() );
-
-    ActorBase* Act1 = TheWorld->GetActorManager()->FindActor("RobotWayUpFrontLeft");
-    ActorBase* Act2 = TheWorld->GetActorManager()->FindActor("RobotWayUpFrontRight");
-    if (Act1->IsAnimated())
+    // Update the timer
+    UIButton* Timer = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer")->GetButton("Timer");
+    std::stringstream time;
+    Whole TotalSeconds = gametime/1000;
+    Whole Minutes = TotalSeconds/60;
+    Whole Seconds;
+    if(60>TotalSeconds)
     {
-        Act1->AdvanceAnimation((Real)0.001 * LastFrame);
+        Seconds = TotalSeconds;
+    }else{
+        Seconds = TotalSeconds%60;
     }
-
-    if (Act2->IsAnimated())
+    if(10>Seconds)
     {
-        Act2->AdvanceAnimation((Real)0.0001 * LastFrame);
+        time << Minutes << ":" << 0 << Seconds;
+    }else{
+        time << Minutes << ":" << Seconds;
     }
-
-    static bool notplayed=true;
-    if (/*1000<gametime &&*/ notplayed)
-    {
-        notplayed=false;
-        Sound* Welcome = NULL;
-        Welcome = TheWorld->GetSoundManager()->GetSoundByName("Welcome");
-        if(Welcome)
-        {
-            Welcome->Play2d(false);
-        }
-        #ifdef PHYSDEBUG
-        TheWorld->Log("Played Welcome Fun:");
-        #endif
-
-    }
+    Timer->SetText(time.str());
 
     // Turn on the Wireframe
     if (30000<gametime)
-        { TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(1); }
+        { TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0); }
 
     //IF the game has gone on for 150 or more seconds close it.
 	if (150000<gametime || (TheWorld->GetEventManager()->GetNextQuitEvent()!=0) )
@@ -148,9 +123,6 @@ bool PostRender()
 
 bool PrePhysics()
 {
-    TheWorld->Log("Object Locations");
-    //Replace this with something that uses the actor container and logs the location of everything
-    TheWorld->Log(TheWorld->GetActorManager()->FindActor("MetalSphere2")->GetLocation());
     return true;
 }
 
@@ -177,40 +149,6 @@ bool PostInput()
     TheWorld->Log(Queryer.GetMouseX());
     TheWorld->Log(Queryer.GetMouseY());
 
-/*    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
-        {TheWorld->Cameras->IncrementYOrbit(-0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
-
-    if(320<Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
-        {TheWorld->Cameras->IncrementYOrbit(0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}*/
-
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
-        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01); }
-
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
-        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01); }
-
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) )
-        { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( -12.0 ); }
-
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN) )
-        { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( 12.0 ); }
-
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
-        { TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom(); }
-
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_m) )
-    {
-        Sound* Theme = TheWorld->GetSoundManager()->GetSoundByName("Theme2");
-        if(!Theme->IsPlaying())
-        {
-            Theme->Play2d(false);
-        }
-    }
-
-    // Make a declaration for a static constrain so it survives the function lifetime
-    // static *constraint MouseDragger = 0;
-
-    //static Generic6DofConstraint* Dragger=NULL;
     static Point2PointConstraint* Dragger=NULL;
 
     if( Queryer.IsMouseButtonPushed(1) )
@@ -321,7 +259,6 @@ bool PostInput()
                     TheWorld->Log("Dragged To");
                     TheWorld->Log(*DragTo);
                     #endif
-                    //Dragger->SetOffsetALocation(*DragTo);
                     Dragger->SetPivotB(*DragTo);
                 }
             }
@@ -344,17 +281,6 @@ bool PostInput()
         }
     }
 
-    if(0)//check for joystick inputs first
-    {
-        UILayer* HUD = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer");
-        UIButton* JoyMo = HUD->GetButton("JoystickM");
-        UIButton* JoyBu = HUD->GetButton("JoystickB");
-        //get the input events, whatever info you want to show up in the captions.
-        JoyMo->SetText(" ");
-        JoyBu->SetText(" ");
-    }
-
-    #undef PHYSDEBUG
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
         return false;
@@ -397,141 +323,23 @@ bool CheckForEsc()
 
 void LoadContent()
 {
-    TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
-    ActorRigid *object1, *object2, *object3, *object4;
-    ActorTerrain *object5, *object6;
-    ActorRigid *object7;
-    //Ogre Setup Code
     String groupname ("Group1");
-    String filerobot ("robot.mesh");
-    String robotprefix ("Robot");
-
-    Real mass=5.0;
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
-    TheWorld->GetResourceManager()->DeclareResource(filerobot, "Mesh", groupname);
     TheWorld->GetResourceManager()->InitResourceGroup(groupname);
 
-    // Now Lets make some bowling pins
-    Real PinSpacing=75.0;           //This is how far apart we want the pins
-    for(unsigned int c=0; c<4; c++)     //make the back row
-    {
-        std::stringstream namestream;
-        namestream << robotprefix << c;
-        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,TheWorld) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(4);
-        TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
-    }
-
-    for(unsigned int c=0; c<3; c++)     //the row with three pins
-    {
-        std::stringstream namestream;
-        namestream << robotprefix << (c+4);
-        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,TheWorld) );
-        //TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(3);
-        TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
-        TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
-    }
-    //TheWorld->Resources->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "RobotDecomp3.bullet");
-
-    for(unsigned int c=0; c<2; c++)     //the row with 2 pins
-    {
-        std::stringstream namestream;
-        namestream << robotprefix << (c+7);
-        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,TheWorld) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
-        TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
-    }
-
-    std::stringstream namestream;           //make the front pin
-    namestream << robotprefix << 9;
-    TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,TheWorld) );
-    TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-    TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
-
-    //// The simulations soft body, to be used once a suitable mesh is found/created.
-    //TheWorld->Actors->AddActor( new ActorSoft (51,"Column1","column.mesh",groupname,TheWorld) );
-    //ActorSoft* Act9 = static_cast < ActorSoft* > (TheWorld->Actors->LastActorAdded());
-    //Act9->SetInitLocation(Vector3( (-0.5*PinSpacing), 100.0, -PinSpacing*4));
-
-    object5 = new ActorTerrain (Vector3(0.0,-100,-300.0),"Plane","Plane.mesh",groupname,TheWorld);
-    object5->CreateShapeFromMeshStatic();
-    //object5->SetInitLocation(Vector3(0.0,-100,-300.0));
-
-    object6 = new ActorTerrain (Vector3(00.0,300.0,-1100.0),"Ramp","Plane.mesh",groupname,TheWorld);
-    object6->CreateShapeFromMeshStatic();
-    //object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
-    object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
-
-    object1 = new ActorRigid (mass,"RobotWayUpFrontRight",filerobot,groupname,TheWorld);
+    /*ActorRigid *object1 = new ActorRigid (10,"Robot","robot.mesh","Group1",TheWorld);
     object1->CreateShapeFromMeshDynamic(1);
-    object1->SetInitLocation(Vector3(400,70,100));
+    object1->SetInitLocation(Vector3(0,0,0));
     object1->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
-    object1->SetAnimation("Idle", true);
-    object1->EnableAnimation(true);
-
-    object2 = new ActorRigid (150.0f,"WoodSphere","Sphere_Wood.mesh",groupname,TheWorld);
-    object2->CreateSphereShapeFromMesh();
-    object2->SetActorScaling(Vector3(0.5,0.5,0.5));
-    object2->SetInitLocation(Vector3(-140.0,2800.0,-1150.0));
-
-    object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,TheWorld);
-    object3->CreateSphereShapeFromMesh();
-    object3->SetActorScaling(Vector3(0.7,0.7,0.7));
-    object3->SetInitLocation(Vector3(150.0,1800.0,-1300.0));
-
-    object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname,TheWorld);
-    object4->CreateShapeFromMeshDynamic(4);
-    object4->SetInitLocation(Vector3(-400,10, 100));
-    object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
-    object4->SetAnimation("Idle", true);
-    object4->EnableAnimation(true);
-
-    object7 = new ActorRigid (200.0f,"MetalSphere2","Sphere_Metal.mesh",groupname,TheWorld);
-    object7->CreateSphereShapeFromMesh();
-    object7->SetActorScaling(Vector3(0.3,0.3,0.3));
-    object7->SetInitLocation(Vector3(10.0,25000.0,-1300.0));
-    object7->SetDamping(0.3,0.0);
-
-    //Final Steps
-    Vector3 grav;
-    grav.X=0.0;
-    grav.Y=-10000.0;
-    grav.Z=0.0;
-
     TheWorld->GetActorManager()->AddActor(object1);
-    TheWorld->GetActorManager()->AddActor(object2);
-    TheWorld->GetActorManager()->AddActor(object3);
-    TheWorld->GetActorManager()->AddActor(object4);
-    TheWorld->GetActorManager()->AddActor(object5);
-    TheWorld->GetActorManager()->AddActor(object6);
-    TheWorld->GetActorManager()->AddActor(object7);
+    TheWorld->GetPhysicsManager()->SetGravity(Vector3(0,0,0));
 
-    AreaEffect* TestField = new TestAE("Tester", Vector3(0,0,150), TheWorld);
-    TestField->CreateBoxShape(Vector3(500,80,80));
-    TheWorld->GetPhysicsManager()->AddAreaEffect(TestField);
-
-    Sound *sound1, *music1, *music2;
-    TheWorld->GetSoundManager()->CreateSoundSet("Announcer");
-    sound1 = TheWorld->GetSoundManager()->CreateSound("Welcome", "data/common/sounds/welcomefun-1.ogg", true);
-    TheWorld->GetSoundManager()->AddSoundToSoundSet("Announcer", sound1);
-
-    TheWorld->GetSoundManager()->CreateSoundSet("SoundTrack");
-    music1 = TheWorld->GetSoundManager()->CreateSound("Theme1", "data/common/music/cAudioTheme1.ogg", true);
-    TheWorld->GetSoundManager()->AddSoundToSoundSet("SoundTrack", music1);
-    music2 = TheWorld->GetSoundManager()->CreateSound("Theme2", "data/common/music/cAudioTheme2.ogg", true);
-    TheWorld->GetSoundManager()->AddSoundToSoundSet("SoundTrack", music2);
-
-    TheWorld->Log("Actor Count");
-    TheWorld->Log( TheWorld->GetActorManager()->GetActorCount() );
-
-    TheWorld->GetPhysicsManager()->SetGravity(grav);
-    TheWorld->GetPhysicsManager()->SetSoftGravity(grav);
+    TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0,0,-500));
+    TheWorld->GetCameraManager()->GetDefaultCamera()->LookAt(Vector3(0,0,0));*/
 }
 
 void MakeGUI()
 {
-    bool JoystickDebug = true;
-
     String DefaultScreen = "DefaultScreen";
     String MenuLayer = "MenuLayer";
     String HUDLayer = "HUDLayer";
@@ -539,55 +347,51 @@ void MakeGUI()
     UIManager* GUI = TheWorld->GetUIManager();
     Real WHeight = (Real)(TheWorld->GetGraphicsManager()->getRenderHeight());
     Real WWidth = (Real)(TheWorld->GetGraphicsManager()->getRenderWidth());
-    GUI->LoadGorilla("dejavu");
+    GUI->LoadGorilla("Catch!");
 
-    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "dejavu");
-    UILayer* Menu = Screen->CreateLayer(MenuLayer, 2);
-    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 1);
+    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "Catch!");
+    UILayer* Menu = Screen->CreateLayer(MenuLayer, 10);
+    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 4);
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     //Build the HUD layer
-    UIButton* MenuButton = HUD->CreateButton( "Menu", 0.0, WHeight * 0.92,
-                                            WWidth * 0.2, WHeight * 0.08,
-                                            24, "Menu");
-    MenuButton->HorizontallyAlign(UIButton::Middle);
-    MenuButton->VerticallyAlign(UIButton::Center);
-    ColourValue MenuColour(0.1,0.3,0.8,1.0);
-    MenuButton->SetBackgroundColour(MenuColour);
+    UIRectangle* Panel = HUD->CreateRectangle( 0, 0, WWidth+2, WHeight);
+    Panel->SetBackgroundSprite("Panel");
+
+    UIButton* Timer = HUD->CreateButton( "Timer", WWidth * 0.8995, WHeight * 0.006, WWidth * 0.0965, WHeight * 0.06, 1, "0:00");
+    Timer->SetAsCaption(true);
+    Timer->HorizontallyAlign(UIButton::Middle);
+    Timer->VerticallyAlign(UIButton::Center);
+    Timer->SetBackgroundSprite("Timer");
+
+    UIRectangle* TIcon = HUD->CreateRectangle( WWidth * 0.8515, WHeight * 0.006, WWidth * 0.0482, WHeight * 0.06);
+    TIcon->SetBackgroundSprite("TimerIcon");
+
+    UIButton* MenuButton = HUD->CreateButton( "Menu", WWidth * 0.008, WHeight * 0.922, WWidth * 0.16, WHeight * 0.07, 1, " ");
+    MenuButton->SetBackgroundSprite("MenuButton");
 
     //Build the ItemShop Layer
     ItemShop->Hide();
 
     //Build the Menu Layer
-    UIRectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
+    /*UIRectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
                                                          WWidth * 0.5, WHeight * 0.7 );
     ColourValue Colours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(Colours);
     UIButton* ReturnButton = Menu->CreateButton( "Return", WWidth * 0.30, WHeight * 0.61,
                                             WWidth * 0.4, WHeight * 0.08,
-                                            24, "Return to Game");
+                                            1, "Return to Game");
     ReturnButton->HorizontallyAlign(UIButton::Middle);
     ReturnButton->VerticallyAlign(UIButton::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(Colours);
     UIButton* ExitButton = Menu->CreateButton( "Exit", WWidth * 0.30, WHeight * 0.73,
                                             WWidth * 0.4, WHeight * 0.08,
-                                            24, "Exit Game");
+                                            1, "Exit Game");
     ExitButton->HorizontallyAlign(UIButton::Middle);
     ExitButton->VerticallyAlign(UIButton::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
-    ExitButton->SetBackgroundColour(Colours);
+    ExitButton->SetBackgroundColour(Colours);*/
     Menu->Hide();
-
-    //Build the joystick debugger
-    if(JoystickDebug)
-    {
-        UIButton* JoystickMotion = HUD->CreateButton( "JoystickM", WWidth * 0.70, 0.0,
-                                                WWidth * 0.3, WHeight * 0.1,
-                                                14, " ");
-        UIButton* JoystickButton = HUD->CreateButton( "JoystickB", WWidth * 0.70, 0.9,
-                                                WWidth * 0.3, WHeight * 0.08,
-                                                14, " ");
-    }
 }
 #endif
