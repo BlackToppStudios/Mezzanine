@@ -43,7 +43,6 @@
 
 #include "exception.h"
 
-
 namespace phys
 {
     Exception::Exception(const String &Message):ErrorMessage(Message)

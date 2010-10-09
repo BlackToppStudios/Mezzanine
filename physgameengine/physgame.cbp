@@ -247,6 +247,8 @@
 		<Unit filename="src/eventrendertime.h" />
 		<Unit filename="src/eventuserinput.cpp" />
 		<Unit filename="src/eventuserinput.h" />
+		<Unit filename="src/exception.cpp" />
+		<Unit filename="src/exception.h" />
 		<Unit filename="src/graphicsmanager.cpp" />
 		<Unit filename="src/graphicsmanager.h" />
 		<Unit filename="src/internalGorilla.cpp" />
@@ -325,6 +327,8 @@
 		<Unit filename="src/xmlbase.cpp" />
 		<Unit filename="src/xmlbase.h" />
 		<Unit filename="src/xmldocument.h" />
+		<Unit filename="src/xmlelement.cpp" />
+		<Unit filename="src/xmlelement.h" />
 		<Unit filename="src/xmlnode.cpp" />
 		<Unit filename="src/xmlnode.h" />
 		<Extensions>
