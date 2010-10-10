@@ -63,7 +63,7 @@
 					<Add before="cp ../physgameengine/bin/LinuxDebug/* bin/LinuxDebug/ -r" />
 					<Add before="cp data/linux/Catch! bin/LinuxDebug/" />
 					<Add before="#cp data/common/*.jpg bin/LinuxDebug/data/common/" />
-					<Add before="#cp data/common/*.png bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.png bin/LinuxDebug/data/common/" />
 					<Add before="#cp data/common/*.psd bin/LinuxDebug/data/common/" />
 					<Add before="#cp data/common/*.tga bin/LinuxDebug/data/common/" />
 					<Add before="#cp data/common/*.mesh bin/LinuxDebug/data/common/" />
