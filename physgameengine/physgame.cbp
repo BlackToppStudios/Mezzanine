@@ -312,6 +312,8 @@
 		<Unit filename="src/uirectangle.h" />
 		<Unit filename="src/uiscreen.cpp" />
 		<Unit filename="src/uiscreen.h" />
+		<Unit filename="src/vector2.cpp" />
+		<Unit filename="src/vector2.h" />
 		<Unit filename="src/vector3.cpp" />
 		<Unit filename="src/vector3.h" />
 		<Unit filename="src/vector3wactor.cpp" />
