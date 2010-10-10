@@ -91,15 +91,20 @@
 //Includes and Forward Declarations
 #include "crossplatform.h"
 #include "eventbase.h"
-#include "eventmanager.h"
 #include "datatypes.h"
 #include "vector3.h"
-#include "cameramanager.h"
-#include "physicsmanager.h"
-#include "soundmanager.h"
-#include "graphicsmanager.h"
-#include "resourcemanager.h"
-
+#include "scenemanager.h"
+namespace phys
+{
+    class EventManager;
+    class CameraManager;
+    class PhysicsManager;
+    class GraphicsManager;
+    class SoundManager;
+    class ResourceManager;
+    class UIManager;
+}
+#include <list>
 #include <string>
 #include <sstream>
 
@@ -167,11 +172,15 @@ namespace phys
             /// @param GeographyLowerBounds This is the lower boundary of the phyiscs estimation.
             /// @param GeographyUpperbounds This is the upper boundary of the phyiscs estimation.
             /// @param MaxPhysicsProxies This is an estimation of the limit of bodies in the physics world.
+            /// @param SceneManagerName This is the name to be given to the created Scene Manager.
+            /// @param SceneType This is the type of Scene Manager to be created.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
             void Construct( const Vector3 &GeographyLowerBounds,
                             const Vector3 &GeographyUpperbounds,
                             const unsigned short int &MaxPhysicsProxies,
+                            std::string SceneManagerName,
+                            SceneManager::SceneManagerType SceneType,
                             std::string LogFileName,
                             std::vector < ManagerBase* > ManagerToBeAdded);
 
@@ -202,7 +211,7 @@ namespace phys
 
             /// @internal
             /// @brief
-            Ogre::RenderWindow* OgreGameWindow;
+            //Ogre::RenderWindow* OgreGameWindow;
 
             /// @internal
             /// @brief
@@ -210,15 +219,15 @@ namespace phys
 
             /// @internal
             /// @brief
-            Ogre::Camera* OgreCamera;
+            //Ogre::Camera* OgreCamera;
 
             /// @internal
             /// @brief
-            Ogre::Viewport* OgreViewport;
+            //Ogre::Viewport* OgreViewport;
 
             /// @internal
             /// @brief
-            Ogre::SceneManager* OgreSceneManager;
+            //Ogre::SceneManager* OgreSceneManager;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion methods
@@ -232,6 +241,8 @@ namespace phys
             /// @param LogFileName This is the place that log messages get sent to.
             World(  const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
+                    std::string SceneManagerName,
+                    SceneManager::SceneManagerType SceneType,
                     const unsigned short int &MaxPhysicsProxies_=1024,
                     std::string LogFileName="Physgame.log" );
 
@@ -248,6 +259,8 @@ namespace phys
             World(  const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
                     const unsigned short int &MaxPhysicsProxies_,
+                    std::string SceneManagerName,
+                    SceneManager::SceneManagerType SceneType,
                     const std::string &LogFileName,
                     const std::vector <ManagerBase*> &ManagerToBeAdded);
 
@@ -378,7 +391,7 @@ namespace phys
             /// @brief Changes a Manager's time of execution.
             /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.
             /// @param ManagerToChange A pointer to the manager that needs to be changed
-            /// @param Priority the new desire priority/execution order of the Manager
+            /// @param Priority_ the new desire priority/execution order of the Manager
             void UpdateManagerOrder(ManagerBase* ManagerToChange, short int Priority_);
 
             /// @brief This forces the list of managers to be resorted.
@@ -410,6 +423,11 @@ namespace phys
             /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
             PhysicsManager* GetPhysicsManager(const short unsigned int &WhichOne=0);
 
+            /// @brief This gets the SceneManager from the manager list.
+            /// @param WhichOne If you have multiple SceneManagers this will choose which one to return.
+            /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.
+            SceneManager* GetSceneManager(const short unsigned int &WhichOne=0);
+
             /// @brief This gets the SoundManager from the manager list.
             /// @param WhichOne If you have multiple SoundManagers this will choose which one to return.
             /// @return This returns a pointer to a SoundManager, or a NULL pointer if no matching manager exists.
@@ -419,6 +437,11 @@ namespace phys
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
             /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
             ResourceManager* GetResourceManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the UIManager from the manager list.
+            /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
+            /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.
+            UIManager* GetUIManager(const short unsigned int &WhichOne=0);
 
             /// @brief This is another way to put data in the log.
             /// @details The contents of this will be commited to the log once per frame, just before rendering. Because of that do not

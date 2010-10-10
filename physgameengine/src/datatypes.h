@@ -45,10 +45,17 @@
 #include <string>
 #include <vector>
 
+
+/// @internal
+/// @brief Forward declaration for SDL compatibilty
 union SDL_Event;
+
+
 
 namespace phys
 {
+    /// @internal
+    /// @brief Forward declaration for use with soundset
     class Sound;
 
     /// @typedef Real
@@ -81,6 +88,7 @@ namespace phys
     /// @details This is a vector and can be use to store sounds that can be grouped together
     /// for similiar purposes or similiar content for easy tracking.
     typedef std::vector< Sound* > SoundSet;
+
 
     //TODO make a typedef for RawEvent.type and a function that return that new datatype
     //  this will make it easier to swap out event subsystems when porting between platforms

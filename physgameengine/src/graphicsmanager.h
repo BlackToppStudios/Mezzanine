@@ -45,6 +45,7 @@
 namespace Ogre
 {
     class Timer;
+    class RenderWindow;
 }
 
 namespace phys
@@ -84,6 +85,8 @@ namespace phys
             void Construct( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
 
             Ogre::Timer *RenderTimer;
+
+            Ogre::RenderWindow* OgreGameWindow;
 
             Whole FrameDelay;
 
@@ -163,7 +166,16 @@ namespace phys
             /// @brief This is derived from and uses the ManagerBase to perform the the post main loop callbacks
             /// @return This returns a true or false depending on what the callback returns
             virtual bool PostMainLoopItems();
-
+        //Internal access functions
+            /// @internal
+            /// @brief This will set the stored pointer to the ogre render window.
+            /// @details This function is called on once when constructing the world, should not be called otherwise.
+            /// @param OgreWindow A pointer to the created Ogre RenderWindow class.
+            void SetOgreWindowPointer(Ogre::RenderWindow* OgreWindow);
+            /// @internal
+            /// @brief This will get a pointer to the RenderWindow class in use by the world.
+            /// @return Returns a pointer to the Ogre RenderWindow class in use.
+            Ogre::RenderWindow* GetOgreWindowPointer();
     };
 }
 #endif

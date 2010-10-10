@@ -68,23 +68,28 @@
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;btBulletDynamicsCommon.h&quot;</span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;ConvexBuilder.h&quot;</span>
 <a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="keyword">namespace </span>phys{
-<a name="l00047"></a>00047     <span class="keyword">namespace </span>internal{
-<a name="l00048"></a><a class="code" href="../../d8/d61/classphys_1_1internal_1_1PhysConvexDecomposition.html">00048</a>         <span class="keyword">class </span><a class="code" href="../../d8/d61/classphys_1_1internal_1_1PhysConvexDecomposition.html">PhysConvexDecomposition</a> : <span class="keyword">public</span> ConvexDecomposition::ConvexDecompInterface {
-<a name="l00049"></a>00049             <span class="keyword">public</span>:
-<a name="l00050"></a>00050                 <a class="code" href="../../d8/d61/classphys_1_1internal_1_1PhysConvexDecomposition.html">PhysConvexDecomposition</a>();
-<a name="l00051"></a>00051                 btAlignedObjectArray&lt;btConvexHullShape*&gt; m_convexShapes;
-<a name="l00052"></a>00052                 btAlignedObjectArray&lt;btVector3&gt; m_convexCentroids;
-<a name="l00053"></a>00053                 <span class="keywordtype">int</span> mBaseCount;
-<a name="l00054"></a>00054                 <span class="keywordtype">int</span> mHullCount;
-<a name="l00055"></a>00055                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> ConvexDecompResult(ConvexDecomposition::ConvexResult &amp;result);
-<a name="l00056"></a>00056         };
-<a name="l00057"></a>00057     }<span class="comment">// namespace internal</span>
-<a name="l00058"></a>00058 }<span class="comment">// namespace phys</span>
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="preprocessor">#endif</span>
+<a name="l00046"></a>00046 <span class="comment">// Keeps this file form being documented by doxygen</span><span class="comment"></span>
+<a name="l00047"></a>00047 <span class="comment">/// @cond 0</span>
+<a name="l00048"></a>00048 <span class="comment"></span>
+<a name="l00049"></a>00049 <span class="keyword">namespace </span>phys{
+<a name="l00050"></a>00050     <span class="keyword">namespace </span>internal{
+<a name="l00051"></a>00051         <span class="keyword">class </span>PhysConvexDecomposition : <span class="keyword">public</span> ConvexDecomposition::ConvexDecompInterface {
+<a name="l00052"></a>00052             <span class="keyword">public</span>:
+<a name="l00053"></a>00053                 PhysConvexDecomposition();
+<a name="l00054"></a>00054                 btAlignedObjectArray&lt;btConvexHullShape*&gt; m_convexShapes;
+<a name="l00055"></a>00055                 btAlignedObjectArray&lt;btVector3&gt; m_convexCentroids;
+<a name="l00056"></a>00056                 <span class="keywordtype">int</span> mBaseCount;
+<a name="l00057"></a>00057                 <span class="keywordtype">int</span> mHullCount;
+<a name="l00058"></a>00058                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> ConvexDecompResult(ConvexDecomposition::ConvexResult &amp;result);
+<a name="l00059"></a>00059         };
+<a name="l00060"></a>00060     }<span class="comment">// namespace internal</span>
+<a name="l00061"></a>00061 }<span class="comment">// namespace phys</span>
+<a name="l00062"></a>00062 <span class="comment"></span>
+<a name="l00063"></a>00063 <span class="comment">/// @endcond</span>
+<a name="l00064"></a>00064 <span class="comment"></span>
+<a name="l00065"></a>00065 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:49 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

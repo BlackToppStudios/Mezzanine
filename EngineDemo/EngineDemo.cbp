@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="EngineDemo" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="WinDebug">
+				<Option output="bin/WinDebug/EngineDemo" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/WinDebug/" />
+				<Option object_output="obj/WinDebug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="../physgameengine/src" />
+				</Compiler>
+				<Linker>
+					<Add library="physgame" />
+					<Add directory="../physgameengine/bin/WinDebug" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\windows\ogre\&quot; mkdir .\bin\WinDebug\data\windows\ogre' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\common&quot; mkdir .\bin\WinDebug\data\common' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\common\sounds&quot; mkdir .\bin\WinDebug\data\common\sounds' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\common\music&quot; mkdir .\bin\WinDebug\data\common\music' />
+					<Add after="cmd /c copy /y /v ..\physgameengine\bin\WinDebug\physgame.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\OgreMain.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\sdl\SDL.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\plugins.cfg .\bin\WinDebug\data\windows" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\settings.cfg .\bin\WinDebug\data\windows" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\cAudio.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\OpenAL32.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v .\data\common\*.mesh .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.skeleton .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.material .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.jpg .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.psd .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.tga .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.png .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.gorilla .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.bullet .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\sounds\*.ogg .\bin\WinDebug\data\common\sounds" />
+					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinDebug\data\common\music" />
+				</ExtraCommands>
+			</Target>
+			<Target title="LinuxDebug">
+				<Option output="bin/LinuxDebug/EngineDemo-bin" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/LinuxDebug" />
+				<Option object_output="obj/LinuxDebug" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="../physgameengine/src" />
+				</Compiler>
+				<Linker>
+					<Add library="physgame" />
+					<Add library="OgreMain" />
+					<Add library="cAudio" />
+					<Add directory="bin/LinuxDebug" />
+					<Add directory="." />
+				</Linker>
+				<ExtraCommands>
+					<Add before="mkdir bin/LinuxDebug/data -p" />
+					<Add before="cp ../physgameengine/bin/LinuxDebug/* bin/LinuxDebug/ -r" />
+					<Add before="cp data/linux/EngineDemo bin/LinuxDebug/" />
+					<Add before="cp data/common/*.jpg bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.psd bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.tga bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.png bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.mesh bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.gorilla bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.skeleton bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.material bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.bullet bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/music/ bin/LinuxDebug/data/common/ -r" />
+					<Add before="cp data/common/sounds/ bin/LinuxDebug/data/common/ -r" />
+				</ExtraCommands>
+			</Target>
+			<Target title="WinRelease">
+				<Option output="bin/WinRelease/EngineDemo" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/WinRelease/" />
+				<Option object_output="obj/WinRelease/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../physgameengine/src" />
+				</Compiler>
+				<Linker>
+					<Add library="physgame" />
+					<Add directory="../physgameengine/bin/WinRelease" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\windows\ogre\&quot; mkdir .\bin\WinRelease\data\windows\ogre' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\common&quot; mkdir .\bin\WinRelease\data\common' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\common\sounds&quot; mkdir .\bin\WinRelease\data\common\sounds' />
+					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\common\music&quot; mkdir .\bin\WinRelease\data\common\music' />
+					<Add after="cmd /c copy /y /v ..\physgameengine\bin\WinRelease\physgame.dll .\bin\WinRelease" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\OgreMain.dll .\bin\WinRelease" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\sdl\SDL.dll .\bin\WinRelease" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\plugins.cfg .\bin\WinRelease\data\windows" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\settings.cfg .\bin\WinRelease\data\windows" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinRelease\data\windows\ogre" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\cAudio.dll .\bin\WinRelease" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\OpenAL32.dll .\bin\WinRelease" />
+					<Add after="cmd /c copy /y /v .\data\common\*.mesh .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.skeleton .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.material .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.jpg .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.psd .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.tga .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.png .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.gorilla .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.bullet .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\sounds\*.ogg .\bin\WinRelease\data\common\sounds" />
+					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinRelease\data\common\music" />
+				</ExtraCommands>
+			</Target>
+			<Target title="LinuxRelease">
+				<Option output="bin/LinuxRelease/EngineDemo-bin" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/LinuxRelease/" />
+				<Option object_output="obj/LinuxRelease/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../physgameengine/src" />
+				</Compiler>
+				<Linker>
+					<Add library="physgame" />
+					<Add library="OgreMain" />
+					<Add library="cAudio" />
+					<Add directory="bin/LinuxRelease" />
+					<Add directory="." />
+				</Linker>
+				<ExtraCommands>
+					<Add before="mkdir bin/LinuxRelease/data -p" />
+					<Add before="cp ../physgameengine/bin/LinuxRelease/* bin/LinuxRelease/ -r" />
+					<Add before="cp data/linux/EngineDemo bin/LinuxRelease/" />
+					<Add before="cp data/common/*.jpg bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.psd bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.png bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.tga bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.mesh bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.gorilla bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.skeleton bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.material bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.bullet bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/music/*.ogg bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/sounds/*.ogg bin/LinuxRelease/data/common/" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="src/gamebase.cpp" />
+		<Unit filename="src/gamebase.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

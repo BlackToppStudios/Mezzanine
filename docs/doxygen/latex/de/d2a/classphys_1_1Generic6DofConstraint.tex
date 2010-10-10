@@ -13,15 +13,15 @@ Inheritance diagram for phys::Generic6DofConstraint:\begin{figure}[H]
 \item 
 \hyperlink{classphys_1_1Generic6DofConstraint_ab897b1d7f04073cae60cf1d2615d04b4}{Generic6DofConstraint} ()
 \begin{DoxyCompactList}\small\item\em No initialization constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Generic6DofConstraint_aae8cea56ac1d384d326a089e48842cbc}{Generic6DofConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB)
+\hyperlink{classphys_1_1Generic6DofConstraint_aae8cea56ac1d384d326a089e48842cbc}{Generic6DofConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a0fefb80c80d433bec9942b851b2f5a8a}{ActorA}, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a04d2c49698d9a161e92112dd1efc1dcd}{ActorB})
 \begin{DoxyCompactList}\small\item\em Inheritance constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1Generic6DofConstraint_abcd2ccd4e4366070f6879119fe2fb985}{
-{\bfseries Generic6DofConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, \hyperlink{classphys_1_1Vector3}{Vector3} VectorA, \hyperlink{classphys_1_1Vector3}{Vector3} VectorB, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionA, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionB, bool UseLinearReferenceA)}
+{\bfseries Generic6DofConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a0fefb80c80d433bec9942b851b2f5a8a}{ActorA}, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a04d2c49698d9a161e92112dd1efc1dcd}{ActorB}, \hyperlink{classphys_1_1Vector3}{Vector3} VectorA, \hyperlink{classphys_1_1Vector3}{Vector3} VectorB, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionA, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionB, bool UseLinearReferenceA)}
 \label{de/d2a/classphys_1_1Generic6DofConstraint_abcd2ccd4e4366070f6879119fe2fb985}
 
 \item 
 \hypertarget{classphys_1_1Generic6DofConstraint_a4b8b1dc473a133b51d516320a10b70d5}{
-{\bfseries Generic6DofConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, \hyperlink{classphys_1_1Vector3}{Vector3} Vectorb, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionB, bool UseLinearReferenceB)}
+{\bfseries Generic6DofConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a04d2c49698d9a161e92112dd1efc1dcd}{ActorB}, \hyperlink{classphys_1_1Vector3}{Vector3} Vectorb, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionB, bool UseLinearReferenceB)}
 \label{de/d2a/classphys_1_1Generic6DofConstraint_a4b8b1dc473a133b51d516320a10b70d5}
 
 \item 
@@ -74,16 +74,10 @@ void {\bfseries CalculateTransforms} ()}
 \label{de/d2a/classphys_1_1Generic6DofConstraint_ab954137222c74dbe2d4410738b3f6883}
 
 \item 
-\hypertarget{classphys_1_1Generic6DofConstraint_a644245f0533a2fe1586609fcf1f48171}{
-virtual void {\bfseries SetParam} (int num, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} value, int axis=-\/1)}
-\label{de/d2a/classphys_1_1Generic6DofConstraint_a644245f0533a2fe1586609fcf1f48171}
-
-\item 
-\hypertarget{classphys_1_1Generic6DofConstraint_a822152201f9bd6d0a3e1512fa25b3f49}{
-virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries GetParam} (int num, int axis=-\/1)}
-\label{de/d2a/classphys_1_1Generic6DofConstraint_a822152201f9bd6d0a3e1512fa25b3f49}
-
-\end{DoxyCompactItemize}
+virtual void \hyperlink{classphys_1_1Generic6DofConstraint_a644245f0533a2fe1586609fcf1f48171}{SetParam} (int num, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} value, int axis=-\/1)
+\begin{DoxyCompactList}\small\item\em Provides override of constraint parameters. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Generic6DofConstraint_a822152201f9bd6d0a3e1512fa25b3f49}{GetParam} (int num, int axis=-\/1)
+\begin{DoxyCompactList}\small\item\em Gets value of constraint parameters. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -97,7 +91,7 @@ btGeneric6DofConstraint $\ast$ \hyperlink{classphys_1_1Generic6DofConstraint_af3
 \subsection{Detailed Description}
 
 
-Definition at line 133 of file constraint.h.
+Definition at line 163 of file constraint.h.
 
 
 
@@ -113,7 +107,7 @@ No initialization constructor.
 
 The no initialization class constructor. 
 
-Definition at line 172 of file constraint.cpp.
+Definition at line 187 of file constraint.cpp.
 
 \hypertarget{classphys_1_1Generic6DofConstraint_aae8cea56ac1d384d326a089e48842cbc}{
 \index{phys::Generic6DofConstraint@{phys::Generic6DofConstraint}!Generic6DofConstraint@{Generic6DofConstraint}}
@@ -129,7 +123,7 @@ This constructor exists for passing values down the inheritance tree from derive
 \item[{\em ActorA}]First actor to have the constraint applied to. \item[{\em ActorB}]Second actor to have the constraint applied to. \end{DoxyParams}
 
 
-Definition at line 176 of file constraint.cpp.
+Definition at line 191 of file constraint.cpp.
 
 \hypertarget{classphys_1_1Generic6DofConstraint_a7e44417fc8f56eb1770990fa3c3273d3}{
 \index{phys::Generic6DofConstraint@{phys::Generic6DofConstraint}!Generic6DofConstraint@{Generic6DofConstraint}}
@@ -145,7 +139,7 @@ Constructs this class around a pre-\/built bullet constraint. This is an interna
 \item[{\em Constraint}]The constraint to be constructed around. \end{DoxyParams}
 
 
-Definition at line 196 of file constraint.cpp.
+Definition at line 211 of file constraint.cpp.
 
 \hypertarget{classphys_1_1Generic6DofConstraint_a0b0bd2e1f1546ed1e6b2ebc2a505a126}{
 \index{phys::Generic6DofConstraint@{phys::Generic6DofConstraint}!$\sim$Generic6DofConstraint@{$\sim$Generic6DofConstraint}}
@@ -158,7 +152,53 @@ Class destructor.
 
 The class destructor. 
 
-Definition at line 202 of file constraint.cpp.
+Definition at line 217 of file constraint.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1Generic6DofConstraint_a822152201f9bd6d0a3e1512fa25b3f49}{
+\index{phys::Generic6DofConstraint@{phys::Generic6DofConstraint}!GetParam@{GetParam}}
+\index{GetParam@{GetParam}!phys::Generic6DofConstraint@{phys::Generic6DofConstraint}}
+\subsubsection[{GetParam}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::Generic6DofConstraint::GetParam (int {\em num}, \/  int {\em axis} = {\ttfamily -\/1})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{de/d2a/classphys_1_1Generic6DofConstraint_a822152201f9bd6d0a3e1512fa25b3f49}
+
+
+Gets value of constraint parameters. 
+
+See \hyperlink{classphys_1_1Generic6DofConstraint_a644245f0533a2fe1586609fcf1f48171}{SetParam()} for clarification. Gets information on constraint parameters. 
+\begin{DoxyParams}{Parameters}
+\item[{\em num}]The parameter to get information for. \item[{\em axis}]Optional axis. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the value for the requested parameter. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1TypedConstraint_ab6140d40e9476c3dc46e2802e8097421}{phys::TypedConstraint}.
+
+
+
+Definition at line 272 of file constraint.cpp.
+
+\hypertarget{classphys_1_1Generic6DofConstraint_a644245f0533a2fe1586609fcf1f48171}{
+\index{phys::Generic6DofConstraint@{phys::Generic6DofConstraint}!SetParam@{SetParam}}
+\index{SetParam@{SetParam}!phys::Generic6DofConstraint@{phys::Generic6DofConstraint}}
+\subsubsection[{SetParam}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Generic6DofConstraint::SetParam (int {\em num}, \/  {\bf Real} {\em value}, \/  int {\em axis} = {\ttfamily -\/1})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{de/d2a/classphys_1_1Generic6DofConstraint_a644245f0533a2fe1586609fcf1f48171}
+
+
+Provides override of constraint parameters. 
+
+Parameters such as ERP and CFM can be altered with this function. Optionally provide axis. 
+\begin{DoxyParams}{Parameters}
+\item[{\em num}]The parameter to override. \item[{\em value}]The new value for the parameter. \item[{\em axis}]Optional axis. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1TypedConstraint_a31a20a74094f0cb8e4f82d1f99725415}{phys::TypedConstraint}.
+
+
+
+Definition at line 267 of file constraint.cpp.
 
 
 

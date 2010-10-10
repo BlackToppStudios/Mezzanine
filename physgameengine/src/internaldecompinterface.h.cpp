@@ -43,6 +43,9 @@
 #include "btBulletDynamicsCommon.h"
 #include "ConvexBuilder.h"
 
+// Keeps this file form being documented by doxygen
+/// @cond 0
+
 namespace phys{
     namespace internal{
         class PhysConvexDecomposition : public ConvexDecomposition::ConvexDecompInterface {
@@ -56,5 +59,7 @@ namespace phys{
         };
     }// namespace internal
 }// namespace phys
+
+/// @endcond
 
 #endif

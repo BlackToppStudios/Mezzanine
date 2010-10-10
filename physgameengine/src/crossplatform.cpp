@@ -46,6 +46,7 @@
 #include "crossplatform.h"
 #include "world.h"
 
+
 //External includes
 #include <Ogre.h>
 #include "SDL.h"
@@ -56,6 +57,7 @@
 	#include "SDL_syswm.h" //for the needed commands
 #else
 	#include <unistd.h>//for sleep
+    #include "graphicsmanager.h"
 #endif
 
 namespace phys
@@ -76,7 +78,7 @@ namespace phys
 			#ifdef MACOSX
 				return "data/macosx/plugins.cfg";
 			#endif
-			
+
 
         }
 
@@ -135,10 +137,10 @@ namespace phys
             #endif
         }
 
-        void RenderPhysWorld(World *TheWorld)
+        void RenderPhysWorld(World *TheWorld, Ogre::RenderWindow* TheOgreWindow)
         {
             #ifndef WINDOWS
-               TheWorld->OgreGameWindow->update(true);
+               TheOgreWindow->update(true);
             #else
                TheWorld->OgreRoot->renderOneFrame();
                SDL_GL_SwapBuffers();

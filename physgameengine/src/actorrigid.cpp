@@ -46,6 +46,8 @@
 #include "BulletCollision/Gimpact/btGImpactShape.h"
 #include "ConvexBuilder.h"
 
+#include "world.h"
+#include "physicsmanager.h"
 #include "actorrigid.h"
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "internaldecompinterface.h.cpp"
@@ -72,6 +74,7 @@ namespace phys{
         btScalar bmass=pmass;
         this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
         CollisionObject=physrigidbody;
+        CollisionObject->setUserPointer(this);
         if(0.0 == bmass)
         {
             CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
@@ -327,6 +330,33 @@ namespace phys{
         btVector3 LinFact(x,y,z);
         this->physrigidbody->setLinearFactor(LinFact);
         return;
+    }
+
+    void ActorRigid::SetDamping(Real LinDamping, Real AngDamping)
+    {
+        this->physrigidbody->setDamping(LinDamping, AngDamping);
+    }
+
+    void ActorRigid::SetLinearVelocity(Vector3 LinVel)
+    {
+        this->physrigidbody->setLinearVelocity(LinVel.GetBulletVector3());
+    }
+
+    Vector3 ActorRigid::GetLinearVelocity()
+    {
+        Vector3 LinVel(this->physrigidbody->getLinearVelocity());
+        return LinVel;
+    }
+
+    void ActorRigid::SetAngularVelocity(Vector3 AngVel)
+    {
+        this->physrigidbody->setAngularVelocity(AngVel.GetBulletVector3());
+    }
+
+    Vector3 ActorRigid::GetAngularVelocity()
+    {
+        Vector3 AngVel(this->physrigidbody->getAngularVelocity());
+        return AngVel;
     }
 
     void ActorRigid::DisableDeactivation()

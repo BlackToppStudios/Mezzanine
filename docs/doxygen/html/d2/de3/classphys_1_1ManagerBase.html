@@ -40,14 +40,15 @@ Inheritance diagram for phys::ManagerBase:</div>
  <div class="center">
   <img src="../../d2/de3/classphys_1_1ManagerBase.png" usemap="#phys::ManagerBase_map" alt=""/>
   <map id="phys::ManagerBase_map" name="phys::ManagerBase_map">
-<area href="../../d1/d00/classphys_1_1ActorContainerBase.html" alt="phys::ActorContainerBase" shape="rect" coords="0,56,169,80"/>
-<area href="../../d1/d47/classphys_1_1CallBackManager.html" alt="phys::CallBackManager" shape="rect" coords="179,56,348,80"/>
-<area href="../../d9/d91/classphys_1_1CameraManager.html" alt="phys::CameraManager" shape="rect" coords="358,56,527,80"/>
-<area href="../../da/dde/classphys_1_1EventManager.html" alt="phys::EventManager" shape="rect" coords="537,56,706,80"/>
-<area href="../../dd/d63/classphys_1_1GraphicsManager.html" alt="phys::GraphicsManager" shape="rect" coords="716,56,885,80"/>
-<area href="../../d3/dcc/classphys_1_1PhysicsManager.html" alt="phys::PhysicsManager" shape="rect" coords="895,56,1064,80"/>
-<area href="../../d1/dc4/classphys_1_1SoundManager.html" alt="phys::SoundManager" shape="rect" coords="1074,56,1243,80"/>
-<area href="../../d3/d64/classphys_1_1ActorContainerVector.html" alt="phys::ActorContainerVector" shape="rect" coords="0,112,169,136"/>
+<area href="../../d1/d00/classphys_1_1ActorContainerBase.html" alt="phys::ActorContainerBase" shape="rect" coords="169,56,328,80"/>
+<area href="../../d9/d91/classphys_1_1CameraManager.html" alt="phys::CameraManager" shape="rect" coords="169,112,328,136"/>
+<area href="../../da/dde/classphys_1_1EventManager.html" alt="phys::EventManager" shape="rect" coords="169,168,328,192"/>
+<area href="../../dd/d63/classphys_1_1GraphicsManager.html" alt="phys::GraphicsManager" shape="rect" coords="169,224,328,248"/>
+<area href="../../d3/dcc/classphys_1_1PhysicsManager.html" alt="phys::PhysicsManager" shape="rect" coords="169,280,328,304"/>
+<area href="../../d1/d35/classphys_1_1ResourceManager.html" alt="phys::ResourceManager" shape="rect" coords="169,336,328,360"/>
+<area href="../../dd/da8/classphys_1_1SceneManager.html" alt="phys::SceneManager" shape="rect" coords="169,392,328,416"/>
+<area href="../../d1/dc4/classphys_1_1SoundManager.html" alt="phys::SoundManager" shape="rect" coords="169,448,328,472"/>
+<area href="../../d5/dc5/classphys_1_1UIManager.html" alt="phys::UIManager" shape="rect" coords="169,504,328,528"/>
 </map>
  </div>
 </div>
@@ -57,13 +58,16 @@ Inheritance diagram for phys::ManagerBase:</div>
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a> { <br/>
 &nbsp;&nbsp;<b>ActorContainerBase</b>, 
-<b>CallBackManager</b>, 
 <b>CameraManager</b>, 
 <b>EventManager</b>, 
+<b>GraphicsManager</b>, 
 <br/>
-&nbsp;&nbsp;<b>GraphicsManager</b>, 
-<b>PhysicsManager</b>, 
+&nbsp;&nbsp;<b>PhysicsManager</b>, 
+<b>ResourceManager</b>, 
+<b>SceneManager</b>, 
 <b>SoundManager</b>, 
+<br/>
+&nbsp;&nbsp;<b>UIManager</b>, 
 <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5a3239296e554feede76c4bcb6f824c66c">UserCreated</a>
 <br/>
  }</td></tr>
@@ -107,9 +111,12 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9306dafe9ffe52916b84cf157fbc12d8"></a><!-- doxytag: member="phys::ManagerBase::ErasePostMainLoopItems" ref="a9306dafe9ffe52916b84cf157fbc12d8" args="()" -->
 virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a9306dafe9ffe52916b84cf157fbc12d8">ErasePostMainLoopItems</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This simply calls <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a673b3adef73c467f4d90514a5133bf7c" title="This assigns a function to be the callback function to run prior to the main loop...">SetPostMainLoopItems()</a> passing it 0. <br/></td></tr>
-<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef">Priority</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is a weighting used by the main loop to decide what order the managers should be called in.  <a href="#a28e2690fbcf644a7780a53b81821d8ef"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#af1798db3b808a658bdf14d8914d9b91d">GetPriority</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This gets the Priority of this manager.  <a href="#af1798db3b808a658bdf14d8914d9b91d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a6e30dc5f2a9c64f95efb2ef4428b0f98">SetPriority</a> (short int Priority_)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This gets the Priority of this manager.  <a href="#a6e30dc5f2a9c64f95efb2ef4428b0f98"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a5b4c1105696b868b7858c59541af4756">GetTypeName</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This Allows any manager to be sent to a stream. Primarily used for logging.  <a href="#a5b4c1105696b868b7858c59541af4756"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b">GameWorld</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The actual pointer to the world.  <a href="#ae2f158b4b2fef1bf2bee2524e0236c7b"></a><br/></td></tr>
@@ -117,12 +124,14 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is a function pointer to the function that should be called before running Main Loop Items.  <a href="#a93eb2f1a30d913a4e99180b0965eb5db"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b">Callback</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aa1e80a30f151c07e06d1f4650f315da5">PostMainLoop</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is a function pointer to the function that should be called after running Main Loop Items.  <a href="#aa1e80a30f151c07e06d1f4650f315da5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">short int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef">Priority</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is a weighting used by the main loop to decide what order the managers should be called in.  <a href="#a28e2690fbcf644a7780a53b81821d8ef"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is the base class from which all the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> Managers inherit. </p>
 <p>This creates a base set of functions that Managers are all expected to implement. </p>
 
-<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00055">55</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00057">57</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
 <hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="aaa6ccddf23892eaccb898529414f80a5"></a><!-- doxytag: member="phys::ManagerBase::ManagerTypeName" ref="aaa6ccddf23892eaccb898529414f80a5" args="" -->
 <div class="memitem">
@@ -145,7 +154,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00063">63</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00065">65</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -242,7 +251,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>The main loop calls this once per frame. </p>
 <p>This is where each manager is expected to put anything that needs to be run each iteration of the main loop </p>
 
-<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a67fbde6a61602253f66fecd0416bdc2f">phys::ActorContainerBase</a>, <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a883e59ac1674421bac143088a6cf07c8">phys::ActorContainerVector</a>, <a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#acaa942de1f6f8b42d06d981121d501e0">phys::CallBackManager</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#aca8fb3d285484dcdb943824bf11f3596">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a62741a2582ac9bfd0255cf8a3ad2310c">phys::PhysicsManager</a>, and <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a577b228753ea19856b8476ab831e547e">phys::SoundManager</a>.</p>
+<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a67fbde6a61602253f66fecd0416bdc2f">phys::ActorContainerBase</a>, <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a883e59ac1674421bac143088a6cf07c8">phys::ActorContainerVector</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#aca8fb3d285484dcdb943824bf11f3596">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a62741a2582ac9bfd0255cf8a3ad2310c">phys::PhysicsManager</a>, <a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a2114714999441c095bc28d3673c2490e">phys::ResourceManager</a>, <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html#a27a3f6b21e15f628642b1cad524f1a18">phys::SceneManager</a>, <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a577b228753ea19856b8476ab831e547e">phys::SoundManager</a>, and <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#a972abedcd4343dc5966580f2f82494a8">phys::UIManager</a>.</p>
 
 </div>
 </div>
@@ -286,7 +295,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <div class="memdoc">
 
 <p>This returns the Callback that would be called before the main loop items. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b" title="This makes working with Callback function pointer a bit easier.">ManagerBase::Callback</a> which is a pointer to the callback function that will be called after the main loop items </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a753f5f0127131529767beab2502f480b" title="This makes working with Callback function pointer a bit easier.">ManagerBase::Callback</a> which is a p ointer to the callback function that will be called after the main loop items </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d7/d44/managerbase_8cpp_source.html#l00104">104</a> of file <a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a>.</p>
 
@@ -314,6 +323,29 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
+<a class="anchor" id="af1798db3b808a658bdf14d8914d9b91d"></a><!-- doxytag: member="phys::ManagerBase::GetPriority" ref="af1798db3b808a658bdf14d8914d9b91d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short int phys::ManagerBase::GetPriority </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This gets the Priority of this manager. </p>
+<p>This has no Set counterpart to allow the changing of a manager's priority. This is expected to be set by the manager, or expose a safe method to change it at that level. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a short int that represents the priority of the manager. Lower is executed first. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d7/d44/managerbase_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aff400b6599db635e24796d8221e9a0e3"></a><!-- doxytag: member="phys::ManagerBase::GetType" ref="aff400b6599db635e24796d8221e9a0e3" args="() const =0" -->
 <div class="memitem">
 <div class="memproto">
@@ -333,7 +365,29 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>This is intended to make using and casting from Manager base easier. With this is is possible to cast from <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a> to the correct Manager Type. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a ManagerTypeName to identify what this can be safely cast to. </dd></dl>
 
-<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#aa86380fd1b18d660f68b60f075967cf8">phys::ActorContainerBase</a>, <a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#aa0568dd5c2d1bb6dc669dfa2ca3486ad">phys::CallBackManager</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4d151cd24052ef3cccde6b66b8745be6">phys::PhysicsManager</a>, and <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a6815f78a6170b119e2d1d24e862ffbf8">phys::SoundManager</a>.</p>
+<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#aa86380fd1b18d660f68b60f075967cf8">phys::ActorContainerBase</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4d151cd24052ef3cccde6b66b8745be6">phys::PhysicsManager</a>, <a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a9e5468e5428f5c108c7b3c01e94eba46">phys::ResourceManager</a>, <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html#af2b4f6bc50d40ffe06f6172c3d1dd02d">phys::SceneManager</a>, <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a6815f78a6170b119e2d1d24e862ffbf8">phys::SoundManager</a>, and <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#ab8fe74564ca5dc09cbe4b1cc2c007e79">phys::UIManager</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5b4c1105696b868b7858c59541af4756"></a><!-- doxytag: member="phys::ManagerBase::GetTypeName" ref="a5b4c1105696b868b7858c59541af4756" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string phys::ManagerBase::GetTypeName </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This Allows any manager to be sent to a stream. Primarily used for logging. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a std::ostream&amp; that contains the name, and maybe some data for the the streammed manager. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d7/d44/managerbase_8cpp_source.html#l00110">110</a> of file <a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -357,7 +411,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <br/>
  Yes we know it is spelled wrong, but are Zs cooler anyway. </p>
 
-<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#af36d5866e0ee9f6f450a4e62642e0928">phys::ActorContainerBase</a>, <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c">phys::ActorContainerVector</a>, <a class="el" href="../../d1/d47/classphys_1_1CallBackManager.html#a3d2af4e3c947b14f628c3e09a96af2f9">phys::CallBackManager</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a28885be750bb763d957f122593815388">phys::PhysicsManager</a>, and <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#ae6d3957f965b54e06ec540e903cec68d">phys::SoundManager</a>.</p>
+<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#af36d5866e0ee9f6f450a4e62642e0928">phys::ActorContainerBase</a>, <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c">phys::ActorContainerVector</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a28885be750bb763d957f122593815388">phys::PhysicsManager</a>, <a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a9be3250f1f1153c9e079f82736eb00a8">phys::ResourceManager</a>, <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html#aa13b380a4e38f706a1977237fc4b165e">phys::SceneManager</a>, <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#ae6d3957f965b54e06ec540e903cec68d">phys::SoundManager</a>, and <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#af04e60c4f09c114ec3bf32babdb64ab7">phys::UIManager</a>.</p>
 
 </div>
 </div>
@@ -380,6 +434,8 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>This will return whatever the callback returns, which is true to end the main loop after this frame, or true to continue it. If no callback is set this simply returns true, as to not interupt the mainloop. <br/>
  This is a great Function to override in Manager classes where the complexity of callbacks is not required. This would make coding items that need to be performed at specific times easier. If you do that, it would be a good idea to call this version of the function, just in case a callback is set. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a false to end the main loop, or a true if the main loop should continue. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c">phys::GraphicsManager</a>.</p>
 
 <p>Definition at line <a class="el" href="../../d7/d44/managerbase_8cpp_source.html#l00095">95</a> of file <a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a>.</p>
 
@@ -492,6 +548,30 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
+<a class="anchor" id="a6e30dc5f2a9c64f95efb2ef4428b0f98"></a><!-- doxytag: member="phys::ManagerBase::SetPriority" ref="a6e30dc5f2a9c64f95efb2ef4428b0f98" args="(short int Priority_)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::ManagerBase::SetPriority </td>
+          <td>(</td>
+          <td class="paramtype">short int&nbsp;</td>
+          <td class="paramname"> <em>Priority_</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This gets the Priority of this manager. </p>
+<p>This has no Set counterpart to allow the changing of a manager's priority. This is expected to be set by the manager, or expose a safe method to change it at that level. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a short int that represents the priority of the manager. Lower is executed first. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d7/d44/managerbase_8cpp_source.html#l00149">149</a> of file <a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="ae2f158b4b2fef1bf2bee2524e0236c7b"></a><!-- doxytag: member="phys::ManagerBase::GameWorld" ref="ae2f158b4b2fef1bf2bee2524e0236c7b" args="" -->
 <div class="memitem">
@@ -507,7 +587,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>The actual pointer to the world. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00185">185</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00201">201</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -525,7 +605,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>This is a function pointer to the function that should be called after running Main Loop Items. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00193">193</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00209">209</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -543,7 +623,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>This is a function pointer to the function that should be called before running Main Loop Items. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00189">189</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00205">205</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -552,7 +632,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">short int <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef">phys::ManagerBase::Priority</a></td>
+          <td class="memname">short int <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef">phys::ManagerBase::Priority</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -561,7 +641,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>This is a weighting used by the main loop to decide what order the managers should be called in. </p>
 <p>A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at priority 0. </p>
 
-<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00181">181</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00214">214</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -570,7 +650,7 @@ virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <li><a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:37 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:55 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

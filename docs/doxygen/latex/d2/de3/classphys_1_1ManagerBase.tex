@@ -14,7 +14,7 @@ This is the base class from which all the \hyperlink{classphys_1_1World}{World} 
 Inheritance diagram for phys::ManagerBase:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=1.35593cm]{d2/de3/classphys_1_1ManagerBase}
+\includegraphics[height=10cm]{d2/de3/classphys_1_1ManagerBase}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -22,13 +22,16 @@ Inheritance diagram for phys::ManagerBase:\begin{figure}[H]
 \item 
 enum \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \{ \par
 {\bfseries ActorContainerBase}, 
-{\bfseries CallBackManager}, 
 {\bfseries CameraManager}, 
 {\bfseries EventManager}, 
-\par
 {\bfseries GraphicsManager}, 
+\par
 {\bfseries PhysicsManager}, 
+{\bfseries ResourceManager}, 
+{\bfseries SceneManager}, 
 {\bfseries SoundManager}, 
+\par
+{\bfseries UIManager}, 
 \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5a3239296e554feede76c4bcb6f824c66c}{UserCreated}
  \}
 \begin{DoxyCompactList}\small\item\em A listing of Manager TypeNames. \item\end{DoxyCompactList}\item 
@@ -77,12 +80,13 @@ virtual \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{C
 virtual void \hyperlink{classphys_1_1ManagerBase_a9306dafe9ffe52916b84cf157fbc12d8}{ErasePostMainLoopItems} ()}
 \label{d2/de3/classphys_1_1ManagerBase_a9306dafe9ffe52916b84cf157fbc12d8}
 
-\begin{DoxyCompactList}\small\item\em This simply calls \hyperlink{classphys_1_1ManagerBase_a673b3adef73c467f4d90514a5133bf7c}{SetPostMainLoopItems()} passing it 0. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-short int \hyperlink{classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}{Priority}
-\begin{DoxyCompactList}\small\item\em This is a weighting used by the main loop to decide what order the managers should be called in. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This simply calls \hyperlink{classphys_1_1ManagerBase_a673b3adef73c467f4d90514a5133bf7c}{SetPostMainLoopItems()} passing it 0. \item\end{DoxyCompactList}\item 
+virtual short int \hyperlink{classphys_1_1ManagerBase_af1798db3b808a658bdf14d8914d9b91d}{GetPriority} ()
+\begin{DoxyCompactList}\small\item\em This gets the Priority of this manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ManagerBase_a6e30dc5f2a9c64f95efb2ef4428b0f98}{SetPriority} (short int Priority\_\-)
+\begin{DoxyCompactList}\small\item\em This gets the Priority of this manager. \item\end{DoxyCompactList}\item 
+std::string \hyperlink{classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af4756}{GetTypeName} ()
+\begin{DoxyCompactList}\small\item\em This Allows any manager to be sent to a stream. Primarily used for logging. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -91,13 +95,15 @@ short int \hyperlink{classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}
 \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{PreMainLoop}
 \begin{DoxyCompactList}\small\item\em This is a function pointer to the function that should be called before running Main Loop Items. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}{PostMainLoop}
-\begin{DoxyCompactList}\small\item\em This is a function pointer to the function that should be called after running Main Loop Items. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This is a function pointer to the function that should be called after running Main Loop Items. \item\end{DoxyCompactList}\item 
+short int \hyperlink{classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}{Priority}
+\begin{DoxyCompactList}\small\item\em This is a weighting used by the main loop to decide what order the managers should be called in. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 This is the base class from which all the \hyperlink{classphys_1_1World}{World} Managers inherit. This creates a base set of functions that Managers are all expected to implement. 
 
-Definition at line 55 of file managerbase.h.
+Definition at line 57 of file managerbase.h.
 
 
 
@@ -123,7 +129,7 @@ UserCreated}
 
 
 
-Definition at line 63 of file managerbase.h.
+Definition at line 65 of file managerbase.h.
 
 
 
@@ -184,7 +190,7 @@ The main loop calls this once per frame.
 
 This is where each manager is expected to put anything that needs to be run each iteration of the main loop 
 
-Implemented in \hyperlink{classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd0416bdc2f}{phys::ActorContainerBase}, \hyperlink{classphys_1_1ActorContainerVector_a883e59ac1674421bac143088a6cf07c8}{phys::ActorContainerVector}, \hyperlink{classphys_1_1CallBackManager_acaa942de1f6f8b42d06d981121d501e0}{phys::CallBackManager}, \hyperlink{classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_aca8fb3d285484dcdb943824bf11f3596}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{phys::PhysicsManager}, and \hyperlink{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{phys::SoundManager}.
+Implemented in \hyperlink{classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd0416bdc2f}{phys::ActorContainerBase}, \hyperlink{classphys_1_1ActorContainerVector_a883e59ac1674421bac143088a6cf07c8}{phys::ActorContainerVector}, \hyperlink{classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_aca8fb3d285484dcdb943824bf11f3596}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_a27a3f6b21e15f628642b1cad524f1a18}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{phys::SoundManager}, and \hyperlink{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{phys::UIManager}.
 
 \hypertarget{classphys_1_1ManagerBase_addfd62fbc444ca4c2aba40768d1b284e}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetGameWorld@{GetGameWorld}}
@@ -216,7 +222,7 @@ Definition at line 64 of file managerbase.cpp.
 This returns the Callback that would be called before the main loop items. 
 
 \begin{DoxyReturn}{Returns}
-This returns a \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{ManagerBase::Callback} which is a pointer to the callback function that will be called after the main loop items 
+This returns a \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{ManagerBase::Callback} which is a p ointer to the callback function that will be called after the main loop items 
 \end{DoxyReturn}
 
 
@@ -238,6 +244,22 @@ This returns a \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f
 
 Definition at line 85 of file managerbase.cpp.
 
+\hypertarget{classphys_1_1ManagerBase_af1798db3b808a658bdf14d8914d9b91d}{
+\index{phys::ManagerBase@{phys::ManagerBase}!GetPriority@{GetPriority}}
+\index{GetPriority@{GetPriority}!phys::ManagerBase@{phys::ManagerBase}}
+\subsubsection[{GetPriority}]{\setlength{\rightskip}{0pt plus 5cm}short int phys::ManagerBase::GetPriority ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d2/de3/classphys_1_1ManagerBase_af1798db3b808a658bdf14d8914d9b91d}
+
+
+This gets the Priority of this manager. 
+
+This has no Set counterpart to allow the changing of a manager's priority. This is expected to be set by the manager, or expose a safe method to change it at that level. \begin{DoxyReturn}{Returns}
+This returns a short int that represents the priority of the manager. Lower is executed first. 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file managerbase.cpp.
+
 \hypertarget{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetType@{GetType}}
 \index{GetType@{GetType}!phys::ManagerBase@{phys::ManagerBase}}
@@ -252,7 +274,23 @@ This returns a ManagerTypeName to identify what this can be safely cast to.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1ActorContainerBase_aa86380fd1b18d660f68b60f075967cf8}{phys::ActorContainerBase}, \hyperlink{classphys_1_1CallBackManager_aa0568dd5c2d1bb6dc669dfa2ca3486ad}{phys::CallBackManager}, \hyperlink{classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a194890f7f8be5d45aa98623481482696}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{phys::PhysicsManager}, and \hyperlink{classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}{phys::SoundManager}.
+Implemented in \hyperlink{classphys_1_1ActorContainerBase_aa86380fd1b18d660f68b60f075967cf8}{phys::ActorContainerBase}, \hyperlink{classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a194890f7f8be5d45aa98623481482696}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_af2b4f6bc50d40ffe06f6172c3d1dd02d}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}{phys::SoundManager}, and \hyperlink{classphys_1_1UIManager_ab8fe74564ca5dc09cbe4b1cc2c007e79}{phys::UIManager}.
+
+\hypertarget{classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af4756}{
+\index{phys::ManagerBase@{phys::ManagerBase}!GetTypeName@{GetTypeName}}
+\index{GetTypeName@{GetTypeName}!phys::ManagerBase@{phys::ManagerBase}}
+\subsubsection[{GetTypeName}]{\setlength{\rightskip}{0pt plus 5cm}std::string phys::ManagerBase::GetTypeName ()}}
+\label{d2/de3/classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af4756}
+
+
+This Allows any manager to be sent to a stream. Primarily used for logging. 
+
+\begin{DoxyReturn}{Returns}
+This returns a std::ostream\& that contains the name, and maybe some data for the the streammed manager. 
+\end{DoxyReturn}
+
+
+Definition at line 110 of file managerbase.cpp.
 
 \hypertarget{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{
 \index{phys::ManagerBase@{phys::ManagerBase}!Initialize@{Initialize}}
@@ -267,7 +305,7 @@ If you are using the \hyperlink{classphys_1_1World}{phys::World} this is called 
 \par
  Yes we know it is spelled wrong, but are Zs cooler anyway. 
 
-Implemented in \hyperlink{classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4e62642e0928}{phys::ActorContainerBase}, \hyperlink{classphys_1_1ActorContainerVector_adcebf4329a587669f74e1eacc1e6912c}{phys::ActorContainerVector}, \hyperlink{classphys_1_1CallBackManager_a3d2af4e3c947b14f628c3e09a96af2f9}{phys::CallBackManager}, \hyperlink{classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{phys::PhysicsManager}, and \hyperlink{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{phys::SoundManager}.
+Implemented in \hyperlink{classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4e62642e0928}{phys::ActorContainerBase}, \hyperlink{classphys_1_1ActorContainerVector_adcebf4329a587669f74e1eacc1e6912c}{phys::ActorContainerVector}, \hyperlink{classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_aa13b380a4e38f706a1977237fc4b165e}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{phys::SoundManager}, and \hyperlink{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{phys::UIManager}.
 
 \hypertarget{classphys_1_1ManagerBase_afc3572602f96bdeb8215c386ff870820}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PostMainLoopItems@{PostMainLoopItems}}
@@ -282,6 +320,10 @@ This will return whatever the callback returns, which is true to end the main lo
  This is a great Function to override in Manager classes where the complexity of callbacks is not required. This would make coding items that need to be performed at specific times easier. If you do that, it would be a good idea to call this version of the function, just in case a callback is set. \begin{DoxyReturn}{Returns}
 This returns a false to end the main loop, or a true if the main loop should continue. 
 \end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classphys_1_1GraphicsManager_ae2330172be150cd4d12aa2ed62b0474c}{phys::GraphicsManager}.
+
 
 
 Definition at line 95 of file managerbase.cpp.
@@ -354,6 +396,22 @@ This assigns a function to be the callback function to run prior to the main loo
 
 Definition at line 73 of file managerbase.cpp.
 
+\hypertarget{classphys_1_1ManagerBase_a6e30dc5f2a9c64f95efb2ef4428b0f98}{
+\index{phys::ManagerBase@{phys::ManagerBase}!SetPriority@{SetPriority}}
+\index{SetPriority@{SetPriority}!phys::ManagerBase@{phys::ManagerBase}}
+\subsubsection[{SetPriority}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetPriority (short int {\em Priority\_\-})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d2/de3/classphys_1_1ManagerBase_a6e30dc5f2a9c64f95efb2ef4428b0f98}
+
+
+This gets the Priority of this manager. 
+
+This has no Set counterpart to allow the changing of a manager's priority. This is expected to be set by the manager, or expose a safe method to change it at that level. \begin{DoxyReturn}{Returns}
+This returns a short int that represents the priority of the manager. Lower is executed first. 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file managerbase.cpp.
+
 
 
 \subsection{Member Data Documentation}
@@ -370,7 +428,7 @@ The actual pointer to the world.
 \end{DoxyInternal}
 
 
-Definition at line 185 of file managerbase.h.
+Definition at line 201 of file managerbase.h.
 
 \hypertarget{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PostMainLoop@{PostMainLoop}}
@@ -385,7 +443,7 @@ This is a function pointer to the function that should be called after running M
 \end{DoxyInternal}
 
 
-Definition at line 193 of file managerbase.h.
+Definition at line 209 of file managerbase.h.
 
 \hypertarget{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PreMainLoop@{PreMainLoop}}
@@ -400,12 +458,12 @@ This is a function pointer to the function that should be called before running 
 \end{DoxyInternal}
 
 
-Definition at line 189 of file managerbase.h.
+Definition at line 205 of file managerbase.h.
 
 \hypertarget{classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}{
 \index{phys::ManagerBase@{phys::ManagerBase}!Priority@{Priority}}
 \index{Priority@{Priority}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{Priority}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf phys::ManagerBase::Priority}}}
+\subsubsection[{Priority}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf phys::ManagerBase::Priority}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}
 
 
@@ -413,7 +471,7 @@ This is a weighting used by the main loop to decide what order the managers shou
 
 A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at priority 0. 
 
-Definition at line 181 of file managerbase.h.
+Definition at line 214 of file managerbase.h.
 
 
 

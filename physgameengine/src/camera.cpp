@@ -42,14 +42,16 @@
 #define _Camera_cpp
 
 #include "camera.h"
+#include "cameramanager.h"
+#include "scenemanager.h"
 #include <Ogre.h>
 
 namespace phys
 {
-    Camera::Camera(CameraManager* Manager)
+    Camera::Camera(const String& Name, CameraManager* Manager)
     {
-        String Name = Manager->CreateCamera();
-        this->Construct(Manager->FindCamera(Name), Manager);
+        Ogre::Camera* OgreCam = Manager->SManager->GetGraphicsWorldPointer()->createCamera(Name);
+        this->Construct(OgreCam, Manager);
     }
 
     Camera::Camera(Ogre::Camera* Camera, CameraManager* Manager)
@@ -63,10 +65,44 @@ namespace phys
         this->CamManager = Manager;
         this->SetNearClipDistance(5.0f);
         this->SetFarClipDistance(5000.0f);
+        SetElementType(Attachable::Camera);
     }
 
     Camera::~Camera()
     {
+        CamManager->SManager->GetGraphicsWorldPointer()->destroyCamera(Cam);
+    }
+
+    String& Camera::GetName()
+    {
+        return this->Cam->getName();
+    }
+
+    void Camera::SetCameraType(ProjectionType Type)
+    {
+        if( Camera::Orthographic == Type )
+        {
+            this->Cam->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
+        }
+        else if( Camera::Perspective == Type )
+        {
+            this->Cam->setProjectionType(Ogre::PT_PERSPECTIVE);
+        }
+    }
+
+    void Camera::SetOrthoWindow(Real Width, Real Height)
+    {
+        this->Cam->setOrthoWindow(Width, Height);
+    }
+
+    void Camera::SetOrthoWindowHeight(Real Height)
+    {
+        this->Cam->setOrthoWindowHeight(Height);
+    }
+
+    void Camera::SetOrthoWindowWidth(Real Width)
+    {
+        this->Cam->setOrthoWindowWidth(Width);
     }
 
     void Camera::SetLocation(Vector3 Location)
@@ -114,7 +150,7 @@ namespace phys
         this->Cam->setFixedYawAxis(UseFixed);
     }
 
-    void Camera::SetAutoTracking(bool Enabled, String Target, Vector3 Offset)
+    /*void Camera::SetAutoTracking(bool Enabled, String Target, Vector3 Offset)
     {
         Ogre::SceneNode* Trgt = CamManager->FindNode(Target);
         this->Cam->setAutoTracking(Enabled, Trgt, Offset.GetOgreVector3());
@@ -124,7 +160,7 @@ namespace phys
     {
         Ogre::SceneNode* Trgt = CamManager->FindNode(Target);
         this->Cam->setAutoTracking(Enabled, Trgt);
-    }
+    }*/
 
     Ray Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
     {

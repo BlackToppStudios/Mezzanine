@@ -47,6 +47,8 @@
 #include "actorcontainerbase.h"
 #include "eventcollision.h"
 #include "vector3wactor.h"
+#include "areaeffect.h"
+#include "eventmanager.h"
 
 #include <queue>
 
@@ -54,6 +56,7 @@
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 #include <BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h>
 #include "BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
+#include <BulletCollision/CollisionDispatch/btGhostObject.h>
 
 
 namespace phys
@@ -296,6 +299,9 @@ namespace phys
                                                     MaxPhysicsProxies
                                                  );
 
+        this->GhostCallback = new btGhostPairCallback();
+        this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(GhostCallback);
+
         this->BulletSolver = new btSequentialImpulseConstraintSolver;
         //this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
         this->BulletCollisionConfiguration = new btSoftBodyRigidBodyCollisionConfiguration();
@@ -332,6 +338,8 @@ namespace phys
 
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
+        ProcessAllEffects();
+
         Real FloatTime = TimeElapsed;
         FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
 
@@ -360,7 +368,7 @@ namespace phys
             for (int j=0;j<numContacts;j++)
             {
                 btManifoldPoint& pt = contactManifold->getContactPoint(j);
-                if (pt.m_lifeTime>=CollisionAge && pt.m_appliedImpulse>=Impulse)
+                if (pt.m_lifeTime==CollisionAge && pt.m_appliedImpulse>=Impulse)
                 {
                     btCollisionObject* objectA = static_cast<btCollisionObject*>(contactManifold->getBody0());
                     btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
@@ -384,9 +392,30 @@ namespace phys
         this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
     }
 
+    Vector3 PhysicsManager::GetGravity()
+    {
+        Vector3 grav(this->BulletDynamicsWorld->getGravity());
+        return grav;
+    }
+
     void PhysicsManager::SetSoftGravity(Vector3 sgrav)
     {
         this->BulletDynamicsWorld->getWorldInfo().m_gravity = sgrav.GetBulletVector3();
+    }
+
+    Vector3 PhysicsManager::GetSoftGravity()
+    {
+        Vector3 sgrav(this->BulletDynamicsWorld->getWorldInfo().m_gravity);
+        return sgrav;
+    }
+
+    void PhysicsManager::SetIndividualGravity(ActorBase* Actor, Vector3 igrav)
+    {
+        if (ActorBase::Actorrigid==Actor->GetType())
+        {
+            btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->CollisionObject);
+            Rigid->setGravity(igrav.GetBulletVector3());
+        }
     }
 
     //Bullet Debug Drawing
@@ -448,6 +477,48 @@ namespace phys
     void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
     {
         this->BulletDynamicsWorld->removeConstraint(Constraint->ConstraintBase);
+    }
+
+    void PhysicsManager::AddAreaEffect(AreaEffect* AE)
+    {
+        this->AreaEffects.push_back(AE);
+        this->BulletDynamicsWorld->addCollisionObject(AE->Ghost,btBroadphaseProxy::SensorTrigger,btBroadphaseProxy::AllFilter & ~btBroadphaseProxy::SensorTrigger);
+    }
+
+    void PhysicsManager::RemoveAreaEffect(AreaEffect* AE)
+    {
+        this->BulletDynamicsWorld->removeCollisionObject(AE->Ghost);
+        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+        {
+            if ( AE == *c )
+            {
+                c=AreaEffects.erase(c);
+            }
+        }
+    }
+
+    AreaEffect* PhysicsManager::GetAreaEffect(String Name)
+    {
+        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+        {
+            if ( Name == (*c)->GetName() )
+            {
+                return *c;
+            }
+        }
+        return NULL;
+    }
+
+    void PhysicsManager::ProcessAllEffects()
+    {
+        if( !AreaEffects.empty() )
+        {
+            for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+            {
+                (*c)->UpdateActorList();
+                (*c)->ApplyEffect();
+            }
+        }
     }
 
     void PhysicsManager::StorePhysicsShape(ActorBase* Actor, String &ShapeName)

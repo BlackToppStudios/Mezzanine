@@ -30,8 +30,24 @@ void \hyperlink{classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}{Creat
 \begin{DoxyCompactList}\small\item\em Creates a sphere collision shape. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{CreateShapeFromMeshStatic} ()
 \begin{DoxyCompactList}\small\item\em Creates a collision shape from mesh file. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_a228fc92e7db56d07e441e6812ac28288}{SetDamping} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} LinDamping, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} AngDamping)
+\begin{DoxyCompactList}\small\item\em Sets the Damping for this object. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_a2b25eed4dcd594796c35a549d1c87559}{SetLinearVelocity} (\hyperlink{classphys_1_1Vector3}{Vector3} LinVel)
+\begin{DoxyCompactList}\small\item\em Sets the Linear Velocity of this object. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigid_add50c9f86048470de3e04e0de1e0e498}{GetLinearVelocity} ()
+\begin{DoxyCompactList}\small\item\em Gets the Linear Velocity of this object. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_a00ae9cd063f7f879d6bee15c807101d2}{SetAngularVelocity} (\hyperlink{classphys_1_1Vector3}{Vector3} AngVel)
+\begin{DoxyCompactList}\small\item\em Sets the Angular Velocity of this object. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigid_a54393bf3756324875497960bd9215b2e}{GetAngularVelocity} ()
+\begin{DoxyCompactList}\small\item\em Gets the Angular Velocity of this object. \item\end{DoxyCompactList}\item 
+std::string \hyperlink{classphys_1_1ActorRigid_a63952e0b7ab7176ae60d96756dd84b43}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Retrieves the name of the object. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{LimitMovementOnAxis} (bool x, bool y, bool z)
 \begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_ad74da4da12bbb44b3e5ae22007c98573}{DisableDeactivation} ()
+\begin{DoxyCompactList}\small\item\em Disables the deactivation of the physics body. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorRigid_a99af341e186505a330f6634b7f6ad542}{RestoreActivation} ()
+\begin{DoxyCompactList}\small\item\em Restores the activation state of the physics body to normal. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_acaf29ca7058b39185dd09a5059200e91}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f8}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
@@ -100,7 +116,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 62 of file actorrigid.cpp.
+Definition at line 63 of file actorrigid.cpp.
 
 
 
@@ -124,7 +140,7 @@ Implements \hyperlink{classphys_1_1ActorBase_a3d28e4c4a33f50210101695cb33ded3b}{
 
 
 
-Definition at line 164 of file actorrigid.cpp.
+Definition at line 166 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateRigidObject@{CreateRigidObject}}
@@ -141,7 +157,7 @@ Creates a rigid object to be placed in the physics world later. \par
 \item[{\em pmass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
 
 
-Definition at line 68 of file actorrigid.cpp.
+Definition at line 69 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}}
@@ -170,7 +186,7 @@ Implements \hyperlink{classphys_1_1ActorBase_aa41370f6d2031a9dad8df45bd7f3bcc6}{
 
 
 
-Definition at line 178 of file actorrigid.cpp.
+Definition at line 180 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}}
@@ -192,7 +208,7 @@ This function will read the location of every verticy in the mesh file and use t
 
 
 
-Definition at line 298 of file actorrigid.cpp.
+Definition at line 305 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateSphereShapeFromMesh@{CreateSphereShapeFromMesh}}
@@ -205,7 +221,69 @@ Creates a sphere collision shape.
 
 Will dynamically create a sphere collision shape from the loaded mesh file. 
 
-Definition at line 269 of file actorrigid.cpp.
+Definition at line 275 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_ad74da4da12bbb44b3e5ae22007c98573}{
+\index{phys::ActorRigid@{phys::ActorRigid}!DisableDeactivation@{DisableDeactivation}}
+\index{DisableDeactivation@{DisableDeactivation}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{DisableDeactivation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::DisableDeactivation ()}}
+\label{d8/d71/classphys_1_1ActorRigid_ad74da4da12bbb44b3e5ae22007c98573}
+
+
+Disables the deactivation of the physics body. 
+
+This function is useful when using constraints to prevent it from locking in situations where it shouldn't. 
+
+Definition at line 359 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a54393bf3756324875497960bd9215b2e}{
+\index{phys::ActorRigid@{phys::ActorRigid}!GetAngularVelocity@{GetAngularVelocity}}
+\index{GetAngularVelocity@{GetAngularVelocity}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{GetAngularVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigid::GetAngularVelocity ()}}
+\label{d8/d71/classphys_1_1ActorRigid_a54393bf3756324875497960bd9215b2e}
+
+
+Gets the Angular Velocity of this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns the currently set Angular Velocity of this object. 
+\end{DoxyReturn}
+
+
+Definition at line 353 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_add50c9f86048470de3e04e0de1e0e498}{
+\index{phys::ActorRigid@{phys::ActorRigid}!GetLinearVelocity@{GetLinearVelocity}}
+\index{GetLinearVelocity@{GetLinearVelocity}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{GetLinearVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigid::GetLinearVelocity ()}}
+\label{d8/d71/classphys_1_1ActorRigid_add50c9f86048470de3e04e0de1e0e498}
+
+
+Gets the Linear Velocity of this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns the currently set Linear Velocity of this object. 
+\end{DoxyReturn}
+
+
+Definition at line 342 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a63952e0b7ab7176ae60d96756dd84b43}{
+\index{phys::ActorRigid@{phys::ActorRigid}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}std::string phys::ActorRigid::GetName () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d71/classphys_1_1ActorRigid_a63952e0b7ab7176ae60d96756dd84b43}
+
+
+Retrieves the name of the object. 
+
+This function will retrieve the name of the object, 
+
+Implements \hyperlink{classphys_1_1ActorBase_a8309f5bd133c936abe3a856b0240159f}{phys::ActorBase}.
+
+
+
+Definition at line 320 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{
 \index{phys::ActorRigid@{phys::ActorRigid}!LimitMovementOnAxis@{LimitMovementOnAxis}}
@@ -221,7 +299,7 @@ This function will lock any and all axies you define you want to be locked. Simp
 \item[{\em x}]Allow or Disallow use of the X axis for movement. \item[{\em y}]Allow or Disallow use of the Y axis for movement. \item[{\em z}]Allow or Disallow use of the Z axis for movement. \end{DoxyParams}
 
 
-Definition at line 312 of file actorrigid.cpp.
+Definition at line 325 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f8}{
 \index{phys::ActorRigid@{phys::ActorRigid}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
@@ -242,7 +320,68 @@ Implements \hyperlink{classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}{
 
 
 
-Definition at line 171 of file actorrigid.cpp.
+Definition at line 173 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a99af341e186505a330f6634b7f6ad542}{
+\index{phys::ActorRigid@{phys::ActorRigid}!RestoreActivation@{RestoreActivation}}
+\index{RestoreActivation@{RestoreActivation}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{RestoreActivation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::RestoreActivation ()}}
+\label{d8/d71/classphys_1_1ActorRigid_a99af341e186505a330f6634b7f6ad542}
+
+
+Restores the activation state of the physics body to normal. 
+
+This function is useful when you are done applying a constraint to a body, or any other effect that would have you call \hyperlink{classphys_1_1ActorRigid_ad74da4da12bbb44b3e5ae22007c98573}{DisableDeactivation()}. 
+
+Definition at line 364 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a00ae9cd063f7f879d6bee15c807101d2}{
+\index{phys::ActorRigid@{phys::ActorRigid}!SetAngularVelocity@{SetAngularVelocity}}
+\index{SetAngularVelocity@{SetAngularVelocity}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{SetAngularVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetAngularVelocity ({\bf Vector3} {\em AngVel})}}
+\label{d8/d71/classphys_1_1ActorRigid_a00ae9cd063f7f879d6bee15c807101d2}
+
+
+Sets the Angular Velocity of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em AngVel}]\hyperlink{classphys_1_1Vector3}{Vector3} representing the Angular Velocity to be set. \end{DoxyParams}
+
+
+Definition at line 348 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a228fc92e7db56d07e441e6812ac28288}{
+\index{phys::ActorRigid@{phys::ActorRigid}!SetDamping@{SetDamping}}
+\index{SetDamping@{SetDamping}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{SetDamping}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetDamping ({\bf Real} {\em LinDamping}, \/  {\bf Real} {\em AngDamping})}}
+\label{d8/d71/classphys_1_1ActorRigid_a228fc92e7db56d07e441e6812ac28288}
+
+
+Sets the Damping for this object. 
+
+Both of Linear Damping and Angular Damping default to zero. This is usful if you wish to simulate something like air resistance. Values can range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+\item[{\em LinDamping}]Real representing the amount of Linear Damping to be applied. \item[{\em AngDamping}]Real representing the amount of Angular Damping to be applied. \end{DoxyParams}
+
+
+Definition at line 332 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a2b25eed4dcd594796c35a549d1c87559}{
+\index{phys::ActorRigid@{phys::ActorRigid}!SetLinearVelocity@{SetLinearVelocity}}
+\index{SetLinearVelocity@{SetLinearVelocity}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{SetLinearVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetLinearVelocity ({\bf Vector3} {\em LinVel})}}
+\label{d8/d71/classphys_1_1ActorRigid_a2b25eed4dcd594796c35a549d1c87559}
+
+
+Sets the Linear Velocity of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em LinVel}]\hyperlink{classphys_1_1Vector3}{Vector3} representing the Linear Velocity to be set. \end{DoxyParams}
+
+
+Definition at line 337 of file actorrigid.cpp.
 
 
 

@@ -54,7 +54,7 @@ namespace phys
     ///////////////////////////////////
     GraphicsManager::GraphicsManager( World* GameWorld_ )
     {
-        Construct( GameWorld_, 640, 480, false );
+        Construct( GameWorld_, 1024, 768, false );
     }
 
     GraphicsManager::GraphicsManager( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
@@ -145,7 +145,7 @@ namespace phys
     {
         //Create a the RenderTimer, which will be used to measure the time
 
-        crossplatform::RenderPhysWorld(this->GameWorld);
+        crossplatform::RenderPhysWorld(this->GameWorld, this->OgreGameWindow);
 
         //Do Time Calculations to Determine Rendering Time
         this->GameWorld->SetFrameTime( this->RenderTimer->getMilliseconds() );
@@ -172,7 +172,15 @@ namespace phys
         return ManagerBase::PostMainLoopItems();
     }
 
+    void GraphicsManager::SetOgreWindowPointer(Ogre::RenderWindow* OgreWindow)
+    {
+        OgreGameWindow = OgreWindow;
+    }
 
+    Ogre::RenderWindow* GraphicsManager::GetOgreWindowPointer()
+    {
+        return OgreGameWindow;
+    }
 }
 
 #endif

@@ -224,7 +224,7 @@ namespace ticpp
 		{
 			return ( GetBasePointer() == rhs.GetBasePointer() );
 		}
-		
+
 		/**
 		Compare internal TiXml pointers to determine is both are wrappers around the same node
 		*/
@@ -232,7 +232,7 @@ namespace ticpp
 		{
 			return ( GetBasePointer() != rhs.GetBasePointer() );
 		}
-		
+
 		/**
 		Builds detailed error string using TiXmlDocument::Error() and others
 		*/
@@ -249,8 +249,8 @@ namespace ticpp
 					if ( doc->Error() )
 					{
 						full_message 	<< "\nDescription: " << doc->ErrorDesc()
-										<< "\nFile: " << (strlen( doc->Value() ) > 0 ? doc->Value() : "<unnamed-file>") 
-										<< "\nLine: " << doc->ErrorRow() 
+										<< "\nFile: " << (strlen( doc->Value() ) > 0 ? doc->Value() : "<unnamed-file>")
+										<< "\nLine: " << doc->ErrorRow()
 										<< "\nColumn: " << doc->ErrorCol();
 					}
 				}
@@ -266,7 +266,6 @@ namespace ticpp
 		{
 		}
 
-	protected:
 		mutable TiCppRCImp* m_impRC;	/**< Holds status of internal TiXmlPointer - use this to determine if object has been deleted already */
 
 		/**
@@ -286,7 +285,7 @@ namespace ticpp
 			{
 				TICPPTHROW( "Internal TiXml Pointer is NULL" );
 			}
-		}		
+		}
 
 		/**
 		@internal
@@ -300,7 +299,7 @@ namespace ticpp
 	*/
 	class Attribute : public Base
 	{
-	private:
+	public:
 		TiXmlAttribute* m_tiXmlPointer;
 		TiXmlBase* GetBasePointer() const
 		{
@@ -450,7 +449,7 @@ namespace ticpp
 		*/
 		virtual void Print( FILE* file, int depth ) const;
 
-	private:
+	public:
 
 		/**
 		@internal
@@ -1005,7 +1004,7 @@ namespace ticpp
  			return out;
  		}
 
-	protected:
+	public:
 		/**
 		@internal
 		Allows NodeImp to use Node*'s.
@@ -1054,7 +1053,7 @@ namespace ticpp
 	template < class T = Node >
 		class Iterator
 	{
-	private:
+	public:
 		T* m_p;					/**< Internal Pointer */
 		std::string m_value;	/**< Value for NextSibling  calls */
 
@@ -1162,7 +1161,7 @@ namespace ticpp
 
 		/** Sets internal pointer to the Previous Sibling, or Iterator::END, if there are no prior siblings */
 		Iterator operator--(int)
-		{			
+		{
 			Iterator tmp(*this);
 			--(*this);
 			return tmp;
@@ -1225,7 +1224,7 @@ namespace ticpp
 	template < class T >
 		class NodeImp : public Node
 	{
-	protected:
+	public:
 
 		T* m_tiXmlPointer;		/**< Internal pointer to the TiXml Class which is being wrapped */
 
@@ -1819,7 +1818,7 @@ namespace ticpp
 		*/
 		void RemoveAttribute( const std::string& name );
 
-	private:
+	public:
 
 		/**
 		@internal

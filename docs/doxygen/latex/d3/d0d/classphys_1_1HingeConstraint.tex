@@ -12,17 +12,17 @@ Inheritance diagram for phys::HingeConstraint:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classphys_1_1HingeConstraint_a0ee9255d9d3af90cf611195852299367}{
-{\bfseries HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, \hyperlink{classphys_1_1Vector3}{Vector3} PivotInA, \hyperlink{classphys_1_1Vector3}{Vector3} PivotInB, \hyperlink{classphys_1_1Vector3}{Vector3} AxisInA, \hyperlink{classphys_1_1Vector3}{Vector3} AxisInB, bool UseReferenceA)}
+{\bfseries HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a0fefb80c80d433bec9942b851b2f5a8a}{ActorA}, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a04d2c49698d9a161e92112dd1efc1dcd}{ActorB}, \hyperlink{classphys_1_1Vector3}{Vector3} PivotInA, \hyperlink{classphys_1_1Vector3}{Vector3} PivotInB, \hyperlink{classphys_1_1Vector3}{Vector3} AxisInA, \hyperlink{classphys_1_1Vector3}{Vector3} AxisInB, bool UseReferenceA)}
 \label{d3/d0d/classphys_1_1HingeConstraint_a0ee9255d9d3af90cf611195852299367}
 
 \item 
 \hypertarget{classphys_1_1HingeConstraint_ad3fbe05bb3ab370d20935f9467b81dd3}{
-{\bfseries HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1Vector3}{Vector3} PivotInA, \hyperlink{classphys_1_1Vector3}{Vector3} AxisInA, bool UseReferenceA)}
+{\bfseries HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a0fefb80c80d433bec9942b851b2f5a8a}{ActorA}, \hyperlink{classphys_1_1Vector3}{Vector3} PivotInA, \hyperlink{classphys_1_1Vector3}{Vector3} AxisInA, bool UseReferenceA)}
 \label{d3/d0d/classphys_1_1HingeConstraint_ad3fbe05bb3ab370d20935f9467b81dd3}
 
 \item 
 \hypertarget{classphys_1_1HingeConstraint_acf99af18e95c5b42119d91aff8a02a2a}{
-{\bfseries HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, \hyperlink{classphys_1_1Vector3}{Vector3} VectorA, \hyperlink{classphys_1_1Vector3}{Vector3} VectorB, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionA, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionB, bool UseReferenceA=false)}
+{\bfseries HingeConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a0fefb80c80d433bec9942b851b2f5a8a}{ActorA}, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a04d2c49698d9a161e92112dd1efc1dcd}{ActorB}, \hyperlink{classphys_1_1Vector3}{Vector3} VectorA, \hyperlink{classphys_1_1Vector3}{Vector3} VectorB, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionA, \hyperlink{classphys_1_1Quaternion}{Quaternion} QuaternionB, bool UseReferenceA=false)}
 \label{d3/d0d/classphys_1_1HingeConstraint_acf99af18e95c5b42119d91aff8a02a2a}
 
 \item 
@@ -85,16 +85,10 @@ void {\bfseries SetUseFrameOffset} (bool FrameOffset)}
 \label{d3/d0d/classphys_1_1HingeConstraint_a06a8ac244cefe64c2ce865e608cb2f41}
 
 \item 
-\hypertarget{classphys_1_1HingeConstraint_adec79d062d67532e3521eaae6b49f877}{
-virtual void {\bfseries SetParam} (int num, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} value, int axis=-\/1)}
-\label{d3/d0d/classphys_1_1HingeConstraint_adec79d062d67532e3521eaae6b49f877}
-
-\item 
-\hypertarget{classphys_1_1HingeConstraint_a7e8c001ee6291bf457c9860124cacaf8}{
-virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries GetParam} (int num, int axis=-\/1)}
-\label{d3/d0d/classphys_1_1HingeConstraint_a7e8c001ee6291bf457c9860124cacaf8}
-
-\end{DoxyCompactItemize}
+virtual void \hyperlink{classphys_1_1HingeConstraint_adec79d062d67532e3521eaae6b49f877}{SetParam} (int num, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} value, int axis=-\/1)
+\begin{DoxyCompactList}\small\item\em Provides override of constraint parameters. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1HingeConstraint_a7e8c001ee6291bf457c9860124cacaf8}{GetParam} (int num, int axis=-\/1)
+\begin{DoxyCompactList}\small\item\em Gets value of constraint parameters. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -108,7 +102,7 @@ btHingeConstraint $\ast$ \hyperlink{classphys_1_1HingeConstraint_afa4e4f1595d642
 \subsection{Detailed Description}
 
 
-Definition at line 195 of file constraint.h.
+Definition at line 235 of file constraint.h.
 
 
 
@@ -127,7 +121,7 @@ Constructs this class around a pre-\/built bullet constraint. This is an interna
 \item[{\em Constraint}]The constraint to be constructed around. \end{DoxyParams}
 
 
-Definition at line 341 of file constraint.cpp.
+Definition at line 356 of file constraint.cpp.
 
 \hypertarget{classphys_1_1HingeConstraint_af97da06f82fa1903bb20393760f4ae34}{
 \index{phys::HingeConstraint@{phys::HingeConstraint}!$\sim$HingeConstraint@{$\sim$HingeConstraint}}
@@ -140,7 +134,53 @@ Class destructor.
 
 The class destructor. 
 
-Definition at line 347 of file constraint.cpp.
+Definition at line 362 of file constraint.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1HingeConstraint_a7e8c001ee6291bf457c9860124cacaf8}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!GetParam@{GetParam}}
+\index{GetParam@{GetParam}!phys::HingeConstraint@{phys::HingeConstraint}}
+\subsubsection[{GetParam}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::HingeConstraint::GetParam (int {\em num}, \/  int {\em axis} = {\ttfamily -\/1})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d0d/classphys_1_1HingeConstraint_a7e8c001ee6291bf457c9860124cacaf8}
+
+
+Gets value of constraint parameters. 
+
+See \hyperlink{classphys_1_1HingeConstraint_adec79d062d67532e3521eaae6b49f877}{SetParam()} for clarification. Gets information on constraint parameters. 
+\begin{DoxyParams}{Parameters}
+\item[{\em num}]The parameter to get information for. \item[{\em axis}]Optional axis. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the value for the requested parameter. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1TypedConstraint_ab6140d40e9476c3dc46e2802e8097421}{phys::TypedConstraint}.
+
+
+
+Definition at line 428 of file constraint.cpp.
+
+\hypertarget{classphys_1_1HingeConstraint_adec79d062d67532e3521eaae6b49f877}{
+\index{phys::HingeConstraint@{phys::HingeConstraint}!SetParam@{SetParam}}
+\index{SetParam@{SetParam}!phys::HingeConstraint@{phys::HingeConstraint}}
+\subsubsection[{SetParam}]{\setlength{\rightskip}{0pt plus 5cm}void phys::HingeConstraint::SetParam (int {\em num}, \/  {\bf Real} {\em value}, \/  int {\em axis} = {\ttfamily -\/1})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d0d/classphys_1_1HingeConstraint_adec79d062d67532e3521eaae6b49f877}
+
+
+Provides override of constraint parameters. 
+
+Parameters such as ERP and CFM can be altered with this function. Optionally provide axis. 
+\begin{DoxyParams}{Parameters}
+\item[{\em num}]The parameter to override. \item[{\em value}]The new value for the parameter. \item[{\em axis}]Optional axis. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1TypedConstraint_a31a20a74094f0cb8e4f82d1f99725415}{phys::TypedConstraint}.
+
+
+
+Definition at line 423 of file constraint.cpp.
 
 
 

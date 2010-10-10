@@ -44,8 +44,10 @@
 #include "managerbase.h"
 #include "sound.h"
 #include "soundlistener.h"
+
 #include <vector>
 #include <map>
+#include <sstream>
 
 namespace cAudio
 {
@@ -69,6 +71,7 @@ namespace phys
             cAudio::IAudioManager* AudioManager;
             std::map< String, SoundSet* > SoundSets;
             cAudio::IListener* AudioListener;
+
         public:
             /// @brief Class Constructor
             /// @details This is the class constructor.  It gives you the option to start up the manager
@@ -169,6 +172,18 @@ namespace phys
             /// @details Gets the type of manager that this is.
             /// @return Returns the manager type.
             ManagerTypeName GetType() const;
+
+            /// @brief This gets the logs that the audio subystem creates
+            /// @details Internally the Physgame engine currently uses cAudio to process 3d sound. It has it's own
+            /// logging system that we have customized to work with our logger.
+            /// @return This gets the log of what actions the audio system has performed
+            std::stringstream* GetLogs();
+
+            /// @brief This empties logs that the audio subystem creates
+            /// @details Internally the Physgame engine currently uses cAudio to process 3d sound. It has it's own
+            /// logging system that we have customized to work with our logger. This clears that data allow us to
+            /// work with it as we need
+            void ClearLogs();
     };
 }
 

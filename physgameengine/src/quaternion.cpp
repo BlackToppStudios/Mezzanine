@@ -52,7 +52,7 @@ namespace phys
         X=0;
         Y=0;
         Z=0;
-        W=0;
+        W=1;
     }
 
     Quaternion::Quaternion(const Real &x, const Real &y, const Real &z, const Real &w)
@@ -61,6 +61,16 @@ namespace phys
         Y=y;
         Z=z;
         W=w;
+    }
+
+    Quaternion::Quaternion(const btQuaternion& Theirs)
+    {
+        ExtractBulletQuaternion(Theirs);
+    }
+
+    Quaternion::Quaternion(const Ogre::Quaternion& Theirs)
+    {
+        ExtractOgreQuaternion(Theirs);
     }
 
     btQuaternion Quaternion::GetBulletQuaternion(bool normalize)

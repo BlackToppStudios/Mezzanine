@@ -49,8 +49,10 @@ class btSoftRigidDynamicsWorld;
 class btDynamicsWorld;
 class btCollisionShape;
 class btSoftBodyRigidBodyCollisionConfiguration;
+class btGhostPairCallback;
 
 #include <map>
+#include <vector>
 
 #include "managerbase.h"
 #include "constraint.h"
@@ -61,6 +63,7 @@ namespace phys
     class World;
     class ActorBase;
     class Vector3WActor;
+    class AreaEffect;
     namespace debug {
         class InternalDebugDrawer;
     }
@@ -82,8 +85,10 @@ namespace phys
             unsigned short int CollisionAge;
             Real Impulse;
             std::map< String, btCollisionShape* > PhysicsShapes;
+            std::vector < AreaEffect* > AreaEffects;
 
             // Some Items bullet requires
+            btGhostPairCallback* GhostCallback;
             btAxisSweep3* BulletBroadphase;
             //btDefaultCollisionConfiguration* BulletCollisionConfiguration;
             btSoftBodyRigidBodyCollisionConfiguration* BulletCollisionConfiguration;
@@ -99,6 +104,10 @@ namespace phys
             /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
             /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
             void Construct(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
+
+            /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect instance.
+            /// @details This function is automatically called every step.
+            void ProcessAllEffects();
         public:
 
             /// @brief Simple Constructor
@@ -134,11 +143,27 @@ namespace phys
             /// @param pgrav Vector3 representing the strength and direction of gravity.
             void SetGravity(Vector3 pgrav);
 
+            /// @brief Gets the gravity.
+            /// @details Gets the currently set world gravity.
+            /// @return Returns the currently set world gravity.
+            Vector3 GetGravity();
+
             /// @brief Sets the gravity for soft bodies.
             /// @details Gravity for soft bodies is stored separately from rigid bodies.  So if you plan to use soft bodies in your game/simulation
             /// you need to call this function otherwise they won't fall.
             /// @param sgrav Vector3 representing the strength and direction of gravity.
             void SetSoftGravity(Vector3 sgrav);
+
+            /// @brief Gets the soft body gravity.
+            /// @details Gets the currently set soft body world gravity.
+            /// @return Returns the currently set soft body world gravity.
+            Vector3 GetSoftGravity();
+
+            /// @brief Sets the gravity to be applied to a single object.
+            /// @details This function does not change the global gravity, only how gravity behaves for this specific object.  Note: This function only works on ActorRigid's.
+            /// @param Actor The actor whos gravity is to be changed.
+            /// @param igrav The value of the gravity to be applied.
+            void SetIndividualGravity(ActorBase* Actor, Vector3 igrav);
 
             /// @brief Enables and Disables Physics Debug Drawing
             /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics
@@ -196,6 +221,22 @@ namespace phys
             /// @param Actor The actor to which you want to apply the shape.
             /// @param ShapeName The name of the shape you wish to have applied to the actor.
             void ApplyPhysicsShape(ActorBase* Actor, String &ShapeName);
+
+            /// @brief Adds an area effect to the world.
+            /// @details Adds an area effect to the world so that it can/will take effect.
+            /// @param AE The area effect to be added.
+            void AddAreaEffect(AreaEffect* AE);
+
+            /// @brief Removes an area effect from the world.
+            /// @details Removes an area effect from the world so that it will have no effect.
+            /// @param AE The area effect to be removed.
+            void RemoveAreaEffect(AreaEffect* AE);
+
+            /// @brief Gets an Area Effect by name.
+            /// @details This function will return the named area effect if it is stored.
+            /// @param Name The name of the area effect to find.
+            /// @return Returns a pointer to the named area effect.
+            AreaEffect* GetAreaEffect(String Name);
 
             /// @brief Sets the Collision Parameters.
             /// @details Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events.  The lower these numbers, the more events will be generated.  @n

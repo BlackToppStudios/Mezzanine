@@ -33,13 +33,8 @@
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\cAudio.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\OpenAL32.dll .\bin\WinDebug" />
-					<Add after="cmd /c copy /y /v .\data\common\*.mesh .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.skeleton .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.material .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.jpg .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.psd .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.tga .\bin\WinDebug\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.bullet .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.png .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.gorilla .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\sounds\*.ogg .\bin\WinDebug\data\common\sounds" />
 					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinDebug\data\common\music" />
 					<Mode after="always" />
@@ -64,18 +59,20 @@
 					<Add directory="." />
 				</Linker>
 				<ExtraCommands>
-					<Add before="mkdir bin/LinuxDebug/data/common -p" />
-					<Add before="cp ../physgameengine/bin/LinuxDebug/* ./bin/LinuxDebug/ -r" />
+					<Add before="mkdir bin/LinuxDebug/data -p" />
+					<Add before="cp ../physgameengine/bin/LinuxDebug/* bin/LinuxDebug/ -r" />
 					<Add before="cp data/linux/Catch! bin/LinuxDebug/" />
-					<Add before="cp data/common/*.jpg bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.psd bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.tga bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.mesh bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.skeleton bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.material bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.bullet bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/music/*.ogg bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/sounds/*.ogg bin/LinuxDebug/data/common/" />
+					<Add before="#cp data/common/*.jpg bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.png bin/LinuxDebug/data/common/" />
+					<Add before="#cp data/common/*.psd bin/LinuxDebug/data/common/" />
+					<Add before="#cp data/common/*.tga bin/LinuxDebug/data/common/" />
+					<Add before="#cp data/common/*.mesh bin/LinuxDebug/data/common/" />
+					<Add before="#cp data/common/*.skeleton bin/LinuxDebug/data/common/" />
+					<Add before="#cp data/common/*.material bin/LinuxDebug/data/common/" />
+					<Add before="#cp data/common/*.bullet bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.gorilla bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/music/ bin/LinuxDebug/data/common/ -r" />
+					<Add before="cp data/common/sounds/ bin/LinuxDebug/data/common/ -r" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
@@ -112,6 +109,8 @@
 					<Add after="cmd /c copy /y /v .\data\common\*.jpg .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.psd .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.tga .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.png .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.gorilla .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.bullet .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\sounds\*.ogg .\bin\WinRelease\data\common\sounds" />
 					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinRelease\data\common\music" />
@@ -137,16 +136,18 @@
 					<Add directory="." />
 				</Linker>
 				<ExtraCommands>
-					<Add before="mkdir bin/LinuxRelease/data/common -p" />
-					<Add before="cp ../physgameengine/bin/LinuxRelease/* ./bin/LinuxRelease/ -r" />
+					<Add before="mkdir bin/LinuxRelease/data -p" />
+					<Add before="cp ../physgameengine/bin/LinuxRelease/* bin/LinuxRelease/ -r" />
 					<Add before="cp data/linux/Catch! bin/LinuxRelease/" />
 					<Add before="cp data/common/*.jpg bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.png bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.psd bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.tga bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.mesh bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.skeleton bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.material bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.bullet bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.gorilla bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/music/*.ogg bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/sounds/*.ogg bin/LinuxRelease/data/common/" />
 					<Mode after="always" />
@@ -158,6 +159,12 @@
 		</Compiler>
 		<Unit filename="src/gamebase.cpp" />
 		<Unit filename="src/gamebase.h" />
+		<Unit filename="src/itemshoplist.cpp" />
+		<Unit filename="src/itemshoplist.h" />
+		<Unit filename="src/scorearea.cpp" />
+		<Unit filename="src/scorearea.h" />
+		<Unit filename="src/startingarea.cpp" />
+		<Unit filename="src/startingarea.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

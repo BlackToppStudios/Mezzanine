@@ -104,86 +104,85 @@
 <a name="l00079"></a>00079 <span class="keyword">    </span>{
 <a name="l00080"></a>00080 
 <a name="l00081"></a>00081         <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> Temp = this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba" title="This returns the normal for this ray.">GetNormal</a>();
-<a name="l00082"></a>00082         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ogre::Ray</a>(
-<a name="l00083"></a>00083             Temp.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>(),
-<a name="l00084"></a>00084             Temp.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>()
-<a name="l00085"></a>00085         );<span class="comment">// */</span>
-<a name="l00086"></a>00086         <span class="comment">/*</span>
-<a name="l00087"></a>00087 <span class="comment">        return Ogre::Ray(</span>
-<a name="l00088"></a>00088 <span class="comment">            this-&gt;From.GetOgreVector3(),</span>
-<a name="l00089"></a>00089 <span class="comment">            this-&gt;To.GetOgreVector3()</span>
-<a name="l00090"></a>00090 <span class="comment">        );// */</span>
-<a name="l00091"></a>00091     }
-<a name="l00092"></a>00092 
-<a name="l00093"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b">00093</a>     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b" title="Measures the distance distance of this ray.">Ray::Length</a>()<span class="keyword"> const</span>
-<a name="l00094"></a>00094 <span class="keyword">    </span>{
-<a name="l00095"></a>00095         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f" title="This return the distance between this point and another.">Distance</a>( this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> );
-<a name="l00096"></a>00096     }
-<a name="l00097"></a>00097 
-<a name="l00098"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba">00098</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba" title="This returns the normal for this ray.">Ray::GetNormal</a>()<span class="keyword"> const</span>
-<a name="l00099"></a>00099 <span class="keyword">    </span>{
-<a name="l00100"></a>00100         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TempLength = this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b" title="Measures the distance distance of this ray.">Length</a>();
-<a name="l00101"></a>00101         <span class="keywordflow">if</span> (0!=TempLength)
-<a name="l00102"></a>00102         {
-<a name="l00103"></a>00103             <span class="keywordflow">return</span> (*<span class="keyword">this</span>) / TempLength;
-<a name="l00104"></a>00104         }<span class="keywordflow">else</span>{<span class="comment"></span>
-<a name="l00105"></a>00105 <span class="comment">            /// @todo discuss the merits throwing an error here.</span>
-<a name="l00106"></a>00106 <span class="comment"></span>            <span class="keywordflow">return</span> (*<span class="keyword">this</span>);
-<a name="l00107"></a>00107             <span class="comment">//return 0;</span>
-<a name="l00108"></a>00108         }
-<a name="l00109"></a>00109     }
-<a name="l00110"></a>00110 
-<a name="l00111"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a2acbaef60718001a048db26ccaaef787">00111</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a2acbaef60718001a048db26ccaaef787" title="Turns this Ray into its own normal.">Ray::Normalize</a>()
-<a name="l00112"></a>00112     {
-<a name="l00113"></a>00113         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TempLength = this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b" title="Measures the distance distance of this ray.">Length</a>();
-<a name="l00114"></a>00114         <span class="keywordflow">if</span> (0!=TempLength)
-<a name="l00115"></a>00115         {
-<a name="l00116"></a>00116             (*this) /= this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b" title="Measures the distance distance of this ray.">Length</a>();
-<a name="l00117"></a>00117         }<span class="keywordflow">else</span>{
-<a name="l00118"></a>00118             <span class="comment">// nothing to change, we have a zero length Ray</span>
-<a name="l00119"></a>00119         }
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121     }
-<a name="l00122"></a>00122 <span class="comment"></span>
-<a name="l00123"></a>00123 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00124"></a>00124 <span class="comment"></span>    <span class="comment">// Real Operators and assignments</span>
-<a name="l00125"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a6a47611776a9ab83d7ebc178a8d35b50">00125</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a6a47611776a9ab83d7ebc178a8d35b50" title="This returns a ray lengthened by the given multiple.">Ray::operator* </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)<span class="keyword"> const</span>
-<a name="l00126"></a>00126 <span class="keyword">    </span>{
-<a name="l00127"></a>00127         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ray</a>(
-<a name="l00128"></a>00128             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>,
-<a name="l00129"></a>00129             ((this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> - this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>) * scalar) + this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>
-<a name="l00130"></a>00130         );
-<a name="l00131"></a>00131     }
-<a name="l00132"></a>00132 
-<a name="l00133"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a126f8e4db94cccb5c0040db29c771a47">00133</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a126f8e4db94cccb5c0040db29c771a47" title="This returns a ray scaled by the given divisor.">Ray::operator/ </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)<span class="keyword"> const</span>
-<a name="l00134"></a>00134 <span class="keyword">    </span>{
-<a name="l00135"></a>00135         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ray</a>(
-<a name="l00136"></a>00136             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>,
-<a name="l00137"></a>00137             ((this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> - this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>) / scalar) + this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>
-<a name="l00138"></a>00138         );
-<a name="l00139"></a>00139     }
-<a name="l00140"></a>00140 
-<a name="l00141"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#acc1ac010f02f61b3d5234a5b619e926a">00141</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#acc1ac010f02f61b3d5234a5b619e926a" title="This lengthens the Ray by the given multiple.">Ray::operator*= </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)
-<a name="l00142"></a>00142     {
-<a name="l00143"></a>00143         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> = ((this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> - this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>) * scalar) + this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>;
-<a name="l00144"></a>00144     }
-<a name="l00145"></a>00145 
-<a name="l00146"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a11f681152a5a39c36f2b398d44657ecd">00146</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a11f681152a5a39c36f2b398d44657ecd" title="This scales the Ray by the given divisor.">Ray::operator/= </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)
-<a name="l00147"></a>00147     {
-<a name="l00148"></a>00148         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> = ((this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> - this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>) / scalar) + this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>;
-<a name="l00149"></a>00149     }
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151 }
-<a name="l00152"></a>00152 
-<a name="l00153"></a>00153 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">phys::Ray</a>&amp; x)
-<a name="l00154"></a>00154 {
-<a name="l00155"></a>00155     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
-<a name="l00156"></a>00156     <span class="keywordflow">return</span> stream;
-<a name="l00157"></a>00157 }
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159 <span class="preprocessor">#endif</span>
+<a name="l00082"></a>00082         <span class="comment">/*return Ogre::Ray(</span>
+<a name="l00083"></a>00083 <span class="comment">            Temp.From.GetOgreVector3(),</span>
+<a name="l00084"></a>00084 <span class="comment">            Temp.To.GetNormal().GetOgreVector3()</span>
+<a name="l00085"></a>00085 <span class="comment">        );// */</span>
+<a name="l00086"></a>00086         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ogre::Ray</a>(
+<a name="l00087"></a>00087             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>(),
+<a name="l00088"></a>00088             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>()
+<a name="l00089"></a>00089         );<span class="comment">// */</span>
+<a name="l00090"></a>00090     }
+<a name="l00091"></a>00091 
+<a name="l00092"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b">00092</a>     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b" title="Measures the distance distance of this ray.">Ray::Length</a>()<span class="keyword"> const</span>
+<a name="l00093"></a>00093 <span class="keyword">    </span>{
+<a name="l00094"></a>00094         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f" title="This return the distance between this point and another.">Distance</a>( this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> );
+<a name="l00095"></a>00095     }
+<a name="l00096"></a>00096 
+<a name="l00097"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba">00097</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a7445c25acb6ce865ef85e7ada829ccba" title="This returns the normal for this ray.">Ray::GetNormal</a>()<span class="keyword"> const</span>
+<a name="l00098"></a>00098 <span class="keyword">    </span>{
+<a name="l00099"></a>00099         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TempLength = this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b" title="Measures the distance distance of this ray.">Length</a>();
+<a name="l00100"></a>00100         <span class="keywordflow">if</span> (0!=TempLength)
+<a name="l00101"></a>00101         {
+<a name="l00102"></a>00102             <span class="keywordflow">return</span> (*<span class="keyword">this</span>) / TempLength;
+<a name="l00103"></a>00103         }<span class="keywordflow">else</span>{<span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">            /// @todo discuss the merits throwing an error here.</span>
+<a name="l00105"></a>00105 <span class="comment"></span>            <span class="keywordflow">return</span> (*<span class="keyword">this</span>);
+<a name="l00106"></a>00106             <span class="comment">//return 0;</span>
+<a name="l00107"></a>00107         }
+<a name="l00108"></a>00108     }
+<a name="l00109"></a>00109 
+<a name="l00110"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a2acbaef60718001a048db26ccaaef787">00110</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a2acbaef60718001a048db26ccaaef787" title="Turns this Ray into its own normal.">Ray::Normalize</a>()
+<a name="l00111"></a>00111     {
+<a name="l00112"></a>00112         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TempLength = this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b" title="Measures the distance distance of this ray.">Length</a>();
+<a name="l00113"></a>00113         <span class="keywordflow">if</span> (0!=TempLength)
+<a name="l00114"></a>00114         {
+<a name="l00115"></a>00115             (*this) /= this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#add544025fcd6d1cdcfed3c0413b3701b" title="Measures the distance distance of this ray.">Length</a>();
+<a name="l00116"></a>00116         }<span class="keywordflow">else</span>{
+<a name="l00117"></a>00117             <span class="comment">// nothing to change, we have a zero length Ray</span>
+<a name="l00118"></a>00118         }
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120     }
+<a name="l00121"></a>00121 <span class="comment"></span>
+<a name="l00122"></a>00122 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00123"></a>00123 <span class="comment"></span>    <span class="comment">// Real Operators and assignments</span>
+<a name="l00124"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a6a47611776a9ab83d7ebc178a8d35b50">00124</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a6a47611776a9ab83d7ebc178a8d35b50" title="This returns a ray lengthened by the given multiple.">Ray::operator* </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)<span class="keyword"> const</span>
+<a name="l00125"></a>00125 <span class="keyword">    </span>{
+<a name="l00126"></a>00126         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ray</a>(
+<a name="l00127"></a>00127             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>,
+<a name="l00128"></a>00128             ((this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> - this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>) * scalar) + this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>
+<a name="l00129"></a>00129         );
+<a name="l00130"></a>00130     }
+<a name="l00131"></a>00131 
+<a name="l00132"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a126f8e4db94cccb5c0040db29c771a47">00132</a>     <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a126f8e4db94cccb5c0040db29c771a47" title="This returns a ray scaled by the given divisor.">Ray::operator/ </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)<span class="keyword"> const</span>
+<a name="l00133"></a>00133 <span class="keyword">    </span>{
+<a name="l00134"></a>00134         <span class="keywordflow">return</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a35f4f5eec653ea561353163eaad672d3" title="Default constructor.">Ray</a>(
+<a name="l00135"></a>00135             this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>,
+<a name="l00136"></a>00136             ((this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> - this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>) / scalar) + this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>
+<a name="l00137"></a>00137         );
+<a name="l00138"></a>00138     }
+<a name="l00139"></a>00139 
+<a name="l00140"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#acc1ac010f02f61b3d5234a5b619e926a">00140</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#acc1ac010f02f61b3d5234a5b619e926a" title="This lengthens the Ray by the given multiple.">Ray::operator*= </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)
+<a name="l00141"></a>00141     {
+<a name="l00142"></a>00142         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> = ((this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> - this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>) * scalar) + this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>;
+<a name="l00143"></a>00143     }
+<a name="l00144"></a>00144 
+<a name="l00145"></a><a class="code" href="../../df/d57/classphys_1_1Ray.html#a11f681152a5a39c36f2b398d44657ecd">00145</a>     <span class="keywordtype">void</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html#a11f681152a5a39c36f2b398d44657ecd" title="This scales the Ray by the given divisor.">Ray::operator/= </a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar)
+<a name="l00146"></a>00146     {
+<a name="l00147"></a>00147         this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> = ((this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> - this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>) / scalar) + this-&gt;<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>;
+<a name="l00148"></a>00148     }
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150 }
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">phys::Ray</a>&amp; x)
+<a name="l00153"></a>00153 {
+<a name="l00154"></a>00154     stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00155"></a>00155     <span class="keywordflow">return</span> stream;
+<a name="l00156"></a>00156 }
+<a name="l00157"></a>00157 
+<a name="l00158"></a>00158 <span class="preprocessor">#endif</span>
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Aug 4 02:26:34 2010 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Sep 27 01:32:50 2010 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

@@ -44,7 +44,7 @@
 #include "vector3.h"
 #include "quaternion.h"
 #include "ray.h"
-#include "cameramanager.h"
+#include "attachable.h"
 
 namespace Ogre
 {
@@ -53,6 +53,8 @@ namespace Ogre
 
 namespace phys
 {
+    class CameraManager;
+    class World;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Camera
     /// @headerfile camera.h
@@ -60,8 +62,14 @@ namespace phys
     /// @details This class contains all the functionality needed to manipulate an
     /// individual camera that has been created.
     ///////////////////////////////////////////////////////////////////////////////
-    class Camera
+    class Camera : public Attachable
     {
+        public:
+            enum ProjectionType
+            {
+                Orthographic,
+                Perspective
+            };
         private:
             /// @internal
             /// @brief This is called by the called by the constructors, it is a single point of class initialization.
@@ -70,6 +78,10 @@ namespace phys
             void Construct(Ogre::Camera* Camera, CameraManager* Manager);
 
         protected:
+            //needed mostly just for initialization of the world class when defaults are being made.
+            friend class World;
+            friend class Node;
+            friend class CameraManager;
             /// @internal
             /// @brief This is the Camera used by the graphics Subsystem, that this class wraps
             Ogre::Camera* Cam;
@@ -81,13 +93,40 @@ namespace phys
         public:
             /// @brief Basic Camera Constructor.
             /// @details This is the basic constructor for the Camera class.
-            Camera(CameraManager* Manager);
+            Camera(const String& Name, CameraManager* Manager);
             /// @brief Ogre Cam Constructor.
             /// @details This is for internal use only and shouldn't be called manually.
             Camera(Ogre::Camera* Camera, CameraManager* Manager);
             /// @brief Class Destructor.
             /// @details The Class Destructor.
             ~Camera();
+            /// @brief Gets the camera's set name.
+            /// @return Returns a string containing the camera's name.
+            String& GetName();
+            /// @brief Sets the type of projection to be used with this camera.
+            /// @details By default, all cameras are enabled with Perspective projection.  This is the standard 3-dimentional
+            /// view anyone would expect in a 3D world.  Orthographic projection is useful when displaying 2D worlds, or only
+            /// 2 dimentions of a 3D world.  It enables you to see the entire side of an object without regard for camera perspective.
+            /// Perspective can be thought of as a pyramid, with the camera at the top of the cone.  Orthographic would instead be a
+            /// cube.
+            /// @param Type The type of projection to be used.
+            void SetCameraType(ProjectionType Type);
+            /// @brief Defines the size of the Orthographic projection window.
+            /// @details This function will change the aspect ratio of the screen, determined by the values passed in.  To set the
+            /// window size without changing the aspect ratio, call either the SetOrthoWindowHeight, or SetOrthoWindowWidth functions.
+            /// @param Width The new width of the projection window.
+            /// @param Height The new height of the projection window.
+            void SetOrthoWindow(Real Width, Real Height);
+            /// @brief Defines the size of the Orthographic projection window.
+            /// @details This function will not change the aspect ratio of the screen, unlike SetOrthoWindow.  The aspect ratio will be
+            /// preserved and the Width of the screen automatically recalculated based on the Height passed in.
+            /// @param Height The new height of the projection window.
+            void SetOrthoWindowHeight(Real Height);
+            /// @brief Defines the size of the Orthographic projection window.
+            /// @details This function will not change the aspect ratio of the screen, unlike SetOrthoWindow.  The aspect ratio will be
+            /// preserved and the Height of the screen automatically recalculated based on the Width passed in.
+            /// @param Width The new width of the projection window.
+            void SetOrthoWindowWidth(Real Width);
             /// @brief Sets the location of a camera.
             /// @details Sets the location of the specified camera.
             /// @param Location The new location for the camera.
@@ -136,12 +175,12 @@ namespace phys
             /// @param Enabled Bool value to enable or disable auto tracking for this camera.
             /// @param Target Name of the node to be tracked.
             /// @param Offset The offset of where the camera is to look from the target.  I.E. Always 5 units ahead, etc..
-            void SetAutoTracking(bool Enabled, String Target, Vector3 Offset);
+            //void SetAutoTracking(bool Enabled, String Target, Vector3 Offset);
             /// @brief Enables or disables auto tracking for the camera.
             /// @details This function can enable auto tracking of a given node you have created.
             /// @param Enabled Bool value to enable or disable auto tracking for this camera.
             /// @param Target Name of the node to be tracked.
-            void SetAutoTracking(bool Enabled, String Target);
+            //void SetAutoTracking(bool Enabled, String Target);
             /// @brief Gets a Ray from the camera to the viewport.
             /// @details This will cast a ray from the camera to the viewport and return it.
             /// @param Screenx A Real representing the relative location on screen, on the x axis(0.0-1.0).

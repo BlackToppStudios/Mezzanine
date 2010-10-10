@@ -57,12 +57,20 @@
 #include "actorbase.h"
 #include "eventuserinput.h"
 #include "managerbase.h"
+#include "eventmanager.h"
+#include "cameramanager.h"
+#include "physicsmanager.h"
+#include "soundmanager.h"
+#include "resourcemanager.h"
+#include "scenemanager.h"
+#include "uimanager.h"
 
 #include "actorcontainervector.h"
 #include "ray.h"
 #include "actorrigid.h"
 #include "vector3wactor.h"
 #include "plane.h"
+#include "camera.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -86,12 +94,14 @@ namespace phys
         Vector3 Ubounds(1000.0,1000.0,1000.0);
         std::vector <ManagerBase*> temp;
 
-        this->Construct(Lbounds, Ubounds, 10, "Physgame.log", temp);
+        this->Construct(Lbounds, Ubounds, 10, "SceneManager", SceneManager::Generic, "Physgame.log", temp);
     }
 
 
     World::World(   const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
+                    std::string SceneManagerName,
+                    SceneManager::SceneManagerType SceneType,
                     const unsigned short int  &MaxPhysicsProxies_,
                     std::string LogFileName)
     {
@@ -99,6 +109,8 @@ namespace phys
         this->Construct(GeographyLowerBounds_,
                         GeographyUpperbounds_,
                         MaxPhysicsProxies_,
+                        SceneManagerName,
+                        SceneType,
                         LogFileName,
                         temp );
     }
@@ -106,6 +118,8 @@ namespace phys
     World::World(  const Vector3 &GeographyLowerBounds_,
             const Vector3 &GeographyUpperbounds_,
             const unsigned short int &MaxPhysicsProxies_,
+            std::string SceneManagerName,
+            SceneManager::SceneManagerType SceneType,
             const std::string &LogFileName,
             const std::vector <ManagerBase*> &ManagerToBeAdded)
     {
@@ -117,6 +131,8 @@ namespace phys
     void World::Construct(  const Vector3 &GeographyLowerBounds_,
                                 const Vector3 &GeographyUpperbounds_,
                                 const unsigned short int &MaxPhysicsProxies_,
+                                std::string SceneManagerName,
+                                SceneManager::SceneManagerType SceneType,
                                 std::string LogFileName,
                                 std::vector <ManagerBase*> ManagerToBeAdded)
     {
@@ -131,6 +147,8 @@ namespace phys
         for(std::vector<ManagerBase*>::iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
             { this->AddManager(*iter); }
 
+        /// @todo With the removal of the public ogre pointers, and increased dependancy of managers on other managers as a result, a re-examining of the order managers
+        /// and components are initialized is in order.
         //Create and add any managers that have not been taken care of yet.
         if(this->GetActorManager()==0)
             { this->AddManager(new ActorContainerVector(this)); }
@@ -144,6 +162,10 @@ namespace phys
             { this->AddManager(new EventManager(this)); }
         if(this->GetPhysicsManager()==0)
             { this->AddManager(new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_)); }
+        if(this->GetSceneManager()==0)
+            { this->AddManager(new SceneManager(SceneManagerName, SceneType, this)); }
+        if(this->GetUIManager()==0)
+            { this->AddManager(new UIManager(this)); }
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -210,6 +232,7 @@ namespace phys
         ActorRigid* temp24=0;
         Vector3WActor temp25( temp24, Vector3(0,2,5));
         Plane temp26(Vector3(2.0, 6.0, 2.0), 6.0);
+        ActorBase* temp27=0;
 
         //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
         /// @todo TODO add each type of event here (logtest) to make it really easy to log events
@@ -237,9 +260,10 @@ namespace phys
         OneLogTest(temp21, "Ogre::Vector3");
         OneLogTest(temp22,"Ray");
         OneLogTest("temp23","<char const*>");
-        OneLogTest(temp24,"ActorBase");
+        OneLogTest(temp24,"ActorRigid");
         OneLogTest(temp25,"Vector3WActor");
         OneLogTest(temp26,"Plane");
+        OneLogTest(temp27,"ActorBase");
         OneLogTest('7',"const char");
     }
 
@@ -276,10 +300,21 @@ namespace phys
     //appends to the gamelog which is managed by Ogre
     template <class T> void World::Log(T Message)
     {
-        stringstream temp;
-        temp << this->LogStream.str() << Message;
+        static stringstream Converter;
+
+        static std::stringstream* Audiolog = 0;
+        if (0 == Audiolog)
+        {
+            Audiolog = this->GetSoundManager()->GetLogs();
+        }else{
+            Converter << Audiolog->str();
+            Audiolog->str("");
+        }
+
+        Converter << this->LogStream.str() << Message;
         this->LogStream.str("");
-        Ogre::LogManager::getSingleton().logMessage(temp.str());
+        Ogre::LogManager::getSingleton().logMessage(Converter.str());
+        Converter.str("");
     }
 
     template <class T> void World::LogAndThrow(T Message)
@@ -292,8 +327,7 @@ namespace phys
     // Start the Game already
     void World::GameInit( const bool &CallMainLoop )
     {
-        #define PHYSDEBUG
-
+        //#define PHYSDEBUG
         #ifdef PHYSDEBUG
         this->Log("Entering GameInit()");
         #endif
@@ -302,8 +336,6 @@ namespace phys
         #ifdef PHYSDEBUG
         this->Log("Loaded Graphics Settings");
         #endif
-
-
 
         this->CreateRenderWindow();
         #ifdef PHYSDEBUG
@@ -334,7 +366,7 @@ namespace phys
     void World::MainLoop()
     {
         /// @todo create a lighting manager and put this in there
-        this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
+        //this->OgreSceneManager->setAmbientLight( Ogre::ColourValue( 1, 1, 1 ) );
 
         /*! @page mainloop1 Main Loop Structure and Flow
          The MainLoop is heart of most video games and simulations.
@@ -342,7 +374,7 @@ namespace phys
          @section mainloopoverview1 Main loop Overview
          The Main loop runs in World.MainLoop() which is called by default from @ref World.GameInit(). By default this Method also starts the render, the physics andthe input systems. It does very
          little on it's own. The main loop then calls the PreMainLoopItems(), DoMainLoopItems and PreMainLoopItems(), for each manager in the order of their priority from Lowest to Highest.
-         \nHere is a listing of  default priorities for each of the managers the a world intantiates by default:
+         \n Here is a listing of  default priorities for each of the managers the a world intantiates by default:
             -50	User Input and events
             -40	Actors
             -30	Physics
@@ -408,7 +440,7 @@ namespace phys
 
     void World::CreateRenderWindow()
     {
-         #define PHYSDEBUG
+         //#define PHYSDEBUG
 
         #ifdef PHYSDEBUG
         this->Log("Entering CreateRenderWindow()");
@@ -438,15 +470,16 @@ namespace phys
 		}
 
         //Start Ogre Without a native render window
+        Ogre::RenderWindow* OgreGameWindow = NULL;
         try
         {
             //crossplatform::WaitMilliseconds(1000);
-            this->OgreGameWindow = this->OgreRoot->initialise(false, this->WindowName);
+            OgreGameWindow = this->OgreRoot->initialise(false, this->WindowName);
             #ifdef PHYSDEBUG
-            this->Log("Setup Ogre");
+            this->Log("Setup Ogre Window");
             #endif
         }catch (exception& e) {
-		    this->Log("Failed to Setup Ogre");
+		    this->Log("Failed to Setup Ogre Window");
 			LogAndThrow(e.what());
 		}
 
@@ -454,41 +487,45 @@ namespace phys
         Ogre::NameValuePairList *misc;
         misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
         (*misc)["title"] = Ogre::String(this->WindowName);
-        this->OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, this->GetGraphicsManager()->getRenderHeight(), this->GetGraphicsManager()->getRenderWidth(), this->GetGraphicsManager()->getFullscreen(), misc);
+        OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, this->GetGraphicsManager()->getRenderHeight(), this->GetGraphicsManager()->getRenderWidth(), this->GetGraphicsManager()->getFullscreen(), misc);
         #ifdef PHYSDEBUG
         this->Log("Bound Ogre to an SDL window");
         #endif
 
+        this->GetGraphicsManager()->SetOgreWindowPointer(OgreGameWindow);
         //prepare a scenemanager
-        this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
+        //this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
         #ifdef PHYSDEBUG
         this->Log("Created the Ogre Scenemanager");
         #endif
 
         //setup a default camera unless has been setup yet
+        Camera* camera = NULL;
         if(this->GetCameraManager()==0)
         {
-            this->AddManager(new CameraManager (this));
-            this->GetCameraManager()->CreateCamera();
+            this->AddManager(new CameraManager (0,this));
         }
-        this->OgreCamera = this->GetCameraManager()->DefaultCamera;
+        camera = this->GetCameraManager()->DefaultCamera;
         #ifdef PHYSDEBUG
         this->Log("Created Default Camera");
         #endif
 
         //viewport connects camera and render window
-        this->OgreViewport = this->OgreGameWindow->addViewport(OgreCamera);
+        Ogre::Viewport* OgreViewport = NULL;
+        OgreViewport = this->GetGraphicsManager()->GetOgreWindowPointer()->addViewport(camera->Cam);
+        this->GetCameraManager()->Viewports["DefaultViewport"] = OgreViewport;
 
         //setting the aspect ratio must be done after we setup the viewport
-        this->OgreCamera->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
+        camera->Cam->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
         #ifdef PHYSDEBUG
         this->Log("Configured Viewport and Aspect Ratio");
         #endif
     }
 
+    /// @todo Possibly move this function, along with the corresponding create function to the graphics manager as well.
     void World::DestroyRenderWindow()
     {
-        this->OgreGameWindow->destroy();
+        this->GetGraphicsManager()->GetOgreWindowPointer()->destroy();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -691,6 +728,11 @@ namespace phys
         return dynamic_cast<PhysicsManager*> (this->GetManager(ManagerBase::PhysicsManager, WhichOne));
     }
 
+    SceneManager* World::GetSceneManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<SceneManager*> (this->GetManager(ManagerBase::SceneManager, WhichOne));
+    }
+
     SoundManager* World::GetSoundManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<SoundManager*> (this->GetManager(ManagerBase::SoundManager, WhichOne));
@@ -701,6 +743,10 @@ namespace phys
         return dynamic_cast<ResourceManager*> (this->GetManager(ManagerBase::ResourceManager, WhichOne));
     }
 
+    UIManager* World::GetUIManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<UIManager*> (this->GetManager(ManagerBase::UIManager, WhichOne));
+    }
 
 }
 #endif

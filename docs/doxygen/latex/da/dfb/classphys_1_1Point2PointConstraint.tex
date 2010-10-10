@@ -12,12 +12,12 @@ Inheritance diagram for phys::Point2PointConstraint:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classphys_1_1Point2PointConstraint_a817faa8a66b6193eead274668d7e3225}{
-{\bfseries Point2PointConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorB, \hyperlink{classphys_1_1Vector3}{Vector3} PivotA, \hyperlink{classphys_1_1Vector3}{Vector3} PivotB)}
+{\bfseries Point2PointConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a0fefb80c80d433bec9942b851b2f5a8a}{ActorA}, \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a04d2c49698d9a161e92112dd1efc1dcd}{ActorB}, \hyperlink{classphys_1_1Vector3}{Vector3} PivotA, \hyperlink{classphys_1_1Vector3}{Vector3} PivotB)}
 \label{da/dfb/classphys_1_1Point2PointConstraint_a817faa8a66b6193eead274668d7e3225}
 
 \item 
 \hypertarget{classphys_1_1Point2PointConstraint_a8bcce8f4364fa9b305392082118c7f48}{
-{\bfseries Point2PointConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classphys_1_1Vector3}{Vector3} PivotA)}
+{\bfseries Point2PointConstraint} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$\hyperlink{classphys_1_1TypedConstraint_a0fefb80c80d433bec9942b851b2f5a8a}{ActorA}, \hyperlink{classphys_1_1Vector3}{Vector3} PivotA)}
 \label{da/dfb/classphys_1_1Point2PointConstraint_a8bcce8f4364fa9b305392082118c7f48}
 
 \item 
@@ -35,16 +35,30 @@ void {\bfseries SetPivotB} (\hyperlink{classphys_1_1Vector3}{Vector3} PivotB)}
 \label{da/dfb/classphys_1_1Point2PointConstraint_a6daf7e67fd6689dc18979fea5f745aa2}
 
 \item 
-\hypertarget{classphys_1_1Point2PointConstraint_ad6f28464773121658e54e8bde2a14704}{
-virtual void {\bfseries SetParam} (int num, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} value, int axis=-\/1)}
-\label{da/dfb/classphys_1_1Point2PointConstraint_ad6f28464773121658e54e8bde2a14704}
+\hypertarget{classphys_1_1Point2PointConstraint_a8cd4c87485faa5c1f4886f9be1bcabce}{
+\hyperlink{classphys_1_1Vector3}{Vector3} {\bfseries GetPivotInA} ()}
+\label{da/dfb/classphys_1_1Point2PointConstraint_a8cd4c87485faa5c1f4886f9be1bcabce}
 
 \item 
-\hypertarget{classphys_1_1Point2PointConstraint_a0f58e2b57a463fe6fe44e7b3192fc3b7}{
-virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries GetParam} (int num, int axis=-\/1)}
-\label{da/dfb/classphys_1_1Point2PointConstraint_a0f58e2b57a463fe6fe44e7b3192fc3b7}
+\hypertarget{classphys_1_1Point2PointConstraint_a5efca869d0befa80d60caf71a2657db6}{
+\hyperlink{classphys_1_1Vector3}{Vector3} {\bfseries GetPivotInB} ()}
+\label{da/dfb/classphys_1_1Point2PointConstraint_a5efca869d0befa80d60caf71a2657db6}
 
-\end{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Point2PointConstraint_a7d256d86e889681ab23967f7cc55390a}{
+void {\bfseries SetImpulseClamping} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Clamping)}
+\label{da/dfb/classphys_1_1Point2PointConstraint_a7d256d86e889681ab23967f7cc55390a}
+
+\item 
+\hypertarget{classphys_1_1Point2PointConstraint_a953d0dedebbe55be82829a680935abad}{
+void {\bfseries SetTAU} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} TAU)}
+\label{da/dfb/classphys_1_1Point2PointConstraint_a953d0dedebbe55be82829a680935abad}
+
+\item 
+virtual void \hyperlink{classphys_1_1Point2PointConstraint_ad6f28464773121658e54e8bde2a14704}{SetParam} (int num, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} value, int axis=-\/1)
+\begin{DoxyCompactList}\small\item\em Provides override of constraint parameters. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Point2PointConstraint_a0f58e2b57a463fe6fe44e7b3192fc3b7}{GetParam} (int num, int axis=-\/1)
+\begin{DoxyCompactList}\small\item\em Gets value of constraint parameters. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -58,7 +72,7 @@ btPoint2PointConstraint $\ast$ \hyperlink{classphys_1_1Point2PointConstraint_aa5
 \subsection{Detailed Description}
 
 
-Definition at line 244 of file constraint.h.
+Definition at line 294 of file constraint.h.
 
 
 
@@ -77,7 +91,7 @@ Constructs this class around a pre-\/built bullet constraint. This is an interna
 \item[{\em Constraint}]The constraint to be constructed around. \end{DoxyParams}
 
 
-Definition at line 470 of file constraint.cpp.
+Definition at line 485 of file constraint.cpp.
 
 \hypertarget{classphys_1_1Point2PointConstraint_aa735ad83877ff57a8a49269a87a46253}{
 \index{phys::Point2PointConstraint@{phys::Point2PointConstraint}!$\sim$Point2PointConstraint@{$\sim$Point2PointConstraint}}
@@ -90,7 +104,53 @@ Class destructor.
 
 The class destructor. 
 
-Definition at line 476 of file constraint.cpp.
+Definition at line 491 of file constraint.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1Point2PointConstraint_a0f58e2b57a463fe6fe44e7b3192fc3b7}{
+\index{phys::Point2PointConstraint@{phys::Point2PointConstraint}!GetParam@{GetParam}}
+\index{GetParam@{GetParam}!phys::Point2PointConstraint@{phys::Point2PointConstraint}}
+\subsubsection[{GetParam}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::Point2PointConstraint::GetParam (int {\em num}, \/  int {\em axis} = {\ttfamily -\/1})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{da/dfb/classphys_1_1Point2PointConstraint_a0f58e2b57a463fe6fe44e7b3192fc3b7}
+
+
+Gets value of constraint parameters. 
+
+See \hyperlink{classphys_1_1Point2PointConstraint_ad6f28464773121658e54e8bde2a14704}{SetParam()} for clarification. Gets information on constraint parameters. 
+\begin{DoxyParams}{Parameters}
+\item[{\em num}]The parameter to get information for. \item[{\em axis}]Optional axis. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the value for the requested parameter. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1TypedConstraint_ab6140d40e9476c3dc46e2802e8097421}{phys::TypedConstraint}.
+
+
+
+Definition at line 533 of file constraint.cpp.
+
+\hypertarget{classphys_1_1Point2PointConstraint_ad6f28464773121658e54e8bde2a14704}{
+\index{phys::Point2PointConstraint@{phys::Point2PointConstraint}!SetParam@{SetParam}}
+\index{SetParam@{SetParam}!phys::Point2PointConstraint@{phys::Point2PointConstraint}}
+\subsubsection[{SetParam}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Point2PointConstraint::SetParam (int {\em num}, \/  {\bf Real} {\em value}, \/  int {\em axis} = {\ttfamily -\/1})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{da/dfb/classphys_1_1Point2PointConstraint_ad6f28464773121658e54e8bde2a14704}
+
+
+Provides override of constraint parameters. 
+
+Parameters such as ERP and CFM can be altered with this function. Optionally provide axis. 
+\begin{DoxyParams}{Parameters}
+\item[{\em num}]The parameter to override. \item[{\em value}]The new value for the parameter. \item[{\em axis}]Optional axis. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1TypedConstraint_a31a20a74094f0cb8e4f82d1f99725415}{phys::TypedConstraint}.
+
+
+
+Definition at line 528 of file constraint.cpp.
 
 
 

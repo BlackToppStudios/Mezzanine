@@ -83,6 +83,16 @@ namespace phys
             /// @param w Rotation on the W Axis.
             Quaternion(const Real &x, const Real &y, const Real &z, const Real &w);
 
+            /// @brief Bullet Quaternion constructor.
+            /// @details Constructor that sets all values to match the Bullet quaternion.
+            /// @param Theirs The quaternion to be copied to make this quaternion.
+            Quaternion(const btQuaternion& Theirs);
+
+            /// @brief Ogre Quaternion constructor.
+            /// @details Constructor that sets all values to match the Ogre quaternion.
+            /// @param Theirs The quaternion to be copied to make this quaternion.
+            Quaternion(const Ogre::Quaternion& Theirs);
+
             /// @brief Gets a Bullet quaternion.
             /// @details Creates a Bullet quaternion with values equal to this class and returns it.
             /// @param normalize Whether or not you want this function to normalize the quaternion for you.

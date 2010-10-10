@@ -62,26 +62,23 @@ if [ -f "data/linux/caudio/libcAudio.so" ]
 then
 	echo "cAudio Library present."
 else
-	caudiodir="caudio-`uname -m`"
 	echo "cAudio Missing in data directory, Checking for compiled lib in caudiosrc"
-	if [ -f "libincludes/common/caudiosrc/$caudiodir/Source/libcAudio.so" ]
+	if [ -f "libincludes/common/caudiosrc/Source/libcAudio.so" ]
 	then
 		echo "Found, copying to correct location in project"
 		mkdir -p data/linux/caudio/
-		cp libincludes/linux/caudiosrc/$caudiodir/Source/libcAudio* data/linux/caudio/
+		cp libincludes/common/caudiosrc/Source/libcAudio* data/linux/caudio/
 		cd data/linux/caudio/
 		ln -s libcAudio* libcAudio.so
 		cd ../../..
 	else
 
 		echo "cAudio Missing, Beginning cAudio Build."
-		cd libincludes/linux/caudiosrc/
-		ln -s caudio-`uname -m` caudio
-		cd $caudiodir/Source/
+		cd libincludes/common/caudiosrc/Source/
 		make
-		cd ../../../../..
+		cd ../../../..
 		mkdir -p data/linux/caudio/
-		cp libincludes/linux/caudiosrc/$caudiodir/Source/libcAudio* data/linux/caudio/
+		cp libincludes/common/caudiosrc/Source/libcAudio* data/linux/caudio/
 		cd data/linux/caudio/
 		ln -s libcAudio* libcAudio.so
 		cd ../../..

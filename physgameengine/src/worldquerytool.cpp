@@ -43,6 +43,9 @@
 #include "worldquerytool.h"
 #include "actorcontainerbase.h"
 #include "graphicsmanager.h"
+#include "eventmanager.h"
+#include "cameramanager.h"
+#include "camera.h"
 
 #include <Ogre.h>
 
@@ -60,7 +63,7 @@ namespace phys
         this->MouseYCache=0;
 
         // create the ray scene query object
-        this->RayQuery = this->GameWorld->OgreSceneManager->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+        this->RayQuery = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
         if (NULL == this->RayQuery)
             {this->GameWorld->LogAndThrow("Failed to create RaySceneQuery instance in WorldQueryTool"); }
         this->RayQuery->setSortByDistance(true);
@@ -377,7 +380,7 @@ namespace phys
 
     Ray* WorldQueryTool::GetMouseRay(Real Length)
     {
-        Ray* MouseRay = new Ray( this->GameWorld->GetCameraManager()->GetCameraToViewportRay(
+        Ray* MouseRay = new Ray( this->GameWorld->GetCameraManager()->GetDefaultCamera()->GetCameraToViewportRay(
                 float(this->GetMouseX()) / float( this->GameWorld->GetGraphicsManager()->getRenderWidth() ) ,
                 float(this->GetMouseY()) / float( this->GameWorld->GetGraphicsManager()->getRenderHeight() )
             ) );

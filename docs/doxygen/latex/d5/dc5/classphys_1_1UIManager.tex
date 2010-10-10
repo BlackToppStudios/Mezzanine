@@ -1,0 +1,111 @@
+\hypertarget{classphys_1_1UIManager}{
+\section{phys::UIManager Class Reference}
+\label{d5/dc5/classphys_1_1UIManager}\index{phys::UIManager@{phys::UIManager}}
+}
+
+
+This class is responsible for any and all user interactions with the User interface/HUD.  
+
+
+
+
+{\ttfamily \#include $<$uimanager.h$>$}
+
+Inheritance diagram for phys::UIManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{d5/dc5/classphys_1_1UIManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UIManager_aeb502f11f170efd806b4153923c55359}{UIManager} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UIManager_a203144f08dbaf8068746359c22aa4f1e}{$\sim$UIManager} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{
+void \hyperlink{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{Initialize} ()}
+\label{d5/dc5/classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}
+
+\begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{classphys_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{
+void \hyperlink{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{DoMainLoopItems} ()}
+\label{d5/dc5/classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}
+
+\begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{classphys_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} \hyperlink{classphys_1_1UIManager_ab8fe74564ca5dc09cbe4b1cc2c007e79}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em Gets the type of manager that this manager is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UIManager_af34fd7fdc0e7b02deeb21ec266a1550e}{
+Gorilla::Silverback $\ast$ \hyperlink{classphys_1_1UIManager_af34fd7fdc0e7b02deeb21ec266a1550e}{Gorilla}}
+\label{d5/dc5/classphys_1_1UIManager_af34fd7fdc0e7b02deeb21ec266a1550e}
+
+\begin{DoxyCompactList}\small\item\em Pointer for the Gorilla core class, where this manager gets it's functionality. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class is responsible for any and all user interactions with the User interface/HUD. Optionally, you can create the UI/HUD in code or load a premade one using a Gorilla file($\ast$.gorilla). 
+
+Definition at line 58 of file uimanager.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UIManager_aeb502f11f170efd806b4153923c55359}{
+\index{phys::UIManager@{phys::UIManager}!UIManager@{UIManager}}
+\index{UIManager@{UIManager}!phys::UIManager@{phys::UIManager}}
+\subsubsection[{UIManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::UIManager::UIManager ()}}
+\label{d5/dc5/classphys_1_1UIManager_aeb502f11f170efd806b4153923c55359}
+
+
+Class Constructor. 
+
+Standard class initialization constructor. 
+
+Definition at line 50 of file uimanager.cpp.
+
+\hypertarget{classphys_1_1UIManager_a203144f08dbaf8068746359c22aa4f1e}{
+\index{phys::UIManager@{phys::UIManager}!$\sim$UIManager@{$\sim$UIManager}}
+\index{$\sim$UIManager@{$\sim$UIManager}!phys::UIManager@{phys::UIManager}}
+\subsubsection[{$\sim$UIManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::UIManager::$\sim$UIManager ()}}
+\label{d5/dc5/classphys_1_1UIManager_a203144f08dbaf8068746359c22aa4f1e}
+
+
+Class Destructor. 
+
+The class destructor. 
+
+Definition at line 55 of file uimanager.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1UIManager_ab8fe74564ca5dc09cbe4b1cc2c007e79}{
+\index{phys::UIManager@{phys::UIManager}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::UIManager@{phys::UIManager}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::UIManager::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d5/dc5/classphys_1_1UIManager_ab8fe74564ca5dc09cbe4b1cc2c007e79}
+
+
+Gets the type of manager that this manager is. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing the type of manager that this manager is. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{phys::ManagerBase}.
+
+
+
+Definition at line 68 of file uimanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uimanager.h\item 
+uimanager.cpp\end{DoxyCompactItemize}

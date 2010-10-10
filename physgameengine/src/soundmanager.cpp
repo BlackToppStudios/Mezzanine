@@ -73,6 +73,11 @@ namespace phys
 
     Sound* SoundManager::CreateSound(String &SoundName, String &FilePath, bool Stream)
     {
+        #define PHYSDEBUG
+        #ifdef PHYSDEBUG
+        this->GameWorld->LogStream<< "Entering: SoundManager::CreateSound( " << SoundName << ", " << FilePath << ", " << Stream << ");" << endl;
+        this->GameWorld->Log("Attempting to create Sound");
+        #endif
         cAudio::IAudioSource* IAudio = AudioManager->create(SoundName.c_str(), FilePath.c_str(), Stream);
         Sound* pSound = new Sound(IAudio, AudioManager);
         return pSound;
@@ -105,7 +110,7 @@ namespace phys
         {
             cAudio::IAudioSource* IAudio = AudioManager->createFromMemory(SoundName.c_str(), Data, Size, Frequency, cAudio::EAF_16BIT_MONO);
         }
-        if(Quality==4)
+        if(Quality==4)LogStream
         {
             cAudio::IAudioSource* IAudio = AudioManager->createFromMemory(SoundName.c_str(), Data, Size, Frequency, cAudio::EAF_16BIT_Stereo);
         }
@@ -180,6 +185,16 @@ namespace phys
 
     ManagerBase::ManagerTypeName SoundManager::GetType() const
         { return ManagerBase::SoundManager; }
+
+    std::stringstream* SoundManager::GetLogs()
+    {
+        return 0; //AudioManager->GetLogs();
+    }
+
+    void SoundManager::ClearLogs()
+    {
+        //AudioManager->ClearLogs();
+    }
 }
 
 #endif

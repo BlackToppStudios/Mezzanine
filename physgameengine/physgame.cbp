@@ -75,7 +75,7 @@
 					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
 					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
 					<Add directory="libincludes/common/tinyxmlppsrc/tinyxmlpp" />
-					<Add directory="libincludes/linux/caudiosrc/caudio/include" />
+					<Add directory="libincludes/common/caudiosrc/include" />
 					<Add directory="libincludes/common/bulletsrc/bulletserializer" />
 				</Compiler>
 				<Linker>
@@ -96,7 +96,8 @@
 					<Add after="cp data/linux/plugins.cfg bin/LinuxDebug/data/linux/" />
 					<Add after="cp data/linux/settings.cfg bin/LinuxDebug/data/linux/" />
 					<Add after="cp data/linux/ogre/ bin/LinuxDebug/data/linux/ -r" />
-					<Add after="cp data/linux/caudio/*.s* bin/LinuxDebug/" />
+					<Add after="cp data/common/ bin/LinuxDebug/data/ -r" />
+					<Add after="cp data/linux/caudio/*.s* bin/LinuxDebug/ -a" />
 					<Add after="mv bin/LinuxDebug/data/linux/ogre/*Main* bin/LinuxDebug/" />
 					<Add after="rm bin//LinuxDebug/data/linux/ogre/Readme.txt" />
 					<Mode after="always" />
@@ -170,7 +171,7 @@
 					<Add directory="libincludes/common/bulletsrc/bullet-2.76/src/LinearMath" />
 					<Add directory="libincludes/common/bulletsrc/convexdecomp" />
 					<Add directory="libincludes/common/tinyxmlppsrc/tinyxmlpp" />
-					<Add directory="libincludes/linux/caudiosrc/caudio/include" />
+					<Add directory="libincludes/common/caudiosrc/include" />
 					<Add directory="libincludes/common/bulletsrc/bulletserializer" />
 				</Compiler>
 				<Linker>
@@ -191,6 +192,7 @@
 					<Add after="cp data/linux/plugins.cfg bin/LinuxRelease/data/linux/" />
 					<Add after="cp data/linux/settings.cfg bin/LinuxRelease/data/linux/" />
 					<Add after="cp data/linux/ogre/ bin/LinuxRelease/data/linux/ -r" />
+					<Add after="cp data/common/ bin/LinuxRelease/data -r" />
 					<Add after="cp data/linux/caudio/*.s* bin/LinuxRelease/" />
 					<Add after="mv bin/LinuxRelease/data/linux/ogre/*Main* bin/LinuxRelease/" />
 					<Add after="rm bin//LinuxRelease/data/linux/ogre/Readme.txt" />
@@ -215,10 +217,16 @@
 		<Unit filename="src/actorsoft.h" />
 		<Unit filename="src/actorterrain.cpp" />
 		<Unit filename="src/actorterrain.h" />
+		<Unit filename="src/areaeffect.cpp" />
+		<Unit filename="src/areaeffect.h" />
+		<Unit filename="src/attachable.cpp" />
+		<Unit filename="src/attachable.h" />
 		<Unit filename="src/camera.cpp" />
 		<Unit filename="src/camera.h" />
 		<Unit filename="src/cameramanager.cpp" />
 		<Unit filename="src/cameramanager.h" />
+		<Unit filename="src/colourvalue.cpp" />
+		<Unit filename="src/colourvalue.h" />
 		<Unit filename="src/constraint.cpp" />
 		<Unit filename="src/constraint.h" />
 		<Unit filename="src/containerbase.cpp" />
@@ -239,8 +247,15 @@
 		<Unit filename="src/eventrendertime.h" />
 		<Unit filename="src/eventuserinput.cpp" />
 		<Unit filename="src/eventuserinput.h" />
+		<Unit filename="src/exception.cpp" />
+		<Unit filename="src/exception.h" />
 		<Unit filename="src/graphicsmanager.cpp" />
 		<Unit filename="src/graphicsmanager.h" />
+		<Unit filename="src/internalGorilla.cpp" />
+		<Unit filename="src/internalGorilla.h.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="src/internaldecompinterface.cpp" />
 		<Unit filename="src/internaldecompinterface.h.cpp">
 			<Option compile="0" />
@@ -256,12 +271,18 @@
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="src/light.cpp" />
+		<Unit filename="src/light.h" />
 		<Unit filename="src/linegroup.cpp" />
 		<Unit filename="src/linegroup.h" />
 		<Unit filename="src/managerbase.cpp" />
 		<Unit filename="src/managerbase.h" />
 		<Unit filename="src/metacode.cpp" />
 		<Unit filename="src/metacode.h" />
+		<Unit filename="src/node.cpp" />
+		<Unit filename="src/node.h" />
+		<Unit filename="src/particleeffect.cpp" />
+		<Unit filename="src/particleeffect.h" />
 		<Unit filename="src/physgame.h" />
 		<Unit filename="src/physicsmanager.cpp" />
 		<Unit filename="src/physicsmanager.h" />
@@ -273,12 +294,26 @@
 		<Unit filename="src/ray.h" />
 		<Unit filename="src/resourcemanager.cpp" />
 		<Unit filename="src/resourcemanager.h" />
+		<Unit filename="src/scenemanager.cpp" />
+		<Unit filename="src/scenemanager.h" />
 		<Unit filename="src/sound.cpp" />
 		<Unit filename="src/sound.h" />
 		<Unit filename="src/soundlistener.cpp" />
 		<Unit filename="src/soundlistener.h" />
 		<Unit filename="src/soundmanager.cpp" />
 		<Unit filename="src/soundmanager.h" />
+		<Unit filename="src/uibutton.cpp" />
+		<Unit filename="src/uibutton.h" />
+		<Unit filename="src/uilayer.cpp" />
+		<Unit filename="src/uilayer.h" />
+		<Unit filename="src/uimanager.cpp" />
+		<Unit filename="src/uimanager.h" />
+		<Unit filename="src/uirectangle.cpp" />
+		<Unit filename="src/uirectangle.h" />
+		<Unit filename="src/uiscreen.cpp" />
+		<Unit filename="src/uiscreen.h" />
+		<Unit filename="src/vector2.cpp" />
+		<Unit filename="src/vector2.h" />
 		<Unit filename="src/vector3.cpp" />
 		<Unit filename="src/vector3.h" />
 		<Unit filename="src/vector3wactor.cpp" />
@@ -289,6 +324,15 @@
 		<Unit filename="src/worldgetset.h" />
 		<Unit filename="src/worldquerytool.cpp" />
 		<Unit filename="src/worldquerytool.h" />
+		<Unit filename="src/xmlattribute.cpp" />
+		<Unit filename="src/xmlattribute.h" />
+		<Unit filename="src/xmlbase.cpp" />
+		<Unit filename="src/xmlbase.h" />
+		<Unit filename="src/xmldocument.h" />
+		<Unit filename="src/xmlelement.cpp" />
+		<Unit filename="src/xmlelement.h" />
+		<Unit filename="src/xmlnode.cpp" />
+		<Unit filename="src/xmlnode.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

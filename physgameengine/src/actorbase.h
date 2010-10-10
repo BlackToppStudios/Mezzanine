@@ -41,8 +41,9 @@
 #define _physactorbase_h
 
 //#include "vector3.h"
-#include "quaternion.h"
-#include "world.h"
+//#include "quaternion.h"
+//#include "world.h"
+#include "node.h"
 
 ///////////////////////////////////
 // Forward Declares
@@ -57,7 +58,7 @@ namespace Ogre
     class Entity;
     class SceneNode;
     class Vector3;
-//    class ResourceGroupManager;
+    class ResourceGroupManager;
 }
 
 ///////////////////////////////////
@@ -65,6 +66,7 @@ namespace Ogre
 namespace phys
 {
     class ActorContainerBase;
+    class World;
     namespace internal
     {
         class PhysMotionState;
@@ -84,7 +86,7 @@ namespace phys
     ///////////////////////////////////////
     class ActorBase {
         private:
-            //friend class World;
+            friend class Node;
             friend class ActorContainerBase;
             friend class PhysicsManager;
             friend class ResourceManager;
@@ -408,6 +410,18 @@ namespace phys
             /// @details Checks of the actor is static or kinematic, returns true if it is either.
             /// @return Returns true if the actor is static or kinematic.
             bool IsStaticOrKinematic();
+
+            /// @brief Sets the actor to be able to collide with other objects in the world.
+            /// @details By default collision response is enabled.  Only call this function if you have disabled collision response.
+            void EnableCollisionResponse();
+
+            /// @brief Sets the actor to be unable to collide with other objects in the world.
+            /// @details By default collision response is enabled.  Be sure to reactivate collision response if you want your objects to collide again.
+            void DisableCollisionResponse();
+
+            /// @brief Checks if the object is active in the simulation.
+            /// @return Returns true if the object is active, false if it's deactivated(at rest).
+            bool CheckActivation();
     };
 
 } // /phys

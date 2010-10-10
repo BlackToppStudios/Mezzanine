@@ -40,6 +40,9 @@
 #ifndef _internalmotionstate_h_cpp
 #define _internalmotionstate_h_cpp
 
+// Keeps this file form being documented by doxygen
+/// @cond 0
+
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 
@@ -109,5 +112,8 @@ namespace phys{
         };
     }// /internal
 }// /phys
+
+/// @endcond
+
 #endif
 
