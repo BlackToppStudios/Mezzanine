@@ -41,10 +41,10 @@ void ItemShopList::CreateListArea(Real X, Real Y, Real Width, Real Height)
     ListArea = ParentLayer->CreateRectangle(WWidth*X,WHeight*Y,WWidth*Width,WHeight*Height);
     Vector2 LAP = ListArea->GetPosition();
     Vector2 LAS = ListArea->GetSize();
-    SideScrollBack = ParentLayer->CreateRectangle(LAP.X * 0.94, LAP.Y * 0.4, LAS.X * 0.05, LAS.Y * 0.95);
+    SideScrollBack = ParentLayer->CreateRectangle((LAS.X * 0.94)+LAP.X, (LAS.Y * 0.04)+LAP.Y, LAS.X * 0.05, LAS.Y * 0.94);
     Vector2 SSBP = SideScrollBack->GetPosition();
     Vector2 SSBS = SideScrollBack->GetSize();
-    SideScroll = ParentLayer->CreateRectangle(SSBP * 0.005, SSBP * 0.005, SSBS.X * 0.95, SSBS.Y * 0.95);
+    SideScroll = ParentLayer->CreateRectangle((SSBP.X * 0.005), (SSBP.Y * 0.005), SSBS.X * 0.95, SSBS.Y * 0.95);
 }
 
 void ItemShopList::AddItemToList(UIButton* Item)
