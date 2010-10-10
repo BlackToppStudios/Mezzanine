@@ -8,8 +8,8 @@ ItemShopList::ItemShopList(Real X, Real Y, Real Width, Real Height, UILayer* Lay
     GraphMan = TheWorld->GetGraphicsManager();
     UIMan = TheWorld->GetUIManager();
     ParentLayer = Layer;
-    Whole WWidth = UIMan->getRenderWidth();
-    Whole WHeight = UIMan->getRenderHeight();
+    Whole WWidth = GraphMan->getRenderWidth();
+    Whole WHeight = GraphMan->getRenderHeight();
     Backdrop = Layer->CreateRectangle(WWidth*X,WHeight*Y,WWidth*Width,WHeight*Height);
     ListArea = NULL;
     SideScroll = NULL;
@@ -36,8 +36,8 @@ void ItemShopList::SetDistanceBetweenButtons(Real Distance)
 
 void ItemShopList::CreateListArea(Real X, Real Y, Real Width, Real Height)
 {
-    Whole WWidth = UIMan->getRenderWidth();
-    Whole WHeight = UIMan->getRenderHeight();
+    Whole WWidth = GraphMan->getRenderWidth();
+    Whole WHeight = GraphMan->getRenderHeight();
     ListArea = ParentLayer->CreateRectangle(WWidth*X,WHeight*Y,WWidth*Width,WHeight*Height);
     Vector2 LAP = ListArea->GetPosition();
     Vector2 LAS = ListArea->GetSize();
