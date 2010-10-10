@@ -1,0 +1,5 @@
+#!/bin/bash
+#xmessage test
+LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+./EngineDemo-bin

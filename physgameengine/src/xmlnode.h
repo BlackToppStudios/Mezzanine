@@ -156,12 +156,17 @@ namespace phys
                 virtual Node * 	PreviousSibling () const = 0;
 
                 /// @brief Navigate to the closest previous sibling node with matching Data.
-                /// @param Value
-                /// @return A pointer to the previous sibling
+                /// @param Value The returned sibling will have a value matching this one
+                /// @return A pointer to the closest previous sibling with a matching value
                 virtual Node * 	PreviousSibling (const std::string &Value) const = 0;
 
+                /// @brief Navigate to next sibling node.
+                /// @return A pointer to the next sibling
                 virtual Node * 	NextSibling () const = 0;
 
+                /// @brief Navigate to the closest next sibling node with matching Data.
+                /// @param Value The returned sibling will have a value matching this one
+                /// @return A pointer to the closest next sibling with a matching value
                 virtual Node * 	NextSibling (const std::string &Value) const = 0;
 
 
@@ -195,9 +200,7 @@ template<class T>  T * 	To () const
 Document * 	ToDocument () const
  	Pointer conversion - replaces TiXmlNode::ToDocument.
 Element * 	ToElement () const
- 	Pointer conversion - replaces TiXmlNo
-Kirk millerde::ToElement.
-
+ 	Pointer conversion - replaces TiXmlNode::ToElement.
 Comment * 	ToComment () const
  	Pointer conversion - replaces TiXmlNode::ToComment.
 Text * 	ToText () const

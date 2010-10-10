@@ -43,6 +43,13 @@
 
 #include <ostream>
 
+#include "xmlnode.h"
+
+namespace ticpp
+{
+    class Document;
+}
+
 namespace phys
 {
     namespace xml
@@ -50,10 +57,24 @@ namespace phys
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Document
         /// @headerfile xmldocument.h
-        /// @brief This is a container of
+        /// @brief This is a container of nodes and elements and other XML stuff
         /// @details
         class Document
         {
+            protected:
+                /// @brief Construct a Document using meta data from a TiCPP pointer
+                /// @param Meta A pointer to a ticpp::Document that this class will wrap.
+                /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
+                Attribute (ticpp::Document* Meta, bool FirstTimeUsed = false);
+
+            public:
+
+                /// @internal
+                /// @brief This will find or create a pointer to the Document
+                /// @param Meta A pointer to a ticpp::Document that returned Attribute will wrap
+                /// @return A pointer to the phys::xml::Document that wraps Meta
+                static Attribute* GetPointerFromWrapped(ticpp::Document* Meta);
+
 
         }; // /Document
     }// /xml
