@@ -38,73 +38,53 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifndef _xmlelement_cpp
-#define _xmlelement_cpp
+#ifndef _xmlcomment_h
+#define _xmlcomment_h
 
-#include "xmlelement.h"
-#include "exception.h"
+#include <ostream>
 
-#include <sstream>
+#include "xmlnode.h"
 
-#define TIXML_USE_TICPP
-#include <ticpp.h>
+namespace ticpp
+{
+    class Comment;
+}
 
 namespace phys
 {
     namespace xml
     {
-        //Inherited members
-
-
-        //Members
-        Element::Element (ticpp::Element *Meta, bool FirstTimeUsed)
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class comment
+        /// @headerfile xmlcomment.h
+        /// @brief This is a container of nodes and elements and other XML stuff
+        /// @details
+        class Comment: public Node
         {
-            this->Wrapped = Meta;
-            if (FirstTimeUsed)
-                { this->TakeOwnerOfWrapped(); }
-        }
+            protected:
+                /// @brief Construct a comment using meta data from a TiCPP pointer
+                /// @param Meta A pointer to a ticpp::comment that this class will wrap.
+                /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
+                Comment (ticpp::Comment* Meta, bool FirstTimeUsed = false);
 
-        Element::Element ()
-        {
-            this->Wrapped = new ticpp::Element();
-            this->TakeOwnerOfWrapped();
-        }
+            public:
 
-        Element::Element (const std::string &Value)
-        {
-            this->Wrapped = new ticpp::Element(Value);
-            this->TakeOwnerOfWrapped();
-        }
+                /// @internal
+                /// @brief This will find or create a pointer to the comment
+                /// @param Meta A pointer to a ticpp::comment that returned Attribute will wrap
+                /// @return A pointer to the phys::xml::comment that wraps Meta
+                static Comment* GetPointerFromWrapped(ticpp::Comment* Meta);
 
-        Element::Element (const std::string &Value, const std::string &Text)
-        {
-            this->Wrapped = new ticpp::Element(Value, Text);
-            this->TakeOwnerOfWrapped();
-        }
+        }; // /comment
+    }// /xml
+}// /phys
 
-        Element::~Element()
-            {}
-
-        Element* Element::GetPointerFromWrapped(ticpp::Element* Meta)
-        {
-            Element* Other;
-            try {
-                //Most likely cause of failure is ticpp::Node::GetBasePointer() returns 0
-                Other = static_cast<Element*>( Meta->GetBasePointer()->GetUserData() );
-            } catch (ticpp::Exception e) {
-                std::stringstream temp;
-                temp << "Could not Create phys::xml::Element from invalid pointer." << std::endl << e.what() << std::endl << "Details: " << e.m_details;
-                throw Exception (temp.str());
-            }
-
-            //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
-            if(0 == Other)
-                {/* Other = new Element(Meta, true); */}
-            return Other;
-        }
+/// @brief Streaming output operator for XML comments
+/// @details This converts the data of an XML comment into a stream Ideal for sending to a log or cout
+/// @param stream This is the stream we send our data to.
+/// @return This returns an std::ostream which now contains our data.
+// Commented out due to compiler error, despite above include the compiler doesn't seem to know what an ostream is.
+//std::ostream& operator<< (std::ostream& stream, const phys::xml::Comment& x);
 
 
-    }// \xml
-}// \phys
-
-#endif // \_xmlelement_cpp
+#endif

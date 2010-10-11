@@ -129,7 +129,7 @@ namespace phys
 
                 /// @brief This identifies what kind of child of xml::base this is
                 /// @return This returns Base::isAttribute
-                virtual XMLComponentType GetType();
+                virtual XMLComponentType GetType() const;
 
 
             /*

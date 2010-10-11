@@ -356,7 +356,7 @@ void MakeGUI()
 
     //Build the HUD layer
     UIRectangle* Panel = HUD->CreateRectangle( 0, 0, WWidth+2, WHeight);
-    Panel->SetBackgroundSprite("Panel");
+    //Panel->SetBackgroundSprite("Panel");
 
     UIButton* Timer = HUD->CreateButton( "Timer", WWidth * 0.8995, WHeight * 0.006, WWidth * 0.0965, WHeight * 0.06, 1, "0:00");
     Timer->SetAsCaption(true);

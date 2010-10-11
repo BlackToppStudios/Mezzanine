@@ -42,7 +42,14 @@
 #define _xmlnode_cpp
 
 #include "xmlattribute.h"
+#include "xmlcomment.h"
+#include "xmldeclaration.h"
+#include "xmldocument.h"
+#include "xmlelement.h"
 #include "xmlnode.h"
+#include "xmltext.h"
+#include "xmlstylesheetreference.h"
+#include "exception.h"
 
 #define TIXML_USE_TICPP
 #include <ticpp.h>
@@ -51,70 +58,121 @@ namespace phys
 {
     namespace xml
     {
-            Node::~Node ()
-                { }
+        Node::~Node ()
+            { }
 
-            String Node::GetValueAsString() const
+        String Node::GetValueAsString() const
+        {
+            return static_cast<ticpp::Node*> (this->Wrapped)->Value();
+        }
+
+        Whole Node::GetValueAsWhole() const
+        {
+            Whole Temp=0;
+            static_cast<ticpp::Node*> (this->Wrapped)->GetValue(&Temp);
+            return Temp;
+        }
+
+        Real Node::GetValueAsReal() const
+        {
+            Real Temp=0;
+            static_cast<ticpp::Node*> (this->Wrapped)->GetValue(&Temp);
+            return Temp;
+        }
+
+        void Node::SetValue (const Whole &value)
+            { static_cast<ticpp::Node*> (this->Wrapped)->SetValue(value); }
+
+        void Node::SetValue (const Real &value)
+            { static_cast<ticpp::Node*> (this->Wrapped)->SetValue(value); }
+
+        void Node::SetValue (const String &value)
+            { static_cast<ticpp::Node*> (this->Wrapped)->SetValue(value); }
+
+        /* Attribute::XMLComponentType Node::GetType()
+            { return Base::isNode; } */
+
+        void Node::Clear()
+        {
+            /// @todo TODO actually Code this
+            //for ( TravelingPointer=This->FirstChild; TravelingPointer!=this->Lastchild; TravelingPointer=TravelingPointer->NextSibling)
+            //{
+            //  TravelingPointer->Clear;
+            //  delete TravelingPointer;
+            //}
+        }
+
+        void Node::AppendChild (Node &AddThis)
+        {
+            static_cast<ticpp::Node*> (this->Wrapped)->LinkEndChild( static_cast<ticpp::Node*>(AddThis.Wrapped) );
+            AddThis.TakeOwnerOfWrapped();
+        }
+
+        void Node::InsertAfterChild (Node *AfterThis, Node &AddThis)
+        {
+            static_cast<ticpp::Node*> (this->Wrapped)->InsertAfterChild( static_cast<ticpp::Node*>(AfterThis->Wrapped), *(static_cast<ticpp::Node*>(AddThis.Wrapped)) );
+            AddThis.TakeOwnerOfWrapped();
+        }
+
+        void Node::InsertBeforeChild (Node *BeforeThis, Node &AddThis)
+        {
+            static_cast<ticpp::Node*> (this->Wrapped)->InsertBeforeChild( static_cast<ticpp::Node*>(BeforeThis->Wrapped), *(static_cast<ticpp::Node*>(AddThis.Wrapped)) );
+            AddThis.TakeOwnerOfWrapped();
+        }
+
+        Document* Node::GetDocument () const
+            { return Document::GetPointerFromWrapped( static_cast<ticpp::Document*>( static_cast<ticpp::Node*> (this->Wrapped)->GetDocument(true))); }
+
+        bool Node::NoChildren () const
+            { return (static_cast<ticpp::Node*> (this->Wrapped)->NoChildren()); }
+
+        void Node::ThrowIfMismatchingType(XMLComponentType TypeItShouldBe, Node* NodeToCheck)
+        {
+            if(TypeItShouldBe == NodeToCheck->GetType())
             {
-                return static_cast<ticpp::Node*> (this->Wrapped)->Value();
+                return;
+            }else{
+                std::stringstream Temp;
+                Temp << "The phys::xml::Node is not of type phys::xml::" << GetTypeAsString(TypeItShouldBe) << ", it is a: " << NodeToCheck->GetTypeAsString();
+                throw Exception(Temp.str());
             }
+        }
 
-            Whole Node::GetValueAsWhole() const
-            {
-                Whole Temp=0;
-                static_cast<ticpp::Node*> (this->Wrapped)->GetValue(&Temp);
-                return Temp;
-            }
+        Document* Node::ToDocument()
+        {
+            ThrowIfMismatchingType(Base::isDocument, this);
+            return static_cast<Document*> (this);
+        }
 
-            Real Node::GetValueAsReal() const
-            {
-                Real Temp=0;
-                static_cast<ticpp::Node*> (this->Wrapped)->GetValue(&Temp);
-                return Temp;
-            }
+        Element* Node::ToElement()
+        {
+            ThrowIfMismatchingType(Base::isElement, this);
+            return static_cast<Element*> (this);
+        }
 
-            void Node::SetValue (const Whole &value)
-                { static_cast<ticpp::Node*> (this->Wrapped)->SetValue(value); }
+        Comment* Node::ToComment()
+        {
+            ThrowIfMismatchingType(Base::isComment, this);
+            return static_cast<Comment*> (this);
+        }
 
-            void Node::SetValue (const Real &value)
-                { static_cast<ticpp::Node*> (this->Wrapped)->SetValue(value); }
+        Text* Node::ToText()
+        {
+            ThrowIfMismatchingType(Base::isText, this);
+            return static_cast<Text*> (this);
+        }
 
-            void Node::SetValue (const String &value)
-                { static_cast<ticpp::Node*> (this->Wrapped)->SetValue(value); }
+        Declaration* Node::ToDeclaration ()
+        {
+            ThrowIfMismatchingType(Base::isDeclaration, this);
+            return static_cast<Declaration*> (this);
+        }
 
-            /* Attribute::XMLComponentType Node::GetType()
-                { return Base::isNode; } */
-
-            void Node::Clear()
-            {
-                /// @todo TODO actually Code this
-                //for ( TravelingPointer=This->FirstChild; TravelingPointer!=this->Lastchild; TravelingPointer=TravelingPointer->NextSibling)
-                //{
-                //  TravelingPointer->Clear;
-                //  delete TravelingPointer;
-                //}
-            }
-
-            void Node::AppendChild (Node &AddThis)
-            {
-                static_cast<ticpp::Node*> (this->Wrapped)->LinkEndChild( static_cast<ticpp::Node*>(AddThis.Wrapped) );
-                AddThis.TakeOwnerOfWrapped();
-            }
-
-            void Node::InsertAfterChild (Node *AfterThis, Node &AddThis)
-            {
-                static_cast<ticpp::Node*> (this->Wrapped)->InsertAfterChild( static_cast<ticpp::Node*>(AfterThis->Wrapped), *(static_cast<ticpp::Node*>(AddThis.Wrapped)) );
-                AddThis.TakeOwnerOfWrapped();
-            }
-
-            void Node::InsertBeforeChild (Node *BeforeThis, Node &AddThis)
-            {
-                static_cast<ticpp::Node*> (this->Wrapped)->InsertBeforeChild( static_cast<ticpp::Node*>(BeforeThis->Wrapped), *(static_cast<ticpp::Node*>(AddThis.Wrapped)) );
-                AddThis.TakeOwnerOfWrapped();
-            }
-
-
-
+        StylesheetReference* Node::ToStylesheetReference ()
+        {
+            ThrowIfMismatchingType(Base::isStylesheetReference, this);
+            return static_cast<StylesheetReference*> (this);
+        }
 
     } // \xml
 }//\phys

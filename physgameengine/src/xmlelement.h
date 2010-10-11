@@ -65,7 +65,6 @@ namespace phys
                 Element (ticpp::Element* Meta, bool FirstTimeUsed = false);
 
             public:
-
                 /// @internal
                 /// @brief This will find or create a pointer to the Element
                 /// @param Meta A pointer to a ticpp::Element that returned Element will wrap
