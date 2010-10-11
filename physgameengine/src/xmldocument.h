@@ -65,7 +65,7 @@ namespace phys
                 /// @brief Construct a Document using meta data from a TiCPP pointer
                 /// @param Meta A pointer to a ticpp::Document that this class will wrap.
                 /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
-                Attribute (ticpp::Document* Meta, bool FirstTimeUsed = false);
+                Document (ticpp::Document* Meta, bool FirstTimeUsed = false);
 
             public:
 
@@ -73,7 +73,7 @@ namespace phys
                 /// @brief This will find or create a pointer to the Document
                 /// @param Meta A pointer to a ticpp::Document that returned Attribute will wrap
                 /// @return A pointer to the phys::xml::Document that wraps Meta
-                static Attribute* GetPointerFromWrapped(ticpp::Document* Meta);
+                static Document* GetPointerFromWrapped(ticpp::Document* Meta);
 
 
         }; // /Document
