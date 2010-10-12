@@ -80,6 +80,33 @@ namespace phys
         String Base::BuildDetailedErrorString() const
             { return this->Wrapped->BuildDetailedErrorString(); }
 
+        String Base::GetTypeAsString() const
+            { return GetTypeAsString (this->GetType()); }
+
+        String Base::GetTypeAsString(XMLComponentType NodeType)
+        {
+            switch (NodeType)
+            {
+                case Base::isAttribute:
+                    return String("Attribute");
+                case Base::isComment:
+                    return String("Comment");
+                case Base::isDeclaration:
+                    return String("Declaration");
+                case Base::isDocument:
+                    return String("Document");
+                case Base::isElement:
+                    return String("Element");
+                case Base::isStylesheetReference:
+                    return String("StylesheetReference");
+                case Base::isText:
+                    return String("isText");
+                case Base::isUnknown:
+                    return String("Unknown");
+                default:
+                    return String("Very Unknown");
+            }
+        }
         //Base::XMLComponentType Base::GetType()
         //        { return Base::isBase; }
 

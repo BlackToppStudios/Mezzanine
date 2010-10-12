@@ -64,10 +64,13 @@ namespace phys
                 /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
                 Element (ticpp::Element* Meta, bool FirstTimeUsed = false);
 
-
+            public:
+                /// @internal
+                /// @brief This will find or create a pointer to the Element
+                /// @param Meta A pointer to a ticpp::Element that returned Element will wrap
+                /// @return A pointer to the phys::xml::Element that wraps Meta
                 static Element* GetPointerFromWrapped(ticpp::Element* Meta);
 
-            public:
                 /// @brief Construct an empty attribute.
              	Element();
 

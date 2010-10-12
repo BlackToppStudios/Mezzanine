@@ -38,8 +38,8 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifndef _xmldocument_h
-#define _xmldocument_h
+#ifndef _xmlstylesheetreference_h
+#define _xmlstylesheetreference_h
 
 #include <ostream>
 
@@ -47,7 +47,7 @@
 
 namespace ticpp
 {
-    class Document;
+    class StylesheetReference;
 }
 
 namespace phys
@@ -55,36 +55,36 @@ namespace phys
     namespace xml
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Document
-        /// @headerfile xmldocument.h
+        /// @class StylesheetReference
+        /// @headerfile xmlStylesheetReference.h
         /// @brief This is a container of nodes and elements and other XML stuff
         /// @details
-        class Document: public Node
+        class StylesheetReference: public Node
         {
             protected:
-                /// @brief Construct a Document using meta data from a TiCPP pointer
-                /// @param Meta A pointer to a ticpp::Document that this class will wrap.
+                /// @brief Construct a StylesheetReference using meta data from a TiCPP pointer
+                /// @param Meta A pointer to a ticpp::StylesheetReference that this class will wrap.
                 /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
-                Document (ticpp::Document* Meta, bool FirstTimeUsed = false);
+                StylesheetReference (ticpp::StylesheetReference* Meta, bool FirstTimeUsed = false);
 
             public:
 
                 /// @internal
-                /// @brief This will find or create a pointer to the Document
-                /// @param Meta A pointer to a ticpp::Document that returned Attribute will wrap
-                /// @return A pointer to the phys::xml::Document that wraps Meta
-                static Document* GetPointerFromWrapped(ticpp::Document* Meta);
+                /// @brief This will find or create a pointer to the StylesheetReference
+                /// @param Meta A pointer to a ticpp::StylesheetReference that returned Attribute will wrap
+                /// @return A pointer to the phys::xml::StylesheetReference that wraps Meta
+                static StylesheetReference* GetPointerFromWrapped(ticpp::StylesheetReference* Meta);
 
-        }; // /Document
+        }; // /StylesheetReference
     }// /xml
 }// /phys
 
-/// @brief Streaming output operator for XML Documents
-/// @details This converts the data of an XML Document into a stream Ideal for sending to a log or cout
+/// @brief Streaming output operator for XML StylesheetReferences
+/// @details This converts the data of an XML StylesheetReference into a stream Ideal for sending to a log or cout
 /// @param stream This is the stream we send our data to.
 /// @return This returns an std::ostream which now contains our data.
 // Commented out due to compiler error, despite above include the compiler doesn't seem to know what an ostream is.
-//std::ostream& operator<< (std::ostream& stream, const phys::xml::document& x);
+//std::ostream& operator<< (std::ostream& stream, const phys::xml::StylesheetReference& x);
 
 
 #endif

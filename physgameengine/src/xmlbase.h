@@ -148,10 +148,19 @@ namespace phys
                     isDeclaration,            /**< Indicates the XMLComponent is a node and */
                     isDocument,               /**< Indicates the XMLComponent is a node and */
                     isElement,                /**< Indicates the XMLComponent is a node and */
-                    isStyleSheetReference,    /**< Indicates the XMLComponent is a node and */
+                    isStylesheetReference,    /**< Indicates the XMLComponent is a node and */
                     isText,                   /**< Indicates the XMLComponent is a node and */
                     isUnknown                 /**< Indicates the XMLComponent is a node and */
                 };
+
+                /// @brief In Plain english what is this class
+                /// @return This returns the type of this class spelled out in a String
+                virtual String GetTypeAsString() const;
+
+                /// @brief Convert XMLComponentType to plain English
+                /// @param NodeType The part that you wnatin plain english
+                /// @return This returns the type spelled out in a String
+                static String GetTypeAsString(XMLComponentType NodeType);
 
                 /// @brief Return the position, in the original source file, of this node or attribute.
                 /// @details Return the position, in the original source file, of this node or attribute. The row and column are 1-based.
@@ -205,7 +214,7 @@ namespace phys
 
                 /// @brief This Will be by Child classes to aid in identification
                 /// @return Classes that inherit from this are expected to return an XMLComponentType that indicates what kind of XML component they are.
-                virtual XMLComponentType GetType() = 0;
+                virtual XMLComponentType GetType() const = 0;
 
                 /// @brief Get the value of this XML Object.
                 /// @return this returns a String containing the value of this attribute.
@@ -230,7 +239,6 @@ namespace phys
                 /// @brief Set the value of this XML Object.
                 /// @param value A String number to be inserted into the XML document
                 virtual void SetValue(const String &value) = 0;
-
 
         }; // /Base
     }// /xml

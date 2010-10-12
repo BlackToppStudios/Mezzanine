@@ -52,6 +52,13 @@ namespace phys
 {
     namespace xml
     {
+        class Document;
+        class Element;
+        class Text;
+        class Comment;
+        class StylesheetReference;
+        class Declaration;
+
         /// @class Node
         /// @brief This represents Node that represent any element in an XML tree like the document, any element, ....
         /// @file xmlnode.h
@@ -59,6 +66,12 @@ namespace phys
         class Node : public Base
         {
             protected:
+                /// \internal
+                /// @brief This throws a detailed formatted exception if the Node is not of the desired type.
+                /// @param TypeItShouldBe is an XMLComponentType that will be compared to the type on the node
+                /// @param NodeToCheck The Node to check
+                /// @throw This throws a phys::Exception containing the message "The phys::xml::Node is not of type phys::xml::[TypeItShouldBe], it is a: [NodeToCheck's actual Type]";
+                void ThrowIfMismatchingType(XMLComponentType TypeItShouldBe, Node* NodeToCheck);
 
             public:
 
@@ -116,7 +129,7 @@ namespace phys
 
                 /// @brief This identifies what kind of child of xml::base this is
                 /// @return This returns the appropriate value for what this class is.
-                virtual XMLComponentType GetType() = 0;
+                virtual XMLComponentType GetType() const = 0;
 
                 /// @brief Returns the Parent Node of this Node Throws an exception if none exists
                 /// @return This returns a pointer to a phys::xml::node. Specifically the node that considers this Node it's child.
@@ -156,54 +169,71 @@ namespace phys
                 virtual Node * 	PreviousSibling () const = 0;
 
                 /// @brief Navigate to the closest previous sibling node with matching Data.
-                /// @param Value
-                /// @return A pointer to the previous sibling
+                /// @param Value The returned sibling will have a value matching this one
+                /// @return A pointer to the closest previous sibling with a matching value
                 virtual Node * 	PreviousSibling (const std::string &Value) const = 0;
 
+                /// @brief Navigate to next sibling node.
+                /// @return A pointer to the next sibling
                 virtual Node * 	NextSibling () const = 0;
 
+                /// @brief Navigate to the closest next sibling node with matching Data.
+                /// @param Value The returned sibling will have a value matching this one
+                /// @return A pointer to the closest next sibling with a matching value
                 virtual Node * 	NextSibling (const std::string &Value) const = 0;
 
 
 
+                /* These with be implemented on the Element class, they are a better fit there.
+                Element * 	NextSiblingElement (bool throwIfNoSiblings=true) const
+                    Navigate to a sibling element.
+                Element * 	NextSiblingElement (const std::string &value, bool throwIfNoSiblings=true) const
+                    Navigate to a sibling element with the given value.
+                Element * 	FirstChildElement (bool throwIfNoChildren=true) const
+                    The first child element of this node.
+                Element * 	FirstChildElement (const std::string &value, bool throwIfNoChildren=true) const
+                    The first child element of this node with the matching value.
+                */
+
+                /// @brief Return a pointer to the Document this node lives in.
+                /// @return A Pointer to the phys::xml::Document at the top of the xml Hierarchy
+                Document* GetDocument() const;
+
+                /// @brief Are there no child nodes
+                /// @return True if this node has no children false otherwise
+                bool NoChildren() const;
+
+                /// @brief Convert this phys::xml::Node* to a phys::xml::Document*
+                /// @throw If this is not a phys::xml::Document this will throw an phys::Exception with details
+                /// @return A pointer this as a phys::xml::Document
+                Document* ToDocument();
+
+                /// @brief Convert this phys::xml::Node* to a phys::xml::Element*
+                /// @throw If this is not a phys::xml::Element this will throw an phys::Exception with details
+                /// @return A pointer this as a phys::xml::Element
+                Element* ToElement();
+
+                /// @brief Convert this phys::xml::Node* to a phys::xml::Comment*
+                /// @throw If this is not a phys::xml::Comment this will throw an phys::Comment with details
+                /// @return A pointer this as a phys::xml::Comment
+                Comment* ToComment();
+
+                /// @brief Convert this phys::xml::Node* to a phys::xml::Text*
+                /// @throw If this is not a phys::xml::Text this will throw an phys::Exception with details
+                /// @return A pointer this as a phys::xml::Text
+                Text* ToText();
+
+                /// @brief Convert this phys::xml::Node* to a phys::xml::Declaration*
+                /// @throw If this is not a phys::xml::Declaration this will throw an phys::Exception with details
+                /// @return A pointer this as a phys::xml::Declaration
+                Declaration* ToDeclaration ();
+
+                /// @brief Convert this phys::xml::Node* to a phys::xml::StylesheetReference*
+                /// @throw If this is not a phys::xml::StylesheetReference this will throw an phys::Exception with details
+                /// @return A pointer this as a phys::xml::StylesheetReference
+                StylesheetReference* ToStylesheetReference ();
 /*
 
-Node * 	PreviousSibling (bool throwIfNoSiblings=true) const
- 	Navigate to a sibling node.
-Node * 	PreviousSibling (const std::string &value, bool throwIfNoSiblings=true) const
- 	Navigate to a sibling node with the given value.
-Node * 	NextSibling (bool throwIfNoSiblings=true) const
- 	Navigate to a sibling node.
-Node * 	NextSibling (const std::string &value, bool throwIfNoSiblings=true) const
- 	Navigate to a sibling node with the given value.
-
-Element * 	NextSiblingElement (bool throwIfNoSiblings=true) const
- 	Navigate to a sibling element.
-Element * 	NextSiblingElement (const std::string &value, bool throwIfNoSiblings=true) const
- 	Navigate to a sibling element with the given value.
-Element * 	FirstChildElement (bool throwIfNoChildren=true) const
- 	The first child element of this node.
-Element * 	FirstChildElement (const std::string &value, bool throwIfNoChildren=true) const
- 	The first child element of this node with the matching value.
-
-Document * 	GetDocument (bool throwIfNoDocument=true) const
- 	Return a pointer to the Document this node lives in.
-bool 	NoChildren () const
- 	Check if this node has no children.
-template<class T>  T * 	To () const
- 	Pointer conversion ( NOT OBJECT CONVERSION ) - replaces TiXmlNode::ToElement, TiXmlNode::ToDocument, TiXmlNode::ToComment, etc.
-Document * 	ToDocument () const
- 	Pointer conversion - replaces TiXmlNode::ToDocument.
-Element * 	ToElement () const
- 	Pointer conversion - replaces TiXmlNo
-Kirk millerde::ToElement.
-
-Comment * 	ToComment () const
- 	Pointer conversion - replaces TiXmlNode::ToComment.
-Text * 	ToText () const
- 	Pointer conversion - replaces TiXmlNode::ToText.
-Declaration * 	ToDeclaration () const
- 	Pointer conversion - replaces TiXmlNode::ToDeclaration.
 StylesheetReference * 	ToStylesheetReference () const
  	Pointer conversion - replaces TiXmlNode::ToStylesheetReference.
 std::auto_ptr< Node > 	Clone () const

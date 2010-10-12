@@ -38,13 +38,10 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
-#ifndef _xmlelement_cpp
-#define _xmlelement_cpp
+#ifndef _xmlcomment_cpp
+#define _xmlcomment_cpp
 
-#include "xmlelement.h"
-#include "exception.h"
-
-#include <sstream>
+#include "xmlcomment.h"
 
 #define TIXML_USE_TICPP
 #include <ticpp.h>
@@ -53,58 +50,25 @@ namespace phys
 {
     namespace xml
     {
-        //Inherited members
-
-
-        //Members
-        Element::Element (ticpp::Element *Meta, bool FirstTimeUsed)
+        Comment::Comment (ticpp::Comment* Meta, bool FirstTimeUsed)
         {
-            this->Wrapped = Meta;
-            if (FirstTimeUsed)
-                { this->TakeOwnerOfWrapped(); }
+
         }
 
-        Element::Element ()
+        Comment* Comment::GetPointerFromWrapped(ticpp::Comment* Meta)
         {
-            this->Wrapped = new ticpp::Element();
-            this->TakeOwnerOfWrapped();
+            return 0;
         }
 
-        Element::Element (const std::string &Value)
-        {
-            this->Wrapped = new ticpp::Element(Value);
-            this->TakeOwnerOfWrapped();
-        }
+    }// /xml
+}// /phys
 
-        Element::Element (const std::string &Value, const std::string &Text)
-        {
-            this->Wrapped = new ticpp::Element(Value, Text);
-            this->TakeOwnerOfWrapped();
-        }
-
-        Element::~Element()
-            {}
-
-        Element* Element::GetPointerFromWrapped(ticpp::Element* Meta)
-        {
-            Element* Other;
-            try {
-                //Most likely cause of failure is ticpp::Node::GetBasePointer() returns 0
-                Other = static_cast<Element*>( Meta->GetBasePointer()->GetUserData() );
-            } catch (ticpp::Exception e) {
-                std::stringstream temp;
-                temp << "Could not Create phys::xml::Element from invalid pointer." << std::endl << e.what() << std::endl << "Details: " << e.m_details;
-                throw Exception (temp.str());
-            }
-
-            //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
-            if(0 == Other)
-                {/* Other = new Element(Meta, true); */}
-            return Other;
-        }
+/// @brief Streaming output operator for XML comments
+/// @details This converts the data of an XML comment into a stream Ideal for sending to a log or cout
+/// @param stream This is the stream we send our data to.
+/// @return This returns an std::ostream which now contains our data.
+// Commented out due to compiler error, despite above include the compiler doesn't seem to know what an ostream is.
+//std::ostream& operator<< (std::ostream& stream, const phys::xml::Comment& x);
 
 
-    }// \xml
-}// \phys
-
-#endif // \_xmlelement_cpp
+#endif

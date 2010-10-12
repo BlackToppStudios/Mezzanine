@@ -328,11 +328,20 @@
 		<Unit filename="src/xmlattribute.h" />
 		<Unit filename="src/xmlbase.cpp" />
 		<Unit filename="src/xmlbase.h" />
+		<Unit filename="src/xmlcomment.cpp" />
+		<Unit filename="src/xmlcomment.h" />
+		<Unit filename="src/xmldeclaration.cpp" />
+		<Unit filename="src/xmldeclaration.h" />
+		<Unit filename="src/xmldocument.cpp" />
 		<Unit filename="src/xmldocument.h" />
 		<Unit filename="src/xmlelement.cpp" />
 		<Unit filename="src/xmlelement.h" />
 		<Unit filename="src/xmlnode.cpp" />
 		<Unit filename="src/xmlnode.h" />
+		<Unit filename="src/xmlstylesheetreference.cpp" />
+		<Unit filename="src/xmlstylesheetreference.h" />
+		<Unit filename="src/xmltext.cpp" />
+		<Unit filename="src/xmltext.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

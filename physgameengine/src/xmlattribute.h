@@ -64,12 +64,13 @@ namespace phys
                 /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
                 Attribute (ticpp::Attribute* Meta, bool FirstTimeUsed = false);
 
-                /// @brief This will find or create a pointer to the
-                /// @param Meta A pointer to a ticpp::Attribute that returned Attribute will wrap
-                /// @return A pointer the request phys::xml::Attribute
-                static Attribute* GetPointerFromWrapped(ticpp::Attribute* Meta);
-
             public:
+
+                /// @internal
+                /// @brief This will find or create a pointer to the Attribute
+                /// @param Meta A pointer to a ticpp::Attribute that returned Attribute will wrap
+                /// @return A pointer to the phys::xml::Attribute that wraps Meta
+                static Attribute* GetPointerFromWrapped(ticpp::Attribute* Meta);
 
                 /// @brief Construct an empty attribute.
                 Attribute ();
@@ -128,7 +129,7 @@ namespace phys
 
                 /// @brief This identifies what kind of child of xml::base this is
                 /// @return This returns Base::isAttribute
-                virtual XMLComponentType GetType();
+                virtual XMLComponentType GetType() const;
 
 
             /*
