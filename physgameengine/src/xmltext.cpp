@@ -60,6 +60,12 @@ namespace phys
             return 0;
         }
 
+        std::istream& Text::operator>> (std::istream &In)
+            { return In >> *(static_cast <ticpp::Text*>(this->Wrapped)); }
+
+        std::ostream& Text::operator<< (std::ostream &Out)
+            { return Out << *(static_cast <ticpp::Text*>(this->Wrapped)); }
+
     }// /xml
 }// /phys
 

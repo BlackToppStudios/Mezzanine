@@ -52,13 +52,27 @@ namespace phys
     {
         Comment::Comment (ticpp::Comment* Meta, bool FirstTimeUsed)
         {
-
+            this->Wrapped = Meta;
+            if (FirstTimeUsed)
+                { this->TakeOwnerOfWrapped(); }
         }
 
         Comment* Comment::GetPointerFromWrapped(ticpp::Comment* Meta)
         {
             return 0;
         }
+
+        Comment::Comment(const std::string& Text)
+        {
+            this->Wrapped = new ticpp::Comment(Text);
+            this->TakeOwnerOfWrapped();
+        }
+
+        std::istream& Comment::operator>> (std::istream &In)
+            { return In >> *(static_cast <ticpp::Comment*>(this->Wrapped)); }
+
+        std::ostream& Comment::operator<< (std::ostream &Out)
+            { return Out << *(static_cast <ticpp::Comment*>(this->Wrapped)); }
 
     }// /xml
 }// /phys

@@ -103,6 +103,8 @@ namespace phys
 
     namespace xml
     {
+        class Node;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Base
         /// @headerfile xmlbase.h

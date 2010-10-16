@@ -60,6 +60,12 @@ namespace phys
             return 0;
         }
 
+        std::istream& StylesheetReference::operator>> (std::istream &In)
+            { return In >> *(static_cast <ticpp::StylesheetReference*>(this->Wrapped)); }
+
+        std::ostream& StylesheetReference::operator<< (std::ostream &Out)
+            { return Out << *(static_cast <ticpp::StylesheetReference*>(this->Wrapped)); }
+
     }// /xml
 }// /phys
 

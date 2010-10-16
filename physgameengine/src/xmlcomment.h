@@ -75,6 +75,22 @@ namespace phys
                 /// @return A pointer to the phys::xml::comment that wraps Meta
                 static Comment* GetPointerFromWrapped(ticpp::Comment* Meta);
 
+                /// @brief Creates a Comment with the
+                /// @param Text The text that will be in the comment
+                Comment (const std::string& Text);
+
+                /// @brief Stream XML data into a phys::xml hierearchy
+                /// @param In This is the stream the data comes from when you use the >> operator
+                /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
+                /// @details Inherited phys::xml::Node
+                virtual std::istream& operator>> (std::istream &In);
+
+                /// @brief Stream XML data out of a phys::xml hierearchy
+                /// @param Out This is the stream the data goes to from when you use the << operator
+                /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
+                /// @details Inherited phys::xml::Node
+                virtual std::ostream& operator<< (std::ostream &Out);
+
         }; // /comment
     }// /xml
 }// /phys

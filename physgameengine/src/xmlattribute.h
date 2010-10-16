@@ -65,7 +65,6 @@ namespace phys
                 Attribute (ticpp::Attribute* Meta, bool FirstTimeUsed = false);
 
             public:
-
                 /// @internal
                 /// @brief This will find or create a pointer to the Attribute
                 /// @param Meta A pointer to a ticpp::Attribute that returned Attribute will wrap

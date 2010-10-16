@@ -86,7 +86,17 @@ namespace phys
                 /// @brief Basic Deconstructor;
                 virtual ~Element();
 
+                /// @brief Stream XML data into a phys::xml hierearchy
+                /// @param In This is the stream the data comes from when you use the >> operator
+                /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
+                /// @details Inherited phys::xml::Node
+                virtual std::istream& operator>> (std::istream &In);
 
+                /// @brief Stream XML data out of a phys::xml hierearchy
+                /// @param Out This is the stream the data goes to from when you use the << operator
+                /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
+                /// @details Inherited phys::xml::Node
+                virtual std::ostream& operator<< (std::ostream &Out);
 
 /*
  	Element ()

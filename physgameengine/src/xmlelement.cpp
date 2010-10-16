@@ -103,6 +103,12 @@ namespace phys
             return Other;
         }
 
+        std::istream& Element::operator>> (std::istream &In)
+            { return In >> *(static_cast <ticpp::Element*>(this->Wrapped)); }
+
+        std::ostream& Element::operator<< (std::ostream &Out)
+            { return Out << *(static_cast <ticpp::Element*>(this->Wrapped)); }
+
 
     }// \xml
 }// \phys

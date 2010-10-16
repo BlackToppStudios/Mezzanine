@@ -73,6 +73,14 @@ namespace phys
                 /// @throw This throws a phys::Exception containing the message "The phys::xml::Node is not of type phys::xml::[TypeItShouldBe], it is a: [NodeToCheck's actual Type]";
                 void ThrowIfMismatchingType(XMLComponentType TypeItShouldBe, Node* NodeToCheck);
 
+
+                /// @internal
+                /// @brief A dirty that attempts to create or find nodes of the correc type.
+                /// @param Meta A ticpp::Node that is that wrapped pointer of the phys::xml::Node you want
+                /// @return A pointer to a phys::xml::Node that wraps Meta
+                /// @throw "Internal Node is of unknown type, We cannot cast" If Meta points to some unknown type that inherits from ticpp::Node
+                static Node* GetPointerFromWrapped(ticpp::Node* Meta);
+
             public:
 
                 /// @brief Tears down an Node and removes the node from the DOM
@@ -133,25 +141,25 @@ namespace phys
 
                 /// @brief Returns the Parent Node of this Node Throws an exception if none exists
                 /// @return This returns a pointer to a phys::xml::node. Specifically the node that considers this Node it's child.
-                virtual Node* Parent() const = 0;
+                virtual Node* Parent() const;
 
                 /// @brief Returns the First Child of this node
                 /// @return This returns a pointer to a phys::xml::node. Specifically the child node suitable to begin iterations from.
-                virtual Node* FirstChild () const = 0;
+                virtual Node* FirstChild() const;
 
                 /// @brief Returns the First Child of this node with a matching value
                 /// @param Value The returned child will have a value matching this one
                 /// @return This returns a pointer to a phys::xml::node. Specifically the node closest to the beginning that has a matching value.
-                virtual Node* FirstChild (const std::string &Value) const = 0;
+                virtual Node* FirstChild(const std::string &Value) const;
 
                 /// @brief Returns the Last Child of this node
                 /// @return This returns a pointer to a phys::xml::node. Specifically the child node suitable to end iterations at.
-                virtual Node* LastChild () const = 0;
+                virtual Node* LastChild() const;
 
                 /// @brief Returns the Last Child of this node
                 /// @param Value The returned child will have a value matching this one
                 /// @return This returns a pointer to a phys::xml::node. Specifically the node closest to the end that has a matching value.
-                virtual Node* LastChild (const std::string &Value) const = 0;
+                virtual Node* LastChild(const std::string &Value) const;
 
                 // I skipped these as they uneeded and confusing. They have been supplanted with the clean node iteration methods listed above and by iterators
                 //Node * 	IterateChildren (Node *previous) const
@@ -166,23 +174,21 @@ namespace phys
 
                 /// @brief Navigate to previous sibling node.
                 /// @return A pointer to the previous sibling
-                virtual Node * 	PreviousSibling () const = 0;
+                virtual Node* PreviousSibling() const;
 
                 /// @brief Navigate to the closest previous sibling node with matching Data.
                 /// @param Value The returned sibling will have a value matching this one
                 /// @return A pointer to the closest previous sibling with a matching value
-                virtual Node * 	PreviousSibling (const std::string &Value) const = 0;
+                virtual Node* PreviousSibling(const std::string &Value) const;
 
                 /// @brief Navigate to next sibling node.
                 /// @return A pointer to the next sibling
-                virtual Node * 	NextSibling () const = 0;
+                virtual Node* NextSibling() const;
 
                 /// @brief Navigate to the closest next sibling node with matching Data.
                 /// @param Value The returned sibling will have a value matching this one
                 /// @return A pointer to the closest next sibling with a matching value
-                virtual Node * 	NextSibling (const std::string &Value) const = 0;
-
-
+                virtual Node* NextSibling(const std::string &Value) const;
 
                 /* These with be implemented on the Element class, they are a better fit there.
                 Element * 	NextSiblingElement (bool throwIfNoSiblings=true) const
@@ -232,25 +238,25 @@ namespace phys
                 /// @throw If this is not a phys::xml::StylesheetReference this will throw an phys::Exception with details
                 /// @return A pointer this as a phys::xml::StylesheetReference
                 StylesheetReference* ToStylesheetReference ();
-/*
 
-StylesheetReference * 	ToStylesheetReference () const
- 	Pointer conversion - replaces TiXmlNode::ToStylesheetReference.
-std::auto_ptr< Node > 	Clone () const
- 	Create an exact duplicate of this node and return it.
-bool 	Accept (TiXmlVisitor *visitor) const
- 	Accept a hierchical visit the nodes in the TinyXML DOM.
+                /* // Clone should be replaced by the copy constructor
+                std::auto_ptr< Node > 	Clone () const
+                    Create an exact duplicate of this node and return it.
+                    //This functionality is a little too much for right now
+                bool 	Accept (TiXmlVisitor *visitor) const
+                    Accept a hierchical visit the nodes in the TinyXML DOM.
+                */
+                /// @brief Stream XML data into a phys::xml hierearchy
+                /// @param In This is the stream the data comes from when you use the >> operator
+                /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
+                virtual std::istream& operator>> (std::istream &In) = 0;
 
-Friends
-std::istream & 	operator>> (std::istream &in, Node &base)
- 	Stream input operator.
-std::ostream & 	operator<< (std::ostream &out, const Node &base)
- 	Stream output operator.
-*/
-
-
-
+                /// @brief Stream XML data out of a phys::xml hierearchy
+                /// @param Out This is the stream the data goes to from when you use the << operator
+                /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
+                virtual std::ostream& operator<< (std::ostream &Out) = 0;
         };// \Node
+
     } // \xml
 }//\phys
 
