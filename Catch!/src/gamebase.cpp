@@ -6,6 +6,8 @@
 
 #include "gamebase.h"       //Game Include
 #include "startingarea.h"
+#include "scorearea.h"
+#include "itemshoplist.h"
 #include <physgame.h>       //Physgame include
 #include <sstream>          //STL includes
 
@@ -13,6 +15,7 @@ using namespace phys;
 
 //Create the World Globally! and set it to hold some actors
 World *TheWorld;
+ItemShopList* Items;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
@@ -355,7 +358,7 @@ void MakeGUI()
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     //Build the HUD layer
-    UIRectangle* Panel = HUD->CreateRectangle( 0, 0, WWidth+2, WHeight);
+    //UIRectangle* Panel = HUD->CreateRectangle( 0, 0, WWidth+2, WHeight);
     //Panel->SetBackgroundSprite("Panel");
 
     UIButton* Timer = HUD->CreateButton( "Timer", WWidth * 0.8995, WHeight * 0.006, WWidth * 0.0965, WHeight * 0.06, 1, "0:00");
@@ -371,7 +374,11 @@ void MakeGUI()
     MenuButton->SetBackgroundSprite("MenuButton");
 
     //Build the ItemShop Layer
-    ItemShop->Hide();
+    Items = new ItemShopList(WWidth * 0.1, WHeight * 0.075, WWidth * 0.4, WHeight * 0.6, ItemShop, TheWorld);
+    ColourValue Color(0.8,0.8,0.95,0.9);
+    Items->GetBackdrop()->SetBackgroundColour(Color);
+    ItemShop->Show();
+    //ItemShop->Hide();
 
     //Build the Menu Layer
     /*UIRectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
