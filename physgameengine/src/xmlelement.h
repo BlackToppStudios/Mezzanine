@@ -42,10 +42,12 @@
 #define _xmlelement_h
 
 #include "xmlnode.h"
+#include "xmlattribute.h"
 
 namespace ticpp
 {
     class Element;
+    class Attribute;
 }
 
 namespace phys
@@ -62,7 +64,7 @@ namespace phys
                 /// @brief Construct an Element using meta data from a TiCPP pointer
                 /// @param Meta A pointer to a ticpp::Element that this class will wrap.
                 /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
-                Element (ticpp::Element* Meta, bool FirstTimeUsed = false);
+                Element(ticpp::Element* Meta, bool FirstTimeUsed = false);
 
             public:
                 /// @internal
@@ -76,9 +78,9 @@ namespace phys
 
                 /// @brief Construct an Element with value.
                 /// @param Value What the Attribute is called for example in " \<div style="14"\>Content\</div\> " the word "div" is the Element Value
-             	Element (const std::string &Value);
+             	Element(const std::string& Value);
 
-                /// @brief Construct an Element with Value and Text.
+             	/// @brief Construct an Element with Value and Text.
                 /// @param Value What the Attribute is called for example in " \<div style="14"\>Content\</div\> " the word "div" is the Element Value
                 /// @param Text What the Attribute is called for example in " \<div style="14"\>Content\</div\> " the word "Content" is the attribute Text
              	Element (const std::string &Value, const std::string &Text);
@@ -86,7 +88,7 @@ namespace phys
                 /// @brief Deconstructor
                 virtual ~Element();
 
-                /// @brief This identifies what kind of child of xml::base this is
+                 /// @brief This identifies what kind of child of xml::base this is
                 /// @return This returns Base::isElement
                 virtual Base::XMLComponentType GetType() const;
 
@@ -102,63 +104,78 @@ namespace phys
                 /// @details Inherited phys::xml::Node
                 virtual std::ostream& operator<< (std::ostream &Out);
 
+                /// @brief Get the First Child Attribute
+                /// @return A pointer to a phys::xml::Attribute
+                Attribute* FirstAttribute() const;
+
+                /// @brief Get the Last Child Attribute
+                /// @return A pointer to a phys::xml::Attribute
+                Attribute* LastAttribute() const;
+
+                /// @brief Sets an attribute
+                /// @param Name a String that is the identifies the Attribute
+                /// @param Value The String Value that will be assigned to the Attribute
+                void SetAttribute(const String &Name, const String& Value);
+
+                /// @brief Sets an attribute
+                /// @param Name a String that is the identifies the Attribute
+                /// @param Value The Whole number Value that will be assigned to the Attribute
+                void SetAttribute(const String &Name, const Whole& Value);
+
+                /// @brief Sets an attribute
+                /// @param Name a String that is the identifies the Attribute
+                /// @param Value The Real number Value that will be assigned to the Attribute
+                void SetAttribute(const String &Name, const Real& Value);
+
+                /// @brief Gets the Text ofthe Element
+                /// @return Returns a String
+                String GetText() const;
+
+                /// @brief Set the Text of this Element
+                /// @param Value A String to assign to the Text of this Element
+                void SetText(const String& Value);
+
+                /// @brief Set the Text of this Element
+                /// @param Value A Whole number to assign to the Text of this Element
+                void SetText(const Whole& Value);
+
+                /// @brief Set the Text of this Element
+                /// @param Value A Real number to assign to the Text of this Element
+                void SetText(const Real& Value);
 /*
- 	Element ()
- 	Default Constructor.
- 	Element (const std::string &value)
- 	Default Constructor.
- 	Element (const char *value)
- 	Default Constructor.
- 	Element (TiXmlElement *element)
- 	Constructor.
-template<class T>
- 	Element (const std::string &value, const T &text)
- 	Constructor that allows you to set the element text.
-
-Attribute * 	FirstAttribute (bool throwIfNoAttributes=true) const
- 	Access the first attribute in this element.
-Attribute * 	LastAttribute (bool throwIfNoAttributes=true) const
- 	Access the last attribute in this element.
-template<class T>
-void 	SetAttribute (const std::string &name, const T &value)
- 	Sets an attribute of name to a given value.
-std::string 	GetText (bool throwIfNotFound=true) const
- 	Gets the text of an Element.
-std::string 	GetTextOrDefault (const std::string &defaultValue) const
- 	Gets the text of an Element, if it doesn't exist it will return the defaultValue.
-template<class T, class DefaultT>
-void 	GetTextOrDefault (T *value, const DefaultT &defaultValue) const
- 	Gets the text value of an Element, if it doesn't exist it will return the defaultValue.
-template<class T>
-void 	GetText (T *value, bool throwIfNotFound=true) const
- 	Gets the text of an Element.
-template<class T>
-void 	SetText (const T &value)
- 	Convenience function to set the text of an element.
-template<class T, class DefaulT>
-void 	GetAttributeOrDefault (const std::string &name, T *value, const DefaulT &defaultValue) const
- 	Gets an attribute of name from an element, if it doesn't exist it will return the defaultValue.
-std::string 	GetAttributeOrDefault (const std::string &name, const std::string &defaultValue) const
- 	Gets an attribute of name from an element, if it doesn't exist it will return the defaultValue.
-template<class T>
-T 	GetAttribute (const std::string &name, bool throwIfNotFound=true) const
- 	Returns an attribute of name from an element.
-template<class T>
-void 	GetAttribute (const std::string &name, T *value, bool throwIfNotFound=true) const
- 	Gets an attribute of name from an element.
-std::string 	GetAttribute (const std::string &name) const
- 	Gets an attribute of name from an element.
-bool 	HasAttribute (const std::string &name) const
- 	Returns true, if attribute exists.
-void 	RemoveAttribute (const std::string &name)
- 	Removes attribute from element.
-
-
+            void 	GetTextOrDefault (T *value, const DefaultT &defaultValue) const
+            Gets the text value of an Element, if it doesn't exist it will return the defaultValue.
+            template<class T>
+            void 	GetText (T *value, bool throwIfNotFound=true) const
+            Gets the text of an Element.
+            std::string 	GetTextOrDefault (const std::string &defaultValue) const
+            Gets the text of an Element, if it doesn't exist it will return the defaultValue.
+            Gets an attribute of name from an element, if it doesn't exist it will return the defaultValue.
+            template<class T>
+            T 	GetAttribute (const std::string &name, bool throwIfNotFound=true) const
+                Returns an attribute of name from an element.
+            template<class T>
+            void 	GetAttribute (const std::string &name, T *value, bool throwIfNotFound=true) const
+                Gets an attribute of name from an element.
 */
+
+            /// @brief Gets an attribute of name from an element.
+            /// @param Name The name of the Attribute you want to retrieve
+            /// @return This needs to be documented more accurately
+            String GetAttribute (const String& Name) const;
+
+            /// @brief Returns true, if attribute exists.
+            /// @param Name a String which is the Attribute To check
+            /// @return A bool which is true if the attibute exists
+            bool HasAttribute (const String& Name) const;
+
+            /// @brief Removes attribute from element.
+            /// @param Name a String which is the Attribute To remove
+            void RemoveAttribute (const String& Name);
 
 
         }; // \Element
     }// \xml
 }// \phys
 
-#endif // \_xmlelement_h
+#endif

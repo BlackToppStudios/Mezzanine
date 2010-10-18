@@ -96,6 +96,7 @@ namespace phys
                 /// @details Inherited from phys::xml::Node
                 virtual std::ostream& operator<< (std::ostream &Out);
 
+
         }; // /comment
     }// /xml
 }// /phys

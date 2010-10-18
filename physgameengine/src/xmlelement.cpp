@@ -112,7 +112,41 @@ namespace phys
         std::ostream& Element::operator<< (std::ostream &Out)
             { return Out << *(static_cast <ticpp::Element*>(this->Wrapped)); }
 
+        Attribute* Element::FirstAttribute() const
+            { return Attribute::GetPointerFromWrapped( static_cast<ticpp::Element*>(this->Wrapped)->FirstAttribute(true) ); }
 
+        Attribute* Element::LastAttribute() const
+            { return Attribute::GetPointerFromWrapped(static_cast<ticpp::Element*>(this->Wrapped)->LastAttribute(true) ); }
+
+        void Element::SetAttribute(const String &Name, const String& Value)
+            { static_cast<ticpp::Element*>(this->Wrapped)->SetAttribute(Name, Value); }
+
+        void Element::SetAttribute(const String &Name, const Whole& Value)
+            { static_cast<ticpp::Element*>(this->Wrapped)->SetAttribute(Name, Value); }
+
+        void Element::SetAttribute(const String &Name, const Real& Value)
+            { static_cast<ticpp::Element*>(this->Wrapped)->SetAttribute(Name, Value); }
+
+        String Element::GetText() const
+            { return static_cast<ticpp::Element*>(this->Wrapped)->GetText(true); }
+
+        void Element::SetText(const String& Value)
+            { static_cast<ticpp::Element*>(this->Wrapped)->SetText(Value); }
+
+        void Element::SetText(const Whole& Value)
+            { static_cast<ticpp::Element*>(this->Wrapped)->SetText(Value); }
+
+        void Element::SetText(const Real& Value)
+            { static_cast<ticpp::Element*>(this->Wrapped)->SetText(Value); }
+
+        String Element::GetAttribute (const String& Name) const
+            { return static_cast<ticpp::Element*>(this->Wrapped)->GetAttribute(Name); }
+
+        bool Element::HasAttribute (const String& Name) const
+            { return static_cast<ticpp::Element*>(this->Wrapped)->HasAttribute(Name); }
+
+        void Element::RemoveAttribute (const String& Name)
+            { static_cast<ticpp::Element*>(this->Wrapped)->RemoveAttribute(Name); }
     }// \xml
 }// \phys
 
