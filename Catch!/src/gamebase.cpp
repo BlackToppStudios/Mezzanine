@@ -398,7 +398,6 @@ void MakeGUI()
     Items = new ItemShopList(WWidth * 0.1, WHeight * 0.075, WWidth * 0.4, WHeight * 0.6, ItemShop, TheWorld);
     ColourValue Color(0.8,0.8,0.95,0.9);
     Items->GetBackdrop()->SetBackgroundColour(Color);
-    ItemShop->Show();
     //ItemShop->Hide();
 
     //Build the Menu Layer
