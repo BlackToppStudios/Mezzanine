@@ -93,7 +93,7 @@ namespace phys
             /// @param manager Pointer to the manager that this light is to be used in.
             Light(Ogre::Light* light, SceneManager* manager);
             /// @brief Class destructor.
-            ~Light();
+            virtual ~Light();
             /// @brief Gets the name of this light.
             /// @return Returns a string containing the name given to this light.
             String& GetName();

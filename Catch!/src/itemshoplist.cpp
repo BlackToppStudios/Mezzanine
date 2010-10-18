@@ -16,6 +16,7 @@ ItemShopList::ItemShopList(Real X, Real Y, Real Width, Real Height, UILayer* Lay
     Selected = NULL;
     Offscreen.X = WWidth * 0.5;
     Offscreen.Y = WHeight * 1.5;
+    ScrollMinHeight = 0;
 }
 
 ItemShopList::~ItemShopList()
@@ -28,14 +29,22 @@ void ItemShopList::ResizeScrollBar()
     Whole Items = ItemList.size();
     Real Bar = 0;
     Vector2 Size = SideScroll->GetSize();
-    if(5>=Items)
+    if(ItemsToDisplay>=Items)
     {
         Bar = ScrollLowerLimit - ScrollUpperLimit;
+        if(Bar<ScrollMinHeight)
+        {
+            Bar = ScrollMinHeight;
+        }
         Vector2 NewSize(Size.X,Bar);
         SideScroll->SetSize(NewSize);
     }else{
-        Bar = 5/Items;
+        Bar = ItemsToDisplay/Items;
         Bar = Bar * (ScrollLowerLimit - ScrollUpperLimit);
+        if(Bar<ScrollMinHeight)
+        {
+            Bar = ScrollMinHeight;
+        }
         Vector2 NewSize(Size.X,Bar);
         SideScroll->SetSize(NewSize);
     }
@@ -43,8 +52,32 @@ void ItemShopList::ResizeScrollBar()
 
 void ItemShopList::DrawList()
 {
-    Real RelativeX;
-    Real RelativeY;
+    if(ItemList.empty())
+        return;
+    for( std::vector<UIButton*>::iterator it = ItemList.begin() ; it != ItemList.end() ; it++ )
+    {
+        (*it)->SetPosition(Offscreen);
+    }
+    Whole TopItem = 0;
+    Whole ItemLoop = ItemList.size();
+    if(ItemList.size()>ItemsToDisplay)
+    {
+        //Determine what buttons will be visable.
+        Real ScrollSpace = (ScrollLowerLimit - ScrollUpperLimit) - SideScroll->GetSize().Y;
+        Real ScrollPos = (SideScroll->GetPosition().Y) - ScrollUpperLimit;
+        Real Pos = ScrollPos/ScrollSpace;
+        TopItem = (Whole)(ItemsToDisplay * Pos);
+        ItemLoop = ItemsToDisplay;
+    }
+    //place as necessary
+    Real YPos = (ListArea->GetPosition().Y) + VertDist;
+    for( Whole x=0 ; x != ItemLoop ; x++, TopItem++)
+    {
+        UIButton* TempButton = ItemList[TopItem];
+        YPos+=(VertDist+(ItemList[TopItem-1]->GetSize().Y));
+        Vector2 Position(ButtonXAlign,YPos);
+        TempButton->SetPosition(Position);
+    }
 }
 
 void ItemShopList::UpdateScroll(Vector2 MousePos)
@@ -86,6 +119,7 @@ void ItemShopList::CreateListArea(Real X, Real Y, Real Width, Real Height)
     SideScroll = ParentLayer->CreateRectangle((SSBS.X * 0.005)+SSBP.X, (SSBS.Y * 0.005)+SSBP.Y, SSBS.X * 0.95, SSBS.Y * 0.95);
     ScrollUpperLimit = SideScroll->GetPosition().Y;
     ScrollLowerLimit = (SideScroll->GetPosition().Y) + (SideScroll->GetSize().Y);
+    ButtonXAlign = (ListArea->GetPosition().X) + (ListArea->GetSize().X * 0.05);
 }
 
 void ItemShopList::AddItemToList(UIButton* Item)
@@ -105,6 +139,16 @@ void ItemShopList::RemoveItemFromList(UIButton* Item)
         }
     }
     ResizeScrollBar();
+}
+
+void ItemShopList::SetScrollBarMinHeight(Real MinHeight)
+{
+    ScrollMinHeight = MinHeight;
+}
+
+void ItemShopList::SetItemsToDisplay(Whole Items)
+{
+    ItemsToDisplay = Items;
 }
 
 UIRectangle* ItemShopList::GetBackdrop()

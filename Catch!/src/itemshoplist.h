@@ -21,6 +21,9 @@ class ItemShopList
         Vector2 Offscreen;
         Real ScrollUpperLimit;
         Real ScrollLowerLimit;
+        Real ScrollMinHeight;
+        Real ButtonXAlign;
+        Whole ItemsToDisplay;
         Vector2 OrigPos;
         void ResizeScrollBar();
     public:
@@ -33,6 +36,8 @@ class ItemShopList
         void CreateListArea(Real X, Real Y, Real Width, Real Height);
         void AddItemToList(UIButton* Item);
         void RemoveItemFromList(UIButton* Item);
+        void SetScrollBarMinHeight(Real MinHeight);
+        void SetItemsToDisplay(Whole Items);
         UIRectangle* GetBackdrop();
         UIRectangle* GetListArea();
         UIRectangle* GetSideScrollBack();
