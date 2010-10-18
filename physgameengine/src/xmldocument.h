@@ -74,12 +74,16 @@ namespace phys
                 /// @return A pointer to the phys::xml::Document that wraps Meta
                 static Document* GetPointerFromWrapped(ticpp::Document* Meta);
 
+                /// @brief Descriptive contructor
+                /// @param DocumentName The name of the document being created
+                Document(const String& DocumentName);
+
                 /// @brief Construct an empty Document
                 Document();
 
                 /// @brief This identifies what kind of child of xml::base this is
                 /// @return This returns Base::isDocument
-                virtual XMLComponentType GetType() const;
+                virtual Base::XMLComponentType GetType() const;
 
                 /// @brief Stream XML data into a phys::xml hierearchy
                 /// @param In This is the stream the data comes from when you use the >> operator
@@ -92,6 +96,21 @@ namespace phys
                 /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
                 /// @details Inherited phys::xml::Node
                 virtual std::ostream& operator<< (std::ostream &Out);
+
+                /*
+                void 	LoadFile (TiXmlEncoding encoding=TIXML_DEFAULT_ENCODING)
+                    Load a file using the current document value.
+                void 	SaveFile () const
+                    Save a file using the current document value.
+                void 	LoadFile (const std::string &filename, TiXmlEncoding encoding=TIXML_DEFAULT_ENCODING)
+                    Load a file using the given filename.
+                void 	LoadFile (const char *filename, TiXmlEncoding encoding=TIXML_DEFAULT_ENCODING)
+                void 	SaveFile (const std::string &filename) const
+                    Save a file using the given filename.
+                void 	Parse (const std::string &xml, bool throwIfParseError=true, TiXmlEncoding encoding=TIXML_DEFAULT_ENCODING)
+                    Parse the given xml data.
+                */
+
         }; // /Document
     }// /xml
 }// /phys

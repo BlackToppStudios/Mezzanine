@@ -65,6 +65,12 @@ namespace phys
                 { this->TakeOwnerOfWrapped(); }
         }
 
+        Document::Document(const String& DocumentName)
+        {
+            this->Wrapped=new ticpp::Document(DocumentName);
+            this->TakeOwnerOfWrapped();
+        }
+
         Document* Document::GetPointerFromWrapped(ticpp::Document* Meta)
         {
             Document* Other;
