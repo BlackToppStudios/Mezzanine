@@ -69,7 +69,7 @@ namespace phys
             /// @brief No initialization class constructor.
             Attachable();
             /// @brief Class destructor.
-            ~Attachable();
+            virtual ~Attachable();
             /// @brief Gets the type of element this is.
             /// @return Returns an enum value indicating what type of element this is.
             Attachable::AttachableElement GetElementType();

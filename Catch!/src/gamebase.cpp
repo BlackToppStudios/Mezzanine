@@ -16,6 +16,9 @@ using namespace phys;
 //Create the World Globally! and set it to hold some actors
 World *TheWorld;
 ItemShopList* Items;
+ActorBase* LastActorThrown;
+StartingArea* StartZone;
+ScoreArea* ScoreZone;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
@@ -120,7 +123,24 @@ bool PostRender()
     //IF the game has gone on for 150 or more seconds close it.
 	if (150000<gametime || (TheWorld->GetEventManager()->GetNextQuitEvent()!=0) )
         { return false; }
+    /*
+    if(//Perform check to see if the last actor thrown is within the limits of the level)
+    {
+        //If it's not within the limits
+        LastActorThrown = NULL;
+    }
 
+    if(StartZone->IsEmpty())
+    {
+        if(NULL==LastActorThrown)
+        {
+            if(ScoreZone->AllObjectsAtRest())
+            {
+                //end the game somehow, show the final score screen.
+            }
+        }
+    }
+    */
     return true;
 }
 
@@ -235,6 +255,7 @@ bool PostInput()
                             Dragger->SetParam(4,0.8,0); Dragger->SetParam(4,0.8,1); Dragger->SetParam(4,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
                             Dragger->SetParam(2,0.1,0); Dragger->SetParam(2,0.1,1); Dragger->SetParam(2,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
                             firstframe=true;
+                            LastActorThrown = rigid;
                         }else{  // since we don't
                             #ifdef PHYSDEBUG
                             TheWorld->Log("Actor is not an ActorRigid.  Aborting.");

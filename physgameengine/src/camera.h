@@ -99,7 +99,7 @@ namespace phys
             Camera(Ogre::Camera* Camera, CameraManager* Manager);
             /// @brief Class Destructor.
             /// @details The Class Destructor.
-            ~Camera();
+            virtual ~Camera();
             /// @brief Gets the camera's set name.
             /// @return Returns a string containing the camera's name.
             String& GetName();
