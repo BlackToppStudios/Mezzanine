@@ -124,12 +124,11 @@ namespace phys
 
                 /// @brief Get the Previous sibling attribute in the DOM.
                 /// @return Returns a pointer to an XML::Attribute that comes before this one, but still on the same element.
-                Attribute* Previous () const;
+                Attribute* Previous() const;
 
                 /// @brief This identifies what kind of child of xml::base this is
                 /// @return This returns Base::isAttribute
-                virtual XMLComponentType GetType() const;
-
+                virtual Base::XMLComponentType GetType() const;
 
             /*
                 //All TinyXml classes can print themselves to a filestream.

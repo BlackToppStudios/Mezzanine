@@ -53,7 +53,10 @@ namespace phys
     namespace xml
     {
         Document::Document()
-            {  }
+        {
+            this->Wrapped=new ticpp::Document();
+            this->TakeOwnerOfWrapped();
+        }
 
         Document::Document (ticpp::Document* Meta, bool FirstTimeUsed)
         {

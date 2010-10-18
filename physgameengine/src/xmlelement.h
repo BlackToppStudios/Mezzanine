@@ -83,8 +83,12 @@ namespace phys
                 /// @param Text What the Attribute is called for example in " \<div style="14"\>Content\</div\> " the word "Content" is the attribute Text
              	Element (const std::string &Value, const std::string &Text);
 
-                /// @brief Basic Deconstructor;
+                /// @brief Deconstructor
                 virtual ~Element();
+
+                /// @brief This identifies what kind of child of xml::base this is
+                /// @return This returns Base::isElement
+                virtual Base::XMLComponentType GetType() const;
 
                 /// @brief Stream XML data into a phys::xml hierearchy
                 /// @param In This is the stream the data comes from when you use the >> operator

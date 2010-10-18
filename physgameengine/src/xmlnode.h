@@ -73,7 +73,6 @@ namespace phys
                 /// @throw This throws a phys::Exception containing the message "The phys::xml::Node is not of type phys::xml::[TypeItShouldBe], it is a: [NodeToCheck's actual Type]";
                 void ThrowIfMismatchingType(XMLComponentType TypeItShouldBe, Node* NodeToCheck);
 
-
                 /// @internal
                 /// @brief A dirty that attempts to create or find nodes of the correc type.
                 /// @param Meta A ticpp::Node that is that wrapped pointer of the phys::xml::Node you want

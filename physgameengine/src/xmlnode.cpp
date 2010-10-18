@@ -61,7 +61,7 @@ namespace phys
     namespace xml
     {
         Node::~Node ()
-            { }
+            { this->Clear(); }
 
         ///////////////////////////////////////////////////////////////////////////////
         // Get/Set Value Members
@@ -103,12 +103,24 @@ namespace phys
 
         void Node::Clear()
         {
-            /// @todo TODO actually Code this
-            //for ( TravelingPointer=This->FirstChild; TravelingPointer!=this->Lastchild; TravelingPointer=TravelingPointer->NextSibling)
-            //{
-            //  TravelingPointer->Clear;
-            //  delete TravelingPointer;
-            //}
+            if( !this->NoChildren() )
+            {
+                Node* InWork = this->FirstChild();
+                Node* OldNode = 0;
+
+                while( InWork!=this->LastChild() )
+                {
+                    OldNode=InWork;
+                    InWork=InWork->NextSibling();
+                    delete OldNode;
+                }
+
+                delete InWork;
+
+                //TinyXML Seems to require 0 in the the pointers that enclose their tree, So I did this to emulate their clear() function as closely as possible.
+                static_cast<TiXmlNode*>(static_cast<ticpp::Node*> (this->Wrapped)->GetBasePointer())->firstChild=0;
+                static_cast<TiXmlNode*>(static_cast<ticpp::Node*> (this->Wrapped)->GetBasePointer())->lastChild=0;
+            }
         }
 
         void Node::AppendChild (Node &AddThis)

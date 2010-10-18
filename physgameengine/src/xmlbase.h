@@ -241,8 +241,8 @@ namespace phys
                 /// @brief Set the value of this XML Object.
                 /// @param value A String number to be inserted into the XML document
                 virtual void SetValue(const String &value) = 0;
-
         }; // /Base
+
     }// /xml
 }// /phys
 

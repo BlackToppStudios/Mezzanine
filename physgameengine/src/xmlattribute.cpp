@@ -156,7 +156,7 @@ namespace phys
         Attribute* Attribute::Previous() const
             { return this->GetPointerFromWrapped(static_cast<ticpp::Attribute*> (this->Wrapped)->Previous(true)); }
 
-        Attribute::XMLComponentType Attribute::GetType() const
+        Base::XMLComponentType Attribute::GetType() const
             { return Base::isAttribute; }
     } // \xml
 }//\phys

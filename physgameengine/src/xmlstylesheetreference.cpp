@@ -42,6 +42,7 @@
 #define _xmlstylesheetreference_cpp
 
 #include "xmlstylesheetreference.h"
+#include "exception.h"
 
 #define TIXML_USE_TICPP
 #include <ticpp.h>
@@ -52,13 +53,43 @@ namespace phys
     {
         StylesheetReference::StylesheetReference (ticpp::StylesheetReference* Meta, bool FirstTimeUsed)
         {
+            this->Wrapped = Meta;
+            if (FirstTimeUsed)
+                { this->TakeOwnerOfWrapped(); }
+        }
 
+        StylesheetReference::StylesheetReference (const String& RefType, const String& Href)
+        {
+            this->Wrapped = new ticpp::StylesheetReference(RefType, Href);
+            this->TakeOwnerOfWrapped();
+        }
+
+        StylesheetReference::StylesheetReference ()
+        {
+            this->Wrapped = new ticpp::StylesheetReference();
+            this->TakeOwnerOfWrapped();
         }
 
         StylesheetReference* StylesheetReference::GetPointerFromWrapped(ticpp::StylesheetReference* Meta)
         {
-            return 0;
+            StylesheetReference* Other;
+            try {
+                //Most likely cause of failure is ticpp::Node::GetBasePointer() returns 0
+                Other = static_cast<StylesheetReference*>( Meta->GetBasePointer()->GetUserData() );
+            } catch (ticpp::Exception e) {
+                std::stringstream temp;
+                temp << "Could not Create phys::xml::StylesheetReference from invalid pointer." << std::endl << e.what() << std::endl << "Details: " << e.m_details;
+                throw Exception(temp.str());
+            }
+
+            //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
+            if(0 == Other)
+                { Other = new StylesheetReference(Meta, true); }
+            return Other;
         }
+
+        Base::XMLComponentType StylesheetReference::GetType() const
+            { return Base::isStylesheetReference; }
 
         std::istream& StylesheetReference::operator>> (std::istream &In)
             { return In >> *(static_cast <ticpp::StylesheetReference*>(this->Wrapped)); }
@@ -66,15 +97,13 @@ namespace phys
         std::ostream& StylesheetReference::operator<< (std::ostream &Out)
             { return Out << *(static_cast <ticpp::StylesheetReference*>(this->Wrapped)); }
 
+        String StylesheetReference::GetRefType() const
+            { return static_cast<ticpp::StylesheetReference*>(this->Wrapped)->Type(); }
+
+        String StylesheetReference::GetHref() const
+            { return static_cast<ticpp::StylesheetReference*>(this->Wrapped)->Href(); }
+
     }// /xml
 }// /phys
-
-/// @brief Streaming output operator for XML StylesheetReferences
-/// @details This converts the data of an XML StylesheetReference into a stream Ideal for sending to a log or cout
-/// @param stream This is the stream we send our data to.
-/// @return This returns an std::ostream which now contains our data.
-// Commented out due to compiler error, despite above include the compiler doesn't seem to know what an ostream is.
-//std::ostream& operator<< (std::ostream& stream, const phys::xml::StylesheetReference& x);
-
 
 #endif

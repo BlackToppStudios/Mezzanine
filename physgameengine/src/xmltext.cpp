@@ -42,6 +42,7 @@
 #define _xmltext_cpp
 
 #include "xmltext.h"
+#include "exception.h"
 
 #define TIXML_USE_TICPP
 #include <ticpp.h>
@@ -52,13 +53,43 @@ namespace phys
     {
         Text::Text (ticpp::Text* Meta, bool FirstTimeUsed)
         {
-
+            this->Wrapped = Meta;
+            if (FirstTimeUsed)
+                { this->TakeOwnerOfWrapped(); }
         }
 
         Text* Text::GetPointerFromWrapped(ticpp::Text* Meta)
         {
-            return 0;
+            Text* Other;
+            try {
+                //Most likely cause of failure is ticpp::Node::GetBasePointer() returns 0
+                Other = static_cast<Text*>( Meta->GetBasePointer()->GetUserData() );
+            } catch (ticpp::Exception e) {
+                std::stringstream temp;
+                temp << "Could not Create phys::xml::Text from invalid pointer." << std::endl << e.what() << std::endl << "Details: " << e.m_details;
+                throw Exception(temp.str());
+            }
+
+            //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
+            if(0 == Other)
+                { Other = new Text(Meta, true); }
+            return Other;
         }
+
+        Text::Text(String Value)
+        {
+            this->Wrapped=new ticpp::Text(Value);
+            this->TakeOwnerOfWrapped();
+        }
+
+        Text::Text()
+        {
+            this->Wrapped=new ticpp::Text();
+            this->TakeOwnerOfWrapped();
+        }
+
+        Base::XMLComponentType Text::GetType() const
+            { return Base::isText; }
 
         std::istream& Text::operator>> (std::istream &In)
             { return In >> *(static_cast <ticpp::Text*>(this->Wrapped)); }
@@ -68,13 +99,5 @@ namespace phys
 
     }// /xml
 }// /phys
-
-/// @brief Streaming output operator for XML Texts
-/// @details This converts the data of an XML Text into a stream Ideal for sending to a log or cout
-/// @param stream This is the stream we send our data to.
-/// @return This returns an std::ostream which now contains our data.
-// Commented out due to compiler error, despite above include the compiler doesn't seem to know what an ostream is.
-//std::ostream& operator<< (std::ostream& stream, const phys::xml::Text& x);
-
 
 #endif
