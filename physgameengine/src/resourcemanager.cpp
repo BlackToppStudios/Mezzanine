@@ -86,6 +86,7 @@ namespace phys {
 
     bool ResourceManager::ExportShapeData(ActorBase* Actor, String &FileName)
     {
+        //Copy pasta'd from Erwin Coumans with permission
         btDefaultSerializer* Serializer = new btDefaultSerializer(1024*1024*5);
         Serializer->startSerialization();
         int len = Actor->Shape->calculateSerializeBufferSize();
@@ -122,6 +123,7 @@ namespace phys {
         }
 
         Ogre::DataStreamPtr Stream = OgreResource->openResource(FileName);
+        assert(sizeof(char)==1);
         char* buffer = new char[Stream->size()];
         Stream->read((void*)buffer, Stream->size());
         if(Importer->loadFileFromMemory(buffer, Stream->size()))
