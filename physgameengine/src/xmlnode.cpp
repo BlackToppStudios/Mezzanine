@@ -54,13 +54,18 @@
 #define TIXML_USE_TICPP
 #include <ticpp.h>
 
+#include <iostream>
+
 namespace phys
 {
     namespace xml
     {
         Node::~Node ()
-            { }
+            { this->Clear(); }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Get/Set Value Members
+        ///////////////////////////////////////
         String Node::GetValueAsString() const
         {
             return static_cast<ticpp::Node*> (this->Wrapped)->Value();
@@ -92,14 +97,30 @@ namespace phys
         /* Attribute::XMLComponentType Node::GetType()
             { return Base::isNode; } */
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // DOM Tree adjusting
+        ///////////////////////////////////////
+
         void Node::Clear()
         {
-            /// @todo TODO actually Code this
-            //for ( TravelingPointer=This->FirstChild; TravelingPointer!=this->Lastchild; TravelingPointer=TravelingPointer->NextSibling)
-            //{
-            //  TravelingPointer->Clear;
-            //  delete TravelingPointer;
-            //}
+            if( !this->NoChildren() )
+            {
+                Node* InWork = this->FirstChild();
+                Node* OldNode = 0;
+
+                while( InWork!=this->LastChild() )
+                {
+                    OldNode=InWork;
+                    InWork=InWork->NextSibling();
+                    delete OldNode;
+                }
+
+                delete InWork;
+
+                //TinyXML Seems to require 0 in the the pointers that enclose their tree, So I did this to emulate their clear() function as closely as possible.
+                static_cast<TiXmlNode*>(static_cast<ticpp::Node*> (this->Wrapped)->GetBasePointer())->firstChild=0;
+                static_cast<TiXmlNode*>(static_cast<ticpp::Node*> (this->Wrapped)->GetBasePointer())->lastChild=0;
+            }
         }
 
         void Node::AppendChild (Node &AddThis)
@@ -120,11 +141,83 @@ namespace phys
             AddThis.TakeOwnerOfWrapped();
         }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // DOM Tree Navigation
+        ///////////////////////////////////////
+
         Document* Node::GetDocument () const
             { return Document::GetPointerFromWrapped( static_cast<ticpp::Document*>( static_cast<ticpp::Node*> (this->Wrapped)->GetDocument(true))); }
 
         bool Node::NoChildren () const
             { return (static_cast<ticpp::Node*> (this->Wrapped)->NoChildren()); }
+
+        Node* Node::Parent() const
+            { return GetPointerFromWrapped( static_cast<ticpp::Node*>(this->Wrapped)->Parent(true)); }
+
+        Node* Node::FirstChild() const
+            { return GetPointerFromWrapped(static_cast<ticpp::Node*> (this->Wrapped)->FirstChild()); }
+
+        Node* Node::FirstChild(const std::string &Value) const
+            { return this->GetPointerFromWrapped(static_cast<ticpp::Node*> (this->Wrapped)->FirstChild(Value)); }
+
+        Node* Node::LastChild() const
+            { return this->GetPointerFromWrapped(static_cast<ticpp::Node*> (this->Wrapped)->LastChild()); }
+
+        Node* Node::LastChild(const std::string &Value) const
+            { return this->GetPointerFromWrapped(static_cast<ticpp::Node*> (this->Wrapped)->LastChild(Value)); }
+
+        Node* Node::PreviousSibling() const
+            { return this->GetPointerFromWrapped(static_cast<ticpp::Node*> (this->Wrapped)->LastChild()); }
+
+        Node* Node::PreviousSibling(const std::string &Value) const
+            { return this->GetPointerFromWrapped(static_cast<ticpp::Node*> (this->Wrapped)->PreviousSibling(Value)); }
+
+        Node* Node::NextSibling() const
+            { return this->GetPointerFromWrapped(static_cast<ticpp::Node*> (this->Wrapped)->LastChild()); }
+
+        Node* Node::NextSibling(const std::string &Value) const
+            { return this->GetPointerFromWrapped(static_cast<ticpp::Node*> (this->Wrapped)->NextSibling(Value)); }
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Type verification and Conversion
+        ///////////////////////////////////////
+        Node* Node::GetPointerFromWrapped(ticpp::Node* Meta)
+        {
+            //We have no clue what Meta is, but need to wrap it with a legit phys::xml::objectofsomekind
+            ticpp::Node* Results;
+            /*Results=dynamic_cast<ticpp::Attribute*>(Meta);
+            if (Results)
+                { Results = Attribute::GetPointerFromWrapped(Results); }*/
+
+            Results = dynamic_cast<ticpp::Comment*>(Meta);
+            if (Results)
+                { return Comment::GetPointerFromWrapped(static_cast<ticpp::Comment*>(Meta)); }
+
+            Results = dynamic_cast<ticpp::Declaration*>(Meta);
+            if (Results)
+                { return Declaration::GetPointerFromWrapped(static_cast<ticpp::Declaration*>(Meta)); }
+
+            Results = dynamic_cast<ticpp::Document*>(Meta);
+            if (Results)
+                { return Document::GetPointerFromWrapped(static_cast<ticpp::Document*>(Meta)); }
+
+            Results = dynamic_cast<ticpp::Element*>(Meta);
+            if (Results)
+                { return Element::GetPointerFromWrapped(static_cast<ticpp::Element*>(Meta)); }
+
+            Results = dynamic_cast<ticpp::StylesheetReference*>(Meta);
+            if (Results)
+                { return StylesheetReference::GetPointerFromWrapped(static_cast<ticpp::StylesheetReference*>(Meta)); }
+
+            Results = dynamic_cast<ticpp::Text*>(Meta);
+            if (Results)
+                { return Text::GetPointerFromWrapped(static_cast<ticpp::Text*>(Meta)); }
+
+            throw Exception("Internal Node is of unknown type, We cannot cast");
+            return 0;
+        }
 
         void Node::ThrowIfMismatchingType(XMLComponentType TypeItShouldBe, Node* NodeToCheck)
         {
@@ -173,7 +266,6 @@ namespace phys
             ThrowIfMismatchingType(Base::isStylesheetReference, this);
             return static_cast<StylesheetReference*> (this);
         }
-
     } // \xml
 }//\phys
 

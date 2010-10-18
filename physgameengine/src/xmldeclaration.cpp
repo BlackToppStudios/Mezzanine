@@ -42,6 +42,7 @@
 #define _xmldeclaration_cpp
 
 #include "xmldeclaration.h"
+#include "exception.h"
 
 #define TIXML_USE_TICPP
 #include <ticpp.h>
@@ -50,25 +51,62 @@ namespace phys
 {
     namespace xml
     {
-        Declaration::Declaration (ticpp::Declaration* Meta, bool FirstTimeUsed)
-        {
-
-        }
-
         Declaration* Declaration::GetPointerFromWrapped(ticpp::Declaration* Meta)
         {
-            return 0;
+            Declaration* Other;
+            try {
+                //Most likely cause of failure is ticpp::Node::GetBasePointer() returns 0
+                Other = static_cast<Declaration*>( Meta->GetBasePointer()->GetUserData() );
+            } catch (ticpp::Exception e) {
+                std::stringstream temp;
+                temp << "Could not Create phys::xml::Declaration from invalid pointer." << std::endl << e.what() << std::endl << "Details: " << e.m_details;
+                throw Exception(temp.str());
+            }
+
+            //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
+            if(0 == Other)
+                { Other = new Declaration(Meta, true); }
+            return Other;
         }
+
+        Declaration::Declaration (ticpp::Declaration* Meta, bool FirstTimeUsed)
+        {
+            this->Wrapped = Meta;
+            if (FirstTimeUsed)
+                { this->TakeOwnerOfWrapped(); }
+        }
+
+        Declaration::Declaration (const String& Version, const String& Encoding, const String& Standalone)
+        {
+            this->Wrapped=new ticpp::Declaration(Version, Encoding, Standalone);
+            this->TakeOwnerOfWrapped();
+        }
+
+        Declaration::Declaration()
+        {
+            this->Wrapped=new ticpp::Declaration();
+            this->TakeOwnerOfWrapped();
+        }
+
+        Base::XMLComponentType Declaration::GetType() const
+            { return Base::isDeclaration; }
+
+        std::istream& Declaration::operator>> (std::istream &In)
+            { return In >> *(static_cast <ticpp::Declaration*>(this->Wrapped)); }
+
+        std::ostream& Declaration::operator<< (std::ostream &Out)
+            { return Out << *(static_cast <ticpp::Declaration*>(this->Wrapped)); }
+
+        String Declaration::GetVersion() const
+            { return static_cast<ticpp::Declaration*>(this->Wrapped)->Version(); }
+
+        String Declaration::GetEncoding() const
+            { return static_cast<ticpp::Declaration*>(this->Wrapped)->Encoding(); }
+
+        String Declaration::GetStandalone() const
+            { return static_cast<ticpp::Declaration*>(this->Wrapped)->Standalone(); }
 
     }// /xml
 }// /phys
-
-/// @brief Streaming output operator for XML Declarations
-/// @details This converts the data of an XML Declaration into a stream Ideal for sending to a log or cout
-/// @param stream This is the stream we send our data to.
-/// @return This returns an std::ostream which now contains our data.
-// Commented out due to compiler error, despite above include the compiler doesn't seem to know what an ostream is.
-//std::ostream& operator<< (std::ostream& stream, const phys::xml::Declaration& x);
-
 
 #endif

@@ -42,6 +42,7 @@
 #define _xmlcomment_cpp
 
 #include "xmlcomment.h"
+#include "exception.h"
 
 #define TIXML_USE_TICPP
 #include <ticpp.h>
@@ -50,25 +51,53 @@ namespace phys
 {
     namespace xml
     {
-        Comment::Comment (ticpp::Comment* Meta, bool FirstTimeUsed)
-        {
-
-        }
-
         Comment* Comment::GetPointerFromWrapped(ticpp::Comment* Meta)
         {
-            return 0;
+            Comment* Other;
+            try {
+                //Most likely cause of failure is ticpp::Node::GetBasePointer() returns 0
+                Other = static_cast<Comment*>( Meta->GetBasePointer()->GetUserData() );
+            } catch (ticpp::Exception e) {
+                std::stringstream temp;
+                temp << "Could not Create phys::xml::Comment from invalid pointer." << std::endl << e.what() << std::endl << "Details: " << e.m_details;
+                throw Exception(temp.str());
+            }
+
+            //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
+            if(0 == Other)
+                { Other = new Comment(Meta, true); }
+            return Other;
         }
+
+        Comment::Comment (ticpp::Comment* Meta, bool FirstTimeUsed)
+        {
+            this->Wrapped = Meta;
+            if (FirstTimeUsed)
+                { this->TakeOwnerOfWrapped(); }
+        }
+
+        Comment::Comment(const std::string& Text)
+        {
+            this->Wrapped = new ticpp::Comment(Text);
+            this->TakeOwnerOfWrapped();
+        }
+
+        Comment::Comment()
+        {
+            this->Wrapped = new ticpp::Comment();
+            this->TakeOwnerOfWrapped();
+        }
+
+        Base::XMLComponentType Comment::GetType() const
+            { return Base::isComment; }
+
+        std::istream& Comment::operator>> (std::istream &In)
+            { return In >> *(static_cast <ticpp::Comment*>(this->Wrapped)); }
+
+        std::ostream& Comment::operator<< (std::ostream &Out)
+            { return Out << *(static_cast <ticpp::Comment*>(this->Wrapped)); }
 
     }// /xml
 }// /phys
-
-/// @brief Streaming output operator for XML comments
-/// @details This converts the data of an XML comment into a stream Ideal for sending to a log or cout
-/// @param stream This is the stream we send our data to.
-/// @return This returns an std::ostream which now contains our data.
-// Commented out due to compiler error, despite above include the compiler doesn't seem to know what an ostream is.
-//std::ostream& operator<< (std::ostream& stream, const phys::xml::Comment& x);
-
 
 #endif

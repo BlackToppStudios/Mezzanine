@@ -99,9 +99,18 @@ namespace phys
 
             //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
             if(0 == Other)
-                {/* Other = new Element(Meta, true); */}
+                { Other = new Element(Meta, true); }
             return Other;
         }
+
+        Base::XMLComponentType Element::GetType() const
+            { return Base::isElement; }
+
+        std::istream& Element::operator>> (std::istream &In)
+            { return In >> *(static_cast <ticpp::Element*>(this->Wrapped)); }
+
+        std::ostream& Element::operator<< (std::ostream &Out)
+            { return Out << *(static_cast <ticpp::Element*>(this->Wrapped)); }
 
 
     }// \xml

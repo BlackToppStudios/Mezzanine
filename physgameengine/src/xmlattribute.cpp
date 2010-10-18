@@ -42,9 +42,9 @@
 #define _xmlattribute_cpp
 
 #include "xmlattribute.h"
+#include "exception.h"
 
 #include <sstream>
-#include <exception>
 
 #define TIXML_USE_TICPP
 #include <ticpp.h>
@@ -76,6 +76,7 @@ namespace phys
 
         Attribute::Attribute (const Attribute &CopiedAttribute)
         {
+            /// @todo TODO rework the phys::xml::Attribute copy constructor to actually make a new copy.
             this->Wrapped = CopiedAttribute.Wrapped;
 
             //alternative shared_ptr code
@@ -94,7 +95,7 @@ namespace phys
             } catch (ticpp::Exception e) {
                 std::stringstream temp;
                 temp << "Could not Create phys::xml::Attribute from invalid pointer." << std::endl << e.what() << std::endl << "Details: " << e.m_details;
-                //throw new std::exception(temp.str());
+                throw Exception(temp.str());
             }
 
             //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
@@ -155,7 +156,7 @@ namespace phys
         Attribute* Attribute::Previous() const
             { return this->GetPointerFromWrapped(static_cast<ticpp::Attribute*> (this->Wrapped)->Previous(true)); }
 
-        Attribute::XMLComponentType Attribute::GetType() const
+        Base::XMLComponentType Attribute::GetType() const
             { return Base::isAttribute; }
     } // \xml
 }//\phys

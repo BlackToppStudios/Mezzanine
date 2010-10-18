@@ -107,13 +107,11 @@ namespace phys
                     return String("Very Unknown");
             }
         }
-        //Base::XMLComponentType Base::GetType()
-        //        { return Base::isBase; }
+
+
 
     }// /xml
 }// /phys
 
-//std::ostream& operator << (std::ostream& stream, const phys::xml::Base& x)
-//{}
 
 #endif

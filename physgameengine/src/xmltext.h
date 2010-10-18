@@ -75,16 +75,31 @@ namespace phys
                 /// @return A pointer to the phys::xml::Text that wraps Meta
                 static Text* GetPointerFromWrapped(ticpp::Text* Meta);
 
+                /// @brief Descriptive Constructor
+                /// @param Value The String to be stored this phys::xml::text object
+                Text(String Value);
+
+                /// @brief Default Constructor
+                Text();
+
+                /// @brief This identifies what kind of child of xml::base this is
+                /// @return This returns Base::isText
+                virtual Base::XMLComponentType GetType() const;
+
+                /// @brief Stream XML data into a phys::xml hierearchy
+                /// @param In This is the stream the data comes from when you use the >> operator
+                /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
+                /// @details Inherited phys::xml::Node
+                virtual std::istream& operator>> (std::istream &In);
+
+                /// @brief Stream XML data out of a phys::xml hierearchy
+                /// @param Out This is the stream the data goes to from when you use the << operator
+                /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
+                /// @details Inherited phys::xml::Node
+                virtual std::ostream& operator<< (std::ostream &Out);
+
         }; // /Text
     }// /xml
 }// /phys
-
-/// @brief Streaming output operator for XML Texts
-/// @details This converts the data of an XML Text into a stream Ideal for sending to a log or cout
-/// @param stream This is the stream we send our data to.
-/// @return This returns an std::ostream which now contains our data.
-// Commented out due to compiler error, despite above include the compiler doesn't seem to know what an ostream is.
-//std::ostream& operator<< (std::ostream& stream, const phys::xml::Text& x);
-
 
 #endif

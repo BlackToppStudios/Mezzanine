@@ -42,6 +42,8 @@
 #define _xmldocument_cpp
 
 #include "xmldocument.h"
+#include "exception.h"
+
 
 #define TIXML_USE_TICPP
 #include <ticpp.h>
@@ -50,25 +52,50 @@ namespace phys
 {
     namespace xml
     {
+        Document::Document()
+        {
+            this->Wrapped=new ticpp::Document();
+            this->TakeOwnerOfWrapped();
+        }
+
         Document::Document (ticpp::Document* Meta, bool FirstTimeUsed)
         {
-
+            this->Wrapped = Meta;
+            if (FirstTimeUsed)
+                { this->TakeOwnerOfWrapped(); }
         }
 
         Document* Document::GetPointerFromWrapped(ticpp::Document* Meta)
         {
-            return 0;
+            Document* Other;
+            try {
+                //Most likely cause of failure is ticpp::Node::GetBasePointer() returns 0
+                Other = static_cast<Document*>( Meta->GetBasePointer()->GetUserData() );
+            } catch (ticpp::Exception e) {
+                std::stringstream temp;
+                temp << "Could not Create phys::xml::Document from invalid pointer." << std::endl << e.what() << std::endl << "Details: " << e.m_details;
+                throw Exception(temp.str());
+            }
+
+            //If there is no pointer inside TinyXML to our node, then it doesn't exist, so make it Otherwise use what is there
+            if(0 == Other)
+                { Other = new Document(Meta, true); }
+            return Other;
         }
+
+        Base::XMLComponentType Document::GetType() const
+        {
+            return Base::isDocument;
+        }
+
+        std::istream& Document::operator>> (std::istream &In)
+            { return In >> *(static_cast <ticpp::Document*>(this->Wrapped)); }
+
+        std::ostream& Document::operator<< (std::ostream &Out)
+            { return Out << *(static_cast <ticpp::Document*>(this->Wrapped)); }
+
 
     }// /xml
 }// /phys
-
-/// @brief Streaming output operator for XML Documents
-/// @details This converts the data of an XML Document into a stream Ideal for sending to a log or cout
-/// @param stream This is the stream we send our data to.
-/// @return This returns an std::ostream which now contains our data.
-// Commented out due to compiler error, despite above include the compiler doesn't seem to know what an ostream is.
-//std::ostream& operator<< (std::ostream& stream, const phys::xml::document& x);
-
 
 #endif
