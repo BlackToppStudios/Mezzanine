@@ -37,35 +37,27 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef _resourceinputstream_cpp
+#define _resourceinputstream_cpp
 
-#ifndef _exception_cpp
-#define _exception_cpp
+#include "resourceinputstream.h"
 
-#include "exception.h"
+#include "ogredatastreambuf.h.cpp"
+
 
 namespace phys
 {
-    Exception::Exception(const String &Message, bool Logged_):ErrorMessage(Message),Logged(Logged_)
-    {
+            void ResourceInputStream::Construct(std::streambuf *InputBuffer, ResourceManager* ResourceManager_)
+            {
+                this->OgreBuffer=static_cast <internal::OgreDataStreamBuf*>(InputBuffer);
+                this->Manager=ResourceManager_;
+            }
 
-    }
+            ResourceInputStream::~ResourceInputStream()
+            {
+                delete this->OgreBuffer;
+            }
+}
 
-    bool Exception::HasBeenLogged()
-    {
-        return this->Logged;
-    }
+#endif
 
-    String Exception::what() throw()
-    {
-        return this->ErrorMessage;
-    }
-
-    Exception::~Exception() throw()
-    {
-
-    }
-
-
-} // \phys
-
-#endif // \exception_cpp

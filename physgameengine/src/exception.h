@@ -55,14 +55,19 @@ namespace phys
             /// @brief This stores the Error Message
             String ErrorMessage;
 
+            bool Logged;
         public:
             /// @brief Simple Constructor.
             /// @param Message The Error you want stored in the exception.
-            Exception(const String &Message);
+            Exception(const String &Message, bool Logged_ = false);
 
             /// @brief Retrieves the error message.
             /// @return This returns a string that is the stored error message.
             virtual String what() throw();
+
+            /// @brief Has this exception been on a trip through the Logger?
+            /// @return A bool storing true if it has and false if it has not.
+            bool HasBeenLogged();
 
             ~Exception() throw();
 
