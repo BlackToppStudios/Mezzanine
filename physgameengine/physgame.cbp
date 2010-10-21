@@ -53,6 +53,7 @@
 					<Add after="cmd /c copy /y /v .\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
 					<Add after="cmd /c copy /y /v .\data\windows\caudio\cAudio.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v .\data\windows\caudio\OpenAL32.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v .\data\windows\caudio\wrap_oal.dll .\bin\WinDebug" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
@@ -149,6 +150,7 @@
 					<Add after="cmd /c copy /y /v .\data\windows\ogre\RenderSystem_GL.dll .\bin\WinRelease\data\windows\ogre" />
 					<Add after="cmd /c copy /y /v .\data\windows\caudio\cAudio.dll .\bin\WinRelease" />
 					<Add after="cmd /c copy /y /v .\data\windows\caudio\OpenAL32.dll .\bin\WinRelease" />
+					<Add after="cmd /c copy /y /v .\data\windows\caudio\wrap_oal.dll .\bin\WinRelease" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>

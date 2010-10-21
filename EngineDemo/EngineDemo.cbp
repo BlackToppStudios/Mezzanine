@@ -7,18 +7,18 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="WinDebug">
-				<Option output="bin/WinDebug/EngineDemo" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/WinDebug/" />
-				<Option object_output="obj/WinDebug/" />
+				<Option output="bin\WinDebug\EngineDemo" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin\WinDebug\" />
+				<Option object_output="obj\WinDebug\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../physgameengine/src" />
+					<Add directory="..\physgameengine\src" />
 				</Compiler>
 				<Linker>
 					<Add library="physgame" />
-					<Add directory="../physgameengine/bin/WinDebug" />
+					<Add directory="..\physgameengine\bin\WinDebug" />
 				</Linker>
 				<ExtraCommands>
 					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\windows\ogre\&quot; mkdir .\bin\WinDebug\data\windows\ogre' />
@@ -33,6 +33,7 @@
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\cAudio.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\OpenAL32.dll .\bin\WinDebug" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\wrap_oal.dll .\bin\WinDebug" />
 					<Add after="cmd /c copy /y /v .\data\common\*.mesh .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.skeleton .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.material .\bin\WinDebug\data\common" />
@@ -47,20 +48,20 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="LinuxDebug">
-				<Option output="bin/LinuxDebug/EngineDemo-bin" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/LinuxDebug" />
-				<Option object_output="obj/LinuxDebug" />
+				<Option output="bin\LinuxDebug\EngineDemo-bin" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin\LinuxDebug" />
+				<Option object_output="obj\LinuxDebug" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../physgameengine/src" />
+					<Add directory="..\physgameengine\src" />
 				</Compiler>
 				<Linker>
 					<Add library="physgame" />
 					<Add library="OgreMain" />
 					<Add library="cAudio" />
-					<Add directory="bin/LinuxDebug" />
+					<Add directory="bin\LinuxDebug" />
 					<Add directory="." />
 				</Linker>
 				<ExtraCommands>
@@ -82,18 +83,18 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="WinRelease">
-				<Option output="bin/WinRelease/EngineDemo" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/WinRelease/" />
-				<Option object_output="obj/WinRelease/" />
+				<Option output="bin\WinRelease\EngineDemo" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin\WinRelease\" />
+				<Option object_output="obj\WinRelease\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="../physgameengine/src" />
+					<Add directory="..\physgameengine\src" />
 				</Compiler>
 				<Linker>
 					<Add library="physgame" />
-					<Add directory="../physgameengine/bin/WinRelease" />
+					<Add directory="..\physgameengine\bin\WinRelease" />
 				</Linker>
 				<ExtraCommands>
 					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\windows\ogre\&quot; mkdir .\bin\WinRelease\data\windows\ogre' />
@@ -108,6 +109,7 @@
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinRelease\data\windows\ogre" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\cAudio.dll .\bin\WinRelease" />
 					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\OpenAL32.dll .\bin\WinRelease" />
+					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\wrap_oal.dll .\bin\WinRelease" />
 					<Add after="cmd /c copy /y /v .\data\common\*.mesh .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.skeleton .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.material .\bin\WinRelease\data\common" />
@@ -122,20 +124,20 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="LinuxRelease">
-				<Option output="bin/LinuxRelease/EngineDemo-bin" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/LinuxRelease/" />
-				<Option object_output="obj/LinuxRelease/" />
+				<Option output="bin\LinuxRelease\EngineDemo-bin" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin\LinuxRelease\" />
+				<Option object_output="obj\LinuxRelease\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="../physgameengine/src" />
+					<Add directory="..\physgameengine\src" />
 				</Compiler>
 				<Linker>
 					<Add library="physgame" />
 					<Add library="OgreMain" />
 					<Add library="cAudio" />
-					<Add directory="bin/LinuxRelease" />
+					<Add directory="bin\LinuxRelease" />
 					<Add directory="." />
 				</Linker>
 				<ExtraCommands>
@@ -160,8 +162,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="src/gamebase.cpp" />
-		<Unit filename="src/gamebase.h" />
+		<Unit filename="src\gamebase.cpp" />
+		<Unit filename="src\gamebase.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
