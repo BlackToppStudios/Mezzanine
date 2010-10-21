@@ -76,6 +76,7 @@
 					<Add before="cp data/common/*.skeleton bin/LinuxDebug/data/common/" />
 					<Add before="cp data/common/*.material bin/LinuxDebug/data/common/" />
 					<Add before="cp data/common/*.bullet bin/LinuxDebug/data/common/" />
+					<Add before="cp data/common/*.xml bin/LinuxDebug/data/common/" />
 					<Add before="cp data/common/music/ bin/LinuxDebug/data/common/ -r" />
 					<Add before="cp data/common/sounds/ bin/LinuxDebug/data/common/ -r" />
 				</ExtraCommands>
@@ -150,6 +151,7 @@
 					<Add before="cp data/common/*.skeleton bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.material bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/*.bullet bin/LinuxRelease/data/common/" />
+					<Add before="cp data/common/*.xml bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/music/*.ogg bin/LinuxRelease/data/common/" />
 					<Add before="cp data/common/sounds/*.ogg bin/LinuxRelease/data/common/" />
 				</ExtraCommands>
@@ -165,6 +167,15 @@
 			<envvars />
 			<debugger />
 			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="2" line="2" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

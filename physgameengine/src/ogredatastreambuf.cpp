@@ -1,3 +1,4 @@
+
 //© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
@@ -37,35 +38,45 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef _ogredatastreambuf_cpp
+#define _ogredatastreambuf_cpp
 
-#ifndef _exception_cpp
-#define _exception_cpp
-
+#include "ogredatastreambuf.h.cpp"
 #include "exception.h"
+
+// Keeps this file form being documented by doxygen
+/// @cond 0
 
 namespace phys
 {
-    Exception::Exception(const String &Message, bool Logged_):ErrorMessage(Message),Logged(Logged_)
+    namespace internal
     {
 
-    }
+        std::streamsize OgreDataStreamBuf::showmanyc (void)
+        {
+            if(0==this->OgreStream->size())
+            {
+                //Ogre Docs state 0 is a special case
+                return -1;
+            }else{
+                return static_cast<signed int>(this->OgreStream->size());
+            }
+        }
 
-    bool Exception::HasBeenLogged()
-    {
-        return this->Logged;
-    }
+        std::streamsize OgreDataStreamBuf::xsgetn(char* s, std::streamsize n)
+        {
+            return this->OgreStream->read(s,n);
+        }
 
-    String Exception::what() throw()
-    {
-        return this->ErrorMessage;
-    }
-
-    Exception::~Exception() throw()
-    {
-
-    }
+        std::streamsize OgreDataStreamBuf::xsputn(const char_type*, std::streamsize n)
+        {
+            throw Exception("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
+        }
 
 
-} // \phys
+    }// /internal
+}// /phys
 
-#endif // \exception_cpp
+/// @endcond
+
+#endif

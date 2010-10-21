@@ -42,6 +42,9 @@
 
 #include "managerbase.h"
 #include "datatypes.h"
+#include "resourceinputstream.h"
+
+#include <istream>
 
 class btBulletWorldImporter;
 
@@ -64,24 +67,30 @@ namespace phys
         protected:
             /// @brief Encapsulates the functionality of the ogre resource group manager.
             Ogre::ResourceGroupManager* OgreResource;
+
             /// @brief Applies a saved shape to an Actor.
             void ApplyShapeToActor(ActorBase* Actor, btCollisionShape* ColShape);
+
         public:
             /// @brief Class constructor.
             /// @details Standard manager constructor with World pointer.
             ResourceManager(World* _World);
             /// @details Class Destructor.
             ~ResourceManager();
+
             /// @brief Exports an actors shape data to a file.
-            /// @details Remember to include a ".bullet" extension to the filename when serializing.
-            bool ExportShapeData(ActorBase* Actor, String &FileName);
+            /// @param FileName The Filename to save the data too. Remember to include a ".bullet" extension to the filename when serializing.
+            /// @param Actor The Actor's Shape to save
+            bool ExportShapeData(ActorBase* Actor, const String &FileName);
             /// @brief Imports serialized shape data from the disk to be used in an Actor.
-            /// @details Remember to include a ".bullet" extension to the filename when loading.
-            bool ImportShapeData(ActorBase* Actor, String &FileName);
+            /// @param FileName The Filename to load the data from. Remember to include a ".bullet" extension to the filename when serializing.
+            /// @param Actor The Actor's Shape to restore from file
+            bool ImportShapeData(ActorBase* Actor, const String &FileName);
 
             /// @brief Adds a location for graphical resources.
             /// @details This function will add a location on the disk to find files needed to create and
-            /// manipulate graphical objects.
+            /// manipulate graphical objects. Once a resource is added it must be initalized using
+            /// ResourceManager::InitResourceGroup(String Group).
             /// @param Location The location on the file system the resource can be found.
             /// @param Type The kind of file system the location can be found in. @n
             /// Options are: filesystem, zip.
@@ -95,14 +104,20 @@ namespace phys
             /// @param Type The type of resource that the file is. @n
             /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.
             /// @param Group Name of the group the resource belongs to.
-            void DeclareResource(String Name, String Type, String Group);
+            void DeclareResource(const String& Name, const String& Type, const String& Group);
             /// @brief Makes a resource group ready to use.
             /// @details After adding all of your resources and declaring them as nessessary, this function
             /// is the final step.  After calling this function any and all resources within the defined group
             /// will be ready to use.  Do not initialize any more groups then you need to however, as that will
             /// take up memory and drop performance.
             /// @param Name Name of the resource group.
-            void InitResourceGroup(String Name);
+            void InitResourceGroup(const String& Name);
+
+            /// @brief Get a stream to read from the specified file
+            /// @param FileName The name of the File you want to stream data from
+            /// @return An derivative of std::istream a ResourceInputStream that will pull it's data from the desired resource
+            /// @details The returned ResourceInputStream is the Caller's responsibility to deal with. If it is not deleted it is a memory leak.
+            ResourceInputStream* GetResourceStream(const String& FileName);
 
             ////Functions inherited from ManagerBase
             /// @brief Empty Initializor

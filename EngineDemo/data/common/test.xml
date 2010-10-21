@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<level>
+	<StartingArea>
+		<!-- These points are used to identify where the starting area is. The last point is assume to connect to the first point. -->
+		<point x="1" y="1"/>
+		<point x="1" y="20"/>
+		<point x="20" y="20"/>
+		<point x="20" y="1"/>
+		<!-- If a model is supplied but a shape is not a physicsshapelevel musst be provide-->
+		<Actor model="robot.mesh" shape="RobotDecomp3.bullet" startx="2" starty="2" />
+		<Actor model="robot.mesh" physicsshapelevel="1" startx="10" starty="2" />
+	</StartingArea>
+	<EndingArea>
+	</EndingArea>
+	<Actor model="plane.mesh" shape="RobotDecomp3.bullet" startx="2" starty="2" />
+	<!-- to Win the game all pieces must be in the ending area -->
+	<goal wincondition="All" /> 
+</level>

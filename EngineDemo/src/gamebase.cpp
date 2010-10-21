@@ -411,6 +411,16 @@ void LoadContent()
     TheWorld->GetResourceManager()->DeclareResource(filerobot, "Mesh", groupname);
     TheWorld->GetResourceManager()->InitResourceGroup(groupname);
 
+    //Test the Resource input stream here
+    TheWorld->Log("Trying to open test.xml");
+    ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+    String ShouldHaveXML("");
+    //*XMLptr >> ShouldHaveXML;
+    TheWorld->LogStream << ShouldHaveXML << endl << "End XML Logging";
+
+    TheWorld->Log("Delete XML Stream");
+    delete XMLptr;
+
     // Now Lets make some bowling pins
     Real PinSpacing=75.0;           //This is how far apart we want the pins
     for(unsigned int c=0; c<4; c++)     //make the back row

@@ -49,6 +49,7 @@
 
 #include "resourcemanager.h"
 #include "actorbase.h"
+#include "ogredatastreambuf.h.cpp"
 
 namespace phys {
 
@@ -60,6 +61,7 @@ namespace phys {
 
     ResourceManager::~ResourceManager()
     {
+
     }
 
     void ResourceManager::ApplyShapeToActor(ActorBase* Actor, btCollisionShape* ColShape)
@@ -84,7 +86,7 @@ namespace phys {
         Actor->Shape = ColShape;
     }
 
-    bool ResourceManager::ExportShapeData(ActorBase* Actor, String &FileName)
+    bool ResourceManager::ExportShapeData(ActorBase* Actor, const String &FileName)
     {
         //Copy pasta'd from Erwin Coumans with permission
         btDefaultSerializer* Serializer = new btDefaultSerializer(1024*1024*5);
@@ -104,7 +106,7 @@ namespace phys {
         return true;
     }
 
-    bool ResourceManager::ImportShapeData(ActorBase* Actor, String &FileName)
+    bool ResourceManager::ImportShapeData(ActorBase* Actor, const String &FileName)
     {
         btBulletWorldImporter* Importer = new btBulletWorldImporter();
 
@@ -151,14 +153,21 @@ namespace phys {
         this->OgreResource->addResourceLocation(Location, Type, Group, recursive);
     }
 
-    void ResourceManager::DeclareResource(String Name, String Type, String Group)
+    void ResourceManager::DeclareResource(const String& Name, const String& Type, const String& Group)
     {
         this->OgreResource->declareResource(Name, Type, Group);
     }
 
-    void ResourceManager::InitResourceGroup(String Group)
+    void ResourceManager::InitResourceGroup(const String& Group)
     {
         this->OgreResource->initialiseResourceGroup(Group);
+    }
+
+    ResourceInputStream* ResourceManager::GetResourceStream(const String& FileName)
+    {
+        internal::OgreDataStreamBuf *TempBuffer = new internal::OgreDataStreamBuf(OgreResource->openResource(FileName));
+        ResourceInputStream *Results =  new ResourceInputStream(TempBuffer, this);
+        return Results;
     }
 
     void ResourceManager::Initialize()
