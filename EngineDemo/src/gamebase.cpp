@@ -27,6 +27,7 @@ int main(int argc, char **argv)
     }
     #ifdef PHYSDEBUG
     TheWorld->Log("World Created:");
+    TheWorld->Log(PlaneOfPlay);
     #endif
 
     // Set the Title
