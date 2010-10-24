@@ -170,7 +170,7 @@ namespace phys{
             ~TestAE();
             /// @brief Applies the effect this field has to object inside.
             /// @details This function defines the behavior for the class.
-            void ApplyEffect();
+            virtual void ApplyEffect();
     };//testAE
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -197,7 +197,7 @@ namespace phys{
             ~GravityField();
             /// @brief Applies the effect this field has to object inside.
             /// @details This function defines the behavior for the class.
-            void ApplyEffect();
+            virtual void ApplyEffect();
             /// @brief Sets the gravity force for this field.
             /// @details Sets the strength and direction of gravity this field will have.
             /// @param Gravity The vector3 representing the force and direction of gravity this field will have.

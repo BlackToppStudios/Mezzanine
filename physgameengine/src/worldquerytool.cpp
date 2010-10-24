@@ -376,7 +376,6 @@ namespace phys
             return 0;
         }
     }
-#undef PHYSDEBUG
 
     Ray* WorldQueryTool::GetMouseRay(Real Length)
     {

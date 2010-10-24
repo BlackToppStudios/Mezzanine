@@ -165,8 +165,14 @@ namespace phys {
 
     ResourceInputStream* ResourceManager::GetResourceStream(const String& FileName)
     {
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("Entering ResourceManager::GetResourceStream(const String& FileName)");
+        #endif
         internal::OgreDataStreamBuf *TempBuffer = new internal::OgreDataStreamBuf(OgreResource->openResource(FileName));
         ResourceInputStream *Results =  new ResourceInputStream(TempBuffer, this);
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("Exiting ResourceManager::GetResourceStream(const String& FileName)");
+        #endif
         return Results;
     }
 
