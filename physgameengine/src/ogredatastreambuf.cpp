@@ -88,7 +88,6 @@ namespace phys
             throw Exception("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
         }
 
-
     }// /internal
 }// /phys
 

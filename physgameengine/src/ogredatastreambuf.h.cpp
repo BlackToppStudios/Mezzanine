@@ -47,6 +47,11 @@
 
 #include <Ogre.h>
 
+#define PHYSDEBUG
+#ifdef PHYSDEBUG
+#include "world.h"
+#endif
+
 namespace phys
 {
     namespace internal
@@ -68,7 +73,12 @@ namespace phys
 
                 /// @brief constructor
                 /// @param Datum A pointer to the Ogre Datastream that this stream will use
-                OgreDataStreamBuf(const Ogre::DataStreamPtr& Datum) : OgreStream(Datum) {}
+                OgreDataStreamBuf(const Ogre::DataStreamPtr& Datum) : OgreStream(Datum)
+                {
+                    #ifdef PHYSDEBUG
+                    World::GetWorldPointer()->Log("Entering/Exiting OgreDataStreamBuf Constructor");
+                    #endif
+                }
 
                 /// @brief Should get the amount of characters left in the sequence
                 /// @returns -1 if no estimate could be made, other wise this returns an estimate of the amount of bytes in the buffer

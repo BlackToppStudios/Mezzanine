@@ -416,9 +416,10 @@ void LoadContent()
     #endif
     ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
     String ShouldHaveXML("");
-    //*XMLptr >> ShouldHaveXML;
+    std::stringstream XMLStringStream;
+    //(*XMLptr) >> XMLStringStream;
     #ifdef PHYSDEBUG
-    TheWorld->LogStream << ShouldHaveXML << endl << "End XML Logging";
+    TheWorld->LogStream << "ShouldHaveXML:" << ShouldHaveXML << endl << "End XML Logging";
     #endif
     TheWorld->Log("Delete XML Stream");
     delete XMLptr;
