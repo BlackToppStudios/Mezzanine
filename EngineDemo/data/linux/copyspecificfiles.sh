@@ -60,17 +60,5 @@ else
 fi  
 
 #linux specific chunk
-data/linux/checklibs.sh
-
-mkdir "$TargetDir/data//linux/ogre" -p
-cp $SourceDir/plugins.cfg $TargetDir/data/linux/ -a
-cp $SourceDir/settings.cfg $TargetDir/data/linux/ -a
-cp $SourceDir/ogre/*ender* $TargetDir/data/linux/ogre -a
-cp $SourceDir/ogre/*Main* $TargetDir/ -a
-cp $SourceDir/caudio/*.s* $TargetDir/ -a
-
-#cp data/linux/plugins.cfg bin/LinuxRelease/data/linux/
-#cp data/linux/settings.cfg bin/LinuxRelease/data/linux/
-#cp data/linux/ogre/*ender* bin/LinuxRelease/data/linux/ -r
-#cp data/linux/ogre/*Main* bin/LinuxRelease/
-#cp data/linux/caudio/*.s* bin/LinuxRelease/
+cp ../physgameengine/$TargetDir/* $TargetDir/ -a
+cp $SourceDir/EngineDemo $TargetDir/ -a

@@ -65,21 +65,7 @@
 					<Add directory="bin/LinuxDebug" />
 				</Linker>
 				<ExtraCommands>
-					<Add before="mkdir bin/LinuxDebug/data -p" />
-					<Add before="cp ../physgameengine/bin/LinuxDebug/* bin/LinuxDebug/ -r" />
-					<Add before="cp data/linux/EngineDemo bin/LinuxDebug/" />
-					<Add before="cp data/common/*.jpg bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.psd bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.tga bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.png bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.mesh bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.gorilla bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.skeleton bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.material bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.bullet bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/*.xml bin/LinuxDebug/data/common/" />
-					<Add before="cp data/common/music/ bin/LinuxDebug/data/common/ -r" />
-					<Add before="cp data/common/sounds/ bin/LinuxDebug/data/common/ -r" />
+					<Add before="data/copyfiles.sh LinuxDebug linux" />
 				</ExtraCommands>
 			</Target>
 			<Target title="WinRelease">
@@ -141,21 +127,7 @@
 					<Add directory="." />
 				</Linker>
 				<ExtraCommands>
-					<Add before="mkdir bin/LinuxRelease/data -p" />
-					<Add before="cp ../physgameengine/bin/LinuxRelease/* bin/LinuxRelease/ -r" />
-					<Add before="cp data/linux/EngineDemo bin/LinuxRelease/" />
-					<Add before="cp data/common/*.jpg bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/*.psd bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/*.png bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/*.tga bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/*.mesh bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/*.gorilla bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/*.skeleton bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/*.material bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/*.bullet bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/*.xml bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/music/*.ogg bin/LinuxRelease/data/common/" />
-					<Add before="cp data/common/sounds/*.ogg bin/LinuxRelease/data/common/" />
+					<Add before="data/copyfiles.sh LinuxRelease linux" />
 				</ExtraCommands>
 			</Target>
 		</Build>
