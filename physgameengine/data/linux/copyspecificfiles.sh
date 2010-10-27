@@ -39,69 +39,36 @@
 #   John Blackwood - makoenergy02@gmail.com
 
 #Define some error codes
-E_BADSOURCEDATA=1
-E_MISSINGDIRLIST=2
-E_MISSINGFILELIST=3
+E_BADUNUSED=1
+E_BADUNUSED=2
 E_BADARGS=65
 
 #Assign some values we may want to change in the future
-DirList="makedirlist.txt"
-FileList="copyfilelist.txt"
 
 TargetDir="bin/$1/"
-RootSourceDir="data/"
-SourceDir="$RootSourceDir$2/"
+SourceDir="data/linux"
 
-#check that we have exactly 2 arguments
-# The first argument is the name of the Build Process "LinuxDebug", "LinuxRelease", "WinDebug", ...
+# Check that we have exactly 1 arguments
+# The argument is the name of the Build Process "LinuxDebug", "LinuxRelease", "WinDebug", ...
 if [ ! -n "$1" ]
 then
-	echo "Usage: `basename $0` BuildName CopyFromName"
+	echo "Usage: `basename $0` CopyFromName"
 	exit $E_BADARGS
 else
+	#this really should have been made in copyfiles step
 	mkdir "$TargetDir" -p
 fi  
 
-# The second argument is the set of source files to use. "linux", "macosx", "windows", ...
-if [ ! -n "$2" ]
-then
-	echo "Usage: `basename $0` BuildName CopyFromName"
-	exit $E_BADARGS
-else
-	if [ ! -d "$SourceDir" ]
-	then
-		echo "Directory $SourceDir does no exist no place to get data from."
-		exit $E_BADSOURCEDATA
-	else
-		mkdir "$TargetDir$SourceDir" -p
-	fi	
-fi 
+#linux specific chunk
+mkdir "$TargetDir/data//linux/ogre" -p
+cp $SourceDir/plugins.cfg $TargetDir/data/linux/
+cp $SourceDir/settings.cfg $TargetDir/data/linux/
+cp $SourceDir/ogre/*ender* $TargetDir/data/linux/ogre
+cp $SourceDir/ogre/*Main* $TargetDir/
+cp $SourceDir/caudio/*.s* $TargetDir/
 
-# Check that we have the file listings we need
-if [ ! -f "$RootSourceDir$DirList" ]
-then
-	echo "Missing Directory Listing to Create: $RootSourceDir$DirList"
-	exit $E_MISSINGDIRLIST
-fi
-
-if [ ! -f "$RootSourceDir$FileList" ]
-then
-	echo "Missing Directory Listing to Create: $RootSourceDir$FileList"
-	exit $E_MISSINGFILELIST
-fi
-
-#Make all the required directories to copy files too
-while read Line
-do   
-	mkdir "$TargetDir$Line" -p
-done <"$RootSourceDir$DirList"
-
-#Make all the planned file copies and do the work
-while read Line
-do
-	cp ${Line/Target\//$TargetDir}
-done <"$RootSourceDir$FileList"
-
-#run the next platform specific file copy.
-
-"$SourceDir"copyspecificfiles.sh $1
+#cp data/linux/plugins.cfg bin/LinuxRelease/data/linux/
+#cp data/linux/settings.cfg bin/LinuxRelease/data/linux/
+#cp data/linux/ogre/*ender* bin/LinuxRelease/data/linux/ -r
+#cp data/linux/ogre/*Main* bin/LinuxRelease/
+#cp data/linux/caudio/*.s* bin/LinuxRelease/
