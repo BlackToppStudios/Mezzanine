@@ -45,6 +45,7 @@
 #include "resourceinputstream.h"
 
 #include <istream>
+#include <vector>
 
 class btBulletWorldImporter;
 
@@ -70,6 +71,9 @@ namespace phys
 
             /// @brief Applies a saved shape to an Actor.
             void ApplyShapeToActor(ActorBase* Actor, btCollisionShape* ColShape);
+
+            /// A list of Pointers to streams created to delete periodically.
+            std::vector<ResourceInputStream*> DeleteList;
 
         public:
             /// @brief Class constructor.

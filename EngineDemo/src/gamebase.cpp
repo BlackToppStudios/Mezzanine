@@ -25,6 +25,7 @@ int main(int argc, char **argv)
     }catch( exception x){
         //could not created world
     }
+
     #ifdef PHYSDEBUG
     TheWorld->Log("World Created:");
     TheWorld->Log(PlaneOfPlay);
@@ -345,7 +346,6 @@ bool PostInput()
         }
     }
 
-    #undef PHYSDEBUG
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
         return false;
@@ -370,13 +370,11 @@ bool CheckForEsc()
         for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
             #ifdef PHYSDEBUG
-            TheWorld->LogStream << Metacode << "(" << c << ")" = << OneInput->GetMetaCode(c));
+            TheWorld->LogStream << "Metacode (" << c << ")" << OneInput->GetMetaCode(c);
             #endif
             //Is the key we just pushed ESCAPE
             if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode())
-            {
-                return false;
-            }
+                { return false; }
         }
 
         delete OneInput;
@@ -403,12 +401,16 @@ void LoadContent()
     TheWorld->GetResourceManager()->InitResourceGroup(groupname);
 
     //Test the Resource input stream here
+    #ifdef PHYSDEBUG
     TheWorld->Log("Trying to open test.xml");
+    #endif
     ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
     String ShouldHaveXML("");
-    //*XMLptr >> ShouldHaveXML;
-    TheWorld->LogStream << ShouldHaveXML << endl << "End XML Logging";
-
+    std::stringstream XMLStringStream;
+    //(*XMLptr) >> XMLStringStream;
+    #ifdef PHYSDEBUG
+    TheWorld->LogStream << "ShouldHaveXML:" << ShouldHaveXML << endl << "End XML Logging";
+    #endif
     TheWorld->Log("Delete XML Stream");
     delete XMLptr;
 
@@ -448,6 +450,11 @@ void LoadContent()
     TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,TheWorld) );
     TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
     TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+
+    GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0), TheWorld);
+    Reverse->CreateCylinderShape(Vector3(100.0,200.0,100));
+    Reverse->SetLocation(Vector3(200,50,-5.0));
+    TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it
 
     //// The simulations soft body, to be used once a suitable mesh is found/created.
     //TheWorld->Actors->AddActor( new ActorSoft (51,"Column1","column.mesh",groupname,TheWorld) );

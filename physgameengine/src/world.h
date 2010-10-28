@@ -200,7 +200,13 @@ namespace phys
             /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
             std::list< ManagerBase* > ManagerList;
 
+        protected:
+            /// @internal
+            /// @brief A pointer to the one and only world
+            static World* TheRealWorld;
+
         public:
+
             //Ogre objects
             /// @internal
             /// @brief This is the core of the Ogre rendering system.
@@ -218,7 +224,7 @@ namespace phys
 
             /// @internal
             /// @brief
-            //Ogre::ResourceGroupManager* OgreResource;
+            //Ogre::ResourceGrou pManager* OgreResource;
 
             /// @internal
             /// @brief
@@ -236,19 +242,23 @@ namespace phys
         // Creation and Deletion methods
         ///////////////////////////////////////
 
+            /// @brief Return a pointer to the world
+            /// @return This returns a pointer the one and only phys::World
+            static World* GetWorldPointer();
+
             /// @brief Descriptive constructor With Manager Pointers
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
             /// @param GeographyLowerBounds_ The lower limiasked Jan 29 '09 at 9:27ts for the size of the physics simulation
             /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
             /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
             /// @param LogFileName This is the place that log messages get sent to.
+            /// @warning Do not make a new world if one already exists. This can only cause problems
             World(  const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
                     std::string SceneManagerName,
                     SceneManager::SceneManagerType SceneType,
                     const unsigned short int &MaxPhysicsProxies_=1024,
                     std::string LogFileName="Physgame.log" );
-
 
             /// @brief Descriptive constructor
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
@@ -259,6 +269,7 @@ namespace phys
             /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
+            /// @warning Do not make a new world if one already exists. This can only cause problems.
             World(  const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
                     const unsigned short int &MaxPhysicsProxies_,
@@ -269,10 +280,11 @@ namespace phys
 
             /// @brief Default constructor
             /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
+            /// @warning Do not make a new world if one already exists. This can only cause problems
             World();
 
             /// @brief Deconstructor
-            /// @details This Tears down all the items create by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the
+            /// @details This Tears down all the items created by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the
             /// Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager)
             ~World();
 

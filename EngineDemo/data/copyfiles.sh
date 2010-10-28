@@ -1,0 +1,1 @@
+/home/sqeaky/physgame/physgameengine/data/copyfiles.sh

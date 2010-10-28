@@ -44,19 +44,36 @@
 
 #include "ogredatastreambuf.h.cpp"
 
+#define PHYSDEBUG
+#ifdef PHYSDEBUG
+    #include "world.h"
+#endif
 
 namespace phys
 {
-            void ResourceInputStream::Construct(std::streambuf *InputBuffer, ResourceManager* ResourceManager_)
-            {
-                this->OgreBuffer=static_cast <internal::OgreDataStreamBuf*>(InputBuffer);
-                this->Manager=ResourceManager_;
-            }
+    void ResourceInputStream::Construct(std::streambuf *InputBuffer, ResourceManager* ResourceManager_)
+    {
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("Entering ResourceInputStream::Construct()");
+        #endif
+        this->OgreBuffer=static_cast <internal::OgreDataStreamBuf*>(InputBuffer);
+        this->Manager=ResourceManager_;
+         #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("Exiting ResourceInputStream::Construct()");
+        #endif
+    }
 
-            ResourceInputStream::~ResourceInputStream()
-            {
-                delete this->OgreBuffer;
-            }
+    ResourceInputStream::~ResourceInputStream()
+    {
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("Entering ResourceInputStream::~ResourceInputStream()");
+        #endif
+        delete this->OgreBuffer;
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("Exiting ResourceInputStream::~ResourceInputStream()");
+        #endif
+
+    }
 }
 
 #endif

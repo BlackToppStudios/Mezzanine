@@ -54,25 +54,39 @@ namespace phys
 
         std::streamsize OgreDataStreamBuf::showmanyc (void)
         {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::showmanyc()");
+            #endif
             if(0==this->OgreStream->size())
             {
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::showmanyc() returning -1");
+                #endif
                 //Ogre Docs state 0 is a special case
                 return -1;
             }else{
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::showmanyc() returning " << this->OgreStream->size();
+                #endif
                 return static_cast<signed int>(this->OgreStream->size());
             }
         }
 
         std::streamsize OgreDataStreamBuf::xsgetn(char* s, std::streamsize n)
         {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::xsgetn(char* s, std::streamsize n)");
+            #endif
             return this->OgreStream->read(s,n);
         }
 
         std::streamsize OgreDataStreamBuf::xsputn(const char_type*, std::streamsize n)
         {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::xsgetn(char* s, std::streamsize n)");
+            #endif
             throw Exception("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
         }
-
 
     }// /internal
 }// /phys

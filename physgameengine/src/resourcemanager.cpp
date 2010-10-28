@@ -51,17 +51,24 @@
 #include "actorbase.h"
 #include "ogredatastreambuf.h.cpp"
 
+#define PHYSDEBUG
+#ifdef PHYSDEBUG
+#include "world.h"
+#endif
+
 namespace phys {
 
     ResourceManager::ResourceManager(World* _World) : ManagerBase(_World)
     {
         this->Priority = 20;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
+
     }
 
     ResourceManager::~ResourceManager()
     {
-
+        for(std::vector<ResourceInputStream*>::iterator Iter = DeleteList.begin(); Iter != DeleteList.end(); Iter++)
+            { delete *Iter; }
     }
 
     void ResourceManager::ApplyShapeToActor(ActorBase* Actor, btCollisionShape* ColShape)
@@ -165,8 +172,15 @@ namespace phys {
 
     ResourceInputStream* ResourceManager::GetResourceStream(const String& FileName)
     {
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("Entering ResourceManager::GetResourceStream(const String& FileName)");
+        #endif
         internal::OgreDataStreamBuf *TempBuffer = new internal::OgreDataStreamBuf(OgreResource->openResource(FileName));
         ResourceInputStream *Results =  new ResourceInputStream(TempBuffer, this);
+        this->DeleteList.push_back(Results);
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("Exiting ResourceManager::GetResourceStream(const String& FileName)");
+        #endif
         return Results;
     }
 

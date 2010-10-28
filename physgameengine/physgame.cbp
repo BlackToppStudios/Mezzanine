@@ -92,15 +92,7 @@
 					<Add directory="data/linux/caudio" />
 				</Linker>
 				<ExtraCommands>
-					<Add before="data/linux/checklibs.sh" />
-					<Add after="mkdir bin/LinuxDebug/data/linux -p" />
-					<Add after="cp data/linux/plugins.cfg bin/LinuxDebug/data/linux/" />
-					<Add after="cp data/linux/settings.cfg bin/LinuxDebug/data/linux/" />
-					<Add after="cp data/linux/ogre/ bin/LinuxDebug/data/linux/ -r" />
-					<Add after="cp data/common/ bin/LinuxDebug/data/ -r" />
-					<Add after="cp data/linux/caudio/*.s* bin/LinuxDebug/ -a" />
-					<Add after="mv bin/LinuxDebug/data/linux/ogre/*Main* bin/LinuxDebug/" />
-					<Add after="rm bin//LinuxDebug/data/linux/ogre/Readme.txt" />
+					<Add before="data/copyfiles.sh LinuxDebug linux" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
@@ -189,15 +181,7 @@
 					<Add directory="data/linux/caudio" />
 				</Linker>
 				<ExtraCommands>
-					<Add before="data/linux/checklibs.sh" />
-					<Add after="mkdir bin/LinuxRelease/data/linux -p" />
-					<Add after="cp data/linux/plugins.cfg bin/LinuxRelease/data/linux/" />
-					<Add after="cp data/linux/settings.cfg bin/LinuxRelease/data/linux/" />
-					<Add after="cp data/linux/ogre/ bin/LinuxRelease/data/linux/ -r" />
-					<Add after="cp data/common/ bin/LinuxRelease/data -r" />
-					<Add after="cp data/linux/caudio/*.s* bin/LinuxRelease/" />
-					<Add after="mv bin/LinuxRelease/data/linux/ogre/*Main* bin/LinuxRelease/" />
-					<Add after="rm bin//LinuxRelease/data/linux/ogre/Readme.txt" />
+					<Add before="data/copyfiles.sh LinuxRelease linux" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>

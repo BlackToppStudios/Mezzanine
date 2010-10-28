@@ -83,11 +83,10 @@ using namespace std;
 
 namespace phys
 {
+    World* World::TheRealWorld = 0;
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Physworld constructor
-    //this should create the basic objects for stroing and tracking the roots of
-    //objects in the game
+    // Physworld constructors
     World::World()
     {
         Vector3 Lbounds(-1000.0,-1000.0,-1000.0);
@@ -96,7 +95,6 @@ namespace phys
 
         this->Construct(Lbounds, Ubounds, 10, "SceneManager", SceneManager::Generic, "Physgame.log", temp);
     }
-
 
     World::World(   const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
@@ -123,10 +121,21 @@ namespace phys
             const std::string &LogFileName,
             const std::vector <ManagerBase*> &ManagerToBeAdded)
     {
-
+        this->Construct(GeographyLowerBounds_,
+                        GeographyUpperbounds_,
+                        MaxPhysicsProxies_,
+                        SceneManagerName,
+                        SceneType,
+                        LogFileName,
+                        ManagerToBeAdded );
 
     }
 
+    World* World::GetWorldPointer()
+    {
+        assert(0!=World::TheRealWorld);
+        return TheRealWorld;
+    }
 
     void World::Construct(  const Vector3 &GeographyLowerBounds_,
                                 const Vector3 &GeographyUpperbounds_,
@@ -142,6 +151,9 @@ namespace phys
         this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
         this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
+
+        assert(0==World::TheRealWorld);
+        World::TheRealWorld = this;
 
         //add each manager that was passed in to the manager list
         for(std::vector<ManagerBase*>::iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
@@ -174,6 +186,7 @@ namespace phys
 
     void World::SanityChecks()
     {
+        crossplatform::WaitMilliseconds(1500);
         //Perform a Test that only needs to be done once for the SDL/Physuserinputevent system.`
         Log("Verifying size of userinput events:");
         Log(sizeof(MetaCode::InputCode));

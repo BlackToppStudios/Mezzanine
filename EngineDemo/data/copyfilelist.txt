@@ -1,0 +1,12 @@
+data/common/*.jpg Target/data/common/
+data/common/*.psd Target/data/common/
+data/common/*.png Target/data/common/
+data/common/*.tga Target/data/common/
+data/common/*.mesh Target/data/common/
+data/common/*.gorilla Target/data/common/
+data/common/*.skeleton Target/data/common/
+data/common/*.material Target/data/common/
+data/common/*.bullet Target/data/common/
+data/common/*.xml Target/data/common/
+data/common/music/*.ogg Target/data/common/
+data/common/sounds/*.ogg Target/data/common/
