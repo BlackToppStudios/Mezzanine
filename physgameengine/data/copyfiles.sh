@@ -38,6 +38,13 @@
 #   Joseph Toppi - toppij@gmail.com
 #   John Blackwood - makoenergy02@gmail.com
 
+if [ ! -f "data/copyfiles" ]
+then
+    g++ -DGNUCOMPATIBLEOS ../tools/CopyFilesTool/main.cpp -o data/copyfiles
+fi
+data/copyfiles $1 $2
+exit 0
+
 #Define some error codes
 E_BADSOURCEDATA=1
 E_MISSINGDIRLIST=2
@@ -60,7 +67,7 @@ then
 	exit $E_BADARGS
 else
 	mkdir "$TargetDir" -p
-fi  
+fi
 
 # The second argument is the set of source files to use. "linux", "macosx", "windows", ...
 if [ ! -n "$2" ]
@@ -74,8 +81,8 @@ else
 		exit $E_BADSOURCEDATA
 	else
 		mkdir "$TargetDir$SourceDir" -p
-	fi	
-fi 
+	fi
+fi
 
 # Check that we have the file listings we need
 if [ ! -f "$RootSourceDir$DirList" ]
@@ -92,7 +99,7 @@ fi
 
 #Make all the required directories to copy files too
 while read Line
-do   
+do
 	mkdir "$TargetDir$Line" -p
 done <"$RootSourceDir$DirList"
 

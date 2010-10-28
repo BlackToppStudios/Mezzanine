@@ -1,1 +1,1 @@
-data/common/*.txt Target/data/common/
+data/common/*.txt TARGET/data/common/
