@@ -1,0 +1,297 @@
+[Font.24]
+lineheight 40
+spacelength 7
+baseline 33
+kerning -1
+monowidth 15
+range 33 126
+glyph_33 1 0 10 36 9
+glyph_34 11 0 15 36 13
+glyph_35 26 0 23 36 21
+glyph_36 49 0 20 36 18
+glyph_37 69 0 29 36 27
+glyph_38 98 0 23 36 21
+glyph_39 121 0 9 36 7
+glyph_40 130 0 12 36 10
+glyph_41 142 0 12 36 10
+glyph_42 154 0 17 36 15
+glyph_43 171 0 20 36 18
+glyph_44 191 0 9 36 8
+glyph_45 200 0 11 36 9
+glyph_46 211 0 9 36 8
+glyph_47 220 0 14 36 12
+glyph_48 234 0 20 36 18
+glyph_49 0 36 20 36 18
+glyph_50 20 36 20 36 18
+glyph_51 40 36 20 36 18
+glyph_52 60 36 20 36 18
+glyph_53 80 36 20 36 18
+glyph_54 100 36 20 36 18
+glyph_55 120 36 20 36 18
+glyph_56 140 36 20 36 18
+glyph_57 160 36 20 36 18
+glyph_58 180 36 9 36 8
+glyph_59 189 36 9 36 8
+glyph_60 198 36 20 36 18
+glyph_61 218 36 20 36 18
+glyph_62 0 72 20 36 18
+glyph_63 20 72 14 36 13
+glyph_64 34 72 32 36 30
+glyph_65 66 72 23 36 21
+glyph_66 89 72 22 36 20
+glyph_67 111 72 21 36 20
+glyph_68 132 72 24 36 23
+glyph_69 156 72 20 36 18
+glyph_70 176 72 19 36 17
+glyph_71 195 72 23 36 21
+glyph_72 218 72 24 36 22
+glyph_73 242 72 10 36 8
+glyph_74 0 108 17 36 16
+glyph_75 17 108 22 36 20
+glyph_76 39 108 18 36 16
+glyph_77 57 108 30 36 28
+glyph_78 87 108 25 36 23
+glyph_79 112 108 27 36 25
+glyph_80 139 108 21 36 19
+glyph_81 160 108 27 36 25
+glyph_82 187 108 22 36 20
+glyph_83 209 108 18 36 17
+glyph_84 227 108 20 36 18
+glyph_85 0 144 24 36 22
+glyph_86 24 144 23 36 21
+glyph_87 47 144 32 36 30
+glyph_88 79 144 22 36 20
+glyph_89 101 144 21 36 19
+glyph_90 122 144 20 36 18
+glyph_91 142 144 12 36 10
+glyph_92 154 144 14 36 12
+glyph_93 168 144 12 36 10
+glyph_94 180 144 20 36 18
+glyph_95 200 144 17 36 16
+glyph_96 217 144 13 36 12
+glyph_97 230 144 18 36 16
+glyph_98 0 180 20 36 19
+glyph_99 20 180 16 36 15
+glyph_100 36 180 20 36 19
+glyph_101 56 180 19 36 18
+glyph_102 75 180 14 36 12
+glyph_103 89 180 20 36 18
+glyph_104 109 180 20 36 18
+glyph_105 129 180 9 36 8
+glyph_106 138 180 9 36 8
+glyph_107 147 180 18 36 16
+glyph_108 165 180 10 36 8
+glyph_109 175 180 29 36 27
+glyph_110 204 180 20 36 18
+glyph_111 224 180 20 36 19
+glyph_112 0 216 20 36 19
+glyph_113 20 216 20 36 19
+glyph_114 40 216 14 36 12
+glyph_115 54 216 16 36 14
+glyph_116 70 216 14 36 13
+glyph_117 84 216 20 36 18
+glyph_118 104 216 17 36 16
+glyph_119 121 216 27 36 25
+glyph_120 148 216 18 36 16
+glyph_121 166 216 17 36 16
+glyph_122 183 216 16 36 15
+glyph_123 199 216 12 36 10
+glyph_124 211 216 10 36 9
+glyph_125 221 216 12 36 10
+glyph_126 233 216 20 36 18
+kerning_39 65 -2
+kerning_39 74 -3
+kerning_41 86 -1
+kerning_41 89 -1
+kerning_42 65 -2
+kerning_42 74 -3
+kerning_45 84 -1
+kerning_45 88 -1
+kerning_45 89 -1
+kerning_46 79 -1
+kerning_46 81 -1
+kerning_46 84 -2
+kerning_46 86 -2
+kerning_46 87 -1
+kerning_46 89 -2
+kerning_47 65 -1
+kerning_47 74 -2
+kerning_47 86 1
+kerning_47 89 1
+kerning_58 84 -2
+kerning_58 89 -1
+kerning_64 84 -1
+kerning_64 86 -1
+kerning_64 88 -1
+kerning_64 89 -1
+kerning_64 90 -1
+kerning_65 39 -2
+kerning_65 42 -2
+kerning_65 65 1
+kerning_65 84 -2
+kerning_65 86 -2
+kerning_65 89 -2
+kerning_66 93 -1
+kerning_68 41 -1
+kerning_68 46 -1
+kerning_68 47 -1
+kerning_68 63 -1
+kerning_68 89 -1
+kerning_68 93 -1
+kerning_69 93 -1
+kerning_70 46 -2
+kerning_70 47 -1
+kerning_70 65 -1
+kerning_70 74 -2
+kerning_70 93 -1
+kerning_70 97 -1
+kerning_70 120 -1
+kerning_74 47 -1
+kerning_74 93 -1
+kerning_75 42 -1
+kerning_75 45 -1
+kerning_75 65 1
+kerning_75 67 -1
+kerning_75 71 -1
+kerning_75 79 -1
+kerning_75 81 -1
+kerning_75 119 -1
+kerning_76 39 -4
+kerning_76 42 -4
+kerning_76 45 -2
+kerning_76 67 -1
+kerning_76 71 -1
+kerning_76 79 -1
+kerning_76 81 -1
+kerning_76 84 -3
+kerning_76 86 -3
+kerning_76 87 -1
+kerning_76 89 -3
+kerning_76 93 -1
+kerning_76 118 -1
+kerning_76 119 -1
+kerning_79 46 -1
+kerning_79 47 -1
+kerning_79 63 -1
+kerning_79 89 -1
+kerning_79 93 -1
+kerning_80 46 -2
+kerning_80 47 -2
+kerning_80 65 -1
+kerning_80 74 -3
+kerning_80 93 -1
+kerning_80 101 -1
+kerning_81 46 -1
+kerning_81 63 -1
+kerning_81 89 -1
+kerning_82 93 -1
+kerning_84 45 -1
+kerning_84 46 -2
+kerning_84 47 -2
+kerning_84 58 -2
+kerning_84 64 -1
+kerning_84 65 -2
+kerning_84 74 -2
+kerning_84 93 -1
+kerning_84 97 -1
+kerning_84 99 -1
+kerning_84 100 -1
+kerning_84 101 -1
+kerning_84 103 -1
+kerning_84 109 -1
+kerning_84 110 -1
+kerning_84 111 -1
+kerning_84 112 -1
+kerning_84 113 -1
+kerning_84 114 -1
+kerning_84 115 -1
+kerning_84 117 -1
+kerning_84 119 -2
+kerning_85 47 -1
+kerning_85 93 -1
+kerning_86 40 -1
+kerning_86 46 -2
+kerning_86 47 -2
+kerning_86 64 -1
+kerning_86 65 -2
+kerning_86 74 -3
+kerning_86 86 1
+kerning_86 89 1
+kerning_86 99 -1
+kerning_86 100 -1
+kerning_86 101 -1
+kerning_86 103 -1
+kerning_86 111 -1
+kerning_86 113 -1
+kerning_87 46 -1
+kerning_87 47 -1
+kerning_87 74 -1
+kerning_87 93 -1
+kerning_88 93 -1
+kerning_88 119 -1
+kerning_89 40 -1
+kerning_89 45 -1
+kerning_89 46 -2
+kerning_89 47 -2
+kerning_89 58 -1
+kerning_89 64 -1
+kerning_89 65 -2
+kerning_89 67 -1
+kerning_89 71 -1
+kerning_89 74 -3
+kerning_89 79 -1
+kerning_89 81 -1
+kerning_89 86 1
+kerning_89 89 1
+kerning_89 97 -1
+kerning_89 99 -1
+kerning_89 100 -1
+kerning_89 101 -1
+kerning_89 103 -1
+kerning_89 109 -1
+kerning_89 110 -1
+kerning_89 111 -1
+kerning_89 112 -1
+kerning_89 113 -1
+kerning_89 114 -1
+kerning_89 117 -1
+kerning_90 45 -1
+kerning_90 67 -1
+kerning_90 71 -1
+kerning_90 79 -1
+kerning_90 81 -1
+kerning_90 93 -1
+kerning_90 123 -1
+kerning_91 67 -1
+kerning_91 71 -1
+kerning_91 79 -1
+kerning_91 81 -1
+kerning_91 84 -1
+kerning_91 85 -1
+kerning_91 87 -1
+kerning_91 88 -1
+kerning_91 90 -1
+kerning_98 39 -1
+kerning_99 45 -1
+kerning_102 41 1
+kerning_102 45 -1
+kerning_102 46 -1
+kerning_102 47 -1
+kerning_102 93 1
+kerning_102 125 1
+kerning_104 39 -1
+kerning_110 39 -1
+kerning_111 39 -1
+kerning_112 39 -1
+kerning_114 45 -1
+kerning_114 46 -1
+kerning_114 47 -1
+kerning_114 63 -1
+kerning_116 45 -1
+kerning_118 46 -1
+kerning_118 47 -1
+kerning_118 63 -1
+kerning_119 46 -1
+kerning_119 63 -1
+kerning_122 93 -1
+kerning_125 90 -1

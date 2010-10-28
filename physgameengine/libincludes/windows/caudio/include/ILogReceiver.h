@@ -34,13 +34,13 @@ namespace cAudio
 	{
 	public:
 		ILogReceiver() { }
-		~ILogReceiver() { }
+		virtual ~ILogReceiver() { }
 
 		//! Called on every logged message that is greater than or equal to the minimum log level.
 		/**
 		\param sender: The class/component sending the message.
 		\param message: The log message itself.
-		\param level: Log level of the message. 
+		\param level: Log level of the message.
 		\param time: Time in seconds that the message was sent.  This time has millisecond accuracy. */
 		virtual bool OnLogMessage(const char* sender, const char* message, LogLevel level, float time) = 0;
 	};

@@ -102,7 +102,10 @@ namespace phys
     class GraphicsManager;
     class SoundManager;
     class ResourceManager;
-    class UIManager;
+    //namespace UI
+    //{
+        class UIManager;
+    //}
 }
 #include <list>
 #include <string>

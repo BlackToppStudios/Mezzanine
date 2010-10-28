@@ -346,16 +346,6 @@ bool PostInput()
         }
     }
 
-    if(0)//check for joystick inputs first
-    {
-        UILayer* HUD = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer");
-        UIButton* JoyMo = HUD->GetButton("JoystickM");
-        UIButton* JoyBu = HUD->GetButton("JoystickB");
-        //get the input events, whatever info you want to show up in the captions.
-        JoyMo->SetText(" ");
-        JoyBu->SetText(" ");
-    }
-
     // using the Raw Event Manager, and deleting the events
     if( !CheckForEsc() )
         return false;
@@ -596,16 +586,5 @@ void MakeGUI()
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ExitButton->SetBackgroundColour(Colours);
     Menu->Hide();
-
-    //Build the joystick debugger
-    if(JoystickDebug)
-    {
-        UIButton* JoystickMotion = HUD->CreateButton( "JoystickM", WWidth * 0.70, 0.0,
-                                                WWidth * 0.3, WHeight * 0.1,
-                                                14, " ");
-        UIButton* JoystickButton = HUD->CreateButton( "JoystickB", WWidth * 0.70, 0.9,
-                                                WWidth * 0.3, WHeight * 0.08,
-                                                14, " ");
-    }
 }
 #endif

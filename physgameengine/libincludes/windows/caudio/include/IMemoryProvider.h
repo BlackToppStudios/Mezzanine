@@ -17,7 +17,7 @@ namespace cAudio
 		\param function: Function that this allocation took place in (in Debug) or NULL otherwise.
 		\return Pointer to the allocated memory or NULL if allocation failed. */
 		virtual void* Allocate(size_t size, const char* filename, int line, const char* function) = 0;
-		
+
 		//! Frees memory previously allocated.
 		/**
 		\param pointer: Pointer to the memory location to free. */

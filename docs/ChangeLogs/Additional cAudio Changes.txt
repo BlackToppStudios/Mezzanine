@@ -1,0 +1,21 @@
+Added newlines at the end of the following files:
+cAudio.h
+IPluginManager.h
+ILogReceiver.h
+IAudioPlugin.h
+IAudioEffects.h
+IAudioCapture.h
+IEffect.h
+IEffectParameters.h
+IFilter.h
+cVector3.h
+IRefCounted.h
+cAudioMemory.h
+IMemoryProvider.h
+EAudioFormats.h
+cAudioSleep.h
+cAudioPlatform.h
+
+Made the destructors for the following classes virtual in the respective files:
+IPluginManager , IPluginManager.h
+ILogReceiver , ILogReceiver.h

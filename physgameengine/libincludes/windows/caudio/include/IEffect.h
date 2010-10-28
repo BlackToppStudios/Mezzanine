@@ -45,7 +45,7 @@ namespace cAudio
 		virtual const EffectTypes& getType() const = 0;
 
 		//! Sets the type of this effect object.
-		/** 
+		/**
 		\param type: Type of effect to switch to. */
 		virtual void setType(const EffectTypes& type) = 0;
 
@@ -184,7 +184,7 @@ namespace cAudio
 
 		//! Returns a timestamp indicating the last time settings on this effect were changed.  Used internally by the engine to update attached sources.
 		virtual unsigned int getLastUpdated() const = 0;
-		
+
 		//! Returns if this effect is ready to be used or if it has encountered a fatal error.
 		virtual bool isValid() const = 0;
 	};

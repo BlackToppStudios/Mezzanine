@@ -1,0 +1,59 @@
+-- Headers\cEFXFunctions.h
+
+Line 51 of Headers\cEFXFunctions.h
+Changed "cEFXFunctions::cEFXFunctions"
+to "cEFXFunctions" via c style comment.
+
+-- Source\cLogger.cpp
+
+New line after line 4 in Source\cLogger.cpp
+Inserted line: "#include <stdio.h>"
+
+-- Headers\cAudioSource.h
+
+New line after line 90 in Headers\cAudioSource.h
+Inserted line: "virtual void setName(const char* name);"
+
+New line after line 112(assuming you applied the above change already) in Headers\cAudioSource.h
+Inserted line: "virtual const char* getName() const;"
+
+New line after line 129(assuming you applied the above changes already) in Headers\cAudioSource.h
+Inserted line: "cAudioString mName;"
+
+-- include\IAudioSource.h
+
+New line after line 188 in include\IAudioSource.h
+Inserted line: "virtual void setName(const char* name) = 0;"
+
+New line after line 238 (assuming you applied the above change already) in include\IAudioSource.h
+Inserted line: "virtual const char* getName() const = 0;"
+
+-- Source\cAudioSource.cpp
+
+New line after line 8 in Source\cAudioSource.cpp
+Inserted line: "#include "../Headers/cUtils.h""
+
+4 new lines after line 436 in Source\cAudioSource.cpp
+Inserted lines:
+"void cAudioSource::setName(const char* name)
+{
+    mName = safeCStr(name);
+}"
+
+4 new lines after line 558 (assuming you applied the above change already) in Source\cAudioSource.cpp
+Inserted lines:
+"const char* cAudioSource::getName() const
+{
+    return mName.c_str();
+}"
+
+-- Source\cAudioManger.cpp
+
+New line after line 196 in Source\cAudioManager.cpp
+Inserted line: "audio->setName(audioName.c_str());"
+
+New line after line 257(assuming you applied the above change already) in Source\cAudioManager.cpp
+Inserted line: "audio->setName(audioName.c_str());"
+
+New line after line 323(assuming you applied the above changes already) in Source\cAudioManager.cpp
+Inserted line: "audio->setName(audioName.c_str());"

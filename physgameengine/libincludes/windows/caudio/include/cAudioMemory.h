@@ -10,7 +10,7 @@
 	#define CAUDIO_MALLOC(size) cAudio::getMemoryProvider()->Allocate(size, __FILE__, __LINE__, __FUNCTION__)
 	#define CAUDIO_FREE(pointer) cAudio::getMemoryProvider()->Free((void*)pointer)
 #else
-	#define CAUDIO_NEW new 
+	#define CAUDIO_NEW new
 	#define CAUDIO_DELETE delete
 	#define CAUDIO_MALLOC(size) cAudio::getMemoryProvider()->Allocate(size, NULL, -1, NULL)
 	#define CAUDIO_FREE(pointer) cAudio::getMemoryProvider()->Free((void*)pointer)

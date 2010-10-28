@@ -19,7 +19,7 @@ namespace cAudio
 		//! Increments the reference count by one.
 		void grab()
 		{
-			++RefCount; 
+			++RefCount;
 		}
 
 		//! Decrements the reference count by one.  If it hits zero, this object is deleted.
@@ -42,6 +42,6 @@ namespace cAudio
 
 	private:
 		int RefCount;
-	};	
+	};
 }
 #endif //! IREFCOUNTED_H
