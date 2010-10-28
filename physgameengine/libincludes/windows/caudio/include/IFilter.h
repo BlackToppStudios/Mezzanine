@@ -63,7 +63,7 @@ namespace cAudio
 
 		//! Returns a timestamp indicating the last time settings on this filter were changed.  Used internally by the engine to update attached sources or effects.
 		virtual unsigned int getLastUpdated() const = 0;
-		
+
 		//! Returns if this filter is ready to be used or if it has encountered a fatal error.
 		virtual bool isValid() const = 0;
 	};

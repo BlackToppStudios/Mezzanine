@@ -1,0 +1,15 @@
+Line 29 of Gorilla.cpp
+Commented out the pragma warning.
+
+Line 674 of Gorilla.cpp
+Changed the order of initialization for data from "mAtlas > mIndexRedrawAll" to "mIndexRedrawAll > mAtlas".  
+
+Line 362 of Gorilla.h
+Added a cast to the Kerning character fetch, casting to an int.
+Before: "if (kerning[i].character == left_of)"
+After: "if ((int)(kerning[i].character) == left_of)"
+
+Line 30 of Gorilla.h
+Changed the ogre include to work with our project.
+Before: "#include "Ogre/Ogre.h"
+After: "#include <Ogre.h>"

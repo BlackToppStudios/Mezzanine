@@ -12,19 +12,19 @@ namespace cAudio
 	{
 	public:
 		IPluginManager() { }
-		~IPluginManager() { }
+		virtual ~IPluginManager() { }
 
 		//! Installs a plugin using a statically linked plugin implementation.
 		/**
 		\param plugin: Pointer to a plugin implementation to install.
-		\param name: Optional name for the plugin.  Pass NULL to have the plugin use its default name. 
+		\param name: Optional name for the plugin.  Pass NULL to have the plugin use its default name.
 		\return True if plugin was installed successfully. */
 		virtual bool installPlugin(IAudioPlugin* plugin, const char* name = NULL) = 0;
 
 		//! Installs a plugin from a dynamically linked library on your hard drive.
 		/**
 		\param filename: Path to the dll/so/dynlib on your hard drive.
-		\param name: Optional name for the plugin.  Pass NULL to have the plugin use its default name. 
+		\param name: Optional name for the plugin.  Pass NULL to have the plugin use its default name.
 		\return True if plugin was installed successfully. */
 		virtual bool installPlugin(const char* filename, const char* name = NULL) = 0;
 

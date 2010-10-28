@@ -16,7 +16,7 @@ namespace cAudio
 		~IAudioPlugin() { }
 
 		//! Called to initialize the plugin.  Use this for any initial setup that needs to be done.
-		/** 
+		/**
 		\param logger: Pointer to the logger singleton.
 		\return True if plugin initialization was successful, false if there was an error. */
 		virtual bool installPlugin(ILogger* logger) = 0;

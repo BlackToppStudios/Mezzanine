@@ -29,7 +29,7 @@ namespace cAudio
 		virtual bool initialize(const char* deviceName = 0x0, unsigned int frequency = 22050, AudioFormats format = EAF_16BIT_MONO, unsigned int internalBufferSize = 8192) = 0;
 		//! Returns true if the current OpenAL implementation supports capturing audio.
 		virtual bool isSupported() = 0;
-		//! Returns true if the capture device is ready to be used.  False may indicate an error with the current settings. 
+		//! Returns true if the capture device is ready to be used.  False may indicate an error with the current settings.
 		virtual bool isReady() = 0;
 		//! Grabs samples from the OpenAL buffer into the capture buffer if the OpenAL buffer has reached half full.  Should be run once every audio frame, unless threading is enabled.
 		/** \param force: Force capturing data from the buffer, even if the buffer is not half full. */
@@ -38,7 +38,7 @@ namespace cAudio
 		virtual void shutdown() = 0;
 
 		//! Returns the name of an available capture device.
-		/** \param index: Specify which name to retrieve ( Range: 0 to getAvailableDeviceCount()-1 ). 
+		/** \param index: Specify which name to retrieve ( Range: 0 to getAvailableDeviceCount()-1 ).
 		\return Name of the selected device. */
 		virtual const char* getAvailableDeviceName(unsigned int index) = 0;
 		//! Returns the number of capture devices available for use.
@@ -62,22 +62,22 @@ namespace cAudio
 		virtual unsigned int getSampleSize() = 0;
 
 		//! Sets the audio device .  Will cause the capture device to be reinitialized.  Calling while in use will clear the internal audio buffer.
-		/** 
+		/**
 		\param deviceName: Name of the audio device to capture audio from, pass NULL to specify the default one.
 		\return True on success, False if the capture device failed to initialize. */
 		virtual bool setDevice(const char* deviceName) = 0;
 		//! Sets the frequency that the captured audio will be at.  Will cause the capture device to be reinitialized.  Calling while in use will clear the internal audio buffer.
-		/** 
+		/**
 		\param frequency: Frequency that the captured audio will be captured at in hertz.
 		\return True on success, False if the capture device failed to initialize. */
 		virtual bool setFrequency(unsigned int frequency) = 0;
 		//! Sets the format that the captured audio will be at.  Will cause the capture device to be reinitialized.  Calling while in use will clear the internal audio buffer.
-		/** 
+		/**
 		\param format: Format of the captured audio.
 		\return True on success, False if the capture device failed to initialize. */
 		virtual bool setFormat(AudioFormats format) = 0;
 		//! Sets the internal buffer size that OpenAL will use to store captured audio between calls to getCapturedAudio() in bytes.  Will cause the capture device to be reinitialized.  Calling while in use will clear the internal audio buffer.
-		/** 
+		/**
 		\param internalBufferSize: Size of the internal OpenAL buffer in bytes.
 		\return True on success, False if the capture device failed to initialize. */
 		virtual bool setInternalBufferSize(unsigned int internalBufferSize) = 0;
@@ -107,7 +107,7 @@ namespace cAudio
 		virtual void unRegisterEventHandler(ICaptureEventHandler* handler) = 0;
 		//!Removes all event handlers attached to this manager.
 		virtual void unRegisterAllEventHandlers() = 0;
-	
+
 	};
 
 	//! Creates an interface to an Audio Capture Object.
@@ -119,7 +119,7 @@ namespace cAudio
 	CAUDIO_API IAudioCapture* createAudioCapture(bool initializeDefault = true);
 
 	//! Destroys an interface to a previously created Audio Capture Object and frees the memory allocated for it.
-	/** 
+	/**
 	\param capture: The object to destroy
 	*/
 	CAUDIO_API void destroyAudioCapture(IAudioCapture* capture);
