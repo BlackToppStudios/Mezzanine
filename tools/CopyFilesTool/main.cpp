@@ -59,7 +59,12 @@ using namespace std;
 #define E_BADSOURCEDATA 1
 #define E_MISSINGDIRLIST 2
 #define E_MISSINGFILELIST 3
-#define E_COPYFAILED 4
+#define E_FAILCOPYFILE 4
+#define E_FAILDIRCREATIO 5
+#define E_FAILCOPYALL 6
+#define E_FAILREADFILE 8
+#define E_FAILWRITEFILE 9
+#define E_BADCOPFILECONTENTS 10
 #define E_BADARGS 65
 
 // Globals aren't bad if they aren't used badly.
@@ -81,6 +86,7 @@ string Slash("/");
 //Utility functions
 string Usage(string BaseName);
 void Tokenize(const string& str, vector<string>& tokens, const string& delimiters = " ");
+string StringReplace(string Needle, string Haystack, string NewNeedle);
 
 //File Manipulation Functions
 bool FileDoesExistIsItADirectory(string Filename);
@@ -89,7 +95,7 @@ void CopyFile(string Source, string Destination);
 void CopyAllFiles();
 void MakeDirTree(string Dirs);
 void MakeDir(string OneDirDeep);
-
+void MakeTargetDirs();
 
 int main(int ArgCount, char** ArgValues)
 {
@@ -131,6 +137,7 @@ int main(int ArgCount, char** ArgValues)
                 return E_MISSINGFILELIST;
             }
 
+            MakeTargetDirs();
             // TODO Need to create all dirs here
 
             // now that we know everything we need is present copy the files
@@ -141,7 +148,7 @@ int main(int ArgCount, char** ArgValues)
         }
 
     }else{
-        cout << Usage(ArgValues[0]);
+        cerr << Usage(ArgValues[0]);
         return E_BADARGS;
     }
 
@@ -173,6 +180,27 @@ void Tokenize(const string& str, vector<string>& tokens, const string& delimiter
         lastPos = str.find_first_not_of(delimiters, pos);
         pos = str.find_first_of(delimiters, lastPos);
     }
+}
+
+string StringReplace(string Needle, string Haystack, string NewNeedle)
+{
+    vector<string> Tokens;
+    Tokenize(Haystack, Tokens, Needle);
+    stringstream Results;
+    //ut << "Needle: " << Needle << endl << "Haystack: " << Haystack << endl << "NewNeedle: " << NewNeedle << endl;
+    bool FirstTime=true;
+    for ( vector<string>::iterator iter=Tokens.begin();  iter!=Tokens.end(); ++iter )
+    {
+        if(FirstTime)
+        {
+            Results << *iter;
+            FirstTime=false;
+        }else{
+            Results << NewNeedle << *iter;
+        }
+    }
+
+    return Results.str();
 }
 
 bool FileDoesExistIsItADirectory(string Filename)
@@ -212,7 +240,7 @@ void MakeDirTree(string Dirs)
 void MakeDir(string OneDirDeep)
 {
     if (FileDoesExistIsItADirectory(OneDirDeep))
-        { return; } //No need to Fuss over an already exisitng folder
+        { return; } //No need to Fuss over an already existing folder
 
     // Begin OS specific code for Directory creation
     #ifdef WINDOWS
@@ -229,24 +257,57 @@ void MakeDir(string OneDirDeep)
     throw exception();
 }
 
+void MakeTargetDirs()
+{
+    ifstream DirCreationList(DirList.c_str());
+    while (!DirCreationList.eof())
+    {
+        char Line[256]; //anything longer than this is crazy
+        DirCreationList.getline(Line,256);
+        if(DirCreationList.fail())
+        {
+            if(DirCreationList.eof())
+                { break; }
+            cerr << "Copying Files mysteriously failed, add more code to copy to find out why." << endl;
+            exit(E_FAILDIRCREATIO);
+        }
+        stringstream DirToMake;
+        DirToMake << TargetDir << Slash << Line;
+        MakeDirTree(DirToMake.str());
+    }
+}
+
 void CopyAllFiles()
 {
     ifstream CopyListFile(FileList.c_str());
 
     while (!CopyListFile.eof())
     {
+        //get line from files
         char Line[256]; //anything longer than this is crazy
         CopyListFile.getline(Line,256);
-        cout << Line << endl;
-
-        // TODO tokenize string using Target, then re-serialize replace the target.
-
         if(CopyListFile.fail())
-        {
+        {   //in case it fucks up getting it from the files
             if(CopyListFile.eof())
                 { break; }
-            cerr << "Copying Files mysteriously failed, add more code to copy to find out why." << endl;
-            exit(E_COPYFAILED);
+            cerr << "Copying Files mysteriously failed, add more code to copyallfiles to find out why." << endl;
+            exit(E_FAILCOPYALL);
+        }
+        //Clean up the lines
+        string AdjustedLine(StringReplace(string("?"), string(Line), TargetDir));
+        AdjustedLine=StringReplace(string("/"), AdjustedLine, Slash);
+        AdjustedLine=StringReplace(string("\\"), AdjustedLine, Slash);
+
+        vector<string> Files;
+        Tokenize(AdjustedLine, Files, "|");
+        if(Files.size() == 2)
+        {
+//            stringstream DestStaging;
+//            DestStaging << Files[1] << Slash;
+            CopyFile(Files[0],Files[1]);
+        }else{
+            cerr << "Bad " << FileList << "too many pipes in filename";
+            exit(E_BADCOPFILECONTENTS);
         }
     }
 
@@ -255,9 +316,21 @@ void CopyAllFiles()
 
 void CopyFile(string Source, string Destination)
 {
+    cout<<Source << "||||" <<Destination<<endl;
     ifstream sfs(Source.c_str(), std::ios::binary);
     ofstream dfs(Destination.c_str(), std::ios::binary);
     dfs << sfs.rdbuf();
-    sfs.close();
-    dfs.close();
+    if( sfs.fail() )
+    {
+        cerr << "Error reading Source file: " << Source << endl;
+        exit(E_FAILREADFILE);
+    }
+
+    if( dfs.fail() )
+    {
+        cerr << "Error writing Destination file: " << Destination << endl;
+        exit(E_FAILWRITEFILE);
+    }
+    //sfs.close();
+    //dfs.close();
 }

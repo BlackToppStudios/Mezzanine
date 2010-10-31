@@ -62,7 +62,7 @@ fi
 #linux specific chunk
 data/linux/checklibs.sh
 
-mkdir "$TargetDir/data//linux/ogre" -p
+mkdir "$TargetDir/data/linux/ogre" -p
 cp $SourceDir/plugins.cfg $TargetDir/data/linux/ -a
 cp $SourceDir/settings.cfg $TargetDir/data/linux/ -a
 cp $SourceDir/ogre/*ender* $TargetDir/data/linux/ogre -a
