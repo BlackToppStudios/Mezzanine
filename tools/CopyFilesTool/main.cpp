@@ -57,30 +57,35 @@ using namespace std;
 
 //Some Error codes
 #define E_BADSOURCEDATA 1
-#define E_MISSINGDIRLIST 2
-#define E_MISSINGFILELIST 3
-#define E_FAILCOPYFILE 4
-#define E_FAILDIRCREATIO 5
-#define E_FAILCOPYALL 6
-#define E_FAILREADFILE 8
-#define E_FAILWRITEFILE 9
-#define E_BADCOPFILECONTENTS 10
-#define E_BADARGS 65
+#define E_BADCOPFILECONTENTS 2
+#define E_BADARGS 3
+#define E_MISSINGDIRLIST 100
+#define E_MISSINGFILELIST 101
+#define E_FAILCOPYFILE 200
+#define E_FAILDIRCREATIO 201
+#define E_FAILCOPYALL 202
+#define E_FAILREADFILE 203
+#define E_FAILWRITEFILE 204
+#define E_FAILSPECIFICCOPY 205
 
 // Globals aren't bad if they aren't used badly.
 // If this tool gets over 1000 LOCs or sorted into multiple files this should change like maybe into a config file
-string TargetDir("bin");
-string RootSourceDir("data");
-string SourceDir("");
+string TargetDir("bin");                            //Has more data appended later
+string RootSourceDir("data");                       //Has more data appended later
+string SourceDir("");                               //is generated later
 string DirList("makedirlist.txt");
 string FileList("copyfilelist.txt");
+string SpecificCopyScript("copyspecificfiles");     //Has extension appended later
+
 
 #ifdef WINDOWSCOMPATIBLEOS
 string Slash("\\");
+string ScriptExt(".bat");
 #endif
 
 #ifdef GNUCOMPATIBLEOS
 string Slash("/");
+string ScriptExt(".sh");
 #endif
 
 //Utility functions
@@ -92,10 +97,13 @@ string StringReplace(string Needle, string Haystack, string NewNeedle);
 bool FileDoesExistIsItADirectory(string Filename);
 bool FileDoesExist(string Filename);
 void CopyFile(string Source, string Destination);
-void CopyAllFiles();
 void MakeDirTree(string Dirs);
 void MakeDir(string OneDirDeep);
+
+//Application Logic
 void MakeTargetDirs();
+void CopyAllFiles();
+void RunSpecificCopyScript();
 
 int main(int ArgCount, char** ArgValues)
 {
@@ -137,11 +145,15 @@ int main(int ArgCount, char** ArgValues)
                 return E_MISSINGFILELIST;
             }
 
+            // make directories in make list
             MakeTargetDirs();
-            // TODO Need to create all dirs here
 
-            // now that we know everything we need is present copy the files
+            //Copy files in copylist
             CopyAllFiles();
+
+            // Call
+            RunSpecificCopyScript();
+
         }else{
             cerr << "Source Directory \"" << SourceDir << "\" fails" << endl;
             return E_BADSOURCEDATA;
@@ -155,6 +167,8 @@ int main(int ArgCount, char** ArgValues)
     return 0;
 }
 
+// This Function will return a string that has how to use this tool stored in it
+// This functions requires the first commandline argument passed in, or the name of the binary to be called.
 string Usage(string BaseName)
 {
     stringstream Results;
@@ -169,6 +183,9 @@ string Usage(string BaseName)
 // used with permission from
 // http://oopweb.com/CPP/Documents/CPPHOWTO/Volume/C++Programming-HOWTO-7.html
 // Author wrote "Here is a couple of suggestions, use what suits your best." just before:
+
+// This search for delimiters in str and puts the strings that are between the delimiters in str and puts them in tokens as their own strings.
+// the actual return of this function is tokens and it will be a vector of strings
 void Tokenize(const string& str, vector<string>& tokens, const string& delimiters)
 {
     string::size_type lastPos = str.find_first_not_of(delimiters, 0);
@@ -182,6 +199,8 @@ void Tokenize(const string& str, vector<string>& tokens, const string& delimiter
     }
 }
 
+// This will search for each char in Needle in the HayStack and replace them with the entire string in NewNeedle) then returns the results
+// Do not use the Multicharacter replacement in the Needle. Eventually this string will perform string replacement
 string StringReplace(string Needle, string Haystack, string NewNeedle)
 {
     vector<string> Tokens;
@@ -203,6 +222,7 @@ string StringReplace(string Needle, string Haystack, string NewNeedle)
     return Results.str();
 }
 
+//does the Filename exist if no return that; if yes, is it a directory, and return that
 bool FileDoesExistIsItADirectory(string Filename)
 {
     struct stat Results;
@@ -216,6 +236,7 @@ bool FileDoesExistIsItADirectory(string Filename)
     return false;
 }
 
+// return whether or not Filename exists
 bool FileDoesExist(string Filename)
 {
     struct stat Results;
@@ -224,6 +245,7 @@ bool FileDoesExist(string Filename)
     return false;
 }
 
+// Make a subdirectory and all of it's parent directories
 void MakeDirTree(string Dirs)
 {
     vector<string> Tokens;
@@ -237,6 +259,7 @@ void MakeDirTree(string Dirs)
     }
 }
 
+//Make a directory. All of the parent directories must be present
 void MakeDir(string OneDirDeep)
 {
     if (FileDoesExistIsItADirectory(OneDirDeep))
@@ -257,6 +280,7 @@ void MakeDir(string OneDirDeep)
     throw exception();
 }
 
+//Make all the directories required in the Make Directory Listing
 void MakeTargetDirs()
 {
     ifstream DirCreationList(DirList.c_str());
@@ -277,6 +301,7 @@ void MakeTargetDirs()
     }
 }
 
+// Copy all the files as instructe by the copy file list
 void CopyAllFiles()
 {
     ifstream CopyListFile(FileList.c_str());
@@ -314,9 +339,16 @@ void CopyAllFiles()
     CopyListFile.close();
 }
 
+// Read from the Source files contents and put it in the Destination file
 void CopyFile(string Source, string Destination)
 {
-    cout<<Source << "||||" <<Destination<<endl;
+    if ( !FileDoesExist(Destination) )
+    {
+        cout << Source << " -> " << Destination << endl;
+    }else{
+        cout << Source << " Not copied, " << Destination << " Already exists" << endl;
+    }
+
     ifstream sfs(Source.c_str(), std::ios::binary);
     ofstream dfs(Destination.c_str(), std::ios::binary);
     dfs << sfs.rdbuf();
@@ -333,4 +365,16 @@ void CopyFile(string Source, string Destination)
     }
     //sfs.close();
     //dfs.close();
+}
+
+void RunSpecificCopyScript()
+{
+    stringstream ScriptName;
+    ScriptName << SourceDir << Slash << SpecificCopyScript << ScriptExt << " \"" << TargetDir << "\"";
+    cout << ScriptName.str() <<endl;
+    if ( system(ScriptName.str().c_str()) )
+    {
+        cerr << "Unknown Error Calling: " << ScriptName.str() << endl;
+        exit(E_FAILSPECIFICCOPY);
+    }
 }
