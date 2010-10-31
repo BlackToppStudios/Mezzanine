@@ -467,14 +467,13 @@ namespace phys
             /// @brief This Returns the MetaValue
             /// @details The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value.
             /// This value can be set with @ref SetMetaValue .
-            /// @return This returns the input code for this MetaCode. For keyboard Buttons this will be
-            /// 0 if not pressed, 1 if pressed, and -1 if it was pressed and just released. This could return any number inside a range (depending on hardware and configuration)
+            /// @return This returns the input code for this MetaCode. This could return any number inside a range (depending on hardware and configuration)
             /// to represent how tilted a joystick or how much a mouse moved.
             int GetMetaValue() const;                     //How much is being done? How far has the mouse moved, how much is the throttle pushed.
 
             /// @brief This Sets The MetaValue
             /// @details See @ref GetMetaValue to see exactly what the MetaValue is. This will set the MetaValue stored in this MetaCode. This value can be retrieved with @ref GetMetaValue .
-            /// @param MetaValue_ Teh value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
+            /// @param MetaValue_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
             void SetMetaValue(const int &MetaValue_);      //For button presses a positive value is pushed and a zero means unpushed
 
             /// @brief This Returns the Input ID
