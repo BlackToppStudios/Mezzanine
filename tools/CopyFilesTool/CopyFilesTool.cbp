@@ -6,26 +6,51 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="Debug">
-				<Option output="bin\Debug\CopyFilesTool" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
+			<Target title="GnuDebug">
+				<Option output="bin/GnuDebug/CopyFilesTool" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/GnuDebug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-DGNUCOMPATIBLEOS" />
 				</Compiler>
 			</Target>
-			<Target title="Release">
-				<Option output="bin\Release\CopyFilesTool" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
+			<Target title="GnuRelease">
+				<Option output="bin/GnuRelease/CopyFilesTool" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/GnuRelease/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-DGNUCOMPATIBLEOS" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+			</Target>
+			<Target title="WinRelease">
+				<Option output="bin/WinRelease/CopyFilesTool" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/WinRelease/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DWINDOWSCOMPATIBLEOS" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="WinDebug">
+				<Option output="bin/WinDebug/CopyFilesTool" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/WinDebug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DWINDOWSCOMPATIBLEOS" />
+				</Compiler>
 			</Target>
 		</Build>
 		<Compiler>
@@ -36,6 +61,7 @@
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

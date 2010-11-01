@@ -370,10 +370,11 @@ bool CheckForEsc()
         for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
             #ifdef PHYSDEBUG
-            TheWorld->LogStream << "Metacode (" << c << ")" << OneInput->GetMetaCode(c);
+            TheWorld->LogStream << "Metacode (" << c << ")" << OneInput->GetMetaCode(c) << endl << "Escape is: " << MetaCode::KEY_ESCAPE << endl;
+
             #endif
             //Is the key we just pushed ESCAPE
-            if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode())
+            if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && MetaCode::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
                 { return false; }
         }
 

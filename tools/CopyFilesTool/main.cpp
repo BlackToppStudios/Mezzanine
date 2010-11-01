@@ -40,37 +40,70 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <exception>
+#include <vector>
+#include <fstream>
+#include <cstdlib>
 
-#include <sys/stat.h> // This should work with mingw, but may not with visual c
+#include <sys/stat.h> // These should work with mingw, but may not with visual c
+#include <sys/types.h>
 
 using namespace std;
 
 // Which platform is this being built on? (remark all wrong answers)
-// Make this an option by selecting the pulldown menu
-//#define WINDOWS 10000
-#define GNU 10000
+// If you are using the code::blocks project file, then this is selected using the "Build Target" Pull down menu
+//#define WINDOWSCOMPATIBLEOS
+//#define GNUCOMPATIBLEOS
 
 //Some Error codes
 #define E_BADSOURCEDATA 1
-#define E_MISSINGDIRLIST 2
-#define E_MISSINGFILELIST 3
-#define E_BADARGS 65
+#define E_BADCOPFILECONTENTS 2
+#define E_BADARGS 3
+#define E_MISSINGDIRLIST 100
+#define E_MISSINGFILELIST 101
+#define E_FAILCOPYFILE 200
+#define E_FAILDIRCREATIO 201
+#define E_FAILCOPYALL 202
+#define E_FAILREADFILE 203
+#define E_FAILWRITEFILE 204
+#define E_FAILSPECIFICCOPY 205
 
 // Globals aren't bad if they aren't used badly.
 // If this tool gets over 1000 LOCs or sorted into multiple files this should change like maybe into a config file
-string Usage(string BaseName);
-string TargetDir("bin/");
-string RootSourceDir("data/");
-string SourceDir("");
+string TargetDir("bin");                            //Has more data appended later
+string RootSourceDir("data");                       //Has more data appended later
+string SourceDir("");                               //is generated later
 string DirList("makedirlist.txt");
 string FileList("copyfilelist.txt");
+string SpecificCopyScript("copyspecificfiles");     //Has extension appended later
+
+
+#ifdef WINDOWSCOMPATIBLEOS
+string Slash("\\");
+string ScriptExt(".bat");
+#endif
+
+#ifdef GNUCOMPATIBLEOS
+string Slash("/");
+string ScriptExt(".sh");
+#endif
+
+//Utility functions
+string Usage(string BaseName);
+void Tokenize(const string& str, vector<string>& tokens, const string& delimiters = " ");
+string StringReplace(string Needle, string Haystack, string NewNeedle);
 
 //File Manipulation Functions
 bool FileDoesExistIsItADirectory(string Filename);
 bool FileDoesExist(string Filename);
 void CopyFile(string Source, string Destination);
-void CopyAllFiles();
 void MakeDirTree(string Dirs);
+void MakeDir(string OneDirDeep);
+
+//Application Logic
+void MakeTargetDirs();
+void CopyAllFiles();
+void RunSpecificCopyScript();
 
 int main(int ArgCount, char** ArgValues)
 {
@@ -78,48 +111,118 @@ int main(int ArgCount, char** ArgValues)
     {
         //Lets prep the values we will use the rest of the program
         stringstream Temp;
-        Temp << TargetDir << ArgValues[1];
+        Temp << TargetDir << Slash << ArgValues[1];
         TargetDir = Temp.str();
         Temp.str("");
-        Temp << RootSourceDir << ArgValues[2];
-        SourceDir = Temp.str();
 
-        cout <<TargetDir<<endl<<SourceDir<<endl;
-        //string Arg1(ArgValues[1]);
-        //string Arg2(ArgValues[2]);
+        Temp << RootSourceDir << Slash << ArgValues[2];
+        SourceDir = Temp.str();
+        Temp.str("");
+
+        Temp << RootSourceDir << Slash << DirList;
+        DirList = Temp.str();
+        Temp.str("");
+
+        Temp << RootSourceDir << Slash << FileList;
+        FileList = Temp.str();
+        Temp.str("");
+
         if (FileDoesExistIsItADirectory(SourceDir))
         {
-            if (!FileDoesExistIsItADirectory(SourceDir))
+            // If the Target Directory does no exist make it
+            if (!FileDoesExistIsItADirectory(TargetDir))
+                { MakeDirTree(TargetDir); }
+
+            if (!FileDoesExist(DirList))
             {
-                // If not present make target directory and continue
+                cerr << "Directory creation list missing \"" << DirList << "\" must exist" << endl;
+                return E_MISSINGDIRLIST;
             }
 
-            //check for filelist
-            //check for dirlist
-            // now that we know it is present copy the files
+            if (!FileDoesExist(FileList))
+            {
+                cerr << "File copy list missing \"" << FileList << "\" must exist" << endl;
+                return E_MISSINGFILELIST;
+            }
+
+            // make directories in make list
+            MakeTargetDirs();
+
+            //Copy files in copylist
+            CopyAllFiles();
+
+            // Call
+            RunSpecificCopyScript();
 
         }else{
-            cout << "Source Directory \"" << SourceDir << " fails" << endl;
+            cerr << "Source Directory \"" << SourceDir << "\" fails" << endl;
             return E_BADSOURCEDATA;
         }
 
     }else{
-        cout << Usage(ArgValues[0]);
+        cerr << Usage(ArgValues[0]);
         return E_BADARGS;
     }
 
     return 0;
 }
 
+// This Function will return a string that has how to use this tool stored in it
+// This functions requires the first commandline argument passed in, or the name of the binary to be called.
 string Usage(string BaseName)
 {
     stringstream Results;
     Results << "Usage: " << BaseName << " BuildName CopyFromName" << endl
             << "BuildName is the name of the Build Process \"LinuxDebug\", \"LinuxRelease\", \"WinDebug\", ..."<< endl
-            << "CopyFromName is the set of source files to use. \"linux\", \"macosx\", \"windows\", ..." << endl;
+            << "CopyFromName is the set of source files to use. \"linux\", \"macosx\", \"windows\", ..." << endl
+            << "Notes: Since this tool is designed to be run as part of a build process and not as a standalone tool it makes several assumptions. This tool expects no slashes in the filenames passed, this will cause problems. See the source code for more details." << endl;
+
     return Results.str();
 }
 
+// used with permission from
+// http://oopweb.com/CPP/Documents/CPPHOWTO/Volume/C++Programming-HOWTO-7.html
+// Author wrote "Here is a couple of suggestions, use what suits your best." just before:
+
+// This search for delimiters in str and puts the strings that are between the delimiters in str and puts them in tokens as their own strings.
+// the actual return of this function is tokens and it will be a vector of strings
+void Tokenize(const string& str, vector<string>& tokens, const string& delimiters)
+{
+    string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+    string::size_type pos = str.find_first_of(delimiters, lastPos);
+
+    while (string::npos != pos || string::npos != lastPos)
+    {
+        tokens.push_back(str.substr(lastPos, pos - lastPos));
+        lastPos = str.find_first_not_of(delimiters, pos);
+        pos = str.find_first_of(delimiters, lastPos);
+    }
+}
+
+// This will search for each char in Needle in the HayStack and replace them with the entire string in NewNeedle) then returns the results
+// Do not use the Multicharacter replacement in the Needle. Eventually this string will perform string replacement
+string StringReplace(string Needle, string Haystack, string NewNeedle)
+{
+    vector<string> Tokens;
+    Tokenize(Haystack, Tokens, Needle);
+    stringstream Results;
+    //ut << "Needle: " << Needle << endl << "Haystack: " << Haystack << endl << "NewNeedle: " << NewNeedle << endl;
+    bool FirstTime=true;
+    for ( vector<string>::iterator iter=Tokens.begin();  iter!=Tokens.end(); ++iter )
+    {
+        if(FirstTime)
+        {
+            Results << *iter;
+            FirstTime=false;
+        }else{
+            Results << NewNeedle << *iter;
+        }
+    }
+
+    return Results.str();
+}
+
+//does the Filename exist if no return that; if yes, is it a directory, and return that
 bool FileDoesExistIsItADirectory(string Filename)
 {
     struct stat Results;
@@ -133,6 +236,7 @@ bool FileDoesExistIsItADirectory(string Filename)
     return false;
 }
 
+// return whether or not Filename exists
 bool FileDoesExist(string Filename)
 {
     struct stat Results;
@@ -141,36 +245,136 @@ bool FileDoesExist(string Filename)
     return false;
 }
 
+// Make a subdirectory and all of it's parent directories
 void MakeDirTree(string Dirs)
 {
-    #ifdef WINDOWS
-    //system()
-    #endif
+    vector<string> Tokens;
+    Tokenize(Dirs, Tokens, Slash);
+    stringstream Depth;
 
-    #ifdef GNU
-
-    #endif
+    for ( vector<string>::iterator iter=Tokens.begin();  iter!=Tokens.end(); ++iter )
+    {
+        Depth << *iter << Slash;
+        MakeDir(Depth.str());
+    }
 }
 
+//Make a directory. All of the parent directories must be present
+void MakeDir(string OneDirDeep)
+{
+    if (FileDoesExistIsItADirectory(OneDirDeep))
+        { return; } //No need to Fuss over an already existing folder
+
+    // Begin OS specific code for Directory creation
+    #ifdef WINDOWS
+
+    #endif
+
+    #ifdef GNUCOMPATIBLEOS
+    if (0==mkdir(OneDirDeep.c_str(),0777)) //Success on 0
+        { return; }
+    #endif
+
+    //We expect the OS specific blocks to return
+    cerr << "Could not make Directories: " << OneDirDeep << endl;
+    throw exception();
+}
+
+//Make all the directories required in the Make Directory Listing
+void MakeTargetDirs()
+{
+    ifstream DirCreationList(DirList.c_str());
+    while (!DirCreationList.eof())
+    {
+        char Line[256]; //anything longer than this is crazy
+        DirCreationList.getline(Line,256);
+        if(DirCreationList.fail())
+        {
+            if(DirCreationList.eof())
+                { break; }
+            cerr << "Copying Files mysteriously failed, add more code to copy to find out why." << endl;
+            exit(E_FAILDIRCREATIO);
+        }
+        stringstream DirToMake;
+        DirToMake << TargetDir << Slash << Line;
+        MakeDirTree(DirToMake.str());
+    }
+}
+
+// Copy all the files as instructe by the copy file list
 void CopyAllFiles()
 {
-    #ifdef WINDOWS
-    //system()
-    #endif
+    ifstream CopyListFile(FileList.c_str());
 
-    #ifdef GNU
+    while (!CopyListFile.eof())
+    {
+        //get line from files
+        char Line[256]; //anything longer than this is crazy
+        CopyListFile.getline(Line,256);
+        if(CopyListFile.fail())
+        {   //in case it fucks up getting it from the files
+            if(CopyListFile.eof())
+                { break; }
+            cerr << "Copying Files mysteriously failed, add more code to copyallfiles to find out why." << endl;
+            exit(E_FAILCOPYALL);
+        }
+        //Clean up the lines
+        string AdjustedLine(StringReplace(string("?"), string(Line), TargetDir));
+        AdjustedLine=StringReplace(string("/"), AdjustedLine, Slash);
+        AdjustedLine=StringReplace(string("\\"), AdjustedLine, Slash);
 
-    #endif
+        vector<string> Files;
+        Tokenize(AdjustedLine, Files, "|");
+        if(Files.size() == 2)
+        {
+//            stringstream DestStaging;
+//            DestStaging << Files[1] << Slash;
+            CopyFile(Files[0],Files[1]);
+        }else{
+            cerr << "Bad " << FileList << "too many pipes in filename";
+            exit(E_BADCOPFILECONTENTS);
+        }
+    }
+
+    CopyListFile.close();
 }
 
-
+// Read from the Source files contents and put it in the Destination file
 void CopyFile(string Source, string Destination)
 {
-    #ifdef WINDOWS
-    //system()
-    #endif
+    if ( !FileDoesExist(Destination) )
+    {
+        cout << Source << " -> " << Destination << endl;
+    }else{
+        cout << Source << " Not copied, " << Destination << " Already exists" << endl;
+    }
 
-    #ifdef GNU
+    ifstream sfs(Source.c_str(), std::ios::binary);
+    ofstream dfs(Destination.c_str(), std::ios::binary);
+    dfs << sfs.rdbuf();
+    if( sfs.fail() )
+    {
+        cerr << "Error reading Source file: " << Source << endl;
+        exit(E_FAILREADFILE);
+    }
 
-    #endif
+    if( dfs.fail() )
+    {
+        cerr << "Error writing Destination file: " << Destination << endl;
+        exit(E_FAILWRITEFILE);
+    }
+    //sfs.close();
+    //dfs.close();
+}
+
+void RunSpecificCopyScript()
+{
+    stringstream ScriptName;
+    ScriptName << SourceDir << Slash << SpecificCopyScript << ScriptExt << " \"" << TargetDir << "\"";
+    cout << ScriptName.str() <<endl;
+    if ( system(ScriptName.str().c_str()) )
+    {
+        cerr << "Unknown Error Calling: " << ScriptName.str() << endl;
+        exit(E_FAILSPECIFICCOPY);
+    }
 }

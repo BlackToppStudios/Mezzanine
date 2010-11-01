@@ -38,70 +38,8 @@
 #   Joseph Toppi - toppij@gmail.com
 #   John Blackwood - makoenergy02@gmail.com
 
-#Define some error codes
-E_BADSOURCEDATA=1
-E_MISSINGDIRLIST=2
-E_MISSINGFILELIST=3
-E_BADARGS=65
-
-#Assign some values we may want to change in the future
-DirList="makedirlist.txt"
-FileList="copyfilelist.txt"
-
-TargetDir="bin/$1/"
-RootSourceDir="data/"
-SourceDir="$RootSourceDir$2/"
-
-#check that we have exactly 2 arguments
-# The first argument is the name of the Build Process "LinuxDebug", "LinuxRelease", "WinDebug", ...
-if [ ! -n "$1" ]
+if [ ! -f "data/copyfiles" ]
 then
-	echo "Usage: `basename $0` BuildName CopyFromName"
-	exit $E_BADARGS
-else
-	mkdir "$TargetDir" -p
-fi  
-
-# The second argument is the set of source files to use. "linux", "macosx", "windows", ...
-if [ ! -n "$2" ]
-then
-	echo "Usage: `basename $0` BuildName CopyFromName"
-	exit $E_BADARGS
-else
-	if [ ! -d "$SourceDir" ]
-	then
-		echo "Directory $SourceDir does no exist no place to get data from."
-		exit $E_BADSOURCEDATA
-	else
-		mkdir "$TargetDir$SourceDir" -p
-	fi	
-fi 
-
-# Check that we have the file listings we need
-if [ ! -f "$RootSourceDir$DirList" ]
-then
-	echo "Missing Directory Listing to Create: $RootSourceDir$DirList"
-	exit $E_MISSINGDIRLIST
+    g++ -DGNUCOMPATIBLEOS ../tools/CopyFilesTool/main.cpp -o data/copyfiles
 fi
-
-if [ ! -f "$RootSourceDir$FileList" ]
-then
-	echo "Missing Directory Listing to Create: $RootSourceDir$FileList"
-	exit $E_MISSINGFILELIST
-fi
-
-#Make all the required directories to copy files too
-while read Line
-do   
-	mkdir "$TargetDir$Line" -p
-done <"$RootSourceDir$DirList"
-
-#Make all the planned file copies and do the work
-while read Line
-do
-	cp ${Line/Target\//$TargetDir}
-done <"$RootSourceDir$FileList"
-
-#run the next platform specific file copy.
-
-"$SourceDir"copyspecificfiles.sh $1
+data/copyfiles $1 $2

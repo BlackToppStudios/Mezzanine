@@ -45,24 +45,24 @@ E_BADARGS=65
 
 #Assign some values we may want to change in the future
 
-TargetDir="bin/$1/"
+TargetDir="$1"
 SourceDir="data/linux"
 
 # Check that we have exactly 1 arguments
 # The argument is the name of the Build Process "LinuxDebug", "LinuxRelease", "WinDebug", ...
 if [ ! -n "$1" ]
 then
-	echo "Usage: `basename $0` CopyFromName"
+	echo "Usage: `basename $0` CopyTarget"
 	exit $E_BADARGS
 else
 	#this really should have been made in copyfiles step
 	mkdir "$TargetDir" -p
-fi  
+fi
 
 #linux specific chunk
 data/linux/checklibs.sh
 
-mkdir "$TargetDir/data//linux/ogre" -p
+mkdir "$TargetDir/data/linux/ogre" -p
 cp $SourceDir/plugins.cfg $TargetDir/data/linux/ -a
 cp $SourceDir/settings.cfg $TargetDir/data/linux/ -a
 cp $SourceDir/ogre/*ender* $TargetDir/data/linux/ogre -a

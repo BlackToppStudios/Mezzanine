@@ -45,14 +45,13 @@ E_BADARGS=65
 
 #Assign some values we may want to change in the future
 
-TargetDir="bin/$1/"
+TargetDir="$1/"
 SourceDir="data/linux"
 
-# Check that we have exactly 1 arguments
-# The argument is the name of the Build Process "LinuxDebug", "LinuxRelease", "WinDebug", ...
+# Check that we have exactly 1 arguments it should be th ename of a folder
 if [ ! -n "$1" ]
 then
-	echo "Usage: `basename $0` CopyFromName"
+	echo "Usage: `basename $0` CopyTarget"
 	exit $E_BADARGS
 else
 	#this really should have been made in copyfiles step
