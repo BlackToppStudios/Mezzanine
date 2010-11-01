@@ -149,6 +149,32 @@ namespace phys
             /// user settings.
             bool ShowGraphicsSettingDialog();
 
+            /// @brief Gets the FPS based on the last frame rendered.
+            /// @details This essentially determines how many frames could be rendered if all
+            /// frames within a second rendered at the same speed.
+            /// @return Returns a Real representing the framerate.
+            Real GetLastFPS();
+
+            /// @brief Gets the Average FPS.
+            /// @return Returns a Real representing the average framerate.
+            Real GetAverageFPS();
+
+            /// @brief Gets the Best FPS.
+            /// @return Returns a Real representing the best framerate.
+            Real GetBestFPS();
+
+            /// @brief Gets the Worst FPS.
+            /// @return Returns a Real representing the worst framerate.
+            Real GetWorstFPS();
+
+            /// @brief Gets the shortest amount of time it's taken to render a frame.
+            /// @return Returns a Real representing the best time for rendering a frame.
+            Real GetBestFrameTime();
+
+            /// @brief Gets the longest amount of time it's taken to render a frame.
+            /// @return Returns a Real representing the worst time for rendering a frame.
+            Real GetWorstFrameTime();
+
         //Inherited from ManagerBase
             /// @brief Empty Initializor
             /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists

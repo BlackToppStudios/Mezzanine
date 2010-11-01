@@ -404,7 +404,7 @@ void LoadContent()
     #ifdef PHYSDEBUG
     TheWorld->Log("Trying to open test.xml");
     #endif
-    ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+    //ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
     String ShouldHaveXML("");
     std::stringstream XMLStringStream;
     //(*XMLptr) >> XMLStringStream;
@@ -412,7 +412,7 @@ void LoadContent()
     TheWorld->LogStream << "ShouldHaveXML:" << ShouldHaveXML << endl << "End XML Logging";
     #endif
     TheWorld->Log("Delete XML Stream");
-    delete XMLptr;
+    //delete XMLptr;
 
     // Now Lets make some bowling pins
     Real PinSpacing=75.0;           //This is how far apart we want the pins
@@ -538,8 +538,6 @@ void LoadContent()
 
 void MakeGUI()
 {
-    bool JoystickDebug = true;
-
     String DefaultScreen = "DefaultScreen";
     String MenuLayer = "MenuLayer";
     String HUDLayer = "HUDLayer";

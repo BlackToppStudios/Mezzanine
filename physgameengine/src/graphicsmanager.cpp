@@ -135,6 +135,38 @@ namespace phys
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    //Stats functions
+    Real GraphicsManager::GetLastFPS()
+    {
+        return OgreGameWindow->getLastFPS();
+    }
+
+    Real GraphicsManager::GetAverageFPS()
+    {
+        return OgreGameWindow->getAverageFPS();
+    }
+
+    Real GraphicsManager::GetBestFPS()
+    {
+        return OgreGameWindow->getBestFPS();
+    }
+
+    Real GraphicsManager::GetWorstFPS()
+    {
+        return OgreGameWindow->getWorstFPS();
+    }
+
+    Real GraphicsManager::GetBestFrameTime()
+    {
+        return OgreGameWindow->getBestFrameTime();
+    }
+
+    Real GraphicsManager::GetWorstFrameTime()
+    {
+        return OgreGameWindow->getWorstFrameTime();
+    }
+
     //Inherited From ManagerBase
     void GraphicsManager::Initialize()
     {
