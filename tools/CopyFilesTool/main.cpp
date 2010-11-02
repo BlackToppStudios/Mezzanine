@@ -336,12 +336,12 @@ void CopyAllFiles()
         {   //in case it fucks up getting it from the files
             if(CopyListFile.eof())
                 { break; }
-            cerr << "Copying Files mysteriously failed, add more code to copyallfiles to find out why." << endl;
+            cerr << "Reading the copy file list mysteriously failed, add more code to copyallfiles to find out why." << endl;
             exit(E_FAILCOPYALL);
         }
 
         string AdjustedLine(FixSlashes(string(Line)));
-
+        AdjustedLine = StringReplace("?", AdjustedLine, TargetDir);
         vector<string> Files;
         Tokenize(AdjustedLine, Files, "|");
         if(Files.size() == 2)
