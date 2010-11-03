@@ -88,7 +88,7 @@ string SpecificCopyScript("copyspecificfiles");     //Has extension appended lat
 #ifdef GNUCOMPATIBLEOS
     #include <unistd.h>
     #define GetCurrentDir getcwd
-    #define MKDIR(x)    mkdir(x,777)
+    #define MKDIR(x)    mkdir(x, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH )
     string Slash("/");
     string ScriptExt(".sh");
 #endif
@@ -116,9 +116,9 @@ int main(int ArgCount, char** ArgValues)
     if(3 == ArgCount)
     {
         //Lets prep the values we will use the rest of the program
-        cout << ArgValues[0] << endl ;
-        char WorkingDirectory[FILENAME_MAX];
-        cout << GetCurrentDir(WorkingDirectory, sizeof(WorkingDirectory)) <<endl ;
+        //cout << ArgValues[0] << endl ;
+        //char WorkingDirectory[FILENAME_MAX];
+        //cout << GetCurrentDir(WorkingDirectory, sizeof(WorkingDirectory)) <<endl ;
         stringstream Temp;
         Temp << TargetDir << Slash << ArgValues[1];
         TargetDir = Temp.str();
@@ -241,12 +241,12 @@ bool FileDoesExistIsItADirectory(string Filename)
         //File exists, now is it a Dir
         if( S_ISDIR(Results.st_mode) )
         {
-            cout << Filename << " is a Directory" << endl;
+            //cout << Filename << " is a Directory" << endl;
             return true;
         }
-        cout << Filename << " is not a Directory" << endl;
+        //cout << Filename << " is not a Directory" << endl;
     }else{
-        cout << Filename << " is nothing at all" << endl;
+        //cout << Filename << " is nothing at all" << endl;
     }
     return false;
 }
@@ -287,8 +287,10 @@ void MakeDir(string OneDirDeep)
 //    #ifdef WINDOWSCOMPATIBLEOS
     if ( 0== MKDIR(OneDirDeep.c_str()) ) //Success on 0
         { return; }
+    #ifdef WINDOWSCOMPATIBLEOS
     else
         { cerr << "System Error: " << errno << " - ";}
+    #endif
 /*    #endif
 
     #ifdef GNUCOMPATIBLEOS
@@ -391,7 +393,7 @@ void RunSpecificCopyScript()
 {
     stringstream ScriptName;
     ScriptName << SourceDir << Slash << SpecificCopyScript << ScriptExt << " \"" << TargetDir << "\"";
-    cout << ScriptName.str() <<endl;
+    cout << "Running Script: " << ScriptName.str() <<endl;
     if ( system(ScriptName.str().c_str()) )
     {
         cerr << "Unknown Error Calling: " << ScriptName.str() << endl;

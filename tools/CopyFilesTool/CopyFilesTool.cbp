@@ -7,8 +7,8 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="GnuDebug">
-				<Option output="bin\GnuDebug\copyfiles" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\GnuDebug\" />
+				<Option output="bin/GnuDebug/copyfiles" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/GnuDebug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -17,8 +17,8 @@
 				</Compiler>
 			</Target>
 			<Target title="GnuRelease">
-				<Option output="bin\GnuRelease\copyfiles" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\GnuRelease\" />
+				<Option output="bin/GnuRelease/copyfiles" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/GnuRelease/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -30,9 +30,9 @@
 				</Linker>
 			</Target>
 			<Target title="WinRelease">
-				<Option output="..\..\physgameengine\data\copyfiles" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="..\..\physgameengine\" />
-				<Option object_output="obj\WinRelease\" />
+				<Option output="../../physgameengine/data/copyfiles" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../../physgameengine/" />
+				<Option object_output="obj/WinRelease/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -43,12 +43,13 @@
 					<Add option="-s" />
 					<Add option="-static-libgcc" />
 					<Add option="-static-libstdc++" />
+					<Add option='&quot;-Wl,--enable-auto-import&quot;' />
 				</Linker>
 			</Target>
 			<Target title="WinDebug">
-				<Option output="..\..\physgameengine\data\copyfiles" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="..\..\physgameengine\" />
-				<Option object_output="obj\WinDebug\" />
+				<Option output="../../physgameengine/data/copyfiles" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../../physgameengine/" />
+				<Option object_output="obj/WinDebug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option parameters="WinDebug windows" />
@@ -59,6 +60,7 @@
 				<Linker>
 					<Add option="-static-libgcc" />
 					<Add option="-static-libstdc++" />
+					<Add option='&quot;-Wl,--enable-auto-import&quot;' />
 				</Linker>
 			</Target>
 		</Build>
@@ -66,9 +68,6 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Linker>
-			<Add option='&quot;-Wl,--enable-auto-import&quot;' />
-		</Linker>
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
