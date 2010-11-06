@@ -47,6 +47,7 @@
 
 #include "world.h"
 #include "eventmanager.h"
+#include "metacode.h"
 
 #include "SDL.h"
 //#include <boost/thread/thread.hpp> //will use this when this becomes multithreaded
@@ -173,11 +174,13 @@ namespace phys
         EventUserInput* FromSDLEvent = new EventUserInput();
         EventUserInput* FromSDLPolling = this->PollForUserInputEvents();
 
+        //read through the pending user input events and add those codes
         while( !SDL_UserInputEvents.empty() )
         {
             RawEvent* CurrentRawEvent = SDL_UserInputEvents.front();
 
             FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
+
             delete CurrentRawEvent;
             SDL_UserInputEvents.pop(); //NEXT!!!
         }
@@ -185,8 +188,17 @@ namespace phys
         *FromSDLEvent += *FromSDLPolling;
         delete FromSDLPolling;
 
+        //Did atleast one userinput get generates, or atleast one polling request
         if (0 < FromSDLEvent->GetMetaCodeCount())
         {
+            //check for mouse input before we send along it all to the event holding ground
+            for (Whole c=0;c<FromSDLEvent->GetMetaCodeCount();++c)
+            {
+                if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEHORIZONTAL)
+                    { this->CurrentMouseCoords.X = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }
+                if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEVERTICAL)
+                    { this->CurrentMouseCoords.X = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }
+            }
             this->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
         }else{
             delete FromSDLEvent;
@@ -607,6 +619,10 @@ namespace phys
 
     ManagerBase::ManagerTypeName EventManager::GetType() const
         { return ManagerBase::EventManager; }
+
+    // Misc functions
+    Vector2 EventManager::GetMouseCoords()
+        { return this->CurrentMouseCoords; }
 
 } // /phys
 

@@ -54,6 +54,7 @@ using namespace std;
 #include "eventrendertime.h"
 #include "eventuserinput.h"
 #include "eventquit.h"
+#include "vector2.h"
 
 namespace phys
 {
@@ -115,6 +116,8 @@ namespace phys
             void PreProcessSDLEvents();
             queue<RawEvent*> SDL_WmEvents;
             queue<RawEvent*> SDL_UserInputEvents;
+
+            Vector2 CurrentMouseCoords;
 
         public:
             /// @todo TODO build a deconstructor that deletes all the events still in the queue
@@ -355,6 +358,13 @@ namespace phys
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::EventManager
             virtual ManagerTypeName GetType() const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Misc functions
+        ///////////////////////////////////////
+            /// @brief Get the Default Mouse coordinates
+            /// @return This returns a vector2 that stores the location of the default mouse.
+            Vector2 GetMouseCoords();
 
     };
 }
