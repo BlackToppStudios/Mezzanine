@@ -415,7 +415,6 @@ namespace phys
             };
 
         private:
-
             //The three values that make a MetaCode Useful
             int MetaValue;
             short unsigned int ID;
