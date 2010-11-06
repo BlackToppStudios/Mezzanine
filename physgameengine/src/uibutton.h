@@ -111,7 +111,7 @@ namespace phys
             /// @return Returns a bool indicating whether the mouse is over this button.
             /// @param MouseX The mouse position on screen on the x axis.
             /// @param MouseY The mouse position on screen on the y axis.
-            bool MouseIsOver(Whole MouseX, Whole MouseY);
+            bool MouseIsOver();
             /// @brief Gets the stored value of whether or not the mouse is over the button.
             /// @details This function does not perform any checks.  If you want to do a manual check, call MouseIsOver().
             /// @return Returns the stored value of whether or not the mouse is over the button.

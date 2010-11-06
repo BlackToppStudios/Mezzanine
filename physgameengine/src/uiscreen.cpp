@@ -131,13 +131,13 @@ namespace phys
         }
     }
 
-    UIButton* UIScreen::GetButtonMouseIsOver(Whole MouseX, Whole MouseY)
+    UIButton* UIScreen::GetButtonMouseIsOver()
     {
         for( Whole x=0 ; x != Layers.size() ; x++ )
         {
             if( Layers[x]->GetVisible() )
             {
-                UIButton* Button = Layers[x]->GetButtonMouseIsOver(MouseX, MouseY);
+                UIButton* Button = Layers[x]->GetButtonMouseIsOver();
                 if(Button)
                 {
                     return Button;

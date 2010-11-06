@@ -114,7 +114,7 @@ namespace phys
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the visable layers contained in this screen.
             /// @return Returns the button the mouse is over, or NULL if there are none.
-            UIButton* GetButtonMouseIsOver(Whole MouseX, Whole MouseY);
+            UIButton* GetButtonMouseIsOver();
     };//uiscreen
 }//phys
 

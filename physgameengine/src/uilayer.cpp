@@ -126,7 +126,7 @@ namespace phys
         return Rectangle;
     }
 
-    UIButton* UILayer::GetButtonMouseIsOver(Whole MouseX, Whole MouseY)
+    UIButton* UILayer::GetButtonMouseIsOver()
     {
         UIButton* Button = NULL;
         for( std::vector<UIButton*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
@@ -134,7 +134,7 @@ namespace phys
             Button = (*it);
             if(!Button->IsCaption())
             {
-                if(Button->MouseIsOver(MouseX, MouseY))
+                if(Button->MouseIsOver())
                 {
                     return Button;
                 }

@@ -148,15 +148,13 @@ namespace phys
         return 0;
     }
 
-    UIButton* UIManager::GetButtonMouseIsOver(Whole MouseX, Whole MouseY)
+    UIButton* UIManager::GetButtonMouseIsOver()
     {
-        //Whole MouseX = GameWorld->GetEventManager()->getMouseX;
-        //Whole MouseY = GameWorld->GetEventManager()->getMouseY;
         for( Whole x=0 ; x < Screens.size() ; x++ )
         {
             if( Screens[x]->IsVisible() )
             {
-                UIButton* Button = Screens[x]->GetButtonMouseIsOver(MouseX, MouseY);
+                UIButton* Button = Screens[x]->GetButtonMouseIsOver();
                 if(Button)
                 {
                     return Button;

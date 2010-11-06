@@ -87,8 +87,9 @@ namespace phys
         return GorillaButton->text();
     }
 
-    bool UIButton::MouseIsOver(Whole MouseX, Whole MouseY)
+    bool UIButton::MouseIsOver()
     {
+        Manager->GetGameWorld()->GetEventManager()->
         Ogre::Vector2 MouseLoc((Real)MouseX,(Real)MouseY);
         if(GorillaButton->intersects(MouseLoc) && Parent->GetVisible())
         {

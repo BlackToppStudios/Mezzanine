@@ -120,7 +120,7 @@ namespace phys
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the buttons contained in this layer.
             /// @return Returns the button the mouse is over, or NULL if there are none.
-            UIButton* GetButtonMouseIsOver(Whole MouseX, Whole MouseY);
+            UIButton* GetButtonMouseIsOver();
             /// @internal
             /// @brief Gets the internal gorilla layer pointer.
             Gorilla::Layer* GetGorillaLayer();

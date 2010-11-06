@@ -72,9 +72,6 @@ namespace phys
             std::vector< UIScreen* > Screens;
             UIButton* HovoredButton;
             Widget* HoveredWidget;
-            /// @brief Searches all visable screens and layers to see if a button was clicked.
-            /// @return Returns the button clicked if there is one, NULL if not.
-            UIButton* GetButtonMouseIsOver(Whole MouseX, Whole MouseY);
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -119,6 +116,9 @@ namespace phys
             /// @brief Searches all screens and gets the named Layer.
             /// @return Returns the named layer if found, NULL if not.
             UILayer* GetLayer(String& Name);
+            /// @brief Searches all visable screens and layers to see if a button was clicked.
+            /// @return Returns the button clicked if there is one, NULL if not.
+            UIButton* GetButtonMouseIsOver();
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;
