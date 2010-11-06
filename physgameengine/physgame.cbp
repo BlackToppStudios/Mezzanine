@@ -45,15 +45,7 @@
 					<Add directory="data\windows\caudio" />
 				</Linker>
 				<ExtraCommands>
-					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\windows\ogre&quot; mkdir .\bin\WinDebug\data\windows\ogre' />
-					<Add after="cmd /c copy /y /v .\data\windows\ogre\OgreMain.dll .\bin\WinDebug" />
-					<Add after="cmd /c copy /y /v .\data\windows\sdl\SDL.dll .\bin\WinDebug" />
-					<Add after="cmd /c copy /y /v .\data\windows\plugins.cfg .\bin\WinDebug\data\windows" />
-					<Add after="cmd /c copy /y /v .\data\windows\settings.cfg .\bin\WinDebug\data\windows" />
-					<Add after="cmd /c copy /y /v .\data\windows\ogre\RenderSystem_GL.dll .\bin\WinDebug\data\windows\ogre" />
-					<Add after="cmd /c copy /y /v .\data\windows\caudio\cAudio.dll .\bin\WinDebug" />
-					<Add after="cmd /c copy /y /v .\data\windows\caudio\OpenAL32.dll .\bin\WinDebug" />
-					<Add after="cmd /c copy /y /v .\data\windows\caudio\wrap_oal.dll .\bin\WinDebug" />
+					<Add before="data\copyfiles.exe WinDebug windows" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>

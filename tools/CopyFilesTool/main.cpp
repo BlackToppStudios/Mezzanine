@@ -40,12 +40,12 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <exception>
 #include <vector>
 #include <fstream>
 #include <cstdlib>
 
-#include <sys/stat.h> // These should work with mingw, but may not with visual c
+#include <stdio.h>      /* defines FILENAME_MAX */
+#include <sys/stat.h>   // These should work with mingw, but may not with visual c
 #include <sys/types.h>
 
 using namespace std;
@@ -62,7 +62,7 @@ using namespace std;
 #define E_MISSINGDIRLIST 100
 #define E_MISSINGFILELIST 101
 #define E_FAILCOPYFILE 200
-#define E_FAILDIRCREATIO 201
+#define E_FAILDIRCREATION 201
 #define E_FAILCOPYALL 202
 #define E_FAILREADFILE 203
 #define E_FAILWRITEFILE 204
@@ -77,21 +77,27 @@ string DirList("makedirlist.txt");
 string FileList("copyfilelist.txt");
 string SpecificCopyScript("copyspecificfiles");     //Has extension appended later
 
-
 #ifdef WINDOWSCOMPATIBLEOS
-string Slash("\\");
-string ScriptExt(".bat");
+    #include <direct.h>
+    #define GetCurrentDir _getcwd
+    #define MKDIR(x)    mkdir(x)
+    string Slash("\\");
+    string ScriptExt(".bat");
 #endif
 
 #ifdef GNUCOMPATIBLEOS
-string Slash("/");
-string ScriptExt(".sh");
+    #include <unistd.h>
+    #define GetCurrentDir getcwd
+    #define MKDIR(x)    mkdir(x, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH )
+    string Slash("/");
+    string ScriptExt(".sh");
 #endif
 
 //Utility functions
 string Usage(string BaseName);
 void Tokenize(const string& str, vector<string>& tokens, const string& delimiters = " ");
 string StringReplace(string Needle, string Haystack, string NewNeedle);
+string FixSlashes(const string& FileName);
 
 //File Manipulation Functions
 bool FileDoesExistIsItADirectory(string Filename);
@@ -110,6 +116,9 @@ int main(int ArgCount, char** ArgValues)
     if(3 == ArgCount)
     {
         //Lets prep the values we will use the rest of the program
+        //cout << ArgValues[0] << endl ;
+        //char WorkingDirectory[FILENAME_MAX];
+        //cout << GetCurrentDir(WorkingDirectory, sizeof(WorkingDirectory)) <<endl ;
         stringstream Temp;
         Temp << TargetDir << Slash << ArgValues[1];
         TargetDir = Temp.str();
@@ -231,7 +240,13 @@ bool FileDoesExistIsItADirectory(string Filename)
     {
         //File exists, now is it a Dir
         if( S_ISDIR(Results.st_mode) )
-            { return true; }
+        {
+            //cout << Filename << " is a Directory" << endl;
+            return true;
+        }
+        //cout << Filename << " is not a Directory" << endl;
+    }else{
+        //cout << Filename << " is nothing at all" << endl;
     }
     return false;
 }
@@ -248,36 +263,44 @@ bool FileDoesExist(string Filename)
 // Make a subdirectory and all of it's parent directories
 void MakeDirTree(string Dirs)
 {
+    Dirs = FixSlashes(Dirs);
     vector<string> Tokens;
     Tokenize(Dirs, Tokens, Slash);
     stringstream Depth;
 
     for ( vector<string>::iterator iter=Tokens.begin();  iter!=Tokens.end(); ++iter )
     {
-        Depth << *iter << Slash;
+        Depth << *iter;
         MakeDir(Depth.str());
+        Depth << Slash;
     }
 }
 
 //Make a directory. All of the parent directories must be present
 void MakeDir(string OneDirDeep)
 {
+    OneDirDeep = FixSlashes(OneDirDeep);
     if (FileDoesExistIsItADirectory(OneDirDeep))
         { return; } //No need to Fuss over an already existing folder
 
-    // Begin OS specific code for Directory creation
-    #ifdef WINDOWS
 
+//    #ifdef WINDOWSCOMPATIBLEOS
+    if ( 0== MKDIR(OneDirDeep.c_str()) ) //Success on 0
+        { return; }
+    #ifdef WINDOWSCOMPATIBLEOS
+    else
+        { cerr << "System Error: " << errno << " - ";}
     #endif
+/*    #endif
 
     #ifdef GNUCOMPATIBLEOS
     if (0==mkdir(OneDirDeep.c_str(),0777)) //Success on 0
         { return; }
-    #endif
+    #endif*/
 
     //We expect the OS specific blocks to return
     cerr << "Could not make Directories: " << OneDirDeep << endl;
-    throw exception();
+    exit(E_FAILDIRCREATION);
 }
 
 //Make all the directories required in the Make Directory Listing
@@ -286,14 +309,14 @@ void MakeTargetDirs()
     ifstream DirCreationList(DirList.c_str());
     while (!DirCreationList.eof())
     {
-        char Line[256]; //anything longer than this is crazy
-        DirCreationList.getline(Line,256);
+        char Line[FILENAME_MAX];
+        DirCreationList.getline(Line,sizeof(Line));
         if(DirCreationList.fail())
         {
             if(DirCreationList.eof())
                 { break; }
-            cerr << "Copying Files mysteriously failed, add more code to copy to find out why." << endl;
-            exit(E_FAILDIRCREATIO);
+            cerr << "Creating Target Directories fails, add more code to find out why." << endl;
+            exit(E_FAILDIRCREATION);
         }
         stringstream DirToMake;
         DirToMake << TargetDir << Slash << Line;
@@ -309,20 +332,18 @@ void CopyAllFiles()
     while (!CopyListFile.eof())
     {
         //get line from files
-        char Line[256]; //anything longer than this is crazy
-        CopyListFile.getline(Line,256);
+        char Line[FILENAME_MAX]; //anything longer than this is crazy
+        CopyListFile.getline(Line,sizeof(Line));
         if(CopyListFile.fail())
         {   //in case it fucks up getting it from the files
             if(CopyListFile.eof())
                 { break; }
-            cerr << "Copying Files mysteriously failed, add more code to copyallfiles to find out why." << endl;
+            cerr << "Reading the copy file list mysteriously failed, add more code to copyallfiles to find out why." << endl;
             exit(E_FAILCOPYALL);
         }
-        //Clean up the lines
-        string AdjustedLine(StringReplace(string("?"), string(Line), TargetDir));
-        AdjustedLine=StringReplace(string("/"), AdjustedLine, Slash);
-        AdjustedLine=StringReplace(string("\\"), AdjustedLine, Slash);
 
+        string AdjustedLine(FixSlashes(string(Line)));
+        AdjustedLine = StringReplace("?", AdjustedLine, TargetDir);
         vector<string> Files;
         Tokenize(AdjustedLine, Files, "|");
         if(Files.size() == 2)
@@ -367,14 +388,24 @@ void CopyFile(string Source, string Destination)
     //dfs.close();
 }
 
+//Runs the script that should copy the system dependent files
 void RunSpecificCopyScript()
 {
     stringstream ScriptName;
     ScriptName << SourceDir << Slash << SpecificCopyScript << ScriptExt << " \"" << TargetDir << "\"";
-    cout << ScriptName.str() <<endl;
+    cout << "Running Script: " << ScriptName.str() <<endl;
     if ( system(ScriptName.str().c_str()) )
     {
         cerr << "Unknown Error Calling: " << ScriptName.str() << endl;
         exit(E_FAILSPECIFICCOPY);
     }
+}
+
+//Makes all of the slashes the system specific slashes for the filesystem
+string FixSlashes(const string& FileName)
+{
+    string Results;
+    Results=StringReplace(string("/"), FileName, Slash);
+    Results=StringReplace(string("\\"), Results, Slash);
+    return Results;
 }
