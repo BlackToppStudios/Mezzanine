@@ -216,7 +216,7 @@ namespace phys
 
             /// @internal
             /// @brief
-            Ogre::RenderSystem* OgreRenderSystem;
+            //Ogre::RenderSystem* OgreRenderSystem;
 
             /// @internal
             /// @brief

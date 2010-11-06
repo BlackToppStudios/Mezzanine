@@ -55,11 +55,14 @@ namespace Gorilla
 namespace phys
 {
     class UIScreen;
+    class UILayer;
+    class UIButton;
+    class Widget;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIManager
     /// @headerfile uimanager.h
     /// @brief This class is responsible for any and all user interactions with the User interface/HUD.
-    /// @details Optionally, you can create the UI/HUD in code or load a premade one using a Gorilla file(*.gorilla).
+    /// @details Currently, you have to create the UI/HUD in code.  Font and sprite data is loaded through a premade Gorilla file(*.gorilla).
     ///////////////////////////////////////
     class UIManager : public ManagerBase
     {
@@ -67,6 +70,11 @@ namespace phys
             /// @brief Pointer for the Gorilla core class, where this manager gets it's functionality.
             Gorilla::Silverback* Silver;
             std::vector< UIScreen* > Screens;
+            UIButton* HovoredButton;
+            Widget* HoveredWidget;
+            /// @brief Searches all visable screens and layers to see if a button was clicked.
+            /// @return Returns the button clicked if there is one, NULL if not.
+            UIButton* GetButtonMouseIsOver(Whole MouseX, Whole MouseY);
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -82,6 +90,10 @@ namespace phys
             /// @brief Loads a Gorilla file for use with this manager.
             /// @param Name The name of the file to be loaded, not including the extension.
             void LoadGorilla(const String& Name);
+            /// @brief Gets the button the mouse is hovering over.
+            /// @details This check will look through both standalone buttons and widget buttons.
+            /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
+            UIButton* GetHoveredButton();
             /// @brief Creates an internal HUD screen.
             /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI's
             /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.
@@ -104,9 +116,13 @@ namespace phys
             void DestroyScreen(UIScreen* Screen);
             /// @brief Deletes all screens stored in this manager.
             void DestroyAllScreens();
+            /// @brief Searches all screens and gets the named Layer.
+            /// @return Returns the named layer if found, NULL if not.
+            UILayer* GetLayer(String& Name);
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;
+            /// @internal
             /// @brief Gets the internal silverback pointer.
             /// @return Returns a pointer to the internal silverback class.
             Gorilla::Silverback* GetSilverbackPointer();

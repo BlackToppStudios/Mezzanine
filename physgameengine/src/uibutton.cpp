@@ -46,12 +46,12 @@
 
 namespace phys
 {
-    UIButton::UIButton(String& name, Gorilla::Caption* GButton, Gorilla::Layer* GLayer, UIManager* manager)
+    UIButton::UIButton(String& name, Gorilla::Caption* GButton, UILayer* Layer, UIManager* manager)
         : Name(name)
     {
         GorillaButton = GButton;
-        GorillaRectangle = GLayer->createRectangle(GButton->left(),GButton->top(),GButton->width(),GButton->height());
-        Parent = GLayer;
+        GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GButton->left(),GButton->top(),GButton->width(),GButton->height());
+        Parent = Layer;
         Manager = manager;
         Caption = false;
         MouseOver = false;
@@ -59,7 +59,7 @@ namespace phys
 
     UIButton::~UIButton()
     {
-        Parent->destroyCaption(GorillaButton);
+        Parent->GetGorillaLayer()->destroyCaption(GorillaButton);
     }
 
     String& UIButton::GetName()
@@ -90,7 +90,7 @@ namespace phys
     bool UIButton::MouseIsOver(Whole MouseX, Whole MouseY)
     {
         Ogre::Vector2 MouseLoc((Real)MouseX,(Real)MouseY);
-        if(GorillaButton->intersects(MouseLoc) && Parent->isVisible())
+        if(GorillaButton->intersects(MouseLoc) && Parent->GetVisible())
         {
             MouseOver = true;
         }else{
@@ -111,7 +111,7 @@ namespace phys
 
     void UIButton::SetBackgroundSprite(const String& Name)
     {
-        Gorilla::Sprite* GSprite = Parent->_getSprite(Name);
+        Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
         GorillaRectangle->background_image(GSprite);
     }
 

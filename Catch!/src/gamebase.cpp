@@ -120,9 +120,8 @@ bool PostRender()
     // Update the score
     UIButton* ScoreAmount = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer")->GetButton("ScoreArea");
     std::stringstream Score;
-    string ScoreOut;
     Score << CurrScore;
-    Score >> ScoreOut;
+    String ScoreOut = Score.str();
     ScoreAmount->SetText(ScoreOut);
 
     // Update Stat information
@@ -132,10 +131,8 @@ bool PostRender()
     std::stringstream AFPSstream;
     CFPSstream << TheWorld->GetGraphicsManager()->GetLastFPS();
     AFPSstream << TheWorld->GetGraphicsManager()->GetAverageFPS();
-    string CFPS;
-    string AFPS;
-    CFPSstream >> CFPS;
-    AFPSstream >> AFPS;
+    String CFPS = CFPSstream.str();
+    String AFPS = AFPSstream.str();
     CurFPS->SetText(CFPS);
     AvFPS->SetText(AFPS);
 

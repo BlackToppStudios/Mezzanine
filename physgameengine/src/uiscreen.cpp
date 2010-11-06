@@ -65,12 +65,12 @@ namespace phys
         return Name;
     }
 
-    void UIScreen::SetVisable(bool Visable)
+    void UIScreen::SetVisible(bool Visible)
     {
-        GorillaScreen->setVisible(Visable);
+        GorillaScreen->setVisible(Visible);
     }
 
-    bool UIScreen::IsVisable()
+    bool UIScreen::IsVisible()
     {
         return GorillaScreen->isVisible();
     }
@@ -135,7 +135,7 @@ namespace phys
     {
         for( Whole x=0 ; x != Layers.size() ; x++ )
         {
-            if( Layers[x]->GetVisable() )
+            if( Layers[x]->GetVisible() )
             {
                 UIButton* Button = Layers[x]->GetButtonMouseIsOver(MouseX, MouseY);
                 if(Button)

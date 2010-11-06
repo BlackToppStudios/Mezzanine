@@ -66,12 +66,12 @@ namespace phys
         return Name;
     }
 
-    void UILayer::SetVisable(bool Visable)
+    void UILayer::SetVisible(bool Visable)
     {
         GorillaLayer->setVisible(Visable);
     }
 
-    bool UILayer::GetVisable()
+    bool UILayer::GetVisible()
     {
         return GorillaLayer->isVisible();
     }
@@ -90,7 +90,7 @@ namespace phys
     {
         Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, X, Y, Text);
         GCaption->size(Width, Height);
-        UIButton* Button = new UIButton(Name, GCaption, GorillaLayer, Manager);
+        UIButton* Button = new UIButton(Name, GCaption, this, Manager);
         Buttons.push_back(Button);
         return Button;
     }
@@ -141,6 +141,11 @@ namespace phys
             }
         }
         return 0;
+    }
+
+    Gorilla::Layer* UILayer::GetGorillaLayer()
+    {
+        return GorillaLayer;
     }
 }//phys
 

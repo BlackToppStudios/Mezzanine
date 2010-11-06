@@ -60,8 +60,8 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIButton
     /// @headerfile uibutton.h
-    /// @brief This class is a helper class, specifically for use with buttons.
-    /// @details
+    /// @brief This class is a helper class, specifically for use with widgets.
+    /// @details A layer is a container for widgets and other UI elements that are visable.
     ///////////////////////////////////////
     class UILayer
     {
@@ -72,7 +72,6 @@ namespace phys
             String Name;
             std::vector<UIButton*> Buttons;
             std::vector<UIRectangle*> Rectangles;
-            std::vector<UIItemList*> ItemLists;
         public:
             /// @brief Internal constructor
             /// @param GScreen The Gorilla Layer this Layer is based on.
@@ -85,10 +84,10 @@ namespace phys
             String& GetName();
             /// @brief Sets the layers' visability.
             /// @param Visable A bool representing the visability of the layer.
-            void SetVisable(bool Visable);
+            void SetVisible(bool Visible);
             /// @brief Gets the layers' visability.
             /// @return Returns a bool representing the visability of the layer.
-            bool GetVisable();
+            bool GetVisible();
             /// @brief Forces the layer to be shown.
             void Show();
             /// @brief Forces the layer to hide.
@@ -122,6 +121,9 @@ namespace phys
             /// @details This function searches only the buttons contained in this layer.
             /// @return Returns the button the mouse is over, or NULL if there are none.
             UIButton* GetButtonMouseIsOver(Whole MouseX, Whole MouseY);
+            /// @internal
+            /// @brief Gets the internal gorilla layer pointer.
+            Gorilla::Layer* GetGorillaLayer();
     };//uilayer
 }//phys
 

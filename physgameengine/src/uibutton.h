@@ -79,7 +79,7 @@ namespace phys
         protected:
             Gorilla::Caption* GorillaButton;
             Gorilla::Rectangle* GorillaRectangle;
-            Gorilla::Layer* Parent;
+            UILayer* Parent;
             UIManager* Manager;
             bool MouseOver;
             bool Caption;
@@ -88,7 +88,7 @@ namespace phys
             /// @brief Internal constructor
             /// @param GButton The Gorilla Caption this button is based on.
             /// @param manager Pointer to the manager that created this button.
-            UIButton(String& name, Gorilla::Caption* GButton, Gorilla::Layer* GLayer, UIManager* manager);
+            UIButton(String& name, Gorilla::Caption* GButton, UILayer* Layer, UIManager* manager);
             /// @brief Class destructor.
             ~UIButton();
             /// @brief Gets the name of this button.
