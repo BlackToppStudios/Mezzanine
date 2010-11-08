@@ -7,18 +7,20 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="WinDebug">
-				<Option output="bin/WinDebug/EngineDemo" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/WinDebug/" />
-				<Option object_output="obj/WinDebug/" />
+				<Option output="bin\WinDebug\EngineDemo" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin\WinDebug\" />
+				<Option object_output="obj\WinDebug\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../physgameengine/src" />
+					<Add directory="..\physgameengine\src" />
 				</Compiler>
 				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
 					<Add library="physgame" />
-					<Add directory="../physgameengine/bin/WinDebug" />
+					<Add directory="..\physgameengine\bin\WinDebug" />
 				</Linker>
 				<ExtraCommands>
 					<Add after='cmd /c if not exist &quot;.\bin\WinDebug\data\windows\ogre\&quot; mkdir .\bin\WinDebug\data\windows\ogre' />
@@ -48,39 +50,41 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="LinuxDebug">
-				<Option output="bin/LinuxDebug/EngineDemo-bin" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/LinuxDebug" />
-				<Option object_output="obj/LinuxDebug" />
+				<Option output="bin\LinuxDebug\EngineDemo-bin" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin\LinuxDebug" />
+				<Option object_output="obj\LinuxDebug" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../physgameengine/src" />
+					<Add directory="..\physgameengine\src" />
 				</Compiler>
 				<Linker>
 					<Add library="physgame" />
 					<Add library="OgreMain" />
 					<Add library="cAudio" />
 					<Add directory="." />
-					<Add directory="bin/LinuxDebug" />
+					<Add directory="bin\LinuxDebug" />
 				</Linker>
 				<ExtraCommands>
 					<Add before="data/copyfiles.sh LinuxDebug linux" />
 				</ExtraCommands>
 			</Target>
 			<Target title="WinRelease">
-				<Option output="bin/WinRelease/EngineDemo" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/WinRelease/" />
-				<Option object_output="obj/WinRelease/" />
+				<Option output="bin\WinRelease\EngineDemo" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin\WinRelease\" />
+				<Option object_output="obj\WinRelease\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="../physgameengine/src" />
+					<Add directory="..\physgameengine\src" />
 				</Compiler>
 				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
 					<Add library="physgame" />
-					<Add directory="../physgameengine/bin/WinRelease" />
+					<Add directory="..\physgameengine\bin\WinRelease" />
 				</Linker>
 				<ExtraCommands>
 					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\windows\ogre\&quot; mkdir .\bin\WinRelease\data\windows\ogre' />
@@ -110,20 +114,20 @@
 				</ExtraCommands>
 			</Target>
 			<Target title="LinuxRelease">
-				<Option output="bin/LinuxRelease/EngineDemo-bin" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/LinuxRelease/" />
-				<Option object_output="obj/LinuxRelease/" />
+				<Option output="bin\LinuxRelease\EngineDemo-bin" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin\LinuxRelease\" />
+				<Option object_output="obj\LinuxRelease\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="../physgameengine/src" />
+					<Add directory="..\physgameengine\src" />
 				</Compiler>
 				<Linker>
 					<Add library="physgame" />
 					<Add library="OgreMain" />
 					<Add library="cAudio" />
-					<Add directory="bin/LinuxRelease" />
+					<Add directory="bin\LinuxRelease" />
 					<Add directory="." />
 				</Linker>
 				<ExtraCommands>
@@ -134,8 +138,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="src/gamebase.cpp" />
-		<Unit filename="src/gamebase.h" />
+		<Unit filename="src\gamebase.cpp" />
+		<Unit filename="src\gamebase.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -10,7 +10,7 @@ class StartingArea : public AreaEffect
     protected:
         Vector3 Grav;
     public:
-        StartingArea(const String &name, Vector3 Location, World* world);
+        StartingArea(const String &name, Vector3 Location);
         ~StartingArea();
         void Initialize();
         void ApplyEffect();

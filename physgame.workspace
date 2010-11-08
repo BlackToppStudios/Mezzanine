@@ -4,9 +4,9 @@
 		<Project filename="EngineDemo/EngineDemo.cbp">
 			<Depends filename="physgameengine/physgame.cbp" />
 		</Project>
-		<Project filename="Catch!/Catch!.cbp">
+		<Project filename="Catch!/Catch!.cbp" active="1">
 			<Depends filename="physgameengine/physgame.cbp" />
 		</Project>
-		<Project filename="physgameengine/physgame.cbp" active="1" />
+		<Project filename="physgameengine/physgame.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

@@ -4,7 +4,7 @@
 #include "scorearea.h"
 #include "physgame.h"
 
-ScoreArea::ScoreArea(const String &name, Vector3 Location, World* world) : AreaEffect(name, Location, world)
+ScoreArea::ScoreArea(const String &name, Vector3 Location) : AreaEffect(name, Location)
 {
 
 }

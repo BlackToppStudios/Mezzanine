@@ -47,19 +47,19 @@ namespace phys
 {
     ManagerBase::ManagerBase()
     {
-        this->GameWorld = 0;
+        this->GameWorld = World::GetWorldPointer();
         this->PreMainLoop = NULL;
         this->PostMainLoop = NULL;
         this->Priority = 0;
     }
 
-    ManagerBase::ManagerBase(World* GameWorld_)
+    /*ManagerBase::ManagerBase(World* GameWorld_)
     {
         this->GameWorld = GameWorld_;
         this->PreMainLoop = NULL;
         this->PostMainLoop = NULL;
         this->Priority = 0;
-    }
+    }*/
 
     World* ManagerBase::GetGameWorld() const
         { return this->GameWorld; }

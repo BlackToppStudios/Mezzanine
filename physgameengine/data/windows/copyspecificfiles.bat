@@ -13,9 +13,9 @@ if exist data\windows\bullet\libBullet.a goto EndBulletExistIf
 	copy libBullet.a ..\..\..\data\windows\bullet\
 	cd ..\..\..\
 :EndBulletExistIf
-
+echo "Test"
 rem Check if ticpp exists
-if exist data\windows\tinyxml\libTinyXMLpp.a goto EndTicppExistIf 
+if exist data\windows\tinyxml\libticpp.a goto EndTicppExistIf 
 	cd libincludes\common\tinyxmlppsrc
  	if exist "c:\Program Files (x86)\" goto BuildTicpp64
  		:BuildTicpp32
@@ -25,7 +25,7 @@ if exist data\windows\tinyxml\libTinyXMLpp.a goto EndTicppExistIf
  		"c:\Program Files (x86)\CodeBlocks\codeblocks.exe" --build --target=Release ticpp.workspace
  		goto EndTicppBuildIf
  	:EndTicppBuildIf
- 	copy libticpp.a ..\..\..\data\windows\tinyxml\libTinyXMLpp.a
+   	copy libticpp.a ..\..\..\data\windows\tinyxml\libticpp.a
  	cd ..\..\..\
 :EndTicppExistIf
 

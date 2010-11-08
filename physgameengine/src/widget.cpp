@@ -37,24 +37,28 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorragdoll_cpp
-#define _actorragdoll_cpp
+#ifndef _widget_cpp
+#define _widget_cpp
 
-#include "btBulletDynamicsCommon.h"
-#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
-
-#include "actorragdoll.h"
+#include "widget.h"
 
 namespace phys
 {
-    ActorRagDoll::ActorRagDoll(String name, String file, String group) : ActorBase(name, file, group)
+    namespace UI
     {
-    }
+        Widget::Widget()
+        {
+        }
 
-    ActorRagDoll::~ActorRagDoll()
-    {
+        Widget::~Widget()
+        {
+        }
 
-    }
-}
+        Widget::WidgetType Widget::GetType()
+        {
+            return Type;
+        }
+    }//UI
+}//phys
 
 #endif

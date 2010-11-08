@@ -82,7 +82,7 @@ namespace phys
             /// function and should never need to be called manually.
             /// @param SceneManagerName Name of the created SceneManager for this camera manager to use.
             /// @param SManager A pointer to the Scenemanager where you will be creating/manipulating all the cameras.
-            CameraManager(Whole SceneManagerIndex, World* world);
+            CameraManager(Whole SceneManagerIndex);
             /// @brief Class Destructor.
             /// @details The calss Destuctor
             virtual ~CameraManager();

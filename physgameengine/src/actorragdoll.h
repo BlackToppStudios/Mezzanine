@@ -60,7 +60,7 @@ namespace phys
         protected:
             BodyParts* Limbs;
         public:
-            ActorRagDoll(String name, String file, String group, World* _World);
+            ActorRagDoll(String name, String file, String group);
             ~ActorRagDoll();
     };
 }

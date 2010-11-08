@@ -51,9 +51,9 @@
 
 namespace phys
 {
-    WorldQueryTool::WorldQueryTool(World* GameWorld_)
+    WorldQueryTool::WorldQueryTool()
     {
-        this->GameWorld = GameWorld_;
+        this->GameWorld = World::GetWorldPointer();
 
         this->MouseButtonCache.reset();
 

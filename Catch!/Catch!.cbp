@@ -17,6 +17,8 @@
 					<Add directory="..\physgameengine\src" />
 				</Compiler>
 				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
 					<Add library="physgame" />
 					<Add directory="..\physgameengine\bin\WinDebug" />
 				</Linker>
@@ -88,6 +90,8 @@
 					<Add directory="..\physgameengine\src" />
 				</Compiler>
 				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
 					<Add library="physgame" />
 					<Add directory="..\physgameengine\bin\WinRelease" />
 				</Linker>

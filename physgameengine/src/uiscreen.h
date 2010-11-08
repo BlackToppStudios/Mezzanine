@@ -82,10 +82,10 @@ namespace phys
             String& GetName();
             /// @brief Sets the screens visability.
             /// @param Visable A bool representing the visability of the screen.
-            void SetVisable(bool Visable);
+            void SetVisible(bool Visible);
             /// @brief Gets the screens visability.
             /// @return Returns a bool representing the visability of the screen.
-            bool IsVisable();
+            bool IsVisible();
             /// @brief Forces the screen to be shown.
             void Show();
             /// @brief Forces the screen to hide.
@@ -114,7 +114,7 @@ namespace phys
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the visable layers contained in this screen.
             /// @return Returns the button the mouse is over, or NULL if there are none.
-            UIButton* GetButtonMouseIsOver(Whole MouseX, Whole MouseY);
+            UIButton* GetButtonMouseIsOver();
     };//uiscreen
 }//phys
 

@@ -82,7 +82,7 @@ namespace phys
             /// @details This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be
             /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens
             /// do not support arbitrary resolutions in fullscreen mode.
-            void Construct( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
+            void Construct( const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
 
             Ogre::Timer *RenderTimer;
 
@@ -94,7 +94,7 @@ namespace phys
             /// @brief Basic constructor
             /// @param GameWorld_ This is a pointer to the phys::World to which this GrapchisManager will be attached
             /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false
-            GraphicsManager(World* GameWorld_);
+            GraphicsManager();
 
             /// @brief Versatile Constructor
             /// @param GameWorld_ This is a pointer to the phys::World to which this GrapchisManager will be attached
@@ -104,7 +104,7 @@ namespace phys
             /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the
             /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support
             /// arbitrary resolutions in fullscreen mode.
-            GraphicsManager( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
+            GraphicsManager(const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
 
             /// @brief Gets the Fullscreen Setting
             /// @details Gets the Fullscreen Setting
