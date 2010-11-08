@@ -37,28 +37,57 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _widget_h
-#define _widget_h
+#ifndef _uiscrollbar_h
+#define _uiscrollbar_h
+
+#include "datatypes.h"
+#include "vector2.h"
+#include "uiwidget.h"
 
 namespace phys
 {
+    class UIButton;
+    class UIRectangle;
     namespace UI
     {
-        class Widget
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Scrollbar
+        /// @headerfile scrollbar.h
+        /// @brief This class is a widget class, to be used alongside any scrollable widget.
+        /// @details If you want to have buttons to accompany your scrollbar they'll automatically
+        /// have their height match the width of the scrollbar if it's vertical, or their width
+        /// match their height of the scrollbar if it's horizontal, based on the dimensions provided. @n
+        /// Scrollbars can come in a few styles.  Separate is the typical way to present them with the Up
+        /// or Left button being located at the top of left side of the scroller respectively.  Together
+        /// is where both scroll buttons are next to each other instead of on opposite sides of the
+        /// scroller.
+        ///////////////////////////////////////
+        class Scrollbar : public Widget
         {
             public:
-                enum WidgetType
+                enum BarStyle
                 {
-                    Scrollbar
+                    NoButtons,
+                    Separate,
+                    TogetherUpLeft,
+                    TogetherDownRight
                 };
             protected:
-                WidgetType Type;
+                String Name;
+                UIButton* Scroller;
+                UIButton* UpLeftButton;
+                UIButton* DownRightButton;
+                Real ScrollUpperLimit;
+                Real ScrollLowerLimit;
+                Real ScrollMinHeight;
+                void CreateHorizontalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style);
+                void CreateVerticalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style);
             public:
-                Widget();
-                ~Widget();
-                WidgetType GetType();
-        };
+                Scrollbar(String& Name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style);
+                ~Scrollbar();
+        };//scrollbar
     }//UI
 }//phys
 
 #endif
+

@@ -57,7 +57,7 @@ namespace phys
         Parent = Layer;
         Manager = manager;
         Caption = false;
-        MouseOver = false;
+        MouseHover = false;
     }
 
     UIButton::~UIButton()
@@ -90,21 +90,21 @@ namespace phys
         return GorillaButton->text();
     }
 
-    bool UIButton::MouseIsOver()
+    bool UIButton::CheckMouseHover()
     {
         Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
         if(GorillaButton->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
         {
-            MouseOver = true;
+            MouseHover = true;
         }else{
-            MouseOver = false;
+            MouseHover = false;
         }
-        return MouseOver;
+        return MouseHover;
     }
 
-    bool UIButton::GetMouseOver()
+    bool UIButton::GetMouseHover()
     {
-        return MouseOver;
+        return MouseHover;
     }
 
     void UIButton::SetBackgroundColour(ColourValue& Colour)

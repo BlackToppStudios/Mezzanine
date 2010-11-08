@@ -196,8 +196,8 @@ namespace phys
             {
                 if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEHORIZONTAL)
                     { this->CurrentMouseCoords.X = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }
-                if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEVERTICAL)
-                    { this->CurrentMouseCoords.X = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }
+                if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEVERTICAL)
+                    { this->CurrentMouseCoords.Y = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }
             }
             this->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
         }else{

@@ -81,7 +81,7 @@ namespace phys
             Gorilla::Rectangle* GorillaRectangle;
             UILayer* Parent;
             UIManager* Manager;
-            bool MouseOver;
+            bool MouseHover;
             bool Caption;
             String Name;
         public:
@@ -109,13 +109,11 @@ namespace phys
             String GetText();
             /// @brief Determines whether the mouse is over this button.
             /// @return Returns a bool indicating whether the mouse is over this button.
-            /// @param MouseX The mouse position on screen on the x axis.
-            /// @param MouseY The mouse position on screen on the y axis.
-            bool MouseIsOver();
+            bool CheckMouseHover();
             /// @brief Gets the stored value of whether or not the mouse is over the button.
             /// @details This function does not perform any checks.  If you want to do a manual check, call MouseIsOver().
             /// @return Returns the stored value of whether or not the mouse is over the button.
-            bool GetMouseOver();
+            bool GetMouseHover();
             /// @brief Sets the background colour of the button.
             /// @param Colour A colour value representing the colour to be set.
             void SetBackgroundColour(ColourValue& Colour);

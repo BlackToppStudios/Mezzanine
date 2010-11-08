@@ -53,47 +53,50 @@ namespace Gorilla
 namespace phys
 {
     class UIManager;
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class UIRectangle
-    /// @headerfile uirectangle.h
-    /// @brief This class is a helper class, specifically for use with background rectangle shapes.
-    /// @details
-    ///////////////////////////////////////
-    class UIRectangle
+    namespace UI
     {
-        protected:
-            Gorilla::Rectangle* GRectangle;
-            Gorilla::Layer* Parent;
-            UIManager* Manager;
-        public:
-            /// @brief Internal constructor
-            /// @param GRect The Gorilla Rectangle this rectangle is based on.
-            /// @param manager Pointer to the manager that created this rectangle.
-            UIRectangle(Gorilla::Rectangle* GRect, Gorilla::Layer* GLayer, UIManager* manager);
-            /// @brief Class destructor.
-            ~UIRectangle();
-            /// @brief Sets the background colour of the rectangle.
-            /// @param Colour A colour value representing the colour to be set.
-            void SetBackgroundColour(ColourValue& Colour);
-            /// @brief Sets the background image(if provided in the atlas) of the rectangle.
-            /// @param Name The name of the sprite to set as the background.
-            void SetBackgroundSprite(const String& Name);
-            /// @brief Enables a border and sets it's colour.
-            /// @param Colour A colour value representing the colour to be set.
-            void SetBorder(Real Width, ColourValue& Colour);
-            /// @brief Sets the top left position of this rectangle in pixels.
-            /// @param Position A Vector2 representing the location of this rectangle.
-            void SetPosition(Vector2 Position);
-            /// @brief Gets the top left position of this rectangle in pixels.
-            /// @return Returns a Vector2 representing the location of this rectangle.
-            Vector2 GetPosition();
-            /// @brief Sets the size of this rectangle in pixels.
-            /// @param Size A vector2 representing the size of this rectangle.
-            void SetSize(Vector2 Size);
-            /// @brief Gets the size of this rectangle in pixels.
-            /// @return Returns a vector2 representing the size of this rectangle.
-            Vector2 GetSize();
-    };//uirectangle
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class UIRectangle
+        /// @headerfile uirectangle.h
+        /// @brief This class is a helper class, specifically for use with background rectangle shapes.
+        /// @details
+        ///////////////////////////////////////
+        class Rectangle
+        {
+            protected:
+                Gorilla::Rectangle* GRectangle;
+                Gorilla::Layer* Parent;
+                UIManager* Manager;
+            public:
+                /// @brief Internal constructor
+                /// @param GRect The Gorilla Rectangle this rectangle is based on.
+                /// @param manager Pointer to the manager that created this rectangle.
+                Rectangle(Gorilla::Rectangle* GRect, Gorilla::Layer* GLayer, UIManager* manager);
+                /// @brief Class destructor.
+                ~Rectangle();
+                /// @brief Sets the background colour of the rectangle.
+                /// @param Colour A colour value representing the colour to be set.
+                void SetBackgroundColour(ColourValue& Colour);
+                /// @brief Sets the background image(if provided in the atlas) of the rectangle.
+                /// @param Name The name of the sprite to set as the background.
+                void SetBackgroundSprite(const String& Name);
+                /// @brief Enables a border and sets it's colour.
+                /// @param Colour A colour value representing the colour to be set.
+                void SetBorder(Real Width, ColourValue& Colour);
+                /// @brief Sets the top left position of this rectangle in pixels.
+                /// @param Position A Vector2 representing the location of this rectangle.
+                void SetPosition(Vector2 Position);
+                /// @brief Gets the top left position of this rectangle in pixels.
+                /// @return Returns a Vector2 representing the location of this rectangle.
+                Vector2 GetPosition();
+                /// @brief Sets the size of this rectangle in pixels.
+                /// @param Size A vector2 representing the size of this rectangle.
+                void SetSize(Vector2 Size);
+                /// @brief Gets the size of this rectangle in pixels.
+                /// @return Returns a vector2 representing the size of this rectangle.
+                Vector2 GetSize();
+        };//rectangle
+    }//UI
 }//phys
 
 #endif
