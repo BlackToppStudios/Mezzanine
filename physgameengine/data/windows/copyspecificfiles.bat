@@ -25,7 +25,7 @@ if exist data\windows\tinyxml\libTinyXMLpp.a goto EndTicppExistIf
  		"c:\Program Files (x86)\CodeBlocks\codeblocks.exe" --build --target=Release ticpp.workspace
  		goto EndTicppBuildIf
  	:EndTicppBuildIf
-em 	copy libticpp.a ..\..\..\data\windows\tinyxml\libTinyXMLpp.a
+ 	copy libticpp.a ..\..\..\data\windows\tinyxml\libTinyXMLpp.a
  	cd ..\..\..\
 :EndTicppExistIf
 
