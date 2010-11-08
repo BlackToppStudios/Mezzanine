@@ -13,7 +13,7 @@ if exist data\windows\bullet\libBullet.a goto EndBulletExistIf
 	copy libBullet.a ..\..\..\data\windows\bullet\
 	cd ..\..\..\
 :EndBulletExistIf
-echo "Test"
+
 rem Check if ticpp exists
 if exist data\windows\tinyxml\libticpp.a goto EndTicppExistIf 
 	cd libincludes\common\tinyxmlppsrc
