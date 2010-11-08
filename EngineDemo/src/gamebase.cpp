@@ -172,7 +172,7 @@ bool PreInput()
 bool PostInput()
 {
     //User Input through a WorldQueryTool
-    static WorldQueryTool Queryer(TheWorld);
+    static WorldQueryTool Queryer;
 
     Queryer.GatherEvents();
     TheWorld->Log("Mouse location From WorldQueryTool X/Y");
@@ -218,13 +218,11 @@ bool PostInput()
     if( Queryer.IsMouseButtonPushed(1) )
     {
         UIButton* MouseButton = NULL;
-        Whole MouseX = Queryer.GetMouseX();
-        Whole MouseY = Queryer.GetMouseY();
         UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
         {
             UILayer* Layer = Screen->GetLayer(x);
-            MouseButton = Layer->GetButtonMouseIsOver(MouseX, MouseY);
+            MouseButton = Layer->GetButtonMouseIsOver();
             if(MouseButton)
             {
                 break;
@@ -408,11 +406,9 @@ void LoadContent()
     //ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
     String ShouldHaveXML("");
     std::stringstream XMLStringStream;
-    char XMLArray[512];
-
-    //(*XMLptr) >> XMLArray;
+    //(*XMLptr) >> XMLStringStream;
     #ifdef PHYSDEBUG
-    //TheWorld->LogStream << "ShouldHaveXML:" << ShouldHaveXML << endl << "XMLArray:" << XMLArray << endl << "End XML Logging";
+    TheWorld->LogStream << "ShouldHaveXML:" << ShouldHaveXML << endl << "End XML Logging";
     #endif
     TheWorld->Log("Delete XML Stream");
     //delete XMLptr;
@@ -423,7 +419,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,TheWorld) );
+        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
         TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(4);
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
     }
@@ -432,7 +428,7 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,TheWorld) );
+        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
         //TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(3);
         TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
@@ -443,61 +439,61 @@ void LoadContent()
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,TheWorld) );
+        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
         TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
     }
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname,TheWorld) );
+    TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
     TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
     TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
 
-    GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0), TheWorld);
+    GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
     Reverse->CreateCylinderShape(Vector3(100.0,200.0,100));
     Reverse->SetLocation(Vector3(200,50,-5.0));
     TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it
 
     //// The simulations soft body, to be used once a suitable mesh is found/created.
-    //TheWorld->Actors->AddActor( new ActorSoft (51,"Column1","column.mesh",groupname,TheWorld) );
+    //TheWorld->Actors->AddActor( new ActorSoft (51,"Column1","column.mesh",groupname) );
     //ActorSoft* Act9 = static_cast < ActorSoft* > (TheWorld->Actors->LastActorAdded());
     //Act9->SetInitLocation(Vector3( (-0.5*PinSpacing), 100.0, -PinSpacing*4));
 
-    object5 = new ActorTerrain (Vector3(0.0,-100,-300.0),"Plane","Plane.mesh",groupname,TheWorld);
+    object5 = new ActorTerrain (Vector3(0.0,-100,-300.0),"Plane","Plane.mesh",groupname);
     object5->CreateShapeFromMeshStatic();
     //object5->SetInitLocation(Vector3(0.0,-100,-300.0));
 
-    object6 = new ActorTerrain (Vector3(00.0,300.0,-1100.0),"Ramp","Plane.mesh",groupname,TheWorld);
+    object6 = new ActorTerrain (Vector3(00.0,300.0,-1100.0),"Ramp","Plane.mesh",groupname);
     object6->CreateShapeFromMeshStatic();
     //object6->SetInitLocation(Vector3(00.0,300.0,-1100.0));
     object6->SetInitOrientation(Quaternion(0.5, 0.0, 0.0, -0.25));
 
-    object1 = new ActorRigid (mass,"RobotWayUpFrontRight",filerobot,groupname,TheWorld);
+    object1 = new ActorRigid (mass,"RobotWayUpFrontRight",filerobot,groupname);
     object1->CreateShapeFromMeshDynamic(1);
     object1->SetInitLocation(Vector3(400,70,100));
     object1->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object1->SetAnimation("Idle", true);
     object1->EnableAnimation(true);
 
-    object2 = new ActorRigid (150.0f,"WoodSphere","Sphere_Wood.mesh",groupname,TheWorld);
+    object2 = new ActorRigid (150.0f,"WoodSphere","Sphere_Wood.mesh",groupname);
     object2->CreateSphereShapeFromMesh();
     object2->SetActorScaling(Vector3(0.5,0.5,0.5));
     object2->SetInitLocation(Vector3(-140.0,2800.0,-1150.0));
 
-    object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname,TheWorld);
+    object3 = new ActorRigid (200.0f,"MetalSphere","Sphere_Metal.mesh",groupname);
     object3->CreateSphereShapeFromMesh();
     object3->SetActorScaling(Vector3(0.7,0.7,0.7));
     object3->SetInitLocation(Vector3(150.0,1800.0,-1300.0));
 
-    object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname,TheWorld);
+    object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname);
     object4->CreateShapeFromMeshDynamic(4);
     object4->SetInitLocation(Vector3(-400,10, 100));
     object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->SetAnimation("Idle", true);
     object4->EnableAnimation(true);
 
-    object7 = new ActorRigid (200.0f,"MetalSphere2","Sphere_Metal.mesh",groupname,TheWorld);
+    object7 = new ActorRigid (200.0f,"MetalSphere2","Sphere_Metal.mesh",groupname);
     object7->CreateSphereShapeFromMesh();
     object7->SetActorScaling(Vector3(0.3,0.3,0.3));
     object7->SetInitLocation(Vector3(10.0,25000.0,-1300.0));
@@ -517,7 +513,7 @@ void LoadContent()
     TheWorld->GetActorManager()->AddActor(object6);
     TheWorld->GetActorManager()->AddActor(object7);
 
-    AreaEffect* TestField = new TestAE("Tester", Vector3(0,0,150), TheWorld);
+    AreaEffect* TestField = new TestAE("Tester", Vector3(0,0,150));
     TestField->CreateBoxShape(Vector3(500,80,80));
     TheWorld->GetPhysicsManager()->AddAreaEffect(TestField);
 

@@ -55,7 +55,7 @@ namespace phys{
     ///////////////////////////////////
     // ActorSoft class functions
 
-    ActorSoft::ActorSoft (Real mass, String name, String file, String group, World* _World) : ActorBase (name, file, group, _World)
+    ActorSoft::ActorSoft (Real mass, String name, String file, String group) : ActorBase (name, file, group)
     {
         CreateSoftObject(mass);
         ActorType=ActorBase::Actorsoft;

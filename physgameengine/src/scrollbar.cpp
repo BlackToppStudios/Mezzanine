@@ -37,23 +37,44 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorragdoll_cpp
-#define _actorragdoll_cpp
+#ifndef _scrollbar_cpp
+#define _scrollbar_cpp
 
-#include "btBulletDynamicsCommon.h"
-#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
-
-#include "actorragdoll.h"
+#include "scrollbar.h"
 
 namespace phys
 {
-    ActorRagDoll::ActorRagDoll(String name, String file, String group) : ActorBase(name, file, group)
+    namespace UI
     {
-    }
+        Scrollbar::Scrollbar(String& name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
+            : Name(name)
+        {
+            Type = Widget::Scrollbar;
+            if(Size.Y > Size.X * 2)
+            {
+                CreateVerticalScrollbar(Position, Size, Style);
+            }
+            else if(Size.X > Size.Y * 2)
+            {
+                CreateHorizontalScrollbar(Position, Size, Style);
+            }
+            else
+            {
+                //World::GetWorldPointer()->LogAndThrow("Scrollbar dimensions incompatible with this widget.");
+            }
+        }
 
-    ActorRagDoll::~ActorRagDoll()
-    {
+        Scrollbar::~Scrollbar()
+        {
+        }
 
+        void Scrollbar::CreateHorizontalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
+        {
+        }
+
+        void Scrollbar::CreateVerticalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
+        {
+        }
     }
 }
 

@@ -53,10 +53,10 @@
 
 namespace phys{
 
-    AreaEffect::AreaEffect(const String &name, Vector3 Location, World *world)
+    AreaEffect::AreaEffect(const String &name, Vector3 Location)
         : Name (name)
     {
-        TheWorld = world;
+        TheWorld = World::GetWorldPointer();
         CreateGhostObject(Location);
     }
 
@@ -282,7 +282,7 @@ namespace phys{
     ///////////////////////////////////
     // TestAE functions
 
-    TestAE::TestAE(const String &name, Vector3 Location, World* world) : AreaEffect(name, Location, world)
+    TestAE::TestAE(const String &name, Vector3 Location) : AreaEffect(name, Location)
     {
     }
 
@@ -333,7 +333,7 @@ namespace phys{
     ///////////////////////////////////
     // GravityField functions
 
-    GravityField::GravityField(const String &name, Vector3 Location, World* world) : AreaEffect(name, Location, world)
+    GravityField::GravityField(const String &name, Vector3 Location) : AreaEffect(name, Location)
     {
     }
 

@@ -88,7 +88,7 @@ namespace phys
             /// @brief Basic Constructor
             /// @details This just assigned the passed pointer to ParentWorld
             /// @param ParentWorld_ This is the world that will perform physics and graphical work on the actors in this container
-            ActorContainerBase(World* ParentWorld_);
+            ActorContainerBase();
 
             /// @brief Destructor
             /// @details This really doesn't do anything, but if someone needs to overload it, it's here

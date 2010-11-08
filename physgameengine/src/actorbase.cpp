@@ -54,9 +54,9 @@
 namespace phys{
     ///////////////////////////////////
     // ActorBase class fuctions
-    ActorBase::ActorBase (String name, String file, String group, World* _World)
+    ActorBase::ActorBase (String name, String file, String group)
     {
-        this->GameWorld = _World;
+        this->GameWorld = World::GetWorldPointer();
         this->node = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createSceneNode();
         this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->addChild(this->node);
         //this->MotionState = new internal::PhysMotionState(this->node);

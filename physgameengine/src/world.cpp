@@ -163,21 +163,21 @@ namespace phys
         /// and components are initialized is in order.
         //Create and add any managers that have not been taken care of yet.
         if(this->GetActorManager()==0)
-            { this->AddManager(new ActorContainerVector(this)); }
+            { this->AddManager(new ActorContainerVector()); }
         if(this->GetGraphicsManager()==0)
-            { this->AddManager(new GraphicsManager(this)); }
+            { this->AddManager(new GraphicsManager()); }
         if(this->GetSoundManager()==0)
-            { this->AddManager(new SoundManager(this)); }
+            { this->AddManager(new SoundManager()); }
         if(this->GetResourceManager()==0)
-            { this->AddManager(new ResourceManager(this)); }
+            { this->AddManager(new ResourceManager()); }
         if(this->GetEventManager()==0)
-            { this->AddManager(new EventManager(this)); }
+            { this->AddManager(new EventManager()); }
         if(this->GetPhysicsManager()==0)
-            { this->AddManager(new PhysicsManager(this,GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_)); }
+            { this->AddManager(new PhysicsManager(GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_)); }
         if(this->GetSceneManager()==0)
-            { this->AddManager(new SceneManager(SceneManagerName, SceneType, this)); }
+            { this->AddManager(new SceneManager(SceneManagerName, SceneType)); }
         if(this->GetUIManager()==0)
-            { this->AddManager(new UIManager(this)); }
+            { this->AddManager(new UIManager()); }
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -516,7 +516,7 @@ namespace phys
         Camera* camera = NULL;
         if(this->GetCameraManager()==0)
         {
-            this->AddManager(new CameraManager (0,this));
+            this->AddManager(new CameraManager (0));
         }
         camera = this->GetCameraManager()->DefaultCamera;
         #ifdef PHYSDEBUG

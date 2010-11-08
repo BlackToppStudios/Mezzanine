@@ -79,7 +79,7 @@ namespace phys
         protected:
             Gorilla::Caption* GorillaButton;
             Gorilla::Rectangle* GorillaRectangle;
-            Gorilla::Layer* Parent;
+            UILayer* Parent;
             UIManager* Manager;
             bool MouseOver;
             bool Caption;
@@ -88,7 +88,7 @@ namespace phys
             /// @brief Internal constructor
             /// @param GButton The Gorilla Caption this button is based on.
             /// @param manager Pointer to the manager that created this button.
-            UIButton(String& name, Gorilla::Caption* GButton, Gorilla::Layer* GLayer, UIManager* manager);
+            UIButton(String& name, Gorilla::Caption* GButton, UILayer* Layer, UIManager* manager);
             /// @brief Class destructor.
             ~UIButton();
             /// @brief Gets the name of this button.
@@ -111,7 +111,7 @@ namespace phys
             /// @return Returns a bool indicating whether the mouse is over this button.
             /// @param MouseX The mouse position on screen on the x axis.
             /// @param MouseY The mouse position on screen on the y axis.
-            bool MouseIsOver(Whole MouseX, Whole MouseY);
+            bool MouseIsOver();
             /// @brief Gets the stored value of whether or not the mouse is over the button.
             /// @details This function does not perform any checks.  If you want to do a manual check, call MouseIsOver().
             /// @return Returns the stored value of whether or not the mouse is over the button.

@@ -91,8 +91,7 @@ namespace phys{
             /// @details Basic initialization constructor.
             /// @param name The name of the field.
             /// @param Location The location of the AE field.
-            /// @param world Pointer to the world class, to allow any kind of manipulation of objects inside.
-            AreaEffect(const String &name, Vector3 Location, World* world);
+            AreaEffect(const String &name, Vector3 Location);
             /// @brief Destructor.
             /// @details Class destructor.
             virtual ~AreaEffect();
@@ -163,8 +162,7 @@ namespace phys{
             /// @details Basic initialization constructor.
             /// @param name The name of the field.
             /// @param Location The location of the AE field.
-            /// @param world Pointer to the world class, to allow any kind of manipulation of objects inside.
-            TestAE(const String &name, Vector3 Location, World* world);
+            TestAE(const String &name, Vector3 Location);
             /// @brief Destructor.
             /// @details Class destructor.
             ~TestAE();
@@ -190,8 +188,7 @@ namespace phys{
             /// @details Basic initialization constructor.
             /// @param name The name of the field.
             /// @param Location The location of the AE field.
-            /// @param world Pointer to the world class, to allow any kind of manipulation of objects inside.
-            GravityField(const String &name, Vector3 Location, World* world);
+            GravityField(const String &name, Vector3 Location);
             /// @brief Destructor.
             /// @details Class destructor.
             ~GravityField();

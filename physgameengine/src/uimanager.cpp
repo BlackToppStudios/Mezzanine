@@ -46,14 +46,18 @@
 #include "cameramanager.h"
 #include "uiscreen.h"
 #include "uibutton.h"
+#include "uilayer.h"
 
 #include <Ogre.h>
 
 namespace phys
 {
-    UIManager::UIManager(World* World_) : ManagerBase(World_)
+    UIManager::UIManager()
     {
         Silver = new Gorilla::Silverback();
+        Priority = -35;
+        HoveredButton = NULL;
+        HoveredWidget = NULL;
     }
 
     UIManager::~UIManager()
@@ -73,6 +77,16 @@ namespace phys
     void UIManager::LoadGorilla(const String& Name)
     {
         Silver->loadAtlas(Name);
+    }
+
+    UIButton* UIManager::GetHoveredButton()
+    {
+        return HoveredButton;
+    }
+
+    Widget* UIManager::GetHoveredWidget()
+    {
+        return HoveredWidget;
     }
 
     UIScreen* UIManager::CreateScreen(const String& Screen, const String& Atlas, const String& Viewport)
@@ -133,6 +147,33 @@ namespace phys
             Screens.erase(it);
         }
         return;
+    }
+
+    UILayer* UIManager::GetLayer(String& Name)
+    {
+        for( Whole x=0 ; x < Screens.size() ; x++ )
+        {
+            UILayer* Layer = Screens[x]->GetLayer(Name);
+            if(NULL!=Layer)
+                return Layer;
+        }
+        return 0;
+    }
+
+    UIButton* UIManager::GetButtonMouseIsOver()
+    {
+        for( Whole x=0 ; x < Screens.size() ; x++ )
+        {
+            if( Screens[x]->IsVisible() )
+            {
+                UIButton* Button = Screens[x]->GetButtonMouseIsOver();
+                if(Button)
+                {
+                    return Button;
+                }
+            }
+        }
+        return 0;
     }
 
     ManagerBase::ManagerTypeName UIManager::GetType() const

@@ -31,6 +31,8 @@
 					<Add option="-Wl,--enable-auto-image-base" />
 					<Add option="-Wl,--add-stdcall-alias" />
 					<Add option="-Wl,--enable-auto-import" />
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
 					<Add library="SDL" />
 					<Add library="OgreMain" />
 					<Add library="data\windows\bullet\libBullet.a" />
@@ -112,6 +114,8 @@
 					<Add option="-Wl,--enable-auto-image-base" />
 					<Add option="-Wl,--add-stdcall-alias" />
 					<Add option="-Wl,--enable-auto-import" />
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
 					<Add library="SDL" />
 					<Add library="OgreMain" />
 					<Add library="data\windows\bullet\libBullet.a" />
@@ -273,6 +277,8 @@
 		<Unit filename="src\resourcemanager.h" />
 		<Unit filename="src\scenemanager.cpp" />
 		<Unit filename="src\scenemanager.h" />
+		<Unit filename="src\scrollbar.cpp" />
+		<Unit filename="src\scrollbar.h" />
 		<Unit filename="src\sound.cpp" />
 		<Unit filename="src\sound.h" />
 		<Unit filename="src\soundlistener.cpp" />
@@ -295,6 +301,8 @@
 		<Unit filename="src\vector3.h" />
 		<Unit filename="src\vector3wactor.cpp" />
 		<Unit filename="src\vector3wactor.h" />
+		<Unit filename="src\widget.cpp" />
+		<Unit filename="src\widget.h" />
 		<Unit filename="src\world.cpp" />
 		<Unit filename="src\world.h" />
 		<Unit filename="src\worldgetset.cpp" />

@@ -316,8 +316,7 @@ namespace phys
             /// @param name The name of the actor.
             /// @param file The 3d mesh file that contains the 3d model the actor will use.
             /// @param group The resource group where the 3d mesh and other related files can be found.
-            /// @param _World Pointer to the World this object will be added to.
-            ActorBase (String name, String file, String group, World* _World);
+            ActorBase (String name, String file, String group);
 
             /// @brief Sets the starting location of the actor.
             /// @details Calling this function after adding it to the World will have no effect. @n

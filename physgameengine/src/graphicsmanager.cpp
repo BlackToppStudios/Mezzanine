@@ -52,20 +52,19 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////
     // Creation and Deletion functions
     ///////////////////////////////////
-    GraphicsManager::GraphicsManager( World* GameWorld_ )
+    GraphicsManager::GraphicsManager()
     {
-        Construct( GameWorld_, 800, 600, false );
+        Construct( 800, 600, false );
     }
 
-    GraphicsManager::GraphicsManager( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
+    GraphicsManager::GraphicsManager( const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
     {
-        Construct( GameWorld_, Width_, Height_, FullScreen_ );
+        Construct( Width_, Height_, FullScreen_ );
     }
 
-    void GraphicsManager::Construct( World* GameWorld_, const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
+    void GraphicsManager::Construct(const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
     {
         this->FrameDelay = 0;
-        this->GameWorld = GameWorld_;
         this->Fullscreen = FullScreen_;
         this->RenderHeight = Height_;
         this->RenderWidth = Width_;

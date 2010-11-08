@@ -79,7 +79,7 @@ namespace phys
             /// manager yourself after it is constructed.
             /// @param DefaultSettings Whether or not to load default settings and initialize the
             /// manager immediately.
-            SoundManager(World* ParentWorld, bool DefaultSettings=true);
+            SoundManager(bool DefaultSettings=true);
             /// @brief Class Destructor
             /// @details The class destructor.
             ~SoundManager();

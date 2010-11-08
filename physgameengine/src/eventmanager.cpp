@@ -96,9 +96,9 @@ namespace phys
 
     /// @todo TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
     /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
-    EventManager::EventManager(World* ParentWorld_): ManagerBase(ParentWorld_)
+    EventManager::EventManager()
     {
-        this->GameWorld = ParentWorld_;
+        this->GameWorld = World::GetWorldPointer();
         PollMouseHor = false;
         PollMouseVert = false;
         this->Priority=-40;
