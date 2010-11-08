@@ -185,7 +185,7 @@ bool PreInput()
 bool PostInput()
 {
     //User Input through a WorldQueryTool
-    static WorldQueryTool Queryer(TheWorld);
+    static WorldQueryTool Queryer;
 
     Queryer.GatherEvents();
     TheWorld->Log("Mouse location From WorldQueryTool X/Y");
@@ -203,7 +203,7 @@ bool PostInput()
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
         {
             UILayer* Layer = Screen->GetLayer(x);
-            MouseButton = Layer->GetButtonMouseIsOver(MouseX, MouseY);
+            MouseButton = Layer->GetButtonMouseIsOver();
             if(MouseButton)
             {
                 break;

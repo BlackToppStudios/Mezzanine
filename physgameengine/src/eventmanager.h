@@ -125,7 +125,7 @@ namespace phys
             /// @brief Default constructor
             /// @param ParentWorld_ A pointer to the world that this world is working with Primarily
             /// @details This creates an empty PhysEventManger
-            EventManager(World* ParentWorld_);
+            EventManager();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Management functions - Work with all events

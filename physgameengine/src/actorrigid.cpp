@@ -56,7 +56,7 @@ namespace phys{
     ///////////////////////////////////
     // ActorRigid class functions
 
-    ActorRigid::ActorRigid (Real mass, String name, String file, String group, World* _World) : ActorBase (name, file, group, _World)
+    ActorRigid::ActorRigid (Real mass, String name, String file, String group) : ActorBase (name, file, group)
     {
         this->CreateMotionState(this->node);
         this->CreateRigidObject(mass);

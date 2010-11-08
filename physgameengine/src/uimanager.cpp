@@ -52,10 +52,12 @@
 
 namespace phys
 {
-    UIManager::UIManager(World* World_) : ManagerBase(World_)
+    UIManager::UIManager()
     {
         Silver = new Gorilla::Silverback();
         Priority = -35;
+        HoveredButton = NULL;
+        HoveredWidget = NULL;
     }
 
     UIManager::~UIManager()
@@ -75,6 +77,16 @@ namespace phys
     void UIManager::LoadGorilla(const String& Name)
     {
         Silver->loadAtlas(Name);
+    }
+
+    UIButton* UIManager::GetHoveredButton()
+    {
+        return HoveredButton;
+    }
+
+    Widget* UIManager::GetHoveredWidget()
+    {
+        return HoveredWidget;
     }
 
     UIScreen* UIManager::CreateScreen(const String& Screen, const String& Atlas, const String& Viewport)

@@ -9,7 +9,7 @@ class ScoreArea : public AreaEffect
 {
     protected:
     public:
-        ScoreArea(const String &name, Vector3 Location, World* world);
+        ScoreArea(const String &name, Vector3 Location);
         ~ScoreArea();
         void ApplyEffect();
         bool AllObjectsAtRest();

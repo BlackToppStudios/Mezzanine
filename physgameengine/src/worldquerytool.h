@@ -116,7 +116,7 @@ namespace phys
             /// @brief Basic Constructor.
             /// @details This creates a WorldQueryTool Ready to run queries on the the world you pass it.
             /// @param GameWorld_ This is a pointer to the phys::World to be queried
-            WorldQueryTool(World* GameWorld_);
+            WorldQueryTool();
 
             /// @brief Destructor
             /// @details Deletes everything in the world query tool.

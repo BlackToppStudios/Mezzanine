@@ -42,6 +42,9 @@
 
 #include "uibutton.h"
 #include "uilayer.h"
+#include "uimanager.h"
+#include "eventmanager.h"
+#include "world.h"
 #include "internalGorilla.h.cpp"
 
 namespace phys
@@ -89,9 +92,8 @@ namespace phys
 
     bool UIButton::MouseIsOver()
     {
-        Manager->GetGameWorld()->GetEventManager()->
-        Ogre::Vector2 MouseLoc((Real)MouseX,(Real)MouseY);
-        if(GorillaButton->intersects(MouseLoc) && Parent->GetVisible())
+        Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
+        if(GorillaButton->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
         {
             MouseOver = true;
         }else{

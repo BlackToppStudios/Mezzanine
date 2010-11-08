@@ -77,8 +77,8 @@ namespace phys
 
         public:
             /// @brief Class constructor.
-            /// @details Standard manager constructor with World pointer.
-            ResourceManager(World* _World);
+            /// @details Standard manager constructor.
+            ResourceManager();
             /// @details Class Destructor.
             ~ResourceManager();
 

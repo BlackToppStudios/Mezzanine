@@ -53,7 +53,7 @@
 
 namespace phys
 {
-    CameraManager::CameraManager(Whole SceneManagerIndex, World* world) : ManagerBase(world)
+    CameraManager::CameraManager(Whole SceneManagerIndex)
     {
         this->SManager = GameWorld->GetSceneManager(SceneManagerIndex);
         this->DefaultCamera = NULL;

@@ -130,7 +130,7 @@ namespace phys
             virtual void SetBulletOrientation (Quaternion Rotation);
 
         public:
-            ActorSoft(Real mass, String name, String file, String group, World* _World);
+            ActorSoft(Real mass, String name, String file, String group);
             /// @brief Destructor.
             /// @details The class destructor.
             virtual ~ActorSoft();

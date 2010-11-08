@@ -49,6 +49,7 @@ namespace phys
         Scrollbar::Scrollbar(String& name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
             : Name(name)
         {
+            Type = Widget::Scrollbar;
             if(Size.Y > Size.X * 2)
             {
                 CreateVerticalScrollbar(Position, Size, Style);
@@ -59,6 +60,7 @@ namespace phys
             }
             else
             {
+                //World::GetWorldPointer()->LogAndThrow("Scrollbar dimensions incompatible with this widget.");
             }
         }
 

@@ -58,7 +58,7 @@
 
 namespace phys {
 
-    ResourceManager::ResourceManager(World* _World) : ManagerBase(_World)
+    ResourceManager::ResourceManager()
     {
         this->Priority = 20;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();

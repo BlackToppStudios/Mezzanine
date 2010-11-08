@@ -46,7 +46,7 @@
 
 namespace phys
 {
-    SoundManager::SoundManager(World* ParentWorld, bool DefaultSettings) : ManagerBase(ParentWorld)
+    SoundManager::SoundManager(bool DefaultSettings)
     {
         AudioManager = cAudio::createAudioManager(DefaultSettings);
         AudioListener = AudioManager->getListener();

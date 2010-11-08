@@ -260,14 +260,14 @@ namespace phys
 
 
 
-    PhysicsManager::PhysicsManager(World* GameWorld_)
+    PhysicsManager::PhysicsManager()
     {
-        this->Construct(GameWorld_,Vector3(-10.0,-10.0,-10.0), Vector3(10.0,10.0,10.0), 10);
+        this->Construct(Vector3(-10.0,-10.0,-10.0), Vector3(10.0,10.0,10.0), 10);
     }
 
-    PhysicsManager::PhysicsManager(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
+    PhysicsManager::PhysicsManager(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
     {
-        this->Construct(GameWorld_, GeographyLowerBounds_, GeographyUpperbounds_, MaxPhysicsProxies_);
+        this->Construct(GeographyLowerBounds_, GeographyUpperbounds_, MaxPhysicsProxies_);
     }
 
     PhysicsManager::~PhysicsManager()
@@ -282,9 +282,8 @@ namespace phys
 
     }
 
-    void PhysicsManager::Construct(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
+    void PhysicsManager::Construct(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
     {
-        this->GameWorld = GameWorld_;
         this->Priority = -30;
 
         //instantiate the Physics engine and related items

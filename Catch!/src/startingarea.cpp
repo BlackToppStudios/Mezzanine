@@ -4,7 +4,7 @@
 #include "startingarea.h"
 #include "physgame.h"
 
-StartingArea::StartingArea(const String &name, Vector3 Location, World* world) : AreaEffect(name, Location, world)
+StartingArea::StartingArea(const String &name, Vector3 Location) : AreaEffect(name, Location)
 {
     Grav.X = 0;
     Grav.Y = 0;

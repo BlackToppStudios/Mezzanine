@@ -50,7 +50,7 @@ namespace phys
         @section actorcontaineroverview Actor Container Overview
     */
 
-    ActorContainerBase::ActorContainerBase(World* ParentWorld_) : ManagerBase(ParentWorld_)
+    ActorContainerBase::ActorContainerBase() : ManagerBase()
         {}
 
     ActorContainerBase::~ActorContainerBase()

@@ -103,7 +103,7 @@ namespace phys
             /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world
             /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
             /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
-            void Construct(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
+            void Construct(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
 
             /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect instance.
             /// @details This function is automatically called every step.
@@ -114,7 +114,7 @@ namespace phys
             /// @details This constructor will assign some sane default values and will create a physics
             /// world that can be used immediately
             /// @param GameWorld_ This is a pointer to the game world this PhysicsManager will work with
-            PhysicsManager(World* GameWorld_);
+            PhysicsManager();
 
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics
@@ -123,7 +123,7 @@ namespace phys
             /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world
             /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
             /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
-            PhysicsManager(World* GameWorld_, const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
+            PhysicsManager(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
 
             /// @brief This configures the Physics Manager to work with the Graphic settings
             /// @details This configures the Physics manager to work with the existing graphics settings. This must

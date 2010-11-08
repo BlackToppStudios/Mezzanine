@@ -31,11 +31,13 @@
 					<Add option="-Wl,--enable-auto-image-base" />
 					<Add option="-Wl,--add-stdcall-alias" />
 					<Add option="-Wl,--enable-auto-import" />
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
 					<Add library="SDL" />
 					<Add library="OgreMain" />
 					<Add library="data\windows\bullet\libBullet.a" />
 					<Add library="data\windows\convex decomp\libConvex Decomposition.a" />
-					<Add library="data\windows\tinyxml\libTinyXMLpp.a" />
+					<Add library="data\windows\tinyxml\libticpp.a" />
 					<Add library="data\windows\caudio\cAudio.dll" />
 					<Add directory="data\windows\sdl" />
 					<Add directory="data\windows\ogre" />
@@ -112,11 +114,13 @@
 					<Add option="-Wl,--enable-auto-image-base" />
 					<Add option="-Wl,--add-stdcall-alias" />
 					<Add option="-Wl,--enable-auto-import" />
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
 					<Add library="SDL" />
 					<Add library="OgreMain" />
 					<Add library="data\windows\bullet\libBullet.a" />
 					<Add library="data\windows\convex decomp\libConvex Decomposition.a" />
-					<Add library="data\windows\tinyxml\libTinyXMLpp.a" />
+					<Add library="data\windows\tinyxml\libticpp.a" />
 					<Add library="data\windows\caudio\cAudio.dll" />
 					<Add directory="data\windows\sdl" />
 					<Add directory="data\windows\ogre" />
@@ -126,7 +130,7 @@
 					<Add directory="data\windows\caudio" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="data\copyfiles.exe WinRelease windows" />
+					<Add before="data\copyfiles.exe WinRelease windows" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>

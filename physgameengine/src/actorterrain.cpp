@@ -51,7 +51,7 @@
 
 namespace phys
 {
-    ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group, World* _World) : ActorBase(name, file, group, _World)
+    ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group) : ActorBase(name, file, group)
     {
         CreateMotionState(this->node, InitPosition);
         CreateCollisionTerrain();

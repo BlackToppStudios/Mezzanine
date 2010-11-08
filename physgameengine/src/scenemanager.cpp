@@ -49,7 +49,7 @@
 
 namespace phys
 {
-    SceneManager::SceneManager(const String& Name, SceneManager::SceneManagerType ManagerType, World* world) : ManagerBase(world)
+    SceneManager::SceneManager(const String& Name, SceneManager::SceneManagerType ManagerType)
     {
         Ogre::SceneType Type;
         switch (ManagerType)
