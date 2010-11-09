@@ -54,7 +54,7 @@ void ItemShopList::DrawList()
 {
     if(ItemList.empty())
         return;
-    for( std::vector<UIButton*>::iterator it = ItemList.begin() ; it != ItemList.end() ; it++ )
+    for( std::vector<UI::Button*>::iterator it = ItemList.begin() ; it != ItemList.end() ; it++ )
     {
         (*it)->SetPosition(Offscreen);
     }
@@ -73,7 +73,7 @@ void ItemShopList::DrawList()
     Real YPos = (ListArea->GetPosition().Y) + VertDist;
     for( Whole x=0 ; x != ItemLoop ; x++, TopItem++)
     {
-        UIButton* TempButton = ItemList[TopItem];
+        UI::Button* TempButton = ItemList[TopItem];
         YPos+=(VertDist+(ItemList[TopItem-1]->GetSize().Y));
         Vector2 Position(ButtonXAlign,YPos);
         TempButton->SetPosition(Position);
@@ -122,15 +122,15 @@ void ItemShopList::CreateListArea(Real X, Real Y, Real Width, Real Height)
     ButtonXAlign = (ListArea->GetPosition().X) + (ListArea->GetSize().X * 0.05);
 }
 
-void ItemShopList::AddItemToList(UIButton* Item)
+void ItemShopList::AddItemToList(UI::Button* Item)
 {
     ItemList.push_back(Item);
     ResizeScrollBar();
 }
 
-void ItemShopList::RemoveItemFromList(UIButton* Item)
+void ItemShopList::RemoveItemFromList(UI::Button* Item)
 {
-    for( std::vector<UIButton*>::iterator it = ItemList.begin() ; it != ItemList.end() ; it++ )
+    for( std::vector<UI::Button*>::iterator it = ItemList.begin() ; it != ItemList.end() ; it++ )
     {
         if(Item == (*it))
         {
@@ -171,7 +171,7 @@ UI::Rectangle* ItemShopList::GetSideScroll()
     return SideScroll;
 }
 
-UIButton* ItemShopList::GetSelectedItem()
+UI::Button* ItemShopList::GetSelectedItem()
 {
     return Selected;
 }

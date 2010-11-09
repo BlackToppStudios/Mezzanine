@@ -79,12 +79,12 @@ namespace phys
         Silver->loadAtlas(Name);
     }
 
-    UIButton* UIManager::GetHoveredButton()
+    UI::Button* UIManager::GetHoveredButton()
     {
         return HoveredButton;
     }
 
-    Widget* UIManager::GetHoveredWidget()
+    UI::Widget* UIManager::GetHoveredWidget()
     {
         return HoveredWidget;
     }
@@ -160,16 +160,16 @@ namespace phys
         return 0;
     }
 
-    UIButton* UIManager::GetButtonMouseIsOver()
+    UI::Button* UIManager::GetButtonMouseIsOver()
     {
         for( Whole x=0 ; x < Screens.size() ; x++ )
         {
             if( Screens[x]->IsVisible() )
             {
-                UIButton* Button = Screens[x]->GetButtonMouseIsOver();
-                if(Button)
+                UI::Button* button = Screens[x]->GetButtonMouseIsOver();
+                if(button)
                 {
-                    return Button;
+                    return button;
                 }
             }
         }

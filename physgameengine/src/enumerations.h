@@ -37,70 +37,36 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uirectangle_cpp
-#define _uirectangle_cpp
-
-#include "uirectangle.h"
-#include "uimanager.h"
-#include "uilayer.h"
-#include "world.h"
-
-#include "internalGorilla.h.cpp"
+#ifndef _enumerations_h
+#define _enumerations_h
+///////////////////////////////////////////////////////////////////////////////
+//Any global enumerations shared between multiple classes is to be declared here.
+///////////////////////////////////////
 
 namespace phys
 {
     namespace UI
     {
-        Rectangle::Rectangle(Gorilla::Rectangle* GRect, UILayer* GLayer)
+        /// @enum TextVerticalAlign
+        /// @brief Used by UI classes to determine the placement of text within a given area.
+        /// @details This enum determines the Vertical alignment of text.
+        /// This enum is used by these classes in the UI namespace: Button and Caption.
+        enum TextVerticalAlign
         {
-            GRectangle = GRect;
-            Parent = GLayer;
-            Manager = World::GetWorldPointer()->GetUIManager();
-        }
-
-        Rectangle::~Rectangle()
+            Top,
+            Bottom,
+            Center
+        };
+        /// @enum TextHorizontalAlign
+        /// @brief Used by UI classes to determine the placement of text within a given area.
+        /// @details This enum determines the Horizontal alignment of text.
+        /// This enum is used by these classes in the UI namespace: Button and Caption.
+        enum TextHorizontalAlign
         {
-            Parent->GetGorillaLayer()->destroyRectangle(GRectangle);
-        }
-
-        void Rectangle::SetBackgroundColour(ColourValue& Colour)
-        {
-            GRectangle->background_colour(Colour.GetOgreColourValue());
-        }
-
-        void Rectangle::SetBackgroundSprite(const String& Name)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
-            GRectangle->background_image(GSprite);
-        }
-
-        void Rectangle::SetBorder(Real Width, ColourValue& Colour)
-        {
-            GRectangle->border(Width, Colour.GetOgreColourValue());
-        }
-
-        void Rectangle::SetPosition(Vector2 Position)
-        {
-            GRectangle->position(Position.GetOgreVector2());
-        }
-
-        Vector2 Rectangle::GetPosition()
-        {
-            Vector2 Pos(GRectangle->left(), GRectangle->top());
-            return Pos;
-        }
-
-        void Rectangle::SetSize(Vector2 Size)
-        {
-            GRectangle->width(Size.X);
-            GRectangle->height(Size.Y);
-        }
-
-        Vector2 Rectangle::GetSize()
-        {
-            Vector2 Pos(GRectangle->width(), GRectangle->height());
-            return Pos;
-        }
+            Left,
+            Right,
+            Middle
+        };
     }
 }
 

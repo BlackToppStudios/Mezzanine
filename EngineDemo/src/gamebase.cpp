@@ -217,7 +217,7 @@ bool PostInput()
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
-        UIButton* MouseButton = NULL;
+        UI::Button* MouseButton = NULL;
         UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
         {
@@ -552,11 +552,11 @@ void MakeGUI()
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     //Build the HUD layer
-    UIButton* MenuButton = HUD->CreateButton( "Menu", 0.0, WHeight * 0.92,
+    UI::Button* MenuButton = HUD->CreateButton( "Menu", 0.0, WHeight * 0.92,
                                             WWidth * 0.2, WHeight * 0.08,
                                             24, "Menu");
-    MenuButton->HorizontallyAlign(UIButton::Middle);
-    MenuButton->VerticallyAlign(UIButton::Center);
+    MenuButton->HorizontallyAlign(UI::Middle);
+    MenuButton->VerticallyAlign(UI::Center);
     ColourValue MenuColour(0.1,0.3,0.8,1.0);
     MenuButton->SetBackgroundColour(MenuColour);
 
@@ -568,18 +568,20 @@ void MakeGUI()
                                                          WWidth * 0.5, WHeight * 0.7 );
     ColourValue Colours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(Colours);
-    UIButton* ReturnButton = Menu->CreateButton( "Return", WWidth * 0.30, WHeight * 0.61,
+
+    UI::Button* ReturnButton = Menu->CreateButton( "Return", WWidth * 0.30, WHeight * 0.61,
                                             WWidth * 0.4, WHeight * 0.08,
                                             24, "Return to Game");
-    ReturnButton->HorizontallyAlign(UIButton::Middle);
-    ReturnButton->VerticallyAlign(UIButton::Center);
+    ReturnButton->HorizontallyAlign(UI::Middle);
+    ReturnButton->VerticallyAlign(UI::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(Colours);
-    UIButton* ExitButton = Menu->CreateButton( "Exit", WWidth * 0.30, WHeight * 0.73,
+
+    UI::Button* ExitButton = Menu->CreateButton( "Exit", WWidth * 0.30, WHeight * 0.73,
                                             WWidth * 0.4, WHeight * 0.08,
                                             24, "Exit Game");
-    ExitButton->HorizontallyAlign(UIButton::Middle);
-    ExitButton->VerticallyAlign(UIButton::Center);
+    ExitButton->HorizontallyAlign(UI::Middle);
+    ExitButton->VerticallyAlign(UI::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ExitButton->SetBackgroundColour(Colours);
     Menu->Hide();

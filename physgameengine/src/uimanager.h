@@ -56,8 +56,11 @@ namespace phys
 {
     class UIScreen;
     class UILayer;
-    class UIButton;
-    class Widget;
+    namespace UI
+    {
+        class Button;
+        class Widget;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIManager
     /// @headerfile uimanager.h
@@ -70,8 +73,8 @@ namespace phys
             /// @brief Pointer for the Gorilla core class, where this manager gets it's functionality.
             Gorilla::Silverback* Silver;
             std::vector< UIScreen* > Screens;
-            UIButton* HoveredButton;
-            Widget* HoveredWidget;
+            UI::Button* HoveredButton;
+            UI::Widget* HoveredWidget;
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -89,11 +92,11 @@ namespace phys
             /// @brief Gets the button the mouse is hovering over.
             /// @details This check will look through both standalone buttons and widget buttons.
             /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
-            UIButton* GetHoveredButton();
+            UI::Button* GetHoveredButton();
             /// @brief Gets the Widget the mouse is hovering over.
             /// @details If the button found during button checks belongs to a widget, this will get that widget.
             /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
-            Widget* GetHoveredWidget();
+            UI::Widget* GetHoveredWidget();
             /// @brief Creates an internal HUD screen.
             /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI's
             /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.
@@ -121,7 +124,7 @@ namespace phys
             UILayer* GetLayer(String& Name);
             /// @brief Searches all visable screens and layers to see if a button was clicked.
             /// @return Returns the button clicked if there is one, NULL if not.
-            UIButton* GetButtonMouseIsOver();
+            UI::Button* GetButtonMouseIsOver();
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;

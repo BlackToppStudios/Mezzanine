@@ -98,7 +98,7 @@ bool PostRender()
     }
 
     // Update the timer
-    UIButton* Timer = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer")->GetButton("Timer");
+    UI::Caption* Timer = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer")->GetCaption("Timer");
     std::stringstream time;
     Whole TotalSeconds = gametime/1000;
     Whole Minutes = TotalSeconds/60;
@@ -118,15 +118,15 @@ bool PostRender()
     Timer->SetText(time.str());
 
     // Update the score
-    UIButton* ScoreAmount = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer")->GetButton("ScoreArea");
+    UI::Caption* ScoreAmount = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer")->GetCaption("ScoreArea");
     std::stringstream Score;
     Score << CurrScore;
     String ScoreOut = Score.str();
     ScoreAmount->SetText(ScoreOut);
 
     // Update Stat information
-    UIButton* CurFPS = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetButton("CurFPS");
-    UIButton* AvFPS = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetButton("AvFPS");
+    UI::Caption* CurFPS = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("CurFPS");
+    UI::Caption* AvFPS = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("AvFPS");
     std::stringstream CFPSstream;
     std::stringstream AFPSstream;
     CFPSstream << TheWorld->GetGraphicsManager()->GetLastFPS();
@@ -196,7 +196,7 @@ bool PostInput()
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
-        UIButton* MouseButton = NULL;
+        UI::Button* MouseButton = NULL;
         UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
         {
@@ -404,31 +404,29 @@ void MakeGUI()
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     //Build the HUD layer
-    UIButton* Timer = HUD->CreateButton( "Timer", WWidth * 0.8995, WHeight * 0.006, WWidth * 0.0965, WHeight * 0.06, 20, "0:00");
-    Timer->SetAsCaption(true);
-    Timer->HorizontallyAlign(UIButton::Middle);
-    Timer->VerticallyAlign(UIButton::Center);
+    UI::Caption* Timer = HUD->CreateCaption( "Timer", WWidth * 0.8995, WHeight * 0.006, WWidth * 0.0965, WHeight * 0.06, 20, "0:00");
+    Timer->HorizontallyAlign(UI::Middle);
+    Timer->VerticallyAlign(UI::Center);
     Timer->SetBackgroundSprite("TimerArea");
 
     UI::Rectangle* TIcon = HUD->CreateRectangle( WWidth * 0.8515, WHeight * 0.006, WWidth * 0.0482, WHeight * 0.06);
     TIcon->SetBackgroundSprite("TimerLogo");
 
-    UIButton* MenuButton = HUD->CreateButton( "Menu", WWidth * 0.008, WHeight * 0.922, WWidth * 0.16, WHeight * 0.06, 20, " ");
+    UI::Button* MenuButton = HUD->CreateButton( "Menu", WWidth * 0.008, WHeight * 0.922, WWidth * 0.16, WHeight * 0.06, 20, " ");
     MenuButton->SetBackgroundSprite("MenuButton");
 
-    UIButton* StoreButton = HUD->CreateButton( "Store", WWidth * 0.922, WHeight * 0.922, WWidth * 0.065, WHeight * 0.065, 10, " ");
+    UI::Button* StoreButton = HUD->CreateButton( "Store", WWidth * 0.922, WHeight * 0.922, WWidth * 0.065, WHeight * 0.065, 10, " ");
     StoreButton->SetBackgroundSprite("StoreButton");
 
     UI::Rectangle* StoreText = HUD->CreateRectangle( WWidth * 0.767, WHeight * 0.922, WWidth * 0.14, WHeight * 0.065);
     StoreText->SetBackgroundSprite("StoreText");
 
-    UIButton* ScoreAmount = HUD->CreateButton( "ScoreArea", WWidth * 0.135, WHeight * 0.006, WWidth * 0.15, WHeight * 0.065, 20, "0");
+    UI::Caption* ScoreAmount = HUD->CreateCaption( "ScoreArea", WWidth * 0.135, WHeight * 0.006, WWidth * 0.15, WHeight * 0.065, 20, "0");
     //ScoreAmount->SetBackgroundSprite("ScoreCashArea");
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ScoreAmount->SetBackgroundColour(Transparent);
-    ScoreAmount->SetAsCaption(true);
-    ScoreAmount->HorizontallyAlign(UIButton::Middle);
-    ScoreAmount->VerticallyAlign(UIButton::Center);
+    ScoreAmount->HorizontallyAlign(UI::Middle);
+    ScoreAmount->VerticallyAlign(UI::Center);
 
     UI::Rectangle* ScoreText = HUD->CreateRectangle( WWidth * 0.008, WHeight * 0.006, WWidth * 0.12, WHeight * 0.06);
     ScoreText->SetBackgroundSprite("ScoreText");
@@ -444,46 +442,44 @@ void MakeGUI()
                                                          WWidth * 0.5, WHeight * 0.7 );
     ColourValue Colours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(Colours);
-    UIButton* ReturnButton = Menu->CreateButton( "Return", WWidth * 0.30, WHeight * 0.61,
+
+    UI::Button* ReturnButton = Menu->CreateButton( "Return", WWidth * 0.30, WHeight * 0.61,
                                             WWidth * 0.4, WHeight * 0.08,
                                             1, "Return to Game");
-    ReturnButton->HorizontallyAlign(UIButton::Middle);
-    ReturnButton->VerticallyAlign(UIButton::Center);
+    ReturnButton->HorizontallyAlign(UI::Middle);
+    ReturnButton->VerticallyAlign(UI::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(Colours);
-    UIButton* ExitButton = Menu->CreateButton( "Exit", WWidth * 0.30, WHeight * 0.73,
+
+    UI::Button* ExitButton = Menu->CreateButton( "Exit", WWidth * 0.30, WHeight * 0.73,
                                             WWidth * 0.4, WHeight * 0.08,
                                             1, "Exit Game");
-    ExitButton->HorizontallyAlign(UIButton::Middle);
-    ExitButton->VerticallyAlign(UIButton::Center);
+    ExitButton->HorizontallyAlign(UI::Middle);
+    ExitButton->VerticallyAlign(UI::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ExitButton->SetBackgroundColour(Colours);
     Menu->Hide();
 
     //Misc Extra's
-    UIButton* CurFPS = Stats->CreateButton( "CurFPS", WWidth * 0.16, WHeight * 0.06, WWidth * 0.06, WHeight * 0.065, 14, "0.0");
+    UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", WWidth * 0.16, WHeight * 0.06, WWidth * 0.06, WHeight * 0.065, 14, "0.0");
     CurFPS->SetBackgroundColour(Transparent);
-    CurFPS->SetAsCaption(true);
-    CurFPS->HorizontallyAlign(UIButton::Left);
-    CurFPS->VerticallyAlign(UIButton::Center);
+    CurFPS->HorizontallyAlign(UI::Left);
+    CurFPS->VerticallyAlign(UI::Center);
 
-    UIButton* CurFPSText = Stats->CreateButton( "CurFPSText", WWidth * 0.008, WHeight * 0.06, WWidth * 0.15, WHeight * 0.065, 14, "Current FPS: ");
+    UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", WWidth * 0.008, WHeight * 0.06, WWidth * 0.15, WHeight * 0.065, 14, "Current FPS: ");
     CurFPSText->SetBackgroundColour(Transparent);
-    CurFPSText->SetAsCaption(true);
-    CurFPSText->HorizontallyAlign(UIButton::Left);
-    CurFPSText->VerticallyAlign(UIButton::Center);
+    CurFPSText->HorizontallyAlign(UI::Left);
+    CurFPSText->VerticallyAlign(UI::Center);
 
-    UIButton* AvFPS = Stats->CreateButton( "AvFPS", WWidth * 0.16, WHeight * 0.105, WWidth * 0.06, WHeight * 0.065, 14, "0.0");
+    UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", WWidth * 0.16, WHeight * 0.105, WWidth * 0.06, WHeight * 0.065, 14, "0.0");
     AvFPS->SetBackgroundColour(Transparent);
-    AvFPS->SetAsCaption(true);
-    AvFPS->HorizontallyAlign(UIButton::Left);
-    AvFPS->VerticallyAlign(UIButton::Center);
+    AvFPS->HorizontallyAlign(UI::Left);
+    AvFPS->VerticallyAlign(UI::Center);
 
-    UIButton* AvFPSText = Stats->CreateButton( "AvFPSText", WWidth * 0.008, WHeight * 0.105, WWidth * 0.15, WHeight * 0.065, 14, "Average FPS: ");
+    UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", WWidth * 0.008, WHeight * 0.105, WWidth * 0.15, WHeight * 0.065, 14, "Average FPS: ");
     AvFPSText->SetBackgroundColour(Transparent);
-    AvFPSText->SetAsCaption(true);
-    AvFPSText->HorizontallyAlign(UIButton::Left);
-    AvFPSText->VerticallyAlign(UIButton::Center);
+    AvFPSText->HorizontallyAlign(UI::Left);
+    AvFPSText->VerticallyAlign(UI::Center);
     //Stats->Hide();
 }
 #endif
