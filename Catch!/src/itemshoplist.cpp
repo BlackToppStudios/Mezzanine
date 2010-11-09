@@ -151,22 +151,22 @@ void ItemShopList::SetItemsToDisplay(Whole Items)
     ItemsToDisplay = Items;
 }
 
-UIRectangle* ItemShopList::GetBackdrop()
+UI::Rectangle* ItemShopList::GetBackdrop()
 {
     return Backdrop;
 }
 
-UIRectangle* ItemShopList::GetListArea()
+UI::Rectangle* ItemShopList::GetListArea()
 {
     return ListArea;
 }
 
-UIRectangle* ItemShopList::GetSideScrollBack()
+UI::Rectangle* ItemShopList::GetSideScrollBack()
 {
     return SideScrollBack;
 }
 
-UIRectangle* ItemShopList::GetSideScroll()
+UI::Rectangle* ItemShopList::GetSideScroll()
 {
     return SideScroll;
 }

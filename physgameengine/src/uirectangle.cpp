@@ -46,55 +46,58 @@
 
 namespace phys
 {
-    UIRectangle::UIRectangle(Gorilla::Rectangle* GRect, Gorilla::Layer* GLayer, UIManager* manager)
+    namespace UI
     {
-        GRectangle = GRect;
-        Parent = GLayer;
-        Manager = manager;
-    }
+        Rectangle::Rectangle(Gorilla::Rectangle* GRect, Gorilla::Layer* GLayer, UIManager* manager)
+        {
+            GRectangle = GRect;
+            Parent = GLayer;
+            Manager = manager;
+        }
 
-    UIRectangle::~UIRectangle()
-    {
-        Parent->destroyRectangle(GRectangle);
-    }
+        Rectangle::~Rectangle()
+        {
+            Parent->destroyRectangle(GRectangle);
+        }
 
-    void UIRectangle::SetBackgroundColour(ColourValue& Colour)
-    {
-        GRectangle->background_colour(Colour.GetOgreColourValue());
-    }
+        void Rectangle::SetBackgroundColour(ColourValue& Colour)
+        {
+            GRectangle->background_colour(Colour.GetOgreColourValue());
+        }
 
-    void UIRectangle::SetBackgroundSprite(const String& Name)
-    {
-        Gorilla::Sprite* GSprite = Parent->_getSprite(Name);
-        GRectangle->background_image(GSprite);
-    }
+        void Rectangle::SetBackgroundSprite(const String& Name)
+        {
+            Gorilla::Sprite* GSprite = Parent->_getSprite(Name);
+            GRectangle->background_image(GSprite);
+        }
 
-    void UIRectangle::SetBorder(Real Width, ColourValue& Colour)
-    {
-        GRectangle->border(Width, Colour.GetOgreColourValue());
-    }
+        void Rectangle::SetBorder(Real Width, ColourValue& Colour)
+        {
+            GRectangle->border(Width, Colour.GetOgreColourValue());
+        }
 
-    void UIRectangle::SetPosition(Vector2 Position)
-    {
-        GRectangle->position(Position.GetOgreVector2());
-    }
+        void Rectangle::SetPosition(Vector2 Position)
+        {
+            GRectangle->position(Position.GetOgreVector2());
+        }
 
-    Vector2 UIRectangle::GetPosition()
-    {
-        Vector2 Pos(GRectangle->left(), GRectangle->top());
-        return Pos;
-    }
+        Vector2 Rectangle::GetPosition()
+        {
+            Vector2 Pos(GRectangle->left(), GRectangle->top());
+            return Pos;
+        }
 
-    void UIRectangle::SetSize(Vector2 Size)
-    {
-        GRectangle->width(Size.X);
-        GRectangle->height(Size.Y);
-    }
+        void Rectangle::SetSize(Vector2 Size)
+        {
+            GRectangle->width(Size.X);
+            GRectangle->height(Size.Y);
+        }
 
-    Vector2 UIRectangle::GetSize()
-    {
-        Vector2 Pos(GRectangle->width(), GRectangle->height());
-        return Pos;
+        Vector2 Rectangle::GetSize()
+        {
+            Vector2 Pos(GRectangle->width(), GRectangle->height());
+            return Pos;
+        }
     }
 }
 

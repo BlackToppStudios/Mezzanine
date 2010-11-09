@@ -277,8 +277,6 @@
 		<Unit filename="src\resourcemanager.h" />
 		<Unit filename="src\scenemanager.cpp" />
 		<Unit filename="src\scenemanager.h" />
-		<Unit filename="src\scrollbar.cpp" />
-		<Unit filename="src\scrollbar.h" />
 		<Unit filename="src\sound.cpp" />
 		<Unit filename="src\sound.h" />
 		<Unit filename="src\soundlistener.cpp" />
@@ -295,14 +293,16 @@
 		<Unit filename="src\uirectangle.h" />
 		<Unit filename="src\uiscreen.cpp" />
 		<Unit filename="src\uiscreen.h" />
+		<Unit filename="src\uiscrollbar.cpp" />
+		<Unit filename="src\uiscrollbar.h" />
+		<Unit filename="src\uiwidget.cpp" />
+		<Unit filename="src\uiwidget.h" />
 		<Unit filename="src\vector2.cpp" />
 		<Unit filename="src\vector2.h" />
 		<Unit filename="src\vector3.cpp" />
 		<Unit filename="src\vector3.h" />
 		<Unit filename="src\vector3wactor.cpp" />
 		<Unit filename="src\vector3wactor.h" />
-		<Unit filename="src\widget.cpp" />
-		<Unit filename="src\widget.h" />
 		<Unit filename="src\world.cpp" />
 		<Unit filename="src\world.h" />
 		<Unit filename="src\worldgetset.cpp" />

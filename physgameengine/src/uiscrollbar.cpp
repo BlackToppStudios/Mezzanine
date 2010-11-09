@@ -37,28 +37,45 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _widget_cpp
-#define _widget_cpp
+#ifndef _uiscrollbar_cpp
+#define _uiscrollbar_cpp
 
-#include "widget.h"
+#include "uiscrollbar.h"
 
 namespace phys
 {
     namespace UI
     {
-        Widget::Widget()
+        Scrollbar::Scrollbar(String& name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
+            : Name(name)
+        {
+            Type = Widget::Scrollbar;
+            if(Size.Y > Size.X * 2)
+            {
+                CreateVerticalScrollbar(Position, Size, Style);
+            }
+            else if(Size.X > Size.Y * 2)
+            {
+                CreateHorizontalScrollbar(Position, Size, Style);
+            }
+            else
+            {
+                //World::GetWorldPointer()->LogAndThrow("Scrollbar dimensions incompatible with this widget.");
+            }
+        }
+
+        Scrollbar::~Scrollbar()
         {
         }
 
-        Widget::~Widget()
+        void Scrollbar::CreateHorizontalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
         {
         }
 
-        Widget::WidgetType Widget::GetType()
+        void Scrollbar::CreateVerticalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
         {
-            return Type;
         }
-    }//UI
-}//phys
+    }
+}
 
 #endif

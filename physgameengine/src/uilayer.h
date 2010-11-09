@@ -55,8 +55,11 @@ namespace phys
 {
     class UIButton;
     class UIManager;
-    class UIRectangle;
-    class UIItemList;
+    namespace UI
+    {
+        class Widget;
+        class Rectangle;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIButton
     /// @headerfile uibutton.h
@@ -71,7 +74,8 @@ namespace phys
             UIManager* Manager;
             String Name;
             std::vector<UIButton*> Buttons;
-            std::vector<UIRectangle*> Rectangles;
+            std::vector<UI::Rectangle*> Rectangles;
+            std::vector<UI::Widget*> Widgets;
         public:
             /// @brief Internal constructor
             /// @param GScreen The Gorilla Layer this Layer is based on.
@@ -116,7 +120,13 @@ namespace phys
             /// @param Y The position on screen in pixels for the top side of the rectangle.
             /// @param Height The height of the rectangle in pixels.
             /// @param Width The width of the rectangle in pixels.
-            UIRectangle* CreateRectangle(Real X, Real Y, Real Width, Real Height);
+            UI::Rectangle* CreateRectangle(Real X, Real Y, Real Width, Real Height);
+            /// @brief Gets an already created rectangle by index.
+            /// @return Returns a pointer to the rectangle at the specified index.
+            UI::Rectangle* GetRectangle(Whole Index);
+            /// @brief Gets the number of rectangles created and stored in this class.
+            /// @return Returns the number of rectangles this class is storing.
+            Whole GetNumRectangles();
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the buttons contained in this layer.
             /// @return Returns the button the mouse is over, or NULL if there are none.

@@ -564,7 +564,7 @@ void MakeGUI()
     ItemShop->Hide();
 
     //Build the Menu Layer
-    UIRectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
+    UI::Rectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
                                                          WWidth * 0.5, WHeight * 0.7 );
     ColourValue Colours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(Colours);

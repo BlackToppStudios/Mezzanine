@@ -197,8 +197,6 @@ bool PostInput()
     if( Queryer.IsMouseButtonPushed(1) )
     {
         UIButton* MouseButton = NULL;
-        Whole MouseX = Queryer.GetMouseX();
-        Whole MouseY = Queryer.GetMouseY();
         UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
         {
@@ -412,7 +410,7 @@ void MakeGUI()
     Timer->VerticallyAlign(UIButton::Center);
     Timer->SetBackgroundSprite("TimerArea");
 
-    UIRectangle* TIcon = HUD->CreateRectangle( WWidth * 0.8515, WHeight * 0.006, WWidth * 0.0482, WHeight * 0.06);
+    UI::Rectangle* TIcon = HUD->CreateRectangle( WWidth * 0.8515, WHeight * 0.006, WWidth * 0.0482, WHeight * 0.06);
     TIcon->SetBackgroundSprite("TimerLogo");
 
     UIButton* MenuButton = HUD->CreateButton( "Menu", WWidth * 0.008, WHeight * 0.922, WWidth * 0.16, WHeight * 0.06, 20, " ");
@@ -421,7 +419,7 @@ void MakeGUI()
     UIButton* StoreButton = HUD->CreateButton( "Store", WWidth * 0.922, WHeight * 0.922, WWidth * 0.065, WHeight * 0.065, 10, " ");
     StoreButton->SetBackgroundSprite("StoreButton");
 
-    UIRectangle* StoreText = HUD->CreateRectangle( WWidth * 0.767, WHeight * 0.922, WWidth * 0.14, WHeight * 0.065);
+    UI::Rectangle* StoreText = HUD->CreateRectangle( WWidth * 0.767, WHeight * 0.922, WWidth * 0.14, WHeight * 0.065);
     StoreText->SetBackgroundSprite("StoreText");
 
     UIButton* ScoreAmount = HUD->CreateButton( "ScoreArea", WWidth * 0.135, WHeight * 0.006, WWidth * 0.15, WHeight * 0.065, 20, "0");
@@ -432,7 +430,7 @@ void MakeGUI()
     ScoreAmount->HorizontallyAlign(UIButton::Middle);
     ScoreAmount->VerticallyAlign(UIButton::Center);
 
-    UIRectangle* ScoreText = HUD->CreateRectangle( WWidth * 0.008, WHeight * 0.006, WWidth * 0.12, WHeight * 0.06);
+    UI::Rectangle* ScoreText = HUD->CreateRectangle( WWidth * 0.008, WHeight * 0.006, WWidth * 0.12, WHeight * 0.06);
     ScoreText->SetBackgroundSprite("ScoreText");
 
     //Build the ItemShop Layer
@@ -442,7 +440,7 @@ void MakeGUI()
     ItemShop->Hide();
 
     //Build the Menu Layer
-    UIRectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
+    UI::Rectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
                                                          WWidth * 0.5, WHeight * 0.7 );
     ColourValue Colours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(Colours);

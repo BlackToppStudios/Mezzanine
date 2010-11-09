@@ -11,10 +11,10 @@ class ItemShopList
         GraphicsManager* GraphMan;
         UILayer* ParentLayer;
         UIManager* UIMan;
-        UIRectangle* Backdrop;
-        UIRectangle* ListArea;
-        UIRectangle* SideScrollBack;
-        UIRectangle* SideScroll;
+        UI::Rectangle* Backdrop;
+        UI::Rectangle* ListArea;
+        UI::Rectangle* SideScrollBack;
+        UI::Rectangle* SideScroll;
         std::vector<UIButton*> ItemList;
         UIButton* Selected;
         Real VertDist;
@@ -38,10 +38,10 @@ class ItemShopList
         void RemoveItemFromList(UIButton* Item);
         void SetScrollBarMinHeight(Real MinHeight);
         void SetItemsToDisplay(Whole Items);
-        UIRectangle* GetBackdrop();
-        UIRectangle* GetListArea();
-        UIRectangle* GetSideScrollBack();
-        UIRectangle* GetSideScroll();
+        UI::Rectangle* GetBackdrop();
+        UI::Rectangle* GetListArea();
+        UI::Rectangle* GetSideScrollBack();
+        UI::Rectangle* GetSideScroll();
         UIButton* GetSelectedItem();
 };
 

@@ -118,12 +118,22 @@ namespace phys
         return Buttons.size();
     }
 
-    UIRectangle* UILayer::CreateRectangle(Real X, Real Y, Real Width, Real Height)
+    UI::Rectangle* UILayer::CreateRectangle(Real X, Real Y, Real Width, Real Height)
     {
         Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(X, Y, Width, Height);
-        UIRectangle* Rectangle = new UIRectangle(GRectangle, GorillaLayer, Manager);
-        Rectangles.push_back(Rectangle);
-        return Rectangle;
+        UI::Rectangle* rectangle = new UI::Rectangle(GRectangle, GorillaLayer, Manager);
+        Rectangles.push_back(rectangle);
+        return rectangle;
+    }
+
+    UI::Rectangle* UILayer::GetRectangle(Whole Index)
+    {
+        return Rectangles[Index];
+    }
+
+    Whole UILayer::GetNumRectangles()
+    {
+        return Rectangles.size();
     }
 
     UIButton* UILayer::GetButtonMouseIsOver()
@@ -134,7 +144,7 @@ namespace phys
             Button = (*it);
             if(!Button->IsCaption())
             {
-                if(Button->MouseIsOver())
+                if(Button->CheckMouseHover())
                 {
                     return Button;
                 }
