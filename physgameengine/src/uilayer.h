@@ -53,12 +53,13 @@ namespace Gorilla
 
 namespace phys
 {
-    class UIButton;
     class UIManager;
     namespace UI
     {
         class Widget;
         class Rectangle;
+        class Caption;
+        class Button;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIButton
@@ -73,8 +74,9 @@ namespace phys
             Gorilla::Screen* Parent;
             UIManager* Manager;
             String Name;
-            std::vector<UIButton*> Buttons;
+            std::vector<UI::Button*> Buttons;
             std::vector<UI::Rectangle*> Rectangles;
+            std::vector<UI::Caption*> Captions;
             std::vector<UI::Widget*> Widgets;
         public:
             /// @brief Internal constructor
@@ -104,13 +106,13 @@ namespace phys
             /// @param Width The width of the button in pixels.
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
             /// @param Text Any text you want printed on the button.
-            UIButton* CreateButton(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text);
+            UI::Button* CreateButton(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text);
             /// @brief Gets an already created button by name.
             /// @return Returns a pointer to the button of the specified name.
-            UIButton* GetButton(String& Name);
+            UI::Button* GetButton(String& Name);
             /// @brief Gets an already created button by index.
             /// @return Returns a pointer to the button at the specified index.
-            UIButton* GetButton(Whole Index);
+            UI::Button* GetButton(Whole Index);
             /// @brief Gets the number of buttons created and stored in this class.
             /// @return Returns the number of buttons this class is storing.
             Whole GetNumButtons();
@@ -127,10 +129,28 @@ namespace phys
             /// @brief Gets the number of rectangles created and stored in this class.
             /// @return Returns the number of rectangles this class is storing.
             Whole GetNumRectangles();
+            /// @brief Creates a caption within this layer.
+            /// @return Returns a pointer to the created caption.
+            /// @param X The position on screen in pixels for the left side of the caption.
+            /// @param Y The position on screen in pixels for the top side of the caption.
+            /// @param Height The height of the caption in pixels.
+            /// @param Width The width of the caption in pixels.
+            /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+            /// @param Text Any text you want printed on the caption.
+            UI::Caption* CreateCaption(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text);
+            /// @brief Gets an already created caption by name.
+            /// @return Returns a pointer to the caption of the specified name.
+            UI::Caption* GetCaption(String& Name);
+            /// @brief Gets an already created caption by index.
+            /// @return Returns a pointer to the caption at the specified index.
+            UI::Caption* GetCaption(Whole Index);
+            /// @brief Gets the number of captions created and stored in this class.
+            /// @return Returns the number of captions this class is storing.
+            Whole GetNumCaptions();
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the buttons contained in this layer.
             /// @return Returns the button the mouse is over, or NULL if there are none.
-            UIButton* GetButtonMouseIsOver();
+            UI::Button* GetButtonMouseIsOver();
             /// @internal
             /// @brief Gets the internal gorilla layer pointer.
             Gorilla::Layer* GetGorillaLayer();

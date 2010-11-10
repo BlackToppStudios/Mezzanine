@@ -37,85 +37,62 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uibutton_cpp
-#define _uibutton_cpp
+#ifndef _uicaption_cpp
+#define _uicaption_cpp
 
-#include "uibutton.h"
+#include "uicaption.h"
 #include "uilayer.h"
 #include "uimanager.h"
-#include "eventmanager.h"
 #include "world.h"
+
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
     namespace UI
     {
-        Button::Button(String& name, Gorilla::Caption* GButton, UILayer* Layer)
+        Caption::Caption(String& name, Gorilla::Caption* GCaption, UILayer* Layer)
             : Name(name)
         {
-            GorillaButton = GButton;
-            GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GButton->left(),GButton->top(),GButton->width(),GButton->height());
+            GorillaCaption = GCaption;
             Parent = Layer;
+            GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GCaption->left(), GCaption->top(), GCaption->width(), GCaption->height());
             Manager = World::GetWorldPointer()->GetUIManager();
-            MouseHover = false;
         }
 
-        Button::~Button()
+        Caption::~Caption()
         {
-            Parent->GetGorillaLayer()->destroyCaption(GorillaButton);
+            Parent->GetGorillaLayer()->destroyCaption(GorillaCaption);
             Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
         }
 
-        String& Button::GetName()
+        String& Caption::GetName()
         {
             return Name;
         }
 
-        void Button::SetText(String& Text)
+        void Caption::SetText(String& Text)
         {
-            GorillaButton->text(Text);
+            GorillaCaption->text(Text);
         }
 
-        String Button::GetText()
+        String Caption::GetText()
         {
-            return GorillaButton->text();
+            return GorillaCaption->text();
         }
 
-        bool Button::CheckMouseHover()
+        void Caption::SetBackgroundColour(ColourValue& Colour)
         {
-            Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
-            if(GorillaButton->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
-            {
-                MouseHover = true;
-            }else{
-                MouseHover = false;
-            }
-            return MouseHover;
+            GorillaCaption->background(Colour.GetOgreColourValue());
         }
 
-        bool Button::GetMouseHover()
-        {
-            return MouseHover;
-        }
-
-        void Button::SetBackgroundColour(ColourValue& Colour)
-        {
-            GorillaButton->background(Colour.GetOgreColourValue());
-        }
-
-        void Button::SetBackgroundSprite(const String& Name)
+        void Caption::SetBackgroundSprite(const String& Name)
         {
             Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
             GorillaRectangle->background_image(GSprite);
         }
 
-        void Button::SetBorder(Real Width, ColourValue& Colour)
-        {
-            GorillaRectangle->border(Width, Colour.GetOgreColourValue());
-        }
-
-        void Button::HorizontallyAlign(UI::TextHorizontalAlign Align)
+        void Caption::HorizontallyAlign(UI::TextHorizontalAlign Align)
         {
             Gorilla::TextAlignment HA;
             switch (Align)
@@ -132,10 +109,10 @@ namespace phys
                 default:
                     return;
             }
-            GorillaButton->align(HA);
+            GorillaCaption->align(HA);
         }
 
-        void Button::VerticallyAlign(UI::TextVerticalAlign Align)
+        void Caption::VerticallyAlign(UI::TextVerticalAlign Align)
         {
             Gorilla::VerticalAlignment VA;
             switch (Align)
@@ -152,37 +129,37 @@ namespace phys
                 default:
                     return;
             }
-            GorillaButton->vertical_align(VA);
+            GorillaCaption->vertical_align(VA);
         }
 
-        void Button::SetPosition(Vector2 Position)
+        void Caption::SetPosition(Vector2 Position)
         {
-            GorillaButton->left(Position.X);
-            GorillaButton->top(Position.Y);
+            GorillaCaption->left(Position.X);
+            GorillaCaption->top(Position.Y);
             GorillaRectangle->left(Position.X);
             GorillaRectangle->top(Position.Y);
         }
 
-        Vector2 Button::GetPosition()
+        Vector2 Caption::GetPosition()
         {
-            Vector2 Pos(GorillaButton->left(), GorillaButton->top());
+            Vector2 Pos(GorillaCaption->left(), GorillaCaption->top());
             return Pos;
         }
 
-        void Button::SetSize(Vector2 Size)
+        void Caption::SetSize(Vector2 Size)
         {
-            GorillaButton->width(Size.X);
-            GorillaButton->height(Size.Y);
+            GorillaCaption->width(Size.X);
+            GorillaCaption->height(Size.Y);
             GorillaRectangle->width(Size.X);
             GorillaRectangle->height(Size.Y);
         }
 
-        Vector2 Button::GetSize()
+        Vector2 Caption::GetSize()
         {
-            Vector2 Pos(GorillaButton->width(), GorillaButton->height());
+            Vector2 Pos(GorillaCaption->width(), GorillaCaption->height());
             return Pos;
         }
-    }//UI
-}//phys
+    }
+}
 
 #endif

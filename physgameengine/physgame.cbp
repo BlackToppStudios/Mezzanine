@@ -209,6 +209,7 @@
 		<Unit filename="src\crossplatform.h" />
 		<Unit filename="src\datatypes.cpp" />
 		<Unit filename="src\datatypes.h" />
+		<Unit filename="src\enumerations.h" />
 		<Unit filename="src\eventbase.cpp" />
 		<Unit filename="src\eventbase.h" />
 		<Unit filename="src\eventcollision.cpp" />
@@ -285,6 +286,8 @@
 		<Unit filename="src\soundmanager.h" />
 		<Unit filename="src\uibutton.cpp" />
 		<Unit filename="src\uibutton.h" />
+		<Unit filename="src\uicaption.cpp" />
+		<Unit filename="src\uicaption.h" />
 		<Unit filename="src\uilayer.cpp" />
 		<Unit filename="src\uilayer.h" />
 		<Unit filename="src\uimanager.cpp" />

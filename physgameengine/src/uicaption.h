@@ -37,17 +37,18 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uirectangle_h
-#define _uirectangle_h
+#ifndef _uicaption_h
+#define _uicaption_h
 
 #include "datatypes.h"
+#include "enumerations.h"
 #include "colourvalue.h"
 #include "vector2.h"
 
 namespace Gorilla
 {
+    class Caption;
     class Rectangle;
-    class Layer;
 }
 
 namespace phys
@@ -57,47 +58,61 @@ namespace phys
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Rectangle
-        /// @headerfile uirectangle.h
-        /// @brief This class is a helper class, specifically for use with background sprites and colours.
+        /// @class Caption
+        /// @headerfile uicaption.h
+        /// @brief This class is a helper class, specifically for use with text.
         /// @details Unlike a button, this class cannot be interacted with by clicking.
         /// It is important to understand what you want your space to do when selecting the class to use.
         ///////////////////////////////////////
-        class Rectangle
+        class Caption
         {
             protected:
-                Gorilla::Rectangle* GRectangle;
+                Gorilla::Caption* GorillaCaption;
+                Gorilla::Rectangle* GorillaRectangle;
                 UILayer* Parent;
                 UIManager* Manager;
+                String Name;
             public:
                 /// @brief Internal constructor
-                /// @param GRect The Gorilla Rectangle this rectangle is based on.
-                /// @param Layer Pointer to the parent Layer that created this rectangle.
-                Rectangle(Gorilla::Rectangle* GRect, UILayer* Layer);
+                /// @param GCaption The Gorilla Caption this caption is based on.
+                /// @param manager Pointer to the manager that created this caption.
+                Caption(String& name, Gorilla::Caption* GCaption, UILayer* Layer);
                 /// @brief Class destructor.
-                ~Rectangle();
-                /// @brief Sets the background colour of the rectangle.
+                ~Caption();
+                /// @brief Gets the name of this caption.
+                /// @return Returns a string containing the name of this caption.
+                String& GetName();
+                /// @brief Sets the text displayed within the caption.
+                /// @param Text The text to be displayed.
+                void SetText(String& Text);
+                /// @brief Gets the text displayed within the caption.
+                /// @return Returns the text being displayed.
+                String GetText();
+                /// @brief Sets the background colour of the caption.
                 /// @param Colour A colour value representing the colour to be set.
                 void SetBackgroundColour(ColourValue& Colour);
-                /// @brief Sets the background image(if provided in the atlas) of the rectangle.
+                /// @brief Sets the background image(if provided in the atlas) of the caption.
                 /// @param Name The name of the sprite to set as the background.
                 void SetBackgroundSprite(const String& Name);
-                /// @brief Enables a border and sets it's colour.
-                /// @param Colour A colour value representing the colour to be set.
-                void SetBorder(Real Width, ColourValue& Colour);
-                /// @brief Sets the top left position of this rectangle in pixels.
-                /// @param Position A Vector2 representing the location of this rectangle.
+                /// @brief Aligns the text of the caption.
+                /// @param Align The enum value representing the horizontal alignment to be set.
+                void HorizontallyAlign(UI::TextHorizontalAlign Align);
+                /// @brief Aligns the text of the caption.
+                /// @param Align The enum value representing the vertical alignment to be set.
+                void VerticallyAlign(UI::TextVerticalAlign Align);
+                /// @brief Sets the top left position of this caption in pixels.
+                /// @param Position A Vector2 representing the location of this caption.
                 void SetPosition(Vector2 Position);
-                /// @brief Gets the top left position of this rectangle in pixels.
-                /// @return Returns a Vector2 representing the location of this rectangle.
+                /// @brief Gets the top left position of this caption.
+                /// @return Returns a Vector2 representing the location of this caption.
                 Vector2 GetPosition();
-                /// @brief Sets the size of this rectangle in pixels.
-                /// @param Size A vector2 representing the size of this rectangle.
+                /// @brief Sets the size of this caption in pixels.
+                /// @param Size A vector2 representing the size of this caption.
                 void SetSize(Vector2 Size);
-                /// @brief Gets the size of this rectangle in pixels.
-                /// @return Returns a vector2 representing the size of this rectangle.
+                /// @brief Gets the size of this caption in pixels.
+                /// @return Returns a vector2 representing the size of this caption.
                 Vector2 GetSize();
-        };//rectangle
+        };//caption
     }//UI
 }//phys
 

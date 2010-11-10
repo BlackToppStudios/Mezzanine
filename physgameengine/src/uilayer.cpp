@@ -43,6 +43,7 @@
 #include "uilayer.h"
 #include "uibutton.h"
 #include "uirectangle.h"
+#include "uicaption.h"
 
 #include "internalGorilla.h.cpp"
 
@@ -86,29 +87,29 @@ namespace phys
         GorillaLayer->hide();
     }
 
-    UIButton* UILayer::CreateButton(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text)
+    UI::Button* UILayer::CreateButton(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text)
     {
         Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, X, Y, Text);
         GCaption->size(Width, Height);
-        UIButton* Button = new UIButton(Name, GCaption, this, Manager);
-        Buttons.push_back(Button);
-        return Button;
+        UI::Button* button = new UI::Button(Name, GCaption, this);
+        Buttons.push_back(button);
+        return button;
     }
 
-    UIButton* UILayer::GetButton(String& Name)
+    UI::Button* UILayer::GetButton(String& Name)
     {
-        for ( std::vector<UIButton*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+        for ( std::vector<UI::Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
         {
             if ( Name == (*it)->GetName() )
             {
-                UIButton* Button = (*it);
-                return Button;
+                UI::Button* button = (*it);
+                return button;
             }
         }
         return 0;
     }
 
-    UIButton* UILayer::GetButton(Whole Index)
+    UI::Button* UILayer::GetButton(Whole Index)
     {
         return Buttons[Index];
     }
@@ -121,7 +122,7 @@ namespace phys
     UI::Rectangle* UILayer::CreateRectangle(Real X, Real Y, Real Width, Real Height)
     {
         Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(X, Y, Width, Height);
-        UI::Rectangle* rectangle = new UI::Rectangle(GRectangle, GorillaLayer, Manager);
+        UI::Rectangle* rectangle = new UI::Rectangle(GRectangle, this);
         Rectangles.push_back(rectangle);
         return rectangle;
     }
@@ -136,18 +137,47 @@ namespace phys
         return Rectangles.size();
     }
 
-    UIButton* UILayer::GetButtonMouseIsOver()
+    UI::Caption* UILayer::CreateCaption(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text)
     {
-        UIButton* Button = NULL;
-        for( std::vector<UIButton*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, X, Y, Text);
+        GCaption->size(Width, Height);
+        UI::Caption* caption = new UI::Caption(Name, GCaption, this);
+        Captions.push_back(caption);
+        return caption;
+    }
+
+    UI::Caption* UILayer::GetCaption(String& Name)
+    {
+        for ( std::vector<UI::Caption*>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
         {
-            Button = (*it);
-            if(!Button->IsCaption())
+            if ( Name == (*it)->GetName() )
             {
-                if(Button->CheckMouseHover())
-                {
-                    return Button;
-                }
+                UI::Caption* caption = (*it);
+                return caption;
+            }
+        }
+        return 0;
+    }
+
+    UI::Caption* UILayer::GetCaption(Whole Index)
+    {
+        return Captions[Index];
+    }
+
+    Whole UILayer::GetNumCaptions()
+    {
+        return Captions.size();
+    }
+
+    UI::Button* UILayer::GetButtonMouseIsOver()
+    {
+        UI::Button* button = NULL;
+        for( std::vector<UI::Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+        {
+            button = (*it);
+            if(button->CheckMouseHover())
+            {
+                return button;
             }
         }
         return 0;

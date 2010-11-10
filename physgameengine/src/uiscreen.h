@@ -54,7 +54,10 @@ namespace phys
 {
     class UIManager;
     class UILayer;
-    class UIButton;
+    namespace UI
+    {
+        class Button;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIScreen
     /// @headerfile uiscreen.h
@@ -114,7 +117,7 @@ namespace phys
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the visable layers contained in this screen.
             /// @return Returns the button the mouse is over, or NULL if there are none.
-            UIButton* GetButtonMouseIsOver();
+            UI::Button* GetButtonMouseIsOver();
     };//uiscreen
 }//phys
 
