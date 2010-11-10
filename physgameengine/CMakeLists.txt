@@ -4,11 +4,19 @@
 cmake_minimum_required (VERSION 2.6)
 project (PhysgameEngine)
 
+message ("${PROJECT_NAME} - Begin")
+
+set (PhysgameEngine_LIBINCLUDE_DIR "${PhysgameEngine_SOURCE_DIR}/libincludes/")
+message ("Base Directory for Library headers: ${PhysgameEngine_LIBINCLUDE_DIR}")
+
+set (PhysgameEngine_LIBBINARY_DIR "${PhysgameEngine_SOURCE_DIR}/data/")
+message ("Base Directory for Library binaries: ${PhysgameEngine_LIBBINARY_DIR}")
+
 set (PhysgameEngine_SOURCE_DIR "${PhysgameEngine_SOURCE_DIR}/src/")
+message ("Looking for source code in: ${PhysgameEngine_SOURCE_DIR}")
+
 set (PhysgameEngine_BINARY_DIR "${PhysgameEngine_BINARY_DIR}/bin/")
-message ("Looking for source code in:  ${PhysgameEngine_SOURCE_DIR}")
-message ("Putting complete binaries in:  ${PhysgameEngine_BINARY_DIR}")
-message (${PROJECT_NAME})
+message ("Putting complete binaries in: ${PhysgameEngine_BINARY_DIR}")
 
 # Set header and source files
 set(${PROJECT_NAME}_headers
@@ -153,11 +161,38 @@ set(${PROJECT_NAME}_sources
 	"${PhysgameEngine_SOURCE_DIR}/xmltext.cpp"
 )
 
-#Where are the libraries
-link_directories()
+#Where are the libraries and their headers
+if(win32)
+
+endif(win32)
+
+if(unix)
+	set( Platform_LIBINCLUDES 
+		"${PhysgameEngine_LIBINCLUDE_DIR}/linux/ogresrc/OgreMain/include"
+		"${PhysgameEngine_LIBINCLUDE_DIR}/linux/ogresrc/include"
+	)
+endif(unix)
+
+if(apple)
+
+endif(apple)
+
+#Common 
+link_directories(
+
+)
+
+include_directories( ${Platform_LIBINCLUDES} ${PhysgameEngine_SOURCE_DIR}
+	"${PhysgameEngine_LIBINCLUDE_DIR}/common/bulletsrc/bullet-2.76/src"
+	"${PhysgameEngine_LIBINCLUDE_DIR}/common/bulletsrc/bullet-2.76/src/LinearMath"
+	"${PhysgameEngine_LIBINCLUDE_DIR}/common/bulletsrc/convexdecomp"
+	"${PhysgameEngine_LIBINCLUDE_DIR}/common/tinyxmlppsrc/tinyxmlpp"
+	"${PhysgameEngine_LIBINCLUDE_DIR}/common/caudiosrc/include"
+	"${PhysgameEngine_LIBINCLUDE_DIR}/common/bulletsrc/bulletserializer"
+)
 
 #Where are the header files at
-include_directories()
+#include_directories()
 
 #
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}_sources} )
@@ -166,4 +201,5 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}
 #just testing a command.
 #configure_file(test copy.txt COPYFILE)
 
+message ( "${PROJECT_NAME} - End" )
 
