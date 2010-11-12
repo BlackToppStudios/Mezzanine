@@ -162,20 +162,34 @@ set(${PROJECT_NAME}_sources
 )
 
 #Where are the libraries and their headers
-if(win32)
+if(${WIN32})
+	message ("Using Windows Build Process")
+endif(${WIN32})
 
-endif(win32)
+if(${UNIX})	
+	message ("Using Unix/Linux Build Process")
 
-if(unix)
-	set( Platform_LIBINCLUDES 
+	INCLUDE(FindSDL)
+	Message("SDL Headers and Library Found - ${SDL_FOUND}")
+
+	include_directories(
+		"${SDL_INCLUDE_DIR}"
 		"${PhysgameEngine_LIBINCLUDE_DIR}/linux/ogresrc/OgreMain/include"
 		"${PhysgameEngine_LIBINCLUDE_DIR}/linux/ogresrc/include"
 	)
-endif(unix)
 
-if(apple)
+	link_directories(
+		"${SDL_LIBRARY}"
+		"${PhysgameEngine_LIBBINARY_DIR}/linux/ogre"
+		"${PhysgameEngine_LIBBINARY_DIR}/linux/bullet"
+		"${PhysgameEngine_LIBBINARY_DIR}/linux/caudio"
+		"${PhysgameEngine_LIBBINARY_DIR}/linux/tinyxmlpp"
+	)
+endif(${UNIX})
 
-endif(apple)
+if(${APPLE})
+	message ("Using Windows Build Process")
+endif(${APPLE})
 
 #Common 
 link_directories(
