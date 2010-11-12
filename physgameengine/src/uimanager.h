@@ -42,6 +42,7 @@
 
 #include "managerbase.h"
 #include "datatypes.h"
+#include "vector2.h"
 
 #include <map>
 
@@ -123,8 +124,22 @@ namespace phys
             /// @return Returns the named layer if found, NULL if not.
             UILayer* GetLayer(String& Name);
             /// @brief Searches all visable screens and layers to see if a button was clicked.
+            /// @details This is called automatically once every frame.  Should only be called on manually if
+            /// you need more then one check per frame.
             /// @return Returns the button clicked if there is one, NULL if not.
-            UI::Button* GetButtonMouseIsOver();
+            UI::Button* CheckButtonMouseIsOver();
+            /// @brief Searches all visable screens and layers to see if a widget was clicked.
+            /// @details This is called automatically once every frame.  Should only be called on manually if
+            /// you need more then one check per frame.
+            /// @return Returns the widget clicked if there is one, NULL if not.
+            UI::Widget* CheckWidgetMouseIsOver();
+            /// @brief Checks to see if the mouse is over a UI element.
+            /// @details This should only be called on after this manager does it's main loop items for best results.
+            /// @return Returns true if the mouse is over a visable UI element, false if not.
+            bool MouseIsInUISystem();
+            /// @brief Gets the current window dimensions.
+            /// @return Returns a Vector2 representing the current window dimensions.
+            Vector2 GetWindowDimensions();
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;

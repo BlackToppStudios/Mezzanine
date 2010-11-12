@@ -52,7 +52,9 @@ namespace phys
     namespace UI
     {
         Caption::Caption(String& name, Gorilla::Caption* GCaption, UILayer* Layer)
-            : Name(name)
+            : RelPosition(Vector2(0,0)),
+              RelSize(Vector2(0,0)),
+              Name(name)
         {
             GorillaCaption = GCaption;
             Parent = Layer;
@@ -134,13 +136,28 @@ namespace phys
 
         void Caption::SetPosition(Vector2 Position)
         {
+            RelPosition = Position;
+            Vector2 CurrDim = Manager->GetWindowDimensions();
+            GorillaCaption->left(CurrDim.X * RelPosition.X);
+            GorillaCaption->top(CurrDim.Y * RelPosition.Y);
+            GorillaRectangle->left(CurrDim.X * RelPosition.X);
+            GorillaRectangle->top(CurrDim.Y * RelPosition.Y);
+        }
+
+        Vector2 Caption::GetPosition()
+        {
+            return RelPosition;
+        }
+
+        void Caption::SetActualPosition(Vector2 Position)
+        {
             GorillaCaption->left(Position.X);
             GorillaCaption->top(Position.Y);
             GorillaRectangle->left(Position.X);
             GorillaRectangle->top(Position.Y);
         }
 
-        Vector2 Caption::GetPosition()
+        Vector2 Caption::GetActualPosition()
         {
             Vector2 Pos(GorillaCaption->left(), GorillaCaption->top());
             return Pos;
@@ -148,13 +165,28 @@ namespace phys
 
         void Caption::SetSize(Vector2 Size)
         {
+            RelSize = Size;
+            Vector2 CurrDim = Manager->GetWindowDimensions();
+            GorillaCaption->left(CurrDim.X * RelSize.X);
+            GorillaCaption->top(CurrDim.Y * RelSize.Y);
+            GorillaRectangle->left(CurrDim.X * RelSize.X);
+            GorillaRectangle->top(CurrDim.Y * RelSize.Y);
+        }
+
+        Vector2 Caption::GetSize()
+        {
+            return RelSize;
+        }
+
+        void Caption::SetActualSize(Vector2 Size)
+        {
             GorillaCaption->width(Size.X);
             GorillaCaption->height(Size.Y);
             GorillaRectangle->width(Size.X);
             GorillaRectangle->height(Size.Y);
         }
 
-        Vector2 Caption::GetSize()
+        Vector2 Caption::GetActualSize()
         {
             Vector2 Pos(GorillaCaption->width(), GorillaCaption->height());
             return Pos;

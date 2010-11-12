@@ -222,7 +222,7 @@ bool PostInput()
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
         {
             UILayer* Layer = Screen->GetLayer(x);
-            MouseButton = Layer->GetButtonMouseIsOver();
+            MouseButton = Layer->CheckButtonMouseIsOver();
             if(MouseButton)
             {
                 break;
@@ -542,8 +542,6 @@ void MakeGUI()
     String HUDLayer = "HUDLayer";
     String ItemShopLayer = "ItemShopLayer";
     UIManager* GUI = TheWorld->GetUIManager();
-    Real WHeight = (Real)(TheWorld->GetGraphicsManager()->getRenderHeight());
-    Real WWidth = (Real)(TheWorld->GetGraphicsManager()->getRenderWidth());
     GUI->LoadGorilla("dejavu");
 
     UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "dejavu");
@@ -552,8 +550,8 @@ void MakeGUI()
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     //Build the HUD layer
-    UI::Button* MenuButton = HUD->CreateButton( "Menu", 0.0, WHeight * 0.92,
-                                            WWidth * 0.2, WHeight * 0.08,
+    UI::Button* MenuButton = HUD->CreateButton( "Menu", Vector2(0.0, 0.92),
+                                            Vector2(0.2, 0.08),
                                             24, "Menu");
     MenuButton->HorizontallyAlign(UI::Middle);
     MenuButton->VerticallyAlign(UI::Center);
@@ -564,21 +562,21 @@ void MakeGUI()
     ItemShop->Hide();
 
     //Build the Menu Layer
-    UI::Rectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
-                                                         WWidth * 0.5, WHeight * 0.7 );
+    UI::Rectangle* MenuBackground = Menu->CreateRectangle( Vector2(0.25, 0.15),
+                                                         Vector2(0.5, 0.7));
     ColourValue Colours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(Colours);
 
-    UI::Button* ReturnButton = Menu->CreateButton( "Return", WWidth * 0.30, WHeight * 0.61,
-                                            WWidth * 0.4, WHeight * 0.08,
+    UI::Button* ReturnButton = Menu->CreateButton( "Return", Vector2(0.30, 0.61),
+                                            Vector2(0.4, 0.08),
                                             24, "Return to Game");
     ReturnButton->HorizontallyAlign(UI::Middle);
     ReturnButton->VerticallyAlign(UI::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(Colours);
 
-    UI::Button* ExitButton = Menu->CreateButton( "Exit", WWidth * 0.30, WHeight * 0.73,
-                                            WWidth * 0.4, WHeight * 0.08,
+    UI::Button* ExitButton = Menu->CreateButton( "Exit", Vector2(0.30, 0.73),
+                                            Vector2(0.4, 0.08),
                                             24, "Exit Game");
     ExitButton->HorizontallyAlign(UI::Middle);
     ExitButton->VerticallyAlign(UI::Center);

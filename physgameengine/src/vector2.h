@@ -84,6 +84,13 @@ namespace phys
             /// and set the values of this class to be the same.
             /// @param temp The vector2 to be extracted.
             void ExtractOgreVector2(Ogre::Vector2 Ours);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Arithmetic Operators
+            /// @brief Multiplaction Operator
+            /// @details Allows for multiplaction from a phys::Vector2
+            /// @param Vec2 This is the other phys::Vector2
+            Vector2 operator* (const Vector2 &Vec2) const;
     };
 }
 

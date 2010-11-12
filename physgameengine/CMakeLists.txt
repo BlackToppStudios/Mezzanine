@@ -29,6 +29,7 @@ set(${PROJECT_NAME}_headers
 	"${PhysgameEngine_SOURCE_DIR}/containerbase.h"
 	"${PhysgameEngine_SOURCE_DIR}/crossplatform.h"
 	"${PhysgameEngine_SOURCE_DIR}/datatypes.h"
+	"${PhysgameEngine_SOURCE_DIR}/enumerations.h"
 	"${PhysgameEngine_SOURCE_DIR}/eventbase.h"
 	"${PhysgameEngine_SOURCE_DIR}/eventcollision.h"
 	"${PhysgameEngine_SOURCE_DIR}/eventmanager.h"

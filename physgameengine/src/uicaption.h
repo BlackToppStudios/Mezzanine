@@ -71,6 +71,8 @@ namespace phys
                 Gorilla::Rectangle* GorillaRectangle;
                 UILayer* Parent;
                 UIManager* Manager;
+                Vector2 RelPosition;
+                Vector2 RelSize;
                 String Name;
             public:
                 /// @brief Internal constructor
@@ -100,18 +102,30 @@ namespace phys
                 /// @brief Aligns the text of the caption.
                 /// @param Align The enum value representing the vertical alignment to be set.
                 void VerticallyAlign(UI::TextVerticalAlign Align);
-                /// @brief Sets the top left position of this caption in pixels.
+                /// @brief Sets the relative top left position of this caption.
                 /// @param Position A Vector2 representing the location of this caption.
                 void SetPosition(Vector2 Position);
-                /// @brief Gets the top left position of this caption.
+                /// @brief Gets the relative top left position of this caption.
                 /// @return Returns a Vector2 representing the location of this caption.
                 Vector2 GetPosition();
-                /// @brief Sets the size of this caption in pixels.
+                /// @brief Sets the top left position of this caption in pixels.
+                /// @param Position A Vector2 representing the location of this caption.
+                void SetActualPosition(Vector2 Position);
+                /// @brief Gets the top left position of this caption in pixels.
+                /// @return Returns a Vector2 representing the location of this caption.
+                Vector2 GetActualPosition();
+                /// @brief Sets the relative size of this caption.
                 /// @param Size A vector2 representing the size of this caption.
                 void SetSize(Vector2 Size);
-                /// @brief Gets the size of this caption in pixels.
+                /// @brief Gets the relative size of this caption.
                 /// @return Returns a vector2 representing the size of this caption.
                 Vector2 GetSize();
+                /// @brief Sets the size of this caption in pixels.
+                /// @param Size A vector2 representing the size of this caption.
+                void SetActualSize(Vector2 Size);
+                /// @brief Gets the size of this caption in pixels.
+                /// @return Returns a vector2 representing the size of this caption.
+                Vector2 GetActualSize();
         };//caption
     }//UI
 }//phys

@@ -41,6 +41,7 @@
 #define _uilayer_h
 
 #include "datatypes.h"
+#include "vector2.h"
 
 #include <map>
 
@@ -62,9 +63,9 @@ namespace phys
         class Button;
     }
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class UIButton
-    /// @headerfile uibutton.h
-    /// @brief This class is a helper class, specifically for use with widgets.
+    /// @class UILayer
+    /// @headerfile uilayer.h
+    /// @brief This class is the basic container class for UI elements.
     /// @details A layer is a container for widgets and other UI elements that are visable.
     ///////////////////////////////////////
     class UILayer
@@ -99,14 +100,13 @@ namespace phys
             /// @brief Forces the layer to hide.
             void Hide();
             /// @brief Creates a button within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created button.
-            /// @param X The position on screen in pixels for the left side of the button.
-            /// @param Y The position on screen in pixels for the top side of the button.
-            /// @param Height The height of the button in pixels.
-            /// @param Width The width of the button in pixels.
+            /// @param Position The top left position of the button.
+            /// @param Size The size of the Button.
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
             /// @param Text Any text you want printed on the button.
-            UI::Button* CreateButton(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text);
+            UI::Button* CreateButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text);
             /// @brief Gets an already created button by name.
             /// @return Returns a pointer to the button of the specified name.
             UI::Button* GetButton(String& Name);
@@ -117,12 +117,11 @@ namespace phys
             /// @return Returns the number of buttons this class is storing.
             Whole GetNumButtons();
             /// @brief Creates a rectangle within this layer.
-            /// @details Rectangles are innately put behind all captions, so z-order is not necessary.
-            /// @param X The position on screen in pixels for the left side of the rectangle.
-            /// @param Y The position on screen in pixels for the top side of the rectangle.
-            /// @param Height The height of the rectangle in pixels.
-            /// @param Width The width of the rectangle in pixels.
-            UI::Rectangle* CreateRectangle(Real X, Real Y, Real Width, Real Height);
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0). @n
+            /// Rectangles are innately put behind all captions, so z-order is not necessary.
+            /// @param Position The top left position of the button.
+            /// @param Size The size of the Button.
+            UI::Rectangle* CreateRectangle(Vector2 Position, Vector2 Size);
             /// @brief Gets an already created rectangle by index.
             /// @return Returns a pointer to the rectangle at the specified index.
             UI::Rectangle* GetRectangle(Whole Index);
@@ -130,14 +129,13 @@ namespace phys
             /// @return Returns the number of rectangles this class is storing.
             Whole GetNumRectangles();
             /// @brief Creates a caption within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created caption.
-            /// @param X The position on screen in pixels for the left side of the caption.
-            /// @param Y The position on screen in pixels for the top side of the caption.
-            /// @param Height The height of the caption in pixels.
-            /// @param Width The width of the caption in pixels.
+            /// @param Position The top left position of the button.
+            /// @param Size The size of the Button.
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
             /// @param Text Any text you want printed on the caption.
-            UI::Caption* CreateCaption(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text);
+            UI::Caption* CreateCaption(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text);
             /// @brief Gets an already created caption by name.
             /// @return Returns a pointer to the caption of the specified name.
             UI::Caption* GetCaption(String& Name);
@@ -147,10 +145,23 @@ namespace phys
             /// @brief Gets the number of captions created and stored in this class.
             /// @return Returns the number of captions this class is storing.
             Whole GetNumCaptions();
+            /// @brief Gets an already created widget by name.
+            /// @return Returns a pointer to the widget of the specified name.
+            UI::Widget* GetWidget(String& Name);
+            /// @brief Gets an already created widget by index.
+            /// @return Returns a pointer to the widget at the specified index.
+            UI::Widget* GetWidget(Whole Index);
+            /// @brief Gets the number of widgets created and stored in this class.
+            /// @return Returns the number of widgets this class is storing.
+            Whole GetNumWidgets();
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the buttons contained in this layer.
             /// @return Returns the button the mouse is over, or NULL if there are none.
-            UI::Button* GetButtonMouseIsOver();
+            UI::Button* CheckButtonMouseIsOver();
+            /// @brief Gets the widget the mouse is over if any.
+            /// @details This function searches only the widgets contained in this layer.
+            /// @return Returns the widget the mouse is over, or NULL if there are none.
+            UI::Widget* CheckWidgetMouseIsOver();
             /// @internal
             /// @brief Gets the internal gorilla layer pointer.
             Gorilla::Layer* GetGorillaLayer();

@@ -57,6 +57,7 @@ namespace phys
     namespace UI
     {
         class Button;
+        class Widget;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIScreen
@@ -117,7 +118,11 @@ namespace phys
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the visable layers contained in this screen.
             /// @return Returns the button the mouse is over, or NULL if there are none.
-            UI::Button* GetButtonMouseIsOver();
+            UI::Button* CheckButtonMouseIsOver();
+            /// @brief Gets the widget the mouse is over if any.
+            /// @details This function searches only the visable layers contained in this screen.
+            /// @return Returns the widget the mouse is over, or NULL if there are none.
+            UI::Widget* CheckWidgetMouseIsOver();
     };//uiscreen
 }//phys
 

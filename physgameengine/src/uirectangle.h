@@ -69,6 +69,8 @@ namespace phys
                 Gorilla::Rectangle* GRectangle;
                 UILayer* Parent;
                 UIManager* Manager;
+                Vector2 RelPosition;
+                Vector2 RelSize;
             public:
                 /// @brief Internal constructor
                 /// @param GRect The Gorilla Rectangle this rectangle is based on.
@@ -85,18 +87,30 @@ namespace phys
                 /// @brief Enables a border and sets it's colour.
                 /// @param Colour A colour value representing the colour to be set.
                 void SetBorder(Real Width, ColourValue& Colour);
-                /// @brief Sets the top left position of this rectangle in pixels.
+                /// @brief Sets the relative top left position of this rectangle.
                 /// @param Position A Vector2 representing the location of this rectangle.
                 void SetPosition(Vector2 Position);
-                /// @brief Gets the top left position of this rectangle in pixels.
+                /// @brief Gets the relative top left position of this rectangle.
                 /// @return Returns a Vector2 representing the location of this rectangle.
                 Vector2 GetPosition();
-                /// @brief Sets the size of this rectangle in pixels.
+                /// @brief Sets the top left position of this rectangle in pixels.
+                /// @param Position A Vector2 representing the location of this rectangle.
+                void SetActualPosition(Vector2 Position);
+                /// @brief Gets the top left position of this rectangle in pixels.
+                /// @return Returns a Vector2 representing the location of this rectangle.
+                Vector2 GetActualPosition();
+                /// @brief Sets the relative size of this rectangle.
                 /// @param Size A vector2 representing the size of this rectangle.
                 void SetSize(Vector2 Size);
-                /// @brief Gets the size of this rectangle in pixels.
+                /// @brief Gets the relative size of this rectangle.
                 /// @return Returns a vector2 representing the size of this rectangle.
                 Vector2 GetSize();
+                /// @brief Sets the size of this rectangle in pixels.
+                /// @param Size A vector2 representing the size of this rectangle.
+                void SetActualSize(Vector2 Size);
+                /// @brief Gets the size of this rectangle in pixels.
+                /// @return Returns a vector2 representing the size of this rectangle.
+                Vector2 GetActualSize();
         };//rectangle
     }//UI
 }//phys

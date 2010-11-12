@@ -41,13 +41,19 @@
 #define _uiwidget_cpp
 
 #include "uiwidget.h"
+#include "world.h"
 
 namespace phys
 {
     namespace UI
     {
-        Widget::Widget()
+        Widget::Widget(const String& name, UILayer* parent)
+            : Parent(parent),
+              RelPosition(Vector2(0,0)),
+              RelSize(Vector2(0,0)),
+              Name(name)
         {
+            Manager = World::GetWorldPointer()->GetUIManager();
         }
 
         Widget::~Widget()
@@ -57,6 +63,11 @@ namespace phys
         Widget::WidgetType Widget::GetType()
         {
             return Type;
+        }
+
+        String& Widget::GetName()
+        {
+            return Name;
         }
     }//UI
 }//phys

@@ -41,13 +41,14 @@
 #define _uiscrollbar_cpp
 
 #include "uiscrollbar.h"
+#include "uilayer.h"
 
 namespace phys
 {
     namespace UI
     {
-        Scrollbar::Scrollbar(String& name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
-            : Name(name)
+        Scrollbar::Scrollbar(String& name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style, UILayer* parent)
+            : Widget(name, parent)
         {
             Type = Widget::Scrollbar;
             if(Size.Y > Size.X * 2)
@@ -74,6 +75,51 @@ namespace phys
 
         void Scrollbar::CreateVerticalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
         {
+        }
+
+        bool Scrollbar::CheckMouseHover()
+        {
+            return false;
+        }
+
+        void Scrollbar::SetPosition(Vector2 Position)
+        {
+
+        }
+
+        Vector2 Scrollbar::GetPosition()
+        {
+            return Vector2(0,0);
+        }
+
+        void Scrollbar::SetActualPosition(Vector2 Position)
+        {
+
+        }
+
+        Vector2 Scrollbar::GetActualPosition()
+        {
+            return Vector2(0,0);
+        }
+
+        void Scrollbar::SetSize(Vector2 Size)
+        {
+
+        }
+
+        Vector2 Scrollbar::GetSize()
+        {
+            return Vector2(0,0);
+        }
+
+        void Scrollbar::SetActualSize(Vector2 Size)
+        {
+
+        }
+
+        Vector2 Scrollbar::GetActualSize()
+        {
+            return Vector2(0,0);
         }
     }
 }

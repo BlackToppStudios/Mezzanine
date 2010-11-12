@@ -40,10 +40,21 @@
 #ifndef _uiwidget_h
 #define _uiwidget_h
 
+#include "datatypes.h"
+#include "vector2.h"
+
 namespace phys
 {
+    class UIManager;
+    class UILayer;
     namespace UI
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Widget
+        /// @headerfile uiwidget.h
+        /// @brief This class is the base class for widgets.
+        /// @details
+        ///////////////////////////////////////
         class Widget
         {
             public:
@@ -52,12 +63,55 @@ namespace phys
                     Scrollbar
                 };
             protected:
+                UIManager* Manager;
+                UILayer* Parent;
+                Vector2 RelPosition;
+                Vector2 RelSize;
                 WidgetType Type;
+                String Name;
             public:
-                Widget();
-                ~Widget();
+                /// @brief Standard initialization constructor.
+                /// @param parent The parent layer that created this widget.
+                Widget(const String& name, UILayer* parent);
+                /// @brief Standard destructor.
+                virtual ~Widget();
+                /// @brief Gets the type of widget this is.
+                /// @return Returns an enum value representing the type of widget this is.
                 WidgetType GetType();
-        };
+                /// @brief Gets the name of this widget.
+                /// @return Returns a String containing the name of this widget.
+                virtual String& GetName();
+                /// @brief Checks to see if the current mouse position is over this widget.
+                /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
+                virtual bool CheckMouseHover() = 0;
+                /// @brief Sets the relative position of this widget in pixels.
+                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
+                /// @param Position A vector2 representing the relative position of this widget.
+                virtual void SetPosition(Vector2 Position) = 0;
+                /// @brief Gets the relative position of this widget.
+                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
+                /// @return Returns a vector2 representing the relative position of this widget.
+                virtual Vector2 GetPosition() = 0;
+                /// @brief Sets the pixel position of this widget.
+                /// @param Position A vector2 representing the pixel position of this widget.
+                virtual void SetActualPosition(Vector2 Position) = 0;
+                /// @brief Sets the pixel position of this widget.
+                /// @return Returns a vector2 representing the pixel position of this widget.
+                virtual Vector2 GetActualPosition() = 0;
+                /// @brief Sets the relative size of this widget.
+                /// @param Size A vector2 representing the relative size of this widget.
+                virtual void SetSize(Vector2 Size) = 0;
+                /// @brief Gets the relative size of this widget.
+                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
+                /// @return Returns a vector2 representing the relative size of this widget.
+                virtual Vector2 GetSize() = 0;
+                /// @brief Sets the pixel size of this widget.
+                /// @param Size A vector2 representing the pixel size of this widget.
+                virtual void SetActualSize(Vector2 Size) = 0;
+                /// @brief Sets the pixel size of this widget.
+                /// @return Returns a vector2 representing the pixel size of this widget.
+                virtual Vector2 GetActualSize() = 0;
+        };//widget
     }//UI
 }//phys
 
