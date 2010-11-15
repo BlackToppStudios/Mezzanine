@@ -30,6 +30,7 @@ bool physgamelauncherApp::OnInit()
     wxInitAllImageHandlers();
     if ( wxsOK )
     {
+
     	physgamelauncherFrame* Frame = new physgamelauncherFrame(0);
     	Frame->Show();
     	SetTopWindow(Frame);
