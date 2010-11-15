@@ -52,6 +52,8 @@ namespace phys
     namespace UI
     {
         Rectangle::Rectangle(Gorilla::Rectangle* GRect, UILayer* GLayer)
+            : RelPosition(Vector2(0,0)),
+              RelSize(Vector2(0,0))
         {
             GRectangle = GRect;
             Parent = GLayer;
@@ -81,10 +83,22 @@ namespace phys
 
         void Rectangle::SetPosition(Vector2 Position)
         {
-            GRectangle->position(Position.GetOgreVector2());
+            RelPosition = Position;
+            Vector2 CurrDim = Manager->GetWindowDimensions();
+            GRectangle->position((CurrDim * RelPosition).GetOgreVector2());
         }
 
         Vector2 Rectangle::GetPosition()
+        {
+            return RelPosition;
+        }
+
+        void Rectangle::SetActualPosition(Vector2 Position)
+        {
+            GRectangle->position(Position.GetOgreVector2());
+        }
+
+        Vector2 Rectangle::GetActualPosition()
         {
             Vector2 Pos(GRectangle->left(), GRectangle->top());
             return Pos;
@@ -92,11 +106,24 @@ namespace phys
 
         void Rectangle::SetSize(Vector2 Size)
         {
+            RelSize = Size;
+            Vector2 CurrDim = Manager->GetWindowDimensions();
+            GRectangle->width(CurrDim.X * RelSize.X);
+            GRectangle->height(CurrDim.Y * RelSize.Y);
+        }
+
+        Vector2 Rectangle::GetSize()
+        {
+            return RelSize;
+        }
+
+        void Rectangle::SetActualSize(Vector2 Size)
+        {
             GRectangle->width(Size.X);
             GRectangle->height(Size.Y);
         }
 
-        Vector2 Rectangle::GetSize()
+        Vector2 Rectangle::GetActualSize()
         {
             Vector2 Pos(GRectangle->width(), GRectangle->height());
             return Pos;

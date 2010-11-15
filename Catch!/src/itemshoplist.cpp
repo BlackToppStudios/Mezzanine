@@ -10,7 +10,7 @@ ItemShopList::ItemShopList(Real X, Real Y, Real Width, Real Height, UILayer* Lay
     ParentLayer = Layer;
     Whole WWidth = GraphMan->getRenderWidth();
     Whole WHeight = GraphMan->getRenderHeight();
-    Backdrop = Layer->CreateRectangle(WWidth*X,WHeight*Y,WWidth*Width,WHeight*Height);
+    //Backdrop = Layer->CreateRectangle(WWidth*X,WHeight*Y,WWidth*Width,WHeight*Height);
     ListArea = NULL;
     SideScroll = NULL;
     Selected = NULL;
@@ -110,16 +110,16 @@ void ItemShopList::CreateListArea(Real X, Real Y, Real Width, Real Height)
 {
     Whole WWidth = GraphMan->getRenderWidth();
     Whole WHeight = GraphMan->getRenderHeight();
-    ListArea = ParentLayer->CreateRectangle(WWidth*X,WHeight*Y,WWidth*Width,WHeight*Height);
-    Vector2 LAP = ListArea->GetPosition();
-    Vector2 LAS = ListArea->GetSize();
-    SideScrollBack = ParentLayer->CreateRectangle((LAS.X * 0.94)+LAP.X, (LAS.Y * 0.04)+LAP.Y, LAS.X * 0.05, LAS.Y * 0.94);
-    Vector2 SSBP = SideScrollBack->GetPosition();
-    Vector2 SSBS = SideScrollBack->GetSize();
-    SideScroll = ParentLayer->CreateRectangle((SSBS.X * 0.005)+SSBP.X, (SSBS.Y * 0.005)+SSBP.Y, SSBS.X * 0.95, SSBS.Y * 0.95);
-    ScrollUpperLimit = SideScroll->GetPosition().Y;
-    ScrollLowerLimit = (SideScroll->GetPosition().Y) + (SideScroll->GetSize().Y);
-    ButtonXAlign = (ListArea->GetPosition().X) + (ListArea->GetSize().X * 0.05);
+    //ListArea = ParentLayer->CreateRectangle(WWidth*X,WHeight*Y,WWidth*Width,WHeight*Height);
+    //Vector2 LAP = ListArea->GetPosition();
+    //Vector2 LAS = ListArea->GetSize();
+    //SideScrollBack = ParentLayer->CreateRectangle((LAS.X * 0.94)+LAP.X, (LAS.Y * 0.04)+LAP.Y, LAS.X * 0.05, LAS.Y * 0.94);
+    //Vector2 SSBP = SideScrollBack->GetPosition();
+    //Vector2 SSBS = SideScrollBack->GetSize();
+    //SideScroll = ParentLayer->CreateRectangle((SSBS.X * 0.005)+SSBP.X, (SSBS.Y * 0.005)+SSBP.Y, SSBS.X * 0.95, SSBS.Y * 0.95);
+    //ScrollUpperLimit = SideScroll->GetPosition().Y;
+    //ScrollLowerLimit = (SideScroll->GetPosition().Y) + (SideScroll->GetSize().Y);
+    //ButtonXAlign = (ListArea->GetPosition().X) + (ListArea->GetSize().X * 0.05);
 }
 
 void ItemShopList::AddItemToList(UI::Button* Item)

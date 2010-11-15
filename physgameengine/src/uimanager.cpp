@@ -44,9 +44,11 @@
 #include "internalGorilla.h.cpp"
 #include "world.h"
 #include "cameramanager.h"
+#include "graphicsmanager.h"
 #include "uiscreen.h"
 #include "uibutton.h"
 #include "uilayer.h"
+#include "uiwidget.h"
 
 #include <Ogre.h>
 
@@ -72,6 +74,21 @@ namespace phys
 
     void UIManager::DoMainLoopItems()
     {
+        if(HoveredButton)
+        {
+            if(HoveredButton->CheckMouseHover())
+                return;
+        }
+        if(HoveredWidget)
+        {
+            if(HoveredWidget->CheckMouseHover())
+                return;
+        }
+        HoveredButton = CheckButtonMouseIsOver();
+        if(!HoveredButton)
+        {
+            HoveredWidget = CheckWidgetMouseIsOver();
+        }
     }
 
     void UIManager::LoadGorilla(const String& Name)
@@ -160,13 +177,13 @@ namespace phys
         return 0;
     }
 
-    UI::Button* UIManager::GetButtonMouseIsOver()
+    UI::Button* UIManager::CheckButtonMouseIsOver()
     {
         for( Whole x=0 ; x < Screens.size() ; x++ )
         {
             if( Screens[x]->IsVisible() )
             {
-                UI::Button* button = Screens[x]->GetButtonMouseIsOver();
+                UI::Button* button = Screens[x]->CheckButtonMouseIsOver();
                 if(button)
                 {
                     return button;
@@ -174,6 +191,41 @@ namespace phys
             }
         }
         return 0;
+    }
+
+    UI::Widget* UIManager::CheckWidgetMouseIsOver()
+    {
+        for( Whole x=0 ; x < Screens.size() ; x++ )
+        {
+            if( Screens[x]->IsVisible() )
+            {
+                UI::Widget* widget = Screens[x]->CheckWidgetMouseIsOver();
+                if(widget)
+                {
+                    return widget;
+                }
+            }
+        }
+        return 0;
+    }
+
+    bool UIManager::MouseIsInUISystem()
+    {
+        if(HoveredButton || HoveredWidget)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    Vector2 UIManager::GetWindowDimensions()
+    {
+        /// @todo This is the second occurance of needing to specify the namespace to declare data
+        /// without any apparent reason.  If possible a pattern/explaination should be found.
+        phys::GraphicsManager* Graphics = GetGameWorld()->GetGraphicsManager();
+        Vector2 Window((Real)Graphics->getRenderWidth(),(Real)Graphics->getRenderHeight());
+        return Window;
     }
 
     ManagerBase::ManagerTypeName UIManager::GetType() const

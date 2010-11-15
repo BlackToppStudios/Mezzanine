@@ -52,13 +52,17 @@ namespace phys
     namespace UI
     {
         Button::Button(String& name, Gorilla::Caption* GButton, UILayer* Layer)
-            : Name(name)
+            : RelPosition(Vector2(0,0)),
+              RelSize(Vector2(0,0)),
+              Name(name)
         {
             GorillaButton = GButton;
             GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GButton->left(),GButton->top(),GButton->width(),GButton->height());
             Parent = Layer;
             Manager = World::GetWorldPointer()->GetUIManager();
             MouseHover = false;
+            NormalSprite = NULL;
+            HoveredSprite = NULL;
         }
 
         Button::~Button()
@@ -87,8 +91,16 @@ namespace phys
             Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
             if(GorillaButton->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
             {
+                if(!MouseHover && HoveredSprite)
+                {
+                    GorillaRectangle->background_image(HoveredSprite);
+                }
                 MouseHover = true;
             }else{
+                if(MouseHover && HoveredSprite)
+                {
+                    GorillaRectangle->background_image(NormalSprite);
+                }
                 MouseHover = false;
             }
             return MouseHover;
@@ -107,7 +119,14 @@ namespace phys
         void Button::SetBackgroundSprite(const String& Name)
         {
             Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
+            NormalSprite = GSprite;
             GorillaRectangle->background_image(GSprite);
+        }
+
+        void Button::SetHoveredSprite(const String& Name)
+        {
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
+            HoveredSprite = GSprite;
         }
 
         void Button::SetBorder(Real Width, ColourValue& Colour)
@@ -157,13 +176,28 @@ namespace phys
 
         void Button::SetPosition(Vector2 Position)
         {
+            RelPosition = Position;
+            Vector2 CurrDim = Manager->GetWindowDimensions();
+            GorillaButton->left(CurrDim.X * RelPosition.X);
+            GorillaButton->top(CurrDim.Y * RelPosition.Y);
+            GorillaRectangle->left(CurrDim.X * RelPosition.X);
+            GorillaRectangle->top(CurrDim.Y * RelPosition.Y);
+        }
+
+        Vector2 Button::GetPosition()
+        {
+            return RelPosition;
+        }
+
+        void Button::SetActualPosition(Vector2 Position)
+        {
             GorillaButton->left(Position.X);
             GorillaButton->top(Position.Y);
             GorillaRectangle->left(Position.X);
             GorillaRectangle->top(Position.Y);
         }
 
-        Vector2 Button::GetPosition()
+        Vector2 Button::GetActualPosition()
         {
             Vector2 Pos(GorillaButton->left(), GorillaButton->top());
             return Pos;
@@ -171,13 +205,28 @@ namespace phys
 
         void Button::SetSize(Vector2 Size)
         {
+            RelSize = Size;
+            Vector2 CurrDim = Manager->GetWindowDimensions();
+            GorillaButton->left(CurrDim.X * RelSize.X);
+            GorillaButton->top(CurrDim.Y * RelSize.Y);
+            GorillaRectangle->left(CurrDim.X * RelSize.X);
+            GorillaRectangle->top(CurrDim.Y * RelSize.Y);
+        }
+
+        Vector2 Button::GetSize()
+        {
+            return RelSize;
+        }
+
+        void Button::SetActualSize(Vector2 Size)
+        {
             GorillaButton->width(Size.X);
             GorillaButton->height(Size.Y);
             GorillaRectangle->width(Size.X);
             GorillaRectangle->height(Size.Y);
         }
 
-        Vector2 Button::GetSize()
+        Vector2 Button::GetActualSize()
         {
             Vector2 Pos(GorillaButton->width(), GorillaButton->height());
             return Pos;

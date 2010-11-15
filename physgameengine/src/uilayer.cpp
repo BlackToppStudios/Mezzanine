@@ -44,6 +44,10 @@
 #include "uibutton.h"
 #include "uirectangle.h"
 #include "uicaption.h"
+#include "uiwidget.h"
+
+#include "graphicsmanager.h"
+#include "world.h"
 
 #include "internalGorilla.h.cpp"
 
@@ -87,10 +91,13 @@ namespace phys
         GorillaLayer->hide();
     }
 
-    UI::Button* UILayer::CreateButton(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text)
+    UI::Button* UILayer::CreateButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
     {
-        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, X, Y, Text);
-        GCaption->size(Width, Height);
+        GraphicsManager* Graphics = World::GetWorldPointer()->GetGraphicsManager();
+        Real Width = (Real)Graphics->getRenderWidth();
+        Real Height = (Real)Graphics->getRenderHeight();
+        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, Position.X * Width, Position.Y * Height, Text);
+        GCaption->size(Size.X * Width, Size.Y * Height);
         UI::Button* button = new UI::Button(Name, GCaption, this);
         Buttons.push_back(button);
         return button;
@@ -119,9 +126,12 @@ namespace phys
         return Buttons.size();
     }
 
-    UI::Rectangle* UILayer::CreateRectangle(Real X, Real Y, Real Width, Real Height)
+    UI::Rectangle* UILayer::CreateRectangle(Vector2 Position, Vector2 Size)
     {
-        Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(X, Y, Width, Height);
+        GraphicsManager* Graphics = World::GetWorldPointer()->GetGraphicsManager();
+        Real Width = (Real)Graphics->getRenderWidth();
+        Real Height = (Real)Graphics->getRenderHeight();
+        Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(Position.X * Width, Position.Y * Height, Size.X * Width, Size.Y * Height);
         UI::Rectangle* rectangle = new UI::Rectangle(GRectangle, this);
         Rectangles.push_back(rectangle);
         return rectangle;
@@ -137,10 +147,13 @@ namespace phys
         return Rectangles.size();
     }
 
-    UI::Caption* UILayer::CreateCaption(String& Name, Real X, Real Y, Real Width, Real Height, Whole Glyph, String Text)
+    UI::Caption* UILayer::CreateCaption(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
     {
-        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, X, Y, Text);
-        GCaption->size(Width, Height);
+        GraphicsManager* Graphics = World::GetWorldPointer()->GetGraphicsManager();
+        Real Width = (Real)Graphics->getRenderWidth();
+        Real Height = (Real)Graphics->getRenderHeight();
+        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, Position.X * Width, Position.Y * Height, Text);
+        GCaption->size(Size.X * Width, Size.Y * Height);
         UI::Caption* caption = new UI::Caption(Name, GCaption, this);
         Captions.push_back(caption);
         return caption;
@@ -169,8 +182,33 @@ namespace phys
         return Captions.size();
     }
 
-    UI::Button* UILayer::GetButtonMouseIsOver()
+    UI::Widget* UILayer::GetWidget(String& Name)
     {
+        for ( std::vector<UI::Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+        {
+            if ( Name == (*it)->GetName() )
+            {
+                UI::Widget* widget = (*it);
+                return widget;
+            }
+        }
+        return 0;
+    }
+
+    UI::Widget* UILayer::GetWidget(Whole Index)
+    {
+        return Widgets[Index];
+    }
+
+    Whole UILayer::GetNumWidgets()
+    {
+        return Widgets.size();
+    }
+
+    UI::Button* UILayer::CheckButtonMouseIsOver()
+    {
+        if(Buttons.empty())
+            return 0;
         UI::Button* button = NULL;
         for( std::vector<UI::Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
         {
@@ -178,6 +216,22 @@ namespace phys
             if(button->CheckMouseHover())
             {
                 return button;
+            }
+        }
+        return 0;
+    }
+
+    UI::Widget* UILayer::CheckWidgetMouseIsOver()
+    {
+        if(Widgets.empty())
+            return 0;
+        UI::Widget* widget = NULL;
+        for( std::vector<UI::Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+        {
+            widget = (*it);
+            if(widget->CheckMouseHover())
+            {
+                return widget;
             }
         }
         return 0;

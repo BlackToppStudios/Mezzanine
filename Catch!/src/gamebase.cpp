@@ -201,7 +201,7 @@ bool PostInput()
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
         {
             UILayer* Layer = Screen->GetLayer(x);
-            MouseButton = Layer->GetButtonMouseIsOver();
+            MouseButton = Layer->CheckButtonMouseIsOver();
             if(MouseButton)
             {
                 break;
@@ -393,8 +393,6 @@ void MakeGUI()
     String ItemShopLayer = "ItemShopLayer";
     String StatsLayer = "StatsLayer";
     UIManager* GUI = TheWorld->GetUIManager();
-    Real WHeight = (Real)(TheWorld->GetGraphicsManager()->getRenderHeight());
-    Real WWidth = (Real)(TheWorld->GetGraphicsManager()->getRenderWidth());
     GUI->LoadGorilla("Catch!");
 
     UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "Catch!");
@@ -404,56 +402,56 @@ void MakeGUI()
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     //Build the HUD layer
-    UI::Caption* Timer = HUD->CreateCaption( "Timer", WWidth * 0.8995, WHeight * 0.006, WWidth * 0.0965, WHeight * 0.06, 20, "0:00");
+    UI::Caption* Timer = HUD->CreateCaption( "Timer", Vector2(0.8995, 0.006), Vector2(0.0965, 0.06), 20, "0:00");
     Timer->HorizontallyAlign(UI::Middle);
     Timer->VerticallyAlign(UI::Center);
     Timer->SetBackgroundSprite("TimerArea");
 
-    UI::Rectangle* TIcon = HUD->CreateRectangle( WWidth * 0.8515, WHeight * 0.006, WWidth * 0.0482, WHeight * 0.06);
+    UI::Rectangle* TIcon = HUD->CreateRectangle( Vector2(0.8515, 0.006), Vector2(0.0482, 0.06));
     TIcon->SetBackgroundSprite("TimerLogo");
 
-    UI::Button* MenuButton = HUD->CreateButton( "Menu", WWidth * 0.008, WHeight * 0.922, WWidth * 0.16, WHeight * 0.06, 20, " ");
+    UI::Button* MenuButton = HUD->CreateButton( "Menu", Vector2(0.008, 0.922), Vector2(0.16, 0.06), 20, " ");
     MenuButton->SetBackgroundSprite("MenuButton");
 
-    UI::Button* StoreButton = HUD->CreateButton( "Store", WWidth * 0.922, WHeight * 0.922, WWidth * 0.065, WHeight * 0.065, 10, " ");
+    UI::Button* StoreButton = HUD->CreateButton( "Store", Vector2(0.922, 0.922), Vector2(0.065, 0.065), 10, " ");
     StoreButton->SetBackgroundSprite("StoreButton");
 
-    UI::Rectangle* StoreText = HUD->CreateRectangle( WWidth * 0.767, WHeight * 0.922, WWidth * 0.14, WHeight * 0.065);
+    UI::Rectangle* StoreText = HUD->CreateRectangle( Vector2(0.767, 0.922), Vector2(0.14, 0.065));
     StoreText->SetBackgroundSprite("StoreText");
 
-    UI::Caption* ScoreAmount = HUD->CreateCaption( "ScoreArea", WWidth * 0.135, WHeight * 0.006, WWidth * 0.15, WHeight * 0.065, 20, "0");
+    UI::Caption* ScoreAmount = HUD->CreateCaption( "ScoreArea", Vector2(0.135, 0.006), Vector2(0.15, 0.065), 20, "0");
     //ScoreAmount->SetBackgroundSprite("ScoreCashArea");
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ScoreAmount->SetBackgroundColour(Transparent);
     ScoreAmount->HorizontallyAlign(UI::Middle);
     ScoreAmount->VerticallyAlign(UI::Center);
 
-    UI::Rectangle* ScoreText = HUD->CreateRectangle( WWidth * 0.008, WHeight * 0.006, WWidth * 0.12, WHeight * 0.06);
+    UI::Rectangle* ScoreText = HUD->CreateRectangle( Vector2(0.008, 0.006), Vector2(0.12, 0.06));
     ScoreText->SetBackgroundSprite("ScoreText");
 
     //Build the ItemShop Layer
-    Items = new ItemShopList(WWidth * 0.1, WHeight * 0.075, WWidth * 0.4, WHeight * 0.6, ItemShop, TheWorld);
+    /*Items = new ItemShopList(WWidth * 0.1, WHeight * 0.075, WWidth * 0.4, WHeight * 0.6, ItemShop, TheWorld);
     ColourValue Color(0.8,0.8,0.95,0.9);
-    Items->GetBackdrop()->SetBackgroundColour(Color);
+    Items->GetBackdrop()->SetBackgroundColour(Color);*/
     ItemShop->Hide();
 
     //Build the Menu Layer
-    UI::Rectangle* MenuBackground = Menu->CreateRectangle( WWidth * 0.25, WHeight * 0.15,
-                                                         WWidth * 0.5, WHeight * 0.7 );
+    UI::Rectangle* MenuBackground = Menu->CreateRectangle( Vector2(0.25, 0.15),
+                                                         Vector2(0.5, 0.7) );
     ColourValue Colours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(Colours);
 
-    UI::Button* ReturnButton = Menu->CreateButton( "Return", WWidth * 0.30, WHeight * 0.61,
-                                            WWidth * 0.4, WHeight * 0.08,
-                                            1, "Return to Game");
+    UI::Button* ReturnButton = Menu->CreateButton( "Return", Vector2(0.30, 0.61),
+                                            Vector2(0.4, 0.08),
+                                            18, "Return to Game");
     ReturnButton->HorizontallyAlign(UI::Middle);
     ReturnButton->VerticallyAlign(UI::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(Colours);
 
-    UI::Button* ExitButton = Menu->CreateButton( "Exit", WWidth * 0.30, WHeight * 0.73,
-                                            WWidth * 0.4, WHeight * 0.08,
-                                            1, "Exit Game");
+    UI::Button* ExitButton = Menu->CreateButton( "Exit", Vector2(0.30, 0.73),
+                                            Vector2(0.4, 0.08),
+                                            18, "Exit Game");
     ExitButton->HorizontallyAlign(UI::Middle);
     ExitButton->VerticallyAlign(UI::Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
@@ -461,22 +459,22 @@ void MakeGUI()
     Menu->Hide();
 
     //Misc Extra's
-    UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", WWidth * 0.16, WHeight * 0.06, WWidth * 0.06, WHeight * 0.065, 14, "0.0");
+    UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", Vector2(0.16, 0.06), Vector2(0.06, 0.065), 14, "0.0");
     CurFPS->SetBackgroundColour(Transparent);
     CurFPS->HorizontallyAlign(UI::Left);
     CurFPS->VerticallyAlign(UI::Center);
 
-    UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", WWidth * 0.008, WHeight * 0.06, WWidth * 0.15, WHeight * 0.065, 14, "Current FPS: ");
+    UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", Vector2(0.008, 0.06), Vector2(0.15, 0.065), 14, "Current FPS: ");
     CurFPSText->SetBackgroundColour(Transparent);
     CurFPSText->HorizontallyAlign(UI::Left);
     CurFPSText->VerticallyAlign(UI::Center);
 
-    UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", WWidth * 0.16, WHeight * 0.105, WWidth * 0.06, WHeight * 0.065, 14, "0.0");
+    UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", Vector2(0.16, 0.105), Vector2(0.06, 0.065), 14, "0.0");
     AvFPS->SetBackgroundColour(Transparent);
     AvFPS->HorizontallyAlign(UI::Left);
     AvFPS->VerticallyAlign(UI::Center);
 
-    UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", WWidth * 0.008, WHeight * 0.105, WWidth * 0.15, WHeight * 0.065, 14, "Average FPS: ");
+    UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", Vector2(0.008, 0.105), Vector2(0.15, 0.065), 14, "Average FPS: ");
     AvFPSText->SetBackgroundColour(Transparent);
     AvFPSText->HorizontallyAlign(UI::Left);
     AvFPSText->VerticallyAlign(UI::Center);

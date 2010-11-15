@@ -50,6 +50,7 @@ namespace Gorilla
     class Caption;
     class Layer;
     class Rectangle;
+    class Sprite;
 }
 
 namespace phys
@@ -72,7 +73,11 @@ namespace phys
                 Gorilla::Rectangle* GorillaRectangle;
                 UILayer* Parent;
                 UIManager* Manager;
+                Gorilla::Sprite* NormalSprite;
+                Gorilla::Sprite* HoveredSprite;
                 bool MouseHover;
+                Vector2 RelPosition;
+                Vector2 RelSize;
                 String Name;
             public:
                 /// @brief Internal constructor
@@ -94,7 +99,7 @@ namespace phys
                 /// @return Returns a bool indicating whether the mouse is over this button.
                 bool CheckMouseHover();
                 /// @brief Gets the stored value of whether or not the mouse is over the button.
-                /// @details This function does not perform any checks.  If you want to do a manual check, call MouseIsOver().
+                /// @details This function does not perform any checks.  If you want to do a manual check, call CheckMouseHover().
                 /// @return Returns the stored value of whether or not the mouse is over the button.
                 bool GetMouseHover();
                 /// @brief Sets the background colour of the button.
@@ -103,6 +108,9 @@ namespace phys
                 /// @brief Sets the background image(if provided in the atlas) of the button.
                 /// @param Name The name of the sprite to set as the background.
                 void SetBackgroundSprite(const String& Name);
+                /// @brief Sets an alternate background image that will be applied when the mouse is over this button.
+                /// @param Name The name of the sprite to set as the alternate background.
+                void SetHoveredSprite(const String& Name);
                 /// @brief Enables a border and sets it's colour.
                 /// @param Colour A colour value representing the colour to be set.
                 void SetBorder(Real Width, ColourValue& Colour);
@@ -112,18 +120,30 @@ namespace phys
                 /// @brief Aligns the text of the button.
                 /// @param Align The enum value representing the vertical alignment to be set.
                 void VerticallyAlign(UI::TextVerticalAlign Align);
-                /// @brief Sets the top left position of this button in pixels.
+                /// @brief Sets the relative top left position of this button.
                 /// @param Position A Vector2 representing the location of this button.
                 void SetPosition(Vector2 Position);
-                /// @brief Gets the top left position of this button.
+                /// @brief Gets the relative top left position of this button.
                 /// @return Returns a Vector2 representing the location of this button.
                 Vector2 GetPosition();
-                /// @brief Sets the size of this button in pixels.
+                /// @brief Sets the top left position of this button in pixels.
+                /// @param Position A Vector2 representing the location of this button.
+                void SetActualPosition(Vector2 Position);
+                /// @brief Gets the top left position of this button in pixels.
+                /// @return Returns a Vector2 representing the location of this button.
+                Vector2 GetActualPosition();
+                /// @brief Sets the relative size of this button.
                 /// @param Size A vector2 representing the size of this button.
                 void SetSize(Vector2 Size);
-                /// @brief Gets the size of this button in pixels.
+                /// @brief Gets the relative size of this button.
                 /// @return Returns a vector2 representing the size of this button.
                 Vector2 GetSize();
+                /// @brief Sets the size of this button in pixels.
+                /// @param Size A vector2 representing the size of this button.
+                void SetActualSize(Vector2 Size);
+                /// @brief Gets the size of this button in pixels.
+                /// @return Returns a vector2 representing the size of this button.
+                Vector2 GetActualSize();
         };//button
     }//UI
 }//phys
