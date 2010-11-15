@@ -10,7 +10,7 @@ Beta = The version outside players first got to try
 1.0 = First Release
 
 -->
-<level catchversion="indev" />
+<level catchversion="indev">
 
 <PlaneOfPlay>
 

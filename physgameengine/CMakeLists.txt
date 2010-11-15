@@ -14,6 +14,8 @@ set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
 message ("Looking for source code in: ${${PROJECT_NAME}_SOURCE_DIR}")
 
 set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
+set (PROJECT_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}")
+set (LIBRARY_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
 message ("Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 
 # Set header and source files
@@ -162,14 +164,19 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/xmltext.cpp"
 )
 
-#Where are the libraries and their headers
+###############################################################################
+# Windows Specific Items
 if(${WIN32})
 	message ("Using Windows Build Process")
+	add_definitions( -DMACOSX )
 endif(${WIN32})
 
-if(${UNIX})	
+###############################################################################
+# Linux Specific Items
+if(${UNIX})
 	message ("Using Unix/Linux Build Process")
 
+	#Configure System Dependant Libraries
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
 
@@ -188,13 +195,20 @@ if(${UNIX})
 	)
 
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
+
+	#Copy System Dependant files
+	
 endif(${UNIX})
 
+###############################################################################
+# Mac OS X and iPhone Specific Items
 if(${APPLE})
-	message ("Using Windows Build Process")
+	message ("Using Apple Build Process")
+	add_definitions( -DMACOSX )
 endif(${APPLE})
 
-#Common Configuration items
+###############################################################################
+#Common Library Configuration items
 include_directories( ${Platform_LIBINCLUDES} ${${PROJECT_NAME}_SOURCE_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bullet-2.76/src"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bullet-2.76/src/LinearMath"
@@ -203,6 +217,11 @@ include_directories( ${Platform_LIBINCLUDES} ${${PROJECT_NAME}_SOURCE_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletserializer"
 )
+
+###############################################################################
+#Common Files to Copy
+#${CMAKE_COMMAND}
+configure_file( "${${PROJECT_NAME}_LIBBINARY_DIR}/common/Ogre-lgpl-3.0.txt" "${${PROJECT_NAME}_BINARY_DIR}/common/Ogre-lgpl-3.0.txt" COPYONLY)
 
 # Prepare the actual Build
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}_sources} )
