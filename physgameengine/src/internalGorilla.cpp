@@ -1324,80 +1324,89 @@ namespace Gorilla
   size_t begin = vertices.size();
   size_t i = 0;
 
-  // Render/redraw rectangles
-  for (Rectangles::iterator it = mRectangles.begin(); it != mRectangles.end(); it++)
-  {
+    for( int RP=0 ; RP<3 ; RP++ )
+    {
+      // Render/redraw rectangles
+      for (Rectangles::iterator it = mRectangles.begin(); it != mRectangles.end(); it++)
+      {
+          if(RP==(*it)->RenderPriority())
+          {
+           if ((*it)->mDirty || force)
+            (*it)->_redraw();
 
-   if ((*it)->mDirty || force)
-    (*it)->_redraw();
+           for (i=0; i < (*it)->mVertices.size(); i++)
+            vertices.push_back((*it)->mVertices[i]);
+          }
+      }
 
-   for (i=0; i < (*it)->mVertices.size(); i++)
-    vertices.push_back((*it)->mVertices[i]);
+      // Render/redraw polygons
+      for (Polygons::iterator it = mPolygons.begin(); it != mPolygons.end(); it++)
+      {
+          if(RP==(*it)->RenderPriority())
+          {
+           if ((*it)->mDirty || force)
+            (*it)->_redraw();
 
-  }
+           for (i=0; i < (*it)->mVertices.size(); i++)
+            vertices.push_back((*it)->mVertices[i]);
+          }
+      }
 
-  // Render/redraw polygons
-  for (Polygons::iterator it = mPolygons.begin(); it != mPolygons.end(); it++)
-  {
+      // Render/redraw line lists
+      for (LineLists::iterator it = mLineLists.begin(); it != mLineLists.end(); it++)
+      {
+          if(RP==(*it)->RenderPriority())
+          {
+           if ((*it)->mDirty || force)
+            (*it)->_redraw();
 
-   if ((*it)->mDirty || force)
-    (*it)->_redraw();
+           for (i=0; i < (*it)->mVertices.size(); i++)
+            vertices.push_back((*it)->mVertices[i]);
+          }
+      }
 
-   for (i=0; i < (*it)->mVertices.size(); i++)
-    vertices.push_back((*it)->mVertices[i]);
+      // Render/redraw quad lists
+      for (QuadLists::iterator it = mQuadLists.begin(); it != mQuadLists.end(); it++)
+      {
+          if(RP==(*it)->RenderPriority())
+          {
+           if ((*it)->mDirty || force)
+            (*it)->_redraw();
 
-  }
+           for (i=0; i < (*it)->mVertices.size(); i++)
+            vertices.push_back((*it)->mVertices[i]);
+          }
+      }
 
-  // Render/redraw line lists
-  for (LineLists::iterator it = mLineLists.begin(); it != mLineLists.end(); it++)
-  {
+      // Render/redraw caption
+      for (Captions::iterator it = mCaptions.begin(); it != mCaptions.end(); it++)
+      {
+          if(RP==(*it)->RenderPriority())
+          {
+           if ((*it)->mDirty || force)
+            (*it)->_redraw();
 
-   if ((*it)->mDirty || force)
-    (*it)->_redraw();
+           for (i=0; i < (*it)->mVertices.size(); i++)
+            vertices.push_back((*it)->mVertices[i]);
+          }
+      }
 
-   for (i=0; i < (*it)->mVertices.size(); i++)
-    vertices.push_back((*it)->mVertices[i]);
+      // Render/redraw markuptext
+      for (MarkupTexts::iterator it = mMarkupTexts.begin(); it != mMarkupTexts.end(); it++)
+      {
+          if(RP==(*it)->RenderPriority())
+          {
+           if ((*it)->mTextDirty || force)
+            (*it)->_calculateCharacters();
 
-  }
+           if ((*it)->mDirty || force)
+            (*it)->_redraw();
 
-  // Render/redraw quad lists
-  for (QuadLists::iterator it = mQuadLists.begin(); it != mQuadLists.end(); it++)
-  {
-
-   if ((*it)->mDirty || force)
-    (*it)->_redraw();
-
-   for (i=0; i < (*it)->mVertices.size(); i++)
-    vertices.push_back((*it)->mVertices[i]);
-
-  }
-
-  // Render/redraw caption
-  for (Captions::iterator it = mCaptions.begin(); it != mCaptions.end(); it++)
-  {
-
-   if ((*it)->mDirty || force)
-    (*it)->_redraw();
-
-   for (i=0; i < (*it)->mVertices.size(); i++)
-    vertices.push_back((*it)->mVertices[i]);
-
-  }
-
-  // Render/redraw caption
-  for (MarkupTexts::iterator it = mMarkupTexts.begin(); it != mMarkupTexts.end(); it++)
-  {
-
-   if ((*it)->mTextDirty || force)
-    (*it)->_calculateCharacters();
-
-   if ((*it)->mDirty || force)
-    (*it)->_redraw();
-
-   for (i=0; i < (*it)->mVertices.size(); i++)
-    vertices.push_back((*it)->mVertices[i]);
-
-  }
+           for (i=0; i < (*it)->mVertices.size(); i++)
+            vertices.push_back((*it)->mVertices[i]);
+          }
+      }
+    }
 
   if (mAlphaModifier != 1.0f)
   {
@@ -1420,6 +1429,7 @@ namespace Gorilla
   mBorderWidth = 0.0f;
   mBackgroundColour[0] = mBackgroundColour[1] =  mBackgroundColour[2] = mBackgroundColour[3] = Ogre::ColourValue::White;
   mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV();
+  mPriority    = Gorilla::RP_Medium;
 
  }
 
@@ -1500,6 +1510,7 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
   mBackgroundColour         = Ogre::ColourValue::White;
   mBorderColour.a = 0;
   mBorderWidth    = 0;
+  mPriority       = Gorilla::RP_Medium;
  }
 
  void  Polygon::_redraw()
@@ -1605,6 +1616,7 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
  LineList::LineList(Layer* layer) : mLayer(layer)
  {
   mDirty = false;
+  mPriority    = Gorilla::RP_Medium;
  }
 
  void  LineList::begin(Ogre::Real lineThickness, const Ogre::ColourValue& colour)
@@ -1695,6 +1707,7 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
  : mLayer(layer)
  {
   mWhiteUV = mLayer->_getSolidUV();
+  mPriority    = Gorilla::RP_Medium;
  }
 
  void  QuadList::begin()
@@ -1964,6 +1977,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   mBackground.a   = 0.0f;
   mAlignment      = TextAlign_Left;
   mVerticalAlign  = VerticalAlign_Top;
+  mPriority    = Gorilla::RP_Medium;
  }
 
  void Caption::_calculateDrawSize(Ogre::Vector2& retSize)
@@ -2188,6 +2202,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   mHeight         = 0.0f;
   mText           = text;
   mBackground.a   = 0.0f;
+  mPriority    = Gorilla::RP_Medium;
 
  }
 

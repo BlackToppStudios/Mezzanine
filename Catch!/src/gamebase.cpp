@@ -438,24 +438,24 @@ void MakeGUI()
     //Build the Menu Layer
     UI::Rectangle* MenuBackground = Menu->CreateRectangle( Vector2(0.25, 0.15),
                                                          Vector2(0.5, 0.7) );
-    ColourValue Colours(0.4,0.8,0.3,1.0);
-    MenuBackground->SetBackgroundColour(Colours);
+    ColourValue MenuColours(0.4,0.8,0.3,0.5);
+    MenuBackground->SetBackgroundColour(MenuColours);
 
     UI::Button* ReturnButton = Menu->CreateButton( "Return", Vector2(0.30, 0.61),
                                             Vector2(0.4, 0.08),
                                             18, "Return to Game");
     ReturnButton->HorizontallyAlign(UI::Middle);
     ReturnButton->VerticallyAlign(UI::Center);
-    Colours = ColourValue(0.6,0.2,0.2,1.0);
-    ReturnButton->SetBackgroundColour(Colours);
+    ColourValue ReturnColours(0.6,0.2,0.2,0.5);
+    ReturnButton->SetBackgroundColour(ReturnColours);
 
     UI::Button* ExitButton = Menu->CreateButton( "Exit", Vector2(0.30, 0.73),
                                             Vector2(0.4, 0.08),
                                             18, "Exit Game");
     ExitButton->HorizontallyAlign(UI::Middle);
     ExitButton->VerticallyAlign(UI::Center);
-    Colours = ColourValue(0.6,0.2,0.2,1.0);
-    ExitButton->SetBackgroundColour(Colours);
+    ColourValue ExitColours(0.6,0.2,0.2,0.5);
+    ExitButton->SetBackgroundColour(ExitColours);
     Menu->Hide();
 
     //Misc Extra's
