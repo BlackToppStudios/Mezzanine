@@ -7,6 +7,8 @@
 #include "gamebase.h"       //Game Include
 #include <physgame.h>       //Physgame include
 #include <sstream>          //STL includes
+#include <istream>
+#include <string>
 
 #define PHYSDEBUG
 
@@ -403,15 +405,16 @@ void LoadContent()
     #ifdef PHYSDEBUG
     TheWorld->Log("Trying to open test.xml");
     #endif
-    //ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
-    String ShouldHaveXML("");
+    ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
     std::stringstream XMLStringStream;
-    //(*XMLptr) >> XMLStringStream;
+    (*XMLptr) >> XMLStringStream;
+    String ShouldHaveXML(XMLStringStream.str());
+    //XMLStringStream >> ShouldHaveXML;
     #ifdef PHYSDEBUG
-    TheWorld->LogStream << "ShouldHaveXML:" << ShouldHaveXML << endl << "End XML Logging";
+    TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "End XML Logging" <<endl;
     #endif
     TheWorld->Log("Delete XML Stream");
-    //delete XMLptr;
+    delete XMLptr;
 
     // Now Lets make some bowling pins
     Real PinSpacing=75.0;           //This is how far apart we want the pins

@@ -60,6 +60,7 @@ namespace phys
             GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GButton->left(),GButton->top(),GButton->width(),GButton->height());
             Parent = Layer;
             Manager = World::GetWorldPointer()->GetUIManager();
+            GorillaButton->background(Ogre::ColourValue(0,0,0,0));
             MouseHover = false;
             NormalSprite = NULL;
             HoveredSprite = NULL;
@@ -113,7 +114,7 @@ namespace phys
 
         void Button::SetBackgroundColour(ColourValue& Colour)
         {
-            GorillaButton->background(Colour.GetOgreColourValue());
+            GorillaRectangle->background_colour(Colour.GetOgreColourValue());
         }
 
         void Button::SetBackgroundSprite(const String& Name)
@@ -121,6 +122,7 @@ namespace phys
             Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
             NormalSprite = GSprite;
             GorillaRectangle->background_image(GSprite);
+            GorillaButton->background(ColourValue(0,0,0,0).GetOgreColourValue());
         }
 
         void Button::SetHoveredSprite(const String& Name)
@@ -230,6 +232,47 @@ namespace phys
         {
             Vector2 Pos(GorillaButton->width(), GorillaButton->height());
             return Pos;
+        }
+
+        void Button::SetRenderPriority(UI::RenderPriority Priority)
+        {
+            Gorilla::RenderPriority RP;
+            switch(Priority)
+            {
+                case UI::RP_Low:
+                    RP = Gorilla::RP_Low;
+                    break;
+                case UI::RP_Medium:
+                    RP = Gorilla::RP_Medium;
+                    break;
+                case UI::RP_High:
+                    RP = Gorilla::RP_High;
+                    break;
+                default:
+                    break;
+            }
+            GorillaButton->RenderPriority(RP);
+            GorillaRectangle->RenderPriority(RP);
+        }
+
+        UI::RenderPriority Button::GetRenderPriority()
+        {
+            Gorilla::RenderPriority RP = this->GorillaButton->RenderPriority();
+            switch(RP)
+            {
+                case Gorilla::RP_Low:
+                    return UI::RP_Low;
+                    break;
+                case Gorilla::RP_Medium:
+                    return UI::RP_Medium;
+                    break;
+                case Gorilla::RP_High:
+                    return UI::RP_High;
+                    break;
+                default:
+                    break;
+            }
+            return UI::RP_Medium;
         }
     }//UI
 }//phys

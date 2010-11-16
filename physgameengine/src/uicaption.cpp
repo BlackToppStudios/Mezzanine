@@ -59,6 +59,7 @@ namespace phys
             GorillaCaption = GCaption;
             Parent = Layer;
             GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GCaption->left(), GCaption->top(), GCaption->width(), GCaption->height());
+            GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
             Manager = World::GetWorldPointer()->GetUIManager();
         }
 
@@ -85,13 +86,14 @@ namespace phys
 
         void Caption::SetBackgroundColour(ColourValue& Colour)
         {
-            GorillaCaption->background(Colour.GetOgreColourValue());
+            GorillaRectangle->background_colour(Colour.GetOgreColourValue());
         }
 
         void Caption::SetBackgroundSprite(const String& Name)
         {
             Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
             GorillaRectangle->background_image(GSprite);
+            //GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
         }
 
         void Caption::HorizontallyAlign(UI::TextHorizontalAlign Align)
@@ -191,7 +193,48 @@ namespace phys
             Vector2 Pos(GorillaCaption->width(), GorillaCaption->height());
             return Pos;
         }
-    }
-}
+
+        void Caption::SetRenderPriority(UI::RenderPriority Priority)
+        {
+            Gorilla::RenderPriority RP;
+            switch(Priority)
+            {
+                case UI::RP_Low:
+                    RP = Gorilla::RP_Low;
+                    break;
+                case UI::RP_Medium:
+                    RP = Gorilla::RP_Medium;
+                    break;
+                case UI::RP_High:
+                    RP = Gorilla::RP_High;
+                    break;
+                default:
+                    break;
+            }
+            GorillaCaption->RenderPriority(RP);
+            GorillaRectangle->RenderPriority(RP);
+        }
+
+        UI::RenderPriority Caption::GetRenderPriority()
+        {
+            Gorilla::RenderPriority RP = this->GorillaCaption->RenderPriority();
+            switch(RP)
+            {
+                case Gorilla::RP_Low:
+                    return UI::RP_Low;
+                    break;
+                case Gorilla::RP_Medium:
+                    return UI::RP_Medium;
+                    break;
+                case Gorilla::RP_High:
+                    return UI::RP_High;
+                    break;
+                default:
+                    break;
+            }
+            return UI::RP_Medium;
+        }
+    }//UT
+}//phys
 
 #endif

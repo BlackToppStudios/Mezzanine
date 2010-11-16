@@ -41,6 +41,7 @@
 #define _uirectangle_h
 
 #include "datatypes.h"
+#include "enumerations.h"
 #include "colourvalue.h"
 #include "vector2.h"
 
@@ -111,6 +112,13 @@ namespace phys
                 /// @brief Gets the size of this rectangle in pixels.
                 /// @return Returns a vector2 representing the size of this rectangle.
                 Vector2 GetActualSize();
+                /// @brief Sets the priority this button should be rendered with.
+                /// @details The default value for this is Medium.
+                /// @param Priority The priority level to be used when rendering this button.
+                void SetRenderPriority(UI::RenderPriority Priority);
+                /// @brief Gets the priority this button should be rendered with.
+                /// @return Returns an enum value representing this button's priority level.
+                UI::RenderPriority GetRenderPriority();
         };//rectangle
     }//UI
 }//phys
