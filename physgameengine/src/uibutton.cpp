@@ -60,6 +60,7 @@ namespace phys
             GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GButton->left(),GButton->top(),GButton->width(),GButton->height());
             Parent = Layer;
             Manager = World::GetWorldPointer()->GetUIManager();
+            GorillaButton->background(Ogre::ColourValue(0,0,0,0));
             MouseHover = false;
             NormalSprite = NULL;
             HoveredSprite = NULL;
@@ -113,7 +114,7 @@ namespace phys
 
         void Button::SetBackgroundColour(ColourValue& Colour)
         {
-            GorillaButton->background(Colour.GetOgreColourValue());
+            GorillaRectangle->background_colour(Colour.GetOgreColourValue());
         }
 
         void Button::SetBackgroundSprite(const String& Name)
@@ -121,6 +122,7 @@ namespace phys
             Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
             NormalSprite = GSprite;
             GorillaRectangle->background_image(GSprite);
+            GorillaButton->background(ColourValue(0,0,0,0).GetOgreColourValue());
         }
 
         void Button::SetHoveredSprite(const String& Name)

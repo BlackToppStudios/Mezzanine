@@ -401,6 +401,8 @@ void MakeGUI()
     UILayer* Stats = Screen->CreateLayer(StatsLayer, 1);
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
+    ColourValue Transparent(0.0,0.0,0.0,0.0);
+
     //Build the HUD layer
     UI::Caption* Timer = HUD->CreateCaption( "Timer", Vector2(0.8995, 0.006), Vector2(0.0965, 0.06), 20, "0:00");
     Timer->HorizontallyAlign(UI::Middle);
@@ -421,7 +423,6 @@ void MakeGUI()
 
     UI::Caption* ScoreAmount = HUD->CreateCaption( "ScoreArea", Vector2(0.135, 0.006), Vector2(0.15, 0.065), 20, "0");
     //ScoreAmount->SetBackgroundSprite("ScoreCashArea");
-    ColourValue Transparent(0.0,0.0,0.0,0.0);
     ScoreAmount->SetBackgroundColour(Transparent);
     ScoreAmount->HorizontallyAlign(UI::Middle);
     ScoreAmount->VerticallyAlign(UI::Center);
@@ -438,7 +439,7 @@ void MakeGUI()
     //Build the Menu Layer
     UI::Rectangle* MenuBackground = Menu->CreateRectangle( Vector2(0.25, 0.15),
                                                          Vector2(0.5, 0.7) );
-    ColourValue MenuColours(0.4,0.8,0.3,0.5);
+    ColourValue MenuColours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(MenuColours);
 
     UI::Button* ReturnButton = Menu->CreateButton( "Return", Vector2(0.30, 0.61),
@@ -446,7 +447,7 @@ void MakeGUI()
                                             18, "Return to Game");
     ReturnButton->HorizontallyAlign(UI::Middle);
     ReturnButton->VerticallyAlign(UI::Center);
-    ColourValue ReturnColours(0.6,0.2,0.2,0.5);
+    ColourValue ReturnColours(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(ReturnColours);
 
     UI::Button* ExitButton = Menu->CreateButton( "Exit", Vector2(0.30, 0.73),
@@ -454,7 +455,7 @@ void MakeGUI()
                                             18, "Exit Game");
     ExitButton->HorizontallyAlign(UI::Middle);
     ExitButton->VerticallyAlign(UI::Center);
-    ColourValue ExitColours(0.6,0.2,0.2,0.5);
+    ColourValue ExitColours(0.6,0.2,0.2,1.0);
     ExitButton->SetBackgroundColour(ExitColours);
     Menu->Hide();
 

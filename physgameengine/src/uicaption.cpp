@@ -59,6 +59,7 @@ namespace phys
             GorillaCaption = GCaption;
             Parent = Layer;
             GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GCaption->left(), GCaption->top(), GCaption->width(), GCaption->height());
+            GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
             Manager = World::GetWorldPointer()->GetUIManager();
         }
 
@@ -85,13 +86,14 @@ namespace phys
 
         void Caption::SetBackgroundColour(ColourValue& Colour)
         {
-            GorillaCaption->background(Colour.GetOgreColourValue());
+            GorillaRectangle->background_colour(Colour.GetOgreColourValue());
         }
 
         void Caption::SetBackgroundSprite(const String& Name)
         {
             Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
             GorillaRectangle->background_image(GSprite);
+            //GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
         }
 
         void Caption::HorizontallyAlign(UI::TextHorizontalAlign Align)
