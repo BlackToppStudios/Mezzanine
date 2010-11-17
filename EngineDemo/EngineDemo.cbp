@@ -45,6 +45,7 @@
 					<Add after="cmd /c copy /y /v .\data\common\*.png .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.gorilla .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.bullet .\bin\WinDebug\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.xml .\bin\WinDebug\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\sounds\*.ogg .\bin\WinDebug\data\common\sounds" />
 					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinDebug\data\common\music" />
 				</ExtraCommands>
@@ -109,6 +110,7 @@
 					<Add after="cmd /c copy /y /v .\data\common\*.png .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.gorilla .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\*.bullet .\bin\WinRelease\data\common" />
+					<Add after="cmd /c copy /y /v .\data\common\*.xml .\bin\WinRelease\data\common" />
 					<Add after="cmd /c copy /y /v .\data\common\sounds\*.ogg .\bin\WinRelease\data\common\sounds" />
 					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinRelease\data\common\music" />
 				</ExtraCommands>
