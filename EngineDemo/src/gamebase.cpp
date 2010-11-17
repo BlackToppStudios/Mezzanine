@@ -396,24 +396,38 @@ void LoadContent()
     String filerobot ("robot.mesh");
     String robotprefix ("Robot");
 
+    std::stringstream zipname;
+    zipname << crossplatform::GetDataDirectory() << "test.zip";
+
     Real mass=5.0;
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
+    TheWorld->GetResourceManager()->AddResourceLocation(zipname.str(), "Zip", groupname, false);
+    TheWorld->GetResourceManager()->AddResourceLocation("", "FileSystem", groupname, false);
+
     TheWorld->GetResourceManager()->DeclareResource(filerobot, "Mesh", groupname);
     TheWorld->GetResourceManager()->InitResourceGroup(groupname);
 
     //Test the Resource input stream here
     #ifdef PHYSDEBUG
-    TheWorld->Log("Trying to open test.xml");
+    TheWorld->Log("Trying to open test.xml and test.txt");
     #endif
     ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
-    //std::stringstream XMLStringStream;
+    ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
+
     char chararray[401];
+    for (Whole c=0; c<401; c++)
+        { chararray[c]='\0'; }
     XMLptr->read(chararray, 400);
-    //(*XMLptr) >> XMLStringStream;
-    String ShouldHaveXML(chararray);
-    //XMLStringStream >> ShouldHaveXML;
+    String ShouldHaveXML( chararray );
+
+    for (Whole c=0; c<401; c++)
+        { chararray[c]='\0'; }
+    Zippedptr->read(chararray, 400);
+    String ZippedFileContents( chararray );
+
+
     #ifdef PHYSDEBUG
-    TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "End XML Logging" <<endl;
+    TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "ZippedFileContents: " << ZippedFileContents <<endl<< "End XML and zipped stream Logging" << endl ;
     #endif
     TheWorld->Log("Delete XML Stream");
     delete XMLptr;

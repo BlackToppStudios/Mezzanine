@@ -15,6 +15,7 @@ data/common/Plane.material|?/data/common/Plane.material
 data/common/Sphere_Metal.material|?/data/common/Sphere_Metal.material
 data/common/RobotDecomp3.bullet|?/data/common/RobotDecomp3.bullet
 data/common/test.xml|?/data/common/test.xml
+data/common/test.zip|?/data/common/test.zip
 data/common/music/cAudioTheme1.ogg|?/data/common/music/cAudioTheme1.ogg
 data/common/music/cAudioTheme2.ogg|?/data/common/music/cAudioTheme2.ogg
 data/common/sounds/welcomefun-1.ogg|?/data/common/sounds/welcomefun-1.ogg
