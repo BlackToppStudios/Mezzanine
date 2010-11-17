@@ -406,9 +406,11 @@ void LoadContent()
     TheWorld->Log("Trying to open test.xml");
     #endif
     ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
-    std::stringstream XMLStringStream;
-    (*XMLptr) >> XMLStringStream;
-    String ShouldHaveXML(XMLStringStream.str());
+    //std::stringstream XMLStringStream;
+    char chararray[401];
+    XMLptr->read(chararray, 400);
+    //(*XMLptr) >> XMLStringStream;
+    String ShouldHaveXML(chararray);
     //XMLStringStream >> ShouldHaveXML;
     #ifdef PHYSDEBUG
     TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "End XML Logging" <<endl;
