@@ -8,7 +8,7 @@ set (${PROJECT_NAME}_LIBINCLUDE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/libincludes/"
 message ("Base Directory for Library headers: ${${PROJECT_NAME}_LIBINCLUDE_DIR}")
 
 set (${PROJECT_NAME}_LIBBINARY_DIR "${${PROJECT_NAME}_SOURCE_DIR}/data/")
-message ("Base Directory for Library binaries: ${${PROJECT_NAME}_LIBBINARY_DIR}")
+message ("Base Directory for Library binaries and data: ${${PROJECT_NAME}_LIBBINARY_DIR}")
 
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
 message ("Looking for source code in: ${${PROJECT_NAME}_SOURCE_DIR}")
@@ -165,6 +165,20 @@ set(${PROJECT_NAME}_sources
 )
 
 ###############################################################################
+# Functions for Later use
+
+#This function copies items from the Data/lib directory into it's expected location in the output directory.
+# it does not need leading slashes
+function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
+	add_custom_command(
+		TARGET ${PROJECT_NAME}
+		PRE_LINK
+		COMMAND ${CMAKE_COMMAND} -E copy "${${PROJECT_NAME}_LIBBINARY_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+	)
+endfunction(CopyFilesDuringBuild)
+
+
+###############################################################################
 # Windows Specific Items
 if(${WIN32})
 	message ("Using Windows Build Process")
@@ -197,7 +211,12 @@ if(${UNIX})
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
 	#Copy System Dependant files
-	
+	CopyFilesDuringBuild( linux/plugins.cfg linux/plugins.cfg )
+	CopyFilesDuringBuild( linux/settings.cfg linux/settings.cfg )
+	CopyFilesDuringBuild( linux/ogre/RenderSystem_GL.so linux/ogre/RenderSystem_GL.so )
+	CopyFilesDuringBuild( linux/ogre/libOgreMain.so libOgreMain.so )
+	CopyFilesDuringBuild( linux/ogre/libOgreMain.so.1.7.1 libOgreMain.so.1.7.1 )
+	CopyFilesDuringBuild( linux/caudio/libcAudio.2.1.0.so libcAudio.2.1.0.so )
 endif(${UNIX})
 
 ###############################################################################
@@ -219,14 +238,14 @@ include_directories( ${Platform_LIBINCLUDES} ${${PROJECT_NAME}_SOURCE_DIR}
 )
 
 ###############################################################################
-#Common Files to Copy
-#${CMAKE_COMMAND}
-configure_file( "${${PROJECT_NAME}_LIBBINARY_DIR}/common/Ogre-lgpl-3.0.txt" "${${PROJECT_NAME}_BINARY_DIR}/common/Ogre-lgpl-3.0.txt" COPYONLY)
-
 # Prepare the actual Build
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}_sources} )
 
 target_link_libraries( ${PROJECT_NAME} OgreMain Bullet ticpp cAudio SDL )
+
+#Common Files to Copy at Build Time
+CopyFilesDuringBuild( common/Ogre-lgpl-3.0.txt common/Ogre-lgpl-3.0.txt )
+
 
 #just testing a command.
 #configure_file(test copy.txt COPYFILE)
