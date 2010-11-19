@@ -6,6 +6,9 @@ message ("${PROJECT_NAME} - Begin")
 
 ###############################################################################
 # Initializations
+set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
+message ("Base Directory for ${PROJECT_NAME}: ${${PROJECT_NAME}_ROOT_DIR}")
+
 set (${PROJECT_NAME}_LIBINCLUDE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/libincludes/")
 message ("Base Directory for Library headers: ${${PROJECT_NAME}_LIBINCLUDE_DIR}")
 
@@ -197,6 +200,18 @@ function(CreateSymlinkDuringBuild Targeting LinkName)
 	)
 endfunction(CreateSymlinkDuringBuild)
 
+#Description: This function copies items from the root directory into it's expected location in the data/library directory During build time. It does not need leading slashes
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
+function(CopyLibraryDuringBuild SourceFile TargetFileInLibraryDir)
+	add_custom_command(
+		TARGET ${PROJECT_NAME}
+		PRE_LINK
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Library: ${${PROJECT_NAME}_LIBBINARY_DIR}${TargetFileInLibraryDir}"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_ROOT_DIR}${SourceFile}" "${${PROJECT_NAME}_LIBBINARY_DIR}${TargetFileInLibraryDir}"
+		VERBATIM
+	)
+endfunction(CopyLibraryDuringBuild)
+
 ###############################################################################
 # System Specific Build Items
 
@@ -204,6 +219,7 @@ endfunction(CreateSymlinkDuringBuild)
 # Windows Build Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
+	set(BuildPlatform windows)
 	add_definitions( -DWINDOWS )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
@@ -212,6 +228,7 @@ endif(${WIN32})
 # Linux Build Specific Items
 if(${UNIX})
 	message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
+	set(BuildPlatform linux)
 
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
@@ -239,6 +256,7 @@ endif(${UNIX})
 # Mac OS X and iPhone Build pecific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
+	set(BuildPlatform macosx)
 	add_definitions( -DMACOSX )
 	message ("${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${APPLE})
@@ -257,11 +275,20 @@ include_directories( ${Platform_LIBINCLUDES} ${${PROJECT_NAME}_SOURCE_DIR}
 ###############################################################################
 # Prepare the actual Build
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}_sources} )
+
+#######################################
+# Prepare Common Dependencies
+add_subdirectory (libincludes/common/tinyxmlppsrc)
+add_dependencies( ${PROJECT_NAME}  ticpp)
+
+#######################################
+# Link against Dependencies
 target_link_libraries( ${PROJECT_NAME} OgreMain Bullet ticpp cAudio SDL )
 
 ###############################################################################
 # Build Time File copying
 
+#######################################
 #Copy Common Files at Build Time
 CopyFilesDuringBuild( common/Ogre-lgpl-3.0.txt data/common/Ogre-lgpl-3.0.txt )
 
@@ -276,17 +303,19 @@ endif(${WIN32})
 # Linux File Copy Specific Items
 if(${UNIX})
 	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
-	#Copy System Dependant files
+
+	#Copy System Dependant Libraries On initial build
+	#TODO: ogre bullet caudio
+
+	#Copy System Dependant files during build time
 	CopyFilesDuringBuild( linux/plugins.cfg data/linux/plugins.cfg )
 	CopyFilesDuringBuild( linux/settings.cfg data/linux/settings.cfg )
 	CopyFilesDuringBuild( linux/ogre/RenderSystem_GL.so data/linux/ogre/RenderSystem_GL.so )
-	
 	CopyFilesDuringBuild( linux/ogre/libOgreMain.so.1.7.1 libOgreMain.so.1.7.1 )
 	CreateSymlinkDuringBuild( libOgreMain.so.1.7.1 libOgreMain.so )
-
 	CopyFilesDuringBuild( linux/caudio/libcAudio.2.1.0.so libcAudio.2.1.0.so )
 	CreateSymlinkDuringBuild( libcAudio.2.1.0.so libcAudio.so  )
-
+	
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
 endif(${UNIX})
 
@@ -296,8 +325,6 @@ if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
-
-
 
 ###############################################################################
 # The End
