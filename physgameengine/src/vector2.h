@@ -91,6 +91,11 @@ namespace phys
             /// @details Allows for multiplaction from a phys::Vector2
             /// @param Vec2 This is the other phys::Vector2
             Vector2 operator* (const Vector2 &Vec2) const;
+
+            /// @brief Division Operator
+            /// @details Allows for division from a phys::Vector2
+            /// @param Vec2 This is the other phys::Vector2
+            Vector2 operator/ (const Vector2 &Vec2) const;
     };
 }
 

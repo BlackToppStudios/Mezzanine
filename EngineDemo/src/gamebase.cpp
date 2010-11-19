@@ -569,7 +569,7 @@ void MakeGUI()
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     //Build the HUD layer
-    UI::Button* MenuButton = HUD->CreateButton( "Menu", Vector2(0.0, 0.92),
+    UI::TextButton* MenuButton = HUD->CreateTextButton( "Menu", Vector2(0.0, 0.92),
                                             Vector2(0.2, 0.08),
                                             24, "Menu");
     MenuButton->HorizontallyAlign(UI::Middle);
@@ -586,7 +586,7 @@ void MakeGUI()
     ColourValue Colours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(Colours);
 
-    UI::Button* ReturnButton = Menu->CreateButton( "Return", Vector2(0.30, 0.61),
+    UI::TextButton* ReturnButton = Menu->CreateTextButton( "Return", Vector2(0.30, 0.61),
                                             Vector2(0.4, 0.08),
                                             24, "Return to Game");
     ReturnButton->HorizontallyAlign(UI::Middle);
@@ -594,7 +594,7 @@ void MakeGUI()
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(Colours);
 
-    UI::Button* ExitButton = Menu->CreateButton( "Exit", Vector2(0.30, 0.73),
+    UI::TextButton* ExitButton = Menu->CreateTextButton( "Exit", Vector2(0.30, 0.73),
                                             Vector2(0.4, 0.08),
                                             24, "Exit Game");
     ExitButton->HorizontallyAlign(UI::Middle);

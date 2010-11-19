@@ -37,144 +37,140 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uibutton_cpp
-#define _uibutton_cpp
+#ifndef _uitextbutton_cpp
+#define _uitextbutton_cpp
 
-#include "uibutton.h"
+#include "uitextbutton.h"
 #include "uilayer.h"
 #include "uimanager.h"
-#include "eventmanager.h"
-#include "world.h"
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
     namespace UI
     {
-        Button::Button(String& name, Vector2 Position, Vector2 Size, UILayer* Layer)
-            : Parent(Layer),
-              NormalSprite(NULL),
-              HoveredSprite(NULL),
-              MouseHover(false),
-              RelPosition(Position),
-              RelSize(Size),
-              Name(name)
+        TextButton::TextButton(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
+            : Button(name,Position,Size,Layer)
         {
-            Manager = World::GetWorldPointer()->GetUIManager();
-
-            Vector2 Window = Manager->GetWindowDimensions();
-            GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
+            GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,GorillaRectangle->left(),GorillaRectangle->top(),Text);
+            GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
+            GorillaButton->background(Ogre::ColourValue(0,0,0,0));
         }
 
-        Button::~Button()
+        TextButton::~TextButton()
         {
-            Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
+            Parent->GetGorillaLayer()->destroyCaption(GorillaButton);
         }
 
-        String& Button::GetName()
+        void TextButton::SetText(String& Text)
         {
-            return Name;
+            GorillaButton->text(Text);
         }
 
-        bool Button::CheckMouseHover()
+        String TextButton::GetText()
         {
-            Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
-            if(GorillaRectangle->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
+            return GorillaButton->text();
+        }
+
+        void TextButton::HorizontallyAlign(UI::TextHorizontalAlign Align)
+        {
+            Gorilla::TextAlignment HA;
+            switch (Align)
             {
-                if(!MouseHover && HoveredSprite)
-                {
-                    GorillaRectangle->background_image(HoveredSprite);
-                }
-                MouseHover = true;
-            }else{
-                if(MouseHover && HoveredSprite)
-                {
-                    GorillaRectangle->background_image(NormalSprite);
-                }
-                MouseHover = false;
+                case UI::Left:
+                    HA = Gorilla::TextAlign_Left;
+                    break;
+                case UI::Right:
+                    HA = Gorilla::TextAlign_Right;
+                    break;
+                case UI::Middle:
+                    HA = Gorilla::TextAlign_Centre;
+                    break;
+                default:
+                    return;
             }
-            return MouseHover;
+            GorillaButton->align(HA);
         }
 
-        bool Button::GetMouseHover()
+        void TextButton::VerticallyAlign(UI::TextVerticalAlign Align)
         {
-            return MouseHover;
+            Gorilla::VerticalAlignment VA;
+            switch (Align)
+            {
+                case UI::Top:
+                    VA = Gorilla::VerticalAlign_Top;
+                    break;
+                case UI::Bottom:
+                    VA = Gorilla::VerticalAlign_Bottom;
+                    break;
+                case UI::Center:
+                    VA = Gorilla::VerticalAlign_Middle;
+                    break;
+                default:
+                    return;
+            }
+            GorillaButton->vertical_align(VA);
         }
 
-        void Button::SetBackgroundColour(ColourValue& Colour)
-        {
-            GorillaRectangle->background_colour(Colour.GetOgreColourValue());
-        }
-
-        void Button::SetBackgroundSprite(const String& Name)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
-            NormalSprite = GSprite;
-            GorillaRectangle->background_image(GSprite);
-        }
-
-        void Button::SetHoveredSprite(const String& Name)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
-            HoveredSprite = GSprite;
-        }
-
-        void Button::SetBorder(Real Width, ColourValue& Colour)
-        {
-            GorillaRectangle->border(Width, Colour.GetOgreColourValue());
-        }
-
-        void Button::SetPosition(Vector2 Position)
+        void TextButton::SetPosition(Vector2 Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Manager->GetWindowDimensions();
+            GorillaButton->left(CurrDim.X * RelPosition.X);
+            GorillaButton->top(CurrDim.Y * RelPosition.Y);
             GorillaRectangle->left(CurrDim.X * RelPosition.X);
             GorillaRectangle->top(CurrDim.Y * RelPosition.Y);
         }
 
-        Vector2 Button::GetPosition()
+        Vector2 TextButton::GetPosition()
         {
             return RelPosition;
         }
 
-        void Button::SetActualPosition(Vector2 Position)
+        void TextButton::SetActualPosition(Vector2 Position)
         {
+            GorillaButton->left(Position.X);
+            GorillaButton->top(Position.Y);
             GorillaRectangle->left(Position.X);
             GorillaRectangle->top(Position.Y);
         }
 
-        Vector2 Button::GetActualPosition()
+        Vector2 TextButton::GetActualPosition()
         {
-            Vector2 Pos(GorillaRectangle->left(), GorillaRectangle->top());
+            Vector2 Pos(GorillaButton->left(), GorillaButton->top());
             return Pos;
         }
 
-        void Button::SetSize(Vector2 Size)
+        void TextButton::SetSize(Vector2 Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
+            GorillaButton->left(CurrDim.X * RelSize.X);
+            GorillaButton->top(CurrDim.Y * RelSize.Y);
             GorillaRectangle->left(CurrDim.X * RelSize.X);
             GorillaRectangle->top(CurrDim.Y * RelSize.Y);
         }
 
-        Vector2 Button::GetSize()
+        Vector2 TextButton::GetSize()
         {
             return RelSize;
         }
 
-        void Button::SetActualSize(Vector2 Size)
+        void TextButton::SetActualSize(Vector2 Size)
         {
+            GorillaButton->width(Size.X);
+            GorillaButton->height(Size.Y);
             GorillaRectangle->width(Size.X);
             GorillaRectangle->height(Size.Y);
         }
 
-        Vector2 Button::GetActualSize()
+        Vector2 TextButton::GetActualSize()
         {
-            Vector2 Pos(GorillaRectangle->width(), GorillaRectangle->height());
+            Vector2 Pos(GorillaButton->width(), GorillaButton->height());
             return Pos;
         }
 
-        void Button::SetRenderPriority(UI::RenderPriority Priority)
+        void TextButton::SetRenderPriority(UI::RenderPriority Priority)
         {
             Gorilla::RenderPriority RP;
             switch(Priority)
@@ -191,10 +187,11 @@ namespace phys
                 default:
                     break;
             }
+            GorillaButton->RenderPriority(RP);
             GorillaRectangle->RenderPriority(RP);
         }
 
-        UI::RenderPriority Button::GetRenderPriority()
+        UI::RenderPriority TextButton::GetRenderPriority()
         {
             Gorilla::RenderPriority RP = this->GorillaRectangle->RenderPriority();
             switch(RP)
@@ -213,7 +210,7 @@ namespace phys
             }
             return UI::RP_Medium;
         }
-    }//UI
-}//phys
+    }
+}
 
 #endif

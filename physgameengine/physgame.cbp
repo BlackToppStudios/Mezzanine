@@ -298,6 +298,8 @@
 		<Unit filename="src\uiscreen.h" />
 		<Unit filename="src\uiscrollbar.cpp" />
 		<Unit filename="src\uiscrollbar.h" />
+		<Unit filename="src\uitextbutton.cpp" />
+		<Unit filename="src\uitextbutton.h" />
 		<Unit filename="src\uiwidget.cpp" />
 		<Unit filename="src\uiwidget.h" />
 		<Unit filename="src\vector2.cpp" />

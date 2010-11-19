@@ -41,7 +41,7 @@
 #define _uilayer_cpp
 
 #include "uilayer.h"
-#include "uibutton.h"
+#include "uitextbutton.h"
 #include "uirectangle.h"
 #include "uicaption.h"
 #include "uiwidget.h"
@@ -91,14 +91,9 @@ namespace phys
         GorillaLayer->hide();
     }
 
-    UI::Button* UILayer::CreateButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
+    UI::Button* UILayer::CreateButton(String& Name, Vector2 Position, Vector2 Size)
     {
-        GraphicsManager* Graphics = World::GetWorldPointer()->GetGraphicsManager();
-        Real Width = (Real)Graphics->getRenderWidth();
-        Real Height = (Real)Graphics->getRenderHeight();
-        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, Position.X * Width, Position.Y * Height, Text);
-        GCaption->size(Size.X * Width, Size.Y * Height);
-        UI::Button* button = new UI::Button(Name, GCaption, this);
+        UI::Button* button = new UI::Button(Name, Position, Size, this);
         Buttons.push_back(button);
         return button;
     }
@@ -124,6 +119,13 @@ namespace phys
     Whole UILayer::GetNumButtons()
     {
         return Buttons.size();
+    }
+
+    UI::TextButton* UILayer::CreateTextButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
+    {
+        UI::TextButton* tbutton = new UI::TextButton(Name, Position, Size, Glyph, Text, this);
+        Buttons.push_back(tbutton);
+        return tbutton;
     }
 
     UI::Rectangle* UILayer::CreateRectangle(Vector2 Position, Vector2 Size)

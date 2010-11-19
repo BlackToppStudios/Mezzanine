@@ -75,11 +75,11 @@ namespace phys
                 };
             protected:
                 UI::Button* Scroller;
+                UI::Rectangle* ScrollBack;
                 UI::Button* UpLeftButton;
                 UI::Button* DownRightButton;
                 Real ScrollUpperLimit;
                 Real ScrollLowerLimit;
-                Real ScrollMinHeight;
                 void CreateHorizontalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style);
                 void CreateVerticalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style);
             public:

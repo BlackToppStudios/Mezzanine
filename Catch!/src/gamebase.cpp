@@ -412,10 +412,10 @@ void MakeGUI()
     UI::Rectangle* TIcon = HUD->CreateRectangle( Vector2(0.8515, 0.006), Vector2(0.0482, 0.06));
     TIcon->SetBackgroundSprite("TimerLogo");
 
-    UI::Button* MenuButton = HUD->CreateButton( "Menu", Vector2(0.008, 0.922), Vector2(0.16, 0.06), 20, " ");
+    UI::Button* MenuButton = HUD->CreateButton( "Menu", Vector2(0.008, 0.922), Vector2(0.16, 0.06));
     MenuButton->SetBackgroundSprite("MenuButton");
 
-    UI::Button* StoreButton = HUD->CreateButton( "Store", Vector2(0.922, 0.922), Vector2(0.065, 0.065), 10, " ");
+    UI::Button* StoreButton = HUD->CreateButton( "Store", Vector2(0.922, 0.922), Vector2(0.065, 0.065));
     StoreButton->SetBackgroundSprite("StoreButton");
 
     UI::Rectangle* StoreText = HUD->CreateRectangle( Vector2(0.767, 0.922), Vector2(0.14, 0.065));
@@ -442,7 +442,7 @@ void MakeGUI()
     ColourValue MenuColours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(MenuColours);
 
-    UI::Button* ReturnButton = Menu->CreateButton( "Return", Vector2(0.30, 0.61),
+    UI::TextButton* ReturnButton = Menu->CreateTextButton( "Return", Vector2(0.30, 0.61),
                                             Vector2(0.4, 0.08),
                                             18, "Return to Game");
     ReturnButton->HorizontallyAlign(UI::Middle);
@@ -450,7 +450,7 @@ void MakeGUI()
     ColourValue ReturnColours(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(ReturnColours);
 
-    UI::Button* ExitButton = Menu->CreateButton( "Exit", Vector2(0.30, 0.73),
+    UI::TextButton* ExitButton = Menu->CreateTextButton( "Exit", Vector2(0.30, 0.73),
                                             Vector2(0.4, 0.08),
                                             18, "Exit Game");
     ExitButton->HorizontallyAlign(UI::Middle);
