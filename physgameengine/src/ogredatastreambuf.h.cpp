@@ -82,20 +82,20 @@ namespace phys
 
                 /// @brief Should get the amount of characters left in the sequence
                 /// @returns -1 if no estimate could be made, other wise this returns an estimate of the amount of bytes in the buffer
-                std::streamsize showmanyc();
+                virtual std::streamsize showmanyc();
 
                 /// @brief Gets a sequence of characters
                 /// @param s a Pointer to where the characters should go
                 /// @param n How many characters
                 /// @return This returns the amount of characters retrieved
-                std::streamsize xsgetn(char* s, std::streamsize n);
+                virtual std::streamsize xsgetn(char* s, std::streamsize n);
 
                 /// @brief puts a sequence of characters in
                 /// @param s a Pointer to the characters
                 /// @param n How many characters
                 /// @return This returns the amount of characters inserted
                 /// @detail currently unimplimented
-                std::streamsize xsputn(const char_type*, std::streamsize n);
+                virtual std::streamsize xsputn(const char_type*, std::streamsize n);
         };
     }// /internal
 }// /phys

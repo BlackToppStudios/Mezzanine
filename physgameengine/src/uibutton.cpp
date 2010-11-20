@@ -51,23 +51,23 @@ namespace phys
 {
     namespace UI
     {
-        Button::Button(String& name, Gorilla::Caption* GButton, UILayer* Layer)
-            : RelPosition(Vector2(0,0)),
-              RelSize(Vector2(0,0)),
+        Button::Button(String& name, Vector2 Position, Vector2 Size, UILayer* Layer)
+            : Parent(Layer),
+              NormalSprite(NULL),
+              HoveredSprite(NULL),
+              MouseHover(false),
+              RelPosition(Position),
+              RelSize(Size),
               Name(name)
         {
-            GorillaButton = GButton;
-            GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GButton->left(),GButton->top(),GButton->width(),GButton->height());
-            Parent = Layer;
             Manager = World::GetWorldPointer()->GetUIManager();
-            MouseHover = false;
-            NormalSprite = NULL;
-            HoveredSprite = NULL;
+
+            Vector2 Window = Manager->GetWindowDimensions();
+            GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
         }
 
         Button::~Button()
         {
-            Parent->GetGorillaLayer()->destroyCaption(GorillaButton);
             Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
         }
 
@@ -76,20 +76,10 @@ namespace phys
             return Name;
         }
 
-        void Button::SetText(String& Text)
-        {
-            GorillaButton->text(Text);
-        }
-
-        String Button::GetText()
-        {
-            return GorillaButton->text();
-        }
-
         bool Button::CheckMouseHover()
         {
             Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
-            if(GorillaButton->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
+            if(GorillaRectangle->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
             {
                 if(!MouseHover && HoveredSprite)
                 {
@@ -113,7 +103,7 @@ namespace phys
 
         void Button::SetBackgroundColour(ColourValue& Colour)
         {
-            GorillaButton->background(Colour.GetOgreColourValue());
+            GorillaRectangle->background_colour(Colour.GetOgreColourValue());
         }
 
         void Button::SetBackgroundSprite(const String& Name)
@@ -134,52 +124,10 @@ namespace phys
             GorillaRectangle->border(Width, Colour.GetOgreColourValue());
         }
 
-        void Button::HorizontallyAlign(UI::TextHorizontalAlign Align)
-        {
-            Gorilla::TextAlignment HA;
-            switch (Align)
-            {
-                case UI::Left:
-                    HA = Gorilla::TextAlign_Left;
-                    break;
-                case UI::Right:
-                    HA = Gorilla::TextAlign_Right;
-                    break;
-                case UI::Middle:
-                    HA = Gorilla::TextAlign_Centre;
-                    break;
-                default:
-                    return;
-            }
-            GorillaButton->align(HA);
-        }
-
-        void Button::VerticallyAlign(UI::TextVerticalAlign Align)
-        {
-            Gorilla::VerticalAlignment VA;
-            switch (Align)
-            {
-                case UI::Top:
-                    VA = Gorilla::VerticalAlign_Top;
-                    break;
-                case UI::Bottom:
-                    VA = Gorilla::VerticalAlign_Bottom;
-                    break;
-                case UI::Center:
-                    VA = Gorilla::VerticalAlign_Middle;
-                    break;
-                default:
-                    return;
-            }
-            GorillaButton->vertical_align(VA);
-        }
-
         void Button::SetPosition(Vector2 Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Manager->GetWindowDimensions();
-            GorillaButton->left(CurrDim.X * RelPosition.X);
-            GorillaButton->top(CurrDim.Y * RelPosition.Y);
             GorillaRectangle->left(CurrDim.X * RelPosition.X);
             GorillaRectangle->top(CurrDim.Y * RelPosition.Y);
         }
@@ -191,15 +139,13 @@ namespace phys
 
         void Button::SetActualPosition(Vector2 Position)
         {
-            GorillaButton->left(Position.X);
-            GorillaButton->top(Position.Y);
             GorillaRectangle->left(Position.X);
             GorillaRectangle->top(Position.Y);
         }
 
         Vector2 Button::GetActualPosition()
         {
-            Vector2 Pos(GorillaButton->left(), GorillaButton->top());
+            Vector2 Pos(GorillaRectangle->left(), GorillaRectangle->top());
             return Pos;
         }
 
@@ -207,8 +153,6 @@ namespace phys
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
-            GorillaButton->left(CurrDim.X * RelSize.X);
-            GorillaButton->top(CurrDim.Y * RelSize.Y);
             GorillaRectangle->left(CurrDim.X * RelSize.X);
             GorillaRectangle->top(CurrDim.Y * RelSize.Y);
         }
@@ -220,16 +164,54 @@ namespace phys
 
         void Button::SetActualSize(Vector2 Size)
         {
-            GorillaButton->width(Size.X);
-            GorillaButton->height(Size.Y);
             GorillaRectangle->width(Size.X);
             GorillaRectangle->height(Size.Y);
         }
 
         Vector2 Button::GetActualSize()
         {
-            Vector2 Pos(GorillaButton->width(), GorillaButton->height());
+            Vector2 Pos(GorillaRectangle->width(), GorillaRectangle->height());
             return Pos;
+        }
+
+        void Button::SetRenderPriority(UI::RenderPriority Priority)
+        {
+            Gorilla::RenderPriority RP;
+            switch(Priority)
+            {
+                case UI::RP_Low:
+                    RP = Gorilla::RP_Low;
+                    break;
+                case UI::RP_Medium:
+                    RP = Gorilla::RP_Medium;
+                    break;
+                case UI::RP_High:
+                    RP = Gorilla::RP_High;
+                    break;
+                default:
+                    break;
+            }
+            GorillaRectangle->RenderPriority(RP);
+        }
+
+        UI::RenderPriority Button::GetRenderPriority()
+        {
+            Gorilla::RenderPriority RP = this->GorillaRectangle->RenderPriority();
+            switch(RP)
+            {
+                case Gorilla::RP_Low:
+                    return UI::RP_Low;
+                    break;
+                case Gorilla::RP_Medium:
+                    return UI::RP_Medium;
+                    break;
+                case Gorilla::RP_High:
+                    return UI::RP_High;
+                    break;
+                default:
+                    break;
+            }
+            return UI::RP_Medium;
         }
     }//UI
 }//phys

@@ -37,78 +37,49 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uibutton_h
-#define _uibutton_h
+#ifndef _uitextbutton_h
+#define _uitextbutton_h
 
-#include "datatypes.h"
-#include "enumerations.h"
-#include "colourvalue.h"
-#include "vector2.h"
-
-namespace Gorilla
-{
-    class Caption;
-    class Layer;
-    class Rectangle;
-    class Sprite;
-}
+#include "uibutton.h"
 
 namespace phys
 {
-    class UIManager;
     class UILayer;
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Button
-        /// @headerfile uibutton.h
-        /// @brief This class is a helper class, specifically for use as a button.
-        /// @details Unlike rectangles and captions, this class can be interacted with by clicking.
-        /// It is important to understand what you want your space to do when selecting the class to use.
+        /// @class TextButton
+        /// @headerfile uitextbutton.h
+        /// @brief This is a button class that provides text capabilities.
+        /// @details
         ///////////////////////////////////////
-        class Button
+        class TextButton : public Button
         {
             protected:
-                Gorilla::Rectangle* GorillaRectangle;
-                UILayer* Parent;
-                UIManager* Manager;
-                Gorilla::Sprite* NormalSprite;
-                Gorilla::Sprite* HoveredSprite;
-                bool MouseHover;
-                Vector2 RelPosition;
-                Vector2 RelSize;
-                String Name;
+                Gorilla::Caption* GorillaButton;
             public:
                 /// @brief Internal constructor
                 /// @param name The name of the button.
                 /// @param Position The top left position of the button.
                 /// @param Size The size of the Button.
+                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Text Any text you want printed on the button.
                 /// @param Layer Pointer to the Layer that created this button.
-                Button(String& name, Vector2 Position, Vector2 Size, UILayer* Layer);
+                TextButton(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
-                ~Button();
-                /// @brief Gets the name of this button.
-                /// @return Returns a string containing the name of this button.
-                virtual String& GetName();
-                /// @brief Determines whether the mouse is over this button.
-                /// @return Returns a bool indicating whether the mouse is over this button.
-                virtual bool CheckMouseHover();
-                /// @brief Gets the stored value of whether or not the mouse is over the button.
-                /// @details This function does not perform any checks.  If you want to do a manual check, call CheckMouseHover().
-                /// @return Returns the stored value of whether or not the mouse is over the button.
-                virtual bool GetMouseHover();
-                /// @brief Sets the background colour of the button.
-                /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBackgroundColour(ColourValue& Colour);
-                /// @brief Sets the background image(if provided in the atlas) of the button.
-                /// @param Name The name of the sprite to set as the background.
-                virtual void SetBackgroundSprite(const String& Name);
-                /// @brief Sets an alternate background image that will be applied when the mouse is over this button.
-                /// @param Name The name of the sprite to set as the alternate background.
-                virtual void SetHoveredSprite(const String& Name);
-                /// @brief Enables a border and sets it's colour.
-                /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBorder(Real Width, ColourValue& Colour);
+                ~TextButton();
+                /// @brief Sets the text displayed within the button.
+                /// @param Text The text to be displayed.
+                virtual void SetText(String& Text);
+                /// @brief Gets the text displayed within the button.
+                /// @return Returns the text being displayed.
+                virtual String GetText();
+                /// @brief Aligns the text of the button.
+                /// @param Align The enum value representing the horizontal alignment to be set.
+                virtual void HorizontallyAlign(UI::TextHorizontalAlign Align);
+                /// @brief Aligns the text of the button.
+                /// @param Align The enum value representing the vertical alignment to be set.
+                virtual void VerticallyAlign(UI::TextVerticalAlign Align);
                 /// @brief Sets the relative top left position of this button.
                 /// @param Position A Vector2 representing the location of this button.
                 virtual void SetPosition(Vector2 Position);
@@ -140,7 +111,7 @@ namespace phys
                 /// @brief Gets the priority this button should be rendered with.
                 /// @return Returns an enum value representing this button's priority level.
                 virtual UI::RenderPriority GetRenderPriority();
-        };//button
+        };
     }//UI
 }//phys
 

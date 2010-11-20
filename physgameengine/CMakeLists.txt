@@ -1,22 +1,30 @@
-#The build script for the physgame engine
+###############################################################################
+# The build script for the physgame engine
 cmake_minimum_required (VERSION 2.8)
 project (physgame)
-
 message ("${PROJECT_NAME} - Begin")
+
+###############################################################################
+# Initializations
+set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
+message ("Base Directory for ${PROJECT_NAME}: ${${PROJECT_NAME}_ROOT_DIR}")
 
 set (${PROJECT_NAME}_LIBINCLUDE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/libincludes/")
 message ("Base Directory for Library headers: ${${PROJECT_NAME}_LIBINCLUDE_DIR}")
 
 set (${PROJECT_NAME}_LIBBINARY_DIR "${${PROJECT_NAME}_SOURCE_DIR}/data/")
-message ("Base Directory for Library binaries: ${${PROJECT_NAME}_LIBBINARY_DIR}")
+message ("Base Directory for Library binaries and data: ${${PROJECT_NAME}_LIBBINARY_DIR}")
 
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
 message ("Looking for source code in: ${${PROJECT_NAME}_SOURCE_DIR}")
 
 set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
+set (PROJECT_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}")
+set (LIBRARY_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
 message ("Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 
-# Set header and source files
+#######################################
+# A complete listing of our header files
 set(${PROJECT_NAME}_headers
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.h"
@@ -73,6 +81,7 @@ set(${PROJECT_NAME}_headers
 	"${${PROJECT_NAME}_SOURCE_DIR}/uirectangle.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiscreen.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiscrollbar.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/uitextbutton.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiwidget.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector2.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector3.h"
@@ -91,6 +100,8 @@ set(${PROJECT_NAME}_headers
 	"${${PROJECT_NAME}_SOURCE_DIR}/xmltext.h"
 )
 
+#######################################
+# A complete listing of our source files
 set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainerbase.cpp"
@@ -144,6 +155,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/uirectangle.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiscreen.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiscrollbar.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/uitextbutton.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/uiwidget.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector2.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector3.cpp"
@@ -162,13 +174,63 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/xmltext.cpp"
 )
 
-#Where are the libraries and their headers
+###############################################################################
+# Functions for Later use
+
+#Description: This function copies items from the Data/lib directory into it's expected location in the output directory During build time. It does not need leading slashes
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
+function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
+	add_custom_command(
+		TARGET ${PROJECT_NAME}
+		PRE_LINK
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_LIBBINARY_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+		VERBATIM
+	)
+endfunction(CopyFilesDuringBuild)
+
+#Description: This creates a symlink in the Binary directory to another file in the binary directory. Used on systems that expect versioned shared object names when you want to link against a more base version.
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called and only on system that support symlinks, otherwise it will fail silently
+function(CreateSymlinkDuringBuild Targeting LinkName)
+	add_custom_command(
+		TARGET ${PROJECT_NAME}
+		PRE_LINK
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Symlink: ${${PROJECT_NAME}_BINARY_DIR}${Targeting}"
+		#COMMAND ${CMAKE_COMMAND} -E create_symlink "${${PROJECT_NAME}_BINARY_DIR}${Linkname}" "${${PROJECT_NAME}_BINARY_DIR}${Target}"
+		COMMAND ${CMAKE_COMMAND} -E create_symlink "${Targeting}" "${${PROJECT_NAME}_BINARY_DIR}${LinkName}"
+		VERBATIM
+	)
+endfunction(CreateSymlinkDuringBuild)
+
+#Description: This function copies items from the root directory into it's expected location in the data/library directory During build time. It does not need leading slashes
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
+function(CopyLibraryDuringBuild SourceFile TargetFileInLibraryDir)
+	add_custom_command(
+		TARGET ${PROJECT_NAME}
+		PRE_LINK
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Library: ${${PROJECT_NAME}_LIBBINARY_DIR}${TargetFileInLibraryDir}"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_ROOT_DIR}${SourceFile}" "${${PROJECT_NAME}_LIBBINARY_DIR}${TargetFileInLibraryDir}"
+		VERBATIM
+	)
+endfunction(CopyLibraryDuringBuild)
+
+###############################################################################
+# System Specific Build Items
+
+#######################################
+# Windows Build Specific Items
 if(${WIN32})
-	message ("Using Windows Build Process")
+	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
+	set(BuildPlatform windows)
+	add_definitions( -DWINDOWS )
+	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
-if(${UNIX})	
-	message ("Using Unix/Linux Build Process")
+#######################################
+# Linux Build Specific Items
+if(${UNIX})
+	message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
+	set(BuildPlatform linux)
 
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
@@ -188,13 +250,21 @@ if(${UNIX})
 	)
 
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
+
+	message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
 endif(${UNIX})
 
+#######################################
+# Mac OS X and iPhone Build pecific Items
 if(${APPLE})
-	message ("Using Windows Build Process")
+	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
+	set(BuildPlatform macosx)
+	add_definitions( -DMACOSX )
+	message ("${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${APPLE})
 
-#Common Configuration items
+###############################################################################
+#Common Library Configuration items
 include_directories( ${Platform_LIBINCLUDES} ${${PROJECT_NAME}_SOURCE_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bullet-2.76/src"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bullet-2.76/src/LinearMath"
@@ -204,13 +274,62 @@ include_directories( ${Platform_LIBINCLUDES} ${${PROJECT_NAME}_SOURCE_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletserializer"
 )
 
+###############################################################################
 # Prepare the actual Build
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}_sources} )
 
+#######################################
+# Prepare Common Dependencies
+add_subdirectory (libincludes/common/tinyxmlppsrc)
+add_dependencies( ${PROJECT_NAME}  ticpp)
+
+#######################################
+# Link against Dependencies
 target_link_libraries( ${PROJECT_NAME} OgreMain Bullet ticpp cAudio SDL )
 
-#just testing a command.
-#configure_file(test copy.txt COPYFILE)
+###############################################################################
+# Build Time File copying
+
+#######################################
+#Copy Common Files at Build Time
+CopyFilesDuringBuild( common/Ogre-lgpl-3.0.txt data/common/Ogre-lgpl-3.0.txt )
+
+#######################################
+# Windows File Copy Specific Items
+if(${WIN32})
+	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
+	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
+endif(${WIN32})
+
+#######################################
+# Linux File Copy Specific Items
+if(${UNIX})
+	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
+
+	#Copy System Dependant Libraries On initial build
+	#TODO: ogre bullet caudio
+
+	#Copy System Dependant files during build time
+	CopyFilesDuringBuild( linux/plugins.cfg data/linux/plugins.cfg )
+	CopyFilesDuringBuild( linux/settings.cfg data/linux/settings.cfg )
+	CopyFilesDuringBuild( linux/ogre/RenderSystem_GL.so data/linux/ogre/RenderSystem_GL.so )
+	CopyFilesDuringBuild( linux/ogre/libOgreMain.so.1.7.1 libOgreMain.so.1.7.1 )
+	CreateSymlinkDuringBuild( libOgreMain.so.1.7.1 libOgreMain.so )
+	CopyFilesDuringBuild( linux/caudio/libcAudio.2.1.0.so libcAudio.2.1.0.so )
+	CreateSymlinkDuringBuild( libcAudio.2.1.0.so libcAudio.so  )
+	
+	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
+endif(${UNIX})
+
+#######################################
+# Mac File Copy pecific Items
+if(${APPLE})
+	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
+	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
+endif(${APPLE})
+
+###############################################################################
+# The End
 
 message ( "${PROJECT_NAME} - End" )
 

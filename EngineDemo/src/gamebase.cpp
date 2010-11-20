@@ -7,6 +7,8 @@
 #include "gamebase.h"       //Game Include
 #include <physgame.h>       //Physgame include
 #include <sstream>          //STL includes
+#include <istream>
+#include <string>
 
 #define PHYSDEBUG
 
@@ -394,24 +396,41 @@ void LoadContent()
     String filerobot ("robot.mesh");
     String robotprefix ("Robot");
 
+    std::stringstream zipname;
+    zipname << crossplatform::GetDataDirectory() << "test.zip";
+
     Real mass=5.0;
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
+    TheWorld->GetResourceManager()->AddResourceLocation(zipname.str(), "Zip", groupname, false);
+    TheWorld->GetResourceManager()->AddResourceLocation("", "FileSystem", groupname, false);
+
     TheWorld->GetResourceManager()->DeclareResource(filerobot, "Mesh", groupname);
     TheWorld->GetResourceManager()->InitResourceGroup(groupname);
 
     //Test the Resource input stream here
     #ifdef PHYSDEBUG
-    TheWorld->Log("Trying to open test.xml");
+    TheWorld->Log("Trying to open test.xml and test.txt");
     #endif
-    //ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
-    String ShouldHaveXML("");
-    std::stringstream XMLStringStream;
-    //(*XMLptr) >> XMLStringStream;
+    ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+    ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
+
+    char chararray[401];
+    for (Whole c=0; c<401; c++)
+        { chararray[c]='\0'; }
+    XMLptr->read(chararray, 400);
+    String ShouldHaveXML( chararray );
+
+    for (Whole c=0; c<401; c++)
+        { chararray[c]='\0'; }
+    Zippedptr->read(chararray, 400);
+    String ZippedFileContents( chararray );
+
+
     #ifdef PHYSDEBUG
-    TheWorld->LogStream << "ShouldHaveXML:" << ShouldHaveXML << endl << "End XML Logging";
+    TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "ZippedFileContents: " << ZippedFileContents <<endl<< "End XML and zipped stream Logging" << endl ;
     #endif
     TheWorld->Log("Delete XML Stream");
-    //delete XMLptr;
+    delete XMLptr;
 
     // Now Lets make some bowling pins
     Real PinSpacing=75.0;           //This is how far apart we want the pins
@@ -550,7 +569,7 @@ void MakeGUI()
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     //Build the HUD layer
-    UI::Button* MenuButton = HUD->CreateButton( "Menu", Vector2(0.0, 0.92),
+    UI::TextButton* MenuButton = HUD->CreateTextButton( "Menu", Vector2(0.0, 0.92),
                                             Vector2(0.2, 0.08),
                                             24, "Menu");
     MenuButton->HorizontallyAlign(UI::Middle);
@@ -567,7 +586,7 @@ void MakeGUI()
     ColourValue Colours(0.4,0.8,0.3,1.0);
     MenuBackground->SetBackgroundColour(Colours);
 
-    UI::Button* ReturnButton = Menu->CreateButton( "Return", Vector2(0.30, 0.61),
+    UI::TextButton* ReturnButton = Menu->CreateTextButton( "Return", Vector2(0.30, 0.61),
                                             Vector2(0.4, 0.08),
                                             24, "Return to Game");
     ReturnButton->HorizontallyAlign(UI::Middle);
@@ -575,7 +594,7 @@ void MakeGUI()
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(Colours);
 
-    UI::Button* ExitButton = Menu->CreateButton( "Exit", Vector2(0.30, 0.73),
+    UI::TextButton* ExitButton = Menu->CreateTextButton( "Exit", Vector2(0.30, 0.73),
                                             Vector2(0.4, 0.08),
                                             24, "Exit Game");
     ExitButton->HorizontallyAlign(UI::Middle);

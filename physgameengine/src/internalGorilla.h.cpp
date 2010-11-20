@@ -207,6 +207,13 @@ namespace Gorilla
   VerticalAlign_Bottom
  };
 
+ enum RenderPriority
+ {
+     RP_Low = 0,
+     RP_Medium = 1,
+     RP_High = 2
+ };
+
  /*! enum. buffer<T>
      desc.
          Internal container class that is similar to std::vector
@@ -1860,6 +1867,16 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
+    void  RenderPriority(Gorilla::RenderPriority Priority)
+    {
+     mPriority = Priority;
+    }
+
+    Gorilla::RenderPriority RenderPriority()
+    {
+     return mPriority;
+    }
+
     /*! function. _redraw
         desc.
             Redraw the rectangle
@@ -1883,6 +1900,7 @@ namespace Gorilla
     Ogre::Vector2      mUV[4];
     bool               mDirty;
     buffer<Vertex>     mVertices;
+    Gorilla::RenderPriority mPriority;
   };
 
   /*! class. Polygon
@@ -2178,6 +2196,16 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
+    void  RenderPriority(Gorilla::RenderPriority Priority)
+    {
+     mPriority = Priority;
+    }
+
+    Gorilla::RenderPriority RenderPriority()
+    {
+     return mPriority;
+    }
+
     /*! function. _redraw
         desc.
             Redraw the polygon
@@ -2201,6 +2229,7 @@ namespace Gorilla
     Sprite*            mSprite;
     bool               mDirty;
     buffer<Vertex>     mVertices;
+    Gorilla::RenderPriority mPriority;
 
   };
 
@@ -2246,6 +2275,16 @@ namespace Gorilla
     */
     void  end(bool isClosed = false);
 
+    void  RenderPriority(Gorilla::RenderPriority Priority)
+    {
+     mPriority = Priority;
+    }
+
+    Gorilla::RenderPriority RenderPriority()
+    {
+     return mPriority;
+    }
+
     /*! function. _redraw
         desc.
             Redraw the line list
@@ -2269,6 +2308,7 @@ namespace Gorilla
     buffer<Ogre::Vector2> mPositions;
     bool                  mDirty;
     buffer<Vertex>        mVertices;
+    Gorilla::RenderPriority mPriority;
   };
 
   /*! class. QuadList
@@ -2381,6 +2421,16 @@ namespace Gorilla
     */
     void  end();
 
+    void  RenderPriority(Gorilla::RenderPriority Priority)
+    {
+     mPriority = Priority;
+    }
+
+    Gorilla::RenderPriority RenderPriority()
+    {
+     return mPriority;
+    }
+
     void  _redraw();
 
    protected:
@@ -2401,6 +2451,7 @@ namespace Gorilla
     buffer<Quad>          mQuads;
     buffer<Vertex>        mVertices;
     bool                  mDirty;
+    Gorilla::RenderPriority mPriority;
 
   };
 
@@ -2684,6 +2735,16 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
+    void  RenderPriority(Gorilla::RenderPriority Priority)
+    {
+     mPriority = Priority;
+    }
+
+    Gorilla::RenderPriority RenderPriority()
+    {
+     return mPriority;
+    }
+
     /*! function. _redraw
         desc.
             Redraw the text.
@@ -2712,6 +2773,7 @@ namespace Gorilla
     bool                  mDirty;
     buffer<Vertex>        mVertices;
     size_t                mClippedLeftIndex, mClippedRightIndex;
+    Gorilla::RenderPriority mPriority;
 
   };
 
@@ -2878,6 +2940,16 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
+    void  RenderPriority(Gorilla::RenderPriority Priority)
+    {
+     mPriority = Priority;
+    }
+
+    Gorilla::RenderPriority RenderPriority()
+    {
+     return mPriority;
+    }
+
     /*! function. _redraw
         desc.
             Redraw the text.
@@ -2913,6 +2985,7 @@ namespace Gorilla
     buffer<Character>     mCharacters;
     buffer<Vertex>        mVertices;
     size_t                mClippedIndex;
+    Gorilla::RenderPriority mPriority;
 
   };
 }

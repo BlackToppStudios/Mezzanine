@@ -126,6 +126,13 @@ namespace phys
                 /// @brief Gets the size of this caption in pixels.
                 /// @return Returns a vector2 representing the size of this caption.
                 Vector2 GetActualSize();
+                /// @brief Sets the priority this button should be rendered with.
+                /// @details The default value for this is Medium.
+                /// @param Priority The priority level to be used when rendering this button.
+                void SetRenderPriority(UI::RenderPriority Priority);
+                /// @brief Gets the priority this button should be rendered with.
+                /// @return Returns an enum value representing this button's priority level.
+                UI::RenderPriority GetRenderPriority();
         };//caption
     }//UI
 }//phys

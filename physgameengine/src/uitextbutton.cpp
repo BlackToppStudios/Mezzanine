@@ -37,66 +37,42 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uicaption_cpp
-#define _uicaption_cpp
+#ifndef _uitextbutton_cpp
+#define _uitextbutton_cpp
 
-#include "uicaption.h"
+#include "uitextbutton.h"
 #include "uilayer.h"
 #include "uimanager.h"
-#include "world.h"
-
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
     namespace UI
     {
-        Caption::Caption(String& name, Gorilla::Caption* GCaption, UILayer* Layer)
-            : RelPosition(Vector2(0,0)),
-              RelSize(Vector2(0,0)),
-              Name(name)
+        TextButton::TextButton(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
+            : Button(name,Position,Size,Layer)
         {
-            GorillaCaption = GCaption;
-            Parent = Layer;
-            GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GCaption->left(), GCaption->top(), GCaption->width(), GCaption->height());
-            GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
-            Manager = World::GetWorldPointer()->GetUIManager();
+            GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,GorillaRectangle->left(),GorillaRectangle->top(),Text);
+            GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
+            GorillaButton->background(Ogre::ColourValue(0,0,0,0));
         }
 
-        Caption::~Caption()
+        TextButton::~TextButton()
         {
-            Parent->GetGorillaLayer()->destroyCaption(GorillaCaption);
-            Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
+            Parent->GetGorillaLayer()->destroyCaption(GorillaButton);
         }
 
-        String& Caption::GetName()
+        void TextButton::SetText(String& Text)
         {
-            return Name;
+            GorillaButton->text(Text);
         }
 
-        void Caption::SetText(String& Text)
+        String TextButton::GetText()
         {
-            GorillaCaption->text(Text);
+            return GorillaButton->text();
         }
 
-        String Caption::GetText()
-        {
-            return GorillaCaption->text();
-        }
-
-        void Caption::SetBackgroundColour(ColourValue& Colour)
-        {
-            GorillaRectangle->background_colour(Colour.GetOgreColourValue());
-        }
-
-        void Caption::SetBackgroundSprite(const String& Name)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
-            GorillaRectangle->background_image(GSprite);
-            //GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
-        }
-
-        void Caption::HorizontallyAlign(UI::TextHorizontalAlign Align)
+        void TextButton::HorizontallyAlign(UI::TextHorizontalAlign Align)
         {
             Gorilla::TextAlignment HA;
             switch (Align)
@@ -113,10 +89,10 @@ namespace phys
                 default:
                     return;
             }
-            GorillaCaption->align(HA);
+            GorillaButton->align(HA);
         }
 
-        void Caption::VerticallyAlign(UI::TextVerticalAlign Align)
+        void TextButton::VerticallyAlign(UI::TextVerticalAlign Align)
         {
             Gorilla::VerticalAlignment VA;
             switch (Align)
@@ -133,68 +109,68 @@ namespace phys
                 default:
                     return;
             }
-            GorillaCaption->vertical_align(VA);
+            GorillaButton->vertical_align(VA);
         }
 
-        void Caption::SetPosition(Vector2 Position)
+        void TextButton::SetPosition(Vector2 Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Manager->GetWindowDimensions();
-            GorillaCaption->left(CurrDim.X * RelPosition.X);
-            GorillaCaption->top(CurrDim.Y * RelPosition.Y);
+            GorillaButton->left(CurrDim.X * RelPosition.X);
+            GorillaButton->top(CurrDim.Y * RelPosition.Y);
             GorillaRectangle->left(CurrDim.X * RelPosition.X);
             GorillaRectangle->top(CurrDim.Y * RelPosition.Y);
         }
 
-        Vector2 Caption::GetPosition()
+        Vector2 TextButton::GetPosition()
         {
             return RelPosition;
         }
 
-        void Caption::SetActualPosition(Vector2 Position)
+        void TextButton::SetActualPosition(Vector2 Position)
         {
-            GorillaCaption->left(Position.X);
-            GorillaCaption->top(Position.Y);
+            GorillaButton->left(Position.X);
+            GorillaButton->top(Position.Y);
             GorillaRectangle->left(Position.X);
             GorillaRectangle->top(Position.Y);
         }
 
-        Vector2 Caption::GetActualPosition()
+        Vector2 TextButton::GetActualPosition()
         {
-            Vector2 Pos(GorillaCaption->left(), GorillaCaption->top());
+            Vector2 Pos(GorillaButton->left(), GorillaButton->top());
             return Pos;
         }
 
-        void Caption::SetSize(Vector2 Size)
+        void TextButton::SetSize(Vector2 Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
-            GorillaCaption->left(CurrDim.X * RelSize.X);
-            GorillaCaption->top(CurrDim.Y * RelSize.Y);
+            GorillaButton->left(CurrDim.X * RelSize.X);
+            GorillaButton->top(CurrDim.Y * RelSize.Y);
             GorillaRectangle->left(CurrDim.X * RelSize.X);
             GorillaRectangle->top(CurrDim.Y * RelSize.Y);
         }
 
-        Vector2 Caption::GetSize()
+        Vector2 TextButton::GetSize()
         {
             return RelSize;
         }
 
-        void Caption::SetActualSize(Vector2 Size)
+        void TextButton::SetActualSize(Vector2 Size)
         {
-            GorillaCaption->width(Size.X);
-            GorillaCaption->height(Size.Y);
+            GorillaButton->width(Size.X);
+            GorillaButton->height(Size.Y);
             GorillaRectangle->width(Size.X);
             GorillaRectangle->height(Size.Y);
         }
 
-        Vector2 Caption::GetActualSize()
+        Vector2 TextButton::GetActualSize()
         {
-            Vector2 Pos(GorillaCaption->width(), GorillaCaption->height());
+            Vector2 Pos(GorillaButton->width(), GorillaButton->height());
             return Pos;
         }
 
-        void Caption::SetRenderPriority(UI::RenderPriority Priority)
+        void TextButton::SetRenderPriority(UI::RenderPriority Priority)
         {
             Gorilla::RenderPriority RP;
             switch(Priority)
@@ -211,13 +187,13 @@ namespace phys
                 default:
                     break;
             }
-            GorillaCaption->RenderPriority(RP);
+            GorillaButton->RenderPriority(RP);
             GorillaRectangle->RenderPriority(RP);
         }
 
-        UI::RenderPriority Caption::GetRenderPriority()
+        UI::RenderPriority TextButton::GetRenderPriority()
         {
-            Gorilla::RenderPriority RP = this->GorillaCaption->RenderPriority();
+            Gorilla::RenderPriority RP = this->GorillaRectangle->RenderPriority();
             switch(RP)
             {
                 case Gorilla::RP_Low:
@@ -234,7 +210,7 @@ namespace phys
             }
             return UI::RP_Medium;
         }
-    }//UT
-}//phys
+    }
+}
 
 #endif

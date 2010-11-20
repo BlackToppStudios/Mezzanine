@@ -92,6 +92,7 @@
 #include "uirectangle.h"
 #include "uiscreen.h"
 #include "uiscrollbar.h"
+#include "uitextbutton.h"
 #include "uiwidget.h"
 #include "vector2.h"
 #include "vector3.h"

@@ -61,6 +61,7 @@ namespace phys
         class Rectangle;
         class Caption;
         class Button;
+        class TextButton;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UILayer
@@ -102,11 +103,10 @@ namespace phys
             /// @brief Creates a button within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created button.
+            /// @param Name The name of the button.
             /// @param Position The top left position of the button.
             /// @param Size The size of the Button.
-            /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
-            /// @param Text Any text you want printed on the button.
-            UI::Button* CreateButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text);
+            UI::Button* CreateButton(String& Name, Vector2 Position, Vector2 Size);
             /// @brief Gets an already created button by name.
             /// @return Returns a pointer to the button of the specified name.
             UI::Button* GetButton(String& Name);
@@ -116,6 +116,15 @@ namespace phys
             /// @brief Gets the number of buttons created and stored in this class.
             /// @return Returns the number of buttons this class is storing.
             Whole GetNumButtons();
+            /// @brief Creates a text button within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+            /// @return Returns a pointer to the created button.
+            /// @param Name The name of the button.
+            /// @param Position The top left position of the button.
+            /// @param Size The size of the Button.
+            /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+            /// @param Text Any text you want printed on the button.
+            UI::TextButton* CreateTextButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text);
             /// @brief Creates a rectangle within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0). @n
             /// Rectangles are innately put behind all captions, so z-order is not necessary.
