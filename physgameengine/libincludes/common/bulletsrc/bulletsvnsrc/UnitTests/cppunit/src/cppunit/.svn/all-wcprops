@@ -1,0 +1,323 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit
+END
+XmlDocument.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/XmlDocument.cpp
+END
+TestFactoryRegistry.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestFactoryRegistry.cpp
+END
+DynamicLibraryManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/DynamicLibraryManager.cpp
+END
+TestSuiteBuilderContext.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestSuiteBuilderContext.cpp
+END
+SynchronizedObject.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/SynchronizedObject.cpp
+END
+TestLeaf.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestLeaf.cpp
+END
+SourceLine.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/SourceLine.cpp
+END
+TestRunner.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestRunner.cpp
+END
+XmlElement.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/XmlElement.cpp
+END
+ShlDynamicLibraryManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/ShlDynamicLibraryManager.cpp
+END
+AdditionalMessage.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/AdditionalMessage.cpp
+END
+TestCaseDecorator.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestCaseDecorator.cpp
+END
+TestSuccessListener.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestSuccessListener.cpp
+END
+TestResult.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestResult.cpp
+END
+TextTestProgressListener.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TextTestProgressListener.cpp
+END
+TextOutputter.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TextOutputter.cpp
+END
+DllMain.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/DllMain.cpp
+END
+TestDecorator.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestDecorator.cpp
+END
+DynamicLibraryManagerException.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/DynamicLibraryManagerException.cpp
+END
+Message.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/Message.cpp
+END
+TestPlugInDefaultImpl.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestPlugInDefaultImpl.cpp
+END
+DefaultProtector.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/DefaultProtector.cpp
+END
+StringTools.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/StringTools.cpp
+END
+TestFailure.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestFailure.cpp
+END
+Asserter.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/Asserter.cpp
+END
+TestSuite.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestSuite.cpp
+END
+RepeatedTest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/RepeatedTest.cpp
+END
+ProtectorChain.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/ProtectorChain.h
+END
+ProtectorContext.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/ProtectorContext.h
+END
+Exception.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/Exception.cpp
+END
+TestSetUp.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestSetUp.cpp
+END
+TestAssert.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestAssert.cpp
+END
+TestNamer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestNamer.cpp
+END
+TestComposite.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestComposite.cpp
+END
+CompilerOutputter.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/CompilerOutputter.cpp
+END
+UnixDynamicLibraryManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/UnixDynamicLibraryManager.cpp
+END
+TestCase.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestCase.cpp
+END
+XmlOutputterHook.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/XmlOutputterHook.cpp
+END
+BeOsDynamicLibraryManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/BeOsDynamicLibraryManager.cpp
+END
+TextTestRunner.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TextTestRunner.cpp
+END
+Test.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/Test.cpp
+END
+Protector.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/Protector.cpp
+END
+PlugInParameters.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/PlugInParameters.cpp
+END
+BriefTestProgressListener.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/BriefTestProgressListener.cpp
+END
+TextTestResult.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TextTestResult.cpp
+END
+ProtectorChain.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/ProtectorChain.cpp
+END
+TestResultCollector.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestResultCollector.cpp
+END
+Win32DynamicLibraryManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/Win32DynamicLibraryManager.cpp
+END
+PlugInManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/PlugInManager.cpp
+END
+DefaultProtector.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/DefaultProtector.h
+END
+XmlOutputter.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/XmlOutputter.cpp
+END
+TestPath.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TestPath.cpp
+END
+TypeInfoHelper.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/src/cppunit/TypeInfoHelper.cpp
+END

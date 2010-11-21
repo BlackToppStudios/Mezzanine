@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit
+END
+BUGS
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/BUGS
+END
+AUTHORS
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/AUTHORS
+END
+TODO
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/TODO
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/ChangeLog
+END
+THANKS
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/THANKS
+END
+CodingGuideLines.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/CodingGuideLines.txt
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/CMakeLists.txt
+END

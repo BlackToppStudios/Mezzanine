@@ -1,0 +1,43 @@
+10
+
+dir
+2237
+http://bullet.googlecode.com/svn/trunk/msvc/2008_amd_opencl/src
+http://bullet.googlecode.com/svn
+
+
+
+2010-09-22T22:04:08.382622Z
+2217
+erwin.coumans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+08e121b0-ae19-0410-a57b-3be3395fd4fd
+
+BulletDynamics
+dir
+
+BulletSoftBody
+dir
+
+BulletMultiThreaded
+dir
+
+BulletCollision
+dir
+
+LinearMath
+dir
+

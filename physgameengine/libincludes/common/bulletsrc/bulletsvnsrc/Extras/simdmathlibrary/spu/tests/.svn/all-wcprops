@@ -1,0 +1,581 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests
+END
+llrintf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/llrintf4.c
+END
+remquod2.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/remquod2.c
+END
+remainderf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/remainderf4.c
+END
+ceild2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/ceild2.c
+END
+isnanf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isnanf4.c
+END
+absi4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/absi4.c
+END
+llroundd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/llroundd2.c
+END
+fabsf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/fabsf4.c
+END
+lldivi2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/lldivi2.c
+END
+rsqrtf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/rsqrtf4.c
+END
+islessgreaterf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/islessgreaterf4.c
+END
+frexpd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/frexpd2.c
+END
+divf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/divf4.c
+END
+isnormalf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isnormalf4.c
+END
+irintf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/irintf4.c
+END
+isgreaterf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isgreaterf4.c
+END
+lldivu2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/lldivu2.c
+END
+ilogbd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/ilogbd2.c
+END
+sqrtf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/sqrtf4.c
+END
+signbitd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/signbitd2.c
+END
+truncf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/truncf4.c
+END
+is0denormf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/is0denormf4.c
+END
+scalbnf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/scalbnf4.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/Makefile
+END
+hypotf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/hypotf4.c
+END
+isinfd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isinfd2.c
+END
+isfinited2.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isfinited2.c
+END
+rintf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/rintf4.c
+END
+isgreaterequalf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isgreaterequalf4.c
+END
+floord2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/floord2.c
+END
+logbd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/logbd2.c
+END
+modfd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/modfd2.c
+END
+roundd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/roundd2.c
+END
+isunorderedf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isunorderedf4.c
+END
+fmodf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/fmodf4.c
+END
+divi4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/divi4.c
+END
+islessequalf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/islessequalf4.c
+END
+nearbyintf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/nearbyintf4.c
+END
+copysignf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/copysignf4.c
+END
+islessd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/islessd2.c
+END
+recipd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/recipd2.c
+END
+isequald2.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isequald2.c
+END
+fmad2.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/fmad2.c
+END
+fpclassifyd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/fpclassifyd2.c
+END
+nextafterf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/nextafterf4.c
+END
+llrintd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/llrintd2.c
+END
+divu4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/divu4.c
+END
+remainderd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/remainderd2.c
+END
+negatef4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/negatef4.c
+END
+isnand2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isnand2.c
+END
+rsqrtd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/rsqrtd2.c
+END
+fabsd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/fabsd2.c
+END
+remquof4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/remquof4.c
+END
+ldexpd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/ldexpd2.c
+END
+islessgreaterd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/islessgreaterd2.c
+END
+ceilf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/ceilf4.c
+END
+divd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/divd2.c
+END
+llroundf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/llroundf4.c
+END
+isnormald2.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isnormald2.c
+END
+isgreaterd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isgreaterd2.c
+END
+frexpf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/frexpf4.c
+END
+sqrtd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/sqrtd2.c
+END
+truncd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/truncd2.c
+END
+is0denormd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/is0denormd2.c
+END
+ilogbf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/ilogbf4.c
+END
+llabsi2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/llabsi2.c
+END
+signbitf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/signbitf4.c
+END
+hypotd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/hypotd2.c
+END
+testutils.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/testutils.c
+END
+negatei4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/negatei4.c
+END
+isinff4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isinff4.c
+END
+rintd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/rintd2.c
+END
+isgreaterequald2.c
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isgreaterequald2.c
+END
+isfinitef4.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isfinitef4.c
+END
+fdimd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/fdimd2.c
+END
+testutils.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/testutils.h
+END
+isunorderedd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isunorderedd2.c
+END
+floorf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/floorf4.c
+END
+fmodd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/fmodd2.c
+END
+logbf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/logbf4.c
+END
+negatell2.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/negatell2.c
+END
+modff4.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/modff4.c
+END
+fmind2_fmaxd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/fmind2_fmaxd2.c
+END
+islessequald2.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/islessequald2.c
+END
+scalbllnd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/scalbllnd2.c
+END
+roundf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/roundf4.c
+END
+copysignd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/copysignd2.c
+END
+nearbyintd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/nearbyintd2.c
+END
+nextafterd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/nextafterd2.c
+END
+fminf4_fmaxf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/fminf4_fmaxf4.c
+END
+negated2.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/negated2.c
+END
+iroundf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/iroundf4.c
+END
+islessf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/islessf4.c
+END
+recipf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/recipf4.c
+END
+isequalf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/isequalf4.c
+END
+fpclassifyf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/spu/tests/fpclassifyf4.c
+END

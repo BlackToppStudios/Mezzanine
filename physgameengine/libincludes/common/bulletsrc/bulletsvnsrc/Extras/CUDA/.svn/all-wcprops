@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/2053/trunk/Extras/CUDA
+END
+cutil_math.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/2053/trunk/Extras/CUDA/cutil_math.h
+END
+cutil_gl_error.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2053/trunk/Extras/CUDA/cutil_gl_error.h
+END
+btCudaBroadphase.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2053/trunk/Extras/CUDA/btCudaBroadphase.h
+END
+btCudaBroadphase.cu
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2053/trunk/Extras/CUDA/btCudaBroadphase.cu
+END
+radixsort_kernel.cu
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2053/trunk/Extras/CUDA/radixsort_kernel.cu
+END
+radixsort.cu
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/2053/trunk/Extras/CUDA/radixsort.cu
+END
+btCudaDefines.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2053/trunk/Extras/CUDA/btCudaDefines.h
+END
+btCudaUtils.cu
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/2053/trunk/Extras/CUDA/btCudaUtils.cu
+END
+btGpuDemo2dCudaFunc.cu
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2053/trunk/Extras/CUDA/btGpuDemo2dCudaFunc.cu
+END
+btCudaBroadphase.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2053/trunk/Extras/CUDA/btCudaBroadphase.cpp
+END
+btGpuDemo3dCudaFunc.cu
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2053/trunk/Extras/CUDA/btGpuDemo3dCudaFunc.cu
+END
+radixsort.cuh
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/2053/trunk/Extras/CUDA/radixsort.cuh
+END
+libbulletcuda.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2053/trunk/Extras/CUDA/libbulletcuda.vcproj
+END

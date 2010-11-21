@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/2237/trunk/src/BulletCollision
+END
+Doxyfile
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2053/trunk/src/BulletCollision/Doxyfile
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2194/trunk/src/BulletCollision/CMakeLists.txt
+END

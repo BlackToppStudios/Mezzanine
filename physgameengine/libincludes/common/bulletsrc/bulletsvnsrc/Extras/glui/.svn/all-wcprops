@@ -1,0 +1,239 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/2053/trunk/Extras/glui
+END
+glui_spinner.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_spinner.cpp
+END
+glui_treepanel.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_treepanel.cpp
+END
+arcball.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/2053/trunk/Extras/glui/arcball.cpp
+END
+glui_filebrowser.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_filebrowser.cpp
+END
+glui_scrollbar.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_scrollbar.cpp
+END
+glui_node.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_node.cpp
+END
+glui_edittext.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_edittext.cpp
+END
+glui_statictext.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_statictext.cpp
+END
+glui_bitmaps.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_bitmaps.cpp
+END
+algebra3.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/2053/trunk/Extras/glui/algebra3.cpp
+END
+glui_string.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_string.cpp
+END
+quaternion.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/2053/trunk/Extras/glui/quaternion.h
+END
+glui_add_controls.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_add_controls.cpp
+END
+glui_button.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_button.cpp
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/2053/trunk/Extras/glui/CMakeLists.txt
+END
+glui.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/2053/trunk/Extras/glui/glui.cpp
+END
+glui_control.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_control.cpp
+END
+glui_internal_control.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_internal_control.h
+END
+glui_internal.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_internal.h
+END
+glui_listbox.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_listbox.cpp
+END
+arcball.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/2053/trunk/Extras/glui/arcball.h
+END
+glui_commandline.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_commandline.cpp
+END
+glui_checkbox.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_checkbox.cpp
+END
+glui_textbox.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_textbox.cpp
+END
+glui_column.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_column.cpp
+END
+glui_radio.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_radio.cpp
+END
+glui_mouse_iaction.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_mouse_iaction.cpp
+END
+glui_translation.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_translation.cpp
+END
+glui_rotation.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_rotation.cpp
+END
+glui_panel.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_panel.cpp
+END
+glui_tree.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_tree.cpp
+END
+glui_separator.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_separator.cpp
+END
+glui_rollout.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_rollout.cpp
+END
+glui_bitmap_img_data.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_bitmap_img_data.cpp
+END
+algebra3.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/2053/trunk/Extras/glui/algebra3.h
+END
+quaternion.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/2053/trunk/Extras/glui/quaternion.cpp
+END
+glui_window.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_window.cpp
+END
+readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/2053/trunk/Extras/glui/readme.txt
+END
+glui_list.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/2053/trunk/Extras/glui/glui_list.cpp
+END

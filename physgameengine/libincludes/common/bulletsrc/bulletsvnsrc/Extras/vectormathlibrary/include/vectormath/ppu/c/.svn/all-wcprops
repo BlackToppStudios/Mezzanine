@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c
+END
+vec_types.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/730/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/vec_types.h
+END
+quat_aos_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/quat_aos_v.h
+END
+quat_soa_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/quat_soa_v.h
+END
+vectormath_aos_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/vectormath_aos_v.h
+END
+vectormath_soa_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/vectormath_soa_v.h
+END
+vec_aos_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/vec_aos_v.h
+END
+vec_soa_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/vec_soa_v.h
+END
+mat_soa_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/mat_soa_v.h
+END
+mat_aos_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/mat_aos_v.h
+END
+quat_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/quat_aos.h
+END
+quat_soa.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/quat_soa.h
+END
+vectormath_soa.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/vectormath_soa.h
+END
+vectormath_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/vectormath_aos.h
+END
+vec_soa.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/vec_soa.h
+END
+vec_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/vec_aos.h
+END
+mat_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/mat_aos.h
+END
+mat_soa.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/ppu/c/mat_soa.h
+END

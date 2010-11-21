@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/2194/trunk/Demos/BasicDemo
+END
+Makefile.original
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/1108/trunk/Demos/BasicDemo/Makefile.original
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/1939/trunk/Demos/BasicDemo/main.cpp
+END
+BasicDemo.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2121/trunk/Demos/BasicDemo/BasicDemo.cpp
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2194/trunk/Demos/BasicDemo/Makefile.am
+END
+Win32BasicDemo.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2053/trunk/Demos/BasicDemo/Win32BasicDemo.cpp
+END
+BasicDemo.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2053/trunk/Demos/BasicDemo/BasicDemo.h
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2121/trunk/Demos/BasicDemo/CMakeLists.txt
+END

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/2133/trunk/src/vectormath/sse
+END
+floatInVec.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2133/trunk/src/vectormath/sse/floatInVec.h
+END
+quat_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2133/trunk/src/vectormath/sse/quat_aos.h
+END
+vectormath_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/2133/trunk/src/vectormath/sse/vectormath_aos.h
+END
+vec_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2133/trunk/src/vectormath/sse/vec_aos.h
+END
+boolInVec.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2133/trunk/src/vectormath/sse/boolInVec.h
+END
+mat_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2133/trunk/src/vectormath/sse/mat_aos.h
+END
+vecidx_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2133/trunk/src/vectormath/sse/vecidx_aos.h
+END

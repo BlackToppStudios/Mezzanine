@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Core
+END
+dpiaware.manifest
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Core/dpiaware.manifest
+END
+DXUTmisc.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Core/DXUTmisc.cpp
+END
+DXUTDevice9.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Core/DXUTDevice9.h
+END
+DXUT.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Core/DXUT.cpp
+END
+DXUTmisc.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Core/DXUTmisc.h
+END
+DXUTDevice11.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Core/DXUTDevice11.cpp
+END
+DXUT.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Core/DXUT.h
+END
+DXUTDevice11.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Core/DXUTDevice11.h
+END
+DXUTDevice9.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Core/DXUTDevice9.cpp
+END

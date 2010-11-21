@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/2209/trunk/Demos/DX11ClothDemo
+END
+cloth_renderer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2209/trunk/Demos/DX11ClothDemo/cloth_renderer.cpp
+END
+btDirectComputeSupport.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2170/trunk/Demos/DX11ClothDemo/btDirectComputeSupport.h
+END
+texture.png
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/texture.png
+END
+atiFlag.bmp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/atiFlag.bmp
+END
+cap.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/2170/trunk/Demos/DX11ClothDemo/cap.h
+END
+cylinder.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2170/trunk/Demos/DX11ClothDemo/cylinder.h
+END
+cloth.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2170/trunk/Demos/DX11ClothDemo/cloth.h
+END
+cloth_renderer_PS.hlsl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/cloth_renderer_PS.hlsl
+END
+cloth_renderer.rc
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/cloth_renderer.rc
+END
+amdFlag.bmp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/amdFlag.bmp
+END
+cloth_renderer_VS.hlsl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/cloth_renderer_VS.hlsl
+END
+cloth_renderer.fx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/cloth_renderer.fx
+END
+texture.bmp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/texture.bmp
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2209/trunk/Demos/DX11ClothDemo/CMakeLists.txt
+END
+resource.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/resource.h
+END

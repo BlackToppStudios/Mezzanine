@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/ui/text
+END
+TestRunner.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/ui/text/TestRunner.h
+END
+TextTestRunner.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/ui/text/TextTestRunner.h
+END

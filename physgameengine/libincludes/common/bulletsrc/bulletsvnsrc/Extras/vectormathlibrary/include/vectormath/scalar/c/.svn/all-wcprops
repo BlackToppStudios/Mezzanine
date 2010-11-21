@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/scalar/c
+END
+quat_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/scalar/c/quat_aos.h
+END
+vectormath_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/scalar/c/vectormath_aos.h
+END
+vec_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/scalar/c/vec_aos.h
+END
+quat_aos_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/scalar/c/quat_aos_v.h
+END
+vectormath_aos_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/scalar/c/vectormath_aos_v.h
+END
+mat_aos.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/scalar/c/mat_aos.h
+END
+vec_aos_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/scalar/c/vec_aos_v.h
+END
+mat_aos_v.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2053/trunk/Extras/vectormathlibrary/include/vectormath/scalar/c/mat_aos_v.h
+END

@@ -1,0 +1,449 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/2237/trunk/src/BulletCollision/CollisionShapes
+END
+btConvexHullShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2082/trunk/src/BulletCollision/CollisionShapes/btConvexHullShape.cpp
+END
+btSphereShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btSphereShape.h
+END
+btScaledBvhTriangleMeshShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btScaledBvhTriangleMeshShape.cpp
+END
+btEmptyShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btEmptyShape.cpp
+END
+btConvexShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1726/trunk/src/BulletCollision/CollisionShapes/btConvexShape.cpp
+END
+btTriangleMesh.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1710/trunk/src/BulletCollision/CollisionShapes/btTriangleMesh.h
+END
+btMultiSphereShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1915/trunk/src/BulletCollision/CollisionShapes/btMultiSphereShape.h
+END
+btHeightfieldTerrainShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h
+END
+btStaticPlaneShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1998/trunk/src/BulletCollision/CollisionShapes/btStaticPlaneShape.h
+END
+btTriangleIndexVertexArray.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/1726/trunk/src/BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h
+END
+btConcaveShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btConcaveShape.cpp
+END
+btUniformScalingShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btUniformScalingShape.cpp
+END
+btMultimaterialTriangleMeshShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/1937/trunk/src/BulletCollision/CollisionShapes/btMultimaterialTriangleMeshShape.h
+END
+btMaterial.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/1892/trunk/src/BulletCollision/CollisionShapes/btMaterial.h
+END
+btBox2dShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/2053/trunk/src/BulletCollision/CollisionShapes/btBox2dShape.h
+END
+btOptimizedBvh.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1674/trunk/src/BulletCollision/CollisionShapes/btOptimizedBvh.cpp
+END
+btSphereShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btSphereShape.cpp
+END
+btTriangleMeshShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2023/trunk/src/BulletCollision/CollisionShapes/btTriangleMeshShape.h
+END
+btConeShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2237/trunk/src/BulletCollision/CollisionShapes/btConeShape.h
+END
+btConvexHullShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/1920/trunk/src/BulletCollision/CollisionShapes/btConvexHullShape.h
+END
+btTriangleIndexVertexMaterialArray.h
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btTriangleIndexVertexMaterialArray.h
+END
+btConvexInternalShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/1723/trunk/src/BulletCollision/CollisionShapes/btConvexInternalShape.cpp
+END
+btTriangleCallback.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btTriangleCallback.cpp
+END
+btConvexPointCloudShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/1674/trunk/src/BulletCollision/CollisionShapes/btConvexPointCloudShape.cpp
+END
+btShapeHull.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/1954/trunk/src/BulletCollision/CollisionShapes/btShapeHull.h
+END
+btCylinderShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2235/trunk/src/BulletCollision/CollisionShapes/btCylinderShape.cpp
+END
+btTriangleShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1752/trunk/src/BulletCollision/CollisionShapes/btTriangleShape.h
+END
+btMultimaterialTriangleMeshShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btMultimaterialTriangleMeshShape.cpp
+END
+btBox2dShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2053/trunk/src/BulletCollision/CollisionShapes/btBox2dShape.cpp
+END
+btTetrahedronShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/1674/trunk/src/BulletCollision/CollisionShapes/btTetrahedronShape.cpp
+END
+btTriangleMeshShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2023/trunk/src/BulletCollision/CollisionShapes/btTriangleMeshShape.cpp
+END
+btTriangleBuffer.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btTriangleBuffer.h
+END
+btConeShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2237/trunk/src/BulletCollision/CollisionShapes/btConeShape.cpp
+END
+btBvhTriangleMeshShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/2036/trunk/src/BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h
+END
+btTriangleIndexVertexMaterialArray.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btTriangleIndexVertexMaterialArray.cpp
+END
+btOptimizedBvh.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2023/trunk/src/BulletCollision/CollisionShapes/btOptimizedBvh.h
+END
+btCollisionShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2048/trunk/src/BulletCollision/CollisionShapes/btCollisionShape.cpp
+END
+btBoxShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/1929/trunk/src/BulletCollision/CollisionShapes/btBoxShape.h
+END
+btConvex2dShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2053/trunk/src/BulletCollision/CollisionShapes/btConvex2dShape.h
+END
+btCapsuleShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2010/trunk/src/BulletCollision/CollisionShapes/btCapsuleShape.h
+END
+btShapeHull.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/1957/trunk/src/BulletCollision/CollisionShapes/btShapeHull.cpp
+END
+btConvexInternalShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/1920/trunk/src/BulletCollision/CollisionShapes/btConvexInternalShape.h
+END
+btMinkowskiSumShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btMinkowskiSumShape.h
+END
+btStridingMeshInterface.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/2047/trunk/src/BulletCollision/CollisionShapes/btStridingMeshInterface.h
+END
+btConvexTriangleMeshShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/1674/trunk/src/BulletCollision/CollisionShapes/btConvexTriangleMeshShape.cpp
+END
+btTriangleCallback.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btTriangleCallback.h
+END
+btConvexPointCloudShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/1723/trunk/src/BulletCollision/CollisionShapes/btConvexPointCloudShape.h
+END
+btCollisionMargin.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btCollisionMargin.h
+END
+btTriangleBuffer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btTriangleBuffer.cpp
+END
+btCylinderShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2119/trunk/src/BulletCollision/CollisionShapes/btCylinderShape.h
+END
+btBvhTriangleMeshShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/2045/trunk/src/BulletCollision/CollisionShapes/btBvhTriangleMeshShape.cpp
+END
+btTetrahedronShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1667/trunk/src/BulletCollision/CollisionShapes/btTetrahedronShape.h
+END
+btConvex2dShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2053/trunk/src/BulletCollision/CollisionShapes/btConvex2dShape.cpp
+END
+btBoxShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btBoxShape.cpp
+END
+btCompoundShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2097/trunk/src/BulletCollision/CollisionShapes/btCompoundShape.h
+END
+btPolyhedralConvexShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/1667/trunk/src/BulletCollision/CollisionShapes/btPolyhedralConvexShape.h
+END
+btCapsuleShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1674/trunk/src/BulletCollision/CollisionShapes/btCapsuleShape.cpp
+END
+btCollisionShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2047/trunk/src/BulletCollision/CollisionShapes/btCollisionShape.h
+END
+btMinkowskiSumShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btMinkowskiSumShape.cpp
+END
+btStridingMeshInterface.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/2047/trunk/src/BulletCollision/CollisionShapes/btStridingMeshInterface.cpp
+END
+btHeightfieldTerrainShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btHeightfieldTerrainShape.cpp
+END
+btTriangleMesh.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btTriangleMesh.cpp
+END
+btMultiSphereShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/2045/trunk/src/BulletCollision/CollisionShapes/btMultiSphereShape.cpp
+END
+btScaledBvhTriangleMeshShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btScaledBvhTriangleMeshShape.h
+END
+btEmptyShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btEmptyShape.h
+END
+btTriangleInfoMap.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2053/trunk/src/BulletCollision/CollisionShapes/btTriangleInfoMap.h
+END
+btStaticPlaneShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/1674/trunk/src/BulletCollision/CollisionShapes/btStaticPlaneShape.cpp
+END
+btConvexShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btConvexShape.h
+END
+btTriangleIndexVertexArray.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btTriangleIndexVertexArray.cpp
+END
+btConvexTriangleMeshShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/1667/trunk/src/BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h
+END
+btConcaveShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btConcaveShape.h
+END
+btCompoundShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2132/trunk/src/BulletCollision/CollisionShapes/btCompoundShape.cpp
+END
+btUniformScalingShape.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/1659/trunk/src/BulletCollision/CollisionShapes/btUniformScalingShape.h
+END
+btPolyhedralConvexShape.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/1726/trunk/src/BulletCollision/CollisionShapes/btPolyhedralConvexShape.cpp
+END

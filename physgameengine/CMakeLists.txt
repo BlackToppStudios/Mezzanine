@@ -266,8 +266,8 @@ endif(${APPLE})
 ###############################################################################
 #Common Library Configuration items
 include_directories( ${Platform_LIBINCLUDES} ${${PROJECT_NAME}_SOURCE_DIR}
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bullet-2.76/src"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bullet-2.76/src/LinearMath"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/convexdecomp"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/tinyxmlppsrc/tinyxmlpp"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/include"
@@ -283,9 +283,19 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}
 add_subdirectory (libincludes/common/tinyxmlppsrc)
 add_dependencies( ${PROJECT_NAME}  ticpp)
 
+add_subdirectory (libincludes/common/bulletsrc)
+add_dependencies( ${PROJECT_NAME}  Bullet)
+
+
 #######################################
-# Link against Dependencies
-target_link_libraries( ${PROJECT_NAME} OgreMain Bullet ticpp cAudio SDL )
+# Library Link Dependencies
+set( Bullet_LibraryNames
+	"BulletSoftBody"  "BulletDynamics" "BulletCollision"  "LinearMath" "BulletFileLoader"
+	"GIMPACTUtils" "ConvexDecomposition"   "BulletWorldImporter" "BulletMultiThreaded" 
+	"MiniCL" "BulletSoftBodySolvers_CPU" #"BulletSoftBodySolvers_OpenCL"
+)
+
+target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} ticpp cAudio SDL )
 
 ###############################################################################
 # Build Time File copying

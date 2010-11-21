@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/2209/trunk/msvc/2008_nvidia_opencl/src/BulletMultiThreaded/GpuSoftBodySolvers/OpenCL/NVidia
+END
+BulletSoftBodySolvers_OpenCL_NVidia.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/!svn/ver/2209/trunk/msvc/2008_nvidia_opencl/src/BulletMultiThreaded/GpuSoftBodySolvers/OpenCL/NVidia/BulletSoftBodySolvers_OpenCL_NVidia.vcproj
+END

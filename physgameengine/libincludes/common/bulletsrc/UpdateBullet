@@ -1,0 +1,2 @@
+#!/bin/bash
+svn checkout http://bullet.googlecode.com/svn/trunk/ bulletsvnsrc

@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions
+END
+RepeatedTest.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/RepeatedTest.h
+END
+TypeInfoHelper.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/TypeInfoHelper.h
+END
+ExceptionTestCaseDecorator.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/ExceptionTestCaseDecorator.h
+END
+TestSetUp.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/TestSetUp.h
+END
+TestFactoryRegistry.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/TestFactoryRegistry.h
+END
+TestNamer.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/TestNamer.h
+END
+TestSuiteBuilderContext.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/TestSuiteBuilderContext.h
+END
+Orthodox.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/Orthodox.h
+END
+TestFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/TestFactory.h
+END
+TestFixtureFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/TestFixtureFactory.h
+END
+TestCaseDecorator.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/TestCaseDecorator.h
+END
+XmlInputHelper.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/XmlInputHelper.h
+END
+TestSuiteFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/TestSuiteFactory.h
+END
+TestDecorator.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/TestDecorator.h
+END
+HelperMacros.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/HelperMacros.h
+END
+AutoRegisterSuite.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/extensions/AutoRegisterSuite.h
+END

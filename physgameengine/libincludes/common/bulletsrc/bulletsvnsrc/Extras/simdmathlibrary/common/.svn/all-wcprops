@@ -1,0 +1,737 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common
+END
+remquod2.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/remquod2.c
+END
+llrintf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/llrintf4.c
+END
+atan2f4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/atan2f4.c
+END
+remainderf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/remainderf4.c
+END
+absi4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/absi4.c
+END
+ceild2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/ceild2.c
+END
+isnanf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isnanf4.c
+END
+llroundd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/llroundd2.c
+END
+lldivi2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/lldivi2.c
+END
+fabsf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fabsf4.c
+END
+rsqrtf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/rsqrtf4.c
+END
+islessgreaterf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/islessgreaterf4.c
+END
+ldexpf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/ldexpf4.c
+END
+exp2f4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/exp2f4.c
+END
+frexpd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/frexpd2.c
+END
+simdmath.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/simdmath.h
+END
+tanf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/tanf4.c
+END
+log1pf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/log1pf4.c
+END
+divf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/divf4.c
+END
+isnormalf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isnormalf4.c
+END
+cosf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/cosf4.c
+END
+sind2.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/sind2.c
+END
+isgreaterf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isgreaterf4.c
+END
+irintf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/irintf4.c
+END
+lldivu2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/lldivu2.c
+END
+ilogbd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/ilogbd2.c
+END
+sqrtf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/sqrtf4.c
+END
+asinf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/asinf4.c
+END
+signbitd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/signbitd2.c
+END
+truncf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/truncf4.c
+END
+is0denormf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/is0denormf4.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/Makefile
+END
+scalbnf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/scalbnf4.c
+END
+hypotf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/hypotf4.c
+END
+isinfd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isinfd2.c
+END
+isfinited2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isfinited2.c
+END
+rintf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/rintf4.c
+END
+isgreaterequalf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isgreaterequalf4.c
+END
+floord2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/floord2.c
+END
+fdimf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fdimf4.c
+END
+logbd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/logbd2.c
+END
+modfd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/modfd2.c
+END
+roundd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/roundd2.c
+END
+isunorderedf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isunorderedf4.c
+END
+fmind2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fmind2.c
+END
+fmodf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fmodf4.c
+END
+divi4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/divi4.c
+END
+fmaxd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fmaxd2.c
+END
+cbrtf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/cbrtf4.c
+END
+sincosd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/sincosd2.c
+END
+expm1f4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/expm1f4.c
+END
+islessequalf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/islessequalf4.c
+END
+nearbyintf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/nearbyintf4.c
+END
+copysignf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/copysignf4.c
+END
+expf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/expf4.c
+END
+islessd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/islessd2.c
+END
+recipd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/recipd2.c
+END
+isequald2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isequald2.c
+END
+fmad2.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fmad2.c
+END
+fpclassifyd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fpclassifyd2.c
+END
+llrintd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/llrintd2.c
+END
+nextafterf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/nextafterf4.c
+END
+divu4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/divu4.c
+END
+remainderd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/remainderd2.c
+END
+log2f4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/log2f4.c
+END
+negatef4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/negatef4.c
+END
+isnand2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isnand2.c
+END
+fabsd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fabsd2.c
+END
+rsqrtd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/rsqrtd2.c
+END
+islessgreaterd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/islessgreaterd2.c
+END
+ldexpd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/ldexpd2.c
+END
+remquof4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/remquof4.c
+END
+ceilf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/ceilf4.c
+END
+divd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/divd2.c
+END
+tand2.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/tand2.c
+END
+llroundf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/llroundf4.c
+END
+cosd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/cosd2.c
+END
+isnormald2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isnormald2.c
+END
+isgreaterd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isgreaterd2.c
+END
+logf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/logf4.c
+END
+log10f4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/log10f4.c
+END
+atanf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/atanf4.c
+END
+frexpf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/frexpf4.c
+END
+sqrtd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/sqrtd2.c
+END
+acosf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/acosf4.c
+END
+truncd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/truncd2.c
+END
+sinf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/sinf4.c
+END
+is0denormd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/is0denormd2.c
+END
+ilogbf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/ilogbf4.c
+END
+llabsi2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/llabsi2.c
+END
+signbitf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/signbitf4.c
+END
+hypotd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/hypotd2.c
+END
+powf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/powf4.c
+END
+negatei4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/negatei4.c
+END
+isinff4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isinff4.c
+END
+rintd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/rintd2.c
+END
+isgreaterequald2.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isgreaterequald2.c
+END
+isfinitef4.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isfinitef4.c
+END
+fdimd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fdimd2.c
+END
+isunorderedd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isunorderedd2.c
+END
+common-test.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/common-test.h
+END
+floorf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/floorf4.c
+END
+fmodd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fmodd2.c
+END
+negatell2.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/negatell2.c
+END
+logbf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/logbf4.c
+END
+modff4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/modff4.c
+END
+islessequald2.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/islessequald2.c
+END
+scalbllnd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/scalbllnd2.c
+END
+roundf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/roundf4.c
+END
+copysignd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/copysignd2.c
+END
+nearbyintd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/nearbyintd2.c
+END
+fminf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fminf4.c
+END
+fmaxf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fmaxf4.c
+END
+nextafterd2.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/nextafterd2.c
+END
+sincosf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/sincosf4.c
+END
+negated2.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/negated2.c
+END
+iroundf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/iroundf4.c
+END
+islessf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/islessf4.c
+END
+recipf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/recipf4.c
+END
+fmaf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fmaf4.c
+END
+isequalf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/isequalf4.c
+END
+fpclassifyf4.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/simdmathlibrary/common/fpclassifyf4.c
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/2053/trunk/Demos/DynamicControlDemo
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/2053/trunk/Demos/DynamicControlDemo/main.cpp
+END
+MotorDemo.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2053/trunk/Demos/DynamicControlDemo/MotorDemo.cpp
+END
+MotorDemo.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/2053/trunk/Demos/DynamicControlDemo/MotorDemo.h
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2053/trunk/Demos/DynamicControlDemo/CMakeLists.txt
+END

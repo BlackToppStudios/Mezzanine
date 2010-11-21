@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/2209/trunk/Demos/DX11ClothDemo/DXUT/Optional
+END
+DXUTres.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTres.cpp
+END
+SDKmesh.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/SDKmesh.cpp
+END
+DXUTgui.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTgui.h
+END
+SDKsound.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/SDKsound.h
+END
+DXUTsettingsdlg.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTsettingsdlg.h
+END
+SDKmisc.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/SDKmisc.h
+END
+DXUTcamera.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTcamera.h
+END
+SDKmesh.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/SDKmesh.h
+END
+DXUTres.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTres.h
+END
+SDKwavefile.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/SDKwavefile.cpp
+END
+ImeUi.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/ImeUi.cpp
+END
+SDKwavefile.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/SDKwavefile.h
+END
+ImeUi.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/ImeUi.h
+END
+DXUTLockFreePipe.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTLockFreePipe.h
+END
+DXUTguiIME.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTguiIME.cpp
+END
+DXUTShapes.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTShapes.cpp
+END
+DXUTgui.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTgui.cpp
+END
+DXUTguiIME.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTguiIME.h
+END
+directx.ico
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/directx.ico
+END
+SDKsound.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/SDKsound.cpp
+END
+DXUTsettingsdlg.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTsettingsdlg.cpp
+END
+SDKmisc.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2209/trunk/Demos/DX11ClothDemo/DXUT/Optional/SDKmisc.cpp
+END
+DXUTShapes.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTShapes.h
+END
+DXUTcamera.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2127/trunk/Demos/DX11ClothDemo/DXUT/Optional/DXUTcamera.cpp
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/2209/trunk/Demos/VectorAdd_OpenCL
+END
+MiniCL_VectorAdd.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2189/trunk/Demos/VectorAdd_OpenCL/MiniCL_VectorAdd.cpp
+END
+VectorAddKernels.cl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2206/trunk/Demos/VectorAdd_OpenCL/VectorAddKernels.cl
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2101/trunk/Demos/VectorAdd_OpenCL/CMakeLists.txt
+END

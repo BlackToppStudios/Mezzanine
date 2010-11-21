@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/plugin
+END
+PlugInManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/plugin/PlugInManager.h
+END
+TestPlugIn.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/plugin/TestPlugIn.h
+END
+PlugInParameters.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/plugin/PlugInParameters.h
+END
+DynamicLibraryManagerException.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/plugin/DynamicLibraryManagerException.h
+END
+DynamicLibraryManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/plugin/DynamicLibraryManager.h
+END
+TestPlugInDefaultImpl.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/plugin/TestPlugInDefaultImpl.h
+END

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/config
+END
+CppUnitApi.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/config/CppUnitApi.h
+END
+SourcePrefix.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/config/SourcePrefix.h
+END
+config-bcb5.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/config/config-bcb5.h
+END
+config-msvc6.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/config/config-msvc6.h
+END
+SelectDllLoader.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/config/SelectDllLoader.h
+END
+config-mac.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/config/config-mac.h
+END
+config-evc4.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2148/trunk/UnitTests/cppunit/include/cppunit/config/config-evc4.h
+END

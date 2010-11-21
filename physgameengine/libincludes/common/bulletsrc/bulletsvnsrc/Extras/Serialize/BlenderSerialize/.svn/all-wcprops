@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/2125/trunk/Extras/Serialize/BlenderSerialize
+END
+dna249.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2053/trunk/Extras/Serialize/BlenderSerialize/dna249.cpp
+END
+bBlenderFile.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2053/trunk/Extras/Serialize/BlenderSerialize/bBlenderFile.h
+END
+bMain.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2053/trunk/Extras/Serialize/BlenderSerialize/bMain.cpp
+END
+dna249-64bit.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/2053/trunk/Extras/Serialize/BlenderSerialize/dna249-64bit.cpp
+END
+bMain.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2053/trunk/Extras/Serialize/BlenderSerialize/bMain.h
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/2053/trunk/Extras/Serialize/BlenderSerialize/CMakeLists.txt
+END
+bBlenderFile.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/2125/trunk/Extras/Serialize/BlenderSerialize/bBlenderFile.cpp
+END
