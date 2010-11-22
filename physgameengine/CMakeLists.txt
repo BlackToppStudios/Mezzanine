@@ -247,10 +247,6 @@ if(${UNIX})
 
 	link_directories(
 		"${SDL_LIBRARY}"
-		"${${PROJECT_NAME}_LIBBINARY_DIR}/linux/ogre"
-		"${${PROJECT_NAME}_LIBBINARY_DIR}/linux/bullet"
-		"${${PROJECT_NAME}_LIBBINARY_DIR}/linux/caudio"
-		"${${PROJECT_NAME}_LIBBINARY_DIR}/linux/tinyxmlpp"
 	)
 
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
@@ -272,10 +268,17 @@ endif(${APPLE})
 include_directories( ${Platform_LIBINCLUDES} ${${PROJECT_NAME}_SOURCE_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/convexdecomp"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/tinyxmlppsrc/tinyxmlpp"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/include"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletserializer"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
+)
+
+link_directories(
+	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/ogre"
+	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/bullet"
+	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/caudio"
+	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/tinyxmlpp"
 )
 
 ###############################################################################
