@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/20/cAudio/Trunk/dependencies/Libs/dlls
+END
+OpenAL32.dll
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/dlls/OpenAL32.dll
+END
+wrap_oal.dll
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/dlls/wrap_oal.dll
+END

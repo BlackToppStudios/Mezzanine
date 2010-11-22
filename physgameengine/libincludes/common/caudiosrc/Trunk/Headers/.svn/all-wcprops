@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/!svn/ver/151/cAudio/Trunk/Headers
+END
+cFileSourceFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/139/cAudio/Trunk/Headers/cFileSourceFactory.h
+END
+cMemorySource.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/138/cAudio/Trunk/Headers/cMemorySource.h
+END
+cConsoleLogReceiver.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/134/cAudio/Trunk/Headers/cConsoleLogReceiver.h
+END
+cPluginManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/144/cAudio/Trunk/Headers/cPluginManager.h
+END
+cRawAudioDecoderFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/138/cAudio/Trunk/Headers/cRawAudioDecoderFactory.h
+END
+cEffect.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/138/cAudio/Trunk/Headers/cEffect.h
+END
+cAudioManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/144/cAudio/Trunk/Headers/cAudioManager.h
+END
+cWavAudioDecoderFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/138/cAudio/Trunk/Headers/cWavAudioDecoderFactory.h
+END
+cFileSource.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/138/cAudio/Trunk/Headers/cFileSource.h
+END
+cUtils.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/!svn/ver/144/cAudio/Trunk/Headers/cUtils.h
+END
+cAudioEffects.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/144/cAudio/Trunk/Headers/cAudioEffects.h
+END
+cMutex.h
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/!svn/ver/80/cAudio/Trunk/Headers/cMutex.h
+END
+cOggDecoder.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/138/cAudio/Trunk/Headers/cOggDecoder.h
+END
+cSTLAllocator.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/146/cAudio/Trunk/Headers/cSTLAllocator.h
+END
+cStandardMemoryProvider.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/146/cAudio/Trunk/Headers/cStandardMemoryProvider.h
+END
+cFileLogReceiver.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/134/cAudio/Trunk/Headers/cFileLogReceiver.h
+END
+cThread.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/!svn/ver/40/cAudio/Trunk/Headers/cThread.h
+END
+cMemoryOverride.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/146/cAudio/Trunk/Headers/cMemoryOverride.h
+END
+cEFXFunctions.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/80/cAudio/Trunk/Headers/cEFXFunctions.h
+END
+cOggAudioDecoderFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/138/cAudio/Trunk/Headers/cOggAudioDecoderFactory.h
+END
+cLogger.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/144/cAudio/Trunk/Headers/cLogger.h
+END
+cRawDecoder.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/138/cAudio/Trunk/Headers/cRawDecoder.h
+END
+cAudioSource.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/144/cAudio/Trunk/Headers/cAudioSource.h
+END
+cWavDecoder.h
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/138/cAudio/Trunk/Headers/cWavDecoder.h
+END
+cMemoryTracker.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/146/cAudio/Trunk/Headers/cMemoryTracker.h
+END
+cListener.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/!svn/ver/151/cAudio/Trunk/Headers/cListener.h
+END
+cFilter.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/138/cAudio/Trunk/Headers/cFilter.h
+END
+cAudioCapture.h
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/144/cAudio/Trunk/Headers/cAudioCapture.h
+END

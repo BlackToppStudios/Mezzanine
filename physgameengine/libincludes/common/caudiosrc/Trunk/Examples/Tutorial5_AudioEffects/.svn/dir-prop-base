@@ -1,0 +1,11 @@
+K 10
+svn:ignore
+V 155
+Tutorial5_AudioEffects.vcproj.Wildicv-PC.Wildicv.user
+*.obj
+Tutorial5_AudioEffects.layout
+Tutorial5_AudioEffects.depend
+build
+Tutorial5_AudioEffects.build
+
+END

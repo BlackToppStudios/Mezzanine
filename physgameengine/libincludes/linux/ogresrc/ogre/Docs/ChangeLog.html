@@ -1,0 +1,1196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=windows-1252">
+  <title>OGRE ChangeLog</title>
+  <meta name="CREATED" content="20050219;16201881">
+  <meta name="CHANGED" content="20050220;20480617">
+  <style>
+<!--
+
+BODY { color: #000000; font-family: "Verdana", "Arial", "Helvetica", sans-serif; font-size: 10pt }
+P.header { font-family: "Verdana", "Arial", "Helvetica", sans-serif; font-size: 12pt; font-weight: bold }
+P.mainheader { background: #6b7d6b; color: #ffffff; font-family: "Verdana", "Arial", "Helvetica", sans-serif; font-size: 10pt; font-weight: bold }
+P.maincontent { font-family: "Verdana", "Arial", "Helvetica", sans-serif; font-size: 10pt }
+BLOCKQUOTE { color: #000000; font-family: "Verdana", "Arial", "Helvetica", sans-serif; font-size: 10pt }
+A:link { color: #003300 }
+-->
+
+  </style>
+</head>
+
+<body
+style="direction: ltr; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"
+lang="en-GB" link="#003300">
+<p style="text-align:center;"><img alt="" src="ogre-logo-wetfloor.gif"
+width="235" height="78"></p>
+
+<p class="header" align="center">OGRE (Object-Oriented Graphics Rendering
+Engine)</p>
+
+<p class="header" align="center">Change Log</p>
+
+<p class="mainheader">
+    v1.7.2 [Cthugha] (03 November 2010) - MAINTENANCE RELEASE</p>
+<ul>
+<li>Fix bug 240: TextAreaOverlayElement incorrectly loads Font in background thread (OGRE_THREAD_SUPPORT == 2)</li>
+<li>Report errors if installable DLLs missing (e.g. cg.dll)<br>
+Make sure OGRE_INSTALL_DEPENDENCIES always true</li>
+<li>Fix Cmake error with VS 2010</li>
+<li>Fixed a compile bug - in visual studio 2010 - 64 bit we get this error: "LINK : fatal error LNK1210: exceeded internal ILK size limit; link with /INCREMENTAL:NO"</li>
+<li>SDK build - added vcxproj ext to the batch file - for VC10 support</li>
+<li>Fix a breakage from rev 2133 on systems other than 64-bit VS 2010
+- Cannot pass a blank string to LINK_FLAGS</li>
+<li>Fix an infinite loop that could occur with StringUtil::replaceAll if replaceWhat is a substring of replaceWith. Solved by advancing the string position after each replacement.</li>
+<li>Make sure the correct resource path is inserted into config files when building the OS X SDK.</li>
+<li>Correct the iPhone SDK disc image to use the correct background image file.</li>
+<li>Patch 2979571 by moagames : textures referenced with texture_ref can now be also used as render targets. http://www.ogre3d.org/forums/viewtopic.php?f=4&t=56671</li>
+<li>Dispose of Carbon window handles when the window object is destroyed. Fixes a problem with old windows remaining visible after the resolution has been changed.</li>
+<li>Removed redundant compositor creation call from deferred shading demo.</li>
+<li>Allow overriding Rectangle2D's vertex buffer usage, and using this in the compositor's quads. As discussed in http://www.ogre3d.org/forums/viewtopic.php?f=4&t=57656</li>
+<li>fixed parsing of matrix types from shared parameter definition</li>
+<li>ProgressiveMesh::PMVertex can list itself as a neighbor after collapsing vertices. This leads to a crash in ProgressiveMesh::PMTriangle::notifyRemoved.
+Changed ProgressiveMesh::PMVertex::removeIfNonNeighbor to always remove itself from the neighbor set.</li>
+<li>fixed destroySubMesh corrupting the mesh if it contains an edge list</li>
+<li>Add OgreOverlayElementFactory.cpp for methods which can't be inlined.</li>
+<li>Install ressources according to OGRE_LIB_DIRECTORY .</li>
+<li>Support LIB_SUFFIX. Which is the de-facto standard for cmake to support lib64|32 systems.</li>
+<li>Removing a few unused variables to lower the number of compiler warnings.</li>
+<li>GLES: Fixed a crash on texture creation.  Added buffer mapping support(port from GL Rendersystem).</li>
+<li>Adding a few missing header search paths to the Xcode templates.</li>
+<li>Adding iPhone 4's native resolution.</li>
+<li>Xcode Templates: Use devices' native resolution. Shutdown properly. Add CADisplayLink support.</li>
+<li>iPhone: Adding CADisplayLink support to SampleBrowser. Shutdown the app properly on iPhone and disable the loading bar to speed up loading on iOS 4</li>
+<li>GL ES: 16 bit texture support.</li>
+<li>OS X: When targeting 10.6 only - Fixed an issue with old framebuffer contents being displayed when using non-native resolution full screen contexts. Also fixed a crash when switching resolutions.  Added some error checking to the full screen context creation.</li>
+<li>Disabling DisplayLink on iPhone by default, as it can cause input lag sometimes.</li>
+<li>Fix a cross-endian bug in StreamSerialiser::calculateChecksum<br>
+Files written on one endian system would fail checksums on another (even though the data can be converted on the fly) because the checksums were calculated on the raw memory of the header data
+Now always calculate checksums in little-endian</li>
+<li>Endian fix for FastHash - casting to uint16 is non-portable<br>
+NOTE: this will break checksums if you're on a big-endian machine using files generated before this change.</li>
+<li>Fix StreamSerialiser::REVERSE_HEADER_ID which was only reverse for uint16, not the declared uint32</li>
+<li>OS X: Reworked windowing to fix setFullscreen and provide more robust GL context management</li>
+<li>Adding additional directories to search for the Ogre framework when using a prebuilt SDK with your own projects under OS X</li>
+<li>OS X & iOS: Simplify some post build commands by using wildcards. Updating pbxcp commands to exclude .hg directories.</li>
+<li>Refreshed iOS SampleBrowser icons and launch images</li>
+<li>Adding new iOS higher resolution icons and launch images</li>
+<li>Uncomment the use of the HideOnFullScreen attribute for Carbon windows</li>
+<li>Adding the using keyword to resolve a set of warnings.  Also removed a switch for a simple if-else.</li>
+<li>Very minor cleanup from a bad copy/paste in Xcode template installer code</li>
+<li>iOS: Several additions to properly support newer iOS devices including: High resolution screen support, FSAA and Framebuffer discard.  A config key has been added to allow you to manually configure the content scaling factor.  For example, if you only want 720x480 on an iPhone 4, specify contentScalingFactor=1.5.</li>
+<li>iOS: Fixed the camera frustum and viewport dimensions if the device is in landscape. With this fix, the FOV and aspect ratio will be correct in all device orientations</li>
+<li>Patch 3034005: GLSL writers make wrong assumptions about the precedence of the || && operators (v1-7 applicable part)</li>
+<li>Patch 3034009: navigation bug in sample browser</li>
+<li>Build fixes for MinGW-w64</li>
+<li>(CMake) Properly determine if we are on a 64bit platform</li>
+<li>Allow embedding of Dependencies source build into the Ogre source tree</li>
+<li>Due to a change made in CMake 2.8.1, Xcode based projects for iPhone would be corrupted.  This fixes the problem.  Also, up the default SDK version to 4.0 since Apple is no longer shipping a 3.0 SDK but still supports targeting it.</li>
+<li>LLVM compile fix</li>
+<li>Patch 3040518: Fix link warnings when compiling Ogre with -fvisibility-hidden</li>
+<li>Updated sed script to work with the CMake 2.8.1+ fix for iOS</li>
+<li>iOS: Cache the system version so we don't query it every time we call swapBuffers</li>
+<li>Patch 3034010: Reduce a large number of compiler warnings, particularly shadowed local variables</li>
+<li>Backing out use of _OgreExport on AllocatedObject members, causes major build problems on VS</li>
+<li>SceneManager::renderVisibleObjectsCustomSequence was calling firePostRenderQueues at the start instead of firePreRenderQueues (thanks Lacero)</li>
+<li>Fix a script compile error introduced with the warning reduction patch</li>
+<li>Fixing iOS project generation. Running fix_linker_paths.sh may no longer be necessary, especially if using CMake 2.8.1 or later.</li>
+<li>Use RenderSystem capabilities to only load samples that require shaders if we support a shading language when linking statically.</li>
+<li>Bugfix : Scriptcompiler would crash when a specular attribute contained one number.
+As reported in http://www.ogre3d.org/forums/viewtopic.php?f=1&t=59742</li>
+<li>Fix a bug in Unix FileSystemLayerImpl if resolving a symlink fails</li>
+<li>Fixed animation track exporting to avoid XMLConverter to crash.</li>
+<li>Avoid sending tangent related params to XMLConverter when mesh does not have UV data.</li>
+<li>Materials will now fallback to Rendering Material mode when custom material template is invalid</li>
+<li>Added _tex[#] handlers to material template system allowing the use of indexed base texture binding.</li>
+<li>Improved material warnings for better readability.</li>
+<li>Updated help document on feature additions.</li>
+<li>D3D9RenderSystem: Fixed crash when HLSL compilation failed and trying to log errors but D3DXCompileShader returned a NULL pointer</li>
+<li>Fixed nasty memory corruption in OgreInstancedGeometry, when building the GeometryBucket.
+Discussed in http://www.ogre3d.org/forums/viewtopic.php?f=4&t=60432</li>
+<li>[3061946] Fix invalid fbConfig check in GL rendersystem</li>
+<li>Fix errors generated from RenderSystemCapabilitiesTests due to missing or misnamed capability keywords.</li>
+<li>GLES: Use  _OgreGLESExport instead of _OgrePrivate to control symbol visibility for rendersystem classes.</li>
+<li>pkg-config can be used to properly build a PCZSceneManager application</li>
+<li>Installing OIS dependency didn't work on RelWithDebInfo with MingW</li>
+<li>[3059963] Fix a slight copy&paste error in PCZSM</li>
+<li>Change required CMake version to >=2.6.2</li>
+<li>[3078774] Convert home path to OEM codepage in FileSystemLayerImpl_Win32</li>
+<li>[3074121] Fix handling of lights for multiple displays in D3D9 rendersystem.</li>
+<li>[3032954] Properly adjust window size in D3D9 RenderSystem to get the desired client size when switching from fullscreen to windowed.</li>
+<li>[3067141] Generate user files with debug paths for Visual Studio 2010</li>
+<li>Change Manual & API license to Creative Commons ShareAlike v3.0.
+Apparently Debian will only accept the 3.0 license and not 2.x</li>
+<li>[3002754] Add OGRE_UNICODE_SUPPORT guard to OgreUTFString.cpp</li>
+<li>[3072166] Fixed a crash on exit when SdkSample is initialised before Ogre::Root</li>
+<li>[3053689] Terrain sample: Add Numpad +/- as alternative key bindings</li>
+<li>Add threading library's include directory to Ogre include directories in FindOGRE.cmake</li>
+<li>Correctly check for PBuffer support even if FBO is supported in GL rendersystem</li>
+<li>[3043021] Use CMake to make sure that GCC visibility settings are passed along to Xcode.</li>
+<li>[3054042] Fix for two frustums attached to one scene node.  Cameras and Frustums should use the name member that they inherit from MoveableObject instead of their own.</li>
+<li>[3003231] Specify default values in StringConverter::parse*</li>
+<li>D3D9: RenderWindow::adjustWindow needs to take the current window style into consideration, otherwise the produced values can be off.</li>
+<li>D3D9: Fixed a bug where RenderWindow and Viewport sizes would not be in sync during a windowResized event.</li>
+<li>OS X: Fix use of macAPI in config files to specify Carbon or Cocoa windowing APIs</li>
+<li>A fix so ogre can run on Ubuntu that runs in "VirtualBox".<br>
+At the date of this commit - chooseFBConfig was not supported on VirtualBox - http://www.virtualbox.org/ticket/7195<br>
+Now glXGetFBConfigs is uses as an alternative if chooseFBConfig fails.
+</li>
+<li>iOS: Build script and CMake updates for iOS 4.  Fixes several project creation bugs and includes a warning about CMake 2.8.2 which cannot create usable universal Xcode iOS projects.</li>
+<li>Add some error checking to the Xcode template installer to help alleviate installation problems</li>
+<li>Update documentation on Bone::setManuallyControlled to mention the option of using AnimationState::setBlendMask to prevent scripted animations applying to the bone.</li>
+<li>Patch 3097617: initialise mManager correctly in default hardware buffers. 
+Modified slightly to maintain previous interfaces & not break build</li>
+<li>Apply patch 3097617 to the GL ES rendersystem too.</li>
+<li>[3057434] Fix RibbonTrail reset when attached to a SceneNode not positioned at the origin</li>
+<li>iOS: Guard a media dir variable update since we want to preserve the relative paths on iOS</li>
+<li>Remove a couple patterns from the Boost header exclude list.  Some headers in these directories are needed indirectly.</li>
+<li>Add missing CMake file to list of scripts to install</li>
+</ul>
+</p>
+
+<p class="mainheader">
+    v1.7.1 [Cthugha] (25 April 2010) - MAINTENANCE RELEASE</p>
+<ul>
+<li> Terrain: Fix memory leak after updating lightmaps</li>
+<li> Terrain: Ensure that imported position is used when preparing from ImportData</li>
+<li> Fix calcMorphKeyframeSize in serializer - there has never been an 'isOriginalGeometry' flag!</li>
+<li> Safety checks - use !mSkeleton.isNull() instead of hasSkeleton() when accessing the pointer, since hasSkeleton() determines whether the skeleton name is provided, not whether the skeleton has loaded & the pointer is valid</li>
+<li> Terrain: Fix a delete that should have been OGRE_DELETE as pointed out by harkon</li>
+<li> Focussed shadow camera setup dealt with extrusion of directional light volume incorrectly:
+- It clipped the extrusions against the scene AABB, which may exclude casters in sparse scenes where the main camera has stopped seeing them or their shadows for a frame or more
+- It should actually have been extruding the receivers AABB clipped to the camera by the shadow far distance
+- Focus regions would not be affected because extrusion along the light direction does not widen the focus; in fact the use of the whole scene BB instead of just the receivers BB may have led to worse focus</li>
+<li> ArchiveManager's constructor should be in source, not header, to avoid link errors if constructed from outside OgreMain (this fixes tests build on OS X)
+Fix some new/deletes in tests that should have been OGRE_NEW/OGRE_DELETE</li>
+<li> Mark a few more options as 'Advanced' to de-clutter the main CMake page.
+Disabling zip, freeimage, dds etc is definitely an advanced function.</li>
+<li> Patch 2981322 - allow OGRE_LIB_DIRECTORY to be set to install in alternate named directories such as lib64 for 64-bit Linuxes that use that convention.</li>
+<li> Fix for VC10</li>
+<li> Patch 2986452: avoid potential resource group change deadlocks</li>
+<li> Patch 2986446: For ACT_LIGHT_POSITION_OBJECT_SPACE for directional lights, we need to use the inverse of the inverse transpose as with ACT_LIGHT_DIRECTION_OBJECT_SPACE, to deal with non-uniform scalings</li>
+<li> Patch 2986441: MovableObject's queryLights and _notifyCurrentCamera didn't take account of object scaling when dealing with bounding radius</li>
+<li> Patch 2986437: auto-tracking update should be after the re-entrant call to update shadow textures, otherwise old tracking state may be used</li>
+<li> Fixed BillboardChain::getNumChainElements when tail < head</li>
+<li> Fix loading of mesh versions 1.30 and before
+They were picking up LOD loading from latest version instead of fallback in MeshSerializerImpl_v1_4 because of inheritence error</li>
+<li> In Mesh::destroySubMesh, fix up SubMesh name map for the removed item</li>
+<li> If group name on manual LOD level is blank, use parent mesh</li>
+<li> Make PlayPen plugin work on OS X</li>
+<li> Fix bug 308 according to user report - don't include _mingw.h in more recent MinGW packages</li>
+<li> Fix bug 313: doc build target doesn't handle spaces in directry names</li>
+<li> Fix terrain rendering on ATI/GL - no support for fp30/fp40 in latest ATI drivers but arbfp1 works</li>
+<li> Terrain morphing was missing from shader when alignment wasn't x/z</li>
+<li> Deal with CMAKE_OSX_ARCHITECTURES a little better:
+- Selectively remove 64-bit archs (Carbon requirement) instead of manually setting "i386 ppc", so that user can still customise archs for 10.6
+- Set the default arch if none is specified (Cmake 2.8.0)</li>
+<li> Patch 2977286: Fix support for scene blending operations other than SBO_ADD on Dx9 because caps were not being set</li>
+<li> Patch 2979431: Matrix4::makeInverseTransform bug with non-uniform scale</li>
+<li> Patch 2978035: D3D9 should send a "DeviceLost" message to app-side listeners before a device is reset</li>
+<li> Deferred Shading Demo : Fixed 'is camera inside light' test for spotlights.</li>
+<li> Fix problem with picking the right shader generator in TerrainMaterialGeneratorA
+- Would not fall back from Cg when Cg not available (bad nesting)
+- Can only use ps_2_0 when not parallax mapping</li>
+<li> Fix memory leak in SharedPtr when initialised with a null pointer</li>
+<li> Ensure libdl exists before linking to it</li>
+<li> Fix install of tools PDBs in debug mode</li>
+<li> Add test for switching full screen modes without reinitialisation</li>
+<li> (Fixed commit) Applied l3fthn4d's compositor (material_scheme & shadows settings) patch as discussed in http://www.ogre3d.org/forums/viewtopic.php?f=4&t=56031</li>
+<li> Fix bug 305: Entity::setMaterialName(material, group) calls SubEntity::setMaterialName(material) without group.</li>
+<li> Add the rtshader materials directory to resources.cfg</li>
+<li> Correct case-sensitivity issue with samples media path</li>
+<li> Remove nested parenthesis, not supported on CMake 2.6 (only 2.8)</li>
+<li> Explicitly include errno.h.  Otherwise build errors occur if not using boost and threading is turned off.</li>
+<li> Patch 2971821: Fix consistency of inclusions of OctreeSceneManager plugin (important when referenced with relative paths)</li>
+<li> Patch 2971818: deal with missing MinGW header & make inclusion specific to MinGW</li>
+<li> Just make sure meshes are being reloaded in LOD test</li>
+<li> Added tests for manual LOD, seems to work</li>
+<li> Explicitly note in the manual some directives which are irrelevant when using shaders</li>
+<li> Another bad svn:eol-style property</li>
+<li> Fix some bad svn:eol-style properties</li>
+<li> More Xcode template work.  Cleaned up warnings.  Changed iPhone template to use a NSTimer to make it more reliable at high framerates.  Fixed the installer path.</li>
+<li> GLES 1.x patch: fix opengl es 1.1 compilation under windows - ID: 2961527. Thanks Thomas.
+http://sourceforge.net/tracker/?func=detail&atid=302997&aid=2961527&group_id=2997</li>
+<li> GLES 1.x render system: Replaced a printf with a log entry.</li>
+<li> RTSS: Extended the normal map texture unit settings script parsing caps.
+Now it can read the filtering type, max anisotropy and mip map bias.</li>
+<li> Patch 2965714: CMake Infinite Loop Fix for OS X using makefiles instead of XCode</li>
+<li> Patch 2968889: fix ExampleApplication loading config files in debug mode</li>
+<li> Fixed some iPhone remnants of the OGRE_CONFIG_DISABLE to OGRE_CONFIG_ENABLE change</li>
+<li> Implement missing wireframe and points rendering in GL ES.  Also fixed a typo in a comment.</li>
+<li> Doc fix</li>
+<li> Fix copy & paste error that could cause crashes when unloading & reinitialising terrain</li>
+<li> Fix a couple bugs in the Xcode templates.  Added an option to choose separate locations for OS X and iPhone SDK's.  Cleaned up the installer package a little bit.</li>
+<li> Patch 2963406: Deal with negative scale in Entity::getBoundingRadius</li>
+<li> Patch 2963372: Matrix4::makeTransform/makeInverseTransform inefficiencies fixed
+Reduces complexity of this from 39MUL+30ADD to 18MUL+15ADD</li>
+<li> Must set the OGRE_MEDIA_DIR_* to an absolute path for build folder versions</li>
+<li> Patch 2959565: fix XSI exporter build</li>
+<li> Fix bug 264: problem with Camera::setDirection when using non-fixed yaw and a non-identity parent node.</li>
+<li> Fix bug 299: Sequence of light changes can cause crash because of light hash==0</li>
+<li> Make sure linking or copying media works in non-SDK builds for OS X and iPhone</li>
+<li> Mention that the default material generator requires the Cg plugin</li>
+<li> Fix water sample when exiting & reentering it by making sure mesh is removed from MeshManager</li>
+<li> Update Xcode templates for 1.7 final release</li>
+<li> Profiler: endProfile checks group id against mask.</li>
+<li> GpuProgram: Added init in the contractor to mMorphAnimation and mPoseAnimation members.</li>
+<li> Fix bug 297: Incorrect use of Boost_USE_STATIC_LIBS causes boost library search to fail when trying to switch to Boost dynamic libs</li>
+<li> Changes for building SDK for iPhone</li>
+<li> Should delete .exe not .7z when building SDK multiple times</li>
+<li> D3D9 Render System: Device multi thread flag is used now only when OGRE_THREAD_SUPPORT == 1. This will save us a few cycles in the other threading modes..</li>
+<li> FindOIS.cmake fixes:
+- Respect OGRE_DEPENDENCIES_DIR (useful if used outside of OGRE)
+- On Win32 define names of the OIS DLLs so they can be copied from wherever they are found</li>
+<li> FindOGRE.cmake fixes:
+- Use OGRE_DEPENDENCIES_DIR if defined (external dependencies)
+- Find media in the OGRE_SOURCE folder correctly
+- Use a zip file common to 1.6 and 1.7 to detect media (OgreCore.zip doesn't exist anymore in 1.7+)</li>
+<li> Compile fix for people using ExampleFrameListener</li>
+<li> RTSS: Fixed Normal map point and spotlight GPU parameters that weren't update correctly.</li>
+<li> Minor tweaks to the demos installer
+- Nicer defaults
+- License display (forced to be RTF unfortunately)</li>
+<li> Enable WiX installer interface and allow the user to specify the install directory for the demos
+Fix media installing
+Add missing samples.cfg</li>
+<li> Fixed remaining bugs for MinGW SDK and finished mingwsdk.sh</li>
+<li> Fix shortcut errors in WiX setup</li>
+<li> Generate WiX config files and custom task for building a demo installer on MSVC
+Remove space in OGRE_VERSION before suffix, more trouble than it's worth even for display strings
+demomedia.wxi.in was generated using 'heat dir Media -gg -cg OgreMedia -out demomedia.wxi.in -sfrag' on a clean Media export, then replacing SourceDir with Cmake variable</li>
+<li> Fixes and enhancements for MinGW SDK generation.</li>
+<li> Merged v9841 into tag since urgent change</li>
+<li> Merged v9841 into tag since urgent change</li>
+<li> In future, use the Windows-mode 7zip self-extractor not the default console-mode one</li>
+<li> Final changes for the OS X SDK.  Fixes up all the absolute paths in CMake generated files.</li>
+<li> OGRE_VERSION has a whitespace and version suffix appended; this breaks builds if used as the .so version for shared libraries. Use a dedicated OGRE_SOVERSION instead.</li>
+<li> RTSS: Fixed Normal map and PSSM3 GPU parameters that weren't update on object switch scenario.</li>
+
+</ul>
+
+<p class="mainheader">
+    v1.7.0 [Cthugha] (28 February 2010) - MAJOR RELEASE</p>
+	    <a href="#changessince1.7.0RC1">[View changes since RC1]</a>
+
+<ul><li> <b>License changes</b>
+	<ul><li>OGRE 1.7 is now released under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></li></ul>
+</li><li> <b>Compositor changes</b>
+<ul><li> Allow 'pooled' compositor surfaces. 
+<ul><li> Separate compositor instances using the same size &amp; format surfaces can share them, saving memory
+</li><li> System detects the compositor instance chaining to avoid problems with interdependence
+</li><li> 'pooled' has to be explicitly enabled on texture definitions, it is not the default because once enabled you cannot necessarily rely on being able to see all the intermediate texture results (because they can be ping-ponging across shared textures); people may be relying on this
+</li></ul>
+</li><li> Manual switching between supported compositor techniques is now possible on the fly
+<ul><li> Compositor techniques can now have 'scheme' names, you can manually switch between supported techniques using the scheme name to drop to different approaches for reasons other than hardware compatibility (performance, alternative tweaks etc)
+
+</li><li> You can keep &amp; share the textures used by previously active techniques so switching back &amp; forth is faster (must use 'pooled' option for this).
+</li></ul>
+</li><li> Compositors can now specify if they don't want to inherit the FSAA setting from the main target for texture definitions ('no_fsaa') 
+</li><li> Compositors can now turn on sRGB gamma conversion per texture definition instead of just inheriting from the main surface ('gamma')
+</li><li> Cross-compositor communication (from <a href="http://www.ogre3d.org/wiki/index.php/SoC2009_Compositor" title="SoC2009 Compositor">SoC2009 Compositor</a>)
+<ul><li> Define a texture as accessible from other locations by the chain_scope or global_scope directive in the texture definition
+
+</li><li> Reference a texture from a different compositor in the chain (or in general) using the texture_ref directive
+</li></ul>
+</li><li> Compositor &lt;-&gt; code connection improvements (from <a href="http://www.ogre3d.org/wiki/index.php/SoC2009_Compositor" title="SoC2009 Compositor">SoC2009 Compositor</a>)
+<ul><li> It is now possible to define a custom composition pass (instead of just quad/scene/clear) in code and trigger it using the render_custom composition pass type.
+</li><li> You can now link between a compositor and related code (for example, a compositor listener) automatically using CompositorLogics.
+</li></ul>
+</li></ul>
+</li><li> <b>SceneManager changes</b> (from <a href="http://www.ogre3d.org/wiki/index.php/SoC2009_Compositor" title="SoC2009 Compositor">SoC2009 Compositor</a>)
+
+<ul><li> It is now possible to pause a frame's rendering mid-way (for example, during a callback called in the middle of the process) to trigger a side render and then resume rendering. See SceneManager::_pauseFrame and SceneManager::_resumeFrame.
+</li><li> Added an option to manually trigger the updating of shadow textures for specific lights. See SceneManager::prepareShadowTextures. The combination of the two new additions allow reusing a single texture for multiple shadowmaps.
+</li></ul>
+</li><li> <b>New Sample Browser</b> (from <a href="http://www.ogre3d.org/wiki/index.php/SoC2009_Samples">SoC2009_Samples</a>)
+<ul><li> Instead of many separate demos, we now have one integrated sample browser
+</li><li> Samples are pluggable libraries that can be reloaded at runtime without restarting the browser
+</li><li> A simple 'tray' system is used to make sample GUI controls easy to create
+</li></ul>
+</li><li> <b>Antialising changes</b>
+<ul><li> Support for Coverage Sampled AA (CSAA) - Dx9 &amp; Dx10 only for now
+</li><li> Unified &amp; simplified AA settings
+<ul><li> on Root's config options the setting is now called 'FSAA' in all cases, and consist of samples and a hint string (separated by spaces)
+
+</li><li> on the miscParams to createRenderWindow you can supply 'FSAA' and 'FSAAHint'. The former is the number of samples, the latter any hinting (e.g. 'Quality')
+</li></ul>
+</li></ul>
+</li><li> <b>Light changes</b>
+<ul><li> Near/far plane settings for shadow cameras can now be manually configured per light if required
+</li><li> You can now mask lights out per object by calling <i>MovableObject::setLightMask</i> - a renderable object's mask is bitwise and'ed with the light's mask and the light is excluded if the result is 0.
+</li></ul>
+</li><li> <b>LOD changes</b> (from <a href="http://www.ogre3d.org/wiki/index.php/SoC2008_LOD">Soc2008_LOD</a>)
+
+<ul><li> LOD no longer has to use distance as a metric for changing LOD levels
+</li><li> LodStrategy can now be set on both Material and Mesh, to either Distance or PixelCount (new strategies can also be added)
+</li></ul>
+</li><li> <b>STL container changes</b>
+<ul><li> All STL containers now use custom memory allocators
+</li></ul>
+</li><li> <b>Profiler changes</b>
+<ul><li> Allow milliseconds as well as percentage view - gives a better idea of absolute fluctuations. 
+
+</li><li> Define profiler masks so that profiling can be added to core OGRE but still filtered out by categories (added some simple profiling to test)
+</li><li> Hierarchy of profiles is now inclusive instead of exclusive (children no longer subtract their time from parents). This is more useful in practice when doing breakdowns
+</li><li> Added numerical indicators instead of a scale with 'ticks' since its more useful
+</li></ul>
+</li><li> <b>Optimisations</b>
+<ul><li> Fixed-function light state is now handled more intelligently, leading to better performance with large numbers of objects
+</li><li> Shader parameters are now updated more selectively, reducing unnecessary updates
+</li></ul>
+</li><li> <b>GpuProgramParameters changes</b>
+
+<ul><li> Support added for shared parameter sets which allow you to define / update shader variables for many programs and materials in one place. See <i>GpuProgramManager::createSharedParamerers</i>
+</li><li> Use shared_params, shared_param_named and shared_params_ref in scripts to define and reference shared parameter sets.
+</li><li> Parameters are now automatically migrated when the program they are based on is changed and reloaded; any parameters which still apply are merged into the new parameters
+</li></ul>
+</li><li> <b>Archive changes</b>
+<ul><li> Archive now supports create and remove of files (FileSystem only implemented for now)
+</li></ul>
+</li><li> <b>DataStream changes</b>
+
+<ul><li> Writeable data streams are now supported (FileSystem only implemented for now)
+</li></ul>
+</li><li> <b>File handling changes</b>
+<ul><li> New class StreamSerialiser is the new way to read &amp; write binary chunk-based formats
+</li></ul>
+</li><li> <b>Build changes</b>
+<ul><li> <a href="http://www.cmake.org" class="external text" title="http://www.cmake.org" rel="nofollow">Cmake</a> is now used to generate project files, separate explicitly maintained build systems are being removed. See <a href="http://www.ogre3d.org/wiki/index.php/Building_With_CMake" title="Building With CMake">Building With CMake</a>
+
+</li></ul>
+</li><li> <b>RenderWindow changes</b>
+<ul><li> miscParams now supports 'vsyncInterval' option, allowing you to sync to a multiple of the refresh rate if you want (and the hardware supports it)
+</li></ul>
+</li><li> <b>Viewport changes</b>
+<ul><li> Added clear method to manually clear any combination of colour/depth/stencil to a specified value without performing an update.
+</li></ul>
+</li><li> <b>Image changes</b>
+<ul><li> Added loadTwoImagesAsRGBA and combineTwoImagesAsRGBA to make it easier to construct combined normal/height and diffuse/specular images etc
+
+</li></ul>
+</li><li> <b>New Paging Component</b>
+<ul><li> SceneManager-independent, separate optional component (OGRE_HOME/Components/Paging)
+</li><li> Pluggable strategy components to control paging strategy for a section of the scene
+</li><li> Pluggable content components to control paging of content
+</li><li> Plugggable collection components so that paged elements can be composed or selected between in different ways (e.g. paging many LOD levels within a page)
+</li></ul>
+</li><li> <b>New Terrain Component</b>
+<ul><li> SceneManager-independent, separate optional component (OGRE_HOME/Components/Terrain)
+
+</li><li> Inherently editable
+</li><li> Hierarchical geometry batching; batch counts reduce at lower LODs as well as vertex count. At the lowest level of detail, the entire terrain page is a single batch.
+</li><li> LOD now adapts in real-time to camera settings (viewport sizes &amp; LOD bias) so you can use the same terrain with multiple views efficiently
+</li><li> Skirts are used instead of stitching to avoid cracks in geometry; this means fewer indexing arrangements &amp; lower overall index buffer usage
+</li><li> Saving &amp; loading of terrain built in, including loading / processing in a background thread
+</li><li> In-built support for splatting layers, configurable sampler inputs and pluggable material generators
+
+</li><li> Support for generating global normal maps and light maps, in a background thread
+</li></ul>
+</li><li> <b>New 'Real Time Shader System' (RTSS) Component</b>
+<ul><li> Automatically generate shaders to replace the fixed-function pipeline and to add features such as per-pixel lighting, normal mapping and shadows. 
+</li></ul>
+</li><li> <b>New Property Component</b>
+<ul><li> Separate optional component (OGRE_HOME/Components/Property)
+</li><li> boost::bind based property system to make it easier to expose reflected properties from your objects
+</li></ul>
+</li><li> <b>Threading changes</b>
+<ul><li> WorkQueue added to accept generalised work items to be executed in multiple background worker threads
+</li><li> WorkQueue starts the number of workers based on hardware, or can be told to start a different number
+</li><li> Main Ogre WorkQueue is in Root::getWorkQueue. You can also subclass WorkQueue and provide your own if you want
+</li><li> ResourceBackgroundQueue now uses WorkQueue instead of using its own queue and can have multiple tasks running at once
+</li><li> New focus on data-driven, task-based parallel execution with separation of GPU and CPU activities
+</li><li> Boost, POCO and Thread Building Blocks supported as threading back-ends (Boost preferred)
+</li></ul>
+</li><li> <b>Resource changes</b>
+<ul><li> ResourcePool added as a place for other application components to shelve &amp; re-use resources
+</li></ul>
+</li><li> <b>Material changes</b>
+
+<ul><li> scene_blend_op and separate_scene_blend_op added to passes, to change the default '+' operator between source &amp; dest blending params
+</li><li> Material listeners can now register to listen to a specific scheme, to allow for none-competing scheme handlers for different schemes.
+</li></ul>
+</li><li> <b>iPhone OS port</b>
+<ul><li> Synced GLESRenderSystem with GLRenderSystem and added some more extension detection
+</li><li> Added support for ARM architecture and CPU feature detection
+</li><li> iPhone OGRE SDK disc image and sdk package script
+</li></ul>
+
+</li><li> <b>OS X improvements</b>
+<ul><li> Moved code and resources from the Mac directory to OgreMain
+</li><li> Eliminated deprecation warnings when targeting Mac OS X 10.5/10.6
+</li><li> General organisation and compatibility improvements
+</li></ul>
+</li></ul>
+
+<p><a name="changessince1.7.0RC1">Changes since 1.7.0 RC1 (highlights only)</a></p>
+<ul>
+<li>Fix GPU-extruded stencil shadows on Dx9</li>
+<li>Allow Terrain to have layers inserted / removed at any point in the stack</li>
+<li>Fix bug 254: DXTn volume texture size calculation crash</li>
+<li>Samples tidied up, and some fixes to unloading behaviour in Compositor, Instancing and VolumeTex samples</li>
+<li>Many fixes to FindOGRE.cmake, now much more reliable and compatible with 1.6 and 1.7. Reference SDKs with OGRE_SDK, or source builds via OGRE_SOURCE and OGRE_BUILD paths.</li>
+<li>New SDKs for Windows and OS X created</li>
+<li>Fill in some missed PVRTC rendersystem caps</li>
+<li>Fix resolving some types in OS X 10.5 SDK</li>
+<li>Added validateConfigOptions() call in Root::restoreConfig(). Solves a crash when moving cfg file from one machine to another.</li>
+<li>RTSS: some refactoring and bug fixing</li>
+<li>Terrain: fixed several bugs</li>
+<li>GLES rendersystem bugfixes</li>
+<li>Fix Codec compile when using OGRE_STRING_USE_CUSTOM_MEMORY_ALLOCATOR</li>
+<li>HashedVector::mListHashDirty was not initialised correctly in a few cases</li>
+<li>Null shadow textures should not be dynamic since that means after a device lost they lost their contents, and there is no handler to manage this. </li>
+<li>Prevent excessive logging when texture load failed in ensureloaded/ensurePrepared</li>
+<li>Windows 64-bit compatibility fixes</li>
+<li>Fix problems when using logical GPU parameter indexes which end up needing more space than originally thought</li>
+<li>Fix a problem with .hdr introduced by new FreeImage</li>
+<li>Fix a bug in ResourceGroupManager::loadResourceGroup when a resource changes group</li>
+<li>Added a Character sample featuring the Sinbad character model.</li>
+<li>Add CMake option corresponding to OGRE_PROFILING</li>
+<li>Fix a large number of problems on Windows with establishing the max size of a window and switching between fullscreen and windowed modes</li>
+<li>WorkQueue::addRequestHandler and WorkQueue::removeRequestHandler no longer block until existing background requests are processed, leading to better parallelism</li>
+<li>Fix no grass displayed on ATI cards on GL in grass demo</li>
+<li>Static build now works including all sample browser plugins</li>
+<li>Fix RGBA colours in custom GLSL attributes</li>
+<li>Reduce compiler warnings</li>
+<li>Lots & lots of other bugfixes and tweaks!</li>
+</ul>
+
+<p class="mainheader">
+    v1.6.5 [Shoggoth] (27 December 2009) - Maintenance Release</p>
+ <ul>  
+ <li>If Mesh::buildTangentVectors is called and causes vertex splits, and mesh had pose animation, make sure we fix up the poses too.</li>
+ <li>Change 0 -> NULL in Dx9 Present() call, user reported issue on Intel G33/G31 GPU allegedly resolved by this (illogical, but does no harm)</li>
+ <li>Fix a crash when trying to render a line list with stencil shadows enabled</li>
+ <li>Deal with Dx9 device lost for hardware occlusion queries better</li>
+ <li>Fix problem in OpenGL when mixing anisotropy levels in different texture units on the same pass</li>
+ <li>Fix Win x64 RTC issues with timer</li>
+ <li>Fix bug in HLSL with 3x4 matrix arrays</li>
+ <li>Culling fixes for InstancedGeometry</li>
+ <li>Prevent GLX ConfigDialog from creating empty dropdown elements which cause a crash when clicked on.</li>
+ <li>Fix straggling texture unit state bug with multiple contexts in GL.</li>
+ <li>PF_L8 is not likely to be a valid render target format on many cards, use PF_X8R8G8B8 as is the default for non-depth shadows.</li>
+ <li>Documentation updates</li>
+ </ul>
+
+ <p class="mainheader">
+    v1.6.4 [Shoggoth] (27 Sept 2009) - Maintenance Release</p>
+ <ul>  
+	<li><b>DirectX:</b>
+		<ul>
+			<li>Fix texture samplers over #8 becoming blank after a device restore</li>
+			<li>Compatibility with August 09 DirectX SDK: dxerr9->dxerr in all cases (works for older versions too)</li>
+		</ul></li>
+	<li><b>OpenGL:</b>
+		<ul>
+			<li>Fix 'invalid enumerant' problem (this time for good) on some cards in GL </li>
+			<li>When locking a sub-area of a pixel buffer, we must remember the original lock area and not just the PixelBox that is returned (which is rebased). 
+				Upload should only upload the area which was locked.</li>
+			<li>Fix a 'new' call that should have been OGRE_NEW in GLSLProgram.</li>
+			<li>Fix a problem in GL when using HardwarePixelBuffer::blit - it wasn't disabling higher texture units which could cause some incorrect results in the FBO rendered version</li>
+		</ul></li>
+	<li>Root::removeFrameListener would queue up removal even if the listener wasn't in the list yet, which could mean if you added it again it would get removed. Now it doesn't queue the removal if the entry isn't in the listener list already.</li>
+	<li>Use PixelUtil::packColour instead of memset to initialise the contents of a null shadow texture. This bug could result in different results on nvidia / ati cards if this texture was floating-point</li>
+	<li>Fix BillboardParticleRenderer calling detachobject() incorrectly.</li>
+	<li>Fix OgreOSXCocoaView causing application crash if you save the window attributes to the preferences</li>
+	<li>Fix leftover texture sampler settings above fixed-function units when switching between shaders using 9+ samplers and fixed-function techniques</li>
+	<li>Fixed some edge-case issues with Resource loading and preparing in multiple threads.</li>
+	<li>Make it unnecessary for the parent directory to be in the search path for platform-specific subfolder includes</li>
+	<li>Correctly trap errors in FreeImage_AllocateT</li>
+	<li>Rearrange CEGUI files to be friendly to layout editor</li>
+	<li>Fix a crash in CompositorChain when incorrectly given a null camera</li>
+	<li>Fix a small memory leak in Pass when shaders were used</li>
+	<li>Thread safety for StringInterface</li>
+	<li>Fix scene_depth_range and shadow_scene_depth_range when using LiSPSM or other ShadowCameraSetup classes that use custom matrices and don't use a 'real' camera position</li>
+	<li>Revert revision 8591, "Early-out optimisations to setMaterialName methods, to reduce their cost if the same material name is used"
+		This actually causes problems with applications that delete & recreate materials with the same name, such as Hikari. Of course, it would be better for those apps to regenerate the material in-place instead of creating a new one but since this was breaking behaviour it needs to be undone in the stable release.</li>
+	<li>Fix edge list memory leak in Mesh if more than one SubMesh had non-triangle geometry</li>
+	<li>FileHandleDataStream: Don't pass 0 to fclose.</li>
+	<li>ZipDataStream: Don't double-close zip files.</li>
+	<li>Fix a bug in RibbonTrail; you couldn't extend the number of chains from the amount that were initially created without problems, the ordering of the elements in mFreeChains was not consistent.</li>
+	<li>
+</ul>
+
+<p class="mainheader">
+    v1.6.3 [Shoggoth] (25 July 2009) - Maintenance Release</p>
+ <ul>  
+ 	<li><b>OS X</b>
+ 	<ul>
+ 		<li>Fixed skewed screenshots on OS X for windows with odd width</li>
+		<li>FreeImage 3.9 - 3.11.0 interoperability fix; detect when FreeImage uses big-endian even on Intel Macs & use the data correctly</li> 
+		<li>Fix uninitialised mFullScreen in Cocoa window, and expose WINDOW and VIEW custom params as with Carbon</li>
+
+	</ul></li>
+	<li><b>OpenGL</b>
+	<ul>
+		<li>GLSL: gracefully handle a link error during binding of parameters, so that we do not abort the render</li>
+		<li>OpenGL pixel buffer: download the buffer when lock mode is anything but HBL_DISCARD, and ignore whether the buffer was created as WRITE_ONLY. For consistency with other rendersystems, WRITE_ONLY should only be a hint, and should not prevent the user reading the contents if they choose to. Previously the read buffer would always contain garbage on GL unless you removed the WRITE_ONLY, which was easy to miss because TU_DEFAULT includes it.</li>
+		<li>Prevent deletion of an external GL context when using currentGLContext.</li>
+		<li>GLSLLinkProgram::activate should not access the vertex program (for attribute mapping) without checking it exists.</li>
+		<li>Fixed parentWindowHandle usage for GLX</li>
+		<li>Disabling hardware mipmap generation on ATI/Linux as reported faulty</li>
+		<li>Enable/disable GL_VERTEX_PROGRAM_POINT_SIZE for point size attenuation when vertex programs available</li>
+		<li>Workaround for broken hardware mipmap generation on Intel 915G's (at least - for the moment disable for all Intel chipsets)</li>
+		<li>Identify SiS chipsets and apply same GL automip workaround as for Intel chipsets</li>
+	</ul></li>
+	<li><b>Direct3D</b>
+	<ul>
+		<li>Fix an edge-case in D3D9 where if _canDynamicTextures returned false, the default pool would still be used even though D3DUSAGE_DYNAMIC wasn't specified, which doesn't allow locking. If D3DUSAGE_DYNAMIC could not be specified, then use the managed pool in all cases.</li>
+		<li>Safety check before rebinding D3D9 textures after a device restore where user has destroyed render target but not texture. 
+		<li>D3D9 render texture classes had the wrong update() signature so were not protecting against device lost conditions</li>
+	</ul></li>
+	<li><b>Visual Studio</b>
+	<ul>
+		<li>Fix for Runtime Check Failures with VC 2003 SP1 with alpha_op_ex</li>			<li>Allow OGRE to build with VC 2010, use TR1</li>
+		<li>Added missing OgreShadowCameraSetupPSSM.h/.cpp in VC 2003 project file</li>
+
+	</ul></li>
+	
+	<li>ILImageCodec segfault fix (for those who choose to use it)</li>
+
+	<li>Fix calculation of bounding radius from AABB in some places</li>
+
+	<li>Fix McGuire style dark cap incompatible with multiple edge groups (stencil shadows)</li>
+
+	<li>Make getCameraPosition, getCameraPositionObjectSpace and LOD camera equivalents consistent with other parameters when using camera relative rendering</li>
+
+
+	<li>Fix dark cap clipping in stencil shadows in a few edge case conditions</li>
+
+
+	<li>Fix the use of 2 scene managers with different settings on finite / infinite stencil shadow extrusion</li>
+	
+	<li>Fix Light::_getFrustumClipVolumes(...) numerical instability if infinite camera's far clip plane is used, causing light flickering if light is near camera's side frustum plane.</li>
+	
+	<li>Should propagate material scheme from primary viewport to shadow viewports so that caster/receiver materials are consistent with materials chosen for main view</li>
+	
+	<li>SceneManager should restore mCurrentViewport after rendering the shadow textures</li>
+
+
+	<li>ConvexBody: only process finite AABBs (ignore null & infinite)</li>
+
+	<li>Fix AABB when using BillboardSet with world coordinates and a transformed parent node</li>
+
+
+	<li>Fix 2 typos in scripts where vertex_program should be fragment_program</li>
+
+	<li>Fixed a few warnings</li>
+
+
+	</li>Fix problems with gui sample files schema validation when using Xerces</li>
+
+	</li>Fix to fog_override parsing when using options other than 'none'</li>
+	
+
+	<li>GpuProgramUsage::setProgramName - check the type of the program assigned matches the type of usage it's assigned to (make copy/paste errors in scripts easier to diagnose)</li>
+
+
+
+	<li>Don't pull the AABB out of an unloaded or half-loaded Mesh - if the Mesh is being background loaded, it's possible the AABB could be half-populated and invalid.</li>
+
+	<li>AnimableValue should handle DEGREE and RADIAN types (gcc warned about this)</li>
+
+	<li>Early-out optimisations to setMaterialName methods, to reduce their cost if the same material name is used</li>
+
+	<li>Fix blended scene animation (previously, only one animation would successfully apply, now they can be blended)</li>
+
+	<li>Fix write overflow in GPU parameters when using a (physically) 3x4 matrix - this could occur even if the param was declared as 4x4 but cast to 3x3. </li>
+
+	<li>TextureUnit's rarely-used constructor wasn't initialising everything</li>
+
+	<li>Fixed calling Root::loadPlugin twice for the same plugin caused a crash at shutdown (and also double-calling of init function)</li>
+
+	<li>Return default value properly from ConfigFile::getSetting</li>
+	
+	<li>Fix license statement on Fresnel demo code - all samples are supposed to be public domain / free use.</li>
+
+	<li>SceneManager should destroy its own shadow textures on destruction	</li>
+ </ul>
+ </p>
+  <p class="mainheader">
+    v1.6.2 [Shoggoth] (11 April 2009) - Maintenance Release</p>
+<ul>
+  <li><b>LGPL static link exclusion</b> clause added to our official license terms. Static linking terms are now the same as dynamic linking.</li>
+  <li><b>OpenGL</b>:<ul>
+	<li>Safety check before using mCurrentContext</li>
+	<li>Win32: Correctly restore display frequency on Win32/GL, was getting overridden  after restoreConfig</li>
+	<li>Linux: CurrentGLContext option for GLX rendersystem should not be creating a new context.</li>
+	<li>ATI: Workaround for corruptions in most recent drivers with sub-buffer updates with glMapBuffer</li>
+	<li>ATI: fix crashes on some older cards when trying to use point sprites</li>
+	<li>Add support for more graceful downgrading on pre-GL 1.2 cards and other underpowered systems (Mesa should now work)</li>
+	</ul>
+  </li>
+  <li><b>D3D9</b>:<ul>
+	<li>Remove flushUpTo() call in CompositorChain::postTargetOperation; this happens after the begin/end of the scene and actually gets ignored anyway, D3D9 would bitch about this in debug mode</li>
+	<li>Fix a potential issue with switching from fullscreen to windowed if requested size overflows</li>
+	<li>Fix copyContentsToMemory in D3D9 for secondary windows</li>
+	<li>Allow reference device software fallback for low-end machines</li>
+    </ul>
+  </li>
+  <li>Win32: standardise the use of NOMINMAX and WIN32_LEAN_AND_MEAN</li>
+  <li>Linux: Fix aclocal warnings in configure.in</li>
+  <li>Linux: Deal with Xlib.h's definition of 'Status' which clashes with ResourceGroupManager header</li>
+  <li>OS X: OgreMemoryNedMalloc.h correctly made 'public' in the Copy Headers task</li>
+  <li>GCC: Make the PCZ plugin use the gcc visibility options like other libraries</li>
+  <li>VC7.1: Fix for threaded build, VC7.1 doesn't have intrin.h</li>
+  <li>VC9: Added missing 'user' files for VC9</li>
+  <li>Change to the timing of dirtying a Pass hash before a material is loaded to better support threaded material population.</li>
+  <li>Fix small potential memory leak when explicitly constructing a SharedPtr with a null pointer</li>
+  <li>Fix a shadow map indexing bug when using pass iteration for a specific light type and multiple light types all with shadows</li>
+  <li>Fix OverlayManager::getViewportAspectRatio, was inverted</li>
+  <li>Return float from AutoParamDataSource::getLightCastsShadows to match declared type</li>
+  <li>Make methods of TerrainZone virtual</li>
+  <li>Fix off-by-one error in StaticGeometry::GeometryBucket::assign when checking number of vertices.</li>
+  <li>Make sure aspect ratio of camera is updated when camera newly assigned to a viewport</li>
+  <li>Propagate alpha for material and technique setAmbient and setSelfIllumination</li>
+  <li>Fixed ManualObject's support for 4D texture coordinates</li>
+  <li>Fixed ManualObject transparent sorting behaviour when using 'keep ordering' mode</li>
+  <li>Fix a crash when a compositor chain doesn't have a compositor attached to it</li>
+  <li>Default material scheme when compiling compositors, so that quad materials get assigned correctly</li>
+  <li>Fix bug with StaticGeometry when using stencil shadows and LOD.</li>
+  <li>Fix the GLSL 'attach' directive  not allowing multiple attachments in one line.</li>
+  <li>SceneManager::SceneMgrQueuedRenderableVisitor should be public, needed for SceneManager::setQueuedRenderableVisitor</li>
+  <li>Entity::_initialise now uses needUpdate() rather than updateBounds() to update parent node so that it will work on deeper hierarchies with SceneManagers which require parent bounds to also be updated (or processed some other way).</li>
+  <li>Fixed OpenEXR plugin build</li>
+  <li>Fixed crashes with certain Overlay destruction orders.</li>
+  <li>Documentation updates</li>
+</ul>
+  <p class="mainheader">
+    v1.6.1 [Shoggoth] (22 January 2009) - Maintenance Release</p>
+<ul>
+  <li>
+    <b>Shadows</b>
+    <ul>
+      <li>
+LiSPSM now
+automatically adjusts for duelling frusta
+      </li>
+      <li>
+Uniform shadow
+camera is now independent of FOV for directional shadows
+      </li>
+      <li>
+Directional shadows
+no longer jitter when using the uniform shadow camera
+      </li>
+      <li>
+Fix
+PSSMShadowCameraSetup when using arbitrary number of split points
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>Memory</b>
+    <ul>
+      <li>
+Nedmalloc
+deallocator should deal with null pointers
+      </li>
+      <li>
+Nedmalloc is now
+the default allocator
+      </li>
+      <li>
+Linux build now
+has option to
+change allocators
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>Materials</b>
+    <ul>
+      <li>
+cubic_texture
+now calls processTextureNames event properly
+      </li>
+      <li>
+Fixed
+support for multi-line comments
+      </li>
+      <li>
+Fixed
+script inheritance ordering bug
+      </li>
+      <li>
+Fixed
+extra space being added to the parameters of texture_source in scripts
+      </li>
+      <li>
+High-level
+shaders can now be reloaded properly after a compile error
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>DirectX9</b>
+    <ul>
+      <li>
+Fix device reset
+error when using hardware occlusion queries
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>DirectX10</b>
+    <ul>
+      <li>
+Fixed compilation
+on the November 08 DirectX SDK
+      </li>
+      <li>
+Image pitch bug
+fixed
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>OpenGL</b>
+    <ul>
+      <li>
+Fix
+crash on Radeon 9200 in _setPointParameters
+      </li>
+      <li>
+GTK
+fullscreen mode now works
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>GLSL</b>
+    <ul>
+      <li>
+Fix
+warnings of the form &ldquo;Could not find vertex shader attribute
+'vertex' to match BindAttributeLocation request&rdquo; </li>
+      <li>
+Fix
+custom attribute names (tangent, blendWeights etc) interfering with
+user-specified 'varying' bindings that happen to be called the same
+thing
+      </li>
+      <li>
+Fix
+&ldquo;Invalid Enumerant&rdquo; errors caused by
+trial-and-error binding of custom attributes
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>OS X</b>
+    <ul>
+      <li>
+Fixed
+plist link for OctreeZone project
+      </li>
+      <li>
+Make
+sure OgreMemoryNedMalloc.h is copied during Framework bundling
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>Code::Blocks</b>
+    <ul>
+      <li>
+Project
+files updated to include PCZ plugins &amp; sample
+      </li>
+      <li>
+GL
+render system project updated to include render to vertex buffer
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>PCZ
+SceneManager</b>
+    <ul>
+      <li>
+        <span style="font-weight: normal;">Texture shadows
+now work
+correctly in PCZ scene manager</span>
+      </li>
+      <li>
+        <span style="font-weight: normal;">Null and
+infinite AABBs now
+handled correctly</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>Tangent support</b>
+    <ul>
+      <li>
+StaticGeometry
+now supports tangent parity option
+      </li>
+      <li>
+Allow
+texture coordinate index 0 to be used for tangents if required
+(previously only the tangent semantic, or texture coordinate 1 or
+higher were supported)
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>Pixel buffers</b>
+    <ul>
+      <li>
+Some
+blit functions were ignoring the left/top/front offsets, this is fixed
+      </li>
+      <li>
+HardwarePixelBuffer::lock
+implementations should not return the same left/top/front offsets as
+the incoming parameters, since the returned pointer is already offset
+      </li>
+      <li>
+Box
+now has a safer default construction, in particular setting front/back
+to 0/1
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>Linux / GLX </b>
+    <ul>
+      <li>
+Xt is now the
+default GUI on
+Linux instead of GTK (if installed)
+      </li>
+      <li>
+Do not correct
+window size to
+valid fullscreen mode in windowed mode
+      </li>
+      <li>
+Fix typo in
+closing GLX window
+      </li>
+    </ul>
+  </li>
+  <li>
+Fixed animation
+update for
+entities using the same Skeleton at all LOD levels
+  </li>
+  <li>
+MeshSerializer can
+now load
+submeshes without indices successfully
+  </li>
+  <li>
+Hardware SRGB option is now
+properly registered when using background loaded textures
+  </li>
+  <li>
+In SceneManager::_manualRender,
+shader params for view/projection are now updated correctly
+  </li>
+  <li>
+Fixed bugs with sky boxes /
+domes etc when repeatedly clearing the scene &amp; resetting
+  </li>
+  <li>
+Fix calculated SubMesh size in
+.mesh when using 16-bit indices
+  </li>
+  <li>
+Manually changing the
+sort mode of solids in a render queue now works as expected
+  </li>
+  <li>
+Fix precision error in
+AnimationState::hasEnded
+  </li>
+  <li>
+Allow access to const
+version of OverlayElement factory list.
+  </li>
+  <li>
+Allow setMaterial() on
+Entity/SubEntity as well as setMaterialName, for efficiency
+  </li>
+  <li>
+STLport build option
+fixed
+  </li>
+  <li>
+Fixed uninitialised
+typeName in Exception
+  </li>
+  <li>
+Fix various compiler
+warnings
+  </li>
+</ul>
+
+
+
+<p class="mainheader">
+    v1.6.0 [Shoggoth] (3 November 2008) - Major Release</p>
+<p> <b></b>
+</p>
+    <a href="#changessince1.6.0RC1">
+[View changes since RC1]</a>
+    <ul>
+        
+        <li><b>Script Changes</b>
+<ul><li> <a href="http://www.ogre3d.org/wiki/index.php/NewScriptFeatures" class='external text' title="http://www.ogre3d.org/wiki/index.php/NewScriptFeatures" rel="nofollow">New script compilers</a> are enabled by default, see OGRE_USE_NEW_COMPILERS in OgreConfig.h
+</li><li> Unified script syntax (.os), can contain anything that would have been in type-specific scripts (.material, .particle etc)
+</li><li> Import other scripts via the 'import' directive
+</li><li> More flexible syntax, quoted identifiers supported
+</li><li> Substitutable variables are supported
+</li><li> Interception of script parsing events now possible for custom behaviour
+
+</li></ul>
+        </li>
+    </ul>
+<ul><li> <b>Material Changes</b>
+<ul><li> 'manual_named_constants' directive added for assembler shaders to allow you to associate named parameters stored in a file with assembler. The file can be created from the GpuNamedParameters from high-level source if you want to precompile them.
+</li><li> 'gpu_vendor_rule' and 'gpu_device_rule' allow you to influence the techniques which are used with inclusive/exclusive matching rules on the vendor and device name. Can help tune your materials for vendor or device-specific behaviour.
+</li><li> '#include' directive now supported in HLSL and Cg shaders
+</li><li> Added MaterialManager::Listener
+<ul><li> Can implement default Technique setting when using a material scheme for which there isn't a specific Technique
+</li><li> Can use to change materials for all objects easily per viewport by using a new scheme name
+</li></ul>
+
+</li><li> Added Pass::setPolygonModeOverrideable / script 'polygon_mode_overrideable'
+<ul><li> Allows pass-level control over whether the camera's polygon mode should affect rendering
+</li></ul>
+</li><li> Added 'light_scissor' option to Pass
+<ul><li> Allows pass fragment processing to be limited to a scissor rectangle of the light coverage in that pass
+</li><li> Additive texture and stencil shadows now use scissor automatically for additive colour passes, previously just used for rendering stencil shadow volumes
+</li></ul>
+</li><li> Added 'iteration_depth_bias' option to pass. Allows you to increment the depth bias on a pass by a specific amount each iteration if you wish
+</li><li> 'light_number' GPU parameter binding added
+</li><li> 'light_count' GPU parameter binding added
+
+</li><li> 'spotlight_viewproj_matrix' and 'spotlight_worldviewproj_matrix' added so you can use matrices from spotlights even without having set up texture shadows or an explicit texture projector
+</li><li> Added 'light_clip_planes' option to Pass
+<ul><li> Clips triangles to a cube (point lights) or pyramid (spot lights)
+</li><li> Available when the pass is only using one light and you need to restrict complexity
+</li></ul>
+</li><li> Added 'separate_scene_blend' option to Pass
+<ul><li> Allows the use of separate blend operations for colour and alpha between rendered pixel and existing frame buffer
+</li></ul>
+</li><li> Added pass option 'illumination_stage'
+<ul><li> Allows material writers to assert control over the illumination pass compilation (additive shadows)
+
+</li><li> You can now incorporate sequences you could not before in your additive lighting materials
+</li><li> For example, allows you to include specular effects by pulling the decal pass into the per-light pass if that works for your material (offset mapping used as an example)
+</li></ul>
+</li><li> Added 'gamma' option to texture declaration in texture_unit (sRGB support)
+<ul><li> Causes hardware to perform gamma space to linear space conversion when sampling the texture
+</li><li> Useful only for 8-bit per channel colour textures (not floating point textures or normal maps)
+</li><li> Can improve quality results from shaders because they mostly assume calculations are done in linear space
+</li><li> You will need to convert results back to gamma space when rendering to an 8-bit per channel render target either via a shader instruction or enabling the gamma correction option in RenderWindow or on the render texture
+</li></ul>
+</li><li> Added 'transparent_sorting' option  to Pass, allows you to disable depth sorting for transparencies
+
+</li><li> Added 'alpha_to_coverage' option to Pass, allowing you to use alpha to coverage to multisample alpha-rejected textures. Even though this is a Dx10 feature, it is available on Dx9 for recent ATI and NVIDIA cards, and OpenGL on all cards that implement it.
+</li></ul>
+</li><li> <b>Frustum / Camera Changes</b>
+<ul><li> Orthographic projection now allows explicit setting of orthographic window size
+</li><li> Added Camera::getCameraToViewportBoxVolume. Similar to getCameraToViewportRay but generates a PlaneBoundedVolume from a screen-space rectangle which can be used in a PlaneBoundedVolumeListSceneQuery to do rubber-band selections
+</li><li> Added Frustum::setFrustumExtents - allows you to specify the left/right/top/bottom planes manually and thus create any shape frustum you need to, even without the camera being in the centre of it
+</li></ul>
+</li><li> <b>MovableObject changes</b>
+<ul><li> An object will no longer render its debug display if set to visible (e.g. via a cascading visibility update), you have to explicitly turn on the debug display. This is available via MovableObject::setDebugDisplayEnabled and SceneNode::setDebugDisplayEnabled
+
+</li><li> Added visitRenderables() method - allows you to get a callback to a Renderable::Visitor class for all Renderables that this object will potentially add to the render queue. Identifies LOD and debug renderables.
+</li></ul>
+</li><li> <b>Scaling Issues</b>
+<ul><li> By default now, renormalisation of normals is automatic if there is a non-unit scale on the main world matrix rather than the Entity::setNormaliseNormals option. If the user wants to optimise this, they can prevent the SceneManager doing it in all cases by calling SceneManager::setNormaliseNormalsOnScale(false) and then explicitly enabling the option per Pass instead. In the case of an array of world matrices being used, if the first world matrix isn't a guide then the shader writer should handle the renormalisation.
+</li><li> By default now, Ogre will flip the culling mode of objects that are rendered with a negative scale (ie they are reflected by the transform of the node). This means you can now negatively scale objects and they will be rendered correctly. You can disable this behaviour by calling SceneManager::setFlipCullingOnNegativeScale(false)
+</li></ul>
+</li><li> <b>Compositor Changes</b>
+<ul><li> You can now define Multiple Render Targets (MRT) in compositor scripts. 
+<ul><li> To define a MRT, just list all the formats one after the other in the 'texture' definition.
+
+</li><li> To reference a MRT subsurface later in a render_quad pass, use the optional extra 'mrtIndex' at the end of the 'input' command
+</li><li> Note: as at this time, D3D requires that all surfaces of the MRT are of the same bit depth, and GL requires them to be of the same format
+</li></ul>
+</li><li> Compositors now detect when the viewport they are attached to is using sRGB or multisample antialiasing, and apply the same settings to any intermediate textures which are having the original scene rendered to them (explicitly via a 'render_scene' pass or implicitly via 'input previous')
+</li><li> The 'texture' directive now supports specifying a size which is a multiple of the main target size. You can use 'target_width_scaled' and 'target_height_scaled', each followed by a floating-point scaling factor, so 'target_width_scaled 0.5' for example would result in a texture with a width of half the size of the target the compositor is applied to.
+</li></ul>
+</li><li> <b>FrameListener changes</b>
+<ul><li> Added new callback 'frameRenderingQueued'. This callback occurs after all rendering commands have been sent to all render targets, but before the double-buffered targets (windows) are asked to swap their buffers. This allows you to perform some useful work on the CPU in the main thread whilst the GPU chews over the queued rendering commands. On return from the callback, the buffers will be swapped. This is equivalent to running your own rendering loop in previous versions and using RenderWindow::update(false) then RenderWindow::swapBuffers separately, but it now makes the technique available in the standard render loop.
+</li></ul>
+</li><li> <b>SceneManager changes</b>
+
+<ul><li> Chaster's 'Portal Connected Zone' SceneManager added
+</li><li> 'Camera relative rendering' option added so that in large scenes where you are far from the origin, precision issues on the GPU can be mitigated by only transforming objects relative to the camera. See SceneManager::setCameraRelativeRendering
+</li></ul>
+</li><li> <b>ManualObject changes</b>
+<ul><li> 4D texture coordinates now supported
+</li><li> 32-bit indexes now supported
+</li></ul>
+</li><li> <b>Tangents generation changes</b>
+<ul><li> New TangentSpaceCalc class can be used to calculate tangents for any geometry more easily, not just Mesh
+
+</li><li> Now generates tangents based on a UV-area weighted, triangle angle weighted basis resulting in less biasing from small / thin triangles
+</li><li> Now has options for splitting vertices when the tangent space basis is either mirrored or rotated around a vertex. 
+</li><li> Tangents can now be stored as a 4-component vector, with the 'w' component containing the parity. Multiply the binormal/bitangent you calculate in your shader by this to render models with mirrored UVs correctly. 
+</li></ul>
+</li><li> <b>Resource changes</b>
+<ul><li> Resource now has a lightweight way to observe whether it has been reloaded since you last looked at it, via getStateCount(). Other changes known to make derived data out of date may also increment this number. This allows Entity to now pick up when Mesh has been altered and refresh itself on next render.
+</li><li> You can now query for file modification times via ResourceGroupManager::resourceModifiedTime
+</li></ul>
+</li><li> <b>RenderSystemCapabilities changes</b>
+
+<ul><li> RenderSystem capabilities can now be serialised and these configs used to emulate lesser hardware
+</li><li> More information about graphics card is exposed in this structure now, including device name, driver version and also enumerates the most common vendors
+</li></ul>
+</li><li> <b>SkyBox changes</b>
+<ul><li> Skyboxes now detect and can use materials which use the 'combinedUVW' option to cubic_texture. Allows you to use the same single combined DDS for both reflection maps and skybox (previously the skybox had to be 6 separate images)
+</li></ul>
+</li><li> <b>RenderWindow changes</b>
+<ul><li> You can now request the hardware to perform linear-to-sRGB colour space conversions for you, before the blending calculation. Use the 'gamma' name-value pair option on creation of a window or the "sRGB Gamma Conversion" render system config option for the auto-window.
+</li></ul>
+
+</li><li> <b>Render to Texture changes</b>
+<ul><li> You can now enable sRGB conversion on render textures when you create them 
+</li><li> Multisample antialiasing is now supported when rendering to textures, specify the number of samples when you create the texture
+</li><li> MRTs with different bit depths are now supported if the hardware exposes the facility (check RSC_MRT_DIFFERENT_BIT_DEPTHS)
+</li></ul>
+</li><li> <b>Image Changes</b>
+<ul><li> Ogre can now detect the format of an image without needing a file extension, so you can load data from streams without knowing what file it came from. The Codec system has been expanded to provide support for recognising 'magic' signatures.
+</li></ul>
+</li><li> <b>Light changes</b>
+
+<ul><li> Lights now have a 'power' value as well as a colour, for HDR lights (defaults to 1.0)
+</li><li> Derived light colour auto-params are now factored by the light power
+</li><li> Lights can now have their own shadow far distance settings (default is to continue to use the SceneManager global one)
+</li></ul>
+</li><li> <b>Animation Changes</b>
+<ul><li> You can now use 'skeletal blend masks' to simplify the process of combining multiple layered animations to subsets of skeletons, or temporarily masking out the application of predefined animation to given bones (e.g. in order to manually control them). You create &amp; apply these through AnimationState.
+</li><li> AnimationTrack::Listener allows you to override interpolation and drive animation procedurally if you wish
+</li></ul>
+
+</li><li> <b>Threading changes</b>
+<ul><li> OGRE_THREAD_SUPPORT can now take 3 values, 0=no threading, 1=full background loading, 2=semithreading (background preparing). The new option allows you to use a background thread just to perform I/O or calculate data, but for the main thread still to be responsible for dealing with the rendersystem. This means less synchronisation is required (since the rendersystem can still run without any threading protection) and thus there are fewer overheads involved in using background loading, at the expense of a slightly more complicated setup.
+</li></ul>
+</li><li> <b>Renderable changes</b>
+<ul><li> Added preRender and postRender methods that let you further customise the render operations that are performed by a specific Renderable
+</li></ul>
+</li><li> <b> Archive changes</b>
+<ul><li> Added Archive::getModifiedTime to allow you to query for file changes
+
+</li></ul>
+</li><li> <b>Camera changes</b>
+<ul><li> Camera now has an optional 'LOD Camera' which can be used to make LOD decisions based on a different camera
+</li></ul>
+</li><li> <b>Shadow changes</b>
+<ul><li> Texture shadows now base LOD on the main view's camera, not on the shadow camera
+</li><li> Multiple textures per light are now supported, allowing techniques such as Parallel Split Shadow Maps, Dual-parabaloid Shadow Maps and Cubic Shadow Maps to be implemented
+</li><li> Implementation of Parallel Split Shadow Maps (PSSM) is included, use the new class PSSMShadowCameraSetup. Integrated shadows are required since shaders are required to pick the appropriate shadow map. See PlayPen::testTextureShadowsIntegratedPSSM for an example.
+</li></ul>
+
+</li><li> <b>Geometry shader support</b>
+<ul><li> Currently supported in OpenGL only (until Dx10 renderer complete)
+</li><li> ParticleGS and IsoSurf demos added
+</li><li> RenderToVertexBuffer support also added
+</li></ul>
+</li><li> <b>Memory management changes</b>
+<ul><li> Custom allocators now supported
+</li><li> New debug memory tracker for tracking memory usage by pool, and identifying leaks
+
+</li></ul>
+</li></ul>
+    <p>
+        <span style="text-decoration: underline"><a name="changessince1.6.0RC1"></a><strong>Changes since 1.6.0RC1</strong></span></p>
+    <ul>
+        <li>Native VC9 (2008) projects added</li>
+        <li>Correctly deal with decompressing DXT data that is less than 4 pixels in width/height</li>
+        <li>Fix assertion bug when mesh does not contain any UV</li>
+        <li>Added missing virtual destructors to new script compiler classes, fixes memory leak</li>
+        <li>Added PCZ plugins to SDK build script</li>
+        <li>Make LOD camera position available to shaders (lod_camera_position)</li>
+        <li>Fix passless technique handling in OgreEntity.cpp</li>
+        <li>Various GLX Config Dialog fixes</li>
+        <li>Add void* cast to deallocateBytes call to guarantee compatibility; this fixes luabind+ogre
+            compile error for example</li>
+        <li>Safety change - don't assume that shadow texture cameras and shadow texture list
+            is entirely in sync, in case an exception has made this temporarily not the case
+            before shutdown</li>
+        <li>Simple ease-in, ease-out for camera motion in samples</li>
+        <li>Fixed new script compiler not respecting the 'gamma' option to the texture directive
+            (hardware sRGB conversion on sample)</li>
+        <li>Make sure colour depth doesn't exceed desktop on GL/Win32/Windowed</li>
+        <li>gcc 4.3 deprecated the ext/hash_map and ext/hash_set includes. Now backward/hash_map
+            and backward/hash_set.</li>
+        <li>When using manual LOD on an Entity and attaching an object to a bone, still use
+            that attached object on lower detail versions. If a lower detail skeleton is being
+            used though and the bone that the child object is attached to no longer exists,
+            don't display the object.</li>
+        <li>Expose the ability to turn off shadows in a compositor in script</li>
+        <li>Fix for "No Contacts Requested" bug in ReferenceApp</li>
+        <li>Bugfix for segfault in Root::loadPlugins() when empty plugin directory specified</li>
+        <li>Fix wave_xform and scaling factors.</li>
+        <li>Allow Animation to change lengths, useful for editors; just document caveats.</li>
+        <li>Remove all 'using namespace OIS' directives, since OIS has a Vector3 now so it can
+            be ambiguous, better to refer to external project explicitly</li>
+        <li>When increasing the number of shadow textures, use the settings from the end of
+            the list if it is not empty. This avoids confusion when a user for example sets
+            the size or format first, then increases the count.</li>
+        <li>OctreeSceneManager should be checking for duplicates in createCamera like the other
+            SMs</li>
+        <li>texture_source now supported in new script compilers</li>
+        <li>Add missing ColourValue::getHSB method</li>
+        <li>Const fixes to Polygon, and adding missing obvious method (isPointInside)</li>
+        <li>Deal with D3D9 lost device condition where a texture is no longer contained in the
+            TextureManager resource list, but still exists through some other shared pointer
+            reference. Previously these were not released / restored (if in the default pool)
+            and could cause a failure to restore the device, they now are dealt with properly.</li>
+        <li>Normalise rotation quaternions to eliminate the progressive drift which can happen
+            in some cases (resulting in skewed matrices)</li>
+        <li>Fix a bug in the new compositor script compiler - the 'clear' and 'stencil' passes
+            are supposed to pick up their settings (buffers, colour_value etc) from nested sections,
+            not attributes directly under the pass. Added new translators to handle these nested
+            areas and moved the attribute parsing into them. This fixes bad parsing of compositors
+            with custom clear / stencil settings that used to work in 1.4.</li>
+        <li>Fix transposed matrix parsing in new script compiler; affected 'transform' attribute
+            in texture_unit and also shader parameters expressed as a matrix in script. Addressing
+            of matrix4 is [row][column] and not [column][row].</li>
+        <li>Fix to InstancedGeometry::destroy - clear list</li>
+        <li>Change Windows SDK script so that uninstall doesn't remove any new nested folders
+            created by the user underneath it.</li>
+        <li>Fix compile when using (deprecated) GTK platform</li>
+        <li>Patch autotools files for PCZSceneManager and new Samples</li>
+        <li>InstancedGeometry should be looking for the best technique, not the first technique</li>
+        <li>Fixed Technique::movePass when moving a pass forward</li>
+        <li>Camera::getCameraToViewportBoxVolume extra plane generated, also added optional
+            far plane inclusion as requested, non interface breaking</li>
+        <li>Extra checking in AutoParamDataSource to prevent accidental out of bounds access
+            to light arrays</li>
+        <li>Protect Pass hash recalculation process from race conditions by adding mutexes to
+            cover the change conditions</li>
+        <li>Mac/Carbon support for "border" and windowClosing event</li>
+        <li>Rename OgreOctree.h in OctreeZone plugin to avoid name clash with existing file
+            on OctreeSceneManager plugin. </li>
+        <li>Limit FOV on standard shadow camera setup so it doesn't approach 180 degrees</li>
+        <li>Added support for leading '/' in tokens in new script compiler</li>
+        <li>NedMalloc now added as an option for faster memory allocation / deallocation</li>
+        <li>Fix problem with setting up a controller on a TextureUnitState when one already
+            exists (e.g. calling setAnimatedTextureName more than once)</li>
+        <li>Slight optimisation to BillboardSet - use Matrix3 instead of Quaternion to orient,
+            uses less instructions.</li>
+        <li>Default preferred render texture mode to FBO in OS X now - this appears to be working
+            just fine in Leopard on my July 2007 MBP.</li>
+        <li>Improve LiSPSM quality when camera direction becomes parallel with the light direction
+            (scale up the opt adjust factor automatically)</li>
+        <li>Fix weird darkening of grass blades in Demo_Grass while camera moves (bug 190)</li>
+        <li>Compatibility with libtool 1.6+</li>
+        <li>Use forward slashes in q3settings.cfg</li>
+        <li>Fixed some gcc warnings &amp; const correctness issues</li>
+        <li>XCode &amp; MinGW build fixes</li>
+        <li>Documentation fixes</li>
+    </ul>
+    <p>
+    </p>
+<p align="left"> &nbsp;&nbsp;&nbsp;&nbsp;</p>
+</body>
+</html>

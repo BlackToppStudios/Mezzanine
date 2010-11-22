@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/!svn/ver/163/cAudio/Trunk/Source
+END
+cEffect.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/50/cAudio/Trunk/Source/cEffect.cpp
+END
+cAudioManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/144/cAudio/Trunk/Source/cAudioManager.cpp
+END
+cWavAudioDecoderFactory.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/45/cAudio/Trunk/Source/cWavAudioDecoderFactory.cpp
+END
+cFileSource.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/144/cAudio/Trunk/Source/cFileSource.cpp
+END
+cAudioEffects.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/144/cAudio/Trunk/Source/cAudioEffects.cpp
+END
+cMutex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/!svn/ver/40/cAudio/Trunk/Source/cMutex.cpp
+END
+cOggDecoder.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/124/cAudio/Trunk/Source/cOggDecoder.cpp
+END
+cStandardMemoryProvider.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/140/cAudio/Trunk/Source/cStandardMemoryProvider.cpp
+END
+cFileLogReceiver.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/134/cAudio/Trunk/Source/cFileLogReceiver.cpp
+END
+cThread.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/40/cAudio/Trunk/Source/cThread.cpp
+END
+cOggAudioDecoderFactory.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/38/cAudio/Trunk/Source/cOggAudioDecoderFactory.cpp
+END
+cLogger.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/163/cAudio/Trunk/Source/cLogger.cpp
+END
+cRawDecoder.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/85/cAudio/Trunk/Source/cRawDecoder.cpp
+END
+cAudioSource.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/163/cAudio/Trunk/Source/cAudioSource.cpp
+END
+cWavDecoder.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/95/cAudio/Trunk/Source/cWavDecoder.cpp
+END
+cMemoryTracker.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/140/cAudio/Trunk/Source/cMemoryTracker.cpp
+END
+cListener.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/151/cAudio/Trunk/Source/cListener.cpp
+END
+cFilter.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/50/cAudio/Trunk/Source/cFilter.cpp
+END
+cAudioCapture.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/144/cAudio/Trunk/Source/cAudioCapture.cpp
+END
+cMemorySource.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/139/cAudio/Trunk/Source/cMemorySource.cpp
+END
+cConsoleLogReceiver.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/134/cAudio/Trunk/Source/cConsoleLogReceiver.cpp
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/!svn/ver/160/cAudio/Trunk/Source/Makefile
+END
+cPluginManager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/144/cAudio/Trunk/Source/cPluginManager.cpp
+END
+cAudioSleep.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/40/cAudio/Trunk/Source/cAudioSleep.cpp
+END
+cAudioMemory.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/139/cAudio/Trunk/Source/cAudioMemory.cpp
+END

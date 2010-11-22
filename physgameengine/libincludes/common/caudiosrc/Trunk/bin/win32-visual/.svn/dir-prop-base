@@ -1,0 +1,31 @@
+K 10
+svn:ignore
+V 656
+cAudio.dll
+Stress_Test.exe
+Stress_Test.ilk
+Stress_Test.pdb
+Tutorial1_2DSound.exe
+Tutorial1_2DSound.ilk
+Tutorial1_2DSound.pdb
+Tutorial2_3DSound.exe
+Tutorial2_3DSound.ilk
+Tutorial2_3DSound.pdb
+Tutorial3_MemoryPlayback.exe
+Tutorial3_MemoryPlayback.ilk
+Tutorial3_MemoryPlayback.pdb
+Tutorial4_AudioCapture.exe
+Tutorial4_AudioCapture.ilk
+Tutorial4_AudioCapture.pdb
+Tutorial5_AudioEffects.exe
+Tutorial5_AudioEffects.ilk
+Tutorial5_AudioEffects.pdb
+cAp_MP3Decoder_d.dll
+Tutorial6_CustomEventHandler.exe
+Tutorial6_CustomEventHandler.ilk
+Tutorial6_CustomEventHandler.pdb
+Tutorial7_CustomLogReceiver.exe
+Tutorial7_CustomLogReceiver.ilk
+Tutorial7_CustomLogReceiver.pdb
+
+END

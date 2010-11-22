@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/20/cAudio/Trunk/dependencies/Libs/windows
+END
+vorbis_static.lib
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/windows/vorbis_static.lib
+END
+vorbisfile_static.lib
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/windows/vorbisfile_static.lib
+END
+vorbisenc_static.lib
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/windows/vorbisenc_static.lib
+END
+OpenAL32.lib
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/windows/OpenAL32.lib
+END
+ogg_static.lib
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/windows/ogg_static.lib
+END

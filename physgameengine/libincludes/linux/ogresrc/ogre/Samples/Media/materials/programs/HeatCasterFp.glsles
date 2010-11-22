@@ -1,0 +1,13 @@
+#version 100
+
+precision highp float;
+precision highp int;
+precision lowp sampler2D;
+precision lowp samplerCube;
+
+varying vec2 NDotV;
+
+void main()
+{
+   gl_FragColor = vec4(NDotV.x);
+}

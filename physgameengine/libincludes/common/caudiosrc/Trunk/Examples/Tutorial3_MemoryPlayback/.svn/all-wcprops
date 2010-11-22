@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/150/cAudio/Trunk/Examples/Tutorial3_MemoryPlayback
+END
+bling.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/1/cAudio/Trunk/Examples/Tutorial3_MemoryPlayback/bling.h
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/146/cAudio/Trunk/Examples/Tutorial3_MemoryPlayback/main.cpp
+END
+Tutorial3_MemoryPlayback.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/77/cAudio/Trunk/Examples/Tutorial3_MemoryPlayback/Tutorial3_MemoryPlayback.vcproj
+END
+Tutorial3_MemoryPlayback.cbp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/76/cAudio/Trunk/Examples/Tutorial3_MemoryPlayback/Tutorial3_MemoryPlayback.cbp
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/101/cAudio/Trunk/Examples/Tutorial3_MemoryPlayback/Makefile
+END

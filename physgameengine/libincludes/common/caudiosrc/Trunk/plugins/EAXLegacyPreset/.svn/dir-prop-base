@@ -1,0 +1,9 @@
+K 10
+svn:ignore
+V 74
+*.vcproj.Wildicv-PC.Wildicv.user
+build
+Release
+cAp_EAX_LegacyPreset.build
+
+END

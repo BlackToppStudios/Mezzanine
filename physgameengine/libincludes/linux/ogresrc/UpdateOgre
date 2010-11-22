@@ -1,0 +1,2 @@
+#!/bin/bash
+hg clone http://bitbucket.org/sinbad/ogre

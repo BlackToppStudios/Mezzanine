@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/linux
+END
+vorbis.def
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/linux/vorbis.def
+END
+vorbisfile.def
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/linux/vorbisfile.def
+END
+vorbisenc.def
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/linux/vorbisenc.def
+END
+ogg.def
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/linux/ogg.def
+END
+openal.def
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/1/cAudio/Trunk/dependencies/Libs/linux/openal.def
+END

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/47/cAudio/Trunk/plugins/mp3Decoder/mpaudec
+END
+mpaudec.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/47/cAudio/Trunk/plugins/mp3Decoder/mpaudec/mpaudec.c
+END
+mpegaudio.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/40/cAudio/Trunk/plugins/mp3Decoder/mpaudec/mpegaudio.h
+END
+bits.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/40/cAudio/Trunk/plugins/mp3Decoder/mpaudec/bits.c
+END
+internal.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/40/cAudio/Trunk/plugins/mp3Decoder/mpaudec/internal.h
+END
+mpaudec.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/40/cAudio/Trunk/plugins/mp3Decoder/mpaudec/mpaudec.h
+END
+mpaudectab.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/40/cAudio/Trunk/plugins/mp3Decoder/mpaudec/mpaudectab.h
+END

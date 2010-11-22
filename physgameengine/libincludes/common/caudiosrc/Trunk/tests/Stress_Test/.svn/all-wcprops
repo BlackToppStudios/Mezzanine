@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/146/cAudio/Trunk/tests/Stress_Test
+END
+Stress_Test.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/77/cAudio/Trunk/tests/Stress_Test/Stress_Test.vcproj
+END
+Stress_Test.cbp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/117/cAudio/Trunk/tests/Stress_Test/Stress_Test.cbp
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/146/cAudio/Trunk/tests/Stress_Test/main.cpp
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/117/cAudio/Trunk/tests/Stress_Test/Makefile
+END

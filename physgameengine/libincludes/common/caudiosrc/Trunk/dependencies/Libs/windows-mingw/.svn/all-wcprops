@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/73/cAudio/Trunk/dependencies/Libs/windows-mingw
+END
+libvorbisenc.a
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/73/cAudio/Trunk/dependencies/Libs/windows-mingw/libvorbisenc.a
+END
+libogg.a
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/73/cAudio/Trunk/dependencies/Libs/windows-mingw/libogg.a
+END
+OpenAL32.lib
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/73/cAudio/Trunk/dependencies/Libs/windows-mingw/OpenAL32.lib
+END
+libvorbis.a
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/73/cAudio/Trunk/dependencies/Libs/windows-mingw/libvorbis.a
+END
+libvorbisfile.a
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/73/cAudio/Trunk/dependencies/Libs/windows-mingw/libvorbisfile.a
+END

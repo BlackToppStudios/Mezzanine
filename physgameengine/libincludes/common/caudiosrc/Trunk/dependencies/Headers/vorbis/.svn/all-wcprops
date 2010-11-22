@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/vorbis
+END
+vorbisenc.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/vorbis/vorbisenc.h
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/vorbis/Makefile.in
+END
+codec.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/vorbis/codec.h
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/vorbis/Makefile.am
+END
+vorbisfile.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/vorbis/vorbisfile.h
+END

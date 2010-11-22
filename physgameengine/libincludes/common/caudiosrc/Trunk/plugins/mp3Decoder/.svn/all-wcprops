@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/159/cAudio/Trunk/plugins/mp3Decoder
+END
+license.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/40/cAudio/Trunk/plugins/mp3Decoder/license.txt
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/100/cAudio/Trunk/plugins/mp3Decoder/main.cpp
+END
+cMP3DecoderFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/77/cAudio/Trunk/plugins/mp3Decoder/cMP3DecoderFactory.h
+END
+cMP3Plugin.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/77/cAudio/Trunk/plugins/mp3Decoder/cMP3Plugin.h
+END
+mp3Decoder.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/103/cAudio/Trunk/plugins/mp3Decoder/mp3Decoder.vcproj
+END
+mp3Decoder.cbp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/78/cAudio/Trunk/plugins/mp3Decoder/mp3Decoder.cbp
+END
+cMP3Decoder.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/82/cAudio/Trunk/plugins/mp3Decoder/cMP3Decoder.cpp
+END
+readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/40/cAudio/Trunk/plugins/mp3Decoder/readme.txt
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/159/cAudio/Trunk/plugins/mp3Decoder/Makefile
+END
+cMP3Decoder.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/82/cAudio/Trunk/plugins/mp3Decoder/cMP3Decoder.h
+END

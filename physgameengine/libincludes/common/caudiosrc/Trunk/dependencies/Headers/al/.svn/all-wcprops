@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/al
+END
+al.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/al/al.h
+END
+EFX-Util.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/al/EFX-Util.h
+END
+alc.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/al/alc.h
+END
+efx-creative.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/al/efx-creative.h
+END
+efx.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/al/efx.h
+END
+xram.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/1/cAudio/Trunk/dependencies/Headers/al/xram.h
+END

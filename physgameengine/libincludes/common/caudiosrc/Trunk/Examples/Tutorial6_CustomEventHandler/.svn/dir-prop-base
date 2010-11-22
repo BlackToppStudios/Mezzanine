@@ -1,0 +1,12 @@
+K 10
+svn:ignore
+V 200
+cAudioEngineLog.html
+Tutorial6_CustomEventHandler.vcproj.Wildicv-PC.Wildicv.user
+*.obj
+Tutorial6_CustomEventHandler.layout
+Tutorial6_CustomEventHandler.depend
+build
+Tutorial6_CustomEventHandler.build
+
+END

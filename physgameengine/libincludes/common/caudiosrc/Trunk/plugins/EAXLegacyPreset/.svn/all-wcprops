@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/159/cAudio/Trunk/plugins/EAXLegacyPreset
+END
+License.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/71/cAudio/Trunk/plugins/EAXLegacyPreset/License.txt
+END
+main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/99/cAudio/Trunk/plugins/EAXLegacyPreset/main.cpp
+END
+EAXLegacyPreset.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/103/cAudio/Trunk/plugins/EAXLegacyPreset/EAXLegacyPreset.vcproj
+END
+EAXLegacyPreset.cbp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/78/cAudio/Trunk/plugins/EAXLegacyPreset/EAXLegacyPreset.cbp
+END
+ReadMe.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/71/cAudio/Trunk/plugins/EAXLegacyPreset/ReadMe.txt
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/159/cAudio/Trunk/plugins/EAXLegacyPreset/Makefile
+END
+cEAXLegacyPresetPlugin.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/80/cAudio/Trunk/plugins/EAXLegacyPreset/cEAXLegacyPresetPlugin.h
+END

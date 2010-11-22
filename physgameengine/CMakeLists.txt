@@ -290,8 +290,8 @@ add_dependencies( ${PROJECT_NAME}  Bullet)
 #######################################
 # Library Link Dependencies
 set( Bullet_LibraryNames
-	"BulletSoftBody"  "BulletDynamics" "BulletCollision"  "LinearMath" "BulletFileLoader"
-	"GIMPACTUtils" "ConvexDecomposition"   "BulletWorldImporter" "BulletMultiThreaded" 
+	"BulletMultiThreaded" "BulletSoftBody"  "BulletDynamics" "BulletCollision" "BulletFileLoader" "LinearMath" 
+	"GIMPACTUtils" "ConvexDecomposition"   "BulletWorldImporter"  
 	"MiniCL" "BulletSoftBodySolvers_CPU" #"BulletSoftBodySolvers_OpenCL"
 )
 
