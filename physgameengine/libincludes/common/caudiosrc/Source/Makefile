@@ -9,7 +9,7 @@ STATICDEPEND=/usr/lib/libogg.a /usr/lib/libopenal.so /usr/lib/libvorbis.a /usr/l
 
 OBJECT= cAudioCapture.o cAudioEffects.o cAudioManager.o cAudioSleep.o cAudioSource.o cConsoleLogReceiver.o cEffect.o cFileSource.o cFilter.o cFileLogReceiver.o cListener.o cLogger.o cMemorySource.o cMutex.o cOggAudioDecoderFactory.o cOggDecoder.o cPluginManager.o cRawDecoder.o cThread.o cWavAudioDecoderFactory.o cWavDecoder.o cMemoryTracker.o cStandardMemoryProvider.o cAudioMemory.o
 
-LINK_OPTIONS=-shared 
+LINK_OPTIONS=-shared -L/usr/lib/
 COMPILE_OPTIONS=-fPIC
 CC=g++
 
