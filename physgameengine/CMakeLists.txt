@@ -6,6 +6,10 @@ message ("${PROJECT_NAME} - Begin")
 
 ###############################################################################
 # Initializations
+
+set(CommonBuildFlags " -fPIC -O3 -s ")
+message("Compiler Flags used on all dependent Builds: ${CommonBuildFlags}")
+
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 message ("Base Directory for ${PROJECT_NAME}: ${${PROJECT_NAME}_ROOT_DIR}")
 
@@ -237,8 +241,8 @@ if(${UNIX})
 
 	include_directories(
 		"${SDL_INCLUDE_DIR}"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/linux/ogresrc/OgreMain/include"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/linux/ogresrc/include"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/linux/ogresrc/ogre/OgreMain/include"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/linux/ogresrc/ogre/include"
 	)
 
 	link_directories(
@@ -281,11 +285,10 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}
 #######################################
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/tinyxmlppsrc)
-add_dependencies( ${PROJECT_NAME}  ticpp)
-
 add_subdirectory (libincludes/common/bulletsrc)
-add_dependencies( ${PROJECT_NAME}  Bullet)
+add_subdirectory (libincludes/common/caudiosrc)
 
+add_dependencies( ${PROJECT_NAME}  cAudio  Bullet  ticpp )
 
 #######################################
 # Library Link Dependencies
@@ -323,10 +326,10 @@ if(${UNIX})
 	CopyFilesDuringBuild( linux/plugins.cfg data/linux/plugins.cfg )
 	CopyFilesDuringBuild( linux/settings.cfg data/linux/settings.cfg )
 	CopyFilesDuringBuild( linux/ogre/RenderSystem_GL.so data/linux/ogre/RenderSystem_GL.so )
-	CopyFilesDuringBuild( linux/ogre/libOgreMain.so.1.7.1 libOgreMain.so.1.7.1 )
-	CreateSymlinkDuringBuild( libOgreMain.so.1.7.1 libOgreMain.so )
-	CopyFilesDuringBuild( linux/caudio/libcAudio.2.1.0.so libcAudio.2.1.0.so )
-	CreateSymlinkDuringBuild( libcAudio.2.1.0.so libcAudio.so  )
+	CopyFilesDuringBuild( linux/ogre/libOgreMain.so.1.8.0 libOgreMain.so.1.8.0 )
+	CreateSymlinkDuringBuild( libOgreMain.so.1.8.0 libOgreMain.so )
+#	CopyFilesDuringBuild( linux/caudio/libcAudio.2.1.0.so libcAudio.2.1.0.so )
+#	CreateSymlinkDuringBuild( libcAudio.2.1.0.so libcAudio.so  )
 	
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
 endif(${UNIX})

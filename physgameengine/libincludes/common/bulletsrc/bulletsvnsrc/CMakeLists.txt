@@ -8,7 +8,7 @@ PROJECT(BULLET_PHYSICS)
 SET(BULLET_VERSION 2.77)
 
 #Added by BTS to make compiler flags the same across the board
-add_definitions( -fPIC -O3 -s )
+add_definitions( ${CommonBuildFlags} )
 
 
 IF(COMMAND cmake_policy)
