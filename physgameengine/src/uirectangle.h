@@ -74,9 +74,10 @@ namespace phys
                 Vector2 RelSize;
             public:
                 /// @brief Internal constructor
-                /// @param GRect The Gorilla Rectangle this rectangle is based on.
+                /// @param Position The top left position of the button.
+                /// @param Size The size of the Button.
                 /// @param Layer Pointer to the parent Layer that created this rectangle.
-                Rectangle(Gorilla::Rectangle* GRect, UILayer* Layer);
+                Rectangle(Vector2 Position, Vector2 Size, UILayer* Layer);
                 /// @brief Class destructor.
                 ~Rectangle();
                 /// @brief Sets the background colour of the rectangle.

@@ -51,13 +51,15 @@ namespace phys
 {
     namespace UI
     {
-        Rectangle::Rectangle(Gorilla::Rectangle* GRect, UILayer* GLayer)
-            : RelPosition(Vector2(0,0)),
-              RelSize(Vector2(0,0))
+        Rectangle::Rectangle(Vector2 Position, Vector2 Size, UILayer* Layer)
+            : Parent(Layer),
+              RelPosition(Position),
+              RelSize(Size)
         {
-            GRectangle = GRect;
-            Parent = GLayer;
             Manager = World::GetWorldPointer()->GetUIManager();
+
+            Vector2 Window = Manager->GetWindowDimensions();
+            GRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
         }
 
         Rectangle::~Rectangle()

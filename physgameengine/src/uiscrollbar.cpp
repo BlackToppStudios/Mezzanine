@@ -51,20 +51,30 @@ namespace phys
     namespace UI
     {
         Scrollbar::Scrollbar(String& name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style, UILayer* parent)
-            : Widget(name, parent)
+            : Widget(name, parent),
+              UpLeftButton(NULL),
+              DownRightButton(NULL),
+              ScrollerValue(0),
+              IncrementDistance(0.1),
+              MouseLock(false)
         {
-            Type = Widget::Scrollbar;
             RelPosition = Position;
             RelSize = Size;
-            Position = Position * Manager->GetWindowDimensions();
-            Size = Size * Manager->GetWindowDimensions();
+            Type = Widget::Scrollbar;
+            ScrollStyle = Style;
+            //Position = Position * Manager->GetWindowDimensions();
+            //Size = Size * Manager->GetWindowDimensions();
             if(Size.Y > Size.X * 2)
             {
-                CreateVerticalScrollbar(Position, Size, Style);
+                Size = Size * Manager->GetWindowDimensions();
+                CalculateOffsets(Size);
+                CreateVerticalScrollbar(Position, Size);
             }
             else if(Size.X > Size.Y * 2)
             {
-                CreateHorizontalScrollbar(Position, Size, Style);
+                Size = Size * Manager->GetWindowDimensions();
+                CalculateOffsets(Size);
+                CreateHorizontalScrollbar(Position, Size);
             }
             else
             {
@@ -80,11 +90,11 @@ namespace phys
             delete DownRightButton;
         }
 
-        void Scrollbar::CreateHorizontalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
+        void Scrollbar::CreateHorizontalScrollbar(Vector2 Position, Vector2 Size)
         {
             //Get the size for all items involved
             Vector2 ScrollBackSize, LeftButtonSize, RightButtonSize;
-            if(Scrollbar::NoButtons==Style)
+            if(Scrollbar::NoButtons==ScrollStyle)
             {
                 ScrollBackSize = Size;
             }else{
@@ -95,9 +105,9 @@ namespace phys
                 RightButtonSize.X = Size.Y;
                 RightButtonSize.Y = Size.Y;
             }
-            //Get the position for all items involved
+            //Get the position for all items involved and configure their offsets
             Vector2 ScrollBackPosition, LeftButtonPosition, RightButtonPosition;
-            if(Scrollbar::Separate==Style)
+            if(Scrollbar::Separate==ScrollStyle)
             {
                 ScrollBackPosition.X = Position.X + LeftButtonSize.X;
                 ScrollBackPosition.Y = Position.Y;
@@ -105,7 +115,7 @@ namespace phys
                 RightButtonPosition.X = Position.X + LeftButtonSize.X + ScrollBackSize.X;
                 RightButtonPosition.Y = Position.Y;
             }
-            else if(Scrollbar::TogetherDownRight==Style)
+            else if(Scrollbar::TogetherDownRight==ScrollStyle)
             {
                 ScrollBackPosition = Position;
                 LeftButtonPosition.X = Position.X + ScrollBackSize.X;
@@ -113,7 +123,7 @@ namespace phys
                 RightButtonPosition.X = Position.X + ScrollBackSize.X + LeftButtonSize.X;
                 RightButtonPosition.Y = Position.Y;
             }
-            else if(Scrollbar::TogetherUpLeft==Style)
+            else if(Scrollbar::TogetherUpLeft==ScrollStyle)
             {
                 ScrollBackPosition.X = Position.X + LeftButtonSize.X + RightButtonSize.X;
                 ScrollBackPosition.Y = Position.Y;
@@ -126,13 +136,25 @@ namespace phys
                 ScrollBackPosition = Position;
             }
             //Now create the objects, since we have all the position and size data we need
+            ScrollBack = new Rectangle(ScrollBackPosition,ScrollBackSize,Parent);
+            Scroller = new Button(Name+"SC",ScrollBackPosition,ScrollBackSize,Parent);
+            if(LeftButtonSize.X > 0 && LeftButtonSize.Y > 0)
+            {
+                UpLeftButton = new Button(Name+"LB",LeftButtonPosition,LeftButtonSize,Parent);
+            }
+            if(RightButtonSize.X > 0 && RightButtonSize.Y > 0)
+            {
+                DownRightButton = new Button(Name+"RB",RightButtonPosition,RightButtonSize,Parent);
+            }
+            ScrollerLowerLimit = ScrollBack->GetPosition().X;
+            ScrollerUpperLimit = ScrollBack->GetPosition().X + ScrollBack->GetSize().X;
         }
 
-        void Scrollbar::CreateVerticalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style)
+        void Scrollbar::CreateVerticalScrollbar(Vector2 Position, Vector2 Size)
         {
             //Get the size for all items involved
             Vector2 ScrollBackSize, UpButtonSize, DownButtonSize;
-            if(Scrollbar::NoButtons==Style)
+            if(Scrollbar::NoButtons==ScrollStyle)
             {
                 ScrollBackSize = Size;
             }else{
@@ -143,9 +165,9 @@ namespace phys
                 DownButtonSize.X = Size.X;
                 DownButtonSize.Y = Size.X;
             }
-            //Get the position for all items involved
+            //Get the position for all items involved and configure their offsets
             Vector2 ScrollBackPosition, UpButtonPosition, DownButtonPosition;
-            if(Scrollbar::Separate==Style)
+            if(Scrollbar::Separate==ScrollStyle)
             {
                 ScrollBackPosition.X = Position.X;
                 ScrollBackPosition.Y = Position.Y + UpButtonSize.Y;
@@ -153,7 +175,7 @@ namespace phys
                 DownButtonPosition.X = Position.X;
                 DownButtonPosition.Y = Position.Y + UpButtonSize.Y + ScrollBackSize.Y;
             }
-            else if(Scrollbar::TogetherDownRight==Style)
+            else if(Scrollbar::TogetherDownRight==ScrollStyle)
             {
                 ScrollBackPosition = Position;
                 UpButtonPosition.X = Position.X;
@@ -161,7 +183,7 @@ namespace phys
                 DownButtonPosition.X = Position.X;
                 DownButtonPosition.Y = Position.Y + ScrollBackSize.Y + UpButtonSize.Y;
             }
-            else if(Scrollbar::TogetherUpLeft==Style)
+            else if(Scrollbar::TogetherUpLeft==ScrollStyle)
             {
                 ScrollBackPosition.X = Position.X;
                 ScrollBackPosition.Y = Position.Y + UpButtonSize.Y + DownButtonSize.Y;
@@ -174,16 +196,188 @@ namespace phys
                 ScrollBackPosition = Position;
             }
             //Now create the objects, since we have all the position and size data we need
+            ScrollBack = new Rectangle(ScrollBackPosition,ScrollBackSize,Parent);
+            Scroller = new Button(Name+"SC",ScrollBackPosition,ScrollBackSize,Parent);
+            if(UpButtonSize.X > 0 && UpButtonSize.Y > 0)
+            {
+                UpLeftButton = new Button(Name+"UB",UpButtonPosition,UpButtonSize,Parent);
+            }
+            if(DownButtonSize.X > 0 && DownButtonSize.Y > 0)
+            {
+                DownRightButton = new Button(Name+"DB",DownButtonPosition,DownButtonSize,Parent);
+            }
+            ScrollerLowerLimit = ScrollBack->GetPosition().Y;
+            ScrollerUpperLimit = ScrollBack->GetPosition().Y + ScrollBack->GetSize().Y;
+        }
+
+        bool Scrollbar::IsValidDimensions(Vector2 &Size)
+        {
+            if(Size.X > Size.Y * 2)
+            {
+                return true;
+            }
+            else if(Size.Y > Size.X * 2)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        bool Scrollbar::IsHorizontal(Vector2 &Size)
+        {
+            if(Size.X > Size.Y * 2)
+            {
+                return true;
+            }
+            else if(Size.Y > Size.X * 2)
+            {
+                return false;
+            }
+            return false;
+        }
+
+        void Scrollbar::CalculateOffsets(Vector2 &Size)
+        {
+            if(IsHorizontal(Size))
+            {
+                if(Scrollbar::Separate==ScrollStyle)
+                {
+                    ScrollBackOffset = Vector2(Size.Y,0);
+                    UpLeftButtonOffset = Vector2(0,0);
+                    DownRightButtonOffset = Vector2((Size.X - (Size.Y * 2)) + Size.Y,0);
+                }
+                else if(Scrollbar::TogetherDownRight==ScrollStyle)
+                {
+                    ScrollBackOffset = Vector2(0,0);
+                    UpLeftButtonOffset = Vector2(Size.X - (Size.Y * 2),0);
+                    DownRightButtonOffset = Vector2((Size.X - (Size.Y * 2)) + Size.Y,0);
+                }
+                else if(Scrollbar::TogetherUpLeft==ScrollStyle)
+                {
+                    ScrollBackOffset = Vector2(Size.Y * 2,0);
+                    UpLeftButtonOffset = Vector2(0,0);
+                    DownRightButtonOffset = Vector2(Size.Y,0);
+                }
+            }else{
+                if(Scrollbar::Separate==ScrollStyle)
+                {
+                    ScrollBackOffset = Vector2(0,Size.X);
+                    UpLeftButtonOffset = Vector2(0,0);
+                    DownRightButtonOffset = Vector2(0,(Size.Y - (Size.X * 2)) + Size.X);
+                }
+                else if(Scrollbar::TogetherDownRight==ScrollStyle)
+                {
+                    ScrollBackOffset = Vector2(0,0);
+                    UpLeftButtonOffset = Vector2(0,Size.Y - (Size.X * 2));
+                    DownRightButtonOffset = Vector2(0,(Size.Y - (Size.X * 2)) + Size.X);
+                }
+                else if(Scrollbar::TogetherUpLeft==ScrollStyle)
+                {
+                    ScrollBackOffset = Vector2(0,Size.X * 2);
+                    UpLeftButtonOffset = Vector2(0,0);
+                    DownRightButtonOffset = Vector2(0,Size.X);
+                }
+            }
+        }
+
+        void Scrollbar::SetLocation(Vector2 &Position)
+        {
+            ScrollBack->SetActualPosition(Position + ScrollBackOffset);
+            Scroller->SetActualPosition(Position + ScrollBackOffset + (Scroller->GetActualPosition() - ScrollBack->GetActualPosition()));
+            if(UpLeftButton)
+            {
+                UpLeftButton->SetActualPosition(Position + UpLeftButtonOffset);
+            }
+            if(DownRightButton)
+            {
+                DownRightButton->SetActualPosition(Position + DownRightButtonOffset);
+            }
+        }
+
+        void Scrollbar::SetArea(Vector2 &Size)
+        {
+            if(IsHorizontal(Size))
+            {
+                ScrollBack->SetActualSize(Vector2(Size.X - (Size.Y * 2),Size.Y));
+                if(UpLeftButton)
+                {
+                    UpLeftButton->SetActualSize(Vector2(Size.Y,Size.Y));
+                }
+                if(DownRightButton)
+                {
+                    DownRightButton->SetActualSize(Vector2(Size.Y,Size.Y));
+                }
+            }else{
+                ScrollBack->SetActualSize(Vector2(Size.X,Size.Y - (Size.X * 2)));
+                if(UpLeftButton)
+                {
+                    UpLeftButton->SetActualSize(Vector2(Size.X,Size.X));
+                }
+                if(DownRightButton)
+                {
+                    DownRightButton->SetActualSize(Vector2(Size.X,Size.X));
+                }
+            }
+        }
+
+        void Scrollbar::Update()
+        {
+            if(IsHorizontal(RelSize))
+            {
+                //ScrollerValue
+            }else{
+
+            }
         }
 
         bool Scrollbar::CheckMouseHover()
         {
-            return false;
+            if(Scroller->CheckMouseHover())
+            {
+                HoveredButton = Scroller;
+                Update();
+                return true;
+            }
+            else if(UpLeftButton->CheckMouseHover())
+            {
+                HoveredButton = UpLeftButton;
+                Update();
+                return true;
+            }
+            else if(DownRightButton->CheckMouseHover())
+            {
+                HoveredButton = DownRightButton;
+                Update();
+                return true;
+            }
+            else
+            {
+                HoveredButton = NULL;
+                Update();
+                return false;
+            }
+        }
+
+        Real Scrollbar::GetScrollerValue()
+        {
+            return ScrollerValue;
+        }
+
+        void Scrollbar::SetIncrementDistance(Real IncDist)
+        {
+            IncrementDistance = IncDist;
+        }
+
+        Button* Scrollbar::GetHoveredButton()
+        {
+            return HoveredButton;
         }
 
         void Scrollbar::SetPosition(Vector2 Position)
         {
-
+            RelPosition = Position;
+            Position = Position * Manager->GetWindowDimensions();
+            SetLocation(Position);
         }
 
         Vector2 Scrollbar::GetPosition()
@@ -193,17 +387,30 @@ namespace phys
 
         void Scrollbar::SetActualPosition(Vector2 Position)
         {
-
+            RelPosition = Position / Manager->GetWindowDimensions();
+            SetLocation(Position);
         }
 
         Vector2 Scrollbar::GetActualPosition()
         {
-            return Vector2(0,0);
+            return (RelPosition * Manager->GetWindowDimensions());
         }
 
         void Scrollbar::SetSize(Vector2 Size)
         {
-
+            if(!IsValidDimensions(Size))
+                return;
+            RelSize = Size;
+            Size = Size * Manager->GetWindowDimensions();
+            if(Scrollbar::Separate==NoButtons)
+            {
+                ScrollBack->SetActualSize(Size);
+            }else{
+                Vector2 Loc = RelPosition * Manager->GetWindowDimensions();
+                CalculateOffsets(Size);
+                SetArea(Size);
+                SetLocation(Loc);
+            }
         }
 
         Vector2 Scrollbar::GetSize()
@@ -213,13 +420,39 @@ namespace phys
 
         void Scrollbar::SetActualSize(Vector2 Size)
         {
-
+            if(!IsValidDimensions(Size))
+                return;
+            RelSize = Size / Manager->GetWindowDimensions();
+            if(Scrollbar::Separate==NoButtons)
+            {
+                ScrollBack->SetActualSize(Size);
+            }else{
+                Vector2 Loc = RelPosition * Manager->GetWindowDimensions();
+                CalculateOffsets(Size);
+                SetArea(Size);
+                SetLocation(Loc);
+            }
         }
 
         Vector2 Scrollbar::GetActualSize()
         {
-            return Vector2(0,0);
+            return (RelSize * Manager->GetWindowDimensions());
         }
+
+        /*void Scrollbar::LengthenScrollArea(Real Length)
+        {
+            if(IsHorizontal(RelSize))
+            {
+                RelSize.X+=Length;
+            }else{
+                RelSize.Y+=Length;
+            }
+        }
+
+        void Scrollbar::LengthenActualScrollArea(Real Length)
+        {
+
+        }*/
     }
 }
 

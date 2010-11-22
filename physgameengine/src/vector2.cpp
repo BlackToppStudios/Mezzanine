@@ -79,6 +79,22 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators
 
+    Vector2 Vector2::operator+ (const Vector2 &Vec2) const
+    {
+        Vector2 Temp(X,Y);
+        Temp.X+=Vec2.X;
+        Temp.Y+=Vec2.Y;
+        return Temp;
+    }
+
+    Vector2 Vector2::operator- (const Vector2 &Vec2) const
+    {
+        Vector2 Temp(X,Y);
+        Temp.X-=Vec2.X;
+        Temp.Y-=Vec2.Y;
+        return Temp;
+    }
+
     Vector2 Vector2::operator* (const Vector2 &Vec2) const
     {
         Vector2 Temp(X,Y);
