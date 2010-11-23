@@ -239,7 +239,6 @@ if(${UNIX})
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
 
-
 	include_directories(
 		"${SDL_INCLUDE_DIR}"
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/linux/ogresrc/ogre/OgreMain/include"
@@ -249,9 +248,6 @@ if(${UNIX})
 	link_directories(
 		"${SDL_LIBRARY}"
 	)
-
-	set(BuildSpecificDirs "${${PROJECT_NAME}_LIBINCLUDE_DIR}/linux/ogresrc/")
-	set(BuildSpecificDependencies Ogre)
 
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
@@ -292,18 +288,20 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}
 #######################################
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/tinyxmlppsrc)
-add_subdirectory (libincludes/common/bulletsrc)
 add_subdirectory (libincludes/common/caudiosrc)
-add_subdirectory (${BuildSpecificDirs})
+add_subdirectory (libincludes/common/bulletsrc)
+#add_subdirectory (${BuildSpecificDirs})
 
 add_dependencies( ${PROJECT_NAME}  cAudio  Bullet  ticpp ${BuildSpecificDependencies})
 
 #######################################
 # Library Link Dependencies
 set( Bullet_LibraryNames
-	"BulletMultiThreaded" "BulletSoftBody"  "BulletDynamics" "BulletCollision" "BulletFileLoader" "LinearMath" 
-	"GIMPACTUtils" "ConvexDecomposition"   "BulletWorldImporter"  
-	"MiniCL" "BulletSoftBodySolvers_CPU" #"BulletSoftBodySolvers_OpenCL"
+	"ConvexDecomposition" "GIMPACTUtils"
+	"BulletWorldImporter" "BulletFileLoader"
+	#"BulletSoftBodySolvers_OpenCL"	
+	"BulletSoftBodySolvers_CPU" "MiniCL"  "BulletMultiThreaded"
+	"BulletSoftBody"  "BulletDynamics" "BulletCollision"  "LinearMath" 
 )
 
 target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} ticpp cAudio SDL )
