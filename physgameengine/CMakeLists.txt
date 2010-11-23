@@ -250,6 +250,9 @@ if(${UNIX})
 		"${SDL_LIBRARY}"
 	)
 
+	set(BuildSpecificDirs "${${PROJECT_NAME}_LIBINCLUDE_DIR}/linux/ogresrc/")
+	set(BuildSpecificDependencies Ogre)
+
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
 	message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
@@ -291,8 +294,9 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}
 add_subdirectory (libincludes/common/tinyxmlppsrc)
 add_subdirectory (libincludes/common/bulletsrc)
 add_subdirectory (libincludes/common/caudiosrc)
+add_subdirectory (${BuildSpecificDirs})
 
-add_dependencies( ${PROJECT_NAME}  cAudio  Bullet  ticpp )
+add_dependencies( ${PROJECT_NAME}  cAudio  Bullet  ticpp ${BuildSpecificDependencies})
 
 #######################################
 # Library Link Dependencies
