@@ -15,8 +15,8 @@ set(${PROJECT_NAME}_sources
 )
 
 #Choose the destination directory
-set (${PROJECT_NAME}_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/tinyxmlpp/")
-set (PROJECT_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/tinyxmlpp/")
+#set (${PROJECT_NAME}_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/tinyxmlpp/")
+#set (PROJECT_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/tinyxmlpp/")
 set (LIBRARY_OUTPUT_PATH "${physgame_ROOT_DIR}data/${BuildPlatform}/tinyxmlpp/")
 message ("Putting ticpp binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 

@@ -88,8 +88,8 @@ set(${PROJECT_NAME}_sources
 )
 
 #Choose the destination directory
-set (${PROJECT_NAME}_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/caudio/")
-set (PROJECT_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/caudio/")
+#set (${PROJECT_NAME}_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/caudio/")
+#set (PROJECT_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/caudio/")
 set (LIBRARY_OUTPUT_PATH "${physgame_ROOT_DIR}data/${BuildPlatform}/caudio/")
 message ("Putting cAudio binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 

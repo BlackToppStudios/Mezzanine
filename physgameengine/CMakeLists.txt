@@ -7,7 +7,7 @@ message ("${PROJECT_NAME} - Begin")
 ###############################################################################
 # Initializations
 
-set(CommonBuildFlags " -fPIC -O3 -s ")
+set(CommonBuildFlags " -fPIC -O2 -s ")
 message("Compiler Flags used on all dependent Builds: ${CommonBuildFlags}")
 
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
@@ -238,6 +238,13 @@ if(${UNIX})
 
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
+
+	file( COPY
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}linux/ogresrc/ogre/lib/libOgreMain.so.1.8.0"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}linux/ogresrc/ogre/lib/libOgreMain.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}linux/ogresrc/ogre/lib/RenderSystem_GL.so"
+		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
+	)
 
 	include_directories(
 		"${SDL_INCLUDE_DIR}"
