@@ -4,8 +4,6 @@ message ( "${PROJECT_NAME} - Begin" )
 
 #Choose the destination directory
 set (${PROJECT_NAME}_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/bullet/")
-set (PROJECT_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/bullet/")
-set (LIBRARY_OUTPUT_PATH "${physgame_ROOT_DIR}data/${BuildPlatform}/bullet/")
 message ("Putting Bullet binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 
 # For this to work right, the bullet CMake.list, needs to be adjusted just a little bit

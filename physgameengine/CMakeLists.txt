@@ -239,6 +239,7 @@ if(${UNIX})
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
 
+
 	include_directories(
 		"${SDL_INCLUDE_DIR}"
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/linux/ogresrc/ogre/OgreMain/include"
@@ -322,17 +323,12 @@ endif(${WIN32})
 if(${UNIX})
 	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
 
-	#Copy System Dependant Libraries On initial build
-	#TODO: ogre bullet caudio
-
 	#Copy System Dependant files during build time
 	CopyFilesDuringBuild( linux/plugins.cfg data/linux/plugins.cfg )
 	CopyFilesDuringBuild( linux/settings.cfg data/linux/settings.cfg )
 	CopyFilesDuringBuild( linux/ogre/RenderSystem_GL.so data/linux/ogre/RenderSystem_GL.so )
 	CopyFilesDuringBuild( linux/ogre/libOgreMain.so.1.8.0 libOgreMain.so.1.8.0 )
 	CreateSymlinkDuringBuild( libOgreMain.so.1.8.0 libOgreMain.so )
-#	CopyFilesDuringBuild( linux/caudio/libcAudio.2.1.0.so libcAudio.2.1.0.so )
-#	CreateSymlinkDuringBuild( libcAudio.2.1.0.so libcAudio.so  )
 	
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
 endif(${UNIX})
