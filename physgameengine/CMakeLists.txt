@@ -226,6 +226,14 @@ endfunction(CopyLibraryDuringBuild)
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	set(BuildPlatform windows)
+	
+	link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}\sdl" )
+	
+	include_directories(
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}\${BuildPlatform}\sdl
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}\${BuildPlatform}\ogre"
+	)
+	
 	add_definitions( -DWINDOWS )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
@@ -240,21 +248,19 @@ if(${UNIX})
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
 
 	file( COPY
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}linux/ogresrc/ogre/lib/libOgreMain.so.1.8.0"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}linux/ogresrc/ogre/lib/libOgreMain.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}linux/ogresrc/ogre/lib/RenderSystem_GL.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so.1.8.0"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
 		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
 	)
 
 	include_directories(
 		"${SDL_INCLUDE_DIR}"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/linux/ogresrc/ogre/OgreMain/include"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/linux/ogresrc/ogre/include"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
 	)
 
-	link_directories(
-		"${SDL_LIBRARY}"
-	)
+	link_directories( "${SDL_LIBRARY}" )
 
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
@@ -319,11 +325,18 @@ target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} ticpp cAu
 #######################################
 #Copy Common Files at Build Time
 CopyFilesDuringBuild( common/Ogre-lgpl-3.0.txt data/common/Ogre-lgpl-3.0.txt )
+CopyFilesDuringBuild( ${BuildPlatform}/plugins.cfg data/${BuildPlatform}/plugins.cfg )
+CopyFilesDuringBuild( ${BuildPlatform}/settings.cfg data/${BuildPlatform}/settings.cfg )
 
 #######################################
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
+
+	#Copy System Dependant files during build time
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/linux/ogre/RenderSystem_GL.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libOgreMain.dll libOgreMain.dll )
+
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
@@ -333,12 +346,10 @@ if(${UNIX})
 	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
 
 	#Copy System Dependant files during build time
-	CopyFilesDuringBuild( linux/plugins.cfg data/linux/plugins.cfg )
-	CopyFilesDuringBuild( linux/settings.cfg data/linux/settings.cfg )
-	CopyFilesDuringBuild( linux/ogre/RenderSystem_GL.so data/linux/ogre/RenderSystem_GL.so )
-	CopyFilesDuringBuild( linux/ogre/libOgreMain.so.1.8.0 libOgreMain.so.1.8.0 )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libOgreMain.so.1.8.0 libOgreMain.so.1.8.0 )
 	CreateSymlinkDuringBuild( libOgreMain.so.1.8.0 libOgreMain.so )
-	
+
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
 endif(${UNIX})
 
@@ -346,6 +357,7 @@ endif(${UNIX})
 # Mac File Copy pecific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
+
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 
