@@ -227,11 +227,11 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	set(BuildPlatform windows)
 	
-	link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}\sdl" )
+	link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
 	
 	include_directories(
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}\${BuildPlatform}\sdl
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}\${BuildPlatform}\ogre"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
 	)
 	
 	add_definitions( -DWINDOWS )

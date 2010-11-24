@@ -97,20 +97,22 @@ add_definitions( ${CommonBuildFlags} )
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources})
 
 if (${WIN32})
+	message("WIN32 build")
 	include_directories(
-		"${physgame_SOURCE_DIR}/cAudio2.1.0/include/"
-		"${physgame_SOURCE_DIR}/cAudio2.1.0/Headers/"
-		"${physgame_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/"
-		"${physgame_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/al"
-		"${physgame_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/ogg"
-		"${physgame_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/vorbis"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/Headers/"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/AL"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/ogg"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/vorbis"
 	)
 	link_directories(
-		"${physgame_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw"
-		"${physgame_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/dlls"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/dlls"
 	)
 	
 else (${WIN32})
+	message("Non-WIN32 build")
 	include_directories(
 		"/usr/include/" 		#This should somehow search for pthread.h
 		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/"

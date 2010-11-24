@@ -41,14 +41,16 @@
 #define ALC_EFX_MAJOR_VERSION                              0x20001
 #define ALC_EFX_MINOR_VERSION                              0x20002
 #define ALC_MAX_AUXILIARY_SENDS                            0x20003
-#endif  
+#endif
 
 namespace cAudio
 {
 	//! EFX Extension function pointers and setup
 	struct cEFXFunctions
 	{
-		cEFXFunctions::cEFXFunctions()
+	    //Changed By BlackTopp Studios To make it compile
+		//cEFXFunctions::cEFXFunctions()
+		cEFXFunctions()
 		{
 			alGenEffects = NULL;
 			alDeleteEffects = NULL;

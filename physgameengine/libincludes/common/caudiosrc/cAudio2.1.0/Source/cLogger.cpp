@@ -8,11 +8,16 @@
 #include "../Headers/cFileLogReceiver.h"
 #include "../Headers/cUtils.h"
 
+//Added by BlackTopp Studios for vsnprintf
+#include <stdio.h>
+#include <stdarg.h>
+
+
 namespace cAudio
 {
 	static cLogger Logger;
 	static bool FirstTimeLogInit(false);
-	
+
 #ifdef CAUDIO_COMPILE_WITH_CONSOLE_LOG_RECEIVER
 	static cConsoleLogReceiver ConsoleLog;
 #endif
