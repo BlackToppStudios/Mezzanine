@@ -339,7 +339,7 @@ if(${WIN32})
 
 	#Copy System Dependant files during build time
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libOgreMain.dll libOgreMain.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/OgreMain.dll OgreMain.dll )
 
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
