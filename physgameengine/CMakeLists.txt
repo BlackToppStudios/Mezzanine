@@ -278,7 +278,7 @@ endif(${APPLE})
 
 ###############################################################################
 #Common Library Configuration items
-include_directories( ${Platform_LIBINCLUDES} ${${PROJECT_NAME}_SOURCE_DIR}
+include_directories( ${${PROJECT_NAME}_SOURCE_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
@@ -310,11 +310,15 @@ add_dependencies( ${PROJECT_NAME}  cAudio  Bullet  ticpp ${BuildSpecificDependen
 #######################################
 # Library Link Dependencies
 set( Bullet_LibraryNames
-	"ConvexDecomposition" "GIMPACTUtils"
-	"BulletWorldImporter" "BulletFileLoader"
+	"ConvexDecomposition"
+	"GIMPACTUtils"
+	"BulletWorldImporter"
+	"BulletFileLoader"
 	#"BulletSoftBodySolvers_OpenCL"	
-	"BulletSoftBodySolvers_CPU" "MiniCL"  "BulletMultiThreaded"
-	"BulletSoftBody"  "BulletDynamics" "BulletCollision"  "LinearMath" 
+	"BulletSoftBodySolvers_CPU"
+	"MiniCL"
+	"BulletMultiThreaded"
+	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath" 
 )
 
 target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} ticpp cAudio SDL )
@@ -334,7 +338,7 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 
 	#Copy System Dependant files during build time
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/linux/ogre/RenderSystem_GL.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libOgreMain.dll libOgreMain.dll )
 
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")

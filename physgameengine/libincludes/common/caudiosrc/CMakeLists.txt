@@ -97,7 +97,7 @@ add_definitions( ${CommonBuildFlags} )
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources})
 
 if (${WIN32})
-	message("WIN32 build")
+	message("WIN32 build - using included libs")
 	include_directories(
 		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/"
 		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/Headers/"
@@ -108,11 +108,24 @@ if (${WIN32})
 	)
 	link_directories(
 		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/dlls"
 	)
 	
+	Message(
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libogg.a"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbisenc.a"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbis.a"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbisfile.a"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/OpenAL32.lib"
+	)
+	target_link_libraries( ${PROJECT_NAME}
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libogg.a"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbisenc.a"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbis.a"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbisfile.a"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/OpenAL32.lib"
+	)
 else (${WIN32})
-	message("Non-WIN32 build")
+	message("Non-WIN32 build - using system libs")
 	include_directories(
 		"/usr/include/" 		#This should somehow search for pthread.h
 		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/"
@@ -153,9 +166,10 @@ else (${WIN32})
 			/opt/csw/lib
 			/opt/lib
 	  ) 
-	
+	  
+	target_link_libraries( ${PROJECT_NAME} ogg openal vorbis vorbisfile)
 endif (${WIN32})
 
-target_link_libraries( ${PROJECT_NAME} ogg openal vorbis vorbisfile)
+
 
 message ("${PROJECT_NAME} - End")
