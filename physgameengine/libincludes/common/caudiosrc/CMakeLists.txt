@@ -91,85 +91,51 @@ set(${PROJECT_NAME}_sources
 #set (${PROJECT_NAME}_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/caudio/")
 #set (PROJECT_BINARY_DIR "${physgame_ROOT_DIR}data/${BuildPlatform}/caudio/")
 set (LIBRARY_OUTPUT_PATH "${physgame_ROOT_DIR}data/${BuildPlatform}/caudio/")
-message ("Putting cAudio binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
+message ("Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
 
 add_definitions( ${CommonBuildFlags} )
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources})
 
+include_directories(
+	"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/"
+	"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/Headers/"
+)
+
 if (${WIN32})
-	message("WIN32 build - using included libs")
+	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
+
 	include_directories(
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/Headers/"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/AL"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/ogg"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Headers/vorbis"
+		"${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis/libogg-1.2.1/include"
+		"${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis/libvorbis-1.3.2/lib/"
+		"${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis/libvorbis-1.3.2/include"
 	)
 	link_directories(
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw"
+		"${physgame_ROOT_DIR}data/${BuildPlatform}/oggvorbis/"
 	)
-	
-	Message(
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libogg.a"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbisenc.a"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbis.a"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbisfile.a"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/OpenAL32.lib"
-	)
-	target_link_libraries( ${PROJECT_NAME}
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libogg.a"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbisenc.a"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbis.a"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/libvorbisfile.a"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/dependencies/Libs/windows-mingw/OpenAL32.lib"
-	)
+	target_link_libraries( ${PROJECT_NAME} oggvorbis)
 else (${WIN32})
-	message("Non-WIN32 build - using system libs")
-	include_directories(
-		"/usr/include/" 		#This should somehow search for pthread.h
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/"
-		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/Headers/"
-	)
+	include_directories( "/usr/include/" )		#This should somehow search for pthread.h
 
 	include(FindOpenAL)
 	FIND_LIBRARY(VORBIS_LIBRARY
 		NAMES vorbis
-		PATHS
-			/usr/pack/oggvorbis-1.0-ds/i686-debian-linux3.1/lib
-			/usr/local/lib
-			/usr/lib
-			/sw/lib
-			/opt/local/lib
-			/opt/csw/lib
-			/opt/lib
-	  ) 
+		PATHS	/usr/pack/oggvorbis-1.0-ds/i686-debian-linux3.1/lib
+			/usr/local/lib /usr/lib /sw/lib
+			/opt/local/lib /opt/csw/lib /opt/lib
+	) 
 	FIND_LIBRARY(OGG_LIBRARY
 		NAMES ogg
-		PATHS
-			/usr/pack/oggvorbis-1.0-ds/i686-debian-linux3.1/lib
-			/usr/local/lib
-			/usr/lib
-			/sw/lib
-			/opt/local/lib
-			/opt/csw/lib
-			/opt/lib
-	  ) 
+		PATHS	/usr/pack/oggvorbis-1.0-ds/i686-debian-linux3.1/lib
+			/usr/local/lib /usr/lib /sw/lib
+			/opt/local/lib /opt/csw/lib /opt/lib
+	) 
 	FIND_LIBRARY(VORBISFILE_LIBRARY
 		NAMES vorbisfile
-		PATHS
-			/usr/pack/oggvorbis-1.0-ds/i686-debian-linux3.1/lib
-			/usr/local/lib
-			/usr/lib
-			/sw/lib
-			/opt/local/lib
-			/opt/csw/lib
-			/opt/lib
-	  ) 
-	  
-	target_link_libraries( ${PROJECT_NAME} ogg openal vorbis vorbisfile)
+		PATHS	/usr/pack/oggvorbis-1.0-ds/i686-debian-linux3.1/lib
+			/usr/local/lib /usr/lib /sw/lib
+			/opt/local/lib /opt/csw/lib /opt/lib
+	) 
+	target_link_libraries( ${PROJECT_NAME} ogg openal vorbis vorbisfile)  
 endif (${WIN32})
-
-
 
 message ("${PROJECT_NAME} - End")

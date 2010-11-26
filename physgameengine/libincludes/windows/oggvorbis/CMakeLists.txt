@@ -80,7 +80,10 @@ include_directories(
 	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/include"
 )
 
-#add_definitions( ${CommonBuildFlags} -fPIC )
+add_definitions( ${CommonBuildFlags} )
+
+set (LIBRARY_OUTPUT_PATH "${physgame_ROOT_DIR}data/${BuildPlatform}/oggvorbis/")
+message ("Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
 
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources})
 
