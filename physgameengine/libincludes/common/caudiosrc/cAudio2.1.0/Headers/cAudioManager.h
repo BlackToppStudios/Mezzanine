@@ -14,11 +14,11 @@
 #include "../Headers/cMemoryOverride.h"
 #include "../Headers/cSTLAllocator.h"
 
-#include <AL/al.h>
-#include <AL/alc.h>
+#include <al.h>
+#include <alc.h>
 
 #ifdef CAUDIO_PLATFORM_LINUX
-#include <AL/alext.h>
+#include <alext.h>
 #endif
 
 namespace cAudio
@@ -40,10 +40,10 @@ namespace cAudio
 		cAudioManager() : Device(NULL), Context(NULL), EFXSupported(false), Initialized(false) { }
 		virtual ~cAudioManager() { }
 
-		virtual bool initialize(const char* deviceName = 0x0, int outputFrequency = -1, int eaxEffectSlots = 4);      
-		virtual void shutDown();     
+		virtual bool initialize(const char* deviceName = 0x0, int outputFrequency = -1, int eaxEffectSlots = 4);
+		virtual void shutDown();
 		virtual void update();
-		virtual IAudioSource* getSoundByName(const char* name);       
+		virtual IAudioSource* getSoundByName(const char* name);
 		virtual void releaseAllSources();
 		virtual void release(IAudioSource* source);
 
@@ -54,7 +54,7 @@ namespace cAudio
 		virtual IAudioSource* create(const char* name, const char* filename, bool stream = false);
 		virtual IAudioSource* createFromMemory(const char* name, const char* data, size_t length, const char* extension);
 		virtual IAudioSource* createFromRaw(const char* name, const char* data, size_t length, unsigned int frequency, AudioFormats format);
-      
+
 		virtual bool registerAudioDecoder(IAudioDecoderFactory* factory, const char* extension);
 		virtual void unRegisterAudioDecoder(const char* extension);
 		virtual bool isAudioDecoderRegistered(const char* extension);
@@ -108,7 +108,7 @@ namespace cAudio
 		typedef cAudioMap<cAudioString, IDataSourceFactory*>::Type::iterator datasourcemapIterator;
 		cAudioVector< std::pair<int, cAudioString> >::Type dataSourcePriorityList;
 
-		//! The listener object        
+		//! The listener object
 		cListener initlistener;
 #ifdef CAUDIO_EFX_ENABLED
 		//! Interface for audio effects
@@ -122,7 +122,7 @@ namespace cAudio
 
 		//! Signals a event to all event handlers
 		void signalEvent(Events sevent);
-		
+
 		//! List of all attached event handlers
 		cAudioList<IManagerEventHandler*>::Type eventHandlerList;
     };

@@ -3,7 +3,7 @@
 // For conditions of distribution and use, see copyright notice in cAudio.h
 
 #include "../Headers/cListener.h"
-#include <AL/al.h>
+#include <al.h>
 #include "../Headers/cEFXFunctions.h"
 
 namespace cAudio
@@ -45,7 +45,7 @@ namespace cAudio
 		cAudioMutexBasicLock lock(Mutex);
 		Velocity = pos - Position;
 		Position = pos;
-		
+
 		alListener3f(AL_POSITION, Position.x, Position.y, Position.z);
 		alListener3f(AL_VELOCITY, Velocity.x, Velocity.y, Velocity.z);
 	}
