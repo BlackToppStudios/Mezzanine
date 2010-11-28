@@ -6,8 +6,8 @@
 #define CAUDIOCAPTURE_H
 
 #include "../include/IAudioCapture.h"
-#include <al.h>
-#include <alc.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 #include "../Headers/cMutex.h"
 #include "../Headers/cMemoryOverride.h"
 #include "../Headers/cSTLAllocator.h"
@@ -17,7 +17,7 @@ namespace cAudio
 	class cAudioCapture : public IAudioCapture, public cMemoryOverride
 	{
 	public:
-
+		
 		enum Events{
 			ON_INIT,
 			ON_UPDATE,

@@ -22,13 +22,13 @@
 #ifdef CAUDIO_EFX_ENABLED
 
 #ifdef CAUDIO_PLATFORM_WIN
-	#include <efx.h>
-	#include <efx-creative.h>
-	#include <xram.h>
+	#include <AL/efx.h>
+	#include <AL/efx-creative.h>
+	#include <AL/xram.h>
 #endif
 
 #ifdef CAUDIO_PLATFORM_LINUX
-	#include <alext.h>
+	#include <AL/alext.h>
 #endif
 
 #endif
@@ -197,7 +197,7 @@ namespace cAudio
 								audioSources.push_back(audio);
 
 								getLogger()->logInfo("AudioManager", "Audio Source (%s) created from file %s from Data Source %s.", audioName.c_str(), path.c_str(), dataSourcePriorityList[i].second.c_str());
-
+								
 								return audio;
 							}
 							getLogger()->logError("AudioManager", "Failed to create Audio Source (%s): Error creating audio source.", audioName.c_str());
@@ -256,7 +256,7 @@ namespace cAudio
 									audioSources.push_back(audio);
 
 									getLogger()->logInfo("AudioManager", "Audio Source (%s) successfully created from memory.", audioName.c_str());
-
+									
 									return audio;
 								}
 								audio->drop();
@@ -320,7 +320,7 @@ namespace cAudio
 									audioSources.push_back(audio);
 
 									getLogger()->logInfo("AudioManager", "Audio Source (%s) successfully created from raw data.", audioName.c_str());
-
+									
 									return audio;
 								}
 								audio->drop();
@@ -492,15 +492,15 @@ namespace cAudio
 		{
 			switch(sevent)
 			{
-				case ON_INIT:
-
+				case ON_INIT: 
+					
 					for(it; it != eventHandlerList.end(); it++)
 					{
 						(*it)->onInit();
 					}
 
 					break;
-
+				
 				case ON_UPDATE:
 
 					for(it; it != eventHandlerList.end(); it++)

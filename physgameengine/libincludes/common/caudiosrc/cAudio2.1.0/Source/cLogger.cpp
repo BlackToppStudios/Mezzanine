@@ -8,10 +8,8 @@
 #include "../Headers/cFileLogReceiver.h"
 #include "../Headers/cUtils.h"
 
-//Added by BlackTopp Studios for vsnprintf
-#include <stdio.h>
-#include <stdarg.h>
-
+//included for vsprintf by BlackTopp Studios on Nov 28, 2010
+#include <cstdio>
 
 namespace cAudio
 {

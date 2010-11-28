@@ -12,8 +12,8 @@
 
 #ifdef CAUDIO_EFX_ENABLED
 
-#include <al.h>
-#include <alc.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 
 namespace cAudio
 {

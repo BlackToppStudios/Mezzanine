@@ -9,10 +9,10 @@
 
 #ifdef CAUDIO_EFX_ENABLED
 
-#include <al.h>
-#include <alc.h>
-#include <efx.h>
-#include <efx-creative.h>
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/efx.h>
+#include <AL/efx-creative.h>
 
 #include "../Headers/cMutex.h"
 
@@ -48,8 +48,8 @@ namespace cAudio
 	//! EFX Extension function pointers and setup
 	struct cEFXFunctions
 	{
-	    //Changed By BlackTopp Studios To make it compile
 		//cEFXFunctions::cEFXFunctions()
+		//Changed to following by BlackTopp Studios on Nov 28, 2010
 		cEFXFunctions()
 		{
 			alGenEffects = NULL;
