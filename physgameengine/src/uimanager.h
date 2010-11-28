@@ -57,7 +57,7 @@ namespace phys
 {
     class UIScreen;
     class UILayer;
-    class WorldQueryTool;
+    class InputQueryTool;
     namespace UI
     {
         class Button;
@@ -77,7 +77,7 @@ namespace phys
             std::vector< UIScreen* > Screens;
             UI::Button* HoveredButton;
             UI::Widget* HoveredWidget;
-            WorldQueryTool* InputQueryer;
+            InputQueryTool* InputQueryer;
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -143,8 +143,8 @@ namespace phys
             /// @return Returns a Vector2 representing the current window dimensions.
             Vector2 GetWindowDimensions();
             /// @brief Gets the input queryer used for automation in this subsystem.
-            /// @return Returns a pointer to the WorldQueryTool used to query input events for this subsystem.
-            WorldQueryTool* GetInputQueryer();
+            /// @return Returns a pointer to the InputQueryTool used to query input events for this subsystem.
+            InputQueryTool* GetInputQueryer();
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;

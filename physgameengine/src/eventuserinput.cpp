@@ -84,7 +84,7 @@ namespace phys
 
     }
 
-    const MetaCode EventUserInput::GetMetaCode(const unsigned int &Index)
+    const MetaCode& EventUserInput::GetMetaCode(const unsigned int &Index)
     {
         return Code.at(Index);
     }

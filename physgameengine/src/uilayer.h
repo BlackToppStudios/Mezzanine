@@ -42,6 +42,7 @@
 
 #include "datatypes.h"
 #include "vector2.h"
+#include "uiscrollbar.h"
 
 #include <map>
 
@@ -163,6 +164,14 @@ namespace phys
             /// @brief Gets the number of widgets created and stored in this class.
             /// @return Returns the number of widgets this class is storing.
             Whole GetNumWidgets();
+            /// @brief Creates a Scrollbar within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+            /// @return Returns a pointer to the created Scrollbar.
+            /// @param Name The name of the Scrollbar.
+            /// @param Position The top left position of the Scrollbar.
+            /// @param Size The size of the Scrollbar.
+            /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
+            UI::Scrollbar* CreateScrollbar(String& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style);
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the buttons contained in this layer.
             /// @return Returns the button the mouse is over, or NULL if there are none.

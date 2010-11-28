@@ -7,6 +7,8 @@ bool PostInput();
 bool PrePhysics();
 bool PostPhysics();
 bool PostRender();
+bool PreUI();
+bool PostUI();
 
 //Functions that protocatch uses
 bool CheckForEsc();

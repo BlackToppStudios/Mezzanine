@@ -50,7 +50,7 @@
 #include "uilayer.h"
 #include "uiwidget.h"
 
-#include "worldquerytool.h"
+#include "inputquerytool.h"
 
 #include <Ogre.h>
 
@@ -59,7 +59,7 @@ namespace phys
     UIManager::UIManager()
     {
         Silver = new Gorilla::Silverback();
-        InputQueryer = new WorldQueryTool();
+        InputQueryer = new InputQueryTool();
         Priority = -35;
         HoveredButton = NULL;
         HoveredWidget = NULL;
@@ -232,7 +232,7 @@ namespace phys
         return Window;
     }
 
-    WorldQueryTool* UIManager::GetInputQueryer()
+    InputQueryTool* UIManager::GetInputQueryer()
     {
         return InputQueryer;
     }

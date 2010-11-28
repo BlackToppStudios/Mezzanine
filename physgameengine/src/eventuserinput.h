@@ -130,7 +130,7 @@ namespace phys
             /// @return Index The requested MetaCode to return.
             /// @details This function simply retrieves the requested MetaCode. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists
             /// \n This is useful for accessing each MetaCode stored in this physUserInputEvent.
-            const MetaCode GetMetaCode(const unsigned int &Index);
+            const MetaCode& GetMetaCode(const unsigned int &Index);
 
             /// @brief Retrieves a count of the stored Metacodes
             /// @return The amount of codes stored in this physEventUserInput.

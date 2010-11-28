@@ -53,15 +53,6 @@ namespace phys
 {
     WorldQueryTool::WorldQueryTool()
     {
-        this->GameWorld = World::GetWorldPointer();
-
-        this->MouseButtonCache.reset();
-
-        this->KeyboardButtonCache.reset();
-
-        this->MouseXCache=0;
-        this->MouseYCache=0;
-
         // create the ray scene query object
         this->RayQuery = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
         if (NULL == this->RayQuery)
@@ -73,76 +64,6 @@ namespace phys
     {
         delete this->RayQuery;
     }
-
-    Whole WorldQueryTool::GetMouseX()
-        {return this->MouseXCache;}
-
-    Whole WorldQueryTool::GetMouseY()
-        {return this->MouseYCache;}
-
-    bool WorldQueryTool::IsMouseButtonPushed(short unsigned int MouseButton)
-    {
-        if(MouseButton >= this->MouseButtonLimit)
-            {this->GameWorld->LogAndThrow("Unsupported mouse button access through WorldQueryTool");}
-        return this->MouseButtonCache[MouseButton];
-    }
-
-    bool WorldQueryTool::IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton)
-        {return this->KeyboardButtonCache[KeyboardButton];}
-
-
-    void WorldQueryTool::GatherEvents(bool ClearEventsFromEventMgr)
-    {
-        //this->KeyboardButtonCache.reset();
-
-        std::list<EventUserInput*>* UserInput = this->GameWorld->GetEventManager()->GetAllUserInputEvents();   // Get the updated list of events
-        if( ClearEventsFromEventMgr )
-            { this->GameWorld->GetEventManager()->RemoveAllSpecificEvents(EventBase::UserInput); }
-
-        //For each metacode adjust any needed info
-        for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); Iter!=UserInput->end(); Iter++) //for each event
-        {
-            for(unsigned int c = 0; c<(*Iter)->GetMetaCodeCount(); c++) //For each metacode in the event
-            {                                                           //Newer Items should take precedence of older ones, so only store the oldest ones
-                if( (*Iter)->GetMetaCode(c).IsKeyboardButton() ) //is it a Key
-                {
-                    if(0 <= (*Iter)->GetMetaCode(c).GetMetaValue()) //see MetaCode::ButtonState
-                    {
-                        this->KeyboardButtonCache.set( (*Iter)->GetMetaCode(c).GetCode() );
-                    }else{
-                        this->KeyboardButtonCache.reset( (*Iter)->GetMetaCode(c).GetCode() );
-                    }
-                }
-
-                if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == (*Iter)->GetMetaCode(c).GetCode() )
-                    { this->MouseXCache = (*Iter)->GetMetaCode(c).GetMetaValue(); }
-
-                if ( MetaCode::MOUSEABSOLUTEVERTICAL == (*Iter)->GetMetaCode(c).GetCode() )
-                    { this->MouseYCache = (*Iter)->GetMetaCode(c).GetMetaValue(); }
-
-                if ( MetaCode::MOUSEBUTTON == (*Iter)->GetMetaCode(c).GetCode() )
-                {
-                    if(0 <= (*Iter)->GetMetaCode(c).GetMetaValue()) //see MetaCode::ButtonState
-                    {
-                        this->MouseButtonCache.set( (*Iter)->GetMetaCode(c).GetID() );
-                    }else{
-                        this->MouseButtonCache.reset( (*Iter)->GetMetaCode(c).GetID() );
-                    }
-                }
-                /// @todo Add support for joysticks events to WorldQueryTool
-            }
-        }
-
-        if( ClearEventsFromEventMgr )//Erase everything if we were asked to.
-        {
-            for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); !UserInput->empty(); Iter = UserInput->begin())
-            {
-                delete(*Iter);
-                UserInput->remove(*Iter);
-            }
-        }
-    } // \GatherEvents
-
 
     ///////////////////////////////////////////////////////////////////////////////
     // Raycasting Nonsense goe here

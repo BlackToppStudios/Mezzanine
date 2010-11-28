@@ -203,6 +203,13 @@ namespace phys
         return Widgets.size();
     }
 
+    UI::Scrollbar* UILayer::CreateScrollbar(String& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style)
+    {
+        UI::Scrollbar* Scroll = new UI::Scrollbar(Name,Position,Size,Style,this);
+        Widgets.push_back(Scroll);
+        return Scroll;
+    }
+
     UI::Button* UILayer::CheckButtonMouseIsOver()
     {
         if(Buttons.empty())
