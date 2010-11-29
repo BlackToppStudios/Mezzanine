@@ -41,7 +41,9 @@
 #define actorcontainervector_h
 
 #include "actorcontainerbase.h"
+#include "crossplatformexport.h"
 #include "managerbase.h"
+
 #include <vector>
 
 namespace Ogre
@@ -59,7 +61,7 @@ namespace phys
     /// allow us to have access to a container through a standardized structure this
     /// way the phys::world doesn't need to worry about the details when accessing
     /// and storing actors
-    class ActorContainerVector : public ActorContainerBase, public std::vector<ActorBase*>
+    class PHYS_LIB ActorContainerVector : public ActorContainerBase, public std::vector<ActorBase*>
     {
         public:
             /// @brief Simple Constructor

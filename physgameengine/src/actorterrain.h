@@ -41,6 +41,7 @@
 #define _actorterrain_h
 
 #include "actorbase.h"
+#include "crossplatformexport.h"
 
 class btRigidBody;
 
@@ -54,7 +55,7 @@ namespace phys
     /// but still more then enough features for static terrain.  This helps reduce the memory footprint of the
     /// class as well as processing speed.
     ///////////////////////////////////////
-    class ActorTerrain : public ActorBase {
+    class PHYS_LIB ActorTerrain : public ActorBase {
         protected:
             btRigidBody* RigidBody;
             void CreateCollisionTerrain();

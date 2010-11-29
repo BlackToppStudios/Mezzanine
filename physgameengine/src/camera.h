@@ -40,11 +40,12 @@
 #ifndef _Camera_h
 #define _Camera_h
 
+#include "attachable.h"
+#include "crossplatformexport.h"
 #include "datatypes.h"
-#include "vector3.h"
 #include "quaternion.h"
 #include "ray.h"
-#include "attachable.h"
+#include "vector3.h"
 
 namespace Ogre
 {

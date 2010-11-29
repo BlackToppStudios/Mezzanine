@@ -40,6 +40,7 @@
 #ifndef _areaeffect_h
 #define _areaeffect_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "quaternion.h"
 #include "vector3.h"
@@ -61,7 +62,7 @@ namespace phys{
     /// AreaEffect class that does what you want it to, simple inherit from this class with an AE class of your own,
     /// and define the ApplyEffect() function to do what you want your effect to do.
     ///////////////////////////////////////
-    class AreaEffect
+    class PHYS_LIB AreaEffect
     {
         friend class PhysicsManager;
         protected:

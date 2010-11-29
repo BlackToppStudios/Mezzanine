@@ -41,6 +41,7 @@
 #define _actorragdoll_h
 
 #include "actorbase.h"
+#include "crossplatformexport.h"
 
 class btRigidBody;
 
@@ -55,7 +56,7 @@ namespace phys
     /// a single physics body.  Ragdolls explicitly need to work with multiple physics
     /// bodies(the limbs), and so ragdolls get their own class.
     ///////////////////////////////////////
-    class ActorRagDoll : public ActorBase
+    class PHYS_LIB ActorRagDoll : public ActorBase
     {
         protected:
             BodyParts* Limbs;

@@ -40,15 +40,12 @@
 #ifndef _physactorrigid_h
 #define _physactorrigid_h
 
-//#include "vector3.h"
-//#include "quaternion.h"
-//#include "world.h"
+#include "actorbase.h"
+#include "crossplatformexport.h"
 
 ///////////////////////////////////
 // Forward Declares
-
 class btRigidBody;
-#include "actorbase.h"
 
 ///////////////////////////////////
 // Actual code
@@ -63,7 +60,7 @@ namespace phys
     /// Rigid Object: Boxes, Car Frames, Chairs, etc.  For Semi Rigid bodies that are
     /// deformable, like jello, it is better to use ActorSoft.
     ///////////////////////////////////////
-    class ActorRigid : public ActorBase {
+    class PHYS_LIB ActorRigid : public ActorBase {
         protected:
             friend class TypedConstraint;
             /// @brief Used to simulate the behavior of a btRigidBody

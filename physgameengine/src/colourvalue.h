@@ -40,6 +40,7 @@
 #ifndef _colourvalue_h
 #define _colourvalue_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 
 namespace Ogre

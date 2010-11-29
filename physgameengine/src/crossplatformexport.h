@@ -37,16 +37,14 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef containerbase_cpp
-#define containerbase_cpp
+#ifndef _crossplatformexports_h
+#define _crossplatformexports_h
 
-#include "containerbase.h"
-
-namespace phys
-{
-
-}// \phys
-
-
+//Used to define whether a class is exported as part of the shared library when compiled
+#ifdef WINDOWS
+#define PHYS_LIB __declspec(dllexport)
+#else
+#define PHYS_LIB
+#endif
 
 #endif

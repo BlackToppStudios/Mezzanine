@@ -40,9 +40,11 @@
 #ifndef _constraint_h
 #define _constraint_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "quaternion.h"
 #include "vector3.h"
+
 namespace phys
 {
     class ActorRigid;

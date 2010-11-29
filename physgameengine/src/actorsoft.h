@@ -40,40 +40,23 @@
 #ifndef _physactorsoft_h
 #define _physactorsoft_h
 
-//#include "vector3.h"
-//#include "quaternion.h"
-//#include "world.h"
+#include "actorbase.h"
+#include "crossplatformexport.h"
 
 ///////////////////////////////////
 // Forward Declares
 //
-//class btMotionState;
-//class btQuaternion;
-//class btVector3;
-//class btRigidBody;
 class btSoftBody;
-//class btTransform;
-//class btDiscreteDynamicsWorld;
-//class btDefaultMotionState;
-//class btCollisionShape;
 class btSoftBodyWorldInfo;
-//class btCollisionObject;
-//class btSoftRigidDynamicsWorld;
-//class btTriangleMesh;
-typedef float btScalar;
-//
+//typedef float btScalar;
+
 namespace Ogre
 {
-    //class Entity;
-    //class SceneManager;
-    //class SceneNode;
     class ManualObject;
     class ManualObjectSection;
     class Vector3;
     class Vector2;
 }
-
-#include "actorbase.h"
 
 ///////////////////////////////////
 // Actual code
@@ -92,7 +75,7 @@ namespace phys
     /// should be made as a soft object.
     /// @warning Currently this is not fully implemented and will likely cause errors if used.
     ///////////////////////////////////////
-    class ActorSoft: public ActorBase {
+    class PHYS_LIB ActorSoft: public ActorBase {
         protected:
             ///@brief Used to simulate the functionality of a btSoftBody for use with the physics subsystem.
             btSoftBody* physsoftbody;

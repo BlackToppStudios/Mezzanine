@@ -40,10 +40,11 @@
 #ifndef _CameraManager_h
 #define _CameraManager_h
 
-#include "vector3.h"
+#include "crossplatformexport.h"
+#include "managerbase.h"
 #include "quaternion.h"
 #include "ray.h"
-#include "managerbase.h"
+#include "vector3.h"
 
 #include <map>
 

@@ -69,18 +69,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // Includes
+#include "crossplatformexport.h"
 #include "datatypes.h"
 
 #include <string>
 
 using namespace std;
-
-//Used to define Whether a class is exported as part of the shared library when compiled
-#ifdef WINDOWS
-#define PHYS_LIB __declspec(dllexport)
-#else
-#define PHYS_LIB
-#endif
 
 /// Forward declaration for compatibility
 namespace Ogre

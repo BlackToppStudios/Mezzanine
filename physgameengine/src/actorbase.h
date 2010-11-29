@@ -40,9 +40,7 @@
 #ifndef _physactorbase_h
 #define _physactorbase_h
 
-//#include "vector3.h"
-//#include "quaternion.h"
-//#include "world.h"
+#include "crossplatformexport.h"
 #include "node.h"
 
 ///////////////////////////////////
@@ -84,7 +82,7 @@ namespace phys
     /// ActorBase is a base class that serves as a template for the other four actor classes. @n
     /// ActorBase should never be created, as it lacks the functionality needed for most objects.
     ///////////////////////////////////////
-    class ActorBase {
+    class PHYS_LIB ActorBase {
         private:
             friend class Node;
             friend class ActorContainerBase;

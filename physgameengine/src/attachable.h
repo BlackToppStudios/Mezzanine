@@ -40,6 +40,7 @@
 #ifndef _attachable_h
 #define _attachable_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 
 namespace phys
@@ -50,7 +51,7 @@ namespace phys
     /// @brief This is just a base class to be used by elements that are attachable to nodes.
     /// @details This class is useless on it's own and should not be created manually.
     ///////////////////////////////////////
-    class Attachable
+    class PHYS_LIB Attachable
     {
         public:
             enum AttachableElement
