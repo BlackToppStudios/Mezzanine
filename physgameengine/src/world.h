@@ -153,7 +153,7 @@ namespace phys
     /// container for all the playing pieces. It makes sense to tie all of this
     /// functionality into one world object.
     ///////////////////////////////////////
-    class World
+    class PHYS_LIB World
     {
         private:
             friend class PhysicsManager;
