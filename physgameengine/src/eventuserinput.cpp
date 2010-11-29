@@ -235,9 +235,9 @@ namespace phys
         }else{
             if(RawEvent_.button.state==SDL_PRESSED)
             {
-                this->AddCode(MetaCode::BUTTON_PRESSING, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
+                this->AddCode(MetaCode::BUTTON_DOWN, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
             }else{
-                this->AddCode(MetaCode::BUTTON_LIFTING, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
+                this->AddCode(MetaCode::BUTTON_UP, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
             }
         }
     }

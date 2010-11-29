@@ -47,6 +47,10 @@
 
 #include "world.h"
 #include "eventmanager.h"
+#include "eventbase.h"
+#include "eventrendertime.h"
+#include "eventuserinput.h"
+#include "eventquit.h"
 #include "metacode.h"
 
 #include "SDL.h"
@@ -102,6 +106,8 @@ namespace phys
         PollMouseHor = false;
         PollMouseVert = false;
         this->Priority=-40;
+        MouseButtonCache.resize(16);
+        MouseButtonCache.insert(MouseButtonCache.begin(),16,std::pair<bool,bool>(false,false));
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -174,15 +180,53 @@ namespace phys
         EventUserInput* FromSDLEvent = new EventUserInput();
         EventUserInput* FromSDLPolling = this->PollForUserInputEvents();
 
+        for(std::vector<std::pair<bool,bool> >::iterator it = MouseButtonCache.begin();it!=MouseButtonCache.end();it++)
+        {
+            (*it).first = false;
+        }
         //read through the pending user input events and add those codes
         while( !SDL_UserInputEvents.empty() )
         {
             RawEvent* CurrentRawEvent = SDL_UserInputEvents.front();
 
-            FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
+            if(CurrentRawEvent->type == SDL_MOUSEBUTTONDOWN || CurrentRawEvent->type == SDL_MOUSEBUTTONUP)
+            {
+                FromSDLEvent->AddCode(CurrentRawEvent->button.x,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
+                FromSDLEvent->AddCode(CurrentRawEvent->button.y,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+                if ( SDL_BUTTON_WHEELUP==CurrentRawEvent->button.button)
+                {
+                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_UP,0,MetaCode::MOUSEWHEELVERTICAL);
+                }else if( SDL_BUTTON_WHEELDOWN==CurrentRawEvent->button.button ){
+                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_DOWN,0,MetaCode::MOUSEWHEELVERTICAL);
+                }else{
+                    if(CurrentRawEvent->button.state==SDL_PRESSED /*&& !MouseButtonCache[CurrentRawEvent->button.button]*/){
+                        FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
+                        MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
+                        MouseButtonCache[CurrentRawEvent->button.button].second = true;//is pressed
+                    /*}else if(CurrentRawEvent->button.state==SDL_PRESSED && MouseButtonCache[CurrentRawEvent->button.button]){
+                        FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);*/
+                    }else if(CurrentRawEvent->button.state==SDL_RELEASED /*&& MouseButtonCache[CurrentRawEvent->button.button]*/){
+                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
+                        MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
+                        MouseButtonCache[CurrentRawEvent->button.button].second = false;//is pressed
+                    }
+                }
+            }else{
+                FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
+            }
 
             delete CurrentRawEvent;
             SDL_UserInputEvents.pop(); //NEXT!!!
+        }
+
+        unsigned int x=0;
+        for(std::vector<std::pair<bool,bool> >::iterator it = MouseButtonCache.begin();it!=MouseButtonCache.end();it++)
+        {
+            if(!((*it).first) && (*it).second)
+            {
+                FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, x, MetaCode::MOUSEBUTTON);
+            }
+            x++;
         }
 
         *FromSDLEvent += *FromSDLPolling;

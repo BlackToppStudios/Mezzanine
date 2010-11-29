@@ -42,6 +42,7 @@
 
 #include "inputquerytool.h"
 #include "eventmanager.h"
+#include "eventuserinput.h"
 #include "world.h"
 
 namespace phys

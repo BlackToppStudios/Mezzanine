@@ -46,20 +46,22 @@
 
 #include <list>
 #include <queue>
+#include <vector>
+#include <utility>
 
 using namespace std;
 
 #include "managerbase.h"
-#include "eventbase.h"
-#include "eventrendertime.h"
-#include "eventuserinput.h"
-#include "eventquit.h"
 #include "vector2.h"
+#include "eventbase.h"
+#include "metacode.h"
 
 namespace phys
 {
     class World;
-
+    class EventRenderTime;
+    class EventUserInput;
+    class EventQuit;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class EventManager
     /// @headerfile eventmanager.h
@@ -118,6 +120,8 @@ namespace phys
             queue<RawEvent*> SDL_UserInputEvents;
 
             Vector2 CurrentMouseCoords;
+
+            std::vector<std::pair<bool,bool> > MouseButtonCache;
 
         public:
             /// @todo TODO build a deconstructor that deletes all the events still in the queue
