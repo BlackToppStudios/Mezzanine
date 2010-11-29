@@ -3,16 +3,15 @@ The Physgame engine uses cmake to configure it's builds. It is pretty easy to us
 	Cmake version 2.8 or newer
 
 For dependencies, which the Physgame engine has plenty, you will need to install a few extra packages or take a few extra steps to build.
-	For Windows, if you don't mind using 32 bit binaries, you can just use the defaults that we have included in this repository.
-		Ticpp/TinyMXL and cAudio will be compiled with the engine whenever you compile.
-		
+	For Windows,
+		Bullet Ticpp/TinyMXL, Oggvorbis and cAudio will be compiled with the engine whenever you compile.
 	For Linux, 
 		the following development libraries or the equivalent need to be installed:
 			libboost-thread-dev libsdl1.2-dev libxaw7-dev zlib1g-dev libfreeimage-dev libzzip-dev libogg-dev
-			libwxgtk2.8-dev libxrandr-dev libopenal-dev libvorbis-dev libfreetype6-dev libvorbis-dev
+			libwxgtk2.8-dev libxrandr-dev libopenal-dev libvorbis-dev libfreetype6-dev 
 		Ogre needs to be compiled.
 			It is located in physgameengine/libincludes/linux/ogresrc/ogre
-			the physgame build is configured to copy the minimum requred binaries from where ogre builds them and put them in physgameengine/data/linux/ogre
+			the ogre build distributed with physgame is configured to copy the minimum requred binaries from where ogre builds them and put them in physgameengine/data/linux/ogre
 			If they don't wind up there for any reason, or you want to use your own, you can copy or symlink the version you do want to use to these directories.
 			An easy way to compile ogre is to use (cmake -G"Unix Makefiles" && make -j8). 				The -j8 says to run make in 8 processes, put your amount of CPUs here so on a quadcore use (cmake -G"Unix Makefiles" && make -j4)
 				Here is a sample ogre build from a user named "dev" on a machine named "dev-laptop" who has their copy of the git repository in their home folder

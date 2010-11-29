@@ -93,7 +93,7 @@ set (LIBRARY_OUTPUT_PATH "${physgame_ROOT_DIR}data/${BuildPlatform}/caudio/")
 message ("Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
 
 add_definitions( ${CommonBuildFlags} )
-add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources})
+add_library(cAudio STATIC ${${PROJECT_NAME}_sources})
 
 
 #We have removed the cAudio depencies because they were built with an assumed compile and OS version

@@ -72,6 +72,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/include/vorbis/vorbisenc.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/include/vorbis/vorbisfile.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/window.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/libvorbis-1.3.2/lib/vorbisfile.c"
 )
 
 include_directories(
@@ -85,6 +86,6 @@ add_definitions( ${CommonBuildFlags} )
 set (LIBRARY_OUTPUT_PATH "${physgame_ROOT_DIR}data/${BuildPlatform}/oggvorbis/")
 message ("Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
 
-add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources})
+add_library(oggvorbis STATIC ${${PROJECT_NAME}_sources})
 
 message ( "${PROJECT_NAME} - End" )

@@ -21,6 +21,6 @@ set (LIBRARY_OUTPUT_PATH "${physgame_ROOT_DIR}data/${BuildPlatform}/tinyxmlpp/")
 message ("Putting ticpp binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 
 add_definitions( ${CommonBuildFlags} -DTIXML_USE_TICPP -DWIN32 -D_WINDOWS -DNDEBUG)
-add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources})
+add_library(ticpp STATIC ${${PROJECT_NAME}_sources})
 
 message ("${PROJECT_NAME} - End")

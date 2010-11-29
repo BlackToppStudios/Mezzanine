@@ -37,7 +37,7 @@ message ("Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 
 #######################################
 # A complete listing of our header files
-set(${PROJECT_NAME}_headers
+set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainerbase.h"
@@ -110,11 +110,10 @@ set(${PROJECT_NAME}_headers
 	"${${PROJECT_NAME}_SOURCE_DIR}/xmlnode.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xmlstylesheetreference.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xmltext.h"
-)
 
 #######################################
 # A complete listing of our source files
-set(${PROJECT_NAME}_sources
+
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainerbase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainervector.cpp"
@@ -303,11 +302,13 @@ link_directories(
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/bullet"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/caudio"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/tinyxmlpp"
+	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/openal"
+	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/oggvorbis"
 )
 
 ###############################################################################
 # Prepare the actual Build
-add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers}  ${${PROJECT_NAME}_sources} )
+add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 
 #######################################
 # Prepare Common Dependencies
@@ -346,16 +347,17 @@ CopyFilesDuringBuild( ${BuildPlatform}/settings.cfg data/${BuildPlatform}/settin
 #######################################
 # Windows File Copy Specific Items
 if(${WIN32})
-	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
+	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
 
 	#Copy System Dependant files during build time
 	
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/OgreMain.dll OgreMain.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
 	
-	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
+	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
 #######################################
