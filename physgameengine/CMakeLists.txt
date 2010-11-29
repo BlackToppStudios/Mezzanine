@@ -7,7 +7,15 @@ message ("${PROJECT_NAME} - Begin")
 ###############################################################################
 # Initializations
 
-set(CommonBuildFlags " -fPIC -O2 -s ")
+#CommonBuildFlags is used by all child built libraries including bullet, ticpp, cAudio, and most system specific libs, but not ogre
+if(${WIN32})
+	message ("${PROJECT_NAME} - Setting Windows Specific Initialiations")
+	set(CommonBuildFlags " -O2 -s ")
+else(${WIN32})
+	message ("${PROJECT_NAME} - Setting Non-Windows Initialiations")
+	set(CommonBuildFlags " -fPIC -O2 -s ")
+endif(${WIN32})
+
 message("Compiler Flags used on all dependent Builds: ${CommonBuildFlags}")
 
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
@@ -227,6 +235,9 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	set(BuildPlatform windows)
 	
+	#required for cAudio
+	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
+	
 	link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
 	
 	include_directories(
@@ -305,7 +316,7 @@ add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
 #add_subdirectory (${BuildSpecificDirs})
 
-add_dependencies( ${PROJECT_NAME}  cAudio  Bullet  ticpp ${BuildSpecificDependencies})
+add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet  ticpp )
 
 #######################################
 # Library Link Dependencies
@@ -338,9 +349,12 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 
 	#Copy System Dependant files during build time
+	
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/OgreMain.dll OgreMain.dll )
-
+	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
+	
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
