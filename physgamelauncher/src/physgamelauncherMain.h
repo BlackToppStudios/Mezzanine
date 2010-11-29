@@ -38,6 +38,11 @@ class physgamelauncherFrame: public wxFrame
         void OnButton1Click(wxCommandEvent& event);
         bool FileExists(string strFilename);
         void OnButton3Click(wxCommandEvent& event);
+        void levelselectscreen();
+        void Options();
+        void fullscreen(bool fullscreencheck){
+
+
         //*)
 
         //(*Identifiers(physgamelauncherFrame)

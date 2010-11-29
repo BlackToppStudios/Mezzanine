@@ -1924,22 +1924,30 @@
 
 1287366883 source:c:\physgame\physgamelauncher\src\crossplatform.cpp
 
-1287366883 source:c:\physgame\physgamelauncher\src\physgamelaunchermain.cpp
+1290398135 source:c:\physgame\physgamelauncher\src\physgamelaunchermain.cpp
 	"physgamelauncherMain.h"
 	<wx/msgdlg.h>
 	"zlib.h"
 	<sys/stat.h>
+	"levelselect.h"
+	<wx/image.h>
 	<iostream>
 	<fstream>
 	<string>
 	"configopener.h"
 	<stdio.h>
 	<stdlib.h>
+	<wx/bitmap.h>
+	<wx/settings.h>
 	<wx/intl.h>
+	<wx/image.h>
 	<wx/string.h>
 
-1289797087 c:\physgame\physgamelauncher\src\physgamelaunchermain.h
+1290399554 c:\physgame\physgamelauncher\src\physgamelaunchermain.h
+	<wx/sizer.h>
 	<wx/panel.h>
+	<wx/statbmp.h>
+	<wx/button.h>
 	<wx/frame.h>
 
 1186432892 c:\wxwidgets-2.8.11\include\wx\panel.h
@@ -2688,13 +2696,14 @@
 1287366883 source:c:\physgame\physgamelauncher\src\configopener.cpp
 	"configopener.h"
 
-1289785771 source:c:\physgame\physgamelauncher\src\physgamelauncherapp.cpp
+1290398226 source:c:\physgame\physgamelauncher\src\physgamelauncherapp.cpp
 	"physgamelauncherApp.h"
 	<iostream>
 	<fstream>
 	"zlib.h"
 	"crossplatform.h"
 	"physgamelauncherMain.h"
+	"levelselect.h"
 	<wx/image.h>
 
 1287366883 c:\physgame\physgamelauncher\src\physgamelauncherapp.h
@@ -2845,4 +2854,35 @@
 	"wx/control.h"
 	"wx/icon.h"
 	"wx/bitmap.h"
+
+1290998855 source:c:\physgame\physgamelauncher\src\levelselect.cpp
+	"levelselect.h"
+
+1290388013 c:\physgame\physgamelauncher\src\levelselect.h
+	<wx/frame.h>
+
+1234544446 c:\wxwidgets-2.8.11\include\wx\settings.h
+	"wx/colour.h"
+	"wx/font.h"
+
+1287366883 source:c:\physgame\physgamelauncher\src\resource.rc
+	"wx/msw/wx.rc"
+
+1186432852 c:\wxwidgets-2.8.11\include\wx\msw\wx.rc
+	<winresrc.h>
+	<windows.h>
+	"wx/msw/wince/wince.rc"
+	"wx/msw/rcdefs.h"
+
+1186432848 c:\wxwidgets-2.8.11\include\wx\msw\wince\wince.rc
+	<commctrl.h>
+	"wx/msw/wince/smartphone.rc"
+
+1186432848 c:\wxwidgets-2.8.11\include\wx\msw\wince\smartphone.rc
+	<aygshell.h>
+	"wx/msw/wince/resources.h"
+
+1186432848 c:\wxwidgets-2.8.11\include\wx\msw\wince\resources.h
+
+1277707120 c:\wxwidgets-2.8.11\lib\gcc_dll\mswud\wx\msw\rcdefs.h
 

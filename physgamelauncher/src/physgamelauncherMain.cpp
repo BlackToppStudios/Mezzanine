@@ -12,6 +12,8 @@
 //#include <windows.h>
 #include "zlib.h"
 #include <sys/stat.h>
+#include "levelselect.h"
+#include <wx/image.h>
 
 
 #include <iostream>
@@ -31,6 +33,7 @@
 
 //helper functions
 
+//IMPLEMENT_APP(physgamelauncherApp);
 
 
 enum wxbuildinfoformat
@@ -78,7 +81,7 @@ BEGIN_EVENT_TABLE(physgamelauncherFrame,wxFrame)
 
 END_EVENT_TABLE()
 
-physgamelauncherFrame::physgamelauncherFrame(wxWindow* parent,wxWindowID id)
+physgamelauncherFrame::physgamelauncherFrame(wxWindow* parent,wxWindowID id,bool fullscreencheck)
 {
 
     //(*Initialize(physgamelauncherFrame)
@@ -158,13 +161,13 @@ physgamelauncherFrame::physgamelauncherFrame(wxWindow* parent,wxWindowID id)
 
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
     Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
-    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
+    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::levelselectscreen);
     Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
-    Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
+    Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::Options);
     Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
     //*)
-           wxFrame::ShowFullScreen(true, wxFULLSCREEN_ALL);
-
+    wxFrame::ShowFullScreen(true, wxFULLSCREEN_ALL);
+  physgamelauncherFrame::fullscreen( fullscreencheck)
 }
 
 physgamelauncherFrame::~physgamelauncherFrame()
@@ -176,6 +179,33 @@ physgamelauncherFrame::~physgamelauncherFrame()
 void physgamelauncherFrame::OnQuit(wxCommandEvent& event)
 {
     Close();
+}
+void physgamelauncherFrame::Options(){
+    wxFrame::ShowFullScreen(false, wxFULLSCREEN_ALL);
+}
+
+void physgamelauncherFrame::fullscreen(bool fullscreencheck){
+
+if(fullscreencheck){
+
+    wxFrame::ShowFullScreen(true, wxFULLSCREEN_ALL);
+
+}
+
+
+
+}
+
+void physgamelauncherFrame::levelselectscreen()
+{
+
+    levelselect* Frame2 = new levelselect(0);
+    Frame2->Show();
+    Close();
+
+
+//wxFrame::SetTopWindow(Frame2);
+
 }
 
 void physgamelauncherFrame::RunGame(wxCommandEvent& event)
