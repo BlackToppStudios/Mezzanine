@@ -74,11 +74,13 @@ namespace phys
                     TogetherDownRight
                 };
             protected:
+                friend class phys::UIManager;
                 UI::Button* Scroller;
                 UI::Rectangle* ScrollBack;
                 UI::Button* UpLeftButton;
                 UI::Button* DownRightButton;
                 UI::Button* HoveredButton;
+                UI::Rectangle* HoveredBack;
                 Vector2 ScrollBackOffset;
                 Vector2 UpLeftButtonOffset;
                 Vector2 DownRightButtonOffset;
@@ -88,7 +90,9 @@ namespace phys
                 Real IncrementDistance;
                 BarStyle ScrollStyle;
                 bool Horizontal;
-                bool ScrollLock;
+                bool ScrollerLock;
+                bool UpLeftLock;
+                bool DownRightLock;
                 /// @internal
                 /// @brief Constructor helper function for creating a horizontally aligned scrollbar.
                 void CreateHorizontalScrollbar(Vector2 Position, Vector2 Size);
@@ -108,6 +112,9 @@ namespace phys
                 /// @brief Calculates the limits by which the scroller is allowed to move.
                 void CalculateScrollLimits();
                 /// @internal
+                /// @brief Calculates the scrollbar value based on the scrollers current position.
+                void CalculateScrollValue();
+                /// @internal
                 /// @brief Checks if a provided coordinate is within the defined limits, and adjusts it if not.
                 void SetToWithinLimits(Real &Coord);
                 /// @internal
@@ -123,8 +130,11 @@ namespace phys
                 /// @brief Scrolls the scroller either up/left or down/right.  For use with the mouse.
                 void MouseScroll(Vector2 Scroll);
                 /// @internal
+                /// @brief Scrolls the scroller either up/left or down/right.  For use with the scrollback.
+                void ScrollBackScroll();
+                /// @internal
                 /// @brief Performs all the necessary update and automation processes for this widget.
-                void Update();
+                void Update(bool Force = false);
             public:
                 /// @brief Standard initialization constructor.
                 /// @param Name The name of this scrollbar.

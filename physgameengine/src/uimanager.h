@@ -62,6 +62,7 @@ namespace phys
     {
         class Button;
         class Widget;
+        class Scrollbar;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIManager
@@ -77,7 +78,11 @@ namespace phys
             std::vector< UIScreen* > Screens;
             UI::Button* HoveredButton;
             UI::Widget* HoveredWidget;
+            UI::Scrollbar* ScrollbarControl;
             InputQueryTool* InputQueryer;
+            Real WidgetTolorance;
+            bool IsMouseWithinWidgetTolorance(UI::Widget* Control);
+            /*void UpdateScrollbar(UI::Scrollbar* Scroll);*/
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.

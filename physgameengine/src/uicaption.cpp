@@ -51,16 +51,19 @@ namespace phys
 {
     namespace UI
     {
-        Caption::Caption(String& name, Gorilla::Caption* GCaption, UILayer* Layer)
-            : RelPosition(Vector2(0,0)),
-              RelSize(Vector2(0,0)),
+        Caption::Caption(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
+            : Parent(Layer),
+              RelPosition(Position),
+              RelSize(Size),
               Name(name)
         {
-            GorillaCaption = GCaption;
-            Parent = Layer;
-            GorillaRectangle = Layer->GetGorillaLayer()->createRectangle(GCaption->left(), GCaption->top(), GCaption->width(), GCaption->height());
-            GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
             Manager = World::GetWorldPointer()->GetUIManager();
+
+            Vector2 Window = Manager->GetWindowDimensions();
+            GorillaCaption = Parent->GetGorillaLayer()->createCaption(Glyph, Position.X * Window.X, Position.Y * Window.Y, Text);
+            GorillaCaption->size(Size.X * Window.X, Size.Y * Window.Y);
+            GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
+            GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
         }
 
         Caption::~Caption()

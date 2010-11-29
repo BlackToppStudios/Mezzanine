@@ -195,8 +195,8 @@ namespace phys
                 /// @todo Add support for joysticks events to InputQueryTool
             }
         }
-        Vector2 CurrPos((Real)MouseXCache,(Real)MouseYCache);
-        MousePrevFrameOffset = CurrPos - PrevPos;
+        MouseCoordinates = Vector2((Real)MouseXCache,(Real)MouseYCache);
+        MousePrevFrameOffset = MouseCoordinates - PrevPos;
 
         if( ClearEventsFromEventMgr )//Erase everything if we were asked to.
         {

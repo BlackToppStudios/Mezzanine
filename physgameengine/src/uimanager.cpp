@@ -63,6 +63,8 @@ namespace phys
         Priority = -35;
         HoveredButton = NULL;
         HoveredWidget = NULL;
+        ScrollbarControl = NULL;
+        WidgetTolorance = 0.1;
     }
 
     UIManager::~UIManager()
@@ -70,6 +72,39 @@ namespace phys
         DestroyAllScreens();
         delete Silver;
     }
+
+    bool UIManager::IsMouseWithinWidgetTolorance(UI::Widget* Control)
+    {
+        if(Control==NULL)
+            return false;
+        Vector2 MousePos = InputQueryer->GetMouseCoordinates();
+        Vector2 ActTol = GetWindowDimensions() * WidgetTolorance;
+        Vector2 CSize = Control->GetActualSize();
+        Vector2 CPos = Control->GetActualPosition();
+        bool Horizontal = (MousePos.X > CPos.X - ActTol.X) && (MousePos.X < CPos.X + CSize.X + ActTol.X);
+        bool Vertical = (MousePos.Y > CPos.Y - ActTol.Y) && (MousePos.Y < CPos.Y + CSize.Y + ActTol.Y);
+        if(Horizontal && Vertical)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /*void UIManager::UpdateScrollbar(UI::Scrollbar* Scroll)
+    {
+        bool MouseHover = ScrollbarControl->CheckMouseHover();
+        if(!MouseHover)
+        {
+            if(IsMouseWithinWidgetTolorance(ScrollbarControl))
+            {
+                ScrollbarControl->Update(true);
+            }else{
+
+            }
+        }else{
+
+        }
+    }*/
 
     void UIManager::Initialize()
     {
@@ -81,12 +116,16 @@ namespace phys
         if(HoveredButton)
         {
             if(HoveredButton->CheckMouseHover())
+            {
                 return;
+            }
         }
         if(HoveredWidget)
         {
             if(HoveredWidget->CheckMouseHover())
+            {
                 return;
+            }
         }
         HoveredButton = CheckButtonMouseIsOver();
         if(!HoveredButton)

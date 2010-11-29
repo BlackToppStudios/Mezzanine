@@ -396,12 +396,12 @@ void LoadContent()
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld->GetResourceManager()->InitResourceGroup(groupname);
 
-    ActorRigid *object1 = new ActorRigid (0,"Ferris","ferrisWheel.mesh","Group1");
+    /*ActorRigid *object1 = new ActorRigid (0,"Ferris","ferrisWheel.mesh","Group1");
     object1->CreateShapeFromMeshDynamic(3);
     object1->SetInitLocation(Vector3(0,0,0));
     object1->SetInitOrientation(Quaternion(1.0, 0.0, 0.0, 0.55));
     TheWorld->GetActorManager()->AddActor(object1);
-    TheWorld->GetPhysicsManager()->SetGravity(Vector3(0,0,0));
+    TheWorld->GetPhysicsManager()->SetGravity(Vector3(0,0,0));*/
 
     //TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0,0,-500));
     //TheWorld->GetCameraManager()->GetDefaultCamera()->LookAt(Vector3(0,0,0));
@@ -460,7 +460,7 @@ void MakeGUI()
     ScrollTest->GetDownRightButton()->SetBackgroundColour(Buttons);
     ScrollTest->GetScrollBack()->SetBackgroundColour(ScrollBackground);
     ScrollTest->GetScroller()->SetBackgroundColour(ScrollBarColour);
-    ScrollTest->SetScrollerSize(0.5);
+    ScrollTest->SetScrollerSize(0.25);
 
     //Build the ItemShop Layer
     /*Items = new ItemShopList(WWidth * 0.1, WHeight * 0.075, WWidth * 0.4, WHeight * 0.6, ItemShop, TheWorld);

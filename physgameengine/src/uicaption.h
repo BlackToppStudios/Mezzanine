@@ -76,9 +76,13 @@ namespace phys
                 String Name;
             public:
                 /// @brief Internal constructor
-                /// @param GCaption The Gorilla Caption this caption is based on.
-                /// @param manager Pointer to the manager that created this caption.
-                Caption(String& name, Gorilla::Caption* GCaption, UILayer* Layer);
+                /// @param Name The name of this caption.
+                /// @param Position The top left position of the button.
+                /// @param Size The size of the Button.
+                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Text Any text you want printed on the caption.
+                /// @param Layer Pointer to the layer that created this caption.
+                Caption(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
                 ~Caption();
                 /// @brief Gets the name of this caption.

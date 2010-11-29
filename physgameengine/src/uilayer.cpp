@@ -147,12 +147,7 @@ namespace phys
 
     UI::Caption* UILayer::CreateCaption(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
     {
-        GraphicsManager* Graphics = World::GetWorldPointer()->GetGraphicsManager();
-        Real Width = (Real)Graphics->getRenderWidth();
-        Real Height = (Real)Graphics->getRenderHeight();
-        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, Position.X * Width, Position.Y * Height, Text);
-        GCaption->size(Size.X * Width, Size.Y * Height);
-        UI::Caption* caption = new UI::Caption(Name, GCaption, this);
+        UI::Caption* caption = new UI::Caption(Name,Position,Size,Glyph,Text,this);
         Captions.push_back(caption);
         return caption;
     }

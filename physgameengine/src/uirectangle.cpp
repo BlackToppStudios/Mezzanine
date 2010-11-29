@@ -44,6 +44,7 @@
 #include "uimanager.h"
 #include "uilayer.h"
 #include "world.h"
+#include "eventmanager.h"
 
 #include "internalGorilla.h.cpp"
 
@@ -65,6 +66,23 @@ namespace phys
         Rectangle::~Rectangle()
         {
             Parent->GetGorillaLayer()->destroyRectangle(GRectangle);
+        }
+
+        bool Rectangle::CheckMouseHover()
+        {
+            Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
+            if(GRectangle->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
+            {
+                MouseHover = true;
+            }else{
+                MouseHover = false;
+            }
+            return MouseHover;
+        }
+
+        bool Rectangle::GetMouseHover()
+        {
+            return MouseHover;
         }
 
         void Rectangle::SetBackgroundColour(ColourValue& Colour)

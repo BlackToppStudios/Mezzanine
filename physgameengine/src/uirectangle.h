@@ -72,14 +72,22 @@ namespace phys
                 UIManager* Manager;
                 Vector2 RelPosition;
                 Vector2 RelSize;
+                bool MouseHover;
             public:
                 /// @brief Internal constructor
-                /// @param Position The top left position of the button.
-                /// @param Size The size of the Button.
+                /// @param Position The top left position of the rectangle.
+                /// @param Size The size of the rectangle.
                 /// @param Layer Pointer to the parent Layer that created this rectangle.
                 Rectangle(Vector2 Position, Vector2 Size, UILayer* Layer);
                 /// @brief Class destructor.
                 ~Rectangle();
+                /// @brief Determines whether the mouse is over this rectangle.
+                /// @return Returns a bool indicating whether the mouse is over this rectangle.
+                virtual bool CheckMouseHover();
+                /// @brief Gets the stored value of whether or not the mouse is over the rectangle.
+                /// @details This function does not perform any checks.  If you want to do a manual check, call CheckMouseHover().
+                /// @return Returns the stored value of whether or not the mouse is over the rectangle.
+                virtual bool GetMouseHover();
                 /// @brief Sets the background colour of the rectangle.
                 /// @param Colour A colour value representing the colour to be set.
                 void SetBackgroundColour(ColourValue& Colour);

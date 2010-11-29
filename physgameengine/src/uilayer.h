@@ -147,6 +147,7 @@ namespace phys
             /// @brief Creates a caption within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created caption.
+            /// @param Name The name of this caption.
             /// @param Position The top left position of the button.
             /// @param Size The size of the Button.
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
