@@ -40,11 +40,12 @@
 #ifndef _vector2_h
 #define _vector2_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 
 namespace Ogre
 {
-    class Vector2;
+    class PHYS_LIB Vector2;
 }
 
 namespace phys

@@ -40,6 +40,7 @@
 #ifndef _uiscreen_h
 #define _uiscreen_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 
 #include <map>
@@ -67,7 +68,7 @@ namespace phys
     /// @details UI's can optionally be divided up into Screens, or "pages".  Each screen is batched together
     /// for rendering, so keeping the amount of screens to a minimum will improve performance.
     ///////////////////////////////////////
-    class UIScreen
+    class PHYS_LIB UIScreen
     {
         protected:
             Gorilla::Screen* GorillaScreen;

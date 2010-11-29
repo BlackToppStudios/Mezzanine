@@ -40,12 +40,13 @@
 #ifndef _worldquerytool_h
 #define _worldquerytool_h
 
-#include "world.h"
 #include "actorbase.h"
-#include "vector3wactor.h"
+#include "crossplatformexport.h"
 #include "metacode.h"
-#include "ray.h"
 #include "plane.h"
+#include "ray.h"
+#include "vector3wactor.h"
+#include "world.h"
 
 #include <bitset>
 
@@ -66,7 +67,7 @@ namespace phys
     /// @details Currently this allows for more seamless mouse use, including 'picking'
     /// of objects with the mouse, and associated functionality.
     ///////////////////////////////////////
-    class WorldQueryTool
+    class PHYS_LIB WorldQueryTool
     {
         private:
             /// @internal

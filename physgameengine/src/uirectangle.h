@@ -40,9 +40,10 @@
 #ifndef _uirectangle_h
 #define _uirectangle_h
 
+#include "colourvalue.h"
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "enumerations.h"
-#include "colourvalue.h"
 #include "vector2.h"
 
 namespace Gorilla
@@ -64,7 +65,7 @@ namespace phys
         /// @details Unlike a button, this class cannot be interacted with by clicking.
         /// It is important to understand what you want your space to do when selecting the class to use.
         ///////////////////////////////////////
-        class Rectangle
+        class PHYS_LIB Rectangle
         {
             protected:
                 Gorilla::Rectangle* GRectangle;

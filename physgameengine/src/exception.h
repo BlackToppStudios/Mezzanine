@@ -41,6 +41,7 @@
 #ifndef _exception_h
 #define _exception_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 
 #include <exception>
@@ -48,7 +49,7 @@
 
 namespace phys
 {
-    class Exception : public std::exception
+    class PHYS_LIB Exception : public std::exception
     {
         private:
             /// @internal

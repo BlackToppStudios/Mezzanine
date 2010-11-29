@@ -56,7 +56,7 @@ namespace phys
     /// @brief This is a simple class for holding 4 reals representing the colour any give object or lightsource can have.
     /// @details
     ///////////////////////////////////////
-    class ColourValue
+    class PHYS_LIB ColourValue
     {
         public:
             /// @brief Value from 0.0 to 1.0 representing the amount of red present in the colour.

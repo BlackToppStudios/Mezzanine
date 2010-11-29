@@ -40,6 +40,7 @@
 #ifndef _scenemanager_h
 #define _scenemanager_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "managerbase.h"
 #include "quaternion.h"
@@ -65,7 +66,7 @@ namespace phys
     /// @details This class contains functions that allow the manipulation of lighting, skyboxes, internal
     /// scenemanager types, and more.
     ///////////////////////////////////////
-    class SceneManager : public ManagerBase
+    class PHYS_LIB SceneManager : public ManagerBase
     {
         public:
             enum SceneManagerType

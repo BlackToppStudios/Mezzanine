@@ -43,6 +43,7 @@
 
 #include <ostream>
 
+#include "crossplatformexport.h"
 #include "xmlnode.h"
 
 namespace ticpp
@@ -59,7 +60,7 @@ namespace phys
         /// @headerfile xmldocument.h
         /// @brief This is a container of nodes and elements and other XML stuff
         /// @details
-        class Document: public Node
+        class PHYS_LIB Document: public Node
         {
             protected:
                 /// @brief Construct a Document using meta data from a TiCPP pointer

@@ -41,6 +41,7 @@
 #ifndef _xmlbase_h
 #define _xmlbase_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 
 // Forward declarations
@@ -103,7 +104,7 @@ namespace phys
 
     namespace xml
     {
-        class Node;
+        class PHYS_LIB Node;
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Base

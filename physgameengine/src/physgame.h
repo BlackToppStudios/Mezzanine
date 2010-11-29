@@ -62,6 +62,7 @@
 #include "colourvalue.h"
 #include "constraint.h"
 #include "crossplatform.h"
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "enumerations.h"
 #include "eventbase.h"

@@ -40,6 +40,7 @@
 #ifndef _plane_h
 #define _plane_h
 
+#include "crossplatformexport.h"
 #include "vector3.h"
 
 namespace Ogre
@@ -57,7 +58,7 @@ namespace phys
     /// The Distance with represent how far you need to move down a line perpendicular
     /// to the plane, (ie the normal, which is defined by the Normal value) from the
     /// Origin.
-    class Plane
+    class PHYS_LIB Plane
     {
         public:
             /// @brief The rotation of the plane
@@ -114,7 +115,7 @@ namespace phys
 /// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout
 /// @param stream This is the stream we send our data to.
 /// @return This returns an std::ostream which now contains our data.
-std::ostream& operator << (std::ostream& stream, const phys::Plane& x);
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Plane& x);
 
 
 #endif

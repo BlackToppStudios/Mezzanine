@@ -40,6 +40,7 @@
 #ifndef _linegroup_cpp
 #define _linegroup_cpp
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "vector3.h"
 
@@ -58,7 +59,7 @@ namespace phys
     /// @brief This is a group of consectutive line segments to be rendered together.
     /// @details This class stores a listing of points and renders thems as one
     /// object into the world provided.
-    class LineGroup
+    class PHYS_LIB LineGroup
     {
         /// @todo TODO: This class really should support rotation, the underlying implementation does.
         public:

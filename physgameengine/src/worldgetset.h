@@ -40,6 +40,8 @@
 #ifndef _worldgetset_h
 #define _worldgetset_h
 
+#include "crossplatformexport.h"
+
 namespace phys
 {
     class World;
@@ -50,7 +52,7 @@ namespace phys
     /// @details This creates a common interface for all objects that are expected
     /// to interact with the world.
     ///////////////////////////////////////
-    class WorldGetSet
+    class PHYS_LIB WorldGetSet
     {
         public:
             /// @brief This gets the World that this class is working with.

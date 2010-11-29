@@ -68,7 +68,7 @@ namespace phys
     /// one camera you should never have to name the camera you want to use. @n
     /// This class should only be created after the SceneManager has been created.
     ///////////////////////////////////////////////////////////////////////////////
-    class CameraManager : public ManagerBase {
+    class PHYS_LIB CameraManager : public ManagerBase {
         protected:
             friend class World;
             friend class Camera;

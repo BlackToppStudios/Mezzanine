@@ -63,7 +63,7 @@ namespace phys
     /// @details This class contains all the functionality needed to manipulate an
     /// individual camera that has been created.
     ///////////////////////////////////////////////////////////////////////////////
-    class Camera : public Attachable
+    class PHYS_LIB Camera : public Attachable
     {
         public:
             enum ProjectionType

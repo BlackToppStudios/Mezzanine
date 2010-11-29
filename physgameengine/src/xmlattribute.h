@@ -41,6 +41,7 @@
 #ifndef _xmlattribute_h
 #define _xmlattribute_h
 
+#include "crossplatformexport.h"
 #include "xmlbase.h"
 
 namespace ticpp
@@ -56,7 +57,7 @@ namespace phys
         /// @brief This represents the attributes that could exist on an XML element
         /// @file xmlattribute.h
         /// @details This wraps ticpp::Attribute tighlty to help make the interface cleaner and easier to use
-        class Attribute : public Base
+        class PHYS_LIB Attribute : public Base
         {
             protected:
                 /// @brief Construct an attribute using meta data from a TiCPP pointer

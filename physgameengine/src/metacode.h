@@ -66,6 +66,7 @@
     slouken@libsdl.org
 */
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 
 using namespace std;
@@ -86,7 +87,7 @@ namespace phys
     /// The first 127 character line up with Ascii, Currently upper lase are
     /// omitted for brevity.
     ///////////////////////////////////////
-    class MetaCode
+    class PHYS_LIB MetaCode
     {
         public:
             /// @enum InputCode
@@ -502,6 +503,6 @@ namespace phys
 
 /// @brief Allows for streaming of MetaCodes
 /// @details If it can be streamed, then it can be logged Holds true for the MetaCode.
-std::ostream& operator << (std::ostream& stream, const phys::MetaCode& x);
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::MetaCode& x);
 
 #endif

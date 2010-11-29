@@ -41,8 +41,9 @@
 #ifndef _xmlelement_h
 #define _xmlelement_h
 
-#include "xmlnode.h"
+#include "crossplatformexport.h"
 #include "xmlattribute.h"
+#include "xmlnode.h"
 
 namespace ticpp
 {
@@ -58,7 +59,7 @@ namespace phys
         /// @brief This represents an xml element.
         /// @file xmlelemeny.h
         /// @details This wraps ticpp::Element to help make the interface cleaner and easier to use
-        class Element : public Node
+        class PHYS_LIB Element : public Node
         {
             protected:
                 /// @brief Construct an Element using meta data from a TiCPP pointer

@@ -54,8 +54,9 @@ class btGhostPairCallback;
 #include <map>
 #include <vector>
 
-#include "managerbase.h"
 #include "constraint.h"
+#include "crossplatformexport.h"
+#include "managerbase.h"
 
 namespace phys
 {
@@ -74,7 +75,7 @@ namespace phys
     /// @details This is a plage for storing items related to Debug physics
     /// drawing, Adding constraints, screwing with gravity and doing other physics
     /// Related features.
-    class PhysicsManager : public ManagerBase
+    class PHYS_LIB PhysicsManager : public ManagerBase
     {
         private:
             //Some Data Items

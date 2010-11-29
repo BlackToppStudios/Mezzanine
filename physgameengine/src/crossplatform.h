@@ -108,7 +108,7 @@ namespace phys
         /// @details The directory returned by this function can be used to easily graphics objects. In general
         /// the Graphics subsystem can easily open files in this location with just their filename
         /// @return A string containing the path to the default Data Directory.
-        string GetDataDirectory();
+        string PHYS_LIB GetDataDirectory();
 
         /// @internal
         /// @brief This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)
@@ -120,7 +120,7 @@ namespace phys
         /// @brief Pauses the program for a given period of time.
         /// @details Pauses the program for a given period of time.
         /// @param WaitTime The amount of time in milliseconds to wait
-        void WaitMilliseconds(const Whole &WaitTime);
+        void PHYS_LIB WaitMilliseconds(const Whole &WaitTime);
 
         /// @brief Renders the current world contents to the screen.
         /// @details This makes use of World internals to Render to the screen, So it is advised against calling this directly.
@@ -129,7 +129,7 @@ namespace phys
         /// Handles the actual cross platform swapping of graphics buffers.
         /// @param TheWorld This is a pointer to the World to be rendered.
         /// @param TheWorld A pointer to the game window to be update to be rendered. This is considered an internal component
-        void RenderPhysWorld(World *TheWorld, Ogre::RenderWindow* TheOgreWindow);
+        void PHYS_LIB RenderPhysWorld(World *TheWorld, Ogre::RenderWindow* TheOgreWindow);
     }
 }
 #endif

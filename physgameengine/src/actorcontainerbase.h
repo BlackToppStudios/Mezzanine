@@ -73,7 +73,7 @@ namespace phys
     /// movement functions. For the container that the phys::World keeps it should be assume that the
     /// cursor is used. For other containers you should manage you container carefully and/or use another
     /// iteration method, such as STL iterators.
-    class PHYS_LIB  ActorContainerBase : public ManagerBase
+    class PHYS_LIB ActorContainerBase : public ManagerBase
     {
         protected:
             /// @internal

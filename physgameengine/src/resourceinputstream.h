@@ -40,6 +40,8 @@
 #ifndef _resourceinputstream_h
 #define _resourceinputstream_h
 
+#include "crossplatformexport.h"
+
 #include <istream>
 
 namespace phys
@@ -55,7 +57,7 @@ namespace phys
     /// @brief A stream from a file, can read from zip files as well
     /// @details
     ///////////////////////////////////////
-    class ResourceInputStream : public std::istream
+    class PHYS_LIB ResourceInputStream : public std::istream
     {
         private:
             internal::OgreDataStreamBuf* OgreBuffer;

@@ -40,6 +40,7 @@
 #ifndef _uilayer_h
 #define _uilayer_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "vector2.h"
 
@@ -54,7 +55,7 @@ namespace Gorilla
 
 namespace phys
 {
-    class UIManager;
+    class PHYS_LIB UIManager;
     namespace UI
     {
         class Widget;
@@ -69,7 +70,7 @@ namespace phys
     /// @brief This class is the basic container class for UI elements.
     /// @details A layer is a container for widgets and other UI elements that are visable.
     ///////////////////////////////////////
-    class UILayer
+    class PHYS_LIB UILayer
     {
         protected:
             Gorilla::Layer* GorillaLayer;

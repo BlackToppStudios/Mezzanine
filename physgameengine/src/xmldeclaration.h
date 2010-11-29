@@ -41,6 +41,7 @@
 #ifndef _xmldeclaration_h
 #define _xmldeclaration_h
 
+#include "crossplatformexport.h"
 #include "xmlnode.h"
 
 namespace ticpp
@@ -57,7 +58,7 @@ namespace phys
         /// @headerfile xmlDeclaration.h
         /// @brief This is a container of nodes and elements and other XML stuff
         /// @details
-        class Declaration: public Node
+        class PHYS_LIB Declaration: public Node
         {
             protected:
                 /// @brief Construct a Declaration using meta data from a TiCPP pointer

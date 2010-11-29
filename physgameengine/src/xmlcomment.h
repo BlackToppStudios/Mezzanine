@@ -41,6 +41,7 @@
 #ifndef _xmlcomment_h
 #define _xmlcomment_h
 
+#include "crossplatformexport.h"
 #include "xmlnode.h"
 
 namespace ticpp
@@ -57,7 +58,7 @@ namespace phys
         /// @headerfile xmlcomment.h
         /// @brief This is a container of nodes and elements and other XML stuff
         /// @details
-        class Comment: public Node
+        class PHYS_LIB Comment: public Node
         {
             protected:
                 /// @brief Construct a comment using meta data from a TiCPP pointer

@@ -156,7 +156,7 @@ namespace phys{
     /// @headerfile areaeffect.h
     /// @brief This is a dummy class to test if the AE field works.  Details will be output to the log.
     ///////////////////////////////////////
-    class TestAE : public AreaEffect
+    class PHYS_LIB TestAE : public AreaEffect
     {
         public:
             /// @brief Constructor.
@@ -179,7 +179,7 @@ namespace phys{
     /// @details This class is not a gravity well, where gravity is pulling to one point.  Instead this class uniformly
     /// pulls gravity in one direction that is different from the world gravity.
     ///////////////////////////////////////
-    class GravityField : public AreaEffect
+    class PHYS_LIB GravityField : public AreaEffect
     {
         protected:
             /// @brief The stored value for this fields gravity.

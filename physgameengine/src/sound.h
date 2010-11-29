@@ -40,6 +40,7 @@
 #ifndef _sound_h
 #define _sound_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "vector3.h"
 
@@ -58,7 +59,7 @@ namespace phys
     /// @details This is a an instance of a sound that can be played, have effects
     /// applied to it, paused, stopped, triggered and other such crazyness.
     ///////////////////////////////////////////////////////////////////////////////
-    class Sound
+    class PHYS_LIB Sound
     {
         friend class SoundManager;
         protected:

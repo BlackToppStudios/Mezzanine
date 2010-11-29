@@ -43,6 +43,7 @@
 // This will store the amount of time since rendering events that occured recently
 ///////////////////////////////////////
 
+#include "crossplatformexport.h"
 #include "eventbase.h"
 
 using namespace std;
@@ -58,7 +59,7 @@ namespace phys
     /// event. This means that either an underlying system like the OS or a service
     /// has requested a quit, or the application has manually put a quit message in
     /// the queue to signal that a graceful shutdown needs to occur.
-    class EventQuit : public EventBase
+    class PHYS_LIB EventQuit : public EventBase
     {
         private:
 

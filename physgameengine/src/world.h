@@ -88,12 +88,12 @@
   @ref phys::WorldQueryTool
 */
 
-//Includes and Forward Declarations
 #include "crossplatform.h"
 #include "eventbase.h"
 #include "datatypes.h"
 #include "vector3.h"
 #include "scenemanager.h"
+
 namespace phys
 {
     class EventManager;

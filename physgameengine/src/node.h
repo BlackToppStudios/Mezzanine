@@ -40,8 +40,9 @@
 #ifndef _node_h
 #define _node_h
 
-#include "datatypes.h"
 #include "attachable.h"
+#include "crossplatformexport.h"
+#include "datatypes.h"
 #include "vector3.h"
 #include "quaternion.h"
 
@@ -73,7 +74,7 @@ namespace phys
     /// Note:  There are no rules restricting the use of nodes anyway, this enum is here simply to help
     /// indicate the intended use upon creation.
     ///////////////////////////////////////
-    class Node
+    class PHYS_LIB Node
     {
         public:
             enum NodeType

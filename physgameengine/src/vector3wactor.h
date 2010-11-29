@@ -40,8 +40,9 @@
 #ifndef _vector3wactor_h
 #define _vector3wactor_h
 
-#include "vector3.h"
 #include "actorbase.h"
+#include "crossplatformexport.h"
+#include "vector3.h"
 
 namespace phys
 {
@@ -50,7 +51,7 @@ namespace phys
     /// @headerfile vector3wactor.h
     /// @brief This class is used to store or transfer a position relative to an Actor.
     /// @details This class is simply a Pointer to an actor and a Vector3
-    class Vector3WActor
+    class PHYS_LIB Vector3WActor
     {
         public:
             /// @brief Default Constructor
@@ -74,6 +75,6 @@ namespace phys
 
 }// /phys
 
-std::ostream& operator << (std::ostream& stream, const phys::Vector3WActor& x);
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Vector3WActor& x);
 
 #endif

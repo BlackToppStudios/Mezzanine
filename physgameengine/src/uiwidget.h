@@ -40,6 +40,7 @@
 #ifndef _uiwidget_h
 #define _uiwidget_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "vector2.h"
 
@@ -55,7 +56,7 @@ namespace phys
         /// @brief This class is the base class for widgets.
         /// @details
         ///////////////////////////////////////
-        class Widget
+        class PHYS_LIB Widget
         {
             public:
                 enum WidgetType

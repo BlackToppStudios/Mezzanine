@@ -40,6 +40,7 @@
 #ifndef _uiscrollbar_h
 #define _uiscrollbar_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "vector2.h"
 #include "uiwidget.h"
@@ -63,7 +64,7 @@ namespace phys
         /// is where both scroll buttons are next to each other instead of on opposite sides of the
         /// scroller.
         ///////////////////////////////////////
-        class Scrollbar : public Widget
+        class PHYS_LIB Scrollbar : public Widget
         {
             public:
                 enum BarStyle

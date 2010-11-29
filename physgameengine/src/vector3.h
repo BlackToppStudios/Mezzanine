@@ -40,6 +40,7 @@
 #ifndef _vector3_h
 #define _vector3_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 
 //Forward Declarations for wierd compatibility functions
@@ -62,12 +63,12 @@ namespace phys
     /// @details This contains an X, Y and a Z value used to represent coordinates.
     /// This also has a number of facilities to make converting from Physics subsystem
     /// vectors or graphics subsystems as easy as possible
-    class Vector3
+    class PHYS_LIB Vector3
     {
     public:
 
         ///////////////////////////////////////////////////////////////////////////////
-        //`The Essentials
+        // The Essentials
 
         /// @brief Coordinate on the X vector.
         Real X;
@@ -310,15 +311,15 @@ namespace phys
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
-std::ostream& operator << (std::ostream& stream, const phys::Vector3& x);
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Vector3& x);
 
-Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom);
-Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom);
+Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom);
+Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom);
 
-btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom);
-btVector3& operator << (btVector3& VecTo, const phys::Vector3& VecFrom);
+btVector3& PHYS_LIB operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom);
+btVector3& PHYS_LIB operator << (btVector3& VecTo, const phys::Vector3& VecFrom);
 
-phys::Vector3& operator << (phys::Vector3& VecTo, const Ogre::Vector3& VecFrom);
-phys::Vector3& operator << (phys::Vector3& VecTo, const btVector3& VecFrom);
+phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const Ogre::Vector3& VecFrom);
+phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const btVector3& VecFrom);
 
 #endif

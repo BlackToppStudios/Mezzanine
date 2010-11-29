@@ -40,9 +40,10 @@
 #ifndef eventcollision_h
 #define eventcollision_h
 
-#include "eventbase.h"
 #include "actorbase.h"
+#include "crossplatformexport.h"
 #include "datatypes.h"
+#include "eventbase.h"
 #include "vector3.h"
 
 namespace phys {
@@ -50,7 +51,7 @@ namespace phys {
     /// @headerfile eventcollision.h
     /// @brief This is an event class used to track collsions in the physics world.
     /// @details This class will be used for tracking collisions in the physics world and will keep track of basic data related to the collision.
-    class EventCollision : public EventBase
+    class PHYS_LIB EventCollision : public EventBase
     {
         public:
             /// @brief The location in the world where the collision occured, based on physics shapes.

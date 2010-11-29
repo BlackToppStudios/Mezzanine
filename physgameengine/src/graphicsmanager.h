@@ -40,6 +40,7 @@
 #ifndef _graphicsmanager_h
 #define _graphicsmanager_h
 
+#include "crossplatformexport.h"
 #include "managerbase.h"
 
 namespace Ogre
@@ -58,7 +59,7 @@ namespace phys
     /// settings. This is intended to make it easy for developers to pass/move around
     /// complex graphics settings. We hope to eventually include other items like
     /// shader settings, rendering API, and maybe other settings too.
-    class GraphicsManager: public ManagerBase
+    class PHYS_LIB GraphicsManager: public ManagerBase
     {
         private:
 

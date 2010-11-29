@@ -71,7 +71,7 @@ namespace phys
     /// also a virtual class and provides no constraint properties of it's own, thus
     /// shouldn't/can't be called on manually.
     ///////////////////////////////////////////////////////////////////////////////
-    class TypedConstraint
+    class PHYS_LIB TypedConstraint
     {
         protected:
             friend class World;
@@ -122,7 +122,7 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1) = 0;
     };
 
-    class ConeTwistConstraint: public TypedConstraint
+    class PHYS_LIB ConeTwistConstraint: public TypedConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -162,7 +162,7 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1);
     };
 
-    class Generic6DofConstraint: public TypedConstraint
+    class PHYS_LIB Generic6DofConstraint: public TypedConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -208,7 +208,7 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1);
     };
 
-    class Generic6DofSpringConstraint: public Generic6DofConstraint
+    class PHYS_LIB Generic6DofSpringConstraint: public Generic6DofConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -234,7 +234,7 @@ namespace phys
             void EnableSpring(int Index, bool Enable);
     };
 
-    class HingeConstraint: public TypedConstraint
+    class PHYS_LIB HingeConstraint: public TypedConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -275,7 +275,7 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1);
     };
 
-    class Hinge2Constraint: public Generic6DofSpringConstraint
+    class PHYS_LIB Hinge2Constraint: public Generic6DofSpringConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -293,7 +293,7 @@ namespace phys
             void SetLowerLimit(Real Ang1Min);
     };
 
-    class Point2PointConstraint: public TypedConstraint
+    class PHYS_LIB Point2PointConstraint: public TypedConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -328,7 +328,7 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1);
     };
 
-    class SliderConstraint: public TypedConstraint
+    class PHYS_LIB SliderConstraint: public TypedConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -388,7 +388,7 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1);
     };
 
-    class UniversalConstraint: public Generic6DofConstraint
+    class PHYS_LIB UniversalConstraint: public Generic6DofConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.

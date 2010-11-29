@@ -41,6 +41,7 @@
 #ifndef _xmlstylesheetreference_h
 #define _xmlstylesheetreference_h
 
+#include "crossplatformexport.h"
 #include "xmlnode.h"
 
 namespace ticpp
@@ -57,7 +58,7 @@ namespace phys
         /// @headerfile xmlStylesheetReference.h
         /// @brief This is a container of nodes and elements and other XML stuff
         /// @details
-        class StylesheetReference: public Node
+        class PHYS_LIB StylesheetReference: public Node
         {
             protected:
                 /// @brief Construct a StylesheetReference using meta data from a TiCPP pointer

@@ -40,10 +40,11 @@
 #ifndef _light_h
 #define _light_h
 
-#include "datatypes.h"
-#include "colourvalue.h"
-#include "vector3.h"
 #include "attachable.h"
+#include "colourvalue.h"
+#include "crossplatformexport.h"
+#include "datatypes.h"
+#include "vector3.h"
 
 namespace Ogre
 {
@@ -67,7 +68,7 @@ namespace phys
     /// Note: If attaching a light to a node, all transform information(position and orientation) becomes relative
     /// to the nodes transform.
     ///////////////////////////////////////
-    class Light : public Attachable
+    class PHYS_LIB Light : public Attachable
     {
         public:
             enum LightType

@@ -40,6 +40,7 @@
 #ifndef _soundlistener_h
 #define _soundlistener_h
 
+#include "crossplatformexport.h"
 #include "vector3.h"
 
 namespace cAudio
@@ -56,7 +57,7 @@ namespace phys
     /// @brief This is the listener class used for 3D sound.
     /// @details This is the listener class used for determining how 3D sound is played.
     ///////////////////////////////////////////////////////////////////////////////
-    class SoundListener
+    class PHYS_LIB SoundListener
     {
         protected:
             cAudio::IListener* AudioListener;

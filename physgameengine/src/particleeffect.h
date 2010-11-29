@@ -40,8 +40,9 @@
 #ifndef _particleeffect_h
 #define _particleeffect_h
 
-#include "datatypes.h"
 #include "attachable.h"
+#include "crossplatformexport.h"
+#include "datatypes.h"
 
 namespace Ogre
 {
@@ -60,7 +61,7 @@ namespace phys
     /// Note: If attaching a particle effect to a node, all transform information(position and orientation) becomes relative
     /// to the nodes transform.
     ///////////////////////////////////////
-    class ParticleEffect : public Attachable
+    class PHYS_LIB ParticleEffect : public Attachable
     {
         protected:
             friend class Node;

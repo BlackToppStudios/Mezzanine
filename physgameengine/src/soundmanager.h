@@ -40,6 +40,7 @@
 #ifndef _soundmanager_h
 #define _soundmanager_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 #include "managerbase.h"
 #include "sound.h"
@@ -65,7 +66,7 @@ namespace phys
     /// @details This is a place for loading, storing, and running sound files as
     /// necessary in a given game.
     ///////////////////////////////////////////////////////////////////////////////
-    class SoundManager : public ManagerBase
+    class PHYS_LIB SoundManager : public ManagerBase
     {
         protected:
             cAudio::IAudioManager* AudioManager;

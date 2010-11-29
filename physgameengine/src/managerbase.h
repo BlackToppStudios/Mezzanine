@@ -40,6 +40,7 @@
 #ifndef _managerbase_h
 #define _managerbase_h
 
+#include "crossplatformexport.h"
 #include "worldgetset.h"
 
 #include <iostream>
@@ -54,7 +55,7 @@ namespace phys
     /// @details This creates a base set of functions that Managers are all
     /// expected to implement.
     ///////////////////////////////////////
-    class ManagerBase
+    class PHYS_LIB ManagerBase
     {
         public:
             /// @enum ManagerTypeName

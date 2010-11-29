@@ -40,6 +40,7 @@
 #ifndef _quaternion_h
 #define _quaternion_h
 
+#include "crossplatformexport.h"
 #include "datatypes.h"
 
 class btQuaternion;
@@ -58,7 +59,7 @@ namespace phys
     /// X, Y and Z are used to identify a ray from the origin (0,0,0), about which
     /// W represents an amount of rotation.
     /// @warning The Documentation for this class needs to be revised. It describes 2 mutually exclusive means of storing
-    class Quaternion
+    class PHYS_LIB Quaternion
     {
         private:
             /// @brief Rotation on the X Axis.

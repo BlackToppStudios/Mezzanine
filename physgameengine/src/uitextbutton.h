@@ -40,6 +40,7 @@
 #ifndef _uitextbutton_h
 #define _uitextbutton_h
 
+#include "crossplatformexport.h"
 #include "uibutton.h"
 
 namespace phys
@@ -53,7 +54,7 @@ namespace phys
         /// @brief This is a button class that provides text capabilities.
         /// @details
         ///////////////////////////////////////
-        class TextButton : public Button
+        class PHYS_LIB TextButton : public Button
         {
             protected:
                 Gorilla::Caption* GorillaButton;

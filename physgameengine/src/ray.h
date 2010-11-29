@@ -40,6 +40,7 @@
 #ifndef _ray_h
 #define _ray_h
 
+#include "crossplatformexport.h"
 #include "vector3.h"
 
 namespace Ogre
@@ -56,7 +57,7 @@ namespace phys
     /// @brief This is used to indicate a line with one end.
     /// @details Currently this is just a collection of two vector3s with a couple
     /// of constructors.
-    class Ray
+    class PHYS_LIB Ray
     {
         public:
             /// @brief The origin point of the Vector
@@ -143,7 +144,7 @@ namespace phys
 /// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout
 /// @param stream This is the stream we send our data to.
 /// @return This returns an std::ostream which now contains our data.
-std::ostream& operator << (std::ostream& stream, const phys::Ray& x);
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Ray& x);
 
 
 #endif

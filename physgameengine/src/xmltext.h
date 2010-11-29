@@ -41,9 +41,10 @@
 #ifndef _xmltext_h
 #define _xmltext_h
 
-#include <ostream>
-
+#include "crossplatformexport.h"
 #include "xmlnode.h"
+
+#include <ostream>
 
 namespace ticpp
 {
@@ -59,7 +60,7 @@ namespace phys
         /// @headerfile xmlText.h
         /// @brief This is a container of nodes and elements and other XML stuff
         /// @details
-        class Text: public Node
+        class PHYS_LIB Text: public Node
         {
             protected:
                 /// @brief Construct a Text using meta data from a TiCPP pointer
@@ -97,7 +98,6 @@ namespace phys
                 /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
                 /// @details Inherited phys::xml::Node
                 virtual std::ostream& operator<< (std::ostream &Out);
-
         }; // /Text
     }// /xml
 }// /phys

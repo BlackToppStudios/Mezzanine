@@ -49,11 +49,12 @@
 
 using namespace std;
 
-#include "managerbase.h"
+#include "crossplatformexport.h"
 #include "eventbase.h"
+#include "eventquit.h"
 #include "eventrendertime.h"
 #include "eventuserinput.h"
-#include "eventquit.h"
+#include "managerbase.h"
 #include "vector2.h"
 
 namespace phys
@@ -83,7 +84,7 @@ namespace phys
     /// the events.
     /// @warning Currently this is not thread safe, even though it should be.
     ///////////////////////////////////////////////////////////////////////////////
-    class EventManager: public ManagerBase
+    class PHYS_LIB EventManager: public ManagerBase
     {
         private:
             //The Default Physics worlds that this Eventmanager is expected to interact with

@@ -39,6 +39,9 @@
 */
 #ifndef EVENTBASE_H
 #define EVENTBASE_H
+
+#include "crossplatformexport.h"
+
 ///////////////////////////////////////////////////////////////////////////////
 // This is a parent class that all events must derive from. This exists solely
 //to normalize the output of the event manager class.
@@ -55,7 +58,7 @@ namespace phys
     /// not absolutely required by the game programmer to write their own events, it
     /// it could be useful. Instances of this class cannot be made, and all classes
     /// that inherit from this are expected to implement getEventType().
-    class EventBase
+    class PHYS_LIB EventBase
     {
         public:
             /// @enum EventType

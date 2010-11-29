@@ -41,6 +41,7 @@
 #ifndef _xmlnode_h
 #define _xmlnode_h
 
+#include "crossplatformexport.h"
 #include "xmlbase.h"
 
 namespace ticpp
@@ -63,7 +64,7 @@ namespace phys
         /// @brief This represents Node that represent any element in an XML tree like the document, any element, ....
         /// @file xmlnode.h
         /// @details This wraps ticpp::Node tightly to help make the interface cleaner and easier to use
-        class Node : public Base
+        class PHYS_LIB Node : public Base
         {
             protected:
                 /// \internal
