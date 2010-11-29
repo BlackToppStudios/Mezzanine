@@ -87,6 +87,16 @@ namespace phys
 
             ///////////////////////////////////////////////////////////////////////////////
             // Arithmetic Operators
+            /// @brief Addition Operator
+            /// @details Allows for addition from a phys::Vector2
+            /// @param Vec2 This is the other phys::Vector2
+            Vector2 operator+ (const Vector2 &Vec2) const;
+
+            /// @brief Subraction Operator
+            /// @details Allows for subtraction from a phys::Vector2
+            /// @param Vec2 This is the other phys::Vector2
+            Vector2 operator- (const Vector2 &Vec2) const;
+
             /// @brief Multiplaction Operator
             /// @details Allows for multiplaction from a phys::Vector2
             /// @param Vec2 This is the other phys::Vector2

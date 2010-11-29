@@ -78,10 +78,24 @@ namespace phys
                 UI::Rectangle* ScrollBack;
                 UI::Button* UpLeftButton;
                 UI::Button* DownRightButton;
-                Real ScrollUpperLimit;
-                Real ScrollLowerLimit;
-                void CreateHorizontalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style);
-                void CreateVerticalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style);
+                UI::Button* HoveredButton;
+                Vector2 ScrollBackOffset;
+                Vector2 UpLeftButtonOffset;
+                Vector2 DownRightButtonOffset;
+                Real ScrollerUpperLimit;
+                Real ScrollerLowerLimit;
+                Real ScrollerValue;
+                Real IncrementDistance;
+                BarStyle ScrollStyle;
+                bool MouseLock;
+                void CreateHorizontalScrollbar(Vector2 Position, Vector2 Size);
+                void CreateVerticalScrollbar(Vector2 Position, Vector2 Size);
+                bool IsValidDimensions(Vector2 &Size);
+                bool IsHorizontal(Vector2 &Size);
+                void CalculateOffsets(Vector2 &Size);
+                void SetLocation(Vector2 &Position);
+                void SetArea(Vector2 &Size);
+                void Update();
             public:
                 /// @brief Standard initialization constructor.
                 /// @param Name The name of this scrollbar.
@@ -95,8 +109,20 @@ namespace phys
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
                 virtual bool CheckMouseHover();
+                /// @brief Get the currnent scroll position represented by a value between 0 and 1.
+                /// @details For example, if the scroller is halfway down the limits it's allowed, this will return 0.5. @n
+                /// Like other values, the top and left represent origin(0) values.
+                /// @return Returns the stored scroll position.
+                virtual Real GetScrollerValue();
+                /// @brief Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed.
+                /// @param IncDist A real representing the amount to increment.  Can be negative.
+                virtual void SetIncrementDistance(Real IncDist);
+                /// @brief Gets the hovered button within this widget, if any.
+                /// @return Returns a pointer to the button within this widget the mouse is hovering over, or NULL if none.
+                virtual Button* GetHoveredButton();
                 /// @brief Sets the relative position of this widget in pixels.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
+                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0. @n
+                /// The top and the left are considered the origin, thus values of 0 represent one of these points.
                 /// @param Position A vector2 representing the relative position of this widget.
                 virtual void SetPosition(Vector2 Position);
                 /// @brief Gets the relative position of this widget.
@@ -122,6 +148,16 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize();
+                /*/// @brief Lengthens the area in which the scroller can move.
+                /// @details A lightweight variant of the SetSize() function that simply increases it's length. @n
+                /// You can pass in a negative value to shorten the area as well.
+                /// @param Length The relative amount by which to lengthen/shorten the scrollable area.
+                virtual void LengthenScrollArea(Real Length);
+                /// @brief Lengthens the area in which the scroller can move.
+                /// @details A lightweight variant of the SetSize() function that simply increases it's length. @n
+                /// You can pass in a negative value to shorten the area as well.
+                /// @param Length The amount by which to lengthen/shorten the scrollable area in pixels.
+                virtual void LengthenActualScrollArea(Real Length);*/
         };//scrollbar
     }//UI
 }//phys

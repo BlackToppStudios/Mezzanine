@@ -130,11 +130,7 @@ namespace phys
 
     UI::Rectangle* UILayer::CreateRectangle(Vector2 Position, Vector2 Size)
     {
-        GraphicsManager* Graphics = World::GetWorldPointer()->GetGraphicsManager();
-        Real Width = (Real)Graphics->getRenderWidth();
-        Real Height = (Real)Graphics->getRenderHeight();
-        Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(Position.X * Width, Position.Y * Height, Size.X * Width, Size.Y * Height);
-        UI::Rectangle* rectangle = new UI::Rectangle(GRectangle, this);
+        UI::Rectangle* rectangle = new UI::Rectangle(Position,Size, this);
         Rectangles.push_back(rectangle);
         return rectangle;
     }

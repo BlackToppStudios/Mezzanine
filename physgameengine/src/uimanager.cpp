@@ -50,6 +50,8 @@
 #include "uilayer.h"
 #include "uiwidget.h"
 
+#include "worldquerytool.h"
+
 #include <Ogre.h>
 
 namespace phys
@@ -57,6 +59,7 @@ namespace phys
     UIManager::UIManager()
     {
         Silver = new Gorilla::Silverback();
+        InputQueryer = new WorldQueryTool();
         Priority = -35;
         HoveredButton = NULL;
         HoveredWidget = NULL;
@@ -74,6 +77,7 @@ namespace phys
 
     void UIManager::DoMainLoopItems()
     {
+        InputQueryer->GatherEvents();
         if(HoveredButton)
         {
             if(HoveredButton->CheckMouseHover())
@@ -226,6 +230,11 @@ namespace phys
         phys::GraphicsManager* Graphics = GetGameWorld()->GetGraphicsManager();
         Vector2 Window((Real)Graphics->getRenderWidth(),(Real)Graphics->getRenderHeight());
         return Window;
+    }
+
+    WorldQueryTool* UIManager::GetInputQueryer()
+    {
+        return InputQueryer;
     }
 
     ManagerBase::ManagerTypeName UIManager::GetType() const
