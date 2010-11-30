@@ -330,7 +330,15 @@ namespace phys
         void Scrollbar::SetLocation(Vector2 &Position)
         {
             ScrollBack->SetActualPosition(Position + ScrollBackOffset);
-            Scroller->SetActualPosition(Position + ScrollBackOffset + (Scroller->GetActualPosition() - ScrollBack->GetActualPosition()));
+            CalculateScrollLimits();
+            Vector2 ScrollVal(0,0);
+            if(Horizontal)
+            {
+                ScrollVal.X = (ScrollerUpperLimit - ScrollerLowerLimit) * ScrollerValue;
+            }else{
+                ScrollVal.Y = (ScrollerUpperLimit - ScrollerLowerLimit) * ScrollerValue;
+            }
+            Scroller->SetActualPosition(Position + ScrollBackOffset + ScrollVal);
             if(UpLeftButton)
             {
                 UpLeftButton->SetActualPosition(Position + UpLeftButtonOffset);
@@ -339,7 +347,6 @@ namespace phys
             {
                 DownRightButton->SetActualPosition(Position + DownRightButtonOffset);
             }
-            CalculateScrollLimits();
         }
 
         void Scrollbar::SetArea(Vector2 &Size)
