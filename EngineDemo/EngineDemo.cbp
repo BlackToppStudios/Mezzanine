@@ -89,32 +89,7 @@
 					<Add directory="..\physgameengine\bin\WinRelease" />
 				</Linker>
 				<ExtraCommands>
-					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\windows\ogre\&quot; mkdir .\bin\WinRelease\data\windows\ogre' />
-					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\common&quot; mkdir .\bin\WinRelease\data\common' />
-					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\common\sounds&quot; mkdir .\bin\WinRelease\data\common\sounds' />
-					<Add after='cmd /c if not exist &quot;.\bin\WinRelease\data\common\music&quot; mkdir .\bin\WinRelease\data\common\music' />
-					<Add after="cmd /c copy /y /v ..\physgameengine\bin\WinRelease\physgame.dll .\bin\WinRelease" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\OgreMain.dll .\bin\WinRelease" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\sdl\SDL.dll .\bin\WinRelease" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\plugins.cfg .\bin\WinRelease\data\windows" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\settings.cfg .\bin\WinRelease\data\windows" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\ogre\RenderSystem_GL.dll .\bin\WinRelease\data\windows\ogre" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\cAudio.dll .\bin\WinRelease" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\OpenAL32.dll .\bin\WinRelease" />
-					<Add after="cmd /c copy /y /v ..\physgameengine\data\windows\caudio\wrap_oal.dll .\bin\WinRelease" />
-					<Add after="cmd /c copy /y /v .\data\common\*.mesh .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.skeleton .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.material .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.jpg .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.psd .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.tga .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.png .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.gorilla .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.bullet .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.xml .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\*.zip .\bin\WinRelease\data\common" />
-					<Add after="cmd /c copy /y /v .\data\common\sounds\*.ogg .\bin\WinRelease\data\common\sounds" />
-					<Add after="cmd /c copy /y /v .\data\common\music\*.ogg .\bin\WinRelease\data\common\music" />
+					<Add before="data/copyfiles.exe WinRelease windows" />
 				</ExtraCommands>
 			</Target>
 			<Target title="LinuxRelease">

@@ -45,7 +45,7 @@
 
 namespace Ogre
 {
-    class PHYS_LIB Vector2;
+    class Vector2;
 }
 
 namespace phys
@@ -58,7 +58,7 @@ namespace phys
     /// This also has a number of facilities to make converting to graphics subsystems
     /// as easy as possible.
     ///////////////////////////////////////
-    class Vector2
+    class PHYS_LIB Vector2
     {
         public:
             /// @brief Coordinate on the X vector.

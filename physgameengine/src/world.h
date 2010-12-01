@@ -298,7 +298,7 @@ namespace phys
             /// unsigned long int, bool, float, double, long double, wchar_t, size_t, Real, Whole, String, Vector3, RawEvent and MetaCode.
             /// If compiled statically it should support any data type which supports output streams.
             /// @param Message This is what will be streamed to the log
-            template <class T> void Log(T Message);
+            template <class T> void PHYS_LIB  Log(T Message);
 
             /// @brief This is the preferred way to throw an exception currently
             /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data

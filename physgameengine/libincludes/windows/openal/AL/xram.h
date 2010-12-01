@@ -9,7 +9,7 @@ typedef ALenum    (__cdecl *EAXGetBufferMode)(ALuint buffer, ALint *value);
 //
 // if (alIsExtensionPresent("EAX-RAM") == AL_TRUE)
 //		X-RAM Extension found
-//
+//  
 //////////////////////////////////////////////////////////////////////////////
 
 
@@ -23,7 +23,7 @@ typedef ALenum    (__cdecl *EAXGetBufferMode)(ALuint buffer, ALint *value);
 // "AL_STORAGE_ACCESSIBLE"
 //
 // Query enum values using alGetEnumValue, for example
-//
+// 
 // long lRamSizeEnum = alGetEnumValue("AL_EAX_RAM_SIZE")
 //
 //////////////////////////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@ typedef ALenum    (__cdecl *EAXGetBufferMode)(ALuint buffer, ALint *value);
 
 //////////////////////////////////////////////////////////////////////////////
 // Query X-RAM Function pointers
-//
+// 
 // Use typedefs defined above to get the X-RAM function pointers using
 // alGetProcAddress
 //

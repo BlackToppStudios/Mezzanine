@@ -7,16 +7,27 @@ message ("${PROJECT_NAME} - Begin")
 ###############################################################################
 # Initializations
 
-#CommonBuildFlags is used by all child built libraries including bullet, ticpp, cAudio, and most system specific libs, but not ogre
-if(${WIN32})
-	message ("${PROJECT_NAME} - Setting Windows Specific Initialiations")
-	set(CommonBuildFlags " -O2 -s ")
-else(${WIN32})
-	message ("${PROJECT_NAME} - Setting Non-Windows Initialiations")
-	set(CommonBuildFlags " -fPIC -O2 -s ")
-endif(${WIN32})
+#CommonBuildFlags is used by all built libraries including Physgame bullet, ticpp, cAudio, and most system specific libs, but not ogre
+if(${PhysDebug})
+	if(${WIN32})
+		message ("${PROJECT_NAME} - Setting Windows Specific Initialiations")
+		set(CommonBuildFlags " -O2 -s")
+	else(${WIN32})
+		message ("${PROJECT_NAME} - Setting Non-Windows Initialiations")
+		set(CommonBuildFlags " -fPIC -O2 -s ")
+	endif(${WIN32})
+else(${PhysDebug})
+	if(${WIN32})
+		message ("${PROJECT_NAME} - Setting Windows Debug Specific Initialiations")
+		set(CommonBuildFlags "-g")
+	else(${WIN32})
+		message ("${PROJECT_NAME} - Setting Non-Windows Debug Initialiations")
+		set(CommonBuildFlags " -fPIC -g")
+	endif(${WIN32})
+endif(${PhysDebug})
 
-message("Compiler Flags used on all dependent Builds: ${CommonBuildFlags}")
+add_definitions( ${CommonBuildFlags} )
+message("Compiler Flags used on all Builds: ${CommonBuildFlags}")
 
 set (${PROJECT_NAME}_ROOT_DIR "${${PROJECT_NAME}_SOURCE_DIR}/")
 message ("Base Directory for ${PROJECT_NAME}: ${${PROJECT_NAME}_ROOT_DIR}")
@@ -232,17 +243,17 @@ endfunction(CopyLibraryDuringBuild)
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	set(BuildPlatform windows)
-	
+
 	#required for cAudio
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
-	
+
 	link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
-	
+
 	include_directories(
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
 	)
-	
+
 	add_definitions( -DWINDOWS )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
@@ -325,11 +336,11 @@ set( Bullet_LibraryNames
 	"GIMPACTUtils"
 	"BulletWorldImporter"
 	"BulletFileLoader"
-	#"BulletSoftBodySolvers_OpenCL"	
+	#"BulletSoftBodySolvers_OpenCL"
 	"BulletSoftBodySolvers_CPU"
 	"MiniCL"
 	"BulletMultiThreaded"
-	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath" 
+	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
 )
 
 target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} ticpp cAudio SDL )
@@ -349,13 +360,13 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
 
 	#Copy System Dependant files during build time
-	
+
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/OgreMain.dll OgreMain.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
-	
+
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 

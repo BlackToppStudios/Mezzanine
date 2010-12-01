@@ -9,6 +9,7 @@
 #include <sstream>          //STL includes
 #include <istream>
 #include <string>
+#include <iostream>
 
 #define PHYSDEBUG
 
@@ -124,7 +125,8 @@ bool PostRender()
     }
 
     static bool notplayed=true;
-    if (/*1000<gametime &&*/ notplayed)
+    //if (1000<gametime && notplayed)
+    if (notplayed)
     {
         notplayed=false;
         Sound* Welcome = NULL;
@@ -181,11 +183,11 @@ bool PostInput()
     TheWorld->Log(Queryer.GetMouseX());
     TheWorld->Log(Queryer.GetMouseY());
 
-/*    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
-        {TheWorld->Cameras->IncrementYOrbit(-0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
+//    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
+//        {TheWorld->Cameras->IncrementYOrbit(-0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
 
-    if(320<Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
-        {TheWorld->Cameras->IncrementYOrbit(0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}*/
+//    if(320<Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
+//        {TheWorld->Cameras->IncrementYOrbit(0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
         { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01); }
@@ -253,7 +255,7 @@ bool PostInput()
             #endif
 
             Ray *MouseRay = Queryer.GetMouseRay(5000);
-            //*MouseRay *= 1000;
+            // *MouseRay *= 1000;
             //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
 
             Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
@@ -603,4 +605,5 @@ void MakeGUI()
     ExitButton->SetBackgroundColour(Colours);
     Menu->Hide();
 }
+//*/
 #endif

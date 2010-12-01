@@ -4,6 +4,8 @@
 cmake_minimum_required (VERSION 2.8)
 project (PhysgameAndCatch)
 
+option(PhysDebug "Compile with no optimizations and debug symbols" OFF)
+
 add_subdirectory (physgameengine)
 #add_subdirectory (Catch!) 
 #add_subdirectory (EngineDemo)
