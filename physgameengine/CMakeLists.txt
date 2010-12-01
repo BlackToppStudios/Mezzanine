@@ -7,25 +7,6 @@ message ("${PROJECT_NAME} - Begin")
 ###############################################################################
 # Initializations
 
-#CommonBuildFlags is used by all built libraries including Physgame bullet, ticpp, cAudio, and most system specific libs, but not ogre
-if(${PhysDebug})
-	if(${WIN32})
-		message ("${PROJECT_NAME} - Setting Windows Specific Initialiations")
-		set(CommonBuildFlags " -O2 -s")
-	else(${WIN32})
-		message ("${PROJECT_NAME} - Setting Non-Windows Initialiations")
-		set(CommonBuildFlags " -fPIC -O2 -s ")
-	endif(${WIN32})
-else(${PhysDebug})
-	if(${WIN32})
-		message ("${PROJECT_NAME} - Setting Windows Debug Specific Initialiations")
-		set(CommonBuildFlags "-g")
-	else(${WIN32})
-		message ("${PROJECT_NAME} - Setting Non-Windows Debug Initialiations")
-		set(CommonBuildFlags " -fPIC -g")
-	endif(${WIN32})
-endif(${PhysDebug})
-
 add_definitions( ${CommonBuildFlags} )
 message("Compiler Flags used on all Builds: ${CommonBuildFlags}")
 
@@ -365,6 +346,7 @@ if(${WIN32})
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/OgreMain.dll OgreMain.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
 	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
 
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
