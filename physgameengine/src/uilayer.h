@@ -63,6 +63,8 @@ namespace phys
         class Caption;
         class Button;
         class TextButton;
+        class MarkupText;
+        class CheckBox;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UILayer
@@ -80,6 +82,7 @@ namespace phys
             std::vector<UI::Button*> Buttons;
             std::vector<UI::Rectangle*> Rectangles;
             std::vector<UI::Caption*> Captions;
+            std::vector<UI::MarkupText*> MarkupTexts;
             std::vector<UI::Widget*> Widgets;
         public:
             /// @brief Internal constructor
@@ -114,15 +117,6 @@ namespace phys
             /// @param Position The top left position of the button.
             /// @param Size The size of the Button.
             UI::Button* CreateButton(String& Name, Vector2 Position, Vector2 Size);
-            /// @brief Gets an already created button by name.
-            /// @return Returns a pointer to the button of the specified name.
-            UI::Button* GetButton(String& Name);
-            /// @brief Gets an already created button by index.
-            /// @return Returns a pointer to the button at the specified index.
-            UI::Button* GetButton(Whole Index);
-            /// @brief Gets the number of buttons created and stored in this class.
-            /// @return Returns the number of buttons this class is storing.
-            Whole GetNumButtons();
             /// @brief Creates a text button within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created button.
@@ -132,6 +126,18 @@ namespace phys
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
             /// @param Text Any text you want printed on the button.
             UI::TextButton* CreateTextButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text);
+            /// @brief Gets an already created button by name.
+            /// @return Returns a pointer to the button of the specified name.
+            UI::Button* GetButton(String& Name);
+            /// @brief Gets an already created button by index.
+            /// @return Returns a pointer to the button at the specified index.
+            UI::Button* GetButton(Whole Index);
+            /// @brief Gets the number of buttons created and stored in this class.
+            /// @return Returns the number of buttons this class is storing.
+            Whole GetNumButtons();
+            /// @brief Destroys a button.
+            /// @param ToBeDestroyed Pointer to the button you want destroyed.
+            void DestroyButton(UI::Button* ToBeDestroyed);
             /// @brief Creates a rectangle within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0). @n
             /// Rectangles are innately put behind all captions, so z-order is not necessary.
@@ -144,11 +150,14 @@ namespace phys
             /// @brief Gets the number of rectangles created and stored in this class.
             /// @return Returns the number of rectangles this class is storing.
             Whole GetNumRectangles();
+            /// @brief Destroys a rectangle.
+            /// @param ToBeDestroyed Pointer to the rectangle you want destroyed.
+            void DestroyRectangle(UI::Rectangle* ToBeDestroyed);
             /// @brief Creates a caption within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created caption.
             /// @param Name The name of this caption.
-            /// @param Position The top left position of the button.
+            /// @param Position The top left position of the caption.
             /// @param Size The size of the Button.
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
             /// @param Text Any text you want printed on the caption.
@@ -162,6 +171,29 @@ namespace phys
             /// @brief Gets the number of captions created and stored in this class.
             /// @return Returns the number of captions this class is storing.
             Whole GetNumCaptions();
+            /// @brief Destroys a caption.
+            /// @param ToBeDestroyed Pointer to the caption you want destroyed.
+            void DestroyCaption(UI::Caption* ToBeDestroyed);
+            /// @brief Creates a markup text within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+            /// @return Returns a pointer to the created markup text.
+            /// @param Name The name of this markup text.
+            /// @param Position The top left position of the markup text.
+            /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+            /// @param Text Any text you want printed on the markup text.
+            UI::MarkupText* CreateMarkupText(String& Name, Vector2 Position, Whole Glyph, String Text);
+            /// @brief Gets an already created markup text by name.
+            /// @return Returns a pointer to the markup text of the specified name.
+            UI::MarkupText* GetMarkupText(String& Name);
+            /// @brief Gets an already created markup text by index.
+            /// @return Returns a pointer to the markup text at the specified index.
+            UI::MarkupText* GetMarkupText(Whole Index);
+            /// @brief Gets the number of markup texts created and stored in this class.
+            /// @return Returns the number of markup texts this class is storing.
+            Whole GetNumMarkupTexts();
+            /// @brief Destroys a markup text.
+            /// @param ToBeDestroyed Pointer to the markup text you want destroyed.
+            void DestroyMarkupText(UI::MarkupText* ToBeDestroyed);
             ///////////////////////////////////////////////////////////////////////////////
             // Working with all Widgets
             ///////////////////////////////////////
@@ -174,6 +206,9 @@ namespace phys
             /// @brief Gets the number of widgets created and stored in this class.
             /// @return Returns the number of widgets this class is storing.
             Whole GetNumWidgets();
+            /// @brief Destroys a widget.
+            /// @param ToBeDestroyed Pointer to the widget you want destroyed.
+            void DestroyWidget(UI::Widget* ToBeDestroyed);
             ///////////////////////////////////////////////////////////////////////////////
             // Creating Widgets
             ///////////////////////////////////////

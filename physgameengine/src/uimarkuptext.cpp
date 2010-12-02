@@ -37,160 +37,143 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uibutton_cpp
-#define _uibutton_cpp
+#ifndef _uimarkuptext_cpp
+#define _uimarkuptext_cpp
 
-#include "uibutton.h"
+#include "uimarkuptext.h"
 #include "uilayer.h"
 #include "uimanager.h"
-#include "eventmanager.h"
 #include "world.h"
+
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
     namespace UI
     {
-        Button::Button(String& name, Vector2 Position, Vector2 Size, UILayer* Layer)
+        MarkupText::MarkupText(String& name, Vector2 Position, Whole Glyph, String Text, UILayer* Layer)
             : Parent(Layer),
-              NormalSprite(NULL),
-              HoveredSprite(NULL),
-              MouseHover(false),
               RelPosition(Position),
-              RelSize(Size),
+              RelSize(Vector2(0,0)),
               Name(name)
         {
             Manager = World::GetWorldPointer()->GetUIManager();
 
             Vector2 Window = Manager->GetWindowDimensions();
-            GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
+            GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,Position.X,Position.Y,Text);
         }
 
-        Button::~Button()
+        MarkupText::~MarkupText()
         {
-            Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
+            Parent->GetGorillaLayer()->destroyMarkupText(GMarkup);
         }
 
-        String& Button::GetName()
+        String& MarkupText::GetName()
         {
             return Name;
         }
 
-        bool Button::CheckMouseHover()
+        void MarkupText::SetText(String& Text)
         {
-            Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
-            if(GorillaRectangle->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
+            GMarkup->text(Text);
+        }
+
+        String MarkupText::GetText()
+        {
+            return GMarkup->text();
+        }
+
+        /*void MarkupText::HorizontallyAlign(UI::TextHorizontalAlign Align)
+        {
+            Gorilla::TextAlignment HA;
+            switch (Align)
             {
-                if(!MouseHover && HoveredSprite)
-                {
-                    GorillaRectangle->background_image(HoveredSprite);
-                }
-                MouseHover = true;
-            }else{
-                if(MouseHover && HoveredSprite)
-                {
-                    GorillaRectangle->background_image(NormalSprite);
-                }
-                MouseHover = false;
+                case UI::Left:
+                    HA = Gorilla::TextAlign_Left;
+                    break;
+                case UI::Right:
+                    HA = Gorilla::TextAlign_Right;
+                    break;
+                case UI::Middle:
+                    HA = Gorilla::TextAlign_Centre;
+                    break;
+                default:
+                    return;
             }
-            return MouseHover;
+            GMarkup->align(HA);
         }
 
-        bool Button::GetMouseHover()
+        void MarkupText::VerticallyAlign(UI::TextVerticalAlign Align)
         {
-            return MouseHover;
-        }
-
-        void Button::SetBackgroundColour(ColourValue& Colour)
-        {
-            GorillaRectangle->background_colour(Colour.GetOgreColourValue());
-        }
-
-        void Button::SetBackgroundSprite(const String& Name)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
-            NormalSprite = GSprite;
-            GorillaRectangle->background_image(GSprite);
-        }
-
-        void Button::SetHoveredSprite(const String& Name)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
-            HoveredSprite = GSprite;
-        }
-
-        void Button::SetUserSprite(const String& Name)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
-            UserSprite = GSprite;
-        }
-
-        void Button::EnableUserSprite(bool Enable)
-        {
-            if(Enable)
+            Gorilla::VerticalAlignment VA;
+            switch (Align)
             {
-                GorillaRectangle->background_image(UserSprite);
-            }else{
-                GorillaRectangle->background_image(NormalSprite);
+                case UI::Top:
+                    VA = Gorilla::VerticalAlign_Top;
+                    break;
+                case UI::Bottom:
+                    VA = Gorilla::VerticalAlign_Bottom;
+                    break;
+                case UI::Center:
+                    VA = Gorilla::VerticalAlign_Middle;
+                    break;
+                default:
+                    return;
             }
-        }
+            GMarkup->vertical_align(VA);
+        }*/
 
-        void Button::SetBorder(Real Width, ColourValue& Colour)
-        {
-            GorillaRectangle->border(Width, Colour.GetOgreColourValue());
-        }
-
-        void Button::SetPosition(Vector2 Position)
+        void MarkupText::SetPosition(Vector2 Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Manager->GetWindowDimensions();
-            GorillaRectangle->left(CurrDim.X * RelPosition.X);
-            GorillaRectangle->top(CurrDim.Y * RelPosition.Y);
+            GMarkup->left(CurrDim.X * RelPosition.X);
+            GMarkup->top(CurrDim.Y * RelPosition.Y);
         }
 
-        Vector2 Button::GetPosition()
+        Vector2 MarkupText::GetPosition()
         {
             return RelPosition;
         }
 
-        void Button::SetActualPosition(Vector2 Position)
+        void MarkupText::SetActualPosition(Vector2 Position)
         {
-            GorillaRectangle->left(Position.X);
-            GorillaRectangle->top(Position.Y);
+            GMarkup->left(Position.X);
+            GMarkup->top(Position.Y);
         }
 
-        Vector2 Button::GetActualPosition()
+        Vector2 MarkupText::GetActualPosition()
         {
-            Vector2 Pos(GorillaRectangle->left(), GorillaRectangle->top());
+            Vector2 Pos(GMarkup->left(), GMarkup->top());
             return Pos;
         }
 
-        void Button::SetSize(Vector2 Size)
+        void MarkupText::SetMaxSize(Vector2 Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
-            GorillaRectangle->left(CurrDim.X * RelSize.X);
-            GorillaRectangle->top(CurrDim.Y * RelSize.Y);
+            GMarkup->left(CurrDim.X * RelSize.X);
+            GMarkup->top(CurrDim.Y * RelSize.Y);
         }
 
-        Vector2 Button::GetSize()
+        Vector2 MarkupText::GetMaxSize()
         {
             return RelSize;
         }
 
-        void Button::SetActualSize(Vector2 Size)
+        void MarkupText::SetMaxActualSize(Vector2 Size)
         {
-            GorillaRectangle->width(Size.X);
-            GorillaRectangle->height(Size.Y);
+            GMarkup->width(Size.X);
+            GMarkup->height(Size.Y);
         }
 
-        Vector2 Button::GetActualSize()
+        Vector2 MarkupText::GetMaxActualSize()
         {
-            Vector2 Pos(GorillaRectangle->width(), GorillaRectangle->height());
+            Vector2 Pos(GMarkup->width(), GMarkup->height());
             return Pos;
         }
 
-        void Button::SetRenderPriority(UI::RenderPriority Priority)
+        void MarkupText::SetRenderPriority(UI::RenderPriority Priority)
         {
             Gorilla::RenderPriority RP;
             switch(Priority)
@@ -207,12 +190,12 @@ namespace phys
                 default:
                     break;
             }
-            GorillaRectangle->RenderPriority(RP);
+            GMarkup->RenderPriority(RP);
         }
 
-        UI::RenderPriority Button::GetRenderPriority()
+        UI::RenderPriority MarkupText::GetRenderPriority()
         {
-            Gorilla::RenderPriority RP = this->GorillaRectangle->RenderPriority();
+            Gorilla::RenderPriority RP = this->GMarkup->RenderPriority();
             switch(RP)
             {
                 case Gorilla::RP_Low:

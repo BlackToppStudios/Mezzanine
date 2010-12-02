@@ -134,7 +134,7 @@ namespace phys
                 void ScrollBackScroll();
                 /// @internal
                 /// @brief Performs all the necessary update and automation processes for this widget.
-                void Update(bool Force = false);
+                virtual void Update(bool Force = false);
             public:
                 /// @brief Standard initialization constructor.
                 /// @param Name The name of this scrollbar.
