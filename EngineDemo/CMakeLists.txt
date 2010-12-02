@@ -93,14 +93,14 @@ CopyDemoFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudio
 CopyDemoFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
 CopyDemoFilesDuringBuild( common/sounds/welcomefun-1.ogg data/common/sounds/welcomefun-1.ogg )
 
+CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
+
 ##############################################################################
 #Copy System Dependant files during build time
 
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-
-	CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 	CopyFilesFromPhygameDuringBuild( data/windows/ogre/RenderSystem_GL.dll )
 	CopyFilesFromPhygameDuringBuild( data/windows/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( data/windows/settings.cfg )
@@ -109,14 +109,20 @@ if(${WIN32})
 	CopyFilesFromPhygameDuringBuild( OpenAL32.dll )
 	CopyFilesFromPhygameDuringBuild( SDL.dll )
 	CopyFilesFromPhygameDuringBuild( wrap_oal.dll )
-	
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
 # Linux File Copy Specific Items
 if(${UNIX})
 	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
-
+	#CopyDemoFilesDuringBuild( linux/EngineDemo EngineDemo )
+	#CopyFilesFromPhygameDuringBuild( libOgreMain.so )
+	CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
+	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
+	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL.so )
+	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg )
+	CopyFilesFromPhygameDuringBuild( libphysgame.so )
+	CopyFilesFromPhygameDuringBuild( libOgreMain.so.1.8.0 )
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
 endif(${UNIX})
 
