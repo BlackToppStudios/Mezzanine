@@ -80,12 +80,26 @@ namespace phys
                 delete Label;
         }
 
-        void CheckBox::SetSpriteSet(std::pair<String,String>& SpriteSet)
+        void CheckBox::SetSpriteSet(std::pair<std::string,std::string>& SpriteSet)
         {
             Box->SetBackgroundSprite(SpriteSet.first);
             if(!SpriteSet.second.empty())
                 Box->SetHoveredSprite(SpriteSet.second);
         }
+
+        /*void CheckBox::SetUncheckedSprites()
+        {
+            Box->SetBackgroundSprite(UncheckedNorm);
+            if(!UncheckedHovered.empty())
+                Box->SetHoveredSprite(UncheckedHovered);
+        }
+
+        void CheckBox::SetCheckedSprites()
+        {
+            Box->SetBackgroundSprite(CheckedNorm);
+            if(!CheckedHovered.empty())
+                Box->SetHoveredSprite(CheckedHovered);
+        }*/
 
         void CheckBox::Update(bool Force)
         {
@@ -150,14 +164,18 @@ namespace phys
 
         void CheckBox::SetUncheckedSprite(String& Unchecked, String& Hovered)
         {
-            //UncheckedSet.first.assign(Unchecked);
-            //UncheckedSet.second = Hovered;
+            UncheckedSet.first = Unchecked;
+            UncheckedSet.second = Hovered;
+            //UncheckedNorm = Unchecked;
+            //UncheckedHovered = Hovered;
         }
 
         void CheckBox::SetCheckedSprite(String& Checked, String& Hovered)
         {
-            //CheckedSet.first = Checked;
-            //CheckedSet.second = Hovered;
+            CheckedSet.first = Checked;
+            CheckedSet.second = Hovered;
+            //CheckedNorm = Checked;
+            //CheckedHovered = Hovered;
         }
 
         void CheckBox::SetPosition(Vector2 Position)

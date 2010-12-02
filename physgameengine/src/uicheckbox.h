@@ -61,12 +61,15 @@ namespace phys
                 friend class UIManager;
                 Button* Box;
                 MarkupText* Label;
-                std::pair<String,String> UncheckedSet;
-                std::pair<String,String> CheckedSet;
+                /// @todo Fix the issue with all strings being const, so we can resume use of typedefs here.
+                std::pair<std::string,std::string> UncheckedSet;
+                std::pair<std::string,std::string> CheckedSet;
                 Whole GlyphIndex;
                 bool Checked;
                 bool CheckLock;
-                void SetSpriteSet(std::pair<String,String>& SpriteSet);
+                void SetSpriteSet(std::pair<std::string,std::string>& SpriteSet);
+                //void SetUncheckedSprites();
+                //void SetCheckedSprites();
                 virtual void Update(bool Force = false);
             public:
                 /// @brief Class constructor
