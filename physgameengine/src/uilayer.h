@@ -43,6 +43,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "vector2.h"
+#include "uiscrollbar.h"
 
 #include <map>
 
@@ -88,6 +89,9 @@ namespace phys
             UILayer(const String& name, Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager);
             /// @brief Class destructor.
             ~UILayer();
+            ///////////////////////////////////////////////////////////////////////////////
+            // Non-check related Utility Functions
+            ///////////////////////////////////////
             /// @brief Gets the name of this layer.
             /// @return Returns a string containing the name of this layer.
             String& GetName();
@@ -101,6 +105,9 @@ namespace phys
             void Show();
             /// @brief Forces the layer to hide.
             void Hide();
+            ///////////////////////////////////////////////////////////////////////////////
+            // Creating and working with All Basic UI Elements
+            ///////////////////////////////////////
             /// @brief Creates a button within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created button.
@@ -141,6 +148,7 @@ namespace phys
             /// @brief Creates a caption within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created caption.
+            /// @param Name The name of this caption.
             /// @param Position The top left position of the button.
             /// @param Size The size of the Button.
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
@@ -155,6 +163,9 @@ namespace phys
             /// @brief Gets the number of captions created and stored in this class.
             /// @return Returns the number of captions this class is storing.
             Whole GetNumCaptions();
+            ///////////////////////////////////////////////////////////////////////////////
+            // Working with all Widgets
+            ///////////////////////////////////////
             /// @brief Gets an already created widget by name.
             /// @return Returns a pointer to the widget of the specified name.
             UI::Widget* GetWidget(String& Name);
@@ -164,6 +175,20 @@ namespace phys
             /// @brief Gets the number of widgets created and stored in this class.
             /// @return Returns the number of widgets this class is storing.
             Whole GetNumWidgets();
+            ///////////////////////////////////////////////////////////////////////////////
+            // Creating Widgets
+            ///////////////////////////////////////
+            /// @brief Creates a Scrollbar within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+            /// @return Returns a pointer to the created Scrollbar.
+            /// @param Name The name of the Scrollbar.
+            /// @param Position The top left position of the Scrollbar.
+            /// @param Size The size of the Scrollbar.
+            /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
+            UI::Scrollbar* CreateScrollbar(String& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style);
+            ///////////////////////////////////////////////////////////////////////////////
+            // UI Element and Widget Checks
+            ///////////////////////////////////////
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the buttons contained in this layer.
             /// @return Returns the button the mouse is over, or NULL if there are none.
@@ -172,6 +197,9 @@ namespace phys
             /// @details This function searches only the widgets contained in this layer.
             /// @return Returns the widget the mouse is over, or NULL if there are none.
             UI::Widget* CheckWidgetMouseIsOver();
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Functions
+            ///////////////////////////////////////
             /// @internal
             /// @brief Gets the internal gorilla layer pointer.
             Gorilla::Layer* GetGorillaLayer();

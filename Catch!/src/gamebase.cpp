@@ -42,6 +42,8 @@ int main(int argc, char **argv)
     TheWorld->GetPhysicsManager()->SetPreMainLoopItems(&PrePhysics);
     TheWorld->GetPhysicsManager()->SetPostMainLoopItems(&PostPhysics);
     TheWorld->GetGraphicsManager()->SetPostMainLoopItems(&PostRender);
+    TheWorld->GetUIManager()->SetPreMainLoopItems(&PreUI);
+    TheWorld->GetUIManager()->SetPostMainLoopItems(&PostUI);
 
     //Set the Make the RenderWindow and load system stuff
 	TheWorld->GameInit(false);
@@ -66,6 +68,10 @@ int main(int argc, char **argv)
     //Setup some light and configure the camera.
     TheWorld->GetCameraManager()->GetDefaultCamera()->SetCameraType(Camera::Orthographic);
     TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
+
+    Node* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,0.0,-250.0), true );
+    CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
+    CameraNode->LookAt(Vector3(0,0,0));
 
 	//Start the Main Loop
 	TheWorld->MainLoop();
@@ -177,12 +183,12 @@ bool PostPhysics()
     return true;
 }
 
-bool PreInput()
+bool PreUI()
 {
     return true;
 }
 
-bool PostInput()
+bool PostUI()
 {
     //User Input through a WorldQueryTool
     static WorldQueryTool Queryer;
@@ -191,6 +197,12 @@ bool PostInput()
     TheWorld->Log("Mouse location From WorldQueryTool X/Y");
     TheWorld->Log(Queryer.GetMouseX());
     TheWorld->Log(Queryer.GetMouseY());
+
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
+        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01); }
+
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
+        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01); }
 
     static Point2PointConstraint* Dragger=NULL;
 
@@ -334,6 +346,16 @@ bool PostInput()
     return true;
 }
 
+bool PreInput()
+{
+    return true;
+}
+
+bool PostInput()
+{
+    return true;
+}
+
 ///////////////////
 //Non-Callbacks
 bool CheckForEsc()
@@ -374,15 +396,15 @@ void LoadContent()
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld->GetResourceManager()->InitResourceGroup(groupname);
 
-    /*ActorRigid *object1 = new ActorRigid (10,"Robot","robot.mesh","Group1",TheWorld);
-    object1->CreateShapeFromMeshDynamic(1);
+    /*ActorRigid *object1 = new ActorRigid (0,"Ferris","ferrisWheel.mesh","Group1");
+    object1->CreateShapeFromMeshDynamic(3);
     object1->SetInitLocation(Vector3(0,0,0));
-    object1->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
+    object1->SetInitOrientation(Quaternion(1.0, 0.0, 0.0, 0.55));
     TheWorld->GetActorManager()->AddActor(object1);
-    TheWorld->GetPhysicsManager()->SetGravity(Vector3(0,0,0));
+    TheWorld->GetPhysicsManager()->SetGravity(Vector3(0,0,0));*/
 
-    TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0,0,-500));
-    TheWorld->GetCameraManager()->GetDefaultCamera()->LookAt(Vector3(0,0,0));*/
+    //TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0,0,-500));
+    //TheWorld->GetCameraManager()->GetDefaultCamera()->LookAt(Vector3(0,0,0));
 }
 
 void MakeGUI()
@@ -429,6 +451,16 @@ void MakeGUI()
 
     UI::Rectangle* ScoreText = HUD->CreateRectangle( Vector2(0.008, 0.006), Vector2(0.12, 0.06));
     ScoreText->SetBackgroundSprite("ScoreText");
+
+    ColourValue Buttons(0.1,0.8,0.1,1.0);
+    ColourValue ScrollBackground(0.9,0.6,0.6,0.5);
+    ColourValue ScrollBarColour(0.2,0.2,0.2,1.0);
+    UI::Scrollbar* ScrollTest = HUD->CreateScrollbar("Test", Vector2(0.5,0.25), Vector2(0.025,0.6), UI::Scrollbar::Separate);
+    ScrollTest->GetUpLeftButton()->SetBackgroundColour(Buttons);
+    ScrollTest->GetDownRightButton()->SetBackgroundColour(Buttons);
+    ScrollTest->GetScrollBack()->SetBackgroundColour(ScrollBackground);
+    ScrollTest->GetScroller()->SetBackgroundColour(ScrollBarColour);
+    ScrollTest->SetScrollerSize(0.25);
 
     //Build the ItemShop Layer
     /*Items = new ItemShopList(WWidth * 0.1, WHeight * 0.075, WWidth * 0.4, WHeight * 0.6, ItemShop, TheWorld);

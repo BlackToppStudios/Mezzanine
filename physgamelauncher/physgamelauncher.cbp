@@ -61,10 +61,15 @@
 		<Unit filename="src\configopener.h" />
 		<Unit filename="src\crossplatform.cpp" />
 		<Unit filename="src\crossplatform.h" />
+		<Unit filename="src\levelselect.cpp" />
+		<Unit filename="src\levelselect.h" />
 		<Unit filename="src\physgamelauncherApp.cpp" />
 		<Unit filename="src\physgamelauncherApp.h" />
 		<Unit filename="src\physgamelauncherMain.cpp" />
 		<Unit filename="src\physgamelauncherMain.h" />
+		<Unit filename="src\resource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="wxsmith\physgamelauncherframe.wxs" />
 		<Extensions>
 			<code_completion />
@@ -73,6 +78,7 @@
 				<gui name="wxWidgets" src="src\physgamelauncherApp.cpp" main="physgamelauncherFrame" init_handlers="necessary" language="CPP" />
 				<resources>
 					<wxFrame wxs="wxsmith/physgamelauncherframe.wxs" src="src\physgamelauncherMain.cpp" hdr="src\physgamelauncherMain.h" name="physgamelauncherFrame" language="CPP" />
+					<wxFrame wxs="wxsmith/levelselect.wxs" src="levelselect.cpp" hdr="levelselect.h" name="levelselect" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

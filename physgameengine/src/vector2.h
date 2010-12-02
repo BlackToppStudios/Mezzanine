@@ -87,7 +87,43 @@ namespace phys
             void ExtractOgreVector2(Ogre::Vector2 Ours);
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Vector2 Arithmetic with Real
+            /// @brief Scaling by multiplication
+            /// @details This Multiplies X, Y and Z by scalar
+            /// @return This returns a Vector2 that has been scaled
+            /// @param scalar This is the amount to scale the Vector2 by
+            Vector2 operator* (const Real &scalar) const;
+
+            /// @brief Scaling by Division
+            /// @details This Diisionn X, Y and Z by scalar
+            /// @return This returns a Vector2 that has been scaled
+            /// @param scalar This is the amount to scale the Vector2 by
+            Vector2 operator/ (const Real &scalar) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Vector2 Arithmetic and assignment with Real
+            /// @brief Scaling by multiplication.
+            /// @details This Multiplies X, Y and Z by scalar and stores the changes in this Vector2.
+            /// @param scalar This is the amount to scale the Vector2 by.
+            void operator*= (const Real &scalar);
+
+            /// @brief Scaling by Division
+            /// @details This Division X, Y and Z by scalar and and stores the changes in this Vector2.
+            /// @param scalar This is the amount to scale the Vector2 by
+            void operator/= (const Real &scalar);
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Arithmetic Operators
+            /// @brief Addition Operator
+            /// @details Allows for addition from a phys::Vector2
+            /// @param Vec2 This is the other phys::Vector2
+            Vector2 operator+ (const Vector2 &Vec2) const;
+
+            /// @brief Subraction Operator
+            /// @details Allows for subtraction from a phys::Vector2
+            /// @param Vec2 This is the other phys::Vector2
+            Vector2 operator- (const Vector2 &Vec2) const;
+
             /// @brief Multiplaction Operator
             /// @details Allows for multiplaction from a phys::Vector2
             /// @param Vec2 This is the other phys::Vector2

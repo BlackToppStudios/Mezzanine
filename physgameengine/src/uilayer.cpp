@@ -130,11 +130,7 @@ namespace phys
 
     UI::Rectangle* UILayer::CreateRectangle(Vector2 Position, Vector2 Size)
     {
-        GraphicsManager* Graphics = World::GetWorldPointer()->GetGraphicsManager();
-        Real Width = (Real)Graphics->getRenderWidth();
-        Real Height = (Real)Graphics->getRenderHeight();
-        Gorilla::Rectangle* GRectangle = GorillaLayer->createRectangle(Position.X * Width, Position.Y * Height, Size.X * Width, Size.Y * Height);
-        UI::Rectangle* rectangle = new UI::Rectangle(GRectangle, this);
+        UI::Rectangle* rectangle = new UI::Rectangle(Position,Size, this);
         Rectangles.push_back(rectangle);
         return rectangle;
     }
@@ -151,12 +147,7 @@ namespace phys
 
     UI::Caption* UILayer::CreateCaption(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
     {
-        GraphicsManager* Graphics = World::GetWorldPointer()->GetGraphicsManager();
-        Real Width = (Real)Graphics->getRenderWidth();
-        Real Height = (Real)Graphics->getRenderHeight();
-        Gorilla::Caption* GCaption = GorillaLayer->createCaption(Glyph, Position.X * Width, Position.Y * Height, Text);
-        GCaption->size(Size.X * Width, Size.Y * Height);
-        UI::Caption* caption = new UI::Caption(Name, GCaption, this);
+        UI::Caption* caption = new UI::Caption(Name,Position,Size,Glyph,Text,this);
         Captions.push_back(caption);
         return caption;
     }
@@ -205,6 +196,13 @@ namespace phys
     Whole UILayer::GetNumWidgets()
     {
         return Widgets.size();
+    }
+
+    UI::Scrollbar* UILayer::CreateScrollbar(String& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style)
+    {
+        UI::Scrollbar* Scroll = new UI::Scrollbar(Name,Position,Size,Style,this);
+        Widgets.push_back(Scroll);
+        return Scroll;
     }
 
     UI::Button* UILayer::CheckButtonMouseIsOver()

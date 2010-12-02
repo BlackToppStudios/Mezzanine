@@ -42,13 +42,11 @@
 
 #include "actorbase.h"
 #include "crossplatformexport.h"
+#include "inputquerytool.h"
 #include "metacode.h"
 #include "plane.h"
 #include "ray.h"
 #include "vector3wactor.h"
-#include "world.h"
-
-#include <bitset>
 
 namespace Ogre
 {
@@ -67,33 +65,9 @@ namespace phys
     /// @details Currently this allows for more seamless mouse use, including 'picking'
     /// of objects with the mouse, and associated functionality.
     ///////////////////////////////////////
-    class PHYS_LIB WorldQueryTool
+    class PHYS_LIB WorldQueryTool : public InputQueryTool
     {
         private:
-            /// @internal
-            /// @brief This is gameworld we will be querying
-            World* GameWorld;
-
-            /// @internal
-            /// @brief This holds the Mouse X coordinate as of the last time Gather Events was called
-            Whole MouseXCache;
-
-            /// @internal
-            /// @brief This holds the Mouse Y coordinate as of the last time Gather Events was called
-            Whole MouseYCache;
-
-            /// @internal
-            /// @brief This is the mouse button limit of this class.
-            const static unsigned short int MouseButtonLimit = 16;
-
-            /// @internal
-            /// @brief A place to store which mouse buttons are pushed.
-            std::bitset<MouseButtonLimit> MouseButtonCache;
-
-            /// @internal
-            /// @brief A place to store which keys are pressed or not.
-            std::bitset<MetaCode::KEY_LAST> KeyboardButtonCache;
-
             /// @internal
             /// @brief An Ogre construct used to find information about the locations of graphical object
             Ogre::RaySceneQuery* RayQuery;
@@ -116,42 +90,11 @@ namespace phys
             ///////////////////////////////////////
             /// @brief Basic Constructor.
             /// @details This creates a WorldQueryTool Ready to run queries on the the world you pass it.
-            /// @param GameWorld_ This is a pointer to the phys::World to be queried
             WorldQueryTool();
 
             /// @brief Destructor
             /// @details Deletes everything in the world query tool.
             ~WorldQueryTool();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Simple User Input Queries
-            ///////////////////////////////////////
-            /// @brief This gets the X coordinate of the mouse
-            /// @details This gets the X location of this mouse. This runs in constant time.
-            /// @return This returns a Whole number which represents the X coordinate of the mouse.
-            Whole GetMouseX();
-
-            /// @brief This gets the Y coordinate of the mouse
-            /// @details This gets the Y location of this mouse. This runs in constant time.
-            /// @return This returns a Whole number which represents the Y coordinate of the mouse.
-            Whole GetMouseY();
-
-            /// @brief Returns whether a specific Mouse button is pushed
-            /// @details This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed
-            /// are considered pressed, and buttons that are being lifted are considered unpressed. This only supports the first 16 mouse buttons
-            /// at this point (numbered 0 to 15)
-            /// @param MouseButton This is the mouse button that is being checked
-            /// @exception "Unsupported mouse button access through WorldQueryTool" This is thrown whenever a mouse button is requested that is beyond the limit that is supported. Currently this limit is 16
-            /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
-            bool IsMouseButtonPushed(short unsigned int MouseButton);
-
-            /// @brief Returns whether a specific KEyboard button is pushed
-            /// @details This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed
-            /// are considered pressed, and buttons that are being lifted are considered unpressed.
-            /// @param KeyboardButton This is the button that is being checked.
-            // This functionality has not yet been implemented @exception "Unsupported Keyboard button" This is thrown whenever a button is requested that is beyond the limit that is supported. See
-            /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
-            bool IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton);
 
             ///////////////////////////////////////////////////////////////////////////////
             // World Ray Queries
@@ -192,19 +135,6 @@ namespace phys
             /// @param Length how long of a ray do you want? Thsi defaults to 1000
             /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.
             Ray* GetMouseRay(Real Length=1000);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Basic Stuff
-            ///////////////////////////////////////
-            /// @brief This gathers any user-input/event data that might be queryed
-            /// @details This should be called periodcally (ideally in the post user input callback) to allow this
-            /// to gather data from the phys::World 's event manager. When called this will drop prior event data
-            /// and any relevant queries will come from this new data. At the caller's discretion this method
-            /// can properly delete any events pulled from the event manager. \n \n
-            /// This runs in linear time relative to the events in the event manager. This will usually be a trivial amount
-            /// if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup)
-            /// @param ClearEventsFromEventMgr If set to true, This method will properly remove any events it pulls from the event manager.
-            void GatherEvents(bool ClearEventsFromEventMgr = false);
     };
 }
 

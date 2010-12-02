@@ -75,14 +75,67 @@ namespace phys
                     TogetherDownRight
                 };
             protected:
+                friend class phys::UIManager;
                 UI::Button* Scroller;
                 UI::Rectangle* ScrollBack;
                 UI::Button* UpLeftButton;
                 UI::Button* DownRightButton;
-                Real ScrollUpperLimit;
-                Real ScrollLowerLimit;
-                void CreateHorizontalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style);
-                void CreateVerticalScrollbar(Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style);
+                UI::Button* HoveredButton;
+                UI::Rectangle* HoveredBack;
+                Vector2 ScrollBackOffset;
+                Vector2 UpLeftButtonOffset;
+                Vector2 DownRightButtonOffset;
+                Real ScrollerUpperLimit;
+                Real ScrollerLowerLimit;
+                Real ScrollerValue;
+                Real IncrementDistance;
+                BarStyle ScrollStyle;
+                bool Horizontal;
+                bool ScrollerLock;
+                bool UpLeftLock;
+                bool DownRightLock;
+                /// @internal
+                /// @brief Constructor helper function for creating a horizontally aligned scrollbar.
+                void CreateHorizontalScrollbar(Vector2 Position, Vector2 Size);
+                /// @internal
+                /// @brief Constructor helper function for creating a vertically aligned scrollbar.
+                void CreateVerticalScrollbar(Vector2 Position, Vector2 Size);
+                /// @internal
+                /// @brief Determines if the dimensions passed into this object are valid and can be used.
+                bool IsValidDimensions(Vector2 &Size);
+                /// @internal
+                /// @brief Sets the horizontal perameter as necessary based on the size provided for the widget.
+                void SetHorizontal(Vector2 &Size);
+                /// @internal
+                /// @brief Calculates the relative offsets for the UI elements that make up this widget.
+                void CalculateOffsets(Vector2 &Size);
+                /// @internal
+                /// @brief Calculates the limits by which the scroller is allowed to move.
+                void CalculateScrollLimits();
+                /// @internal
+                /// @brief Calculates the scrollbar value based on the scrollers current position.
+                void CalculateScrollValue();
+                /// @internal
+                /// @brief Checks if a provided coordinate is within the defined limits, and adjusts it if not.
+                void SetToWithinLimits(Real &Coord);
+                /// @internal
+                /// @brief Internal function for setting the location(position) of this widget.
+                void SetLocation(Vector2 &Position);
+                /// @internal
+                /// @brief Internal function for setting the area(size) of this widget.
+                void SetArea(Vector2 &Size);
+                /// @internal
+                /// @brief Scrolls the scroller either up/left or down/right, based on the parameter.  For use with buttons.
+                void ButtonScroll(bool UpLeft);
+                /// @internal
+                /// @brief Scrolls the scroller either up/left or down/right.  For use with the mouse.
+                void MouseScroll(Vector2 Scroll);
+                /// @internal
+                /// @brief Scrolls the scroller either up/left or down/right.  For use with the scrollback.
+                void ScrollBackScroll();
+                /// @internal
+                /// @brief Performs all the necessary update and automation processes for this widget.
+                void Update(bool Force = false);
             public:
                 /// @brief Standard initialization constructor.
                 /// @param Name The name of this scrollbar.
@@ -96,8 +149,20 @@ namespace phys
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
                 virtual bool CheckMouseHover();
+                /// @brief Get the currnent scroll position represented by a value between 0 and 1.
+                /// @details For example, if the scroller is halfway down the limits it's allowed, this will return 0.5. @n
+                /// Like other values, the top and left represent origin(0) values.
+                /// @return Returns the stored scroll position.
+                virtual Real GetScrollerValue();
+                /// @brief Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed.
+                /// @param IncDist A real representing the amount to increment.  Can be negative.
+                virtual void SetIncrementDistance(Real IncDist);
+                /// @brief Sets the length(or height) of the scroller based on the relative size of it's background.
+                /// @param Size The relative size you with to set the scroller to.  Values range from 0.0 to 1.0.
+                virtual void SetScrollerSize(Real Size);
                 /// @brief Sets the relative position of this widget in pixels.
-                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
+                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0. @n
+                /// The top and the left are considered the origin, thus values of 0 represent one of these points.
                 /// @param Position A vector2 representing the relative position of this widget.
                 virtual void SetPosition(Vector2 Position);
                 /// @brief Gets the relative position of this widget.
@@ -123,6 +188,31 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize();
+                /*/// @brief Lengthens the area in which the scroller can move.
+                /// @details A lightweight variant of the SetSize() function that simply increases it's length. @n
+                /// You can pass in a negative value to shorten the area as well.
+                /// @param Length The relative amount by which to lengthen/shorten the scrollable area.
+                virtual void LengthenScrollArea(Real Length);
+                /// @brief Lengthens the area in which the scroller can move.
+                /// @details A lightweight variant of the SetSize() function that simply increases it's length. @n
+                /// You can pass in a negative value to shorten the area as well.
+                /// @param Length The amount by which to lengthen/shorten the scrollable area in pixels.
+                virtual void LengthenActualScrollArea(Real Length);*/
+                /// @brief Gets the hovered button within this widget, if any.
+                /// @return Returns a pointer to the button within this widget the mouse is hovering over, or NULL if none.
+                virtual Button* GetHoveredButton();
+                /// @brief Gets the Scroller button within this widget.
+                /// @return Returns a pointer to the Scroller button within this widget.
+                virtual Button* GetScroller();
+                /// @brief Gets the UpLeft button within this widget, if it was initialized.
+                /// @return Returns a pointer to the UpLeft button within this widget, or NULL if none.
+                virtual Button* GetUpLeftButton();
+                /// @brief Gets the DownRight button within this widget, if it was initialized.
+                /// @return Returns a pointer to the DownRight button within this widget, or NULL if none.
+                virtual Button* GetDownRightButton();
+                /// @brief Gets the Scroller background within this widget.
+                /// @return Returns a pointer to the Scroller background within this widget.
+                virtual Rectangle* GetScrollBack();
         };//scrollbar
     }//UI
 }//phys

@@ -168,6 +168,16 @@ bool PostPhysics()
     return true;
 }
 
+bool PreUI()
+{
+    return true;
+}
+
+bool PostUI()
+{
+    return true;
+}
+
 bool PreInput()
 {
     return true;

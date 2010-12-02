@@ -50,6 +50,8 @@
 #include "uilayer.h"
 #include "uiwidget.h"
 
+#include "inputquerytool.h"
+
 #include <Ogre.h>
 
 namespace phys
@@ -57,9 +59,12 @@ namespace phys
     UIManager::UIManager()
     {
         Silver = new Gorilla::Silverback();
+        InputQueryer = new InputQueryTool();
         Priority = -35;
         HoveredButton = NULL;
         HoveredWidget = NULL;
+        ScrollbarControl = NULL;
+        WidgetTolorance = 0.1;
     }
 
     UIManager::~UIManager()
@@ -68,21 +73,59 @@ namespace phys
         delete Silver;
     }
 
+    bool UIManager::IsMouseWithinWidgetTolorance(UI::Widget* Control)
+    {
+        if(Control==NULL)
+            return false;
+        Vector2 MousePos = InputQueryer->GetMouseCoordinates();
+        Vector2 ActTol = GetWindowDimensions() * WidgetTolorance;
+        Vector2 CSize = Control->GetActualSize();
+        Vector2 CPos = Control->GetActualPosition();
+        bool Horizontal = (MousePos.X > CPos.X - ActTol.X) && (MousePos.X < CPos.X + CSize.X + ActTol.X);
+        bool Vertical = (MousePos.Y > CPos.Y - ActTol.Y) && (MousePos.Y < CPos.Y + CSize.Y + ActTol.Y);
+        if(Horizontal && Vertical)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /*void UIManager::UpdateScrollbar(UI::Scrollbar* Scroll)
+    {
+        bool MouseHover = ScrollbarControl->CheckMouseHover();
+        if(!MouseHover)
+        {
+            if(IsMouseWithinWidgetTolorance(ScrollbarControl))
+            {
+                ScrollbarControl->Update(true);
+            }else{
+
+            }
+        }else{
+
+        }
+    }*/
+
     void UIManager::Initialize()
     {
     }
 
     void UIManager::DoMainLoopItems()
     {
+        InputQueryer->GatherEvents();
         if(HoveredButton)
         {
             if(HoveredButton->CheckMouseHover())
+            {
                 return;
+            }
         }
         if(HoveredWidget)
         {
             if(HoveredWidget->CheckMouseHover())
+            {
                 return;
+            }
         }
         HoveredButton = CheckButtonMouseIsOver();
         if(!HoveredButton)
@@ -226,6 +269,11 @@ namespace phys
         phys::GraphicsManager* Graphics = GetGameWorld()->GetGraphicsManager();
         Vector2 Window((Real)Graphics->getRenderWidth(),(Real)Graphics->getRenderHeight());
         return Window;
+    }
+
+    InputQueryTool* UIManager::GetInputQueryer()
+    {
+        return InputQueryer;
     }
 
     ManagerBase::ManagerTypeName UIManager::GetType() const

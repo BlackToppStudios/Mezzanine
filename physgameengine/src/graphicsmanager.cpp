@@ -42,6 +42,7 @@
 
 #include "world.h"
 #include "eventmanager.h"
+#include "eventrendertime.h"
 #include "graphicsmanager.h"
 
 #include "Ogre.h"

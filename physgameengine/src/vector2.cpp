@@ -77,7 +77,55 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Vector2 Arithmetic with Real
+    Vector2 Vector2::operator* (const Real &scalar) const
+    {
+        return Vector2(
+            this->X * scalar,
+            this->Y * scalar
+        );
+    }
+
+    Vector2 Vector2::operator/ (const Real &scalar) const
+    {
+        return Vector2(
+            this->X / scalar,
+            this->Y / scalar
+        );
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Vector2 Arithmetic and assignment with Real
+    void Vector2::operator*= (const Real &scalar)
+    {
+        this->X *= scalar;
+        this->Y *= scalar;
+    }
+
+    void Vector2::operator/= (const Real &scalar)
+    {
+        this->X /= scalar;
+        this->Y /= scalar;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators
+
+    Vector2 Vector2::operator+ (const Vector2 &Vec2) const
+    {
+        Vector2 Temp(X,Y);
+        Temp.X+=Vec2.X;
+        Temp.Y+=Vec2.Y;
+        return Temp;
+    }
+
+    Vector2 Vector2::operator- (const Vector2 &Vec2) const
+    {
+        Vector2 Temp(X,Y);
+        Temp.X-=Vec2.X;
+        Temp.Y-=Vec2.Y;
+        return Temp;
+    }
 
     Vector2 Vector2::operator* (const Vector2 &Vec2) const
     {

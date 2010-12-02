@@ -72,6 +72,7 @@
 #include "eventuserinput.h"
 #include "exception.h"
 #include "graphicsmanager.h"
+#include "inputquerytool.h"
 #include "light.h"
 #include "linegroup.h"
 #include "managerbase.h"

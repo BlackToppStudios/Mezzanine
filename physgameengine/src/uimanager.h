@@ -58,10 +58,12 @@ namespace phys
 {
     class UIScreen;
     class UILayer;
+    class InputQueryTool;
     namespace UI
     {
         class Button;
         class Widget;
+        class Scrollbar;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UIManager
@@ -77,6 +79,11 @@ namespace phys
             std::vector< UIScreen* > Screens;
             UI::Button* HoveredButton;
             UI::Widget* HoveredWidget;
+            UI::Scrollbar* ScrollbarControl;
+            InputQueryTool* InputQueryer;
+            Real WidgetTolorance;
+            bool IsMouseWithinWidgetTolorance(UI::Widget* Control);
+            /*void UpdateScrollbar(UI::Scrollbar* Scroll);*/
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -141,6 +148,9 @@ namespace phys
             /// @brief Gets the current window dimensions.
             /// @return Returns a Vector2 representing the current window dimensions.
             Vector2 GetWindowDimensions();
+            /// @brief Gets the input queryer used for automation in this subsystem.
+            /// @return Returns a pointer to the InputQueryTool used to query input events for this subsystem.
+            InputQueryTool* GetInputQueryer();
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;

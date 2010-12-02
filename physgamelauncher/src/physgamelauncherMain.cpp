@@ -12,6 +12,8 @@
 //#include <windows.h>
 #include "zlib.h"
 #include <sys/stat.h>
+#include "levelselect.h"
+#include <wx/image.h>
 
 
 #include <iostream>
@@ -22,18 +24,23 @@
 #include <stdlib.h>
 //#include "unzip.h"
 //(*InternalHeaders(physgamelauncherFrame)
+#include <wx/bitmap.h>
+#include <wx/settings.h>
 #include <wx/intl.h>
+#include <wx/image.h>
 #include <wx/string.h>
 //*)
 
 //helper functions
 
+//IMPLEMENT_APP(physgamelauncherApp);
 
 
 enum wxbuildinfoformat
 {
     short_f, long_f
 };
+
 
 wxString wxbuildinfo(wxbuildinfoformat format)
 {
@@ -58,32 +65,109 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(physgamelauncherFrame)
-const long physgamelauncherFrame::RUN_GAME2 = wxNewId();
+const long physgamelauncherFrame::ID_STATICBITMAP1 = wxNewId();
 const long physgamelauncherFrame::ID_BUTTON2 = wxNewId();
 const long physgamelauncherFrame::ID_BUTTON3 = wxNewId();
-const long physgamelauncherFrame::idMenuQuit2 = wxNewId();
+const long physgamelauncherFrame::ID_BUTTON1 = wxNewId();
+const long physgamelauncherFrame::ID_BUTTON4 = wxNewId();
+const long physgamelauncherFrame::ID_BUTTON5 = wxNewId();
+const long physgamelauncherFrame::ID_BUTTON6 = wxNewId();
 const long physgamelauncherFrame::ID_PANEL1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(physgamelauncherFrame,wxFrame)
     //(*EventTable(physgamelauncherFrame)
     //*)
+
 END_EVENT_TABLE()
 
-physgamelauncherFrame::physgamelauncherFrame(wxWindow* parent,wxWindowID id)
+physgamelauncherFrame::physgamelauncherFrame(wxWindow* parent,wxWindowID id,bool fullscreencheck)
 {
-    //(*Initialize(physgamelauncherFrame)
-    Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxSize(350,400));
-    Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(200,136), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
-    Button1 = new wxButton(Panel1, RUN_GAME2, _("Play"), wxPoint(224,64), wxSize(104,28), 0, wxDefaultValidator, _T("RUN_GAME2"));
-    Button2 = new wxButton(Panel1, ID_BUTTON2, _("Options"), wxPoint(224,120), wxSize(104,28), 0, wxDefaultValidator, _T("ID_BUTTON2"));
-    Button3 = new wxButton(Panel1, ID_BUTTON3, _("Load new files"), wxPoint(224,176), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
-    Button4 = new wxButton(Panel1, idMenuQuit2, _("Quit"), wxPoint(224,232), wxSize(104,28), 0, wxDefaultValidator, _T("idMenuQuit2"));
 
-    Connect(RUN_GAME2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::RunGame);
-    Connect(idMenuQuit2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
+    //(*Initialize(physgamelauncherFrame)
+    wxGridSizer* GridSizer4;
+    wxGridSizer* GridSizer15;
+    wxGridSizer* GridSizer10;
+    wxGridSizer* GridSizer13;
+    wxGridSizer* GridSizer11;
+    wxGridSizer* GridSizer5;
+    wxGridSizer* GridSizer7;
+    wxGridSizer* GridSizer8;
+    wxGridSizer* GridSizer16;
+    wxGridSizer* GridSizer9;
+    wxGridSizer* GridSizer6;
+    wxGridSizer* GridSizer1;
+    wxGridSizer* GridSizer3;
+    wxGridSizer* GridSizer14;
+    wxGridSizer* GridSizer12;
+    wxFlexGridSizer* FlexGridSizer1;
+    wxGridSizer* GridSizer2;
+
+    Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+    SetClientSize(wxSize(921,628));
+    SetForegroundColour(wxColour(255,255,255));
+    SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BACKGROUND));
+    Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(200,136), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+    GridSizer1 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer3 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer1->Add(GridSizer3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    StaticBitmap1 = new wxStaticBitmap(Panel1, ID_STATICBITMAP1, wxBitmap(wxImage(_T("C:\\Users\\hydrowolfy\\Desktop\\New Bitmap Image.bmp")).Rescale(wxSize(433,238).GetWidth(),wxSize(433,238).GetHeight())), wxDefaultPosition, wxSize(433,238), 0, _T("ID_STATICBITMAP1"));
+    GridSizer1->Add(StaticBitmap1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer12 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer1->Add(GridSizer12, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer11 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer1->Add(GridSizer11, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer5 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer9 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer9, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    Button2 = new wxButton(Panel1, ID_BUTTON2, _("Continue"), wxDefaultPosition, wxSize(104,28), 0, wxDefaultValidator, _T("ID_BUTTON2"));
+    GridSizer5->Add(Button2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer1 = new wxFlexGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(FlexGridSizer1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer7 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer7, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    Button3 = new wxButton(Panel1, ID_BUTTON3, _("New Campiagn"), wxDefaultPosition, wxSize(104,28), 0, wxDefaultValidator, _T("ID_BUTTON3"));
+    GridSizer5->Add(Button3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer8 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer8, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer6 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer6, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    Button1 = new wxButton(Panel1, ID_BUTTON1, _("Standalone levels"), wxDefaultPosition, wxSize(104,28), 0, wxDefaultValidator, _T("ID_BUTTON1"));
+    GridSizer5->Add(Button1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer2 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer4 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer4, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    Button4 = new wxButton(Panel1, ID_BUTTON4, _("Load"), wxDefaultPosition, wxSize(104,28), 0, wxDefaultValidator, _T("ID_BUTTON4"));
+    GridSizer5->Add(Button4, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer13 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer13, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer10 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer10, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    Button5 = new wxButton(Panel1, ID_BUTTON5, _("Options"), wxDefaultPosition, wxSize(104,28), 0, wxDefaultValidator, _T("ID_BUTTON5"));
+    GridSizer5->Add(Button5, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer16 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer16, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer15 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer15, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    Button6 = new wxButton(Panel1, ID_BUTTON6, _("Quit"), wxDefaultPosition, wxSize(104,28), 0, wxDefaultValidator, _T("ID_BUTTON6"));
+    GridSizer5->Add(Button6, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer14 = new wxGridSizer(0, 3, 0, 0);
+    GridSizer5->Add(GridSizer14, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    GridSizer1->Add(GridSizer5, 1, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
+    Panel1->SetSizer(GridSizer1);
+    GridSizer1->Fit(Panel1);
+    GridSizer1->SetSizeHints(Panel1);
+
+    Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
+    Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
+    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::levelselectscreen);
+    Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
+    Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::Options);
+    Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&physgamelauncherFrame::OnQuit);
     //*)
+    wxFrame::ShowFullScreen(true, wxFULLSCREEN_ALL);
+  physgamelauncherFrame::fullscreen( fullscreencheck)
 }
 
 physgamelauncherFrame::~physgamelauncherFrame()
@@ -95,6 +179,33 @@ physgamelauncherFrame::~physgamelauncherFrame()
 void physgamelauncherFrame::OnQuit(wxCommandEvent& event)
 {
     Close();
+}
+void physgamelauncherFrame::Options(){
+    wxFrame::ShowFullScreen(false, wxFULLSCREEN_ALL);
+}
+
+void physgamelauncherFrame::fullscreen(bool fullscreencheck){
+
+if(fullscreencheck){
+
+    wxFrame::ShowFullScreen(true, wxFULLSCREEN_ALL);
+
+}
+
+
+
+}
+
+void physgamelauncherFrame::levelselectscreen()
+{
+
+    levelselect* Frame2 = new levelselect(0);
+    Frame2->Show();
+    Close();
+
+
+//wxFrame::SetTopWindow(Frame2);
+
 }
 
 void physgamelauncherFrame::RunGame(wxCommandEvent& event)
@@ -155,3 +266,7 @@ bool physgamelauncherFrame::FileExists(string strFilename)
     return(blnReturn);
 }
 
+
+void physgamelauncherFrame::OnButton3Click(wxCommandEvent& event)
+{
+}

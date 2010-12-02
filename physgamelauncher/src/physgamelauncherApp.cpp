@@ -10,11 +10,12 @@
 #include "physgamelauncherApp.h"
 #include <iostream>
 #include <fstream>
-#include "zlib.h"
+//#include "zlib.h"
 #include "crossplatform.h"
 
 //(*AppHeaders
 #include "physgamelauncherMain.h"
+//#include "levelselect.h"
 #include <wx/image.h>
 //*)
 
@@ -30,9 +31,13 @@ bool physgamelauncherApp::OnInit()
     wxInitAllImageHandlers();
     if ( wxsOK )
     {
+
     	physgamelauncherFrame* Frame = new physgamelauncherFrame(0);
+    	//levelselect* Frame2 = new levelselect(0);
     	Frame->Show();
+    	//Frame2->Show();
     	SetTopWindow(Frame);
+    	//SetTopWindow(Frame2);
     }
     //*)
     return wxsOK;
