@@ -1,1 +1,0 @@
-data/common/Ogre-lgpl-3.0.txt|?/data/common/Ogre-lgpl-3.0.txt

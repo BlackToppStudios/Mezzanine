@@ -1,3 +1,0 @@
-data/common/
-data/common/music/
-data/common/sounds/
