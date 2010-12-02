@@ -63,7 +63,12 @@ namespace phys
         /// @headerfile uicaption.h
         /// @brief This class is a helper class, specifically for use with text.
         /// @details Unlike a button, this class cannot be interacted with by clicking.
-        /// It is important to understand what you want your space to do when selecting the class to use.
+        /// It is important to understand what you want your space to do when selecting the class to use. @n @n
+        /// Markup Texts and Captions are similar in that they both display text messages
+        /// that can be altered readily, the primary difference between the two is that Captions are
+        /// meant for small simple messages with background functionality built in, where as Markup
+        /// Texts have no background functionality, but they use a light markup language to accomplish
+        /// special effects with the text.
         ///////////////////////////////////////
         class PHYS_LIB Caption
         {
@@ -131,12 +136,12 @@ namespace phys
                 /// @brief Gets the size of this caption in pixels.
                 /// @return Returns a vector2 representing the size of this caption.
                 Vector2 GetActualSize();
-                /// @brief Sets the priority this button should be rendered with.
+                /// @brief Sets the priority this caption should be rendered with.
                 /// @details The default value for this is Medium.
-                /// @param Priority The priority level to be used when rendering this button.
+                /// @param Priority The priority level to be used when rendering this caption.
                 void SetRenderPriority(UI::RenderPriority Priority);
-                /// @brief Gets the priority this button should be rendered with.
-                /// @return Returns an enum value representing this button's priority level.
+                /// @brief Gets the priority this caption should be rendered with.
+                /// @return Returns an enum value representing this caption's priority level.
                 UI::RenderPriority GetRenderPriority();
         };//caption
     }//UI

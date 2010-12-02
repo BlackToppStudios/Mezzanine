@@ -83,7 +83,7 @@ namespace phys
             InputQueryTool* InputQueryer;
             Real WidgetTolorance;
             bool IsMouseWithinWidgetTolorance(UI::Widget* Control);
-            /*void UpdateScrollbar(UI::Scrollbar* Scroll);*/
+            //void UpdateScrollbar(UI::Scrollbar* Scroll);
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.

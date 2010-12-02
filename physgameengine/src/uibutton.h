@@ -75,6 +75,7 @@ namespace phys
                 UIManager* Manager;
                 Gorilla::Sprite* NormalSprite;
                 Gorilla::Sprite* HoveredSprite;
+                Gorilla::Sprite* UserSprite;
                 bool MouseHover;
                 Vector2 RelPosition;
                 Vector2 RelSize;
@@ -107,6 +108,13 @@ namespace phys
                 /// @brief Sets an alternate background image that will be applied when the mouse is over this button.
                 /// @param Name The name of the sprite to set as the alternate background.
                 virtual void SetHoveredSprite(const String& Name);
+                /// @brief Sets an alternate background image that is stored and can be quickly swapped with the active sprite.
+                /// @param Name The name of the sprite to set as the alternate background.
+                virtual void SetUserSprite(const String& Name);
+                /// @brief Enables(or disables) the currently set User sprite.
+                /// @param Enable If true, this will swap the current sprite with the user sprite, if false
+                /// it will swap the User sprite for the normal sprite.
+                virtual void EnableUserSprite(bool Enable);
                 /// @brief Enables a border and sets it's colour.
                 /// @param Colour A colour value representing the colour to be set.
                 virtual void SetBorder(Real Width, ColourValue& Colour);

@@ -45,6 +45,8 @@
 #include "uirectangle.h"
 #include "uicaption.h"
 #include "uiwidget.h"
+#include "uicheckbox.h"
+#include "uimarkuptext.h"
 
 #include "graphicsmanager.h"
 #include "world.h"
@@ -63,6 +65,36 @@ namespace phys
 
     UILayer::~UILayer()
     {
+        while(!Buttons.empty())
+        {
+            UI::Button* button = Buttons.back();
+            delete button;
+            Buttons.pop_back();
+        }
+        while(!Rectangles.empty())
+        {
+            UI::Rectangle* rectangle = Rectangles.back();
+            delete rectangle;
+            Rectangles.pop_back();
+        }
+        while(!Captions.empty())
+        {
+            UI::Caption* caption = Captions.back();
+            delete caption;
+            Captions.pop_back();
+        }
+        while(!MarkupTexts.empty())
+        {
+            UI::MarkupText* markup = MarkupTexts.back();
+            delete markup;
+            MarkupTexts.pop_back();
+        }
+        while(!Widgets.empty())
+        {
+            UI::Widget* widget = Widgets.back();
+            delete widget;
+            Widgets.pop_back();
+        }
         Parent->destroy(GorillaLayer);
     }
 
@@ -98,6 +130,13 @@ namespace phys
         return button;
     }
 
+    UI::TextButton* UILayer::CreateTextButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
+    {
+        UI::TextButton* tbutton = new UI::TextButton(Name, Position, Size, Glyph, Text, this);
+        Buttons.push_back(tbutton);
+        return tbutton;
+    }
+
     UI::Button* UILayer::GetButton(String& Name)
     {
         for ( std::vector<UI::Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
@@ -121,11 +160,16 @@ namespace phys
         return Buttons.size();
     }
 
-    UI::TextButton* UILayer::CreateTextButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
+    void UILayer::DestroyButton(UI::Button* ToBeDestroyed)
     {
-        UI::TextButton* tbutton = new UI::TextButton(Name, Position, Size, Glyph, Text, this);
-        Buttons.push_back(tbutton);
-        return tbutton;
+        for ( std::vector<UI::Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+        {
+            if ( ToBeDestroyed == (*it) )
+            {
+                delete ToBeDestroyed;
+                Buttons.erase(it);
+            }
+        }
     }
 
     UI::Rectangle* UILayer::CreateRectangle(Vector2 Position, Vector2 Size)
@@ -143,6 +187,18 @@ namespace phys
     Whole UILayer::GetNumRectangles()
     {
         return Rectangles.size();
+    }
+
+    void UILayer::DestroyRectangle(UI::Rectangle* ToBeDestroyed)
+    {
+        for ( std::vector<UI::Rectangle*>::iterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
+        {
+            if ( ToBeDestroyed == (*it) )
+            {
+                delete ToBeDestroyed;
+                Rectangles.erase(it);
+            }
+        }
     }
 
     UI::Caption* UILayer::CreateCaption(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
@@ -175,6 +231,60 @@ namespace phys
         return Captions.size();
     }
 
+    void UILayer::DestroyCaption(UI::Caption* ToBeDestroyed)
+    {
+        for ( std::vector<UI::Caption*>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
+        {
+            if ( ToBeDestroyed == (*it) )
+            {
+                delete ToBeDestroyed;
+                Captions.erase(it);
+            }
+        }
+    }
+
+    UI::MarkupText* UILayer::CreateMarkupText(String& Name, Vector2 Position, Whole Glyph, String Text)
+    {
+        UI::MarkupText* markup = new UI::MarkupText(Name,Position,Glyph,Text,this);
+        MarkupTexts.push_back(markup);
+        return markup;
+    }
+
+    UI::MarkupText* UILayer::GetMarkupText(String& Name)
+    {
+        for ( std::vector<UI::MarkupText*>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
+        {
+            if ( Name == (*it)->GetName() )
+            {
+                UI::MarkupText* markup = (*it);
+                return markup;
+            }
+        }
+        return 0;
+    }
+
+    UI::MarkupText* UILayer::GetMarkupText(Whole Index)
+    {
+        return MarkupTexts[Index];
+    }
+
+    Whole UILayer::GetNumMarkupTexts()
+    {
+        return MarkupTexts.size();
+    }
+
+    void UILayer::DestroyMarkupText(UI::MarkupText* ToBeDestroyed)
+    {
+        for ( std::vector<UI::MarkupText*>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
+        {
+            if ( ToBeDestroyed == (*it) )
+            {
+                delete ToBeDestroyed;
+                MarkupTexts.erase(it);
+            }
+        }
+    }
+
     UI::Widget* UILayer::GetWidget(String& Name)
     {
         for ( std::vector<UI::Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
@@ -196,6 +306,33 @@ namespace phys
     Whole UILayer::GetNumWidgets()
     {
         return Widgets.size();
+    }
+
+    void UILayer::DestroyWidget(UI::Widget* ToBeDestroyed)
+    {
+        for ( std::vector<UI::Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+        {
+            if ( ToBeDestroyed == (*it) )
+            {
+                Widgets.erase(it);
+                UI::Widget::WidgetType Type = ToBeDestroyed->GetType();
+                switch (Type)
+                {
+                    case UI::Widget::Scrollbar:
+                    {
+                        UI::Scrollbar* Scroll = static_cast<UI::Scrollbar*> (ToBeDestroyed);
+                        delete Scroll;
+                    }
+                    case UI::Widget::CheckBox:
+                    {
+                        UI::CheckBox* Check = static_cast<UI::CheckBox*> (ToBeDestroyed);
+                        delete Check;
+                    }
+                    default:
+                        return;
+                }
+            }
+        }
     }
 
     UI::Scrollbar* UILayer::CreateScrollbar(String& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style)

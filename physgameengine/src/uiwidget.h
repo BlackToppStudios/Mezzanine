@@ -61,15 +61,19 @@ namespace phys
             public:
                 enum WidgetType
                 {
-                    Scrollbar
+                    Scrollbar,
+                    CheckBox
                 };
             protected:
+                friend class UIManager;
                 UIManager* Manager;
                 UILayer* Parent;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 WidgetType Type;
                 String Name;
+                /// @brief For use with widget update/automation.
+                virtual void Update(bool Force = false) = 0;
             public:
                 /// @brief Standard initialization constructor.
                 /// @param parent The parent layer that created this widget.
@@ -85,7 +89,7 @@ namespace phys
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
                 virtual bool CheckMouseHover() = 0;
-                /// @brief Sets the relative position of this widget in pixels.
+                /// @brief Sets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this widget.
                 virtual void SetPosition(Vector2 Position) = 0;
