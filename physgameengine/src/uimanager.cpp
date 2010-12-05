@@ -57,14 +57,13 @@
 namespace phys
 {
     UIManager::UIManager()
+        : HoveredButton(NULL),
+          HoveredWidget(NULL),
+          WidgetControl(NULL)
     {
         Silver = new Gorilla::Silverback();
         InputQueryer = new InputQueryTool();
         Priority = -35;
-        HoveredButton = NULL;
-        HoveredWidget = NULL;
-        ScrollbarControl = NULL;
-        WidgetTolorance = 0.1;
     }
 
     UIManager::~UIManager()
@@ -73,46 +72,8 @@ namespace phys
         delete Silver;
     }
 
-    bool UIManager::IsMouseWithinWidgetTolorance(UI::Widget* Control)
+    void UIManager::HoverChecks()
     {
-        if(Control==NULL)
-            return false;
-        Vector2 MousePos = InputQueryer->GetMouseCoordinates();
-        Vector2 ActTol = GetWindowDimensions() * WidgetTolorance;
-        Vector2 CSize = Control->GetActualSize();
-        Vector2 CPos = Control->GetActualPosition();
-        bool Horizontal = (MousePos.X > CPos.X - ActTol.X) && (MousePos.X < CPos.X + CSize.X + ActTol.X);
-        bool Vertical = (MousePos.Y > CPos.Y - ActTol.Y) && (MousePos.Y < CPos.Y + CSize.Y + ActTol.Y);
-        if(Horizontal && Vertical)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    /*void UIManager::UpdateScrollbar(UI::Scrollbar* Scroll)
-    {
-        bool MouseHover = ScrollbarControl->CheckMouseHover();
-        if(!MouseHover)
-        {
-            if(IsMouseWithinWidgetTolorance(ScrollbarControl))
-            {
-                ScrollbarControl->Update(true);
-            }else{
-
-            }
-        }else{
-
-        }
-    }*/
-
-    void UIManager::Initialize()
-    {
-    }
-
-    void UIManager::DoMainLoopItems()
-    {
-        InputQueryer->GatherEvents();
         if(HoveredButton)
         {
             if(HoveredButton->CheckMouseHover())
@@ -134,6 +95,38 @@ namespace phys
         }
     }
 
+    void UIManager::WidgetControlUpdate()
+    {
+        if(HoveredWidget || WidgetControl)
+        {
+            MetaCode::ButtonState State = InputQueryer->GetMouseButtonState(1);
+            if(MetaCode::BUTTON_PRESSING == State)
+            {
+                WidgetControl = HoveredWidget;
+            }
+            else if(MetaCode::BUTTON_DOWN == State)
+            {
+                if(HoveredWidget != WidgetControl)
+                    WidgetControl->Update(true);
+            }
+            else if(MetaCode::BUTTON_LIFTING == State)
+            {
+                WidgetControl = NULL;
+            }
+        }
+    }
+
+    void UIManager::Initialize()
+    {
+    }
+
+    void UIManager::DoMainLoopItems()
+    {
+        InputQueryer->GatherEvents();
+        HoverChecks();
+        WidgetControlUpdate();
+    }
+
     void UIManager::LoadGorilla(const String& Name)
     {
         Silver->loadAtlas(Name);
@@ -153,7 +146,7 @@ namespace phys
     {
         Ogre::Viewport* OgrePort = GameWorld->GetCameraManager()->GetOgreViewport(Viewport);
         Gorilla::Screen* guiscreen = Silver->createScreen(OgrePort, Atlas);
-        UIScreen* physscreen = new UIScreen(Screen, guiscreen, this);
+        UIScreen* physscreen = new UIScreen(Screen, guiscreen);
         Screens.push_back(physscreen);
         return physscreen;
     }

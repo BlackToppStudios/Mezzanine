@@ -65,7 +65,7 @@ namespace phys
                     CheckBox
                 };
             protected:
-                friend class UIManager;
+                friend class phys::UIManager;
                 UIManager* Manager;
                 UILayer* Parent;
                 Vector2 RelPosition;

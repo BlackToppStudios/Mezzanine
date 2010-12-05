@@ -55,12 +55,12 @@
 
 namespace phys
 {
-    UILayer::UILayer(const String& name, Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager)
-        : Name(name)
+    UILayer::UILayer(const String& name, Gorilla::Layer* GLayer, Gorilla::Screen* GScreen)
+        : Name(name),
+          GorillaLayer(GLayer),
+          Parent(GScreen)
     {
-        GorillaLayer = GLayer;
-        Parent = GScreen;
-        Manager = manager;
+        Manager = World::GetWorldPointer()->GetUIManager();
     }
 
     UILayer::~UILayer()

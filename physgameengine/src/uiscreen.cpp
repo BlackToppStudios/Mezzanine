@@ -44,15 +44,16 @@
 #include "uimanager.h"
 #include "uilayer.h"
 #include "uibutton.h"
+#include "world.h"
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
-    UIScreen::UIScreen(const String& name, Gorilla::Screen* GScreen, UIManager* manager)
-        : Name(name)
+    UIScreen::UIScreen(const String& name, Gorilla::Screen* GScreen)
+        : Name(name),
+          GorillaScreen(GScreen)
     {
-        GorillaScreen = GScreen;
-        Manager = manager;
+        Manager = World::GetWorldPointer()->GetUIManager();
     }
 
     UIScreen::~UIScreen()
@@ -88,7 +89,7 @@ namespace phys
     UILayer* UIScreen::CreateLayer(const String& Name, Whole Zorder)
     {
         Gorilla::Layer* layer = GorillaScreen->createLayer(Zorder);
-        UILayer* physlayer = new UILayer(Name, layer, this->GorillaScreen, Manager);
+        UILayer* physlayer = new UILayer(Name, layer, this->GorillaScreen);
         Layers.push_back(physlayer);
         return physlayer;
     }

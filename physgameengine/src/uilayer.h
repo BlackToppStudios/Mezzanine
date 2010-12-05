@@ -56,7 +56,7 @@ namespace Gorilla
 
 namespace phys
 {
-    class PHYS_LIB UIManager;
+    class UIManager;
     namespace UI
     {
         class Widget;
@@ -86,10 +86,11 @@ namespace phys
             std::vector<UI::MarkupText*> MarkupTexts;
             std::vector<UI::Widget*> Widgets;
         public:
-            /// @brief Internal constructor
-            /// @param GScreen The Gorilla Layer this Layer is based on.
-            /// @param manager Pointer to the manager this layer belongs to..
-            UILayer(const String& name, Gorilla::Layer* GLayer, Gorilla::Screen* GScreen, UIManager* manager);
+            /// @brief Internal constructor.
+            /// @param name The name of this layer.
+            /// @param GLayer The Gorilla Layer this Layer is based on.
+            /// @param GScreen The gorilla parent screen to this layer.
+            UILayer(const String& name, Gorilla::Layer* GLayer, Gorilla::Screen* GScreen);
             /// @brief Class destructor.
             ~UILayer();
             ///////////////////////////////////////////////////////////////////////////////
