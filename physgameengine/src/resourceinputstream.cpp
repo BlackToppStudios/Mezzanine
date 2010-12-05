@@ -42,7 +42,7 @@
 
 #include "resourceinputstream.h"
 
-#include "ogredatastreambuf.h.cpp"
+#include "internalogredatastreambuf.h.cpp"
 
 #define PHYSDEBUG
 #ifdef PHYSDEBUG

@@ -423,26 +423,57 @@ void LoadContent()
     #ifdef PHYSDEBUG
     TheWorld->Log("Trying to open test.xml and test.txt");
     #endif
-    ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
-    ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
+    {
+        ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+        ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
-    char chararray[401];
-    for (Whole c=0; c<401; c++)
-        { chararray[c]='\0'; }
-    XMLptr->read(chararray, 400);
-    String ShouldHaveXML( chararray );
+        // Test reading by character
+        char chararray[401];
+        for (Whole c=0; c<401; c++)
+            { chararray[c]='\0'; }
+        XMLptr->read(chararray, 400);
+        String ShouldHaveXML( chararray );
 
-    for (Whole c=0; c<401; c++)
-        { chararray[c]='\0'; }
-    Zippedptr->read(chararray, 400);
-    String ZippedFileContents( chararray );
+        for (Whole c=0; c<401; c++)
+            { chararray[c]='\0'; }
+        Zippedptr->read(chararray, 400);
+        String ZippedFileContents( chararray );
 
+        #ifdef PHYSDEBUG
+        TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "ZippedFileContents: " << ZippedFileContents <<endl<< "End XML and zipped stream Logging" << endl ;
+        #endif
 
-    #ifdef PHYSDEBUG
-    TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "ZippedFileContents: " << ZippedFileContents <<endl<< "End XML and zipped stream Logging" << endl ;
-    #endif
-    TheWorld->Log("Delete XML Stream");
-    delete XMLptr;
+        //if the above stuff was logged this should just work
+        if( !XMLptr->good() )
+            { TheWorld->LogAndThrow("XMLptr corrupted/broken by read call"); }
+
+        //this should just work
+        XMLptr->unget();
+        if( !XMLptr->good() )
+            { TheWorld->LogAndThrow("XMLptr corrupted/broken by unget() call"); }
+
+        try
+        {
+            XMLptr->putback('X'); // as in :X
+        }catch (Exception E) {
+            TheWorld->Log( E.what() );
+        }
+
+        delete XMLptr;
+        delete Zippedptr;
+    }
+
+    {
+        #ifdef PHYSDEBUG
+        TheWorld->Log("Testing streaming on test.xml and zipped test.txt, Making fresh set of ");
+        #endif
+
+        ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+        ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
+
+        delete XMLptr;
+        delete Zippedptr;
+    }
 
     // Now Lets make some bowling pins
     Real PinSpacing=75.0;           //This is how far apart we want the pins

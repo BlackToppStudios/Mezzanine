@@ -41,7 +41,7 @@
 #ifndef _ogredatastreambuf_cpp
 #define _ogredatastreambuf_cpp
 
-#include "ogredatastreambuf.h.cpp"
+#include "internalogredatastreambuf.h.cpp"
 #include "exception.h"
 
 // Keeps this file form being documented by doxygen
@@ -85,7 +85,7 @@ namespace phys
             #ifdef PHYSDEBUG
             World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::xsgetn(char* s, std::streamsize n)");
             #endif
-            throw Exception("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
+            throw Exception("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf",false);
         }
 
     }// /internal

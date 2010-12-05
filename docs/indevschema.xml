@@ -1,95 +1,76 @@
 <?xml version="1.0"?>
-<!-- current versions are
 
-indev = The version currently in development. Defined in Docs/indevschema.xml
+  <!-- Everything should be encapsulated incurrent versions are
+  indev = The version currently in development. Defined in Docs/indevschema.xml
+  alpha = The version pitched at Steam
+  Beta = The version outside players first got to try
+  1.0 = First Release			-->
+<level catchversion="indev">
 
-alpha = The version pitched at Steam
-
-Beta = The version outside players first got to try
-
-1.0 = First Release
-
--->
-<level catchversion="indev" />
-
-<PlaneOfPlay>
-
+  <!-- This is used to present information about the level to nongame tools -->
+  <meta>
+  
+    <!-- It may contain and number of screenshot tags. These can be used to display previews of the levels -->
+    <screenshot filename="img.png" />
+    <screenshot filename="img2.jpg" />
+    
+    <description>
+      <!-- This is a description of the level -->
+      This is a sampled XML file, and not actually a level. But we tried.
+    </description>
+  
+  </meta>
+  
+  <PlaneOfPlay>
     <!-- The plane must have some presence on the Z plane. Using -.5 or .5 for Z is a very bad idea. -->
+    <Plane x="0" y="0" z="1" normal="5" />
+    <!-- Two Different ways to define planes, use only one or the other. The plane tag stores the amount of rotation on the x,y and z and then the distance from the origin. Alternatively, and 3 points will rest on only one plane as long as none of the points overlap. The plane must still have some Z presence. -->
+    <Point x="2" y="1" z="-5" />
+    <Point x="1" y="2" z="-5" />
+    <Point x="1" y="1" z="-5" />
+  </PlaneOfPlay>
 
-<Plane x="0" y="0" z="1" normal="5" />
+  <!-- PlayArea This needs to be large enough to include every object and extend slightly past the screen boundaries -->
+  <PlayArea x="1" y="1" z="-5" width="20" height="20" depth="10"/>
 
-<!-- Two Different ways to define planes, use only one or the other. The plane tag stores the amount of rotation on the x,y and z and then the distance from the origin. Alternatively, and 3 points will rest on only one plane as long as none of the points overlap. The plane must still have some Z presence. -->
+  <!-- Gravity Is a default force pulling items in certain directions -->
+  <Gravity x="0" y="-9.8" z="0" />
 
-<Point x="2" y="1" z="-5" />
+  <!-- There are several ways to define a starting areas. For each method of creating a Starting all the attributes shown are required. -->
+  <StartingArea name="somename" type="mesh" x="1" y="1" Model="SomeMeshShape.mesh" />
 
-<Point x="1" y="2" z="-5" />
+  <!-- Anything that needs an X, a Y and a Z will be able to extrapolate it’s Z by using information from the plane of play. The center of the box and ball are used are on the x, y and z-->
+  <StartingArea name="somename1" type="box" x="1" y="1" width="20" height="20" depth="10" />
+  <StartingArea name="somename2" type="ball" x="1" y="10" radius="10" />
 
-<Point x="1" y="1" z="-5" />
+  <!-- The EndingArea tag can be used in all the some way as the StartingArea -->
+  <EndingArea name="somename2" type="ball" x="1" y="10" radius="10" />
 
-</PlaneOfPlay>
+  <!-- Define the location and the position to look at in world coordinates.  The orientation needed to look at that point will be automatically calculated.  Optionally, you can also set the camera to orthographic view.  Orthographic view makes things appear without perspective. -->
+  <camera x="1" y="1" z="-5" looksatx="1" looksaty="1" looksatz="-5" ortho="true" />
 
-<!-- PlayArea This needs to be large enough to include every object and extend slightly past the screen boundaries -->
+  <!--  Actors are used to build the level they have the following attributes:
+  Type: “throwable" for an object that can be thrown and interact with physics and “Terrain" for an object that is stationary
+  Model: the Filename of the 3d mesh to use for the graphics
+  modelresourcegroup: The place to get the Model data from. “Default" to grab from the pool of resources that ship with Catch!, or omit this option to have models come from this level.
+  Shape: the physics shape to load from disk.
+  shaperesourcegroup: Same idea as the modelresource group, but affects the shape attribute instead
+  bounciness: A 0 to 1 number to define bounciness 0 is not bouncy, like a ball of clay, and 1 is perfectly bouncy. Defaults to 0 if unused
+  friction: 1 is will stop immediately when sliding, with 0 is frictionless. This defaults to .25 if unused -->
+  <Actor type="throwable" model="robot.mesh" shape="RobotDecomp3.bullet" x="2" y="2" />
 
-<PlayArea x="1" y="1" z="-5" width="20" height="20" depth="10"/>
+  <!-- If a model is supplied but a shape is not a physicsshapelevel must be provided. This uses the routines to generate physics shapes from graphics data 1 is really rough and 4 is pixel perfect. -->   
+  <Actor type="throwable" model="robot.mesh" physicsshapelevel="1" x="10" y="2" />
+  <Actor type="throwable" model="robot.mesh" physicsshapelevel="4" x="5" y="5" />
+  <Actor type="terrain" modelresourcegroup="default" model="plane.mesh" shape="plane.bullet" shaperesourcegroup="Default" startx="0" starty="0" />
 
-<!-- Gravity I default force pull items in certain directions -->
-
-<Gracity x="0" y="-9.8" z="0" />
-
-<!-- There are several ways to define a starting areas. For each method of creating a Starting all the attributes shown are required. -->
-
-<StartingArea name="somename" type="mesh" x="1" y="1" Model="SomeMeshShape.mesh" />
-
-<!-- Anything that needs an X, a Y and a Z will be able to extrapolate it’s Z by using information from the plane of play. The center of the box and ball are used are on the x, y and z-->
-
-<StartingArea name="somename1" type="box" x="1" y="1" width="20" height="20" depth="10" />
-
-<StartingArea name="somename2" type="ball" x="1" y="10" radius="10" />
-
-    <!-- The EndingArea tag can be used in all the some way as the StartingArea -->
-
-<EndingArea name="somename2" type="ball" x="1" y="10" radius="10" />
-
-<!-- Define the location and the position to look at in world coordinates.  The orientation needed to look at that point will be automatically calculated.  Optionally, you can also set the camera to orthographic view.  Orthographic view makes things appear without perspective. -->
-      <camera x="1" y="1" z="-5" looksatx="1" looksaty="1" looksatz="-5" ortho="true" />
-
-    <!--  Actors are used to build the level they have the following attributes:
-
-Type: “throwable" for an object that can be thrown and interact with physics and “Terrain" for an object that is stationary
-
-Model: the Filename of the 3d mesh to use for the graphics
-
-modelresourcegroup: The place to get the Model data from. “Default" to grab from the pool of resources that ship with Catch!, or omit this option to have models come from this level.
-
-Shape: the physics shape to load from disk.
-
-shaperesourcegroup: Same idea as the modelresource group, but affects the shape attribute instead
-
-bounciness: A 0 to 1 number to define bounciness 0 is not bouncy, like a ball of clay, and 1 is perfectly bouncy. Defaults to 0 if unused
-
-friction: 1 is will stop immediately when sliding, with 0 is frictionless. This defaults to 25 if unused
-
--->
-
-<Actor type="throwable" model="robot.mesh" shape="RobotDecomp3.bullet" x="2" y="2" />
-
-<!-- If a model is supplied but a shape is not a physicsshapelevel must be provided. This uses the routines to generate physics shapes from graphics data 1 is really rough and 4 is pixel perfect. -->   
-       <Actor type="throwable" model="robot.mesh" physicsshapelevel="1" x="10" y="2" />
-       <Actor type="throwable" model="robot.mesh" physicsshapelevel="4" x="5" y="5" />
-       <Actor type="terrain" modelresourcegroup="default" model="plane.mesh" shape="plane.bullet" shaperesourcegroup="Default" startx="0" starty="0" />
-
-   <!-- to Win the game all pieces must be in the ending area
-    EndConditions
-
-EveryThingAtRest - Level Ends when all parts are off stage or so many points a reached
-
-PointsReached - Level Ends when points are above a certain amount (use the PointsEnd attribute to define this.) or the same as EveryThingAtRest
-    WinConditions - The player wins if the game if
-
-StillInPlay - A percentage of the starting area object are still in play (Use the InPlayPercentage Attribute)
-
-PointsReached - When points are above a certain amount (use the PointsWin attribute to define this).
-
--->
-   <goal endcondition="EveryThingAtRest" wincondition="stillinplay" InPlayPercentage="80"/>
+  <!-- to Win the game all pieces must be in the ending area
+  EndConditions
+  EveryThingAtRest - Level Ends when all parts are off stage or so many points a reached
+  PointsReached - Level Ends when points are above a certain amount (use the PointsEnd attribute to define this.) or the same as EveryThingAtRest
+  WinConditions - The player wins if the game if
+  StillInPlay - A percentage of the starting area object are still in play (Use the InPlayPercentage Attribute)
+  PointsReached - When points are above a certain amount (use the PointsWin attribute to define this).		-->
+  <goal endcondition="EveryThingAtRest" wincondition="stillinplay" InPlayPercentage="80"/>
+  
 </level>     
