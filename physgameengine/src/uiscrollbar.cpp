@@ -456,7 +456,7 @@ namespace phys
                 HoveredBack = NULL;
                 if(MetaCode::BUTTON_PRESSING == State || MetaCode::BUTTON_DOWN == State)
                 {
-                    if(HoveredButton == Scroller)
+                    if(HoveredButton == Scroller || Force)
                     {
                         if(MetaCode::BUTTON_PRESSING == State)
                         {

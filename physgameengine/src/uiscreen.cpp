@@ -90,17 +90,23 @@ namespace phys
     {
         Gorilla::Layer* layer = GorillaScreen->createLayer(Zorder);
         UILayer* physlayer = new UILayer(Name, layer, this->GorillaScreen);
-        Layers.push_back(physlayer);
-        return physlayer;
+        std::pair<std::map<Whole,UILayer*>::iterator,bool> TestPair = Layers.insert(std::pair<Whole,UILayer*>(Zorder,physlayer));
+        if(TestPair.second)
+        {
+            return physlayer;
+        }else{
+            /// @todo add an exception here or maybe log entry, some notification it failed.
+            return 0;
+        }
     }
 
     UILayer* UIScreen::GetLayer(const String& Name)
     {
-        for ( std::vector<UILayer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
+        for ( std::map<Whole,UILayer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
         {
-            if ( Name == (*it)->GetName() )
+            if ( Name == (*it).second->GetName() )
             {
-                UILayer* Layer = (*it);
+                UILayer* Layer = (*it).second;
                 return Layer;
             }
         }
@@ -109,7 +115,10 @@ namespace phys
 
     UILayer* UIScreen::GetLayer(Whole Index)
     {
-        return Layers[Index];
+        std::map<Whole,UILayer*>::iterator it = Layers.find(Index);
+        if(it!=Layers.end())
+            return (*it).second;
+        return 0;
     }
 
     Whole UIScreen::GetNumLayers()
@@ -121,11 +130,11 @@ namespace phys
     {
         if(Layers.empty())
             return;
-        for( std::vector<UILayer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
+        for( std::map<Whole,UILayer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
         {
-            if( Layer == (*it) )
+            if( Layer == (*it).second )
             {
-                delete (*it);
+                delete (*it).second;
                 Layers.erase(it);
                 return;
             }
@@ -134,11 +143,11 @@ namespace phys
 
     UI::Button* UIScreen::CheckButtonMouseIsOver()
     {
-        for( Whole x=0 ; x != Layers.size() ; x++ )
+        for( std::map<Whole,UILayer*>::reverse_iterator it = Layers.rbegin() ; it != Layers.rend() ; it++ )
         {
-            if( Layers[x]->GetVisible() )
+            if( (*it).second->GetVisible() )
             {
-                UI::Button* button = Layers[x]->CheckButtonMouseIsOver();
+                UI::Button* button = (*it).second->CheckButtonMouseIsOver();
                 if(button)
                 {
                     return button;
@@ -150,11 +159,11 @@ namespace phys
 
     UI::Widget* UIScreen::CheckWidgetMouseIsOver()
     {
-        for( Whole x=0 ; x != Layers.size() ; x++ )
+        for( std::map<Whole,UILayer*>::reverse_iterator it = Layers.rbegin() ; it != Layers.rend() ; it++ )
         {
-            if( Layers[x]->GetVisible() )
+            if( (*it).second->GetVisible() )
             {
-                UI::Widget* widget = Layers[x]->CheckWidgetMouseIsOver();
+                UI::Widget* widget = (*it).second->CheckWidgetMouseIsOver();
                 if(widget)
                 {
                     return widget;
