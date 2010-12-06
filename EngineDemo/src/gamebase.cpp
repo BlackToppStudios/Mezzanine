@@ -428,15 +428,16 @@ void LoadContent()
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
         // Test reading by character
-        char chararray[401];
-        for (Whole c=0; c<401; c++)
+        Whole Howmany=10000;
+        char chararray[Howmany+1];
+        for (Whole c=0; c<Howmany+1; c++)
             { chararray[c]='\0'; }
-        XMLptr->read(chararray, 400);
+        XMLptr->read(chararray, Howmany);
         String ShouldHaveXML( chararray );
 
-        for (Whole c=0; c<401; c++)
+        for (Whole c=0; c<Howmany+1; c++)
             { chararray[c]='\0'; }
-        Zippedptr->read(chararray, 400);
+        Zippedptr->read(chararray, Howmany);
         String ZippedFileContents( chararray );
 
         #ifdef PHYSDEBUG
@@ -445,12 +446,12 @@ void LoadContent()
 
         //if the above stuff was logged this should just work
         if( !XMLptr->good() )
-            { TheWorld->LogAndThrow("XMLptr corrupted/broken by read call"); }
+            { TheWorld->Log("XMLptr corrupted/broken by read call"); }
 
         //this should just work
         XMLptr->unget();
         if( !XMLptr->good() )
-            { TheWorld->LogAndThrow("XMLptr corrupted/broken by unget() call"); }
+            { TheWorld->Log("XMLptr corrupted/broken by unget() call"); }
 
         try
         {

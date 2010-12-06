@@ -292,19 +292,24 @@ namespace phys
         // Logging
         ///////////////////////////////////////
             /// @brief Runtime Event logging Function
-            /// @details Be careful with this function, even though it appears to be a template, it does not support every data type. If Physgame is
-            /// Compiled as a Shared Object, Dynamic Linked Library, or some other kind of stand alone library It will only support data types
-            /// that are called internally, Currently that list includes: string, char, short int, int, long int, unsigned short int, unsigned int
-            /// unsigned long int, bool, float, double, long double, wchar_t, size_t, Real, Whole, String, Vector3, RawEvent and MetaCode.
-            /// If compiled statically it should support any data type which supports output streams.
             /// @param Message This is what will be streamed to the log
-            template <class T> void PHYS_LIB  Log(T Message);
+            template <class T> void PHYS_LIB  Log(T Message)
+            {
+                static stringstream Converter;          //prepare this for conversions, hopefully only once
+                Converter << Message;
+                this->LogString(Converter.str());
+                Converter.str("");                      //clear it for use the next time this is called
+            }
 
             /// @brief This is the preferred way to throw an exception currently
             /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
             /// type the Log function supports
             /// @param Message This will be streamed to the log, then used in a thrown exception.
             template <class T> void LogAndThrow(T Message);
+
+            /// @brief Log String directly with no conversion
+            /// @param Message The string to log
+            void LogString(const String& message);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Window Management

@@ -52,6 +52,9 @@ namespace phys
     namespace internal
     {
 
+        const String FailWriteNoAccess("Failed to write to readonly stream.");
+        const String FailReadNoAccess("Failed to read from unreadable stream (could be write-only).");
+
         std::streamsize OgreDataStreamBuf::showmanyc (void)
         {
             #ifdef PHYSDEBUG
@@ -77,7 +80,13 @@ namespace phys
             #ifdef PHYSDEBUG
             World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::xsgetn(char* s, std::streamsize n)");
             #endif
-            return this->OgreStream->read(s,n);
+
+            if(this->Readable())
+            {
+                return this->OgreStream->read(s,n);
+            }else{
+                World::GetWorldPointer()->LogAndThrow(FailReadNoAccess);
+            }
         }
 
         std::streamsize OgreDataStreamBuf::xsputn(const char_type*, std::streamsize n)
@@ -86,6 +95,32 @@ namespace phys
             World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::xsgetn(char* s, std::streamsize n)");
             #endif
             throw Exception("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf",false);
+        }
+
+        int OgreDataStreamBuf::underflow()
+        {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::underflow()");
+            #endif
+            return traits_type::eof();
+        }
+
+        int OgreDataStreamBuf::uflow()
+        {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::uflow()");
+            #endif
+            return underflow();
+        }
+
+        bool OgreDataStreamBuf::Readable()
+        {
+            return this->OgreStream->isReadable();
+        }
+
+        bool OgreDataStreamBuf::Writeable()
+        {
+            return this->OgreStream->isWriteable();
         }
 
     }// /internal

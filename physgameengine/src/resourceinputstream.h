@@ -83,8 +83,20 @@ namespace phys
             /// @brief Tears down the Stream, and Delete the Buffer Passed in.
             virtual ~ResourceInputStream();
 
+            /// @brief Can this be read from
+            /// @return A bool true if it can be read from
+            bool Readable();
+
+            /// @brief Can this be written to
+            /// @return A bool true if it can be written to
+            bool Writeable();
+
     };
 
+/*    friend istream& operator<< (istream& Out, T Data)
+    {
+
+    }*/
 }
 
 #endif

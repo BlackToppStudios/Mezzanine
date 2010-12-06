@@ -90,12 +90,28 @@ namespace phys
                 /// @return This returns the amount of characters retrieved
                 virtual std::streamsize xsgetn(char* s, std::streamsize n);
 
-                /// @brief puts a sequence of characters in
+                /// @brief Puts a sequence of characters in
                 /// @param s a Pointer to the characters
                 /// @param n How many characters
                 /// @return This returns the amount of characters inserted
                 /// @detail currently unimplimented
                 virtual std::streamsize xsputn(const char_type*, std::streamsize n);
+
+                /// @brief Can in theory be called by read operations, but probably wont because of our xsgetn implemention
+                /// @return always returns EOF
+                virtual int underflow();
+
+                /// @brief Calls underflow()
+                /// @return whatever underflow() returns.
+                virtual int uflow();
+
+                /// @brief Can this be read from
+                /// @return A bool true if it can be read from
+                bool Readable();
+
+                /// @brief Can this be written to
+                /// @return A bool true if it can be written to
+                bool Writeable();
         };
     }// /internal
 }// /phys

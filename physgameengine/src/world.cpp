@@ -311,24 +311,31 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     //appends to the gamelog which is managed by Ogre
-    template <class T> void World::Log(T Message)
+/*    template <class T> void World::Log(T Message)
     {
         static stringstream Converter;
 
+        Converter << this->LogStream.str() << Message;
+
+        this->LogStream.str("");
+        Ogre::LogManager::getSingleton().logMessage(Converter.str());
+        Converter.str("");
+    }
+*/
+    void World::LogString(const String& Message)
+    {
         static std::stringstream* Audiolog = 0;
         if (0 == Audiolog)
         {
             Audiolog = this->GetSoundManager()->GetLogs();
         }else{
-            Converter << Audiolog->str();
+            Ogre::LogManager::getSingleton().logMessage(Audiolog->str());
             Audiolog->str("");
         }
 
-        Converter << this->LogStream.str() << Message;
-        this->LogStream.str("");
-        Ogre::LogManager::getSingleton().logMessage(Converter.str());
-        Converter.str("");
+        Ogre::LogManager::getSingleton().logMessage(Message);
     }
+
 
     template <class T> void World::LogAndThrow(T Message)
     {

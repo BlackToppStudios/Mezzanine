@@ -74,6 +74,16 @@ namespace phys
         #endif
 
     }
+
+    bool ResourceInputStream::Readable()
+    {
+        return this->OgreBuffer->Readable();
+    }
+
+    bool ResourceInputStream::Writeable()
+    {
+        return this->OgreBuffer->Writeable();
+    }
 }
 
 #endif
