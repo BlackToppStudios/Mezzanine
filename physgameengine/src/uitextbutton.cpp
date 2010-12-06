@@ -52,6 +52,7 @@ namespace phys
         TextButton::TextButton(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
             : Button(name,Position,Size,Layer)
         {
+            IsText = true;
             GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,GorillaRectangle->left(),GorillaRectangle->top(),Text);
             GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
             GorillaButton->background(Ogre::ColourValue(0,0,0,0));
