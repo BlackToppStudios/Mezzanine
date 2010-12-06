@@ -1,0 +1,836 @@
+\hypertarget{classphys_1_1UILayer}{
+\section{phys::UILayer Class Reference}
+\label{da/d48/classphys_1_1UILayer}\index{phys::UILayer@{phys::UILayer}}
+}
+
+
+This class is the basic container class for UI elements.  
+
+
+
+
+{\ttfamily \#include $<$uilayer.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UILayer_aee4df9be8deb377bc7905c785ddf2819}{UILayer} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, Gorilla::Layer $\ast$GLayer, Gorilla::Screen $\ast$GScreen)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UILayer_ac09b13a0ebae1a2ed99f689c70ada5e5}{
+\hyperlink{classphys_1_1UILayer_ac09b13a0ebae1a2ed99f689c70ada5e5}{$\sim$UILayer} ()}
+\label{da/d48/classphys_1_1UILayer_ac09b13a0ebae1a2ed99f689c70ada5e5}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1UILayer_af69573dd43356fa8cf1672ac405f788e}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this layer. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UILayer_a466e35a0362e5f8f47c35e646075432c}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the layers' visability. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1UILayer_a2d4aaa7627339d7139d7a453ccf55ade}{GetVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the layers' visability. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UILayer_abb27a523942cd5502cadce7fd6c45870}{
+void \hyperlink{classphys_1_1UILayer_abb27a523942cd5502cadce7fd6c45870}{Show} ()}
+\label{da/d48/classphys_1_1UILayer_abb27a523942cd5502cadce7fd6c45870}
+
+\begin{DoxyCompactList}\small\item\em Forces the layer to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UILayer_a9ebf49907574502a39a5d08450b78af6}{
+void \hyperlink{classphys_1_1UILayer_a9ebf49907574502a39a5d08450b78af6}{Hide} ()}
+\label{da/d48/classphys_1_1UILayer_a9ebf49907574502a39a5d08450b78af6}
+
+\begin{DoxyCompactList}\small\item\em Forces the layer to hide. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UILayer_ae9f610485bcd45f2ef48813f06304182}{CreateButton} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Creates a button within this layer. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1TextButton}{UI::TextButton} $\ast$ \hyperlink{classphys_1_1UILayer_a000fdc8f6aa413798f368409125cbd34}{CreateTextButton} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Text)
+\begin{DoxyCompactList}\small\item\em Creates a text button within this layer. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UILayer_a2d6e9b80e09b8287b72faffeb13e6d43}{GetButton} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created button by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UILayer_a98acc74c401ba1b28c53f1ea8966b950}{GetButton} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created button by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UILayer_a07ff0fc6febb6704f6cf78aa5b7a6fb9}{GetNumButtons} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of buttons created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UILayer_a8bb2f42fed52d5776d16911ffc4435ee}{DestroyButton} (\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a button. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Rectangle}{UI::Rectangle} $\ast$ \hyperlink{classphys_1_1UILayer_ac3a40183555b370737d6f6954ea0f8e3}{CreateRectangle} (\hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Creates a rectangle within this layer. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Rectangle}{UI::Rectangle} $\ast$ \hyperlink{classphys_1_1UILayer_afb2b94ddabf0cce255dbd82d4e8a9312}{GetRectangle} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created rectangle by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UILayer_a42ad4ae8ba37db911270a3b1950b9814}{GetNumRectangles} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of rectangles created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UILayer_a4342bebb6cd81518268beb658668b438}{DestroyRectangle} (\hyperlink{classphys_1_1UI_1_1Rectangle}{UI::Rectangle} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a rectangle. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Caption}{UI::Caption} $\ast$ \hyperlink{classphys_1_1UILayer_ad7675adfc312bcb6a79703f88f7d6ed1}{CreateCaption} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Text)
+\begin{DoxyCompactList}\small\item\em Creates a caption within this layer. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Caption}{UI::Caption} $\ast$ \hyperlink{classphys_1_1UILayer_a4c0992c816863e5b7673d8e8b6f04931}{GetCaption} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created caption by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Caption}{UI::Caption} $\ast$ \hyperlink{classphys_1_1UILayer_a0f087439496766594aa3f94a8ef2ec2b}{GetCaption} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created caption by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UILayer_a76b9f48b8b40c4e933dc1f3cf624ffbc}{GetNumCaptions} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of captions created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UILayer_a5c0ac9bd2b2c41178ccde42812e39210}{DestroyCaption} (\hyperlink{classphys_1_1UI_1_1Caption}{UI::Caption} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a caption. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MarkupText}{UI::MarkupText} $\ast$ \hyperlink{classphys_1_1UILayer_a773435348a970d922f4022a0c5a7959f}{CreateMarkupText} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Text)
+\begin{DoxyCompactList}\small\item\em Creates a markup text within this layer. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MarkupText}{UI::MarkupText} $\ast$ \hyperlink{classphys_1_1UILayer_a61f5b816aa768a515cb3d31ab2b2088c}{GetMarkupText} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created markup text by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MarkupText}{UI::MarkupText} $\ast$ \hyperlink{classphys_1_1UILayer_a2f40efc62324c5d2d5c1282f2ea6088d}{GetMarkupText} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created markup text by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UILayer_a80f4761638d701d8767ad1c0f769985a}{GetNumMarkupTexts} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of markup texts created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UILayer_a75d488037b5bcc97e88249de10ba1d64}{DestroyMarkupText} (\hyperlink{classphys_1_1UI_1_1MarkupText}{UI::MarkupText} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a markup text. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UILayer_ab5389a6ec5d5d534f7da852819fbc71b}{GetWidget} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created widget by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UILayer_ab16bb514422f10dab03dca0a6f269a66}{GetWidget} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created widget by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UILayer_aa745147022b7f78cdc5bccca57985459}{GetNumWidgets} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of widgets created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UILayer_a5c8d3069ecbc38669251532dc5860e5e}{DestroyWidget} (\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a widget. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Scrollbar}{UI::Scrollbar} $\ast$ \hyperlink{classphys_1_1UILayer_aa76c7da9eff4981dc48133d5f29ef6e7}{CreateScrollbar} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, UI::Scrollbar::BarStyle Style)
+\begin{DoxyCompactList}\small\item\em Creates a Scrollbar within this layer. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UILayer_ac28c19dea53d2b89c5c09a2e29ce8c6d}{CheckButtonMouseIsOver} ()
+\begin{DoxyCompactList}\small\item\em Gets the button the mouse is over if any. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UILayer_ae121ca4d2ebb6fec7351a5c1eaab3dfc}{CheckWidgetMouseIsOver} ()
+\begin{DoxyCompactList}\small\item\em Gets the widget the mouse is over if any. \item\end{DoxyCompactList}\item 
+Gorilla::Layer $\ast$ \hyperlink{classphys_1_1UILayer_a0f1d04779794d4401714b0d8fa90cab5}{GetGorillaLayer} ()
+\begin{DoxyCompactList}\small\item\em Gets the internal gorilla layer pointer. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UILayer_ac1cfdc64e509e8bf94b10844655ebb6c}{
+Gorilla::Layer $\ast$ {\bfseries GorillaLayer}}
+\label{da/d48/classphys_1_1UILayer_ac1cfdc64e509e8bf94b10844655ebb6c}
+
+\item 
+\hypertarget{classphys_1_1UILayer_a3da8314d7bcab7a0261100969d636abf}{
+Gorilla::Screen $\ast$ {\bfseries Parent}}
+\label{da/d48/classphys_1_1UILayer_a3da8314d7bcab7a0261100969d636abf}
+
+\item 
+\hypertarget{classphys_1_1UILayer_aa6c5cb17111c680c1af20d734dd0a3d7}{
+\hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
+\label{da/d48/classphys_1_1UILayer_aa6c5cb17111c680c1af20d734dd0a3d7}
+
+\item 
+\hypertarget{classphys_1_1UILayer_a26df3b08c7bdcb07eeb9f0633c8d2df8}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
+\label{da/d48/classphys_1_1UILayer_a26df3b08c7bdcb07eeb9f0633c8d2df8}
+
+\item 
+\hypertarget{classphys_1_1UILayer_ae2a7d6dfb30eff9bec40b6a1a208dae3}{
+std::vector$<$ \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ $>$ {\bfseries Buttons}}
+\label{da/d48/classphys_1_1UILayer_ae2a7d6dfb30eff9bec40b6a1a208dae3}
+
+\item 
+\hypertarget{classphys_1_1UILayer_a5b08f8ae240427c00bba64e544f6d8dd}{
+std::vector$<$ \hyperlink{classphys_1_1UI_1_1Rectangle}{UI::Rectangle} $\ast$ $>$ {\bfseries Rectangles}}
+\label{da/d48/classphys_1_1UILayer_a5b08f8ae240427c00bba64e544f6d8dd}
+
+\item 
+\hypertarget{classphys_1_1UILayer_aa895120d4197d7e255bb6db2eaaa84d7}{
+std::vector$<$ \hyperlink{classphys_1_1UI_1_1Caption}{UI::Caption} $\ast$ $>$ {\bfseries Captions}}
+\label{da/d48/classphys_1_1UILayer_aa895120d4197d7e255bb6db2eaaa84d7}
+
+\item 
+\hypertarget{classphys_1_1UILayer_a3b9913fb2f4142d3d52c899b4347b843}{
+std::vector$<$ \hyperlink{classphys_1_1UI_1_1MarkupText}{UI::MarkupText} $\ast$ $>$ {\bfseries MarkupTexts}}
+\label{da/d48/classphys_1_1UILayer_a3b9913fb2f4142d3d52c899b4347b843}
+
+\item 
+\hypertarget{classphys_1_1UILayer_a21707b7751f5184986eb3d73de2581b5}{
+std::vector$<$ \hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ $>$ {\bfseries Widgets}}
+\label{da/d48/classphys_1_1UILayer_a21707b7751f5184986eb3d73de2581b5}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class is the basic container class for UI elements. A layer is a container for widgets and other UI elements that are visable. 
+
+Definition at line 76 of file uilayer.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UILayer_aee4df9be8deb377bc7905c785ddf2819}{
+\index{phys::UILayer@{phys::UILayer}!UILayer@{UILayer}}
+\index{UILayer@{UILayer}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{UILayer}]{\setlength{\rightskip}{0pt plus 5cm}phys::UILayer::UILayer (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ name, }
+\item[{Gorilla::Layer $\ast$}]{ GLayer, }
+\item[{Gorilla::Screen $\ast$}]{ GScreen}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_aee4df9be8deb377bc7905c785ddf2819}
+
+
+Internal constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em name}]The name of this layer. \item[{\em GLayer}]The Gorilla Layer this Layer is based on. \item[{\em GScreen}]The gorilla parent screen to this layer. \end{DoxyParams}
+
+
+Definition at line 58 of file uilayer.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1UILayer_ac28c19dea53d2b89c5c09a2e29ce8c6d}{
+\index{phys::UILayer@{phys::UILayer}!CheckButtonMouseIsOver@{CheckButtonMouseIsOver}}
+\index{CheckButtonMouseIsOver@{CheckButtonMouseIsOver}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{CheckButtonMouseIsOver}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Button} $\ast$ phys::UILayer::CheckButtonMouseIsOver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_ac28c19dea53d2b89c5c09a2e29ce8c6d}
+
+
+Gets the button the mouse is over if any. 
+
+This function searches only the buttons contained in this layer. \begin{DoxyReturn}{Returns}
+Returns the button the mouse is over, or NULL if there are none. 
+\end{DoxyReturn}
+
+
+Definition at line 345 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_ae121ca4d2ebb6fec7351a5c1eaab3dfc}{
+\index{phys::UILayer@{phys::UILayer}!CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}}
+\index{CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{CheckWidgetMouseIsOver}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Widget} $\ast$ phys::UILayer::CheckWidgetMouseIsOver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_ae121ca4d2ebb6fec7351a5c1eaab3dfc}
+
+
+Gets the widget the mouse is over if any. 
+
+This function searches only the widgets contained in this layer. \begin{DoxyReturn}{Returns}
+Returns the widget the mouse is over, or NULL if there are none. 
+\end{DoxyReturn}
+
+
+Definition at line 361 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_ae9f610485bcd45f2ef48813f06304182}{
+\index{phys::UILayer@{phys::UILayer}!CreateButton@{CreateButton}}
+\index{CreateButton@{CreateButton}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{CreateButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Button} $\ast$ phys::UILayer::CreateButton (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_ae9f610485bcd45f2ef48813f06304182}
+
+
+Creates a button within this layer. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the button. \item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the Button. \end{DoxyParams}
+
+
+Definition at line 126 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_ad7675adfc312bcb6a79703f88f7d6ed1}{
+\index{phys::UILayer@{phys::UILayer}!CreateCaption@{CreateCaption}}
+\index{CreateCaption@{CreateCaption}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{CreateCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Caption} $\ast$ phys::UILayer::CreateCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Whole}}]{ Glyph, }
+\item[{{\bf String}}]{ Text}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_ad7675adfc312bcb6a79703f88f7d6ed1}
+
+
+Creates a caption within this layer. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created caption. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of this caption. \item[{\em Position}]The top left position of the caption. \item[{\em Size}]The size of the Button. \item[{\em Glyph}]One of the glyphs specified in your gorilla file. Must be valid. \item[{\em Text}]Any text you want printed on the caption. \end{DoxyParams}
+
+
+Definition at line 204 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a773435348a970d922f4022a0c5a7959f}{
+\index{phys::UILayer@{phys::UILayer}!CreateMarkupText@{CreateMarkupText}}
+\index{CreateMarkupText@{CreateMarkupText}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{CreateMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::MarkupText} $\ast$ phys::UILayer::CreateMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Whole}}]{ Glyph, }
+\item[{{\bf String}}]{ Text}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a773435348a970d922f4022a0c5a7959f}
+
+
+Creates a markup text within this layer. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created markup text. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of this markup text. \item[{\em Position}]The top left position of the markup text. \item[{\em Glyph}]One of the glyphs specified in your gorilla file. Must be valid. \item[{\em Text}]Any text you want printed on the markup text. \end{DoxyParams}
+
+
+Definition at line 246 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_ac3a40183555b370737d6f6954ea0f8e3}{
+\index{phys::UILayer@{phys::UILayer}!CreateRectangle@{CreateRectangle}}
+\index{CreateRectangle@{CreateRectangle}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{CreateRectangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Rectangle} $\ast$ phys::UILayer::CreateRectangle (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_ac3a40183555b370737d6f6954ea0f8e3}
+
+
+Creates a rectangle within this layer. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \par
+ Rectangles are innately put behind all captions, so z-\/order is not necessary. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the Button. \end{DoxyParams}
+
+
+Definition at line 175 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_aa76c7da9eff4981dc48133d5f29ef6e7}{
+\index{phys::UILayer@{phys::UILayer}!CreateScrollbar@{CreateScrollbar}}
+\index{CreateScrollbar@{CreateScrollbar}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{CreateScrollbar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Scrollbar} $\ast$ phys::UILayer::CreateScrollbar (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{UI::Scrollbar::BarStyle}]{ Style}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_aa76c7da9eff4981dc48133d5f29ef6e7}
+
+
+Creates a Scrollbar within this layer. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created Scrollbar. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the Scrollbar. \item[{\em Position}]The top left position of the Scrollbar. \item[{\em Size}]The size of the Scrollbar. \item[{\em Style}]The style of scrollbar you want to create, see Scrollbar documentation for more details. \end{DoxyParams}
+
+
+Definition at line 338 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a000fdc8f6aa413798f368409125cbd34}{
+\index{phys::UILayer@{phys::UILayer}!CreateTextButton@{CreateTextButton}}
+\index{CreateTextButton@{CreateTextButton}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{CreateTextButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::TextButton} $\ast$ phys::UILayer::CreateTextButton (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Whole}}]{ Glyph, }
+\item[{{\bf String}}]{ Text}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a000fdc8f6aa413798f368409125cbd34}
+
+
+Creates a text button within this layer. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the button. \item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the Button. \item[{\em Glyph}]One of the glyphs specified in your gorilla file. Must be valid. \item[{\em Text}]Any text you want printed on the button. \end{DoxyParams}
+
+
+Definition at line 133 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a8bb2f42fed52d5776d16911ffc4435ee}{
+\index{phys::UILayer@{phys::UILayer}!DestroyButton@{DestroyButton}}
+\index{DestroyButton@{DestroyButton}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{DestroyButton}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UILayer::DestroyButton (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Button} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a8bb2f42fed52d5776d16911ffc4435ee}
+
+
+Destroys a button. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the button you want destroyed. \end{DoxyParams}
+
+
+Definition at line 163 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a5c0ac9bd2b2c41178ccde42812e39210}{
+\index{phys::UILayer@{phys::UILayer}!DestroyCaption@{DestroyCaption}}
+\index{DestroyCaption@{DestroyCaption}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{DestroyCaption}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UILayer::DestroyCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Caption} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a5c0ac9bd2b2c41178ccde42812e39210}
+
+
+Destroys a caption. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the caption you want destroyed. \end{DoxyParams}
+
+
+Definition at line 234 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a75d488037b5bcc97e88249de10ba1d64}{
+\index{phys::UILayer@{phys::UILayer}!DestroyMarkupText@{DestroyMarkupText}}
+\index{DestroyMarkupText@{DestroyMarkupText}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{DestroyMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UILayer::DestroyMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::MarkupText} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a75d488037b5bcc97e88249de10ba1d64}
+
+
+Destroys a markup text. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the markup text you want destroyed. \end{DoxyParams}
+
+
+Definition at line 276 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a4342bebb6cd81518268beb658668b438}{
+\index{phys::UILayer@{phys::UILayer}!DestroyRectangle@{DestroyRectangle}}
+\index{DestroyRectangle@{DestroyRectangle}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{DestroyRectangle}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UILayer::DestroyRectangle (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Rectangle} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a4342bebb6cd81518268beb658668b438}
+
+
+Destroys a rectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the rectangle you want destroyed. \end{DoxyParams}
+
+
+Definition at line 192 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a5c8d3069ecbc38669251532dc5860e5e}{
+\index{phys::UILayer@{phys::UILayer}!DestroyWidget@{DestroyWidget}}
+\index{DestroyWidget@{DestroyWidget}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{DestroyWidget}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UILayer::DestroyWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Widget} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a5c8d3069ecbc38669251532dc5860e5e}
+
+
+Destroys a widget. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the widget you want destroyed. \end{DoxyParams}
+
+
+Definition at line 311 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a98acc74c401ba1b28c53f1ea8966b950}{
+\index{phys::UILayer@{phys::UILayer}!GetButton@{GetButton}}
+\index{GetButton@{GetButton}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Button} $\ast$ phys::UILayer::GetButton (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a98acc74c401ba1b28c53f1ea8966b950}
+
+
+Gets an already created button by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 153 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a2d6e9b80e09b8287b72faffeb13e6d43}{
+\index{phys::UILayer@{phys::UILayer}!GetButton@{GetButton}}
+\index{GetButton@{GetButton}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Button} $\ast$ phys::UILayer::GetButton (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Name}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a2d6e9b80e09b8287b72faffeb13e6d43}
+
+
+Gets an already created button by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 140 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a4c0992c816863e5b7673d8e8b6f04931}{
+\index{phys::UILayer@{phys::UILayer}!GetCaption@{GetCaption}}
+\index{GetCaption@{GetCaption}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Caption} $\ast$ phys::UILayer::GetCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Name}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a4c0992c816863e5b7673d8e8b6f04931}
+
+
+Gets an already created caption by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the caption of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 211 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a0f087439496766594aa3f94a8ef2ec2b}{
+\index{phys::UILayer@{phys::UILayer}!GetCaption@{GetCaption}}
+\index{GetCaption@{GetCaption}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Caption} $\ast$ phys::UILayer::GetCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a0f087439496766594aa3f94a8ef2ec2b}
+
+
+Gets an already created caption by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the caption at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 224 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a0f1d04779794d4401714b0d8fa90cab5}{
+\index{phys::UILayer@{phys::UILayer}!GetGorillaLayer@{GetGorillaLayer}}
+\index{GetGorillaLayer@{GetGorillaLayer}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetGorillaLayer}]{\setlength{\rightskip}{0pt plus 5cm}Gorilla::Layer $\ast$ phys::UILayer::GetGorillaLayer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a0f1d04779794d4401714b0d8fa90cab5}
+
+
+Gets the internal gorilla layer pointer. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 377 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a61f5b816aa768a515cb3d31ab2b2088c}{
+\index{phys::UILayer@{phys::UILayer}!GetMarkupText@{GetMarkupText}}
+\index{GetMarkupText@{GetMarkupText}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::MarkupText} $\ast$ phys::UILayer::GetMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Name}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a61f5b816aa768a515cb3d31ab2b2088c}
+
+
+Gets an already created markup text by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the markup text of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 253 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a2f40efc62324c5d2d5c1282f2ea6088d}{
+\index{phys::UILayer@{phys::UILayer}!GetMarkupText@{GetMarkupText}}
+\index{GetMarkupText@{GetMarkupText}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::MarkupText} $\ast$ phys::UILayer::GetMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a2f40efc62324c5d2d5c1282f2ea6088d}
+
+
+Gets an already created markup text by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the markup text at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 266 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_af69573dd43356fa8cf1672ac405f788e}{
+\index{phys::UILayer@{phys::UILayer}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::UILayer::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_af69573dd43356fa8cf1672ac405f788e}
+
+
+Gets the name of this layer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of this layer. 
+\end{DoxyReturn}
+
+
+Definition at line 101 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a07ff0fc6febb6704f6cf78aa5b7a6fb9}{
+\index{phys::UILayer@{phys::UILayer}!GetNumButtons@{GetNumButtons}}
+\index{GetNumButtons@{GetNumButtons}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetNumButtons}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UILayer::GetNumButtons (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a07ff0fc6febb6704f6cf78aa5b7a6fb9}
+
+
+Gets the number of buttons created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of buttons this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 158 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a76b9f48b8b40c4e933dc1f3cf624ffbc}{
+\index{phys::UILayer@{phys::UILayer}!GetNumCaptions@{GetNumCaptions}}
+\index{GetNumCaptions@{GetNumCaptions}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetNumCaptions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UILayer::GetNumCaptions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a76b9f48b8b40c4e933dc1f3cf624ffbc}
+
+
+Gets the number of captions created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of captions this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 229 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a80f4761638d701d8767ad1c0f769985a}{
+\index{phys::UILayer@{phys::UILayer}!GetNumMarkupTexts@{GetNumMarkupTexts}}
+\index{GetNumMarkupTexts@{GetNumMarkupTexts}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetNumMarkupTexts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UILayer::GetNumMarkupTexts (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a80f4761638d701d8767ad1c0f769985a}
+
+
+Gets the number of markup texts created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of markup texts this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 271 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a42ad4ae8ba37db911270a3b1950b9814}{
+\index{phys::UILayer@{phys::UILayer}!GetNumRectangles@{GetNumRectangles}}
+\index{GetNumRectangles@{GetNumRectangles}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetNumRectangles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UILayer::GetNumRectangles (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a42ad4ae8ba37db911270a3b1950b9814}
+
+
+Gets the number of rectangles created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of rectangles this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 187 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_aa745147022b7f78cdc5bccca57985459}{
+\index{phys::UILayer@{phys::UILayer}!GetNumWidgets@{GetNumWidgets}}
+\index{GetNumWidgets@{GetNumWidgets}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetNumWidgets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UILayer::GetNumWidgets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_aa745147022b7f78cdc5bccca57985459}
+
+
+Gets the number of widgets created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of widgets this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 306 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_afb2b94ddabf0cce255dbd82d4e8a9312}{
+\index{phys::UILayer@{phys::UILayer}!GetRectangle@{GetRectangle}}
+\index{GetRectangle@{GetRectangle}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetRectangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Rectangle} $\ast$ phys::UILayer::GetRectangle (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_afb2b94ddabf0cce255dbd82d4e8a9312}
+
+
+Gets an already created rectangle by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the rectangle at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a2d4aaa7627339d7139d7a453ccf55ade}{
+\index{phys::UILayer@{phys::UILayer}!GetVisible@{GetVisible}}
+\index{GetVisible@{GetVisible}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UILayer::GetVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a2d4aaa7627339d7139d7a453ccf55ade}
+
+
+Gets the layers' visability. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visability of the layer. 
+\end{DoxyReturn}
+
+
+Definition at line 111 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_ab16bb514422f10dab03dca0a6f269a66}{
+\index{phys::UILayer@{phys::UILayer}!GetWidget@{GetWidget}}
+\index{GetWidget@{GetWidget}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetWidget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Widget} $\ast$ phys::UILayer::GetWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_ab16bb514422f10dab03dca0a6f269a66}
+
+
+Gets an already created widget by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the widget at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 301 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_ab5389a6ec5d5d534f7da852819fbc71b}{
+\index{phys::UILayer@{phys::UILayer}!GetWidget@{GetWidget}}
+\index{GetWidget@{GetWidget}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{GetWidget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Widget} $\ast$ phys::UILayer::GetWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Name}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_ab5389a6ec5d5d534f7da852819fbc71b}
+
+
+Gets an already created widget by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the widget of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 288 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a466e35a0362e5f8f47c35e646075432c}{
+\index{phys::UILayer@{phys::UILayer}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UILayer::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{ Visible}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a466e35a0362e5f8f47c35e646075432c}
+
+
+Sets the layers' visability. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Visable}]A bool representing the visability of the layer. \end{DoxyParams}
+
+
+Definition at line 106 of file uilayer.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uilayer.h\item 
+uilayer.cpp\end{DoxyCompactItemize}

@@ -14,13 +14,13 @@ A simple Actor Container using a vector.
 Inheritance diagram for phys::ActorContainerVector:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3cm]{d3/d64/classphys_1_1ActorContainerVector}
+\includegraphics[height=3.000000cm]{d3/d64/classphys_1_1ActorContainerVector}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1ActorContainerVector_a65a17a06bc964c2b5f04a8dbb003622a}{ActorContainerVector} (\hyperlink{classphys_1_1World}{World} $\ast$Parent\_\-)
+\hyperlink{classphys_1_1ActorContainerVector_aa7e519db8f7247deb934cd98af66ba6b}{ActorContainerVector} ()
 \begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorContainerVector_a4bc3e38f16caddee021a97739bebaf6e}{AddActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)
 \begin{DoxyCompactList}\small\item\em This will add an Actor to this container and the world. \item\end{DoxyCompactList}\item 
@@ -74,24 +74,25 @@ vector$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$::iterator \hy
 \subsection{Detailed Description}
 A simple Actor Container using a vector. This inherits from std::vector and our \hyperlink{classphys_1_1ActorContainerBase}{phys::ActorContainerBase} to allow us to have access to a container through a standardized structure this way the phys::world doesn't need to worry about the details when accessing and storing actors 
 
-Definition at line 62 of file actorcontainervector.h.
+Definition at line 64 of file actorcontainervector.h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1ActorContainerVector_a65a17a06bc964c2b5f04a8dbb003622a}{
+\hypertarget{classphys_1_1ActorContainerVector_aa7e519db8f7247deb934cd98af66ba6b}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!ActorContainerVector@{ActorContainerVector}}
 \index{ActorContainerVector@{ActorContainerVector}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{ActorContainerVector}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorContainerVector::ActorContainerVector ({\bf World} $\ast$ {\em Parent\_\-})}}
-\label{d3/d64/classphys_1_1ActorContainerVector_a65a17a06bc964c2b5f04a8dbb003622a}
+\subsubsection[{ActorContainerVector}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorContainerVector::ActorContainerVector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d3/d64/classphys_1_1ActorContainerVector_aa7e519db8f7247deb934cd98af66ba6b}
 
 
 Simple Constructor. 
 
 This creates and empty usable container based on std::vector. 
-\begin{DoxyParams}{Parameters}
-\item[{\em Parent\_\-}]this is a Pointer to the \hyperlink{classphys_1_1World}{phys::World} that will be using these actors. \end{DoxyParams}
-
 
 Definition at line 45 of file actorcontainervector.cpp.
 
@@ -101,7 +102,11 @@ Definition at line 45 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_a4bc3e38f16caddee021a97739bebaf6e}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!AddActor@{AddActor}}
 \index{AddActor@{AddActor}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{AddActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::AddActor ({\bf ActorBase} $\ast$ {\em ActorToAdd})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{AddActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::AddActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ ActorToAdd}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a4bc3e38f16caddee021a97739bebaf6e}
 
 
@@ -125,7 +130,11 @@ Definition at line 48 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_ad9c2eb2a9405dcf687c86745afc9c031}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToFirst@{CursorToFirst}}
 \index{CursorToFirst@{CursorToFirst}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{CursorToFirst}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::CursorToFirst ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{CursorToFirst}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::CursorToFirst (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_ad9c2eb2a9405dcf687c86745afc9c031}
 
 
@@ -142,7 +151,11 @@ Definition at line 77 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_aa6b08266bbb57a22c07ab50514e58db4}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToLast@{CursorToLast}}
 \index{CursorToLast@{CursorToLast}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{CursorToLast}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::CursorToLast ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{CursorToLast}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::CursorToLast (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_aa6b08266bbb57a22c07ab50514e58db4}
 
 
@@ -159,7 +172,11 @@ Definition at line 103 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_a1c72366a6261d8e98dc0a9d2fad9f70f}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToNext@{CursorToNext}}
 \index{CursorToNext@{CursorToNext}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{CursorToNext}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::CursorToNext ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{CursorToNext}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::CursorToNext (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a1c72366a6261d8e98dc0a9d2fad9f70f}
 
 
@@ -176,7 +193,11 @@ Definition at line 94 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b04a8805a002413}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!CursorToPrevious@{CursorToPrevious}}
 \index{CursorToPrevious@{CursorToPrevious}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{CursorToPrevious}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::CursorToPrevious ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{CursorToPrevious}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::CursorToPrevious (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b04a8805a002413}
 
 
@@ -193,7 +214,11 @@ Definition at line 85 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_a883e59ac1674421bac143088a6cf07c8}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!DoMainLoopItems@{DoMainLoopItems}}
 \index{DoMainLoopItems@{DoMainLoopItems}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::DoMainLoopItems ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a883e59ac1674421bac143088a6cf07c8}
 
 
@@ -207,33 +232,14 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd04
 
 Definition at line 190 of file actorcontainervector.cpp.
 
-\hypertarget{classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}{
-\index{phys::ActorContainerVector@{phys::ActorContainerVector}!FindActor@{FindActor}}
-\index{FindActor@{FindActor}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::FindActor ({\bf String} {\em Name})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d3/d64/classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}
-
-
-This finds an actor based on its name. 
-
-This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time. \begin{DoxyReturn}{Returns}
-This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that has a matching name. 
-\end{DoxyReturn}
-
-\begin{DoxyParams}{Parameters}
-\item[{\em Name}]This is the name of the Actor you want to find. \end{DoxyParams}
-
-
-Implements \hyperlink{classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}{phys::ActorContainerBase}.
-
-
-
-Definition at line 150 of file actorcontainervector.cpp.
-
 \hypertarget{classphys_1_1ActorContainerVector_a5ebcdeb3018f3baf92154ddec79cd054}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!FindActor@{FindActor}}
 \index{FindActor@{FindActor}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::FindActor (btCollisionObject $\ast$ {\em PhysicsObject})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::FindActor (
+\begin{DoxyParamCaption}
+\item[{btCollisionObject $\ast$}]{ PhysicsObject}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a5ebcdeb3018f3baf92154ddec79cd054}
 
 
@@ -253,10 +259,41 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a9ba6e38e0f12ada968cfee72f
 
 Definition at line 128 of file actorcontainervector.cpp.
 
+\hypertarget{classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}{
+\index{phys::ActorContainerVector@{phys::ActorContainerVector}!FindActor@{FindActor}}
+\index{FindActor@{FindActor}!phys::ActorContainerVector@{phys::ActorContainerVector}}
+\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::FindActor (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{ Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d64/classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}
+
+
+This finds an actor based on its name. 
+
+This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time. \begin{DoxyReturn}{Returns}
+This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that has a matching name. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]This is the name of the Actor you want to find. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}{phys::ActorContainerBase}.
+
+
+
+Definition at line 150 of file actorcontainervector.cpp.
+
 \hypertarget{classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!FindActor@{FindActor}}
 \index{FindActor@{FindActor}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::FindActor (Ogre::Node $\ast$ {\em GraphicsNode})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::FindActor (
+\begin{DoxyParamCaption}
+\item[{Ogre::Node $\ast$}]{ GraphicsNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}
 
 
@@ -279,7 +316,11 @@ Definition at line 139 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_a6d2e5e68e23f5798ad10ba41e479d0f7}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetActorCount@{GetActorCount}}
 \index{GetActorCount@{GetActorCount}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{GetActorCount}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::ActorContainerVector::GetActorCount () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetActorCount}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::ActorContainerVector::GetActorCount (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a6d2e5e68e23f5798ad10ba41e479d0f7}
 
 
@@ -299,7 +340,11 @@ Definition at line 74 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_a280700490b368a963dd8feae044c7a6d}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetAtCursor@{GetAtCursor}}
 \index{GetAtCursor@{GetAtCursor}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{GetAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::GetAtCursor () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::GetAtCursor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a280700490b368a963dd8feae044c7a6d}
 
 
@@ -319,7 +364,11 @@ Definition at line 111 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_ae18c29b30d840e0f4fc9b553dd5ca32c}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetContainerType@{GetContainerType}}
 \index{GetContainerType@{GetContainerType}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{GetContainerType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::ActorContainerVector::GetContainerType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetContainerType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::ActorContainerVector::GetContainerType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_ae18c29b30d840e0f4fc9b553dd5ca32c}
 
 
@@ -339,7 +388,11 @@ Definition at line 125 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_a55ceecd017455f3185aa62798811e3c6}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetFirst@{GetFirst}}
 \index{GetFirst@{GetFirst}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{GetFirst}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::GetFirst () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetFirst}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::GetFirst (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a55ceecd017455f3185aa62798811e3c6}
 
 
@@ -359,7 +412,11 @@ Definition at line 119 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_a5519eb0000073a2f397e158bfc368349}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetGameWorld@{GetGameWorld}}
 \index{GetGameWorld@{GetGameWorld}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{GetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} $\ast$ phys::ActorContainerVector::GetGameWorld () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} $\ast$ phys::ActorContainerVector::GetGameWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a5519eb0000073a2f397e158bfc368349}
 
 
@@ -379,7 +436,11 @@ Definition at line 164 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!GetLast@{GetLast}}
 \index{GetLast@{GetLast}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{GetLast}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::GetLast () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetLast}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::GetLast (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a211f6e419ef0b753cecf2c662a54511e}
 
 
@@ -399,7 +460,11 @@ Definition at line 122 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_adcebf4329a587669f74e1eacc1e6912c}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!Initialize@{Initialize}}
 \index{Initialize@{Initialize}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_adcebf4329a587669f74e1eacc1e6912c}
 
 
@@ -416,7 +481,11 @@ Definition at line 187 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_a49e643bdeff78521de9c4a9fea59a0d2}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!LastActorAdded@{LastActorAdded}}
 \index{LastActorAdded@{LastActorAdded}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{LastActorAdded}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::LastActorAdded ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{LastActorAdded}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::LastActorAdded (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a49e643bdeff78521de9c4a9fea59a0d2}
 
 
@@ -433,7 +502,11 @@ Definition at line 55 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_aeee5bd81601faed85e6a35f576c8d476}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!RemoveActor@{RemoveActor}}
 \index{RemoveActor@{RemoveActor}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{RemoveActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::RemoveActor ({\bf ActorBase} $\ast$ {\em ActorToRemove})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{RemoveActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::RemoveActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ ActorToRemove}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_aeee5bd81601faed85e6a35f576c8d476}
 
 
@@ -453,7 +526,11 @@ Definition at line 58 of file actorcontainervector.cpp.
 \hypertarget{classphys_1_1ActorContainerVector_a430977daf010a25f53df6cf37954f8ca}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!RemoveActorAtCursor@{RemoveActorAtCursor}}
 \index{RemoveActorAtCursor@{RemoveActorAtCursor}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{RemoveActorAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::RemoveActorAtCursor ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{RemoveActorAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::RemoveActorAtCursor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a430977daf010a25f53df6cf37954f8ca}
 
 
@@ -470,10 +547,40 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a60f37a056e8750f3b389c5cee
 
 Definition at line 71 of file actorcontainervector.cpp.
 
+\hypertarget{classphys_1_1ActorContainerVector_ab4c1394254057465f7a2f89b87dc49aa}{
+\index{phys::ActorContainerVector@{phys::ActorContainerVector}!SetGameWorld@{SetGameWorld}}
+\index{SetGameWorld@{SetGameWorld}!phys::ActorContainerVector@{phys::ActorContainerVector}}
+\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::SetGameWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ GameWorld\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/d64/classphys_1_1ActorContainerVector_ab4c1394254057465f7a2f89b87dc49aa}
+
+
+This safely move all the Actors out of or into a \hyperlink{classphys_1_1World}{phys::World}. 
+
+This Removes all scene nodes from the \hyperlink{namespaceOgre}{Ogre} the graphics subsystem, and removes all bodies from the physics system if a \hyperlink{classphys_1_1World}{phys::World} is present. Then this sets up all actors with the new \hyperlink{classphys_1_1World}{World} unless it is NULL 
+\begin{DoxyParams}{Parameters}
+\item[{\em GameWorld\_\-}]This is a pointer to the new \hyperlink{classphys_1_1World}{phys::World} to work with. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1ActorContainerBase_ae0cb5c288f17507247dd98d3a2466876}{phys::ActorContainerBase}.
+
+
+
+Definition at line 167 of file actorcontainervector.cpp.
+
 \hypertarget{classphys_1_1ActorContainerVector_a721d0cde6fc4f1e8d3b33867cd5c82df}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!SetGameWorld@{SetGameWorld}}
 \index{SetGameWorld@{SetGameWorld}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::SetGameWorld ({\bf World} $\ast$ {\em GameWorld\_\-}, \/  bool {\em AddToWorld}, \/  bool {\em RemoveFromWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::SetGameWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ GameWorld\_\-, }
+\item[{bool}]{ AddToWorld, }
+\item[{bool}]{ RemoveFromWorld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/d64/classphys_1_1ActorContainerVector_a721d0cde6fc4f1e8d3b33867cd5c82df}
 
 
@@ -490,26 +597,6 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a366c1797bef08f3a1846bf010
 
 Definition at line 170 of file actorcontainervector.cpp.
 
-\hypertarget{classphys_1_1ActorContainerVector_ab4c1394254057465f7a2f89b87dc49aa}{
-\index{phys::ActorContainerVector@{phys::ActorContainerVector}!SetGameWorld@{SetGameWorld}}
-\index{SetGameWorld@{SetGameWorld}!phys::ActorContainerVector@{phys::ActorContainerVector}}
-\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerVector::SetGameWorld ({\bf World} $\ast$ {\em GameWorld\_\-})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d3/d64/classphys_1_1ActorContainerVector_ab4c1394254057465f7a2f89b87dc49aa}
-
-
-This safely move all the Actors out of or into a \hyperlink{classphys_1_1World}{phys::World}. 
-
-This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system if a \hyperlink{classphys_1_1World}{phys::World} is present. Then this sets up all actors with the new \hyperlink{classphys_1_1World}{World} unless it is NULL 
-\begin{DoxyParams}{Parameters}
-\item[{\em GameWorld\_\-}]This is a pointer to the new \hyperlink{classphys_1_1World}{phys::World} to work with. \end{DoxyParams}
-
-
-Implements \hyperlink{classphys_1_1ActorContainerBase_ae0cb5c288f17507247dd98d3a2466876}{phys::ActorContainerBase}.
-
-
-
-Definition at line 167 of file actorcontainervector.cpp.
-
 
 
 \subsection{Member Data Documentation}
@@ -524,7 +611,7 @@ This is used to store information about the cursor.
 
 This implementation of \hyperlink{classphys_1_1ActorContainerBase}{ActorContainerBase} will use this, and only this to access the cursor so feel free to use this instead. 
 
-Definition at line 120 of file actorcontainervector.h.
+Definition at line 121 of file actorcontainervector.h.
 
 
 

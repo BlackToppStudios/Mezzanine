@@ -14,13 +14,13 @@ string \hyperlink{namespacephys_1_1crossplatform_a8f7321f409f1f2a5fa07881ae22fcc
 \begin{DoxyCompactList}\small\item\em Returns a string with a path/filename to the default Plugins config file. \item\end{DoxyCompactList}\item 
 string \hyperlink{namespacephys_1_1crossplatform_a2d43f3aa5a485564c3f375b36a08152f}{GetSettingsDotCFG} ()
 \begin{DoxyCompactList}\small\item\em Returns a string with a path/filename to the default Graphics Subsytem settings file. \item\end{DoxyCompactList}\item 
-string \hyperlink{namespacephys_1_1crossplatform_ac73c7f2db76ddfeb41723d72decc1366}{GetDataDirectory} ()
+string \hyperlink{namespacephys_1_1crossplatform_ae7b1d4b6dac634392c6224f26ab85001}{GetDataDirectory} ()
 \begin{DoxyCompactList}\small\item\em Gets the Default Data Directory. \item\end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b64a8ed9}{GetSDLOgreBinder} ()
 \begin{DoxyCompactList}\small\item\em This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). \item\end{DoxyCompactList}\item 
-void \hyperlink{namespacephys_1_1crossplatform_ab5287fc10a132457a1309e1f5645347a}{WaitMilliseconds} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&WaitTime)
+void \hyperlink{namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18}{WaitMilliseconds} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&WaitTime)
 \begin{DoxyCompactList}\small\item\em Pauses the program for a given period of time. \item\end{DoxyCompactList}\item 
-void \hyperlink{namespacephys_1_1crossplatform_aa80d0a5289b00daad110fd29bf23c5e7}{RenderPhysWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TheWorld)
+void \hyperlink{namespacephys_1_1crossplatform_a11ab7359564519dc966f997c98109f6e}{RenderPhysWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TheWorld, Ogre::RenderWindow $\ast$TheOgreWindow)
 \begin{DoxyCompactList}\small\item\em Renders the current world contents to the screen. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -32,11 +32,15 @@ All functionality that needs different implemenations per platform will go in he
  For most games there will be no need to directly call these functions, however if you decide you game is an exception, there is one key thing to remember about all of these functions. All of these may perform/behave slightly differently. 
 
 \subsection{Function Documentation}
-\hypertarget{namespacephys_1_1crossplatform_ac73c7f2db76ddfeb41723d72decc1366}{
+\hypertarget{namespacephys_1_1crossplatform_ae7b1d4b6dac634392c6224f26ab85001}{
 \index{phys::crossplatform@{phys::crossplatform}!GetDataDirectory@{GetDataDirectory}}
 \index{GetDataDirectory@{GetDataDirectory}!phys::crossplatform@{phys::crossplatform}}
-\subsubsection[{GetDataDirectory}]{\setlength{\rightskip}{0pt plus 5cm}string phys::crossplatform::GetDataDirectory ()}}
-\label{d4/d59/namespacephys_1_1crossplatform_ac73c7f2db76ddfeb41723d72decc1366}
+\subsubsection[{GetDataDirectory}]{\setlength{\rightskip}{0pt plus 5cm}string PHYS\_\-LIB phys::crossplatform::GetDataDirectory (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d59/namespacephys_1_1crossplatform_ae7b1d4b6dac634392c6224f26ab85001}
 
 
 Gets the Default Data Directory. 
@@ -47,7 +51,11 @@ A string containing the path to the default Data Directory.
 \hypertarget{namespacephys_1_1crossplatform_a8f7321f409f1f2a5fa07881ae22fcc2d}{
 \index{phys::crossplatform@{phys::crossplatform}!GetPluginsDotCFG@{GetPluginsDotCFG}}
 \index{GetPluginsDotCFG@{GetPluginsDotCFG}!phys::crossplatform@{phys::crossplatform}}
-\subsubsection[{GetPluginsDotCFG}]{\setlength{\rightskip}{0pt plus 5cm}string phys::crossplatform::GetPluginsDotCFG ()}}
+\subsubsection[{GetPluginsDotCFG}]{\setlength{\rightskip}{0pt plus 5cm}string phys::crossplatform::GetPluginsDotCFG (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d4/d59/namespacephys_1_1crossplatform_a8f7321f409f1f2a5fa07881ae22fcc2d}
 
 
@@ -61,21 +69,29 @@ A string which contains the path and filename of the plugins file
 \hypertarget{namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b64a8ed9}{
 \index{phys::crossplatform@{phys::crossplatform}!GetSDLOgreBinder@{GetSDLOgreBinder}}
 \index{GetSDLOgreBinder@{GetSDLOgreBinder}!phys::crossplatform@{phys::crossplatform}}
-\subsubsection[{GetSDLOgreBinder}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ phys::crossplatform::GetSDLOgreBinder ()}}
+\subsubsection[{GetSDLOgreBinder}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ phys::crossplatform::GetSDLOgreBinder (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d4/d59/namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b64a8ed9}
 
 
 This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). 
 
 \begin{DoxyInternal}{For internal use only.}
-This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) This returns a named parameter list with valid settings to use Ogre rendering on a pre-\/existing SDL context \begin{DoxyWarning}{Warning}
+This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) This returns a named parameter list with valid settings to use \hyperlink{namespaceOgre}{Ogre} rendering on a pre-\/existing SDL context \begin{DoxyWarning}{Warning}
 This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish 
 \end{DoxyWarning}
 \end{DoxyInternal}
 \hypertarget{namespacephys_1_1crossplatform_a2d43f3aa5a485564c3f375b36a08152f}{
 \index{phys::crossplatform@{phys::crossplatform}!GetSettingsDotCFG@{GetSettingsDotCFG}}
 \index{GetSettingsDotCFG@{GetSettingsDotCFG}!phys::crossplatform@{phys::crossplatform}}
-\subsubsection[{GetSettingsDotCFG}]{\setlength{\rightskip}{0pt plus 5cm}string phys::crossplatform::GetSettingsDotCFG ()}}
+\subsubsection[{GetSettingsDotCFG}]{\setlength{\rightskip}{0pt plus 5cm}string phys::crossplatform::GetSettingsDotCFG (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d4/d59/namespacephys_1_1crossplatform_a2d43f3aa5a485564c3f375b36a08152f}
 
 
@@ -86,23 +102,32 @@ Settings.cfg is the file that determines how graphics settings are configured by
 A string which contains the path and filename of the graphics setts file 
 \end{DoxyReturn}
 \end{DoxyInternal}
-\hypertarget{namespacephys_1_1crossplatform_aa80d0a5289b00daad110fd29bf23c5e7}{
+\hypertarget{namespacephys_1_1crossplatform_a11ab7359564519dc966f997c98109f6e}{
 \index{phys::crossplatform@{phys::crossplatform}!RenderPhysWorld@{RenderPhysWorld}}
 \index{RenderPhysWorld@{RenderPhysWorld}!phys::crossplatform@{phys::crossplatform}}
-\subsubsection[{RenderPhysWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::crossplatform::RenderPhysWorld (World $\ast$ {\em TheWorld})}}
-\label{d4/d59/namespacephys_1_1crossplatform_aa80d0a5289b00daad110fd29bf23c5e7}
+\subsubsection[{RenderPhysWorld}]{\setlength{\rightskip}{0pt plus 5cm}void PHYS\_\-LIB phys::crossplatform::RenderPhysWorld (
+\begin{DoxyParamCaption}
+\item[{World $\ast$}]{ TheWorld, }
+\item[{Ogre::RenderWindow $\ast$}]{ TheOgreWindow}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d59/namespacephys_1_1crossplatform_a11ab7359564519dc966f997c98109f6e}
 
 
 Renders the current world contents to the screen. 
 
-This makes use of \hyperlink{classphys_1_1World}{World} internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Handles the actual cross platform swapping of graphics buffers. 
+This makes use of \hyperlink{classphys_1_1World}{World} internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Currently this references \hyperlink{namespaceOgre}{Ogre} systems, that makes this internal Handles the actual cross platform swapping of graphics buffers. 
 \begin{DoxyParams}{Parameters}
-\item[{\em TheWorld}]This is a pointer to the \hyperlink{classphys_1_1World}{World} to be rendered. \end{DoxyParams}
-\hypertarget{namespacephys_1_1crossplatform_ab5287fc10a132457a1309e1f5645347a}{
+\item[{\em TheWorld}]This is a pointer to the \hyperlink{classphys_1_1World}{World} to be rendered. \item[{\em TheWorld}]A pointer to the game window to be update to be rendered. This is considered an internal component \end{DoxyParams}
+\hypertarget{namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18}{
 \index{phys::crossplatform@{phys::crossplatform}!WaitMilliseconds@{WaitMilliseconds}}
 \index{WaitMilliseconds@{WaitMilliseconds}!phys::crossplatform@{phys::crossplatform}}
-\subsubsection[{WaitMilliseconds}]{\setlength{\rightskip}{0pt plus 5cm}void phys::crossplatform::WaitMilliseconds (const Whole \& {\em WaitTime})}}
-\label{d4/d59/namespacephys_1_1crossplatform_ab5287fc10a132457a1309e1f5645347a}
+\subsubsection[{WaitMilliseconds}]{\setlength{\rightskip}{0pt plus 5cm}void PHYS\_\-LIB phys::crossplatform::WaitMilliseconds (
+\begin{DoxyParamCaption}
+\item[{const Whole \&}]{ WaitTime}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d59/namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18}
 
 
 Pauses the program for a given period of time. 

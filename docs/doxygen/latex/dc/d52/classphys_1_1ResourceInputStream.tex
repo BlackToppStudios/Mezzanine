@@ -1,0 +1,110 @@
+\hypertarget{classphys_1_1ResourceInputStream}{
+\section{phys::ResourceInputStream Class Reference}
+\label{dc/d52/classphys_1_1ResourceInputStream}\index{phys::ResourceInputStream@{phys::ResourceInputStream}}
+}
+
+
+A stream from a file, can read from zip files as well.  
+
+
+
+
+{\ttfamily \#include $<$resourceinputstream.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1ResourceInputStream_a890b739ac7f1c68108dc29f6887d2fa2}{ResourceInputStream} (std::streambuf $\ast$InputBuffer, \hyperlink{classphys_1_1ResourceManager}{ResourceManager} $\ast$ResourceManager\_\-)
+\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ResourceInputStream_a03b9d40f0b006edd6daf25e93084f80d}{
+virtual \hyperlink{classphys_1_1ResourceInputStream_a03b9d40f0b006edd6daf25e93084f80d}{$\sim$ResourceInputStream} ()}
+\label{dc/d52/classphys_1_1ResourceInputStream_a03b9d40f0b006edd6daf25e93084f80d}
+
+\begin{DoxyCompactList}\small\item\em Tears down the Stream, and Delete the Buffer Passed in. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ResourceInputStream_a4900f77dd452c2a2ddf47a76d36d85c3}{Readable} ()
+\begin{DoxyCompactList}\small\item\em Can this be read from. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ResourceInputStream_a6e7619bf3efd3b344fab92d326385009}{Writeable} ()
+\begin{DoxyCompactList}\small\item\em Can this be written to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A stream from a file, can read from zip files as well. 
+
+Definition at line 60 of file resourceinputstream.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ResourceInputStream_a890b739ac7f1c68108dc29f6887d2fa2}{
+\index{phys::ResourceInputStream@{phys::ResourceInputStream}!ResourceInputStream@{ResourceInputStream}}
+\index{ResourceInputStream@{ResourceInputStream}!phys::ResourceInputStream@{phys::ResourceInputStream}}
+\subsubsection[{ResourceInputStream}]{\setlength{\rightskip}{0pt plus 5cm}phys::ResourceInputStream::ResourceInputStream (
+\begin{DoxyParamCaption}
+\item[{std::streambuf $\ast$}]{ InputBuffer, }
+\item[{{\bf ResourceManager} $\ast$}]{ ResourceManager\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{dc/d52/classphys_1_1ResourceInputStream_a890b739ac7f1c68108dc29f6887d2fa2}
+
+
+Descriptive Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em InputBuffer}]A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of \hyperlink{namespaceOgre}{Ogre}). This Stream will assume ownership of this buffer and will handle deleting it. \item[{\em ResourceManager\_\-}]Currently unused, future functionality may tuse this. \end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Do not delete the InputBuffer you pass in, this class will assume owner ship and delete it on it's own 
+\end{DoxyWarning}
+
+
+Definition at line 79 of file resourceinputstream.h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1ResourceInputStream_a4900f77dd452c2a2ddf47a76d36d85c3}{
+\index{phys::ResourceInputStream@{phys::ResourceInputStream}!Readable@{Readable}}
+\index{Readable@{Readable}!phys::ResourceInputStream@{phys::ResourceInputStream}}
+\subsubsection[{Readable}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ResourceInputStream::Readable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{dc/d52/classphys_1_1ResourceInputStream_a4900f77dd452c2a2ddf47a76d36d85c3}
+
+
+Can this be read from. 
+
+\begin{DoxyReturn}{Returns}
+A bool true if it can be read from 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file resourceinputstream.cpp.
+
+\hypertarget{classphys_1_1ResourceInputStream_a6e7619bf3efd3b344fab92d326385009}{
+\index{phys::ResourceInputStream@{phys::ResourceInputStream}!Writeable@{Writeable}}
+\index{Writeable@{Writeable}!phys::ResourceInputStream@{phys::ResourceInputStream}}
+\subsubsection[{Writeable}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ResourceInputStream::Writeable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{dc/d52/classphys_1_1ResourceInputStream_a6e7619bf3efd3b344fab92d326385009}
+
+
+Can this be written to. 
+
+\begin{DoxyReturn}{Returns}
+A bool true if it can be written to 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file resourceinputstream.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+resourceinputstream.h\item 
+resourceinputstream.cpp\end{DoxyCompactItemize}

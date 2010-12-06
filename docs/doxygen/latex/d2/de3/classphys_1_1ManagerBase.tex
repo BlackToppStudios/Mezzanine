@@ -14,7 +14,7 @@ This is the base class from which all the \hyperlink{classphys_1_1World}{World} 
 Inheritance diagram for phys::ManagerBase:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=10cm]{d2/de3/classphys_1_1ManagerBase}
+\includegraphics[height=10.000000cm]{d2/de3/classphys_1_1ManagerBase}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -43,10 +43,11 @@ typedef bool($\ast$ \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}{ManagerBase} ()
+\hypertarget{classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}{
+\hyperlink{classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}{ManagerBase} ()}
+\label{d2/de3/classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}
+
 \begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ManagerBase_ab9ad12416f771d95fe8a6d953923c634}{ManagerBase} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-)
-\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ManagerBase_a802dace8381459637297e9a372bfdf0c}{$\sim$ManagerBase} ()
 \begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{Initialize} ()=0
@@ -103,7 +104,7 @@ short int \hyperlink{classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}
 \subsection{Detailed Description}
 This is the base class from which all the \hyperlink{classphys_1_1World}{World} Managers inherit. This creates a base set of functions that Managers are all expected to implement. 
 
-Definition at line 57 of file managerbase.h.
+Definition at line 58 of file managerbase.h.
 
 
 
@@ -129,44 +130,19 @@ UserCreated}
 
 
 
-Definition at line 65 of file managerbase.h.
+Definition at line 66 of file managerbase.h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}{
-\index{phys::ManagerBase@{phys::ManagerBase}!ManagerBase@{ManagerBase}}
-\index{ManagerBase@{ManagerBase}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{ManagerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ManagerBase::ManagerBase ()}}
-\label{d2/de3/classphys_1_1ManagerBase_a80c0d01d0dc19511cd08fc6ac805a616}
-
-
-Default Constructor. 
-
-This creates a default manager without a valid reference to the game world. The lack of such a reference could cause issues or change behavior of a Manager class. A Manager Must be given the pointer to the world it is suppposed to work with prior to the calling of \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{ManagerBase::Initialize()}. This will most likely be the constructor used when creating a Manager to pass into the constructor of a new \hyperlink{classphys_1_1World}{phys::World}. 
-
-Definition at line 48 of file managerbase.cpp.
-
-\hypertarget{classphys_1_1ManagerBase_ab9ad12416f771d95fe8a6d953923c634}{
-\index{phys::ManagerBase@{phys::ManagerBase}!ManagerBase@{ManagerBase}}
-\index{ManagerBase@{ManagerBase}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{ManagerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ManagerBase::ManagerBase ({\bf World} $\ast$ {\em GameWorld\_\-})}}
-\label{d2/de3/classphys_1_1ManagerBase_ab9ad12416f771d95fe8a6d953923c634}
-
-
-Simple Constructor. 
-
-This is the prefered constructor. This is used to \char`\"{}Attach\char`\"{} a manager to a phys::world. This is expected to configure everything that this manager will need except for items requiring integration with other managers. 
-\begin{DoxyParams}{Parameters}
-\item[{\em GameWorld\_\-}]This is the \hyperlink{classphys_1_1World}{phys::World} this Manager is expected to work with. \end{DoxyParams}
-
-
-Definition at line 56 of file managerbase.cpp.
-
 \hypertarget{classphys_1_1ManagerBase_a802dace8381459637297e9a372bfdf0c}{
 \index{phys::ManagerBase@{phys::ManagerBase}!$\sim$ManagerBase@{$\sim$ManagerBase}}
 \index{$\sim$ManagerBase@{$\sim$ManagerBase}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{$\sim$ManagerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ManagerBase::$\sim$ManagerBase ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{$\sim$ManagerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ManagerBase::$\sim$ManagerBase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_a802dace8381459637297e9a372bfdf0c}
 
 
@@ -182,7 +158,11 @@ Definition at line 70 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{
 \index{phys::ManagerBase@{phys::ManagerBase}!DoMainLoopItems@{DoMainLoopItems}}
 \index{DoMainLoopItems@{DoMainLoopItems}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ManagerBase::DoMainLoopItems ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ManagerBase::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}
 
 
@@ -195,7 +175,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerBase_a67fbde6a61602253f66fe
 \hypertarget{classphys_1_1ManagerBase_addfd62fbc444ca4c2aba40768d1b284e}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetGameWorld@{GetGameWorld}}
 \index{GetGameWorld@{GetGameWorld}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{GetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} $\ast$ phys::ManagerBase::GetGameWorld () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World} $\ast$ phys::ManagerBase::GetGameWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_addfd62fbc444ca4c2aba40768d1b284e}
 
 
@@ -215,7 +199,11 @@ Definition at line 64 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_a1e541b261e5747ebcfcefdd3dcff78ce}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetPostMainLoopItems@{GetPostMainLoopItems}}
 \index{GetPostMainLoopItems@{GetPostMainLoopItems}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{GetPostMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::Callback} phys::ManagerBase::GetPostMainLoopItems () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetPostMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::Callback} phys::ManagerBase::GetPostMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_a1e541b261e5747ebcfcefdd3dcff78ce}
 
 
@@ -231,7 +219,11 @@ Definition at line 104 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_a02a92b0d5df8b8b877822bdf57ec8ffc}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetPreMainLoopItems@{GetPreMainLoopItems}}
 \index{GetPreMainLoopItems@{GetPreMainLoopItems}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{GetPreMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::Callback} phys::ManagerBase::GetPreMainLoopItems () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetPreMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::Callback} phys::ManagerBase::GetPreMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_a02a92b0d5df8b8b877822bdf57ec8ffc}
 
 
@@ -247,7 +239,11 @@ Definition at line 85 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_af1798db3b808a658bdf14d8914d9b91d}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetPriority@{GetPriority}}
 \index{GetPriority@{GetPriority}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{GetPriority}]{\setlength{\rightskip}{0pt plus 5cm}short int phys::ManagerBase::GetPriority ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetPriority}]{\setlength{\rightskip}{0pt plus 5cm}short int phys::ManagerBase::GetPriority (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_af1798db3b808a658bdf14d8914d9b91d}
 
 
@@ -263,7 +259,11 @@ Definition at line 144 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetType@{GetType}}
 \index{GetType@{GetType}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ManagerTypeName} phys::ManagerBase::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ManagerTypeName} phys::ManagerBase::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}
 
 
@@ -279,7 +279,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerBase_aa86380fd1b18d660f68b6
 \hypertarget{classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af4756}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetTypeName@{GetTypeName}}
 \index{GetTypeName@{GetTypeName}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{GetTypeName}]{\setlength{\rightskip}{0pt plus 5cm}std::string phys::ManagerBase::GetTypeName ()}}
+\subsubsection[{GetTypeName}]{\setlength{\rightskip}{0pt plus 5cm}std::string phys::ManagerBase::GetTypeName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d2/de3/classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af4756}
 
 
@@ -295,13 +299,17 @@ Definition at line 110 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{
 \index{phys::ManagerBase@{phys::ManagerBase}!Initialize@{Initialize}}
 \index{Initialize@{Initialize}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ManagerBase::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ManagerBase::Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}
 
 
 Configure Items requiring other Managers. 
 
-If you are using the \hyperlink{classphys_1_1World}{phys::World} this is called when \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{phys::World::GameInit()} is called. It is expected that by the time this is called either \hyperlink{classphys_1_1ManagerBase_ab9ad12416f771d95fe8a6d953923c634}{ManagerBase::ManagerBase(World$\ast$)} or \hyperlink{classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}{ManagerBase::SetGameWorld(World$\ast$)} will have been called. This is where all configuration that requires atleast one other manager on the \hyperlink{classphys_1_1World}{phys::World} to exist.\par
+If you are using the \hyperlink{classphys_1_1World}{phys::World} this is called when \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{phys::World::GameInit()} is called. It is expected that by the time this is called either ManagerBase::ManagerBase(World$\ast$) or \hyperlink{classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}{ManagerBase::SetGameWorld(World$\ast$)} will have been called. This is where all configuration that requires atleast one other manager on the \hyperlink{classphys_1_1World}{phys::World} to exist.\par
 \par
  Yes we know it is spelled wrong, but are Zs cooler anyway. 
 
@@ -310,7 +318,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4
 \hypertarget{classphys_1_1ManagerBase_afc3572602f96bdeb8215c386ff870820}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PostMainLoopItems@{PostMainLoopItems}}
 \index{PostMainLoopItems@{PostMainLoopItems}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{PostMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ManagerBase::PostMainLoopItems ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{PostMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ManagerBase::PostMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_afc3572602f96bdeb8215c386ff870820}
 
 
@@ -331,7 +343,11 @@ Definition at line 95 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_af6210834a8af592481cf6aefa9916d88}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PreMainLoopItems@{PreMainLoopItems}}
 \index{PreMainLoopItems@{PreMainLoopItems}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{PreMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ManagerBase::PreMainLoopItems ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{PreMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ManagerBase::PreMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_af6210834a8af592481cf6aefa9916d88}
 
 
@@ -348,7 +364,11 @@ Definition at line 76 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}{
 \index{phys::ManagerBase@{phys::ManagerBase}!SetGameWorld@{SetGameWorld}}
 \index{SetGameWorld@{SetGameWorld}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetGameWorld ({\bf World} $\ast$ {\em GameWorld\_\-})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetGameWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ GameWorld\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}
 
 
@@ -367,7 +387,11 @@ Definition at line 67 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_a673b3adef73c467f4d90514a5133bf7c}{
 \index{phys::ManagerBase@{phys::ManagerBase}!SetPostMainLoopItems@{SetPostMainLoopItems}}
 \index{SetPostMainLoopItems@{SetPostMainLoopItems}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{SetPostMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetPostMainLoopItems ({\bf ManagerBase::Callback} {\em PostMainCallback})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetPostMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetPostMainLoopItems (
+\begin{DoxyParamCaption}
+\item[{{\bf ManagerBase::Callback}}]{ PostMainCallback}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_a673b3adef73c467f4d90514a5133bf7c}
 
 
@@ -383,7 +407,11 @@ Definition at line 92 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_a3fcf207a451d0047f884babadd0bc53e}{
 \index{phys::ManagerBase@{phys::ManagerBase}!SetPreMainLoopItems@{SetPreMainLoopItems}}
 \index{SetPreMainLoopItems@{SetPreMainLoopItems}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{SetPreMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetPreMainLoopItems ({\bf ManagerBase::Callback} {\em PreMainCallback})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetPreMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetPreMainLoopItems (
+\begin{DoxyParamCaption}
+\item[{{\bf ManagerBase::Callback}}]{ PreMainCallback}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_a3fcf207a451d0047f884babadd0bc53e}
 
 
@@ -399,7 +427,11 @@ Definition at line 73 of file managerbase.cpp.
 \hypertarget{classphys_1_1ManagerBase_a6e30dc5f2a9c64f95efb2ef4428b0f98}{
 \index{phys::ManagerBase@{phys::ManagerBase}!SetPriority@{SetPriority}}
 \index{SetPriority@{SetPriority}!phys::ManagerBase@{phys::ManagerBase}}
-\subsubsection[{SetPriority}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetPriority (short int {\em Priority\_\-})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetPriority}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetPriority (
+\begin{DoxyParamCaption}
+\item[{short int}]{ Priority\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/de3/classphys_1_1ManagerBase_a6e30dc5f2a9c64f95efb2ef4428b0f98}
 
 
@@ -428,7 +460,7 @@ The actual pointer to the world.
 \end{DoxyInternal}
 
 
-Definition at line 201 of file managerbase.h.
+Definition at line 205 of file managerbase.h.
 
 \hypertarget{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PostMainLoop@{PostMainLoop}}
@@ -443,7 +475,7 @@ This is a function pointer to the function that should be called after running M
 \end{DoxyInternal}
 
 
-Definition at line 209 of file managerbase.h.
+Definition at line 213 of file managerbase.h.
 
 \hypertarget{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PreMainLoop@{PreMainLoop}}
@@ -458,7 +490,7 @@ This is a function pointer to the function that should be called before running 
 \end{DoxyInternal}
 
 
-Definition at line 205 of file managerbase.h.
+Definition at line 209 of file managerbase.h.
 
 \hypertarget{classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}{
 \index{phys::ManagerBase@{phys::ManagerBase}!Priority@{Priority}}
@@ -471,7 +503,7 @@ This is a weighting used by the main loop to decide what order the managers shou
 
 A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at priority 0. 
 
-Definition at line 214 of file managerbase.h.
+Definition at line 218 of file managerbase.h.
 
 
 

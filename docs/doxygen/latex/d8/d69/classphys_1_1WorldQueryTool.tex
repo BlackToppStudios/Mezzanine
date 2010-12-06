@@ -11,21 +11,19 @@ This provides a number of optional tools for working with a \hyperlink{classphys
 
 {\ttfamily \#include $<$worldquerytool.h$>$}
 
+Inheritance diagram for phys::WorldQueryTool:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d8/d69/classphys_1_1WorldQueryTool}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1WorldQueryTool_a6b156ab7ea6236402c40467da7f11c0d}{WorldQueryTool} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-)
+\hyperlink{classphys_1_1WorldQueryTool_ada25e2dfced63cfdb0a2db436f1bd6a8}{WorldQueryTool} ()
 \begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1WorldQueryTool_ace36ffebcabbbf0553c517820bc636c9}{$\sim$WorldQueryTool} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1WorldQueryTool_a55721f152fb117fdfb8bc6d20af6b1dc}{GetMouseX} ()
-\begin{DoxyCompactList}\small\item\em This gets the X coordinate of the mouse. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1WorldQueryTool_ac2d8517db7305157c1393320f434751b}{GetMouseY} ()
-\begin{DoxyCompactList}\small\item\em This gets the Y coordinate of the mouse. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1WorldQueryTool_af277b578432dfaefffbc4fd9bb80ca64}{IsMouseButtonPushed} (short unsigned int MouseButton)
-\begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1WorldQueryTool_a8343f54b900adb316ddc6de5405da328}{IsKeyboardButtonPushed} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} KeyboardButton)
-\begin{DoxyCompactList}\small\item\em Returns whether a specific KEyboard button is pushed. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a256022003d64756b0b5c5706aefd5139}{GetFirstActorOnRayByPolygon} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
 \begin{DoxyCompactList}\small\item\em This will find the first Actor to intesect the Given ray. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}{GetFirstActorOnRayByAABB} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay)
@@ -35,39 +33,42 @@ bool \hyperlink{classphys_1_1WorldQueryTool_a8343f54b900adb316ddc6de5405da328}{I
 \hyperlink{classphys_1_1Vector3}{Vector3} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_adfc5ea4a115ad8bb716dea87d8419e6f}{RayPlaneIntersection} (const \hyperlink{classphys_1_1Ray}{Ray} \&QueryRay, const \hyperlink{classphys_1_1Plane}{Plane} \&QueryPlane)
 \begin{DoxyCompactList}\small\item\em Where does this \hyperlink{classphys_1_1Ray}{Ray} Meet this \hyperlink{classphys_1_1Plane}{Plane}? \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Ray}{Ray} $\ast$ \hyperlink{classphys_1_1WorldQueryTool_a567b20eb6ba6f17961f5cd892bd5a0ed}{GetMouseRay} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Length=1000)
-\begin{DoxyCompactList}\small\item\em Get a \hyperlink{classphys_1_1Ray}{Ray} from the current viewport, following the mouse. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}{GatherEvents} (bool ClearEventsFromEventMgr=false)
-\begin{DoxyCompactList}\small\item\em This gathers any user-\/input/event data that might be queryed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get a \hyperlink{classphys_1_1Ray}{Ray} from the current viewport, following the mouse. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 This provides a number of optional tools for working with a \hyperlink{classphys_1_1World}{phys::World}. Currently this allows for more seamless mouse use, including 'picking' of objects with the mouse, and associated functionality. 
 
-Definition at line 69 of file worldquerytool.h.
+Definition at line 68 of file worldquerytool.h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1WorldQueryTool_a6b156ab7ea6236402c40467da7f11c0d}{
+\hypertarget{classphys_1_1WorldQueryTool_ada25e2dfced63cfdb0a2db436f1bd6a8}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!WorldQueryTool@{WorldQueryTool}}
 \index{WorldQueryTool@{WorldQueryTool}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{WorldQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}phys::WorldQueryTool::WorldQueryTool ({\bf World} $\ast$ {\em GameWorld\_\-})}}
-\label{d8/d69/classphys_1_1WorldQueryTool_a6b156ab7ea6236402c40467da7f11c0d}
+\subsubsection[{WorldQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}phys::WorldQueryTool::WorldQueryTool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d8/d69/classphys_1_1WorldQueryTool_ada25e2dfced63cfdb0a2db436f1bd6a8}
 
 
 Basic Constructor. 
 
 This creates a \hyperlink{classphys_1_1WorldQueryTool}{WorldQueryTool} Ready to run queries on the the world you pass it. 
-\begin{DoxyParams}{Parameters}
-\item[{\em GameWorld\_\-}]This is a pointer to the \hyperlink{classphys_1_1World}{phys::World} to be queried \end{DoxyParams}
 
-
-Definition at line 51 of file worldquerytool.cpp.
+Definition at line 54 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_ace36ffebcabbbf0553c517820bc636c9}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!$\sim$WorldQueryTool@{$\sim$WorldQueryTool}}
 \index{$\sim$WorldQueryTool@{$\sim$WorldQueryTool}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{$\sim$WorldQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}phys::WorldQueryTool::$\sim$WorldQueryTool ()}}
+\subsubsection[{$\sim$WorldQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}phys::WorldQueryTool::$\sim$WorldQueryTool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d69/classphys_1_1WorldQueryTool_ace36ffebcabbbf0553c517820bc636c9}
 
 
@@ -75,39 +76,20 @@ Destructor.
 
 Deletes everything in the world query tool. 
 
-Definition at line 69 of file worldquerytool.cpp.
+Definition at line 63 of file worldquerytool.cpp.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}{
-\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GatherEvents@{GatherEvents}}
-\index{GatherEvents@{GatherEvents}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GatherEvents}]{\setlength{\rightskip}{0pt plus 5cm}void phys::WorldQueryTool::GatherEvents (bool {\em ClearEventsFromEventMgr} = {\ttfamily false})}}
-\label{d8/d69/classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}
-
-
-This gathers any user-\/input/event data that might be queryed. 
-
-This should be called periodcally (ideally in the post user input callback) to allow this to gather data from the \hyperlink{classphys_1_1World}{phys::World} 's event manager. When called this will drop prior event data and any relevant queries will come from this new data. At the caller's discretion this method can properly delete any events pulled from the event manager. \par
- \par
- This runs in linear time relative to the events in the event manager. This will usually be a trivial amount if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup) 
-\begin{DoxyParams}{Parameters}
-\item[{\em ClearEventsFromEventMgr}]If set to true, This method will properly remove any events it pulls from the event manager. \end{DoxyParams}
-
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000029}{Todo}]Add support for joysticks events to \hyperlink{classphys_1_1WorldQueryTool}{WorldQueryTool} \end{Desc}
-
-
-
-
-Definition at line 91 of file worldquerytool.cpp.
-
 \hypertarget{classphys_1_1WorldQueryTool_a8efba55076bad228d7cda0b82895f32a}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetActorUnderMouse@{GetActorUnderMouse}}
 \index{GetActorUnderMouse@{GetActorUnderMouse}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::WorldQueryTool::GetActorUnderMouse ({\bf Real} {\em RayLength} = {\ttfamily 1000.0}, \/  bool {\em UsePolygon} = {\ttfamily true})}}
+\subsubsection[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::WorldQueryTool::GetActorUnderMouse (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ RayLength = {\ttfamily 1000.0}, }
+\item[{bool}]{ UsePolygon = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d69/classphys_1_1WorldQueryTool_a8efba55076bad228d7cda0b82895f32a}
 
 
@@ -121,12 +103,16 @@ This returns a \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} which has a
 \end{DoxyReturn}
 
 
-Definition at line 261 of file worldquerytool.cpp.
+Definition at line 185 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetFirstActorOnRayByAABB@{GetFirstActorOnRayByAABB}}
 \index{GetFirstActorOnRayByAABB@{GetFirstActorOnRayByAABB}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetFirstActorOnRayByAABB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::WorldQueryTool::GetFirstActorOnRayByAABB ({\bf Ray} {\em ActorRay})}}
+\subsubsection[{GetFirstActorOnRayByAABB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::WorldQueryTool::GetFirstActorOnRayByAABB (
+\begin{DoxyParamCaption}
+\item[{{\bf Ray}}]{ ActorRay}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d69/classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}
 
 
@@ -141,19 +127,23 @@ This returns a pointer to an actorbase, which is the first actor to have an Axis
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000030}{Todo}]TODO: The function \hyperlink{classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}{WorldQueryTool::GetFirstActorOnRayByAABB} does not return an valid offset. This needs to be calculated somehow. \end{Desc}
+\item[\hyperlink{todo__todo000031}{Todo}]TODO: The function \hyperlink{classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}{WorldQueryTool::GetFirstActorOnRayByAABB} does not return an valid offset. This needs to be calculated somehow. \end{Desc}
 \begin{Desc}
-\item[\hyperlink{todo__todo000031}{Todo}]TODO: The function \hyperlink{classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}{WorldQueryTool::GetFirstActorOnRayByAABB} has not been tested and needs to be tested \end{Desc}
+\item[\hyperlink{todo__todo000032}{Todo}]TODO: The function \hyperlink{classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}{WorldQueryTool::GetFirstActorOnRayByAABB} has not been tested and needs to be tested \end{Desc}
 
 
 
 
-Definition at line 228 of file worldquerytool.cpp.
+Definition at line 152 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_a256022003d64756b0b5c5706aefd5139}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetFirstActorOnRayByPolygon@{GetFirstActorOnRayByPolygon}}
 \index{GetFirstActorOnRayByPolygon@{GetFirstActorOnRayByPolygon}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetFirstActorOnRayByPolygon}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::WorldQueryTool::GetFirstActorOnRayByPolygon ({\bf Ray} {\em ActorRay})}}
+\subsubsection[{GetFirstActorOnRayByPolygon}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::WorldQueryTool::GetFirstActorOnRayByPolygon (
+\begin{DoxyParamCaption}
+\item[{{\bf Ray}}]{ ActorRay}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d69/classphys_1_1WorldQueryTool_a256022003d64756b0b5c5706aefd5139}
 
 
@@ -167,12 +157,16 @@ This returns a pointer to an \hyperlink{classphys_1_1Vector3WActor}{Vector3WActo
 \end{DoxyReturn}
 
 
-Definition at line 146 of file worldquerytool.cpp.
+Definition at line 70 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_a567b20eb6ba6f17961f5cd892bd5a0ed}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetMouseRay@{GetMouseRay}}
 \index{GetMouseRay@{GetMouseRay}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetMouseRay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} $\ast$ phys::WorldQueryTool::GetMouseRay ({\bf Real} {\em Length} = {\ttfamily 1000})}}
+\subsubsection[{GetMouseRay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} $\ast$ phys::WorldQueryTool::GetMouseRay (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Length = {\ttfamily 1000}}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d69/classphys_1_1WorldQueryTool_a567b20eb6ba6f17961f5cd892bd5a0ed}
 
 
@@ -186,85 +180,17 @@ This returns a ray that matches originates at the camera and goes out in 3d spac
 \end{DoxyReturn}
 
 
-Definition at line 378 of file worldquerytool.cpp.
-
-\hypertarget{classphys_1_1WorldQueryTool_a55721f152fb117fdfb8bc6d20af6b1dc}{
-\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetMouseX@{GetMouseX}}
-\index{GetMouseX@{GetMouseX}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetMouseX}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::WorldQueryTool::GetMouseX ()}}
-\label{d8/d69/classphys_1_1WorldQueryTool_a55721f152fb117fdfb8bc6d20af6b1dc}
-
-
-This gets the X coordinate of the mouse. 
-
-This gets the X location of this mouse. This runs in constant time. \begin{DoxyReturn}{Returns}
-This returns a Whole number which represents the X coordinate of the mouse. 
-\end{DoxyReturn}
-
-
-Definition at line 74 of file worldquerytool.cpp.
-
-\hypertarget{classphys_1_1WorldQueryTool_ac2d8517db7305157c1393320f434751b}{
-\index{phys::WorldQueryTool@{phys::WorldQueryTool}!GetMouseY@{GetMouseY}}
-\index{GetMouseY@{GetMouseY}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{GetMouseY}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::WorldQueryTool::GetMouseY ()}}
-\label{d8/d69/classphys_1_1WorldQueryTool_ac2d8517db7305157c1393320f434751b}
-
-
-This gets the Y coordinate of the mouse. 
-
-This gets the Y location of this mouse. This runs in constant time. \begin{DoxyReturn}{Returns}
-This returns a Whole number which represents the Y coordinate of the mouse. 
-\end{DoxyReturn}
-
-
-Definition at line 77 of file worldquerytool.cpp.
-
-\hypertarget{classphys_1_1WorldQueryTool_a8343f54b900adb316ddc6de5405da328}{
-\index{phys::WorldQueryTool@{phys::WorldQueryTool}!IsKeyboardButtonPushed@{IsKeyboardButtonPushed}}
-\index{IsKeyboardButtonPushed@{IsKeyboardButtonPushed}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{IsKeyboardButtonPushed}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::WorldQueryTool::IsKeyboardButtonPushed ({\bf MetaCode::InputCode} {\em KeyboardButton})}}
-\label{d8/d69/classphys_1_1WorldQueryTool_a8343f54b900adb316ddc6de5405da328}
-
-
-Returns whether a specific KEyboard button is pushed. 
-
-This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed are considered pressed, and buttons that are being lifted are considered unpressed. 
-\begin{DoxyParams}{Parameters}
-\item[{\em KeyboardButton}]This is the button that is being checked. \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise. 
-\end{DoxyReturn}
-
-
-Definition at line 87 of file worldquerytool.cpp.
-
-\hypertarget{classphys_1_1WorldQueryTool_af277b578432dfaefffbc4fd9bb80ca64}{
-\index{phys::WorldQueryTool@{phys::WorldQueryTool}!IsMouseButtonPushed@{IsMouseButtonPushed}}
-\index{IsMouseButtonPushed@{IsMouseButtonPushed}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{IsMouseButtonPushed}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::WorldQueryTool::IsMouseButtonPushed (short unsigned int {\em MouseButton})}}
-\label{d8/d69/classphys_1_1WorldQueryTool_af277b578432dfaefffbc4fd9bb80ca64}
-
-
-Returns whether a specific Mouse button is pushed. 
-
-This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed are considered pressed, and buttons that are being lifted are considered unpressed. This only supports the first 16 mouse buttons at this point (numbered 0 to 15) 
-\begin{DoxyParams}{Parameters}
-\item[{\em MouseButton}]This is the mouse button that is being checked \end{DoxyParams}
-
-\begin{DoxyExceptions}{Exceptions}
-\item[{\em Unsupported mouse button access through WorldQueryTool}]This is thrown whenever a mouse button is requested that is beyond the limit that is supported. Currently this limit is 16 \end{DoxyExceptions}
-\begin{DoxyReturn}{Returns}
-This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise. 
-\end{DoxyReturn}
-
-
-Definition at line 80 of file worldquerytool.cpp.
+Definition at line 301 of file worldquerytool.cpp.
 
 \hypertarget{classphys_1_1WorldQueryTool_adfc5ea4a115ad8bb716dea87d8419e6f}{
 \index{phys::WorldQueryTool@{phys::WorldQueryTool}!RayPlaneIntersection@{RayPlaneIntersection}}
 \index{RayPlaneIntersection@{RayPlaneIntersection}!phys::WorldQueryTool@{phys::WorldQueryTool}}
-\subsubsection[{RayPlaneIntersection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} $\ast$ phys::WorldQueryTool::RayPlaneIntersection (const {\bf Ray} \& {\em QueryRay}, \/  const {\bf Plane} \& {\em QueryPlane})}}
+\subsubsection[{RayPlaneIntersection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} $\ast$ phys::WorldQueryTool::RayPlaneIntersection (
+\begin{DoxyParamCaption}
+\item[{const {\bf Ray} \&}]{ QueryRay, }
+\item[{const {\bf Plane} \&}]{ QueryPlane}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d69/classphys_1_1WorldQueryTool_adfc5ea4a115ad8bb716dea87d8419e6f}
 
 
@@ -278,7 +204,7 @@ This returns a pointer to a vector that matches where the intersection of the pl
 \end{DoxyReturn}
 
 
-Definition at line 278 of file worldquerytool.cpp.
+Definition at line 202 of file worldquerytool.cpp.
 
 
 

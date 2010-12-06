@@ -1,0 +1,533 @@
+\hypertarget{classphys_1_1UI_1_1CheckBox}{
+\section{phys::UI::CheckBox Class Reference}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox}\index{phys::UI::CheckBox@{phys::UI::CheckBox}}
+}
+
+
+This is a simple widget for storing a bool value.  
+
+
+
+
+{\ttfamily \#include $<$uicheckbox.h$>$}
+
+Inheritance diagram for phys::UI::CheckBox:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{dd/d10/classphys_1_1UI_1_1CheckBox}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UI_1_1CheckBox_a39113092c3f954c2cdef76c54b1a434e}{CheckBox} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&LabelText, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_a60c4d62c357a7158d69888a367b5dc56}{
+virtual \hyperlink{classphys_1_1UI_1_1CheckBox_a60c4d62c357a7158d69888a367b5dc56}{$\sim$CheckBox} ()}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a60c4d62c357a7158d69888a367b5dc56}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1CheckBox_acf01a9b19251212fb626d022d02b53d5}{IsChecked} ()
+\begin{DoxyCompactList}\small\item\em Gets whether this checkbox is checked or not. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1CheckBox_a3c9b10c692dfb62dedbd091dac12c115}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_aa25bc0f39dca43c00585d107e9a3bcb7}{SetLabelText} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&LabelText)
+\begin{DoxyCompactList}\small\item\em Sets the text label to be displayed with this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1CheckBox_a19078efa52e8b2c133f3b5229b8742eb}{GetLabelText} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set label being displayed with this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_a8faf96913bf562238e3a50aa420a457d}{SetUncheckedSprite} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Unchecked, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Hovered=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the unchecked status sprite and an optional unchecked hovered sprite. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_a9598df1ead97132562c3c99aaefbd34c}{SetCheckedSprite} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Checked, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Hovered=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Sets the checked status sprite and an optional checked hovered sprite. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_aaa4723624a25171e07cf35870368fe18}{SetPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_a8a8630b27ab769b6e42657c5388ec7fe}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_ad0d6efcf330bb452254beb6ce8ef03f8}{SetActualPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_a33bedaa00456be8ca0e9b2eafcd5b21a}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_a104be5f34ea78cc47a411a106f482d3e}{SetSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_a99c6ab5087522fbd4825032b9a058585}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_aa3226d72a70e734996b58a8782e24924}{SetActualSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CheckBox_aa13946ced3947a13f8f30dd97ffba245}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1CheckBox_a728de15a5c8e512fd3fbb2b8a3f808ee}{GetCheckBoxButton} ()
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classphys_1_1UI_1_1Button}{Button} this checkbox is based on. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1CheckBox_a5f37379e69ef1259ab48c37a8dc200e9}{GetCheckBoxLabel} ()
+\begin{DoxyCompactList}\small\item\em Gets the label for this checkbox. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_ac20138946e42c608ac0808fc40fce4ce}{
+void {\bfseries SetSpriteSet} (std::pair$<$ std::string, std::string $>$ \&SpriteSet)}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_ac20138946e42c608ac0808fc40fce4ce}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_ad988ce71809fd1dea6def42da50232eb}{
+virtual void \hyperlink{classphys_1_1UI_1_1CheckBox_ad988ce71809fd1dea6def42da50232eb}{Update} (bool Force=false)}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_ad988ce71809fd1dea6def42da50232eb}
+
+\begin{DoxyCompactList}\small\item\em For use with widget update/automation. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_a1118ba10131845d77085bc1b9e41fdab}{
+\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ {\bfseries Box}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a1118ba10131845d77085bc1b9e41fdab}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_a99640351f23baac8e36ef3d64140e404}{
+\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ {\bfseries Label}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a99640351f23baac8e36ef3d64140e404}
+
+\item 
+std::pair$<$ std::string, std::string $>$ \hyperlink{classphys_1_1UI_1_1CheckBox_a7b670d93f119193283ec78b94f842429}{UncheckedSet}
+\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_ae4bb7dad2474b7f74ebe1320fef7a58e}{
+std::pair$<$ std::string, std::string $>$ {\bfseries CheckedSet}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_ae4bb7dad2474b7f74ebe1320fef7a58e}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_afc37b1eaaf6ab441a71569757802571b}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries GlyphIndex}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_afc37b1eaaf6ab441a71569757802571b}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_af539bce89119b8e21fa19f170cc5d7e5}{
+bool {\bfseries Checked}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_af539bce89119b8e21fa19f170cc5d7e5}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_ae8f71565ce43129a44930131850d6e16}{
+bool {\bfseries CheckLock}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_ae8f71565ce43129a44930131850d6e16}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1CheckBox_ab811b36cd63b54fe42b6acb231ea21bc}{
+class {\bfseries UIManager}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_ab811b36cd63b54fe42b6acb231ea21bc}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is a simple widget for storing a bool value. 
+
+Definition at line 58 of file uicheckbox.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UI_1_1CheckBox_a39113092c3f954c2cdef76c54b1a434e}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!CheckBox@{CheckBox}}
+\index{CheckBox@{CheckBox}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{CheckBox}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::CheckBox::CheckBox (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Whole}}]{ Glyph, }
+\item[{{\bf String} \&}]{ LabelText, }
+\item[{{\bf UILayer} $\ast$}]{ Layer}
+\end{DoxyParamCaption}
+)}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a39113092c3f954c2cdef76c54b1a434e}
+
+
+Class constructor. 
+
+The dimensions provided 
+\begin{DoxyParams}{Parameters}
+\item[{\em name}]The name of the button. \item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \item[{\em Layer}]Pointer to the Layer that created this button. \end{DoxyParams}
+
+
+Definition at line 48 of file uicheckbox.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1UI_1_1CheckBox_a3c9b10c692dfb62dedbd091dac12c115}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!CheckMouseHover@{CheckMouseHover}}
+\index{CheckMouseHover@{CheckMouseHover}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::CheckBox::CheckMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a3c9b10c692dfb62dedbd091dac12c115}
+
+
+Checks to see if the current mouse position is over this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool value, true if the mouse is over this widget, false if it's not. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259dc}{phys::UI::Widget}.
+
+
+
+Definition at line 124 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_a33bedaa00456be8ca0e9b2eafcd5b21a}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CheckBox::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a33bedaa00456be8ca0e9b2eafcd5b21a}
+
+
+Sets the pixel position of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel position of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e7}{phys::UI::Widget}.
+
+
+
+Definition at line 200 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_aa13946ced3947a13f8f30dd97ffba245}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CheckBox::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_aa13946ced3947a13f8f30dd97ffba245}
+
+
+Sets the pixel size of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel size of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed2}{phys::UI::Widget}.
+
+
+
+Definition at line 232 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_a728de15a5c8e512fd3fbb2b8a3f808ee}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!GetCheckBoxButton@{GetCheckBoxButton}}
+\index{GetCheckBoxButton@{GetCheckBoxButton}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{GetCheckBoxButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::CheckBox::GetCheckBoxButton (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a728de15a5c8e512fd3fbb2b8a3f808ee}
+
+
+Gets the \hyperlink{classphys_1_1UI_1_1Button}{Button} this checkbox is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button this checkbox is based on. 
+\end{DoxyReturn}
+
+
+Definition at line 237 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_a5f37379e69ef1259ab48c37a8dc200e9}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!GetCheckBoxLabel@{GetCheckBoxLabel}}
+\index{GetCheckBoxLabel@{GetCheckBoxLabel}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{GetCheckBoxLabel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ phys::UI::CheckBox::GetCheckBoxLabel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a5f37379e69ef1259ab48c37a8dc200e9}
+
+
+Gets the label for this checkbox. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the label for this checkbox. 
+\end{DoxyReturn}
+
+
+Definition at line 242 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_a19078efa52e8b2c133f3b5229b8742eb}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!GetLabelText@{GetLabelText}}
+\index{GetLabelText@{GetLabelText}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{GetLabelText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::UI::CheckBox::GetLabelText (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a19078efa52e8b2c133f3b5229b8742eb}
+
+
+Gets the currently set label being displayed with this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the currently set label. If no label is set this will return an empty string. 
+\end{DoxyReturn}
+
+
+Definition at line 146 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_a8a8630b27ab769b6e42657c5388ec7fe}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CheckBox::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a8a8630b27ab769b6e42657c5388ec7fe}
+
+
+Gets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative position of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c33}{phys::UI::Widget}.
+
+
+
+Definition at line 184 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_a99c6ab5087522fbd4825032b9a058585}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CheckBox::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a99c6ab5087522fbd4825032b9a058585}
+
+
+Gets the relative size of this widget. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative size of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a2}{phys::UI::Widget}.
+
+
+
+Definition at line 216 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_acf01a9b19251212fb626d022d02b53d5}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!IsChecked@{IsChecked}}
+\index{IsChecked@{IsChecked}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{IsChecked}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::CheckBox::IsChecked (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_acf01a9b19251212fb626d022d02b53d5}
+
+
+Gets whether this checkbox is checked or not. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing whether or not this checkbox is checked. 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_ad0d6efcf330bb452254beb6ce8ef03f8}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CheckBox::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_ad0d6efcf330bb452254beb6ce8ef03f8}
+
+
+Sets the pixel position of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]A vector2 representing the pixel position of this widget. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_ac8f70c390e7724e57fc99e51d8004a9b}{phys::UI::Widget}.
+
+
+
+Definition at line 189 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_aa3226d72a70e734996b58a8782e24924}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CheckBox::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_aa3226d72a70e734996b58a8782e24924}
+
+
+Sets the pixel size of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Size}]A vector2 representing the pixel size of this widget. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a8ceb54fd067847844b314dedd8e529f8}{phys::UI::Widget}.
+
+
+
+Definition at line 221 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_a9598df1ead97132562c3c99aaefbd34c}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!SetCheckedSprite@{SetCheckedSprite}}
+\index{SetCheckedSprite@{SetCheckedSprite}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{SetCheckedSprite}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CheckBox::SetCheckedSprite (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Checked, }
+\item[{{\bf String} \&}]{ Hovered = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a9598df1ead97132562c3c99aaefbd34c}
+
+
+Sets the checked status sprite and an optional checked hovered sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Unchecked}]The name of the sprite in the Atlas you wish to set as the checked status sprite. \item[{\em Hovered}]The name of the sprite in the Atlas you with to sed on the checked/hovered sprite. Leaving this to default or passing in a blank string will cause it to ignore this parameter. \end{DoxyParams}
+
+
+Definition at line 165 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_aa25bc0f39dca43c00585d107e9a3bcb7}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!SetLabelText@{SetLabelText}}
+\index{SetLabelText@{SetLabelText}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{SetLabelText}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CheckBox::SetLabelText (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ LabelText}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_aa25bc0f39dca43c00585d107e9a3bcb7}
+
+
+Sets the text label to be displayed with this widget. 
+
+If a label hasn't been set when this is called, this funtion will create a new one and set it. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Label}]The text message to display with this widget. \end{DoxyParams}
+
+
+Definition at line 134 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_aaa4723624a25171e07cf35870368fe18}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CheckBox::SetPosition (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_aaa4723624a25171e07cf35870368fe18}
+
+
+Sets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]A vector2 representing the relative position of this widget. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_aae1c0b891125823e7ade8cbc7e4ba6b6}{phys::UI::Widget}.
+
+
+
+Definition at line 173 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_a104be5f34ea78cc47a411a106f482d3e}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CheckBox::SetSize (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a104be5f34ea78cc47a411a106f482d3e}
+
+
+Sets the relative size of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Size}]A vector2 representing the relative size of this widget. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_ad5af5f04b60d43341037df6b0e329bbd}{phys::UI::Widget}.
+
+
+
+Definition at line 205 of file uicheckbox.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CheckBox_a8faf96913bf562238e3a50aa420a457d}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!SetUncheckedSprite@{SetUncheckedSprite}}
+\index{SetUncheckedSprite@{SetUncheckedSprite}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{SetUncheckedSprite}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CheckBox::SetUncheckedSprite (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ Unchecked, }
+\item[{{\bf String} \&}]{ Hovered = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a8faf96913bf562238e3a50aa420a457d}
+
+
+Sets the unchecked status sprite and an optional unchecked hovered sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Unchecked}]The name of the sprite in the Atlas you wish to set as the unchecked status sprite. \item[{\em Hovered}]The name of the sprite in the Atlas you with to sed on the unchecked/hovered sprite. Leaving this to default or passing in a blank string will cause it to ignore this parameter. \end{DoxyParams}
+
+
+Definition at line 157 of file uicheckbox.cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classphys_1_1UI_1_1CheckBox_a7b670d93f119193283ec78b94f842429}{
+\index{phys::UI::CheckBox@{phys::UI::CheckBox}!UncheckedSet@{UncheckedSet}}
+\index{UncheckedSet@{UncheckedSet}!phys::UI::CheckBox@{phys::UI::CheckBox}}
+\subsubsection[{UncheckedSet}]{\setlength{\rightskip}{0pt plus 5cm}std::pair$<$std::string,std::string$>$ {\bf phys::UI::CheckBox::UncheckedSet}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{dd/d10/classphys_1_1UI_1_1CheckBox_a7b670d93f119193283ec78b94f842429}
+\begin{Desc}
+\item[\hyperlink{todo__todo000022}{Todo}]Fix the issue with all strings being const, so we can resume use of typedefs here. \end{Desc}
+
+
+Definition at line 65 of file uicheckbox.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uicheckbox.h\item 
+uicheckbox.cpp\end{DoxyCompactItemize}

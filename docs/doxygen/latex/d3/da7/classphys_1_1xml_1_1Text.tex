@@ -1,0 +1,208 @@
+\hypertarget{classphys_1_1xml_1_1Text}{
+\section{phys::xml::Text Class Reference}
+\label{d3/da7/classphys_1_1xml_1_1Text}\index{phys::xml::Text@{phys::xml::Text}}
+}
+
+
+This is a container of nodes and elements and other XML stuff.  
+
+
+
+
+{\ttfamily \#include $<$xmltext.h$>$}
+
+Inheritance diagram for phys::xml::Text:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d3/da7/classphys_1_1xml_1_1Text}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1xml_1_1Text_a553a3bc10d4865f48e5d11e0b2e1e773}{Text} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Value)
+\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1Text_a7205430aaf4d1873f267b43042900f2f}{
+\hyperlink{classphys_1_1xml_1_1Text_a7205430aaf4d1873f267b43042900f2f}{Text} ()}
+\label{d3/da7/classphys_1_1xml_1_1Text_a7205430aaf4d1873f267b43042900f2f}
+
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320}{Base::XMLComponentType} \hyperlink{classphys_1_1xml_1_1Text_a51b896f07b2dae7d5ee05f9e2515ee97}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This identifies what kind of child of xml::base this is. \item\end{DoxyCompactList}\item 
+virtual std::istream \& \hyperlink{classphys_1_1xml_1_1Text_a7b4f11184258ddaacd3682354800b306}{operator$>$$>$} (std::istream \&In)
+\begin{DoxyCompactList}\small\item\em Stream XML data into a \hyperlink{namespacephys_1_1xml}{phys::xml} hierearchy. \item\end{DoxyCompactList}\item 
+virtual std::ostream \& \hyperlink{classphys_1_1xml_1_1Text_a6fbf51e2b04600f0722f0418c9669a58}{operator$<$$<$} (std::ostream \&Out)
+\begin{DoxyCompactList}\small\item\em Stream XML data out of a \hyperlink{namespacephys_1_1xml}{phys::xml} hierearchy. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classphys_1_1xml_1_1Text}{Text} $\ast$ \hyperlink{classphys_1_1xml_1_1Text_ae9206d5be81750026740bec3ee68e6e1}{GetPointerFromWrapped} (ticpp::Text $\ast$Meta)
+\begin{DoxyCompactList}\small\item\em This will find or create a pointer to the \hyperlink{classphys_1_1xml_1_1Text}{Text}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1xml_1_1Text_abbbdc10b389dd89be39c1683a229f6c8}{Text} (ticpp::Text $\ast$Meta, bool FirstTimeUsed=false)
+\begin{DoxyCompactList}\small\item\em Construct a \hyperlink{classphys_1_1xml_1_1Text}{Text} using meta data from a TiCPP pointer. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is a container of nodes and elements and other XML stuff. 
+
+Definition at line 63 of file xmltext.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1xml_1_1Text_abbbdc10b389dd89be39c1683a229f6c8}{
+\index{phys::xml::Text@{phys::xml::Text}!Text@{Text}}
+\index{Text@{Text}!phys::xml::Text@{phys::xml::Text}}
+\subsubsection[{Text}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Text::Text (
+\begin{DoxyParamCaption}
+\item[{ticpp::Text $\ast$}]{ Meta, }
+\item[{bool}]{ FirstTimeUsed = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d3/da7/classphys_1_1xml_1_1Text_abbbdc10b389dd89be39c1683a229f6c8}
+
+
+Construct a \hyperlink{classphys_1_1xml_1_1Text}{Text} using meta data from a TiCPP pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Meta}]A pointer to a ticpp::Text that this class will wrap. \item[{\em FirstTimeUsed}]Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass \end{DoxyParams}
+
+
+Definition at line 54 of file xmltext.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Text_a553a3bc10d4865f48e5d11e0b2e1e773}{
+\index{phys::xml::Text@{phys::xml::Text}!Text@{Text}}
+\index{Text@{Text}!phys::xml::Text@{phys::xml::Text}}
+\subsubsection[{Text}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Text::Text (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{ Value}
+\end{DoxyParamCaption}
+)}}
+\label{d3/da7/classphys_1_1xml_1_1Text_a553a3bc10d4865f48e5d11e0b2e1e773}
+
+
+Descriptive Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Value}]The String to be stored this phys::xml::text object \end{DoxyParams}
+
+
+Definition at line 79 of file xmltext.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1Text_ae9206d5be81750026740bec3ee68e6e1}{
+\index{phys::xml::Text@{phys::xml::Text}!GetPointerFromWrapped@{GetPointerFromWrapped}}
+\index{GetPointerFromWrapped@{GetPointerFromWrapped}!phys::xml::Text@{phys::xml::Text}}
+\subsubsection[{GetPointerFromWrapped}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} $\ast$ phys::xml::Text::GetPointerFromWrapped (
+\begin{DoxyParamCaption}
+\item[{ticpp::Text $\ast$}]{ Meta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{d3/da7/classphys_1_1xml_1_1Text_ae9206d5be81750026740bec3ee68e6e1}
+
+
+This will find or create a pointer to the \hyperlink{classphys_1_1xml_1_1Text}{Text}. 
+
+\begin{DoxyInternal}{For internal use only.}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Meta}]A pointer to a ticpp::Text that returned \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} will wrap \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the \hyperlink{classphys_1_1xml_1_1Text}{phys::xml::Text} that wraps Meta 
+\end{DoxyReturn}
+\end{DoxyInternal}
+
+
+Definition at line 61 of file xmltext.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Text_a51b896f07b2dae7d5ee05f9e2515ee97}{
+\index{phys::xml::Text@{phys::xml::Text}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::xml::Text@{phys::xml::Text}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base::XMLComponentType} phys::xml::Text::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/da7/classphys_1_1xml_1_1Text_a51b896f07b2dae7d5ee05f9e2515ee97}
+
+
+This identifies what kind of child of xml::base this is. 
+
+\begin{DoxyReturn}{Returns}
+This returns \hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320aba278067c2045c663334b7333c6b5f8f}{Base::isText} 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1xml_1_1Node_a32273db5897cc54fa8c0e30d686a866b}{phys::xml::Node}.
+
+
+
+Definition at line 91 of file xmltext.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Text_a6fbf51e2b04600f0722f0418c9669a58}{
+\index{phys::xml::Text@{phys::xml::Text}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!phys::xml::Text@{phys::xml::Text}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& phys::xml::Text::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std::ostream \&}]{ Out}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/da7/classphys_1_1xml_1_1Text_a6fbf51e2b04600f0722f0418c9669a58}
+
+
+Stream XML data out of a \hyperlink{namespacephys_1_1xml}{phys::xml} hierearchy. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Out}]This is the stream the data goes to from when you use the $<$$<$ operator \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a stream containing all the data that was streamed out, to allow for chaining $<$$<$ calls and retrieval of the data
+\end{DoxyReturn}
+Inherited \hyperlink{classphys_1_1xml_1_1Node}{phys::xml::Node} 
+
+Implements \hyperlink{classphys_1_1xml_1_1Node_a62ae8f247d6ae6e5e147b6955b6af0a9}{phys::xml::Node}.
+
+
+
+Definition at line 97 of file xmltext.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Text_a7b4f11184258ddaacd3682354800b306}{
+\index{phys::xml::Text@{phys::xml::Text}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!phys::xml::Text@{phys::xml::Text}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std::istream \& phys::xml::Text::operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std::istream \&}]{ In}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d3/da7/classphys_1_1xml_1_1Text_a7b4f11184258ddaacd3682354800b306}
+
+
+Stream XML data into a \hyperlink{namespacephys_1_1xml}{phys::xml} hierearchy. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em In}]This is the stream the data comes from when you use the $>$$>$ operator \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a stream containing all the data that was streamed in, to allow for chaining $>$$>$ calls
+\end{DoxyReturn}
+Inherited \hyperlink{classphys_1_1xml_1_1Node}{phys::xml::Node} 
+
+Implements \hyperlink{classphys_1_1xml_1_1Node_a400698c30e391c3f098268d4a79d76ca}{phys::xml::Node}.
+
+
+
+Definition at line 94 of file xmltext.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+xmltext.h\item 
+xmltext.cpp\end{DoxyCompactItemize}

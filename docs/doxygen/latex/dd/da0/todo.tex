@@ -1,5 +1,5 @@
-\label{dd/da0/todo__todo000026}
-\hypertarget{dd/da0/todo__todo000026}{}
+\label{dd/da0/todo__todo000027}
+\hypertarget{dd/da0/todo__todo000027}{}
  
 \begin{DoxyDescription}
 \item[Page \hyperlink{mainloop1}{Main Loop Structure and Flow} ]create a lighting manager and put this in there 
@@ -30,7 +30,7 @@
 \hypertarget{dd/da0/todo__todo000008}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1EventManager_a148f8c559642d3d50206169b3d0406be}{phys::EventManager::EventManager}(World $\ast$ParentWorld\_\-) ]TODO build a deconstructor that deletes all the events still in the queue 
+\item[Member \hyperlink{classphys_1_1EventManager_a018b36588bf2a2e90536e64be060d6fc}{phys::EventManager::EventManager}() ]TODO build a deconstructor that deletes all the events still in the queue 
 
 TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock 
 \end{DoxyDescription}
@@ -83,32 +83,39 @@ TODO: We really should double check that going into fullscreen worked the way we
 \hypertarget{dd/da0/todo__todo000014}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1internal_1_1Line3D_a31bf19dc06547cbe042e1ddfbcf672f3}{phys::internal::Line3D::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen 
-\end{DoxyDescription}
-
-\label{dd/da0/todo__todo000016}
-\hypertarget{dd/da0/todo__todo000016}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1LineGroup_a141db62ea17d94b9bce421e5df5a8d89}{phys::LineGroup::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: In the future we will add a break in the line segment chain when this is called. 
-\end{DoxyDescription}
-
-\label{dd/da0/todo__todo000017}
-\hypertarget{dd/da0/todo__todo000017}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1LineGroup_ade1bb4f8e1164e1b8d7aeabbc970b79d}{phys::LineGroup::drawLines}(void) ]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. 
+\item[Member \hyperlink{classphys_1_1InputQueryTool_a9779d812418f1fddb0880df0c607242b}{phys::InputQueryTool::GatherEvents}(bool ClearEventsFromEventMgr=false) ]Add support for joysticks events to InputQueryTool 
 \end{DoxyDescription}
 
 \label{dd/da0/todo__todo000015}
 \hypertarget{dd/da0/todo__todo000015}{}
  
 \begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1internal_1_1Line3D_a31bf19dc06547cbe042e1ddfbcf672f3}{phys::internal::Line3D::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000017}
+\hypertarget{dd/da0/todo__todo000017}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1LineGroup_a141db62ea17d94b9bce421e5df5a8d89}{phys::LineGroup::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: In the future we will add a break in the line segment chain when this is called. 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000018}
+\hypertarget{dd/da0/todo__todo000018}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1LineGroup_ade1bb4f8e1164e1b8d7aeabbc970b79d}{phys::LineGroup::drawLines}(void) ]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000016}
+\hypertarget{dd/da0/todo__todo000016}{}
+ 
+\begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1LineGroup_a676039a6beec56d24c631e9da5fd7e76}{phys::LineGroup::LineGroup}(World $\ast$Parent\_\-) ]TODO: This class really should support rotation, the underlying implementation does. 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000020}
-\hypertarget{dd/da0/todo__todo000020}{}
+\label{dd/da0/todo__todo000021}
+\hypertarget{dd/da0/todo__todo000021}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1Ray_a7445c25acb6ce865ef85e7ada829ccba}{phys::Ray::GetNormal}() const  ]discuss the merits throwing an error here. 
@@ -118,37 +125,58 @@ TODO: We really should double check that going into fullscreen worked the way we
 \hypertarget{dd/da0/todo__todo000022}{}
  
 \begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1UI_1_1CheckBox_a7b670d93f119193283ec78b94f842429}{phys::UI::CheckBox::UncheckedSet} ]Fix the issue with all strings being const, so we can resume use of typedefs here. 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000023}
+\hypertarget{dd/da0/todo__todo000023}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1UIManager_ae56846a64d8ce312aa36a749d15619df}{phys::UIManager::GetWindowDimensions}() ]This is the second occurance of needing to specify the namespace to declare data without any apparent reason. If possible a pattern/explaination should be found. 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000024}
+\hypertarget{dd/da0/todo__todo000024}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1UIScreen_a14c3256bda81d40553ff065993fcbe77}{phys::UIScreen::CreateLayer}(const String \&Name, Whole Zorder) ]add an exception here or maybe log entry, some notification it failed. 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000026}
+\hypertarget{dd/da0/todo__todo000026}{}
+ 
+\begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1Vector3_a81e11f45378758391c97ec55b519951c}{phys::Vector3::GetNormal}() const  ]discuss the merits throwing an error here. 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000021}
-\hypertarget{dd/da0/todo__todo000021}{}
+\label{dd/da0/todo__todo000025}
+\hypertarget{dd/da0/todo__todo000025}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1Vector3_ae39fe0545df88148bcd668b3bd2a4388}{phys::Vector3::Normalize}() ]discuss the merits throwing an error here. 
-\end{DoxyDescription}
-
-\label{dd/da0/todo__todo000028}
-\hypertarget{dd/da0/todo__todo000028}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1World_acd0dff342c08fe3008226488b7c53d97}{phys::World::SetWindowName}(const String \&NewName) ]TODO Change the name of an application once it is running 
-\end{DoxyDescription}
-
-\label{dd/da0/todo__todo000029}
-\hypertarget{dd/da0/todo__todo000029}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1WorldQueryTool_ae387ff047f3cdf408d8959b8cbf4cc57}{phys::WorldQueryTool::GatherEvents}(bool ClearEventsFromEventMgr=false) ]Add support for joysticks events to WorldQueryTool 
 \end{DoxyDescription}
 
 \label{dd/da0/todo__todo000030}
 \hypertarget{dd/da0/todo__todo000030}{}
  
 \begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1World_acd0dff342c08fe3008226488b7c53d97}{phys::World::SetWindowName}(const String \&NewName) ]TODO Change the name of an application once it is running 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000031}
+\hypertarget{dd/da0/todo__todo000031}{}
+ 
+\begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1WorldQueryTool_a67575416c2e9c652bbd873649ee38baf}{phys::WorldQueryTool::GetFirstActorOnRayByAABB}(Ray ActorRay) ]TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow. 
 
 TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000033}
+\hypertarget{dd/da0/todo__todo000033}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a9c40a881b9b8ebe24f68a7fb30dbb581}{phys::xml::Attribute::Attribute}(const Attribute \&CopiedAttribute) ]TODO rework the \hyperlink{classphys_1_1xml_1_1Attribute}{phys::xml::Attribute} copy constructor to actually make a new copy. 
 \end{DoxyDescription}
 
 \label{dd/da0/todo__todo000004}

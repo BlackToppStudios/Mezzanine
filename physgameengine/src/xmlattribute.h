@@ -62,7 +62,7 @@ namespace phys
             protected:
                 /// @brief Construct an attribute using meta data from a TiCPP pointer
                 /// @param Meta A pointer to a ticpp::Attribute that this class will wrap.
-                /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
+                /// @param FirstTimeUsed Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
                 Attribute (ticpp::Attribute* Meta, bool FirstTimeUsed = false);
 
             public:
@@ -112,7 +112,7 @@ namespace phys
                 virtual void SetValue(const String &value);
 
                 /// @brief Set the Name of this attribute.
-                /// @param name A String that is the name the attribute will have.
+                /// @param Name A String that is the name the attribute will have.
                 void SetName(const String &Name);
 
                 /// @brief Get the Name of this attribute.

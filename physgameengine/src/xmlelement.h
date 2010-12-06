@@ -57,14 +57,14 @@ namespace phys
     {
         /// @class Element
         /// @brief This represents an xml element.
-        /// @file xmlelemeny.h
+        /// @file xmlelement.h
         /// @details This wraps ticpp::Element to help make the interface cleaner and easier to use
         class PHYS_LIB Element : public Node
         {
             protected:
                 /// @brief Construct an Element using meta data from a TiCPP pointer
                 /// @param Meta A pointer to a ticpp::Element that this class will wrap.
-                /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
+                /// @param FirstTimeUsed Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
                 Element(ticpp::Element* Meta, bool FirstTimeUsed = false);
 
             public:

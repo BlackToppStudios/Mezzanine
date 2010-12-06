@@ -66,7 +66,6 @@ namespace phys
         public:
             /// @brief Simple Constructor
             /// @details This creates and empty usable container based on std::vector.
-            /// @param Parent_ this is a Pointer to the phys::World that will be using these actors.
             ActorContainerVector ();
 
             //Simply Inherited mmembers

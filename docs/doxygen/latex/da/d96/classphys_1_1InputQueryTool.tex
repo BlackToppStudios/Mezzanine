@@ -1,0 +1,484 @@
+\hypertarget{classphys_1_1InputQueryTool}{
+\section{phys::InputQueryTool Class Reference}
+\label{da/d96/classphys_1_1InputQueryTool}\index{phys::InputQueryTool@{phys::InputQueryTool}}
+}
+
+
+This provides a number of utilities for getting input information.  
+
+
+
+
+{\ttfamily \#include $<$inputquerytool.h$>$}
+
+Inheritance diagram for phys::InputQueryTool:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{da/d96/classphys_1_1InputQueryTool}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1InputQueryTool_a10a997ec2e072d31808c794542c0516f}{InputQueryTool} ()
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1InputQueryTool_a6a37616800928b691932045ba34759b8}{$\sim$InputQueryTool} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1InputQueryTool_a706c05a974dff509c61440f63bbe9d2d}{GetMouseX} ()
+\begin{DoxyCompactList}\small\item\em This gets the X coordinate of the mouse. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1InputQueryTool_acbf87969054ab02e2a7bfc66d9cd4bdd}{GetMouseY} ()
+\begin{DoxyCompactList}\small\item\em This gets the Y coordinate of the mouse. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1InputQueryTool_affd9523f67b542b208e6d36c3395e72b}{GetMouseCoordinates} ()
+\begin{DoxyCompactList}\small\item\em This gets a vector2 containing both X and Y coordinates of the mouse. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1InputQueryTool_aea2da0aeb97353f9d7af75f2a8cb7d91}{GetMousePrevFrameOffset} ()
+\begin{DoxyCompactList}\small\item\em This gets the offset location of the mouse since the previous frame. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1InputQueryTool_aab9a7be4d95289d828378f7f3d5fc065}{IsMouseButtonPushed} (short unsigned int MouseButton)
+\begin{DoxyCompactList}\small\item\em Returns whether a specific Mouse button is pushed. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1InputQueryTool_a6f210acb5f4e2fe052b0c3c7c3ec9418}{IsKeyboardButtonPushed} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} KeyboardButton)
+\begin{DoxyCompactList}\small\item\em Returns whether a specific KEyboard button is pushed. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{MetaCode::ButtonState} \hyperlink{classphys_1_1InputQueryTool_a1ef8b70af163d8bc703fd16c3fcce22d}{GetMouseButtonState} (short unsigned int MouseButton)
+\begin{DoxyCompactList}\small\item\em Gets the button state of the provided mouse button ID. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1MetaCode_a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2}{MetaCode::ButtonState} \hyperlink{classphys_1_1InputQueryTool_ad279cce170ff68ba9f343f6b22b2c621}{GetKeyboardButtonState} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} KeyboardButton)
+\begin{DoxyCompactList}\small\item\em Gets the button state of the provided keyboard button ID. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1MetaCode_af9ba277d1ef071be8861e35c2b7d82d6}{MetaCode::MouseWheelState} \hyperlink{classphys_1_1InputQueryTool_a3b4c3475e48025fbffd18ae3b3acddec}{GetMouseWheelState} ()
+\begin{DoxyCompactList}\small\item\em Gets the current status of the mouse wheel. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1InputQueryTool_a9779d812418f1fddb0880df0c607242b}{GatherEvents} (bool ClearEventsFromEventMgr=false)
+\begin{DoxyCompactList}\small\item\em This gathers any user-\/input/event data that might be queryed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1InputQueryTool_ab24a64fc316eefb7e88c1ed75ecee7ea}{GameWorld}
+\begin{DoxyCompactList}\small\item\em This is gameworld we will be querying. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1InputQueryTool_a857f0b9ad8bb720f1daf57c9eda6e0fb}{MouseXCache}
+\begin{DoxyCompactList}\small\item\em This holds the Mouse X coordinate as of the last time Gather Events was called. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1InputQueryTool_a9378af076545f92b70d853776cc6065c}{MouseYCache}
+\begin{DoxyCompactList}\small\item\em This holds the Mouse Y coordinate as of the last time Gather Events was called. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1InputQueryTool_a379f40bdfb0cbafb84d1dcf297cb1ea3}{MouseCoordinates}
+\begin{DoxyCompactList}\small\item\em This stores both mouse coordinates in a \hyperlink{classphys_1_1Vector2}{Vector2}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1InputQueryTool_af0e34b7565836f2ebbb15b0d37d10718}{MousePrevFrameOffset}
+\begin{DoxyCompactList}\small\item\em This stores the amount the mouse has moved since the previous frame. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1MetaCode_af9ba277d1ef071be8861e35c2b7d82d6}{MetaCode::MouseWheelState} \hyperlink{classphys_1_1InputQueryTool_af6ceb8ea79ea2fe4b881ce715090fa78}{WheelState}
+\begin{DoxyCompactList}\small\item\em This stores the current status of the mouse wheel. \item\end{DoxyCompactList}\item 
+std::map$<$ unsigned short int, \hyperlink{classphys_1_1MetaCode}{MetaCode} $>$ \hyperlink{classphys_1_1InputQueryTool_a2fddedc3d3ac61a195289b55b0aec972}{MouseButtonCache}
+\begin{DoxyCompactList}\small\item\em A place to store which mouse buttons are pushed. \item\end{DoxyCompactList}\item 
+std::map$<$ unsigned int, \hyperlink{classphys_1_1MetaCode}{MetaCode} $>$ \hyperlink{classphys_1_1InputQueryTool_afd89b917cb11be11dc990d5ef9ddb2ff}{KeyboardButtonCache}
+\begin{DoxyCompactList}\small\item\em A place to store which keys are pressed or not. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const unsigned short int \hyperlink{classphys_1_1InputQueryTool_af5d261bc351f43222db511aacf572409}{MouseButtonLimit} = 16
+\begin{DoxyCompactList}\small\item\em This is the mouse button limit of this class. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This provides a number of utilities for getting input information. This is useful for quickly and easily getting common input information. 
+
+Definition at line 59 of file inputquerytool.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1InputQueryTool_a10a997ec2e072d31808c794542c0516f}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!InputQueryTool@{InputQueryTool}}
+\index{InputQueryTool@{InputQueryTool}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{InputQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}phys::InputQueryTool::InputQueryTool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_a10a997ec2e072d31808c794542c0516f}
+
+
+Basic Constructor. 
+
+This creates a \hyperlink{classphys_1_1InputQueryTool}{InputQueryTool} ready to run queries on the input. 
+
+Definition at line 45 of file inputquerytool.cpp.
+
+\hypertarget{classphys_1_1InputQueryTool_a6a37616800928b691932045ba34759b8}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!$\sim$InputQueryTool@{$\sim$InputQueryTool}}
+\index{$\sim$InputQueryTool@{$\sim$InputQueryTool}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{$\sim$InputQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}phys::InputQueryTool::$\sim$InputQueryTool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_a6a37616800928b691932045ba34759b8}
+
+
+Destructor. 
+
+Deletes everything in the input query tool. 
+
+Definition at line 52 of file inputquerytool.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1InputQueryTool_a9779d812418f1fddb0880df0c607242b}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!GatherEvents@{GatherEvents}}
+\index{GatherEvents@{GatherEvents}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{GatherEvents}]{\setlength{\rightskip}{0pt plus 5cm}void phys::InputQueryTool::GatherEvents (
+\begin{DoxyParamCaption}
+\item[{bool}]{ ClearEventsFromEventMgr = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_a9779d812418f1fddb0880df0c607242b}
+
+
+This gathers any user-\/input/event data that might be queryed. 
+
+This should be called periodcally (ideally in the post user input callback) to allow this to gather data from the \hyperlink{classphys_1_1World}{phys::World} 's event manager. When called this will drop prior event data and any relevant queries will come from this new data. At the caller's discretion this method can properly delete any events pulled from the event manager. \par
+ \par
+ This runs in linear time relative to the events in the event manager. This will usually be a trivial amount if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup) 
+\begin{DoxyParams}{Parameters}
+\item[{\em ClearEventsFromEventMgr}]If set to true, This method will properly remove any events it pulls from the event manager. \end{DoxyParams}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000014}{Todo}]Add support for joysticks events to \hyperlink{classphys_1_1InputQueryTool}{InputQueryTool} \end{Desc}
+
+
+
+
+Definition at line 133 of file inputquerytool.cpp.
+
+\hypertarget{classphys_1_1InputQueryTool_ad279cce170ff68ba9f343f6b22b2c621}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!GetKeyboardButtonState@{GetKeyboardButtonState}}
+\index{GetKeyboardButtonState@{GetKeyboardButtonState}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{GetKeyboardButtonState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::ButtonState} phys::InputQueryTool::GetKeyboardButtonState (
+\begin{DoxyParamCaption}
+\item[{{\bf MetaCode::InputCode}}]{ KeyboardButton}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_ad279cce170ff68ba9f343f6b22b2c621}
+
+
+Gets the button state of the provided keyboard button ID. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em KeyboardButton}]The Input code for the keyboard button you wish to query. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a button state enum representing the button state. 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file inputquerytool.cpp.
+
+\hypertarget{classphys_1_1InputQueryTool_a1ef8b70af163d8bc703fd16c3fcce22d}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!GetMouseButtonState@{GetMouseButtonState}}
+\index{GetMouseButtonState@{GetMouseButtonState}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{GetMouseButtonState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::ButtonState} phys::InputQueryTool::GetMouseButtonState (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{ MouseButton}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_a1ef8b70af163d8bc703fd16c3fcce22d}
+
+
+Gets the button state of the provided mouse button ID. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em MouseButton}]The mouse button ID(up to 16) you wish to query.\end{DoxyParams}
+Far from all mice have 16 buttons, be sure you know how many buttons the mouse has As this function doesn't perform that check. \begin{DoxyReturn}{Returns}
+Returns a button state enum representing the button state. 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file inputquerytool.cpp.
+
+\hypertarget{classphys_1_1InputQueryTool_affd9523f67b542b208e6d36c3395e72b}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!GetMouseCoordinates@{GetMouseCoordinates}}
+\index{GetMouseCoordinates@{GetMouseCoordinates}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{GetMouseCoordinates}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::InputQueryTool::GetMouseCoordinates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_affd9523f67b542b208e6d36c3395e72b}
+
+
+This gets a vector2 containing both X and Y coordinates of the mouse. 
+
+If precision is important then you should use the individual coordinate fetching functions instead. \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1Vector2}{Vector2} containing Reals to represent both mouse coordinates. 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file inputquerytool.cpp.
+
+\hypertarget{classphys_1_1InputQueryTool_aea2da0aeb97353f9d7af75f2a8cb7d91}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!GetMousePrevFrameOffset@{GetMousePrevFrameOffset}}
+\index{GetMousePrevFrameOffset@{GetMousePrevFrameOffset}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{GetMousePrevFrameOffset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::InputQueryTool::GetMousePrevFrameOffset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_aea2da0aeb97353f9d7af75f2a8cb7d91}
+
+
+This gets the offset location of the mouse since the previous frame. 
+
+This \hyperlink{classphys_1_1Vector2}{Vector2} is only accurate if this class gathers events every frame. Avoid calling this function otherwise. \begin{DoxyReturn}{Returns}
+This returns a vector2 that stores how the mouse has moved since the previous frame. 
+\end{DoxyReturn}
+
+
+Definition at line 65 of file inputquerytool.cpp.
+
+\hypertarget{classphys_1_1InputQueryTool_a3b4c3475e48025fbffd18ae3b3acddec}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!GetMouseWheelState@{GetMouseWheelState}}
+\index{GetMouseWheelState@{GetMouseWheelState}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{GetMouseWheelState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::MouseWheelState} phys::InputQueryTool::GetMouseWheelState (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_a3b4c3475e48025fbffd18ae3b3acddec}
+
+
+Gets the current status of the mouse wheel. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing the current state of the mouse wheel. 
+\end{DoxyReturn}
+
+
+Definition at line 128 of file inputquerytool.cpp.
+
+\hypertarget{classphys_1_1InputQueryTool_a706c05a974dff509c61440f63bbe9d2d}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!GetMouseX@{GetMouseX}}
+\index{GetMouseX@{GetMouseX}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{GetMouseX}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::InputQueryTool::GetMouseX (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_a706c05a974dff509c61440f63bbe9d2d}
+
+
+This gets the X coordinate of the mouse. 
+
+This gets the X location of this mouse. This runs in constant time. \begin{DoxyReturn}{Returns}
+This returns a Whole number which represents the X coordinate of the mouse. 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file inputquerytool.cpp.
+
+\hypertarget{classphys_1_1InputQueryTool_acbf87969054ab02e2a7bfc66d9cd4bdd}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!GetMouseY@{GetMouseY}}
+\index{GetMouseY@{GetMouseY}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{GetMouseY}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::InputQueryTool::GetMouseY (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_acbf87969054ab02e2a7bfc66d9cd4bdd}
+
+
+This gets the Y coordinate of the mouse. 
+
+This gets the Y location of this mouse. This runs in constant time. \begin{DoxyReturn}{Returns}
+This returns a Whole number which represents the Y coordinate of the mouse. 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file inputquerytool.cpp.
+
+\hypertarget{classphys_1_1InputQueryTool_a6f210acb5f4e2fe052b0c3c7c3ec9418}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!IsKeyboardButtonPushed@{IsKeyboardButtonPushed}}
+\index{IsKeyboardButtonPushed@{IsKeyboardButtonPushed}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{IsKeyboardButtonPushed}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::InputQueryTool::IsKeyboardButtonPushed (
+\begin{DoxyParamCaption}
+\item[{{\bf MetaCode::InputCode}}]{ KeyboardButton}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_a6f210acb5f4e2fe052b0c3c7c3ec9418}
+
+
+Returns whether a specific KEyboard button is pushed. 
+
+This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed are considered pressed, and buttons that are being lifted are considered unpressed. 
+\begin{DoxyParams}{Parameters}
+\item[{\em KeyboardButton}]This is the button that is being checked. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file inputquerytool.cpp.
+
+\hypertarget{classphys_1_1InputQueryTool_aab9a7be4d95289d828378f7f3d5fc065}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!IsMouseButtonPushed@{IsMouseButtonPushed}}
+\index{IsMouseButtonPushed@{IsMouseButtonPushed}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{IsMouseButtonPushed}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::InputQueryTool::IsMouseButtonPushed (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{ MouseButton}
+\end{DoxyParamCaption}
+)}}
+\label{da/d96/classphys_1_1InputQueryTool_aab9a7be4d95289d828378f7f3d5fc065}
+
+
+Returns whether a specific Mouse button is pushed. 
+
+This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed are considered pressed, and buttons that are being lifted are considered unpressed. This only supports the first 16 mouse buttons at this point (numbered 0 to 15) 
+\begin{DoxyParams}{Parameters}
+\item[{\em MouseButton}]This is the mouse button that is being checked \end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+\item[{\em Unsupported mouse button access through InputQueryTool}]This is thrown whenever a mouse button is requested that is beyond the limit that is supported. Currently this limit is 16 \end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file inputquerytool.cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classphys_1_1InputQueryTool_ab24a64fc316eefb7e88c1ed75ecee7ea}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!GameWorld@{GameWorld}}
+\index{GameWorld@{GameWorld}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{GameWorld}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World}$\ast$ {\bf phys::InputQueryTool::GameWorld}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{da/d96/classphys_1_1InputQueryTool_ab24a64fc316eefb7e88c1ed75ecee7ea}
+
+
+This is gameworld we will be querying. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 64 of file inputquerytool.h.
+
+\hypertarget{classphys_1_1InputQueryTool_afd89b917cb11be11dc990d5ef9ddb2ff}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!KeyboardButtonCache@{KeyboardButtonCache}}
+\index{KeyboardButtonCache@{KeyboardButtonCache}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{KeyboardButtonCache}]{\setlength{\rightskip}{0pt plus 5cm}std::map$<$unsigned int,{\bf MetaCode}$>$ {\bf phys::InputQueryTool::KeyboardButtonCache}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{da/d96/classphys_1_1InputQueryTool_afd89b917cb11be11dc990d5ef9ddb2ff}
+
+
+A place to store which keys are pressed or not. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 96 of file inputquerytool.h.
+
+\hypertarget{classphys_1_1InputQueryTool_a2fddedc3d3ac61a195289b55b0aec972}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!MouseButtonCache@{MouseButtonCache}}
+\index{MouseButtonCache@{MouseButtonCache}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{MouseButtonCache}]{\setlength{\rightskip}{0pt plus 5cm}std::map$<$unsigned short int,{\bf MetaCode}$>$ {\bf phys::InputQueryTool::MouseButtonCache}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{da/d96/classphys_1_1InputQueryTool_a2fddedc3d3ac61a195289b55b0aec972}
+
+
+A place to store which mouse buttons are pushed. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 92 of file inputquerytool.h.
+
+\hypertarget{classphys_1_1InputQueryTool_af5d261bc351f43222db511aacf572409}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!MouseButtonLimit@{MouseButtonLimit}}
+\index{MouseButtonLimit@{MouseButtonLimit}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{MouseButtonLimit}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned short int {\bf phys::InputQueryTool::MouseButtonLimit} = 16\hspace{0.3cm}{\ttfamily  \mbox{[}static, protected\mbox{]}}}}
+\label{da/d96/classphys_1_1InputQueryTool_af5d261bc351f43222db511aacf572409}
+
+
+This is the mouse button limit of this class. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 88 of file inputquerytool.h.
+
+\hypertarget{classphys_1_1InputQueryTool_a379f40bdfb0cbafb84d1dcf297cb1ea3}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!MouseCoordinates@{MouseCoordinates}}
+\index{MouseCoordinates@{MouseCoordinates}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{MouseCoordinates}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} {\bf phys::InputQueryTool::MouseCoordinates}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{da/d96/classphys_1_1InputQueryTool_a379f40bdfb0cbafb84d1dcf297cb1ea3}
+
+
+This stores both mouse coordinates in a \hyperlink{classphys_1_1Vector2}{Vector2}. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 76 of file inputquerytool.h.
+
+\hypertarget{classphys_1_1InputQueryTool_af0e34b7565836f2ebbb15b0d37d10718}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!MousePrevFrameOffset@{MousePrevFrameOffset}}
+\index{MousePrevFrameOffset@{MousePrevFrameOffset}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{MousePrevFrameOffset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} {\bf phys::InputQueryTool::MousePrevFrameOffset}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{da/d96/classphys_1_1InputQueryTool_af0e34b7565836f2ebbb15b0d37d10718}
+
+
+This stores the amount the mouse has moved since the previous frame. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 80 of file inputquerytool.h.
+
+\hypertarget{classphys_1_1InputQueryTool_a857f0b9ad8bb720f1daf57c9eda6e0fb}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!MouseXCache@{MouseXCache}}
+\index{MouseXCache@{MouseXCache}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{MouseXCache}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} {\bf phys::InputQueryTool::MouseXCache}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{da/d96/classphys_1_1InputQueryTool_a857f0b9ad8bb720f1daf57c9eda6e0fb}
+
+
+This holds the Mouse X coordinate as of the last time Gather Events was called. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 68 of file inputquerytool.h.
+
+\hypertarget{classphys_1_1InputQueryTool_a9378af076545f92b70d853776cc6065c}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!MouseYCache@{MouseYCache}}
+\index{MouseYCache@{MouseYCache}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{MouseYCache}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} {\bf phys::InputQueryTool::MouseYCache}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{da/d96/classphys_1_1InputQueryTool_a9378af076545f92b70d853776cc6065c}
+
+
+This holds the Mouse Y coordinate as of the last time Gather Events was called. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 72 of file inputquerytool.h.
+
+\hypertarget{classphys_1_1InputQueryTool_af6ceb8ea79ea2fe4b881ce715090fa78}{
+\index{phys::InputQueryTool@{phys::InputQueryTool}!WheelState@{WheelState}}
+\index{WheelState@{WheelState}!phys::InputQueryTool@{phys::InputQueryTool}}
+\subsubsection[{WheelState}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MetaCode::MouseWheelState} {\bf phys::InputQueryTool::WheelState}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{da/d96/classphys_1_1InputQueryTool_af6ceb8ea79ea2fe4b881ce715090fa78}
+
+
+This stores the current status of the mouse wheel. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 84 of file inputquerytool.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+inputquerytool.h\item 
+inputquerytool.cpp\end{DoxyCompactItemize}
