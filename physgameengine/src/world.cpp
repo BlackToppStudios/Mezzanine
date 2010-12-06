@@ -159,8 +159,6 @@ namespace phys
         for(std::vector<ManagerBase*>::iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
             { this->AddManager(*iter); }
 
-        /// @todo With the removal of the public ogre pointers, and increased dependancy of managers on other managers as a result, a re-examining of the order managers
-        /// and components are initialized is in order.
         //Create and add any managers that have not been taken care of yet.
         if(this->GetActorManager()==0)
             { this->AddManager(new ActorContainerVector()); }
@@ -181,7 +179,6 @@ namespace phys
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
-
     }
 
     void World::SanityChecks()
@@ -205,91 +202,6 @@ namespace phys
         }else{
             Log("Internal User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }
-
-        TestLogger();
-    }
-
-    void World::TestLogger()
-    {
-        Log("Testing Logger with all data types");
-        string temp0("0");
-        char temp1 = 'a';
-        short int temp2 = 2;
-        int temp3 = 3;
-        long int temp4 = 4;
-        unsigned short int temp5 = 5;
-        unsigned int temp6 = 6;
-        unsigned long int temp7 = 7;
-        bool temp8 = true;
-        float temp9 = 0.9;
-        double temp10 = 9.9999;
-        long double temp11 = 11.00011;
-        wchar_t temp12 = 'L';
-        size_t temp13 = 13;
-        Real temp14 = 1.4;
-        Whole temp15 = 15;
-        String temp16("16 or so");
-        const Vector3 temp17(0,1,7);
-        RawEvent temp18;
-            temp18.type = SDL_KEYDOWN;
-            temp18.key.keysym.sym = SDLK_BACKSPACE;
-        MetaCode temp19(temp18);
-        btVector3 temp20(0,2,0);
-        Ogre::Vector3 temp21(0,2,1);
-        Ray temp22(Vector3(0,0,2),Vector3(2,0,0));
-        //"temp23"
-            //Just for the ActorBaseLogTests
-        /*    this->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", "RobotTest", false);
-            this->DeclareResource("robot.mesh", "Mesh", "RobotTest");
-        ActorRigid temp24(1.0,"Robot24","robot.mesh","RobotTest",this); */ /// @todo TODO: remove robot and come up with another solution
-        ActorRigid* temp24=0;
-        Vector3WActor temp25( temp24, Vector3(0,2,5));
-        Plane temp26(Vector3(2.0, 6.0, 2.0), 6.0);
-        ActorBase* temp27=0;
-
-        //dynamic_cast<PhysEvent*>// Add physevent as something that can be logged.
-        /// @todo TODO add each type of event here (logtest) to make it really easy to log events
-        OneLogTest(temp0, "string");
-        OneLogTest(temp1, "char");
-        OneLogTest(temp2, "short int");
-        OneLogTest(temp3, "int");
-        OneLogTest(temp4, "long int");
-        OneLogTest(temp5, "unsigned short int");
-        OneLogTest(temp6, "unsigned int");
-        OneLogTest(temp7, "unsigned long int");
-        OneLogTest(temp8, "bool");
-        OneLogTest(temp9, "float");
-        OneLogTest(temp10, "double");
-        OneLogTest(temp11, "long double");
-        OneLogTest(temp12, "wchar_t");
-        OneLogTest(temp13, "size_t");
-        OneLogTest(temp14, "Real");
-        OneLogTest(temp15, "Whole");
-        OneLogTest(temp16, "String");
-        OneLogTest(temp17, "phys::Vector3");
-        OneLogTest(temp18, "RawEvent"); /// @todo TODO Figure out How does this called the same streaming function as MetaCode ?!?!?
-        OneLogTest(temp19, "MetaCode");
-        //OneLogTest(temp20, "btVector3");
-        OneLogTest(temp21, "Ogre::Vector3");
-        OneLogTest(temp22,"Ray");
-        OneLogTest("temp23","<char const*>");
-        OneLogTest(temp24,"ActorRigid");
-        OneLogTest(temp25,"Vector3WActor");
-        OneLogTest(temp26,"Plane");
-        OneLogTest(temp27,"ActorBase");
-        OneLogTest('7',"const char");
-    }
-
-    template <class T> void World::OneLogTest(T Data, string DataType, string Message1, string Message2)
-    {
-        try
-        {
-            Log(Message1+DataType);
-            LogAndThrow(Data);
-        } catch (T excepted) {
-            Log(Message2+DataType);
-            Log(excepted);
-        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -311,17 +223,6 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     //appends to the gamelog which is managed by Ogre
-/*    template <class T> void World::Log(T Message)
-    {
-        static stringstream Converter;
-
-        Converter << this->LogStream.str() << Message;
-
-        this->LogStream.str("");
-        Ogre::LogManager::getSingleton().logMessage(Converter.str());
-        Converter.str("");
-    }
-*/
     void World::LogString(const String& Message)
     {
         static std::stringstream* Audiolog = 0;
@@ -334,13 +235,6 @@ namespace phys
         }
 
         Ogre::LogManager::getSingleton().logMessage(Message);
-    }
-
-
-    template <class T> void World::LogAndThrow(T Message)
-    {
-        this->Log(Message);
-        throw(Message);
     }
 
     ///////////////////////////////////////////////////////////////////////////////

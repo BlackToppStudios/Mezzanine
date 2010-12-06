@@ -188,8 +188,8 @@ namespace phys
                             std::vector < ManagerBase* > ManagerToBeAdded);
 
             void SanityChecks();
-            void TestLogger();
-            template <class T> void OneLogTest(T Data, string DataType,string Message1 = "Logging and Throwing a ", string Message2 = "Logging a ");
+            //void TestLogger();
+            //template <class T> void OneLogTest(T Data, string DataType,string Message1 = "Logging and Throwing a ", string Message2 = "Logging a ");
 
             //Settings for Engine Functionality
             string WindowName;
@@ -305,7 +305,11 @@ namespace phys
             /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
             /// type the Log function supports
             /// @param Message This will be streamed to the log, then used in a thrown exception.
-            template <class T> void LogAndThrow(T Message);
+            template <class T> void LogAndThrow(T Message)
+            {
+                this->Log(Message);
+                throw(Message);
+            }
 
             /// @brief Log String directly with no conversion
             /// @param Message The string to log
