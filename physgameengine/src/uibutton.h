@@ -77,6 +77,7 @@ namespace phys
                 Gorilla::Sprite* HoveredSprite;
                 Gorilla::Sprite* UserSprite;
                 bool MouseHover;
+                bool IsText;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 String Name;
@@ -92,6 +93,9 @@ namespace phys
                 /// @brief Gets the name of this button.
                 /// @return Returns a string containing the name of this button.
                 virtual String& GetName();
+                /// @brief Gets whether this is a text button.
+                /// @return Returns a bool representing whether or not this is a text button.
+                virtual bool IsTextButton();
                 /// @brief Determines whether the mouse is over this button.
                 /// @return Returns a bool indicating whether the mouse is over this button.
                 virtual bool CheckMouseHover();

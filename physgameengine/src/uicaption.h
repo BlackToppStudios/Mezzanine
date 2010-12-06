@@ -77,6 +77,7 @@ namespace phys
                 Gorilla::Rectangle* GorillaRectangle;
                 UILayer* Parent;
                 UIManager* Manager;
+                Whole Glyphs;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 String Name;
@@ -100,6 +101,14 @@ namespace phys
                 /// @brief Gets the text displayed within the caption.
                 /// @return Returns the text being displayed.
                 String GetText();
+                /// @brief Sets the glyph index to be used with this caption.
+                /// @details The glyph index is defined in your gorilla file.
+                /// @param GlyphIndex The index of the glyph to use with this caption.
+                void SetGlyphIndex(Whole GlyphIndex);
+                /// @brief Gets the glyph index in use by this caption.
+                /// @details The glyph index is defined in your gorilla file.
+                /// @param Returns a Whole representing the index of the glyph in use by this caption..
+                Whole GetGlyphIndex();
                 /// @brief Sets the background colour of the caption.
                 /// @param Colour A colour value representing the colour to be set.
                 void SetBackgroundColour(ColourValue& Colour);

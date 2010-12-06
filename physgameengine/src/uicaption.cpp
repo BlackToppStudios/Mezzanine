@@ -87,6 +87,17 @@ namespace phys
             return GorillaCaption->text();
         }
 
+        void Caption::SetGlyphIndex(Whole GlyphIndex)
+        {
+            Glyphs = GlyphIndex;
+            GorillaCaption->SetGlyphIndex(GlyphIndex);
+        }
+
+        Whole Caption::GetGlyphIndex()
+        {
+            return Glyphs;
+        }
+
         void Caption::SetBackgroundColour(ColourValue& Colour)
         {
             GorillaRectangle->background_colour(Colour.GetOgreColourValue());

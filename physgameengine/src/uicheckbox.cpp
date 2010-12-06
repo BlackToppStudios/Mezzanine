@@ -59,7 +59,7 @@ namespace phys
               Checked(false),
               CheckLock(true)
         {
-            Manager = World::GetWorldPointer()->GetUIManager();
+            Type = Widget::CheckBox;
             RelPosition = Position;
             RelSize = Size;
 

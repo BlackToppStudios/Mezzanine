@@ -74,12 +74,12 @@ namespace phys
             Gorilla::Screen* GorillaScreen;
             UIManager* Manager;
             String Name;
-            std::vector< UILayer* > Layers;
+            std::map<Whole,UILayer*> Layers;
         public:
             /// @brief Internal constructor
             /// @param GScreen The Gorilla Screen this Screen is based on.
             /// @param manager Pointer to the manager that created this Screen.
-            UIScreen(const String& name, Gorilla::Screen* GScreen, UIManager* manager);
+            UIScreen(const String& name, Gorilla::Screen* GScreen);
             /// @brief Class destructor.
             ~UIScreen();
             /// @brief Gets the name of this screen.

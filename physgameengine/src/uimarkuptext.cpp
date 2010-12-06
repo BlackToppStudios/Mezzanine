@@ -83,6 +83,17 @@ namespace phys
             return GMarkup->text();
         }
 
+        void MarkupText::SetDefaultGlyphIndex(Whole DefaultGlyphIndex)
+        {
+            Glyphs = DefaultGlyphIndex;
+            GMarkup->SetDefaultGlyphIndex(DefaultGlyphIndex);
+        }
+
+        Whole MarkupText::GetDefaultGlyphIndex()
+        {
+            return Glyphs;
+        }
+
         /*void MarkupText::HorizontallyAlign(UI::TextHorizontalAlign Align)
         {
             Gorilla::TextAlignment HA;

@@ -65,8 +65,6 @@ namespace phys
             RelSize = Size;
             Type = Widget::Scrollbar;
             ScrollStyle = Style;
-            //Position = Position * Manager->GetWindowDimensions();
-            //Size = Size * Manager->GetWindowDimensions();
             if(Size.Y > Size.X * 2)
             {
                 Vector2 ASize = Size * Manager->GetWindowDimensions();
@@ -456,7 +454,7 @@ namespace phys
                 HoveredBack = NULL;
                 if(MetaCode::BUTTON_PRESSING == State || MetaCode::BUTTON_DOWN == State)
                 {
-                    if(HoveredButton == Scroller)
+                    if(HoveredButton == Scroller || Force)
                     {
                         if(MetaCode::BUTTON_PRESSING == State)
                         {

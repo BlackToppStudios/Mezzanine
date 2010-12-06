@@ -79,11 +79,10 @@ namespace phys
             std::vector< UIScreen* > Screens;
             UI::Button* HoveredButton;
             UI::Widget* HoveredWidget;
-            UI::Scrollbar* ScrollbarControl;
+            UI::Widget* WidgetControl;
             InputQueryTool* InputQueryer;
-            Real WidgetTolorance;
-            bool IsMouseWithinWidgetTolorance(UI::Widget* Control);
-            //void UpdateScrollbar(UI::Scrollbar* Scroll);
+            void HoverChecks();
+            void WidgetControlUpdate();
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.

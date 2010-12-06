@@ -56,6 +56,7 @@ namespace phys
               NormalSprite(NULL),
               HoveredSprite(NULL),
               MouseHover(false),
+              IsText(false),
               RelPosition(Position),
               RelSize(Size),
               Name(name)
