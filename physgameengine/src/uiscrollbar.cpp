@@ -65,8 +65,6 @@ namespace phys
             RelSize = Size;
             Type = Widget::Scrollbar;
             ScrollStyle = Style;
-            //Position = Position * Manager->GetWindowDimensions();
-            //Size = Size * Manager->GetWindowDimensions();
             if(Size.Y > Size.X * 2)
             {
                 Vector2 ASize = Size * Manager->GetWindowDimensions();

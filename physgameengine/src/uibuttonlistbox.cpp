@@ -41,19 +41,78 @@
 #define _uibuttonlistbox_cpp
 
 #include "uibuttonlistbox.h"
+#include "uimanager.h"
+#include "uilayer.h"
+#include "uirectangle.h"
+#include "inputquerytool.h"
+#include "metacode.h"
+#include "world.h"
 
 namespace phys
 {
     namespace UI
     {
-        ButtonListBox::ButtonListBox()
+        ButtonListBox::ButtonListBox(String& name, Vector2 Position, Vector2 Size, UILayer* Layer)
+            : Widget(name,Layer)
         {
-
+            Type = Widget::ButtonListBox;
+            RelPosition = Position;
+            RelSize = Size;
         }
 
         ButtonListBox::~ButtonListBox()
         {
 
+        }
+
+        void ButtonListBox::Update(bool Force)
+        {
+
+        }
+
+        bool ButtonListBox::CheckMouseHover()
+        {
+            return false;
+        }
+
+        void ButtonListBox::SetPosition(Vector2 Position)
+        {
+
+        }
+
+        Vector2 ButtonListBox::GetPosition()
+        {
+            return RelPosition;
+        }
+
+        void ButtonListBox::SetActualPosition(Vector2 Position)
+        {
+
+        }
+
+        Vector2 ButtonListBox::GetActualPosition()
+        {
+            return RelPosition * Manager->GetWindowDimensions();
+        }
+
+        void ButtonListBox::SetSize(Vector2 Size)
+        {
+
+        }
+
+        Vector2 ButtonListBox::GetSize()
+        {
+            return RelSize;
+        }
+
+        void ButtonListBox::SetActualSize(Vector2 Size)
+        {
+
+        }
+
+        Vector2 ButtonListBox::GetActualSize()
+        {
+            return RelSize * Manager->GetWindowDimensions();
         }
     }//UI
 }//phys

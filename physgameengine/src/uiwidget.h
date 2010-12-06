@@ -61,8 +61,9 @@ namespace phys
             public:
                 enum WidgetType
                 {
-                    Scrollbar,
-                    CheckBox
+                    ButtonListBox,
+                    CheckBox,
+                    Scrollbar
                 };
             protected:
                 friend class phys::UIManager;
