@@ -58,11 +58,13 @@ namespace phys
             Type = Widget::ButtonListBox;
             RelPosition = Position;
             RelSize = Size;
+
+            BoxBack = new Rectangle(Position,Size,Layer);
         }
 
         ButtonListBox::~ButtonListBox()
         {
-
+            delete BoxBack;
         }
 
         void ButtonListBox::Update(bool Force)
@@ -113,6 +115,11 @@ namespace phys
         Vector2 ButtonListBox::GetActualSize()
         {
             return RelSize * Manager->GetWindowDimensions();
+        }
+
+        Rectangle* ButtonListBox::GetBoxBack()
+        {
+            return BoxBack;
         }
     }//UI
 }//phys

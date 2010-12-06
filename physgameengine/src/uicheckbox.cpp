@@ -63,13 +63,13 @@ namespace phys
             RelPosition = Position;
             RelSize = Size;
 
-            Box = Parent->CreateButton(Name+"CB",Position,Size);
+            Box = new Button(Name+"CB",Position,Size,Layer);
             if(LabelText.empty())
             {
                 Label = NULL;
             }else{
                 Position.X+=Size.X;
-                Label = Parent->CreateMarkupText(Name+"CM",Position,GlyphIndex,LabelText);
+                Label = new MarkupText(Name+"CM",Position,GlyphIndex,LabelText,Layer);
             }
         }
 
@@ -145,7 +145,7 @@ namespace phys
             {
                 Vector2 Position = Box->GetPosition();
                 Position.X+=Box->GetSize().X;
-                Label = Parent->CreateMarkupText(Name+"CM",Position,GlyphIndex,LabelText);
+                Label = new MarkupText(Name+"CM",Position,GlyphIndex,LabelText,Parent);
             }else{
                 Label->SetText(LabelText);
             }
