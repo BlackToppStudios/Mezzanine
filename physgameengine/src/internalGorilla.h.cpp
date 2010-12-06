@@ -2735,6 +2735,11 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
+    void SetGlyphIndex(Ogre::uint glyphDataIndex)
+    {
+     mGlyphData = mLayer->_getGlyphData(glyphDataIndex);
+    }
+
     void  RenderPriority(Gorilla::RenderPriority Priority)
     {
      mPriority = Priority;
@@ -2938,6 +2943,11 @@ namespace Gorilla
       mBackground = webcolour(background);
      mDirty = true;
      mLayer->_markDirty();
+    }
+
+    void SetDefaultGlyphIndex(Ogre::uint glyphDataIndex)
+    {
+     mDefaultGlyphData = mLayer->_getGlyphData(glyphDataIndex);
     }
 
     void  RenderPriority(Gorilla::RenderPriority Priority)

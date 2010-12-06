@@ -72,6 +72,7 @@ namespace phys
                 Gorilla::MarkupText* GMarkup;
                 UILayer* Parent;
                 UIManager* Manager;
+                Whole Glyphs;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 String Name;
@@ -94,6 +95,16 @@ namespace phys
                 /// @brief Gets the text displayed within the markup text.
                 /// @return Returns the text being displayed.
                 String GetText();
+                /// @brief Sets the Default glyph index to be used with this markup text.
+                /// @details The glyph index is defined in your gorilla file.  This class can change which
+                /// glyph is uses with it's markup language.  This simply defines which to use when one isn't
+                /// specified.
+                /// @param DefaultGlyphIndex The index of the glyph to use with this markup text.
+                void SetDefaultGlyphIndex(Whole DefaultGlyphIndex);
+                /// @brief Gets the Default glyph index in use by this markup text.
+                /// @details The glyph index is defined in your gorilla file.
+                /// @return Returns a Whole representing the index of the glyph in use by this markup text.
+                Whole GetDefaultGlyphIndex();
                 /*/// @brief Aligns the text of the markup text.
                 /// @param Align The enum value representing the horizontal alignment to be set.
                 void HorizontallyAlign(UI::TextHorizontalAlign Align);
