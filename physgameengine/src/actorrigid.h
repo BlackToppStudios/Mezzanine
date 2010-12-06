@@ -72,6 +72,10 @@ namespace phys
             /// @param pmass "Real Mass" The mass of the object.
             void CreateRigidObject (Real pmass);
 
+            /// @brief This creates an estimation of the shape of a body using a number of simpler primitives
+            /// @param depth How many times should we subdivide. Larger means more parts, each one smaller, more CPU time.
+            /// @param cpercent How concave the resulting shapes will be, lower means more accurate with more pieces.
+            /// @param ppercent Undocumented -  set to similar number to cpercent
             void PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent);
 
         public:

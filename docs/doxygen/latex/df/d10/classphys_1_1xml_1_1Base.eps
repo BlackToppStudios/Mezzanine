@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 322.581
+%%BoundingBox: 0 0 500 51.546392
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 1.55 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 9.700000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 2 def
-/cols 1 def
+/rows 3 def
+/cols 6 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -175,6 +175,13 @@ boxfont setfont
 1 boundaspect scale
 (phys::xml::Base) cw
 (phys::xml::Attribute) cw
+(phys::xml::Node) cw
+(phys::xml::Comment) cw
+(phys::xml::Declaration) cw
+(phys::xml::Document) cw
+(phys::xml::Element) cw
+(phys::xml::StylesheetReference) cw
+(phys::xml::Text) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -186,12 +193,39 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (phys::xml::Base) 0 1 box
- (phys::xml::Attribute) 0 0 box
+ (phys::xml::Base) 1.250000 2.000000 box
+ (phys::xml::Attribute) 0.000000 1.000000 box
+ (phys::xml::Node) 2.500000 1.000000 box
+ (phys::xml::Comment) 0.000000 0.000000 box
+ (phys::xml::Declaration) 1.000000 0.000000 box
+ (phys::xml::Document) 2.000000 0.000000 box
+ (phys::xml::Element) 3.000000 0.000000 box
+ (phys::xml::StylesheetReference) 4.000000 0.000000 box
+ (phys::xml::Text) 5.000000 0.000000 box
 
 % ----- relations -----
 
 solid
-1 0 0.25 out
+1 1.250000 1.250000 out
 solid
-0 0 0.75 in
+0.000000 2.500000 2.000000 conn
+solid
+0 0.000000 1.750000 in
+solid
+0 2.500000 1.750000 in
+solid
+1 2.500000 0.250000 out
+solid
+0.000000 5.000000 1.000000 conn
+solid
+0 0.000000 0.750000 in
+solid
+0 1.000000 0.750000 in
+solid
+0 2.000000 0.750000 in
+solid
+0 3.000000 0.750000 in
+solid
+0 4.000000 0.750000 in
+solid
+0 5.000000 0.750000 in

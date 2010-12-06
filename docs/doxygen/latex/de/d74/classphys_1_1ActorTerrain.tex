@@ -14,13 +14,13 @@ This is actor class for terrain.
 Inheritance diagram for phys::ActorTerrain:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{de/d74/classphys_1_1ActorTerrain}
+\includegraphics[height=2.000000cm]{de/d74/classphys_1_1ActorTerrain}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1ActorTerrain_a9f4f3381dcca132d7c699176fe4dfc5c}{ActorTerrain} (\hyperlink{classphys_1_1Vector3}{Vector3} InitPosition, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group, \hyperlink{classphys_1_1World}{World} $\ast$\_\-World)
+\hyperlink{classphys_1_1ActorTerrain_af0d3b88d5ee409c5451bb13a20254176}{ActorTerrain} (\hyperlink{classphys_1_1Vector3}{Vector3} InitPosition, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ActorTerrain_af6ef2e3694b7afe0b59cfa0909c0490c}{$\sim$ActorTerrain} ()
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
@@ -55,31 +55,42 @@ btRigidBody $\ast$ {\bfseries RigidBody}}
 \subsection{Detailed Description}
 This is actor class for terrain. This class is intended to be used for terrain. This class uses sub-\/classes with fewer features, but still more then enough features for static terrain. This helps reduce the memory footprint of the class as well as processing speed. 
 
-Definition at line 57 of file actorterrain.h.
+Definition at line 58 of file actorterrain.h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1ActorTerrain_a9f4f3381dcca132d7c699176fe4dfc5c}{
+\hypertarget{classphys_1_1ActorTerrain_af0d3b88d5ee409c5451bb13a20254176}{
 \index{phys::ActorTerrain@{phys::ActorTerrain}!ActorTerrain@{ActorTerrain}}
 \index{ActorTerrain@{ActorTerrain}!phys::ActorTerrain@{phys::ActorTerrain}}
-\subsubsection[{ActorTerrain}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorTerrain::ActorTerrain ({\bf Vector3} {\em InitPosition}, \/  {\bf String} {\em name}, \/  {\bf String} {\em file}, \/  {\bf String} {\em group}, \/  {\bf World} $\ast$ {\em \_\-World})}}
-\label{de/d74/classphys_1_1ActorTerrain_a9f4f3381dcca132d7c699176fe4dfc5c}
+\subsubsection[{ActorTerrain}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorTerrain::ActorTerrain (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ InitPosition, }
+\item[{{\bf String}}]{ name, }
+\item[{{\bf String}}]{ file, }
+\item[{{\bf String}}]{ group}
+\end{DoxyParamCaption}
+)}}
+\label{de/d74/classphys_1_1ActorTerrain_af0d3b88d5ee409c5451bb13a20254176}
 
 
 Class constructor. 
 
 The class constructor. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Initposition}]The location for this terrain. \item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
+\item[{\em Initposition}]The location for this terrain. \item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \end{DoxyParams}
 
 
-Definition at line 49 of file actorterrain.cpp.
+Definition at line 54 of file actorterrain.cpp.
 
 \hypertarget{classphys_1_1ActorTerrain_af6ef2e3694b7afe0b59cfa0909c0490c}{
 \index{phys::ActorTerrain@{phys::ActorTerrain}!$\sim$ActorTerrain@{$\sim$ActorTerrain}}
 \index{$\sim$ActorTerrain@{$\sim$ActorTerrain}!phys::ActorTerrain@{phys::ActorTerrain}}
-\subsubsection[{$\sim$ActorTerrain}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorTerrain::$\sim$ActorTerrain ()}}
+\subsubsection[{$\sim$ActorTerrain}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorTerrain::$\sim$ActorTerrain (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{de/d74/classphys_1_1ActorTerrain_af6ef2e3694b7afe0b59cfa0909c0490c}
 
 
@@ -87,7 +98,7 @@ Class destructor.
 
 The class destructor. 
 
-Definition at line 55 of file actorterrain.cpp.
+Definition at line 60 of file actorterrain.cpp.
 
 
 
@@ -95,7 +106,11 @@ Definition at line 55 of file actorterrain.cpp.
 \hypertarget{classphys_1_1ActorTerrain_a890ee6f67fda30381bce9c949ae36566}{
 \index{phys::ActorTerrain@{phys::ActorTerrain}!AddObjectToWorld@{AddObjectToWorld}}
 \index{AddObjectToWorld@{AddObjectToWorld}!phys::ActorTerrain@{phys::ActorTerrain}}
-\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorTerrain::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorTerrain::AddObjectToWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ TargetWorld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{de/d74/classphys_1_1ActorTerrain_a890ee6f67fda30381bce9c949ae36566}
 
 
@@ -111,12 +126,16 @@ Implements \hyperlink{classphys_1_1ActorBase_a3d28e4c4a33f50210101695cb33ded3b}{
 
 
 
-Definition at line 93 of file actorterrain.cpp.
+Definition at line 98 of file actorterrain.cpp.
 
 \hypertarget{classphys_1_1ActorTerrain_aa5f545a73da45ab219121c4b2cd0ded9}{
 \index{phys::ActorTerrain@{phys::ActorTerrain}!CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}}
 \index{CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}!phys::ActorTerrain@{phys::ActorTerrain}}
-\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorTerrain::CreateShapeFromMeshDynamic (short unsigned int {\em accuracy})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorTerrain::CreateShapeFromMeshDynamic (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{ accuracy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{de/d74/classphys_1_1ActorTerrain_aa5f545a73da45ab219121c4b2cd0ded9}
 
 
@@ -128,12 +147,16 @@ Implements \hyperlink{classphys_1_1ActorBase_aa41370f6d2031a9dad8df45bd7f3bcc6}{
 
 
 
-Definition at line 84 of file actorterrain.cpp.
+Definition at line 89 of file actorterrain.cpp.
 
 \hypertarget{classphys_1_1ActorTerrain_a2403c40af6799e67c9aff1520b02dc0b}{
 \index{phys::ActorTerrain@{phys::ActorTerrain}!CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}}
 \index{CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}!phys::ActorTerrain@{phys::ActorTerrain}}
-\subsubsection[{CreateShapeFromMeshStatic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorTerrain::CreateShapeFromMeshStatic ()}}
+\subsubsection[{CreateShapeFromMeshStatic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorTerrain::CreateShapeFromMeshStatic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{de/d74/classphys_1_1ActorTerrain_a2403c40af6799e67c9aff1520b02dc0b}
 
 
@@ -150,12 +173,16 @@ This function will read the location of every verticy in the mesh file and use t
 
 
 
-Definition at line 69 of file actorterrain.cpp.
+Definition at line 74 of file actorterrain.cpp.
 
 \hypertarget{classphys_1_1ActorTerrain_a08f306ae189e55d780dcaa2c43d7b6eb}{
 \index{phys::ActorTerrain@{phys::ActorTerrain}!GetName@{GetName}}
 \index{GetName@{GetName}!phys::ActorTerrain@{phys::ActorTerrain}}
-\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}std::string phys::ActorTerrain::GetName () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}std::string phys::ActorTerrain::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{de/d74/classphys_1_1ActorTerrain_a08f306ae189e55d780dcaa2c43d7b6eb}
 
 
@@ -167,12 +194,16 @@ Implements \hyperlink{classphys_1_1ActorBase_a8309f5bd133c936abe3a856b0240159f}{
 
 
 
-Definition at line 88 of file actorterrain.cpp.
+Definition at line 93 of file actorterrain.cpp.
 
 \hypertarget{classphys_1_1ActorTerrain_aeded1fdabfc4dd407f81fcc5b97c1f77}{
 \index{phys::ActorTerrain@{phys::ActorTerrain}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
 \index{RemoveObjectFromWorld@{RemoveObjectFromWorld}!phys::ActorTerrain@{phys::ActorTerrain}}
-\subsubsection[{RemoveObjectFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorTerrain::RemoveObjectFromWorld ({\bf World} $\ast$ {\em TargetWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{RemoveObjectFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorTerrain::RemoveObjectFromWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ TargetWorld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{de/d74/classphys_1_1ActorTerrain_aeded1fdabfc4dd407f81fcc5b97c1f77}
 
 
@@ -188,7 +219,7 @@ Implements \hyperlink{classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}{
 
 
 
-Definition at line 100 of file actorterrain.cpp.
+Definition at line 105 of file actorterrain.cpp.
 
 
 

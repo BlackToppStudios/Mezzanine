@@ -14,13 +14,13 @@ A base class to unify the interface for different kinds of containers for holdin
 Inheritance diagram for phys::ActorContainerBase:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3cm]{d1/d00/classphys_1_1ActorContainerBase}
+\includegraphics[height=3.000000cm]{d1/d00/classphys_1_1ActorContainerBase}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1ActorContainerBase_a629529f9002646d463ea167af1d20df2}{ActorContainerBase} (\hyperlink{classphys_1_1World}{World} $\ast$ParentWorld\_\-)
+\hyperlink{classphys_1_1ActorContainerBase_ac17a442ad8aacba14d1cef956c0ddbb8}{ActorContainerBase} ()
 \begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorContainerBase_aa5eac062dd70a220a4ec6df973c6f258}{$\sim$ActorContainerBase} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
@@ -93,26 +93,31 @@ Definition at line 76 of file actorcontainerbase.h.
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1ActorContainerBase_a629529f9002646d463ea167af1d20df2}{
+\hypertarget{classphys_1_1ActorContainerBase_ac17a442ad8aacba14d1cef956c0ddbb8}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!ActorContainerBase@{ActorContainerBase}}
 \index{ActorContainerBase@{ActorContainerBase}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{ActorContainerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorContainerBase::ActorContainerBase ({\bf World} $\ast$ {\em ParentWorld\_\-})}}
-\label{d1/d00/classphys_1_1ActorContainerBase_a629529f9002646d463ea167af1d20df2}
+\subsubsection[{ActorContainerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorContainerBase::ActorContainerBase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d00/classphys_1_1ActorContainerBase_ac17a442ad8aacba14d1cef956c0ddbb8}
 
 
 Basic Constructor. 
 
 This just assigned the passed pointer to ParentWorld 
-\begin{DoxyParams}{Parameters}
-\item[{\em ParentWorld\_\-}]This is the world that will perform physics and graphical work on the actors in this container \end{DoxyParams}
-
 
 Definition at line 49 of file actorcontainerbase.cpp.
 
 \hypertarget{classphys_1_1ActorContainerBase_aa5eac062dd70a220a4ec6df973c6f258}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!$\sim$ActorContainerBase@{$\sim$ActorContainerBase}}
 \index{$\sim$ActorContainerBase@{$\sim$ActorContainerBase}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{$\sim$ActorContainerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorContainerBase::$\sim$ActorContainerBase ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{$\sim$ActorContainerBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorContainerBase::$\sim$ActorContainerBase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_aa5eac062dd70a220a4ec6df973c6f258}
 
 
@@ -128,7 +133,11 @@ Definition at line 52 of file actorcontainerbase.cpp.
 \hypertarget{classphys_1_1ActorContainerBase_af32c2adf4c0f928604ce05e20b07ef66}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!AddActor@{AddActor}}
 \index{AddActor@{AddActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{AddActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerBase::AddActor ({\bf ActorBase} $\ast$ {\em ActorToAdd})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{AddActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerBase::AddActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ ActorToAdd}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_af32c2adf4c0f928604ce05e20b07ef66}
 
 
@@ -152,7 +161,11 @@ Definition at line 64 of file actorcontainerbase.cpp.
 \hypertarget{classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de47424c3}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!CursorToFirst@{CursorToFirst}}
 \index{CursorToFirst@{CursorToFirst}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{CursorToFirst}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToFirst ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{CursorToFirst}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToFirst (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_ab1a44758d7c17e70ff2e0f8de47424c3}
 
 
@@ -165,7 +178,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_ad9c2eb2a9405dcf687c
 \hypertarget{classphys_1_1ActorContainerBase_afad072e018a04c190e5e5fb93b82b354}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!CursorToLast@{CursorToLast}}
 \index{CursorToLast@{CursorToLast}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{CursorToLast}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToLast ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{CursorToLast}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToLast (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_afad072e018a04c190e5e5fb93b82b354}
 
 
@@ -178,7 +195,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_aa6b08266bbb57a22c07
 \hypertarget{classphys_1_1ActorContainerBase_a1aa337456a4e74cb5740dbae08778072}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!CursorToNext@{CursorToNext}}
 \index{CursorToNext@{CursorToNext}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{CursorToNext}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToNext ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{CursorToNext}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToNext (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a1aa337456a4e74cb5740dbae08778072}
 
 
@@ -191,7 +212,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a1c72366a6261d8e98dc
 \hypertarget{classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a083714123b3}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!CursorToPrevious@{CursorToPrevious}}
 \index{CursorToPrevious@{CursorToPrevious}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{CursorToPrevious}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToPrevious ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{CursorToPrevious}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::CursorToPrevious (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a7c424168c0bbd973b283a083714123b3}
 
 
@@ -204,7 +229,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_ac483bcdf348f55dc8b0
 \hypertarget{classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd0416bdc2f}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!DoMainLoopItems@{DoMainLoopItems}}
 \index{DoMainLoopItems@{DoMainLoopItems}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::DoMainLoopItems ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd0416bdc2f}
 
 
@@ -218,29 +247,14 @@ Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_a883e59ac1674421bac143088a6cf07c8}{phys::ActorContainerVector}.
 
-\hypertarget{classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}{
-\index{phys::ActorContainerBase@{phys::ActorContainerBase}!FindActor@{FindActor}}
-\index{FindActor@{FindActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::FindActor ({\bf String} {\em Name})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
-\label{d1/d00/classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}
-
-
-This finds an actor based on its name. 
-
-\begin{DoxyReturn}{Returns}
-This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that has a matching name 
-\end{DoxyReturn}
-
-\begin{DoxyParams}{Parameters}
-\item[{\em Name}]This is the name of the Actor you want to find \end{DoxyParams}
-
-
-Implemented in \hyperlink{classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}{phys::ActorContainerVector}.
-
 \hypertarget{classphys_1_1ActorContainerBase_a9ba6e38e0f12ada968cfee72fe5144d4}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!FindActor@{FindActor}}
 \index{FindActor@{FindActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::FindActor (btCollisionObject $\ast$ {\em PhysicsObject})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::FindActor (
+\begin{DoxyParamCaption}
+\item[{btCollisionObject $\ast$}]{ PhysicsObject}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a9ba6e38e0f12ada968cfee72fe5144d4}
 
 
@@ -256,10 +270,37 @@ This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that
 
 Implemented in \hyperlink{classphys_1_1ActorContainerVector_a5ebcdeb3018f3baf92154ddec79cd054}{phys::ActorContainerVector}.
 
+\hypertarget{classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}{
+\index{phys::ActorContainerBase@{phys::ActorContainerBase}!FindActor@{FindActor}}
+\index{FindActor@{FindActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
+\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::FindActor (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{ Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{d1/d00/classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7e5b64b6}
+
+
+This finds an actor based on its name. 
+
+\begin{DoxyReturn}{Returns}
+This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that has a matching name 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]This is the name of the Actor you want to find \end{DoxyParams}
+
+
+Implemented in \hyperlink{classphys_1_1ActorContainerVector_ae04f8c6dd9b07ef9c1456707be9e155b}{phys::ActorContainerVector}.
+
 \hypertarget{classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!FindActor@{FindActor}}
 \index{FindActor@{FindActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::FindActor (Ogre::Node $\ast$ {\em GraphicsNode})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::FindActor (
+\begin{DoxyParamCaption}
+\item[{Ogre::Node $\ast$}]{ GraphicsNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}
 
 
@@ -278,7 +319,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_ad01cf1452bda36cee17
 \hypertarget{classphys_1_1ActorContainerBase_aa5ec651d4634b2d90efe2a76f9d2fbdd}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetActorCount@{GetActorCount}}
 \index{GetActorCount@{GetActorCount}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{GetActorCount}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Whole} phys::ActorContainerBase::GetActorCount () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{GetActorCount}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Whole} phys::ActorContainerBase::GetActorCount (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_aa5ec651d4634b2d90efe2a76f9d2fbdd}
 
 
@@ -294,7 +339,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a6d2e5e68e23f5798ad1
 \hypertarget{classphys_1_1ActorContainerBase_a2c8fb86a9e188aece105b2a753ccc19a}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetAtCursor@{GetAtCursor}}
 \index{GetAtCursor@{GetAtCursor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{GetAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::GetAtCursor () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{GetAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::GetAtCursor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a2c8fb86a9e188aece105b2a753ccc19a}
 
 
@@ -310,7 +359,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a280700490b368a963dd
 \hypertarget{classphys_1_1ActorContainerBase_a3f3d84f7775d2e8597290e214fedd5f9}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetCollisionObject@{GetCollisionObject}}
 \index{GetCollisionObject@{GetCollisionObject}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{GetCollisionObject}]{\setlength{\rightskip}{0pt plus 5cm}btCollisionObject $\ast$ phys::ActorContainerBase::GetCollisionObject ({\bf ActorBase} $\ast$ {\em actor}) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{GetCollisionObject}]{\setlength{\rightskip}{0pt plus 5cm}btCollisionObject $\ast$ phys::ActorContainerBase::GetCollisionObject (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ actor}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a3f3d84f7775d2e8597290e214fedd5f9}
 
 
@@ -325,7 +378,11 @@ Definition at line 58 of file actorcontainerbase.cpp.
 \hypertarget{classphys_1_1ActorContainerBase_a0ed43bc828aaee8ee33152970c3cc16d}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetContainerType@{GetContainerType}}
 \index{GetContainerType@{GetContainerType}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{GetContainerType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf String} phys::ActorContainerBase::GetContainerType () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{GetContainerType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf String} phys::ActorContainerBase::GetContainerType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a0ed43bc828aaee8ee33152970c3cc16d}
 
 
@@ -341,7 +398,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_ae18c29b30d840e0f4fc
 \hypertarget{classphys_1_1ActorContainerBase_ae703482d84a9c6726e28a8f26418b161}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetFirst@{GetFirst}}
 \index{GetFirst@{GetFirst}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{GetFirst}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::GetFirst () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{GetFirst}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::GetFirst (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_ae703482d84a9c6726e28a8f26418b161}
 
 
@@ -357,7 +418,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a55ceecd017455f3185a
 \hypertarget{classphys_1_1ActorContainerBase_a479e6c7434f2611b0cfe6ca1fd4ebdd1}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetGameWorld@{GetGameWorld}}
 \index{GetGameWorld@{GetGameWorld}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{GetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf World}$\ast$ phys::ActorContainerBase::GetGameWorld () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{GetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf World}$\ast$ phys::ActorContainerBase::GetGameWorld (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a479e6c7434f2611b0cfe6ca1fd4ebdd1}
 
 
@@ -377,7 +442,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a5519eb0000073a2f397
 \hypertarget{classphys_1_1ActorContainerBase_a8efeffd5ae22085fe01af791b3ea559e}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetLast@{GetLast}}
 \index{GetLast@{GetLast}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{GetLast}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::GetLast () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{GetLast}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::GetLast (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a8efeffd5ae22085fe01af791b3ea559e}
 
 
@@ -393,7 +462,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a211f6e419ef0b753cec
 \hypertarget{classphys_1_1ActorContainerBase_a9813fe23051cc1a324bfedd4d35d27ad}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetNode@{GetNode}}
 \index{GetNode@{GetNode}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Node $\ast$ phys::ActorContainerBase::GetNode ({\bf ActorBase} $\ast$ {\em actor}) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Node $\ast$ phys::ActorContainerBase::GetNode (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ actor}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a9813fe23051cc1a324bfedd4d35d27ad}
 
 
@@ -408,7 +481,11 @@ Definition at line 55 of file actorcontainerbase.cpp.
 \hypertarget{classphys_1_1ActorContainerBase_aa86380fd1b18d660f68b60f075967cf8}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!GetType@{GetType}}
 \index{GetType@{GetType}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::ActorContainerBase::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::ActorContainerBase::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_aa86380fd1b18d660f68b60f075967cf8}
 
 
@@ -428,13 +505,17 @@ Definition at line 61 of file actorcontainerbase.cpp.
 \hypertarget{classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4e62642e0928}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!Initialize@{Initialize}}
 \index{Initialize@{Initialize}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4e62642e0928}
 
 
 Configure Items requiring other Managers. 
 
-If you are using the \hyperlink{classphys_1_1World}{phys::World} this is called when \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{phys::World::GameInit()} is called. It is expected that by the time this is called either \hyperlink{classphys_1_1ManagerBase_ab9ad12416f771d95fe8a6d953923c634}{ManagerBase::ManagerBase(World$\ast$)} or \hyperlink{classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}{ManagerBase::SetGameWorld(World$\ast$)} will have been called. This is where all configuration that requires atleast one other manager on the \hyperlink{classphys_1_1World}{phys::World} to exist.\par
+If you are using the \hyperlink{classphys_1_1World}{phys::World} this is called when \hyperlink{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{phys::World::GameInit()} is called. It is expected that by the time this is called either ManagerBase::ManagerBase(World$\ast$) or \hyperlink{classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}{ManagerBase::SetGameWorld(World$\ast$)} will have been called. This is where all configuration that requires atleast one other manager on the \hyperlink{classphys_1_1World}{phys::World} to exist.\par
 \par
  Yes we know it is spelled wrong, but are Zs cooler anyway. 
 
@@ -447,7 +528,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_adcebf4329a587669f74
 \hypertarget{classphys_1_1ActorContainerBase_a6ccc6d058bcbbe0b9a638e28fb136477}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!LastActorAdded@{LastActorAdded}}
 \index{LastActorAdded@{LastActorAdded}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{LastActorAdded}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::LastActorAdded ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{LastActorAdded}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ActorBase}$\ast$ phys::ActorContainerBase::LastActorAdded (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a6ccc6d058bcbbe0b9a638e28fb136477}
 
 
@@ -460,7 +545,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a49e643bdeff78521de9
 \hypertarget{classphys_1_1ActorContainerBase_a579e049a3190fcc1f951b3212c209616}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!RemoveActor@{RemoveActor}}
 \index{RemoveActor@{RemoveActor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{RemoveActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerBase::RemoveActor ({\bf ActorBase} $\ast$ {\em ActorToRemove})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{RemoveActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorContainerBase::RemoveActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ ActorToRemove}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a579e049a3190fcc1f951b3212c209616}
 
 
@@ -480,7 +569,11 @@ Definition at line 70 of file actorcontainerbase.cpp.
 \hypertarget{classphys_1_1ActorContainerBase_a60f37a056e8750f3b389c5ceed14520c}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!RemoveActorAtCursor@{RemoveActorAtCursor}}
 \index{RemoveActorAtCursor@{RemoveActorAtCursor}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{RemoveActorAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::RemoveActorAtCursor ()\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{RemoveActorAtCursor}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::RemoveActorAtCursor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a60f37a056e8750f3b389c5ceed14520c}
 
 
@@ -496,7 +589,13 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a430977daf010a25f53d
 \hypertarget{classphys_1_1ActorContainerBase_a366c1797bef08f3a1846bf010e2e2b04}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!SetGameWorld@{SetGameWorld}}
 \index{SetGameWorld@{SetGameWorld}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::SetGameWorld ({\bf World} $\ast$ {\em GameWorld\_\-}, \/  bool {\em AddToWorld}, \/  bool {\em RemoveFromWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::SetGameWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ GameWorld\_\-, }
+\item[{bool}]{ AddToWorld, }
+\item[{bool}]{ RemoveFromWorld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_a366c1797bef08f3a1846bf010e2e2b04}
 
 
@@ -512,7 +611,11 @@ Implemented in \hyperlink{classphys_1_1ActorContainerVector_a721d0cde6fc4f1e8d3b
 \hypertarget{classphys_1_1ActorContainerBase_ae0cb5c288f17507247dd98d3a2466876}{
 \index{phys::ActorContainerBase@{phys::ActorContainerBase}!SetGameWorld@{SetGameWorld}}
 \index{SetGameWorld@{SetGameWorld}!phys::ActorContainerBase@{phys::ActorContainerBase}}
-\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::SetGameWorld ({\bf World} $\ast$ {\em GameWorld\_\-})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorContainerBase::SetGameWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ GameWorld\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d1/d00/classphys_1_1ActorContainerBase_ae0cb5c288f17507247dd98d3a2466876}
 
 

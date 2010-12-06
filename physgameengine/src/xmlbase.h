@@ -104,6 +104,7 @@ namespace phys
 
     namespace xml
     {
+        /// @internal
         class PHYS_LIB Node;
 
         ///////////////////////////////////////////////////////////////////////////////

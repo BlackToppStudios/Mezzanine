@@ -25,7 +25,7 @@ This is used to represent a flat infinite slice of the game world.
 Ogre::Plane \hyperlink{classphys_1_1Plane_abbdcdd8d6e7c0d8de92cabd250ff41dc}{GetOgrePlane} () const 
 \begin{DoxyCompactList}\small\item\em Gets an Ogre::Plane that contains this Plane's information. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Plane_a84b2378666a0e1c791f4f72d8df52c84}{ExtractOgrePlane} (const Ogre::Plane \&Plane2)
-\begin{DoxyCompactList}\small\item\em Changes this \hyperlink{classphys_1_1Plane}{Plane} to match the Ogre \hyperlink{classphys_1_1Plane}{Plane}. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Changes this \hyperlink{classphys_1_1Plane}{Plane} to match the \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1Plane}{Plane}. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Plane_ac045b7b0aac024a5fe771786d0c433f7}{operator=} (const Ogre::Plane \&Plane2)
 \begin{DoxyCompactList}\small\item\em The assignment operator from Ogre::Plane to \hyperlink{classphys_1_1Plane}{phys::Plane}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
@@ -46,7 +46,7 @@ void \hyperlink{classphys_1_1Plane_ac045b7b0aac024a5fe771786d0c433f7}{operator=}
 \subsection{Detailed Description}
 This is used to represent a flat infinite slice of the game world. The Normal value represents how rotated the plane will be, and The Distance with represent how far you need to move down a line perpendicular to the plane, (ie the normal, which is defined by the Normal value) from the Origin. 
 
-Definition at line 60 of file plane.h.
+Definition at line 61 of file plane.h.
 
 
 
@@ -54,7 +54,11 @@ Definition at line 60 of file plane.h.
 \hypertarget{classphys_1_1Plane_a8896c8a09a604fff0668e5044889bea7}{
 \index{phys::Plane@{phys::Plane}!Plane@{Plane}}
 \index{Plane@{Plane}!phys::Plane@{phys::Plane}}
-\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane ()}}
+\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d1/d0c/classphys_1_1Plane_a8896c8a09a604fff0668e5044889bea7}
 
 
@@ -67,7 +71,12 @@ Definition at line 52 of file plane.cpp.
 \hypertarget{classphys_1_1Plane_a921d5668dfee52875ba025528604182f}{
 \index{phys::Plane@{phys::Plane}!Plane@{Plane}}
 \index{Plane@{Plane}!phys::Plane@{phys::Plane}}
-\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane ({\bf Vector3} {\em Normal\_\-}, \/  {\bf Real} {\em Distance\_\-})}}
+\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Normal\_\-, }
+\item[{{\bf Real}}]{ Distance\_\-}
+\end{DoxyParamCaption}
+)}}
 \label{d1/d0c/classphys_1_1Plane_a921d5668dfee52875ba025528604182f}
 
 
@@ -83,13 +92,17 @@ Definition at line 55 of file plane.cpp.
 \hypertarget{classphys_1_1Plane_aa6c075364461a2996a6575fb022c47a9}{
 \index{phys::Plane@{phys::Plane}!Plane@{Plane}}
 \index{Plane@{Plane}!phys::Plane@{phys::Plane}}
-\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (Ogre::Plane {\em Plane\_\-})}}
+\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
+\begin{DoxyParamCaption}
+\item[{Ogre::Plane}]{ Plane\_\-}
+\end{DoxyParamCaption}
+)}}
 \label{d1/d0c/classphys_1_1Plane_aa6c075364461a2996a6575fb022c47a9}
 
 
 Compatibily constructor. 
 
-This accepts an Ogre \hyperlink{classphys_1_1Plane}{Plane}, (graphics subsystem) to make this \hyperlink{classphys_1_1Plane}{Plane} 
+This accepts an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1Plane}{Plane}, (graphics subsystem) to make this \hyperlink{classphys_1_1Plane}{Plane} 
 \begin{DoxyParams}{Parameters}
 \item[{\em Plane\_\-}]This is the Ogre::Plane \end{DoxyParams}
 
@@ -99,7 +112,13 @@ Definition at line 58 of file plane.cpp.
 \hypertarget{classphys_1_1Plane_a9b0fde4e97a7391259b2e659e46b3c30}{
 \index{phys::Plane@{phys::Plane}!Plane@{Plane}}
 \index{Plane@{Plane}!phys::Plane@{phys::Plane}}
-\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (const {\bf Vector3} \& {\em rkPoint0}, \/  const {\bf Vector3} \& {\em rkPoint1}, \/  const {\bf Vector3} \& {\em rkPoint2})}}
+\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ rkPoint0, }
+\item[{const {\bf Vector3} \&}]{ rkPoint1, }
+\item[{const {\bf Vector3} \&}]{ rkPoint2}
+\end{DoxyParamCaption}
+)}}
 \label{d1/d0c/classphys_1_1Plane_a9b0fde4e97a7391259b2e659e46b3c30}
 
 
@@ -118,11 +137,15 @@ Definition at line 61 of file plane.cpp.
 \hypertarget{classphys_1_1Plane_a84b2378666a0e1c791f4f72d8df52c84}{
 \index{phys::Plane@{phys::Plane}!ExtractOgrePlane@{ExtractOgrePlane}}
 \index{ExtractOgrePlane@{ExtractOgrePlane}!phys::Plane@{phys::Plane}}
-\subsubsection[{ExtractOgrePlane}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Plane::ExtractOgrePlane (const Ogre::Plane \& {\em Plane2})}}
+\subsubsection[{ExtractOgrePlane}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Plane::ExtractOgrePlane (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Plane \&}]{ Plane2}
+\end{DoxyParamCaption}
+)}}
 \label{d1/d0c/classphys_1_1Plane_a84b2378666a0e1c791f4f72d8df52c84}
 
 
-Changes this \hyperlink{classphys_1_1Plane}{Plane} to match the Ogre \hyperlink{classphys_1_1Plane}{Plane}. 
+Changes this \hyperlink{classphys_1_1Plane}{Plane} to match the \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1Plane}{Plane}. 
 
 Used to aid interopability, this will result in this \hyperlink{classphys_1_1Plane}{Plane} exactly matching the Ogre::Plane 
 \begin{DoxyParams}{Parameters}
@@ -134,7 +157,11 @@ Definition at line 75 of file plane.cpp.
 \hypertarget{classphys_1_1Plane_abbdcdd8d6e7c0d8de92cabd250ff41dc}{
 \index{phys::Plane@{phys::Plane}!GetOgrePlane@{GetOgrePlane}}
 \index{GetOgrePlane@{GetOgrePlane}!phys::Plane@{phys::Plane}}
-\subsubsection[{GetOgrePlane}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Plane phys::Plane::GetOgrePlane () const}}
+\subsubsection[{GetOgrePlane}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Plane phys::Plane::GetOgrePlane (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{d1/d0c/classphys_1_1Plane_abbdcdd8d6e7c0d8de92cabd250ff41dc}
 
 
@@ -150,7 +177,11 @@ Definition at line 72 of file plane.cpp.
 \hypertarget{classphys_1_1Plane_ac045b7b0aac024a5fe771786d0c433f7}{
 \index{phys::Plane@{phys::Plane}!operator=@{operator=}}
 \index{operator=@{operator=}!phys::Plane@{phys::Plane}}
-\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Plane::operator= (const Ogre::Plane \& {\em Plane2})}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Plane::operator= (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Plane \&}]{ Plane2}
+\end{DoxyParamCaption}
+)}}
 \label{d1/d0c/classphys_1_1Plane_ac045b7b0aac024a5fe771786d0c433f7}
 
 

@@ -45,6 +45,9 @@
 
 class btRigidBody;
 
+// Do not put in documentation until this is done
+/// @cond 0
+
 namespace phys
 {
     typedef std::vector< btRigidBody* > BodyParts;
@@ -65,5 +68,7 @@ namespace phys
             ~ActorRagDoll();
     };
 }
+
+/// @endcond
 
 #endif

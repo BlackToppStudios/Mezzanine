@@ -14,13 +14,13 @@ This is the actor class for Rigid Objects.
 Inheritance diagram for phys::ActorRigid:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{d8/d71/classphys_1_1ActorRigid}
+\includegraphics[height=2.000000cm]{d8/d71/classphys_1_1ActorRigid}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1ActorRigid_ac42c05745d57eb5745de3f34e820b72d}{ActorRigid} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} mass, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group, \hyperlink{classphys_1_1World}{World} $\ast$\_\-World)
+\hyperlink{classphys_1_1ActorRigid_abc5fd9a4ef92dddc4c640b6642994da1}{ActorRigid} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} mass, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group)
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{$\sim$ActorRigid} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
@@ -57,11 +57,8 @@ virtual void \hyperlink{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f
 \item 
 void \hyperlink{classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}{CreateRigidObject} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} pmass)
 \begin{DoxyCompactList}\small\item\em Creates a rigid object for the actor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ActorRigid_a63aac7ce099716928f7b9f4c6ef40453}{
-void {\bfseries PerformConvexDecomposition} (unsigned int depth, float cpercent, float ppercent)}
-\label{d8/d71/classphys_1_1ActorRigid_a63aac7ce099716928f7b9f4c6ef40453}
-
-\end{DoxyCompactItemize}
+void \hyperlink{classphys_1_1ActorRigid_a63aac7ce099716928f7b9f4c6ef40453}{PerformConvexDecomposition} (unsigned int depth, float cpercent, float ppercent)
+\begin{DoxyCompactList}\small\item\em This creates an estimation of the shape of a body using a number of simpler primitives. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -83,16 +80,23 @@ class {\bfseries TypedConstraint}}
 \subsection{Detailed Description}
 This is the actor class for Rigid Objects. This class should be used to make any rigid object that can be moved as a result of force. Most objects will fall into this catagory. A few examples of a Rigid Object: Boxes, Car Frames, Chairs, etc. For Semi Rigid bodies that are deformable, like jello, it is better to use \hyperlink{classphys_1_1ActorSoft}{ActorSoft}. 
 
-Definition at line 66 of file actorrigid.h.
+Definition at line 63 of file actorrigid.h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1ActorRigid_ac42c05745d57eb5745de3f34e820b72d}{
+\hypertarget{classphys_1_1ActorRigid_abc5fd9a4ef92dddc4c640b6642994da1}{
 \index{phys::ActorRigid@{phys::ActorRigid}!ActorRigid@{ActorRigid}}
 \index{ActorRigid@{ActorRigid}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorRigid::ActorRigid ({\bf Real} {\em mass}, \/  {\bf String} {\em name}, \/  {\bf String} {\em file}, \/  {\bf String} {\em group}, \/  {\bf World} $\ast$ {\em \_\-World})}}
-\label{d8/d71/classphys_1_1ActorRigid_ac42c05745d57eb5745de3f34e820b72d}
+\subsubsection[{ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorRigid::ActorRigid (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ mass, }
+\item[{{\bf String}}]{ name, }
+\item[{{\bf String}}]{ file, }
+\item[{{\bf String}}]{ group}
+\end{DoxyParamCaption}
+)}}
+\label{d8/d71/classphys_1_1ActorRigid_abc5fd9a4ef92dddc4c640b6642994da1}
 
 
 Descriptive constructor. 
@@ -100,15 +104,19 @@ Descriptive constructor.
 This constructor contains the basic information needed to make a Rigid Object. \par
  This class inherits from \hyperlink{classphys_1_1ActorBase}{ActorBase}. 
 \begin{DoxyParams}{Parameters}
-\item[{\em mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
+\item[{\em mass}]The mass the object will have in the \hyperlink{classphys_1_1World}{World}. \item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \end{DoxyParams}
 
 
-Definition at line 56 of file actorrigid.cpp.
+Definition at line 58 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}{
 \index{phys::ActorRigid@{phys::ActorRigid}!$\sim$ActorRigid@{$\sim$ActorRigid}}
 \index{$\sim$ActorRigid@{$\sim$ActorRigid}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{$\sim$ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorRigid::$\sim$ActorRigid ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{$\sim$ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorRigid::$\sim$ActorRigid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d71/classphys_1_1ActorRigid_ab317b5a2578157e54655a1aea8f4d058}
 
 
@@ -116,7 +124,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 63 of file actorrigid.cpp.
+Definition at line 65 of file actorrigid.cpp.
 
 
 
@@ -124,7 +132,11 @@ Definition at line 63 of file actorrigid.cpp.
 \hypertarget{classphys_1_1ActorRigid_acaf29ca7058b39185dd09a5059200e91}{
 \index{phys::ActorRigid@{phys::ActorRigid}!AddObjectToWorld@{AddObjectToWorld}}
 \index{AddObjectToWorld@{AddObjectToWorld}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::AddObjectToWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ TargetWorld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d71/classphys_1_1ActorRigid_acaf29ca7058b39185dd09a5059200e91}
 
 
@@ -140,12 +152,16 @@ Implements \hyperlink{classphys_1_1ActorBase_a3d28e4c4a33f50210101695cb33ded3b}{
 
 
 
-Definition at line 166 of file actorrigid.cpp.
+Definition at line 168 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateRigidObject@{CreateRigidObject}}
 \index{CreateRigidObject@{CreateRigidObject}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{CreateRigidObject}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateRigidObject ({\bf Real} {\em pmass})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{CreateRigidObject}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateRigidObject (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ pmass}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d71/classphys_1_1ActorRigid_a19227c52b972cd96ad69a7b6273e2bbf}
 
 
@@ -157,12 +173,16 @@ Creates a rigid object to be placed in the physics world later. \par
 \item[{\em pmass}]\char`\"{}Real Mass\char`\"{} The mass of the object. \end{DoxyParams}
 
 
-Definition at line 69 of file actorrigid.cpp.
+Definition at line 71 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}}
 \index{CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshDynamic (short unsigned int {\em accuracy} = {\ttfamily 1})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshDynamic (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{ accuracy = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d71/classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f8a1}
 
 
@@ -186,12 +206,16 @@ Implements \hyperlink{classphys_1_1ActorBase_aa41370f6d2031a9dad8df45bd7f3bcc6}{
 
 
 
-Definition at line 180 of file actorrigid.cpp.
+Definition at line 182 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}}
 \index{CreateShapeFromMeshStatic@{CreateShapeFromMeshStatic}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{CreateShapeFromMeshStatic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshStatic ()}}
+\subsubsection[{CreateShapeFromMeshStatic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateShapeFromMeshStatic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d71/classphys_1_1ActorRigid_a84554dcaaf2475ba0ec7dcb9235050ac}
 
 
@@ -208,12 +232,16 @@ This function will read the location of every verticy in the mesh file and use t
 
 
 
-Definition at line 305 of file actorrigid.cpp.
+Definition at line 307 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}{
 \index{phys::ActorRigid@{phys::ActorRigid}!CreateSphereShapeFromMesh@{CreateSphereShapeFromMesh}}
 \index{CreateSphereShapeFromMesh@{CreateSphereShapeFromMesh}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{CreateSphereShapeFromMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateSphereShapeFromMesh ()}}
+\subsubsection[{CreateSphereShapeFromMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::CreateSphereShapeFromMesh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d71/classphys_1_1ActorRigid_ae401c116a07ee4ed3fc677e83308fba5}
 
 
@@ -221,12 +249,16 @@ Creates a sphere collision shape.
 
 Will dynamically create a sphere collision shape from the loaded mesh file. 
 
-Definition at line 275 of file actorrigid.cpp.
+Definition at line 277 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_ad74da4da12bbb44b3e5ae22007c98573}{
 \index{phys::ActorRigid@{phys::ActorRigid}!DisableDeactivation@{DisableDeactivation}}
 \index{DisableDeactivation@{DisableDeactivation}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{DisableDeactivation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::DisableDeactivation ()}}
+\subsubsection[{DisableDeactivation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::DisableDeactivation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d71/classphys_1_1ActorRigid_ad74da4da12bbb44b3e5ae22007c98573}
 
 
@@ -234,12 +266,16 @@ Disables the deactivation of the physics body.
 
 This function is useful when using constraints to prevent it from locking in situations where it shouldn't. 
 
-Definition at line 359 of file actorrigid.cpp.
+Definition at line 361 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a54393bf3756324875497960bd9215b2e}{
 \index{phys::ActorRigid@{phys::ActorRigid}!GetAngularVelocity@{GetAngularVelocity}}
 \index{GetAngularVelocity@{GetAngularVelocity}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{GetAngularVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigid::GetAngularVelocity ()}}
+\subsubsection[{GetAngularVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigid::GetAngularVelocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d71/classphys_1_1ActorRigid_a54393bf3756324875497960bd9215b2e}
 
 
@@ -250,12 +286,16 @@ Returns the currently set Angular Velocity of this object.
 \end{DoxyReturn}
 
 
-Definition at line 353 of file actorrigid.cpp.
+Definition at line 355 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_add50c9f86048470de3e04e0de1e0e498}{
 \index{phys::ActorRigid@{phys::ActorRigid}!GetLinearVelocity@{GetLinearVelocity}}
 \index{GetLinearVelocity@{GetLinearVelocity}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{GetLinearVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigid::GetLinearVelocity ()}}
+\subsubsection[{GetLinearVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigid::GetLinearVelocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d71/classphys_1_1ActorRigid_add50c9f86048470de3e04e0de1e0e498}
 
 
@@ -266,12 +306,16 @@ Returns the currently set Linear Velocity of this object.
 \end{DoxyReturn}
 
 
-Definition at line 342 of file actorrigid.cpp.
+Definition at line 344 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a63952e0b7ab7176ae60d96756dd84b43}{
 \index{phys::ActorRigid@{phys::ActorRigid}!GetName@{GetName}}
 \index{GetName@{GetName}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}std::string phys::ActorRigid::GetName () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}std::string phys::ActorRigid::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d71/classphys_1_1ActorRigid_a63952e0b7ab7176ae60d96756dd84b43}
 
 
@@ -283,12 +327,18 @@ Implements \hyperlink{classphys_1_1ActorBase_a8309f5bd133c936abe3a856b0240159f}{
 
 
 
-Definition at line 320 of file actorrigid.cpp.
+Definition at line 322 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}{
 \index{phys::ActorRigid@{phys::ActorRigid}!LimitMovementOnAxis@{LimitMovementOnAxis}}
 \index{LimitMovementOnAxis@{LimitMovementOnAxis}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{LimitMovementOnAxis}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::LimitMovementOnAxis (bool {\em x}, \/  bool {\em y}, \/  bool {\em z})}}
+\subsubsection[{LimitMovementOnAxis}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::LimitMovementOnAxis (
+\begin{DoxyParamCaption}
+\item[{bool}]{ x, }
+\item[{bool}]{ y, }
+\item[{bool}]{ z}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d71/classphys_1_1ActorRigid_adaed962ee8ed788612e541fb00867c78}
 
 
@@ -299,12 +349,38 @@ This function will lock any and all axies you define you want to be locked. Simp
 \item[{\em x}]Allow or Disallow use of the X axis for movement. \item[{\em y}]Allow or Disallow use of the Y axis for movement. \item[{\em z}]Allow or Disallow use of the Z axis for movement. \end{DoxyParams}
 
 
-Definition at line 325 of file actorrigid.cpp.
+Definition at line 327 of file actorrigid.cpp.
+
+\hypertarget{classphys_1_1ActorRigid_a63aac7ce099716928f7b9f4c6ef40453}{
+\index{phys::ActorRigid@{phys::ActorRigid}!PerformConvexDecomposition@{PerformConvexDecomposition}}
+\index{PerformConvexDecomposition@{PerformConvexDecomposition}!phys::ActorRigid@{phys::ActorRigid}}
+\subsubsection[{PerformConvexDecomposition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::PerformConvexDecomposition (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{ depth, }
+\item[{float}]{ cpercent, }
+\item[{float}]{ ppercent}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d8/d71/classphys_1_1ActorRigid_a63aac7ce099716928f7b9f4c6ef40453}
+
+
+This creates an estimation of the shape of a body using a number of simpler primitives. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em depth}]How many times should we subdivide. Larger means more parts, each one smaller, more CPU time. \item[{\em cpercent}]How concave the resulting shapes will be, lower means more accurate with more pieces. \item[{\em ppercent}]Undocumented -\/ set to similar number to cpercent \end{DoxyParams}
+
+
+Definition at line 83 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f8}{
 \index{phys::ActorRigid@{phys::ActorRigid}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
 \index{RemoveObjectFromWorld@{RemoveObjectFromWorld}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{RemoveObjectFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::RemoveObjectFromWorld ({\bf World} $\ast$ {\em TargetWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{RemoveObjectFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::RemoveObjectFromWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ TargetWorld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d71/classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c00998f8}
 
 
@@ -320,12 +396,16 @@ Implements \hyperlink{classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}{
 
 
 
-Definition at line 173 of file actorrigid.cpp.
+Definition at line 175 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a99af341e186505a330f6634b7f6ad542}{
 \index{phys::ActorRigid@{phys::ActorRigid}!RestoreActivation@{RestoreActivation}}
 \index{RestoreActivation@{RestoreActivation}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{RestoreActivation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::RestoreActivation ()}}
+\subsubsection[{RestoreActivation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::RestoreActivation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d71/classphys_1_1ActorRigid_a99af341e186505a330f6634b7f6ad542}
 
 
@@ -333,12 +413,16 @@ Restores the activation state of the physics body to normal.
 
 This function is useful when you are done applying a constraint to a body, or any other effect that would have you call \hyperlink{classphys_1_1ActorRigid_ad74da4da12bbb44b3e5ae22007c98573}{DisableDeactivation()}. 
 
-Definition at line 364 of file actorrigid.cpp.
+Definition at line 366 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a00ae9cd063f7f879d6bee15c807101d2}{
 \index{phys::ActorRigid@{phys::ActorRigid}!SetAngularVelocity@{SetAngularVelocity}}
 \index{SetAngularVelocity@{SetAngularVelocity}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{SetAngularVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetAngularVelocity ({\bf Vector3} {\em AngVel})}}
+\subsubsection[{SetAngularVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetAngularVelocity (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ AngVel}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d71/classphys_1_1ActorRigid_a00ae9cd063f7f879d6bee15c807101d2}
 
 
@@ -349,12 +433,17 @@ Sets the Angular Velocity of this object.
 \item[{\em AngVel}]\hyperlink{classphys_1_1Vector3}{Vector3} representing the Angular Velocity to be set. \end{DoxyParams}
 
 
-Definition at line 348 of file actorrigid.cpp.
+Definition at line 350 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a228fc92e7db56d07e441e6812ac28288}{
 \index{phys::ActorRigid@{phys::ActorRigid}!SetDamping@{SetDamping}}
 \index{SetDamping@{SetDamping}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{SetDamping}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetDamping ({\bf Real} {\em LinDamping}, \/  {\bf Real} {\em AngDamping})}}
+\subsubsection[{SetDamping}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetDamping (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ LinDamping, }
+\item[{{\bf Real}}]{ AngDamping}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d71/classphys_1_1ActorRigid_a228fc92e7db56d07e441e6812ac28288}
 
 
@@ -365,12 +454,16 @@ Both of Linear Damping and Angular Damping default to zero. This is usful if you
 \item[{\em LinDamping}]Real representing the amount of Linear Damping to be applied. \item[{\em AngDamping}]Real representing the amount of Angular Damping to be applied. \end{DoxyParams}
 
 
-Definition at line 332 of file actorrigid.cpp.
+Definition at line 334 of file actorrigid.cpp.
 
 \hypertarget{classphys_1_1ActorRigid_a2b25eed4dcd594796c35a549d1c87559}{
 \index{phys::ActorRigid@{phys::ActorRigid}!SetLinearVelocity@{SetLinearVelocity}}
 \index{SetLinearVelocity@{SetLinearVelocity}!phys::ActorRigid@{phys::ActorRigid}}
-\subsubsection[{SetLinearVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetLinearVelocity ({\bf Vector3} {\em LinVel})}}
+\subsubsection[{SetLinearVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigid::SetLinearVelocity (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ LinVel}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d71/classphys_1_1ActorRigid_a2b25eed4dcd594796c35a549d1c87559}
 
 
@@ -381,7 +474,7 @@ Sets the Linear Velocity of this object.
 \item[{\em LinVel}]\hyperlink{classphys_1_1Vector3}{Vector3} representing the Linear Velocity to be set. \end{DoxyParams}
 
 
-Definition at line 337 of file actorrigid.cpp.
+Definition at line 339 of file actorrigid.cpp.
 
 
 

@@ -14,15 +14,15 @@ This is simply a place for storing all the Physics Related functions.
 Inheritance diagram for phys::PhysicsManager:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{d3/dcc/classphys_1_1PhysicsManager}
+\includegraphics[height=2.000000cm]{d3/dcc/classphys_1_1PhysicsManager}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1PhysicsManager_a3c78a0773d6a544aa6ea06b12ffc5fee}{PhysicsManager} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-)
+\hyperlink{classphys_1_1PhysicsManager_ab3ecdc295799ad9858ca80743b25006d}{PhysicsManager} ()
 \begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1PhysicsManager_aa2c37564d35c3b7266219812ee43717f}{PhysicsManager} (\hyperlink{classphys_1_1World}{World} $\ast$GameWorld\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyLowerBounds\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-)
+\hyperlink{classphys_1_1PhysicsManager_a1072c647c64ec82381ddc9f1a17c5909}{PhysicsManager} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyLowerBounds\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-)
 \begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{Initialize} ()
 \begin{DoxyCompactList}\small\item\em This configures the Physics Manager to work with the Graphic settings. \item\end{DoxyCompactList}\item 
@@ -81,16 +81,20 @@ virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{M
 \subsection{Detailed Description}
 This is simply a place for storing all the Physics Related functions. This is a plage for storing items related to Debug physics drawing, Adding constraints, screwing with gravity and doing other physics Related features. 
 
-Definition at line 77 of file physicsmanager.h.
+Definition at line 78 of file physicsmanager.h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1PhysicsManager_a3c78a0773d6a544aa6ea06b12ffc5fee}{
+\hypertarget{classphys_1_1PhysicsManager_ab3ecdc295799ad9858ca80743b25006d}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!PhysicsManager@{PhysicsManager}}
 \index{PhysicsManager@{PhysicsManager}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{PhysicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::PhysicsManager::PhysicsManager ({\bf World} $\ast$ {\em GameWorld\_\-})}}
-\label{d3/dcc/classphys_1_1PhysicsManager_a3c78a0773d6a544aa6ea06b12ffc5fee}
+\subsubsection[{PhysicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::PhysicsManager::PhysicsManager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d3/dcc/classphys_1_1PhysicsManager_ab3ecdc295799ad9858ca80743b25006d}
 
 
 Simple Constructor. 
@@ -100,13 +104,19 @@ This constructor will assign some sane default values and will create a physics 
 \item[{\em GameWorld\_\-}]This is a pointer to the game world this \hyperlink{classphys_1_1PhysicsManager}{PhysicsManager} will work with \end{DoxyParams}
 
 
-Definition at line 262 of file physicsmanager.cpp.
+Definition at line 263 of file physicsmanager.cpp.
 
-\hypertarget{classphys_1_1PhysicsManager_aa2c37564d35c3b7266219812ee43717f}{
+\hypertarget{classphys_1_1PhysicsManager_a1072c647c64ec82381ddc9f1a17c5909}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!PhysicsManager@{PhysicsManager}}
 \index{PhysicsManager@{PhysicsManager}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{PhysicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::PhysicsManager::PhysicsManager ({\bf World} $\ast$ {\em GameWorld\_\-}, \/  const {\bf Vector3} \& {\em GeographyLowerBounds\_\-}, \/  const {\bf Vector3} \& {\em GeographyUpperbounds\_\-}, \/  const unsigned short int \& {\em MaxPhysicsProxies\_\-})}}
-\label{d3/dcc/classphys_1_1PhysicsManager_aa2c37564d35c3b7266219812ee43717f}
+\subsubsection[{PhysicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::PhysicsManager::PhysicsManager (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ GeographyLowerBounds\_\-, }
+\item[{const {\bf Vector3} \&}]{ GeographyUpperbounds\_\-, }
+\item[{const unsigned short int \&}]{ MaxPhysicsProxies\_\-}
+\end{DoxyParamCaption}
+)}}
+\label{d3/dcc/classphys_1_1PhysicsManager_a1072c647c64ec82381ddc9f1a17c5909}
 
 
 Simple Constructor. 
@@ -116,12 +126,16 @@ This constructor will assign some sane default values and will create a physics 
 \item[{\em GameWorld\_\-}]This is a pointer to the \hyperlink{classphys_1_1World}{phys::World} that this manager will work with \item[{\em GeographyLowerBounds\_\-}]This \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the lower right conrer of the world \item[{\em GeographyUpperbounds\_\-}]This \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the upper left conrer of the world \item[{\em MaxPhysicsProxies\_\-}]This approximates the maximum amount of items allowed in the physics world \end{DoxyParams}
 
 
-Definition at line 267 of file physicsmanager.cpp.
+Definition at line 268 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!$\sim$PhysicsManager@{$\sim$PhysicsManager}}
 \index{$\sim$PhysicsManager@{$\sim$PhysicsManager}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{$\sim$PhysicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::PhysicsManager::$\sim$PhysicsManager ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{$\sim$PhysicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::PhysicsManager::$\sim$PhysicsManager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}
 
 
@@ -129,7 +143,7 @@ Deconstructor.
 
 This deletes all those crazy pointers that Bullet, the physics subsystem need. 
 
-Definition at line 272 of file physicsmanager.cpp.
+Definition at line 273 of file physicsmanager.cpp.
 
 
 
@@ -137,7 +151,11 @@ Definition at line 272 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a64e75a71598b6440c4feb1a2214a1420}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!AddAreaEffect@{AddAreaEffect}}
 \index{AddAreaEffect@{AddAreaEffect}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{AddAreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::AddAreaEffect ({\bf AreaEffect} $\ast$ {\em AE})}}
+\subsubsection[{AddAreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::AddAreaEffect (
+\begin{DoxyParamCaption}
+\item[{{\bf AreaEffect} $\ast$}]{ AE}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a64e75a71598b6440c4feb1a2214a1420}
 
 
@@ -153,7 +171,11 @@ Definition at line 481 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_ab31bf38e9ed68c484946731546425691}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!AddConstraint@{AddConstraint}}
 \index{AddConstraint@{AddConstraint}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{AddConstraint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::AddConstraint ({\bf TypedConstraint} $\ast$ {\em Constraint})}}
+\subsubsection[{AddConstraint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::AddConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf TypedConstraint} $\ast$}]{ Constraint}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_ab31bf38e9ed68c484946731546425691}
 
 
@@ -169,7 +191,12 @@ Definition at line 471 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a58653c59133900a432169a7c980105ce}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!ApplyPhysicsShape@{ApplyPhysicsShape}}
 \index{ApplyPhysicsShape@{ApplyPhysicsShape}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{ApplyPhysicsShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::ApplyPhysicsShape ({\bf ActorBase} $\ast$ {\em Actor}, \/  {\bf String} \& {\em ShapeName})}}
+\subsubsection[{ApplyPhysicsShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::ApplyPhysicsShape (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ Actor, }
+\item[{{\bf String} \&}]{ ShapeName}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a58653c59133900a432169a7c980105ce}
 
 
@@ -182,26 +209,14 @@ This function will take a stored shape and apply it to the actor provided.
 
 Definition at line 529 of file physicsmanager.cpp.
 
-\hypertarget{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{
-\index{phys::PhysicsManager@{phys::PhysicsManager}!DoMainLoopItems@{DoMainLoopItems}}
-\index{DoMainLoopItems@{DoMainLoopItems}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::DoMainLoopItems (const {\bf Real} \& {\em TimeElapsed})}}
-\label{d3/dcc/classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}
-
-
-This does all the work reuired for the main loop to process physics. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em TimeElapsed}]This is a real that represents the amount of time we need to simulate \end{DoxyParams}
-
-
-Definition at line 338 of file physicsmanager.cpp.
-
 \hypertarget{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!DoMainLoopItems@{DoMainLoopItems}}
 \index{DoMainLoopItems@{DoMainLoopItems}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::DoMainLoopItems ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}
 
 
@@ -215,10 +230,34 @@ Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7
 
 Definition at line 333 of file physicsmanager.cpp.
 
+\hypertarget{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!phys::PhysicsManager@{phys::PhysicsManager}}
+\subsubsection[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::DoMainLoopItems (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ TimeElapsed}
+\end{DoxyParamCaption}
+)}}
+\label{d3/dcc/classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}
+
+
+This does all the work reuired for the main loop to process physics. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em TimeElapsed}]This is a real that represents the amount of time we need to simulate \end{DoxyParams}
+
+
+Definition at line 338 of file physicsmanager.cpp.
+
 \hypertarget{classphys_1_1PhysicsManager_a54a48fdfd9db914c25a0f892c2f56301}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetActorOffset@{GetActorOffset}}
 \index{GetActorOffset@{GetActorOffset}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{GetActorOffset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::PhysicsManager::GetActorOffset (const {\bf Vector3WActor} \& {\em OffsetInfo})}}
+\subsubsection[{GetActorOffset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::PhysicsManager::GetActorOffset (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3WActor} \&}]{ OffsetInfo}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a54a48fdfd9db914c25a0f892c2f56301}
 
 
@@ -237,7 +276,11 @@ Definition at line 458 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a36b575504b1de592ee24d08ebf1fd620}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetAreaEffect@{GetAreaEffect}}
 \index{GetAreaEffect@{GetAreaEffect}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{GetAreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AreaEffect} $\ast$ phys::PhysicsManager::GetAreaEffect ({\bf String} {\em Name})}}
+\subsubsection[{GetAreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AreaEffect} $\ast$ phys::PhysicsManager::GetAreaEffect (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{ Name}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a36b575504b1de592ee24d08ebf1fd620}
 
 
@@ -256,7 +299,11 @@ Definition at line 499 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a4232e8cd52e70b623ef30c40be6cdb4a}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetCollisionAge@{GetCollisionAge}}
 \index{GetCollisionAge@{GetCollisionAge}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{GetCollisionAge}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int phys::PhysicsManager::GetCollisionAge ()}}
+\subsubsection[{GetCollisionAge}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short int phys::PhysicsManager::GetCollisionAge (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a4232e8cd52e70b623ef30c40be6cdb4a}
 
 
@@ -272,7 +319,11 @@ Definition at line 541 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a64f96d2e4b25c2b9a66042998bf334ff}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetDebugPhysicsRendering@{GetDebugPhysicsRendering}}
 \index{GetDebugPhysicsRendering@{GetDebugPhysicsRendering}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{GetDebugPhysicsRendering}]{\setlength{\rightskip}{0pt plus 5cm}int phys::PhysicsManager::GetDebugPhysicsRendering ()}}
+\subsubsection[{GetDebugPhysicsRendering}]{\setlength{\rightskip}{0pt plus 5cm}int phys::PhysicsManager::GetDebugPhysicsRendering (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a64f96d2e4b25c2b9a66042998bf334ff}
 
 
@@ -288,7 +339,11 @@ Definition at line 433 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetDebugPhysicsWireCount@{GetDebugPhysicsWireCount}}
 \index{GetDebugPhysicsWireCount@{GetDebugPhysicsWireCount}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{GetDebugPhysicsWireCount}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::PhysicsManager::GetDebugPhysicsWireCount ()}}
+\subsubsection[{GetDebugPhysicsWireCount}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::PhysicsManager::GetDebugPhysicsWireCount (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}
 
 
@@ -304,7 +359,11 @@ Definition at line 448 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a880950ca6093afd3267dcadf30934574}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetGravity@{GetGravity}}
 \index{GetGravity@{GetGravity}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{GetGravity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::PhysicsManager::GetGravity ()}}
+\subsubsection[{GetGravity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::PhysicsManager::GetGravity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a880950ca6093afd3267dcadf30934574}
 
 
@@ -320,7 +379,11 @@ Definition at line 394 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_ad11ee3904e1725f95ce9bd58f4ee3925}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetImpulse@{GetImpulse}}
 \index{GetImpulse@{GetImpulse}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{GetImpulse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::PhysicsManager::GetImpulse ()}}
+\subsubsection[{GetImpulse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::PhysicsManager::GetImpulse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_ad11ee3904e1725f95ce9bd58f4ee3925}
 
 
@@ -336,7 +399,11 @@ Definition at line 546 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetPhysicsWorldPointer@{GetPhysicsWorldPointer}}
 \index{GetPhysicsWorldPointer@{GetPhysicsWorldPointer}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{GetPhysicsWorldPointer}]{\setlength{\rightskip}{0pt plus 5cm}btSoftRigidDynamicsWorld $\ast$ phys::PhysicsManager::GetPhysicsWorldPointer ()}}
+\subsubsection[{GetPhysicsWorldPointer}]{\setlength{\rightskip}{0pt plus 5cm}btSoftRigidDynamicsWorld $\ast$ phys::PhysicsManager::GetPhysicsWorldPointer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}
 
 
@@ -351,7 +418,11 @@ Definition at line 453 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_acdaad0849c3d6386e8cff5c98fc46664}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetSoftGravity@{GetSoftGravity}}
 \index{GetSoftGravity@{GetSoftGravity}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{GetSoftGravity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::PhysicsManager::GetSoftGravity ()}}
+\subsubsection[{GetSoftGravity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::PhysicsManager::GetSoftGravity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_acdaad0849c3d6386e8cff5c98fc46664}
 
 
@@ -367,7 +438,11 @@ Definition at line 405 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetType@{GetType}}
 \index{GetType@{GetType}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::PhysicsManager::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::PhysicsManager::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}
 
 
@@ -387,7 +462,11 @@ Definition at line 552 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!Initialize@{Initialize}}
 \index{Initialize@{Initialize}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::Initialize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{Initialize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::Initialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}
 
 
@@ -404,7 +483,11 @@ Definition at line 326 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a5ee0f784a8239be56164a7a67a28f227}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!RemoveAreaEffect@{RemoveAreaEffect}}
 \index{RemoveAreaEffect@{RemoveAreaEffect}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{RemoveAreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::RemoveAreaEffect ({\bf AreaEffect} $\ast$ {\em AE})}}
+\subsubsection[{RemoveAreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::RemoveAreaEffect (
+\begin{DoxyParamCaption}
+\item[{{\bf AreaEffect} $\ast$}]{ AE}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a5ee0f784a8239be56164a7a67a28f227}
 
 
@@ -420,7 +503,11 @@ Definition at line 487 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_ace94aa20b5191b01630e7a5046cb7af6}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!RemoveConstraint@{RemoveConstraint}}
 \index{RemoveConstraint@{RemoveConstraint}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{RemoveConstraint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::RemoveConstraint ({\bf TypedConstraint} $\ast$ {\em Constraint})}}
+\subsubsection[{RemoveConstraint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::RemoveConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf TypedConstraint} $\ast$}]{ Constraint}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_ace94aa20b5191b01630e7a5046cb7af6}
 
 
@@ -436,7 +523,12 @@ Definition at line 476 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a98ee9704eec230ff759850ffa8394489}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetCollisionParams@{SetCollisionParams}}
 \index{SetCollisionParams@{SetCollisionParams}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{SetCollisionParams}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetCollisionParams (const unsigned short int {\em Age}, \/  {\bf Real} {\em Force})}}
+\subsubsection[{SetCollisionParams}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetCollisionParams (
+\begin{DoxyParamCaption}
+\item[{const unsigned short int}]{ Age, }
+\item[{{\bf Real}}]{ Force}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a98ee9704eec230ff759850ffa8394489}
 
 
@@ -453,7 +545,11 @@ Definition at line 535 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a67fb59148a94ced0a92b288a638f89db}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetDebugPhysicsRendering@{SetDebugPhysicsRendering}}
 \index{SetDebugPhysicsRendering@{SetDebugPhysicsRendering}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{SetDebugPhysicsRendering}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetDebugPhysicsRendering (int {\em ToBeEnabled})}}
+\subsubsection[{SetDebugPhysicsRendering}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetDebugPhysicsRendering (
+\begin{DoxyParamCaption}
+\item[{int}]{ ToBeEnabled}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a67fb59148a94ced0a92b288a638f89db}
 
 
@@ -469,7 +565,11 @@ Definition at line 423 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetDebugPhysicsWireCount@{SetDebugPhysicsWireCount}}
 \index{SetDebugPhysicsWireCount@{SetDebugPhysicsWireCount}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{SetDebugPhysicsWireCount}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetDebugPhysicsWireCount ({\bf Whole} {\em WireFrameCount\_\-})}}
+\subsubsection[{SetDebugPhysicsWireCount}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetDebugPhysicsWireCount (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ WireFrameCount\_\-}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}
 
 
@@ -485,7 +585,11 @@ Definition at line 443 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a3e74f3e0288706d44dc90657a8fa1118}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetGravity@{SetGravity}}
 \index{SetGravity@{SetGravity}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{SetGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetGravity ({\bf Vector3} {\em pgrav})}}
+\subsubsection[{SetGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetGravity (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ pgrav}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a3e74f3e0288706d44dc90657a8fa1118}
 
 
@@ -501,7 +605,12 @@ Definition at line 389 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_af6acab3a35e52b1e25f1ab47f494d90d}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetIndividualGravity@{SetIndividualGravity}}
 \index{SetIndividualGravity@{SetIndividualGravity}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{SetIndividualGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetIndividualGravity ({\bf ActorBase} $\ast$ {\em Actor}, \/  {\bf Vector3} {\em igrav})}}
+\subsubsection[{SetIndividualGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetIndividualGravity (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ Actor, }
+\item[{{\bf Vector3}}]{ igrav}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_af6acab3a35e52b1e25f1ab47f494d90d}
 
 
@@ -517,7 +626,11 @@ Definition at line 411 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_acd1fe36f7cd593da0c466002304065eb}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetSoftGravity@{SetSoftGravity}}
 \index{SetSoftGravity@{SetSoftGravity}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{SetSoftGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetSoftGravity ({\bf Vector3} {\em sgrav})}}
+\subsubsection[{SetSoftGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetSoftGravity (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ sgrav}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_acd1fe36f7cd593da0c466002304065eb}
 
 
@@ -533,7 +646,12 @@ Definition at line 400 of file physicsmanager.cpp.
 \hypertarget{classphys_1_1PhysicsManager_a24fae734b5750db6fc1d2b1e3656bb71}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!StorePhysicsShape@{StorePhysicsShape}}
 \index{StorePhysicsShape@{StorePhysicsShape}!phys::PhysicsManager@{phys::PhysicsManager}}
-\subsubsection[{StorePhysicsShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::StorePhysicsShape ({\bf ActorBase} $\ast$ {\em Actor}, \/  {\bf String} \& {\em ShapeName})}}
+\subsubsection[{StorePhysicsShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::StorePhysicsShape (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ Actor, }
+\item[{{\bf String} \&}]{ ShapeName}
+\end{DoxyParamCaption}
+)}}
 \label{d3/dcc/classphys_1_1PhysicsManager_a24fae734b5750db6fc1d2b1e3656bb71}
 
 

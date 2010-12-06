@@ -55,7 +55,7 @@ namespace phys
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Declaration
-        /// @headerfile xmlDeclaration.h
+        /// @headerfile xmldeclaration.h
         /// @brief This is a container of nodes and elements and other XML stuff
         /// @details
         class PHYS_LIB Declaration: public Node
@@ -63,7 +63,7 @@ namespace phys
             protected:
                 /// @brief Construct a Declaration using meta data from a TiCPP pointer
                 /// @param Meta A pointer to a ticpp::Declaration that this class will wrap.
-                /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
+                /// @param FirstTimeUsed Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
                 Declaration (ticpp::Declaration* Meta, bool FirstTimeUsed = false);
 
             public:

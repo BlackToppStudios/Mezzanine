@@ -19,14 +19,14 @@ This is a simple class for holding 4 reals representing the colour any give obje
 \hyperlink{classphys_1_1ColourValue_a28ee2493cd6a7bb8bc4104d223e3e709}{ColourValue} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} red, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} green, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} blue, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} alpha)
 \begin{DoxyCompactList}\small\item\em Alpha constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ColourValue_a8a004962cde5fd3063dd845be4256fa9}{ColourValue} (Ogre::ColourValue OgreValues)
-\begin{DoxyCompactList}\small\item\em Ogre constructor. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespaceOgre}{Ogre} constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ColourValue_adc37cfdba61d80ad23765cea5c858751}{
 \hyperlink{classphys_1_1ColourValue_adc37cfdba61d80ad23765cea5c858751}{$\sim$ColourValue} ()}
 \label{d3/db0/classphys_1_1ColourValue_adc37cfdba61d80ad23765cea5c858751}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 Ogre::ColourValue \hyperlink{classphys_1_1ColourValue_a7a2978ebc5a7e04e02279664f1ea4a86}{GetOgreColourValue} ()
-\begin{DoxyCompactList}\small\item\em Creates and returns an Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class with values equal to this one. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates and returns an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1ColourValue}{ColourValue} class with values equal to this one. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -55,7 +55,7 @@ Ogre::ColourValue \hyperlink{classphys_1_1ColourValue_a7a2978ebc5a7e04e02279664f
 \subsection{Detailed Description}
 This is a simple class for holding 4 reals representing the colour any give object or lightsource can have. 
 
-Definition at line 58 of file colourvalue.h.
+Definition at line 59 of file colourvalue.h.
 
 
 
@@ -63,7 +63,13 @@ Definition at line 58 of file colourvalue.h.
 \hypertarget{classphys_1_1ColourValue_ac63b5fbf1b35b1855330ed5737fc16e0}{
 \index{phys::ColourValue@{phys::ColourValue}!ColourValue@{ColourValue}}
 \index{ColourValue@{ColourValue}!phys::ColourValue@{phys::ColourValue}}
-\subsubsection[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue ({\bf Real} {\em red}, \/  {\bf Real} {\em green}, \/  {\bf Real} {\em blue})}}
+\subsubsection[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ red, }
+\item[{{\bf Real}}]{ green, }
+\item[{{\bf Real}}]{ blue}
+\end{DoxyParamCaption}
+)}}
 \label{d3/db0/classphys_1_1ColourValue_ac63b5fbf1b35b1855330ed5737fc16e0}
 
 
@@ -79,7 +85,14 @@ Definition at line 45 of file colourvalue.cpp.
 \hypertarget{classphys_1_1ColourValue_a28ee2493cd6a7bb8bc4104d223e3e709}{
 \index{phys::ColourValue@{phys::ColourValue}!ColourValue@{ColourValue}}
 \index{ColourValue@{ColourValue}!phys::ColourValue@{phys::ColourValue}}
-\subsubsection[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue ({\bf Real} {\em red}, \/  {\bf Real} {\em green}, \/  {\bf Real} {\em blue}, \/  {\bf Real} {\em alpha})}}
+\subsubsection[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ red, }
+\item[{{\bf Real}}]{ green, }
+\item[{{\bf Real}}]{ blue, }
+\item[{{\bf Real}}]{ alpha}
+\end{DoxyParamCaption}
+)}}
 \label{d3/db0/classphys_1_1ColourValue_a28ee2493cd6a7bb8bc4104d223e3e709}
 
 
@@ -95,15 +108,19 @@ Definition at line 53 of file colourvalue.cpp.
 \hypertarget{classphys_1_1ColourValue_a8a004962cde5fd3063dd845be4256fa9}{
 \index{phys::ColourValue@{phys::ColourValue}!ColourValue@{ColourValue}}
 \index{ColourValue@{ColourValue}!phys::ColourValue@{phys::ColourValue}}
-\subsubsection[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue (Ogre::ColourValue {\em OgreValues})}}
+\subsubsection[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue (
+\begin{DoxyParamCaption}
+\item[{Ogre::ColourValue}]{ OgreValues}
+\end{DoxyParamCaption}
+)}}
 \label{d3/db0/classphys_1_1ColourValue_a8a004962cde5fd3063dd845be4256fa9}
 
 
-Ogre constructor. 
+\hyperlink{namespaceOgre}{Ogre} constructor. 
 
 Internal use only. Constructs a colourvalue class from an ogre colourvalue. 
 \begin{DoxyParams}{Parameters}
-\item[{\em OgreValues}]The Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class to base this class on. \end{DoxyParams}
+\item[{\em OgreValues}]The \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1ColourValue}{ColourValue} class to base this class on. \end{DoxyParams}
 
 
 Definition at line 61 of file colourvalue.cpp.
@@ -114,14 +131,18 @@ Definition at line 61 of file colourvalue.cpp.
 \hypertarget{classphys_1_1ColourValue_a7a2978ebc5a7e04e02279664f1ea4a86}{
 \index{phys::ColourValue@{phys::ColourValue}!GetOgreColourValue@{GetOgreColourValue}}
 \index{GetOgreColourValue@{GetOgreColourValue}!phys::ColourValue@{phys::ColourValue}}
-\subsubsection[{GetOgreColourValue}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::ColourValue phys::ColourValue::GetOgreColourValue ()}}
+\subsubsection[{GetOgreColourValue}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::ColourValue phys::ColourValue::GetOgreColourValue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d3/db0/classphys_1_1ColourValue_a7a2978ebc5a7e04e02279664f1ea4a86}
 
 
-Creates and returns an Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class with values equal to this one. 
+Creates and returns an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1ColourValue}{ColourValue} class with values equal to this one. 
 
 This function is intended for internal use only. \begin{DoxyReturn}{Returns}
-Returns an Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class that has values equal to this one. 
+Returns an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1ColourValue}{ColourValue} class that has values equal to this one. 
 \end{DoxyReturn}
 
 

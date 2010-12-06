@@ -54,7 +54,7 @@ namespace phys
         class Rectangle;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Scrollbar
-        /// @headerfile scrollbar.h
+        /// @headerfile uiscrollbar.h
         /// @brief This class is a widget class, to be used alongside any scrollable widget.
         /// @details If you want to have buttons to accompany your scrollbar they'll automatically
         /// have their height match the width of the scrollbar if it's vertical, or their width

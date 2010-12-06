@@ -14,7 +14,7 @@ This is the base class from which all the actors inherit.
 Inheritance diagram for phys::ActorBase:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{d8/d0f/classphys_1_1ActorBase}
+\includegraphics[height=2.000000cm]{d8/d0f/classphys_1_1ActorBase}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -50,7 +50,7 @@ void \hyperlink{classphys_1_1ActorBase_ac42e5e47504d7f296bb0a2bedc2ded07}{Remove
 \begin{DoxyCompactList}\small\item\em Unloads a loaded animation. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase_a5e5d4b50c83c6851e554b5e7ad65403f}{$\sim$ActorBase} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ActorBase_ad9d90a68921ce81653e9950c1330809d}{ActorBase} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group, \hyperlink{classphys_1_1World}{World} $\ast$\_\-World)
+\hyperlink{classphys_1_1ActorBase_ae807b3c297a038572bdbfe975754c2e5}{ActorBase} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} name, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} file, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} group)
 \begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorBase_a0ff0980bcf33a8205eb058b8caa1f36b}{SetInitLocation} (\hyperlink{classphys_1_1Vector3}{Vector3} Location)
 \begin{DoxyCompactList}\small\item\em Sets the starting location of the actor. \item\end{DoxyCompactList}\item 
@@ -81,7 +81,13 @@ void \hyperlink{classphys_1_1ActorBase_acd5613286ec14fb2a8e5ed5f5003dc5f}{SetKin
 void \hyperlink{classphys_1_1ActorBase_af0219532fe71d1d84042a20a88fe5037}{SetStatic} ()
 \begin{DoxyCompactList}\small\item\em Sets the state of the object to Static. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1ActorBase_a0758873d315a0f70871649493d78d739}{IsStaticOrKinematic} ()
-\begin{DoxyCompactList}\small\item\em Checks of the actor is static or kinematic. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Checks of the actor is static or kinematic. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorBase_a843f60f15435071c08d3cf2480f0ffeb}{EnableCollisionResponse} ()
+\begin{DoxyCompactList}\small\item\em Sets the actor to be able to collide with other objects in the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorBase_a23b32c9a9959a9d3b0f883d9b0eac460}{DisableCollisionResponse} ()
+\begin{DoxyCompactList}\small\item\em Sets the actor to be unable to collide with other objects in the world. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ActorBase_aacf6737ed91267cb4aa54d4c33eb1ad0}{CheckActivation} ()
+\begin{DoxyCompactList}\small\item\em Checks if the object is active in the simulation. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -184,10 +190,7 @@ bool \hyperlink{classphys_1_1ActorBase_a22c0ab01bdc3e1e5c656fb0f201f6929}{ShapeI
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1ActorBase_a6db9d28bd448a131448276ee03de1e6d}{
-class {\bfseries Node}}
-\label{d8/d0f/classphys_1_1ActorBase_a6db9d28bd448a131448276ee03de1e6d}
-
+class \hyperlink{classphys_1_1ActorBase_a6db9d28bd448a131448276ee03de1e6d}{Node}
 \item 
 \hypertarget{classphys_1_1ActorBase_a54042fcfa7ab444a50ec79cbe3395356}{
 class {\bfseries ActorContainerBase}}
@@ -207,11 +210,11 @@ class {\bfseries ResourceManager}}
 
 
 \subsection{Detailed Description}
-This is the base class from which all the actors inherit. The actor classes store and manage all the relevant data regarding objects inside the \hyperlink{classphys_1_1World}{World}. They serve as a binder between the physics and graphics for objects and have functions that allow the manipulation of objects loaded into the \hyperlink{classphys_1_1World}{World}. Currently there are 5 actor classes: \hyperlink{classphys_1_1ActorBase}{ActorBase}, \hyperlink{classphys_1_1ActorRigid}{ActorRigid}, \hyperlink{classphys_1_1ActorSoft}{ActorSoft}, \hyperlink{classphys_1_1ActorTerrain}{ActorTerrain}, \hyperlink{classphys_1_1ActorRagDoll}{ActorRagDoll}. \par
+This is the base class from which all the actors inherit. The actor classes store and manage all the relevant data regarding objects inside the \hyperlink{classphys_1_1World}{World}. They serve as a binder between the physics and graphics for objects and have functions that allow the manipulation of objects loaded into the \hyperlink{classphys_1_1World}{World}. Currently there are 5 actor classes: \hyperlink{classphys_1_1ActorBase}{ActorBase}, \hyperlink{classphys_1_1ActorRigid}{ActorRigid}, \hyperlink{classphys_1_1ActorSoft}{ActorSoft}, \hyperlink{classphys_1_1ActorTerrain}{ActorTerrain}, ActorRagDoll. \par
  \hyperlink{classphys_1_1ActorBase}{ActorBase} is a base class that serves as a template for the other four actor classes. \par
  \hyperlink{classphys_1_1ActorBase}{ActorBase} should never be created, as it lacks the functionality needed for most objects. 
 
-Definition at line 86 of file actorbase.h.
+Definition at line 85 of file actorbase.h.
 
 
 
@@ -227,7 +230,7 @@ A listing of Actor TypeNames.
 
 These will be returned by \hyperlink{classphys_1_1ActorBase_ab8bedea2ef0ce9194731ebeb886333ff}{ActorBase::GetType()}, and will allow code using this to determine what type of Actor class they are working with and use this information to more safely cast to the correct Actor if needed. 
 
-Definition at line 99 of file actorbase.h.
+Definition at line 98 of file actorbase.h.
 
 
 
@@ -235,7 +238,11 @@ Definition at line 99 of file actorbase.h.
 \hypertarget{classphys_1_1ActorBase_a5e5d4b50c83c6851e554b5e7ad65403f}{
 \index{phys::ActorBase@{phys::ActorBase}!$\sim$ActorBase@{$\sim$ActorBase}}
 \index{$\sim$ActorBase@{$\sim$ActorBase}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{$\sim$ActorBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorBase::$\sim$ActorBase ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{$\sim$ActorBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorBase::$\sim$ActorBase (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a5e5d4b50c83c6851e554b5e7ad65403f}
 
 
@@ -243,23 +250,29 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 67 of file actorbase.cpp.
+Definition at line 71 of file actorbase.cpp.
 
-\hypertarget{classphys_1_1ActorBase_ad9d90a68921ce81653e9950c1330809d}{
+\hypertarget{classphys_1_1ActorBase_ae807b3c297a038572bdbfe975754c2e5}{
 \index{phys::ActorBase@{phys::ActorBase}!ActorBase@{ActorBase}}
 \index{ActorBase@{ActorBase}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{ActorBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorBase::ActorBase ({\bf String} {\em name}, \/  {\bf String} {\em file}, \/  {\bf String} {\em group}, \/  {\bf World} $\ast$ {\em \_\-World})}}
-\label{d8/d0f/classphys_1_1ActorBase_ad9d90a68921ce81653e9950c1330809d}
+\subsubsection[{ActorBase}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorBase::ActorBase (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{ name, }
+\item[{{\bf String}}]{ file, }
+\item[{{\bf String}}]{ group}
+\end{DoxyParamCaption}
+)}}
+\label{d8/d0f/classphys_1_1ActorBase_ae807b3c297a038572bdbfe975754c2e5}
 
 
 Descriptive constructor. 
 
 This constructor contains the basic information needed to make an actor. 
 \begin{DoxyParams}{Parameters}
-\item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \item[{\em \_\-World}]Pointer to the \hyperlink{classphys_1_1World}{World} this object will be added to. \end{DoxyParams}
+\item[{\em name}]The name of the actor. \item[{\em file}]The 3d mesh file that contains the 3d model the actor will use. \item[{\em group}]The resource group where the 3d mesh and other related files can be found. \end{DoxyParams}
 
 
-Definition at line 52 of file actorbase.cpp.
+Definition at line 56 of file actorbase.cpp.
 
 
 
@@ -267,7 +280,11 @@ Definition at line 52 of file actorbase.cpp.
 \hypertarget{classphys_1_1ActorBase_a3d28e4c4a33f50210101695cb33ded3b}{
 \index{phys::ActorBase@{phys::ActorBase}!AddObjectToWorld@{AddObjectToWorld}}
 \index{AddObjectToWorld@{AddObjectToWorld}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorBase::AddObjectToWorld ({\bf World} $\ast$ {\em TargetWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{AddObjectToWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorBase::AddObjectToWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ TargetWorld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a3d28e4c4a33f50210101695cb33ded3b}
 
 
@@ -284,7 +301,11 @@ Implemented in \hyperlink{classphys_1_1ActorRigid_acaf29ca7058b39185dd09a5059200
 \hypertarget{classphys_1_1ActorBase_a37d5a8a3ae4ca3c6e7d14706096faa85}{
 \index{phys::ActorBase@{phys::ActorBase}!AdvanceAnimation@{AdvanceAnimation}}
 \index{AdvanceAnimation@{AdvanceAnimation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{AdvanceAnimation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::AdvanceAnimation ({\bf Real} {\em Time})}}
+\subsubsection[{AdvanceAnimation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::AdvanceAnimation (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Time}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_a37d5a8a3ae4ca3c6e7d14706096faa85}
 
 
@@ -292,12 +313,16 @@ Advances the animation, making it animate.
 
 You need to call this every frame while the actor is to be animated, otherwise even with the animation enabled you will see no change in the animation. 
 
-Definition at line 486 of file actorbase.cpp.
+Definition at line 490 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a45f190cb9b647bb3385d1298f9dab589}{
 \index{phys::ActorBase@{phys::ActorBase}!AttachToGraphics@{AttachToGraphics}}
 \index{AttachToGraphics@{AttachToGraphics}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{AttachToGraphics}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::AttachToGraphics ()\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{AttachToGraphics}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::AttachToGraphics (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a45f190cb9b647bb3385d1298f9dab589}
 
 
@@ -310,12 +335,38 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_a37b3bf631e8f73b3f19c3bb043d0
 
 
 
-Definition at line 420 of file actorbase.cpp.
+Definition at line 424 of file actorbase.cpp.
+
+\hypertarget{classphys_1_1ActorBase_aacf6737ed91267cb4aa54d4c33eb1ad0}{
+\index{phys::ActorBase@{phys::ActorBase}!CheckActivation@{CheckActivation}}
+\index{CheckActivation@{CheckActivation}!phys::ActorBase@{phys::ActorBase}}
+\subsubsection[{CheckActivation}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ActorBase::CheckActivation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d8/d0f/classphys_1_1ActorBase_aacf6737ed91267cb4aa54d4c33eb1ad0}
+
+
+Checks if the object is active in the simulation. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the object is active, false if it's deactivated(at rest). 
+\end{DoxyReturn}
+
+
+Definition at line 603 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_aff7dbb190fb982a43123bee3066501c4}{
 \index{phys::ActorBase@{phys::ActorBase}!CreateEntity@{CreateEntity}}
 \index{CreateEntity@{CreateEntity}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{CreateEntity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateEntity ({\bf String} {\em name}, \/  {\bf String} {\em file}, \/  {\bf String} {\em group})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{CreateEntity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateEntity (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{ name, }
+\item[{{\bf String}}]{ file, }
+\item[{{\bf String}}]{ group}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_aff7dbb190fb982a43123bee3066501c4}
 
 
@@ -327,28 +378,17 @@ Creates an entity in the scene manager from the mesh file provided to be attache
 \item[{\em name}]Name of the actor. \item[{\em file}]File name of the graphical mesh to be used. \item[{\em group}]Resource group where the graphical mesh can be found. \end{DoxyParams}
 
 
-Definition at line 302 of file actorbase.cpp.
-
-\hypertarget{classphys_1_1ActorBase_ae002dd16cd0d7d2c3d3098f85920ae02}{
-\index{phys::ActorBase@{phys::ActorBase}!CreateMotionState@{CreateMotionState}}
-\index{CreateMotionState@{CreateMotionState}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{CreateMotionState}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateMotionState (Ogre::SceneNode $\ast$ {\em Node}, \/  {\bf Vector3} {\em InitPosition}, \/  {\bf Quaternion} {\em InitOrientation})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
-\label{d8/d0f/classphys_1_1ActorBase_ae002dd16cd0d7d2c3d3098f85920ae02}
-
-
-Creates a motion state for use with syncronizing physics and graphics. 
-
-This is a helper function that will create a motionstate for the class. This is called on by the constructor. 
-\begin{DoxyParams}{Parameters}
-\item[{\em \hyperlink{classphys_1_1Node}{Node}}]The node to be syncronized with physics data. \item[{\em InitPosition}]The starting location for the object that will be given this motionstate. \item[{\em InitOrientation}]The starting orientation for the object that will be given this motionstate. \end{DoxyParams}
-
-
-Definition at line 323 of file actorbase.cpp.
+Definition at line 306 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a5bc2f834d7994c3c6a9408f4ff699f59}{
 \index{phys::ActorBase@{phys::ActorBase}!CreateMotionState@{CreateMotionState}}
 \index{CreateMotionState@{CreateMotionState}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{CreateMotionState}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateMotionState (Ogre::SceneNode $\ast$ {\em Node}, \/  {\bf Vector3} {\em InitPosition})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{CreateMotionState}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateMotionState (
+\begin{DoxyParamCaption}
+\item[{Ogre::SceneNode $\ast$}]{ Node, }
+\item[{{\bf Vector3}}]{ InitPosition}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a5bc2f834d7994c3c6a9408f4ff699f59}
 
 
@@ -359,12 +399,38 @@ This is a helper function that will create a motionstate for the class. This is 
 \item[{\em \hyperlink{classphys_1_1Node}{Node}}]The node to be syncronized with physics data. \item[{\em InitPosition}]The starting location for the object that will be given this motionstate. \end{DoxyParams}
 
 
-Definition at line 317 of file actorbase.cpp.
+Definition at line 321 of file actorbase.cpp.
+
+\hypertarget{classphys_1_1ActorBase_ae002dd16cd0d7d2c3d3098f85920ae02}{
+\index{phys::ActorBase@{phys::ActorBase}!CreateMotionState@{CreateMotionState}}
+\index{CreateMotionState@{CreateMotionState}!phys::ActorBase@{phys::ActorBase}}
+\subsubsection[{CreateMotionState}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateMotionState (
+\begin{DoxyParamCaption}
+\item[{Ogre::SceneNode $\ast$}]{ Node, }
+\item[{{\bf Vector3}}]{ InitPosition, }
+\item[{{\bf Quaternion}}]{ InitOrientation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\label{d8/d0f/classphys_1_1ActorBase_ae002dd16cd0d7d2c3d3098f85920ae02}
+
+
+Creates a motion state for use with syncronizing physics and graphics. 
+
+This is a helper function that will create a motionstate for the class. This is called on by the constructor. 
+\begin{DoxyParams}{Parameters}
+\item[{\em \hyperlink{classphys_1_1Node}{Node}}]The node to be syncronized with physics data. \item[{\em InitPosition}]The starting location for the object that will be given this motionstate. \item[{\em InitOrientation}]The starting orientation for the object that will be given this motionstate. \end{DoxyParams}
+
+
+Definition at line 327 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a23e6edcd5c18b89c40abf02feba6bc11}{
 \index{phys::ActorBase@{phys::ActorBase}!CreateMotionState@{CreateMotionState}}
 \index{CreateMotionState@{CreateMotionState}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{CreateMotionState}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateMotionState (Ogre::SceneNode $\ast$ {\em Node})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{CreateMotionState}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateMotionState (
+\begin{DoxyParamCaption}
+\item[{Ogre::SceneNode $\ast$}]{ Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a23e6edcd5c18b89c40abf02feba6bc11}
 
 
@@ -375,12 +441,16 @@ This is a helper function that will create a motionstate for the class. This is 
 \item[{\em \hyperlink{classphys_1_1Node}{Node}}]The node to be syncronized with physics data. \end{DoxyParams}
 
 
-Definition at line 312 of file actorbase.cpp.
+Definition at line 316 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a125d6f0a0b4072e64490638c074eea2d}{
 \index{phys::ActorBase@{phys::ActorBase}!CreateSceneNode@{CreateSceneNode}}
 \index{CreateSceneNode@{CreateSceneNode}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{CreateSceneNode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateSceneNode ()\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{CreateSceneNode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::CreateSceneNode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a125d6f0a0b4072e64490638c074eea2d}
 
 
@@ -389,12 +459,16 @@ Creates a node for the entity in the graphical world.
 Creates a node in the scene manager to attach the actor's entity to within the graphical world. \par
  This function is called on by the Constructor, and shouldn't be called manually. 
 
-Definition at line 307 of file actorbase.cpp.
+Definition at line 311 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_aa41370f6d2031a9dad8df45bd7f3bcc6}{
 \index{phys::ActorBase@{phys::ActorBase}!CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}}
 \index{CreateShapeFromMeshDynamic@{CreateShapeFromMeshDynamic}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorBase::CreateShapeFromMeshDynamic (short unsigned int {\em accuracy})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{CreateShapeFromMeshDynamic}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorBase::CreateShapeFromMeshDynamic (
+\begin{DoxyParamCaption}
+\item[{short unsigned int}]{ accuracy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_aa41370f6d2031a9dad8df45bd7f3bcc6}
 
 
@@ -410,7 +484,11 @@ Implemented in \hyperlink{classphys_1_1ActorRigid_aab4a408ce0724be6adf4c9f51f55f
 \hypertarget{classphys_1_1ActorBase_af869b78fcac01ee153d495953daab382}{
 \index{phys::ActorBase@{phys::ActorBase}!CreateTrimesh@{CreateTrimesh}}
 \index{CreateTrimesh@{CreateTrimesh}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{CreateTrimesh}]{\setlength{\rightskip}{0pt plus 5cm}btTriangleMesh $\ast$ phys::ActorBase::CreateTrimesh () const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{CreateTrimesh}]{\setlength{\rightskip}{0pt plus 5cm}btTriangleMesh $\ast$ phys::ActorBase::CreateTrimesh (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_af869b78fcac01ee153d495953daab382}
 
 
@@ -419,12 +497,16 @@ Creates a trimesh shape from the mesh file.
 Makes a trimesh to be used as a collision shape in the physics world from a mesh file. \par
  This is automaticly called by the CreateShapeFromMesh function in child classes and shouldn't be called manually. 
 
-Definition at line 84 of file actorbase.cpp.
+Definition at line 88 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_acc352d14b6d7f15694ea108ec1c281ec}{
 \index{phys::ActorBase@{phys::ActorBase}!DetachFromGraphics@{DetachFromGraphics}}
 \index{DetachFromGraphics@{DetachFromGraphics}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{DetachFromGraphics}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::DetachFromGraphics ()\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{DetachFromGraphics}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::DetachFromGraphics (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_acc352d14b6d7f15694ea108ec1c281ec}
 
 
@@ -437,12 +519,33 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_a568b070c746775b73a3aa8ab33d6
 
 
 
-Definition at line 431 of file actorbase.cpp.
+Definition at line 435 of file actorbase.cpp.
+
+\hypertarget{classphys_1_1ActorBase_a23b32c9a9959a9d3b0f883d9b0eac460}{
+\index{phys::ActorBase@{phys::ActorBase}!DisableCollisionResponse@{DisableCollisionResponse}}
+\index{DisableCollisionResponse@{DisableCollisionResponse}!phys::ActorBase@{phys::ActorBase}}
+\subsubsection[{DisableCollisionResponse}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::DisableCollisionResponse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d8/d0f/classphys_1_1ActorBase_a23b32c9a9959a9d3b0f883d9b0eac460}
+
+
+Sets the actor to be unable to collide with other objects in the world. 
+
+By default collision response is enabled. Be sure to reactivate collision response if you want your objects to collide again. 
+
+Definition at line 565 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a72203a9c7befd1ab606ff69af4183849}{
 \index{phys::ActorBase@{phys::ActorBase}!EnableAnimation@{EnableAnimation}}
 \index{EnableAnimation@{EnableAnimation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{EnableAnimation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::EnableAnimation (bool {\em Enable})}}
+\subsubsection[{EnableAnimation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::EnableAnimation (
+\begin{DoxyParamCaption}
+\item[{bool}]{ Enable}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_a72203a9c7befd1ab606ff69af4183849}
 
 
@@ -453,12 +556,33 @@ This function will enable the animation if passed true, making the object animat
 \item[{\em Enable}]True to enable the animation or false to disable the animation. \end{DoxyParams}
 
 
-Definition at line 468 of file actorbase.cpp.
+Definition at line 472 of file actorbase.cpp.
+
+\hypertarget{classphys_1_1ActorBase_a843f60f15435071c08d3cf2480f0ffeb}{
+\index{phys::ActorBase@{phys::ActorBase}!EnableCollisionResponse@{EnableCollisionResponse}}
+\index{EnableCollisionResponse@{EnableCollisionResponse}!phys::ActorBase@{phys::ActorBase}}
+\subsubsection[{EnableCollisionResponse}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::EnableCollisionResponse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d8/d0f/classphys_1_1ActorBase_a843f60f15435071c08d3cf2480f0ffeb}
+
+
+Sets the actor to be able to collide with other objects in the world. 
+
+By default collision response is enabled. Only call this function if you have disabled collision response. 
+
+Definition at line 527 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a9b32df1efdc346f5d6c0920b959c09a3}{
 \index{phys::ActorBase@{phys::ActorBase}!GetBulletLocation@{GetBulletLocation}}
 \index{GetBulletLocation@{GetBulletLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetBulletLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorBase::GetBulletLocation () const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{GetBulletLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorBase::GetBulletLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a9b32df1efdc346f5d6c0920b959c09a3}
 
 
@@ -470,12 +594,16 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_a2b30f96cb01df382a774dfae5200
 
 
 
-Definition at line 351 of file actorbase.cpp.
+Definition at line 355 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a777b4ea4d6881af76c646b1ba9324d96}{
 \index{phys::ActorBase@{phys::ActorBase}!GetLocation@{GetLocation}}
 \index{GetLocation@{GetLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorBase::GetLocation () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorBase::GetLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a777b4ea4d6881af76c646b1ba9324d96}
 
 
@@ -487,12 +615,16 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_afdbd6ae49e3838190e5481796e65
 
 
 
-Definition at line 387 of file actorbase.cpp.
+Definition at line 391 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_acc1e51ff56ec8c9320bcbd4c3cec3f34}{
 \index{phys::ActorBase@{phys::ActorBase}!GetMeshIndicies@{GetMeshIndicies}}
 \index{GetMeshIndicies@{GetMeshIndicies}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetMeshIndicies}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::GetMeshIndicies (internal::MeshInfo \& {\em TheMesh})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{GetMeshIndicies}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::GetMeshIndicies (
+\begin{DoxyParamCaption}
+\item[{internal::MeshInfo \&}]{ TheMesh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_acc1e51ff56ec8c9320bcbd4c3cec3f34}
 
 
@@ -503,12 +635,16 @@ This function will read the mesh provided and gather the indicies inside it for 
 \item[{\em TheMesh}]The struct to populate with the information gathered. \end{DoxyParams}
 
 
-Definition at line 196 of file actorbase.cpp.
+Definition at line 200 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a6f6c1ede5fdf787bcc3f34feddacebff}{
 \index{phys::ActorBase@{phys::ActorBase}!GetMeshNormals@{GetMeshNormals}}
 \index{GetMeshNormals@{GetMeshNormals}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetMeshNormals}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::GetMeshNormals (internal::MeshInfo \& {\em TheMesh})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{GetMeshNormals}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::GetMeshNormals (
+\begin{DoxyParamCaption}
+\item[{internal::MeshInfo \&}]{ TheMesh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a6f6c1ede5fdf787bcc3f34feddacebff}
 
 
@@ -519,12 +655,16 @@ This function will read the mesh provided and gather the normals of each verticy
 \item[{\em TheMesh}]The struct to populate with the information gathered. \end{DoxyParams}
 
 
-Definition at line 230 of file actorbase.cpp.
+Definition at line 234 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a91c1bd400e1cf0e35682a506aebb7f38}{
 \index{phys::ActorBase@{phys::ActorBase}!GetMeshTextures@{GetMeshTextures}}
 \index{GetMeshTextures@{GetMeshTextures}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetMeshTextures}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::GetMeshTextures (internal::MeshInfo \& {\em TheMesh})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{GetMeshTextures}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::GetMeshTextures (
+\begin{DoxyParamCaption}
+\item[{internal::MeshInfo \&}]{ TheMesh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a91c1bd400e1cf0e35682a506aebb7f38}
 
 
@@ -535,12 +675,16 @@ This function will read the mesh provided and gather the texture coordinates ins
 \item[{\em TheMesh}]The struct to populate with the information gathered. \end{DoxyParams}
 
 
-Definition at line 253 of file actorbase.cpp.
+Definition at line 257 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a795d9d132ed55fa114f15039dcad9055}{
 \index{phys::ActorBase@{phys::ActorBase}!GetMeshVerticies@{GetMeshVerticies}}
 \index{GetMeshVerticies@{GetMeshVerticies}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetMeshVerticies}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::GetMeshVerticies (internal::MeshInfo \& {\em TheMesh})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{GetMeshVerticies}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::GetMeshVerticies (
+\begin{DoxyParamCaption}
+\item[{internal::MeshInfo \&}]{ TheMesh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a795d9d132ed55fa114f15039dcad9055}
 
 
@@ -551,12 +695,16 @@ This function will read the mesh provided and gather the verticies inside it for
 \item[{\em TheMesh}]The struct to populate with the information gathered. \end{DoxyParams}
 
 
-Definition at line 172 of file actorbase.cpp.
+Definition at line 176 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a8309f5bd133c936abe3a856b0240159f}{
 \index{phys::ActorBase@{phys::ActorBase}!GetName@{GetName}}
 \index{GetName@{GetName}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}virtual std::string phys::ActorBase::GetName () const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}virtual std::string phys::ActorBase::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a8309f5bd133c936abe3a856b0240159f}
 
 
@@ -569,7 +717,11 @@ Implemented in \hyperlink{classphys_1_1ActorRigid_a63952e0b7ab7176ae60d96756dd84
 \hypertarget{classphys_1_1ActorBase_a12ef0a2625e2fdf506ea8e23e0a378fa}{
 \index{phys::ActorBase@{phys::ActorBase}!GetOgreLocation@{GetOgreLocation}}
 \index{GetOgreLocation@{GetOgreLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetOgreLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorBase::GetOgreLocation () const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{GetOgreLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorBase::GetOgreLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a12ef0a2625e2fdf506ea8e23e0a378fa}
 
 
@@ -580,12 +732,16 @@ This returns a \hyperlink{classphys_1_1Vector3}{phys::Vector3} with the location
 \end{DoxyReturn}
 
 
-Definition at line 338 of file actorbase.cpp.
+Definition at line 342 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_afa9b5a1f149182a96a7608f52847b7ed}{
 \index{phys::ActorBase@{phys::ActorBase}!GetOgreResourceManager@{GetOgreResourceManager}}
 \index{GetOgreResourceManager@{GetOgreResourceManager}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetOgreResourceManager}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::ResourceGroupManager $\ast$ phys::ActorBase::GetOgreResourceManager ()\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{GetOgreResourceManager}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::ResourceGroupManager $\ast$ phys::ActorBase::GetOgreResourceManager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_afa9b5a1f149182a96a7608f52847b7ed}
 
 
@@ -596,12 +752,16 @@ Returns a pointer to the ogre resource group manager.
 \end{DoxyReturn}
 
 
-Definition at line 294 of file actorbase.cpp.
+Definition at line 298 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a1ca4a67351c3d7375a62223d12729776}{
 \index{phys::ActorBase@{phys::ActorBase}!GetOtherMeshInfo@{GetOtherMeshInfo}}
 \index{GetOtherMeshInfo@{GetOtherMeshInfo}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetOtherMeshInfo}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::GetOtherMeshInfo (internal::MeshInfo \& {\em TheMesh})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{GetOtherMeshInfo}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::GetOtherMeshInfo (
+\begin{DoxyParamCaption}
+\item[{internal::MeshInfo \&}]{ TheMesh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a1ca4a67351c3d7375a62223d12729776}
 
 
@@ -612,12 +772,16 @@ This function will get the Render Operation, Material Name, and Entity Name from
 \item[{\em TheMesh}]The struct to populate with the information gathered. \end{DoxyParams}
 
 
-Definition at line 275 of file actorbase.cpp.
+Definition at line 279 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_ace1d04b4fbb21823cde3feee83d17c2f}{
 \index{phys::ActorBase@{phys::ActorBase}!GetShapeIsSaved@{GetShapeIsSaved}}
 \index{GetShapeIsSaved@{GetShapeIsSaved}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetShapeIsSaved}]{\setlength{\rightskip}{0pt plus 5cm}const bool phys::ActorBase::GetShapeIsSaved ()}}
+\subsubsection[{GetShapeIsSaved}]{\setlength{\rightskip}{0pt plus 5cm}const bool phys::ActorBase::GetShapeIsSaved (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_ace1d04b4fbb21823cde3feee83d17c2f}
 
 
@@ -628,12 +792,16 @@ Returns whether or not the shape of this actor has been saved.
 \end{DoxyReturn}
 
 
-Definition at line 447 of file actorbase.cpp.
+Definition at line 451 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_ab8bedea2ef0ce9194731ebeb886333ff}{
 \index{phys::ActorBase@{phys::ActorBase}!GetType@{GetType}}
 \index{GetType@{GetType}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}int phys::ActorBase::GetType ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}int phys::ActorBase::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_ab8bedea2ef0ce9194731ebeb886333ff}
 
 
@@ -644,12 +812,16 @@ ActorTypeName The type of actor that this is.
 \end{DoxyReturn}
 
 
-Definition at line 442 of file actorbase.cpp.
+Definition at line 446 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_ac98f9fdae0da939e352f8fcff217457c}{
 \index{phys::ActorBase@{phys::ActorBase}!IsAnimated@{IsAnimated}}
 \index{IsAnimated@{IsAnimated}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{IsAnimated}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ActorBase::IsAnimated ()}}
+\subsubsection[{IsAnimated}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ActorBase::IsAnimated (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_ac98f9fdae0da939e352f8fcff217457c}
 
 
@@ -660,12 +832,16 @@ Returns true if an animation is set and enabled.
 \end{DoxyReturn}
 
 
-Definition at line 476 of file actorbase.cpp.
+Definition at line 480 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a0758873d315a0f70871649493d78d739}{
 \index{phys::ActorBase@{phys::ActorBase}!IsStaticOrKinematic@{IsStaticOrKinematic}}
 \index{IsStaticOrKinematic@{IsStaticOrKinematic}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{IsStaticOrKinematic}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ActorBase::IsStaticOrKinematic ()}}
+\subsubsection[{IsStaticOrKinematic}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ActorBase::IsStaticOrKinematic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_a0758873d315a0f70871649493d78d739}
 
 
@@ -676,12 +852,16 @@ Returns true if the actor is static or kinematic.
 \end{DoxyReturn}
 
 
-Definition at line 517 of file actorbase.cpp.
+Definition at line 521 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}{
 \index{phys::ActorBase@{phys::ActorBase}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
 \index{RemoveObjectFromWorld@{RemoveObjectFromWorld}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{RemoveObjectFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorBase::RemoveObjectFromWorld ({\bf World} $\ast$ {\em TargetWorld})\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\subsubsection[{RemoveObjectFromWorld}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::ActorBase::RemoveObjectFromWorld (
+\begin{DoxyParamCaption}
+\item[{{\bf World} $\ast$}]{ TargetWorld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}
 
 
@@ -698,7 +878,11 @@ Implemented in \hyperlink{classphys_1_1ActorRigid_a7101df2a149e0ccb3678b7c2c0099
 \hypertarget{classphys_1_1ActorBase_ac42e5e47504d7f296bb0a2bedc2ded07}{
 \index{phys::ActorBase@{phys::ActorBase}!RemoveSetAnimation@{RemoveSetAnimation}}
 \index{RemoveSetAnimation@{RemoveSetAnimation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{RemoveSetAnimation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::RemoveSetAnimation ()}}
+\subsubsection[{RemoveSetAnimation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::RemoveSetAnimation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_ac42e5e47504d7f296bb0a2bedc2ded07}
 
 
@@ -706,12 +890,16 @@ Unloads a loaded animation.
 
 This function will remove the existing set animation. 
 
-Definition at line 494 of file actorbase.cpp.
+Definition at line 498 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a1ac7c692d7f88f39ebb1c1db5deba251}{
 \index{phys::ActorBase@{phys::ActorBase}!SetActorScaling@{SetActorScaling}}
 \index{SetActorScaling@{SetActorScaling}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetActorScaling}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetActorScaling ({\bf Vector3} {\em scale})}}
+\subsubsection[{SetActorScaling}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetActorScaling (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ scale}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_a1ac7c692d7f88f39ebb1c1db5deba251}
 
 
@@ -726,12 +914,17 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_ad1696a10b3057897ca503de013aa
 
 
 
-Definition at line 436 of file actorbase.cpp.
+Definition at line 440 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a708ec161f50833323294aa7ddceee776}{
 \index{phys::ActorBase@{phys::ActorBase}!SetAnimation@{SetAnimation}}
 \index{SetAnimation@{SetAnimation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetAnimation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetAnimation ({\bf String} \& {\em AnimationName}, \/  bool {\em Loop})}}
+\subsubsection[{SetAnimation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetAnimation (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ AnimationName, }
+\item[{bool}]{ Loop}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_a708ec161f50833323294aa7ddceee776}
 
 
@@ -742,12 +935,17 @@ This function will get the specified animation for this object stored in the mes
 \item[{\em AnimationName}]Name of the stored animation to be loaded. \item[{\em Loop}]Whether or not you want the animation to loop. For example, you would want an idle animation to loop, but not a death animation. \end{DoxyParams}
 
 
-Definition at line 458 of file actorbase.cpp.
+Definition at line 462 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_ac60e1ebd1a08882234a6d04aff745260}{
 \index{phys::ActorBase@{phys::ActorBase}!SetBasicCollisionParams@{SetBasicCollisionParams}}
 \index{SetBasicCollisionParams@{SetBasicCollisionParams}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetBasicCollisionParams}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetBasicCollisionParams ({\bf Real} {\em Friction}, \/  {\bf Real} {\em Restitution})}}
+\subsubsection[{SetBasicCollisionParams}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetBasicCollisionParams (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Friction, }
+\item[{{\bf Real}}]{ Restitution}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_ac60e1ebd1a08882234a6d04aff745260}
 
 
@@ -760,12 +958,16 @@ This function will set the Friction and Resititution of the actor, which will en
  Default: 0.0 \end{DoxyParams}
 
 
-Definition at line 452 of file actorbase.cpp.
+Definition at line 456 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_aa7ab524d2905e640cea6324cce9ccfdb}{
 \index{phys::ActorBase@{phys::ActorBase}!SetBulletLocation@{SetBulletLocation}}
 \index{SetBulletLocation@{SetBulletLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetBulletLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetBulletLocation ({\bf Vector3} {\em Location})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{SetBulletLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetBulletLocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_aa7ab524d2905e640cea6324cce9ccfdb}
 
 
@@ -781,12 +983,16 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_aef041f3eee69bb8eceef32fa0513
 
 
 
-Definition at line 345 of file actorbase.cpp.
+Definition at line 349 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a492244ac46ced53b809f436da992bc84}{
 \index{phys::ActorBase@{phys::ActorBase}!SetBulletOrientation@{SetBulletOrientation}}
 \index{SetBulletOrientation@{SetBulletOrientation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetBulletOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetBulletOrientation ({\bf Quaternion} {\em Rotation})\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
+\subsubsection[{SetBulletOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetBulletOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Quaternion}}]{ Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a492244ac46ced53b809f436da992bc84}
 
 
@@ -802,12 +1008,16 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_a4a1119b6e42ff11784673657e7d6
 
 
 
-Definition at line 367 of file actorbase.cpp.
+Definition at line 371 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a0ff0980bcf33a8205eb058b8caa1f36b}{
 \index{phys::ActorBase@{phys::ActorBase}!SetInitLocation@{SetInitLocation}}
 \index{SetInitLocation@{SetInitLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetInitLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetInitLocation ({\bf Vector3} {\em Location})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetInitLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetInitLocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a0ff0980bcf33a8205eb058b8caa1f36b}
 
 
@@ -823,12 +1033,16 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_abbb6f5cce15d4efee91acd4825c7
 
 
 
-Definition at line 392 of file actorbase.cpp.
+Definition at line 396 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a681186465db767954ca3f9530a1d7c36}{
 \index{phys::ActorBase@{phys::ActorBase}!SetInitOrientation@{SetInitOrientation}}
 \index{SetInitOrientation@{SetInitOrientation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetInitOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetInitOrientation ({\bf Quaternion} {\em Orientation})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetInitOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetInitOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Quaternion}}]{ Orientation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a681186465db767954ca3f9530a1d7c36}
 
 
@@ -844,12 +1058,16 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_adde8ecfb7188b8cbb238e88da18a
 
 
 
-Definition at line 400 of file actorbase.cpp.
+Definition at line 404 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_acd5613286ec14fb2a8e5ed5f5003dc5f}{
 \index{phys::ActorBase@{phys::ActorBase}!SetKinematic@{SetKinematic}}
 \index{SetKinematic@{SetKinematic}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetKinematic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetKinematic ()}}
+\subsubsection[{SetKinematic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetKinematic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_acd5613286ec14fb2a8e5ed5f5003dc5f}
 
 
@@ -858,12 +1076,16 @@ Sets the state of the object to Kinematic.
 This function will set the object to a Kinematic Object. \par
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
 
-Definition at line 505 of file actorbase.cpp.
+Definition at line 509 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a3212be459859a67bf7ae64919d58d5a5}{
 \index{phys::ActorBase@{phys::ActorBase}!SetLocation@{SetLocation}}
 \index{SetLocation@{SetLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetLocation ({\bf Vector3} {\em Place})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetLocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Place}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a3212be459859a67bf7ae64919d58d5a5}
 
 
@@ -879,12 +1101,18 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_a35020af183a31e288ff226a34fd1
 
 
 
-Definition at line 381 of file actorbase.cpp.
+Definition at line 385 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a0b0db2ec0f4926326635b86f1ead2276}{
 \index{phys::ActorBase@{phys::ActorBase}!SetLocation@{SetLocation}}
 \index{SetLocation@{SetLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetLocation ({\bf Real} {\em x}, \/  {\bf Real} {\em y}, \/  {\bf Real} {\em z})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetLocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ x, }
+\item[{{\bf Real}}]{ y, }
+\item[{{\bf Real}}]{ z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a0b0db2ec0f4926326635b86f1ead2276}
 
 
@@ -900,12 +1128,16 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_a30ca5d4db06d9a81b5aff23faed4
 
 
 
-Definition at line 375 of file actorbase.cpp.
+Definition at line 379 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a192ced7c3191f3f9d4921aad73952046}{
 \index{phys::ActorBase@{phys::ActorBase}!SetOgreLocation@{SetOgreLocation}}
 \index{SetOgreLocation@{SetOgreLocation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetOgreLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetOgreLocation ({\bf Vector3} {\em Place})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{SetOgreLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetOgreLocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Place}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a192ced7c3191f3f9d4921aad73952046}
 
 
@@ -917,12 +1149,16 @@ This will take a \hyperlink{classphys_1_1Vector3}{Vector3} and set the location 
 \item[{\em Place}]The \hyperlink{classphys_1_1Vector3}{Vector3} representing the location. \end{DoxyParams}
 
 
-Definition at line 333 of file actorbase.cpp.
+Definition at line 337 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a7b2d13cb1e8bba60eeae782a53fd5e49}{
 \index{phys::ActorBase@{phys::ActorBase}!SetOgreOrientation@{SetOgreOrientation}}
 \index{SetOgreOrientation@{SetOgreOrientation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetOgreOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetOgreOrientation ({\bf Quaternion} {\em Rotation})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\subsubsection[{SetOgreOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetOgreOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Quaternion}}]{ Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_a7b2d13cb1e8bba60eeae782a53fd5e49}
 
 
@@ -934,32 +1170,19 @@ This will take a PhysQuaternion and set the orientation of the actor within the 
 \item[{\em Rotation}]The quaternion representing the rotation of the actor. \end{DoxyParams}
 
 
-Definition at line 362 of file actorbase.cpp.
-
-\hypertarget{classphys_1_1ActorBase_ac4b0bf1eff730d94f72d04957efea69d}{
-\index{phys::ActorBase@{phys::ActorBase}!SetOrientation@{SetOrientation}}
-\index{SetOrientation@{SetOrientation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetOrientation ({\bf Quaternion} {\em Rotation})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d8/d0f/classphys_1_1ActorBase_ac4b0bf1eff730d94f72d04957efea69d}
-
-
-Sets the orientation of the actor. 
-
-Sets the orientation of the actor via a \hyperlink{classphys_1_1Quaternion}{Quaternion}. 
-\begin{DoxyParams}{Parameters}
-\item[{\em Rotation}]The \hyperlink{classphys_1_1Quaternion}{Quaternion} representing the Rotation. \end{DoxyParams}
-
-
-Reimplemented in \hyperlink{classphys_1_1ActorSoft_ad57b502da0658de31a4b3a9bb9be7900}{phys::ActorSoft}.
-
-
-
-Definition at line 411 of file actorbase.cpp.
+Definition at line 366 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_adbf0cc77031f22597a799fd0f7f8216d}{
 \index{phys::ActorBase@{phys::ActorBase}!SetOrientation@{SetOrientation}}
 \index{SetOrientation@{SetOrientation}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetOrientation ({\bf Real} {\em x}, \/  {\bf Real} {\em y}, \/  {\bf Real} {\em z}, \/  {\bf Real} {\em w})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ x, }
+\item[{{\bf Real}}]{ y, }
+\item[{{\bf Real}}]{ z, }
+\item[{{\bf Real}}]{ w}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d8/d0f/classphys_1_1ActorBase_adbf0cc77031f22597a799fd0f7f8216d}
 
 
@@ -974,12 +1197,40 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_a84541e8ebf7b54c91d2353d5f843
 
 
 
-Definition at line 405 of file actorbase.cpp.
+Definition at line 409 of file actorbase.cpp.
+
+\hypertarget{classphys_1_1ActorBase_ac4b0bf1eff730d94f72d04957efea69d}{
+\index{phys::ActorBase@{phys::ActorBase}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!phys::ActorBase@{phys::ActorBase}}
+\subsubsection[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Quaternion}}]{ Rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d0f/classphys_1_1ActorBase_ac4b0bf1eff730d94f72d04957efea69d}
+
+
+Sets the orientation of the actor. 
+
+Sets the orientation of the actor via a \hyperlink{classphys_1_1Quaternion}{Quaternion}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Rotation}]The \hyperlink{classphys_1_1Quaternion}{Quaternion} representing the Rotation. \end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1ActorSoft_ad57b502da0658de31a4b3a9bb9be7900}{phys::ActorSoft}.
+
+
+
+Definition at line 415 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_af0219532fe71d1d84042a20a88fe5037}{
 \index{phys::ActorBase@{phys::ActorBase}!SetStatic@{SetStatic}}
 \index{SetStatic@{SetStatic}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{SetStatic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetStatic ()}}
+\subsubsection[{SetStatic}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetStatic (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
 \label{d8/d0f/classphys_1_1ActorBase_af0219532fe71d1d84042a20a88fe5037}
 
 
@@ -988,7 +1239,21 @@ Sets the state of the object to Static.
 This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
-Definition at line 511 of file actorbase.cpp.
+Definition at line 515 of file actorbase.cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classphys_1_1ActorBase_a6db9d28bd448a131448276ee03de1e6d}{
+\index{phys::ActorBase@{phys::ActorBase}!Node@{Node}}
+\index{Node@{Node}!phys::ActorBase@{phys::ActorBase}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Node}\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
+\label{d8/d0f/classphys_1_1ActorBase_a6db9d28bd448a131448276ee03de1e6d}
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 87 of file actorbase.h.
 
 
 

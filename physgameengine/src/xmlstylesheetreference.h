@@ -55,7 +55,7 @@ namespace phys
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @class StylesheetReference
-        /// @headerfile xmlStylesheetReference.h
+        /// @headerfile xmlstylesheetreference.h
         /// @brief This is a container of nodes and elements and other XML stuff
         /// @details
         class PHYS_LIB StylesheetReference: public Node
@@ -63,7 +63,7 @@ namespace phys
             protected:
                 /// @brief Construct a StylesheetReference using meta data from a TiCPP pointer
                 /// @param Meta A pointer to a ticpp::StylesheetReference that this class will wrap.
-                /// @param FirstTimeWrapped Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
+                /// @param FirstTimeUsed Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass
                 StylesheetReference (ticpp::StylesheetReference* Meta, bool FirstTimeUsed = false);
 
             public:

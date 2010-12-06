@@ -1,0 +1,606 @@
+\hypertarget{classphys_1_1UI_1_1Button}{
+\section{phys::UI::Button Class Reference}
+\label{d8/d88/classphys_1_1UI_1_1Button}\index{phys::UI::Button@{phys::UI::Button}}
+}
+
+
+This class is a helper class, specifically for use as a button.  
+
+
+
+
+{\ttfamily \#include $<$uibutton.h$>$}
+
+Inheritance diagram for phys::UI::Button:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d8/d88/classphys_1_1UI_1_1Button}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UI_1_1Button_a0e5b7c9c581e3e90eb1e86b302dd6854}{Button} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}{
+\hyperlink{classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}{$\sim$Button} ()}
+\label{d8/d88/classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1UI_1_1Button_a366ba1ddf5064cafdfae63457472b2a2}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this button. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Button_a920cfc9d4daa7d53de2ed051ed52d977}{IsTextButton} ()
+\begin{DoxyCompactList}\small\item\em Gets whether this is a text button. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Button_a72d76501d15053e3fbd9e7eb933e22de}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this button. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Button_a66522ebf5f3c75e96a6dfd99700a0f74}{GetMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_ac4ce81ec9cdc97ac3d29aed5031c5ac6}{SetBackgroundColour} (\hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Sets the background colour of the button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a7cecb219a59fb55db6ac0070359bb23f}{SetBackgroundSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a12cfac0dcc6324694f29968c0ca25d03}{SetHoveredSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Sets an alternate background image that will be applied when the mouse is over this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a8c3a5657daf79a882f71691e91785d4d}{SetUserSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Sets an alternate background image that is stored and can be quickly swapped with the active sprite. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a4fe6560484f1d78b08c96eaf967404d2}{EnableUserSprite} (bool Enable)
+\begin{DoxyCompactList}\small\item\em Enables(or disables) the currently set User sprite. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a94a4296fd5b2153f10e77aca08481d15}{SetBorder} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Width, \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Enables a border and sets it's colour. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_aadb9b867ceccad8313591ae5e434274d}{SetPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative top left position of this button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_adfa08ace813b88cae114e18f88942642}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a90ef37a2fa1645298237733918455814}{SetActualPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)
+\begin{DoxyCompactList}\small\item\em Sets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_a0b991ada87707d8d951dae7c0e3246f6}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a3f610782e5f84ddc315d9db6ef5f9109}{SetSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_ade75e042d1a19be5d4fb1b16913af5a5}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a4075f879a67726b80c18d3bc647e12fe}{SetActualSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Sets the size of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_ab6640af433afe96d5f6bd7016986d73f}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the size of this button in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a569053caa70448d560fd016d86ef52cb}{SetRenderPriority} (UI::RenderPriority Priority)
+\begin{DoxyCompactList}\small\item\em Sets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
+virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1Button_aa17ffbc9b0d4eed151ff5ecbf93d88b8}{GetRenderPriority} ()
+\begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_ae58fc40169b6fb2acc06db63dcbff953}{
+Gorilla::Rectangle $\ast$ {\bfseries GorillaRectangle}}
+\label{d8/d88/classphys_1_1UI_1_1Button_ae58fc40169b6fb2acc06db63dcbff953}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_ace90de856099fa77a6cbd99e53e590df}{
+\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ {\bfseries Parent}}
+\label{d8/d88/classphys_1_1UI_1_1Button_ace90de856099fa77a6cbd99e53e590df}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_ad98260c77b904ec926a2acc47268c16c}{
+\hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
+\label{d8/d88/classphys_1_1UI_1_1Button_ad98260c77b904ec926a2acc47268c16c}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_a4d6914524ef1d6c0248fee2c31bdb86a}{
+Gorilla::Sprite $\ast$ {\bfseries NormalSprite}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a4d6914524ef1d6c0248fee2c31bdb86a}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_ab5d48f6d336d35645ffcc3061c0bcc48}{
+Gorilla::Sprite $\ast$ {\bfseries HoveredSprite}}
+\label{d8/d88/classphys_1_1UI_1_1Button_ab5d48f6d336d35645ffcc3061c0bcc48}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_afa82b63c5997cb9ec9dce3071048a556}{
+Gorilla::Sprite $\ast$ {\bfseries UserSprite}}
+\label{d8/d88/classphys_1_1UI_1_1Button_afa82b63c5997cb9ec9dce3071048a556}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_a021052f6c6632623dfdf89bdc8ad8ec4}{
+bool {\bfseries MouseHover}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a021052f6c6632623dfdf89bdc8ad8ec4}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_afaff4bcc222cba6beeefdaf3c4da4a22}{
+bool {\bfseries IsText}}
+\label{d8/d88/classphys_1_1UI_1_1Button_afaff4bcc222cba6beeefdaf3c4da4a22}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_a981baa14d909cd6750553e3802545380}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries RelPosition}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a981baa14d909cd6750553e3802545380}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_a413a4e4c3b815275051a881b7539a8f9}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries RelSize}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a413a4e4c3b815275051a881b7539a8f9}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Button_ab3151f18855c8de2ffb80975f04041c1}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
+\label{d8/d88/classphys_1_1UI_1_1Button_ab3151f18855c8de2ffb80975f04041c1}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class is a helper class, specifically for use as a button. Unlike rectangles and captions, this class can be interacted with by clicking. It is important to understand what you want your space to do when selecting the class to use. 
+
+Definition at line 70 of file uibutton.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UI_1_1Button_a0e5b7c9c581e3e90eb1e86b302dd6854}{
+\index{phys::UI::Button@{phys::UI::Button}!Button@{Button}}
+\index{Button@{Button}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{Button}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Button::Button (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf UILayer} $\ast$}]{ Layer}
+\end{DoxyParamCaption}
+)}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a0e5b7c9c581e3e90eb1e86b302dd6854}
+
+
+Internal constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em name}]The name of the button. \item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \item[{\em Layer}]Pointer to the Layer that created this button. \end{DoxyParams}
+
+
+Definition at line 54 of file uibutton.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1UI_1_1Button_a72d76501d15053e3fbd9e7eb933e22de}{
+\index{phys::UI::Button@{phys::UI::Button}!CheckMouseHover@{CheckMouseHover}}
+\index{CheckMouseHover@{CheckMouseHover}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Button::CheckMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a72d76501d15053e3fbd9e7eb933e22de}
+
+
+Determines whether the mouse is over this button. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether the mouse is over this button. 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a4fe6560484f1d78b08c96eaf967404d2}{
+\index{phys::UI::Button@{phys::UI::Button}!EnableUserSprite@{EnableUserSprite}}
+\index{EnableUserSprite@{EnableUserSprite}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{EnableUserSprite}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::EnableUserSprite (
+\begin{DoxyParamCaption}
+\item[{bool}]{ Enable}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a4fe6560484f1d78b08c96eaf967404d2}
+
+
+Enables(or disables) the currently set User sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Enable}]If true, this will swap the current sprite with the user sprite, if false it will swap the User sprite for the normal sprite. \end{DoxyParams}
+
+
+Definition at line 129 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a0b991ada87707d8d951dae7c0e3246f6}{
+\index{phys::UI::Button@{phys::UI::Button}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Button::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a0b991ada87707d8d951dae7c0e3246f6}
+
+
+Gets the top left position of this button in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of this button. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_ab406bec58bf6244c3e867fefd19d4d7f}{phys::UI::TextButton}.
+
+
+
+Definition at line 163 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_ab6640af433afe96d5f6bd7016986d73f}{
+\index{phys::UI::Button@{phys::UI::Button}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Button::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_ab6640af433afe96d5f6bd7016986d73f}
+
+
+Gets the size of this button in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the size of this button. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a062b31c199f875d4f825f6be1d11fb55}{phys::UI::TextButton}.
+
+
+
+Definition at line 188 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a66522ebf5f3c75e96a6dfd99700a0f74}{
+\index{phys::UI::Button@{phys::UI::Button}!GetMouseHover@{GetMouseHover}}
+\index{GetMouseHover@{GetMouseHover}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{GetMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Button::GetMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a66522ebf5f3c75e96a6dfd99700a0f74}
+
+
+Gets the stored value of whether or not the mouse is over the button. 
+
+This function does not perform any checks. If you want to do a manual check, call \hyperlink{classphys_1_1UI_1_1Button_a72d76501d15053e3fbd9e7eb933e22de}{CheckMouseHover()}. \begin{DoxyReturn}{Returns}
+Returns the stored value of whether or not the mouse is over the button. 
+\end{DoxyReturn}
+
+
+Definition at line 100 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a366ba1ddf5064cafdfae63457472b2a2}{
+\index{phys::UI::Button@{phys::UI::Button}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::UI::Button::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a366ba1ddf5064cafdfae63457472b2a2}
+
+
+Gets the name of this button. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of this button. 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_adfa08ace813b88cae114e18f88942642}{
+\index{phys::UI::Button@{phys::UI::Button}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Button::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_adfa08ace813b88cae114e18f88942642}
+
+
+Gets the relative top left position of this button. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of this button. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a09768e0666a109b7d35fd8b78240cfd3}{phys::UI::TextButton}.
+
+
+
+Definition at line 152 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_aa17ffbc9b0d4eed151ff5ecbf93d88b8}{
+\index{phys::UI::Button@{phys::UI::Button}!GetRenderPriority@{GetRenderPriority}}
+\index{GetRenderPriority@{GetRenderPriority}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{GetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}UI::RenderPriority phys::UI::Button::GetRenderPriority (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_aa17ffbc9b0d4eed151ff5ecbf93d88b8}
+
+
+Gets the priority this button should be rendered with. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing this button's priority level. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_ad339621af6e73ff9702c0dd4cdadbb73}{phys::UI::TextButton}.
+
+
+
+Definition at line 214 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_ade75e042d1a19be5d4fb1b16913af5a5}{
+\index{phys::UI::Button@{phys::UI::Button}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Button::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_ade75e042d1a19be5d4fb1b16913af5a5}
+
+
+Gets the relative size of this button. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the size of this button. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a21f1ff24070711e5a42eae4eb54d02d6}{phys::UI::TextButton}.
+
+
+
+Definition at line 177 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a920cfc9d4daa7d53de2ed051ed52d977}{
+\index{phys::UI::Button@{phys::UI::Button}!IsTextButton@{IsTextButton}}
+\index{IsTextButton@{IsTextButton}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{IsTextButton}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool phys::UI::Button::IsTextButton (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a920cfc9d4daa7d53de2ed051ed52d977}
+
+
+Gets whether this is a text button. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing whether or not this is a text button. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1UI_1_1Button_a90ef37a2fa1645298237733918455814}{
+\index{phys::UI::Button@{phys::UI::Button}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a90ef37a2fa1645298237733918455814}
+
+
+Sets the top left position of this button in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]A \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of this button. \end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_ab459720bb401b99ebc4a5287e36a91ee}{phys::UI::TextButton}.
+
+
+
+Definition at line 157 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a4075f879a67726b80c18d3bc647e12fe}{
+\index{phys::UI::Button@{phys::UI::Button}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a4075f879a67726b80c18d3bc647e12fe}
+
+
+Sets the size of this button in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Size}]A vector2 representing the size of this button. \end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_ad83c81eda54a861b9e34b565027b8254}{phys::UI::TextButton}.
+
+
+
+Definition at line 182 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_ac4ce81ec9cdc97ac3d29aed5031c5ac6}{
+\index{phys::UI::Button@{phys::UI::Button}!SetBackgroundColour@{SetBackgroundColour}}
+\index{SetBackgroundColour@{SetBackgroundColour}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{SetBackgroundColour}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetBackgroundColour (
+\begin{DoxyParamCaption}
+\item[{{\bf ColourValue} \&}]{ Colour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_ac4ce81ec9cdc97ac3d29aed5031c5ac6}
+
+
+Sets the background colour of the button. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Colour}]A colour value representing the colour to be set. \end{DoxyParams}
+
+
+Definition at line 105 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a7cecb219a59fb55db6ac0070359bb23f}{
+\index{phys::UI::Button@{phys::UI::Button}!SetBackgroundSprite@{SetBackgroundSprite}}
+\index{SetBackgroundSprite@{SetBackgroundSprite}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{SetBackgroundSprite}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetBackgroundSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a7cecb219a59fb55db6ac0070359bb23f}
+
+
+Sets the background image(if provided in the atlas) of the button. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the sprite to set as the background. \end{DoxyParams}
+
+
+Definition at line 110 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a94a4296fd5b2153f10e77aca08481d15}{
+\index{phys::UI::Button@{phys::UI::Button}!SetBorder@{SetBorder}}
+\index{SetBorder@{SetBorder}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{SetBorder}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetBorder (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Width, }
+\item[{{\bf ColourValue} \&}]{ Colour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a94a4296fd5b2153f10e77aca08481d15}
+
+
+Enables a border and sets it's colour. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Colour}]A colour value representing the colour to be set. \end{DoxyParams}
+
+
+Definition at line 139 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a12cfac0dcc6324694f29968c0ca25d03}{
+\index{phys::UI::Button@{phys::UI::Button}!SetHoveredSprite@{SetHoveredSprite}}
+\index{SetHoveredSprite@{SetHoveredSprite}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{SetHoveredSprite}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetHoveredSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a12cfac0dcc6324694f29968c0ca25d03}
+
+
+Sets an alternate background image that will be applied when the mouse is over this button. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the sprite to set as the alternate background. \end{DoxyParams}
+
+
+Definition at line 117 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_aadb9b867ceccad8313591ae5e434274d}{
+\index{phys::UI::Button@{phys::UI::Button}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetPosition (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_aadb9b867ceccad8313591ae5e434274d}
+
+
+Sets the relative top left position of this button. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]A \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of this button. \end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a57f8955e357e9e55e339237a91d8c209}{phys::UI::TextButton}.
+
+
+
+Definition at line 144 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a569053caa70448d560fd016d86ef52cb}{
+\index{phys::UI::Button@{phys::UI::Button}!SetRenderPriority@{SetRenderPriority}}
+\index{SetRenderPriority@{SetRenderPriority}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{SetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetRenderPriority (
+\begin{DoxyParamCaption}
+\item[{UI::RenderPriority}]{ Priority}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a569053caa70448d560fd016d86ef52cb}
+
+
+Sets the priority this button should be rendered with. 
+
+The default value for this is Medium. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Priority}]The priority level to be used when rendering this button. \end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a7d4e22acd792b10f2f7986d8f449ec16}{phys::UI::TextButton}.
+
+
+
+Definition at line 194 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a3f610782e5f84ddc315d9db6ef5f9109}{
+\index{phys::UI::Button@{phys::UI::Button}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetSize (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a3f610782e5f84ddc315d9db6ef5f9109}
+
+
+Sets the relative size of this button. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Size}]A vector2 representing the size of this button. \end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a04a27287b038220fa8183079c1a727ec}{phys::UI::TextButton}.
+
+
+
+Definition at line 169 of file uibutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Button_a8c3a5657daf79a882f71691e91785d4d}{
+\index{phys::UI::Button@{phys::UI::Button}!SetUserSprite@{SetUserSprite}}
+\index{SetUserSprite@{SetUserSprite}!phys::UI::Button@{phys::UI::Button}}
+\subsubsection[{SetUserSprite}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetUserSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d8/d88/classphys_1_1UI_1_1Button_a8c3a5657daf79a882f71691e91785d4d}
+
+
+Sets an alternate background image that is stored and can be quickly swapped with the active sprite. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the sprite to set as the alternate background. \end{DoxyParams}
+
+
+Definition at line 123 of file uibutton.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uibutton.h\item 
+uibutton.cpp\end{DoxyCompactItemize}

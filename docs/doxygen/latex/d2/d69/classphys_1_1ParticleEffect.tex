@@ -14,7 +14,7 @@ This class is responsible for creating visual particle effects, such as rain, sm
 Inheritance diagram for phys::ParticleEffect:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{d2/d69/classphys_1_1ParticleEffect}
+\includegraphics[height=2.000000cm]{d2/d69/classphys_1_1ParticleEffect}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -62,10 +62,7 @@ Ogre::SceneNode $\ast$ \hyperlink{classphys_1_1ParticleEffect_acd59a6f4ca0ae9680
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1ParticleEffect_a6db9d28bd448a131448276ee03de1e6d}{
-class {\bfseries Node}}
-\label{d2/d69/classphys_1_1ParticleEffect_a6db9d28bd448a131448276ee03de1e6d}
-
+class \hyperlink{classphys_1_1ParticleEffect_a6db9d28bd448a131448276ee03de1e6d}{Node}
 \end{DoxyCompactItemize}
 
 
@@ -73,7 +70,7 @@ class {\bfseries Node}}
 This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions. Particle effects are loaded from particle scripts which are contained in particle files($\ast$.particle). \par
  Note: If attaching a particle effect to a node, all transform information(position and orientation) becomes relative to the nodes transform. 
 
-Definition at line 63 of file particleeffect.h.
+Definition at line 64 of file particleeffect.h.
 
 
 
@@ -81,7 +78,13 @@ Definition at line 63 of file particleeffect.h.
 \hypertarget{classphys_1_1ParticleEffect_a42d17b7cd81968603c70920c30e6f812}{
 \index{phys::ParticleEffect@{phys::ParticleEffect}!ParticleEffect@{ParticleEffect}}
 \index{ParticleEffect@{ParticleEffect}!phys::ParticleEffect@{phys::ParticleEffect}}
-\subsubsection[{ParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}phys::ParticleEffect::ParticleEffect (const {\bf String} \& {\em Name}, \/  const {\bf String} \& {\em Template}, \/  {\bf SceneManager} $\ast$ {\em manager})}}
+\subsubsection[{ParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}phys::ParticleEffect::ParticleEffect (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ Name, }
+\item[{const {\bf String} \&}]{ Template, }
+\item[{{\bf SceneManager} $\ast$}]{ manager}
+\end{DoxyParamCaption}
+)}}
 \label{d2/d69/classphys_1_1ParticleEffect_a42d17b7cd81968603c70920c30e6f812}
 
 
@@ -89,7 +92,7 @@ Standard initialization constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of this particle effect. \item[{\em Template}]Name of the particle script to be used in creating this particle effect. \item[{\em manager}]Pointer to the manager that this node is to be used in. \end{DoxyParams}
+\item[{\em Name}]The name of this particle effect. \item[{\em Template}]Name of the particle script to be used in creating this particle effect. \item[{\em manager}]Pointer to the manager that this particle effect is to be used in. \end{DoxyParams}
 
 
 Definition at line 50 of file particleeffect.cpp.
@@ -97,7 +100,12 @@ Definition at line 50 of file particleeffect.cpp.
 \hypertarget{classphys_1_1ParticleEffect_a112c7e4b2ec7c34c3aba3bd422ef8a1c}{
 \index{phys::ParticleEffect@{phys::ParticleEffect}!ParticleEffect@{ParticleEffect}}
 \index{ParticleEffect@{ParticleEffect}!phys::ParticleEffect@{phys::ParticleEffect}}
-\subsubsection[{ParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}phys::ParticleEffect::ParticleEffect (Ogre::ParticleSystem $\ast$ {\em System}, \/  {\bf SceneManager} $\ast$ {\em manager})}}
+\subsubsection[{ParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}phys::ParticleEffect::ParticleEffect (
+\begin{DoxyParamCaption}
+\item[{Ogre::ParticleSystem $\ast$}]{ System, }
+\item[{{\bf SceneManager} $\ast$}]{ manager}
+\end{DoxyParamCaption}
+)}}
 \label{d2/d69/classphys_1_1ParticleEffect_a112c7e4b2ec7c34c3aba3bd422ef8a1c}
 
 
@@ -105,7 +113,7 @@ Internal constructor.
 
 This constructor should not be called on manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em System}]Pointer to the Ogre ParticleSystem this class is based on. \item[{\em manager}]Pointer to the manager that this particle effect is to be used in. \end{DoxyParams}
+\item[{\em System}]Pointer to the \hyperlink{namespaceOgre}{Ogre} ParticleSystem this class is based on. \item[{\em manager}]Pointer to the manager that this particle effect is to be used in. \end{DoxyParams}
 
 
 Definition at line 60 of file particleeffect.cpp.
@@ -116,7 +124,11 @@ Definition at line 60 of file particleeffect.cpp.
 \hypertarget{classphys_1_1ParticleEffect_a0e1a6f5fe489fc6e82c91df50fdab3c4}{
 \index{phys::ParticleEffect@{phys::ParticleEffect}!GetName@{GetName}}
 \index{GetName@{GetName}!phys::ParticleEffect@{phys::ParticleEffect}}
-\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::ParticleEffect::GetName ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::ParticleEffect::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d2/d69/classphys_1_1ParticleEffect_a0e1a6f5fe489fc6e82c91df50fdab3c4}
 
 
@@ -132,6 +144,20 @@ Implements \hyperlink{classphys_1_1Attachable_ad1a9bbd300fe21c5cc7e5aa7e2c95b85}
 
 
 Definition at line 76 of file particleeffect.cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classphys_1_1ParticleEffect_a6db9d28bd448a131448276ee03de1e6d}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!Node@{Node}}
+\index{Node@{Node}!phys::ParticleEffect@{phys::ParticleEffect}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Node}\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
+\label{d2/d69/classphys_1_1ParticleEffect_a6db9d28bd448a131448276ee03de1e6d}
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 67 of file particleeffect.h.
 
 
 

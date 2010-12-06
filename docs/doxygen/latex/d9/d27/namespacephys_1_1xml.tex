@@ -14,13 +14,33 @@ class \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}
 \begin{DoxyCompactList}\small\item\em This represents the attributes that could exist on an XML element. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1Base}{Base}
 \begin{DoxyCompactList}\small\item\em A set of all functionality that all XML components must implement. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1xml_1_1Comment}{Comment}
+\begin{DoxyCompactList}\small\item\em This is a container of nodes and elements and other XML stuff. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1xml_1_1Declaration}{Declaration}
+\begin{DoxyCompactList}\small\item\em This is a container of nodes and elements and other XML stuff. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1Document}{Document}
-\begin{DoxyCompactList}\small\item\em This is a container of. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This is a container of nodes and elements and other XML stuff. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1xml_1_1Element}{Element}
+\begin{DoxyCompactList}\small\item\em This represents an xml element. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1xml_1_1Node}{Node}
+\begin{DoxyCompactList}\small\item\em This represents \hyperlink{classphys_1_1xml_1_1Node}{Node} that represent any element in an XML tree like the document, any element, .... \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1xml_1_1StylesheetReference}{StylesheetReference}
+\begin{DoxyCompactList}\small\item\em This is a container of nodes and elements and other XML stuff. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1xml_1_1Text}{Text}
+\begin{DoxyCompactList}\small\item\em This is a container of nodes and elements and other XML stuff. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+class PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_ab52f16bbf03980beb1c58fa15423a681}{Node}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The components to load, save, modify, and use XML will be stored here. This is where objects that help with loading, saving, and manipulating xml documents will reside. This components found here are simply a tight wrapper around TinyXMLcpp with some integration with the rest of the physgame engine to allow some enhanced functionality (like using Ogre's nifty File loading system).\par
- Here is the original Copyright notice that came with our copy of TiCPP, and show That the huge copy pastes we performed are ok. This license does not apply to our code and is shown here explicitly show that we are in compliance with this license: \par
+The components to load, save, modify, and use XML will be stored here. This is where objects that help with loading, saving, and manipulating xml documents will reside. This components found here are simply a tight wrapper around TinyXMLcpp with some integration with the rest of the physgame engine to allow some enhanced functionality (like using Ogre's nifty File loading system). The only changes made to TiCPP were to remove the private and protected Sections of TiCPP::Base and make all the members public so that \hyperlink{namespacephys_1_1xml}{phys::xml} could tightly integrate with them. We did this So we could avoid reimplementing certain case functionality and make use of TinyXML better. \par
+ \par
+
+
+Here is the original Copyright notice that came with our copy of TiCPP, and show That the huge copy pastes we performed are ok. This license does not apply to our code and is shown here explicitly show that we are in compliance with this license: \par
  \par
  TiCPP License: \par
  \par
@@ -66,3 +86,16 @@ The components to load, save, modify, and use XML will be stored here. This is w
  distribution. \par
  \par
  
+
+\subsection{Variable Documentation}
+\hypertarget{namespacephys_1_1xml_ab52f16bbf03980beb1c58fa15423a681}{
+\index{phys::xml@{phys::xml}!Node@{Node}}
+\index{Node@{Node}!phys::xml@{phys::xml}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}class PHYS\_\-LIB {\bf phys::xml::Node}}}
+\label{d9/d27/namespacephys_1_1xml_ab52f16bbf03980beb1c58fa15423a681}
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 108 of file xmlbase.h.
+

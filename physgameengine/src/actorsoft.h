@@ -113,7 +113,13 @@ namespace phys
             virtual void SetBulletOrientation (Quaternion Rotation);
 
         public:
+            /// @brief Constructor
+            /// @param mass The mass of the soft body.
+            /// @param name Name of the object
+            /// @param file Mesh the soft body is stored in
+            /// @param The Resource group the mesh can be found in.
             ActorSoft(Real mass, String name, String file, String group);
+
             /// @brief Destructor.
             /// @details The class destructor.
             virtual ~ActorSoft();

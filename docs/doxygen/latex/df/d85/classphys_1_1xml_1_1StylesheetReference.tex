@@ -1,0 +1,267 @@
+\hypertarget{classphys_1_1xml_1_1StylesheetReference}{
+\section{phys::xml::StylesheetReference Class Reference}
+\label{df/d85/classphys_1_1xml_1_1StylesheetReference}\index{phys::xml::StylesheetReference@{phys::xml::StylesheetReference}}
+}
+
+
+This is a container of nodes and elements and other XML stuff.  
+
+
+
+
+{\ttfamily \#include $<$xmlstylesheetreference.h$>$}
+
+Inheritance diagram for phys::xml::StylesheetReference:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{df/d85/classphys_1_1xml_1_1StylesheetReference}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1xml_1_1StylesheetReference_a83706ad4edd90963b7098a24459a724b}{StylesheetReference} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&RefType, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Href)
+\begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1StylesheetReference_a4debe0aa91149a131563c59155dd5f69}{StylesheetReference} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320}{Base::XMLComponentType} \hyperlink{classphys_1_1xml_1_1StylesheetReference_a2dedf6dc246ae14d7c261e02537369b1}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This identifies what kind of child of xml::base this is. \item\end{DoxyCompactList}\item 
+virtual std::istream \& \hyperlink{classphys_1_1xml_1_1StylesheetReference_af9764a5458eca7dd55eda1b390dfda3a}{operator$>$$>$} (std::istream \&In)
+\begin{DoxyCompactList}\small\item\em Stream XML data into a \hyperlink{namespacephys_1_1xml}{phys::xml} hierearchy. \item\end{DoxyCompactList}\item 
+virtual std::ostream \& \hyperlink{classphys_1_1xml_1_1StylesheetReference_a1513e32b1c4ea3c59bb172be75b39e43}{operator$<$$<$} (std::ostream \&Out)
+\begin{DoxyCompactList}\small\item\em Stream XML data out of a \hyperlink{namespacephys_1_1xml}{phys::xml} hierearchy. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1xml_1_1StylesheetReference_ace85c372de817aa4077e6aa0c8998914}{GetRefType} () const 
+\begin{DoxyCompactList}\small\item\em Get the Type of the Reference. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1xml_1_1StylesheetReference_a325ae93ec2132b83f951a723cb2a4e18}{GetHref} () const 
+\begin{DoxyCompactList}\small\item\em Get the Href \hyperlink{classphys_1_1xml_1_1Text}{Text}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classphys_1_1xml_1_1StylesheetReference}{StylesheetReference} $\ast$ \hyperlink{classphys_1_1xml_1_1StylesheetReference_a48c3822346c9f827f089fbd65d91200d}{GetPointerFromWrapped} (ticpp::StylesheetReference $\ast$Meta)
+\begin{DoxyCompactList}\small\item\em This will find or create a pointer to the \hyperlink{classphys_1_1xml_1_1StylesheetReference}{StylesheetReference}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1xml_1_1StylesheetReference_af6382771debf4048ea5ab77d9c091b07}{StylesheetReference} (ticpp::StylesheetReference $\ast$Meta, bool FirstTimeUsed=false)
+\begin{DoxyCompactList}\small\item\em Construct a \hyperlink{classphys_1_1xml_1_1StylesheetReference}{StylesheetReference} using meta data from a TiCPP pointer. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is a container of nodes and elements and other XML stuff. 
+
+Definition at line 61 of file xmlstylesheetreference.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1xml_1_1StylesheetReference_af6382771debf4048ea5ab77d9c091b07}{
+\index{phys::xml::StylesheetReference@{phys::xml::StylesheetReference}!StylesheetReference@{StylesheetReference}}
+\index{StylesheetReference@{StylesheetReference}!phys::xml::StylesheetReference@{phys::xml::StylesheetReference}}
+\subsubsection[{StylesheetReference}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::StylesheetReference::StylesheetReference (
+\begin{DoxyParamCaption}
+\item[{ticpp::StylesheetReference $\ast$}]{ Meta, }
+\item[{bool}]{ FirstTimeUsed = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{df/d85/classphys_1_1xml_1_1StylesheetReference_af6382771debf4048ea5ab77d9c091b07}
+
+
+Construct a \hyperlink{classphys_1_1xml_1_1StylesheetReference}{StylesheetReference} using meta data from a TiCPP pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Meta}]A pointer to a ticpp::StylesheetReference that this class will wrap. \item[{\em FirstTimeUsed}]Set this to true if you are instantiating this for the first time, false if Meta is used in another phys::xml::someclass \end{DoxyParams}
+
+
+Definition at line 54 of file xmlstylesheetreference.cpp.
+
+\hypertarget{classphys_1_1xml_1_1StylesheetReference_a83706ad4edd90963b7098a24459a724b}{
+\index{phys::xml::StylesheetReference@{phys::xml::StylesheetReference}!StylesheetReference@{StylesheetReference}}
+\index{StylesheetReference@{StylesheetReference}!phys::xml::StylesheetReference@{phys::xml::StylesheetReference}}
+\subsubsection[{StylesheetReference}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::StylesheetReference::StylesheetReference (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ RefType, }
+\item[{const {\bf String} \&}]{ Href}
+\end{DoxyParamCaption}
+)}}
+\label{df/d85/classphys_1_1xml_1_1StylesheetReference_a83706ad4edd90963b7098a24459a724b}
+
+
+Descriptive constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em RefType}]The Type of the reference (script, Stylesheet etc...) \item[{\em Href}]The URL of the referenced document \end{DoxyParams}
+
+
+Definition at line 61 of file xmlstylesheetreference.cpp.
+
+\hypertarget{classphys_1_1xml_1_1StylesheetReference_a4debe0aa91149a131563c59155dd5f69}{
+\index{phys::xml::StylesheetReference@{phys::xml::StylesheetReference}!StylesheetReference@{StylesheetReference}}
+\index{StylesheetReference@{StylesheetReference}!phys::xml::StylesheetReference@{phys::xml::StylesheetReference}}
+\subsubsection[{StylesheetReference}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::StylesheetReference::StylesheetReference (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{df/d85/classphys_1_1xml_1_1StylesheetReference_a4debe0aa91149a131563c59155dd5f69}
+
+
+Default Constructor. 
+
+creates an empty \hyperlink{classphys_1_1xml_1_1StylesheetReference}{StylesheetReference} 
+
+Definition at line 67 of file xmlstylesheetreference.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1StylesheetReference_a325ae93ec2132b83f951a723cb2a4e18}{
+\index{phys::xml::StylesheetReference@{phys::xml::StylesheetReference}!GetHref@{GetHref}}
+\index{GetHref@{GetHref}!phys::xml::StylesheetReference@{phys::xml::StylesheetReference}}
+\subsubsection[{GetHref}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::xml::StylesheetReference::GetHref (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{df/d85/classphys_1_1xml_1_1StylesheetReference_a325ae93ec2132b83f951a723cb2a4e18}
+
+
+Get the Href \hyperlink{classphys_1_1xml_1_1Text}{Text}. 
+
+\begin{DoxyReturn}{Returns}
+a \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String} that contains the Href 
+\end{DoxyReturn}
+
+
+Definition at line 103 of file xmlstylesheetreference.cpp.
+
+\hypertarget{classphys_1_1xml_1_1StylesheetReference_a48c3822346c9f827f089fbd65d91200d}{
+\index{phys::xml::StylesheetReference@{phys::xml::StylesheetReference}!GetPointerFromWrapped@{GetPointerFromWrapped}}
+\index{GetPointerFromWrapped@{GetPointerFromWrapped}!phys::xml::StylesheetReference@{phys::xml::StylesheetReference}}
+\subsubsection[{GetPointerFromWrapped}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StylesheetReference} $\ast$ phys::xml::StylesheetReference::GetPointerFromWrapped (
+\begin{DoxyParamCaption}
+\item[{ticpp::StylesheetReference $\ast$}]{ Meta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{df/d85/classphys_1_1xml_1_1StylesheetReference_a48c3822346c9f827f089fbd65d91200d}
+
+
+This will find or create a pointer to the \hyperlink{classphys_1_1xml_1_1StylesheetReference}{StylesheetReference}. 
+
+\begin{DoxyInternal}{For internal use only.}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Meta}]A pointer to a ticpp::StylesheetReference that returned \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} will wrap \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the \hyperlink{classphys_1_1xml_1_1StylesheetReference}{phys::xml::StylesheetReference} that wraps Meta 
+\end{DoxyReturn}
+\end{DoxyInternal}
+
+
+Definition at line 73 of file xmlstylesheetreference.cpp.
+
+\hypertarget{classphys_1_1xml_1_1StylesheetReference_ace85c372de817aa4077e6aa0c8998914}{
+\index{phys::xml::StylesheetReference@{phys::xml::StylesheetReference}!GetRefType@{GetRefType}}
+\index{GetRefType@{GetRefType}!phys::xml::StylesheetReference@{phys::xml::StylesheetReference}}
+\subsubsection[{GetRefType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::xml::StylesheetReference::GetRefType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{df/d85/classphys_1_1xml_1_1StylesheetReference_ace85c372de817aa4077e6aa0c8998914}
+
+
+Get the Type of the Reference. 
+
+\begin{DoxyReturn}{Returns}
+a \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String} that contains the type information 
+\end{DoxyReturn}
+
+
+Definition at line 100 of file xmlstylesheetreference.cpp.
+
+\hypertarget{classphys_1_1xml_1_1StylesheetReference_a2dedf6dc246ae14d7c261e02537369b1}{
+\index{phys::xml::StylesheetReference@{phys::xml::StylesheetReference}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::xml::StylesheetReference@{phys::xml::StylesheetReference}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Base::XMLComponentType} phys::xml::StylesheetReference::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{df/d85/classphys_1_1xml_1_1StylesheetReference_a2dedf6dc246ae14d7c261e02537369b1}
+
+
+This identifies what kind of child of xml::base this is. 
+
+\begin{DoxyReturn}{Returns}
+This returns \hyperlink{classphys_1_1xml_1_1Base_a62ba0484b5ecb502f9ae9d82d3720320a1471515990373515c3fec0e021436709}{Base::isStylesheetReference} 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1xml_1_1Node_a32273db5897cc54fa8c0e30d686a866b}{phys::xml::Node}.
+
+
+
+Definition at line 91 of file xmlstylesheetreference.cpp.
+
+\hypertarget{classphys_1_1xml_1_1StylesheetReference_a1513e32b1c4ea3c59bb172be75b39e43}{
+\index{phys::xml::StylesheetReference@{phys::xml::StylesheetReference}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!phys::xml::StylesheetReference@{phys::xml::StylesheetReference}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream \& phys::xml::StylesheetReference::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std::ostream \&}]{ Out}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{df/d85/classphys_1_1xml_1_1StylesheetReference_a1513e32b1c4ea3c59bb172be75b39e43}
+
+
+Stream XML data out of a \hyperlink{namespacephys_1_1xml}{phys::xml} hierearchy. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Out}]This is the stream the data goes to from when you use the $<$$<$ operator \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a stream containing all the data that was streamed out, to allow for chaining $<$$<$ calls and retrieval of the data
+\end{DoxyReturn}
+Inherited from \hyperlink{classphys_1_1xml_1_1Node}{phys::xml::Node} 
+
+Implements \hyperlink{classphys_1_1xml_1_1Node_a62ae8f247d6ae6e5e147b6955b6af0a9}{phys::xml::Node}.
+
+
+
+Definition at line 97 of file xmlstylesheetreference.cpp.
+
+\hypertarget{classphys_1_1xml_1_1StylesheetReference_af9764a5458eca7dd55eda1b390dfda3a}{
+\index{phys::xml::StylesheetReference@{phys::xml::StylesheetReference}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!phys::xml::StylesheetReference@{phys::xml::StylesheetReference}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std::istream \& phys::xml::StylesheetReference::operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std::istream \&}]{ In}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{df/d85/classphys_1_1xml_1_1StylesheetReference_af9764a5458eca7dd55eda1b390dfda3a}
+
+
+Stream XML data into a \hyperlink{namespacephys_1_1xml}{phys::xml} hierearchy. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em In}]This is the stream the data comes from when you use the $>$$>$ operator \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a stream containing all the data that was streamed in, to allow for chaining $>$$>$ calls
+\end{DoxyReturn}
+Inherited from \hyperlink{classphys_1_1xml_1_1Node}{phys::xml::Node} 
+
+Implements \hyperlink{classphys_1_1xml_1_1Node_a400698c30e391c3f098268d4a79d76ca}{phys::xml::Node}.
+
+
+
+Definition at line 94 of file xmlstylesheetreference.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+xmlstylesheetreference.h\item 
+xmlstylesheetreference.cpp\end{DoxyCompactItemize}
