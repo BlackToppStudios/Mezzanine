@@ -1,9 +1,7 @@
-Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
 /home/dev/physgame/physgameengine/src/constraint.h:279: warning: Compound phys::Hinge2Constraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:212: warning: Compound phys::Generic6DofSpringConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:392: warning: Compound phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:126: warning: Compound phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/exception.h:60: warning: Compound phys::Exception is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:332: warning: Compound phys::SliderConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:238: warning: Compound phys::HingeConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:166: warning: Compound phys::Generic6DofConstraint is not documented.
@@ -131,7 +129,7 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/dev/physgame/physgameengine/src/constraint.h:405: warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:406: warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/eventmanager.cpp:91: warning: argument 'ParentWorld_' of command @param is not found in the argument list of phys::EventManager::EventManager()
-/home/dev/physgame/physgameengine/src/exception.h:68: warning: The following parameters of phys::Exception::Exception(const String &Message, bool Logged_=false) are not documented:
+/home/dev/physgame/physgameengine/src/exception.h:66: warning: The following parameters of phys::Exception::Exception(const String &Message, bool Logged_=false) are not documented:
   parameter 'Logged_'
 /home/dev/physgame/physgameengine/src/graphicsmanager.h:95: warning: argument 'GameWorld_' of command @param is not found in the argument list of phys::GraphicsManager::GraphicsManager()
 /home/dev/physgame/physgameengine/src/graphicsmanager.h:100: warning: argument 'GameWorld_' of command @param is not found in the argument list of phys::GraphicsManager::GraphicsManager(const Whole &Width_, const Whole &Height_, const bool &FullScreen_)

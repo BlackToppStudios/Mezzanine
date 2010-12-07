@@ -72,7 +72,7 @@
 <a name="l00042"></a>00042 <span class="preprocessor"></span><span class="preprocessor">#define _xmlattribute_cpp</span>
 <a name="l00043"></a>00043 <span class="preprocessor"></span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;<a class="code" href="../../d5/d8b/xmlattribute_8h.html">xmlattribute.h</a>&quot;</span>
-<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;<a class="code" href="../../dd/d2d/exception_8h.html" title="This is the exception thrown by most physgame system that can throw exceptions.">exception.h</a>&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;exception.h&quot;</span>
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="preprocessor">#include &lt;sstream&gt;</span>
 <a name="l00048"></a>00048 
@@ -125,7 +125,7 @@
 <a name="l00095"></a>00095             } <span class="keywordflow">catch</span> (ticpp::Exception e) {
 <a name="l00096"></a>00096                 std::stringstream temp;
 <a name="l00097"></a>00097                 temp &lt;&lt; <span class="stringliteral">&quot;Could not Create phys::xml::Attribute from invalid pointer.&quot;</span> &lt;&lt; std::endl &lt;&lt; e.what() &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;Details: &quot;</span> &lt;&lt; e.m_details;
-<a name="l00098"></a>00098                 <span class="keywordflow">throw</span> <a class="code" href="../../dc/d47/classphys_1_1Exception.html">Exception</a>(temp.str());
+<a name="l00098"></a>00098                 <span class="keywordflow">throw</span> <a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">Exception</a>(temp.str());
 <a name="l00099"></a>00099             }
 <a name="l00100"></a>00100 
 <a name="l00101"></a>00101             <span class="comment">//If there is no pointer inside TinyXML to our node, then it doesn&#39;t exist, so make it Otherwise use what is there</span>
@@ -194,7 +194,7 @@
 <a name="l00164"></a>00164 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 6 2010 13:29:31 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 10:53:51 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

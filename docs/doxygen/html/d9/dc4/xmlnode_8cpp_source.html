@@ -79,7 +79,7 @@
 <a name="l00049"></a>00049 <span class="preprocessor">#include &quot;<a class="code" href="../../dc/d41/xmlnode_8h.html">xmlnode.h</a>&quot;</span>
 <a name="l00050"></a>00050 <span class="preprocessor">#include &quot;xmltext.h&quot;</span>
 <a name="l00051"></a>00051 <span class="preprocessor">#include &quot;xmlstylesheetreference.h&quot;</span>
-<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;<a class="code" href="../../dd/d2d/exception_8h.html" title="This is the exception thrown by most physgame system that can throw exceptions.">exception.h</a>&quot;</span>
+<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;exception.h&quot;</span>
 <a name="l00053"></a>00053 
 <a name="l00054"></a>00054 <span class="preprocessor">#define TIXML_USE_TICPP</span>
 <a name="l00055"></a>00055 <span class="preprocessor"></span><span class="preprocessor">#include &lt;ticpp.h&gt;</span>
@@ -245,7 +245,7 @@
 <a name="l00215"></a>00215             <span class="keywordflow">if</span> (Results)
 <a name="l00216"></a>00216                 { <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a273f164378de70b5478a3f34578a907c" title="A dirty that attempts to create or find nodes of the correc type.">Text::GetPointerFromWrapped</a>(static_cast&lt;ticpp::Text*&gt;(Meta)); }
 <a name="l00217"></a>00217 
-<a name="l00218"></a>00218             <span class="keywordflow">throw</span> <a class="code" href="../../dc/d47/classphys_1_1Exception.html">Exception</a>(<span class="stringliteral">&quot;Internal Node is of unknown type, We cannot cast&quot;</span>);
+<a name="l00218"></a>00218             <span class="keywordflow">throw</span> <a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">Exception</a>(<span class="stringliteral">&quot;Internal Node is of unknown type, We cannot cast&quot;</span>);
 <a name="l00219"></a>00219             <span class="keywordflow">return</span> 0;
 <a name="l00220"></a>00220         }
 <a name="l00221"></a>00221 
@@ -257,7 +257,7 @@
 <a name="l00227"></a>00227             }<span class="keywordflow">else</span>{
 <a name="l00228"></a>00228                 std::stringstream Temp;
 <a name="l00229"></a>00229                 Temp &lt;&lt; <span class="stringliteral">&quot;The phys::xml::Node is not of type phys::xml::&quot;</span> &lt;&lt; <a class="code" href="../../df/d10/classphys_1_1xml_1_1Base.html#a7ddeb29fad6279b11f6307dd9bd01d3a" title="In Plain english what is this class.">GetTypeAsString</a>(TypeItShouldBe) &lt;&lt; <span class="stringliteral">&quot;, it is a: &quot;</span> &lt;&lt; NodeToCheck-&gt;<a class="code" href="../../df/d10/classphys_1_1xml_1_1Base.html#a7ddeb29fad6279b11f6307dd9bd01d3a" title="In Plain english what is this class.">GetTypeAsString</a>();
-<a name="l00230"></a>00230                 <span class="keywordflow">throw</span> <a class="code" href="../../dc/d47/classphys_1_1Exception.html">Exception</a>(Temp.str());
+<a name="l00230"></a>00230                 <span class="keywordflow">throw</span> <a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">Exception</a>(Temp.str());
 <a name="l00231"></a>00231             }
 <a name="l00232"></a>00232         }
 <a name="l00233"></a>00233 
@@ -302,7 +302,7 @@
 <a name="l00272"></a>00272 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 6 2010 13:29:31 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 10:53:51 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -72,7 +72,7 @@
 <a name="l00042"></a>00042 <span class="preprocessor"></span><span class="preprocessor">#define _xmltext_cpp</span>
 <a name="l00043"></a>00043 <span class="preprocessor"></span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;xmltext.h&quot;</span>
-<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;<a class="code" href="../../dd/d2d/exception_8h.html" title="This is the exception thrown by most physgame system that can throw exceptions.">exception.h</a>&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;exception.h&quot;</span>
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="preprocessor">#define TIXML_USE_TICPP</span>
 <a name="l00048"></a>00048 <span class="preprocessor"></span><span class="preprocessor">#include &lt;ticpp.h&gt;</span>
@@ -97,7 +97,7 @@
 <a name="l00067"></a>00067             } <span class="keywordflow">catch</span> (ticpp::Exception e) {
 <a name="l00068"></a>00068                 std::stringstream temp;
 <a name="l00069"></a>00069                 temp &lt;&lt; <span class="stringliteral">&quot;Could not Create phys::xml::Text from invalid pointer.&quot;</span> &lt;&lt; std::endl &lt;&lt; e.what() &lt;&lt; std::endl &lt;&lt; <span class="stringliteral">&quot;Details: &quot;</span> &lt;&lt; e.m_details;
-<a name="l00070"></a>00070                 <span class="keywordflow">throw</span> <a class="code" href="../../dc/d47/classphys_1_1Exception.html">Exception</a>(temp.str());
+<a name="l00070"></a>00070                 <span class="keywordflow">throw</span> <a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">Exception</a>(temp.str());
 <a name="l00071"></a>00071             }
 <a name="l00072"></a>00072 
 <a name="l00073"></a>00073             <span class="comment">//If there is no pointer inside TinyXML to our node, then it doesn&#39;t exist, so make it Otherwise use what is there</span>
@@ -133,7 +133,7 @@
 <a name="l00103"></a>00103 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 6 2010 13:29:31 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 10:53:51 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

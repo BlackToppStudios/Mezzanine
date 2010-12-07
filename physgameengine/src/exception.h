@@ -51,11 +51,9 @@ namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Exception
-    /// @file exception.h
+    /// @headerfile exception.h
     /// @brief This is the exception thrown by most physgame system that can throw exceptions.
     /// @details In general they work like std::exception, but also track whether they have been logged yet.
-    ///////////////////////////////////////////////////////////////////////////////
-
     class PHYS_LIB Exception : public std::exception
     {
         private:
