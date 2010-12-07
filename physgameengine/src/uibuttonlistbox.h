@@ -56,43 +56,50 @@ namespace phys
         class ButtonListBox : public Widget
         {
             protected:
+                Rectangle* BoxBack;
+                Scrollbar* VertScroll;
+                std::vector<Button*> Selections;
+                std::vector<Button*> VisableSelections;
                 /// @brief For use with widget update/automation.
-                virtual void Update(bool Force = false) = 0;
+                virtual void Update(bool Force = false);
             public:
                 /// @brief Standard initialization constructor.
                 ButtonListBox(String& name, Vector2 Position, Vector2 Size, UILayer* Layer);
                 /// @brief Standard destructor.
                 ~ButtonListBox();
-                /// @brief Checks to see if the current mouse position is over this widget.
-                /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
+                /// @brief Checks to see if the current mouse position is over this Button List Box.
+                /// @return Returns a bool value, true if the mouse is over this Button List Box, false if it's not.
                 virtual bool CheckMouseHover();
-                /// @brief Sets the relative position of this widget.
+                /// @brief Sets the relative position of this Button List Box.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Position A vector2 representing the relative position of this widget.
+                /// @param Position A vector2 representing the relative position of this Button List Box.
                 virtual void SetPosition(Vector2 Position);
-                /// @brief Gets the relative position of this widget.
+                /// @brief Gets the relative position of this Button List Box.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this widget.
+                /// @return Returns a vector2 representing the relative position of this Button List Box.
                 virtual Vector2 GetPosition();
-                /// @brief Sets the pixel position of this widget.
-                /// @param Position A vector2 representing the pixel position of this widget.
+                /// @brief Sets the pixel position of this Button List Box.
+                /// @param Position A vector2 representing the pixel position of this Button List Box.
                 virtual void SetActualPosition(Vector2 Position);
-                /// @brief Sets the pixel position of this widget.
-                /// @return Returns a vector2 representing the pixel position of this widget.
+                /// @brief Sets the pixel position of this Button List Box.
+                /// @return Returns a vector2 representing the pixel position of this Button List Box.
                 virtual Vector2 GetActualPosition();
-                /// @brief Sets the relative size of this widget.
-                /// @param Size A vector2 representing the relative size of this widget.
+                /// @brief Sets the relative size of this Button List Box.
+                /// @param Size A vector2 representing the relative size of this Button List Box.
                 virtual void SetSize(Vector2 Size);
-                /// @brief Gets the relative size of this widget.
+                /// @brief Gets the relative size of this Button List Box.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this widget.
+                /// @return Returns a vector2 representing the relative size of this Button List Box.
                 virtual Vector2 GetSize();
-                /// @brief Sets the pixel size of this widget.
-                /// @param Size A vector2 representing the pixel size of this widget.
+                /// @brief Sets the pixel size of this Button List Box.
+                /// @param Size A vector2 representing the pixel size of this Button List Box.
                 virtual void SetActualSize(Vector2 Size);
-                /// @brief Sets the pixel size of this widget.
-                /// @return Returns a vector2 representing the pixel size of this widget.
+                /// @brief Sets the pixel size of this Button List Box.
+                /// @return Returns a vector2 representing the pixel size of this Button List Box.
                 virtual Vector2 GetActualSize();
+                /// @brief Gets the background of this Button List Box.
+                /// @return Returns a pointer to the background of this Button List Box
+                virtual Rectangle* GetBoxBack();
         };
     }//UI
 }//phys

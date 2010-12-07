@@ -222,6 +222,17 @@ namespace phys
             /// @param Size The size of the Scrollbar.
             /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
             UI::Scrollbar* CreateScrollbar(String& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style);
+            /// @brief Creates a CheckBox within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+            /// @return Returns a pointer to the created CheckBox.
+            /// @param Name The name of the CheckBox.
+            /// @param Position The top left position of the CheckBox.
+            /// @param Size The size of the CheckBox.
+            /// @param Glyph The glyphs to use by default for use with the label.  Glyphs are defined in your .gorilla file.
+            /// @param LabelText The text to display with the label.  The label uses the Markup Text class, and thus it's
+            /// light markup text language.  You can also pass in a blank string if you don't wish to have a label, you can
+            /// create a label after construction.
+            UI::CheckBox* CreateCheckBox(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText);
             ///////////////////////////////////////////////////////////////////////////////
             // UI Element and Widget Checks
             ///////////////////////////////////////

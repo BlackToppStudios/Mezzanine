@@ -55,6 +55,7 @@ namespace phys
             : Parent(Layer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
+              ButtonCallback(NULL),
               MouseHover(false),
               IsText(false),
               RelPosition(Position),
@@ -77,6 +78,16 @@ namespace phys
             return Name;
         }
 
+        bool Button::IsTextButton()
+        {
+            return IsText;
+        }
+
+        void Button::SetButtonCallback(ButtonCallback* Call)
+        {
+            Callback = Call;
+        }
+
         bool Button::CheckMouseHover()
         {
             Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
@@ -94,6 +105,8 @@ namespace phys
                 }
                 MouseHover = false;
             }
+            if(Callback)
+                Callback->DoCallbackItems();
             return MouseHover;
         }
 
@@ -229,6 +242,14 @@ namespace phys
                     break;
             }
             return UI::RP_Medium;
+        }
+
+        ButtonCallback::ButtonCallback()
+        {
+        }
+
+        ButtonCallback::~ButtonCallback()
+        {
         }
     }//UI
 }//phys

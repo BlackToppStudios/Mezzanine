@@ -60,6 +60,7 @@ namespace phys
     class UILayer;
     namespace UI
     {
+        class ButtonCallback;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Button
         /// @headerfile uibutton.h
@@ -76,6 +77,7 @@ namespace phys
                 Gorilla::Sprite* NormalSprite;
                 Gorilla::Sprite* HoveredSprite;
                 Gorilla::Sprite* UserSprite;
+                ButtonCallback* Callback;
                 bool MouseHover;
                 bool IsText;
                 Vector2 RelPosition;
@@ -96,6 +98,10 @@ namespace phys
                 /// @brief Gets whether this is a text button.
                 /// @return Returns a bool representing whether or not this is a text button.
                 virtual bool IsTextButton();
+                /// @brief Sets the callback for this button.  See the ButtonCallback class for more info.
+                /// @details You can pass in a null pointer to disable a callback.
+                /// @param Call A pointer to the callback you wish to have set for this button.
+                virtual void SetButtonCallback(ButtonCallback* Call);
                 /// @brief Determines whether the mouse is over this button.
                 /// @return Returns a bool indicating whether the mouse is over this button.
                 virtual bool CheckMouseHover();
@@ -154,6 +160,24 @@ namespace phys
                 /// @return Returns an enum value representing this button's priority level.
                 virtual UI::RenderPriority GetRenderPriority();
         };//button
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class ButtonCallback
+        /// @headerfile uibutton.h
+        /// @brief This class provides customizable functionality to the button class.
+        /// @details This is a pure virtual class that must be inherited from for use with specialized
+        /// behaviors when working with buttons.
+        ///////////////////////////////////////
+        class ButtonCallback
+        {
+            public:
+                ButtonCallback();
+                ~ButtonCallback();
+                /// @brief The function called for this callback.  This will be called every time the
+                /// button is checked for mouse hover.
+                void DoCallbackItems() = 0;
+
+        };//buttoncallback
     }//UI
 }//phys
 

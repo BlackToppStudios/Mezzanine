@@ -328,6 +328,11 @@ namespace phys
                         UI::CheckBox* Check = static_cast<UI::CheckBox*> (ToBeDestroyed);
                         delete Check;
                     }
+                    case UI::Widget::ButtonListBox:
+                    {
+                        UI::ButtonListBox* ButtonList = static_cast<UI::ButtonListBox*> (ToBeDestroyed);
+                        delete ButtonList;
+                    }
                     default:
                         return;
                 }
@@ -340,6 +345,13 @@ namespace phys
         UI::Scrollbar* Scroll = new UI::Scrollbar(Name,Position,Size,Style,this);
         Widgets.push_back(Scroll);
         return Scroll;
+    }
+
+    UI::CheckBox* UILayer::CreateCheckBox(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText)
+    {
+        UI::CheckBox* Check = new UI::CheckBox(name,Position,Size,Glyph,LabelText,this);
+        Widgets.push_back(Check);
+        return Check;
     }
 
     UI::Button* UILayer::CheckButtonMouseIsOver()
