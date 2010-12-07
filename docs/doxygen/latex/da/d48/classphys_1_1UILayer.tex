@@ -87,6 +87,8 @@ void \hyperlink{classphys_1_1UILayer_a5c8d3069ecbc38669251532dc5860e5e}{DestroyW
 \begin{DoxyCompactList}\small\item\em Destroys a widget. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1Scrollbar}{UI::Scrollbar} $\ast$ \hyperlink{classphys_1_1UILayer_aa76c7da9eff4981dc48133d5f29ef6e7}{CreateScrollbar} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, UI::Scrollbar::BarStyle Style)
 \begin{DoxyCompactList}\small\item\em Creates a Scrollbar within this layer. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1CheckBox}{UI::CheckBox} $\ast$ \hyperlink{classphys_1_1UILayer_a7f535b851b039fa21075d2a35aa0ccd1}{CreateCheckBox} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&LabelText)
+\begin{DoxyCompactList}\small\item\em Creates a CheckBox within this layer. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UILayer_ac28c19dea53d2b89c5c09a2e29ce8c6d}{CheckButtonMouseIsOver} ()
 \begin{DoxyCompactList}\small\item\em Gets the button the mouse is over if any. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UILayer_ae121ca4d2ebb6fec7351a5c1eaab3dfc}{CheckWidgetMouseIsOver} ()
@@ -171,7 +173,7 @@ Internal constructor.
 \item[{\em name}]The name of this layer. \item[{\em GLayer}]The Gorilla Layer this Layer is based on. \item[{\em GScreen}]The gorilla parent screen to this layer. \end{DoxyParams}
 
 
-Definition at line 58 of file uilayer.cpp.
+Definition at line 60 of file uilayer.cpp.
 
 
 
@@ -194,7 +196,7 @@ Returns the button the mouse is over, or NULL if there are none.
 \end{DoxyReturn}
 
 
-Definition at line 345 of file uilayer.cpp.
+Definition at line 359 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_ae121ca4d2ebb6fec7351a5c1eaab3dfc}{
 \index{phys::UILayer@{phys::UILayer}!CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}}
@@ -214,7 +216,7 @@ Returns the widget the mouse is over, or NULL if there are none.
 \end{DoxyReturn}
 
 
-Definition at line 361 of file uilayer.cpp.
+Definition at line 375 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_ae9f610485bcd45f2ef48813f06304182}{
 \index{phys::UILayer@{phys::UILayer}!CreateButton@{CreateButton}}
@@ -239,7 +241,7 @@ Returns a pointer to the created button.
 \item[{\em Name}]The name of the button. \item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the Button. \end{DoxyParams}
 
 
-Definition at line 126 of file uilayer.cpp.
+Definition at line 128 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_ad7675adfc312bcb6a79703f88f7d6ed1}{
 \index{phys::UILayer@{phys::UILayer}!CreateCaption@{CreateCaption}}
@@ -266,7 +268,34 @@ Returns a pointer to the created caption.
 \item[{\em Name}]The name of this caption. \item[{\em Position}]The top left position of the caption. \item[{\em Size}]The size of the Button. \item[{\em Glyph}]One of the glyphs specified in your gorilla file. Must be valid. \item[{\em Text}]Any text you want printed on the caption. \end{DoxyParams}
 
 
-Definition at line 204 of file uilayer.cpp.
+Definition at line 206 of file uilayer.cpp.
+
+\hypertarget{classphys_1_1UILayer_a7f535b851b039fa21075d2a35aa0ccd1}{
+\index{phys::UILayer@{phys::UILayer}!CreateCheckBox@{CreateCheckBox}}
+\index{CreateCheckBox@{CreateCheckBox}!phys::UILayer@{phys::UILayer}}
+\subsubsection[{CreateCheckBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::CheckBox} $\ast$ phys::UILayer::CreateCheckBox (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Whole}}]{ Glyph, }
+\item[{{\bf String} \&}]{ LabelText}
+\end{DoxyParamCaption}
+)}}
+\label{da/d48/classphys_1_1UILayer_a7f535b851b039fa21075d2a35aa0ccd1}
+
+
+Creates a CheckBox within this layer. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created CheckBox. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the CheckBox. \item[{\em Position}]The top left position of the CheckBox. \item[{\em Size}]The size of the CheckBox. \item[{\em Glyph}]The glyphs to use by default for use with the label. Glyphs are defined in your .gorilla file. \item[{\em LabelText}]The text to display with the label. The label uses the Markup Text class, and thus it's light markup text language. You can also pass in a blank string if you don't wish to have a label, you can create a label after construction. \end{DoxyParams}
+
+
+Definition at line 352 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a773435348a970d922f4022a0c5a7959f}{
 \index{phys::UILayer@{phys::UILayer}!CreateMarkupText@{CreateMarkupText}}
@@ -292,7 +321,7 @@ Returns a pointer to the created markup text.
 \item[{\em Name}]The name of this markup text. \item[{\em Position}]The top left position of the markup text. \item[{\em Glyph}]One of the glyphs specified in your gorilla file. Must be valid. \item[{\em Text}]Any text you want printed on the markup text. \end{DoxyParams}
 
 
-Definition at line 246 of file uilayer.cpp.
+Definition at line 248 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_ac3a40183555b370737d6f6954ea0f8e3}{
 \index{phys::UILayer@{phys::UILayer}!CreateRectangle@{CreateRectangle}}
@@ -314,7 +343,7 @@ This constructor expects relative values for position and size(values from 0.0 t
 \item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the Button. \end{DoxyParams}
 
 
-Definition at line 175 of file uilayer.cpp.
+Definition at line 177 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_aa76c7da9eff4981dc48133d5f29ef6e7}{
 \index{phys::UILayer@{phys::UILayer}!CreateScrollbar@{CreateScrollbar}}
@@ -340,7 +369,7 @@ Returns a pointer to the created Scrollbar.
 \item[{\em Name}]The name of the Scrollbar. \item[{\em Position}]The top left position of the Scrollbar. \item[{\em Size}]The size of the Scrollbar. \item[{\em Style}]The style of scrollbar you want to create, see Scrollbar documentation for more details. \end{DoxyParams}
 
 
-Definition at line 338 of file uilayer.cpp.
+Definition at line 345 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a000fdc8f6aa413798f368409125cbd34}{
 \index{phys::UILayer@{phys::UILayer}!CreateTextButton@{CreateTextButton}}
@@ -367,7 +396,7 @@ Returns a pointer to the created button.
 \item[{\em Name}]The name of the button. \item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the Button. \item[{\em Glyph}]One of the glyphs specified in your gorilla file. Must be valid. \item[{\em Text}]Any text you want printed on the button. \end{DoxyParams}
 
 
-Definition at line 133 of file uilayer.cpp.
+Definition at line 135 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a8bb2f42fed52d5776d16911ffc4435ee}{
 \index{phys::UILayer@{phys::UILayer}!DestroyButton@{DestroyButton}}
@@ -387,7 +416,7 @@ Destroys a button.
 \item[{\em ToBeDestroyed}]Pointer to the button you want destroyed. \end{DoxyParams}
 
 
-Definition at line 163 of file uilayer.cpp.
+Definition at line 165 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a5c0ac9bd2b2c41178ccde42812e39210}{
 \index{phys::UILayer@{phys::UILayer}!DestroyCaption@{DestroyCaption}}
@@ -407,7 +436,7 @@ Destroys a caption.
 \item[{\em ToBeDestroyed}]Pointer to the caption you want destroyed. \end{DoxyParams}
 
 
-Definition at line 234 of file uilayer.cpp.
+Definition at line 236 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a75d488037b5bcc97e88249de10ba1d64}{
 \index{phys::UILayer@{phys::UILayer}!DestroyMarkupText@{DestroyMarkupText}}
@@ -427,7 +456,7 @@ Destroys a markup text.
 \item[{\em ToBeDestroyed}]Pointer to the markup text you want destroyed. \end{DoxyParams}
 
 
-Definition at line 276 of file uilayer.cpp.
+Definition at line 278 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a4342bebb6cd81518268beb658668b438}{
 \index{phys::UILayer@{phys::UILayer}!DestroyRectangle@{DestroyRectangle}}
@@ -447,7 +476,7 @@ Destroys a rectangle.
 \item[{\em ToBeDestroyed}]Pointer to the rectangle you want destroyed. \end{DoxyParams}
 
 
-Definition at line 192 of file uilayer.cpp.
+Definition at line 194 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a5c8d3069ecbc38669251532dc5860e5e}{
 \index{phys::UILayer@{phys::UILayer}!DestroyWidget@{DestroyWidget}}
@@ -467,7 +496,7 @@ Destroys a widget.
 \item[{\em ToBeDestroyed}]Pointer to the widget you want destroyed. \end{DoxyParams}
 
 
-Definition at line 311 of file uilayer.cpp.
+Definition at line 313 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a98acc74c401ba1b28c53f1ea8966b950}{
 \index{phys::UILayer@{phys::UILayer}!GetButton@{GetButton}}
@@ -487,7 +516,7 @@ Returns a pointer to the button at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 153 of file uilayer.cpp.
+Definition at line 155 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a2d6e9b80e09b8287b72faffeb13e6d43}{
 \index{phys::UILayer@{phys::UILayer}!GetButton@{GetButton}}
@@ -507,7 +536,7 @@ Returns a pointer to the button of the specified name.
 \end{DoxyReturn}
 
 
-Definition at line 140 of file uilayer.cpp.
+Definition at line 142 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a4c0992c816863e5b7673d8e8b6f04931}{
 \index{phys::UILayer@{phys::UILayer}!GetCaption@{GetCaption}}
@@ -527,7 +556,7 @@ Returns a pointer to the caption of the specified name.
 \end{DoxyReturn}
 
 
-Definition at line 211 of file uilayer.cpp.
+Definition at line 213 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a0f087439496766594aa3f94a8ef2ec2b}{
 \index{phys::UILayer@{phys::UILayer}!GetCaption@{GetCaption}}
@@ -547,7 +576,7 @@ Returns a pointer to the caption at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 224 of file uilayer.cpp.
+Definition at line 226 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a0f1d04779794d4401714b0d8fa90cab5}{
 \index{phys::UILayer@{phys::UILayer}!GetGorillaLayer@{GetGorillaLayer}}
@@ -566,7 +595,7 @@ Gets the internal gorilla layer pointer.
 \end{DoxyInternal}
 
 
-Definition at line 377 of file uilayer.cpp.
+Definition at line 391 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a61f5b816aa768a515cb3d31ab2b2088c}{
 \index{phys::UILayer@{phys::UILayer}!GetMarkupText@{GetMarkupText}}
@@ -586,7 +615,7 @@ Returns a pointer to the markup text of the specified name.
 \end{DoxyReturn}
 
 
-Definition at line 253 of file uilayer.cpp.
+Definition at line 255 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a2f40efc62324c5d2d5c1282f2ea6088d}{
 \index{phys::UILayer@{phys::UILayer}!GetMarkupText@{GetMarkupText}}
@@ -606,7 +635,7 @@ Returns a pointer to the markup text at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 266 of file uilayer.cpp.
+Definition at line 268 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_af69573dd43356fa8cf1672ac405f788e}{
 \index{phys::UILayer@{phys::UILayer}!GetName@{GetName}}
@@ -626,7 +655,7 @@ Returns a string containing the name of this layer.
 \end{DoxyReturn}
 
 
-Definition at line 101 of file uilayer.cpp.
+Definition at line 103 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a07ff0fc6febb6704f6cf78aa5b7a6fb9}{
 \index{phys::UILayer@{phys::UILayer}!GetNumButtons@{GetNumButtons}}
@@ -646,7 +675,7 @@ Returns the number of buttons this class is storing.
 \end{DoxyReturn}
 
 
-Definition at line 158 of file uilayer.cpp.
+Definition at line 160 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a76b9f48b8b40c4e933dc1f3cf624ffbc}{
 \index{phys::UILayer@{phys::UILayer}!GetNumCaptions@{GetNumCaptions}}
@@ -666,7 +695,7 @@ Returns the number of captions this class is storing.
 \end{DoxyReturn}
 
 
-Definition at line 229 of file uilayer.cpp.
+Definition at line 231 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a80f4761638d701d8767ad1c0f769985a}{
 \index{phys::UILayer@{phys::UILayer}!GetNumMarkupTexts@{GetNumMarkupTexts}}
@@ -686,7 +715,7 @@ Returns the number of markup texts this class is storing.
 \end{DoxyReturn}
 
 
-Definition at line 271 of file uilayer.cpp.
+Definition at line 273 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a42ad4ae8ba37db911270a3b1950b9814}{
 \index{phys::UILayer@{phys::UILayer}!GetNumRectangles@{GetNumRectangles}}
@@ -706,7 +735,7 @@ Returns the number of rectangles this class is storing.
 \end{DoxyReturn}
 
 
-Definition at line 187 of file uilayer.cpp.
+Definition at line 189 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_aa745147022b7f78cdc5bccca57985459}{
 \index{phys::UILayer@{phys::UILayer}!GetNumWidgets@{GetNumWidgets}}
@@ -726,7 +755,7 @@ Returns the number of widgets this class is storing.
 \end{DoxyReturn}
 
 
-Definition at line 306 of file uilayer.cpp.
+Definition at line 308 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_afb2b94ddabf0cce255dbd82d4e8a9312}{
 \index{phys::UILayer@{phys::UILayer}!GetRectangle@{GetRectangle}}
@@ -746,7 +775,7 @@ Returns a pointer to the rectangle at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 182 of file uilayer.cpp.
+Definition at line 184 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a2d4aaa7627339d7139d7a453ccf55ade}{
 \index{phys::UILayer@{phys::UILayer}!GetVisible@{GetVisible}}
@@ -766,7 +795,7 @@ Returns a bool representing the visability of the layer.
 \end{DoxyReturn}
 
 
-Definition at line 111 of file uilayer.cpp.
+Definition at line 113 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_ab16bb514422f10dab03dca0a6f269a66}{
 \index{phys::UILayer@{phys::UILayer}!GetWidget@{GetWidget}}
@@ -786,7 +815,7 @@ Returns a pointer to the widget at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 301 of file uilayer.cpp.
+Definition at line 303 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_ab5389a6ec5d5d534f7da852819fbc71b}{
 \index{phys::UILayer@{phys::UILayer}!GetWidget@{GetWidget}}
@@ -806,7 +835,7 @@ Returns a pointer to the widget of the specified name.
 \end{DoxyReturn}
 
 
-Definition at line 288 of file uilayer.cpp.
+Definition at line 290 of file uilayer.cpp.
 
 \hypertarget{classphys_1_1UILayer_a466e35a0362e5f8f47c35e646075432c}{
 \index{phys::UILayer@{phys::UILayer}!SetVisible@{SetVisible}}
@@ -826,7 +855,7 @@ Sets the layers' visability.
 \item[{\em Visable}]A bool representing the visability of the layer. \end{DoxyParams}
 
 
-Definition at line 106 of file uilayer.cpp.
+Definition at line 108 of file uilayer.cpp.
 
 
 

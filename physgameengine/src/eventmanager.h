@@ -131,7 +131,6 @@ namespace phys
             /// @todo TODO build a deconstructor that deletes all the events still in the queue
 
             /// @brief Default constructor
-            /// @param ParentWorld_ A pointer to the world that this world is working with Primarily
             /// @details This creates an empty PhysEventManger
             EventManager();
 

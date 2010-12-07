@@ -48,6 +48,8 @@
 #include "uicheckbox.h"
 #include "uimarkuptext.h"
 
+#include "uibuttonlistbox.h"
+
 #include "graphicsmanager.h"
 #include "world.h"
 

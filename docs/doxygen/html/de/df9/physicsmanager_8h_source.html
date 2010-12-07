@@ -130,177 +130,174 @@
 <a name="l00100"></a>00100 <span class="comment"></span>
 <a name="l00101"></a>00101 <span class="comment">            /// @brief This takes care of all the real work in contructing this</span>
 <a name="l00102"></a>00102 <span class="comment">            /// @details This method is called by all the constructors to insure consistent behavior.</span>
-<a name="l00103"></a>00103 <span class="comment">            /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with</span>
-<a name="l00104"></a>00104 <span class="comment">            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world</span>
-<a name="l00105"></a>00105 <span class="comment">            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world</span>
-<a name="l00106"></a>00106 <span class="comment">            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world</span>
-<a name="l00107"></a>00107 <span class="comment"></span>            <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_);
-<a name="l00108"></a>00108 <span class="comment"></span>
-<a name="l00109"></a>00109 <span class="comment">            /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect instance.</span>
-<a name="l00110"></a>00110 <span class="comment">            /// @details This function is automatically called every step.</span>
-<a name="l00111"></a>00111 <span class="comment"></span>            <span class="keywordtype">void</span> ProcessAllEffects();
-<a name="l00112"></a>00112         <span class="keyword">public</span>:
-<a name="l00113"></a>00113 <span class="comment"></span>
-<a name="l00114"></a>00114 <span class="comment">            /// @brief Simple Constructor</span>
-<a name="l00115"></a>00115 <span class="comment">            /// @details This constructor will assign some sane default values and will create a physics</span>
-<a name="l00116"></a>00116 <span class="comment">            /// world that can be used immediately</span>
-<a name="l00117"></a>00117 <span class="comment">            /// @param GameWorld_ This is a pointer to the game world this PhysicsManager will work with</span>
-<a name="l00118"></a>00118 <span class="comment"></span>            <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>();
-<a name="l00119"></a>00119 <span class="comment"></span>
-<a name="l00120"></a>00120 <span class="comment">            /// @brief Simple Constructor</span>
-<a name="l00121"></a>00121 <span class="comment">            /// @details This constructor will assign some sane default values and will create a physics</span>
-<a name="l00122"></a>00122 <span class="comment">            /// world that can be used immediately</span>
-<a name="l00123"></a>00123 <span class="comment">            /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with</span>
-<a name="l00124"></a>00124 <span class="comment">            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world</span>
-<a name="l00125"></a>00125 <span class="comment">            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world</span>
-<a name="l00126"></a>00126 <span class="comment">            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world</span>
-<a name="l00127"></a>00127 <span class="comment"></span>            <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_);
-<a name="l00128"></a>00128 <span class="comment"></span>
-<a name="l00129"></a>00129 <span class="comment">            /// @brief This configures the Physics Manager to work with the Graphic settings</span>
-<a name="l00130"></a>00130 <span class="comment">            /// @details This configures the Physics manager to work with the existing graphics settings. This must</span>
-<a name="l00131"></a>00131 <span class="comment">            /// be called before the physics manager is used, but after the graphics have been initialized</span>
-<a name="l00132"></a>00132 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();
-<a name="l00133"></a>00133 <span class="comment"></span>
-<a name="l00134"></a>00134 <span class="comment">            /// @brief Physics stepping during the main loop</span>
-<a name="l00135"></a>00135 <span class="comment">            /// @details This increments the the physics world the required amount to keep it in sync with the Graphics/Timing.</span>
-<a name="l00136"></a>00136 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoMainLoopItems();
-<a name="l00137"></a>00137 <span class="comment"></span>
-<a name="l00138"></a>00138 <span class="comment">            /// @brief Deconstructor</span>
-<a name="l00139"></a>00139 <span class="comment">            /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.</span>
-<a name="l00140"></a>00140 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>();
-<a name="l00141"></a>00141 <span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">            /// @brief Sets the gravity.</span>
-<a name="l00143"></a>00143 <span class="comment">            /// @details Sets the strength and direction of gravity within the world.</span>
-<a name="l00144"></a>00144 <span class="comment">            /// @param pgrav Vector3 representing the strength and direction of gravity.</span>
-<a name="l00145"></a>00145 <span class="comment"></span>            <span class="keywordtype">void</span> SetGravity(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> pgrav);
-<a name="l00146"></a>00146 <span class="comment"></span>
-<a name="l00147"></a>00147 <span class="comment">            /// @brief Gets the gravity.</span>
-<a name="l00148"></a>00148 <span class="comment">            /// @details Gets the currently set world gravity.</span>
-<a name="l00149"></a>00149 <span class="comment">            /// @return Returns the currently set world gravity.</span>
-<a name="l00150"></a>00150 <span class="comment"></span>            <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetGravity();
-<a name="l00151"></a>00151 <span class="comment"></span>
-<a name="l00152"></a>00152 <span class="comment">            /// @brief Sets the gravity for soft bodies.</span>
-<a name="l00153"></a>00153 <span class="comment">            /// @details Gravity for soft bodies is stored separately from rigid bodies.  So if you plan to use soft bodies in your game/simulation</span>
-<a name="l00154"></a>00154 <span class="comment">            /// you need to call this function otherwise they won&#39;t fall.</span>
-<a name="l00155"></a>00155 <span class="comment">            /// @param sgrav Vector3 representing the strength and direction of gravity.</span>
-<a name="l00156"></a>00156 <span class="comment"></span>            <span class="keywordtype">void</span> SetSoftGravity(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> sgrav);
-<a name="l00157"></a>00157 <span class="comment"></span>
-<a name="l00158"></a>00158 <span class="comment">            /// @brief Gets the soft body gravity.</span>
-<a name="l00159"></a>00159 <span class="comment">            /// @details Gets the currently set soft body world gravity.</span>
-<a name="l00160"></a>00160 <span class="comment">            /// @return Returns the currently set soft body world gravity.</span>
-<a name="l00161"></a>00161 <span class="comment"></span>            <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetSoftGravity();
-<a name="l00162"></a>00162 <span class="comment"></span>
-<a name="l00163"></a>00163 <span class="comment">            /// @brief Sets the gravity to be applied to a single object.</span>
-<a name="l00164"></a>00164 <span class="comment">            /// @details This function does not change the global gravity, only how gravity behaves for this specific object.  Note: This function only works on ActorRigid&#39;s.</span>
-<a name="l00165"></a>00165 <span class="comment">            /// @param Actor The actor whos gravity is to be changed.</span>
-<a name="l00166"></a>00166 <span class="comment">            /// @param igrav The value of the gravity to be applied.</span>
-<a name="l00167"></a>00167 <span class="comment"></span>            <span class="keywordtype">void</span> SetIndividualGravity(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> igrav);
-<a name="l00168"></a>00168 <span class="comment"></span>
-<a name="l00169"></a>00169 <span class="comment">            /// @brief Enables and Disables Physics Debug Drawing</span>
-<a name="l00170"></a>00170 <span class="comment">            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics</span>
-<a name="l00171"></a>00171 <span class="comment">            /// subsytem pixel for pixel.</span>
-<a name="l00172"></a>00172 <span class="comment">            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control</span>
-<a name="l00173"></a>00173 <span class="comment"></span>            <span class="keywordtype">void</span> SetDebugPhysicsRendering(<span class="keywordtype">int</span> ToBeEnabled);
-<a name="l00174"></a>00174 <span class="comment"></span>
-<a name="l00175"></a>00175 <span class="comment">            /// @brief Is Physics Debug Drawing currently enabled?</span>
-<a name="l00176"></a>00176 <span class="comment">            /// @details lets you check if Physics Debug Drawing is enabled or not.</span>
-<a name="l00177"></a>00177 <span class="comment">            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features</span>
-<a name="l00178"></a>00178 <span class="comment"></span>            <span class="keywordtype">int</span> GetDebugPhysicsRendering();
-<a name="l00179"></a>00179 <span class="comment"></span>
-<a name="l00180"></a>00180 <span class="comment">            /// @brief How many Wireframes do you want drawn from previous events</span>
-<a name="l00181"></a>00181 <span class="comment">            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount</span>
-<a name="l00182"></a>00182 <span class="comment">            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()</span>
-<a name="l00183"></a>00183 <span class="comment">            /// In conjunction with this to specify an amout of seconds worth of wireframes.</span>
-<a name="l00184"></a>00184 <span class="comment">            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don&#39;t forget to be mindful of the framerate,</span>
-<a name="l00185"></a>00185 <span class="comment">            /// Any amount more than just a few seconds worth can be cumbersome.</span>
-<a name="l00186"></a>00186 <span class="comment"></span>            <span class="keywordtype">void</span> SetDebugPhysicsWireCount(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> WireFrameCount_);
-<a name="l00187"></a>00187 <span class="comment"></span>
-<a name="l00188"></a>00188 <span class="comment">            /// @brief This gets how many WireFrames are being drawn.</span>
-<a name="l00189"></a>00189 <span class="comment">            /// @details This will tell you how many frames worth of previous in game events are being drawn.</span>
-<a name="l00190"></a>00190 <span class="comment">            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .</span>
-<a name="l00191"></a>00191 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetDebugPhysicsWireCount();
-<a name="l00192"></a>00192 <span class="comment"></span>
-<a name="l00193"></a>00193 <span class="comment">            /// @brief This does all the work reuired for the main loop to process physics</span>
-<a name="l00194"></a>00194 <span class="comment">            /// @details</span>
-<a name="l00195"></a>00195 <span class="comment">            /// @param TimeElapsed This is a real that represents the amount of time we need to simulate</span>
-<a name="l00196"></a>00196 <span class="comment"></span>            <span class="keywordtype">void</span> DoMainLoopItems(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;TimeElapsed);
-<a name="l00197"></a>00197 <span class="comment"></span>
-<a name="l00198"></a>00198 <span class="comment">            /// @brief Gets the offset between a point and an actor.</span>
-<a name="l00199"></a>00199 <span class="comment">            /// @details This function will return the offset between the specified world point and the specified actors center of mass.</span>
-<a name="l00200"></a>00200 <span class="comment">            /// @param OffsetInfo The vector and actor to compare for offset data.</span>
-<a name="l00201"></a>00201 <span class="comment">            /// @return Returns the Vector3 representing the actors offset from the world point.</span>
-<a name="l00202"></a>00202 <span class="comment"></span>            <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetActorOffset(<span class="keyword">const</span> <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a> &amp;OffsetInfo);
-<a name="l00203"></a>00203 <span class="comment"></span>
-<a name="l00204"></a>00204 <span class="comment">            /// @brief Adds a constraint to the world.</span>
-<a name="l00205"></a>00205 <span class="comment">            /// @details Adds the constraint to the world so that it can/will take effect.</span>
-<a name="l00206"></a>00206 <span class="comment">            /// @param Constraint The constraint to be added.</span>
-<a name="l00207"></a>00207 <span class="comment"></span>            <span class="keywordtype">void</span> AddConstraint(<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a>* Constraint);
-<a name="l00208"></a>00208 <span class="comment"></span>
-<a name="l00209"></a>00209 <span class="comment">            /// @brief Removes a constraint from the world.</span>
-<a name="l00210"></a>00210 <span class="comment">            /// @details Removes a constraint from the world so that it will have no effect.</span>
-<a name="l00211"></a>00211 <span class="comment">            /// @param Constraint The constraint to be removed.</span>
-<a name="l00212"></a>00212 <span class="comment"></span>            <span class="keywordtype">void</span> RemoveConstraint(<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a>* Constraint);
-<a name="l00213"></a>00213 <span class="comment"></span>
-<a name="l00214"></a>00214 <span class="comment">            /// @brief Stores an already generated physics shape.</span>
-<a name="l00215"></a>00215 <span class="comment">            /// @details This function will take an actors physics shape and store it for re-use in other actors, in case a shape is able to be re-used by other actors.</span>
-<a name="l00216"></a>00216 <span class="comment">            /// @param Actor The actor from which to store the shape.</span>
-<a name="l00217"></a>00217 <span class="comment">            /// @param ShapeName The name you wish to assign to the shape being stored.</span>
-<a name="l00218"></a>00218 <span class="comment"></span>            <span class="keywordtype">void</span> StorePhysicsShape(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;ShapeName);
-<a name="l00219"></a>00219 <span class="comment"></span>
-<a name="l00220"></a>00220 <span class="comment">            /// @brief Applies a previously stored shape.</span>
-<a name="l00221"></a>00221 <span class="comment">            /// @details This function will take a stored shape and apply it to the actor provided.</span>
-<a name="l00222"></a>00222 <span class="comment">            /// @param Actor The actor to which you want to apply the shape.</span>
-<a name="l00223"></a>00223 <span class="comment">            /// @param ShapeName The name of the shape you wish to have applied to the actor.</span>
-<a name="l00224"></a>00224 <span class="comment"></span>            <span class="keywordtype">void</span> ApplyPhysicsShape(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;ShapeName);
-<a name="l00225"></a>00225 <span class="comment"></span>
-<a name="l00226"></a>00226 <span class="comment">            /// @brief Adds an area effect to the world.</span>
-<a name="l00227"></a>00227 <span class="comment">            /// @details Adds an area effect to the world so that it can/will take effect.</span>
-<a name="l00228"></a>00228 <span class="comment">            /// @param AE The area effect to be added.</span>
-<a name="l00229"></a>00229 <span class="comment"></span>            <span class="keywordtype">void</span> AddAreaEffect(<a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>* AE);
-<a name="l00230"></a>00230 <span class="comment"></span>
-<a name="l00231"></a>00231 <span class="comment">            /// @brief Removes an area effect from the world.</span>
-<a name="l00232"></a>00232 <span class="comment">            /// @details Removes an area effect from the world so that it will have no effect.</span>
-<a name="l00233"></a>00233 <span class="comment">            /// @param AE The area effect to be removed.</span>
-<a name="l00234"></a>00234 <span class="comment"></span>            <span class="keywordtype">void</span> RemoveAreaEffect(<a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>* AE);
-<a name="l00235"></a>00235 <span class="comment"></span>
-<a name="l00236"></a>00236 <span class="comment">            /// @brief Gets an Area Effect by name.</span>
-<a name="l00237"></a>00237 <span class="comment">            /// @details This function will return the named area effect if it is stored.</span>
-<a name="l00238"></a>00238 <span class="comment">            /// @param Name The name of the area effect to find.</span>
-<a name="l00239"></a>00239 <span class="comment">            /// @return Returns a pointer to the named area effect.</span>
-<a name="l00240"></a>00240 <span class="comment"></span>            <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>* GetAreaEffect(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name);
-<a name="l00241"></a>00241 <span class="comment"></span>
-<a name="l00242"></a>00242 <span class="comment">            /// @brief Sets the Collision Parameters.</span>
-<a name="l00243"></a>00243 <span class="comment">            /// @details Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events.  The lower these numbers, the more events will be generated.  @n</span>
-<a name="l00244"></a>00244 <span class="comment">            /// These numbers both default to 1.</span>
-<a name="l00245"></a>00245 <span class="comment">            /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.  Default: 1</span>
-<a name="l00246"></a>00246 <span class="comment">            /// @param Force The amount of force applied in the collision to filter by.  This amount can vary more then the other param based on what you need.  Default: 1.0</span>
-<a name="l00247"></a>00247 <span class="comment"></span>            <span class="keywordtype">void</span> SetCollisionParams(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> Age, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Force);
-<a name="l00248"></a>00248 <span class="comment"></span>
-<a name="l00249"></a>00249 <span class="comment">            /// @brief Gets the Collision Age limit.</span>
-<a name="l00250"></a>00250 <span class="comment">            /// @details Gets the CollisionAge used in filtering out collision contacts used to make events.</span>
-<a name="l00251"></a>00251 <span class="comment">            /// @return This function will return the number of physics ticks the collision has to have existed to be used.</span>
-<a name="l00252"></a>00252 <span class="comment"></span>            <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> GetCollisionAge();
-<a name="l00253"></a>00253 <span class="comment"></span>
-<a name="l00254"></a>00254 <span class="comment">            /// @brief Gets the Collision Impulse limit.</span>
-<a name="l00255"></a>00255 <span class="comment">            /// @details Gets the Collision Impulse used in filtering out collision contacts used to make events.</span>
-<a name="l00256"></a>00256 <span class="comment">            /// @return This function will return the lower limit of the allowed force of the collision to generate an event.</span>
-<a name="l00257"></a>00257 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetImpulse();
-<a name="l00258"></a>00258 <span class="comment"></span>
-<a name="l00259"></a>00259 <span class="comment">            /// @internal</span>
-<a name="l00260"></a>00260 <span class="comment">            /// @brief This returns a pointer to the bullet physics world. This is for internal use only</span>
-<a name="l00261"></a>00261 <span class="comment"></span>            btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
-<a name="l00262"></a>00262 
-<a name="l00263"></a>00263         <span class="comment">//Inherited from ManagerBase</span><span class="comment"></span>
-<a name="l00264"></a>00264 <span class="comment">            /// @brief This returns the type of this manager.</span>
-<a name="l00265"></a>00265 <span class="comment">            /// @return This returns ManagerTypeName::PhysicsManager</span>
-<a name="l00266"></a>00266 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerTypeName</a> GetType() <span class="keyword">const</span>;
-<a name="l00267"></a>00267     };
-<a name="l00268"></a>00268 }
-<a name="l00269"></a>00269 
-<a name="l00270"></a>00270 <span class="preprocessor">#endif</span>
+<a name="l00103"></a>00103 <span class="comment">            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world</span>
+<a name="l00104"></a>00104 <span class="comment">            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world</span>
+<a name="l00105"></a>00105 <span class="comment">            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world</span>
+<a name="l00106"></a>00106 <span class="comment"></span>            <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_);
+<a name="l00107"></a>00107 <span class="comment"></span>
+<a name="l00108"></a>00108 <span class="comment">            /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect instance.</span>
+<a name="l00109"></a>00109 <span class="comment">            /// @details This function is automatically called every step.</span>
+<a name="l00110"></a>00110 <span class="comment"></span>            <span class="keywordtype">void</span> ProcessAllEffects();
+<a name="l00111"></a>00111         <span class="keyword">public</span>:
+<a name="l00112"></a>00112 <span class="comment"></span>
+<a name="l00113"></a>00113 <span class="comment">            /// @brief Simple Constructor</span>
+<a name="l00114"></a>00114 <span class="comment">            /// @details This constructor will assign some sane default values and will create a physics</span>
+<a name="l00115"></a>00115 <span class="comment">            /// world that can be used immediately</span>
+<a name="l00116"></a>00116 <span class="comment"></span>            <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>();
+<a name="l00117"></a>00117 <span class="comment"></span>
+<a name="l00118"></a>00118 <span class="comment">            /// @brief Simple Constructor</span>
+<a name="l00119"></a>00119 <span class="comment">            /// @details This constructor will assign some sane default values and will create a physics</span>
+<a name="l00120"></a>00120 <span class="comment">            /// world that can be used immediately</span>
+<a name="l00121"></a>00121 <span class="comment">            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world</span>
+<a name="l00122"></a>00122 <span class="comment">            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world</span>
+<a name="l00123"></a>00123 <span class="comment">            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world</span>
+<a name="l00124"></a>00124 <span class="comment"></span>            <a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyLowerBounds_, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;GeographyUpperbounds_, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> &amp;MaxPhysicsProxies_);
+<a name="l00125"></a>00125 <span class="comment"></span>
+<a name="l00126"></a>00126 <span class="comment">            /// @brief This configures the Physics Manager to work with the Graphic settings</span>
+<a name="l00127"></a>00127 <span class="comment">            /// @details This configures the Physics manager to work with the existing graphics settings. This must</span>
+<a name="l00128"></a>00128 <span class="comment">            /// be called before the physics manager is used, but after the graphics have been initialized</span>
+<a name="l00129"></a>00129 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();
+<a name="l00130"></a>00130 <span class="comment"></span>
+<a name="l00131"></a>00131 <span class="comment">            /// @brief Physics stepping during the main loop</span>
+<a name="l00132"></a>00132 <span class="comment">            /// @details This increments the the physics world the required amount to keep it in sync with the Graphics/Timing.</span>
+<a name="l00133"></a>00133 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoMainLoopItems();
+<a name="l00134"></a>00134 <span class="comment"></span>
+<a name="l00135"></a>00135 <span class="comment">            /// @brief Deconstructor</span>
+<a name="l00136"></a>00136 <span class="comment">            /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.</span>
+<a name="l00137"></a>00137 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>();
+<a name="l00138"></a>00138 <span class="comment"></span>
+<a name="l00139"></a>00139 <span class="comment">            /// @brief Sets the gravity.</span>
+<a name="l00140"></a>00140 <span class="comment">            /// @details Sets the strength and direction of gravity within the world.</span>
+<a name="l00141"></a>00141 <span class="comment">            /// @param pgrav Vector3 representing the strength and direction of gravity.</span>
+<a name="l00142"></a>00142 <span class="comment"></span>            <span class="keywordtype">void</span> SetGravity(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> pgrav);
+<a name="l00143"></a>00143 <span class="comment"></span>
+<a name="l00144"></a>00144 <span class="comment">            /// @brief Gets the gravity.</span>
+<a name="l00145"></a>00145 <span class="comment">            /// @details Gets the currently set world gravity.</span>
+<a name="l00146"></a>00146 <span class="comment">            /// @return Returns the currently set world gravity.</span>
+<a name="l00147"></a>00147 <span class="comment"></span>            <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetGravity();
+<a name="l00148"></a>00148 <span class="comment"></span>
+<a name="l00149"></a>00149 <span class="comment">            /// @brief Sets the gravity for soft bodies.</span>
+<a name="l00150"></a>00150 <span class="comment">            /// @details Gravity for soft bodies is stored separately from rigid bodies.  So if you plan to use soft bodies in your game/simulation</span>
+<a name="l00151"></a>00151 <span class="comment">            /// you need to call this function otherwise they won&#39;t fall.</span>
+<a name="l00152"></a>00152 <span class="comment">            /// @param sgrav Vector3 representing the strength and direction of gravity.</span>
+<a name="l00153"></a>00153 <span class="comment"></span>            <span class="keywordtype">void</span> SetSoftGravity(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> sgrav);
+<a name="l00154"></a>00154 <span class="comment"></span>
+<a name="l00155"></a>00155 <span class="comment">            /// @brief Gets the soft body gravity.</span>
+<a name="l00156"></a>00156 <span class="comment">            /// @details Gets the currently set soft body world gravity.</span>
+<a name="l00157"></a>00157 <span class="comment">            /// @return Returns the currently set soft body world gravity.</span>
+<a name="l00158"></a>00158 <span class="comment"></span>            <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetSoftGravity();
+<a name="l00159"></a>00159 <span class="comment"></span>
+<a name="l00160"></a>00160 <span class="comment">            /// @brief Sets the gravity to be applied to a single object.</span>
+<a name="l00161"></a>00161 <span class="comment">            /// @details This function does not change the global gravity, only how gravity behaves for this specific object.  Note: This function only works on ActorRigid&#39;s.</span>
+<a name="l00162"></a>00162 <span class="comment">            /// @param Actor The actor whos gravity is to be changed.</span>
+<a name="l00163"></a>00163 <span class="comment">            /// @param igrav The value of the gravity to be applied.</span>
+<a name="l00164"></a>00164 <span class="comment"></span>            <span class="keywordtype">void</span> SetIndividualGravity(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> igrav);
+<a name="l00165"></a>00165 <span class="comment"></span>
+<a name="l00166"></a>00166 <span class="comment">            /// @brief Enables and Disables Physics Debug Drawing</span>
+<a name="l00167"></a>00167 <span class="comment">            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics</span>
+<a name="l00168"></a>00168 <span class="comment">            /// subsytem pixel for pixel.</span>
+<a name="l00169"></a>00169 <span class="comment">            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control</span>
+<a name="l00170"></a>00170 <span class="comment"></span>            <span class="keywordtype">void</span> SetDebugPhysicsRendering(<span class="keywordtype">int</span> ToBeEnabled);
+<a name="l00171"></a>00171 <span class="comment"></span>
+<a name="l00172"></a>00172 <span class="comment">            /// @brief Is Physics Debug Drawing currently enabled?</span>
+<a name="l00173"></a>00173 <span class="comment">            /// @details lets you check if Physics Debug Drawing is enabled or not.</span>
+<a name="l00174"></a>00174 <span class="comment">            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features</span>
+<a name="l00175"></a>00175 <span class="comment"></span>            <span class="keywordtype">int</span> GetDebugPhysicsRendering();
+<a name="l00176"></a>00176 <span class="comment"></span>
+<a name="l00177"></a>00177 <span class="comment">            /// @brief How many Wireframes do you want drawn from previous events</span>
+<a name="l00178"></a>00178 <span class="comment">            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount</span>
+<a name="l00179"></a>00179 <span class="comment">            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()</span>
+<a name="l00180"></a>00180 <span class="comment">            /// In conjunction with this to specify an amout of seconds worth of wireframes.</span>
+<a name="l00181"></a>00181 <span class="comment">            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don&#39;t forget to be mindful of the framerate,</span>
+<a name="l00182"></a>00182 <span class="comment">            /// Any amount more than just a few seconds worth can be cumbersome.</span>
+<a name="l00183"></a>00183 <span class="comment"></span>            <span class="keywordtype">void</span> SetDebugPhysicsWireCount(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> WireFrameCount_);
+<a name="l00184"></a>00184 <span class="comment"></span>
+<a name="l00185"></a>00185 <span class="comment">            /// @brief This gets how many WireFrames are being drawn.</span>
+<a name="l00186"></a>00186 <span class="comment">            /// @details This will tell you how many frames worth of previous in game events are being drawn.</span>
+<a name="l00187"></a>00187 <span class="comment">            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .</span>
+<a name="l00188"></a>00188 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetDebugPhysicsWireCount();
+<a name="l00189"></a>00189 <span class="comment"></span>
+<a name="l00190"></a>00190 <span class="comment">            /// @brief This does all the work reuired for the main loop to process physics</span>
+<a name="l00191"></a>00191 <span class="comment">            /// @details</span>
+<a name="l00192"></a>00192 <span class="comment">            /// @param TimeElapsed This is a real that represents the amount of time we need to simulate</span>
+<a name="l00193"></a>00193 <span class="comment"></span>            <span class="keywordtype">void</span> DoMainLoopItems(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;TimeElapsed);
+<a name="l00194"></a>00194 <span class="comment"></span>
+<a name="l00195"></a>00195 <span class="comment">            /// @brief Gets the offset between a point and an actor.</span>
+<a name="l00196"></a>00196 <span class="comment">            /// @details This function will return the offset between the specified world point and the specified actors center of mass.</span>
+<a name="l00197"></a>00197 <span class="comment">            /// @param OffsetInfo The vector and actor to compare for offset data.</span>
+<a name="l00198"></a>00198 <span class="comment">            /// @return Returns the Vector3 representing the actors offset from the world point.</span>
+<a name="l00199"></a>00199 <span class="comment"></span>            <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetActorOffset(<span class="keyword">const</span> <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a> &amp;OffsetInfo);
+<a name="l00200"></a>00200 <span class="comment"></span>
+<a name="l00201"></a>00201 <span class="comment">            /// @brief Adds a constraint to the world.</span>
+<a name="l00202"></a>00202 <span class="comment">            /// @details Adds the constraint to the world so that it can/will take effect.</span>
+<a name="l00203"></a>00203 <span class="comment">            /// @param Constraint The constraint to be added.</span>
+<a name="l00204"></a>00204 <span class="comment"></span>            <span class="keywordtype">void</span> AddConstraint(<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a>* Constraint);
+<a name="l00205"></a>00205 <span class="comment"></span>
+<a name="l00206"></a>00206 <span class="comment">            /// @brief Removes a constraint from the world.</span>
+<a name="l00207"></a>00207 <span class="comment">            /// @details Removes a constraint from the world so that it will have no effect.</span>
+<a name="l00208"></a>00208 <span class="comment">            /// @param Constraint The constraint to be removed.</span>
+<a name="l00209"></a>00209 <span class="comment"></span>            <span class="keywordtype">void</span> RemoveConstraint(<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a>* Constraint);
+<a name="l00210"></a>00210 <span class="comment"></span>
+<a name="l00211"></a>00211 <span class="comment">            /// @brief Stores an already generated physics shape.</span>
+<a name="l00212"></a>00212 <span class="comment">            /// @details This function will take an actors physics shape and store it for re-use in other actors, in case a shape is able to be re-used by other actors.</span>
+<a name="l00213"></a>00213 <span class="comment">            /// @param Actor The actor from which to store the shape.</span>
+<a name="l00214"></a>00214 <span class="comment">            /// @param ShapeName The name you wish to assign to the shape being stored.</span>
+<a name="l00215"></a>00215 <span class="comment"></span>            <span class="keywordtype">void</span> StorePhysicsShape(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;ShapeName);
+<a name="l00216"></a>00216 <span class="comment"></span>
+<a name="l00217"></a>00217 <span class="comment">            /// @brief Applies a previously stored shape.</span>
+<a name="l00218"></a>00218 <span class="comment">            /// @details This function will take a stored shape and apply it to the actor provided.</span>
+<a name="l00219"></a>00219 <span class="comment">            /// @param Actor The actor to which you want to apply the shape.</span>
+<a name="l00220"></a>00220 <span class="comment">            /// @param ShapeName The name of the shape you wish to have applied to the actor.</span>
+<a name="l00221"></a>00221 <span class="comment"></span>            <span class="keywordtype">void</span> ApplyPhysicsShape(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* Actor, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;ShapeName);
+<a name="l00222"></a>00222 <span class="comment"></span>
+<a name="l00223"></a>00223 <span class="comment">            /// @brief Adds an area effect to the world.</span>
+<a name="l00224"></a>00224 <span class="comment">            /// @details Adds an area effect to the world so that it can/will take effect.</span>
+<a name="l00225"></a>00225 <span class="comment">            /// @param AE The area effect to be added.</span>
+<a name="l00226"></a>00226 <span class="comment"></span>            <span class="keywordtype">void</span> AddAreaEffect(<a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>* AE);
+<a name="l00227"></a>00227 <span class="comment"></span>
+<a name="l00228"></a>00228 <span class="comment">            /// @brief Removes an area effect from the world.</span>
+<a name="l00229"></a>00229 <span class="comment">            /// @details Removes an area effect from the world so that it will have no effect.</span>
+<a name="l00230"></a>00230 <span class="comment">            /// @param AE The area effect to be removed.</span>
+<a name="l00231"></a>00231 <span class="comment"></span>            <span class="keywordtype">void</span> RemoveAreaEffect(<a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>* AE);
+<a name="l00232"></a>00232 <span class="comment"></span>
+<a name="l00233"></a>00233 <span class="comment">            /// @brief Gets an Area Effect by name.</span>
+<a name="l00234"></a>00234 <span class="comment">            /// @details This function will return the named area effect if it is stored.</span>
+<a name="l00235"></a>00235 <span class="comment">            /// @param Name The name of the area effect to find.</span>
+<a name="l00236"></a>00236 <span class="comment">            /// @return Returns a pointer to the named area effect.</span>
+<a name="l00237"></a>00237 <span class="comment"></span>            <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&amp;#39;s in the world that have unique effects.">AreaEffect</a>* GetAreaEffect(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name);
+<a name="l00238"></a>00238 <span class="comment"></span>
+<a name="l00239"></a>00239 <span class="comment">            /// @brief Sets the Collision Parameters.</span>
+<a name="l00240"></a>00240 <span class="comment">            /// @details Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events.  The lower these numbers, the more events will be generated.  @n</span>
+<a name="l00241"></a>00241 <span class="comment">            /// These numbers both default to 1.</span>
+<a name="l00242"></a>00242 <span class="comment">            /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.  Default: 1</span>
+<a name="l00243"></a>00243 <span class="comment">            /// @param Force The amount of force applied in the collision to filter by.  This amount can vary more then the other param based on what you need.  Default: 1.0</span>
+<a name="l00244"></a>00244 <span class="comment"></span>            <span class="keywordtype">void</span> SetCollisionParams(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> Age, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Force);
+<a name="l00245"></a>00245 <span class="comment"></span>
+<a name="l00246"></a>00246 <span class="comment">            /// @brief Gets the Collision Age limit.</span>
+<a name="l00247"></a>00247 <span class="comment">            /// @details Gets the CollisionAge used in filtering out collision contacts used to make events.</span>
+<a name="l00248"></a>00248 <span class="comment">            /// @return This function will return the number of physics ticks the collision has to have existed to be used.</span>
+<a name="l00249"></a>00249 <span class="comment"></span>            <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> GetCollisionAge();
+<a name="l00250"></a>00250 <span class="comment"></span>
+<a name="l00251"></a>00251 <span class="comment">            /// @brief Gets the Collision Impulse limit.</span>
+<a name="l00252"></a>00252 <span class="comment">            /// @details Gets the Collision Impulse used in filtering out collision contacts used to make events.</span>
+<a name="l00253"></a>00253 <span class="comment">            /// @return This function will return the lower limit of the allowed force of the collision to generate an event.</span>
+<a name="l00254"></a>00254 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetImpulse();
+<a name="l00255"></a>00255 <span class="comment"></span>
+<a name="l00256"></a>00256 <span class="comment">            /// @internal</span>
+<a name="l00257"></a>00257 <span class="comment">            /// @brief This returns a pointer to the bullet physics world. This is for internal use only</span>
+<a name="l00258"></a>00258 <span class="comment"></span>            btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
+<a name="l00259"></a>00259 
+<a name="l00260"></a>00260         <span class="comment">//Inherited from ManagerBase</span><span class="comment"></span>
+<a name="l00261"></a>00261 <span class="comment">            /// @brief This returns the type of this manager.</span>
+<a name="l00262"></a>00262 <span class="comment">            /// @return This returns ManagerTypeName::PhysicsManager</span>
+<a name="l00263"></a>00263 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerTypeName</a> GetType() <span class="keyword">const</span>;
+<a name="l00264"></a>00264     };
+<a name="l00265"></a>00265 }
+<a name="l00266"></a>00266 
+<a name="l00267"></a>00267 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 10:53:51 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

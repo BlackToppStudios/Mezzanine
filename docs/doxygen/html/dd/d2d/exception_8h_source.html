@@ -95,26 +95,27 @@
 <a name="l00065"></a>00065         <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00066"></a>00066 <span class="comment">            /// @brief Simple Constructor.</span>
 <a name="l00067"></a>00067 <span class="comment">            /// @param Message The Error you want stored in the exception.</span>
-<a name="l00068"></a>00068 <span class="comment"></span>            <a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">Exception</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Message, <span class="keywordtype">bool</span> Logged_ = <span class="keyword">false</span>);
-<a name="l00069"></a>00069 <span class="comment"></span>
-<a name="l00070"></a>00070 <span class="comment">            /// @brief Retrieves the error message.</span>
-<a name="l00071"></a>00071 <span class="comment">            /// @return This returns a string that is the stored error message.</span>
-<a name="l00072"></a>00072 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> what() <span class="keywordflow">throw</span>();
-<a name="l00073"></a>00073 <span class="comment"></span>
-<a name="l00074"></a>00074 <span class="comment">            /// @brief Has this exception been on a trip through the Logger?</span>
-<a name="l00075"></a>00075 <span class="comment">            /// @return A bool storing true if it has and false if it has not.</span>
-<a name="l00076"></a>00076 <span class="comment"></span>            <span class="keywordtype">bool</span> HasBeenLogged();
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078             ~<a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">Exception</a>() <span class="keywordflow">throw</span>();
-<a name="l00079"></a>00079 
+<a name="l00068"></a>00068 <span class="comment">            /// @param Logged_ Has this exception already been sent to tthe logger</span>
+<a name="l00069"></a>00069 <span class="comment"></span>            <a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">Exception</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;Message, <span class="keywordtype">bool</span> Logged_ = <span class="keyword">false</span>);
+<a name="l00070"></a>00070 <span class="comment"></span>
+<a name="l00071"></a>00071 <span class="comment">            /// @brief Retrieves the error message.</span>
+<a name="l00072"></a>00072 <span class="comment">            /// @return This returns a string that is the stored error message.</span>
+<a name="l00073"></a>00073 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> what() <span class="keywordflow">throw</span>();
+<a name="l00074"></a>00074 <span class="comment"></span>
+<a name="l00075"></a>00075 <span class="comment">            /// @brief Has this exception been on a trip through the Logger?</span>
+<a name="l00076"></a>00076 <span class="comment">            /// @return A bool storing true if it has and false if it has not.</span>
+<a name="l00077"></a>00077 <span class="comment"></span>            <span class="keywordtype">bool</span> HasBeenLogged();
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079             ~<a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">Exception</a>() <span class="keywordflow">throw</span>();
 <a name="l00080"></a>00080 
-<a name="l00081"></a>00081     };<span class="comment">// \Exception</span>
-<a name="l00082"></a>00082 } <span class="comment">// \phys</span>
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="preprocessor">#endif // \exception_cpp</span>
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082     };<span class="comment">// \Exception</span>
+<a name="l00083"></a>00083 } <span class="comment">// \phys</span>
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 <span class="preprocessor">#endif // \exception_cpp</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 10:53:51 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

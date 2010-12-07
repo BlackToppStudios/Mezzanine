@@ -76,7 +76,6 @@ namespace phys
             Whole RenderWidth;
 
             /// @brief Adjust all Settings
-            /// @param GameWorld_ This is a pointer to the phys::World to which this GrapchisManager will be attached
             /// @param Width_ The desired width.
             /// @param Height_ The desired height.
             /// @param FullScreen_ True if fullscreen, false if not.
@@ -93,12 +92,10 @@ namespace phys
 
         public:
             /// @brief Basic constructor
-            /// @param GameWorld_ This is a pointer to the phys::World to which this GrapchisManager will be attached
             /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false
             GraphicsManager();
 
             /// @brief Versatile Constructor
-            /// @param GameWorld_ This is a pointer to the phys::World to which this GrapchisManager will be attached
             /// @param Width_ The desired width.
             /// @param Height_ The desired height.
             /// @param FullScreen_ True if fullscreen, false if not.

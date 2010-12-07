@@ -248,9 +248,11 @@ namespace phys
 
             /// @brief Descriptive constructor With Manager Pointers
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
-            /// @param GeographyLowerBounds_ The lower limiasked Jan 29 '09 at 9:27ts for the size of the physics simulation
+            /// @param GeographyLowerBounds_ The lower limits for the size of the physics simulation
             /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
             /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
+            /// @param SceneManagerName An unique indentifier for the scene manager
+            /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @warning Do not make a new world if one already exists. This can only cause problems
             World(  const Vector3 &GeographyLowerBounds_,
@@ -268,6 +270,8 @@ namespace phys
             /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
             /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
             /// @param LogFileName This is the place that log messages get sent to.
+            /// @param SceneManagerName An unique indentifier for the scene manager
+            /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
             /// @warning Do not make a new world if one already exists. This can only cause problems.
             World(  const Vector3 &GeographyLowerBounds_,
@@ -279,7 +283,7 @@ namespace phys
                     const std::vector <ManagerBase*> &ManagerToBeAdded);
 
             /// @brief Default constructor
-            /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows.
+            /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Actors
             /// @warning Do not make a new world if one already exists. This can only cause problems
             World();
 
@@ -312,7 +316,7 @@ namespace phys
             }
 
             /// @brief Log String directly with no conversion
-            /// @param Message The string to log
+            /// @param message The string to log
             void LogString(const String& message);
 
         ///////////////////////////////////////////////////////////////////////////////

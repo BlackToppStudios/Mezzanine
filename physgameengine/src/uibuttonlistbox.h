@@ -41,12 +41,13 @@
 #define _uibuttonlistbox_h
 
 #include "uiwidget.h"
-
 namespace phys
 {
     namespace UI
     {
         class Rectangle;
+        class Scrollbar;
+        class Button;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class ButtonListBox
         /// @headerfile uibuttonlistbox.h
@@ -57,7 +58,7 @@ namespace phys
         {
             protected:
                 Rectangle* BoxBack;
-                Scrollbar* VertScroll;
+                //Scrollbar* VertScroll;
                 std::vector<Button*> Selections;
                 std::vector<Button*> VisableSelections;
                 /// @brief For use with widget update/automation.

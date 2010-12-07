@@ -107,7 +107,7 @@ namespace phys
                 /// @return A phys::String that contains the File encoding.
                 String GetEncoding() const;
 
-                /// @param Check if this is this a Standalone Document.
+                /// @brief Check if this is this a Standalone Document.
                 /// @return A phys::String Defining if this is standalone document. Usually a "yes" or "no". Setting this to "no" is part of assiging an external
                 String GetStandalone() const;
 

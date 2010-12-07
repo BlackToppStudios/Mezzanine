@@ -55,7 +55,7 @@ namespace phys
             : Parent(Layer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
-              ButtonCallback(NULL),
+              Callback(NULL),
               MouseHover(false),
               IsText(false),
               RelPosition(Position),

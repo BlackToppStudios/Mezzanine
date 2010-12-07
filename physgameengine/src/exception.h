@@ -65,6 +65,7 @@ namespace phys
         public:
             /// @brief Simple Constructor.
             /// @param Message The Error you want stored in the exception.
+            /// @param Logged_ Has this exception already been sent to tthe logger
             Exception(const String &Message, bool Logged_ = false);
 
             /// @brief Retrieves the error message.

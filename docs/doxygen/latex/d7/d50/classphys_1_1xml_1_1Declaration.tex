@@ -38,7 +38,7 @@ virtual std::ostream \& \hyperlink{classphys_1_1xml_1_1Declaration_ae57b8d5ac09e
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1xml_1_1Declaration_aa42a5baf535812505d3940a4a12a9629}{GetEncoding} () const 
 \begin{DoxyCompactList}\small\item\em Get what kind of encoding is this document stored in. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1xml_1_1Declaration_a32f767a5ae92a47b5a49fa59f8ed1a18}{GetStandalone} () const 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Check if this is this a Standalone \hyperlink{classphys_1_1xml_1_1Document}{Document}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -160,8 +160,9 @@ Definition at line 54 of file xmldeclaration.cpp.
 ) const}}
 \label{d7/d50/classphys_1_1xml_1_1Declaration_a32f767a5ae92a47b5a49fa59f8ed1a18}
 
-\begin{DoxyParams}{Parameters}
-\item[{\em Check}]if this is this a Standalone \hyperlink{classphys_1_1xml_1_1Document}{Document}. \end{DoxyParams}
+
+Check if this is this a Standalone \hyperlink{classphys_1_1xml_1_1Document}{Document}. 
+
 \begin{DoxyReturn}{Returns}
 A \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{phys::String} Defining if this is standalone document. Usually a \char`\"{}yes\char`\"{} or \char`\"{}no\char`\"{}. Setting this to \char`\"{}no\char`\"{} is part of assiging an external 
 \end{DoxyReturn}

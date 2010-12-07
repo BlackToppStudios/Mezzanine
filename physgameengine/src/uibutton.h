@@ -175,7 +175,7 @@ namespace phys
                 ~ButtonCallback();
                 /// @brief The function called for this callback.  This will be called every time the
                 /// button is checked for mouse hover.
-                void DoCallbackItems() = 0;
+                virtual void DoCallbackItems() = 0;
 
         };//buttoncallback
     }//UI
