@@ -471,7 +471,18 @@ void LoadContent()
 
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
+	String Content(""), ZippedContent("");
+/*
+	(*XMLptr) >> Content;
+	(*Zippedptr) >> ZippedContent;
 
+	TheWorld->Log("Streamed XML Content");
+	TheWorld->Log(Content);
+	TheWorld->Log("Streamed and Zipped XML Content");
+	TheWorld->Log(ZippedContent);
+*/
+	char chararray[1000];
+	(*XMLptr) >> chararray;
         delete XMLptr;
         delete Zippedptr;
     }
