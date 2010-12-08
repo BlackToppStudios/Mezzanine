@@ -66,6 +66,7 @@ namespace phys
         class TextButton;
         class MarkupText;
         class CheckBox;
+        class ButtonListBox;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UILayer

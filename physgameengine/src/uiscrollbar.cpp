@@ -658,11 +658,6 @@ namespace phys
 
         }*/
 
-        Button* Scrollbar::GetHoveredButton()
-        {
-            return HoveredButton;
-        }
-
         Button* Scrollbar::GetScroller()
         {
             return Scroller;

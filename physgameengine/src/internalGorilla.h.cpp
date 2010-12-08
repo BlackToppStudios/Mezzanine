@@ -1867,6 +1867,38 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
+    void SetVisible(bool Vis)
+    {
+     if (mVisible == Vis)
+      return;
+     mVisible = Vis;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    bool IsVisible() const
+    {
+     return mVisible;
+    }
+
+    void Show()
+    {
+     if (mVisible)
+      return;
+     mVisible = true;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    void Hide()
+    {
+     if (!mVisible)
+      return;
+     mVisible = false;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
     void  RenderPriority(Gorilla::RenderPriority Priority)
     {
      mPriority = Priority;
@@ -1899,6 +1931,7 @@ namespace Gorilla
     Ogre::ColourValue  mBorderColour[4];
     Ogre::Vector2      mUV[4];
     bool               mDirty;
+    bool               mVisible;
     buffer<Vertex>     mVertices;
     Gorilla::RenderPriority mPriority;
   };
@@ -2196,6 +2229,38 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
+    void SetVisible(bool Vis)
+    {
+     if (mVisible == Vis)
+      return;
+     mVisible = Vis;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    bool IsVisible() const
+    {
+     return mVisible;
+    }
+
+    void Show()
+    {
+     if (mVisible)
+      return;
+     mVisible = true;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    void Hide()
+    {
+     if (!mVisible)
+      return;
+     mVisible = false;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
     void  RenderPriority(Gorilla::RenderPriority Priority)
     {
      mPriority = Priority;
@@ -2228,6 +2293,7 @@ namespace Gorilla
     Ogre::ColourValue  mBackgroundColour, mBorderColour;
     Sprite*            mSprite;
     bool               mDirty;
+    bool               mVisible;
     buffer<Vertex>     mVertices;
     Gorilla::RenderPriority mPriority;
 
@@ -2275,6 +2341,38 @@ namespace Gorilla
     */
     void  end(bool isClosed = false);
 
+    void SetVisible(bool Vis)
+    {
+     if (mVisible == Vis)
+      return;
+     mVisible = Vis;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    bool IsVisible() const
+    {
+     return mVisible;
+    }
+
+    void Show()
+    {
+     if (mVisible)
+      return;
+     mVisible = true;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    void Hide()
+    {
+     if (!mVisible)
+      return;
+     mVisible = false;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
     void  RenderPriority(Gorilla::RenderPriority Priority)
     {
      mPriority = Priority;
@@ -2307,6 +2405,7 @@ namespace Gorilla
     bool                  mIsClosed;
     buffer<Ogre::Vector2> mPositions;
     bool                  mDirty;
+    bool                  mVisible;
     buffer<Vertex>        mVertices;
     Gorilla::RenderPriority mPriority;
   };
@@ -2421,6 +2520,38 @@ namespace Gorilla
     */
     void  end();
 
+    void SetVisible(bool Vis)
+    {
+     if (mVisible == Vis)
+      return;
+     mVisible = Vis;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    bool IsVisible() const
+    {
+     return mVisible;
+    }
+
+    void Show()
+    {
+     if (mVisible)
+      return;
+     mVisible = true;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    void Hide()
+    {
+     if (!mVisible)
+      return;
+     mVisible = false;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
     void  RenderPriority(Gorilla::RenderPriority Priority)
     {
      mPriority = Priority;
@@ -2451,6 +2582,7 @@ namespace Gorilla
     buffer<Quad>          mQuads;
     buffer<Vertex>        mVertices;
     bool                  mDirty;
+    bool                  mVisible;
     Gorilla::RenderPriority mPriority;
 
   };
@@ -2735,9 +2867,43 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
+    void SetVisible(bool Vis)
+    {
+     if (mVisible == Vis)
+      return;
+     mVisible = Vis;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    bool IsVisible() const
+    {
+     return mVisible;
+    }
+
+    void Show()
+    {
+     if (mVisible)
+      return;
+     mVisible = true;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    void Hide()
+    {
+     if (!mVisible)
+      return;
+     mVisible = false;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
     void SetGlyphIndex(Ogre::uint glyphDataIndex)
     {
      mGlyphData = mLayer->_getGlyphData(glyphDataIndex);
+     mDirty = true;
+     mLayer->_markDirty();
     }
 
     void  RenderPriority(Gorilla::RenderPriority Priority)
@@ -2776,6 +2942,7 @@ namespace Gorilla
     Ogre::String          mText;
     Ogre::ColourValue     mColour, mBackground;
     bool                  mDirty;
+    bool                  mVisible;
     buffer<Vertex>        mVertices;
     size_t                mClippedLeftIndex, mClippedRightIndex;
     Gorilla::RenderPriority mPriority;
@@ -2945,9 +3112,43 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
+    void SetVisible(bool Vis)
+    {
+     if (mVisible == Vis)
+      return;
+     mVisible = Vis;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    bool IsVisible() const
+    {
+     return mVisible;
+    }
+
+    void Show()
+    {
+     if (mVisible)
+      return;
+     mVisible = true;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
+    void Hide()
+    {
+     if (!mVisible)
+      return;
+     mVisible = false;
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
     void SetDefaultGlyphIndex(Ogre::uint glyphDataIndex)
     {
      mDefaultGlyphData = mLayer->_getGlyphData(glyphDataIndex);
+     mDirty = true;
+     mLayer->_markDirty();
     }
 
     void  RenderPriority(Gorilla::RenderPriority Priority)
@@ -2992,6 +3193,7 @@ namespace Gorilla
     Ogre::String          mText;
     Ogre::ColourValue     mBackground;
     bool                  mDirty, mTextDirty;
+    bool                  mVisible;
     buffer<Character>     mCharacters;
     buffer<Vertex>        mVertices;
     size_t                mClippedIndex;

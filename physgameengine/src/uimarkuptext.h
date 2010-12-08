@@ -85,26 +85,36 @@ namespace phys
                 /// @param Layer Pointer to the layer that created this markup text.
                 MarkupText(String& name, Vector2 Position, Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
-                ~MarkupText();
+                virtual ~MarkupText();
+                /// @brief Sets the visibility of this markup text.
+                /// @param Visible Bool determining whether or not this markup text should be visible.
+                virtual void SetVisible(bool Visible);
+                /// @brief Gets the visibility of this markup text.
+                /// @return Returns a bool representing the visibility of this markup text.
+                virtual bool IsVisible();
+                /// @brief Forces this markup text to be shown.
+                virtual void Show();
+                /// @brief Forces this markup text to hide.
+                virtual void Hide();
                 /// @brief Gets the name of this markup text.
                 /// @return Returns a string containing the name of this markup text.
-                String& GetName();
+                virtual String& GetName();
                 /// @brief Sets the text displayed within the markup text.
                 /// @param Text The text to be displayed.
-                void SetText(String& Text);
+                virtual void SetText(String& Text);
                 /// @brief Gets the text displayed within the markup text.
                 /// @return Returns the text being displayed.
-                String GetText();
+                virtual String GetText();
                 /// @brief Sets the Default glyph index to be used with this markup text.
                 /// @details The glyph index is defined in your gorilla file.  This class can change which
                 /// glyph is uses with it's markup language.  This simply defines which to use when one isn't
                 /// specified.
                 /// @param DefaultGlyphIndex The index of the glyph to use with this markup text.
-                void SetDefaultGlyphIndex(Whole DefaultGlyphIndex);
+                virtual void SetDefaultGlyphIndex(Whole DefaultGlyphIndex);
                 /// @brief Gets the Default glyph index in use by this markup text.
                 /// @details The glyph index is defined in your gorilla file.
                 /// @return Returns a Whole representing the index of the glyph in use by this markup text.
-                Whole GetDefaultGlyphIndex();
+                virtual Whole GetDefaultGlyphIndex();
                 /*/// @brief Aligns the text of the markup text.
                 /// @param Align The enum value representing the horizontal alignment to be set.
                 void HorizontallyAlign(UI::TextHorizontalAlign Align);
@@ -113,35 +123,35 @@ namespace phys
                 void VerticallyAlign(UI::TextVerticalAlign Align);*/
                 /// @brief Sets the relative top left position of this markup text.
                 /// @param Position A Vector2 representing the location of this markup text.
-                void SetPosition(Vector2 Position);
+                virtual void SetPosition(Vector2 Position);
                 /// @brief Gets the relative top left position of this markup text.
                 /// @return Returns a Vector2 representing the location of this markup text.
-                Vector2 GetPosition();
+                virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this markup text in pixels.
                 /// @param Position A Vector2 representing the location of this markup text.
-                void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(Vector2 Position);
                 /// @brief Gets the top left position of this markup text in pixels.
                 /// @return Returns a Vector2 representing the location of this markup text.
-                Vector2 GetActualPosition();
+                virtual Vector2 GetActualPosition();
                 /// @brief Sets the maximum relative size of this markup text.
                 /// @param Size A vector2 representing the maximum size of this markup text.
-                void SetMaxSize(Vector2 Size);
+                virtual void SetMaxSize(Vector2 Size);
                 /// @brief Gets the maximum relative size of this markup text.
                 /// @return Returns a vector2 representing the maximum size of this markup text.
-                Vector2 GetMaxSize();
+                virtual Vector2 GetMaxSize();
                 /// @brief Sets the maximum size of this markup text in pixels.
                 /// @param Size A vector2 representing the maximum size of this markup text.
-                void SetMaxActualSize(Vector2 Size);
+                virtual void SetMaxActualSize(Vector2 Size);
                 /// @brief Gets the maximum size of this markup text in pixels.
                 /// @return Returns a vector2 representing the maximum size of this markup text.
-                Vector2 GetMaxActualSize();
+                virtual Vector2 GetMaxActualSize();
                 /// @brief Sets the priority this markup text should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this markup text.
-                void SetRenderPriority(UI::RenderPriority Priority);
+                virtual void SetRenderPriority(UI::RenderPriority Priority);
                 /// @brief Gets the priority this markup text should be rendered with.
                 /// @return Returns an enum value representing this markup text's priority level.
-                UI::RenderPriority GetRenderPriority();
+                virtual UI::RenderPriority GetRenderPriority();
         };
     }//UI
 }//phys

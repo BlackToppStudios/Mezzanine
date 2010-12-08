@@ -84,74 +84,84 @@ namespace phys
             public:
                 /// @brief Internal constructor
                 /// @param Name The name of this caption.
-                /// @param Position The top left position of the button.
+                /// @param Position The top left position of the caption.
                 /// @param Size The size of the Button.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
                 /// @param Layer Pointer to the layer that created this caption.
                 Caption(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
-                ~Caption();
+                virtual ~Caption();
+                /// @brief Sets the visibility of this caption.
+                /// @param Visible Bool determining whether or not this caption should be visible.
+                virtual void SetVisible(bool Visible);
+                /// @brief Gets the visibility of this caption.
+                /// @return Returns a bool representing the visibility of this caption.
+                virtual bool IsVisible();
+                /// @brief Forces this caption to be shown.
+                virtual void Show();
+                /// @brief Forces this caption to hide.
+                virtual void Hide();
                 /// @brief Gets the name of this caption.
                 /// @return Returns a string containing the name of this caption.
-                String& GetName();
+                virtual String& GetName();
                 /// @brief Sets the text displayed within the caption.
                 /// @param Text The text to be displayed.
-                void SetText(String& Text);
+                virtual void SetText(String& Text);
                 /// @brief Gets the text displayed within the caption.
                 /// @return Returns the text being displayed.
-                String GetText();
+                virtual String GetText();
                 /// @brief Sets the glyph index to be used with this caption.
                 /// @details The glyph index is defined in your gorilla file.
                 /// @param GlyphIndex The index of the glyph to use with this caption.
-                void SetGlyphIndex(Whole GlyphIndex);
+                virtual void SetGlyphIndex(Whole GlyphIndex);
                 /// @brief Gets the glyph index in use by this caption.
                 /// @details The glyph index is defined in your gorilla file.
                 /// @param Returns a Whole representing the index of the glyph in use by this caption..
-                Whole GetGlyphIndex();
+                virtual Whole GetGlyphIndex();
                 /// @brief Sets the background colour of the caption.
                 /// @param Colour A colour value representing the colour to be set.
-                void SetBackgroundColour(ColourValue& Colour);
+                virtual void SetBackgroundColour(ColourValue& Colour);
                 /// @brief Sets the background image(if provided in the atlas) of the caption.
                 /// @param Name The name of the sprite to set as the background.
-                void SetBackgroundSprite(const String& Name);
+                virtual void SetBackgroundSprite(const String& Name);
                 /// @brief Aligns the text of the caption.
                 /// @param Align The enum value representing the horizontal alignment to be set.
-                void HorizontallyAlign(UI::TextHorizontalAlign Align);
+                virtual void HorizontallyAlign(UI::TextHorizontalAlign Align);
                 /// @brief Aligns the text of the caption.
                 /// @param Align The enum value representing the vertical alignment to be set.
-                void VerticallyAlign(UI::TextVerticalAlign Align);
+                virtual void VerticallyAlign(UI::TextVerticalAlign Align);
                 /// @brief Sets the relative top left position of this caption.
                 /// @param Position A Vector2 representing the location of this caption.
-                void SetPosition(Vector2 Position);
+                virtual void SetPosition(Vector2 Position);
                 /// @brief Gets the relative top left position of this caption.
                 /// @return Returns a Vector2 representing the location of this caption.
-                Vector2 GetPosition();
+                virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this caption in pixels.
                 /// @param Position A Vector2 representing the location of this caption.
-                void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(Vector2 Position);
                 /// @brief Gets the top left position of this caption in pixels.
                 /// @return Returns a Vector2 representing the location of this caption.
-                Vector2 GetActualPosition();
+                virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this caption.
                 /// @param Size A vector2 representing the size of this caption.
-                void SetSize(Vector2 Size);
+                virtual void SetSize(Vector2 Size);
                 /// @brief Gets the relative size of this caption.
                 /// @return Returns a vector2 representing the size of this caption.
-                Vector2 GetSize();
+                virtual Vector2 GetSize();
                 /// @brief Sets the size of this caption in pixels.
                 /// @param Size A vector2 representing the size of this caption.
-                void SetActualSize(Vector2 Size);
+                virtual void SetActualSize(Vector2 Size);
                 /// @brief Gets the size of this caption in pixels.
                 /// @return Returns a vector2 representing the size of this caption.
-                Vector2 GetActualSize();
+                virtual Vector2 GetActualSize();
                 /// @brief Sets the priority this caption should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this caption.
-                void SetRenderPriority(UI::RenderPriority Priority);
+                virtual void SetRenderPriority(UI::RenderPriority Priority);
                 /// @brief Gets the priority this caption should be rendered with.
                 /// @return Returns an enum value representing this caption's priority level.
-                UI::RenderPriority GetRenderPriority();
+                virtual UI::RenderPriority GetRenderPriority();
         };//caption
     }//UI
 }//phys

@@ -68,6 +68,26 @@ namespace phys
             Parent->GetGorillaLayer()->destroyRectangle(GRectangle);
         }
 
+        void Rectangle::SetVisible(bool Visible)
+        {
+            GRectangle->SetVisible(Visible);
+        }
+
+        bool Rectangle::IsVisible()
+        {
+            return GRectangle->IsVisible();
+        }
+
+        void Rectangle::Show()
+        {
+            GRectangle->Show();
+        }
+
+        void Rectangle::Hide()
+        {
+            GRectangle->Hide();
+        }
+
         bool Rectangle::CheckMouseHover()
         {
             Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();

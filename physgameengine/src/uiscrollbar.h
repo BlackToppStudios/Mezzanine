@@ -176,6 +176,7 @@ namespace phys
                 /// @return Returns a vector2 representing the pixel position of this widget.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this widget.
+                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
                 virtual void SetSize(Vector2 Size);
                 /// @brief Gets the relative size of this widget.
@@ -198,9 +199,6 @@ namespace phys
                 /// You can pass in a negative value to shorten the area as well.
                 /// @param Length The amount by which to lengthen/shorten the scrollable area in pixels.
                 virtual void LengthenActualScrollArea(Real Length);*/
-                /// @brief Gets the hovered button within this widget, if any.
-                /// @return Returns a pointer to the button within this widget the mouse is hovering over, or NULL if none.
-                virtual Button* GetHoveredButton();
                 /// @brief Gets the Scroller button within this widget.
                 /// @return Returns a pointer to the Scroller button within this widget.
                 virtual Button* GetScroller();

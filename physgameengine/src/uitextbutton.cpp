@@ -63,6 +63,29 @@ namespace phys
             Parent->GetGorillaLayer()->destroyCaption(GorillaButton);
         }
 
+        void TextButton::SetVisible(bool Visible)
+        {
+            GorillaRectangle->SetVisible(Visible);
+            GorillaButton->SetVisible(Visible);
+        }
+
+        bool TextButton::IsVisible()
+        {
+            return GorillaRectangle->IsVisible();
+        }
+
+        void TextButton::Show()
+        {
+            GorillaRectangle->Show();
+            GorillaButton->Show();
+        }
+
+        void TextButton::Hide()
+        {
+            GorillaRectangle->Hide();
+            GorillaButton->Hide();
+        }
+
         void TextButton::SetText(String& Text)
         {
             GorillaButton->text(Text);

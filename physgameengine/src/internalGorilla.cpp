@@ -1331,11 +1331,11 @@ namespace Gorilla
       {
           if(RP==(*it)->RenderPriority())
           {
-           if ((*it)->mDirty || force)
-            (*it)->_redraw();
+            if ((*it)->mDirty || force)
+             (*it)->_redraw();
 
-           for (i=0; i < (*it)->mVertices.size(); i++)
-            vertices.push_back((*it)->mVertices[i]);
+            for (i=0; i < (*it)->mVertices.size(); i++)
+             vertices.push_back((*it)->mVertices[i]);
           }
       }
 
@@ -1344,11 +1344,11 @@ namespace Gorilla
       {
           if(RP==(*it)->RenderPriority())
           {
-           if ((*it)->mDirty || force)
-            (*it)->_redraw();
+            if ((*it)->mDirty || force)
+             (*it)->_redraw();
 
-           for (i=0; i < (*it)->mVertices.size(); i++)
-            vertices.push_back((*it)->mVertices[i]);
+            for (i=0; i < (*it)->mVertices.size(); i++)
+             vertices.push_back((*it)->mVertices[i]);
           }
       }
 
@@ -1357,11 +1357,11 @@ namespace Gorilla
       {
           if(RP==(*it)->RenderPriority())
           {
-           if ((*it)->mDirty || force)
-            (*it)->_redraw();
+            if ((*it)->mDirty || force)
+             (*it)->_redraw();
 
-           for (i=0; i < (*it)->mVertices.size(); i++)
-            vertices.push_back((*it)->mVertices[i]);
+            for (i=0; i < (*it)->mVertices.size(); i++)
+             vertices.push_back((*it)->mVertices[i]);
           }
       }
 
@@ -1370,11 +1370,11 @@ namespace Gorilla
       {
           if(RP==(*it)->RenderPriority())
           {
-           if ((*it)->mDirty || force)
-            (*it)->_redraw();
+            if ((*it)->mDirty || force)
+             (*it)->_redraw();
 
-           for (i=0; i < (*it)->mVertices.size(); i++)
-            vertices.push_back((*it)->mVertices[i]);
+            for (i=0; i < (*it)->mVertices.size(); i++)
+             vertices.push_back((*it)->mVertices[i]);
           }
       }
 
@@ -1383,11 +1383,11 @@ namespace Gorilla
       {
           if(RP==(*it)->RenderPriority())
           {
-           if ((*it)->mDirty || force)
-            (*it)->_redraw();
+            if ((*it)->mDirty || force)
+             (*it)->_redraw();
 
-           for (i=0; i < (*it)->mVertices.size(); i++)
-            vertices.push_back((*it)->mVertices[i]);
+            for (i=0; i < (*it)->mVertices.size(); i++)
+             vertices.push_back((*it)->mVertices[i]);
           }
       }
 
@@ -1396,14 +1396,14 @@ namespace Gorilla
       {
           if(RP==(*it)->RenderPriority())
           {
-           if ((*it)->mTextDirty || force)
-            (*it)->_calculateCharacters();
+            if ((*it)->mTextDirty || force)
+             (*it)->_calculateCharacters();
 
-           if ((*it)->mDirty || force)
-            (*it)->_redraw();
+            if ((*it)->mDirty || force)
+             (*it)->_redraw();
 
-           for (i=0; i < (*it)->mVertices.size(); i++)
-            vertices.push_back((*it)->mVertices[i]);
+            for (i=0; i < (*it)->mVertices.size(); i++)
+             vertices.push_back((*it)->mVertices[i]);
           }
       }
     }
@@ -1441,6 +1441,12 @@ namespace Gorilla
    return;
 
   mVertices.remove_all();
+
+  if(!mVisible)
+  {
+      mDirty = false;
+      return;
+  }
 
   Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
   Ogre::Vector2 a, b, c, d;
@@ -1520,6 +1526,13 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
    return;
 
   mVertices.remove_all();
+
+  if(!mVisible)
+  {
+      mDirty = false;
+      return;
+  }
+
   Vertex temp;
 
   Ogre::Real theta = mAngle.valueRadians();
@@ -1649,6 +1662,12 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
    return;
 
   mVertices.remove_all();
+
+  if(!mVisible)
+  {
+      mDirty = false;
+      return;
+  }
 
   if (mPositions.size() < 2)
    return;
@@ -1942,6 +1961,13 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    return;
 
   mVertices.remove_all();
+
+  if(!mVisible)
+  {
+      mDirty = false;
+      return;
+  }
+
   Vertex temp;
 
   for (size_t i=0;i < mQuads.size();i++)
@@ -2030,6 +2056,12 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    return;
 
   mVertices.remove_all();
+
+  if(!mVisible)
+  {
+      mDirty = false;
+      return;
+  }
 
   Ogre::Vector2 uv = mLayer->_getSolidUV();
 
@@ -2413,6 +2445,12 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    return;
 
   mVertices.remove_all();
+
+  if(!mVisible)
+  {
+      mDirty = false;
+      return;
+  }
 
   Vertex temp;
   for (size_t i=0; i < mCharacters.size();i++)

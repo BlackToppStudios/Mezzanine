@@ -82,6 +82,16 @@ namespace phys
                 Rectangle(Vector2 Position, Vector2 Size, UILayer* Layer);
                 /// @brief Class destructor.
                 ~Rectangle();
+                /// @brief Sets the visibility of this rectangle.
+                /// @param Visible Bool determining whether or not this rectangle should be visible.
+                virtual void SetVisible(bool Visible);
+                /// @brief Gets the visibility of this rectangle.
+                /// @return Returns a bool representing the visibility of this rectangle.
+                virtual bool IsVisible();
+                /// @brief Forces this rectangle to be shown.
+                virtual void Show();
+                /// @brief Forces this rectangle to hide.
+                virtual void Hide();
                 /// @brief Determines whether the mouse is over this rectangle.
                 /// @return Returns a bool indicating whether the mouse is over this rectangle.
                 virtual bool CheckMouseHover();
@@ -91,44 +101,44 @@ namespace phys
                 virtual bool GetMouseHover();
                 /// @brief Sets the background colour of the rectangle.
                 /// @param Colour A colour value representing the colour to be set.
-                void SetBackgroundColour(ColourValue& Colour);
+                virtual void SetBackgroundColour(ColourValue& Colour);
                 /// @brief Sets the background image(if provided in the atlas) of the rectangle.
                 /// @param Name The name of the sprite to set as the background.
-                void SetBackgroundSprite(const String& Name);
+                virtual void SetBackgroundSprite(const String& Name);
                 /// @brief Enables a border and sets it's colour.
                 /// @param Colour A colour value representing the colour to be set.
-                void SetBorder(Real Width, ColourValue& Colour);
+                virtual void SetBorder(Real Width, ColourValue& Colour);
                 /// @brief Sets the relative top left position of this rectangle.
                 /// @param Position A Vector2 representing the location of this rectangle.
-                void SetPosition(Vector2 Position);
+                virtual void SetPosition(Vector2 Position);
                 /// @brief Gets the relative top left position of this rectangle.
                 /// @return Returns a Vector2 representing the location of this rectangle.
-                Vector2 GetPosition();
+                virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this rectangle in pixels.
                 /// @param Position A Vector2 representing the location of this rectangle.
-                void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(Vector2 Position);
                 /// @brief Gets the top left position of this rectangle in pixels.
                 /// @return Returns a Vector2 representing the location of this rectangle.
-                Vector2 GetActualPosition();
+                virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this rectangle.
                 /// @param Size A vector2 representing the size of this rectangle.
-                void SetSize(Vector2 Size);
+                virtual void SetSize(Vector2 Size);
                 /// @brief Gets the relative size of this rectangle.
                 /// @return Returns a vector2 representing the size of this rectangle.
-                Vector2 GetSize();
+                virtual Vector2 GetSize();
                 /// @brief Sets the size of this rectangle in pixels.
                 /// @param Size A vector2 representing the size of this rectangle.
-                void SetActualSize(Vector2 Size);
+                virtual void SetActualSize(Vector2 Size);
                 /// @brief Gets the size of this rectangle in pixels.
                 /// @return Returns a vector2 representing the size of this rectangle.
-                Vector2 GetActualSize();
+                virtual Vector2 GetActualSize();
                 /// @brief Sets the priority this button should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this button.
-                void SetRenderPriority(UI::RenderPriority Priority);
+                virtual void SetRenderPriority(UI::RenderPriority Priority);
                 /// @brief Gets the priority this button should be rendered with.
                 /// @return Returns an enum value representing this button's priority level.
-                UI::RenderPriority GetRenderPriority();
+                virtual UI::RenderPriority GetRenderPriority();
         };//rectangle
     }//UI
 }//phys

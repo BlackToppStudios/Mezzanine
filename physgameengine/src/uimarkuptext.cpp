@@ -68,6 +68,26 @@ namespace phys
             Parent->GetGorillaLayer()->destroyMarkupText(GMarkup);
         }
 
+        void MarkupText::SetVisible(bool Visible)
+        {
+            GMarkup->SetVisible(Visible);
+        }
+
+        bool MarkupText::IsVisible()
+        {
+            return GMarkup->IsVisible();
+        }
+
+        void MarkupText::Show()
+        {
+            GMarkup->Show();
+        }
+
+        void MarkupText::Hide()
+        {
+            GMarkup->Hide();
+        }
+
         String& MarkupText::GetName()
         {
             return Name;

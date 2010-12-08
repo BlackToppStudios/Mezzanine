@@ -55,7 +55,7 @@ namespace phys
             : Parent(Layer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
-              ButtonCallback(NULL),
+              Callback(NULL),
               MouseHover(false),
               IsText(false),
               RelPosition(Position),
@@ -71,6 +71,26 @@ namespace phys
         Button::~Button()
         {
             Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
+        }
+
+        void Button::SetVisible(bool Visible)
+        {
+            GorillaRectangle->SetVisible(Visible);
+        }
+
+        bool Button::IsVisible()
+        {
+            return GorillaRectangle->IsVisible();
+        }
+
+        void Button::Show()
+        {
+            GorillaRectangle->Show();
+        }
+
+        void Button::Hide()
+        {
+            GorillaRectangle->Hide();
         }
 
         String& Button::GetName()

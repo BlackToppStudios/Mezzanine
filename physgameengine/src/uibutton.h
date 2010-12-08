@@ -91,7 +91,17 @@ namespace phys
                 /// @param Layer Pointer to the Layer that created this button.
                 Button(String& name, Vector2 Position, Vector2 Size, UILayer* Layer);
                 /// @brief Class destructor.
-                ~Button();
+                virtual ~Button();
+                /// @brief Sets the visibility of this button.
+                /// @param Visible Bool determining whether or not this button should be visible.
+                virtual void SetVisible(bool Visible);
+                /// @brief Gets the visibility of this button.
+                /// @return Returns a bool representing the visibility of this button.
+                virtual bool IsVisible();
+                /// @brief Forces this button to be shown.
+                virtual void Show();
+                /// @brief Forces this button to hide.
+                virtual void Hide();
                 /// @brief Gets the name of this button.
                 /// @return Returns a string containing the name of this button.
                 virtual String& GetName();
@@ -168,14 +178,14 @@ namespace phys
         /// @details This is a pure virtual class that must be inherited from for use with specialized
         /// behaviors when working with buttons.
         ///////////////////////////////////////
-        class ButtonCallback
+        class PHYS_LIB ButtonCallback
         {
             public:
                 ButtonCallback();
                 ~ButtonCallback();
                 /// @brief The function called for this callback.  This will be called every time the
                 /// button is checked for mouse hover.
-                void DoCallbackItems() = 0;
+                virtual void DoCallbackItems() = 0;
 
         };//buttoncallback
     }//UI
