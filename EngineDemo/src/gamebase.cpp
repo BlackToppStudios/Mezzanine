@@ -441,7 +441,7 @@ void LoadContent()
         String ZippedFileContents( chararray );
 
         #ifdef PHYSDEBUG
-        TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "ZippedFileContents: " << ZippedFileContents <<endl<< "End XML and zipped stream Logging" << endl ;
+        TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "ZippedFileContents: " << ZippedFileContents <<endl<< "End first streaming test" << endl ;
         #endif
 
         //if the above stuff was logged this should just work
@@ -466,14 +466,35 @@ void LoadContent()
 
     {
         #ifdef PHYSDEBUG
-        TheWorld->Log("Testing streaming on test.xml and zipped test.txt, Making fresh set of ");
+        TheWorld->Log("Testing streaming on test.xml and zipped test.txt, Making fresh set of stream pointers");
         #endif
 
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
+        String Content(""), ZippedContent("");
+        //(*XMLptr) >> Content;
+        //(*Zippedptr) >> ZippedContent;
+
+        TheWorld->Log("Streamed XML Content");
+        //TheWorld->Log(Content);
+        //TheWorld->Log("Streamed and Zipped XML Content");
+        //TheWorld->Log(ZippedContent);
+
+        char chararray[1000] = {0};
+        (*XMLptr) >> chararray;
+        TheWorld->LogStream << "Extracted: " << chararray << endl;
+
+        if( !XMLptr->good() )
+            { TheWorld->Log("XMLptr corrupted/broken by >> call"); }
+        else
+            { TheWorld->Log("XMLptr fine after >> call"); }
         delete XMLptr;
         delete Zippedptr;
+
+        #ifdef PHYSDEBUG
+        TheWorld->Log("Testing streaming on test.xml and zipped test.txt, Making fresh set of stream pointers");
+        #endif
     }
 
     // Now Lets make some bowling pins

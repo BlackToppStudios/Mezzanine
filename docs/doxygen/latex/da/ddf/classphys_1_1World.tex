@@ -133,7 +133,7 @@ Descriptive constructor With Manager Pointers.
 
 This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. 
 \begin{DoxyParams}{Parameters}
-\item[{\em GeographyLowerBounds\_\-}]The lower limiasked Jan 29 '09 at 9:27ts for the size of the physics simulation \item[{\em GeographyUpperbounds\_\-}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies\_\-}]This is the amount of Actors (Also called Proxies) allowed in a physics simulation. \item[{\em LogFileName}]This is the place that log messages get sent to. \end{DoxyParams}
+\item[{\em GeographyLowerBounds\_\-}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds\_\-}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies\_\-}]This is the amount of Actors (Also called Proxies) allowed in a physics simulation. \item[{\em SceneManagerName}]An unique indentifier for the scene manager \item[{\em SceneType}]A cue to the scenemanager as to how rendering should occur. \item[{\em LogFileName}]This is the place that log messages get sent to. \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
 Do not make a new world if one already exists. This can only cause problems 
 \end{DoxyWarning}
@@ -162,7 +162,7 @@ Descriptive constructor.
 
 This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other constructors this one can accept a vector of pointers to managers. They will be add 
 \begin{DoxyParams}{Parameters}
-\item[{\em GeographyLowerBounds\_\-}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds\_\-}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies\_\-}]This is the amount of Actors (Also called Proxies) allowed in a physics simulation. \item[{\em LogFileName}]This is the place that log messages get sent to. \item[{\em ManagerToBeAdded}]This is a vector of manager pointers that will be used instead of creating new ones \end{DoxyParams}
+\item[{\em GeographyLowerBounds\_\-}]The lower limits for the size of the physics simulation \item[{\em GeographyUpperbounds\_\-}]The Upper limits for the size of the physics simulation \item[{\em MaxPhysicsProxies\_\-}]This is the amount of Actors (Also called Proxies) allowed in a physics simulation. \item[{\em LogFileName}]This is the place that log messages get sent to. \item[{\em SceneManagerName}]An unique indentifier for the scene manager \item[{\em SceneType}]A cue to the scenemanager as to how rendering should occur. \item[{\em ManagerToBeAdded}]This is a vector of manager pointers that will be used instead of creating new ones \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
 Do not make a new world if one already exists. This can only cause problems. 
 \end{DoxyWarning}
@@ -183,7 +183,7 @@ Definition at line 116 of file world.cpp.
 
 Default constructor. 
 
-This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows. \begin{DoxyWarning}{Warning}
+This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Actors \begin{DoxyWarning}{Warning}
 Do not make a new world if one already exists. This can only cause problems 
 \end{DoxyWarning}
 
@@ -598,7 +598,7 @@ Runtime Event logging Function.
 \item[{\em Message}]This is what will be streamed to the log \end{DoxyParams}
 
 
-Definition at line 296 of file world.h.
+Definition at line 300 of file world.h.
 
 \hypertarget{classphys_1_1World_a88e6bdee6b972111b6804ca746738c50}{
 \index{phys::World@{phys::World}!LogAndThrow@{LogAndThrow}}
@@ -618,7 +618,7 @@ This will log the Message, and will throw an exception with the Message included
 \item[{\em Message}]This will be streamed to the log, then used in a thrown exception. \end{DoxyParams}
 
 
-Definition at line 308 of file world.h.
+Definition at line 312 of file world.h.
 
 \hypertarget{classphys_1_1World_abf6cb15d85be4e7dcb99db24f979319b}{
 \index{phys::World@{phys::World}!LogString@{LogString}}
@@ -635,7 +635,7 @@ Log String directly with no conversion.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Message}]The string to log \end{DoxyParams}
+\item[{\em message}]The string to log \end{DoxyParams}
 
 
 Definition at line 226 of file world.cpp.
@@ -840,7 +840,7 @@ This is another way to put data in the log.
 
 The contents of this will be commited to the log once per frame, just before rendering. Because of that do not use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of debugging data and creating in game logs and recreations, this can be very useful. 
 
-Definition at line 474 of file world.h.
+Definition at line 478 of file world.h.
 
 \hypertarget{classphys_1_1World_a07bd53ea67c1a956004a007f99f7fc5b}{
 \index{phys::World@{phys::World}!OgreRoot@{OgreRoot}}

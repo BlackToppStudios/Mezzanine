@@ -69,17 +69,64 @@ namespace phys
                 /// @brief a shard_ptr to the internal Ogre Datastream
                 Ogre::DataStreamPtr OgreStream;
 
+                /// @brief The size of chunks to grab from files at once defaults to 4Kb
+                Whole LoadAtOnce;
+
+                /// @brief The ammount of bytes that should be load before a given start point when loading.
+                /// @details When read from a data source, the amount of bytes set in LoadAtOnce will be loaded.
+                /// By default when loading a certain item this will start at the specified point and load the
+                /// file after that point. This says howmany bytes should be loaded before that default starting
+                /// point. If all streams are simply read, then this should be 0, if there is manuever around the
+                /// stream, then this should be higher, based on how far back you plan on reading. By default
+                /// this assumes a low value of 128 bytes.
+                Whole SeekBackOnload;
+
             public:
 
                 /// @brief constructor
                 /// @param Datum A pointer to the Ogre Datastream that this stream will use
-                OgreDataStreamBuf(const Ogre::DataStreamPtr& Datum) : OgreStream(Datum)
+                OgreDataStreamBuf(const Ogre::DataStreamPtr& Datum) :OgreStream(Datum), LoadAtOnce(4096), SeekBackOnload(128)
                 {
                     #ifdef PHYSDEBUG
                     World::GetWorldPointer()->Log("Entering/Exiting OgreDataStreamBuf Constructor");
                     #endif
                 }
 
+                ///////////////////////////////////////////////////////////////////////////////
+                // Methods inherited form std::streambuf
+                ///////////////////////////////////////
+
+                // Locales
+                /// @brief Does nothing, implemented for ease of future coding
+                /// @param loc A completely ignored value.
+                void imbue ( const locale & loc )
+                    {}
+
+                //Buffer mgmt and position
+                /// @brief Creates the initial buffer used to begin
+                /// @param s The Place to put the buffer
+                /// @param n The size of the new buffer
+                /// @return Returns this on success, of 0/NULL on failure
+                /// @exception This can throw out of memory exceptions
+                virtual streambuf* setbuf (char* s, streamsize n);
+
+                /// @brief Moves the internal pointer around
+                /// @param off the ammount to move the pointer.
+                /// @param way from the begining, from the end, or from the current point
+                /// @param which this only supports ios_base::in, and will not work with ios_base::out
+                virtual streampos seekoff ( streamoff off, ios_base::seekdir way, ios_base::openmode which = ios_base::in );
+
+                /// @brief Moves internal pointer to specificied.
+                /// @param sp The place to move the pointer too.
+                /// @param which this only supports ios_base::in, and will not work with ios_base::out.
+                virtual streampos seekpos ( streampos sp, ios_base::openmode which = ios_base::in );
+
+                /// @brief Does nothing, but is required and returns success
+                /// @details due to the nature of the ogre data streams this does not need to and syncing on the fly is extremely easy.
+                virtual int sync()
+                    {return 0;}
+
+                //Input Functions
                 /// @brief Should get the amount of characters left in the sequence
                 /// @returns -1 if no estimate could be made, other wise this returns an estimate of the amount of bytes in the buffer
                 virtual std::streamsize showmanyc();
@@ -90,21 +137,35 @@ namespace phys
                 /// @return This returns the amount of characters retrieved
                 virtual std::streamsize xsgetn(char* s, std::streamsize n);
 
-                /// @brief Puts a sequence of characters in
-                /// @param s a Pointer to the characters
-                /// @param n How many characters
-                /// @return This returns the amount of characters inserted
-                /// @detail currently unimplimented
-                virtual std::streamsize xsputn(const char_type*, std::streamsize n);
-
                 /// @brief Can in theory be called by read operations, but probably wont because of our xsgetn implemention
                 /// @return always returns EOF
                 virtual int underflow();
 
-                /// @brief Calls underflow()
-                /// @return whatever underflow() returns.
-                virtual int uflow();
+                // Default implmentation is ideal
+                // @brief Calls underflow()
+                // @return whatever underflow() returns.
+                //virtual int uflow();
 
+                /// @brief Someone rewinded too far and now we need to backload the buffer
+                /// @param c Ignored, required for compatibility
+                /// @return EOF on failure and the current character pointer otherwise
+                virtual int pbackfail ( int c = EOF );
+
+                /// @brief Crashes, in ostream bufs it is expected to put data into the stream
+                /// @param s a Pointer to the characters
+                /// @param n How many characters
+                /// @return This returns the amount of characters inserted
+                /// @detail currently unimplimented
+                virtual std::streamsize xsputn(const char_type* s, std::streamsize n);
+
+                /// @brief Crashes, in ostreambufs, this is expected to write characters out
+                /// @param c A character to write at the end of the output
+                /// @return the amountof characters written
+                virtual int overflow ( int c = EOF );
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Non-Virtual Methods
+                ///////////////////////////////////////
                 /// @brief Can this be read from
                 /// @return A bool true if it can be read from
                 bool Readable();

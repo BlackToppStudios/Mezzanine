@@ -1,9 +1,7 @@
-Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
 /home/dev/physgame/physgameengine/src/constraint.h:279: warning: Compound phys::Hinge2Constraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:212: warning: Compound phys::Generic6DofSpringConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:392: warning: Compound phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:126: warning: Compound phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/exception.h:60: warning: Compound phys::Exception is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:332: warning: Compound phys::SliderConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:238: warning: Compound phys::HingeConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:166: warning: Compound phys::Generic6DofConstraint is not documented.
@@ -130,11 +128,6 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/dev/physgame/physgameengine/src/constraint.h:397: warning: Member UniversalConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) (function) of class phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:405: warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:406: warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class phys::UniversalConstraint is not documented.
-/home/dev/physgame/physgameengine/src/eventmanager.cpp:91: warning: argument 'ParentWorld_' of command @param is not found in the argument list of phys::EventManager::EventManager()
-/home/dev/physgame/physgameengine/src/exception.h:68: warning: The following parameters of phys::Exception::Exception(const String &Message, bool Logged_=false) are not documented:
-  parameter 'Logged_'
-/home/dev/physgame/physgameengine/src/graphicsmanager.h:95: warning: argument 'GameWorld_' of command @param is not found in the argument list of phys::GraphicsManager::GraphicsManager()
-/home/dev/physgame/physgameengine/src/graphicsmanager.h:100: warning: argument 'GameWorld_' of command @param is not found in the argument list of phys::GraphicsManager::GraphicsManager(const Whole &Width_, const Whole &Height_, const bool &FullScreen_)
 /home/dev/physgame/physgameengine/src/light.h:75: warning: Member LightType (enumeration) of class phys::Light is not documented.
 /home/dev/physgame/physgameengine/src/light.h:111: warning: The following parameters of phys::Light::SetDiffuseColour(Real Red, Real Green, Real Blue) are not documented:
   parameter 'Green'
@@ -146,8 +139,6 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/dev/physgame/physgameengine/src/node.h:128: warning: argument 'Position' of command @param is not found in the argument list of phys::Node::SetOrientation(Quaternion Orientation)
 /home/dev/physgame/physgameengine/src/node.h:128: warning: The following parameters of phys::Node::SetOrientation(Quaternion Orientation) are not documented:
   parameter 'Orientation'
-/home/dev/physgame/physgameengine/src/physicsmanager.h:114: warning: argument 'GameWorld_' of command @param is not found in the argument list of phys::PhysicsManager::PhysicsManager()
-/home/dev/physgame/physgameengine/src/physicsmanager.h:120: warning: argument 'GameWorld_' of command @param is not found in the argument list of phys::PhysicsManager::PhysicsManager(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
 /home/dev/physgame/physgameengine/src/scenemanager.h:73: warning: Member SceneManagerType (enumeration) of class phys::SceneManager is not documented.
 /home/dev/physgame/physgameengine/src/scenemanager.h:89: warning: argument 'world' of command @param is not found in the argument list of phys::SceneManager::SceneManager(const String &Name, SceneManager::SceneManagerType ManagerType)
 /home/dev/physgame/physgameengine/src/scenemanager.h:206: warning: The following parameters of phys::SceneManager::CreateOrbitingNode(const String &Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack) are not documented:
@@ -176,6 +167,9 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/dev/physgame/physgameengine/src/uilayer.h:85: warning: Member Captions (variable) of class phys::UILayer is not documented.
 /home/dev/physgame/physgameengine/src/uilayer.h:86: warning: Member MarkupTexts (variable) of class phys::UILayer is not documented.
 /home/dev/physgame/physgameengine/src/uilayer.h:87: warning: Member Widgets (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:225: warning: argument 'Name' of command @param is not found in the argument list of phys::UILayer::CreateCheckBox(String &name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText)
+/home/dev/physgame/physgameengine/src/uilayer.h:225: warning: The following parameters of phys::UILayer::CreateCheckBox(String &name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText) are not documented:
+  parameter 'name'
 /home/dev/physgame/physgameengine/src/uilayer.h:102: warning: argument 'Visable' of command @param is not found in the argument list of phys::UILayer::SetVisible(bool Visible)
 /home/dev/physgame/physgameengine/src/uilayer.h:102: warning: The following parameters of phys::UILayer::SetVisible(bool Visible) are not documented:
   parameter 'Visible'
@@ -207,31 +201,26 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/dev/physgame/physgameengine/src/vector2.h:83: warning: argument 'temp' of command @param is not found in the argument list of phys::Vector2::ExtractOgreVector2(Ogre::Vector2 Ours)
 /home/dev/physgame/physgameengine/src/vector2.h:83: warning: The following parameters of phys::Vector2::ExtractOgreVector2(Ogre::Vector2 Ours) are not documented:
   parameter 'Ours'
-/home/dev/physgame/physgameengine/src/world.h:249: warning: The following parameters of phys::World::World(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, std::string SceneManagerName, SceneManager::SceneManagerType SceneType, const unsigned short int &MaxPhysicsProxies_=1024, std::string LogFileName="Physgame.log") are not documented:
-  parameter 'SceneManagerName'
-  parameter 'SceneType'
-/home/dev/physgame/physgameengine/src/world.h:263: warning: The following parameters of phys::World::World(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_, std::string SceneManagerName, SceneManager::SceneManagerType SceneType, const std::string &LogFileName, const std::vector< ManagerBase * > &ManagerToBeAdded) are not documented:
-  parameter 'SceneManagerName'
-  parameter 'SceneType'
-/home/dev/physgame/physgameengine/src/world.h:314: warning: argument 'Message' of command @param is not found in the argument list of phys::World::LogString(const String &message)
-/home/dev/physgame/physgameengine/src/world.h:314: warning: The following parameters of phys::World::LogString(const String &message) are not documented:
-  parameter 'message'
 /home/dev/physgame/physgameengine/src/crossplatform.h:125: warning: The following parameters of phys::crossplatform::RenderPhysWorld(World *TheWorld, Ogre::RenderWindow *TheOgreWindow) are not documented:
   parameter 'TheOgreWindow'
 /home/dev/physgame/physgameengine/src/eventmanager.cpp:69: warning: Member PhysSDLFilter(const SDL_Event *event) (function) of namespace phys::internal is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:73: warning: Member GorillaRectangle (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:74: warning: Member Parent (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:75: warning: Member Manager (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:76: warning: Member NormalSprite (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:77: warning: Member HoveredSprite (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:78: warning: Member UserSprite (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:79: warning: Member MouseHover (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:80: warning: Member IsText (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:81: warning: Member RelPosition (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:82: warning: Member RelSize (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:83: warning: Member Name (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:122: warning: The following parameters of phys::UI::Button::SetBorder(Real Width, ColourValue &Colour) are not documented:
+/home/dev/physgame/physgameengine/src/uibutton.h:74: warning: Member GorillaRectangle (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:75: warning: Member Parent (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:76: warning: Member Manager (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:77: warning: Member NormalSprite (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:78: warning: Member HoveredSprite (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:79: warning: Member UserSprite (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:80: warning: Member Callback (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:81: warning: Member MouseHover (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:82: warning: Member IsText (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:83: warning: Member RelPosition (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:84: warning: Member RelSize (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:85: warning: Member Name (variable) of class phys::UI::Button is not documented.
+/home/dev/physgame/physgameengine/src/uibutton.h:128: warning: The following parameters of phys::UI::Button::SetBorder(Real Width, ColourValue &Colour) are not documented:
   parameter 'Width'
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:60: warning: Member BoxBack (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:62: warning: Member Selections (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:63: warning: Member VisableSelections (variable) of class phys::UI::ButtonListBox is not documented.
 /home/dev/physgame/physgameengine/src/uicaption.h:76: warning: Member GorillaCaption (variable) of class phys::UI::Caption is not documented.
 /home/dev/physgame/physgameengine/src/uicaption.h:77: warning: Member GorillaRectangle (variable) of class phys::UI::Caption is not documented.
 /home/dev/physgame/physgameengine/src/uicaption.h:78: warning: Member Parent (variable) of class phys::UI::Caption is not documented.
@@ -307,4 +296,3 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/dev/physgame/physgameengine/src/uiwidget.h:75: warning: Member Name (variable) of class phys::UI::Widget is not documented.
 /home/dev/physgame/physgameengine/src/uiwidget.h:79: warning: The following parameters of phys::UI::Widget::Widget(const String &name, UILayer *parent) are not documented:
   parameter 'name'
-/home/dev/physgame/physgameengine/src/xmldeclaration.h:110: warning: argument 'Check' of command @param is not found in the argument list of phys::xml::Declaration::GetStandalone() const

@@ -93,13 +93,13 @@
 <a name="l00063"></a>00063             RelPosition = Position;
 <a name="l00064"></a>00064             RelSize = Size;
 <a name="l00065"></a>00065 
-<a name="l00066"></a>00066             Box = Parent-&gt;CreateButton(Name+<span class="stringliteral">&quot;CB&quot;</span>,Position,Size);
+<a name="l00066"></a>00066             Box = <span class="keyword">new</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(Name+<span class="stringliteral">&quot;CB&quot;</span>,Position,Size,Layer);
 <a name="l00067"></a>00067             <span class="keywordflow">if</span>(LabelText.empty())
 <a name="l00068"></a><a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html#a60c4d62c357a7158d69888a367b5dc56">00068</a>             {
 <a name="l00069"></a>00069                 Label = NULL;
 <a name="l00070"></a>00070             }<span class="keywordflow">else</span>{
 <a name="l00071"></a>00071                 Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>+=Size.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00072"></a>00072                 Label = Parent-&gt;CreateMarkupText(Name+<span class="stringliteral">&quot;CM&quot;</span>,Position,GlyphIndex,LabelText);
+<a name="l00072"></a>00072                 Label = <span class="keyword">new</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>(Name+<span class="stringliteral">&quot;CM&quot;</span>,Position,GlyphIndex,LabelText,Layer);
 <a name="l00073"></a>00073             }
 <a name="l00074"></a>00074         }
 <a name="l00075"></a>00075 
@@ -175,7 +175,7 @@
 <a name="l00145"></a>00145             {
 <a name="l00146"></a><a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html#a19078efa52e8b2c133f3b5229b8742eb">00146</a>                 <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position = Box-&gt;<a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#adfa08ace813b88cae114e18f88942642" title="Gets the relative top left position of this button.">GetPosition</a>();
 <a name="l00147"></a>00147                 Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>+=Box-&gt;<a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#ade75e042d1a19be5d4fb1b16913af5a5" title="Gets the relative size of this button.">GetSize</a>().<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>;
-<a name="l00148"></a>00148                 Label = Parent-&gt;<a class="code" href="../../da/d48/classphys_1_1UILayer.html#a773435348a970d922f4022a0c5a7959f" title="Creates a markup text within this layer.">CreateMarkupText</a>(Name+<span class="stringliteral">&quot;CM&quot;</span>,Position,GlyphIndex,LabelText);
+<a name="l00148"></a>00148                 Label = <span class="keyword">new</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>(Name+<span class="stringliteral">&quot;CM&quot;</span>,Position,GlyphIndex,LabelText,Parent);
 <a name="l00149"></a>00149             }<span class="keywordflow">else</span>{
 <a name="l00150"></a>00150                 Label-&gt;<a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#af5d9184959b56996e9727e2d7ccf8f22" title="Sets the text displayed within the markup text.">SetText</a>(LabelText);
 <a name="l00151"></a>00151             }
@@ -287,7 +287,7 @@
 <a name="l00257"></a>00257 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 6 2010 13:29:31 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

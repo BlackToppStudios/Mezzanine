@@ -51,39 +51,47 @@
 
 namespace phys
 {
-    void ResourceInputStream::Construct(std::streambuf *InputBuffer, ResourceManager* ResourceManager_)
-    {
-        #ifdef PHYSDEBUG
-        World::GetWorldPointer()->Log("Entering ResourceInputStream::Construct()");
-        #endif
-        this->OgreBuffer=static_cast <internal::OgreDataStreamBuf*>(InputBuffer);
-        this->Manager=ResourceManager_;
-         #ifdef PHYSDEBUG
-        World::GetWorldPointer()->Log("Exiting ResourceInputStream::Construct()");
-        #endif
-    }
+	void ResourceInputStream::Construct(std::streambuf *InputBuffer, ResourceManager* ResourceManager_)
+	{
+		#ifdef PHYSDEBUG
+		World::GetWorldPointer()->Log("Entering ResourceInputStream::Construct()");
+		#endif
+		this->OgreBuffer=static_cast <internal::OgreDataStreamBuf*>(InputBuffer);
+		this->Manager=ResourceManager_;
+		 #ifdef PHYSDEBUG
+		World::GetWorldPointer()->Log("Exiting ResourceInputStream::Construct()");
+		#endif
+	}
 
-    ResourceInputStream::~ResourceInputStream()
-    {
-        #ifdef PHYSDEBUG
-        World::GetWorldPointer()->Log("Entering ResourceInputStream::~ResourceInputStream()");
-        #endif
-        delete this->OgreBuffer;
-        #ifdef PHYSDEBUG
-        World::GetWorldPointer()->Log("Exiting ResourceInputStream::~ResourceInputStream()");
-        #endif
+	ResourceInputStream::~ResourceInputStream()
+	{
+		#ifdef PHYSDEBUG
+		World::GetWorldPointer()->Log("Entering ResourceInputStream::~ResourceInputStream()");
+		#endif
+		delete this->OgreBuffer;
+		#ifdef PHYSDEBUG
+		World::GetWorldPointer()->Log("Exiting ResourceInputStream::~ResourceInputStream()");
+		#endif
+	}
 
-    }
+	bool ResourceInputStream::Readable()
+	{
+		return this->OgreBuffer->Readable();
+	}
 
-    bool ResourceInputStream::Readable()
-    {
-        return this->OgreBuffer->Readable();
-    }
+	bool ResourceInputStream::Writeable()
+	{
+		return this->OgreBuffer->Writeable();
+	}
 
-    bool ResourceInputStream::Writeable()
-    {
-        return this->OgreBuffer->Writeable();
-    }
+/*	std::istream& ResourceInputStream::operator >> ( String& Data )
+		{ return (this->OgreBuffer) >> Data; }
+
+	std::istream& ResourceInputStream::operator >> ( Whole& Data )
+		{ return (this->OgreBuffer) >> Data; }
+
+	std::istream& ResourceInputStream::operator >> ( Real& Data )
+		{ return (staticcastthis >> Data); }*/
 }
 
 #endif

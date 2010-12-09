@@ -197,9 +197,11 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>This constructor allows for an easier way to define the boundaries for items moving about inside the physworld. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>GeographyLowerBounds_</em>&nbsp;</td><td>The lower limiasked Jan 29 '09 at 9:27ts for the size of the physics simulation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>GeographyLowerBounds_</em>&nbsp;</td><td>The lower limits for the size of the physics simulation </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>GeographyUpperbounds_</em>&nbsp;</td><td>The Upper limits for the size of the physics simulation </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>MaxPhysicsProxies_</em>&nbsp;</td><td>This is the amount of Actors (Also called Proxies) allowed in a physics simulation. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>SceneManagerName</em>&nbsp;</td><td>An unique indentifier for the scene manager </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>SceneType</em>&nbsp;</td><td>A cue to the scenemanager as to how rendering should occur. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>LogFileName</em>&nbsp;</td><td>This is the place that log messages get sent to. </td></tr>
   </table>
   </dd>
@@ -273,6 +275,8 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
     <tr><td valign="top"></td><td valign="top"><em>GeographyUpperbounds_</em>&nbsp;</td><td>The Upper limits for the size of the physics simulation </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>MaxPhysicsProxies_</em>&nbsp;</td><td>This is the amount of Actors (Also called Proxies) allowed in a physics simulation. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>LogFileName</em>&nbsp;</td><td>This is the place that log messages get sent to. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>SceneManagerName</em>&nbsp;</td><td>An unique indentifier for the scene manager </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>SceneType</em>&nbsp;</td><td>A cue to the scenemanager as to how rendering should occur. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>ManagerToBeAdded</em>&nbsp;</td><td>This is a vector of manager pointers that will be used instead of creating new ones </td></tr>
   </table>
   </dd>
@@ -299,7 +303,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <div class="memdoc">
 
 <p>Default constructor. </p>
-<p>This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Adows. </p>
+<p>This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Actors </p>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Do not make a new world if one already exists. This can only cause problems </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00090">90</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
@@ -828,7 +832,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00296">296</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00300">300</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -859,7 +863,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00308">308</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00312">312</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -882,7 +886,7 @@ template&lt;class T &gt; </div>
 <p>Log String directly with no conversion. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Message</em>&nbsp;</td><td>The string to log </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>message</em>&nbsp;</td><td>The string to log </td></tr>
   </table>
   </dd>
 </dl>
@@ -1177,7 +1181,7 @@ template&lt;class T &gt; </div>
 <p>This is another way to put data in the log. </p>
 <p>The contents of this will be commited to the log once per frame, just before rendering. Because of that do not use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of debugging data and creating in game logs and recreations, this can be very useful. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00474">474</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00478">478</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1223,7 +1227,7 @@ template&lt;class T &gt; </div>
 <li><a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 6 2010 13:29:37 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:18 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

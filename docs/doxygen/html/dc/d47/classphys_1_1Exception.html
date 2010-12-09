@@ -40,6 +40,11 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="phys::Exception" -->
+<p>This is the exception thrown by most physgame system that can throw exceptions.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../dd/d2d/exception_8h_source.html">exception.h</a>&gt;</code></p>
+
 <p><a href="../../d5/dfb/classphys_1_1Exception-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
@@ -52,8 +57,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Has this exception been on a trip through the Logger?  <a href="#ab1399e25435c390db551855fda338951"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>This is the exception thrown by most physgame system that can throw exceptions. </p>
+<p>In general they work like std::exception, but also track whether they have been logged yet. </p>
 
-<p>Definition at line <a class="el" href="../../dd/d2d/exception_8h_source.html#l00059">59</a> of file <a class="el" href="../../dd/d2d/exception_8h_source.html">exception.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d2d/exception_8h_source.html#l00057">57</a> of file <a class="el" href="../../dd/d2d/exception_8h_source.html">exception.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a73fd1d2603e30f5663fef2d64df5179f"></a><!-- doxytag: member="phys::Exception::Exception" ref="a73fd1d2603e30f5663fef2d64df5179f" args="(const String &amp;Message, bool Logged_=false)" -->
 <div class="memitem">
@@ -84,6 +91,7 @@ Public Member Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Message</em>&nbsp;</td><td>The Error you want stored in the exception. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Logged_</em>&nbsp;</td><td>Has this exception already been sent to tthe logger </td></tr>
   </table>
   </dd>
 </dl>
@@ -142,7 +150,7 @@ Public Member Functions</h2></td></tr>
 <li><a class="el" href="../../de/d9e/exception_8cpp_source.html">exception.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 6 2010 13:29:35 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:16 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

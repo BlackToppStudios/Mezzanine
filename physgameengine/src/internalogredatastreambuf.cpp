@@ -55,6 +55,90 @@ namespace phys
         const String FailWriteNoAccess("Failed to write to readonly stream.");
         const String FailReadNoAccess("Failed to read from unreadable stream (could be write-only).");
 
+        streambuf* OgreDataStreamBuf::setbuf (char* s, streamsize n)
+        {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::setbuf()");
+            #endif
+
+            if ( 0==n ) //They want unbuffered input, well they can't have it
+                { return NULL; }
+            s = new char [n];
+            this->OgreStream->read(s,n);
+
+            return this;
+        }
+
+        streampos OgreDataStreamBuf::seekoff ( streamoff off, ios_base::seekdir way, ios_base::openmode which)
+        {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::seekoff()");
+            #endif
+            if (ios_base::out & which)
+                { return -1; }
+
+            switch(way)
+            {
+                case ios_base::beg :
+                    #ifdef PHYSDEBUG
+                    World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via Begin seek logic");
+                    #endif
+                    return this->seekpos((streampos)off,which);
+
+                case ios_base::cur :
+                    {
+                        #ifdef PHYSDEBUG
+                        World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via current location seek logic");
+                        #endif
+                        Whole BufferDiff = this->egptr()-this->gptr();
+                        if ( (off>0 && BufferDiff < off) || (off<0 && this->egptr()+off>this->eback() ) )                          // if the offset is still is still inside the loaded stuff
+                        {
+                            setg(this->eback(), this->gptr()+off, this->egptr());       //just move the pointer the amount of the offset
+                            return this->OgreStream->tell()-BufferDiff;                 // and figure out how fow into the ogre stream we are less the amount of unread data
+                        }else{
+                            return this->seekpos(this->OgreStream->tell()-BufferDiff, which);   //Otherwise just use existing logic to fix the buffer
+                        }
+                    }
+
+                case ios_base::end :
+                    #ifdef PHYSDEBUG
+                    World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via end seek logic");
+                    #endif
+                    if( (this->OgreStream->size()!=0) && (this->OgreStream->size()-off > 0))
+                    {
+                        this->seekpos(this->OgreStream->size()-off, which);
+                    }else{
+                        return -1;
+                    }
+
+                default:
+                    return -1;
+            }
+
+        }
+
+        streampos OgreDataStreamBuf::seekpos ( streampos sp, ios_base::openmode which )
+        {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::seekpos()");
+            #endif
+            if (ios_base::in & which)
+                { return -1; }
+
+            /// @todo do some fancy math to see if we can just move the current pointer around in the buffer
+
+            char* Buffer = new char [this->LoadAtOnce];
+            this->OgreStream->seek(sp-(streampos)SeekBackOnload);
+            this->OgreStream->read(Buffer, this->LoadAtOnce);
+
+            this->setg(Buffer, Buffer+this->SeekBackOnload, Buffer+this->LoadAtOnce);
+            return sp;
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekpos()");
+            #endif
+        }
+
+
         std::streamsize OgreDataStreamBuf::showmanyc (void)
         {
             #ifdef PHYSDEBUG
@@ -89,28 +173,123 @@ namespace phys
             }
         }
 
-        std::streamsize OgreDataStreamBuf::xsputn(const char_type*, std::streamsize n)
-        {
-            #ifdef PHYSDEBUG
-            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::xsgetn(char* s, std::streamsize n)");
-            #endif
-            throw Exception("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf",false);
-        }
-
         int OgreDataStreamBuf::underflow()
         {
             #ifdef PHYSDEBUG
-            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::underflow()");
+            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::underflow()");
+            World::GetWorldPointer()->LogStream << "\tSeekBackOnload: " << this->SeekBackOnload << endl;
+            #endif
+
+            Whole BufferSize = this->egptr() - this->eback();
+            if(BufferSize < this->SeekBackOnload)
+            {
+                //seekback is too large
+                if(2 <= this->SeekBackOnload)
+                    { this->SeekBackOnload *= 0.5; }
+                else
+                {
+                    this->SeekBackOnload = 0;
+                }
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->LogStream << "\tAdjusted SeekBackOnload: " << this->SeekBackOnload << endl;
+                World::GetWorldPointer()->LogStream << "\tBufferSize: " << BufferSize << endl;
+                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::underflow() After adjusting SeekBackOnload");
+                #endif
+                if (this->SeekBackOnload)
+                    { return traits_type::eof(); }
+                return this->underflow();
+            }else{
+                if (this->OgreStream->tell() > this->SeekBackOnload )       // are we too close to the beginning of the ogre stream
+                {
+                    this->OgreStream->seek( this->OgreStream->tell()-this->SeekBackOnload ); //we are in the , just keep moving
+                    this->OgreStream->read( this->eback(), BufferSize);
+                    this->setg( this->eback(), this->eback()+this->SeekBackOnload, this->egptr() );
+                }else{
+                    Whole DistanceFromStreamBegin = (this->SeekBackOnload - this->OgreStream->tell());
+                    this->OgreStream->seek( 0 );                            // yes we are, rewind to the beginning
+                    this->OgreStream->read( this->eback(), BufferSize);
+                    this->setg( this->eback(), this->eback()+DistanceFromStreamBegin, this->egptr() );
+                }
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::underflow() After performing requested loading");
+                #endif
+                return Toint(this->gptr());
+            }
+
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::underflow() After mysterious failure");
             #endif
             return traits_type::eof();
         }
 
-        int OgreDataStreamBuf::uflow()
+        /*int OgreDataStreamBuf::uflow()
         {
             #ifdef PHYSDEBUG
             World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::uflow()");
             #endif
             return underflow();
+        }*/
+
+        int OgreDataStreamBuf::pbackfail ( int c )
+        {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::pbackfail()");
+            #endif
+
+            Whole BufferSize = this->egptr() - this->eback();
+            if(BufferSize < this->SeekBackOnload)
+            {
+                if(2 <= this->SeekBackOnload)                 //seekback is too large
+                    { this->SeekBackOnload *= 0.5; }
+                else
+                    { return traits_type::eof(); }            //seekback is too small
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::pbackfail() After adjusting SeekBackOnload");
+                #endif
+                return this->pbackfail(c);
+            }else{
+                if (this->OgreStream->tell() > this->SeekBackOnload )                        // are we too close to the beginning of the ogre stream
+                {
+                    this->OgreStream->seek( this->OgreStream->tell()-this->SeekBackOnload ); //we are in the , just keep moving
+                    this->OgreStream->read( this->eback(), BufferSize);
+                    this->setg( this->eback(), this->eback()+this->SeekBackOnload, this->egptr() );
+                }else{
+                    Whole DistanceFromStreamBegin = (this->SeekBackOnload - this->OgreStream->tell());
+                    if (0==DistanceFromStreamBegin)                                         //Fail becuase we are at the beginning
+                        { return traits_type::eof(); }
+                    this->OgreStream->seek( 0 );                                            // yes we are, rewind to the beginning
+                    this->OgreStream->read( this->eback(), BufferSize);
+                    this->setg( this->eback(), this->eback()+DistanceFromStreamBegin, this->egptr() );
+                }
+
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::pbackfail() After performing requested loading");
+                #endif
+                return Toint(this->gptr());
+            }
+
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::pbackfail() After mysterious failure");
+            #endif
+            return traits_type::eof();
+        }
+
+        std::streamsize OgreDataStreamBuf::xsputn(const char_type* s, std::streamsize n)
+        {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::xsputn(const char_type* s, std::streamsize n)");
+            #endif
+            World::GetWorldPointer()->Log("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
+            return -1;
+        }
+
+        int OgreDataStreamBuf::overflow ( int c )
+        {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::overflow()");
+            #endif
+            World::GetWorldPointer()->Log("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
+            return -1;
         }
 
         bool OgreDataStreamBuf::Readable()

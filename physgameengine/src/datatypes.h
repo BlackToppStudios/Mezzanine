@@ -45,6 +45,7 @@
 #include "crossplatformexport.h"
 
 #include <string>
+#include <sstream>
 #include <vector>
 
 /// @internal
@@ -53,6 +54,10 @@ union SDL_Event;
 
 namespace phys
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    // Datatypes
+    ///////////////////////////////////////
+
     /// @internal
     /// @brief Forward declaration for use with soundset
     class Sound;
@@ -62,14 +67,21 @@ namespace phys
     /// @details This Datatype is currently a typedef to a float, This is to match
     /// our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics
     /// subsystem, btScalar). With a recompilation of all the subsystems and  this
-    /// there is no reason theoretical reason why this could not be changed to a
-    /// double, or even something more extreme like a GMP datatype
+    /// there is no theoretical reason why this could not be changed to a
+    /// double, or even something more extreme like a GMP datatype. Most likely this
+    /// switch would require atleast some troubleshooting.
     typedef float Real;
 
     /// @typedef Whole
     /// @brief A Datatype used to represent an postive integer numbers
-    /// @details This is a typedef to unsigned long.
+    /// @details This is a typedef to unsigned Long. but could be smaller on
     typedef unsigned long Whole;
+
+    /// @typedef Integer
+    /// @brief A datatype use to represent any integer close to
+    /// @details This is a typedef to int, but could int16 or smaller to improve performce on
+    /// handheld platforms
+    typedef int Integer;
 
     /// @typedef String
     /// @brief A Datatype used to a series of characters
@@ -88,11 +100,104 @@ namespace phys
     /// for similiar purposes or similiar content for easy tracking.
     typedef std::vector< Sound* > SoundSet;
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Simple conversion functions
+    ///////////////////////////////////////
 
-    //TODO make a typedef for RawEvent.type and a function that return that new datatype
-    //  this will make it easier to swap out event subsystems when porting between platforms
-    //  If done right we will only need to swap out the code specific to message internals
+    /// @brief Converts whatever to a String as long as a streaming operator is available for it
+    /// @param Datum The whatever to be converted
+    /// @return A String with the converted data
+    template<class T> String ToString( const T& Datum )
+    {
+        static std::stringstream Converter;
+        Converter.str("");
+        Converter << Datum;
+        return Converter.str();
+    }
+
+    /// @brief Converts whatever to a Whole as long as the proper streaming operators are available for it
+    /// @param Datum The whatever to be converted
+    /// @return A Whole with the converted data
+    template<class T> Whole ToWhole( const T& Datum )
+    {
+        static std::stringstream Converter;
+        Converter.str("");
+        Converter << Datum;
+        Whole Results;
+        Converter >> Results;
+        return Results;
+    }
+
+    /// @brief Converts whatever to an Integer as long as the proper streaming operators are available for it
+    /// @param Datum The whatever to be converted
+    /// @return An Integer with the converted data
+    template<class T> Integer ToInteger( const T& Datum )
+    {
+        static std::stringstream Converter;
+        Converter.str("");
+        Converter << Datum;
+        Integer Results;
+        Converter >> Results;
+        return Results;
+    }
+
+    /// @brief Converts whatever to an int as long as the proper streaming operators are available for it
+    /// @param Datum The whatever to be converted
+    /// @return An Integer with the converted data
+    /// @details This exists for interacting with other libraies, in situations where changing the Integer Typedef could
+    /// break things
+    template<class T> int Toint( const T& Datum )
+    {
+        static std::stringstream Converter;
+        Converter.str("");
+        Converter << Datum;
+        int Results;
+        Converter >> Results;
+        return Results;
+    }
+
+    /// @brief Converts whatever to an Real as long as the proper streaming operators are available for it
+    /// @param Datum The whatever to be converted
+    /// @return An Real with the converted data
+    template<class T> int ToReal( const T& Datum )
+    {
+        static std::stringstream Converter;
+        Converter.str("");
+        Converter << Datum;
+        Real Results;
+        Converter >> Results;
+        return Results;
+    }
+
+    /// @brief Converts whatever to a float as long as the proper streaming operators are available for it
+    /// @param Datum The whatever to be converted
+    /// @return An float with the converted data
+    /// @details This exists for interacting with other libraies, in situations where changing the Real Typedef could
+    /// break things
+    template<class T> int Tofloat( const T& Datum )
+    {
+        static std::stringstream Converter;
+        Converter.str("");
+        Converter << Datum;
+        float Results;
+        Converter >> Results;
+        return Results;
+    }
+
+    /// @brief Converts whatever to a double as long as the proper streaming operators are available for it
+    /// @param Datum The whatever to be converted
+    /// @return An bouble with the converted data
+    /// @details This exists for interacting with other libraies, in situations where changing the Typedefs could break things
+    template<class T> int Todouble( const T& Datum )
+    {
+        static std::stringstream Converter;
+        Converter.str("");
+        Converter << Datum;
+        double Results;
+        Converter >> Results;
+        return Results;
+    }
+
 } // \phys
 
 #endif
-

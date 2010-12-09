@@ -100,7 +100,6 @@ namespace phys
 
             /// @brief This takes care of all the real work in contructing this
             /// @details This method is called by all the constructors to insure consistent behavior.
-            /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with
             /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world
             /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
             /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
@@ -114,13 +113,11 @@ namespace phys
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics
             /// world that can be used immediately
-            /// @param GameWorld_ This is a pointer to the game world this PhysicsManager will work with
             PhysicsManager();
 
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics
             /// world that can be used immediately
-            /// @param GameWorld_ This is a pointer to the phys::World that this manager will work with
             /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world
             /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
             /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
