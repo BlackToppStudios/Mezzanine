@@ -133,9 +133,11 @@ namespace phys
         {
             if(Box->CheckMouseHover())
             {
+                HoveredButton = Box;
                 Update();
                 return true;
             }
+            HoveredButton = NULL;
             return false;
         }
 

@@ -50,10 +50,11 @@ namespace phys
     class UILayer;
     namespace UI
     {
+        class Button;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Widget
         /// @headerfile uiwidget.h
-        /// @brief This class is the base class for widgets.
+        /// @brief This class is the base class for all widgets.
         /// @details
         ///////////////////////////////////////
         class PHYS_LIB Widget
@@ -69,6 +70,7 @@ namespace phys
                 friend class phys::UIManager;
                 UIManager* Manager;
                 UILayer* Parent;
+                UI::Button* HoveredButton;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 WidgetType Type;
@@ -105,6 +107,7 @@ namespace phys
                 /// @return Returns a vector2 representing the pixel position of this widget.
                 virtual Vector2 GetActualPosition() = 0;
                 /// @brief Sets the relative size of this widget.
+                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
                 virtual void SetSize(Vector2 Size) = 0;
                 /// @brief Gets the relative size of this widget.
@@ -117,6 +120,9 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize() = 0;
+                /// @brief Gets the hovered button within this widget, if any.
+                /// @return Returns a pointer to the button within this widget the mouse is hovering over, or NULL if none.
+                virtual Button* GetHoveredButton();
         };//widget
     }//UI
 }//phys

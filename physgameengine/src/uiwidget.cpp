@@ -41,6 +41,7 @@
 #define _uiwidget_cpp
 
 #include "uiwidget.h"
+#include "uibutton.h"
 #include "world.h"
 
 namespace phys
@@ -49,6 +50,7 @@ namespace phys
     {
         Widget::Widget(const String& name, UILayer* parent)
             : Parent(parent),
+              HoveredButton(NULL),
               RelPosition(Vector2(0,0)),
               RelSize(Vector2(0,0)),
               Name(name)
@@ -68,6 +70,11 @@ namespace phys
         String& Widget::GetName()
         {
             return Name;
+        }
+
+        Button* Widget::GetHoveredButton()
+        {
+            return HoveredButton;
         }
     }//UI
 }//phys

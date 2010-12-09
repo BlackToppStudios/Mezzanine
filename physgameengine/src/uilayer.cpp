@@ -46,6 +46,7 @@
 #include "uicaption.h"
 #include "uiwidget.h"
 #include "uicheckbox.h"
+#include "uibuttonlistbox.h"
 #include "uimarkuptext.h"
 
 #include "uibuttonlistbox.h"

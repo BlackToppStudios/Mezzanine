@@ -55,7 +55,7 @@ namespace phys
         /// @brief This is a simple widget for storing a bool value.
         /// @details
         ///////////////////////////////////////
-        class CheckBox : public Widget
+        class PHYS_LIB CheckBox : public Widget
         {
             protected:
                 friend class UIManager;
@@ -121,6 +121,7 @@ namespace phys
                 /// @return Returns a vector2 representing the pixel position of this widget.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this widget.
+                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
                 virtual void SetSize(Vector2 Size);
                 /// @brief Gets the relative size of this widget.

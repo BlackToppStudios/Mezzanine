@@ -72,6 +72,29 @@ namespace phys
             Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
         }
 
+        void Caption::SetVisible(bool Visible)
+        {
+            GorillaRectangle->SetVisible(Visible);
+            GorillaCaption->SetVisible(Visible);
+        }
+
+        bool Caption::IsVisible()
+        {
+            return GorillaRectangle->IsVisible();
+        }
+
+        void Caption::Show()
+        {
+            GorillaRectangle->Show();
+            GorillaCaption->Show();
+        }
+
+        void Caption::Hide()
+        {
+            GorillaRectangle->Hide();
+            GorillaCaption->Hide();
+        }
+
         String& Caption::GetName()
         {
             return Name;

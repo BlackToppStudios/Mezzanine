@@ -54,13 +54,14 @@ namespace phys
         /// @brief This is a widget for displaying a list of buttons in a box.
         /// @details
         ///////////////////////////////////////
-        class ButtonListBox : public Widget
+        class PHYS_LIB ButtonListBox : public Widget
         {
             protected:
                 Rectangle* BoxBack;
                 //Scrollbar* VertScroll;
                 std::vector<Button*> Selections;
                 std::vector<Button*> VisableSelections;
+                Real SelectionDist;
                 /// @brief For use with widget update/automation.
                 virtual void Update(bool Force = false);
             public:
@@ -71,6 +72,18 @@ namespace phys
                 /// @brief Checks to see if the current mouse position is over this Button List Box.
                 /// @return Returns a bool value, true if the mouse is over this Button List Box, false if it's not.
                 virtual bool CheckMouseHover();
+                /// @brief Adds a selectable button to the list to be displayed.
+                /// @param Size The size of the button.
+                /// @param BackgroundSprite Optional, name of the sprite to set as it's background.  Ignored if the string is empty.
+                /// @param TextLabel Optional, will create a text button instead of a regular button and set it's text.  Ignored if
+                /// the string is empty.  @n @n Note: If a Text button is created, you can't revert it to a regular button and vice
+                /// versa.  You'll have to destroy the selection and make a new one.  In the case of having a text button, you can
+                /// however still set it's text to an empty string.
+                virtual void AddSelection(Vector2 Size, String& BackgroundSprite = "", String &TextLabel = "");
+                /// @brief Sets the distance apart(and from the sides of box) the Selections will be from each other.
+                /// @details This function expects a relative value to the screen size(0.0 to 1.0).  This value defaults to 0.025.
+                /// @param Dist A relative value for the distance to be used when determining the position of Selections.
+                virtual void SetSelectionDistance(Real Dist);
                 /// @brief Sets the relative position of this Button List Box.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this Button List Box.
@@ -86,6 +99,7 @@ namespace phys
                 /// @return Returns a vector2 representing the pixel position of this Button List Box.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this Button List Box.
+                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this Button List Box.
                 virtual void SetSize(Vector2 Size);
                 /// @brief Gets the relative size of this Button List Box.

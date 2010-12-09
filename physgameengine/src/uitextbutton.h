@@ -69,6 +69,16 @@ namespace phys
                 TextButton(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
                 ~TextButton();
+                /// @brief Sets the visibility of this button.
+                /// @param Visible Bool determining whether or not this button should be visible.
+                virtual void SetVisible(bool Visible);
+                /// @brief Gets the visibility of this button.
+                /// @return Returns a bool representing the visibility of this button.
+                virtual bool IsVisible();
+                /// @brief Forces this button to be shown.
+                virtual void Show();
+                /// @brief Forces this button to hide.
+                virtual void Hide();
                 /// @brief Sets the text displayed within the button.
                 /// @param Text The text to be displayed.
                 virtual void SetText(String& Text);

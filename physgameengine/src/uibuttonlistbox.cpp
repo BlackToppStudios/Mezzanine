@@ -53,7 +53,8 @@ namespace phys
     namespace UI
     {
         ButtonListBox::ButtonListBox(String& name, Vector2 Position, Vector2 Size, UILayer* Layer)
-            : Widget(name,Layer)
+            : Widget(name,Layer),
+              SelectionDist(0.025)
         {
             Type = Widget::ButtonListBox;
             RelPosition = Position;
@@ -75,6 +76,16 @@ namespace phys
         bool ButtonListBox::CheckMouseHover()
         {
             return false;
+        }
+
+        void ButtonListBox::AddSelection(Vector2 Size, String& BackgroundSprite, String &TextLabel)
+        {
+
+        }
+
+        void ButtonListBox::SetSelectionDistance(Real Dist)
+        {
+
         }
 
         void ButtonListBox::SetPosition(Vector2 Position)
