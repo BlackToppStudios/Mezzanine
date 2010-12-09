@@ -94,10 +94,11 @@ namespace phys
 			/// @return A bool true if it can be written to
 			bool Writeable();
 
-			template<class T> std::istream& operator >> ( T& Data )
+			template<class T> ResourceInputStream& operator >> ( T& Data )
 			{
-				(*(static_cast<std::istream*>(this))) >> Data;
-				return this;
+                std::istream* temp = static_cast<std::istream*>(this);
+				(*temp) >> Data;
+				return *this;
 			}
 	}; // \ResourceInputStream
 } // \phys
