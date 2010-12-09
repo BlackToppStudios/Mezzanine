@@ -477,9 +477,9 @@ void LoadContent()
         //(*Zippedptr) >> ZippedContent;
 
         TheWorld->Log("Streamed XML Content");
-        TheWorld->Log(Content);
-        TheWorld->Log("Streamed and Zipped XML Content");
-        TheWorld->Log(ZippedContent);
+        //TheWorld->Log(Content);
+        //TheWorld->Log("Streamed and Zipped XML Content");
+        //TheWorld->Log(ZippedContent);
 
         char chararray[1000] = {0};
         (*XMLptr) >> chararray;

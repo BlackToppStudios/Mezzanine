@@ -298,12 +298,7 @@ namespace phys
             /// @brief Runtime Event logging Function
             /// @param Message This is what will be streamed to the log
             template <class T> void PHYS_LIB  Log(T Message)
-            {
-                static stringstream Converter;          //prepare this for conversions, hopefully only once
-                Converter << Message;
-                this->LogString(Converter.str());
-                Converter.str("");                      //clear it for use the next time this is called
-            }
+                { this->LogString(ToString(Message)); }
 
             /// @brief This is the preferred way to throw an exception currently
             /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data

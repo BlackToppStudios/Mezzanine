@@ -234,6 +234,9 @@ namespace phys
             Audiolog->str("");
         }
 
+        Ogre::LogManager::getSingleton().logMessage(this->LogStream.str());
+        this->LogStream.str("");
+
         Ogre::LogManager::getSingleton().logMessage(Message);
     }
 

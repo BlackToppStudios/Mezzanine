@@ -78,14 +78,14 @@ namespace phys
                 /// file after that point. This says howmany bytes should be loaded before that default starting
                 /// point. If all streams are simply read, then this should be 0, if there is manuever around the
                 /// stream, then this should be higher, based on how far back you plan on reading. By default
-                /// this assumes a low value of 96 bytes.
+                /// this assumes a low value of 128 bytes.
                 Whole SeekBackOnload;
 
             public:
 
                 /// @brief constructor
                 /// @param Datum A pointer to the Ogre Datastream that this stream will use
-                OgreDataStreamBuf(const Ogre::DataStreamPtr& Datum) :OgreStream(Datum), LoadAtOnce(4096), SeekBackOnload(96)
+                OgreDataStreamBuf(const Ogre::DataStreamPtr& Datum) :OgreStream(Datum), LoadAtOnce(4096), SeekBackOnload(128)
                 {
                     #ifdef PHYSDEBUG
                     World::GetWorldPointer()->Log("Entering/Exiting OgreDataStreamBuf Constructor");
@@ -141,22 +141,27 @@ namespace phys
                 /// @return always returns EOF
                 virtual int underflow();
 
-                /// @brief Calls underflow()
-                /// @return whatever underflow() returns.
-                virtual int uflow();
+                // Default implmentation is ideal
+                // @brief Calls underflow()
+                // @return whatever underflow() returns.
+                //virtual int uflow();
 
-                //int pbackfail ( int c = EOF );
+                /// @brief Someone rewinded too far and now we need to backload the buffer
+                /// @param c Ignored, required for compatibility
+                /// @return EOF on failure and the current character pointer otherwise
+                virtual int pbackfail ( int c = EOF );
 
-                ///////////////////////////////////////////////////////////////////////////////
-                // Virtual Methods acquired form Ogre forums in a dirty hack.
-                /// @brief Puts a sequence of characters in
+                /// @brief Crashes, in ostream bufs it is expected to put data into the stream
                 /// @param s a Pointer to the characters
                 /// @param n How many characters
                 /// @return This returns the amount of characters inserted
                 /// @detail currently unimplimented
-                virtual std::streamsize xsputn(const char_type*, std::streamsize n);
+                virtual std::streamsize xsputn(const char_type* s, std::streamsize n);
 
-                //int overflow ( int c = EOF );
+                /// @brief Crashes, in ostreambufs, this is expected to write characters out
+                /// @param c A character to write at the end of the output
+                /// @return the amountof characters written
+                virtual int overflow ( int c = EOF );
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Non-Virtual Methods
