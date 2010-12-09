@@ -111,7 +111,7 @@ namespace phys
         bool Button::CheckMouseHover()
         {
             Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
-            if(GorillaRectangle->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
+            if(GorillaRectangle->intersects(MouseLoc.GetOgreVector2()) && GorillaRectangle->IsVisible())
             {
                 if(!MouseHover && HoveredSprite)
                 {

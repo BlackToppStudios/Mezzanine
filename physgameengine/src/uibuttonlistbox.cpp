@@ -44,6 +44,8 @@
 #include "uimanager.h"
 #include "uilayer.h"
 #include "uirectangle.h"
+#include "uibutton.h"
+#include "uitextbutton.h"
 #include "inputquerytool.h"
 #include "metacode.h"
 #include "world.h"
@@ -52,20 +54,56 @@ namespace phys
 {
     namespace UI
     {
-        ButtonListBox::ButtonListBox(String& name, Vector2 Position, Vector2 Size, UILayer* Layer)
+        ButtonListBox::ButtonListBox(String& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer)
             : Widget(name,Layer),
-              SelectionDist(0.025)
+              AutoHideScroll(true),
+              SelectionDist(0.025),
+              BorderWidth(0),
+              BorderColour(ColourValue(0,0,0,0))
         {
             Type = Widget::ButtonListBox;
             RelPosition = Position;
             RelSize = Size;
 
             BoxBack = new Rectangle(Position,Size,Layer);
+            Vector2 ScrollP(RelPosition.X - ScrollbarWidth,RelPosition.Y);
+            Vector2 ScrollS(ScrollbarWidth,RelSize.Y);
+            /// @todo Fourth instance of needing to include the namespace in the declaration seemingly needlessly.
+            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollP,ScrollS,ScrollbarStyle,Parent);
+            VertScroll->Hide();
         }
 
         ButtonListBox::~ButtonListBox()
         {
             delete BoxBack;
+            if(!Selections.empty())
+            {
+                for( std::vector<Button*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
+                {
+                    delete (*it);
+                }
+                Selections.clear();
+            }
+            VisibleSelections.clear();
+        }
+
+        void ButtonListBox::CalculateVisibleSelections()
+        {
+            NumVisible = (Whole)(RelSize.Y / (TSize.Y + SelectionDist));
+            if(Selections.size() > NumVisible)
+            {
+                VertScroll->SetScrollerSize(NumVisible / Selections.size());
+                if(AutoHideScroll)
+                    VertScroll->Show();
+            }else{
+                if(AutoHideScroll)
+                    VertScroll->Hide();
+            }
+        }
+
+        void ButtonListBox::DrawList()
+        {
+
         }
 
         void ButtonListBox::Update(bool Force)
@@ -73,24 +111,95 @@ namespace phys
 
         }
 
+        void ButtonListBox::SetVisible(bool Visible)
+        {
+            BoxBack->SetVisible(Visible);
+        }
+
+        bool ButtonListBox::IsVisible()
+        {
+            return BoxBack->IsVisible();
+        }
+
+        void ButtonListBox::Show()
+        {
+            BoxBack->Show();
+        }
+
+        void ButtonListBox::Hide()
+        {
+            BoxBack->Hide();
+        }
+
         bool ButtonListBox::CheckMouseHover()
         {
+            if(VertScroll->CheckMouseHover())
+            {
+                HoveredSubWidget = VertScroll;
+                HoveredButton = NULL;
+                Update();
+                return true;
+            }
+            else if(BoxBack->CheckMouseHover())
+            {
+                HoveredSubWidget = NULL;
+                HoveredButton = NULL;
+                Update();
+                return true;
+            }
             return false;
         }
 
-        void ButtonListBox::AddSelection(Vector2 Size, String& BackgroundSprite, String &TextLabel)
+        void ButtonListBox::SetTemplateParameters(Vector2 Size, Whole Glyph)
         {
+            TSize = Size;
+            TGlyph = Glyph;
+        }
 
+        void ButtonListBox::AddSelection(String& name, String& BackgroundSprite, String &TextLabel)
+        {
+            Button* Select = NULL;
+            if(TextLabel.empty())
+            {
+                Select = new Button(name,GetPosition(),TSize,Parent);
+            }else{
+                Select = new TextButton(name,GetPosition(),TSize,TGlyph,TextLabel,Parent);
+            }
+            if(!BackgroundSprite.empty())
+            {
+                Select->SetBackgroundSprite(BackgroundSprite);
+            }
+            Select->Hide();
+            Selections.push_back(Select);
+            CalculateVisibleSelections();
         }
 
         void ButtonListBox::SetSelectionDistance(Real Dist)
         {
+            SelectionDist = Dist;
+        }
 
+        void ButtonListBox::SetAutoHideScroll(bool AutoHide)
+        {
+            AutoHideScroll = AutoHide;
+        }
+
+        void ButtonListBox::EnableBorderSelector(Real Width, ColourValue &Colour)
+        {
+            BorderWidth = Width;
+            BorderColour = Colour;
+        }
+
+        void ButtonListBox::DisableBorderSelector()
+        {
+            BorderWidth = 0;
+            BorderColour = ColourValue(0,0,0,0);
         }
 
         void ButtonListBox::SetPosition(Vector2 Position)
         {
-
+            RelPosition = Position;
+            BoxBack->SetPosition(Position);
         }
 
         Vector2 ButtonListBox::GetPosition()
@@ -100,7 +209,8 @@ namespace phys
 
         void ButtonListBox::SetActualPosition(Vector2 Position)
         {
-
+            RelPosition = Position / Manager->GetWindowDimensions();
+            BoxBack->SetActualPosition(Position);
         }
 
         Vector2 ButtonListBox::GetActualPosition()
@@ -110,7 +220,8 @@ namespace phys
 
         void ButtonListBox::SetSize(Vector2 Size)
         {
-
+            RelSize = Size;
+            BoxBack->SetSize(Size);
         }
 
         Vector2 ButtonListBox::GetSize()
@@ -120,7 +231,8 @@ namespace phys
 
         void ButtonListBox::SetActualSize(Vector2 Size)
         {
-
+            RelSize = Size / Manager->GetWindowDimensions();
+            BoxBack->SetActualSize(Size);
         }
 
         Vector2 ButtonListBox::GetActualSize()

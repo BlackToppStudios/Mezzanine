@@ -51,6 +51,7 @@ namespace phys
         Widget::Widget(const String& name, UILayer* parent)
             : Parent(parent),
               HoveredButton(NULL),
+              HoveredSubWidget(NULL),
               RelPosition(Vector2(0,0)),
               RelSize(Vector2(0,0)),
               Name(name)
@@ -75,6 +76,11 @@ namespace phys
         Button* Widget::GetHoveredButton()
         {
             return HoveredButton;
+        }
+
+        Widget* Widget::GetHoveredSubWidget()
+        {
+            return HoveredSubWidget;
         }
     }//UI
 }//phys

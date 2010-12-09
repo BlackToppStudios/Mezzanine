@@ -74,25 +74,35 @@ namespace phys
             public:
                 /// @brief Class constructor
                 /// @details The dimensions provided
-                /// @param name The name of the button.
-                /// @param Position The top left position of the button.
-                /// @param Size The size of the Button.
-                /// @param Layer Pointer to the Layer that created this button.
+                /// @param name The name of the checkbox.
+                /// @param Position The top left position of the checkbox.
+                /// @param Size The size of the checkbox.
+                /// @param Layer Pointer to the Layer that created this checkbox.
                 CheckBox(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText, UILayer* Layer);
                 /// @brief Class destructor.
                 virtual ~CheckBox();
+                /// @brief Sets the visibility of this checkbox.
+                /// @param Visible Bool determining whether or not this checkbox should be visible.
+                virtual void SetVisible(bool Visible);
+                /// @brief Gets the visibility of this checkbox.
+                /// @return Returns a bool representing the visibility of this checkbox.
+                virtual bool IsVisible();
+                /// @brief Forces this checkbox to be shown.
+                virtual void Show();
+                /// @brief Forces this checkbox to hide.
+                virtual void Hide();
                 /// @brief Gets whether this checkbox is checked or not.
                 /// @return Returns a bool representing whether or not this checkbox is checked.
                 virtual bool IsChecked();
-                /// @brief Checks to see if the current mouse position is over this widget.
-                /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
+                /// @brief Checks to see if the current mouse position is over this checkbox.
+                /// @return Returns a bool value, true if the mouse is over this checkbox, false if it's not.
                 virtual bool CheckMouseHover();
-                /// @brief Sets the text label to be displayed with this widget.
+                /// @brief Sets the text label to be displayed with this checkbox.
                 /// @details If a label hasn't been set when this is called, this funtion will create a
                 /// new one and set it.
-                /// @param Label The text message to display with this widget.
+                /// @param Label The text message to display with this checkbox.
                 virtual void SetLabelText(String &LabelText);
-                /// @brief Gets the currently set label being displayed with this widget.
+                /// @brief Gets the currently set label being displayed with this checkbox.
                 /// @return Returns a string containing the currently set label.  If no label is set this will
                 /// return an empty string.
                 virtual String GetLabelText();
@@ -106,33 +116,33 @@ namespace phys
                 /// @param Hovered The name of the sprite in the Atlas you with to sed on the checked/hovered sprite.
                 /// Leaving this to default or passing in a blank string will cause it to ignore this parameter.
                 virtual void SetCheckedSprite(String& Checked, String& Hovered = "");
-                /// @brief Sets the relative position of this widget.
+                /// @brief Sets the relative position of this checkbox.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Position A vector2 representing the relative position of this widget.
+                /// @param Position A vector2 representing the relative position of this checkbox.
                 virtual void SetPosition(Vector2 Position);
-                /// @brief Gets the relative position of this widget.
+                /// @brief Gets the relative position of this checkbox.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative position of this widget.
+                /// @return Returns a vector2 representing the relative position of this checkbox.
                 virtual Vector2 GetPosition();
-                /// @brief Sets the pixel position of this widget.
-                /// @param Position A vector2 representing the pixel position of this widget.
+                /// @brief Sets the pixel position of this checkbox.
+                /// @param Position A vector2 representing the pixel position of this checkbox.
                 virtual void SetActualPosition(Vector2 Position);
-                /// @brief Sets the pixel position of this widget.
-                /// @return Returns a vector2 representing the pixel position of this widget.
+                /// @brief Sets the pixel position of this checkbox.
+                /// @return Returns a vector2 representing the pixel position of this checkbox.
                 virtual Vector2 GetActualPosition();
-                /// @brief Sets the relative size of this widget.
+                /// @brief Sets the relative size of this checkbox.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @param Size A vector2 representing the relative size of this widget.
+                /// @param Size A vector2 representing the relative size of this checkbox.
                 virtual void SetSize(Vector2 Size);
-                /// @brief Gets the relative size of this widget.
+                /// @brief Gets the relative size of this checkbox.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
-                /// @return Returns a vector2 representing the relative size of this widget.
+                /// @return Returns a vector2 representing the relative size of this checkbox.
                 virtual Vector2 GetSize();
-                /// @brief Sets the pixel size of this widget.
-                /// @param Size A vector2 representing the pixel size of this widget.
+                /// @brief Sets the pixel size of this checkbox.
+                /// @param Size A vector2 representing the pixel size of this checkbox.
                 virtual void SetActualSize(Vector2 Size);
-                /// @brief Sets the pixel size of this widget.
-                /// @return Returns a vector2 representing the pixel size of this widget.
+                /// @brief Sets the pixel size of this checkbox.
+                /// @return Returns a vector2 representing the pixel size of this checkbox.
                 virtual Vector2 GetActualSize();
                 /// @brief Gets the Button this checkbox is based on.
                 /// @return Returns a pointer to the button this checkbox is based on.

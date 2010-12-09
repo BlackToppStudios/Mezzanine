@@ -43,6 +43,7 @@
 #include "uicaption.h"
 #include "uilayer.h"
 #include "uimanager.h"
+#include "eventmanager.h"
 #include "world.h"
 
 #include "internalGorilla.h.cpp"
@@ -53,6 +54,7 @@ namespace phys
     {
         Caption::Caption(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
             : Parent(Layer),
+              MouseHover(false),
               RelPosition(Position),
               RelSize(Size),
               Name(name)
@@ -93,6 +95,23 @@ namespace phys
         {
             GorillaRectangle->Hide();
             GorillaCaption->Hide();
+        }
+
+        bool Caption::CheckMouseHover()
+        {
+            Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
+            if(GorillaCaption->intersects(MouseLoc.GetOgreVector2()) && GorillaRectangle->IsVisible())
+            {
+                MouseHover = true;
+            }else{
+                MouseHover = false;
+            }
+            return MouseHover;
+        }
+
+        bool Caption::GetMouseHover()
+        {
+            return MouseHover;
         }
 
         String& Caption::GetName()

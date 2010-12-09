@@ -512,6 +512,41 @@ namespace phys
             CalculateScrollValue();
         }
 
+        void Scrollbar::SetVisible(bool Visible)
+        {
+            ScrollBack->SetVisible(Visible);
+            Scroller->SetVisible(Visible);
+            if(UpLeftButton)
+                UpLeftButton->SetVisible(Visible);
+            if(DownRightButton)
+                DownRightButton->SetVisible(Visible);
+        }
+
+        bool Scrollbar::IsVisible()
+        {
+            return Scroller->IsVisible();
+        }
+
+        void Scrollbar::Show()
+        {
+            ScrollBack->Show();
+            Scroller->Show();
+            if(UpLeftButton)
+                UpLeftButton->Show();
+            if(DownRightButton)
+                DownRightButton->Show();
+        }
+
+        void Scrollbar::Hide()
+        {
+            ScrollBack->Hide();
+            Scroller->Hide();
+            if(UpLeftButton)
+                UpLeftButton->Hide();
+            if(DownRightButton)
+                DownRightButton->Hide();
+        }
+
         bool Scrollbar::CheckMouseHover()
         {
             if(Scroller->CheckMouseHover())

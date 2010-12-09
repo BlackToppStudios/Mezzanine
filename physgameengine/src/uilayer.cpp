@@ -363,9 +363,12 @@ namespace phys
         for( std::vector<UI::Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
         {
             button = (*it);
-            if(button->CheckMouseHover())
+            if(button->IsVisible())
             {
-                return button;
+                if(button->CheckMouseHover())
+                {
+                    return button;
+                }
             }
         }
         return 0;
@@ -379,9 +382,12 @@ namespace phys
         for( std::vector<UI::Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
         {
             widget = (*it);
-            if(widget->CheckMouseHover())
+            if(widget->IsVisible())
             {
-                return widget;
+                if(widget->CheckMouseHover())
+                {
+                    return widget;
+                }
             }
         }
         return 0;

@@ -78,6 +78,7 @@ namespace phys
                 UILayer* Parent;
                 UIManager* Manager;
                 Whole Glyphs;
+                bool MouseHover;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 String Name;
@@ -102,6 +103,13 @@ namespace phys
                 virtual void Show();
                 /// @brief Forces this caption to hide.
                 virtual void Hide();
+                /// @brief Determines whether the mouse is over this caption.
+                /// @return Returns a bool indicating whether the mouse is over this caption.
+                virtual bool CheckMouseHover();
+                /// @brief Gets the stored value of whether or not the mouse is over the caption.
+                /// @details This function does not perform any checks.  If you want to do a manual check, call CheckMouseHover().
+                /// @return Returns the stored value of whether or not the mouse is over the caption.
+                virtual bool GetMouseHover();
                 /// @brief Gets the name of this caption.
                 /// @return Returns a string containing the name of this caption.
                 virtual String& GetName();

@@ -71,6 +71,7 @@ namespace phys
                 UIManager* Manager;
                 UILayer* Parent;
                 UI::Button* HoveredButton;
+                UI::Widget* HoveredSubWidget;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 WidgetType Type;
@@ -83,6 +84,16 @@ namespace phys
                 Widget(const String& name, UILayer* parent);
                 /// @brief Standard destructor.
                 virtual ~Widget();
+                /// @brief Sets the visibility of this widget.
+                /// @param Visible Bool determining whether or not this widget should be visible.
+                virtual void SetVisible(bool Visible) = 0;
+                /// @brief Gets the visibility of this widget.
+                /// @return Returns a bool representing the visibility of this widget.
+                virtual bool IsVisible() = 0;
+                /// @brief Forces this widget to be shown.
+                virtual void Show() = 0;
+                /// @brief Forces this widget to hide.
+                virtual void Hide() = 0;
                 /// @brief Gets the type of widget this is.
                 /// @return Returns an enum value representing the type of widget this is.
                 WidgetType GetType();
@@ -123,6 +134,9 @@ namespace phys
                 /// @brief Gets the hovered button within this widget, if any.
                 /// @return Returns a pointer to the button within this widget the mouse is hovering over, or NULL if none.
                 virtual Button* GetHoveredButton();
+                /// @brief Gets the hovered sub-widget within this widget, if any.
+                /// @return Returns a pointer to the sub-widget within this widget the mouse is hovering over, or NULL if none.
+                virtual Widget* GetHoveredSubWidget();
         };//widget
     }//UI
 }//phys

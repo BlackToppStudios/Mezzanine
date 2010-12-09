@@ -1422,6 +1422,7 @@ namespace Gorilla
  Rectangle::Rectangle(Ogre::Real left, Ogre::Real top, Ogre::Real width, Ogre::Real height, Layer* layer) : mLayer(layer)
  {
   mDirty       = true;
+  mVisible     = true;
   mLeft        = left;
   mTop         = top;
   mRight       = left + width;
@@ -1508,6 +1509,7 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
  : mLayer(layer), mSprite(0)
  {
   mDirty        = true;
+  mVisible      = true;
   mLayer->_markDirty();
   mLeft           = left;
   mTop            = top;
@@ -1629,6 +1631,7 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
  LineList::LineList(Layer* layer) : mLayer(layer)
  {
   mDirty = false;
+  mVisible     = true;
   mPriority    = Gorilla::RP_Medium;
  }
 
@@ -1727,6 +1730,7 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
  {
   mWhiteUV = mLayer->_getSolidUV();
   mPriority    = Gorilla::RP_Medium;
+  mVisible     = true;
  }
 
  void  QuadList::begin()
@@ -1993,6 +1997,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 #endif
   }
   mDirty        = true;
+  mVisible      = true;
   mLayer->_markDirty();
   mLeft           = left;
   mTop            = top;
@@ -2227,6 +2232,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
   mDirty          = true;
   mTextDirty      = true;
+  mVisible        = true;
   mLayer->_markDirty();
   mLeft           = left;
   mTop            = top;

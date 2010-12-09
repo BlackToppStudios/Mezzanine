@@ -124,6 +124,32 @@ namespace phys
             }
         }
 
+        void CheckBox::SetVisible(bool Visible)
+        {
+            Box->SetVisible(Visible);
+            if(Label)
+                Label->SetVisible(Visible);
+        }
+
+        bool CheckBox::IsVisible()
+        {
+            return Box->IsVisible();
+        }
+
+        void CheckBox::Show()
+        {
+            Box->Show();
+            if(Label)
+                Label->Show();
+        }
+
+        void CheckBox::Hide()
+        {
+            Box->Hide();
+            if(Label)
+                Label->Hide();
+        }
+
         bool CheckBox::IsChecked()
         {
             return Checked;
@@ -148,6 +174,7 @@ namespace phys
                 Vector2 Position = Box->GetPosition();
                 Position.X+=Box->GetSize().X;
                 Label = new MarkupText(Name+"CM",Position,GlyphIndex,LabelText,Parent);
+                Label->SetVisible(Box->IsVisible());
             }else{
                 Label->SetText(LabelText);
             }

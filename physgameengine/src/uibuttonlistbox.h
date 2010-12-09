@@ -40,13 +40,15 @@
 #ifndef _uibuttonlistbox_h
 #define _uibuttonlistbox_h
 
-#include "uiwidget.h"
+#include "uiscrollbar.h"
+#include "colourvalue.h"
 
 namespace phys
 {
     namespace UI
     {
         class Rectangle;
+        class Button;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class ButtonListBox
         /// @headerfile uibuttonlistbox.h
@@ -57,32 +59,75 @@ namespace phys
         {
             protected:
                 Rectangle* BoxBack;
-                //Scrollbar* VertScroll;
+                /// @todo Third instance of needing to include the namespace in the declaration seemingly needlessly.
+                UI::Scrollbar* VertScroll;
+                Button* Selected;
                 std::vector<Button*> Selections;
-                std::vector<Button*> VisableSelections;
+                std::vector<Button*> VisibleSelections;
+                bool AutoHideScroll;
                 Real SelectionDist;
+                Real BorderWidth;
+                Whole TGlyph;
+                Whole NumVisible;
+                Vector2 TSize;
+                ColourValue BorderColour;
+                /// @brief Determines how many items can be displayed in the box at once.
+                virtual void CalculateVisibleSelections();
+                /// @brief Updates the list of Visible buttons and hides the rest.
+                virtual void DrawList();
                 /// @brief For use with widget update/automation.
                 virtual void Update(bool Force = false);
             public:
                 /// @brief Standard initialization constructor.
-                ButtonListBox(String& name, Vector2 Position, Vector2 Size, UILayer* Layer);
+                /// @param name The name of the Button List Box.
+                /// @param Position The position of the Button List Box.
+                /// @param Size The size of the Button List Box.
+                /// @param ScrollbarWidth The relative(to screensize) width of the vertical scrollbar.
+                /// If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look.
+                /// @param ScrollbarStyle The style of the scrollbar you want for this Button List Box.  See Scrollbar
+                /// class for more information.
+                /// @param Layer The parent layer this Button List Box belongs to.
+                ButtonListBox(String& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer);
                 /// @brief Standard destructor.
                 ~ButtonListBox();
+                /// @brief Sets the visibility of this Button List Box.
+                /// @param Visible Bool determining whether or not this Button List Box should be visible.
+                virtual void SetVisible(bool Visible);
+                /// @brief Gets the visibility of this Button List Box.
+                /// @return Returns a bool representing the visibility of this Button List Box.
+                virtual bool IsVisible();
+                /// @brief Forces this Button List Box to be shown.
+                virtual void Show();
+                /// @brief Forces this Button List Box to hide.
+                virtual void Hide();
                 /// @brief Checks to see if the current mouse position is over this Button List Box.
                 /// @return Returns a bool value, true if the mouse is over this Button List Box, false if it's not.
                 virtual bool CheckMouseHover();
+                /// @brief Sets the desired size and glyph set provided to all buttons created within this widget.
+                /// @details This function needs to be called before adding any selections to this widget.
+                /// @param Size The size for all buttons in this widget.
+                /// @param Glyph The Glyph set to be used for any and all Text Buttons created.  Glyphs are defined in your .gorilla file.
+                virtual void SetTemplateParameters(Vector2 Size, Whole Glyph);
                 /// @brief Adds a selectable button to the list to be displayed.
-                /// @param Size The size of the button.
                 /// @param BackgroundSprite Optional, name of the sprite to set as it's background.  Ignored if the string is empty.
                 /// @param TextLabel Optional, will create a text button instead of a regular button and set it's text.  Ignored if
                 /// the string is empty.  @n @n Note: If a Text button is created, you can't revert it to a regular button and vice
                 /// versa.  You'll have to destroy the selection and make a new one.  In the case of having a text button, you can
                 /// however still set it's text to an empty string.
-                virtual void AddSelection(Vector2 Size, String& BackgroundSprite = "", String &TextLabel = "");
+                virtual void AddSelection(String& name, String& BackgroundSprite = "", String &TextLabel = "");
                 /// @brief Sets the distance apart(and from the sides of box) the Selections will be from each other.
                 /// @details This function expects a relative value to the screen size(0.0 to 1.0).  This value defaults to 0.025.
                 /// @param Dist A relative value for the distance to be used when determining the position of Selections.
                 virtual void SetSelectionDistance(Real Dist);
+                /// @brief Eanbles or disables the scrollbar autohide.
+                /// @param AutoHide A bool indicating whether or not to auto hide the scrollbar.
+                virtual void SetAutoHideScroll(bool AutoHide);
+                /// @brief Enables the setting of a border on the button you select.
+                /// @param Width The width of the border in pixels.
+                /// @param Colour The colour of the border.
+                virtual void EnableBorderSelector(Real Width, ColourValue &Colour);
+                /// @brief Disables borders on currently selected buttons if one was enabled.
+                virtual void DisableBorderSelector();
                 /// @brief Sets the relative position of this Button List Box.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this Button List Box.

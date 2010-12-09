@@ -146,6 +146,16 @@ namespace phys
                 Scrollbar(String& Name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style, UILayer* parent);
                 /// @brief Standard class destructor.
                 virtual ~Scrollbar();
+                /// @brief Sets the visibility of this scrollbar.
+                /// @param Visible Bool determining whether or not this scrollbar should be visible.
+                virtual void SetVisible(bool Visible);
+                /// @brief Gets the visibility of this scrollbar.
+                /// @return Returns a bool representing the visibility of this scrollbar.
+                virtual bool IsVisible();
+                /// @brief Forces this scrollbar to be shown.
+                virtual void Show();
+                /// @brief Forces this scrollbar to hide.
+                virtual void Hide();
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
                 virtual bool CheckMouseHover();

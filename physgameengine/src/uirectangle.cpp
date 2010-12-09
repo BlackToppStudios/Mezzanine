@@ -54,6 +54,7 @@ namespace phys
     {
         Rectangle::Rectangle(Vector2 Position, Vector2 Size, UILayer* Layer)
             : Parent(Layer),
+              MouseHover(false),
               RelPosition(Position),
               RelSize(Size)
         {
@@ -91,7 +92,7 @@ namespace phys
         bool Rectangle::CheckMouseHover()
         {
             Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
-            if(GRectangle->intersects(MouseLoc.GetOgreVector2()) && Parent->GetVisible())
+            if(GRectangle->intersects(MouseLoc.GetOgreVector2()) && GRectangle->IsVisible())
             {
                 MouseHover = true;
             }else{
