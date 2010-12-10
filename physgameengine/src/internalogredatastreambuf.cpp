@@ -93,7 +93,8 @@ namespace phys
                         Whole BufferDiff = this->egptr()-this->gptr();
                         if ( (off>0 && BufferDiff < off) || (off<0 && this->egptr()+off>this->eback() ) )                          // if the offset is still is still inside the loaded stuff
                         {
-                            setg(this->eback(), this->gptr()+off, this->egptr());       //just move the pointer the amount of the offset
+                            //setg(this->eback(), this->gptr()+off, this->egptr());       //just move the pointer the amount of the offset
+                            this->seekpos(this->OgreStream->tell()+off, which);
                             return this->OgreStream->tell()-BufferDiff;                 // and figure out how fow into the ogre stream we are less the amount of unread data
                         }else{
                             return this->seekpos(this->OgreStream->tell()-BufferDiff, which);   //Otherwise just use existing logic to fix the buffer
@@ -126,7 +127,8 @@ namespace phys
                 { return -1; }
 
             /// @todo do some fancy math to see if we can just move the current pointer around in the buffer
-
+            if (this->eback()==NULL)
+                { delete[] this->eback(); }
             char* Buffer = new char [this->LoadAtOnce];
             this->OgreStream->seek(sp-(streampos)SeekBackOnload);
             this->OgreStream->read(Buffer, this->LoadAtOnce);
@@ -181,6 +183,12 @@ namespace phys
             #endif
 
             Whole BufferSize = this->egptr() - this->eback();
+            if( 0==BufferSize )
+            {
+                this->seekpos(0);
+                BufferSize = this->egptr() - this->eback();
+            }
+
             if(BufferSize < this->SeekBackOnload)
             {
                 //seekback is too large
@@ -192,7 +200,7 @@ namespace phys
                 }
                 #ifdef PHYSDEBUG
                 World::GetWorldPointer()->LogStream << "\tAdjusted SeekBackOnload: " << this->SeekBackOnload << endl;
-                World::GetWorldPointer()->LogStream << "\tBufferSize: " << BufferSize << endl;
+                World::GetWorldPointer()->LogStream << "\tBufferSize: " << BufferSize << "=" << Toint(this->egptr()) << "-" << Toint(this->eback()) << endl;
                 World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::underflow() After adjusting SeekBackOnload");
                 #endif
                 if (this->SeekBackOnload)
