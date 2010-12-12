@@ -167,6 +167,13 @@ namespace phys
             World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::xsgetn(char* s, std::streamsize n)");
             #endif
 
+            Whole BufferSize = this->egptr() - this->eback();
+            if( 0==BufferSize )
+            {
+                this->seekpos(0);
+                BufferSize = this->egptr() - this->eback();
+            }
+
             if(this->Readable())
             {
                 return this->OgreStream->read(s,n);
@@ -193,7 +200,7 @@ namespace phys
             {
                 //seekback is too large
                 if(2 <= this->SeekBackOnload)
-                    { this->SeekBackOnload *= 0.5; }
+                    { this->SeekBackOnload = this->SeekBackOnload * 0.5; }
                 else
                 {
                     this->SeekBackOnload = 0;
@@ -213,7 +220,7 @@ namespace phys
                     this->OgreStream->read( this->eback(), BufferSize);
                     this->setg( this->eback(), this->eback()+this->SeekBackOnload, this->egptr() );
                 }else{
-                    Whole DistanceFromStreamBegin = (this->SeekBackOnload - this->OgreStream->tell());
+                    Whole DistanceFromStreamBegin = (this->SeekBackOnload - (streampos)this->OgreStream->tell());
                     this->OgreStream->seek( 0 );                            // yes we are, rewind to the beginning
                     this->OgreStream->read( this->eback(), BufferSize);
                     this->setg( this->eback(), this->eback()+DistanceFromStreamBegin, this->egptr() );
@@ -241,14 +248,18 @@ namespace phys
         int OgreDataStreamBuf::pbackfail ( int c )
         {
             #ifdef PHYSDEBUG
-            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::pbackfail()");
+            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::pbackfail()");
             #endif
 
+            this->CheckInternalBuffer(this->OgreStream->tell()-1);
+
+
             Whole BufferSize = this->egptr() - this->eback();
+
             if(BufferSize < this->SeekBackOnload)
             {
                 if(2 <= this->SeekBackOnload)                 //seekback is too large
-                    { this->SeekBackOnload *= 0.5; }
+                    { this->SeekBackOnload = this->SeekBackOnload * 0.5; }
                 else
                     { return traits_type::eof(); }            //seekback is too small
                 #ifdef PHYSDEBUG
@@ -262,7 +273,7 @@ namespace phys
                     this->OgreStream->read( this->eback(), BufferSize);
                     this->setg( this->eback(), this->eback()+this->SeekBackOnload, this->egptr() );
                 }else{
-                    Whole DistanceFromStreamBegin = (this->SeekBackOnload - this->OgreStream->tell());
+                    Whole DistanceFromStreamBegin = (this->SeekBackOnload - (streampos)this->OgreStream->tell());
                     if (0==DistanceFromStreamBegin)                                         //Fail becuase we are at the beginning
                         { return traits_type::eof(); }
                     this->OgreStream->seek( 0 );                                            // yes we are, rewind to the beginning
@@ -298,6 +309,84 @@ namespace phys
             #endif
             World::GetWorldPointer()->Log("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
             return -1;
+        }
+
+        void OgreDataStreamBuf::SetInternalBuffer(streampos Destination)
+        {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->LogStream << "Entering/exiting OgreDataStreamBuf::SetInternalBuffer( streampos " << Destination <<" )" ; World::GetWorldPointer()->Log();
+            #endif
+
+            const Whole BufferSize = this->egptr() - this->eback();
+            const Whole StreamSize = this->OgreStream->size();
+            if (BufferSize == this->LoadAtOnce)                                             //Bufferexists and it is the right size, just Load data
+            {
+
+            }else if(0==BufferSize){                                                        //Buffer Doesn't exist, Just pave
+                if(this->LoadAtOnce>StreamSize)
+                {
+                    char* Buffer = new char [this->LoadAtOnce];                                 //What is left to load is simply one chunk of many, lets go load one
+
+                    this->OgreStream->seek(Destination-(streampos)this->SeekBackOnload);
+                    this->OgreStream->read(Buffer, this->LoadAtOnce);
+                    this->setg(Buffer, Buffer+this->SeekBackOnload, Buffer+this->LoadAtOnce);
+                }else{
+                    char* Buffer = new char [StreamSize];                                 //Want to load more than exists, simply load what exists.
+                    this->OgreStream->seek(0);
+                    this->OgreStream->read(Buffer, StreamSize);
+                    this->setg(Buffer, Buffer+Destination, Buffer+StreamSize);
+                }
+            }else{                                                                          //Buffer does exist and it is all wrong, Nuke and Pave(Most likely)
+
+
+            }
+        }
+
+        bool OgreDataStreamBuf::CheckInternalBuffer(const streampos& BeginPoint, const streampos& EndPoint)
+        {
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::CheckInternalBuffer( streampos " << BeginPoint << ", streampos" << EndPoint << " )" ;
+            World::GetWorldPointer()->Log();
+            #endif
+
+            //Load with raw memory locations whose values are functionally random, but relative locations are the same from the OgreStream
+            char* CharBufferStart = this->eback();
+            char* CharBufferEnd = this->egptr();
+            Whole BufferSize = CharBufferStart - CharBufferEnd;
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->LogStream << "Raw Pointers - CharBufferStart=" << Tounsignedint(CharBufferStart) << ", CharBufferEnd=" << Tounsignedint(CharBufferEnd) << " and BufferSize=" << BufferSize ;
+            World::GetWorldPointer()->Log();
+            #endif
+
+            // This function assumes that the cursor in the Ogre stream is the equal to egptr()
+            Whole WhereIsBufferEnd = this->OgreStream->tell();
+            Whole BufferEnd = this->OgreStream->tell();
+            Whole BufferStart = BufferEnd - BufferSize;
+            #ifdef PHYSDEBUG
+            World::GetWorldPointer()->LogStream << "Stream Locations - BufferStart=" << BufferStart << ", BufferEnd=" << BufferEnd << ", Stream End=" << this->OgreStream->size() ;
+            World::GetWorldPointer()->Log();
+            #endif
+
+            if( BufferStart<BeginPoint && BeginPoint<BufferEnd )
+            {
+                if( 0==EndPoint || (BufferStart<BeginPoint && BeginPoint<BufferEnd) )
+                {
+                    #ifdef PHYSDEBUG
+                    World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer() - Returning True" ; World::GetWorldPointer()->Log();
+                    #endif
+                    return true;
+                }else{
+                    #ifdef PHYSDEBUG
+                    World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer() - Returning False" ; World::GetWorldPointer()->Log();
+                    #endif
+                    return false;
+                }
+            }else{
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer() - Returning False" ; World::GetWorldPointer()->Log();
+                #endif
+                return false;
+            }
         }
 
         bool OgreDataStreamBuf::Readable()

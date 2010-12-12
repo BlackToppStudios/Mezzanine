@@ -428,7 +428,7 @@ void LoadContent()
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
         // Test reading by character
-        Whole Howmany=10000;
+        Whole Howmany=100;
         char chararray[Howmany+1];
         for (Whole c=0; c<Howmany+1; c++)
             { chararray[c]='\0'; }

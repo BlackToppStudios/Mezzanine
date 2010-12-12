@@ -70,7 +70,7 @@ namespace phys
                 Ogre::DataStreamPtr OgreStream;
 
                 /// @brief The size of chunks to grab from files at once defaults to 4Kb
-                Whole LoadAtOnce;
+                streampos LoadAtOnce;
 
                 /// @brief The ammount of bytes that should be load before a given start point when loading.
                 /// @details When read from a data source, the amount of bytes set in LoadAtOnce will be loaded.
@@ -79,18 +79,7 @@ namespace phys
                 /// point. If all streams are simply read, then this should be 0, if there is manuever around the
                 /// stream, then this should be higher, based on how far back you plan on reading. By default
                 /// this assumes a low value of 128 bytes.
-                Whole SeekBackOnload;
-
-            public:
-
-                /// @brief constructor
-                /// @param Datum A pointer to the Ogre Datastream that this stream will use
-                OgreDataStreamBuf(const Ogre::DataStreamPtr& Datum) :OgreStream(Datum), LoadAtOnce(4096), SeekBackOnload(128)
-                {
-                    #ifdef PHYSDEBUG
-                    World::GetWorldPointer()->Log("Entering/Exiting OgreDataStreamBuf Constructor");
-                    #endif
-                }
+                streampos SeekBackOnload;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Methods inherited form std::streambuf
@@ -166,6 +155,29 @@ namespace phys
                 ///////////////////////////////////////////////////////////////////////////////
                 // Non-Virtual Methods
                 ///////////////////////////////////////
+
+                /// @brief Sets the internal buffer to the Specified location in the stream.
+                /// @param Destination The place in the Stream to go to.
+                /// @details This uses LoadAtOnce to determine the size of the buffer, and SeekBackOnload to determine
+                /// how far into the internal buffer should be placed.
+                void SetInternalBuffer(streampos Destination);
+
+                /// @brief This checks if a given point is in the internal buffer or not
+                /// @param BeginPoint This is checked to see if this is inside the buffer
+                /// @param EndPoint If 0, this is ignored, otherwise this is checked if it is inside the buffer
+                /// @return This returns True if BeginPoint is inside the internal buffer, and EndPoint is 0 is EndPoint is inside the buffer. Other wise this returns false
+                bool CheckInternalBuffer(const streampos& BeginPoint, const streampos& EndPoint=0);
+            public:
+
+                /// @brief constructor
+                /// @param Datum A pointer to the Ogre Datastream that this stream will use
+                OgreDataStreamBuf(const Ogre::DataStreamPtr& Datum) :OgreStream(Datum), LoadAtOnce(4096), SeekBackOnload(128)
+                {
+                    #ifdef PHYSDEBUG
+                    World::GetWorldPointer()->Log("Entering/Exiting OgreDataStreamBuf Constructor");
+                    #endif
+                }
+
                 /// @brief Can this be read from
                 /// @return A bool true if it can be read from
                 bool Readable();

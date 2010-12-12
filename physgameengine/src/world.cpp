@@ -240,7 +240,14 @@ namespace phys
             this->LogStream.str("");
         }
 
-        Ogre::LogManager::getSingleton().logMessage(Message);
+        if(Message.size()>0)
+            { Ogre::LogManager::getSingleton().logMessage(Message); }
+
+    }
+
+    void World::Log()
+    {
+        this->LogString("");
     }
 
     ///////////////////////////////////////////////////////////////////////////////
