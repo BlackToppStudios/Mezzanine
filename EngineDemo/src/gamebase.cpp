@@ -428,7 +428,7 @@ void LoadContent()
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
         // Test reading by character
-        Whole Howmany=100;
+        Whole Howmany=10000;
         char chararray[Howmany+1];
         for (Whole c=0; c<Howmany+1; c++)
             { chararray[c]='\0'; }
@@ -441,17 +441,28 @@ void LoadContent()
         String ZippedFileContents( chararray );
 
         #ifdef PHYSDEBUG
-        TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "ZippedFileContents: " << ZippedFileContents <<endl<< "End first streaming test" << endl ;
+        TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "ZippedFileContents: " << ZippedFileContents << endl ;
         #endif
 
         //if the above stuff was logged this should just work
-        if( !XMLptr->good() )
-            { TheWorld->Log("XMLptr corrupted/broken by read call"); }
+        if( !Zippedptr->good() )
+            { TheWorld->Log("Zippedptr corrupted/broken by read call"); }
 
         //this should just work
-        XMLptr->unget();
-        if( !XMLptr->good() )
-            { TheWorld->Log("XMLptr corrupted/broken by unget() call"); }
+        Zippedptr->unget();
+        if( !Zippedptr->good() )
+            { TheWorld->Log("Zippedptr corrupted/broken by unget() call"); }
+        else
+        {
+            Whole howfew = 500;
+            char temp[howfew+1];
+            for (Whole c=0; c<=howfew+1; c++)
+                { temp[c]='\0'; Zippedptr->unget();}
+            Zippedptr->read(temp, howfew);
+            TheWorld->LogStream << howfew << " ungets and " << howfew << " characters :" << temp;
+        }
+
+        TheWorld->LogStream << endl << "End first streaming test" << endl;
 
         try
         {
