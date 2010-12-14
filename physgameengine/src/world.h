@@ -156,7 +156,7 @@ namespace phys
     class PHYS_LIB World
     {
         private:
-            friend class PhysicsManager;
+            //friend class PhysicsManager;
 
             //SDL Objects
             SDL_Surface *SDLscreen;
@@ -188,8 +188,6 @@ namespace phys
                             std::vector < ManagerBase* > ManagerToBeAdded);
 
             void SanityChecks();
-            //void TestLogger();
-            //template <class T> void OneLogTest(T Data, string DataType,string Message1 = "Logging and Throwing a ", string Message2 = "Logging a ");
 
             //Settings for Engine Functionality
             string WindowName;
@@ -295,14 +293,27 @@ namespace phys
         ///////////////////////////////////////////////////////////////////////////////
         // Logging
         ///////////////////////////////////////
-            /// @brief Runtime Event logging Function
+            /// @brief Runtime event and message logging.
             /// @param Message This is what will be streamed to the log
+            /// @details This also commits any outstanding log messages that are waiting in the World::LogStream, and any outstanding
+            /// Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the
+            /// Only ones to produce meaningul log messages.
             template <class T> void PHYS_LIB  Log(T Message)
                 { this->LogString(ToString(Message)); }
 
-            /// @brief This is the preferred way to throw an exception currently
+            /// @brief Force any outstanding logs to be commited to logs
+            void Log();
+
+            /// @brief This is another way to put data in the log.
+            /// @details The contents of this will be commited to the log once per frame, just before rendering, or whenever World::Log is called.
+            /// Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely
+            /// to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs
+            /// and gameworld recreations.
+            std::stringstream LogStream;
+
+            /// @brief This is the preferred way to throw an exception. It streams any thrown object to the log.
             /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
-            /// type the Log function supports
+            /// types that overload the stream insertion operator ( << )
             /// @param Message This will be streamed to the log, then used in a thrown exception.
             template <class T> void LogAndThrow(T Message)
             {
@@ -465,12 +476,6 @@ namespace phys
             /// @param WhichOne If you have multiple UIManagers this will choose which one to return.
             /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.
             UIManager* GetUIManager(const short unsigned int &WhichOne=0);
-
-            /// @brief This is another way to put data in the log.
-            /// @details The contents of this will be commited to the log once per frame, just before rendering. Because of that do not
-            /// use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of
-            /// debugging data and creating in game logs and recreations, this can be very useful.
-            std::stringstream LogStream;
     };
 }
 #endif

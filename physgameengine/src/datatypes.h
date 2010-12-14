@@ -143,7 +143,7 @@ namespace phys
 
     /// @brief Converts whatever to an int as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
-    /// @return An Integer with the converted data
+    /// @return An int with the converted data
     /// @details This exists for interacting with other libraies, in situations where changing the Integer Typedef could
     /// break things
     template<class T> int Toint( const T& Datum )
@@ -152,6 +152,21 @@ namespace phys
         Converter.str("");
         Converter << Datum;
         int Results;
+        Converter >> Results;
+        return Results;
+    }
+
+    /// @brief Converts whatever to an unsigned int as long as the proper streaming operators are available for it
+    /// @param Datum The whatever to be converted
+    /// @return An unsigned int with the converted data
+    /// @details This exists for interacting with other libraies, in situations where changing the Integer Typedef could
+    /// break things
+    template<class T> unsigned int Tounsignedint( const T& Datum )
+    {
+        static std::stringstream Converter;
+        Converter.str("");
+        Converter << Datum;
+        unsigned int Results;
         Converter >> Results;
         return Results;
     }

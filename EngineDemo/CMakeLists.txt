@@ -6,6 +6,8 @@ message ("${PROJECT_NAME} - Begin")
 ##############################################################################
 #EngineDemo initializations
 
+add_definitions( ${CommonBuildFlags} )
+
 set (${PROJECT_NAME}_DATA_DIR "${${PROJECT_NAME}_SOURCE_DIR}/data/")
 message ("Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 

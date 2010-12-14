@@ -234,10 +234,20 @@ namespace phys
             Audiolog->str("");
         }
 
-        Ogre::LogManager::getSingleton().logMessage(this->LogStream.str());
-        this->LogStream.str("");
+        if( this->LogStream.str().size() > 0 )
+        {
+            Ogre::LogManager::getSingleton().logMessage(this->LogStream.str());
+            this->LogStream.str("");
+        }
 
-        Ogre::LogManager::getSingleton().logMessage(Message);
+        if(Message.size()>0)
+            { Ogre::LogManager::getSingleton().logMessage(Message); }
+
+    }
+
+    void World::Log()
+    {
+        this->LogString("");
     }
 
     ///////////////////////////////////////////////////////////////////////////////
