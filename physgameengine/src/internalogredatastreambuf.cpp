@@ -167,31 +167,36 @@ namespace phys
             World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::xsgetn(char* s=" << Toint(s) << ", std::streamsize n=" << n << ")"; World::GetWorldPointer()->Log();
             #endif
 
+            bool Fail=false;
             Whole Current = this->GetCurrentLocation();
-            Whole Destination = this->GetCurrentLocation()+n;
-            if(this->CheckInternalBuffer( Current, Destination ))
-            {                                                  /// @todo Do some Buffer Math instead of reloading everything we are already near. in xsgetn
-                std::streamsize BytesRetrieved = this->OgreStream->read(s,n);
-                this->SetInternalBuffer(Destination);
+            Whole Destination = Current+n;
+            Whole HowManyToRead=0;
+
+            if(this->CheckStream(Current))
+            {
+                if(this->CheckStream(Current+n))
+                {
+                    HowManyToRead=n;                //The Whole range is good
+                }else{
+                    HowManyToRead=this->OgreStream->size()-Current; //To close to end of stream
+                }
+            }else{
+                Fail=true; //The Current locataion is invalid relative to the stream
+            }
+
+            if(!Fail)
+            {
+                std::streamsize BytesRetrieved = this->OgreStream->read(s,this->OgreStream->size()-Current);
+                this->SetInternalBuffer(Current+BytesRetrieved);
                 #ifdef PHYSDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() After calling this->SetInternalBuffer(" << Destination << ") and returning" << BytesRetrieved; World::GetWorldPointer()->Log();
+                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() After calling this->SetInternalBuffer(" << Current+BytesRetrieved << ") and returning" << BytesRetrieved; World::GetWorldPointer()->Log();
                 #endif
                 return BytesRetrieved;
             }else{
-                if(this->CheckStream(Destination))
-                {
-                    std::streamsize BytesRetrieved = this->OgreStream->read(s,n);
-                    this->SetInternalBuffer(Destination);
-                    #ifdef PHYSDEBUG
-                    World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() After calling this->SetInternalBuffer(" << Destination << ") and returning" << BytesRetrieved; World::GetWorldPointer()->Log();
-                    #endif
-                    return BytesRetrieved;
-                }else{
-                    #ifdef PHYSDEBUG
-                    World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() and returning EOF"; World::GetWorldPointer()->Log();
-                    #endif
-                    return traits_type::eof();
-                }
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() and returning EOF"; World::GetWorldPointer()->Log();
+                #endif
+                return traits_type::eof();
             }
         }
 
@@ -298,7 +303,7 @@ namespace phys
         void OgreDataStreamBuf::SetInternalBuffer(const streampos& Destination)
         {
             #ifdef PHYSDEBUG
-            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer( streampos " << Destination <<" )" ; World::GetWorldPointer()->Log();
+            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer( streampos Destination=" << Destination <<" )" ; World::GetWorldPointer()->Log();
             #endif
 
             if( Destination < 0)                                                            // Basic Error Checking
@@ -347,7 +352,7 @@ namespace phys
         void OgreDataStreamBuf::SetInternalBuffer(char* BeginPtr, const Whole& BufferSize, const streampos& Destination)
         {
             #ifdef PHYSDEBUG
-            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer(BeginPtr=" << Tounsignedint(BeginPtr) << ", BufferSize=" << BufferSize << ", Destination=" << Destination << ")"; World::GetWorldPointer()->Log();
+            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer(char* BeginPtr=" << Tounsignedint(BeginPtr) << ", Whole BufferSize=" << BufferSize << ", streampos::Destination=" << Destination << ")"; World::GetWorldPointer()->Log();
             #endif
             if (this->SeekBackOnload > (this->MaxSeekBack * BufferSize) )
                 { this->SeekBackOnload = this->MaxSeekBack * BufferSize; }
@@ -395,14 +400,23 @@ namespace phys
             if (this->egptr() == 0 || this->egptr() == 0 || this->eback())
             {
                 #ifdef PHYSDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer()=0";World::GetWorldPointer()->Log();
+                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer()=0 NoBuffer";World::GetWorldPointer()->Log();
                 #endif
-                return 0;
+                return false;
             }
 
             //Load with raw memory locations whose values are functionally random, but relative locations are the same from the OgreStream
             char* CharBufferStart = this->eback();
             char* CharBufferEnd = this->egptr();
+
+            if ( CharBufferEnd < CharBufferStart)
+            {
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer()=false (Begin of corrupt buffer)";World::GetWorldPointer()->Log();
+                #endif
+                return false;
+            }
+
             Whole BufferSize = CharBufferStart - CharBufferEnd;
             #ifdef PHYSDEBUG
             World::GetWorldPointer()->LogStream << "Raw Pointers - CharBufferStart=" << Tounsignedint(CharBufferStart) << ", CharBufferEnd=" << Tounsignedint(CharBufferEnd) << " and BufferSize=" << BufferSize; World::GetWorldPointer()->Log();
@@ -446,9 +460,9 @@ namespace phys
             World::GetWorldPointer()->Log();
             #endif
 
-            if( 0<BeginPoint && BeginPoint<this->OgreStream->size() )
+            if( 0<=BeginPoint && BeginPoint<=this->OgreStream->size() )
             {
-                if( 0==EndPoint || (0<BeginPoint && BeginPoint<this->OgreStream->size()) )
+                if( 0==EndPoint || (0<=BeginPoint && BeginPoint<=this->OgreStream->size()) )
                 {
                     #ifdef PHYSDEBUG
                     World::GetWorldPointer()->Log( "Exiting OgreDataStreamBuf::CheckStream() - Returning True" );
@@ -484,7 +498,7 @@ namespace phys
             World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::GetCurrentLocation()"; World::GetWorldPointer()->Log();
             #endif
 
-            if (this->egptr() == 0 || this->egptr() == 0 || this->eback())
+            if (this->gptr()==0 || this->egptr()==0 || this->eback()==0 )
             {
                 #ifdef PHYSDEBUG
                 World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::GetCurrentLocation()=0";World::GetWorldPointer()->Log();
