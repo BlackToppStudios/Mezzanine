@@ -65,7 +65,6 @@ namespace phys
                 std::vector<Button*> Selections;
                 std::vector<Button*> VisibleSelections;
                 bool AutoHideScroll;
-                bool ScrollControlLock;
                 Real LastScrollValue;
                 Real SelectionDist;
                 Real BorderWidth;

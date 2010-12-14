@@ -60,7 +60,6 @@ namespace phys
             : Widget(name,Layer),
               Selected(NULL),
               AutoHideScroll(true),
-              ScrollControlLock(true),
               LastScrollValue(0),
               NumVisible(0),
               SelectionDist(0.025),
