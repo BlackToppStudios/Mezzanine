@@ -424,7 +424,7 @@ void LoadContent()
     TheWorld->Log("Trying to open test.xml and test.txt");
     #endif
     {
-        ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+/*        ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
         // Test reading by character
@@ -472,11 +472,11 @@ void LoadContent()
         }
 
         delete XMLptr;
-        delete Zippedptr;
+        delete Zippedptr;*/
     }
 
     {
-        #ifdef PHYSDEBUG
+        /*#ifdef PHYSDEBUG
         TheWorld->Log("Testing streaming on test.xml and zipped test.txt, Making fresh set of stream pointers");
         #endif
 
@@ -505,7 +505,7 @@ void LoadContent()
 
         #ifdef PHYSDEBUG
         TheWorld->Log("Testing streaming on test.xml and zipped test.txt, Making fresh set of stream pointers");
-        #endif
+        #endif*/
     }
 
     // Now Lets make some bowling pins
