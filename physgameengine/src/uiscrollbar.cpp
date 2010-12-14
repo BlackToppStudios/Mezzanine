@@ -572,37 +572,39 @@ namespace phys
             {
                 HoveredButton = Scroller;
                 HoveredBack = NULL;
-                Update();
+                //Update();
                 return true;
             }
             else if(UpLeftButton->CheckMouseHover())
             {
                 HoveredButton = UpLeftButton;
                 HoveredBack = NULL;
-                Update();
+                //Update();
                 return true;
             }
             else if(DownRightButton->CheckMouseHover())
             {
                 HoveredButton = DownRightButton;
                 HoveredBack = NULL;
-                Update();
+                //Update();
                 return true;
             }
             else if(ScrollBack->CheckMouseHover())
             {
                 HoveredButton = NULL;
                 HoveredBack = ScrollBack;
-                Update();
+                //Update();
                 return true;
             }
-            else
-            {
-                HoveredButton = NULL;
-                HoveredBack = NULL;
-                Update();
-                return false;
-            }
+            //else
+            //{
+            //    HoveredButton = NULL;
+            //    HoveredBack = NULL;
+            //    Update();
+            //    return false;
+            //}
+            HoveredButton = NULL;
+            HoveredBack = NULL;
             return false;
         }
 

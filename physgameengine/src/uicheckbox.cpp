@@ -103,7 +103,7 @@ namespace phys
 
         void CheckBox::Update(bool Force)
         {
-            if(Box->GetMouseHover() || Force)
+            if(HoveredButton || Force)
             {
                 MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
                 if(MetaCode::BUTTON_PRESSING == State)
@@ -176,7 +176,7 @@ namespace phys
             if(Box->CheckMouseHover())
             {
                 HoveredButton = Box;
-                Update();
+                //Update();
                 return true;
             }
             HoveredButton = NULL;

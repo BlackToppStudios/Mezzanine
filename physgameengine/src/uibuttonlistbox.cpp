@@ -147,6 +147,8 @@ namespace phys
 
         void ButtonListBox::Update(bool Force)
         {
+            if(!Force)
+                SubWidgetUpdate();
             MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
             if(HoveredButton)
             {
@@ -162,16 +164,16 @@ namespace phys
             {
                 if(MetaCode::BUTTON_PRESSING == State)
                 {
-                    SubWidgetControl = HoveredSubWidget;
+                    SubWidgetFocus = HoveredSubWidget;
                 }
             }
-            if(SubWidgetControl && (SubWidgetControl != HoveredSubWidget))
+            if(SubWidgetFocus && (SubWidgetFocus != HoveredSubWidget))
             {
-                SubWidgetControlUpdate(true);
+                SubWidgetFocusUpdate(true);
             }
-            if(MetaCode::BUTTON_DOWN == State && Force)
+            else if(MetaCode::BUTTON_DOWN == State && Force)
             {
-                SubWidgetControlUpdate(Force);
+                SubWidgetFocusUpdate(Force);
             }
             if(LastScrollValue != VertScroll->GetScrollerValue())
             {
@@ -180,7 +182,7 @@ namespace phys
             }
             if(MetaCode::BUTTON_LIFTING == State)
             {
-                SubWidgetControl = NULL;
+                SubWidgetFocus = NULL;
             }
         }
 
@@ -220,7 +222,7 @@ namespace phys
                 {
                     HoveredSubWidget = NULL;
                     HoveredButton = (*it);
-                    Update();
+                    //Update();
                     return true;
                 }
             }
@@ -228,16 +230,18 @@ namespace phys
             {
                 HoveredSubWidget = VertScroll;
                 HoveredButton = NULL;
-                Update();
+                //Update();
                 return true;
             }
             else if(BoxBack->CheckMouseHover())
             {
                 HoveredSubWidget = NULL;
                 HoveredButton = NULL;
-                Update();
+                //Update();
                 return true;
             }
+            HoveredSubWidget = NULL;
+            HoveredButton = NULL;
             return false;
         }
 

@@ -79,10 +79,10 @@ namespace phys
             std::vector< UIScreen* > Screens;
             UI::Button* HoveredButton;
             UI::Widget* HoveredWidget;
-            UI::Widget* WidgetControl;
+            UI::Widget* WidgetFocus;
             InputQueryTool* InputQueryer;
             void HoverChecks();
-            void WidgetControlUpdate();
+            void WidgetFocusUpdate();
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -109,7 +109,7 @@ namespace phys
             /// @details The widget control is used mostly for manipulating widgets while the mouse is not
             /// currently hovering over them, such as the click and drag action of scrollbars and resizing windows.
             /// @return Returns a pointer to the currently controlled widget, or NULL if none are being controlled this frame.
-            UI::Widget* GetWidgetControl();
+            UI::Widget* GetWidgetFocus();
             /// @brief Creates an internal HUD screen.
             /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI's
             /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.

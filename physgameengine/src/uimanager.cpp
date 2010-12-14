@@ -59,7 +59,7 @@ namespace phys
     UIManager::UIManager()
         : HoveredButton(NULL),
           HoveredWidget(NULL),
-          WidgetControl(NULL)
+          WidgetFocus(NULL)
     {
         Silver = new Gorilla::Silverback();
         InputQueryer = new InputQueryTool();
@@ -85,6 +85,7 @@ namespace phys
         {
             if(HoveredWidget->CheckMouseHover())
             {
+                HoveredWidget->Update();
                 return;
             }
         }
@@ -92,28 +93,30 @@ namespace phys
         if(!HoveredButton)
         {
             HoveredWidget = CheckWidgetMouseIsOver();
+            if(HoveredWidget)
+                HoveredWidget->Update();
         }
     }
 
-    void UIManager::WidgetControlUpdate()
+    void UIManager::WidgetFocusUpdate()
     {
-        if(HoveredWidget || WidgetControl)
+        if(HoveredWidget || WidgetFocus)
         {
             MetaCode::ButtonState State = InputQueryer->GetMouseButtonState(1);
             if(MetaCode::BUTTON_PRESSING == State)
             {
-                WidgetControl = HoveredWidget;
+                WidgetFocus = HoveredWidget;
             }
             else if(MetaCode::BUTTON_DOWN == State)
             {
-                if(HoveredWidget != WidgetControl)
-                    WidgetControl->Update(true);
+                if(HoveredWidget != WidgetFocus)
+                    WidgetFocus->Update(true);
             }
             else if(MetaCode::BUTTON_LIFTING == State)
             {
-                if(HoveredWidget != WidgetControl)
-                    WidgetControl->Update(true);
-                WidgetControl = NULL;
+                if(HoveredWidget != WidgetFocus)
+                    WidgetFocus->Update(true);
+                WidgetFocus = NULL;
             }
         }
     }
@@ -126,7 +129,7 @@ namespace phys
     {
         InputQueryer->GatherEvents();
         HoverChecks();
-        WidgetControlUpdate();
+        WidgetFocusUpdate();
     }
 
     void UIManager::LoadGorilla(const String& Name)
@@ -144,9 +147,9 @@ namespace phys
         return HoveredWidget;
     }
 
-    UI::Widget* UIManager::GetWidgetControl()
+    UI::Widget* UIManager::GetWidgetFocus()
     {
-        return WidgetControl;
+        return WidgetFocus;
     }
 
     UIScreen* UIManager::CreateScreen(const String& Screen, const String& Atlas, const String& Viewport)
@@ -204,8 +207,8 @@ namespace phys
         for( std::vector<UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
         {
             delete (*it);
-            Screens.erase(it);
         }
+        Screens.clear();
         return;
     }
 
@@ -254,7 +257,7 @@ namespace phys
 
     bool UIManager::MouseIsInUISystem()
     {
-        if(HoveredButton || HoveredWidget || WidgetControl)
+        if(HoveredButton || HoveredWidget || WidgetFocus)
         {
             return true;
         }else{

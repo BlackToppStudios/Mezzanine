@@ -72,7 +72,7 @@ namespace phys
                 UILayer* Parent;
                 UI::Button* HoveredButton;
                 UI::Widget* HoveredSubWidget;
-                UI::Widget* SubWidgetControl;
+                UI::Widget* SubWidgetFocus;
                 bool Visible;
                 Vector2 RelPosition;
                 Vector2 RelSize;
@@ -83,7 +83,7 @@ namespace phys
                 /// @brief For use with sub-widget update/automation.
                 virtual void SubWidgetUpdate(bool Force = false);
                 /// @brief For use with sub-widget update/automation when the mouse isn't hovered.
-                virtual void SubWidgetControlUpdate(bool Force = false);
+                virtual void SubWidgetFocusUpdate(bool Force = false);
             public:
                 /// @brief Standard initialization constructor.
                 /// @param parent The parent layer that created this widget.

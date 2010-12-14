@@ -52,7 +52,7 @@ namespace phys
             : Parent(parent),
               HoveredButton(NULL),
               HoveredSubWidget(NULL),
-              SubWidgetControl(NULL),
+              SubWidgetFocus(NULL),
               Visible(true),
               RelPosition(Vector2(0,0)),
               RelSize(Vector2(0,0)),
@@ -71,10 +71,10 @@ namespace phys
                 HoveredSubWidget->Update(Force);
         }
 
-        void Widget::SubWidgetControlUpdate(bool Force)
+        void Widget::SubWidgetFocusUpdate(bool Force)
         {
-            if(SubWidgetControl)
-                SubWidgetControl->Update(Force);
+            if(SubWidgetFocus)
+                SubWidgetFocus->Update(Force);
         }
 
         Widget::WidgetType Widget::GetType()
