@@ -7,7 +7,6 @@
 #include "gamebase.h"       //Game Include
 #include "startingarea.h"
 #include "scorearea.h"
-#include "itemshoplist.h"
 #include <physgame.h>       //Physgame include
 #include <sstream>          //STL includes
 
@@ -15,7 +14,6 @@ using namespace phys;
 
 //Create the World Globally! and set it to hold some actors
 World *TheWorld;
-ItemShopList* Items;
 ActorBase* LastActorThrown;
 StartingArea* StartZone;
 ScoreArea* ScoreZone;
@@ -455,17 +453,33 @@ void MakeGUI()
     ColourValue Buttons(0.1,0.8,0.1,1.0);
     ColourValue ScrollBackground(0.9,0.6,0.6,0.5);
     ColourValue ScrollBarColour(0.2,0.2,0.2,1.0);
-    UI::Scrollbar* ScrollTest = HUD->CreateScrollbar("Test", Vector2(0.5,0.25), Vector2(0.025,0.6), UI::Scrollbar::Separate);
-    ScrollTest->GetUpLeftButton()->SetBackgroundColour(Buttons);
-    ScrollTest->GetDownRightButton()->SetBackgroundColour(Buttons);
-    ScrollTest->GetScrollBack()->SetBackgroundColour(ScrollBackground);
-    ScrollTest->GetScroller()->SetBackgroundColour(ScrollBarColour);
-    ScrollTest->SetScrollerSize(0.25);
+    ColourValue BoxBack(0.45,0.025,0.45,1.0);
+    ColourValue Yellow(1.0,0.92,0.0,1.0);
+    UI::ButtonListBox* BLBTest = HUD->CreateButtonListBox("Test", Vector2(0.25,0.25), Vector2(0.65,0.5), 0.025, UI::Scrollbar::Separate);
+    BLBTest->GetBoxBack()->SetBackgroundColour(BoxBack);
+    BLBTest->GetVertScroll()->GetUpLeftButton()->SetBackgroundColour(Buttons);
+    BLBTest->GetVertScroll()->GetDownRightButton()->SetBackgroundColour(Buttons);
+    BLBTest->GetVertScroll()->GetScrollBack()->SetBackgroundColour(ScrollBackground);
+    BLBTest->GetVertScroll()->GetScroller()->SetBackgroundColour(ScrollBarColour);
+    BLBTest->SetTemplateParameters(Vector2(0.45,0.13),10);
+    BLBTest->EnableBorderSelector(6,Yellow);
+    BLBTest->AddSelection("Test1");
+    BLBTest->GetSelection("Test1")->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.85;
+    BLBTest->AddSelection("Test2");
+    BLBTest->GetSelection("Test2")->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.70;
+    BLBTest->AddSelection("Test3");
+    BLBTest->GetSelection("Test3")->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.55;
+    BLBTest->AddSelection("Test4");
+    BLBTest->GetSelection("Test4")->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.40;
+    BLBTest->AddSelection("Test5");
+    BLBTest->GetSelection("Test5")->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.25;
 
     //Build the ItemShop Layer
-    /*Items = new ItemShopList(WWidth * 0.1, WHeight * 0.075, WWidth * 0.4, WHeight * 0.6, ItemShop, TheWorld);
-    ColourValue Color(0.8,0.8,0.95,0.9);
-    Items->GetBackdrop()->SetBackgroundColour(Color);*/
     ItemShop->Hide();
 
     //Build the Menu Layer

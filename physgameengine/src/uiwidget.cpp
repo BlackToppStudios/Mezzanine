@@ -52,6 +52,8 @@ namespace phys
             : Parent(parent),
               HoveredButton(NULL),
               HoveredSubWidget(NULL),
+              SubWidgetControl(NULL),
+              Visible(true),
               RelPosition(Vector2(0,0)),
               RelSize(Vector2(0,0)),
               Name(name)
@@ -61,6 +63,18 @@ namespace phys
 
         Widget::~Widget()
         {
+        }
+
+        void Widget::SubWidgetUpdate(bool Force)
+        {
+            if(HoveredSubWidget)
+                HoveredSubWidget->Update(Force);
+        }
+
+        void Widget::SubWidgetControlUpdate(bool Force)
+        {
+            if(SubWidgetControl)
+                SubWidgetControl->Update(Force);
         }
 
         Widget::WidgetType Widget::GetType()

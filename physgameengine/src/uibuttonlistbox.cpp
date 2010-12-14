@@ -50,13 +50,19 @@
 #include "metacode.h"
 #include "world.h"
 
+#include <cmath>
+
 namespace phys
 {
     namespace UI
     {
         ButtonListBox::ButtonListBox(String& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer)
             : Widget(name,Layer),
+              Selected(NULL),
               AutoHideScroll(true),
+              ScrollControlLock(true),
+              LastScrollValue(0),
+              NumVisible(0),
               SelectionDist(0.025),
               BorderWidth(0),
               BorderColour(ColourValue(0,0,0,0))
@@ -66,10 +72,10 @@ namespace phys
             RelSize = Size;
 
             BoxBack = new Rectangle(Position,Size,Layer);
-            Vector2 ScrollP(RelPosition.X - ScrollbarWidth,RelPosition.Y);
+            Vector2 ScrollP((RelPosition.X + RelSize.X) - ScrollbarWidth,RelPosition.Y);
             Vector2 ScrollS(ScrollbarWidth,RelSize.Y);
             /// @todo Fourth instance of needing to include the namespace in the declaration seemingly needlessly.
-            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollP,ScrollS,ScrollbarStyle,Parent);
+            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollP,ScrollS,ScrollbarStyle,Layer);
             VertScroll->Hide();
         }
 
@@ -92,7 +98,8 @@ namespace phys
             NumVisible = (Whole)(RelSize.Y / (TSize.Y + SelectionDist));
             if(Selections.size() > NumVisible)
             {
-                VertScroll->SetScrollerSize(NumVisible / Selections.size());
+                //if(Selections.size() > 0)
+                VertScroll->SetScrollerSize((Real)NumVisible / (Real)Selections.size());
                 if(AutoHideScroll)
                     VertScroll->Show();
             }else{
@@ -103,36 +110,121 @@ namespace phys
 
         void ButtonListBox::DrawList()
         {
-
+            if(Selections.empty())
+                return;
+            VisibleSelections.clear();
+            Real One = 1;
+            Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)Selections.size();
+            Real Remainder = fmod(ToBeRounded,One);
+            ToBeRounded = Remainder >= 0.5 ? ToBeRounded + (One - Remainder) : ToBeRounded - Remainder;
+            Whole FirstButton = (Whole)ToBeRounded;
+            Vector2 SelectionPos = GetActualPosition();
+            Real ActualDist = SelectionDist * Manager->GetWindowDimensions().Y;
+            Real ActualInc = ActualDist + (TSize.Y * Manager->GetWindowDimensions().Y);
+            SelectionPos.X+=ActualDist;
+            SelectionPos.Y+=ActualDist;
+            for( Whole w = 0 ; w < FirstButton ; w++ )
+            {
+                Selections[w]->SetPosition(GetPosition());
+                Selections[w]->Hide();
+            }
+            Whole Displayed = FirstButton+NumVisible > Selections.size() ? Selections.size() : FirstButton+NumVisible;
+            for( Whole x = FirstButton ; x < Displayed ; x++ )
+            {
+                VisibleSelections.push_back(Selections[x]);
+                Selections[x]->Show();
+            }
+            for( Whole y = FirstButton+NumVisible ; y < Selections.size() ; y++ )
+            {
+                Selections[y]->SetPosition(GetPosition());
+                Selections[y]->Hide();
+            }
+            for( Whole z = 0 ; z < VisibleSelections.size() ; z++ )
+            {
+                VisibleSelections[z]->SetActualPosition(SelectionPos);
+                SelectionPos.Y+=ActualInc;
+            }
         }
 
         void ButtonListBox::Update(bool Force)
         {
-
+            MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
+            if(HoveredButton)
+            {
+                if(MetaCode::BUTTON_PRESSING == State)
+                {
+                    if(Selected)
+                        Selected->NoBorder();
+                    HoveredButton->SetBorder(BorderWidth,BorderColour);
+                    Selected = HoveredButton;
+                }
+            }
+            else if(HoveredSubWidget)
+            {
+                if(MetaCode::BUTTON_PRESSING == State)
+                {
+                    SubWidgetControl = HoveredSubWidget;
+                }
+            }
+            if(SubWidgetControl && (SubWidgetControl != HoveredSubWidget))
+            {
+                SubWidgetControlUpdate(true);
+            }
+            if(MetaCode::BUTTON_DOWN == State && Force)
+            {
+                SubWidgetControlUpdate(Force);
+            }
+            if(LastScrollValue != VertScroll->GetScrollerValue())
+            {
+                DrawList();
+                LastScrollValue = VertScroll->GetScrollerValue();
+            }
+            if(MetaCode::BUTTON_LIFTING == State)
+            {
+                SubWidgetControl = NULL;
+            }
         }
 
-        void ButtonListBox::SetVisible(bool Visible)
+        void ButtonListBox::SetVisible(bool visible)
         {
-            BoxBack->SetVisible(Visible);
+            BoxBack->SetVisible(visible);
+            if(!AutoHideScroll)
+                VertScroll->SetVisible(visible);
         }
 
         bool ButtonListBox::IsVisible()
         {
-            return BoxBack->IsVisible();
+            return Visible;
         }
 
         void ButtonListBox::Show()
         {
             BoxBack->Show();
+            if(!AutoHideScroll)
+                VertScroll->Show();
+            Visible = true;
         }
 
         void ButtonListBox::Hide()
         {
             BoxBack->Hide();
+            if(!AutoHideScroll)
+                VertScroll->Hide();
+            Visible = false;
         }
 
         bool ButtonListBox::CheckMouseHover()
         {
+            for( std::vector<Button*>::iterator it = VisibleSelections.begin() ; it != VisibleSelections.end() ; it++ )
+            {
+                if((*it)->CheckMouseHover())
+                {
+                    HoveredSubWidget = NULL;
+                    HoveredButton = (*it);
+                    Update();
+                    return true;
+                }
+            }
             if(VertScroll->CheckMouseHover())
             {
                 HoveredSubWidget = VertScroll;
@@ -172,6 +264,48 @@ namespace phys
             Select->Hide();
             Selections.push_back(Select);
             CalculateVisibleSelections();
+            DrawList();
+        }
+
+        Button* ButtonListBox::GetSelection(String &Name)
+        {
+            for ( std::vector<Button*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
+            {
+                if ( Name == (*it)->GetName() )
+                {
+                    UI::Button* button = (*it);
+                    return button;
+                }
+            }
+            return 0;
+        }
+
+        void ButtonListBox::DestroySelection(Button* ToBeDestroyed)
+        {
+            for ( std::vector<Button*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
+            {
+                if ( ToBeDestroyed == (*it) )
+                {
+                    delete (*it);
+                    Selections.erase(it);
+                    CalculateVisibleSelections();
+                    return;
+                }
+            }
+        }
+
+        void ButtonListBox::DestroySelection(String& ToBeDestroyed)
+        {
+            for ( std::vector<Button*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
+            {
+                if ( ToBeDestroyed == (*it)->GetName() )
+                {
+                    delete (*it);
+                    Selections.erase(it);
+                    CalculateVisibleSelections();
+                    return;
+                }
+            }
         }
 
         void ButtonListBox::SetSelectionDistance(Real Dist)
@@ -199,7 +333,10 @@ namespace phys
         void ButtonListBox::SetPosition(Vector2 Position)
         {
             RelPosition = Position;
+            Vector2 ScrollOffset = VertScroll->GetPosition() - RelPosition;
             BoxBack->SetPosition(Position);
+            VertScroll->SetPosition(Position + ScrollOffset);
+            DrawList();
         }
 
         Vector2 ButtonListBox::GetPosition()
@@ -210,7 +347,10 @@ namespace phys
         void ButtonListBox::SetActualPosition(Vector2 Position)
         {
             RelPosition = Position / Manager->GetWindowDimensions();
+            Vector2 ScrollOffset = VertScroll->GetActualPosition() - RelPosition * Manager->GetWindowDimensions();
             BoxBack->SetActualPosition(Position);
+            VertScroll->SetPosition(Position + ScrollOffset);
+            DrawList();
         }
 
         Vector2 ButtonListBox::GetActualPosition()
@@ -222,6 +362,12 @@ namespace phys
         {
             RelSize = Size;
             BoxBack->SetSize(Size);
+            Vector2 ScrollP((RelPosition.X + Size.X) - VertScroll->GetSize().X,RelPosition.Y);
+            Vector2 ScrollS(VertScroll->GetSize().X,Size.Y);
+            VertScroll->SetPosition(ScrollP);
+            VertScroll->SetSize(ScrollS);
+            CalculateVisibleSelections();
+            DrawList();
         }
 
         Vector2 ButtonListBox::GetSize()
@@ -233,6 +379,12 @@ namespace phys
         {
             RelSize = Size / Manager->GetWindowDimensions();
             BoxBack->SetActualSize(Size);
+            Vector2 ScrollP((GetActualPosition().X + Size.X) - VertScroll->GetActualSize().X,GetActualPosition().Y);
+            Vector2 ScrollS(VertScroll->GetActualSize().X,Size.Y);
+            VertScroll->SetPosition(ScrollP);
+            VertScroll->SetSize(ScrollS);
+            CalculateVisibleSelections();
+            DrawList();
         }
 
         Vector2 ButtonListBox::GetActualSize()
@@ -240,9 +392,19 @@ namespace phys
             return RelSize * Manager->GetWindowDimensions();
         }
 
+        Button* ButtonListBox::GetSelected()
+        {
+            return Selected;
+        }
+
         Rectangle* ButtonListBox::GetBoxBack()
         {
             return BoxBack;
+        }
+
+        UI::Scrollbar* ButtonListBox::GetVertScroll()
+        {
+            return VertScroll;
         }
     }//UI
 }//phys

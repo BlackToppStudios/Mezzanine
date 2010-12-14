@@ -102,9 +102,14 @@ namespace phys
             /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
             UI::Button* GetHoveredButton();
             /// @brief Gets the Widget the mouse is hovering over.
-            /// @details If the button found during button checks belongs to a widget, this will get that widget.
-            /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
+            /// @details If the widget found during widget checks belongs to a widget, this will get that widget.
+            /// @return Returns a pointer to the widget, or NULL if it's not over any visable buttons.
             UI::Widget* GetHoveredWidget();
+            /// @brief Gets the current widget being controlled.
+            /// @details The widget control is used mostly for manipulating widgets while the mouse is not
+            /// currently hovering over them, such as the click and drag action of scrollbars and resizing windows.
+            /// @return Returns a pointer to the currently controlled widget, or NULL if none are being controlled this frame.
+            UI::Widget* GetWidgetControl();
             /// @brief Creates an internal HUD screen.
             /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI's
             /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.

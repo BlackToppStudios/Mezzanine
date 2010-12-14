@@ -82,8 +82,8 @@ namespace phys
                 /// @brief Class destructor.
                 virtual ~CheckBox();
                 /// @brief Sets the visibility of this checkbox.
-                /// @param Visible Bool determining whether or not this checkbox should be visible.
-                virtual void SetVisible(bool Visible);
+                /// @param visible Bool determining whether or not this checkbox should be visible.
+                virtual void SetVisible(bool visible);
                 /// @brief Gets the visibility of this checkbox.
                 /// @return Returns a bool representing the visibility of this checkbox.
                 virtual bool IsVisible();
@@ -94,6 +94,9 @@ namespace phys
                 /// @brief Gets whether this checkbox is checked or not.
                 /// @return Returns a bool representing whether or not this checkbox is checked.
                 virtual bool IsChecked();
+                /// @brief Manually check or uncheck this checkbox.
+                /// @param Check The value to set the status of this checkbox.
+                virtual void ManualCheck(bool Check);
                 /// @brief Checks to see if the current mouse position is over this checkbox.
                 /// @return Returns a bool value, true if the mouse is over this checkbox, false if it's not.
                 virtual bool CheckMouseHover();

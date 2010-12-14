@@ -92,6 +92,7 @@ namespace phys
                 BarStyle ScrollStyle;
                 bool Horizontal;
                 bool ScrollerLock;
+                bool ScrollBackLock;
                 bool UpLeftLock;
                 bool DownRightLock;
                 /// @internal
@@ -147,8 +148,8 @@ namespace phys
                 /// @brief Standard class destructor.
                 virtual ~Scrollbar();
                 /// @brief Sets the visibility of this scrollbar.
-                /// @param Visible Bool determining whether or not this scrollbar should be visible.
-                virtual void SetVisible(bool Visible);
+                /// @param visible Bool determining whether or not this scrollbar should be visible.
+                virtual void SetVisible(bool visible);
                 /// @brief Gets the visibility of this scrollbar.
                 /// @return Returns a bool representing the visibility of this scrollbar.
                 virtual bool IsVisible();
@@ -199,16 +200,6 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize();
-                /*/// @brief Lengthens the area in which the scroller can move.
-                /// @details A lightweight variant of the SetSize() function that simply increases it's length. @n
-                /// You can pass in a negative value to shorten the area as well.
-                /// @param Length The relative amount by which to lengthen/shorten the scrollable area.
-                virtual void LengthenScrollArea(Real Length);
-                /// @brief Lengthens the area in which the scroller can move.
-                /// @details A lightweight variant of the SetSize() function that simply increases it's length. @n
-                /// You can pass in a negative value to shorten the area as well.
-                /// @param Length The amount by which to lengthen/shorten the scrollable area in pixels.
-                virtual void LengthenActualScrollArea(Real Length);*/
                 /// @brief Gets the Scroller button within this widget.
                 /// @return Returns a pointer to the Scroller button within this widget.
                 virtual Button* GetScroller();

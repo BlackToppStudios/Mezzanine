@@ -124,16 +124,17 @@ namespace phys
             }
         }
 
-        void CheckBox::SetVisible(bool Visible)
+        void CheckBox::SetVisible(bool visible)
         {
-            Box->SetVisible(Visible);
+            Box->SetVisible(visible);
             if(Label)
-                Label->SetVisible(Visible);
+                Label->SetVisible(visible);
+            Visible = visible;
         }
 
         bool CheckBox::IsVisible()
         {
-            return Box->IsVisible();
+            return Visible;
         }
 
         void CheckBox::Show()
@@ -141,6 +142,7 @@ namespace phys
             Box->Show();
             if(Label)
                 Label->Show();
+            Visible = true;
         }
 
         void CheckBox::Hide()
@@ -148,11 +150,25 @@ namespace phys
             Box->Hide();
             if(Label)
                 Label->Hide();
+            Visible = false;
         }
 
         bool CheckBox::IsChecked()
         {
             return Checked;
+        }
+
+        void CheckBox::ManualCheck(bool Check)
+        {
+            if(Checked==Check)
+                return;
+            Checked = Check;
+            if(Checked)
+            {
+                SetSpriteSet(CheckedSet);
+            }else{
+                SetSpriteSet(UncheckedSet);
+            }
         }
 
         bool CheckBox::CheckMouseHover()

@@ -72,12 +72,18 @@ namespace phys
                 UILayer* Parent;
                 UI::Button* HoveredButton;
                 UI::Widget* HoveredSubWidget;
+                UI::Widget* SubWidgetControl;
+                bool Visible;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 WidgetType Type;
                 String Name;
                 /// @brief For use with widget update/automation.
                 virtual void Update(bool Force = false) = 0;
+                /// @brief For use with sub-widget update/automation.
+                virtual void SubWidgetUpdate(bool Force = false);
+                /// @brief For use with sub-widget update/automation when the mouse isn't hovered.
+                virtual void SubWidgetControlUpdate(bool Force = false);
             public:
                 /// @brief Standard initialization constructor.
                 /// @param parent The parent layer that created this widget.
@@ -85,8 +91,8 @@ namespace phys
                 /// @brief Standard destructor.
                 virtual ~Widget();
                 /// @brief Sets the visibility of this widget.
-                /// @param Visible Bool determining whether or not this widget should be visible.
-                virtual void SetVisible(bool Visible) = 0;
+                /// @param visible Bool determining whether or not this widget should be visible.
+                virtual void SetVisible(bool visible) = 0;
                 /// @brief Gets the visibility of this widget.
                 /// @return Returns a bool representing the visibility of this widget.
                 virtual bool IsVisible() = 0;

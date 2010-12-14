@@ -122,6 +122,11 @@ namespace phys
             GRectangle->border(Width, Colour.GetOgreColourValue());
         }
 
+        void Rectangle::NoBorder()
+        {
+            GRectangle->no_border();
+        }
+
         void Rectangle::SetPosition(Vector2 Position)
         {
             RelPosition = Position;

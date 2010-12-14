@@ -58,6 +58,7 @@ namespace phys
               ScrollerValue(0),
               IncrementDistance(0.1),
               ScrollerLock(true),
+              ScrollBackLock(true),
               UpLeftLock(true),
               DownRightLock(true)
         {
@@ -417,31 +418,34 @@ namespace phys
 
         void Scrollbar::ScrollBackScroll()
         {
-            Vector2 MousePos = Manager->GetInputQueryer()->GetMouseCoordinates();
-            Vector2 ScPos = Scroller->GetActualPosition();
-            Vector2 ScSize = Scroller->GetActualSize();
-            if(Horizontal)
+            if(!ScrollBackLock)
             {
-                if(MousePos.X < ScPos.X)//left
+                Vector2 MousePos = Manager->GetInputQueryer()->GetMouseCoordinates();
+                Vector2 ScPos = Scroller->GetActualPosition();
+                Vector2 ScSize = Scroller->GetActualSize();
+                if(Horizontal)
                 {
-                    ScPos.X = ScPos.X - ScSize.X <= ScrollerLowerLimit ? ScrollerLowerLimit : ScPos.X - ScSize.X ;
-                    Scroller->SetActualPosition(ScPos);
-                }
-                else if(MousePos.X > ScPos.X + ScSize.X)//right
-                {
-                    ScPos.X = ScPos.X + (ScSize.X * 2) >= ScrollerUpperLimit ? ScrollerUpperLimit - ScSize.X : ScPos.X + (ScSize.X * 2) ;
-                    Scroller->SetActualPosition(ScPos);
-                }
-            }else{
-                if(MousePos.Y < ScPos.Y)//above
-                {
-                    ScPos.Y = ScPos.Y - ScSize.Y <= ScrollerLowerLimit ? ScrollerLowerLimit : ScPos.Y - ScSize.Y ;
-                    Scroller->SetActualPosition(ScPos);
-                }
-                else if(MousePos.Y > ScPos.Y + ScSize.Y)//below
-                {
-                    ScPos.Y = ScPos.Y + (ScSize.Y * 2) >= ScrollerUpperLimit ? ScrollerUpperLimit - ScSize.Y : ScPos.Y + ScSize.Y ;
-                    Scroller->SetActualPosition(ScPos);
+                    if(MousePos.X < ScPos.X)//left
+                    {
+                        ScPos.X = ScPos.X - ScSize.X <= ScrollerLowerLimit ? ScrollerLowerLimit : ScPos.X - ScSize.X ;
+                        Scroller->SetActualPosition(ScPos);
+                    }
+                    else if(MousePos.X > ScPos.X + ScSize.X)//right
+                    {
+                        ScPos.X = ScPos.X + (ScSize.X * 2) >= ScrollerUpperLimit ? ScrollerUpperLimit - ScSize.X : ScPos.X + (ScSize.X * 2) ;
+                        Scroller->SetActualPosition(ScPos);
+                    }
+                }else{
+                    if(MousePos.Y < ScPos.Y)//above
+                    {
+                        ScPos.Y = ScPos.Y - ScSize.Y <= ScrollerLowerLimit ? ScrollerLowerLimit : ScPos.Y - ScSize.Y ;
+                        Scroller->SetActualPosition(ScPos);
+                    }
+                    else if(MousePos.Y > ScPos.Y + ScSize.Y)//below
+                    {
+                        ScPos.Y = ScPos.Y + (ScSize.Y * 2) >= ScrollerUpperLimit ? ScrollerUpperLimit - ScSize.Y : ScPos.Y + ScSize.Y ;
+                        Scroller->SetActualPosition(ScPos);
+                    }
                 }
             }
         }
@@ -449,12 +453,11 @@ namespace phys
         void Scrollbar::Update(bool Force)
         {
             MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
-            if(HoveredButton || Force)
+            if(HoveredButton)
             {
-                HoveredBack = NULL;
                 if(MetaCode::BUTTON_PRESSING == State || MetaCode::BUTTON_DOWN == State)
                 {
-                    if(HoveredButton == Scroller || Force)
+                    if(HoveredButton == Scroller)
                     {
                         if(MetaCode::BUTTON_PRESSING == State)
                         {
@@ -489,42 +492,54 @@ namespace phys
                         }
                     }
                 }
-                /*else if(MetaCode::BUTTON_LIFTING == State)
-                {
-                    ScrollerLock = true;
-                    UpLeftLock = true;
-                    DownRightLock = true;
-                }*/
             }
-            else if(HoveredBack || Force)
+            else if(HoveredBack)
             {
-                if(MetaCode::BUTTON_PRESSING == State || MetaCode::BUTTON_DOWN == State)
+                if(MetaCode::BUTTON_PRESSING == State)
                 {
+                    ScrollBackLock = false;
                     ScrollBackScroll();
                 }
+                else if(MetaCode::BUTTON_DOWN == State)
+                {
+                    if(ScrollBackLock && !ScrollerLock)
+                    {
+                        Vector2 Offset = Manager->GetInputQueryer()->GetMousePrevFrameOffset();
+                        MouseScroll(Offset);
+                    }else{
+                        ScrollBackScroll();
+                    }
+                }
             }
-            if(MetaCode::BUTTON_LIFTING == State)
+            else if(Force && MetaCode::BUTTON_DOWN == State)
+            {
+                Vector2 Offset = Manager->GetInputQueryer()->GetMousePrevFrameOffset();
+                MouseScroll(Offset);
+            }
+            else if(MetaCode::BUTTON_LIFTING == State)
             {
                 ScrollerLock = true;
+                ScrollBackLock = true;
                 UpLeftLock = true;
                 DownRightLock = true;
             }
             CalculateScrollValue();
         }
 
-        void Scrollbar::SetVisible(bool Visible)
+        void Scrollbar::SetVisible(bool visible)
         {
-            ScrollBack->SetVisible(Visible);
-            Scroller->SetVisible(Visible);
+            ScrollBack->SetVisible(visible);
+            Scroller->SetVisible(visible);
             if(UpLeftButton)
-                UpLeftButton->SetVisible(Visible);
+                UpLeftButton->SetVisible(visible);
             if(DownRightButton)
-                DownRightButton->SetVisible(Visible);
+                DownRightButton->SetVisible(visible);
+            Visible = visible;
         }
 
         bool Scrollbar::IsVisible()
         {
-            return Scroller->IsVisible();
+            return Visible;
         }
 
         void Scrollbar::Show()
@@ -535,6 +550,7 @@ namespace phys
                 UpLeftButton->Show();
             if(DownRightButton)
                 DownRightButton->Show();
+            Visible = true;
         }
 
         void Scrollbar::Hide()
@@ -545,25 +561,31 @@ namespace phys
                 UpLeftButton->Hide();
             if(DownRightButton)
                 DownRightButton->Hide();
+            Visible = false;
         }
 
         bool Scrollbar::CheckMouseHover()
         {
+            if(!Visible)
+                return false;
             if(Scroller->CheckMouseHover())
             {
                 HoveredButton = Scroller;
+                HoveredBack = NULL;
                 Update();
                 return true;
             }
             else if(UpLeftButton->CheckMouseHover())
             {
                 HoveredButton = UpLeftButton;
+                HoveredBack = NULL;
                 Update();
                 return true;
             }
             else if(DownRightButton->CheckMouseHover())
             {
                 HoveredButton = DownRightButton;
+                HoveredBack = NULL;
                 Update();
                 return true;
             }
@@ -677,21 +699,6 @@ namespace phys
         {
             return (RelSize * Manager->GetWindowDimensions());
         }
-
-        /*void Scrollbar::LengthenScrollArea(Real Length)
-        {
-            if(IsHorizontal(RelSize))
-            {
-                RelSize.X+=Length;
-            }else{
-                RelSize.Y+=Length;
-            }
-        }
-
-        void Scrollbar::LengthenActualScrollArea(Real Length)
-        {
-
-        }*/
 
         Button* Scrollbar::GetScroller()
         {

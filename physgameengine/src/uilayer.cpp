@@ -350,16 +350,25 @@ namespace phys
         return Scroll;
     }
 
-    UI::CheckBox* UILayer::CreateCheckBox(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText)
+    UI::CheckBox* UILayer::CreateCheckBox(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText)
     {
-        UI::CheckBox* Check = new UI::CheckBox(name,Position,Size,Glyph,LabelText,this);
+        UI::CheckBox* Check = new UI::CheckBox(Name,Position,Size,Glyph,LabelText,this);
         Widgets.push_back(Check);
         return Check;
+    }
+
+    UI::ButtonListBox* UILayer::CreateButtonListBox(String& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle)
+    {
+        UI::ButtonListBox* BLB = new UI::ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollbarStyle,this);
+        Widgets.push_back(BLB);
+        return BLB;
     }
 
     UI::Button* UILayer::CheckButtonMouseIsOver()
     {
         if(Buttons.empty())
+            return 0;
+        if(!GetVisible())
             return 0;
         UI::Button* button = NULL;
         for( std::vector<UI::Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )

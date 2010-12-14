@@ -55,6 +55,7 @@ namespace phys
             : Parent(Layer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
+              UserSprite(NULL),
               Callback(NULL),
               MouseHover(false),
               IsText(false),
@@ -172,6 +173,11 @@ namespace phys
         void Button::SetBorder(Real Width, ColourValue& Colour)
         {
             GorillaRectangle->border(Width, Colour.GetOgreColourValue());
+        }
+
+        void Button::NoBorder()
+        {
+            GorillaRectangle->no_border();
         }
 
         void Button::SetPosition(Vector2 Position)

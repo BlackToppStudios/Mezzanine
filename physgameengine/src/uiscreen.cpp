@@ -115,7 +115,20 @@ namespace phys
 
     UILayer* UIScreen::GetLayer(Whole Index)
     {
-        std::map<Whole,UILayer*>::iterator it = Layers.find(Index);
+        std::map<Whole,UILayer*>::iterator it = Layers.begin();
+        while(0 < Index)
+        {
+            it++;
+            Index--;
+        }
+        if(it!=Layers.end())
+            return (*it).second;
+        return 0;
+    }
+
+    UILayer* UIScreen::GetLayerbyZorder(Whole Zorder)
+    {
+        std::map<Whole,UILayer*>::iterator it = Layers.find(Zorder);
         if(it!=Layers.end())
             return (*it).second;
         return 0;

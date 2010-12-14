@@ -138,6 +138,8 @@ namespace phys
                 /// @brief Enables a border and sets it's colour.
                 /// @param Colour A colour value representing the colour to be set.
                 virtual void SetBorder(Real Width, ColourValue& Colour);
+                /// @brief Disables any border set on this rectangle if one is currently set.
+                virtual void NoBorder();
                 /// @brief Sets the relative top left position of this button.
                 /// @param Position A Vector2 representing the location of this button.
                 virtual void SetPosition(Vector2 Position);

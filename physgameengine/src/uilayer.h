@@ -233,7 +233,16 @@ namespace phys
             /// @param LabelText The text to display with the label.  The label uses the Markup Text class, and thus it's
             /// light markup text language.  You can also pass in a blank string if you don't wish to have a label, you can
             /// create a label after construction.
-            UI::CheckBox* CreateCheckBox(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText);
+            UI::CheckBox* CreateCheckBox(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText);
+            /// @brief Creates a Button List Box within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+            /// @return Returns a pointer to the created Button List Box.
+            /// @param Name The name of the Button List Box.
+            /// @param Position The top left position of the Button List Box.
+            /// @param Size The size of the Button List Box.
+            /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
+            /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
+            UI::ButtonListBox* CreateButtonListBox(String& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle);
             ///////////////////////////////////////////////////////////////////////////////
             // UI Element and Widget Checks
             ///////////////////////////////////////

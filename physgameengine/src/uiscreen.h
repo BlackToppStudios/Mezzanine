@@ -107,9 +107,12 @@ namespace phys
             /// @brief Gets an already created layer by name.
             /// @return Returns a pointer to the layer of the specified name.
             UILayer* GetLayer(const String& Name);
-            /// @brief Gets an already created layer by index.
+            /// @brief Gets an already created layer by it's index.
             /// @return Returns a pointer to the layer at the specified index.
             UILayer* GetLayer(Whole Index);
+            /// @brief Gets an already created layer by it's Zorder.
+            /// @return Returns a pointer to the layer with the specified Zorder.
+            UILayer* GetLayerbyZorder(Whole Zorder);
             /// @brief Gets the number of layers created and stored in this class.
             /// @return Returns the number of layers this class is storing.
             Whole GetNumLayers();

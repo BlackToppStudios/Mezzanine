@@ -65,6 +65,8 @@ namespace phys
                 std::vector<Button*> Selections;
                 std::vector<Button*> VisibleSelections;
                 bool AutoHideScroll;
+                bool ScrollControlLock;
+                Real LastScrollValue;
                 Real SelectionDist;
                 Real BorderWidth;
                 Whole TGlyph;
@@ -91,8 +93,8 @@ namespace phys
                 /// @brief Standard destructor.
                 ~ButtonListBox();
                 /// @brief Sets the visibility of this Button List Box.
-                /// @param Visible Bool determining whether or not this Button List Box should be visible.
-                virtual void SetVisible(bool Visible);
+                /// @param visible Bool determining whether or not this Button List Box should be visible.
+                virtual void SetVisible(bool visible);
                 /// @brief Gets the visibility of this Button List Box.
                 /// @return Returns a bool representing the visibility of this Button List Box.
                 virtual bool IsVisible();
@@ -115,9 +117,19 @@ namespace phys
                 /// versa.  You'll have to destroy the selection and make a new one.  In the case of having a text button, you can
                 /// however still set it's text to an empty string.
                 virtual void AddSelection(String& name, String& BackgroundSprite = "", String &TextLabel = "");
+                /// @brief Gets a button by name.
+                /// @param Name The name of the selectable button you want to get.
+                /// @return Returns a pointer to the named button.
+                virtual Button* GetSelection(String &Name);
+                /// @brief Destroys a selectable button.
+                /// @param ToBeDestroyed A pointer to the button you want destroyed and removed from this list.
+                virtual void DestroySelection(Button* ToBeDestroyed);
+                /// @brief Destroys a selectable button.
+                /// @param ToBeDestroyed A string naming the button you want destroyed and removed from this list.
+                virtual void DestroySelection(String& ToBeDestroyed);
                 /// @brief Sets the distance apart(and from the sides of box) the Selections will be from each other.
                 /// @details This function expects a relative value to the screen size(0.0 to 1.0).  This value defaults to 0.025.
-                /// @param Dist A relative value for the distance to be used when determining the position of Selections.
+                /// @param Dist A relative value for the distance to be used when determining the positions of Selections.
                 virtual void SetSelectionDistance(Real Dist);
                 /// @brief Eanbles or disables the scrollbar autohide.
                 /// @param AutoHide A bool indicating whether or not to auto hide the scrollbar.
@@ -156,9 +168,15 @@ namespace phys
                 /// @brief Sets the pixel size of this Button List Box.
                 /// @return Returns a vector2 representing the pixel size of this Button List Box.
                 virtual Vector2 GetActualSize();
+                /// @brief Gets the currently selection button.
+                /// @return Returns a pointer to the currently selected button, or NULL if none are selected.
+                virtual Button* GetSelected();
                 /// @brief Gets the background of this Button List Box.
-                /// @return Returns a pointer to the background of this Button List Box
+                /// @return Returns a pointer to the background of this Button List Box.
                 virtual Rectangle* GetBoxBack();
+                /// @brief Gets the scrollbar used within this Button List Box.
+                /// @return Returns a pointer to the scrollbar of this Button List Box.
+                virtual UI::Scrollbar* GetVertScroll();
         };
     }//UI
 }//phys

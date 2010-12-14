@@ -111,6 +111,8 @@ namespace phys
             }
             else if(MetaCode::BUTTON_LIFTING == State)
             {
+                if(HoveredWidget != WidgetControl)
+                    WidgetControl->Update(true);
                 WidgetControl = NULL;
             }
         }
@@ -140,6 +142,11 @@ namespace phys
     UI::Widget* UIManager::GetHoveredWidget()
     {
         return HoveredWidget;
+    }
+
+    UI::Widget* UIManager::GetWidgetControl()
+    {
+        return WidgetControl;
     }
 
     UIScreen* UIManager::CreateScreen(const String& Screen, const String& Atlas, const String& Viewport)
@@ -247,7 +254,7 @@ namespace phys
 
     bool UIManager::MouseIsInUISystem()
     {
-        if(HoveredButton || HoveredWidget)
+        if(HoveredButton || HoveredWidget || WidgetControl)
         {
             return true;
         }else{
