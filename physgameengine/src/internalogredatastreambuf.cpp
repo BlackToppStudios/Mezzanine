@@ -186,10 +186,11 @@ namespace phys
 
             if(!Fail)
             {
-                std::streamsize BytesRetrieved = this->OgreStream->read(s,this->OgreStream->size()-Current);
+                this->OgreStream->seek(Current);
+                std::streamsize BytesRetrieved = this->OgreStream->read(s,HowManyToRead);
                 this->SetInternalBuffer(Current+BytesRetrieved);
                 #ifdef PHYSDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() After calling this->SetInternalBuffer(" << Current+BytesRetrieved << ") and returning" << BytesRetrieved; World::GetWorldPointer()->Log();
+                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() After calling this->SetInternalBuffer(" << Current+BytesRetrieved << ") and returning " << BytesRetrieved; World::GetWorldPointer()->Log();
                 #endif
                 return BytesRetrieved;
             }else{
@@ -267,18 +268,18 @@ namespace phys
             World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::pbackfail()");
             #endif
             Whole Destination = this->GetCurrentLocation()-1;
-            if(this->CheckInternalBuffer(Destination))
+            if(this->CheckStream(Destination))
             {
-                this->SetInternalBuffer(Destination);   /// @todo Do some Buffer Math instead of reloading everything we are already near. in pbackfail
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::pbackfail() after backing up once");
+                #endif
+                this->SetInternalBuffer(Destination);
                 return Toint(this->gptr());
             }else{
-                if(this->CheckStream(Destination))
-                {
-                    this->SetInternalBuffer(Destination);
-                    return Toint(this->gptr());
-                }else{
-                    return traits_type::eof();
-                }
+                #ifdef PHYSDEBUG
+                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::pbackfail() with failure");
+                #endif
+                return traits_type::eof();
             }
         }
 
