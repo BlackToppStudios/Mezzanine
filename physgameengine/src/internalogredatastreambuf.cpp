@@ -62,9 +62,20 @@ namespace phys
             #endif
 
             if ( 0==n ) //They want unbuffered input, well they can't have it
-                { return NULL; }
-            s = new char [n];
-            this->OgreStream->read(s,n);
+            {
+                this->SetInternalBuffer(0);
+            }else{
+                Whole CurrentLocation = this->GetCurrentLocation();
+                if(this->CheckInternalBuffer(CurrentLocation))      //Does a Buffer already exist?
+                {
+                    delete [] this->eback();
+                }else{
+                    CurrentLocation = 0;
+                }
+                this->setg(s,s,s+n);
+                this->LoadAtOnce = n;
+                this->SetInternalBuffer(CurrentLocation);
+            }
 
             return this;
         }
@@ -86,31 +97,17 @@ namespace phys
                     return this->seekpos((streampos)off,which);
 
                 case ios_base::cur :
-                    {
-                        #ifdef PHYSDEBUG
-                        World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via current location seek logic");
-                        #endif
-                        Whole BufferDiff = this->egptr()-this->gptr();
-                        if ( (off>0 && BufferDiff < off) || (off<0 && this->egptr()+off>this->eback() ) )                          // if the offset is still is still inside the loaded stuff
-                        {
-                            //setg(this->eback(), this->gptr()+off, this->egptr());       //just move the pointer the amount of the offset
-                            this->seekpos(this->OgreStream->tell()+off, which);
-                            return this->OgreStream->tell()-BufferDiff;                 // and figure out how fow into the ogre stream we are less the amount of unread data
-                        }else{
-                            return this->seekpos(this->OgreStream->tell()-BufferDiff, which);   //Otherwise just use existing logic to fix the buffer
-                        }
-                    }
+                    #ifdef PHYSDEBUG
+                    World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via current location seek logic");
+                    #endif
+                    // No need to do safety checks here, seekpos will do them
+                    return this->seekpos(this->GetCurrentLocation()+off,which);
 
                 case ios_base::end :
                     #ifdef PHYSDEBUG
                     World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via end seek logic");
                     #endif
-                    if( (this->OgreStream->size()!=0) && (this->OgreStream->size()-off > 0))
-                    {
-                        this->seekpos(this->OgreStream->size()-off, which);
-                    }else{
-                        return -1;
-                    }
+                    return this->seekpos(this->OgreStream->size()-off, which);
 
                 default:
                     return -1;
@@ -126,18 +123,17 @@ namespace phys
             if (ios_base::in & which)
                 { return -1; }
 
-            /// @todo do some fancy math to see if we can just move the current pointer around in the buffer
-            if (this->eback()==NULL)
-                { delete[] this->eback(); }
-            char* Buffer = new char [this->LoadAtOnce];
-            this->OgreStream->seek(sp-(streampos)SeekBackOnload);
-            this->OgreStream->read(Buffer, this->LoadAtOnce);
+            if(this->CheckStream(sp))
+            {
+                this->SetInternalBuffer(sp);
+            }else{
+                sp=-1;
+            }
 
-            this->setg(Buffer, Buffer+this->SeekBackOnload, Buffer+this->LoadAtOnce);
-            return sp;
             #ifdef PHYSDEBUG
             World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekpos()");
             #endif
+            return sp;
         }
 
 
@@ -157,7 +153,7 @@ namespace phys
                 #ifdef PHYSDEBUG
                 World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::showmanyc() returning " << this->OgreStream->size();
                 #endif
-                return static_cast<signed int>(this->OgreStream->size());
+                return static_cast<signed int>(this->OgreStream->size()-this->GetCurrentLocation());
             }
         }
 

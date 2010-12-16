@@ -28,6 +28,6 @@ set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR})
 #Add subprojects
 add_subdirectory (physgameengine)
 add_subdirectory (EngineDemo)
+add_subdirectory (Catch!) 
 
-#add_subdirectory (Catch!) 
-#add_subdirectory (physgamelauncher)
+

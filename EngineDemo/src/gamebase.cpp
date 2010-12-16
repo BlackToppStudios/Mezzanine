@@ -475,7 +475,6 @@ void LoadContent()
                 { temp[c]='\0'; }
             for (Whole c=0; c<howfew-1; c++)      //we already did one above -(1), we do not want to pad anything with a \0 (no +1), and we want exactly this many (< instead of <=)
                 { Zippedptr->unget(); }
-            Zippedptr->unget();
             Zippedptr->read(temp, howfew);
             TheWorld->LogStream << howfew << " ungets and " << howfew << " characters :" << temp;
         }
@@ -521,17 +520,6 @@ void LoadContent()
                 TheWorld->Log();
             }
         }
-
-
-        //(*XMLptr) >> Content;
-        //(*Zippedptr) >> ZippedContent;
-
-        TheWorld->Log("Streamed XML Content");
-        //TheWorld->Log(Content);
-        //TheWorld->Log("Streamed and Zipped XML Content");
-        //TheWorld->Log(ZippedContent);
-
-
 
         delete XMLptr;
         delete Zippedptr;
