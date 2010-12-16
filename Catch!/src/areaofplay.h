@@ -14,7 +14,7 @@ class AreaOfPlay : public AreaEffect
 {
     protected:
     public:
-        AreaOfPlay(const String &name, Vector3 Location);
+        AreaOfPlay(ConstString &name, Vector3 Location);
         ~AreaOfPlay();
         void ApplyEffect();
         bool IsInside(ActorBase* Actor);

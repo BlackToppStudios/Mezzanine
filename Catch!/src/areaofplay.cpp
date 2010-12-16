@@ -4,7 +4,7 @@
 #include "areaofplay.h"
 #include <physgame.h>
 
-AreaOfPlay::AreaOfPlay(const String &name, Vector3 Location) : AreaEffect(name, Location)
+AreaOfPlay::AreaOfPlay(ConstString &name, Vector3 Location) : AreaEffect(name, Location)
 {
 
 }

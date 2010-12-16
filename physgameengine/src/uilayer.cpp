@@ -125,7 +125,7 @@ namespace phys
         GorillaLayer->hide();
     }
 
-    UI::Button* UILayer::CreateButton(String& Name, Vector2 Position, Vector2 Size)
+    UI::Button* UILayer::CreateButton(ConstString& Name, Vector2 Position, Vector2 Size)
     {
         UI::Button* button = new UI::Button(Name, Position, Size, this);
         Buttons.push_back(button);
@@ -203,14 +203,14 @@ namespace phys
         }
     }
 
-    UI::Caption* UILayer::CreateCaption(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
+    UI::Caption* UILayer::CreateCaption(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
     {
         UI::Caption* caption = new UI::Caption(Name,Position,Size,Glyph,Text,this);
         Captions.push_back(caption);
         return caption;
     }
 
-    UI::Caption* UILayer::GetCaption(String& Name)
+    UI::Caption* UILayer::GetCaption(ConstString& Name)
     {
         for ( std::vector<UI::Caption*>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
         {
@@ -245,14 +245,14 @@ namespace phys
         }
     }
 
-    UI::MarkupText* UILayer::CreateMarkupText(String& Name, Vector2 Position, Whole Glyph, String Text)
+    UI::MarkupText* UILayer::CreateMarkupText(ConstString& Name, Vector2 Position, Whole Glyph, String Text)
     {
         UI::MarkupText* markup = new UI::MarkupText(Name,Position,Glyph,Text,this);
         MarkupTexts.push_back(markup);
         return markup;
     }
 
-    UI::MarkupText* UILayer::GetMarkupText(String& Name)
+    UI::MarkupText* UILayer::GetMarkupText(ConstString& Name)
     {
         for ( std::vector<UI::MarkupText*>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
         {
@@ -287,7 +287,7 @@ namespace phys
         }
     }
 
-    UI::Widget* UILayer::GetWidget(String& Name)
+    UI::Widget* UILayer::GetWidget(ConstString& Name)
     {
         for ( std::vector<UI::Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
         {
@@ -347,28 +347,28 @@ namespace phys
         }
     }
 
-    UI::Scrollbar* UILayer::CreateScrollbar(String& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style)
+    UI::Scrollbar* UILayer::CreateScrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style)
     {
         UI::Scrollbar* Scroll = new UI::Scrollbar(Name,Position,Size,Style,this);
         Widgets.push_back(Scroll);
         return Scroll;
     }
 
-    UI::CheckBox* UILayer::CreateCheckBox(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText)
+    UI::CheckBox* UILayer::CreateCheckBox(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText)
     {
         UI::CheckBox* Check = new UI::CheckBox(Name,Position,Size,Glyph,LabelText,this);
         Widgets.push_back(Check);
         return Check;
     }
 
-    UI::ButtonListBox* UILayer::CreateButtonListBox(String& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle)
+    UI::ButtonListBox* UILayer::CreateButtonListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle)
     {
         UI::ButtonListBox* BLB = new UI::ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollbarStyle,this);
         Widgets.push_back(BLB);
         return BLB;
     }
 
-    UI::ListBox* UILayer::CreateListBox(String& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle)
+    UI::ListBox* UILayer::CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle)
     {
         UI::ListBox* LB = new UI::ListBox(Name,Position,Size,ScrollbarWidth,ScrollbarStyle,this);
         Widgets.push_back(LB);

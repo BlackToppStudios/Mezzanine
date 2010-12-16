@@ -120,7 +120,7 @@ namespace phys
             /// @param Name The name of the button.
             /// @param Position The top left position of the button.
             /// @param Size The size of the Button.
-            UI::Button* CreateButton(String& Name, Vector2 Position, Vector2 Size);
+            UI::Button* CreateButton(ConstString& Name, Vector2 Position, Vector2 Size);
             /// @brief Creates a text button within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created button.
@@ -165,10 +165,10 @@ namespace phys
             /// @param Size The size of the Button.
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
             /// @param Text Any text you want printed on the caption.
-            UI::Caption* CreateCaption(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text);
+            UI::Caption* CreateCaption(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text);
             /// @brief Gets an already created caption by name.
             /// @return Returns a pointer to the caption of the specified name.
-            UI::Caption* GetCaption(String& Name);
+            UI::Caption* GetCaption(ConstString& Name);
             /// @brief Gets an already created caption by index.
             /// @return Returns a pointer to the caption at the specified index.
             UI::Caption* GetCaption(Whole Index);
@@ -185,10 +185,10 @@ namespace phys
             /// @param Position The top left position of the markup text.
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
             /// @param Text Any text you want printed on the markup text.
-            UI::MarkupText* CreateMarkupText(String& Name, Vector2 Position, Whole Glyph, String Text);
+            UI::MarkupText* CreateMarkupText(ConstString& Name, Vector2 Position, Whole Glyph, String Text);
             /// @brief Gets an already created markup text by name.
             /// @return Returns a pointer to the markup text of the specified name.
-            UI::MarkupText* GetMarkupText(String& Name);
+            UI::MarkupText* GetMarkupText(ConstString& Name);
             /// @brief Gets an already created markup text by index.
             /// @return Returns a pointer to the markup text at the specified index.
             UI::MarkupText* GetMarkupText(Whole Index);
@@ -203,7 +203,7 @@ namespace phys
             ///////////////////////////////////////
             /// @brief Gets an already created widget by name.
             /// @return Returns a pointer to the widget of the specified name.
-            UI::Widget* GetWidget(String& Name);
+            UI::Widget* GetWidget(ConstString& Name);
             /// @brief Gets an already created widget by index.
             /// @return Returns a pointer to the widget at the specified index.
             UI::Widget* GetWidget(Whole Index);
@@ -223,7 +223,7 @@ namespace phys
             /// @param Position The top left position of the Scrollbar.
             /// @param Size The size of the Scrollbar.
             /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
-            UI::Scrollbar* CreateScrollbar(String& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style);
+            UI::Scrollbar* CreateScrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style);
             /// @brief Creates a CheckBox within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created CheckBox.
@@ -234,7 +234,7 @@ namespace phys
             /// @param LabelText The text to display with the label.  The label uses the Markup Text class, and thus it's
             /// light markup text language.  You can also pass in a blank string if you don't wish to have a label, you can
             /// create a label after construction.
-            UI::CheckBox* CreateCheckBox(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText);
+            UI::CheckBox* CreateCheckBox(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText);
             /// @brief Creates a Button List Box within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created Button List Box.
@@ -243,7 +243,7 @@ namespace phys
             /// @param Size The size of the Button List Box.
             /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
             /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-            UI::ButtonListBox* CreateButtonListBox(String& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle);
+            UI::ButtonListBox* CreateButtonListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle);
             /// @brief Creates a List Box within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created List Box.
@@ -252,7 +252,7 @@ namespace phys
             /// @param Size The size of the List Box.
             /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
             /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-            UI::ListBox* CreateListBox(String& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle);
+            UI::ListBox* CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle);
             ///////////////////////////////////////////////////////////////////////////////
             // UI Element and Widget Checks
             ///////////////////////////////////////

@@ -88,7 +88,7 @@ namespace phys
                 /// @param ScrollbarStyle The style of the scrollbar you want for this Button List Box.  See Scrollbar
                 /// class for more information.
                 /// @param Layer The parent layer this Button List Box belongs to.
-                ButtonListBox(String& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer);
+                ButtonListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer);
                 /// @brief Standard destructor.
                 ~ButtonListBox();
                 /// @brief Sets the visibility of this Button List Box.
