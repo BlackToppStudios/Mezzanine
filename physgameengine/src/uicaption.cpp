@@ -99,8 +99,10 @@ namespace phys
 
         bool Caption::CheckMouseHover()
         {
+            if(!GorillaRectangle->IsVisible())
+                return false;
             Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
-            if(GorillaCaption->intersects(MouseLoc.GetOgreVector2()) && GorillaRectangle->IsVisible())
+            if(GorillaCaption->intersects(MouseLoc.GetOgreVector2()))
             {
                 MouseHover = true;
             }else{
@@ -127,6 +129,17 @@ namespace phys
         String Caption::GetText()
         {
             return GorillaCaption->text();
+        }
+
+        void Caption::SetTextColour(ColourValue& TextColour)
+        {
+            GorillaCaption->colour(TextColour.GetOgreColourValue());
+        }
+
+        ColourValue Caption::GetTextColour()
+        {
+            ColourValue Col(GorillaCaption->colour());
+            return Col;
         }
 
         void Caption::SetGlyphIndex(Whole GlyphIndex)

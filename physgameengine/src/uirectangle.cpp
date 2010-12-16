@@ -91,8 +91,10 @@ namespace phys
 
         bool Rectangle::CheckMouseHover()
         {
+            if(!GRectangle->IsVisible())
+                return false;
             Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
-            if(GRectangle->intersects(MouseLoc.GetOgreVector2()) && GRectangle->IsVisible())
+            if(GRectangle->intersects(MouseLoc.GetOgreVector2()))
             {
                 MouseHover = true;
             }else{

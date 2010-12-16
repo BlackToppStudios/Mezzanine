@@ -82,6 +82,20 @@ namespace phys
         OgreColour.a = this->Alpha;
         return OgreColour;
     }
+
+    bool ColourValue::operator== (const ColourValue &Colour)
+    {
+        if ( Colour.Red == this->Red && Colour.Green == this->Green && Colour.Blue == this->Blue && Colour.Alpha == this->Alpha )
+            { return true; }
+        return false;
+    }
+
+    bool ColourValue::operator!= (const ColourValue &Colour)
+    {
+        if ( Colour.Red != this->Red || Colour.Green != this->Green || Colour.Blue != this->Blue || Colour.Alpha != this->Alpha )
+            { return true; }
+        return false;
+    }
 }
 
 #endif

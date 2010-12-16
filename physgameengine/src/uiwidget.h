@@ -64,7 +64,14 @@ namespace phys
                 {
                     ButtonListBox,
                     CheckBox,
-                    Scrollbar
+                    DropDownMenu,
+                    ListBox,
+                    Menu,
+                    RadioButton,
+                    Scrollbar,
+                    Spinner,
+                    TextBox,
+                    Window
                 };
             protected:
                 friend class phys::UIManager;

@@ -37,15 +37,14 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uibuttonlistbox_cpp
-#define _uibuttonlistbox_cpp
+#ifndef _uilistbox_cpp
+#define _uilistbox_cpp
 
-#include "uibuttonlistbox.h"
+#include "uilistbox.h"
 #include "uimanager.h"
 #include "uilayer.h"
+#include "uicaption.h"
 #include "uirectangle.h"
-#include "uibutton.h"
-#include "uitextbutton.h"
 #include "inputquerytool.h"
 #include "metacode.h"
 #include "world.h"
@@ -56,17 +55,20 @@ namespace phys
 {
     namespace UI
     {
-        ButtonListBox::ButtonListBox(String& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer)
+        ListBox::ListBox(String& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer)
             : Widget(name,Layer),
               Selected(NULL),
               AutoHideScroll(true),
               LastScrollValue(0),
               NumVisible(0),
-              SelectionDist(0.025),
-              BorderWidth(0),
-              BorderColour(ColourValue(0,0,0,0))
+              SelectionDist(0.0),
+              THAlign(UI::Middle),
+              TVAlign(UI::Center),
+              TTColour(ColourValue(0.0,0.0,0.0,1.0)),
+              TBGColour(ColourValue(1.0,1.0,1.0,1.0)),
+              SelectColour(ColourValue(1.0,1.0,1.0,1.0))
         {
-            Type = Widget::ButtonListBox;
+            Type = Widget::ListBox;
             RelPosition = Position;
             RelSize = Size;
 
@@ -78,12 +80,12 @@ namespace phys
             VertScroll->Hide();
         }
 
-        ButtonListBox::~ButtonListBox()
+        ListBox::~ListBox()
         {
             delete BoxBack;
             if(!Selections.empty())
             {
-                for( std::vector<Button*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
+                for( std::vector<Caption*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
                 {
                     delete (*it);
                 }
@@ -92,7 +94,7 @@ namespace phys
             VisibleSelections.clear();
         }
 
-        void ButtonListBox::CalculateVisibleSelections()
+        void ListBox::CalculateVisibleSelections()
         {
             NumVisible = (Whole)(RelSize.Y / (TSize.Y + SelectionDist));
             if(Selections.size() > NumVisible)
@@ -107,7 +109,7 @@ namespace phys
             }
         }
 
-        void ButtonListBox::DrawList()
+        void ListBox::DrawList()
         {
             if(Selections.empty())
                 return;
@@ -118,24 +120,24 @@ namespace phys
             Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)Selections.size();
             Real Remainder = fmod(ToBeRounded,One);
             ToBeRounded = Remainder >= 0.5 ? ToBeRounded + (One - Remainder) : ToBeRounded - Remainder;
-            Whole FirstButton = (Whole)ToBeRounded;
+            Whole FirstCaption = (Whole)ToBeRounded;
             Vector2 SelectionPos = GetActualPosition();
             Real ActualDist = SelectionDist * Manager->GetWindowDimensions().Y;
             Real ActualInc = ActualDist + (TSize.Y * Manager->GetWindowDimensions().Y);
             SelectionPos.X+=ActualDist;
             SelectionPos.Y+=ActualDist;
-            for( Whole w = 0 ; w < FirstButton ; w++ )
+            for( Whole w = 0 ; w < FirstCaption ; w++ )
             {
                 Selections[w]->SetPosition(GetPosition());
                 Selections[w]->Hide();
             }
-            Whole Displayed = FirstButton+NumVisible > Selections.size() ? Selections.size() : FirstButton+NumVisible;
-            for( Whole x = FirstButton ; x < Displayed ; x++ )
+            Whole Displayed = FirstCaption+NumVisible > Selections.size() ? Selections.size() : FirstCaption+NumVisible;
+            for( Whole x = FirstCaption ; x < Displayed ; x++ )
             {
                 VisibleSelections.push_back(Selections[x]);
                 Selections[x]->Show();
             }
-            for( Whole y = FirstButton+NumVisible ; y < Selections.size() ; y++ )
+            for( Whole y = FirstCaption+NumVisible ; y < Selections.size() ; y++ )
             {
                 Selections[y]->SetPosition(GetPosition());
                 Selections[y]->Hide();
@@ -147,20 +149,20 @@ namespace phys
             }
         }
 
-        void ButtonListBox::Update(bool Force)
+        void ListBox::Update(bool Force)
         {
             if(!Force)
                 SubWidgetUpdate();
             MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
-            if(HoveredButton)
+            if(HoveredCaption)
             {
                 if(MetaCode::BUTTON_PRESSING == State)
                 {
                     if(Selected)
-                        Selected->NoBorder();
-                    if(BorderWidth > 0)
-                        HoveredButton->SetBorder(BorderWidth,BorderColour);
-                    Selected = HoveredButton;
+                        Selected->SetBackgroundColour(TBGColour);
+                    if(SelectColour != ColourValue(1.0,1.0,1.0,1.0))
+                        HoveredCaption->SetBackgroundColour(SelectColour);
+                    Selected = HoveredCaption;
                 }
             }
             else if(HoveredSubWidget)
@@ -189,7 +191,7 @@ namespace phys
             }
         }
 
-        void ButtonListBox::SetVisible(bool visible)
+        void ListBox::SetVisible(bool visible)
         {
             BoxBack->SetVisible(visible);
             if(!AutoHideScroll)
@@ -199,12 +201,12 @@ namespace phys
             Visible = visible;
         }
 
-        bool ButtonListBox::IsVisible()
+        bool ListBox::IsVisible()
         {
             return Visible;
         }
 
-        void ButtonListBox::Show()
+        void ListBox::Show()
         {
             BoxBack->Show();
             if(!AutoHideScroll)
@@ -214,7 +216,7 @@ namespace phys
             Visible = true;
         }
 
-        void ButtonListBox::Hide()
+        void ListBox::Hide()
         {
             BoxBack->Hide();
             if(!AutoHideScroll)
@@ -224,16 +226,16 @@ namespace phys
             Visible = false;
         }
 
-        bool ButtonListBox::CheckMouseHover()
+        bool ListBox::CheckMouseHover()
         {
             if(!Visible)
                 return false;
-            for( std::vector<Button*>::iterator it = VisibleSelections.begin() ; it != VisibleSelections.end() ; it++ )
+            for( std::vector<Caption*>::iterator it = VisibleSelections.begin() ; it != VisibleSelections.end() ; it++ )
             {
                 if((*it)->CheckMouseHover())
                 {
                     HoveredSubWidget = NULL;
-                    HoveredButton = (*it);
+                    HoveredCaption = (*it);
                     //Update();
                     return true;
                 }
@@ -241,41 +243,46 @@ namespace phys
             if(VertScroll->CheckMouseHover())
             {
                 HoveredSubWidget = VertScroll;
-                HoveredButton = NULL;
+                HoveredCaption = NULL;
                 //Update();
                 return true;
             }
             else if(BoxBack->CheckMouseHover())
             {
                 HoveredSubWidget = NULL;
-                HoveredButton = NULL;
+                HoveredCaption = NULL;
                 //Update();
                 return true;
             }
             HoveredSubWidget = NULL;
-            HoveredButton = NULL;
+            HoveredCaption = NULL;
             return false;
         }
 
-        void ButtonListBox::SetTemplateParameters(Vector2 Size, Whole Glyph)
+        void ListBox::SetBasicTemplateParameters(Vector2 Size, Whole Glyph)
         {
             TSize = Size;
             TGlyph = Glyph;
         }
 
-        Button* ButtonListBox::AddSelection(String& name, String& BackgroundSprite, String &TextLabel)
+        void ListBox::SetMoreTemplateParameters(ColourValue TextColour, ColourValue BackgroundColour, UI::TextHorizontalAlign HorAlign, UI::TextVerticalAlign VertAlign)
         {
-            Button* Select = NULL;
-            if(TextLabel.empty())
-            {
-                Select = new Button(name,GetPosition(),TSize,Parent);
-            }else{
-                Select = new TextButton(name,GetPosition(),TSize,TGlyph,TextLabel,Parent);
-            }
+            TTColour = TextColour;
+            TBGColour = BackgroundColour;
+            THAlign = HorAlign;
+            TVAlign = VertAlign;
+        }
+
+        Caption* ListBox::AddSelection(String& name, String &Text, String& BackgroundSprite)
+        {
+            Caption* Select = new Caption(name,GetPosition(),TSize,TGlyph,Text,Parent);
             if(!BackgroundSprite.empty())
-            {
                 Select->SetBackgroundSprite(BackgroundSprite);
-            }
+            if(TBGColour != ColourValue(1.0,1.0,1.0,1.0))
+                Select->SetBackgroundColour(TBGColour);
+            Select->SetTextColour(TTColour);
+            Select->HorizontallyAlign(THAlign);
+            Select->VerticallyAlign(TVAlign);
             Select->Hide();
             Selections.push_back(Select);
             CalculateVisibleSelections();
@@ -283,22 +290,22 @@ namespace phys
             return Select;
         }
 
-        Button* ButtonListBox::GetSelection(String &Name)
+        Caption* ListBox::GetSelection(String &Name)
         {
-            for ( std::vector<Button*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
+            for ( std::vector<Caption*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
             {
                 if ( Name == (*it)->GetName() )
                 {
-                    UI::Button* button = (*it);
+                    UI::Caption* button = (*it);
                     return button;
                 }
             }
             return 0;
         }
 
-        void ButtonListBox::DestroySelection(Button* ToBeDestroyed)
+        void ListBox::DestroySelection(Caption* ToBeDestroyed)
         {
-            for ( std::vector<Button*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
+            for ( std::vector<Caption*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
             {
                 if ( ToBeDestroyed == (*it) )
                 {
@@ -310,9 +317,9 @@ namespace phys
             }
         }
 
-        void ButtonListBox::DestroySelection(String& ToBeDestroyed)
+        void ListBox::DestroySelection(String& ToBeDestroyed)
         {
-            for ( std::vector<Button*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
+            for ( std::vector<Caption*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
             {
                 if ( ToBeDestroyed == (*it)->GetName() )
                 {
@@ -324,31 +331,29 @@ namespace phys
             }
         }
 
-        void ButtonListBox::SetSelectionDistance(Real Dist)
+        void ListBox::SetSelectionDistance(Real Dist)
         {
             SelectionDist = Dist;
         }
 
-        void ButtonListBox::SetAutoHideScroll(bool AutoHide)
+        void ListBox::SetAutoHideScroll(bool AutoHide)
         {
             AutoHideScroll = AutoHide;
             if(!AutoHide)
                 VertScroll->Show();
         }
 
-        void ButtonListBox::EnableBorderSelector(Real Width, ColourValue &Colour)
+        void ListBox::EnableBackgroundSelector(ColourValue &Colour)
         {
-            BorderWidth = Width;
-            BorderColour = Colour;
+            SelectColour = Colour;
         }
 
-        void ButtonListBox::DisableBorderSelector()
+        void ListBox::DisableBackgroundSelector()
         {
-            BorderWidth = 0;
-            BorderColour = ColourValue(0,0,0,0);
+            SelectColour = ColourValue(1.0,1.0,1.0,1.0);
         }
 
-        void ButtonListBox::SetPosition(Vector2 Position)
+        void ListBox::SetPosition(Vector2 Position)
         {
             RelPosition = Position;
             Vector2 ScrollOffset = VertScroll->GetPosition() - RelPosition;
@@ -357,12 +362,12 @@ namespace phys
             DrawList();
         }
 
-        Vector2 ButtonListBox::GetPosition()
+        Vector2 ListBox::GetPosition()
         {
             return RelPosition;
         }
 
-        void ButtonListBox::SetActualPosition(Vector2 Position)
+        void ListBox::SetActualPosition(Vector2 Position)
         {
             RelPosition = Position / Manager->GetWindowDimensions();
             Vector2 ScrollOffset = VertScroll->GetActualPosition() - RelPosition * Manager->GetWindowDimensions();
@@ -371,12 +376,12 @@ namespace phys
             DrawList();
         }
 
-        Vector2 ButtonListBox::GetActualPosition()
+        Vector2 ListBox::GetActualPosition()
         {
             return RelPosition * Manager->GetWindowDimensions();
         }
 
-        void ButtonListBox::SetSize(Vector2 Size)
+        void ListBox::SetSize(Vector2 Size)
         {
             RelSize = Size;
             BoxBack->SetSize(Size);
@@ -388,12 +393,12 @@ namespace phys
             DrawList();
         }
 
-        Vector2 ButtonListBox::GetSize()
+        Vector2 ListBox::GetSize()
         {
             return RelSize;
         }
 
-        void ButtonListBox::SetActualSize(Vector2 Size)
+        void ListBox::SetActualSize(Vector2 Size)
         {
             RelSize = Size / Manager->GetWindowDimensions();
             BoxBack->SetActualSize(Size);
@@ -405,22 +410,22 @@ namespace phys
             DrawList();
         }
 
-        Vector2 ButtonListBox::GetActualSize()
+        Vector2 ListBox::GetActualSize()
         {
             return RelSize * Manager->GetWindowDimensions();
         }
 
-        Button* ButtonListBox::GetSelected()
+        Caption* ListBox::GetSelected()
         {
             return Selected;
         }
 
-        Rectangle* ButtonListBox::GetBoxBack()
+        Rectangle* ListBox::GetBoxBack()
         {
             return BoxBack;
         }
 
-        UI::Scrollbar* ButtonListBox::GetVertScroll()
+        UI::Scrollbar* ListBox::GetVertScroll()
         {
             return VertScroll;
         }

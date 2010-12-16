@@ -119,6 +119,12 @@ namespace phys
                 /// @brief Gets the text displayed within the caption.
                 /// @return Returns the text being displayed.
                 virtual String GetText();
+                /// @brief Sets the colour for the text in this caption.
+                /// @param TextColour A colourvalue representing the desired colour.
+                virtual void SetTextColour(ColourValue& TextColour);
+                /// @brief Gets the colour for the text in this caption.
+                /// @return Returns a colourvalue representing the currently set colour of the text in this caption.
+                virtual ColourValue GetTextColour();
                 /// @brief Sets the glyph index to be used with this caption.
                 /// @details The glyph index is defined in your gorilla file.
                 /// @param GlyphIndex The index of the glyph to use with this caption.
