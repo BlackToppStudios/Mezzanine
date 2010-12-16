@@ -66,7 +66,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
                 /// @param Layer Pointer to the Layer that created this button.
-                TextButton(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer);
+                TextButton(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
                 ~TextButton();
                 /// @brief Sets the visibility of this button.
@@ -81,7 +81,7 @@ namespace phys
                 virtual void Hide();
                 /// @brief Sets the text displayed within the button.
                 /// @param Text The text to be displayed.
-                virtual void SetText(String& Text);
+                virtual void SetText(ConstString& Text);
                 /// @brief Gets the text displayed within the button.
                 /// @return Returns the text being displayed.
                 virtual String GetText();

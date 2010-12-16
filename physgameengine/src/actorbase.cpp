@@ -460,7 +460,7 @@ namespace phys{
         this->CollisionObject->setRestitution(Restitution);
     }
 
-    void ActorBase::SetAnimation(String &AnimationName, bool Loop)
+    void ActorBase::SetAnimation(ConstString &AnimationName, bool Loop)
     {
         if(this->IsAnimated())
         {

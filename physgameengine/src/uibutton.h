@@ -89,7 +89,7 @@ namespace phys
                 /// @param Position The top left position of the button.
                 /// @param Size The size of the Button.
                 /// @param Layer Pointer to the Layer that created this button.
-                Button(String& name, Vector2 Position, Vector2 Size, UILayer* Layer);
+                Button(ConstString& name, Vector2 Position, Vector2 Size, UILayer* Layer);
                 /// @brief Class destructor.
                 virtual ~Button();
                 /// @brief Sets the visibility of this button.
@@ -104,7 +104,7 @@ namespace phys
                 virtual void Hide();
                 /// @brief Gets the name of this button.
                 /// @return Returns a string containing the name of this button.
-                virtual String& GetName();
+                virtual ConstString& GetName();
                 /// @brief Gets whether this is a text button.
                 /// @return Returns a bool representing whether or not this is a text button.
                 virtual bool IsTextButton();

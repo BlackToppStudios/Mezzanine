@@ -98,12 +98,15 @@ namespace phys
             /// @brief Ogre Cam Constructor.
             /// @details This is for internal use only and shouldn't be called manually.
             Camera(Ogre::Camera* Camera, CameraManager* Manager);
+
             /// @brief Class Destructor.
             /// @details The Class Destructor.
             virtual ~Camera();
+
             /// @brief Gets the camera's set name.
             /// @return Returns a string containing the camera's name.
-            String& GetName();
+            ConstString& GetName();
+
             /// @brief Sets the type of projection to be used with this camera.
             /// @details By default, all cameras are enabled with Perspective projection.  This is the standard 3-dimentional
             /// view anyone would expect in a 3D world.  Orthographic projection is useful when displaying 2D worlds, or only

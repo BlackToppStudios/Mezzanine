@@ -128,10 +128,10 @@ namespace phys
             /// @param Size The size of the Button.
             /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
             /// @param Text Any text you want printed on the button.
-            UI::TextButton* CreateTextButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text);
+            UI::TextButton* CreateTextButton(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, ConstString Text);
             /// @brief Gets an already created button by name.
             /// @return Returns a pointer to the button of the specified name.
-            UI::Button* GetButton(String& Name);
+            UI::Button* GetButton(ConstString& Name);
             /// @brief Gets an already created button by index.
             /// @return Returns a pointer to the button at the specified index.
             UI::Button* GetButton(Whole Index);

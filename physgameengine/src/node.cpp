@@ -71,7 +71,7 @@ namespace phys
         Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
     }
 
-    String& Node::GetName()
+    ConstString& Node::GetName()
     {
         return OgreNode->getName();
     }

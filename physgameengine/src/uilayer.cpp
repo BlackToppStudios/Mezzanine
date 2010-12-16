@@ -133,14 +133,14 @@ namespace phys
         return button;
     }
 
-    UI::TextButton* UILayer::CreateTextButton(String& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
+    UI::TextButton* UILayer::CreateTextButton(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, ConstString Text)
     {
         UI::TextButton* tbutton = new UI::TextButton(Name, Position, Size, Glyph, Text, this);
         Buttons.push_back(tbutton);
         return tbutton;
     }
 
-    UI::Button* UILayer::GetButton(String& Name)
+    UI::Button* UILayer::GetButton(ConstString& Name)
     {
         for ( std::vector<UI::Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
         {

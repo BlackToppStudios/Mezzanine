@@ -53,7 +53,7 @@ namespace phys
 {
     namespace UI
     {
-        CheckBox::CheckBox(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText, UILayer* Layer)
+        CheckBox::CheckBox(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, ConstString &LabelText, UILayer* Layer)
             : Widget(name,Layer),
               GlyphIndex(Glyph),
               Checked(false),
@@ -207,7 +207,7 @@ namespace phys
             }
         }
 
-        void CheckBox::SetUncheckedSprite(String& Unchecked, String& Hovered)
+        void CheckBox::SetUncheckedSprite(ConstString& Unchecked, ConstString& Hovered)
         {
             UncheckedSet.first = Unchecked;
             UncheckedSet.second = Hovered;
@@ -215,7 +215,7 @@ namespace phys
             //UncheckedHovered = Hovered;
         }
 
-        void CheckBox::SetCheckedSprite(String& Checked, String& Hovered)
+        void CheckBox::SetCheckedSprite(ConstString& Checked, ConstString& Hovered)
         {
             CheckedSet.first = Checked;
             CheckedSet.second = Hovered;

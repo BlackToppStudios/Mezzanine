@@ -205,53 +205,29 @@ namespace phys
         {
             #ifdef PHYSDEBUG
             World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::underflow()");
-            World::GetWorldPointer()->LogStream << "\tSeekBackOnload: " << this->SeekBackOnload << endl;
             #endif
 
-            Whole BufferSize = this->egptr() - this->eback();
-            if( 0==BufferSize )
+            Whole Destination = this->GetCurrentLocation();
+            Whole OrigReadPosition = this->OgreStream->tell();
+
+            if(this->CheckStream(Destination))
             {
-                this->seekpos(0);
-                BufferSize = this->egptr() - this->eback();
+                this->SetInternalBuffer(Destination);               //This should re-center the buffer around the current read location
             }
 
-            if(BufferSize < this->SeekBackOnload)
+            if( this->OgreStream->tell()<=OrigReadPosition )        //we either couldn't advance the read position or moved it backwards
             {
-                //seekback is too large
-                if( (0.5*BufferSize<=this->SeekBackOnload) && (2<=this->SeekBackOnload))
-                    { this->SeekBackOnload = this->SeekBackOnload * 0.5; }
-                else
-                    { this->SeekBackOnload = 0; }
                 #ifdef PHYSDEBUG
-                World::GetWorldPointer()->LogStream << "\tAdjusted SeekBackOnload: " << this->SeekBackOnload << endl;
-                World::GetWorldPointer()->LogStream << "\tBufferSize: " << BufferSize << "=" << Toint(this->egptr()) << "-" << Toint(this->eback()) << endl;
-                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::underflow() After adjusting SeekBackOnload");
+                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::underflow() After a failure");
                 #endif
-                if (this->SeekBackOnload)
-                    { return traits_type::eof(); }
-                return this->underflow();
+                return traits_type::eof();
             }else{
-                if (this->OgreStream->tell() > this->SeekBackOnload )       // are we too close to the beginning of the ogre stream
-                {
-                    this->OgreStream->seek( this->OgreStream->tell()-this->SeekBackOnload ); //we are in the , just keep moving
-                    this->OgreStream->read( this->eback(), BufferSize);
-                    this->setg( this->eback(), this->eback()+this->SeekBackOnload, this->egptr() );
-                }else{
-                    Whole DistanceFromStreamBegin = (this->SeekBackOnload - (streampos)this->OgreStream->tell());
-                    this->OgreStream->seek( 0 );                            // yes we are, rewind to the beginning
-                    this->OgreStream->read( this->eback(), BufferSize);
-                    this->setg( this->eback(), this->eback()+DistanceFromStreamBegin, this->egptr() );
-                }
                 #ifdef PHYSDEBUG
                 World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::underflow() After performing requested loading");
                 #endif
                 return Toint(this->gptr());
             }
 
-            #ifdef PHYSDEBUG
-            World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::underflow() After mysterious failure");
-            #endif
-            return traits_type::eof();
         }
 
         /*int OgreDataStreamBuf::uflow()

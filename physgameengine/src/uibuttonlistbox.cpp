@@ -251,7 +251,7 @@ namespace phys
             TGlyph = Glyph;
         }
 
-        void ButtonListBox::AddSelection(String& name, String& BackgroundSprite, String &TextLabel)
+        void ButtonListBox::AddSelection(ConstString& name, ConstString& BackgroundSprite, ConstString &TextLabel)
         {
             Button* Select = NULL;
             if(TextLabel.empty())
@@ -270,7 +270,7 @@ namespace phys
             DrawList();
         }
 
-        Button* ButtonListBox::GetSelection(String &Name)
+        Button* ButtonListBox::GetSelection(ConstString &Name)
         {
             for ( std::vector<Button*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
             {

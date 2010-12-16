@@ -51,7 +51,7 @@ namespace phys
 {
     namespace UI
     {
-        Scrollbar::Scrollbar(String& name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style, UILayer* parent)
+        Scrollbar::Scrollbar(ConstString& name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style, UILayer* parent)
             : Widget(name, parent),
               UpLeftButton(NULL),
               DownRightButton(NULL),

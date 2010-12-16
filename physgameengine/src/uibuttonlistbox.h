@@ -115,11 +115,11 @@ namespace phys
                 /// the string is empty.  @n @n Note: If a Text button is created, you can't revert it to a regular button and vice
                 /// versa.  You'll have to destroy the selection and make a new one.  In the case of having a text button, you can
                 /// however still set it's text to an empty string.
-                virtual void AddSelection(String& name, String& BackgroundSprite = "", String &TextLabel = "");
+                virtual void AddSelection(ConstString& name, ConstString& BackgroundSprite = "", ConstString &TextLabel = "");
                 /// @brief Gets a button by name.
                 /// @param Name The name of the selectable button you want to get.
                 /// @return Returns a pointer to the named button.
-                virtual Button* GetSelection(String &Name);
+                virtual Button* GetSelection(ConstString &Name);
                 /// @brief Destroys a selectable button.
                 /// @param ToBeDestroyed A pointer to the button you want destroyed and removed from this list.
                 virtual void DestroySelection(Button* ToBeDestroyed);

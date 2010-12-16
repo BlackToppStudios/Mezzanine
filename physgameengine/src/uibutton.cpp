@@ -51,7 +51,7 @@ namespace phys
 {
     namespace UI
     {
-        Button::Button(String& name, Vector2 Position, Vector2 Size, UILayer* Layer)
+        Button::Button(ConstString& name, Vector2 Position, Vector2 Size, UILayer* Layer)
             : Parent(Layer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
@@ -94,7 +94,7 @@ namespace phys
             GorillaRectangle->Hide();
         }
 
-        String& Button::GetName()
+        ConstString& Button::GetName()
         {
             return Name;
         }

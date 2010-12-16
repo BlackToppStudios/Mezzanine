@@ -73,7 +73,7 @@ namespace phys
         CamManager->SManager->GetGraphicsWorldPointer()->destroyCamera(Cam);
     }
 
-    String& Camera::GetName()
+    ConstString& Camera::GetName()
     {
         return this->Cam->getName();
     }

@@ -139,7 +139,7 @@ namespace phys{
             Vector3 GetLocation();
             /// @brief Gets the Area Effects name.
             /// @return Returns the name of the Area Effect.
-            String& GetName();
+            ConstString& GetName();
             /// @brief Gets the list of actors within this field.
             /// @return Returns the list of actors contained within this field.
             std::list<ActorBase*>& GetOverlappingActors();

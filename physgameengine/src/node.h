@@ -61,7 +61,7 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Node
     /// @headerfile node.h
-    /// @brief This is a helper class which non-physicsl objects, such as lights, cameras, ribbon trails, and
+    /// @brief This is a helper class which non-physics objects, such as lights, cameras, ribbon trails, and
     /// particle effects may be attached to for enhanced effects.
     /// @details This class simply contains a group of functions for easy manipulation of movement and orientation
     /// as well as attaching elements to them.  This class should only be created through the scene manager. @n
@@ -107,7 +107,7 @@ namespace phys
             ~Node();
             /// @brief Gets the name of this node.
             /// @return Returns a string containing the name given to this node.
-            String& GetName();
+            ConstString& GetName();
             /// @brief Attaches an attachable element to this Node.
             /// @param Element The Element to be attached.
             void AttachElement(Attachable* Element);

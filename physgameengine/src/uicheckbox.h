@@ -78,7 +78,7 @@ namespace phys
                 /// @param Position The top left position of the checkbox.
                 /// @param Size The size of the checkbox.
                 /// @param Layer Pointer to the Layer that created this checkbox.
-                CheckBox(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText, UILayer* Layer);
+                CheckBox(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, ConstString &LabelText, UILayer* Layer);
                 /// @brief Class destructor.
                 virtual ~CheckBox();
                 /// @brief Sets the visibility of this checkbox.
@@ -113,12 +113,12 @@ namespace phys
                 /// @param Unchecked The name of the sprite in the Atlas you wish to set as the unchecked status sprite.
                 /// @param Hovered The name of the sprite in the Atlas you with to sed on the unchecked/hovered sprite.
                 /// Leaving this to default or passing in a blank string will cause it to ignore this parameter.
-                virtual void SetUncheckedSprite(String& Unchecked, String& Hovered = "");
+                virtual void SetUncheckedSprite(ConstString& Unchecked, ConstString& Hovered = "");
                 /// @brief Sets the checked status sprite and an optional checked hovered sprite.
                 /// @param Unchecked The name of the sprite in the Atlas you wish to set as the checked status sprite.
                 /// @param Hovered The name of the sprite in the Atlas you with to sed on the checked/hovered sprite.
                 /// Leaving this to default or passing in a blank string will cause it to ignore this parameter.
-                virtual void SetCheckedSprite(String& Checked, String& Hovered = "");
+                virtual void SetCheckedSprite(ConstString& Checked, ConstString& Hovered = "");
                 /// @brief Sets the relative position of this checkbox.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this checkbox.

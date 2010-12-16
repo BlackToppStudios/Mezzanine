@@ -237,7 +237,7 @@ namespace phys
             void DestroyNode(Node* node);
             /// @brief Gets the name of this manager.
             /// @return Returns the name of this manager.
-            String& GetName();
+            ConstString& GetName();
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;

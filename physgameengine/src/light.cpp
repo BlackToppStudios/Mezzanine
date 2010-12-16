@@ -65,7 +65,7 @@ namespace phys
         Manager->GetGraphicsWorldPointer()->destroyLight(OgreLight);
     }
 
-    String& Light::GetName()
+    ConstString& Light::GetName()
     {
         return OgreLight->getName();
     }
