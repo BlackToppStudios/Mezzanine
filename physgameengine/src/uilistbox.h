@@ -94,7 +94,7 @@ namespace phys
                 /// @param ScrollbarStyle The style of the scrollbar you want for this List Box.  See Scrollbar
                 /// class for more information.
                 /// @param Layer The parent layer this List Box belongs to.
-                ListBox(String& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer);
+                ListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer);
                 /// @brief Standard destructor.
                 ~ListBox();
                 /// @brief Sets the visibility of this List Box.
@@ -130,11 +130,11 @@ namespace phys
                 /// attempt to blend the colour and sprite.  Pure white colour will cause the sprite to look normal.
                 /// @param TextLabel The text to be displayed within the created caption.
                 /// @param BackgroundSprite Optional, name of the sprite to set as it's background.  Ignored if the string is empty.
-                virtual Caption* AddSelection(String& name, String &Text, String& BackgroundSprite = "");
+                virtual Caption* AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite = "");
                 /// @brief Gets a caption by name.
                 /// @param Name The name of the selectable caption you want to get.
                 /// @return Returns a pointer to the named caption.
-                virtual Caption* GetSelection(String &Name);
+                virtual Caption* GetSelection(ConstString &Name);
                 /// @brief Destroys a selectable caption.
                 /// @param ToBeDestroyed A pointer to the caption you want destroyed and removed from this list.
                 virtual void DestroySelection(Caption* ToBeDestroyed);
