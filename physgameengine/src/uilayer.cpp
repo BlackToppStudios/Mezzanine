@@ -48,8 +48,7 @@
 #include "uicheckbox.h"
 #include "uibuttonlistbox.h"
 #include "uimarkuptext.h"
-
-#include "uibuttonlistbox.h"
+#include "uilistbox.h"
 
 #include "graphicsmanager.h"
 #include "world.h"
@@ -336,6 +335,11 @@ namespace phys
                         UI::ButtonListBox* ButtonList = static_cast<UI::ButtonListBox*> (ToBeDestroyed);
                         delete ButtonList;
                     }
+                    case UI::Widget::ListBox:
+                    {
+                        UI::ListBox* List = static_cast<UI::ListBox*> (ToBeDestroyed);
+                        delete List;
+                    }
                     default:
                         return;
                 }
@@ -362,6 +366,13 @@ namespace phys
         UI::ButtonListBox* BLB = new UI::ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollbarStyle,this);
         Widgets.push_back(BLB);
         return BLB;
+    }
+
+    UI::ListBox* UILayer::CreateListBox(String& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle)
+    {
+        UI::ListBox* LB = new UI::ListBox(Name,Position,Size,ScrollbarWidth,ScrollbarStyle,this);
+        Widgets.push_back(LB);
+        return LB;
     }
 
     UI::Button* UILayer::CheckButtonMouseIsOver()

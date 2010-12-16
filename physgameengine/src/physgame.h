@@ -92,6 +92,7 @@
 #include "uicaption.h"
 #include "uicheckbox.h"
 #include "uilayer.h"
+#include "uilistbox.h"
 #include "uimanager.h"
 #include "uimarkuptext.h"
 #include "uirectangle.h"

@@ -67,6 +67,7 @@ namespace phys
         class MarkupText;
         class CheckBox;
         class ButtonListBox;
+        class ListBox;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UILayer
@@ -243,6 +244,15 @@ namespace phys
             /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
             /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
             UI::ButtonListBox* CreateButtonListBox(String& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle);
+            /// @brief Creates a List Box within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+            /// @return Returns a pointer to the created List Box.
+            /// @param Name The name of the List Box.
+            /// @param Position The top left position of the List Box.
+            /// @param Size The size of the List Box.
+            /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
+            /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
+            UI::ListBox* CreateListBox(String& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle);
             ///////////////////////////////////////////////////////////////////////////////
             // UI Element and Widget Checks
             ///////////////////////////////////////

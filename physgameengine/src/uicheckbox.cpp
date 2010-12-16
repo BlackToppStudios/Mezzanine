@@ -173,6 +173,8 @@ namespace phys
 
         bool CheckBox::CheckMouseHover()
         {
+            if(!Visible)
+                return false;
             if(Box->CheckMouseHover())
             {
                 HoveredButton = Box;

@@ -91,6 +91,13 @@ namespace phys
             /// @details This function is intended for internal use only.
             /// @return Returns an Ogre ColourValue class that has values equal to this one.
             Ogre::ColourValue GetOgreColourValue();
+
+            /// @brief Equality Comparison Operator
+            /// @param Colour This is another ColourValue to compare with.
+            bool operator== (const ColourValue &Colour);
+            /// @brief Inequality Comparison Operator
+            /// @param Colour This is another ColourValue to compare with.
+            bool operator!= (const ColourValue &Colour);
     };//colorvalue
 }//phys
 

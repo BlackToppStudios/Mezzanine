@@ -115,7 +115,9 @@ namespace phys
                 /// the string is empty.  @n @n Note: If a Text button is created, you can't revert it to a regular button and vice
                 /// versa.  You'll have to destroy the selection and make a new one.  In the case of having a text button, you can
                 /// however still set it's text to an empty string.
-                virtual void AddSelection(ConstString& name, ConstString& BackgroundSprite = "", ConstString &TextLabel = "");
+                /// @return Returns a pointer to the created button.
+                virtual Button* AddSelection(ConstString& name, ConstString& BackgroundSprite = "", ConstString &TextLabel = "");
+
                 /// @brief Gets a button by name.
                 /// @param Name The name of the selectable button you want to get.
                 /// @return Returns a pointer to the named button.
@@ -167,7 +169,7 @@ namespace phys
                 /// @brief Sets the pixel size of this Button List Box.
                 /// @return Returns a vector2 representing the pixel size of this Button List Box.
                 virtual Vector2 GetActualSize();
-                /// @brief Gets the currently selection button.
+                /// @brief Gets the currently selected button.
                 /// @return Returns a pointer to the currently selected button, or NULL if none are selected.
                 virtual Button* GetSelected();
                 /// @brief Gets the background of this Button List Box.
