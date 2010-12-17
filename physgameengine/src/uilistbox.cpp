@@ -115,12 +115,26 @@ namespace phys
                 return;
             if(!Visible)
                 return;
+            Vector2 NewSize;
+            if(VertScroll->IsVisible())
+            {
+                Real MaxWidth = RelSize.X - (VertScroll->GetSize().X + SelectionDist);
+                if(TSize.X > MaxWidth)
+                {
+                    NewSize.X = MaxWidth;
+                    NewSize.Y = TSize.Y;
+                }
+            }else{
+                if(TSize.X > Selections[0]->GetSize().X)
+                {
+                    NewSize = TSize;
+                }
+            }
             VisibleSelections.clear();
             Real One = 1;
             Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)Selections.size();
             Real Remainder = fmod(ToBeRounded,One);
-            ToBeRounded = Remainder >= 0.5 ? ToBeRounded + (One - Remainder) : ToBeRounded - Remainder;
-            Whole FirstCaption = (Whole)ToBeRounded;
+            Whole FirstCaption = (Whole)(Remainder >= 0.5 ? ToBeRounded + (One - Remainder) : ToBeRounded - Remainder);
             Vector2 SelectionPos = GetActualPosition();
             Real ActualDist = SelectionDist * Manager->GetWindowDimensions().Y;
             Real ActualInc = ActualDist + (TSize.Y * Manager->GetWindowDimensions().Y);
@@ -130,6 +144,8 @@ namespace phys
             {
                 Selections[w]->SetPosition(GetPosition());
                 Selections[w]->Hide();
+                if(0 != NewSize.X && 0 != NewSize.Y)
+                    Selections[w]->SetSize(NewSize);
             }
             Whole Displayed = FirstCaption+NumVisible > Selections.size() ? Selections.size() : FirstCaption+NumVisible;
             for( Whole x = FirstCaption ; x < Displayed ; x++ )
@@ -141,11 +157,15 @@ namespace phys
             {
                 Selections[y]->SetPosition(GetPosition());
                 Selections[y]->Hide();
+                if(0 != NewSize.X && 0 != NewSize.Y)
+                    Selections[y]->SetSize(NewSize);
             }
             for( Whole z = 0 ; z < VisibleSelections.size() ; z++ )
             {
                 VisibleSelections[z]->SetActualPosition(SelectionPos);
                 SelectionPos.Y+=ActualInc;
+                if(0 != NewSize.X && 0 != NewSize.Y)
+                    VisibleSelections[z]->SetSize(NewSize);
             }
         }
 

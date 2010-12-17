@@ -248,10 +248,10 @@ namespace phys
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
-            GorillaCaption->left(CurrDim.X * RelSize.X);
-            GorillaCaption->top(CurrDim.Y * RelSize.Y);
-            GorillaRectangle->left(CurrDim.X * RelSize.X);
-            GorillaRectangle->top(CurrDim.Y * RelSize.Y);
+            GorillaCaption->width(CurrDim.X * RelSize.X);
+            GorillaCaption->height(CurrDim.Y * RelSize.Y);
+            GorillaRectangle->width(CurrDim.X * RelSize.X);
+            GorillaRectangle->height(CurrDim.Y * RelSize.Y);
         }
 
         Vector2 Caption::GetSize()
