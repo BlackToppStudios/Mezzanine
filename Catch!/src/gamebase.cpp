@@ -472,7 +472,33 @@ void MakeGUI()
     LBTest->AddSelection("Test7","Test7");
     LBTest->AddSelection("Test8","Test8");
     LBTest->AddSelection("Test9","Test9");
-
+    /*
+    UI::ButtonListBox* BLBTest = HUD->CreateButtonListBox("Test", Vector2(0.25,0.25), Vector2(0.4,0.3), 0.025, UI::Scrollbar::Separate);
+    BLBTest->GetBoxBack()->SetBackgroundColour(BoxBack);
+    BLBTest->GetVertScroll()->GetUpLeftButton()->SetBackgroundColour(Buttons);
+    BLBTest->GetVertScroll()->GetDownRightButton()->SetBackgroundColour(Buttons);
+    BLBTest->GetVertScroll()->GetScrollBack()->SetBackgroundColour(ScrollBackground);
+    BLBTest->GetVertScroll()->GetScroller()->SetBackgroundColour(ScrollBarColour);
+    BLBTest->SetTemplateParameters(Vector2(0.4,0.05),16);
+    BLBTest->EnableBorderSelector(5,Blue);
+    (BLBTest->AddSelection("Test1"))->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.9;
+    (BLBTest->AddSelection("Test2"))->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.8;
+    (BLBTest->AddSelection("Test3"))->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.7;
+    (BLBTest->AddSelection("Test4"))->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.6;
+    (BLBTest->AddSelection("Test5"))->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.5;
+    (BLBTest->AddSelection("Test6"))->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.4;
+    (BLBTest->AddSelection("Test7"))->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.3;
+    (BLBTest->AddSelection("Test8"))->SetBackgroundColour(Buttons);
+    Buttons.Alpha = 0.2;
+    (BLBTest->AddSelection("Test9"))->SetBackgroundColour(Buttons);
+    */
     //Build the ItemShop Layer
     ItemShop->Hide();
 

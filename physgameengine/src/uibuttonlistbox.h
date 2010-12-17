@@ -117,7 +117,6 @@ namespace phys
                 /// however still set it's text to an empty string.
                 /// @return Returns a pointer to the created button.
                 virtual Button* AddSelection(ConstString& name, ConstString& BackgroundSprite = "", ConstString &TextLabel = "");
-
                 /// @brief Gets a button by name.
                 /// @param Name The name of the selectable button you want to get.
                 /// @return Returns a pointer to the named button.

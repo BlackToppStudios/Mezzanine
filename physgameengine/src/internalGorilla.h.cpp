@@ -2916,6 +2916,16 @@ namespace Gorilla
      return mPriority;
     }
 
+    void SetCursorOffset(Ogre::Real Offset)
+    {
+     mCursorOffset = Offset;
+    }
+
+    Ogre::Real GetCursorOffset()
+    {
+     return mCursorOffset;
+    }
+
     /*! function. _redraw
         desc.
             Redraw the text.
@@ -2946,7 +2956,7 @@ namespace Gorilla
     buffer<Vertex>        mVertices;
     size_t                mClippedLeftIndex, mClippedRightIndex;
     Gorilla::RenderPriority mPriority;
-
+    Ogre::Real            mCursorOffset;
   };
 
   /* class. Caption

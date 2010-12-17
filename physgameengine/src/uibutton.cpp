@@ -211,8 +211,8 @@ namespace phys
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
-            GorillaRectangle->left(CurrDim.X * RelSize.X);
-            GorillaRectangle->top(CurrDim.Y * RelSize.Y);
+            GorillaRectangle->width(CurrDim.X * RelSize.X);
+            GorillaRectangle->height(CurrDim.Y * RelSize.Y);
         }
 
         Vector2 Button::GetSize()
