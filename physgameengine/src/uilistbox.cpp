@@ -55,7 +55,7 @@ namespace phys
 {
     namespace UI
     {
-        ListBox::ListBox(String& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer)
+        ListBox::ListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer)
             : Widget(name,Layer),
               Selected(NULL),
               AutoHideScroll(true),
@@ -277,7 +277,7 @@ namespace phys
             TVAlign = VertAlign;
         }
 
-        Caption* ListBox::AddSelection(String& name, String &Text, String& BackgroundSprite)
+        Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
         {
             Caption* Select = new Caption(name,GetPosition(),TSize,TGlyph,Text,Parent);
             if(!BackgroundSprite.empty())
@@ -294,7 +294,7 @@ namespace phys
             return Select;
         }
 
-        Caption* ListBox::GetSelection(String &Name)
+        Caption* ListBox::GetSelection(ConstString &Name)
         {
             for ( std::vector<Caption*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
             {

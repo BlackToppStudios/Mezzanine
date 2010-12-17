@@ -49,7 +49,7 @@ namespace phys
 {
     namespace UI
     {
-        TextButton::TextButton(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
+        TextButton::TextButton(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
             : Button(name,Position,Size,Layer)
         {
             IsText = true;
@@ -86,7 +86,7 @@ namespace phys
             GorillaButton->Hide();
         }
 
-        void TextButton::SetText(String& Text)
+        void TextButton::SetText(ConstString& Text)
         {
             GorillaButton->text(Text);
         }

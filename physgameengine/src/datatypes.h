@@ -85,8 +85,13 @@ namespace phys
 
     /// @typedef String
     /// @brief A Datatype used to a series of characters
-    /// @details This is a typedef to std::string.
-    typedef const std::string String;
+    /// @details This is a typedef to std::string, but could change.
+    typedef std::string String;
+
+    /// @typedef ConstString
+    /// @brief A Datatype used to a series of imutable characters
+    /// @details This is a typedef to const std::string, but could change
+    typedef const std::string ConstString;
 
     /// @internal
     /// @typedef RawEvent

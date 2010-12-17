@@ -97,7 +97,7 @@ namespace phys
             virtual ~Light();
             /// @brief Gets the name of this light.
             /// @return Returns a string containing the name given to this light.
-            String& GetName();
+            ConstString& GetName();
             /// @brief Sets the type of light this light is.
             /// @details The light types are listed with the class info.  Types are Directional, Point, and Spotlight.
             /// @param Type The enum value representing the type of light this is.

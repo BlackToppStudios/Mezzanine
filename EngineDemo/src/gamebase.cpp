@@ -7,14 +7,15 @@
 #include "gamebase.h"       //Game Include
 #include <physgame.h>       //Physgame include
 #include <sstream>          //STL includes
-#include <istream>
+
 #include <string>
 #include <iostream>
+#include <fstream>            //Only used for testing
 
 #define PHYSDEBUG
 
 using namespace phys;
-
+using namespace std;
 //Create the World Globally! and set it to hold some actors
 World *TheWorld;
 
@@ -427,6 +428,7 @@ void LoadContent()
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
+
         // Test reading by character
         Whole Howmany=10000;
         char chararray[Howmany+1];
@@ -440,8 +442,21 @@ void LoadContent()
         Zippedptr->read(chararray, Howmany);
         String ZippedFileContents( chararray );
 
+        char filearray[Howmany+1];
+        for (Whole c=0; c<Howmany+1; c++)
+            { filearray[c]='\0'; }
+
+        ifstream TestFile("data/common/test.txt");
+        TestFile.read(filearray, Howmany);
+        String TestFileString(filearray);
+
+        String StreamExtractionTest;
+        TestFile >> StreamExtractionTest;
+
         #ifdef PHYSDEBUG
-        TheWorld->LogStream << "ShouldHaveXML: " << ShouldHaveXML << endl << "ZippedFileContents: " << ZippedFileContents << endl ;
+        TheWorld->LogStream << "ShouldHaveXML: " << endl << ShouldHaveXML << endl
+                            << "ZippedFileContents: " << endl << ZippedFileContents << endl
+                            << "File read from fstream: " << endl << TestFileString << endl ;
         #endif
 
         //if the above stuff was logged this should just work
@@ -457,7 +472,9 @@ void LoadContent()
             Whole howfew = 500;
             char temp[howfew+1];
             for (Whole c=0; c<=howfew+1; c++)
-                { temp[c]='\0'; Zippedptr->unget();}
+                { temp[c]='\0'; }
+            for (Whole c=0; c<howfew-1; c++)      //we already did one above -(1), we do not want to pad anything with a \0 (no +1), and we want exactly this many (< instead of <=)
+                { Zippedptr->unget(); }
             Zippedptr->read(temp, howfew);
             TheWorld->LogStream << howfew << " ungets and " << howfew << " characters :" << temp;
         }
@@ -483,23 +500,27 @@ void LoadContent()
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
-        String Content(""), ZippedContent("");
-        //(*XMLptr) >> Content;
-        //(*Zippedptr) >> ZippedContent;
-
-        TheWorld->Log("Streamed XML Content");
-        //TheWorld->Log(Content);
-        //TheWorld->Log("Streamed and Zipped XML Content");
-        //TheWorld->Log(ZippedContent);
-
+        String Content("");
         char chararray[1000] = {0};
         (*XMLptr) >> chararray;
+        string test("");
         TheWorld->LogStream << "Extracted: " << chararray << endl;
 
         if( !XMLptr->good() )
             { TheWorld->Log("XMLptr corrupted/broken by >> call"); }
         else
-            { TheWorld->Log("XMLptr fine after >> call"); }
+        {
+            TheWorld->Log("XMLptr fine after >> call");
+            TheWorld->Log("Getting some words with >> from Zippedptr:");
+            for (Whole c=0; c<=5; c++)
+            {
+                String ZippedContent;
+                (*Zippedptr) >> ZippedContent;
+                TheWorld->LogStream << "Word " << c << ": " << ZippedContent;
+                TheWorld->Log();
+            }
+        }
+
         delete XMLptr;
         delete Zippedptr;
 

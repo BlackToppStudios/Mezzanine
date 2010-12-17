@@ -279,7 +279,7 @@ namespace phys
             /// @param AnimationName Name of the stored animation to be loaded.
             /// @param Loop Whether or not you want the animation to loop.  For example, you would want an idle animation to loop,
             /// but not a death animation.
-            void SetAnimation(String &AnimationName, bool Loop);
+            void SetAnimation(ConstString &AnimationName, bool Loop);
 
             /// @brief Enables the animation if one is set.
             /// @details This function will enable the animation if passed true, making the object animate.  If passed false will

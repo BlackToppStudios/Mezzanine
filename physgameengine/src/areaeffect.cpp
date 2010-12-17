@@ -259,7 +259,7 @@ namespace phys{
         return Loc;
     }
 
-    String& AreaEffect::GetName()
+    ConstString& AreaEffect::GetName()
     {
         return Name;
     }

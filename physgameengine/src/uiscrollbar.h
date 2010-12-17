@@ -144,7 +144,7 @@ namespace phys
                 /// @param Size A vector2 representing the size of this widget.
                 /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
                 /// @param parent The Layer that created this scrollbar.
-                Scrollbar(String& Name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style, UILayer* parent);
+                Scrollbar(ConstString& Name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style, UILayer* parent);
                 /// @brief Standard class destructor.
                 virtual ~Scrollbar();
                 /// @brief Sets the visibility of this scrollbar.

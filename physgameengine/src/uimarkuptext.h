@@ -83,7 +83,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
                 /// @param Layer Pointer to the layer that created this markup text.
-                MarkupText(String& name, Vector2 Position, Whole Glyph, String Text, UILayer* Layer);
+                MarkupText(ConstString& name, Vector2 Position, Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
                 virtual ~MarkupText();
                 /// @brief Sets the visibility of this markup text.

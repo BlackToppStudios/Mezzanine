@@ -88,7 +88,7 @@ namespace phys
                 /// @param ScrollbarStyle The style of the scrollbar you want for this Button List Box.  See Scrollbar
                 /// class for more information.
                 /// @param Layer The parent layer this Button List Box belongs to.
-                ButtonListBox(String& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer);
+                ButtonListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer);
                 /// @brief Standard destructor.
                 ~ButtonListBox();
                 /// @brief Sets the visibility of this Button List Box.
@@ -116,11 +116,12 @@ namespace phys
                 /// versa.  You'll have to destroy the selection and make a new one.  In the case of having a text button, you can
                 /// however still set it's text to an empty string.
                 /// @return Returns a pointer to the created button.
-                virtual Button* AddSelection(String& name, String& BackgroundSprite = "", String &TextLabel = "");
+                virtual Button* AddSelection(ConstString& name, ConstString& BackgroundSprite = "", ConstString &TextLabel = "");
+
                 /// @brief Gets a button by name.
                 /// @param Name The name of the selectable button you want to get.
                 /// @return Returns a pointer to the named button.
-                virtual Button* GetSelection(String &Name);
+                virtual Button* GetSelection(ConstString &Name);
                 /// @brief Destroys a selectable button.
                 /// @param ToBeDestroyed A pointer to the button you want destroyed and removed from this list.
                 virtual void DestroySelection(Button* ToBeDestroyed);

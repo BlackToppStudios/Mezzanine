@@ -56,7 +56,7 @@ namespace phys
 {
     namespace UI
     {
-        ButtonListBox::ButtonListBox(String& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer)
+        ButtonListBox::ButtonListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer)
             : Widget(name,Layer),
               Selected(NULL),
               AutoHideScroll(true),
@@ -267,7 +267,7 @@ namespace phys
             TGlyph = Glyph;
         }
 
-        Button* ButtonListBox::AddSelection(String& name, String& BackgroundSprite, String &TextLabel)
+        Button* ButtonListBox::AddSelection(ConstString& name, ConstString& BackgroundSprite, ConstString &TextLabel)
         {
             Button* Select = NULL;
             if(TextLabel.empty())
@@ -287,7 +287,7 @@ namespace phys
             return Select;
         }
 
-        Button* ButtonListBox::GetSelection(String &Name)
+        Button* ButtonListBox::GetSelection(ConstString &Name)
         {
             for ( std::vector<Button*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
             {

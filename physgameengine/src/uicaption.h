@@ -90,7 +90,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
                 /// @param Layer Pointer to the layer that created this caption.
-                Caption(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer);
+                Caption(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
                 virtual ~Caption();
                 /// @brief Sets the visibility of this caption.
@@ -112,10 +112,10 @@ namespace phys
                 virtual bool GetMouseHover();
                 /// @brief Gets the name of this caption.
                 /// @return Returns a string containing the name of this caption.
-                virtual String& GetName();
+                virtual ConstString& GetName();
                 /// @brief Sets the text displayed within the caption.
                 /// @param Text The text to be displayed.
-                virtual void SetText(String& Text);
+                virtual void SetText(ConstString& Text);
                 /// @brief Gets the text displayed within the caption.
                 /// @return Returns the text being displayed.
                 virtual String GetText();

@@ -225,7 +225,7 @@ namespace phys
         }
     }
 
-    String& SceneManager::GetName()
+    ConstString& SceneManager::GetName()
     {
         return this->OgreManager->getName();
     }

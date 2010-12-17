@@ -98,7 +98,7 @@ namespace phys
             /// @param DeviceName The name of the device you wish to have this manager interface with/use.
             /// @param OutputFrequency Frequency of the output audio, -1 for the devices default.
             /// @param EAXEffectSlots The number of effects per sound allowed to be applied.
-            void InitializeManager(String &DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4);
+            void InitializeManager(ConstString &DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4);
             /// @brief Creates a sound instance from a file that can be used to play sounds.
             /// @details This function will create a Sound from a file and returns a pointer to that Sound.
             /// You can also specify if you want the sound to be streamed from the disk so that it doesn't
@@ -108,7 +108,7 @@ namespace phys
             /// @param Stream Whether or not to stream the audio from the disk.  Otherwise it has be completely
             /// loaded into memory before it can be used.
             /// @return Returns a pointer to the Sound Instance that was created.
-            Sound* CreateSound(String &SoundName, String &FilePath, bool Stream);
+            Sound* CreateSound(ConstString &SoundName, ConstString &FilePath, bool Stream);
             /// @brief Creates a sound instance from a memory buffer.
             /// @details This function allows you to create a sound instance from a sound that is already loaded
             /// into memory.

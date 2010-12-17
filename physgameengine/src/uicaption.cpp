@@ -52,7 +52,7 @@ namespace phys
 {
     namespace UI
     {
-        Caption::Caption(String& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
+        Caption::Caption(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
             : Parent(Layer),
               MouseHover(false),
               RelPosition(Position),
@@ -116,12 +116,12 @@ namespace phys
             return MouseHover;
         }
 
-        String& Caption::GetName()
+        ConstString& Caption::GetName()
         {
             return Name;
         }
 
-        void Caption::SetText(String& Text)
+        void Caption::SetText(ConstString& Text)
         {
             GorillaCaption->text(Text);
         }

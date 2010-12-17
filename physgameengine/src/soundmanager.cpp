@@ -66,12 +66,12 @@ namespace phys
     {
     }
 
-    void SoundManager::InitializeManager(String &DeviceName, int OutputFrequency, int EAXEffectSlots)
+    void SoundManager::InitializeManager(ConstString &DeviceName, int OutputFrequency, int EAXEffectSlots)
     {
         AudioManager->initialize(DeviceName.c_str(), OutputFrequency, EAXEffectSlots);
     }
 
-    Sound* SoundManager::CreateSound(String &SoundName, String &FilePath, bool Stream)
+    Sound* SoundManager::CreateSound(ConstString &SoundName, ConstString &FilePath, bool Stream)
     {
         #define PHYSDEBUG
         #ifdef PHYSDEBUG
