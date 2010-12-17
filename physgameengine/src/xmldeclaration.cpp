@@ -91,11 +91,11 @@ namespace phys
         Base::XMLComponentType Declaration::GetType() const
             { return Base::isDeclaration; }
 
-        std::istream& Declaration::operator>> (std::istream &In)
-            { return In >> *(static_cast <ticpp::Declaration*>(this->Wrapped)); }
+        std::istream& operator>> (std::istream &In, xml::Declaration &Dec)
+            { return In >> *(static_cast <ticpp::Declaration*>(Dec.Wrapped)); }
 
-        std::ostream& Declaration::operator<< (std::ostream &Out)
-            { return Out << *(static_cast <ticpp::Declaration*>(this->Wrapped)); }
+        std::ostream& operator<< (std::ostream &Out, xml::Declaration &Dec)
+            { return Out << *(static_cast <ticpp::Declaration*>(Dec.Wrapped)); }
 
         String Declaration::GetVersion() const
             { return static_cast<ticpp::Declaration*>(this->Wrapped)->Version(); }

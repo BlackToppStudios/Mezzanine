@@ -86,18 +86,8 @@ namespace phys
                 /// @return This returns Base::isDocument
                 virtual Base::XMLComponentType GetType() const;
 
-                /// @brief Stream XML data into a phys::xml hierearchy
-                /// @param In This is the stream the data comes from when you use the >> operator
-                /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
-                /// @details Inherited phys::xml::Node
-                virtual std::istream& operator>> (std::istream &In);
-
-                /// @brief Stream XML data out of a phys::xml hierearchy
-                /// @param Out This is the stream the data goes to from when you use the << operator
-                /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
-                /// @details Inherited phys::xml::Node
-                virtual std::ostream& operator<< (std::ostream &Out);
-
+                friend std::istream& operator>> (std::istream &In, xml::Document &Doc);
+                friend std::ostream& operator<< (std::ostream &Out, xml::Document &Doc);
                 /*
                 void 	LoadFile (TiXmlEncoding encoding=TIXML_DEFAULT_ENCODING)
                     Load a file using the current document value.
@@ -113,6 +103,21 @@ namespace phys
                 */
 
         }; // /Document
+
+        /// @brief Stream XML data into a phys::xml hierearchy
+        /// @param In This is the stream the data comes from when you use the >> operator
+        /// @param Doc The xml::Document being streamed to
+        /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
+        /// @details Inherited phys::xml::Node
+        std::istream& operator>> (std::istream &In, xml::Document &Doc);
+
+        /// @brief Stream XML data out of a phys::xml hierearchy
+        /// @param Out This is the stream the data goes to from when you use the << operator
+        /// @param Doc The xml::Document being streamed from
+        /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
+        /// @details Inherited phys::xml::Node
+        std::ostream& operator<< (std::ostream &Out, xml::Document &Doc);
+
     }// /xml
 }// /phys
 

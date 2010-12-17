@@ -525,7 +525,29 @@ void LoadContent()
         delete Zippedptr;
 
         #ifdef PHYSDEBUG
-        TheWorld->Log("Testing streaming on test.xml and zipped test.txt, Making fresh set of stream pointers");
+        TheWorld->Log("End streaming test2");
+        #endif
+    }
+
+    {
+        #ifdef PHYSDEBUG
+        TheWorld->Log("Testing streaming on test.xml with phys::xml::Document");
+        #endif
+
+        typedef ResourceInputStream* ResourceInputStreamPtr;
+
+        ResourceInputStreamPtr XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+        String t1, t2;
+        //*XMLptr >> t2;
+
+        xml::Document TestXMLDoc("Test");
+
+        *XMLptr >> TestXMLDoc;
+
+        TheWorld->LogStream << "XMLDoc:" << endl << TestXMLDoc << endl << "/XMLDoc";
+
+        #ifdef PHYSDEBUG
+        TheWorld->Log("End of testing XML and Streaming test 3");
         #endif
     }
 

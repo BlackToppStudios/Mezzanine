@@ -91,11 +91,11 @@ namespace phys
         Base::XMLComponentType Comment::GetType() const
             { return Base::isComment; }
 
-        std::istream& Comment::operator>> (std::istream &In)
-            { return In >> *(static_cast <ticpp::Comment*>(this->Wrapped)); }
+        std::istream& operator>> (std::istream &In, xml::Comment &Com)
+            { return In >> *(static_cast <ticpp::Comment*>(Com.Wrapped)); }
 
-        std::ostream& Comment::operator<< (std::ostream &Out)
-            { return Out << *(static_cast <ticpp::Comment*>(this->Wrapped)); }
+        std::ostream& operator<< (std::ostream &Out, xml::Comment &Com)
+            { return Out << *(static_cast <ticpp::Comment*>(Com.Wrapped)); }
 
     }// /xml
 }// /phys

@@ -91,11 +91,11 @@ namespace phys
         Base::XMLComponentType Text::GetType() const
             { return Base::isText; }
 
-        std::istream& Text::operator>> (std::istream &In)
-            { return In >> *(static_cast <ticpp::Text*>(this->Wrapped)); }
+        std::istream& operator>> (std::istream &In, xml::Text &SomeWords)
+            { return In >> *(static_cast <ticpp::Text*>(SomeWords.Wrapped)); }
 
-        std::ostream& Text::operator<< (std::ostream &Out)
-            { return Out << *(static_cast <ticpp::Text*>(this->Wrapped)); }
+        std::ostream& operator<< (std::ostream &Out, xml::Text &SomeWords)
+            { return Out << *(static_cast <ticpp::Text*>(SomeWords.Wrapped)); }
 
     }// /xml
 }// /phys

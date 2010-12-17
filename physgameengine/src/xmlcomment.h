@@ -85,20 +85,27 @@ namespace phys
                 /// @return This returns Base::isComment
                 virtual Base::XMLComponentType GetType() const;
 
-                /// @brief Stream XML data into a phys::xml hierearchy
-                /// @param In This is the stream the data comes from when you use the >> operator
-                /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
-                /// @details Inherited from phys::xml::Node
-                virtual std::istream& operator>> (std::istream &In);
-
-                /// @brief Stream XML data out of a phys::xml hierearchy
-                /// @param Out This is the stream the data goes to from when you use the << operator
-                /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
-                /// @details Inherited from phys::xml::Node
-                virtual std::ostream& operator<< (std::ostream &Out);
-
+                friend std::istream& operator>> (std::istream &In, xml::Comment &Com);
+                friend std::ostream& operator<< (std::ostream &Out, xml::Comment &Com);
 
         }; // /comment
+
+        /// @brief Stream XML data into a phys::xml hierearchy
+        /// @param In This is the stream the data comes from when you use the >> operator
+        /// @param Com The Comment being streamed to
+        /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
+        /// @details Inherited from phys::xml::Node
+        std::istream& operator>> (std::istream &In, xml::Comment &Com);
+
+        /// @brief Stream XML data out of a phys::xml hierearchy
+        /// @param Out This is the stream the data goes to from when you use the << operator
+        /// @param Com The Comment being streamed from
+        /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
+        /// @details Inherited from phys::xml::Node
+        std::ostream& operator<< (std::ostream &Out, xml::Comment &Com);
+
+
+
     }// /xml
 }// /phys
 

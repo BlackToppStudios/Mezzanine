@@ -87,17 +87,9 @@ namespace phys
                 /// @return This returns Base::isStylesheetReference
                 virtual Base::XMLComponentType GetType() const;
 
-                /// @brief Stream XML data into a phys::xml hierearchy
-                /// @param In This is the stream the data comes from when you use the >> operator
-                /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
-                /// @details Inherited from phys::xml::Node
-                virtual std::istream& operator>> (std::istream &In);
+                friend std::istream& operator>> (std::istream &In, xml::StylesheetReference &SSR);
 
-                /// @brief Stream XML data out of a phys::xml hierearchy
-                /// @param Out This is the stream the data goes to from when you use the << operator
-                /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
-                /// @details Inherited from phys::xml::Node
-                virtual std::ostream& operator<< (std::ostream &Out);
+                friend std::ostream& operator<< (std::ostream &Out, xml::StylesheetReference &SSR);
 
                 /// @brief Get the Type of the Reference
                 /// @return a phys::String that contains the type information
@@ -108,6 +100,23 @@ namespace phys
                 String GetHref() const;
 
         }; // /StylesheetReference
+
+        /// @brief Stream XML data into a phys::xml hierearchy
+        /// @param In This is the stream the data comes from when you use the >> operator
+        /// @param SSR The xml::StylesheetReference being extracted from the stream
+        /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
+        /// @details Inherited from phys::xml::Node
+        std::istream& operator>> (std::istream &In, xml::StylesheetReference &SSR);
+
+        /// @brief Stream XML data out of a phys::xml hierearchy
+        /// @param Out This is the stream the data goes to from when you use the << operator
+        /// @param SSR The xml::StylesheetReference being inserted into to stream
+        /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
+        /// @details Inherited from phys::xml::Node
+        std::ostream& operator<< (std::ostream &Out, xml::StylesheetReference &SSR);
+
+
+
     }// /xml
 }// /phys
 

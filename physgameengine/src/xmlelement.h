@@ -93,17 +93,9 @@ namespace phys
                 /// @return This returns Base::isElement
                 virtual Base::XMLComponentType GetType() const;
 
-                /// @brief Stream XML data into a phys::xml hierearchy
-                /// @param In This is the stream the data comes from when you use the >> operator
-                /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
-                /// @details Inherited phys::xml::Node
-                virtual std::istream& operator>> (std::istream &In);
+                friend std::istream& operator>> (std::istream &In, xml::Element &Elem);
 
-                /// @brief Stream XML data out of a phys::xml hierearchy
-                /// @param Out This is the stream the data goes to from when you use the << operator
-                /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
-                /// @details Inherited phys::xml::Node
-                virtual std::ostream& operator<< (std::ostream &Out);
+                friend std::ostream& operator<< (std::ostream &Out, xml::Element &Elem);
 
                 /// @brief Get the First Child Attribute
                 /// @return A pointer to a phys::xml::Attribute
@@ -174,8 +166,22 @@ namespace phys
             /// @param Name a String which is the Attribute To remove
             void RemoveAttribute (const String& Name);
 
-
         }; // \Element
+
+        /// @brief Stream XML data into a phys::xml hierearchy
+        /// @param In This is the stream the data comes from when you use the >> operator
+        /// @param Elem The xml::Element being streamed to
+        /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
+        /// @details Inherited phys::xml::Node
+        std::istream& operator>> (std::istream &In, xml::Element &Elem);
+
+        /// @brief Stream XML data out of a phys::xml hierearchy
+        /// @param Out This is the stream the data goes to from when you use the << operator
+        /// @param Elem The xml::Element being streamed from
+        /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
+        /// @details Inherited phys::xml::Node
+        std::ostream& operator<< (std::ostream &Out, xml::Element &Elem);
+
     }// \xml
 }// \phys
 

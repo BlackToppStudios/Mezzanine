@@ -91,11 +91,11 @@ namespace phys
         Base::XMLComponentType StylesheetReference::GetType() const
             { return Base::isStylesheetReference; }
 
-        std::istream& StylesheetReference::operator>> (std::istream &In)
-            { return In >> *(static_cast <ticpp::StylesheetReference*>(this->Wrapped)); }
+        std::istream& operator>> (std::istream &In, xml::StylesheetReference &SSR)
+            { return In >> *(static_cast <ticpp::StylesheetReference*>(SSR.Wrapped)); }
 
-        std::ostream& StylesheetReference::operator<< (std::ostream &Out)
-            { return Out << *(static_cast <ticpp::StylesheetReference*>(this->Wrapped)); }
+        std::ostream& operator<< (std::ostream &Out, xml::StylesheetReference &SSR)
+            { return Out << *(static_cast <ticpp::StylesheetReference*>(SSR.Wrapped)); }
 
         String StylesheetReference::GetRefType() const
             { return static_cast<ticpp::StylesheetReference*>(this->Wrapped)->Type(); }
