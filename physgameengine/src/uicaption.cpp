@@ -153,6 +153,16 @@ namespace phys
             return Glyphs;
         }
 
+        void Caption::SetCursorOffset(Whole Offset)
+        {
+            GorillaCaption->SetCursorOffset((Real)Offset);
+        }
+
+        Whole Caption::GetCursorOffset()
+        {
+            return (Whole)GorillaCaption->GetCursorOffset();
+        }
+
         void Caption::SetBackgroundColour(ColourValue& Colour)
         {
             GorillaRectangle->background_colour(Colour.GetOgreColourValue());

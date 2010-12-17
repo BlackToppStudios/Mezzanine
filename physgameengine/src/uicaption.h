@@ -133,6 +133,13 @@ namespace phys
                 /// @details The glyph index is defined in your gorilla file.
                 /// @param Returns a Whole representing the index of the glyph in use by this caption..
                 virtual Whole GetGlyphIndex();
+                /// @brief Sets the number of pixels text should be offset from the side when rendering.
+                /// @details This doesn't apply when text is being rendered with a Middle alignment.
+                /// @param Offset The number of pixels from the side text should be offset.
+                virtual void SetCursorOffset(Whole Offset);
+                /// @brief Gets the number of pixels text should be offset from the side when rendering.
+                /// @return Returns a Whole representing the number of pixels text is currently being offset from the side.
+                virtual Whole GetCursorOffset();
                 /// @brief Sets the background colour of the caption.
                 /// @param Colour A colour value representing the colour to be set.
                 virtual void SetBackgroundColour(ColourValue& Colour);

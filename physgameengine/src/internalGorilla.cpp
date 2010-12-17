@@ -2008,7 +2008,8 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   mBackground.a   = 0.0f;
   mAlignment      = TextAlign_Left;
   mVerticalAlign  = VerticalAlign_Top;
-  mPriority    = Gorilla::RP_Medium;
+  mPriority       = Gorilla::RP_Medium;
+  mCursorOffset   = 0.0f;
  }
 
  void Caption::_calculateDrawSize(Ogre::Vector2& retSize)
@@ -2091,7 +2092,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
   if (mAlignment == TextAlign_Left)
   {
-   cursorX = mLeft;
+   cursorX = mLeft + mCursorOffset;
 
    if (mWidth)
    {
@@ -2117,7 +2118,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   else if (mAlignment == TextAlign_Right)
   {
    _calculateDrawSize(knownSize);
-   cursorX = mLeft + mWidth - knownSize.x;
+   cursorX = mLeft + mWidth - (knownSize.x + mCursorOffset);
    if (mWidth)
    {
     clipLeft = true;

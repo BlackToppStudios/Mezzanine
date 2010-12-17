@@ -261,6 +261,10 @@ namespace phys
 
         void ListBox::SetBasicTemplateParameters(Vector2 Size, Whole Glyph)
         {
+            if(Size.X > RelSize.X)
+                Size.X = RelSize.X;
+            if(Size.Y > RelSize.Y)
+                Size.Y = RelSize.Y;
             TSize = Size;
             TGlyph = Glyph;
         }
