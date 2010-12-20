@@ -429,7 +429,6 @@ void LoadContent()
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
-
         // Test reading by character
         Whole Howmany=10000;
         char chararray[Howmany+1];
@@ -483,11 +482,9 @@ void LoadContent()
         TheWorld->LogStream << endl << "End first streaming test" << endl;
 
         try
-        {
-            XMLptr->putback('X'); // as in :X
-        }catch (Exception E) {
-            TheWorld->Log( E.what() );
-        }
+            { XMLptr->putback('X'); }// as in :X
+        catch (Exception E)
+            { TheWorld->Log( E.what() ); }
 
         delete XMLptr;
         delete Zippedptr;
