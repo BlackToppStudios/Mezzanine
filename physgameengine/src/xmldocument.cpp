@@ -44,7 +44,6 @@
 #include "xmldocument.h"
 #include "exception.h"
 
-
 #define TIXML_USE_TICPP
 #include <ticpp.h>
 

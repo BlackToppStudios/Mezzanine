@@ -27,6 +27,8 @@ int main(int argc, char **argv)
     {
         TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), "SceneManager", SceneManager::Generic, 30);
     }catch( exception x){
+        cerr << "Could not create world:" << x.what();
+        return 1;
         //could not created world
     }
 
@@ -342,10 +344,9 @@ bool PostInput()
             }
 
             // Here we cleanup everything we needed for the clicking/dragging
-            if ( DragTo )
-                { delete DragTo; }
-            if ( MouseRay )
-                { delete MouseRay; }
+
+            delete DragTo;
+            delete MouseRay;
         }
 
     }else{  //Since we are no longer clicking we need to setup for the next clicking
@@ -501,10 +502,8 @@ void LoadContent()
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
         String Content("");
-        char chararray[1000] = {0};
-        (*XMLptr) >> chararray;
-        string test("");
-        TheWorld->LogStream << "Extracted: " << chararray << endl;
+        (*XMLptr) >> Content;
+        TheWorld->LogStream << "Extracted: " << Content << endl;
 
         if( !XMLptr->good() )
             { TheWorld->Log("XMLptr corrupted/broken by >> call"); }
@@ -534,13 +533,10 @@ void LoadContent()
         TheWorld->Log("Testing streaming on test.xml with phys::xml::Document");
         #endif
 
-        typedef ResourceInputStream* ResourceInputStreamPtr;
-
-        ResourceInputStreamPtr XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
-        String t1, t2;
-        //*XMLptr >> t2;
-
+        ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+        String temp;
         xml::Document TestXMLDoc("Test");
+
 
         *XMLptr >> TestXMLDoc;
 

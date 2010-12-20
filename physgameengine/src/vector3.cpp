@@ -81,14 +81,16 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     // Assignment Operators
-    void Vector3::operator= (const btVector3 &bt3)
+    Vector3& Vector3::operator= (const btVector3 &bt3)
     {
         (*this)<<bt3;
+        return *this;
     }
 
-    void Vector3::operator=(const Ogre::Vector3 &OVec3)
+    Vector3& Vector3::operator=(const Ogre::Vector3 &Vec3)
     {
-        (*this)<<OVec3;
+        (*this)<<Vec3;
+        return *this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

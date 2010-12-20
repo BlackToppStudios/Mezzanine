@@ -23,6 +23,14 @@ else(${PhysDebug})
 	endif(${WIN32})
 endif(${PhysDebug})
 
+option(PhysProfile "Executables will gather runtime statistics" OFF)
+if(${PhysDebug})
+		message ("${PROJECT_NAME} - Enabling gcc profiling")
+		set(CommonBuildFlags "${CommonBuildFlags} -pg")
+endif(${PhysDebug})
+
+
+
 set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR})
 
 #Add subprojects

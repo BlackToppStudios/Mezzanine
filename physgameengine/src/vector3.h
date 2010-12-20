@@ -109,12 +109,12 @@ namespace phys
         /// @brief Assignment operator to convert from Bullet Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
         /// @param bt3 This is a btVector3 that will be copied
-        void operator= (const btVector3 &bt3);
+        Vector3& operator= (const btVector3 &bt3);
 
         /// @brief Assignment operator to convert from Ogre Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
         /// @param OVec3 This is a Ogre::Vector3 that will be copied.
-        void operator= (const Ogre::Vector3 &OVec3);
+        Vector3& operator= (const Ogre::Vector3 &OVec3);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Equality Comparison operators
