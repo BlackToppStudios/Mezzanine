@@ -455,7 +455,7 @@ void MakeGUI()
     ColourValue ScrollBarColour(0.2,0.2,0.2,1.0);
     ColourValue BoxBack(0.45,0.025,0.45,1.0);
     ColourValue Blue(0.0,0.0,0.5,1.0);
-    UI::ListBox* LBTest = HUD->CreateListBox("Test", Vector2(0.25,0.25), Vector2(0.4,0.3), 0.025, UI::Scrollbar::Separate);
+    UI::ListBox* LBTest = HUD->CreateListBox("Test", Vector2(0.25,0.25), Vector2(0.4,0.3), 0.025, UI::Separate);
     //LBTest->GetBoxBack()->SetBackgroundColour(BoxBack);
     LBTest->GetVertScroll()->GetUpLeftButton()->SetBackgroundColour(Buttons);
     LBTest->GetVertScroll()->GetDownRightButton()->SetBackgroundColour(Buttons);
@@ -473,7 +473,7 @@ void MakeGUI()
     LBTest->AddSelection("Test8","Test8");
     LBTest->AddSelection("Test9","Test9");
     /*
-    UI::ButtonListBox* BLBTest = HUD->CreateButtonListBox("Test", Vector2(0.25,0.25), Vector2(0.4,0.3), 0.025, UI::Scrollbar::Separate);
+    UI::ButtonListBox* BLBTest = HUD->CreateButtonListBox("Test", Vector2(0.25,0.25), Vector2(0.4,0.3), 0.025, UI::Separate);
     BLBTest->GetBoxBack()->SetBackgroundColour(BoxBack);
     BLBTest->GetVertScroll()->GetUpLeftButton()->SetBackgroundColour(Buttons);
     BLBTest->GetVertScroll()->GetDownRightButton()->SetBackgroundColour(Buttons);

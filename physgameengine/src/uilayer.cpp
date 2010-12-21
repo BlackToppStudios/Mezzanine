@@ -49,6 +49,8 @@
 #include "uibuttonlistbox.h"
 #include "uimarkuptext.h"
 #include "uilistbox.h"
+#include "uiscrollbar.h"
+#include "uilinelist.h"
 
 #include "graphicsmanager.h"
 #include "world.h"
@@ -90,6 +92,12 @@ namespace phys
             UI::MarkupText* markup = MarkupTexts.back();
             delete markup;
             MarkupTexts.pop_back();
+        }
+        while(!LineLists.empty())
+        {
+            UI::LineList* linelist = LineLists.back();
+            delete linelist;
+            LineLists.pop_back();
         }
         while(!Widgets.empty())
         {
@@ -170,6 +178,7 @@ namespace phys
             {
                 delete ToBeDestroyed;
                 Buttons.erase(it);
+                return;
             }
         }
     }
@@ -199,6 +208,7 @@ namespace phys
             {
                 delete ToBeDestroyed;
                 Rectangles.erase(it);
+                return;
             }
         }
     }
@@ -241,6 +251,7 @@ namespace phys
             {
                 delete ToBeDestroyed;
                 Captions.erase(it);
+                return;
             }
         }
     }
@@ -283,6 +294,37 @@ namespace phys
             {
                 delete ToBeDestroyed;
                 MarkupTexts.erase(it);
+                return;
+            }
+        }
+    }
+
+    UI::LineList* UILayer::CreateLineList()
+    {
+        UI::LineList* linelist = new UI::LineList(this);
+        LineLists.push_back(linelist);
+        return linelist;
+    }
+
+    UI::LineList* UILayer::GetLineList(Whole Index)
+    {
+        return LineLists[Index];
+    }
+
+    Whole UILayer::GetNumLineLists()
+    {
+        return LineLists.size();
+    }
+
+    void UILayer::DestroyLineList(UI::LineList* ToBeDestroyed)
+    {
+        for ( std::vector<UI::LineList*>::iterator it = LineLists.begin() ; it != LineLists.end() ; it++ )
+        {
+            if ( ToBeDestroyed == (*it) )
+            {
+                delete ToBeDestroyed;
+                LineLists.erase(it);
+                return;
             }
         }
     }
@@ -324,21 +366,25 @@ namespace phys
                     {
                         UI::Scrollbar* Scroll = static_cast<UI::Scrollbar*> (ToBeDestroyed);
                         delete Scroll;
+                        return;
                     }
                     case UI::Widget::CheckBox:
                     {
                         UI::CheckBox* Check = static_cast<UI::CheckBox*> (ToBeDestroyed);
                         delete Check;
+                        return;
                     }
                     case UI::Widget::ButtonListBox:
                     {
                         UI::ButtonListBox* ButtonList = static_cast<UI::ButtonListBox*> (ToBeDestroyed);
                         delete ButtonList;
+                        return;
                     }
                     case UI::Widget::ListBox:
                     {
                         UI::ListBox* List = static_cast<UI::ListBox*> (ToBeDestroyed);
                         delete List;
+                        return;
                     }
                     default:
                         return;
@@ -347,7 +393,7 @@ namespace phys
         }
     }
 
-    UI::Scrollbar* UILayer::CreateScrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style)
+    UI::Scrollbar* UILayer::CreateScrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::ScrollbarStyle Style)
     {
         UI::Scrollbar* Scroll = new UI::Scrollbar(Name,Position,Size,Style,this);
         Widgets.push_back(Scroll);
@@ -361,16 +407,16 @@ namespace phys
         return Check;
     }
 
-    UI::ButtonListBox* UILayer::CreateButtonListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle)
+    UI::ButtonListBox* UILayer::CreateButtonListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
     {
-        UI::ButtonListBox* BLB = new UI::ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollbarStyle,this);
+        UI::ButtonListBox* BLB = new UI::ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,this);
         Widgets.push_back(BLB);
         return BLB;
     }
 
-    UI::ListBox* UILayer::CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle)
+    UI::ListBox* UILayer::CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
     {
-        UI::ListBox* LB = new UI::ListBox(Name,Position,Size,ScrollbarWidth,ScrollbarStyle,this);
+        UI::ListBox* LB = new UI::ListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,this);
         Widgets.push_back(LB);
         return LB;
     }

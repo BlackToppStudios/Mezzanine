@@ -47,26 +47,6 @@ namespace phys
 {
     namespace UI
     {
-        /// @enum TextVerticalAlign
-        /// @brief Used by UI classes to determine the placement of text within a given area.
-        /// @details This enum determines the Vertical alignment of text.
-        /// This enum is used by these classes in the UI namespace: Button and Caption.
-        enum TextVerticalAlign
-        {
-            Top,
-            Bottom,
-            Center
-        };
-        /// @enum TextHorizontalAlign
-        /// @brief Used by UI classes to determine the placement of text within a given area.
-        /// @details This enum determines the Horizontal alignment of text.
-        /// This enum is used by these classes in the UI namespace: Button and Caption.
-        enum TextHorizontalAlign
-        {
-            Left,
-            Right,
-            Middle
-        };
         /// @enum RenderPriority
         /// @brief Used by UI elements created by layers to determine z-ordering within a layer.
         /// @details This essentially means we're adding layers to our layers without the messy
@@ -76,6 +56,63 @@ namespace phys
             RP_Low,
             RP_Medium,
             RP_High
+        };
+        /// @enum ResizeableAnchor
+        /// @brief Used by UI container classes to determine their movement behavior when the container is resized.
+        /// @details RA_AnchorTop means it stays in the same position if given a resize event relative to the top.
+        /// RA_AnchorBottom means the same as RA_AnchorTop but for the bottom of the container.  RA_AnchorMiddle means
+        /// it'll change position by half of the pixels that the container was resized.
+        enum ResizeableAnchor
+        {
+            RA_AnchorTopLeft,
+            RA_AnchorTop,
+            RA_AnchorTopRight,
+            RA_AnchorLeft,
+            RA_AnchorMiddle,
+            RA_AnchorRight,
+            RA_AnchorBottomLeft,
+            RA_AnchorBottom,
+            RA_AnchorBottomRight
+        };
+        /// @enum ResizeableTether
+        /// @brief Used by UI container classes to determine their resize behavior when the container is resized.
+        /// @details RT_TetherHorizontal means it will resize itself equally during any Horizontal resizing of the container.
+        /// RT_TetherVertical means the same as RT_TetherHorizontal, but for Vertical resizes.  RT_TetherBoth means it'll do both.
+        enum ResizeableTether
+        {
+            RT_TetherBoth,
+            RT_TetherHorizontal,
+            RT_TetherVertical
+        };
+        /// @enum ScrollbarStyle
+        /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.
+        /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.
+        enum ScrollbarStyle
+        {
+            SB_NoButtons,
+            SB_Separate,
+            SB_TogetherUpLeft,
+            SB_TogetherDownRight
+        };
+        /// @enum TextHorizontalAlign
+        /// @brief Used by UI classes to determine the placement of text within a given area.
+        /// @details This enum determines the Horizontal alignment of text.
+        /// This enum is used by these classes in the UI namespace: Button and Caption.
+        enum TextHorizontalAlign
+        {
+            Txt_Left,
+            Txt_Right,
+            Txt_Middle
+        };
+        /// @enum TextVerticalAlign
+        /// @brief Used by UI classes to determine the placement of text within a given area.
+        /// @details This enum determines the Vertical alignment of text.
+        /// This enum is used by these classes in the UI namespace: Button and Caption.
+        enum TextVerticalAlign
+        {
+            Txt_Top,
+            Txt_Bottom,
+            Txt_Center
         };
     }
 }

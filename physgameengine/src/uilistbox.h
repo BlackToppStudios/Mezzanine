@@ -40,9 +40,9 @@
 #ifndef _uilistbox_h
 #define _uilistbox_h
 
-#include "uiscrollbar.h"
 #include "colourvalue.h"
 #include "enumerations.h"
+#include "uiwidget.h"
 
 namespace phys
 {
@@ -51,6 +51,7 @@ namespace phys
         class Rectangle;
         class Button;
         class Caption;
+        class Scrollbar;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class ListBox
         /// @headerfile uilistbox.h
@@ -94,7 +95,7 @@ namespace phys
                 /// @param ScrollbarStyle The style of the scrollbar you want for this List Box.  See Scrollbar
                 /// class for more information.
                 /// @param Layer The parent layer this List Box belongs to.
-                ListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer);
+                ListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer* Layer);
                 /// @brief Standard destructor.
                 ~ListBox();
                 /// @brief Sets the visibility of this List Box.
@@ -123,8 +124,8 @@ namespace phys
                 /// @param VertAlign The Vertical text alignment.  This defaults to UI::Center.
                 virtual void SetMoreTemplateParameters(ColourValue TextColour = ColourValue(0.0,0.0,0.0,1.0),
                                                        ColourValue BackgroundColour = ColourValue(1.0,1.0,1.0,1.0),
-                                                       UI::TextHorizontalAlign HorAlign = UI::Middle,
-                                                       UI::TextVerticalAlign VertAlign = UI::Center);
+                                                       UI::TextHorizontalAlign HorAlign = UI::Txt_Middle,
+                                                       UI::TextVerticalAlign VertAlign = UI::Txt_Center);
                 /// @brief Adds a selectable caption to the list to be displayed.
                 /// @details If a colour other then white was set as the template and you try to set a background sprite, it will
                 /// attempt to blend the colour and sprite.  Pure white colour will cause the sprite to look normal.

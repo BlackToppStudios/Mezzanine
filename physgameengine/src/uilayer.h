@@ -43,7 +43,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "vector2.h"
-#include "uiscrollbar.h"
+#include "enumerations.h"
 
 #include <map>
 
@@ -65,9 +65,11 @@ namespace phys
         class Button;
         class TextButton;
         class MarkupText;
+        class Scrollbar;
         class CheckBox;
         class ButtonListBox;
         class ListBox;
+        class LineList;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UILayer
@@ -86,6 +88,7 @@ namespace phys
             std::vector<UI::Rectangle*> Rectangles;
             std::vector<UI::Caption*> Captions;
             std::vector<UI::MarkupText*> MarkupTexts;
+            std::vector<UI::LineList*> LineLists;
             std::vector<UI::Widget*> Widgets;
         public:
             /// @brief Internal constructor.
@@ -198,6 +201,17 @@ namespace phys
             /// @brief Destroys a markup text.
             /// @param ToBeDestroyed Pointer to the markup text you want destroyed.
             void DestroyMarkupText(UI::MarkupText* ToBeDestroyed);
+            /// @brief Creates a line list within this layer.
+            UI::LineList* CreateLineList();
+            /// @brief Gets an already created line list by index.
+            /// @return Returns a pointer to the line list at the specified index.
+            UI::LineList* GetLineList(Whole Index);
+            /// @brief Gets the number of line lists created and stored in this class.
+            /// @return Returns the number of line lists this class is storing.
+            Whole GetNumLineLists();
+            /// @brief Destroys a line list.
+            /// @param ToBeDestroyed Pointer to the line list you want destroyed.
+            void DestroyLineList(UI::LineList* ToBeDestroyed);
             ///////////////////////////////////////////////////////////////////////////////
             // Working with all Widgets
             ///////////////////////////////////////
@@ -223,7 +237,7 @@ namespace phys
             /// @param Position The top left position of the Scrollbar.
             /// @param Size The size of the Scrollbar.
             /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
-            UI::Scrollbar* CreateScrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::Scrollbar::BarStyle Style);
+            UI::Scrollbar* CreateScrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::ScrollbarStyle Style);
             /// @brief Creates a CheckBox within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created CheckBox.
@@ -243,7 +257,7 @@ namespace phys
             /// @param Size The size of the Button List Box.
             /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
             /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-            UI::ButtonListBox* CreateButtonListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle);
+            UI::ButtonListBox* CreateButtonListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
             /// @brief Creates a List Box within this layer.
             /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
             /// @return Returns a pointer to the created List Box.
@@ -252,7 +266,7 @@ namespace phys
             /// @param Size The size of the List Box.
             /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
             /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-            UI::ListBox* CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::Scrollbar::BarStyle ScrollbarStyle);
+            UI::ListBox* CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
             ///////////////////////////////////////////////////////////////////////////////
             // UI Element and Widget Checks
             ///////////////////////////////////////
