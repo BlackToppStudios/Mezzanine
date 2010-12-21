@@ -118,6 +118,12 @@ namespace phys
         /// @details Inherited phys::xml::Node
         std::ostream& operator<< (std::ostream &Out, xml::Document &Doc);
 
+        ///@brief a function that exists only to test and aid debugging, will be removed soon.
+        void TestPhysXML(std::istream& Ins)
+        {
+
+        }
+
     }// /xml
 }// /phys
 

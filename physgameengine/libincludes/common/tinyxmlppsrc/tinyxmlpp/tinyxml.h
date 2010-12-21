@@ -299,7 +299,7 @@ public:
 		TIXML_ERROR_STRING_COUNT
 	};
 
-public:
+protected:
 
 	static const char* SkipWhiteSpace( const char*, TiXmlEncoding encoding );
 	inline static bool IsWhiteSpace( char c )
@@ -755,7 +755,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* visitor ) const = 0;
 
-public:
+protected:
 	TiXmlNode( NodeType _type );
 
 	// Copy to the allocated object. Shared functionality between Clone, Copy constructor,
@@ -1145,7 +1145,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* visitor ) const;
 
-public:
+protected:
 
 	void CopyTo( TiXmlElement* target ) const;
 	void ClearThis();	// like clear, but initializes 'this' object as well
@@ -1199,7 +1199,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* visitor ) const;
 
-public:
+protected:
 	void CopyTo( TiXmlComment* target ) const;
 
 	// used to be public
@@ -1262,7 +1262,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* content ) const;
 
-public :
+protected :
 	///  [internal use] Creates a new Element and returns it.
 	virtual TiXmlNode* Clone() const;
 	void CopyTo( TiXmlText* target ) const;
@@ -1338,7 +1338,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* visitor ) const;
 
-public:
+protected:
 	void CopyTo( TiXmlDeclaration* target ) const;
 	// used to be public
 	#ifdef TIXML_USE_STL
@@ -1404,7 +1404,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* visitor ) const;
 
-public:
+protected:
 	void CopyTo( TiXmlStylesheetReference* target ) const;
 	// used to be public
 	#ifdef TIXML_USE_STL
@@ -1447,7 +1447,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* content ) const;
 
-public:
+protected:
 	void CopyTo( TiXmlUnknown* target ) const;
 
 	#ifdef TIXML_USE_STL
@@ -1613,7 +1613,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* content ) const;
 
-public :
+protected :
 	// [internal use]
 	virtual TiXmlNode* Clone() const;
 	#ifdef TIXML_USE_STL

@@ -38,7 +38,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 @todo add TYPECOUNT support. See ticpp::NodeFactory.
 @todo Add a quick reference
 */
-#ifdef TIXML_USE_TICPP
+#ifndef TIXML_USE_TICPP
+	#define TIXML_USE_TICPP
+#endif
 
 #ifndef TICPP_INCLUDED
 #define TICPP_INCLUDED
@@ -266,6 +268,7 @@ namespace ticpp
 		{
 		}
 
+	protected:
 		mutable TiCppRCImp* m_impRC;	/**< Holds status of internal TiXmlPointer - use this to determine if object has been deleted already */
 
 		/**
@@ -299,7 +302,7 @@ namespace ticpp
 	*/
 	class Attribute : public Base
 	{
-	public:
+	private:
 		TiXmlAttribute* m_tiXmlPointer;
 		TiXmlBase* GetBasePointer() const
 		{
@@ -449,7 +452,7 @@ namespace ticpp
 		*/
 		virtual void Print( FILE* file, int depth ) const;
 
-	public:
+	private:
 
 		/**
 		@internal
@@ -1004,7 +1007,7 @@ namespace ticpp
  			return out;
  		}
 
-	public:
+	protected:
 		/**
 		@internal
 		Allows NodeImp to use Node*'s.
@@ -1053,7 +1056,7 @@ namespace ticpp
 	template < class T = Node >
 		class Iterator
 	{
-	public:
+	private:
 		T* m_p;					/**< Internal Pointer */
 		std::string m_value;	/**< Value for NextSibling  calls */
 
@@ -1224,7 +1227,7 @@ namespace ticpp
 	template < class T >
 		class NodeImp : public Node
 	{
-	public:
+	protected:
 
 		T* m_tiXmlPointer;		/**< Internal pointer to the TiXml Class which is being wrapped */
 
@@ -1818,7 +1821,7 @@ namespace ticpp
 		*/
 		void RemoveAttribute( const std::string& name );
 
-	public:
+	private:
 
 		/**
 		@internal
@@ -1900,5 +1903,3 @@ namespace ticpp
 }
 
 #endif	// TICPP_INCLUDED
-
-#endif // TIXML_USE_TICPP

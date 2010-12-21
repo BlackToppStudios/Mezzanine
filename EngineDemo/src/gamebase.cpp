@@ -530,14 +530,20 @@ void LoadContent()
         TheWorld->Log("Testing streaming on test.xml with phys::xml::Document");
         #endif
 
+
+
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+        TestPhysXML(XMLptr);
+
+        /*
+
         String temp;
         xml::Document TestXMLDoc("Test");
 
 
         *XMLptr >> TestXMLDoc;
 
-        TheWorld->LogStream << "XMLDoc:" << endl << TestXMLDoc << endl << "/XMLDoc";
+        TheWorld->LogStream << "XMLDoc:" << endl << TestXMLDoc << endl << "/XMLDoc";*/
 
         #ifdef PHYSDEBUG
         TheWorld->Log("End of testing XML and Streaming test 3");
