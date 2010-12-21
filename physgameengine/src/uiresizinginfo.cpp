@@ -37,65 +37,16 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uiwidget_cpp
-#define _uiwidget_cpp
+#ifndef _uiresizinginfo_cpp
+#define _uiresizinginfo_cpp
 
-#include "uiwidget.h"
-#include "uibutton.h"
-#include "world.h"
+//#include "uiresizinginfo.h"
 
 namespace phys
 {
     namespace UI
     {
-        Widget::Widget(const String& name, UILayer* parent)
-            : Parent(parent),
-              HoveredButton(NULL),
-              HoveredSubWidget(NULL),
-              SubWidgetFocus(NULL),
-              Visible(true),
-              RelPosition(Vector2(0,0)),
-              RelSize(Vector2(0,0)),
-              Name(name)
-        {
-            Manager = World::GetWorldPointer()->GetUIManager();
-        }
 
-        Widget::~Widget()
-        {
-        }
-
-        void Widget::SubWidgetUpdate(bool Force)
-        {
-            if(HoveredSubWidget)
-                HoveredSubWidget->Update(Force);
-        }
-
-        void Widget::SubWidgetFocusUpdate(bool Force)
-        {
-            if(SubWidgetFocus)
-                SubWidgetFocus->Update(Force);
-        }
-
-        Widget::WidgetType Widget::GetType() const
-        {
-            return Type;
-        }
-
-        String& Widget::GetName()
-        {
-            return Name;
-        }
-
-        Button* Widget::GetHoveredButton()
-        {
-            return HoveredButton;
-        }
-
-        Widget* Widget::GetHoveredSubWidget()
-        {
-            return HoveredSubWidget;
-        }
     }//UI
 }//phys
 

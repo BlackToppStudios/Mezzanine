@@ -75,7 +75,7 @@ namespace phys
                 Vector2 RelSize;
                 bool MouseHover;
             public:
-                /// @brief Internal constructor
+                /// @brief Class constructor.
                 /// @param Position The top left position of the rectangle.
                 /// @param Size The size of the rectangle.
                 /// @param Layer Pointer to the parent Layer that created this rectangle.

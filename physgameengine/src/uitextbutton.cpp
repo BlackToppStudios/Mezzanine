@@ -101,13 +101,13 @@ namespace phys
             Gorilla::TextAlignment HA;
             switch (Align)
             {
-                case UI::Left:
+                case UI::Txt_Left:
                     HA = Gorilla::TextAlign_Left;
                     break;
-                case UI::Right:
+                case UI::Txt_Right:
                     HA = Gorilla::TextAlign_Right;
                     break;
-                case UI::Middle:
+                case UI::Txt_Middle:
                     HA = Gorilla::TextAlign_Centre;
                     break;
                 default:
@@ -121,13 +121,13 @@ namespace phys
             Gorilla::VerticalAlignment VA;
             switch (Align)
             {
-                case UI::Top:
+                case UI::Txt_Top:
                     VA = Gorilla::VerticalAlign_Top;
                     break;
-                case UI::Bottom:
+                case UI::Txt_Bottom:
                     VA = Gorilla::VerticalAlign_Bottom;
                     break;
-                case UI::Center:
+                case UI::Txt_Center:
                     VA = Gorilla::VerticalAlign_Middle;
                     break;
                 default:

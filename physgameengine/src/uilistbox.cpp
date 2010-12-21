@@ -45,6 +45,7 @@
 #include "uilayer.h"
 #include "uicaption.h"
 #include "uirectangle.h"
+#include "uiscrollbar.h"
 #include "inputquerytool.h"
 #include "metacode.h"
 #include "world.h"
@@ -55,15 +56,15 @@ namespace phys
 {
     namespace UI
     {
-        ListBox::ListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer)
+        ListBox::ListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer* Layer)
             : Widget(name,Layer),
               Selected(NULL),
               AutoHideScroll(true),
               LastScrollValue(0),
               NumVisible(0),
               SelectionDist(0.0),
-              THAlign(UI::Middle),
-              TVAlign(UI::Center),
+              THAlign(UI::Txt_Middle),
+              TVAlign(UI::Txt_Center),
               TTColour(ColourValue(0.0,0.0,0.0,1.0)),
               TBGColour(ColourValue(1.0,1.0,1.0,1.0)),
               SelectColour(ColourValue(1.0,1.0,1.0,1.0))
@@ -76,7 +77,7 @@ namespace phys
             Vector2 ScrollP((RelPosition.X + RelSize.X) - ScrollbarWidth,RelPosition.Y);
             Vector2 ScrollS(ScrollbarWidth,RelSize.Y);
             /// @todo Fourth instance of needing to include the namespace in the declaration seemingly needlessly.
-            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollP,ScrollS,ScrollbarStyle,Layer);
+            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollP,ScrollS,ScrollStyle,Layer);
             VertScroll->Hide();
         }
 

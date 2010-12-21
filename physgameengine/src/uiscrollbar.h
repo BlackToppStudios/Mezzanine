@@ -44,6 +44,7 @@
 #include "datatypes.h"
 #include "vector2.h"
 #include "uiwidget.h"
+#include "enumerations.h"
 
 namespace phys
 {
@@ -66,14 +67,6 @@ namespace phys
         ///////////////////////////////////////
         class PHYS_LIB Scrollbar : public Widget
         {
-            public:
-                enum BarStyle
-                {
-                    NoButtons,
-                    Separate,
-                    TogetherUpLeft,
-                    TogetherDownRight
-                };
             protected:
                 friend class phys::UIManager;
                 UI::Button* Scroller;
@@ -89,7 +82,7 @@ namespace phys
                 Real ScrollerLowerLimit;
                 Real ScrollerValue;
                 Real IncrementDistance;
-                BarStyle ScrollStyle;
+                UI::ScrollbarStyle ScrollStyle;
                 bool Horizontal;
                 bool ScrollerLock;
                 bool ScrollBackLock;
@@ -144,7 +137,7 @@ namespace phys
                 /// @param Size A vector2 representing the size of this widget.
                 /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
                 /// @param parent The Layer that created this scrollbar.
-                Scrollbar(ConstString& Name, Vector2 Position, Vector2 Size, Scrollbar::BarStyle Style, UILayer* parent);
+                Scrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::ScrollbarStyle Style, UILayer* parent);
                 /// @brief Standard class destructor.
                 virtual ~Scrollbar();
                 /// @brief Sets the visibility of this scrollbar.

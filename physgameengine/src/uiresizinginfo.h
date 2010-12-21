@@ -37,65 +37,51 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uiwidget_cpp
-#define _uiwidget_cpp
+#ifndef _uiresizinginfo_h
+#define _uiresizinginfo_h
 
-#include "uiwidget.h"
-#include "uibutton.h"
-#include "world.h"
+#include "enumerations.h"
+#include "vector2.h"
 
 namespace phys
 {
     namespace UI
     {
-        Widget::Widget(const String& name, UILayer* parent)
-            : Parent(parent),
-              HoveredButton(NULL),
-              HoveredSubWidget(NULL),
-              SubWidgetFocus(NULL),
-              Visible(true),
-              RelPosition(Vector2(0,0)),
-              RelSize(Vector2(0,0)),
-              Name(name)
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @struct ResizingInfo
+        /// @headerfile uiresizinginfo.h
+        /// @brief This is a helper struct for use in resizing UI containers.
+        /// @details This struct contains all the information necessary to define complete behavior of
+        /// repositioning and resizing child UI elements in a container.
+        ///////////////////////////////////////
+        template<class T> struct PHYS_LIB ResizingInfo
         {
-            Manager = World::GetWorldPointer()->GetUIManager();
-        }
+            /// @brief The class this template applies to.
+            T Object;
+            /// @brief How the object's position is anchored to the container on a resize.
+            UI::ResizeableAnchor Anchor;
+            /// @brief How the object's size is tethered to the container on a resize.
+            UI::ResizeableTether Tether;
+            /// @brief The objects offset from the containers position.
+            Vector2 Offset;
 
-        Widget::~Widget()
-        {
-        }
-
-        void Widget::SubWidgetUpdate(bool Force)
-        {
-            if(HoveredSubWidget)
-                HoveredSubWidget->Update(Force);
-        }
-
-        void Widget::SubWidgetFocusUpdate(bool Force)
-        {
-            if(SubWidgetFocus)
-                SubWidgetFocus->Update(Force);
-        }
-
-        Widget::WidgetType Widget::GetType() const
-        {
-            return Type;
-        }
-
-        String& Widget::GetName()
-        {
-            return Name;
-        }
-
-        Button* Widget::GetHoveredButton()
-        {
-            return HoveredButton;
-        }
-
-        Widget* Widget::GetHoveredSubWidget()
-        {
-            return HoveredSubWidget;
-        }
+            /// @brief Standard constructor.
+            /// @param TheObject The object to be stored and all the following info applies to.
+            /// @param RA The Resize Anchor, see enum for more info.
+            /// @param RT The Resize Tether, see enum for more info.
+            /// @param Off The objects offset from the container position.
+            ResizingInfo(T TheObject, UI::ResizeableAnchor RA, UI::ResizeableTether RT, Vector2 Off)
+                : Object(TheObject),
+                  Anchor(RA),
+                  Tether(RT),
+                  Offset(Off)
+            {
+            }
+            /// @brief Class destructor.
+            ~ResizingInfo()
+            {
+            }
+        };
     }//UI
 }//phys
 

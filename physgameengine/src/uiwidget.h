@@ -109,7 +109,7 @@ namespace phys
                 virtual void Hide() = 0;
                 /// @brief Gets the type of widget this is.
                 /// @return Returns an enum value representing the type of widget this is.
-                WidgetType GetType();
+                WidgetType GetType() const;
                 /// @brief Gets the name of this widget.
                 /// @return Returns a String containing the name of this widget.
                 virtual String& GetName();

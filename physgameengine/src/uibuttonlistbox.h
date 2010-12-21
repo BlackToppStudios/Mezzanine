@@ -40,8 +40,9 @@
 #ifndef _uibuttonlistbox_h
 #define _uibuttonlistbox_h
 
-#include "uiscrollbar.h"
 #include "colourvalue.h"
+#include "uiwidget.h"
+#include "enumerations.h"
 
 namespace phys
 {
@@ -49,6 +50,7 @@ namespace phys
     {
         class Rectangle;
         class Button;
+        class Scrollbar;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class ButtonListBox
         /// @headerfile uibuttonlistbox.h
@@ -85,10 +87,10 @@ namespace phys
                 /// @param Size The size of the Button List Box.
                 /// @param ScrollbarWidth The relative(to screensize) width of the vertical scrollbar.
                 /// If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look.
-                /// @param ScrollbarStyle The style of the scrollbar you want for this Button List Box.  See Scrollbar
+                /// @param ScrollStyle The style of the scrollbar you want for this Button List Box.  See Scrollbar
                 /// class for more information.
                 /// @param Layer The parent layer this Button List Box belongs to.
-                ButtonListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, Scrollbar::BarStyle ScrollbarStyle, UILayer* Layer);
+                ButtonListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer* Layer);
                 /// @brief Standard destructor.
                 ~ButtonListBox();
                 /// @brief Sets the visibility of this Button List Box.
