@@ -106,11 +106,11 @@ namespace phys
         Base::XMLComponentType Element::GetType() const
             { return Base::isElement; }
 
-        std::istream& Element::operator>> (std::istream &In)
-            { return In >> *(static_cast <ticpp::Element*>(this->Wrapped)); }
+        std::istream& operator>> (std::istream &In, xml::Element &Elem)
+            { return In >> *(static_cast <ticpp::Element*>(Elem.Wrapped)); }
 
-        std::ostream& Element::operator<< (std::ostream &Out)
-            { return Out << *(static_cast <ticpp::Element*>(this->Wrapped)); }
+        std::ostream& operator<< (std::ostream &Out, xml::Element &Elem)
+            { return Out << *(static_cast <ticpp::Element*>(Elem.Wrapped)); }
 
         Attribute* Element::FirstAttribute() const
             { return Attribute::GetPointerFromWrapped( static_cast<ticpp::Element*>(this->Wrapped)->FirstAttribute(true) ); }

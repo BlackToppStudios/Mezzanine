@@ -87,17 +87,9 @@ namespace phys
                 /// @return This returns Base::isDeclaration
                 virtual Base::XMLComponentType GetType() const;
 
-                /// @brief Stream XML data into a phys::xml hierearchy
-                /// @param In This is the stream the data comes from when you use the >> operator
-                /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
-                /// @details Inherited from phys::xml::Node
-                virtual std::istream& operator>> (std::istream &In);
+                friend std::istream& operator>> (std::istream &In, xml::Declaration &Dec);
 
-                /// @brief Stream XML data out of a phys::xml hierearchy
-                /// @param Out This is the stream the data goes to from when you use the << operator
-                /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
-                /// @details Inherited from phys::xml::Node
-                virtual std::ostream& operator<< (std::ostream &Out);
+                friend std::ostream& operator<< (std::ostream &Out, xml::Declaration &Dec);
 
                 /// @brief Gets the Version Of XML being used.
                 /// @return A phys::String that contains the XML version
@@ -110,8 +102,23 @@ namespace phys
                 /// @brief Check if this is this a Standalone Document.
                 /// @return A phys::String Defining if this is standalone document. Usually a "yes" or "no". Setting this to "no" is part of assiging an external
                 String GetStandalone() const;
-
         }; // /Declaration
+
+        /// @brief Stream XML data into a phys::xml hierearchy
+        /// @param In This is the stream the data comes from when you use the >> operator
+        /// @param Dec The xml::Declaration being streamed to
+        /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
+        /// @details Inherited from phys::xml::Node
+        std::istream& operator>> (std::istream &In, xml::Declaration &Dec);
+
+        /// @brief Stream XML data out of a phys::xml hierearchy
+        /// @param Out This is the stream the data goes to from when you use the << operator
+        /// @param Dec The xml::Declaration being streamed from
+        /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
+        /// @details Inherited from phys::xml::Node
+        std::ostream& operator<< (std::ostream &Out, xml::Declaration &Dec);
+
+
     }// /xml
 }// /phys
 

@@ -27,6 +27,8 @@ int main(int argc, char **argv)
     {
         TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), "SceneManager", SceneManager::Generic, 30);
     }catch( exception x){
+        cerr << "Could not create world:" << x.what();
+        return 1;
         //could not created world
     }
 
@@ -342,10 +344,9 @@ bool PostInput()
             }
 
             // Here we cleanup everything we needed for the clicking/dragging
-            if ( DragTo )
-                { delete DragTo; }
-            if ( MouseRay )
-                { delete MouseRay; }
+
+            delete DragTo;
+            delete MouseRay;
         }
 
     }else{  //Since we are no longer clicking we need to setup for the next clicking
@@ -428,7 +429,6 @@ void LoadContent()
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
-
         // Test reading by character
         Whole Howmany=10000;
         char chararray[Howmany+1];
@@ -482,11 +482,9 @@ void LoadContent()
         TheWorld->LogStream << endl << "End first streaming test" << endl;
 
         try
-        {
-            XMLptr->putback('X'); // as in :X
-        }catch (Exception E) {
-            TheWorld->Log( E.what() );
-        }
+            { XMLptr->putback('X'); }// as in :X
+        catch (Exception E)
+            { TheWorld->Log( E.what() ); }
 
         delete XMLptr;
         delete Zippedptr;
@@ -501,10 +499,8 @@ void LoadContent()
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
 
         String Content("");
-        char chararray[1000] = {0};
-        (*XMLptr) >> chararray;
-        string test("");
-        TheWorld->LogStream << "Extracted: " << chararray << endl;
+        (*XMLptr) >> Content;
+        TheWorld->LogStream << "Extracted: " << Content << endl;
 
         if( !XMLptr->good() )
             { TheWorld->Log("XMLptr corrupted/broken by >> call"); }
@@ -525,7 +521,26 @@ void LoadContent()
         delete Zippedptr;
 
         #ifdef PHYSDEBUG
-        TheWorld->Log("Testing streaming on test.xml and zipped test.txt, Making fresh set of stream pointers");
+        TheWorld->Log("End streaming test2");
+        #endif
+    }
+
+    {
+        #ifdef PHYSDEBUG
+        TheWorld->Log("Testing streaming on test.xml with phys::xml::Document");
+        #endif
+
+        ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+        String temp;
+        xml::Document TestXMLDoc("Test");
+
+
+        *XMLptr >> TestXMLDoc;
+
+        TheWorld->LogStream << "XMLDoc:" << endl << TestXMLDoc << endl << "/XMLDoc";
+
+        #ifdef PHYSDEBUG
+        TheWorld->Log("End of testing XML and Streaming test 3");
         #endif
     }
 

@@ -246,15 +246,15 @@ namespace phys
                 bool 	Accept (TiXmlVisitor *visitor) const
                     Accept a hierchical visit the nodes in the TinyXML DOM.
                 */
-                /// @brief Stream XML data into a phys::xml hierearchy
-                /// @param In This is the stream the data comes from when you use the >> operator
-                /// @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
-                virtual std::istream& operator>> (std::istream &In) = 0;
+                // @brief Stream XML data into a phys::xml hierearchy
+                // @param In This is the stream the data comes from when you use the >> operator
+                // @return This returns a stream containing all the data that was streamed in, to allow for chaining >> calls
+                //virtual std::istream& operator>> (std::istream &In) = 0;
 
-                /// @brief Stream XML data out of a phys::xml hierearchy
-                /// @param Out This is the stream the data goes to from when you use the << operator
-                /// @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
-                virtual std::ostream& operator<< (std::ostream &Out) = 0;
+                // @brief Stream XML data out of a phys::xml hierearchy
+                // @param Out This is the stream the data goes to from when you use the << operator
+                // @return This returns a stream containing all the data that was streamed out, to allow for chaining << calls and retrieval of the data
+                //virtual std::ostream& operator<< (std::ostream &Out) = 0;
         };// \Node
 
     } // \xml

@@ -44,7 +44,6 @@
 #include "xmldocument.h"
 #include "exception.h"
 
-
 #define TIXML_USE_TICPP
 #include <ticpp.h>
 
@@ -94,12 +93,11 @@ namespace phys
             return Base::isDocument;
         }
 
-        std::istream& Document::operator>> (std::istream &In)
-            { return In >> *(static_cast <ticpp::Document*>(this->Wrapped)); }
+        std::istream& operator>> (std::istream &In, xml::Document &Doc)
+            { return In >> *(static_cast <ticpp::Document*>(Doc.Wrapped)); }
 
-        std::ostream& Document::operator<< (std::ostream &Out)
-            { return Out << *(static_cast <ticpp::Document*>(this->Wrapped)); }
-
+        std::ostream& operator<< (std::ostream &Out, xml::Document &Doc)
+            { return Out << *(static_cast <ticpp::Document*>(Doc.Wrapped)); }
 
     }// /xml
 }// /phys
