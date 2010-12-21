@@ -99,6 +99,10 @@ namespace phys
         std::ostream& operator<< (std::ostream &Out, xml::Document &Doc)
             { return Out << *(static_cast <ticpp::Document*>(Doc.Wrapped)); }
 
+        void TestXML(std::istream* Ins)
+        {
+
+        }
     }// /xml
 }// /phys
 

@@ -533,7 +533,7 @@ void LoadContent()
 
 
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
-        TestPhysXML(XMLptr);
+        phys::xml::TestXML(XMLptr);
 
         /*
 

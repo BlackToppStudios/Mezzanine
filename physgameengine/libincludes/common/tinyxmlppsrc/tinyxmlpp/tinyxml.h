@@ -299,7 +299,7 @@ public:
 		TIXML_ERROR_STRING_COUNT
 	};
 
-protected:
+public:
 
 	static const char* SkipWhiteSpace( const char*, TiXmlEncoding encoding );
 	inline static bool IsWhiteSpace( char c )
@@ -408,7 +408,7 @@ protected:
 	}
 	static void ConvertUTF32ToUTF8( unsigned long input, char* output, int* length );
 
-private:
+protected:
 	TiXmlBase( const TiXmlBase& );				// not implemented.
 	void operator=( const TiXmlBase& base );	// not allowed.
 
@@ -755,7 +755,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* visitor ) const = 0;
 
-protected:
+public:
 	TiXmlNode( NodeType _type );
 
 	// Copy to the allocated object. Shared functionality between Clone, Copy constructor,
@@ -781,7 +781,7 @@ protected:
 	TiXmlNode*		prev;
 	TiXmlNode*		next;
 
-private:
+protected:
 	TiXmlNode( const TiXmlNode& );				// not implemented.
 	void operator=( const TiXmlNode& base );	// not allowed.
 };
@@ -894,7 +894,7 @@ public:
 	// Set the document pointer so the attribute can report errors.
 	void SetDocument( TiXmlDocument* doc )	{ document = doc; }
 
-private:
+protected:
 	TiXmlAttribute( const TiXmlAttribute& );				// not implemented.
 	void operator=( const TiXmlAttribute& base );	// not allowed.
 
@@ -944,7 +944,7 @@ public:
 
 	#endif
 
-private:
+protected:
 	//*ME:	Because of hidden/disabled copy-construktor in TiXmlAttribute (sentinel-element),
 	//*ME:	this class must be also use a hidden/disabled copy-constructor !!!
 	TiXmlAttributeSet( const TiXmlAttributeSet& );	// not allowed
@@ -1145,7 +1145,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* visitor ) const;
 
-protected:
+public:
 
 	void CopyTo( TiXmlElement* target ) const;
 	void ClearThis();	// like clear, but initializes 'this' object as well
@@ -1160,7 +1160,7 @@ protected:
 	*/
 	const char* ReadValue( const char* in, TiXmlParsingData* prevData, TiXmlEncoding encoding );
 
-private:
+protected:
 
 	TiXmlAttributeSet attributeSet;
 };
@@ -1199,7 +1199,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* visitor ) const;
 
-protected:
+public:
 	void CopyTo( TiXmlComment* target ) const;
 
 	// used to be public
@@ -1208,7 +1208,7 @@ protected:
 	#endif
 //	virtual void StreamOut( TIXML_OSTREAM * out ) const;
 
-private:
+protected:
 
 };
 
@@ -1262,7 +1262,7 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* content ) const;
 
-protected :
+public :
 	///  [internal use] Creates a new Element and returns it.
 	virtual TiXmlNode* Clone() const;
 	void CopyTo( TiXmlText* target ) const;
@@ -1273,7 +1273,7 @@ protected :
 	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
 	#endif
 
-private:
+protected:
 	bool cdata;			// true if this should be input and output as a CDATA style text element
 };
 
@@ -1338,14 +1338,14 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* visitor ) const;
 
-protected:
+public:
 	void CopyTo( TiXmlDeclaration* target ) const;
 	// used to be public
 	#ifdef TIXML_USE_STL
 	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
 	#endif
 
-private:
+protected:
 
 	TIXML_STRING version;
 	TIXML_STRING encoding;
@@ -1404,14 +1404,14 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* visitor ) const;
 
-protected:
+public:
 	void CopyTo( TiXmlStylesheetReference* target ) const;
 	// used to be public
 	#ifdef TIXML_USE_STL
 	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
 	#endif
 
-private:
+protected:
 
 	TIXML_STRING type;
 	TIXML_STRING href;
@@ -1447,14 +1447,14 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* content ) const;
 
-protected:
+public:
 	void CopyTo( TiXmlUnknown* target ) const;
 
 	#ifdef TIXML_USE_STL
 	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
 	#endif
 
-private:
+protected:
 
 };
 
@@ -1613,14 +1613,14 @@ public:
 	*/
 	virtual bool Accept( TiXmlVisitor* content ) const;
 
-protected :
+public :
 	// [internal use]
 	virtual TiXmlNode* Clone() const;
 	#ifdef TIXML_USE_STL
 	virtual void StreamIn( std::istream * in, TIXML_STRING * tag );
 	#endif
 
-private:
+protected:
 	void CopyTo( TiXmlDocument* target ) const;
 
 	bool error;
@@ -1787,7 +1787,7 @@ public:
 	*/
 	TiXmlUnknown* Unknown() const	{ return ToUnknown(); }
 
-private:
+protected:
 	TiXmlNode* node;
 };
 
@@ -1859,7 +1859,7 @@ public:
 	const std::string& Str()						{ return buffer; }
 	#endif
 
-private:
+protected:
 	void DoIndent()	{
 		for( int i=0; i<depth; ++i )
 			buffer += indent;

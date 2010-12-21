@@ -294,6 +294,7 @@ namespace ticpp
 		@internal
 		Get internal TiXmlBase*
 		*/
+    public:
 		virtual TiXmlBase* GetBasePointer() const = 0;
 	};
 
@@ -304,13 +305,14 @@ namespace ticpp
 	{
 	private:
 		TiXmlAttribute* m_tiXmlPointer;
+    public:
 		TiXmlBase* GetBasePointer() const
 		{
 			ValidatePointer();
 			return m_tiXmlPointer;
 		}
 
-	public:
+
 		/**
 		Construct an empty attribute.
 		*/
@@ -1007,7 +1009,7 @@ namespace ticpp
  			return out;
  		}
 
-	protected:
+	public:
 		/**
 		@internal
 		Allows NodeImp to use Node*'s.
