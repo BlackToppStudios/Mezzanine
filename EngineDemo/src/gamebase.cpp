@@ -532,8 +532,8 @@ void LoadContent()
 
 
 
-        ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
-        phys::xml::TestXML(XMLptr);
+        //ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+        //phys::xml::TestXML(XMLptr);
 
         /*
 

@@ -327,6 +327,7 @@ target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio SD
 #######################################
 #Copy Common Files at Build Time
 CopyFilesDuringBuild( common/Ogre-lgpl-3.0.txt data/common/Ogre-lgpl-3.0.txt )
+CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )
 CopyFilesDuringBuild( ${BuildPlatform}/plugins.cfg data/${BuildPlatform}/plugins.cfg )
 CopyFilesDuringBuild( ${BuildPlatform}/settings.cfg data/${BuildPlatform}/settings.cfg )
 
