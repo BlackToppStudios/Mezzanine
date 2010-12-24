@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<level catchversion="indev">
   <!-- Everything should be encapsulated in a level tag
   Current versions of this schema are list here
   indev = The version currently in development. Anything can change. Defined in Docs/indevschema.xml
   alpha = The version pitched at Steam. Rough version Backwords compatibility will be maintained where easy.
   Beta = The version outside players first got to try. Backwords compatibilty will be maintained.
   1.0 = First Release			-->
-<level catchversion="indev">
 
   <!-- This is used to present information about the level to nongame tools -->
   <meta>

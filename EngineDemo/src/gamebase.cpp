@@ -690,8 +690,8 @@ void MakeGUI()
     UI::TextButton* MenuButton = HUD->CreateTextButton( "Menu", Vector2(0.0, 0.92),
                                             Vector2(0.2, 0.08),
                                             24, "Menu");
-    MenuButton->HorizontallyAlign(UI::Middle);
-    MenuButton->VerticallyAlign(UI::Center);
+    MenuButton->HorizontallyAlign(UI::Txt_Middle);
+    MenuButton->VerticallyAlign(UI::Txt_Center);
     ColourValue MenuColour(0.1,0.3,0.8,1.0);
     MenuButton->SetBackgroundColour(MenuColour);
 
@@ -707,16 +707,16 @@ void MakeGUI()
     UI::TextButton* ReturnButton = Menu->CreateTextButton( "Return", Vector2(0.30, 0.61),
                                             Vector2(0.4, 0.08),
                                             24, "Return to Game");
-    ReturnButton->HorizontallyAlign(UI::Middle);
-    ReturnButton->VerticallyAlign(UI::Center);
+    ReturnButton->HorizontallyAlign(UI::Txt_Middle);
+    ReturnButton->VerticallyAlign(UI::Txt_Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(Colours);
 
     UI::TextButton* ExitButton = Menu->CreateTextButton( "Exit", Vector2(0.30, 0.73),
                                             Vector2(0.4, 0.08),
                                             24, "Exit Game");
-    ExitButton->HorizontallyAlign(UI::Middle);
-    ExitButton->VerticallyAlign(UI::Center);
+    ExitButton->HorizontallyAlign(UI::Txt_Middle);
+    ExitButton->VerticallyAlign(UI::Txt_Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ExitButton->SetBackgroundColour(Colours);
     Menu->Hide();
