@@ -77,6 +77,37 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Equality Comparison operators
+
+    bool Vector2::operator== (const phys::Vector2 &Vec2)
+    {
+        if ( Vec2.X == this->X && Vec2.Y == this->Y )
+            { return true; }
+        return false;
+    }
+
+    bool Vector2::operator!= (const phys::Vector2 &Vec2)
+    {
+        if ( Vec2.X != this->X || Vec2.Y != this->Y )
+            { return true; }
+        return false;
+    }
+
+    bool Vector2::operator== (const Ogre::Vector2 &Vec2)
+    {
+        if ( Vec2.x == this->X && Vec2.y == this->Y )
+            { return true; }
+        return false;
+    }
+
+    bool Vector2::operator!= (const Ogre::Vector2 &Vec2)
+    {
+        if ( Vec2.x != this->X || Vec2.y != this->Y )
+            { return true; }
+        return false;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Vector2 Arithmetic with Real
     Vector2 Vector2::operator* (const Real &scalar) const
     {

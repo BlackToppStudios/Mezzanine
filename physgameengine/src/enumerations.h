@@ -81,6 +81,7 @@ namespace phys
         enum ResizeableTether
         {
             RT_TetherBoth,
+            RT_TetherNone,
             RT_TetherHorizontal,
             RT_TetherVertical
         };

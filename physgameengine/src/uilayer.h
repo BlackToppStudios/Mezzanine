@@ -70,6 +70,7 @@ namespace phys
         class ButtonListBox;
         class ListBox;
         class LineList;
+        class Window;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UILayer
@@ -267,6 +268,13 @@ namespace phys
             /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
             /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
             UI::ListBox* CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
+            /// @brief Creates a Window within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+            /// @return Returns a pointer to the created Window.
+            /// @param Name The name of the Window.
+            /// @param Position The top left position of the Window.
+            /// @param Size The size of the Window.
+            UI::Window* CreateWindow(ConstString& Name, Vector2 Position, Vector2 Size);
             ///////////////////////////////////////////////////////////////////////////////
             // UI Element and Widget Checks
             ///////////////////////////////////////

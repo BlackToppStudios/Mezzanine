@@ -87,6 +87,29 @@ namespace phys
             void ExtractOgreVector2(Ogre::Vector2 Ours);
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Equality Comparison operators
+
+            /// @brief Equality Comparison Operator
+            /// @details Returns true if X==X and Y==Y. If any of those do not match this returns false.
+            /// @param Vec2 This is the other phys::Vector2.
+            bool operator== (const phys::Vector2 &Vec2);
+
+            /// @brief Equality Comparison Operator
+            /// @details Returns true if X!=X or Y!=Y. If any of those do not match this returns false.
+            /// @param Vec2 This is the other phys::Vector2.
+            bool operator!= (const phys::Vector2 &Vec2);
+
+            /// @brief Equality Comparison Operator
+            /// @details Returns true if X==X and Y==Y. If any of those do not match this returns false.
+            /// @param Vec2 This is the other Ogre::Vector2.
+            bool operator== (const Ogre::Vector2 &Vec2);
+
+            /// @brief Equality Comparison Operator
+            /// @details Returns true if X!=X or Y!=Y. If any of those do not match this returns false.
+            /// @param Vec2 This is the other Ogre::Vector2.
+            bool operator!= (const Ogre::Vector2 &Vec2);
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Vector2 Arithmetic with Real
             /// @brief Scaling by multiplication
             /// @details This Multiplies X, Y and Z by scalar

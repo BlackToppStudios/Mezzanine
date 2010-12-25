@@ -64,7 +64,7 @@ int main(int argc, char **argv)
     TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
     //Setup some light and configure the camera.
-    TheWorld->GetCameraManager()->GetDefaultCamera()->SetCameraType(Camera::Orthographic);
+    //TheWorld->GetCameraManager()->GetDefaultCamera()->SetCameraType(Camera::Orthographic);
     TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
 
     Node* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,0.0,-250.0), true );
@@ -394,15 +394,15 @@ void LoadContent()
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld->GetResourceManager()->InitResourceGroup(groupname);
 
-    /*ActorRigid *object1 = new ActorRigid (0,"Ferris","ferrisWheel.mesh","Group1");
+    ActorRigid *object1 = new ActorRigid (0,"Ferris","ferrisWheel.mesh","Group1");
     object1->CreateShapeFromMeshDynamic(3);
     object1->SetInitLocation(Vector3(0,0,0));
     object1->SetInitOrientation(Quaternion(1.0, 0.0, 0.0, 0.55));
     TheWorld->GetActorManager()->AddActor(object1);
-    TheWorld->GetPhysicsManager()->SetGravity(Vector3(0,0,0));*/
+    TheWorld->GetPhysicsManager()->SetGravity(Vector3(0,0,0));
 
-    //TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0,0,-500));
-    //TheWorld->GetCameraManager()->GetDefaultCamera()->LookAt(Vector3(0,0,0));
+    TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0,0,-900));
+    TheWorld->GetCameraManager()->GetDefaultCamera()->LookAt(Vector3(0,0,0));
 }
 
 void MakeGUI()
@@ -425,8 +425,8 @@ void MakeGUI()
 
     //Build the HUD layer
     UI::Caption* Timer = HUD->CreateCaption( "Timer", Vector2(0.8995, 0.006), Vector2(0.0965, 0.06), 20, "0:00");
-    Timer->HorizontallyAlign(UI::Middle);
-    Timer->VerticallyAlign(UI::Center);
+    Timer->HorizontallyAlign(UI::Txt_Middle);
+    Timer->VerticallyAlign(UI::Txt_Center);
     Timer->SetBackgroundSprite("TimerArea");
 
     UI::Rectangle* TIcon = HUD->CreateRectangle( Vector2(0.8515, 0.006), Vector2(0.0482, 0.06));
@@ -444,13 +444,13 @@ void MakeGUI()
     UI::Caption* ScoreAmount = HUD->CreateCaption( "ScoreArea", Vector2(0.135, 0.006), Vector2(0.15, 0.065), 20, "0");
     //ScoreAmount->SetBackgroundSprite("ScoreCashArea");
     ScoreAmount->SetBackgroundColour(Transparent);
-    ScoreAmount->HorizontallyAlign(UI::Middle);
-    ScoreAmount->VerticallyAlign(UI::Center);
+    ScoreAmount->HorizontallyAlign(UI::Txt_Middle);
+    ScoreAmount->VerticallyAlign(UI::Txt_Center);
 
     UI::Rectangle* ScoreText = HUD->CreateRectangle( Vector2(0.008, 0.006), Vector2(0.12, 0.06));
     ScoreText->SetBackgroundSprite("ScoreText");
 
-    ColourValue Buttons(0.1,0.8,0.1,1.0);
+    /*ColourValue Buttons(0.1,0.8,0.1,1.0);
     ColourValue ScrollBackground(0.9,0.6,0.6,0.5);
     ColourValue ScrollBarColour(0.2,0.2,0.2,1.0);
     ColourValue BoxBack(0.45,0.025,0.45,1.0);
@@ -472,7 +472,7 @@ void MakeGUI()
     LBTest->AddSelection("Test7","Test7");
     LBTest->AddSelection("Test8","Test8");
     LBTest->AddSelection("Test9","Test9");
-    /*
+    */ /*
     UI::ButtonListBox* BLBTest = HUD->CreateButtonListBox("Test", Vector2(0.25,0.25), Vector2(0.4,0.3), 0.025, UI::Separate);
     BLBTest->GetBoxBack()->SetBackgroundColour(BoxBack);
     BLBTest->GetVertScroll()->GetUpLeftButton()->SetBackgroundColour(Buttons);
@@ -511,16 +511,16 @@ void MakeGUI()
     UI::TextButton* ReturnButton = Menu->CreateTextButton( "Return", Vector2(0.30, 0.61),
                                             Vector2(0.4, 0.08),
                                             18, "Return to Game");
-    ReturnButton->HorizontallyAlign(UI::Middle);
-    ReturnButton->VerticallyAlign(UI::Center);
+    ReturnButton->HorizontallyAlign(UI::Txt_Middle);
+    ReturnButton->VerticallyAlign(UI::Txt_Center);
     ColourValue ReturnColours(0.6,0.2,0.2,1.0);
     ReturnButton->SetBackgroundColour(ReturnColours);
 
     UI::TextButton* ExitButton = Menu->CreateTextButton( "Exit", Vector2(0.30, 0.73),
                                             Vector2(0.4, 0.08),
                                             18, "Exit Game");
-    ExitButton->HorizontallyAlign(UI::Middle);
-    ExitButton->VerticallyAlign(UI::Center);
+    ExitButton->HorizontallyAlign(UI::Txt_Middle);
+    ExitButton->VerticallyAlign(UI::Txt_Center);
     ColourValue ExitColours(0.6,0.2,0.2,1.0);
     ExitButton->SetBackgroundColour(ExitColours);
     Menu->Hide();
@@ -528,23 +528,23 @@ void MakeGUI()
     //Misc Extra's
     UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", Vector2(0.16, 0.06), Vector2(0.06, 0.065), 14, "0.0");
     CurFPS->SetBackgroundColour(Transparent);
-    CurFPS->HorizontallyAlign(UI::Left);
-    CurFPS->VerticallyAlign(UI::Center);
+    CurFPS->HorizontallyAlign(UI::Txt_Left);
+    CurFPS->VerticallyAlign(UI::Txt_Center);
 
     UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", Vector2(0.008, 0.06), Vector2(0.15, 0.065), 14, "Current FPS: ");
     CurFPSText->SetBackgroundColour(Transparent);
-    CurFPSText->HorizontallyAlign(UI::Left);
-    CurFPSText->VerticallyAlign(UI::Center);
+    CurFPSText->HorizontallyAlign(UI::Txt_Left);
+    CurFPSText->VerticallyAlign(UI::Txt_Center);
 
     UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", Vector2(0.16, 0.105), Vector2(0.06, 0.065), 14, "0.0");
     AvFPS->SetBackgroundColour(Transparent);
-    AvFPS->HorizontallyAlign(UI::Left);
-    AvFPS->VerticallyAlign(UI::Center);
+    AvFPS->HorizontallyAlign(UI::Txt_Left);
+    AvFPS->VerticallyAlign(UI::Txt_Center);
 
     UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", Vector2(0.008, 0.105), Vector2(0.15, 0.065), 14, "Average FPS: ");
     AvFPSText->SetBackgroundColour(Transparent);
-    AvFPSText->HorizontallyAlign(UI::Left);
-    AvFPSText->VerticallyAlign(UI::Center);
+    AvFPSText->HorizontallyAlign(UI::Txt_Left);
+    AvFPSText->VerticallyAlign(UI::Txt_Center);
     //Stats->Hide();
 }
 #endif
