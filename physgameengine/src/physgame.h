@@ -108,14 +108,5 @@
 #include "world.h"
 #include "worldgetset.h"
 #include "worldquerytool.h"
-#include "xmlattribute.h"
-#include "xmlbase.h"
-#include "xmlcomment.h"
-#include "xmldeclaration.h"
-#include "xmldocument.h"
-#include "xmlelement.h"
-#include "xmlnode.h"
-#include "xmlstylesheetreference.h"
-#include "xmltext.h"
 
 #endif

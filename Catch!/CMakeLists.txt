@@ -94,6 +94,7 @@ CopyDemoFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudio
 CopyDemoFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
 
 CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
+CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )
 
 ##############################################################################
 #Copy System Dependant files during build time

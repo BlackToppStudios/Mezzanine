@@ -101,15 +101,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/world.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlattribute.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlbase.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlcomment.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmldeclaration.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmldocument.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlelement.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlnode.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlstylesheetreference.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmltext.h"
 
 #######################################
 # A complete listing of our source files
@@ -181,15 +172,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/world.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlattribute.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlbase.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlcomment.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmldeclaration.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmldocument.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlelement.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlnode.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmlstylesheetreference.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmltext.cpp"
 )
 
 ###############################################################################
@@ -300,7 +282,6 @@ include_directories( ${${PROJECT_NAME}_SOURCE_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/tinyxmlppsrc/tinyxmlpp"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
 )
 
@@ -308,7 +289,6 @@ link_directories(
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/ogre"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/bullet"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/caudio"
-	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/tinyxmlpp"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/openal"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/oggvorbis"
 )
@@ -319,12 +299,11 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 
 #######################################
 # Prepare Common Dependencies
-add_subdirectory (libincludes/common/tinyxmlppsrc)
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
 #add_subdirectory (${BuildSpecificDirs})
 
-add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet  ticpp )
+add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio  Bullet )
 
 #######################################
 # Library Link Dependencies
@@ -340,7 +319,7 @@ set( Bullet_LibraryNames
 	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
 )
 
-target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} ticpp cAudio SDL )
+target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio SDL )
 
 ###############################################################################
 # Build Time File copying
@@ -348,6 +327,7 @@ target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} ticpp cAu
 #######################################
 #Copy Common Files at Build Time
 CopyFilesDuringBuild( common/Ogre-lgpl-3.0.txt data/common/Ogre-lgpl-3.0.txt )
+CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )
 CopyFilesDuringBuild( ${BuildPlatform}/plugins.cfg data/${BuildPlatform}/plugins.cfg )
 CopyFilesDuringBuild( ${BuildPlatform}/settings.cfg data/${BuildPlatform}/settings.cfg )
 
