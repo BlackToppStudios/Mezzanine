@@ -1,20 +1,107 @@
-/**
+//© Copyright 2010 BlackTopp Studios Inc.
+/* This file is part of The PhysGame Engine.
+
+    The PhysGame Engine is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    The PhysGame Engine is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* The original authors have included a copy of the license specified above in the
+   'Docs' folder. See 'gpl.txt'
+*/
+/* We welcome the use of The PhysGame anyone, including companies who wish to
+   Build professional software and charge for their product.
+
+   However there are some practical restrictions, so if your project involves
+   any of the following you should contact us and we will try to work something
+   out:
+    - DRM or Copy Protection of any kind(except Copyrights)
+    - Software Patents You Do Not Wish to Freely License
+    - Any Kind of Linking to Non-GPL licensed Works
+    - Are Currently In Violation of Another Copyright Holder's GPL License
+    - If You want to change our code and not add a few hundred MB of stuff to
+        your distribution
+
+   These and other limitations could cause serious legal problems if you ignore
+   them, so it is best to simply contact us or the Free Software Foundation, if
+   you have any questions.
+
+   Joseph Toppi - toppij@gmail.com
+   John Blackwood - makoenergy02@gmail.com
+*/
+/*
  * pugixml parser - version 1.0
  * --------------------------------------------------------
  * Copyright (C) 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
  * Report bugs and download new versions at http://pugixml.org/
  *
- * This library is distributed under the MIT License. See notice at the end
+ * This file is distributed under the MIT License. See notice at the end
  * of this file.
  *
  * This work is based on the pugxml parser, which is:
  * Copyright (C) 2003, by Kristen Wegner (kristen@tima.net)
  */
 
-#ifndef HEADER_PUGIXML_HPP
-#define HEADER_PUGIXML_HPP
+#ifndef HEADER_XMLCONFIG_HPP
+#define HEADER_XMLCONFIG_HPP
 
-#include "pugiconfig.hpp"
+// Uncomment this to enable wchar_t mode
+// #define PUGIXML_WCHAR_MODE
+
+// Uncomment this to disable XPath
+// #define PUGIXML_NO_XPATH
+
+// Uncomment this to disable STL
+// Note: you can't use XPath with PUGIXML_NO_STL
+// #define PUGIXML_NO_STL
+
+// Uncomment this to disable exceptions
+// Note: you can't use XPath with PUGIXML_NO_EXCEPTIONS
+// #define PUGIXML_NO_EXCEPTIONS
+
+// Set this to control attributes for public classes/functions, i.e.:
+// #define PUGIXML_API __declspec(dllexport) // to export all public symbols from DLL
+// #define PUGIXML_CLASS __declspec(dllimport) // to import all classes from DLL
+// #define PUGIXML_FUNCTION __fastcall // to set calling conventions to all public functions to fastcall
+// In absence of PUGIXML_CLASS/PUGIXML_FUNCTION definitions PUGIXML_API is used instead
+
+#endif
+
+/*
+ * Copyright (c) 2006-2010 Arseny Kapoulkine
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+#ifndef _XML_H
+#define _XML_H
 
 #ifndef PUGIXML_NO_STL
 namespace std
@@ -139,13 +226,13 @@ namespace pugi
 
 	// This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default.
 	const unsigned int parse_eol = 0x0020;
-	
+
  	// This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default.
  	const unsigned int parse_wconv_attribute = 0x0040;
 
  	// This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default.
  	const unsigned int parse_wnorm_attribute = 0x0080;
-	
+
     // This flag determines if document declaration (node_declaration) is added to the DOM tree. This flag is off by default.
 	const unsigned int parse_declaration = 0x0100;
 
@@ -177,23 +264,23 @@ namespace pugi
 	};
 
 	// Formatting flags
-	
+
 	// Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default.
 	const unsigned int format_indent = 0x01;
-	
+
 	// Write encoding-specific BOM to the output stream. This flag is off by default.
 	const unsigned int format_write_bom = 0x02;
 
 	// Use raw output mode (no indentation and no line breaks are written). This flag is off by default.
 	const unsigned int format_raw = 0x04;
-	
+
 	// Omit default XML declaration even if there is no declaration in the document. This flag is off by default.
 	const unsigned int format_no_declaration = 0x08;
 
 	// The default set of formatting flags.
     // Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none.
 	const unsigned int format_default = format_indent;
-		
+
 	// Forward declarations
 	struct xml_attribute_struct;
 	struct xml_node_struct;
@@ -202,7 +289,7 @@ namespace pugi
 	class xml_attribute_iterator;
 
 	class xml_tree_walker;
-	
+
 	class xml_node;
 
 	#ifndef PUGIXML_NO_XPATH
@@ -260,13 +347,13 @@ namespace pugi
 
 	private:
 		xml_attribute_struct* _attr;
-	
+
     	typedef xml_attribute_struct* xml_attribute::*unspecified_bool_type;
 
 	public:
         // Default constructor. Constructs an empty attribute.
 		xml_attribute();
-		
+
         // Constructs attribute from internal pointer
 		explicit xml_attribute(xml_attribute_struct* attr);
 
@@ -357,7 +444,7 @@ namespace pugi
 
 		// Borland C++ workaround
 		bool operator!() const;
-	
+
 		// Comparison operators (compares wrapped node pointers)
 		bool operator==(const xml_node& r) const;
 		bool operator!=(const xml_node& r) const;
@@ -375,7 +462,7 @@ namespace pugi
 		// Get node name/value, or "" if node is empty or it has no name/value
 		const char_t* name() const;
 		const char_t* value() const;
-	
+
 		// Get attribute list
 		xml_attribute first_attribute() const;
         xml_attribute last_attribute() const;
@@ -387,7 +474,7 @@ namespace pugi
         // Get next/previous sibling in the children list of the parent node
 		xml_node next_sibling() const;
 		xml_node previous_sibling() const;
-		
+
         // Get parent node
 		xml_node parent() const;
 
@@ -409,7 +496,7 @@ namespace pugi
 		// Set node name/value (returns false if node is empty, there is not enough memory, or node can not have name/value)
 		bool set_name(const char_t* rhs);
 		bool set_value(const char_t* rhs);
-		
+
 		// Add attribute with specified name. Returns added attribute, or empty attribute on errors.
 		xml_attribute append_attribute(const char_t* name);
 		xml_attribute prepend_attribute(const char_t* name);
@@ -452,11 +539,11 @@ namespace pugi
 		template <typename Predicate> xml_attribute find_attribute(Predicate pred) const
 		{
 			if (!_root) return xml_attribute();
-			
+
 			for (xml_attribute attrib = first_attribute(); attrib; attrib = attrib.next_attribute())
 				if (pred(attrib))
 					return attrib;
-		
+
 			return xml_attribute();
 		}
 
@@ -464,11 +551,11 @@ namespace pugi
 		template <typename Predicate> xml_node find_child(Predicate pred) const
 		{
 			if (!_root) return xml_node();
-	
+
 			for (xml_node node = first_child(); node; node = node.next_sibling())
 				if (pred(node))
 					return node;
-        
+
 	        return xml_node();
 		}
 
@@ -478,7 +565,7 @@ namespace pugi
 			if (!_root) return xml_node();
 
 			xml_node cur = first_child();
-			
+
 			while (cur._root && cur._root != _root)
 			{
 				if (pred(cur)) return cur;
@@ -510,7 +597,7 @@ namespace pugi
 
 		// Recursively traverse subtree with xml_tree_walker
 		bool traverse(xml_tree_walker& walker);
-	
+
 	#ifndef PUGIXML_NO_XPATH
 		// Select single node by evaluating XPath query. Returns first node from the resulting node set.
 		xpath_node select_single_node(const char_t* query, xpath_variable_set* variables = 0) const;
@@ -520,7 +607,7 @@ namespace pugi
 		xpath_node_set select_nodes(const char_t* query, xpath_variable_set* variables = 0) const;
 		xpath_node_set select_nodes(const xpath_query& query) const;
 	#endif
-		
+
 		// Print subtree using a writer object
 		void print(xml_writer& writer, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto, unsigned int depth = 0) const;
 
@@ -649,11 +736,11 @@ namespace pugi
 
 	private:
 		int _depth;
-	
+
 	protected:
 		// Get current traversal depth
 		int depth() const;
-	
+
 	public:
 		xml_tree_walker();
 		virtual ~xml_tree_walker();
@@ -720,7 +807,7 @@ namespace pugi
 		char_t* _buffer;
 
 		char _memory[192];
-		
+
 		// Non-copyable semantics
 		xml_document(const xml_document&);
 		const xml_document& operator=(const xml_document&);
@@ -828,7 +915,7 @@ namespace pugi
 		// Non-copyable semantics
 		xpath_variable(const xpath_variable&);
 		xpath_variable& operator=(const xpath_variable&);
-		
+
 	public:
         // Get variable name
 		const char_t* name() const;
@@ -903,21 +990,21 @@ namespace pugi
 
 		// Get query expression return type
 		xpath_value_type return_type() const;
-		
+
 		// Evaluate expression as boolean value in the specified context; performs type conversion if necessary.
         // If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
 		bool evaluate_boolean(const xpath_node& n) const;
-		
+
 		// Evaluate expression as double value in the specified context; performs type conversion if necessary.
         // If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
 		double evaluate_number(const xpath_node& n) const;
-		
+
 	#ifndef PUGIXML_NO_STL
 		// Evaluate expression as string value in the specified context; performs type conversion if necessary.
         // If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
 		string_t evaluate_string(const xpath_node& n) const;
 	#endif
-		
+
 		// Evaluate expression as string value in the specified context; performs type conversion if necessary.
         // At most capacity characters are written to the destination buffer, full result size is returned (includes terminating zero).
         // If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
@@ -938,7 +1025,7 @@ namespace pugi
     	// Borland C++ workaround
 		bool operator!() const;
 	};
-	
+
 	#ifndef PUGIXML_NO_EXCEPTIONS
 	// XPath exception class
 	class PUGIXML_CLASS xpath_exception: public std::exception
@@ -957,20 +1044,20 @@ namespace pugi
 		const xpath_parse_result& result() const;
 	};
 	#endif
-	
+
 	// XPath node class (either xml_node or xml_attribute)
 	class PUGIXML_CLASS xpath_node
 	{
 	private:
 		xml_node _node;
 		xml_attribute _attribute;
-	
+
     	typedef xml_node xpath_node::*unspecified_bool_type;
 
 	public:
 		// Default constructor; constructs empty XPath node
 		xpath_node();
-		
+
 		// Construct XPath node from XML node/attribute
 		xpath_node(const xml_node& node);
 		xpath_node(const xml_attribute& attribute, const xml_node& parent);
@@ -978,13 +1065,13 @@ namespace pugi
 		// Get node/attribute, if any
 		xml_node node() const;
 		xml_attribute attribute() const;
-		
+
 		// Get parent of contained node/attribute
 		xml_node parent() const;
 
     	// Safe bool conversion operator
 		operator unspecified_bool_type() const;
-		
+
     	// Borland C++ workaround
     	bool operator!() const;
 
@@ -1010,10 +1097,10 @@ namespace pugi
 			type_sorted,			// Sorted by document order (ascending)
 			type_sorted_reverse		// Sorted by document order (descending)
 		};
-		
+
 		// Constant iterator type
 		typedef const xpath_node* const_iterator;
-	
+
 		// Default constructor. Constructs empty set.
 		xpath_node_set();
 
@@ -1022,38 +1109,38 @@ namespace pugi
 
 		// Destructor
 		~xpath_node_set();
-		
+
 		// Copy constructor/assignment operator
 		xpath_node_set(const xpath_node_set& ns);
 		xpath_node_set& operator=(const xpath_node_set& ns);
 
 		// Get collection type
 		type_t type() const;
-		
+
 		// Get collection size
 		size_t size() const;
 
         // Indexing operator
 		const xpath_node& operator[](size_t index) const;
-		
+
 		// Collection iterators
 		const_iterator begin() const;
 		const_iterator end() const;
 
 		// Sort the collection in ascending/descending order by document order
 		void sort(bool reverse = false);
-		
+
 		// Get first node in the collection by document order
 		xpath_node first() const;
-		
+
 		// Check if collection is empty
 		bool empty() const;
-    
+
 	private:
 		type_t _type;
-		
+
 		xpath_node _storage;
-		
+
 		xpath_node* _begin;
 		xpath_node* _end;
 
@@ -1065,7 +1152,7 @@ namespace pugi
 	// Convert wide string to UTF8
 	std::basic_string<char, std::char_traits<char>, std::allocator<char> > PUGIXML_FUNCTION as_utf8(const wchar_t* str);
 	std::basic_string<char, std::char_traits<char>, std::allocator<char> > PUGIXML_FUNCTION as_utf8(const std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >& str);
-	
+
 	// Convert UTF8 to wide string
 	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > PUGIXML_FUNCTION as_wide(const char* str);
 	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > PUGIXML_FUNCTION as_wide(const std::basic_string<char, std::char_traits<char>, std::allocator<char> >& str);
@@ -1073,13 +1160,13 @@ namespace pugi
 
 	// Memory allocation function interface; returns pointer to allocated memory or NULL on failure
 	typedef void* (*allocation_function)(size_t size);
-	
+
 	// Memory deallocation function interface
     typedef void (*deallocation_function)(void* ptr);
 
     // Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions.
     void PUGIXML_FUNCTION set_memory_management_functions(allocation_function allocate, deallocation_function deallocate);
-    
+
     // Get current memory management functions
     allocation_function PUGIXML_FUNCTION get_memory_allocation_function();
     deallocation_function PUGIXML_FUNCTION get_memory_deallocation_function();
@@ -1105,7 +1192,10 @@ namespace std
 
 #endif
 
-/**
+/*
+ * Software referenced in this clause refers on to the contents of this
+ * file and associated documentation.
+ *
  * Copyright (c) 2006-2010 Arseny Kapoulkine
  *
  * Permission is hereby granted, free of charge, to any person
@@ -1119,7 +1209,7 @@ namespace std
  *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
