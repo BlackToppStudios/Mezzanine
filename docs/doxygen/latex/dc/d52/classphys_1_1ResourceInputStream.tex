@@ -24,13 +24,21 @@ virtual \hyperlink{classphys_1_1ResourceInputStream_a03b9d40f0b006edd6daf25e9308
 bool \hyperlink{classphys_1_1ResourceInputStream_a4900f77dd452c2a2ddf47a76d36d85c3}{Readable} ()
 \begin{DoxyCompactList}\small\item\em Can this be read from. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1ResourceInputStream_a6e7619bf3efd3b344fab92d326385009}{Writeable} ()
-\begin{DoxyCompactList}\small\item\em Can this be written to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Can this be written to. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ResourceInputStream_a40a93720c3a4a9fb8c2c082c00574912}{
+{\footnotesize template$<$class T $>$ }\\\hyperlink{classphys_1_1ResourceInputStream}{ResourceInputStream} \& {\bfseries operator$>$$>$} (T \&Data)}
+\label{dc/d52/classphys_1_1ResourceInputStream_a40a93720c3a4a9fb8c2c082c00574912}
+
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-A stream from a file, can read from zip files as well. 
+A stream from a file, can read from zip files as well. \begin{DoxyWarning}{Warning}
+This currently only supports reading from the stream, and does not support any pointer navigation, or any other non-\/reading functions 
+\end{DoxyWarning}
 
-Definition at line 60 of file resourceinputstream.h.
+
+Definition at line 63 of file resourceinputstream.h.
 
 
 
@@ -51,13 +59,13 @@ Descriptive Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em InputBuffer}]A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of \hyperlink{namespaceOgre}{Ogre}). This Stream will assume ownership of this buffer and will handle deleting it. \item[{\em ResourceManager\_\-}]Currently unused, future functionality may tuse this. \end{DoxyParams}
+\item[{\em InputBuffer}]A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it. \item[{\em ResourceManager\_\-}]Currently unused, future functionality may tuse this. \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
 Do not delete the InputBuffer you pass in, this class will assume owner ship and delete it on it's own 
 \end{DoxyWarning}
 
 
-Definition at line 79 of file resourceinputstream.h.
+Definition at line 82 of file resourceinputstream.h.
 
 
 
@@ -80,7 +88,7 @@ A bool true if it can be read from
 \end{DoxyReturn}
 
 
-Definition at line 78 of file resourceinputstream.cpp.
+Definition at line 77 of file resourceinputstream.cpp.
 
 \hypertarget{classphys_1_1ResourceInputStream_a6e7619bf3efd3b344fab92d326385009}{
 \index{phys::ResourceInputStream@{phys::ResourceInputStream}!Writeable@{Writeable}}
@@ -100,7 +108,7 @@ A bool true if it can be written to
 \end{DoxyReturn}
 
 
-Definition at line 83 of file resourceinputstream.cpp.
+Definition at line 82 of file resourceinputstream.cpp.
 
 
 

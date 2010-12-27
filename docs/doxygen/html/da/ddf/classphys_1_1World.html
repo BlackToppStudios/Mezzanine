@@ -37,8 +37,7 @@
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
-<a href="#friends">Friends</a>  </div>
+<a href="#pro-static-attribs">Static Protected Attributes</a>  </div>
   <div class="headertitle">
 <h1>phys::World Class Reference</h1>  </div>
 </div>
@@ -63,10 +62,13 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deconstructor.  <a href="#a8b2c74c7e5d5ce3c46a814e183a7aff1"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">void PHYS_LIB&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293">Log</a> (T Message)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Runtime Event logging Function.  <a href="#a115b287bc8a23dfdf314f715a818e293"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Runtime event and message logging.  <a href="#a115b287bc8a23dfdf314f715a818e293"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dbf83226aaa109a09efab00ae682761"></a><!-- doxytag: member="phys::World::Log" ref="a7dbf83226aaa109a09efab00ae682761" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a7dbf83226aaa109a09efab00ae682761">Log</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Force any outstanding logs to be commited to logs. <br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50">LogAndThrow</a> (T Message)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the preferred way to throw an exception currently.  <a href="#a88e6bdee6b972111b6804ca746738c50"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the preferred way to throw an exception. It streams any thrown object to the log.  <a href="#a88e6bdee6b972111b6804ca746738c50"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#abf6cb15d85be4e7dcb99db24f979319b">LogString</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;message)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Log String directly with no conversion.  <a href="#abf6cb15d85be4e7dcb99db24f979319b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a1f0139bbc9561bcf18844be25e4adc73">GetWindowName</a> ()</td></tr>
@@ -126,23 +128,19 @@ Static Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Ogre::Root *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a07bd53ea67c1a956004a007f99f7fc5b">OgreRoot</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the core of the <a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a> rendering system.  <a href="#a07bd53ea67c1a956004a007f99f7fc5b"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the core of the Ogre rendering system.  <a href="#a07bd53ea67c1a956004a007f99f7fc5b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::stringstream&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a6d8b325a077afc924afb70c259ec0299">LogStream</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is another way to put data in the log.  <a href="#a6d8b325a077afc924afb70c259ec0299"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a78f9e764aa85ac44d6f7fa7158377757">TheRealWorld</a> = 0</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A pointer to the one and only world.  <a href="#a78f9e764aa85ac44d6f7fa7158377757"></a><br/></td></tr>
-<tr><td colspan="2"><h2><a name="friends"></a>
-Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a139cf05ac01161b7071c8a037c841683"></a><!-- doxytag: member="phys::World::PhysicsManager" ref="a139cf05ac01161b7071c8a037c841683" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is the main entry point for the entire library. </p>
 <p>The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00156">156</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00174">174</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a85f9e3e0fca9303c2499ccc0475d404b"></a><!-- doxytag: member="phys::World::World" ref="a85f9e3e0fca9303c2499ccc0475d404b" args="(const Vector3 &amp;GeographyLowerBounds_, const Vector3 &amp;GeographyUpperbounds_, std::string SceneManagerName, SceneManager::SceneManagerType SceneType, const unsigned short int &amp;MaxPhysicsProxies_=1024, std::string LogFileName=&quot;Physgame.log&quot;)" -->
 <div class="memitem">
@@ -358,7 +356,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00491">491</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00504">504</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -380,7 +378,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>This commits the log stream to the log. </p>
 <p>This is called automatically during the main loop just before rendering. </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00330">330</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00343">343</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -409,7 +407,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <p>Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be minimal delay from the time you call this and the game actually begins. This will automatically call the Main Loop unless passed false. </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00242">242</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00255">255</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -438,7 +436,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00620">620</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00633">633</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +465,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00625">625</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00638">638</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -496,7 +494,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00630">630</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00643">643</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -519,7 +517,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>This returns, in milliseconds the amount of time since the frame started (since the last rendering began) </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a whole number which can be used to aid in the timimg of various algorithms. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00478">478</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00491">491</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -548,7 +546,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00635">635</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00648">648</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -588,7 +586,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>, or a NULL pointer if no matching manager exists </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00554">554</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00567">567</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -617,7 +615,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00640">640</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00653">653</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -646,7 +644,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html" title="This is the manager responsible for the loading and unloading of files.">ResourceManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00655">655</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00668">668</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -675,7 +673,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00645">645</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00658">658</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -704,7 +702,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html" title="This is simply a place for storing all the Sound utilities and functions.">SoundManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00650">650</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00663">663</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -727,7 +725,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>In practice harI've done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn't mind that shouldn't be there. like there was a " Schedule : " right after a line where a pointer was initialized. I only found such occurrences in gamebase.cpp though, removed them and did two tests. First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over. Second time I ran the game trying to click stuff, I simply couldn't click anything. I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven't done yet, but there were no results with the Robots. The third time I was successfully able to stop two spheres and move them around the platform quite smoothly. These spheres were slightly further away from the camera compared to the first run. I stopped the wooden sphere and the second metal sphere. I included a screen shot and a copy of my log for the third run. The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a Whole with the current Value </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00463">463</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00476">476</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -756,7 +754,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00660">660</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00673">673</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -779,7 +777,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>This gets the texts that the engine has stored for use in the title bar </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a String Containing the Window Title </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00448">448</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00461">461</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -824,15 +822,16 @@ template&lt;class T &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Runtime Event logging Function. </p>
+<p>Runtime event and message logging. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Message</em>&nbsp;</td><td>This is what will be streamed to the log </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Message</em>&nbsp;</td><td>This is what will be streamed to the log</td></tr>
   </table>
   </dd>
 </dl>
+<p>This also commits any outstanding log messages that are waiting in the <a class="el" href="../../da/ddf/classphys_1_1World.html#a6d8b325a077afc924afb70c259ec0299" title="This is another way to put data in the log.">World::LogStream</a>, and any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the Only ones to produce meaningul log messages. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00300">300</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00319">319</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -854,8 +853,8 @@ template&lt;class T &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>This is the preferred way to throw an exception currently. </p>
-<p>This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data type the Log function supports </p>
+<p>This is the preferred way to throw an exception. It streams any thrown object to the log. </p>
+<p>This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data types that overload the stream insertion operator ( &lt;&lt; ) </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Message</em>&nbsp;</td><td>This will be streamed to the log, then used in a thrown exception. </td></tr>
@@ -863,7 +862,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00312">312</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00336">336</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -940,7 +939,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00516">516</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00529">529</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -979,7 +978,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00533">533</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00546">546</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1009,7 +1008,7 @@ template&lt;class T &gt; </div>
 </dl>
 <p>This sets, in milliseconds the amount of time since the frame started (since the last rendering began). Don't set this carelessely can screw up a lot of stuff, for the most part this should be by the rendering manager during the rendering process. </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00483">483</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00496">496</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1039,7 +1038,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00473">473</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00486">486</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1069,7 +1068,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00468">468</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00481">481</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1098,10 +1097,10 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000030">Todo:</a></b></dt><dd>TODO Change the name of an application once it is running </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000034">Todo:</a></b></dt><dd>TODO Change the name of an application once it is running </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00453">453</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00466">466</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1140,7 +1139,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00585">585</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00598">598</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1162,7 +1161,7 @@ template&lt;class T &gt; </div>
 <p>This forces the list of managers to be resorted. </p>
 <p>This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers </p>
 
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00605">605</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00618">618</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1179,9 +1178,9 @@ template&lt;class T &gt; </div>
 <div class="memdoc">
 
 <p>This is another way to put data in the log. </p>
-<p>The contents of this will be commited to the log once per frame, just before rendering. Because of that do not use this for data that is likely to be required to debug something the frame something crashes. however, for other kinds of debugging data and creating in game logs and recreations, this can be very useful. </p>
+<p>The contents of this will be commited to the log once per frame, just before rendering, or whenever <a class="el" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">World::Log</a> is called. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00478">478</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00330">330</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1196,11 +1195,11 @@ template&lt;class T &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>This is the core of the <a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a> rendering system. </p>
+<p>This is the core of the Ogre rendering system. </p>
 <p><b>For internal use only.</b></p>
 <p>Even thought the largest part of ogre is 3d rendering, it does not belong in the graphics manager. It is also responsible for a large number other services, such as logging, multithreading, and timing. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00215">215</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00231">231</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1218,7 +1217,7 @@ template&lt;class T &gt; </div>
 <p>A pointer to the one and only world. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00206">206</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00222">222</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1227,7 +1226,7 @@ template&lt;class T &gt; </div>
 <li><a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:18 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:22 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

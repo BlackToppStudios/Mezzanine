@@ -1,0 +1,1098 @@
+\hypertarget{classphys_1_1UI_1_1Window}{
+\section{phys::UI::Window Class Reference}
+\label{d4/d86/classphys_1_1UI_1_1Window}\index{phys::UI::Window@{phys::UI::Window}}
+}
+
+
+This is a container widget capable of holding any other widget.  
+
+
+
+
+{\ttfamily \#include $<$uiwindow.h$>$}
+
+Inheritance diagram for phys::UI::Window:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d4/d86/classphys_1_1UI_1_1Window}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UI_1_1Window_a81bb894db3fb0dc63e2a5b6f65ecfe4d}{Window} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Window_a3480249de9950a3993c5e7f836aa8f59}{
+virtual \hyperlink{classphys_1_1UI_1_1Window_a3480249de9950a3993c5e7f836aa8f59}{$\sim$Window} ()}
+\label{d4/d86/classphys_1_1UI_1_1Window_a3480249de9950a3993c5e7f836aa8f59}
+
+\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Window_a351439e78013bc87ecadcc00bce08573}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this window. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Window_aa1d88c50c0965510b494b51f3e5a7bf0}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this window. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Window_af945bd84876d577d1dc6e1c7e28329a8}{
+virtual void \hyperlink{classphys_1_1UI_1_1Window_af945bd84876d577d1dc6e1c7e28329a8}{Show} ()}
+\label{d4/d86/classphys_1_1UI_1_1Window_af945bd84876d577d1dc6e1c7e28329a8}
+
+\begin{DoxyCompactList}\small\item\em Forces this window to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Window_a5eb51c6e1b2c440b52196fcf1022285e}{
+virtual void \hyperlink{classphys_1_1UI_1_1Window_a5eb51c6e1b2c440b52196fcf1022285e}{Hide} ()}
+\label{d4/d86/classphys_1_1UI_1_1Window_a5eb51c6e1b2c440b52196fcf1022285e}
+
+\begin{DoxyCompactList}\small\item\em Forces this window to hide. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Window_a771bc9e43c0492ab179d8126c30665cf}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this window. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Window_ac49d7c2a12293cc80b289c653b55680d}{SetPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Window_a29fca96d9a2dab29d77a36d6a329f306}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this window. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Window_aeedbf986dca9556fd62980a6d7d27c79}{SetActualPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Window_a811fb495bc698752e03778b18f2b1a30}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this window. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Window_adbd4d4c908c3d3458139e87bf16006bf}{SetSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Window_a9946100eb6e6e985921bbea9e87cede3}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this window. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Window_ad297fc3485097a2bce7120f9f22d6c19}{SetActualSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Window_a22f5ca800e44c5e2cfeed59c243b03ed}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this window. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a022f3d02aa8d99cb6d8abccddbc9e662}{CreateButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Creates a button within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_aa4b5e6287496b6a47728ce9bde53ad90}{CreateTextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} Text)
+\begin{DoxyCompactList}\small\item\em Creates a text button within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_ab1152992cf6b636c8a4911889d930d9a}{GetButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created button by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_aba0c70a91112b87383f83c86784ce7cd}{GetButton} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created button by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Window_a7eab9b4e1607a2b796072f60b6e3e0cd}{GetNumButtons} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of buttons created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UI_1_1Window_a5a5bc10054d6e1d709b3b683a5554bf4}{DestroyButton} (\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a button. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a16bd1a1a35d61c597bca648e127aaf3a}{CreateRectangle} (\hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Creates a rectangle within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_adb076e699dd41c27cb4e60711711fc77}{GetRectangle} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created rectangle by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Window_a4d2d8821df32a920e7389b37f50f7c6d}{GetNumRectangles} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of rectangles created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UI_1_1Window_ab66c4c1d5f26e3f4fcdd34063b711365}{DestroyRectangle} (\hyperlink{classphys_1_1UI_1_1Rectangle}{UI::Rectangle} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a rectangle. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a840c88419fc2874f6b2520c238bf33f1}{CreateCaption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Text)
+\begin{DoxyCompactList}\small\item\em Creates a caption within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_acfc2669ecac2824bfa7cc53eb724d191}{GetCaption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created caption by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a06186f11ba6909d5271a86b317290adf}{GetCaption} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created caption by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Window_a125d78e98b47a4d93f6414545fd2374c}{GetNumCaptions} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of captions created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UI_1_1Window_a4e3dbe56ca1efce7ac1d26ceb8f7e915}{DestroyCaption} (\hyperlink{classphys_1_1UI_1_1Caption}{UI::Caption} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a caption. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_ad8750e7e7eed2ef68b2e5abb19075c62}{CreateMarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Text)
+\begin{DoxyCompactList}\small\item\em Creates a markup text within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_af5bf2246915fc68558d2a68ed016a68b}{GetMarkupText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created markup text by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1MarkupText}{MarkupText} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a119b5ff513cb70d4190b3ccdfa980ac2}{GetMarkupText} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created markup text by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Window_ac9e23e41ffff8ef475fcdb0c25bad240}{GetNumMarkupTexts} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of markup texts created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UI_1_1Window_aba2506738c7cccfbf8297bf03e431cb8}{DestroyMarkupText} (\hyperlink{classphys_1_1UI_1_1MarkupText}{UI::MarkupText} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a markup text. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a0d2274afdabda9915d242dc3d057ae61}{GetWidget} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created widget by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a267f830c09afa7f5455be14c2fc52ecd}{GetWidget} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created widget by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Window_a062270984d25dca44f0bc4d65ef324a0}{GetNumWidgets} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of widgets created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UI_1_1Window_ab4bda54a82b64aec2cf4e03201a40772}{DestroyWidget} (\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a widget. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Scrollbar}{UI::Scrollbar} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a2e66d320eb95d4e8474558267e85bdd4}{CreateScrollbar} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, UI::ScrollbarStyle Style)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1CheckBox}{UI::CheckBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a9178c34cd4cd68d18056e7131ae0a77a}{CreateCheckBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&LabelText)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox} within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1ButtonListBox}{UI::ButtonListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_af610b6a37bfe4d6c2050f2fba3977020}{CreateButtonListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1ListBox}{UI::ListBox} $\ast$ \hyperlink{classphys_1_1UI_1_1Window_a551f162bdb505f3fc497ff19d8ed9f01}{CreateListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle)
+\begin{DoxyCompactList}\small\item\em Creates a List Box within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1Window_a867bbe36b9eb74e9fb306303258be5a4}{
+void \hyperlink{classphys_1_1UI_1_1Window_a867bbe36b9eb74e9fb306303258be5a4}{Update} (bool Force=false)}
+\label{d4/d86/classphys_1_1UI_1_1Window_a867bbe36b9eb74e9fb306303258be5a4}
+
+\begin{DoxyCompactList}\small\item\em For use with widget update/automation. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Window_ac6d3747e32b21e71d12f5b32568cc74c}{
+void \hyperlink{classphys_1_1UI_1_1Window_ac6d3747e32b21e71d12f5b32568cc74c}{SetLocation} (\hyperlink{classphys_1_1Vector2}{Vector2} \&Position)}
+\label{d4/d86/classphys_1_1UI_1_1Window_ac6d3747e32b21e71d12f5b32568cc74c}
+
+\begin{DoxyCompactList}\small\item\em Internal function for setting the location(position) of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Window_ae3fc6f6c92250fc9a563de93ecffa6e1}{
+void \hyperlink{classphys_1_1UI_1_1Window_ae3fc6f6c92250fc9a563de93ecffa6e1}{SetArea} (\hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{d4/d86/classphys_1_1UI_1_1Window_ae3fc6f6c92250fc9a563de93ecffa6e1}
+
+\begin{DoxyCompactList}\small\item\em Internal function for setting the area(size) of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Window_aced8fdd2865324d01ab03afb71235f61}{
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Window_aced8fdd2865324d01ab03afb71235f61}{CalculateOffset} (\hyperlink{classphys_1_1Vector2}{Vector2} NewSize, \hyperlink{classphys_1_1Vector2}{Vector2} OldSize, \hyperlink{classphys_1_1Vector2}{Vector2} EleOffset, UI::ResizeableAnchor Anchor)}
+\label{d4/d86/classphys_1_1UI_1_1Window_aced8fdd2865324d01ab03afb71235f61}
+
+\begin{DoxyCompactList}\small\item\em Calculates a new offset for an individual element. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Window_a69e6f07894c09a56edab7d78d05b139f}{
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Window_a69e6f07894c09a56edab7d78d05b139f}{CalculateSize} (\hyperlink{classphys_1_1Vector2}{Vector2} NewSize, \hyperlink{classphys_1_1Vector2}{Vector2} OldSize, \hyperlink{classphys_1_1Vector2}{Vector2} EleSize, UI::ResizeableTether Tether)}
+\label{d4/d86/classphys_1_1UI_1_1Window_a69e6f07894c09a56edab7d78d05b139f}
+
+\begin{DoxyCompactList}\small\item\em Calculates a new size for an individual element. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1Window_a91635b1e1a94e74e76ebfe61611d1daf}{
+\hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ {\bfseries WindowBack}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a91635b1e1a94e74e76ebfe61611d1daf}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Window_a5fccbc2f8975e9a60b4b7c6d5eca4844}{
+std::vector$<$ \hyperlink{structphys_1_1UI_1_1ResizingInfo}{OffsetButtonInfo} $>$ {\bfseries Buttons}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a5fccbc2f8975e9a60b4b7c6d5eca4844}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Window_a556a43730021df62a867af76a03069b0}{
+std::vector$<$ \hyperlink{structphys_1_1UI_1_1ResizingInfo}{OffsetRectangleInfo} $>$ {\bfseries Rectangles}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a556a43730021df62a867af76a03069b0}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Window_acaa4a2954c71b6a9ea6edb1941ca053d}{
+std::vector$<$ \hyperlink{structphys_1_1UI_1_1ResizingInfo}{OffsetCaptionInfo} $>$ {\bfseries Captions}}
+\label{d4/d86/classphys_1_1UI_1_1Window_acaa4a2954c71b6a9ea6edb1941ca053d}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Window_ac50afa68d42e2f30ea5d470b03be4786}{
+std::vector$<$ \hyperlink{structphys_1_1UI_1_1ResizingInfo}{OffsetMarkupTextInfo} $>$ {\bfseries MarkupTexts}}
+\label{d4/d86/classphys_1_1UI_1_1Window_ac50afa68d42e2f30ea5d470b03be4786}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Window_a2fc4fb5f39925eff948c8cb61f9a724f}{
+std::vector$<$ \hyperlink{structphys_1_1UI_1_1ResizingInfo}{OffsetWidgetInfo} $>$ {\bfseries Widgets}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a2fc4fb5f39925eff948c8cb61f9a724f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is a container widget capable of holding any other widget. 
+
+Definition at line 73 of file uiwindow.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UI_1_1Window_a81bb894db3fb0dc63e2a5b6f65ecfe4d}{
+\index{phys::UI::Window@{phys::UI::Window}!Window@{Window}}
+\index{Window@{Window}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{Window}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Window::Window (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf UILayer} $\ast$}]{ Layer}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a81bb894db3fb0dc63e2a5b6f65ecfe4d}
+
+
+Standard initialization constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em name}]The name of the window. \item[{\em Position}]The position of the window. \item[{\em Size}]The size of the window. \item[{\em Layer}]The parent layer this window belongs to. \end{DoxyParams}
+
+
+Definition at line 64 of file uiwindow.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1UI_1_1Window_a771bc9e43c0492ab179d8126c30665cf}{
+\index{phys::UI::Window@{phys::UI::Window}!CheckMouseHover@{CheckMouseHover}}
+\index{CheckMouseHover@{CheckMouseHover}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Window::CheckMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a771bc9e43c0492ab179d8126c30665cf}
+
+
+Checks to see if the current mouse position is over this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool value, true if the mouse is over this window, false if it's not. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259dc}{phys::UI::Widget}.
+
+
+
+Definition at line 393 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a022f3d02aa8d99cb6d8abccddbc9e662}{
+\index{phys::UI::Window@{phys::UI::Window}!CreateButton@{CreateButton}}
+\index{CreateButton@{CreateButton}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{CreateButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::Window::CreateButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a022f3d02aa8d99cb6d8abccddbc9e662}
+
+
+Creates a button within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the button. \item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \end{DoxyParams}
+
+
+Definition at line 482 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_af610b6a37bfe4d6c2050f2fba3977020}{
+\index{phys::UI::Window@{phys::UI::Window}!CreateButtonListBox@{CreateButtonListBox}}
+\index{CreateButtonListBox@{CreateButtonListBox}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{CreateButtonListBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::ButtonListBox} $\ast$ phys::UI::Window::CreateButtonListBox (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Real}}]{ ScrollbarWidth, }
+\item[{UI::ScrollbarStyle}]{ ScrollbarStyle}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_af610b6a37bfe4d6c2050f2fba3977020}
+
+
+Creates a \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \item[{\em Position}]The top left position of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \item[{\em Size}]The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button} List Box. \item[{\em ScrollbarWidth}]The relative width of the scrollbar thats created with this widget. \item[{\em ScrollbarStyle}]The style of scrollbar you want to create, see \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} documentation for more details. \end{DoxyParams}
+
+
+Definition at line 736 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a840c88419fc2874f6b2520c238bf33f1}{
+\index{phys::UI::Window@{phys::UI::Window}!CreateCaption@{CreateCaption}}
+\index{CreateCaption@{CreateCaption}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{CreateCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::Window::CreateCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Whole}}]{ Glyph, }
+\item[{{\bf String}}]{ Text}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a840c88419fc2874f6b2520c238bf33f1}
+
+
+Creates a caption within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created caption. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of this caption. \item[{\em Position}]The top left position of the caption. \item[{\em Size}]The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \item[{\em Glyph}]One of the glyphs specified in your gorilla file. Must be valid. \item[{\em Text}]Any text you want printed on the caption. \end{DoxyParams}
+
+
+Definition at line 566 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a9178c34cd4cd68d18056e7131ae0a77a}{
+\index{phys::UI::Window@{phys::UI::Window}!CreateCheckBox@{CreateCheckBox}}
+\index{CreateCheckBox@{CreateCheckBox}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{CreateCheckBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::CheckBox} $\ast$ phys::UI::Window::CreateCheckBox (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Whole}}]{ Glyph, }
+\item[{{\bf String} \&}]{ LabelText}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a9178c34cd4cd68d18056e7131ae0a77a}
+
+
+Creates a \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox} within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox}. \item[{\em Position}]The top left position of the \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox}. \item[{\em Size}]The size of the \hyperlink{classphys_1_1UI_1_1CheckBox}{CheckBox}. \item[{\em Glyph}]The glyphs to use by default for use with the label. Glyphs are defined in your .gorilla file. \item[{\em LabelText}]The text to display with the label. The label uses the Markup Text class, and thus it's light markup text language. You can also pass in a blank string if you don't wish to have a label, you can create a label after construction. \end{DoxyParams}
+
+
+Definition at line 727 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a551f162bdb505f3fc497ff19d8ed9f01}{
+\index{phys::UI::Window@{phys::UI::Window}!CreateListBox@{CreateListBox}}
+\index{CreateListBox@{CreateListBox}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{CreateListBox}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::ListBox} $\ast$ phys::UI::Window::CreateListBox (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Real}}]{ ScrollbarWidth, }
+\item[{UI::ScrollbarStyle}]{ ScrollbarStyle}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a551f162bdb505f3fc497ff19d8ed9f01}
+
+
+Creates a List Box within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created List Box. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the List Box. \item[{\em Position}]The top left position of the List Box. \item[{\em Size}]The size of the List Box. \item[{\em ScrollbarWidth}]The relative width of the scrollbar thats created with this widget. \item[{\em ScrollbarStyle}]The style of scrollbar you want to create, see \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} documentation for more details. \end{DoxyParams}
+
+
+Definition at line 745 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_ad8750e7e7eed2ef68b2e5abb19075c62}{
+\index{phys::UI::Window@{phys::UI::Window}!CreateMarkupText@{CreateMarkupText}}
+\index{CreateMarkupText@{CreateMarkupText}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{CreateMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ phys::UI::Window::CreateMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Whole}}]{ Glyph, }
+\item[{{\bf String}}]{ Text}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_ad8750e7e7eed2ef68b2e5abb19075c62}
+
+
+Creates a markup text within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created markup text. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of this markup text. \item[{\em Position}]The top left position of the markup text. \item[{\em Glyph}]One of the glyphs specified in your gorilla file. Must be valid. \item[{\em Text}]Any text you want printed on the markup text. \end{DoxyParams}
+
+
+Definition at line 610 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a16bd1a1a35d61c597bca648e127aaf3a}{
+\index{phys::UI::Window@{phys::UI::Window}!CreateRectangle@{CreateRectangle}}
+\index{CreateRectangle@{CreateRectangle}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{CreateRectangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ phys::UI::Window::CreateRectangle (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a16bd1a1a35d61c597bca648e127aaf3a}
+
+
+Creates a rectangle within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \par
+ Rectangles are innately put behind all captions, so z-\/order is not necessary. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \end{DoxyParams}
+
+
+Definition at line 535 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a2e66d320eb95d4e8474558267e85bdd4}{
+\index{phys::UI::Window@{phys::UI::Window}!CreateScrollbar@{CreateScrollbar}}
+\index{CreateScrollbar@{CreateScrollbar}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{CreateScrollbar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Scrollbar} $\ast$ phys::UI::Window::CreateScrollbar (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{UI::ScrollbarStyle}]{ Style}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a2e66d320eb95d4e8474558267e85bdd4}
+
+
+Creates a \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar}. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar}. \item[{\em Position}]The top left position of the \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar}. \item[{\em Size}]The size of the \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar}. \item[{\em Style}]The style of scrollbar you want to create, see \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} documentation for more details. \end{DoxyParams}
+
+
+Definition at line 718 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_aa4b5e6287496b6a47728ce9bde53ad90}{
+\index{phys::UI::Window@{phys::UI::Window}!CreateTextButton@{CreateTextButton}}
+\index{CreateTextButton@{CreateTextButton}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{CreateTextButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TextButton} $\ast$ phys::UI::Window::CreateTextButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Whole}}]{ Glyph, }
+\item[{{\bf ConstString}}]{ Text}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_aa4b5e6287496b6a47728ce9bde53ad90}
+
+
+Creates a text button within this \hyperlink{classphys_1_1UI_1_1Window}{Window}. 
+
+This constructor expects relative values for position and size(values from 0.0 to 1.0). \begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the button. \item[{\em Position}]The top left position of the button. \item[{\em Size}]The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \item[{\em Glyph}]One of the glyphs specified in your gorilla file. Must be valid. \item[{\em Text}]Any text you want printed on the button. \end{DoxyParams}
+
+
+Definition at line 490 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a5a5bc10054d6e1d709b3b683a5554bf4}{
+\index{phys::UI::Window@{phys::UI::Window}!DestroyButton@{DestroyButton}}
+\index{DestroyButton@{DestroyButton}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{DestroyButton}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Window::DestroyButton (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Button} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a5a5bc10054d6e1d709b3b683a5554bf4}
+
+
+Destroys a button. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the button you want destroyed. \end{DoxyParams}
+
+
+Definition at line 522 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a4e3dbe56ca1efce7ac1d26ceb8f7e915}{
+\index{phys::UI::Window@{phys::UI::Window}!DestroyCaption@{DestroyCaption}}
+\index{DestroyCaption@{DestroyCaption}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{DestroyCaption}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Window::DestroyCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Caption} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a4e3dbe56ca1efce7ac1d26ceb8f7e915}
+
+
+Destroys a caption. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the caption you want destroyed. \end{DoxyParams}
+
+
+Definition at line 597 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_aba2506738c7cccfbf8297bf03e431cb8}{
+\index{phys::UI::Window@{phys::UI::Window}!DestroyMarkupText@{DestroyMarkupText}}
+\index{DestroyMarkupText@{DestroyMarkupText}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{DestroyMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Window::DestroyMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::MarkupText} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_aba2506738c7cccfbf8297bf03e431cb8}
+
+
+Destroys a markup text. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the markup text you want destroyed. \end{DoxyParams}
+
+
+Definition at line 641 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_ab66c4c1d5f26e3f4fcdd34063b711365}{
+\index{phys::UI::Window@{phys::UI::Window}!DestroyRectangle@{DestroyRectangle}}
+\index{DestroyRectangle@{DestroyRectangle}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{DestroyRectangle}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Window::DestroyRectangle (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Rectangle} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_ab66c4c1d5f26e3f4fcdd34063b711365}
+
+
+Destroys a rectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the rectangle you want destroyed. \end{DoxyParams}
+
+
+Definition at line 553 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_ab4bda54a82b64aec2cf4e03201a40772}{
+\index{phys::UI::Window@{phys::UI::Window}!DestroyWidget@{DestroyWidget}}
+\index{DestroyWidget@{DestroyWidget}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{DestroyWidget}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Window::DestroyWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Widget} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_ab4bda54a82b64aec2cf4e03201a40772}
+
+
+Destroys a widget. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the widget you want destroyed. \end{DoxyParams}
+
+
+Definition at line 677 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a811fb495bc698752e03778b18f2b1a30}{
+\index{phys::UI::Window@{phys::UI::Window}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Window::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a811fb495bc698752e03778b18f2b1a30}
+
+
+Sets the pixel position of this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel position of this window. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e7}{phys::UI::Widget}.
+
+
+
+Definition at line 454 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a22f5ca800e44c5e2cfeed59c243b03ed}{
+\index{phys::UI::Window@{phys::UI::Window}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Window::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a22f5ca800e44c5e2cfeed59c243b03ed}
+
+
+Sets the pixel size of this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel size of this window. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed2}{phys::UI::Widget}.
+
+
+
+Definition at line 477 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_aba0c70a91112b87383f83c86784ce7cd}{
+\index{phys::UI::Window@{phys::UI::Window}!GetButton@{GetButton}}
+\index{GetButton@{GetButton}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::Window::GetButton (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_aba0c70a91112b87383f83c86784ce7cd}
+
+
+Gets an already created button by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 512 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_ab1152992cf6b636c8a4911889d930d9a}{
+\index{phys::UI::Window@{phys::UI::Window}!GetButton@{GetButton}}
+\index{GetButton@{GetButton}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::Window::GetButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_ab1152992cf6b636c8a4911889d930d9a}
+
+
+Gets an already created button by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the button of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 499 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a06186f11ba6909d5271a86b317290adf}{
+\index{phys::UI::Window@{phys::UI::Window}!GetCaption@{GetCaption}}
+\index{GetCaption@{GetCaption}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::Window::GetCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a06186f11ba6909d5271a86b317290adf}
+
+
+Gets an already created caption by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the caption at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 587 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_acfc2669ecac2824bfa7cc53eb724d191}{
+\index{phys::UI::Window@{phys::UI::Window}!GetCaption@{GetCaption}}
+\index{GetCaption@{GetCaption}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetCaption}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::Window::GetCaption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_acfc2669ecac2824bfa7cc53eb724d191}
+
+
+Gets an already created caption by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the caption of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 574 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_af5bf2246915fc68558d2a68ed016a68b}{
+\index{phys::UI::Window@{phys::UI::Window}!GetMarkupText@{GetMarkupText}}
+\index{GetMarkupText@{GetMarkupText}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ phys::UI::Window::GetMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_af5bf2246915fc68558d2a68ed016a68b}
+
+
+Gets an already created markup text by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the markup text of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 618 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a119b5ff513cb70d4190b3ccdfa980ac2}{
+\index{phys::UI::Window@{phys::UI::Window}!GetMarkupText@{GetMarkupText}}
+\index{GetMarkupText@{GetMarkupText}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetMarkupText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MarkupText} $\ast$ phys::UI::Window::GetMarkupText (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a119b5ff513cb70d4190b3ccdfa980ac2}
+
+
+Gets an already created markup text by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the markup text at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 631 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a7eab9b4e1607a2b796072f60b6e3e0cd}{
+\index{phys::UI::Window@{phys::UI::Window}!GetNumButtons@{GetNumButtons}}
+\index{GetNumButtons@{GetNumButtons}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetNumButtons}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UI::Window::GetNumButtons (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a7eab9b4e1607a2b796072f60b6e3e0cd}
+
+
+Gets the number of buttons created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of buttons this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 517 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a125d78e98b47a4d93f6414545fd2374c}{
+\index{phys::UI::Window@{phys::UI::Window}!GetNumCaptions@{GetNumCaptions}}
+\index{GetNumCaptions@{GetNumCaptions}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetNumCaptions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UI::Window::GetNumCaptions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a125d78e98b47a4d93f6414545fd2374c}
+
+
+Gets the number of captions created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of captions this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 592 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_ac9e23e41ffff8ef475fcdb0c25bad240}{
+\index{phys::UI::Window@{phys::UI::Window}!GetNumMarkupTexts@{GetNumMarkupTexts}}
+\index{GetNumMarkupTexts@{GetNumMarkupTexts}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetNumMarkupTexts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UI::Window::GetNumMarkupTexts (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_ac9e23e41ffff8ef475fcdb0c25bad240}
+
+
+Gets the number of markup texts created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of markup texts this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 636 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a4d2d8821df32a920e7389b37f50f7c6d}{
+\index{phys::UI::Window@{phys::UI::Window}!GetNumRectangles@{GetNumRectangles}}
+\index{GetNumRectangles@{GetNumRectangles}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetNumRectangles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UI::Window::GetNumRectangles (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a4d2d8821df32a920e7389b37f50f7c6d}
+
+
+Gets the number of rectangles created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of rectangles this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 548 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a062270984d25dca44f0bc4d65ef324a0}{
+\index{phys::UI::Window@{phys::UI::Window}!GetNumWidgets@{GetNumWidgets}}
+\index{GetNumWidgets@{GetNumWidgets}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetNumWidgets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UI::Window::GetNumWidgets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a062270984d25dca44f0bc4d65ef324a0}
+
+
+Gets the number of widgets created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of widgets this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 672 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a29fca96d9a2dab29d77a36d6a329f306}{
+\index{phys::UI::Window@{phys::UI::Window}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Window::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a29fca96d9a2dab29d77a36d6a329f306}
+
+
+Gets the relative position of this window. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative position of this window. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c33}{phys::UI::Widget}.
+
+
+
+Definition at line 443 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_adb076e699dd41c27cb4e60711711fc77}{
+\index{phys::UI::Window@{phys::UI::Window}!GetRectangle@{GetRectangle}}
+\index{GetRectangle@{GetRectangle}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetRectangle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ phys::UI::Window::GetRectangle (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_adb076e699dd41c27cb4e60711711fc77}
+
+
+Gets an already created rectangle by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the rectangle at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 543 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a9946100eb6e6e985921bbea9e87cede3}{
+\index{phys::UI::Window@{phys::UI::Window}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Window::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a9946100eb6e6e985921bbea9e87cede3}
+
+
+Gets the relative size of this window. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative size of this window. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a2}{phys::UI::Widget}.
+
+
+
+Definition at line 466 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a0d2274afdabda9915d242dc3d057ae61}{
+\index{phys::UI::Window@{phys::UI::Window}!GetWidget@{GetWidget}}
+\index{GetWidget@{GetWidget}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetWidget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Widget} $\ast$ phys::UI::Window::GetWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a0d2274afdabda9915d242dc3d057ae61}
+
+
+Gets an already created widget by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the widget of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 654 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a267f830c09afa7f5455be14c2fc52ecd}{
+\index{phys::UI::Window@{phys::UI::Window}!GetWidget@{GetWidget}}
+\index{GetWidget@{GetWidget}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{GetWidget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Widget} $\ast$ phys::UI::Window::GetWidget (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a267f830c09afa7f5455be14c2fc52ecd}
+
+
+Gets an already created widget by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the widget at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 667 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_aa1d88c50c0965510b494b51f3e5a7bf0}{
+\index{phys::UI::Window@{phys::UI::Window}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Window::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_aa1d88c50c0965510b494b51f3e5a7bf0}
+
+
+Gets the visibility of this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visibility of this window. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7ac}{phys::UI::Widget}.
+
+
+
+Definition at line 330 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_aeedbf986dca9556fd62980a6d7d27c79}{
+\index{phys::UI::Window@{phys::UI::Window}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Window::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_aeedbf986dca9556fd62980a6d7d27c79}
+
+
+Sets the pixel position of this window. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]A vector2 representing the pixel position of this window. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_ac8f70c390e7724e57fc99e51d8004a9b}{phys::UI::Widget}.
+
+
+
+Definition at line 448 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_ad297fc3485097a2bce7120f9f22d6c19}{
+\index{phys::UI::Window@{phys::UI::Window}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Window::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_ad297fc3485097a2bce7120f9f22d6c19}
+
+
+Sets the pixel size of this window. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Size}]A vector2 representing the pixel size of this window. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a8ceb54fd067847844b314dedd8e529f8}{phys::UI::Widget}.
+
+
+
+Definition at line 471 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_ac49d7c2a12293cc80b289c653b55680d}{
+\index{phys::UI::Window@{phys::UI::Window}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Window::SetPosition (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_ac49d7c2a12293cc80b289c653b55680d}
+
+
+Sets the relative position of this window. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]A vector2 representing the relative position of this window. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_aae1c0b891125823e7ade8cbc7e4ba6b6}{phys::UI::Widget}.
+
+
+
+Definition at line 436 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_adbd4d4c908c3d3458139e87bf16006bf}{
+\index{phys::UI::Window@{phys::UI::Window}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Window::SetSize (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_adbd4d4c908c3d3458139e87bf16006bf}
+
+
+Sets the relative size of this window. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Size}]A vector2 representing the relative size of this window. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_ad5af5f04b60d43341037df6b0e329bbd}{phys::UI::Widget}.
+
+
+
+Definition at line 459 of file uiwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Window_a351439e78013bc87ecadcc00bce08573}{
+\index{phys::UI::Window@{phys::UI::Window}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!phys::UI::Window@{phys::UI::Window}}
+\subsubsection[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Window::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{ visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d86/classphys_1_1UI_1_1Window_a351439e78013bc87ecadcc00bce08573}
+
+
+Sets the visibility of this window. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em visible}]Bool determining whether or not this window should be visible. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e0}{phys::UI::Widget}.
+
+
+
+Definition at line 301 of file uiwindow.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uiwindow.h\item 
+uiwindow.cpp\end{DoxyCompactItemize}

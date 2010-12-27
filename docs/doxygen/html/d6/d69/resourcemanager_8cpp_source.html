@@ -203,13 +203,13 @@
 <a name="l00173"></a><a class="code" href="../../d1/d35/classphys_1_1ResourceManager.html#a13f0aef080b9a353fe6c910c2781de50">00173</a>     <a class="code" href="../../dc/d52/classphys_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a>* <a class="code" href="../../d1/d35/classphys_1_1ResourceManager.html#a13f0aef080b9a353fe6c910c2781de50" title="Get a stream to read from the specified file.">ResourceManager::GetResourceStream</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; FileName)
 <a name="l00174"></a>00174     {
 <a name="l00175"></a>00175 <span class="preprocessor">        #ifdef PHYSDEBUG</span>
-<a name="l00176"></a>00176 <span class="preprocessor"></span>        <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;Entering ResourceManager::GetResourceStream(const String&amp; FileName)&quot;</span>);
+<a name="l00176"></a>00176 <span class="preprocessor"></span>        <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Entering ResourceManager::GetResourceStream(const String&amp; FileName)&quot;</span>);
 <a name="l00177"></a>00177 <span class="preprocessor">        #endif</span>
 <a name="l00178"></a>00178 <span class="preprocessor"></span>        internal::OgreDataStreamBuf *TempBuffer = <span class="keyword">new</span> internal::OgreDataStreamBuf(<a class="code" href="../../d1/d35/classphys_1_1ResourceManager.html#af19bf0549a0896cf84696a39f4ca817d" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;openResource(FileName));
 <a name="l00179"></a>00179         <a class="code" href="../../dc/d52/classphys_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a> *Results =  <span class="keyword">new</span> <a class="code" href="../../dc/d52/classphys_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a>(TempBuffer, <span class="keyword">this</span>);
 <a name="l00180"></a>00180         this-&gt;<a class="code" href="../../d1/d35/classphys_1_1ResourceManager.html#a03a283e02f3639f5c1f2de915ed798ae" title="A list of Pointers to streams created to delete periodically.">DeleteList</a>.push_back(Results);
 <a name="l00181"></a>00181 <span class="preprocessor">        #ifdef PHYSDEBUG</span>
-<a name="l00182"></a>00182 <span class="preprocessor"></span>        <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;Exiting ResourceManager::GetResourceStream(const String&amp; FileName)&quot;</span>);
+<a name="l00182"></a>00182 <span class="preprocessor"></span>        <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Exiting ResourceManager::GetResourceStream(const String&amp; FileName)&quot;</span>);
 <a name="l00183"></a>00183 <span class="preprocessor">        #endif</span>
 <a name="l00184"></a>00184 <span class="preprocessor"></span>        <span class="keywordflow">return</span> Results;
 <a name="l00185"></a>00185     }
@@ -229,7 +229,7 @@
 <a name="l00199"></a>00199 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

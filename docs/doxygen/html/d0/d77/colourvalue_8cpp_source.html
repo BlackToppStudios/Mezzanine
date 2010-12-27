@@ -110,14 +110,28 @@
 <a name="l00080"></a>00080         OgreColour.g = this-&gt;<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#adea93a8cd64acc8b5fd1851b4460af00" title="Value from 0.0 to 1.0 representing the amount of green present in the colour.">Green</a>;
 <a name="l00081"></a>00081         OgreColour.b = this-&gt;<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a403503f979575b17d1873f031e8d7d75" title="Value from 0.0 to 1.0 representing the amount of blue present in the colour.">Blue</a>;
 <a name="l00082"></a>00082         OgreColour.a = this-&gt;<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a5fc5eceef739a91d7cc079767d712f52" title="Value from 0.0 to 1.0 representing the transparency of the colours.">Alpha</a>;
-<a name="l00083"></a>00083         <span class="keywordflow">return</span> OgreColour;
+<a name="l00083"></a><a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a4615835cadb51c814ef87377ac2fbc8c">00083</a>         <span class="keywordflow">return</span> OgreColour;
 <a name="l00084"></a>00084     }
-<a name="l00085"></a>00085 }
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="preprocessor">#endif</span>
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086     <span class="keywordtype">bool</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a4615835cadb51c814ef87377ac2fbc8c" title="Equality Comparison Operator.">ColourValue::operator== </a>(<span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> &amp;Colour)
+<a name="l00087"></a>00087     {
+<a name="l00088"></a>00088         <span class="keywordflow">if</span> ( Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a32b5411b9b87f92a6626f3f4d5f0a158" title="Value from 0.0 to 1.0 representing the amount of red present in the colour.">Red</a> == this-&gt;Red &amp;&amp; Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#adea93a8cd64acc8b5fd1851b4460af00" title="Value from 0.0 to 1.0 representing the amount of green present in the colour.">Green</a> == this-&gt;Green &amp;&amp; Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a403503f979575b17d1873f031e8d7d75" title="Value from 0.0 to 1.0 representing the amount of blue present in the colour.">Blue</a> == this-&gt;Blue &amp;&amp; Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a5fc5eceef739a91d7cc079767d712f52" title="Value from 0.0 to 1.0 representing the transparency of the colours.">Alpha</a> == this-&gt;Alpha )
+<a name="l00089"></a>00089             { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
+<a name="l00090"></a><a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a06b52ce51b723ea733f2b067b03530a5">00090</a>         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00091"></a>00091     }
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093     <span class="keywordtype">bool</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a06b52ce51b723ea733f2b067b03530a5" title="Inequality Comparison Operator.">ColourValue::operator!= </a>(<span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> &amp;Colour)
+<a name="l00094"></a>00094     {
+<a name="l00095"></a>00095         <span class="keywordflow">if</span> ( Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a32b5411b9b87f92a6626f3f4d5f0a158" title="Value from 0.0 to 1.0 representing the amount of red present in the colour.">Red</a> != this-&gt;Red || Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#adea93a8cd64acc8b5fd1851b4460af00" title="Value from 0.0 to 1.0 representing the amount of green present in the colour.">Green</a> != this-&gt;Green || Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a403503f979575b17d1873f031e8d7d75" title="Value from 0.0 to 1.0 representing the amount of blue present in the colour.">Blue</a> != this-&gt;Blue || Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a5fc5eceef739a91d7cc079767d712f52" title="Value from 0.0 to 1.0 representing the transparency of the colours.">Alpha</a> != this-&gt;Alpha )
+<a name="l00096"></a>00096             { <span class="keywordflow">return</span> <span class="keyword">true</span>; }
+<a name="l00097"></a>00097         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00098"></a>00098     }
+<a name="l00099"></a>00099 }
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -70,75 +70,153 @@
 <a name="l00040"></a>00040 <span class="preprocessor">#ifndef _uibuttonlistbox_h</span>
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _uibuttonlistbox_h</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
-<a name="l00043"></a>00043 <span class="preprocessor">#include &quot;uiwidget.h&quot;</span>
-<a name="l00044"></a>00044 <span class="keyword">namespace </span>phys
-<a name="l00045"></a>00045 {
-<a name="l00046"></a>00046     <span class="keyword">namespace </span>UI
-<a name="l00047"></a>00047     {
-<a name="l00048"></a>00048         <span class="keyword">class </span>Rectangle;
-<a name="l00049"></a>00049         <span class="keyword">class </span>Scrollbar;
-<a name="l00050"></a>00050         <span class="keyword">class </span>Button;<span class="comment"></span>
-<a name="l00051"></a>00051 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00052"></a>00052 <span class="comment">        /// @class ButtonListBox</span>
-<a name="l00053"></a>00053 <span class="comment">        /// @headerfile uibuttonlistbox.h</span>
-<a name="l00054"></a>00054 <span class="comment">        /// @brief This is a widget for displaying a list of buttons in a box.</span>
-<a name="l00055"></a>00055 <span class="comment">        /// @details</span>
-<a name="l00056"></a>00056 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00057"></a><a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html">00057</a> <span class="comment"></span>        <span class="keyword">class </span><a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html" title="This is a widget for displaying a list of buttons in a box.">ButtonListBox</a> : <span class="keyword">public</span> <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for widgets.">Widget</a>
-<a name="l00058"></a>00058         {
-<a name="l00059"></a>00059             <span class="keyword">protected</span>:
-<a name="l00060"></a>00060                 <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* BoxBack;
-<a name="l00061"></a>00061                 <span class="comment">//Scrollbar* VertScroll;</span>
-<a name="l00062"></a>00062                 std::vector&lt;Button*&gt; Selections;
-<a name="l00063"></a>00063                 std::vector&lt;Button*&gt; VisableSelections;<span class="comment"></span>
-<a name="l00064"></a>00064 <span class="comment">                /// @brief For use with widget update/automation.</span>
-<a name="l00065"></a>00065 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#a4c412be3030aea2e3ca2ce946a4cdd26" title="For use with widget update/automation.">Update</a>(<span class="keywordtype">bool</span> Force = <span class="keyword">false</span>);
-<a name="l00066"></a>00066             <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00067"></a>00067 <span class="comment">                /// @brief Standard initialization constructor.</span>
-<a name="l00068"></a>00068 <span class="comment"></span>                <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#a5729c6e7afb0a8219b8b928921c42954" title="Standard initialization constructor.">ButtonListBox</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer);<span class="comment"></span>
-<a name="l00069"></a>00069 <span class="comment">                /// @brief Standard destructor.</span>
-<a name="l00070"></a>00070 <span class="comment"></span>                <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#afb7cf0d76f1f6825276694f0ebb7f4a6" title="Standard destructor.">~ButtonListBox</a>();<span class="comment"></span>
-<a name="l00071"></a>00071 <span class="comment">                /// @brief Checks to see if the current mouse position is over this Button List Box.</span>
-<a name="l00072"></a>00072 <span class="comment">                /// @return Returns a bool value, true if the mouse is over this Button List Box, false if it&#39;s not.</span>
-<a name="l00073"></a>00073 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#aaa8b11b174a0475cadee3d3349ef1a58" title="Checks to see if the current mouse position is over this Button List Box.">CheckMouseHover</a>();<span class="comment"></span>
-<a name="l00074"></a>00074 <span class="comment">                /// @brief Sets the relative position of this Button List Box.</span>
-<a name="l00075"></a>00075 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
-<a name="l00076"></a>00076 <span class="comment">                /// @param Position A vector2 representing the relative position of this Button List Box.</span>
-<a name="l00077"></a>00077 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#a9a45fe4192092b76bb879b281c29d431" title="Sets the relative position of this Button List Box.">SetPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
-<a name="l00078"></a>00078 <span class="comment">                /// @brief Gets the relative position of this Button List Box.</span>
-<a name="l00079"></a>00079 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
-<a name="l00080"></a>00080 <span class="comment">                /// @return Returns a vector2 representing the relative position of this Button List Box.</span>
-<a name="l00081"></a>00081 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#ab7834542f8940adba8df6b1eace92e95" title="Gets the relative position of this Button List Box.">GetPosition</a>();<span class="comment"></span>
-<a name="l00082"></a>00082 <span class="comment">                /// @brief Sets the pixel position of this Button List Box.</span>
-<a name="l00083"></a>00083 <span class="comment">                /// @param Position A vector2 representing the pixel position of this Button List Box.</span>
-<a name="l00084"></a>00084 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#a84547b5097342c7edf12a407a4208352" title="Sets the pixel position of this Button List Box.">SetActualPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
-<a name="l00085"></a>00085 <span class="comment">                /// @brief Sets the pixel position of this Button List Box.</span>
-<a name="l00086"></a>00086 <span class="comment">                /// @return Returns a vector2 representing the pixel position of this Button List Box.</span>
-<a name="l00087"></a>00087 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#addc5d7c6ab2a48ffa0d4b2e46c20d9a5" title="Sets the pixel position of this Button List Box.">GetActualPosition</a>();<span class="comment"></span>
-<a name="l00088"></a>00088 <span class="comment">                /// @brief Sets the relative size of this Button List Box.</span>
-<a name="l00089"></a>00089 <span class="comment">                /// @param Size A vector2 representing the relative size of this Button List Box.</span>
-<a name="l00090"></a>00090 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#a527f2c332225a04e147264dd80e4a6c1" title="Sets the relative size of this Button List Box.">SetSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
-<a name="l00091"></a>00091 <span class="comment">                /// @brief Gets the relative size of this Button List Box.</span>
-<a name="l00092"></a>00092 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
-<a name="l00093"></a>00093 <span class="comment">                /// @return Returns a vector2 representing the relative size of this Button List Box.</span>
-<a name="l00094"></a>00094 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#a0084510b0b9c53761e5b4a45f65604ab" title="Gets the relative size of this Button List Box.">GetSize</a>();<span class="comment"></span>
-<a name="l00095"></a>00095 <span class="comment">                /// @brief Sets the pixel size of this Button List Box.</span>
-<a name="l00096"></a>00096 <span class="comment">                /// @param Size A vector2 representing the pixel size of this Button List Box.</span>
-<a name="l00097"></a>00097 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#affb1419eac8fd0818c6afabf4ee21065" title="Sets the pixel size of this Button List Box.">SetActualSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
-<a name="l00098"></a>00098 <span class="comment">                /// @brief Sets the pixel size of this Button List Box.</span>
-<a name="l00099"></a>00099 <span class="comment">                /// @return Returns a vector2 representing the pixel size of this Button List Box.</span>
-<a name="l00100"></a>00100 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#a77d992f8858bf9b9eeb190dd1ea8a4fd" title="Sets the pixel size of this Button List Box.">GetActualSize</a>();<span class="comment"></span>
-<a name="l00101"></a>00101 <span class="comment">                /// @brief Gets the background of this Button List Box.</span>
-<a name="l00102"></a>00102 <span class="comment">                /// @return Returns a pointer to the background of this Button List Box</span>
-<a name="l00103"></a>00103 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#a043ce9d76af4538043551bf508811b12" title="Gets the background of this Button List Box.">GetBoxBack</a>();
-<a name="l00104"></a>00104         };
-<a name="l00105"></a>00105     }<span class="comment">//UI</span>
-<a name="l00106"></a>00106 }<span class="comment">//phys</span>
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108 <span class="preprocessor">#endif</span>
+<a name="l00043"></a>00043 <span class="preprocessor">#include &quot;colourvalue.h&quot;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;uiwidget.h&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;enumerations.h&quot;</span>
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 <span class="keyword">namespace </span>phys
+<a name="l00048"></a>00048 {
+<a name="l00049"></a>00049     <span class="keyword">namespace </span>UI
+<a name="l00050"></a>00050     {
+<a name="l00051"></a>00051         <span class="keyword">class </span>Rectangle;
+<a name="l00052"></a>00052         <span class="keyword">class </span>Button;
+<a name="l00053"></a>00053         <span class="keyword">class </span>Scrollbar;<span class="comment"></span>
+<a name="l00054"></a>00054 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00055"></a>00055 <span class="comment">        /// @class ButtonListBox</span>
+<a name="l00056"></a>00056 <span class="comment">        /// @headerfile uibuttonlistbox.h</span>
+<a name="l00057"></a>00057 <span class="comment">        /// @brief This is a widget for displaying a list of buttons in a box.</span>
+<a name="l00058"></a>00058 <span class="comment">        /// @details</span>
+<a name="l00059"></a>00059 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00060"></a><a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html">00060</a> <span class="comment"></span>        <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html" title="This is a widget for displaying a list of buttons in a box.">ButtonListBox</a> : <span class="keyword">public</span> <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>
+<a name="l00061"></a>00061         {
+<a name="l00062"></a>00062             <span class="keyword">protected</span>:
+<a name="l00063"></a>00063                 <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* BoxBack;<span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">                /// @todo Third instance of needing to include the namespace in the declaration seemingly needlessly.</span>
+<a name="l00065"></a><a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html#aa47d94d75c58e3408a97766eace2c20e">00065</a> <span class="comment"></span>                <a class="code" href="../../d0/d3e/classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">UI::Scrollbar</a>* VertScroll;
+<a name="l00066"></a>00066                 <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* Selected;
+<a name="l00067"></a>00067                 std::vector&lt;Button*&gt; Selections;
+<a name="l00068"></a>00068                 std::vector&lt;Button*&gt; VisibleSelections;
+<a name="l00069"></a>00069                 <span class="keywordtype">bool</span> AutoHideScroll;
+<a name="l00070"></a>00070                 <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> LastScrollValue;
+<a name="l00071"></a>00071                 <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> SelectionDist;
+<a name="l00072"></a>00072                 <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> BorderWidth;
+<a name="l00073"></a>00073                 <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> TGlyph;
+<a name="l00074"></a>00074                 <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> NumVisible;
+<a name="l00075"></a>00075                 <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> TSize;
+<a name="l00076"></a>00076                 <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> BorderColour;<span class="comment"></span>
+<a name="l00077"></a>00077 <span class="comment">                /// @brief Determines how many items can be displayed in the box at once.</span>
+<a name="l00078"></a>00078 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> CalculateVisibleSelections();<span class="comment"></span>
+<a name="l00079"></a>00079 <span class="comment">                /// @brief Updates the list of Visible buttons and hides the rest.</span>
+<a name="l00080"></a>00080 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DrawList();<span class="comment"></span>
+<a name="l00081"></a>00081 <span class="comment">                /// @brief For use with widget update/automation.</span>
+<a name="l00082"></a>00082 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Update(<span class="keywordtype">bool</span> Force = <span class="keyword">false</span>);
+<a name="l00083"></a>00083             <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment">                /// @brief Standard initialization constructor.</span>
+<a name="l00085"></a>00085 <span class="comment">                /// @param name The name of the Button List Box.</span>
+<a name="l00086"></a>00086 <span class="comment">                /// @param Position The position of the Button List Box.</span>
+<a name="l00087"></a>00087 <span class="comment">                /// @param Size The size of the Button List Box.</span>
+<a name="l00088"></a>00088 <span class="comment">                /// @param ScrollbarWidth The relative(to screensize) width of the vertical scrollbar.</span>
+<a name="l00089"></a>00089 <span class="comment">                /// If a horizontal scrollbar is needed it&#39;ll use the equal value in pixels(to avoid the stretched look.</span>
+<a name="l00090"></a>00090 <span class="comment">                /// @param ScrollStyle The style of the scrollbar you want for this Button List Box.  See Scrollbar</span>
+<a name="l00091"></a>00091 <span class="comment">                /// class for more information.</span>
+<a name="l00092"></a>00092 <span class="comment">                /// @param Layer The parent layer this Button List Box belongs to.</span>
+<a name="l00093"></a>00093 <span class="comment"></span>                <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html" title="This is a widget for displaying a list of buttons in a box.">ButtonListBox</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer);<span class="comment"></span>
+<a name="l00094"></a>00094 <span class="comment">                /// @brief Standard destructor.</span>
+<a name="l00095"></a>00095 <span class="comment"></span>                ~<a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html" title="This is a widget for displaying a list of buttons in a box.">ButtonListBox</a>();<span class="comment"></span>
+<a name="l00096"></a>00096 <span class="comment">                /// @brief Sets the visibility of this Button List Box.</span>
+<a name="l00097"></a>00097 <span class="comment">                /// @param visible Bool determining whether or not this Button List Box should be visible.</span>
+<a name="l00098"></a>00098 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetVisible(<span class="keywordtype">bool</span> visible);<span class="comment"></span>
+<a name="l00099"></a>00099 <span class="comment">                /// @brief Gets the visibility of this Button List Box.</span>
+<a name="l00100"></a>00100 <span class="comment">                /// @return Returns a bool representing the visibility of this Button List Box.</span>
+<a name="l00101"></a>00101 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsVisible();<span class="comment"></span>
+<a name="l00102"></a>00102 <span class="comment">                /// @brief Forces this Button List Box to be shown.</span>
+<a name="l00103"></a>00103 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Show();<span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">                /// @brief Forces this Button List Box to hide.</span>
+<a name="l00105"></a>00105 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Hide();<span class="comment"></span>
+<a name="l00106"></a>00106 <span class="comment">                /// @brief Checks to see if the current mouse position is over this Button List Box.</span>
+<a name="l00107"></a>00107 <span class="comment">                /// @return Returns a bool value, true if the mouse is over this Button List Box, false if it&#39;s not.</span>
+<a name="l00108"></a>00108 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> CheckMouseHover();<span class="comment"></span>
+<a name="l00109"></a>00109 <span class="comment">                /// @brief Sets the desired size and glyph set provided to all buttons created within this widget.</span>
+<a name="l00110"></a>00110 <span class="comment">                /// @details This function needs to be called before adding any selections to this widget.</span>
+<a name="l00111"></a>00111 <span class="comment">                /// @param Size The size for all buttons in this widget.</span>
+<a name="l00112"></a>00112 <span class="comment">                /// @param Glyph The Glyph set to be used for any and all Text Buttons created.  Glyphs are defined in your .gorilla file.</span>
+<a name="l00113"></a>00113 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetTemplateParameters(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph);<span class="comment"></span>
+<a name="l00114"></a>00114 <span class="comment">                /// @brief Adds a selectable button to the list to be displayed.</span>
+<a name="l00115"></a>00115 <span class="comment">                /// @param BackgroundSprite Optional, name of the sprite to set as it&#39;s background.  Ignored if the string is empty.</span>
+<a name="l00116"></a>00116 <span class="comment">                /// @param TextLabel Optional, will create a text button instead of a regular button and set it&#39;s text.  Ignored if</span>
+<a name="l00117"></a>00117 <span class="comment">                /// the string is empty.  @n @n Note: If a Text button is created, you can&#39;t revert it to a regular button and vice</span>
+<a name="l00118"></a>00118 <span class="comment">                /// versa.  You&#39;ll have to destroy the selection and make a new one.  In the case of having a text button, you can</span>
+<a name="l00119"></a>00119 <span class="comment">                /// however still set it&#39;s text to an empty string.</span>
+<a name="l00120"></a>00120 <span class="comment">                /// @return Returns a pointer to the created button.</span>
+<a name="l00121"></a>00121 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* AddSelection(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; BackgroundSprite = <span class="stringliteral">&quot;&quot;</span>, <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a> &amp;TextLabel = <span class="stringliteral">&quot;&quot;</span>);<span class="comment"></span>
+<a name="l00122"></a>00122 <span class="comment">                /// @brief Gets a button by name.</span>
+<a name="l00123"></a>00123 <span class="comment">                /// @param Name The name of the selectable button you want to get.</span>
+<a name="l00124"></a>00124 <span class="comment">                /// @return Returns a pointer to the named button.</span>
+<a name="l00125"></a>00125 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* GetSelection(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a> &amp;Name);<span class="comment"></span>
+<a name="l00126"></a>00126 <span class="comment">                /// @brief Destroys a selectable button.</span>
+<a name="l00127"></a>00127 <span class="comment">                /// @param ToBeDestroyed A pointer to the button you want destroyed and removed from this list.</span>
+<a name="l00128"></a>00128 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroySelection(<a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* ToBeDestroyed);<span class="comment"></span>
+<a name="l00129"></a>00129 <span class="comment">                /// @brief Destroys a selectable button.</span>
+<a name="l00130"></a>00130 <span class="comment">                /// @param ToBeDestroyed A string naming the button you want destroyed and removed from this list.</span>
+<a name="l00131"></a>00131 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroySelection(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; ToBeDestroyed);<span class="comment"></span>
+<a name="l00132"></a>00132 <span class="comment">                /// @brief Sets the distance apart(and from the sides of box) the Selections will be from each other.</span>
+<a name="l00133"></a>00133 <span class="comment">                /// @details This function expects a relative value to the screen size(0.0 to 1.0).  This value defaults to 0.025.</span>
+<a name="l00134"></a>00134 <span class="comment">                /// @param Dist A relative value for the distance to be used when determining the positions of Selections.</span>
+<a name="l00135"></a>00135 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSelectionDistance(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Dist);<span class="comment"></span>
+<a name="l00136"></a>00136 <span class="comment">                /// @brief Eanbles or disables the scrollbar autohide.</span>
+<a name="l00137"></a>00137 <span class="comment">                /// @param AutoHide A bool indicating whether or not to auto hide the scrollbar.</span>
+<a name="l00138"></a>00138 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetAutoHideScroll(<span class="keywordtype">bool</span> AutoHide);<span class="comment"></span>
+<a name="l00139"></a>00139 <span class="comment">                /// @brief Enables the setting of a border on the button you select.</span>
+<a name="l00140"></a>00140 <span class="comment">                /// @param Width The width of the border in pixels.</span>
+<a name="l00141"></a>00141 <span class="comment">                /// @param Colour The colour of the border.</span>
+<a name="l00142"></a>00142 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> EnableBorderSelector(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Width, <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> &amp;Colour);<span class="comment"></span>
+<a name="l00143"></a>00143 <span class="comment">                /// @brief Disables borders on currently selected buttons if one was enabled.</span>
+<a name="l00144"></a>00144 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DisableBorderSelector();<span class="comment"></span>
+<a name="l00145"></a>00145 <span class="comment">                /// @brief Sets the relative position of this Button List Box.</span>
+<a name="l00146"></a>00146 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00147"></a>00147 <span class="comment">                /// @param Position A vector2 representing the relative position of this Button List Box.</span>
+<a name="l00148"></a>00148 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPosition(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
+<a name="l00149"></a>00149 <span class="comment">                /// @brief Gets the relative position of this Button List Box.</span>
+<a name="l00150"></a>00150 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00151"></a>00151 <span class="comment">                /// @return Returns a vector2 representing the relative position of this Button List Box.</span>
+<a name="l00152"></a>00152 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetPosition();<span class="comment"></span>
+<a name="l00153"></a>00153 <span class="comment">                /// @brief Sets the pixel position of this Button List Box.</span>
+<a name="l00154"></a>00154 <span class="comment">                /// @param Position A vector2 representing the pixel position of this Button List Box.</span>
+<a name="l00155"></a>00155 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualPosition(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
+<a name="l00156"></a>00156 <span class="comment">                /// @brief Sets the pixel position of this Button List Box.</span>
+<a name="l00157"></a>00157 <span class="comment">                /// @return Returns a vector2 representing the pixel position of this Button List Box.</span>
+<a name="l00158"></a>00158 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualPosition();<span class="comment"></span>
+<a name="l00159"></a>00159 <span class="comment">                /// @brief Sets the relative size of this Button List Box.</span>
+<a name="l00160"></a>00160 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00161"></a>00161 <span class="comment">                /// @param Size A vector2 representing the relative size of this Button List Box.</span>
+<a name="l00162"></a>00162 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSize(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
+<a name="l00163"></a>00163 <span class="comment">                /// @brief Gets the relative size of this Button List Box.</span>
+<a name="l00164"></a>00164 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
+<a name="l00165"></a>00165 <span class="comment">                /// @return Returns a vector2 representing the relative size of this Button List Box.</span>
+<a name="l00166"></a>00166 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetSize();<span class="comment"></span>
+<a name="l00167"></a>00167 <span class="comment">                /// @brief Sets the pixel size of this Button List Box.</span>
+<a name="l00168"></a>00168 <span class="comment">                /// @param Size A vector2 representing the pixel size of this Button List Box.</span>
+<a name="l00169"></a>00169 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualSize(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
+<a name="l00170"></a>00170 <span class="comment">                /// @brief Sets the pixel size of this Button List Box.</span>
+<a name="l00171"></a>00171 <span class="comment">                /// @return Returns a vector2 representing the pixel size of this Button List Box.</span>
+<a name="l00172"></a>00172 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualSize();<span class="comment"></span>
+<a name="l00173"></a>00173 <span class="comment">                /// @brief Gets the currently selected button.</span>
+<a name="l00174"></a>00174 <span class="comment">                /// @return Returns a pointer to the currently selected button, or NULL if none are selected.</span>
+<a name="l00175"></a>00175 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* GetSelected();<span class="comment"></span>
+<a name="l00176"></a>00176 <span class="comment">                /// @brief Gets the background of this Button List Box.</span>
+<a name="l00177"></a>00177 <span class="comment">                /// @return Returns a pointer to the background of this Button List Box.</span>
+<a name="l00178"></a>00178 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* GetBoxBack();<span class="comment"></span>
+<a name="l00179"></a>00179 <span class="comment">                /// @brief Gets the scrollbar used within this Button List Box.</span>
+<a name="l00180"></a>00180 <span class="comment">                /// @return Returns a pointer to the scrollbar of this Button List Box.</span>
+<a name="l00181"></a>00181 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d3e/classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">UI::Scrollbar</a>* GetVertScroll();
+<a name="l00182"></a>00182         };
+<a name="l00183"></a>00183     }<span class="comment">//UI</span>
+<a name="l00184"></a>00184 }<span class="comment">//phys</span>
+<a name="l00185"></a>00185 
+<a name="l00186"></a>00186 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

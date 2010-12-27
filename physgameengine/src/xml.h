@@ -53,6 +53,8 @@
 #ifndef HEADER_XMLCONFIG_HPP
 #define HEADER_XMLCONFIG_HPP
 
+/// @cond 0
+
 // Uncomment this to enable wchar_t mode
 // #define PUGIXML_WCHAR_MODE
 
@@ -1193,8 +1195,8 @@ namespace std
 #endif
 
 /*
- * Software referenced in this clause refers on to the contents of this
- * file and associated documentation.
+     * Software referenced in this clause refers on to the contents of this
+     * file and associated documentation.
  *
  * Copyright (c) 2006-2010 Arseny Kapoulkine
  *
@@ -1219,3 +1221,5 @@ namespace std
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
+
+/// @endcond

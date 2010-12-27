@@ -58,11 +58,15 @@ virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href=".
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Can this be read from.  <a href="#a4900f77dd452c2a2ddf47a76d36d85c3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d52/classphys_1_1ResourceInputStream.html#a6e7619bf3efd3b344fab92d326385009">Writeable</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Can this be written to.  <a href="#a6e7619bf3efd3b344fab92d326385009"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2"><a class="anchor" id="a40a93720c3a4a9fb8c2c082c00574912"></a><!-- doxytag: member="phys::ResourceInputStream::operator&gt;&gt;" ref="a40a93720c3a4a9fb8c2c082c00574912" args="(T &amp;Data)" -->
+template&lt;class T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../dc/d52/classphys_1_1ResourceInputStream.html">ResourceInputStream</a> &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;&gt;</b> (T &amp;Data)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>A stream from a file, can read from zip files as well. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This currently only supports reading from the stream, and does not support any pointer navigation, or any other non-reading functions </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d3d/resourceinputstream_8h_source.html#l00060">60</a> of file <a class="el" href="../../d9/d3d/resourceinputstream_8h_source.html">resourceinputstream.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d3d/resourceinputstream_8h_source.html#l00063">63</a> of file <a class="el" href="../../d9/d3d/resourceinputstream_8h_source.html">resourceinputstream.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a890b739ac7f1c68108dc29f6887d2fa2"></a><!-- doxytag: member="phys::ResourceInputStream::ResourceInputStream" ref="a890b739ac7f1c68108dc29f6887d2fa2" args="(std::streambuf *InputBuffer, ResourceManager *ResourceManager_)" -->
 <div class="memitem">
@@ -92,14 +96,14 @@ virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href=".
 <p>Descriptive Constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>InputBuffer</em>&nbsp;</td><td>A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of <a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a>). This Stream will assume ownership of this buffer and will handle deleting it. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>InputBuffer</em>&nbsp;</td><td>A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>ResourceManager_</em>&nbsp;</td><td>Currently unused, future functionality may tuse this. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Do not delete the InputBuffer you pass in, this class will assume owner ship and delete it on it's own </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d3d/resourceinputstream_8h_source.html#l00079">79</a> of file <a class="el" href="../../d9/d3d/resourceinputstream_8h_source.html">resourceinputstream.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d3d/resourceinputstream_8h_source.html#l00082">82</a> of file <a class="el" href="../../d9/d3d/resourceinputstream_8h_source.html">resourceinputstream.h</a>.</p>
 
 </div>
 </div>
@@ -122,7 +126,7 @@ virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href=".
 <p>Can this be read from. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A bool true if it can be read from </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/d9c/resourceinputstream_8cpp_source.html#l00078">78</a> of file <a class="el" href="../../db/d9c/resourceinputstream_8cpp_source.html">resourceinputstream.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d9c/resourceinputstream_8cpp_source.html#l00077">77</a> of file <a class="el" href="../../db/d9c/resourceinputstream_8cpp_source.html">resourceinputstream.cpp</a>.</p>
 
 </div>
 </div>
@@ -144,7 +148,7 @@ virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href=".
 <p>Can this be written to. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A bool true if it can be written to </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/d9c/resourceinputstream_8cpp_source.html#l00083">83</a> of file <a class="el" href="../../db/d9c/resourceinputstream_8cpp_source.html">resourceinputstream.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d9c/resourceinputstream_8cpp_source.html#l00082">82</a> of file <a class="el" href="../../db/d9c/resourceinputstream_8cpp_source.html">resourceinputstream.cpp</a>.</p>
 
 </div>
 </div>
@@ -153,7 +157,7 @@ virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href=".
 <li><a class="el" href="../../db/d9c/resourceinputstream_8cpp_source.html">resourceinputstream.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:17 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:21 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

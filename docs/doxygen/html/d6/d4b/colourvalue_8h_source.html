@@ -121,13 +121,20 @@
 <a name="l00091"></a>00091 <span class="comment">            /// @details This function is intended for internal use only.</span>
 <a name="l00092"></a>00092 <span class="comment">            /// @return Returns an Ogre ColourValue class that has values equal to this one.</span>
 <a name="l00093"></a>00093 <span class="comment"></span>            Ogre::ColourValue GetOgreColourValue();
-<a name="l00094"></a>00094     };<span class="comment">//colorvalue</span>
-<a name="l00095"></a>00095 }<span class="comment">//phys</span>
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
+<a name="l00094"></a>00094 <span class="comment"></span>
+<a name="l00095"></a>00095 <span class="comment">            /// @brief Equality Comparison Operator</span>
+<a name="l00096"></a>00096 <span class="comment">            /// @param Colour This is another ColourValue to compare with.</span>
+<a name="l00097"></a>00097 <span class="comment"></span>            <span class="keywordtype">bool</span> operator== (<span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> &amp;Colour);<span class="comment"></span>
+<a name="l00098"></a>00098 <span class="comment">            /// @brief Inequality Comparison Operator</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @param Colour This is another ColourValue to compare with.</span>
+<a name="l00100"></a>00100 <span class="comment"></span>            <span class="keywordtype">bool</span> operator!= (<span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> &amp;Colour);
+<a name="l00101"></a>00101     };<span class="comment">//colorvalue</span>
+<a name="l00102"></a>00102 }<span class="comment">//phys</span>
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

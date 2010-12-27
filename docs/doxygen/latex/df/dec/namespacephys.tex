@@ -27,12 +27,6 @@ namespace \hyperlink{namespacephys_1_1internal}{internal}
 
 \begin{DoxyCompactList}\small\item\em This namespace is used for internal helper classes, and in general it should be ignored by game developers. \item\end{DoxyCompactList}
 
-\item 
-namespace \hyperlink{namespacephys_1_1xml}{xml}
-
-
-\begin{DoxyCompactList}\small\item\em The components to load, save, modify, and use XML will be stored here. \item\end{DoxyCompactList}
-
 \end{DoxyCompactItemize}
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
@@ -108,7 +102,7 @@ class \hyperlink{classphys_1_1ManagerBase}{ManagerBase}
 class \hyperlink{classphys_1_1MetaCode}{MetaCode}
 \begin{DoxyCompactList}\small\item\em This Determines the kind of user input. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1Node}{Node}
-\begin{DoxyCompactList}\small\item\em This is a helper class which non-\/physicsl objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This is a helper class which non-\/physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ParticleEffect}{ParticleEffect}
 \begin{DoxyCompactList}\small\item\em This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1PhysicsManager}{PhysicsManager}
@@ -156,18 +150,67 @@ typedef float \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real}
 \begin{DoxyCompactList}\small\item\em A Datatype used to represent a real floating point number. \item\end{DoxyCompactList}\item 
 typedef unsigned long \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole}
 \begin{DoxyCompactList}\small\item\em A Datatype used to represent an postive integer numbers. \item\end{DoxyCompactList}\item 
-typedef const std::string \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}
+typedef int \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer}
+\begin{DoxyCompactList}\small\item\em A datatype use to represent any integer close to. \item\end{DoxyCompactList}\item 
+typedef std::string \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}
 \begin{DoxyCompactList}\small\item\em A Datatype used to a series of characters. \item\end{DoxyCompactList}\item 
+typedef const std::string \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString}
+\begin{DoxyCompactList}\small\item\em A Datatype used to a series of imutable characters. \item\end{DoxyCompactList}\item 
 typedef SDL\_\-Event \hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{RawEvent}
 \begin{DoxyCompactList}\small\item\em This is an internal datatype use to communicate with the User input Subsystem. \item\end{DoxyCompactList}\item 
 typedef std::vector$<$ \hyperlink{classphys_1_1Sound}{Sound} $\ast$ $>$ \hyperlink{namespacephys_ab780c3162da5699fe421f3739ba03fc4}{SoundSet}
 \begin{DoxyCompactList}\small\item\em This is a vector that stores sounds. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_ae81e34843c6c569026b9a7d9d54c4f04}{ToString} (const T \&Datum)
+\begin{DoxyCompactList}\small\item\em Converts whatever to a String as long as a streaming operator is available for it. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{namespacephys_a53d44a46cab542ef86a541af5f1a7b62}{ToWhole} (const T \&Datum)
+\begin{DoxyCompactList}\small\item\em Converts whatever to a Whole as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\\hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer} \hyperlink{namespacephys_a7fe8a4cf645e000483652f26ef8d6e47}{ToInteger} (const T \&Datum)
+\begin{DoxyCompactList}\small\item\em Converts whatever to an Integer as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\int \hyperlink{namespacephys_af0a6dfb0aa9e9292b96a0273e1f49d3a}{Toint} (const T \&Datum)
+\begin{DoxyCompactList}\small\item\em Converts whatever to an int as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\unsigned int \hyperlink{namespacephys_a16ab66903d5e438a04f4e859c8aa47a7}{Tounsignedint} (const T \&Datum)
+\begin{DoxyCompactList}\small\item\em Converts whatever to an unsigned int as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\int \hyperlink{namespacephys_af9c39435b1181dab9b49b7c2aeb57127}{ToReal} (const T \&Datum)
+\begin{DoxyCompactList}\small\item\em Converts whatever to an Real as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\int \hyperlink{namespacephys_a306865e81b7e30cd45a166b4a173c4b4}{Tofloat} (const T \&Datum)
+\begin{DoxyCompactList}\small\item\em Converts whatever to a float as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\int \hyperlink{namespacephys_ad79753f6940f454a377a029570b0a3e0}{Todouble} (const T \&Datum)
+\begin{DoxyCompactList}\small\item\em Converts whatever to a double as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 The bulk of the engine components go in this namspace. This is where imporant classes like \hyperlink{classphys_1_1World}{World}, \hyperlink{classphys_1_1GraphicsManager}{GraphicsManager}, and The eventmanager reside. For more detailed usage information please refer to individual class documentation or the \hyperlink{index}{Physgame} main page. 
 
 \subsection{Typedef Documentation}
+\hypertarget{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{
+\index{phys@{phys}!ConstString@{ConstString}}
+\index{ConstString@{ConstString}!phys@{phys}}
+\subsubsection[{ConstString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::ConstString}}}
+\label{df/dec/namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}
+
+
+A Datatype used to a series of imutable characters. 
+
+This is a typedef to const std::string, but could change 
+
+Definition at line 94 of file datatypes.h.
+
+\hypertarget{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{
+\index{phys@{phys}!Integer@{Integer}}
+\index{Integer@{Integer}!phys@{phys}}
+\subsubsection[{Integer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::Integer}}}
+\label{df/dec/namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}
+
+
+A datatype use to represent any integer close to. 
+
+This is a typedef to int, but could int16 or smaller to improve performce on handheld platforms 
+
+Definition at line 84 of file datatypes.h.
+
 \hypertarget{namespacephys_a8126d26e4507e66d09876988bb941fd4}{
 \index{phys@{phys}!RawEvent@{RawEvent}}
 \index{RawEvent@{RawEvent}!phys@{phys}}
@@ -181,7 +224,7 @@ This is an internal datatype use to communicate with the User input Subsystem.
 This is a typedef to SDL\_\-Event. See the SDL Documentation for more details \end{DoxyInternal}
 
 
-Definition at line 83 of file datatypes.h.
+Definition at line 100 of file datatypes.h.
 
 \hypertarget{namespacephys_af7eb897198d265b8e868f45240230d5f}{
 \index{phys@{phys}!Real@{Real}}
@@ -192,9 +235,9 @@ Definition at line 83 of file datatypes.h.
 
 A Datatype used to represent a real floating point number. 
 
-This Datatype is currently a typedef to a float, This is to match our compilations of \hyperlink{namespaceOgre}{Ogre} (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no reason theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype 
+This Datatype is currently a typedef to a float, This is to match our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype. Most likely this switch would require atleast some troubleshooting. 
 
-Definition at line 67 of file datatypes.h.
+Definition at line 73 of file datatypes.h.
 
 \hypertarget{namespacephys_ab780c3162da5699fe421f3739ba03fc4}{
 \index{phys@{phys}!SoundSet@{SoundSet}}
@@ -207,7 +250,7 @@ This is a vector that stores sounds.
 
 This is a vector and can be use to store sounds that can be grouped together for similiar purposes or similiar content for easy tracking. 
 
-Definition at line 89 of file datatypes.h.
+Definition at line 106 of file datatypes.h.
 
 \hypertarget{namespacephys_aa03900411993de7fbfec4789bc1d392e}{
 \index{phys@{phys}!String@{String}}
@@ -218,9 +261,9 @@ Definition at line 89 of file datatypes.h.
 
 A Datatype used to a series of characters. 
 
-This is a typedef to std::string. 
+This is a typedef to std::string, but could change. 
 
-Definition at line 77 of file datatypes.h.
+Definition at line 89 of file datatypes.h.
 
 \hypertarget{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{
 \index{phys@{phys}!Whole@{Whole}}
@@ -231,7 +274,194 @@ Definition at line 77 of file datatypes.h.
 
 A Datatype used to represent an postive integer numbers. 
 
-This is a typedef to unsigned long. 
+This is a typedef to unsigned Long. but could be smaller on 
 
-Definition at line 72 of file datatypes.h.
+Definition at line 78 of file datatypes.h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{namespacephys_ad79753f6940f454a377a029570b0a3e0}{
+\index{phys@{phys}!Todouble@{Todouble}}
+\index{Todouble@{Todouble}!phys@{phys}}
+\subsubsection[{Todouble}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ int phys::Todouble (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{ Datum}
+\end{DoxyParamCaption}
+)}}
+\label{df/dec/namespacephys_ad79753f6940f454a377a029570b0a3e0}
+
+
+Converts whatever to a double as long as the proper streaming operators are available for it. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Datum}]The whatever to be converted \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An bouble with the converted data
+\end{DoxyReturn}
+This exists for interacting with other libraies, in situations where changing the Typedefs could break things 
+
+Definition at line 211 of file datatypes.h.
+
+\hypertarget{namespacephys_a306865e81b7e30cd45a166b4a173c4b4}{
+\index{phys@{phys}!Tofloat@{Tofloat}}
+\index{Tofloat@{Tofloat}!phys@{phys}}
+\subsubsection[{Tofloat}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ int phys::Tofloat (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{ Datum}
+\end{DoxyParamCaption}
+)}}
+\label{df/dec/namespacephys_a306865e81b7e30cd45a166b4a173c4b4}
+
+
+Converts whatever to a float as long as the proper streaming operators are available for it. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Datum}]The whatever to be converted \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An float with the converted data
+\end{DoxyReturn}
+This exists for interacting with other libraies, in situations where changing the Real Typedef could break things 
+
+Definition at line 197 of file datatypes.h.
+
+\hypertarget{namespacephys_af0a6dfb0aa9e9292b96a0273e1f49d3a}{
+\index{phys@{phys}!Toint@{Toint}}
+\index{Toint@{Toint}!phys@{phys}}
+\subsubsection[{Toint}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ int phys::Toint (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{ Datum}
+\end{DoxyParamCaption}
+)}}
+\label{df/dec/namespacephys_af0a6dfb0aa9e9292b96a0273e1f49d3a}
+
+
+Converts whatever to an int as long as the proper streaming operators are available for it. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Datum}]The whatever to be converted \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An int with the converted data
+\end{DoxyReturn}
+This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
+
+Definition at line 154 of file datatypes.h.
+
+\hypertarget{namespacephys_a7fe8a4cf645e000483652f26ef8d6e47}{
+\index{phys@{phys}!ToInteger@{ToInteger}}
+\index{ToInteger@{ToInteger}!phys@{phys}}
+\subsubsection[{ToInteger}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Integer} phys::ToInteger (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{ Datum}
+\end{DoxyParamCaption}
+)}}
+\label{df/dec/namespacephys_a7fe8a4cf645e000483652f26ef8d6e47}
+
+
+Converts whatever to an Integer as long as the proper streaming operators are available for it. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Datum}]The whatever to be converted \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An Integer with the converted data 
+\end{DoxyReturn}
+
+
+Definition at line 139 of file datatypes.h.
+
+\hypertarget{namespacephys_af9c39435b1181dab9b49b7c2aeb57127}{
+\index{phys@{phys}!ToReal@{ToReal}}
+\index{ToReal@{ToReal}!phys@{phys}}
+\subsubsection[{ToReal}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ int phys::ToReal (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{ Datum}
+\end{DoxyParamCaption}
+)}}
+\label{df/dec/namespacephys_af9c39435b1181dab9b49b7c2aeb57127}
+
+
+Converts whatever to an Real as long as the proper streaming operators are available for it. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Datum}]The whatever to be converted \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An Real with the converted data 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file datatypes.h.
+
+\hypertarget{namespacephys_ae81e34843c6c569026b9a7d9d54c4f04}{
+\index{phys@{phys}!ToString@{ToString}}
+\index{ToString@{ToString}!phys@{phys}}
+\subsubsection[{ToString}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf String} phys::ToString (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{ Datum}
+\end{DoxyParamCaption}
+)}}
+\label{df/dec/namespacephys_ae81e34843c6c569026b9a7d9d54c4f04}
+
+
+Converts whatever to a String as long as a streaming operator is available for it. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Datum}]The whatever to be converted \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A String with the converted data 
+\end{DoxyReturn}
+
+
+Definition at line 115 of file datatypes.h.
+
+\hypertarget{namespacephys_a16ab66903d5e438a04f4e859c8aa47a7}{
+\index{phys@{phys}!Tounsignedint@{Tounsignedint}}
+\index{Tounsignedint@{Tounsignedint}!phys@{phys}}
+\subsubsection[{Tounsignedint}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ unsigned int phys::Tounsignedint (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{ Datum}
+\end{DoxyParamCaption}
+)}}
+\label{df/dec/namespacephys_a16ab66903d5e438a04f4e859c8aa47a7}
+
+
+Converts whatever to an unsigned int as long as the proper streaming operators are available for it. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Datum}]The whatever to be converted \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An unsigned int with the converted data
+\end{DoxyReturn}
+This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
+
+Definition at line 169 of file datatypes.h.
+
+\hypertarget{namespacephys_a53d44a46cab542ef86a541af5f1a7b62}{
+\index{phys@{phys}!ToWhole@{ToWhole}}
+\index{ToWhole@{ToWhole}!phys@{phys}}
+\subsubsection[{ToWhole}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Whole} phys::ToWhole (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{ Datum}
+\end{DoxyParamCaption}
+)}}
+\label{df/dec/namespacephys_a53d44a46cab542ef86a541af5f1a7b62}
+
+
+Converts whatever to a Whole as long as the proper streaming operators are available for it. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Datum}]The whatever to be converted \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Whole with the converted data 
+\end{DoxyReturn}
+
+
+Definition at line 126 of file datatypes.h.
 

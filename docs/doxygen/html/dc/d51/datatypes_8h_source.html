@@ -75,60 +75,185 @@
 <a name="l00045"></a>00045 <span class="comment"></span><span class="preprocessor">#include &quot;crossplatformexport.h&quot;</span>
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="preprocessor">#include &lt;string&gt;</span>
-<a name="l00048"></a>00048 <span class="preprocessor">#include &lt;vector&gt;</span>
-<a name="l00049"></a>00049 <span class="comment"></span>
-<a name="l00050"></a>00050 <span class="comment">/// @internal</span>
-<a name="l00051"></a>00051 <span class="comment">/// @brief Forward declaration for SDL compatibilty</span>
-<a name="l00052"></a>00052 <span class="comment"></span><span class="keyword">union </span>SDL_Event;
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="keyword">namespace </span>phys
-<a name="l00055"></a>00055 {<span class="comment"></span>
-<a name="l00056"></a>00056 <span class="comment">    /// @internal</span>
-<a name="l00057"></a>00057 <span class="comment">    /// @brief Forward declaration for use with soundset</span>
-<a name="l00058"></a>00058 <span class="comment"></span>    <span class="keyword">class </span>Sound;
-<a name="l00059"></a>00059 <span class="comment"></span>
-<a name="l00060"></a>00060 <span class="comment">    /// @typedef Real</span>
-<a name="l00061"></a>00061 <span class="comment">    /// @brief A Datatype used to represent a real floating point number</span>
-<a name="l00062"></a>00062 <span class="comment">    /// @details This Datatype is currently a typedef to a float, This is to match</span>
-<a name="l00063"></a>00063 <span class="comment">    /// our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics</span>
-<a name="l00064"></a>00064 <span class="comment">    /// subsystem, btScalar). With a recompilation of all the subsystems and  this</span>
-<a name="l00065"></a>00065 <span class="comment">    /// there is no reason theoretical reason why this could not be changed to a</span>
-<a name="l00066"></a>00066 <span class="comment">    /// double, or even something more extreme like a GMP datatype</span>
-<a name="l00067"></a><a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">00067</a> <span class="comment"></span>    <span class="keyword">typedef</span> <span class="keywordtype">float</span> Real;
-<a name="l00068"></a>00068 <span class="comment"></span>
-<a name="l00069"></a>00069 <span class="comment">    /// @typedef Whole</span>
-<a name="l00070"></a>00070 <span class="comment">    /// @brief A Datatype used to represent an postive integer numbers</span>
-<a name="l00071"></a>00071 <span class="comment">    /// @details This is a typedef to unsigned long.</span>
-<a name="l00072"></a><a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">00072</a> <span class="comment"></span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Whole;
-<a name="l00073"></a>00073 <span class="comment"></span>
-<a name="l00074"></a>00074 <span class="comment">    /// @typedef String</span>
-<a name="l00075"></a>00075 <span class="comment">    /// @brief A Datatype used to a series of characters</span>
-<a name="l00076"></a>00076 <span class="comment">    /// @details This is a typedef to std::string.</span>
-<a name="l00077"></a><a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">00077</a> <span class="comment"></span>    <span class="keyword">typedef</span> <span class="keyword">const</span> std::string String;
-<a name="l00078"></a>00078 <span class="comment"></span>
-<a name="l00079"></a>00079 <span class="comment">    /// @internal</span>
-<a name="l00080"></a>00080 <span class="comment">    /// @typedef RawEvent</span>
-<a name="l00081"></a>00081 <span class="comment">    /// @brief This is an internal datatype use to communicate with the User input Subsystem</span>
-<a name="l00082"></a>00082 <span class="comment">    /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details</span>
-<a name="l00083"></a><a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4">00083</a> <span class="comment"></span>    <span class="keyword">typedef</span> SDL_Event RawEvent;
-<a name="l00084"></a>00084 <span class="comment"></span>
-<a name="l00085"></a>00085 <span class="comment">    /// @typedef SoundSet</span>
-<a name="l00086"></a>00086 <span class="comment">    /// @brief This is a vector that stores sounds.</span>
-<a name="l00087"></a>00087 <span class="comment">    /// @details This is a vector and can be use to store sounds that can be grouped together</span>
-<a name="l00088"></a>00088 <span class="comment">    /// for similiar purposes or similiar content for easy tracking.</span>
-<a name="l00089"></a><a class="code" href="../../df/dec/namespacephys.html#ab780c3162da5699fe421f3739ba03fc4">00089</a> <span class="comment"></span>    <span class="keyword">typedef</span> std::vector&lt; Sound* &gt; SoundSet;
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092     <span class="comment">//TODO make a typedef for RawEvent.type and a function that return that new datatype</span>
-<a name="l00093"></a>00093     <span class="comment">//  this will make it easier to swap out event subsystems when porting between platforms</span>
-<a name="l00094"></a>00094     <span class="comment">//  If done right we will only need to swap out the code specific to message internals</span>
-<a name="l00095"></a>00095 } <span class="comment">// \phys</span>
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
-<a name="l00098"></a>00098 <span class="preprocessor"></span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include &lt;sstream&gt;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include &lt;vector&gt;</span>
+<a name="l00050"></a>00050 <span class="comment"></span>
+<a name="l00051"></a>00051 <span class="comment">/// @internal</span>
+<a name="l00052"></a>00052 <span class="comment">/// @brief Forward declaration for SDL compatibilty</span>
+<a name="l00053"></a>00053 <span class="comment"></span><span class="keyword">union </span>SDL_Event;
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 <span class="keyword">namespace </span>phys
+<a name="l00056"></a>00056 {<span class="comment"></span>
+<a name="l00057"></a>00057 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00058"></a>00058 <span class="comment"></span>    <span class="comment">// Datatypes</span><span class="comment"></span>
+<a name="l00059"></a>00059 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00060"></a>00060 <span class="comment"></span><span class="comment"></span>
+<a name="l00061"></a>00061 <span class="comment">    /// @internal</span>
+<a name="l00062"></a>00062 <span class="comment">    /// @brief Forward declaration for use with soundset</span>
+<a name="l00063"></a>00063 <span class="comment"></span>    <span class="keyword">class </span>Sound;
+<a name="l00064"></a>00064 <span class="comment"></span>
+<a name="l00065"></a>00065 <span class="comment">    /// @typedef Real</span>
+<a name="l00066"></a>00066 <span class="comment">    /// @brief A Datatype used to represent a real floating point number</span>
+<a name="l00067"></a>00067 <span class="comment">    /// @details This Datatype is currently a typedef to a float, This is to match</span>
+<a name="l00068"></a>00068 <span class="comment">    /// our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics</span>
+<a name="l00069"></a>00069 <span class="comment">    /// subsystem, btScalar). With a recompilation of all the subsystems and  this</span>
+<a name="l00070"></a>00070 <span class="comment">    /// there is no theoretical reason why this could not be changed to a</span>
+<a name="l00071"></a>00071 <span class="comment">    /// double, or even something more extreme like a GMP datatype. Most likely this</span>
+<a name="l00072"></a>00072 <span class="comment">    /// switch would require atleast some troubleshooting.</span>
+<a name="l00073"></a><a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">00073</a> <span class="comment"></span>    <span class="keyword">typedef</span> <span class="keywordtype">float</span> Real;
+<a name="l00074"></a>00074 <span class="comment"></span>
+<a name="l00075"></a>00075 <span class="comment">    /// @typedef Whole</span>
+<a name="l00076"></a>00076 <span class="comment">    /// @brief A Datatype used to represent an postive integer numbers</span>
+<a name="l00077"></a>00077 <span class="comment">    /// @details This is a typedef to unsigned Long. but could be smaller on</span>
+<a name="l00078"></a><a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">00078</a> <span class="comment"></span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Whole;
+<a name="l00079"></a>00079 <span class="comment"></span>
+<a name="l00080"></a>00080 <span class="comment">    /// @typedef Integer</span>
+<a name="l00081"></a>00081 <span class="comment">    /// @brief A datatype use to represent any integer close to</span>
+<a name="l00082"></a>00082 <span class="comment">    /// @details This is a typedef to int, but could int16 or smaller to improve performce on</span>
+<a name="l00083"></a>00083 <span class="comment">    /// handheld platforms</span>
+<a name="l00084"></a><a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81">00084</a> <span class="comment"></span>    <span class="keyword">typedef</span> <span class="keywordtype">int</span> Integer;
+<a name="l00085"></a>00085 <span class="comment"></span>
+<a name="l00086"></a>00086 <span class="comment">    /// @typedef String</span>
+<a name="l00087"></a>00087 <span class="comment">    /// @brief A Datatype used to a series of characters</span>
+<a name="l00088"></a>00088 <span class="comment">    /// @details This is a typedef to std::string, but could change.</span>
+<a name="l00089"></a><a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">00089</a> <span class="comment"></span>    <span class="keyword">typedef</span> std::string String;
+<a name="l00090"></a>00090 <span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">    /// @typedef ConstString</span>
+<a name="l00092"></a>00092 <span class="comment">    /// @brief A Datatype used to a series of imutable characters</span>
+<a name="l00093"></a>00093 <span class="comment">    /// @details This is a typedef to const std::string, but could change</span>
+<a name="l00094"></a><a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">00094</a> <span class="comment"></span>    <span class="keyword">typedef</span> <span class="keyword">const</span> std::string ConstString;
+<a name="l00095"></a>00095 <span class="comment"></span>
+<a name="l00096"></a>00096 <span class="comment">    /// @internal</span>
+<a name="l00097"></a>00097 <span class="comment">    /// @typedef RawEvent</span>
+<a name="l00098"></a>00098 <span class="comment">    /// @brief This is an internal datatype use to communicate with the User input Subsystem</span>
+<a name="l00099"></a>00099 <span class="comment">    /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details</span>
+<a name="l00100"></a><a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4">00100</a> <span class="comment"></span>    <span class="keyword">typedef</span> SDL_Event RawEvent;
+<a name="l00101"></a>00101 <span class="comment"></span>
+<a name="l00102"></a>00102 <span class="comment">    /// @typedef SoundSet</span>
+<a name="l00103"></a>00103 <span class="comment">    /// @brief This is a vector that stores sounds.</span>
+<a name="l00104"></a>00104 <span class="comment">    /// @details This is a vector and can be use to store sounds that can be grouped together</span>
+<a name="l00105"></a>00105 <span class="comment">    /// for similiar purposes or similiar content for easy tracking.</span>
+<a name="l00106"></a><a class="code" href="../../df/dec/namespacephys.html#ab780c3162da5699fe421f3739ba03fc4">00106</a> <span class="comment"></span>    <span class="keyword">typedef</span> std::vector&lt; Sound* &gt; SoundSet;
+<a name="l00107"></a>00107 <span class="comment"></span>
+<a name="l00108"></a>00108 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00109"></a>00109 <span class="comment"></span>    <span class="comment">// Simple conversion functions</span><span class="comment"></span>
+<a name="l00110"></a>00110 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00111"></a>00111 <span class="comment"></span><span class="comment"></span>
+<a name="l00112"></a>00112 <span class="comment">    /// @brief Converts whatever to a String as long as a streaming operator is available for it</span>
+<a name="l00113"></a>00113 <span class="comment">    /// @param Datum The whatever to be converted</span>
+<a name="l00114"></a>00114 <span class="comment">    /// @return A String with the converted data</span>
+<a name="l00115"></a><a class="code" href="../../df/dec/namespacephys.html#ae81e34843c6c569026b9a7d9d54c4f04">00115</a> <span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../df/dec/namespacephys.html#ae81e34843c6c569026b9a7d9d54c4f04" title="Converts whatever to a String as long as a streaming operator is available for it.">ToString</a>( <span class="keyword">const</span> T&amp; Datum )
+<a name="l00116"></a>00116     {
+<a name="l00117"></a>00117         <span class="keyword">static</span> std::stringstream Converter;
+<a name="l00118"></a>00118         Converter.str(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00119"></a>00119         Converter &lt;&lt; Datum;
+<a name="l00120"></a>00120         <span class="keywordflow">return</span> Converter.str();
+<a name="l00121"></a>00121     }
+<a name="l00122"></a>00122 <span class="comment"></span>
+<a name="l00123"></a>00123 <span class="comment">    /// @brief Converts whatever to a Whole as long as the proper streaming operators are available for it</span>
+<a name="l00124"></a>00124 <span class="comment">    /// @param Datum The whatever to be converted</span>
+<a name="l00125"></a>00125 <span class="comment">    /// @return A Whole with the converted data</span>
+<a name="l00126"></a><a class="code" href="../../df/dec/namespacephys.html#a53d44a46cab542ef86a541af5f1a7b62">00126</a> <span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../df/dec/namespacephys.html#a53d44a46cab542ef86a541af5f1a7b62" title="Converts whatever to a Whole as long as the proper streaming operators are available for it...">ToWhole</a>( <span class="keyword">const</span> T&amp; Datum )
+<a name="l00127"></a>00127     {
+<a name="l00128"></a>00128         <span class="keyword">static</span> std::stringstream Converter;
+<a name="l00129"></a>00129         Converter.str(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00130"></a>00130         Converter &lt;&lt; Datum;
+<a name="l00131"></a>00131         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Results;
+<a name="l00132"></a>00132         Converter &gt;&gt; Results;
+<a name="l00133"></a>00133         <span class="keywordflow">return</span> Results;
+<a name="l00134"></a>00134     }
+<a name="l00135"></a>00135 <span class="comment"></span>
+<a name="l00136"></a>00136 <span class="comment">    /// @brief Converts whatever to an Integer as long as the proper streaming operators are available for it</span>
+<a name="l00137"></a>00137 <span class="comment">    /// @param Datum The whatever to be converted</span>
+<a name="l00138"></a>00138 <span class="comment">    /// @return An Integer with the converted data</span>
+<a name="l00139"></a><a class="code" href="../../df/dec/namespacephys.html#a7fe8a4cf645e000483652f26ef8d6e47">00139</a> <span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../df/dec/namespacephys.html#a7fe8a4cf645e000483652f26ef8d6e47" title="Converts whatever to an Integer as long as the proper streaming operators are available for it...">ToInteger</a>( <span class="keyword">const</span> T&amp; Datum )
+<a name="l00140"></a>00140     {
+<a name="l00141"></a>00141         <span class="keyword">static</span> std::stringstream Converter;
+<a name="l00142"></a>00142         Converter.str(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00143"></a>00143         Converter &lt;&lt; Datum;
+<a name="l00144"></a>00144         <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Results;
+<a name="l00145"></a>00145         Converter &gt;&gt; Results;
+<a name="l00146"></a>00146         <span class="keywordflow">return</span> Results;
+<a name="l00147"></a>00147     }
+<a name="l00148"></a>00148 <span class="comment"></span>
+<a name="l00149"></a>00149 <span class="comment">    /// @brief Converts whatever to an int as long as the proper streaming operators are available for it</span>
+<a name="l00150"></a>00150 <span class="comment">    /// @param Datum The whatever to be converted</span>
+<a name="l00151"></a>00151 <span class="comment">    /// @return An int with the converted data</span>
+<a name="l00152"></a>00152 <span class="comment">    /// @details This exists for interacting with other libraies, in situations where changing the Integer Typedef could</span>
+<a name="l00153"></a>00153 <span class="comment">    /// break things</span>
+<a name="l00154"></a><a class="code" href="../../df/dec/namespacephys.html#af0a6dfb0aa9e9292b96a0273e1f49d3a">00154</a> <span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">int</span> <a class="code" href="../../df/dec/namespacephys.html#af0a6dfb0aa9e9292b96a0273e1f49d3a" title="Converts whatever to an int as long as the proper streaming operators are available for it...">Toint</a>( <span class="keyword">const</span> T&amp; Datum )
+<a name="l00155"></a>00155     {
+<a name="l00156"></a>00156         <span class="keyword">static</span> std::stringstream Converter;
+<a name="l00157"></a>00157         Converter.str(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00158"></a>00158         Converter &lt;&lt; Datum;
+<a name="l00159"></a>00159         <span class="keywordtype">int</span> Results;
+<a name="l00160"></a>00160         Converter &gt;&gt; Results;
+<a name="l00161"></a>00161         <span class="keywordflow">return</span> Results;
+<a name="l00162"></a>00162     }
+<a name="l00163"></a>00163 <span class="comment"></span>
+<a name="l00164"></a>00164 <span class="comment">    /// @brief Converts whatever to an unsigned int as long as the proper streaming operators are available for it</span>
+<a name="l00165"></a>00165 <span class="comment">    /// @param Datum The whatever to be converted</span>
+<a name="l00166"></a>00166 <span class="comment">    /// @return An unsigned int with the converted data</span>
+<a name="l00167"></a>00167 <span class="comment">    /// @details This exists for interacting with other libraies, in situations where changing the Integer Typedef could</span>
+<a name="l00168"></a>00168 <span class="comment">    /// break things</span>
+<a name="l00169"></a><a class="code" href="../../df/dec/namespacephys.html#a16ab66903d5e438a04f4e859c8aa47a7">00169</a> <span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../df/dec/namespacephys.html#a16ab66903d5e438a04f4e859c8aa47a7" title="Converts whatever to an unsigned int as long as the proper streaming operators are available for it...">Tounsignedint</a>( <span class="keyword">const</span> T&amp; Datum )
+<a name="l00170"></a>00170     {
+<a name="l00171"></a>00171         <span class="keyword">static</span> std::stringstream Converter;
+<a name="l00172"></a>00172         Converter.str(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00173"></a>00173         Converter &lt;&lt; Datum;
+<a name="l00174"></a>00174         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Results;
+<a name="l00175"></a>00175         Converter &gt;&gt; Results;
+<a name="l00176"></a>00176         <span class="keywordflow">return</span> Results;
+<a name="l00177"></a>00177     }
+<a name="l00178"></a>00178 <span class="comment"></span>
+<a name="l00179"></a>00179 <span class="comment">    /// @brief Converts whatever to an Real as long as the proper streaming operators are available for it</span>
+<a name="l00180"></a>00180 <span class="comment">    /// @param Datum The whatever to be converted</span>
+<a name="l00181"></a>00181 <span class="comment">    /// @return An Real with the converted data</span>
+<a name="l00182"></a><a class="code" href="../../df/dec/namespacephys.html#af9c39435b1181dab9b49b7c2aeb57127">00182</a> <span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">int</span> <a class="code" href="../../df/dec/namespacephys.html#af9c39435b1181dab9b49b7c2aeb57127" title="Converts whatever to an Real as long as the proper streaming operators are available for it...">ToReal</a>( <span class="keyword">const</span> T&amp; Datum )
+<a name="l00183"></a>00183     {
+<a name="l00184"></a>00184         <span class="keyword">static</span> std::stringstream Converter;
+<a name="l00185"></a>00185         Converter.str(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00186"></a>00186         Converter &lt;&lt; Datum;
+<a name="l00187"></a>00187         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Results;
+<a name="l00188"></a>00188         Converter &gt;&gt; Results;
+<a name="l00189"></a>00189         <span class="keywordflow">return</span> Results;
+<a name="l00190"></a>00190     }
+<a name="l00191"></a>00191 <span class="comment"></span>
+<a name="l00192"></a>00192 <span class="comment">    /// @brief Converts whatever to a float as long as the proper streaming operators are available for it</span>
+<a name="l00193"></a>00193 <span class="comment">    /// @param Datum The whatever to be converted</span>
+<a name="l00194"></a>00194 <span class="comment">    /// @return An float with the converted data</span>
+<a name="l00195"></a>00195 <span class="comment">    /// @details This exists for interacting with other libraies, in situations where changing the Real Typedef could</span>
+<a name="l00196"></a>00196 <span class="comment">    /// break things</span>
+<a name="l00197"></a><a class="code" href="../../df/dec/namespacephys.html#a306865e81b7e30cd45a166b4a173c4b4">00197</a> <span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">int</span> <a class="code" href="../../df/dec/namespacephys.html#a306865e81b7e30cd45a166b4a173c4b4" title="Converts whatever to a float as long as the proper streaming operators are available for it...">Tofloat</a>( <span class="keyword">const</span> T&amp; Datum )
+<a name="l00198"></a>00198     {
+<a name="l00199"></a>00199         <span class="keyword">static</span> std::stringstream Converter;
+<a name="l00200"></a>00200         Converter.str(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00201"></a>00201         Converter &lt;&lt; Datum;
+<a name="l00202"></a>00202         <span class="keywordtype">float</span> Results;
+<a name="l00203"></a>00203         Converter &gt;&gt; Results;
+<a name="l00204"></a>00204         <span class="keywordflow">return</span> Results;
+<a name="l00205"></a>00205     }
+<a name="l00206"></a>00206 <span class="comment"></span>
+<a name="l00207"></a>00207 <span class="comment">    /// @brief Converts whatever to a double as long as the proper streaming operators are available for it</span>
+<a name="l00208"></a>00208 <span class="comment">    /// @param Datum The whatever to be converted</span>
+<a name="l00209"></a>00209 <span class="comment">    /// @return An bouble with the converted data</span>
+<a name="l00210"></a>00210 <span class="comment">    /// @details This exists for interacting with other libraies, in situations where changing the Typedefs could break things</span>
+<a name="l00211"></a><a class="code" href="../../df/dec/namespacephys.html#ad79753f6940f454a377a029570b0a3e0">00211</a> <span class="comment"></span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">int</span> <a class="code" href="../../df/dec/namespacephys.html#ad79753f6940f454a377a029570b0a3e0" title="Converts whatever to a double as long as the proper streaming operators are available for it...">Todouble</a>( <span class="keyword">const</span> T&amp; Datum )
+<a name="l00212"></a>00212     {
+<a name="l00213"></a>00213         <span class="keyword">static</span> std::stringstream Converter;
+<a name="l00214"></a>00214         Converter.str(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00215"></a>00215         Converter &lt;&lt; Datum;
+<a name="l00216"></a>00216         <span class="keywordtype">double</span> Results;
+<a name="l00217"></a>00217         Converter &gt;&gt; Results;
+<a name="l00218"></a>00218         <span class="keywordflow">return</span> Results;
+<a name="l00219"></a>00219     }
+<a name="l00220"></a>00220 
+<a name="l00221"></a>00221 } <span class="comment">// \phys</span>
+<a name="l00222"></a>00222 
+<a name="l00223"></a>00223 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

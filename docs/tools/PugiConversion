@@ -1,6 +1,6 @@
 #!/bin/bash
 # Takes in PugiXML and emits XML files appropriate for direct inclusion in the Physgame library
-# This expects the PugiXML source files to be in the subrdirectory call PugiSrc and expects the script prependlicense to be present as well
+# This expects the PugiXML source files to be in the subdirectory call PugiSrc
 
 # This script isn't magic, it was designed with version 1.0 of PugiXML in mind. If new features have been added, then new commands
 # will need to be add to rename those as well.
@@ -19,32 +19,10 @@ OutDir="./"
 NewHFile="xml.h"
 NewCppFile="xml.cpp"
 
-#
-PugiEndCopyright='/**
- * Copyright (c) 2006-2010 Arseny Kapoulkine
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following
- * conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- * OTHER DEALINGS IN THE SOFTWARE.
- */'
-PugiBeginCopyright='/**
+# The Copyright notices, and other string to search for
+PugiEndCopyright="/**\n * Copyright (c) 2006-2010 Arseny Kapoulkine\n *\n * Permission is hereby granted, free of charge, to any person\n * obtaining a copy of this software and associated documentation\n * files (the \"Software\"), to deal in the Software without\n * restriction, including without limitation the rights to use,\n * copy, modify, merge, publish, distribute, sublicense, and/or sell\n * copies of the Software, and to permit persons to whom the\n * Software is furnished to do so, subject to the following\n * conditions:\n *\n * The above copyright notice and this permission notice shall be\n * included in all copies or substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\n * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\n * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\n * OTHER DEALINGS IN THE SOFTWARE.\n */"
+
+PugiBeginCopyright="'/**
  * pugixml parser - version 1.0
  * --------------------------------------------------------
  * Copyright (C) 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
@@ -55,9 +33,14 @@ PugiBeginCopyright='/**
  *
  * This work is based on the pugxml parser, which is:
  * Copyright (C) 2003, by Kristen Wegner (kristen@tima.net)
- */'
+ */'"
 
-sed -e 's/"$PugiBeginCopyright\"/\"\"/g' $PugiHFile | cat  $PugiHFile > $NewHFile
+#This Does  a number a number of transformations on the PugiConfig file before dumping the complete converted parts into the new headerfile
+#	- removes Extra Copyright notices (Since this is at the begining we will remove the end copyright)
+#	- Replaces series of 4 spaces with tabs (seems to be an issue with the original source Files)
+sed -e 's/$PugiEndCopyright//g' $PugiConfigFile  > $NewHFile
+#;s/'    '/'	'/g
+
 
 
 

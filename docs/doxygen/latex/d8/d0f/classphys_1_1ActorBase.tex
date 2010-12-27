@@ -38,7 +38,7 @@ const bool \hyperlink{classphys_1_1ActorBase_ace1d04b4fbb21823cde3feee83d17c2f}{
 \begin{DoxyCompactList}\small\item\em Gets whether this actors current shape has been saved or not. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_ac60e1ebd1a08882234a6d04aff745260}{SetBasicCollisionParams} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Friction, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Restitution)
 \begin{DoxyCompactList}\small\item\em Sets the basic parameters for more realistic collision behavior. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ActorBase_a708ec161f50833323294aa7ddceee776}{SetAnimation} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&AnimationName, bool Loop)
+void \hyperlink{classphys_1_1ActorBase_a1c84866a23fdf7598462839dddae3240}{SetAnimation} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&AnimationName, bool Loop)
 \begin{DoxyCompactList}\small\item\em Sets the animation for this object. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_a72203a9c7befd1ab606ff69af4183849}{EnableAnimation} (bool Enable)
 \begin{DoxyCompactList}\small\item\em Enables the animation if one is set. \item\end{DoxyCompactList}\item 
@@ -190,7 +190,10 @@ bool \hyperlink{classphys_1_1ActorBase_a22c0ab01bdc3e1e5c656fb0f201f6929}{ShapeI
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classphys_1_1ActorBase_a6db9d28bd448a131448276ee03de1e6d}{Node}
+\hypertarget{classphys_1_1ActorBase_a6db9d28bd448a131448276ee03de1e6d}{
+class {\bfseries Node}}
+\label{d8/d0f/classphys_1_1ActorBase_a6db9d28bd448a131448276ee03de1e6d}
+
 \item 
 \hypertarget{classphys_1_1ActorBase_a54042fcfa7ab444a50ec79cbe3395356}{
 class {\bfseries ActorContainerBase}}
@@ -916,16 +919,16 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_ad1696a10b3057897ca503de013aa
 
 Definition at line 440 of file actorbase.cpp.
 
-\hypertarget{classphys_1_1ActorBase_a708ec161f50833323294aa7ddceee776}{
+\hypertarget{classphys_1_1ActorBase_a1c84866a23fdf7598462839dddae3240}{
 \index{phys::ActorBase@{phys::ActorBase}!SetAnimation@{SetAnimation}}
 \index{SetAnimation@{SetAnimation}!phys::ActorBase@{phys::ActorBase}}
 \subsubsection[{SetAnimation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorBase::SetAnimation (
 \begin{DoxyParamCaption}
-\item[{{\bf String} \&}]{ AnimationName, }
+\item[{{\bf ConstString} \&}]{ AnimationName, }
 \item[{bool}]{ Loop}
 \end{DoxyParamCaption}
 )}}
-\label{d8/d0f/classphys_1_1ActorBase_a708ec161f50833323294aa7ddceee776}
+\label{d8/d0f/classphys_1_1ActorBase_a1c84866a23fdf7598462839dddae3240}
 
 
 Sets the animation for this object. 
@@ -1240,20 +1243,6 @@ This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
 Definition at line 515 of file actorbase.cpp.
-
-
-
-\subsection{Friends And Related Function Documentation}
-\hypertarget{classphys_1_1ActorBase_a6db9d28bd448a131448276ee03de1e6d}{
-\index{phys::ActorBase@{phys::ActorBase}!Node@{Node}}
-\index{Node@{Node}!phys::ActorBase@{phys::ActorBase}}
-\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Node}\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
-\label{d8/d0f/classphys_1_1ActorBase_a6db9d28bd448a131448276ee03de1e6d}
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 87 of file actorbase.h.
 
 
 

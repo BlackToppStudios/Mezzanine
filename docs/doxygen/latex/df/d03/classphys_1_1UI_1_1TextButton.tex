@@ -20,14 +20,28 @@ Inheritance diagram for phys::UI::TextButton:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1TextButton_a21f4d17b01e51840cedb6c73d5668188}{TextButton} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Text, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\hyperlink{classphys_1_1UI_1_1TextButton_a399ee921d2280771173e5e319c1d3f9e}{TextButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Text, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}{
 \hyperlink{classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}{$\sim$TextButton} ()}
 \label{df/d03/classphys_1_1UI_1_1TextButton_a1f28489fee45ee8ce7e1b0aea0f249a1}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1TextButton_ac4d77038642936e398f5a319c25ca942}{SetText} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Text)
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_a07e030ef92f314b1eff663cbc1712d42}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this button. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1TextButton_a505167a00d343d704df1f759cd12ed1e}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this button. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1TextButton_add95c812af6ef7584a2d515a33bac72b}{
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_add95c812af6ef7584a2d515a33bac72b}{Show} ()}
+\label{df/d03/classphys_1_1UI_1_1TextButton_add95c812af6ef7584a2d515a33bac72b}
+
+\begin{DoxyCompactList}\small\item\em Forces this button to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1TextButton_aef823890ba8c829183f1b618473c1bac}{
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_aef823890ba8c829183f1b618473c1bac}{Hide} ()}
+\label{df/d03/classphys_1_1UI_1_1TextButton_aef823890ba8c829183f1b618473c1bac}
+
+\begin{DoxyCompactList}\small\item\em Forces this button to hide. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1TextButton_ae66f149489c4215963dc5b853c838c50}{SetText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text)
 \begin{DoxyCompactList}\small\item\em Sets the text displayed within the button. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1TextButton_a8dc28f2fa610dc9bb72e5886613996bd}{GetText} ()
 \begin{DoxyCompactList}\small\item\em Gets the text displayed within the button. \item\end{DoxyCompactList}\item 
@@ -73,12 +87,12 @@ Definition at line 57 of file uitextbutton.h.
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1TextButton_a21f4d17b01e51840cedb6c73d5668188}{
+\hypertarget{classphys_1_1UI_1_1TextButton_a399ee921d2280771173e5e319c1d3f9e}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!TextButton@{TextButton}}
 \index{TextButton@{TextButton}!phys::UI::TextButton@{phys::UI::TextButton}}
 \subsubsection[{TextButton}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::TextButton::TextButton (
 \begin{DoxyParamCaption}
-\item[{{\bf String} \&}]{ name, }
+\item[{{\bf ConstString} \&}]{ name, }
 \item[{{\bf Vector2}}]{ Position, }
 \item[{{\bf Vector2}}]{ Size, }
 \item[{{\bf Whole}}]{ Glyph, }
@@ -86,7 +100,7 @@ Definition at line 57 of file uitextbutton.h.
 \item[{{\bf UILayer} $\ast$}]{ Layer}
 \end{DoxyParamCaption}
 )}}
-\label{df/d03/classphys_1_1UI_1_1TextButton_a21f4d17b01e51840cedb6c73d5668188}
+\label{df/d03/classphys_1_1UI_1_1TextButton_a399ee921d2280771173e5e319c1d3f9e}
 
 
 Internal constructor. 
@@ -123,7 +137,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_a0b991ada87707d8d951dae7
 
 
 
-Definition at line 139 of file uitextbutton.cpp.
+Definition at line 162 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_a062b31c199f875d4f825f6be1d11fb55}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!GetActualSize@{GetActualSize}}
@@ -147,7 +161,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_ab6640af433afe96d5f6bd70
 
 
 
-Definition at line 168 of file uitextbutton.cpp.
+Definition at line 191 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_a09768e0666a109b7d35fd8b78240cfd3}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!GetPosition@{GetPosition}}
@@ -171,7 +185,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_adfa08ace813b88cae114e18
 
 
 
-Definition at line 126 of file uitextbutton.cpp.
+Definition at line 149 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_ad339621af6e73ff9702c0dd4cdadbb73}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!GetRenderPriority@{GetRenderPriority}}
@@ -195,7 +209,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_aa17ffbc9b0d4eed151ff5ec
 
 
 
-Definition at line 195 of file uitextbutton.cpp.
+Definition at line 218 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_a21f1ff24070711e5a42eae4eb54d02d6}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!GetSize@{GetSize}}
@@ -219,7 +233,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_ade75e042d1a19be5d4fb1b1
 
 
 
-Definition at line 155 of file uitextbutton.cpp.
+Definition at line 178 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_a8dc28f2fa610dc9bb72e5886613996bd}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!GetText@{GetText}}
@@ -239,7 +253,7 @@ Returns the text being displayed.
 \end{DoxyReturn}
 
 
-Definition at line 71 of file uitextbutton.cpp.
+Definition at line 94 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_a71a64810f262725992dbeec194e8497c}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!HorizontallyAlign@{HorizontallyAlign}}
@@ -259,7 +273,31 @@ Aligns the text of the button.
 \item[{\em Align}]The enum value representing the horizontal alignment to be set. \end{DoxyParams}
 
 
-Definition at line 76 of file uitextbutton.cpp.
+Definition at line 99 of file uitextbutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1TextButton_a505167a00d343d704df1f759cd12ed1e}{
+\index{phys::UI::TextButton@{phys::UI::TextButton}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!phys::UI::TextButton@{phys::UI::TextButton}}
+\subsubsection[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::TextButton::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{df/d03/classphys_1_1UI_1_1TextButton_a505167a00d343d704df1f759cd12ed1e}
+
+
+Gets the visibility of this button. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visibility of this button. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_a2bca8ace690157fa2646bcf1cb54397a}{phys::UI::Button}.
+
+
+
+Definition at line 72 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_ab459720bb401b99ebc4a5287e36a91ee}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!SetActualPosition@{SetActualPosition}}
@@ -283,7 +321,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_a90ef37a2fa1645298237733
 
 
 
-Definition at line 131 of file uitextbutton.cpp.
+Definition at line 154 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_ad83c81eda54a861b9e34b565027b8254}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!SetActualSize@{SetActualSize}}
@@ -307,7 +345,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_a4075f879a67726b80c18d3b
 
 
 
-Definition at line 160 of file uitextbutton.cpp.
+Definition at line 183 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_a57f8955e357e9e55e339237a91d8c209}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!SetPosition@{SetPosition}}
@@ -331,7 +369,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_aadb9b867ceccad8313591ae
 
 
 
-Definition at line 116 of file uitextbutton.cpp.
+Definition at line 139 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_a7d4e22acd792b10f2f7986d8f449ec16}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!SetRenderPriority@{SetRenderPriority}}
@@ -355,7 +393,7 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_a569053caa70448d560fd016
 
 
 
-Definition at line 174 of file uitextbutton.cpp.
+Definition at line 197 of file uitextbutton.cpp.
 
 \hypertarget{classphys_1_1UI_1_1TextButton_a04a27287b038220fa8183079c1a727ec}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!SetSize@{SetSize}}
@@ -379,17 +417,17 @@ Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_a3f610782e5f84ddc315d9db
 
 
 
-Definition at line 145 of file uitextbutton.cpp.
+Definition at line 168 of file uitextbutton.cpp.
 
-\hypertarget{classphys_1_1UI_1_1TextButton_ac4d77038642936e398f5a319c25ca942}{
+\hypertarget{classphys_1_1UI_1_1TextButton_ae66f149489c4215963dc5b853c838c50}{
 \index{phys::UI::TextButton@{phys::UI::TextButton}!SetText@{SetText}}
 \index{SetText@{SetText}!phys::UI::TextButton@{phys::UI::TextButton}}
 \subsubsection[{SetText}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::TextButton::SetText (
 \begin{DoxyParamCaption}
-\item[{{\bf String} \&}]{ Text}
+\item[{{\bf ConstString} \&}]{ Text}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{df/d03/classphys_1_1UI_1_1TextButton_ac4d77038642936e398f5a319c25ca942}
+\label{df/d03/classphys_1_1UI_1_1TextButton_ae66f149489c4215963dc5b853c838c50}
 
 
 Sets the text displayed within the button. 
@@ -397,6 +435,30 @@ Sets the text displayed within the button.
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Text}]The text to be displayed. \end{DoxyParams}
+
+
+Definition at line 89 of file uitextbutton.cpp.
+
+\hypertarget{classphys_1_1UI_1_1TextButton_a07e030ef92f314b1eff663cbc1712d42}{
+\index{phys::UI::TextButton@{phys::UI::TextButton}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!phys::UI::TextButton@{phys::UI::TextButton}}
+\subsubsection[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::TextButton::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{ Visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{df/d03/classphys_1_1UI_1_1TextButton_a07e030ef92f314b1eff663cbc1712d42}
+
+
+Sets the visibility of this button. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Visible}]Bool determining whether or not this button should be visible. \end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classphys_1_1UI_1_1Button_a293a0a5296778fb3d638c31c5d9d4c75}{phys::UI::Button}.
+
 
 
 Definition at line 66 of file uitextbutton.cpp.
@@ -419,7 +481,7 @@ Aligns the text of the button.
 \item[{\em Align}]The enum value representing the vertical alignment to be set. \end{DoxyParams}
 
 
-Definition at line 96 of file uitextbutton.cpp.
+Definition at line 119 of file uitextbutton.cpp.
 
 
 

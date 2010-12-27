@@ -4,7 +4,7 @@
 }
 
 
-This is a helper class which non-\/physicsl objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects.  
+This is a helper class which non-\/physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects.  
 
 
 
@@ -32,7 +32,7 @@ enum {\bfseries NodeType} \{ {\bfseries Center},
 \label{d0/ddc/classphys_1_1Node_af933598679e73d1e440f264f83e9d563}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1Node_a2c834fe00f2f80aa6c0bb62648f9bdb5}{GetName} ()
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1Node_a2db8f0717abc20a43b7154bdc99ecf0e}{GetName} ()
 \begin{DoxyCompactList}\small\item\em Gets the name of this node. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Node_a8de0f86b08510a08a6e6c0912c9caddb}{AttachElement} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Element)
 \begin{DoxyCompactList}\small\item\em Attaches an attachable element to this \hyperlink{classphys_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
@@ -96,7 +96,7 @@ std::vector$<$ \hyperlink{classphys_1_1Attachable}{Attachable} $\ast$ $>$ \hyper
 
 
 \subsection{Detailed Description}
-This is a helper class which non-\/physicsl objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects. This class simply contains a group of functions for easy manipulation of movement and orientation as well as attaching elements to them. This class should only be created through the scene manager. \par
+This is a helper class which non-\/physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects. This class simply contains a group of functions for easy manipulation of movement and orientation as well as attaching elements to them. This class should only be created through the scene manager. \par
  There are 4 types of nodes: \par
  Center -\/ Works in conjunction with the orbit node and serves as it's center point for the orbit node to rotate around. \par
  Orbit -\/ Counterpart to the Center node, this type does the orbiting. \par
@@ -146,7 +146,7 @@ Internal constructor.
 
 This constructor should not be called on manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em snode}]Pointer to the \hyperlink{namespaceOgre}{Ogre} SceneNode this class is based on. \item[{\em manager}]Pointer to the manager that this node is to be used in. \end{DoxyParams}
+\item[{\em snode}]Pointer to the Ogre SceneNode this class is based on. \item[{\em manager}]Pointer to the manager that this node is to be used in. \end{DoxyParams}
 
 
 Definition at line 57 of file node.cpp.
@@ -194,15 +194,15 @@ Detaches an attachable element from this \hyperlink{classphys_1_1Node}{Node}.
 
 Definition at line 105 of file node.cpp.
 
-\hypertarget{classphys_1_1Node_a2c834fe00f2f80aa6c0bb62648f9bdb5}{
+\hypertarget{classphys_1_1Node_a2db8f0717abc20a43b7154bdc99ecf0e}{
 \index{phys::Node@{phys::Node}!GetName@{GetName}}
 \index{GetName@{GetName}!phys::Node@{phys::Node}}
-\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::Node::GetName (
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& phys::Node::GetName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}
-\label{d0/ddc/classphys_1_1Node_a2c834fe00f2f80aa6c0bb62648f9bdb5}
+\label{d0/ddc/classphys_1_1Node_a2db8f0717abc20a43b7154bdc99ecf0e}
 
 
 Gets the name of this node. 

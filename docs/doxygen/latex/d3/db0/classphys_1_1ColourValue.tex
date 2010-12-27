@@ -19,14 +19,18 @@ This is a simple class for holding 4 reals representing the colour any give obje
 \hyperlink{classphys_1_1ColourValue_a28ee2493cd6a7bb8bc4104d223e3e709}{ColourValue} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} red, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} green, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} blue, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} alpha)
 \begin{DoxyCompactList}\small\item\em Alpha constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ColourValue_a8a004962cde5fd3063dd845be4256fa9}{ColourValue} (Ogre::ColourValue OgreValues)
-\begin{DoxyCompactList}\small\item\em \hyperlink{namespaceOgre}{Ogre} constructor. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Ogre constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ColourValue_adc37cfdba61d80ad23765cea5c858751}{
 \hyperlink{classphys_1_1ColourValue_adc37cfdba61d80ad23765cea5c858751}{$\sim$ColourValue} ()}
 \label{d3/db0/classphys_1_1ColourValue_adc37cfdba61d80ad23765cea5c858751}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 Ogre::ColourValue \hyperlink{classphys_1_1ColourValue_a7a2978ebc5a7e04e02279664f1ea4a86}{GetOgreColourValue} ()
-\begin{DoxyCompactList}\small\item\em Creates and returns an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1ColourValue}{ColourValue} class with values equal to this one. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates and returns an Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class with values equal to this one. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ColourValue_a4615835cadb51c814ef87377ac2fbc8c}{operator==} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ColourValue_a06b52ce51b723ea733f2b067b03530a5}{operator!=} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -116,11 +120,11 @@ Definition at line 53 of file colourvalue.cpp.
 \label{d3/db0/classphys_1_1ColourValue_a8a004962cde5fd3063dd845be4256fa9}
 
 
-\hyperlink{namespaceOgre}{Ogre} constructor. 
+Ogre constructor. 
 
 Internal use only. Constructs a colourvalue class from an ogre colourvalue. 
 \begin{DoxyParams}{Parameters}
-\item[{\em OgreValues}]The \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1ColourValue}{ColourValue} class to base this class on. \end{DoxyParams}
+\item[{\em OgreValues}]The Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class to base this class on. \end{DoxyParams}
 
 
 Definition at line 61 of file colourvalue.cpp.
@@ -139,14 +143,54 @@ Definition at line 61 of file colourvalue.cpp.
 \label{d3/db0/classphys_1_1ColourValue_a7a2978ebc5a7e04e02279664f1ea4a86}
 
 
-Creates and returns an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1ColourValue}{ColourValue} class with values equal to this one. 
+Creates and returns an Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class with values equal to this one. 
 
 This function is intended for internal use only. \begin{DoxyReturn}{Returns}
-Returns an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classphys_1_1ColourValue}{ColourValue} class that has values equal to this one. 
+Returns an Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class that has values equal to this one. 
 \end{DoxyReturn}
 
 
 Definition at line 73 of file colourvalue.cpp.
+
+\hypertarget{classphys_1_1ColourValue_a06b52ce51b723ea733f2b067b03530a5}{
+\index{phys::ColourValue@{phys::ColourValue}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!phys::ColourValue@{phys::ColourValue}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ColourValue::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ Colour}
+\end{DoxyParamCaption}
+)}}
+\label{d3/db0/classphys_1_1ColourValue_a06b52ce51b723ea733f2b067b03530a5}
+
+
+Inequality Comparison Operator. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Colour}]This is another \hyperlink{classphys_1_1ColourValue}{ColourValue} to compare with. \end{DoxyParams}
+
+
+Definition at line 90 of file colourvalue.cpp.
+
+\hypertarget{classphys_1_1ColourValue_a4615835cadb51c814ef87377ac2fbc8c}{
+\index{phys::ColourValue@{phys::ColourValue}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::ColourValue@{phys::ColourValue}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ColourValue::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ Colour}
+\end{DoxyParamCaption}
+)}}
+\label{d3/db0/classphys_1_1ColourValue_a4615835cadb51c814ef87377ac2fbc8c}
+
+
+Equality Comparison Operator. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Colour}]This is another \hyperlink{classphys_1_1ColourValue}{ColourValue} to compare with. \end{DoxyParams}
+
+
+Definition at line 83 of file colourvalue.cpp.
 
 
 

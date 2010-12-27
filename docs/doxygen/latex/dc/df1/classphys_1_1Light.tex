@@ -37,7 +37,7 @@ virtual \hyperlink{classphys_1_1Light_a0ee3882bb8e1e613bd88380a9681af2e}{$\sim$L
 \label{dc/df1/classphys_1_1Light_a0ee3882bb8e1e613bd88380a9681af2e}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1Light_a8e81734d570edd31b0a7ae6b1b3a194e}{GetName} ()
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1Light_a70f84fef8451b7d489c21476fa90d9df}{GetName} ()
 \begin{DoxyCompactList}\small\item\em Gets the name of this light. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Light_a87fced0afb0fd44d333c499d41e8568a}{SetType} (Light::LightType Type)
 \begin{DoxyCompactList}\small\item\em Sets the type of light this light is. \item\end{DoxyCompactList}\item 
@@ -107,7 +107,10 @@ Ogre::Light $\ast$ \hyperlink{classphys_1_1Light_a20fc9136847907955cfb8c1a47d6ec
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classphys_1_1Light_a6db9d28bd448a131448276ee03de1e6d}{Node}
+\hypertarget{classphys_1_1Light_a6db9d28bd448a131448276ee03de1e6d}{
+class {\bfseries Node}}
+\label{dc/df1/classphys_1_1Light_a6db9d28bd448a131448276ee03de1e6d}
+
 \end{DoxyCompactItemize}
 
 
@@ -160,7 +163,7 @@ Internal Constructor.
 
 This constructor should not be called on manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em light}]The \hyperlink{namespaceOgre}{Ogre} light this class is based on. \item[{\em manager}]Pointer to the manager that this light is to be used in. \end{DoxyParams}
+\item[{\em light}]The Ogre light this class is based on. \item[{\em manager}]Pointer to the manager that this light is to be used in. \end{DoxyParams}
 
 
 Definition at line 52 of file light.cpp.
@@ -288,15 +291,15 @@ Returns a vector3 representing the set direction of the light.
 
 Definition at line 180 of file light.cpp.
 
-\hypertarget{classphys_1_1Light_a8e81734d570edd31b0a7ae6b1b3a194e}{
+\hypertarget{classphys_1_1Light_a70f84fef8451b7d489c21476fa90d9df}{
 \index{phys::Light@{phys::Light}!GetName@{GetName}}
 \index{GetName@{GetName}!phys::Light@{phys::Light}}
-\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::Light::GetName (
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& phys::Light::GetName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{dc/df1/classphys_1_1Light_a8e81734d570edd31b0a7ae6b1b3a194e}
+\label{dc/df1/classphys_1_1Light_a70f84fef8451b7d489c21476fa90d9df}
 
 
 Gets the name of this light. 
@@ -306,7 +309,7 @@ Returns a string containing the name given to this light.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classphys_1_1Attachable_ad1a9bbd300fe21c5cc7e5aa7e2c95b85}{phys::Attachable}.
+Implements \hyperlink{classphys_1_1Attachable_a56d2f5a6f17c14ff0c1d9906d17b0f52}{phys::Attachable}.
 
 
 
@@ -720,20 +723,6 @@ The light types are listed with the class info. Types are Directional, Point, an
 
 
 Definition at line 69 of file light.cpp.
-
-
-
-\subsection{Friends And Related Function Documentation}
-\hypertarget{classphys_1_1Light_a6db9d28bd448a131448276ee03de1e6d}{
-\index{phys::Light@{phys::Light}!Node@{Node}}
-\index{Node@{Node}!phys::Light@{phys::Light}}
-\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Node}\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
-\label{dc/df1/classphys_1_1Light_a6db9d28bd448a131448276ee03de1e6d}
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 81 of file light.h.
 
 
 

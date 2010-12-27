@@ -50,6 +50,8 @@
  * Copyright (C) 2003, by Kristen Wegner (kristen@tima.net)
  */
 
+/// @cond 0
+
 #include "xml.h"
 
 #include <stdlib.h>
@@ -9616,3 +9618,5 @@ namespace pugi
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
+
+/// @endcond

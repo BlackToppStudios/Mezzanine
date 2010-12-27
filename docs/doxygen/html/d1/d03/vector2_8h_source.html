@@ -117,59 +117,82 @@
 <a name="l00087"></a>00087 <span class="comment"></span>            <span class="keywordtype">void</span> ExtractOgreVector2(Ogre::Vector2 Ours);
 <a name="l00088"></a>00088 <span class="comment"></span>
 <a name="l00089"></a>00089 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00090"></a>00090 <span class="comment"></span>            <span class="comment">// Vector2 Arithmetic with Real</span><span class="comment"></span>
-<a name="l00091"></a>00091 <span class="comment">            /// @brief Scaling by multiplication</span>
-<a name="l00092"></a>00092 <span class="comment">            /// @details This Multiplies X, Y and Z by scalar</span>
-<a name="l00093"></a>00093 <span class="comment">            /// @return This returns a Vector2 that has been scaled</span>
-<a name="l00094"></a>00094 <span class="comment">            /// @param scalar This is the amount to scale the Vector2 by</span>
-<a name="l00095"></a>00095 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator* (<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar) <span class="keyword">const</span>;
+<a name="l00090"></a>00090 <span class="comment"></span>            <span class="comment">// Equality Comparison operators</span>
+<a name="l00091"></a>00091 <span class="comment"></span>
+<a name="l00092"></a>00092 <span class="comment">            /// @brief Equality Comparison Operator</span>
+<a name="l00093"></a>00093 <span class="comment">            /// @details Returns true if X==X and Y==Y. If any of those do not match this returns false.</span>
+<a name="l00094"></a>00094 <span class="comment">            /// @param Vec2 This is the other phys::Vector2.</span>
+<a name="l00095"></a>00095 <span class="comment"></span>            <span class="keywordtype">bool</span> operator== (<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">phys::Vector2</a> &amp;Vec2);
 <a name="l00096"></a>00096 <span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">            /// @brief Scaling by Division</span>
-<a name="l00098"></a>00098 <span class="comment">            /// @details This Diisionn X, Y and Z by scalar</span>
-<a name="l00099"></a>00099 <span class="comment">            /// @return This returns a Vector2 that has been scaled</span>
-<a name="l00100"></a>00100 <span class="comment">            /// @param scalar This is the amount to scale the Vector2 by</span>
-<a name="l00101"></a>00101 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator/ (<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar) <span class="keyword">const</span>;
-<a name="l00102"></a>00102 <span class="comment"></span>
-<a name="l00103"></a>00103 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00104"></a>00104 <span class="comment"></span>            <span class="comment">// Vector2 Arithmetic and assignment with Real</span><span class="comment"></span>
-<a name="l00105"></a>00105 <span class="comment">            /// @brief Scaling by multiplication.</span>
-<a name="l00106"></a>00106 <span class="comment">            /// @details This Multiplies X, Y and Z by scalar and stores the changes in this Vector2.</span>
-<a name="l00107"></a>00107 <span class="comment">            /// @param scalar This is the amount to scale the Vector2 by.</span>
-<a name="l00108"></a>00108 <span class="comment"></span>            <span class="keywordtype">void</span> operator*= (<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar);
-<a name="l00109"></a>00109 <span class="comment"></span>
-<a name="l00110"></a>00110 <span class="comment">            /// @brief Scaling by Division</span>
-<a name="l00111"></a>00111 <span class="comment">            /// @details This Division X, Y and Z by scalar and and stores the changes in this Vector2.</span>
-<a name="l00112"></a>00112 <span class="comment">            /// @param scalar This is the amount to scale the Vector2 by</span>
-<a name="l00113"></a>00113 <span class="comment"></span>            <span class="keywordtype">void</span> operator/= (<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar);
-<a name="l00114"></a>00114 <span class="comment"></span>
-<a name="l00115"></a>00115 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00116"></a>00116 <span class="comment"></span>            <span class="comment">// Arithmetic Operators</span><span class="comment"></span>
-<a name="l00117"></a>00117 <span class="comment">            /// @brief Addition Operator</span>
-<a name="l00118"></a>00118 <span class="comment">            /// @details Allows for addition from a phys::Vector2</span>
-<a name="l00119"></a>00119 <span class="comment">            /// @param Vec2 This is the other phys::Vector2</span>
-<a name="l00120"></a>00120 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator+ (<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2) <span class="keyword">const</span>;
-<a name="l00121"></a>00121 <span class="comment"></span>
-<a name="l00122"></a>00122 <span class="comment">            /// @brief Subraction Operator</span>
-<a name="l00123"></a>00123 <span class="comment">            /// @details Allows for subtraction from a phys::Vector2</span>
-<a name="l00124"></a>00124 <span class="comment">            /// @param Vec2 This is the other phys::Vector2</span>
-<a name="l00125"></a>00125 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator- (<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2) <span class="keyword">const</span>;
-<a name="l00126"></a>00126 <span class="comment"></span>
-<a name="l00127"></a>00127 <span class="comment">            /// @brief Multiplaction Operator</span>
-<a name="l00128"></a>00128 <span class="comment">            /// @details Allows for multiplaction from a phys::Vector2</span>
-<a name="l00129"></a>00129 <span class="comment">            /// @param Vec2 This is the other phys::Vector2</span>
-<a name="l00130"></a>00130 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator* (<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2) <span class="keyword">const</span>;
-<a name="l00131"></a>00131 <span class="comment"></span>
-<a name="l00132"></a>00132 <span class="comment">            /// @brief Division Operator</span>
-<a name="l00133"></a>00133 <span class="comment">            /// @details Allows for division from a phys::Vector2</span>
-<a name="l00134"></a>00134 <span class="comment">            /// @param Vec2 This is the other phys::Vector2</span>
-<a name="l00135"></a>00135 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator/ (<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2) <span class="keyword">const</span>;
-<a name="l00136"></a>00136     };
-<a name="l00137"></a>00137 }
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139 <span class="preprocessor">#endif</span>
+<a name="l00097"></a>00097 <span class="comment">            /// @brief Equality Comparison Operator</span>
+<a name="l00098"></a>00098 <span class="comment">            /// @details Returns true if X!=X or Y!=Y. If any of those do not match this returns false.</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @param Vec2 This is the other phys::Vector2.</span>
+<a name="l00100"></a>00100 <span class="comment"></span>            <span class="keywordtype">bool</span> operator!= (<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">phys::Vector2</a> &amp;Vec2);
+<a name="l00101"></a>00101 <span class="comment"></span>
+<a name="l00102"></a>00102 <span class="comment">            /// @brief Equality Comparison Operator</span>
+<a name="l00103"></a>00103 <span class="comment">            /// @details Returns true if X==X and Y==Y. If any of those do not match this returns false.</span>
+<a name="l00104"></a>00104 <span class="comment">            /// @param Vec2 This is the other Ogre::Vector2.</span>
+<a name="l00105"></a>00105 <span class="comment"></span>            <span class="keywordtype">bool</span> operator== (<span class="keyword">const</span> Ogre::Vector2 &amp;Vec2);
+<a name="l00106"></a>00106 <span class="comment"></span>
+<a name="l00107"></a>00107 <span class="comment">            /// @brief Equality Comparison Operator</span>
+<a name="l00108"></a>00108 <span class="comment">            /// @details Returns true if X!=X or Y!=Y. If any of those do not match this returns false.</span>
+<a name="l00109"></a>00109 <span class="comment">            /// @param Vec2 This is the other Ogre::Vector2.</span>
+<a name="l00110"></a>00110 <span class="comment"></span>            <span class="keywordtype">bool</span> operator!= (<span class="keyword">const</span> Ogre::Vector2 &amp;Vec2);
+<a name="l00111"></a>00111 <span class="comment"></span>
+<a name="l00112"></a>00112 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00113"></a>00113 <span class="comment"></span>            <span class="comment">// Vector2 Arithmetic with Real</span><span class="comment"></span>
+<a name="l00114"></a>00114 <span class="comment">            /// @brief Scaling by multiplication</span>
+<a name="l00115"></a>00115 <span class="comment">            /// @details This Multiplies X, Y and Z by scalar</span>
+<a name="l00116"></a>00116 <span class="comment">            /// @return This returns a Vector2 that has been scaled</span>
+<a name="l00117"></a>00117 <span class="comment">            /// @param scalar This is the amount to scale the Vector2 by</span>
+<a name="l00118"></a>00118 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator* (<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar) <span class="keyword">const</span>;
+<a name="l00119"></a>00119 <span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">            /// @brief Scaling by Division</span>
+<a name="l00121"></a>00121 <span class="comment">            /// @details This Diisionn X, Y and Z by scalar</span>
+<a name="l00122"></a>00122 <span class="comment">            /// @return This returns a Vector2 that has been scaled</span>
+<a name="l00123"></a>00123 <span class="comment">            /// @param scalar This is the amount to scale the Vector2 by</span>
+<a name="l00124"></a>00124 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator/ (<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar) <span class="keyword">const</span>;
+<a name="l00125"></a>00125 <span class="comment"></span>
+<a name="l00126"></a>00126 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00127"></a>00127 <span class="comment"></span>            <span class="comment">// Vector2 Arithmetic and assignment with Real</span><span class="comment"></span>
+<a name="l00128"></a>00128 <span class="comment">            /// @brief Scaling by multiplication.</span>
+<a name="l00129"></a>00129 <span class="comment">            /// @details This Multiplies X, Y and Z by scalar and stores the changes in this Vector2.</span>
+<a name="l00130"></a>00130 <span class="comment">            /// @param scalar This is the amount to scale the Vector2 by.</span>
+<a name="l00131"></a>00131 <span class="comment"></span>            <span class="keywordtype">void</span> operator*= (<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar);
+<a name="l00132"></a>00132 <span class="comment"></span>
+<a name="l00133"></a>00133 <span class="comment">            /// @brief Scaling by Division</span>
+<a name="l00134"></a>00134 <span class="comment">            /// @details This Division X, Y and Z by scalar and and stores the changes in this Vector2.</span>
+<a name="l00135"></a>00135 <span class="comment">            /// @param scalar This is the amount to scale the Vector2 by</span>
+<a name="l00136"></a>00136 <span class="comment"></span>            <span class="keywordtype">void</span> operator/= (<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> &amp;scalar);
+<a name="l00137"></a>00137 <span class="comment"></span>
+<a name="l00138"></a>00138 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00139"></a>00139 <span class="comment"></span>            <span class="comment">// Arithmetic Operators</span><span class="comment"></span>
+<a name="l00140"></a>00140 <span class="comment">            /// @brief Addition Operator</span>
+<a name="l00141"></a>00141 <span class="comment">            /// @details Allows for addition from a phys::Vector2</span>
+<a name="l00142"></a>00142 <span class="comment">            /// @param Vec2 This is the other phys::Vector2</span>
+<a name="l00143"></a>00143 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator+ (<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2) <span class="keyword">const</span>;
+<a name="l00144"></a>00144 <span class="comment"></span>
+<a name="l00145"></a>00145 <span class="comment">            /// @brief Subraction Operator</span>
+<a name="l00146"></a>00146 <span class="comment">            /// @details Allows for subtraction from a phys::Vector2</span>
+<a name="l00147"></a>00147 <span class="comment">            /// @param Vec2 This is the other phys::Vector2</span>
+<a name="l00148"></a>00148 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator- (<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2) <span class="keyword">const</span>;
+<a name="l00149"></a>00149 <span class="comment"></span>
+<a name="l00150"></a>00150 <span class="comment">            /// @brief Multiplaction Operator</span>
+<a name="l00151"></a>00151 <span class="comment">            /// @details Allows for multiplaction from a phys::Vector2</span>
+<a name="l00152"></a>00152 <span class="comment">            /// @param Vec2 This is the other phys::Vector2</span>
+<a name="l00153"></a>00153 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator* (<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2) <span class="keyword">const</span>;
+<a name="l00154"></a>00154 <span class="comment"></span>
+<a name="l00155"></a>00155 <span class="comment">            /// @brief Division Operator</span>
+<a name="l00156"></a>00156 <span class="comment">            /// @details Allows for division from a phys::Vector2</span>
+<a name="l00157"></a>00157 <span class="comment">            /// @param Vec2 This is the other phys::Vector2</span>
+<a name="l00158"></a>00158 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> operator/ (<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Vec2) <span class="keyword">const</span>;
+<a name="l00159"></a>00159     };
+<a name="l00160"></a>00160 }
+<a name="l00161"></a>00161 
+<a name="l00162"></a>00162 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

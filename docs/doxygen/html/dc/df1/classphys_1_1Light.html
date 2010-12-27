@@ -74,8 +74,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ee3882bb8e1e613bd88380a9681af2e"></a><!-- doxytag: member="phys::Light::~Light" ref="a0ee3882bb8e1e613bd88380a9681af2e" args="()" -->
 virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/df1/classphys_1_1Light.html#a0ee3882bb8e1e613bd88380a9681af2e">~Light</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/df1/classphys_1_1Light.html#a8e81734d570edd31b0a7ae6b1b3a194e">GetName</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the name of this light.  <a href="#a8e81734d570edd31b0a7ae6b1b3a194e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/df1/classphys_1_1Light.html#a70f84fef8451b7d489c21476fa90d9df">GetName</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the name of this light.  <a href="#a70f84fef8451b7d489c21476fa90d9df"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/df1/classphys_1_1Light.html#a87fced0afb0fd44d333c499d41e8568a">SetType</a> (Light::LightType Type)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the type of light this light is.  <a href="#a87fced0afb0fd44d333c499d41e8568a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/df1/classphys_1_1Light.html#a9c2fcbd1f46ccac815ca7f1b00585c13">SetPosition</a> (<a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> Position)</td></tr>
@@ -138,7 +138,8 @@ Ogre::Light *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pointer to the manager that created this class. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/df1/classphys_1_1Light.html#a6db9d28bd448a131448276ee03de1e6d">Node</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6db9d28bd448a131448276ee03de1e6d"></a><!-- doxytag: member="phys::Light::Node" ref="a6db9d28bd448a131448276ee03de1e6d" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This class is the class used for dynamic lighting within the scene. </p>
@@ -217,7 +218,7 @@ Friends</h2></td></tr>
 <p>This constructor should not be called on manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>light</em>&nbsp;</td><td>The <a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a> light this class is based on. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>light</em>&nbsp;</td><td>The Ogre light this class is based on. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>manager</em>&nbsp;</td><td>Pointer to the manager that this light is to be used in. </td></tr>
   </table>
   </dd>
@@ -360,12 +361,12 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8e81734d570edd31b0a7ae6b1b3a194e"></a><!-- doxytag: member="phys::Light::GetName" ref="a8e81734d570edd31b0a7ae6b1b3a194e" args="()" -->
+<a class="anchor" id="a70f84fef8451b7d489c21476fa90d9df"></a><!-- doxytag: member="phys::Light::GetName" ref="a70f84fef8451b7d489c21476fa90d9df" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp; phys::Light::GetName </td>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp; phys::Light::GetName </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -378,7 +379,7 @@ Friends</h2></td></tr>
 <p>Gets the name of this light. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name given to this light. </dd></dl>
 
-<p>Implements <a class="el" href="../../df/dbd/classphys_1_1Attachable.html#ad1a9bbd300fe21c5cc7e5aa7e2c95b85">phys::Attachable</a>.</p>
+<p>Implements <a class="el" href="../../df/dbd/classphys_1_1Attachable.html#a56d2f5a6f17c14ff0c1d9906d17b0f52">phys::Attachable</a>.</p>
 
 <p>Definition at line <a class="el" href="../../dd/dfa/light_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../dd/dfa/light_8cpp_source.html">light.cpp</a>.</p>
 
@@ -985,29 +986,12 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="a6db9d28bd448a131448276ee03de1e6d"></a><!-- doxytag: member="phys::Light::Node" ref="a6db9d28bd448a131448276ee03de1e6d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">friend class <a class="el" href="../../d0/ddc/classphys_1_1Node.html">Node</a><code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p><b>For internal use only.</b></p>
-
-<p>Definition at line <a class="el" href="../../dd/dd3/light_8h_source.html#l00081">81</a> of file <a class="el" href="../../dd/dd3/light_8h_source.html">light.h</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../dd/dd3/light_8h_source.html">light.h</a></li>
 <li><a class="el" href="../../dd/dfa/light_8cpp_source.html">light.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:17 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:21 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

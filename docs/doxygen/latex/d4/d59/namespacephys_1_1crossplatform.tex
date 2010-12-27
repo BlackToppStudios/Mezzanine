@@ -80,7 +80,7 @@ A string which contains the path and filename of the plugins file
 This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). 
 
 \begin{DoxyInternal}{For internal use only.}
-This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) This returns a named parameter list with valid settings to use \hyperlink{namespaceOgre}{Ogre} rendering on a pre-\/existing SDL context \begin{DoxyWarning}{Warning}
+This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem) This returns a named parameter list with valid settings to use Ogre rendering on a pre-\/existing SDL context \begin{DoxyWarning}{Warning}
 This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish 
 \end{DoxyWarning}
 \end{DoxyInternal}
@@ -116,7 +116,7 @@ A string which contains the path and filename of the graphics setts file
 
 Renders the current world contents to the screen. 
 
-This makes use of \hyperlink{classphys_1_1World}{World} internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Currently this references \hyperlink{namespaceOgre}{Ogre} systems, that makes this internal Handles the actual cross platform swapping of graphics buffers. 
+This makes use of \hyperlink{classphys_1_1World}{World} internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Currently this references Ogre systems, that makes this internal Handles the actual cross platform swapping of graphics buffers. 
 \begin{DoxyParams}{Parameters}
 \item[{\em TheWorld}]This is a pointer to the \hyperlink{classphys_1_1World}{World} to be rendered. \item[{\em TheWorld}]A pointer to the game window to be update to be rendered. This is considered an internal component \end{DoxyParams}
 \hypertarget{namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18}{

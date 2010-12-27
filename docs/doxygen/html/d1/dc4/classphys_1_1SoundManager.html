@@ -67,10 +67,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Inherited Initializer.  <a href="#ae6d3957f965b54e06ec540e903cec68d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a577b228753ea19856b8476ab831e547e">DoMainLoopItems</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Empty MainLoopItems.  <a href="#a577b228753ea19856b8476ab831e547e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#aa0fc07170611851f3fa888c8e28d99df">InitializeManager</a> (<a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes the Manager.  <a href="#aa0fc07170611851f3fa888c8e28d99df"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d2f/classphys_1_1Sound.html">Sound</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#ac9e68fef909b72110e9b68ff2674bcbb">CreateSound</a> (<a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;SoundName, <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FilePath, bool Stream)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a sound instance from a file that can be used to play sounds.  <a href="#ac9e68fef909b72110e9b68ff2674bcbb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a735ca3ad1554d70623ac60f38ca4cefc">InitializeManager</a> (<a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initializes the Manager.  <a href="#a735ca3ad1554d70623ac60f38ca4cefc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d2f/classphys_1_1Sound.html">Sound</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a4504934e7a6a75045f0a8d303b7be0b8">CreateSound</a> (<a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;SoundName, <a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;FilePath, bool Stream)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a sound instance from a file that can be used to play sounds.  <a href="#a4504934e7a6a75045f0a8d303b7be0b8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d2f/classphys_1_1Sound.html">Sound</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#aa039c3d7a5ee961be0934a58fd3826fa">CreateSoundFromMemory</a> (<a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;SoundName, const char *Data, int Size, <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Extension)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a sound instance from a memory buffer.  <a href="#aa039c3d7a5ee961be0934a58fd3826fa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a6a996829cab647ccf1ca401361af7167">DestroySound</a> (<a class="el" href="../../dc/d2f/classphys_1_1Sound.html">Sound</a> *SoundName)</td></tr>
@@ -226,20 +226,20 @@ cAudio::IListener *&nbsp;</td><td class="memItemRight" valign="bottom"><b>AudioL
 
 </div>
 </div>
-<a class="anchor" id="ac9e68fef909b72110e9b68ff2674bcbb"></a><!-- doxytag: member="phys::SoundManager::CreateSound" ref="ac9e68fef909b72110e9b68ff2674bcbb" args="(String &amp;SoundName, String &amp;FilePath, bool Stream)" -->
+<a class="anchor" id="a4504934e7a6a75045f0a8d303b7be0b8"></a><!-- doxytag: member="phys::SoundManager::CreateSound" ref="a4504934e7a6a75045f0a8d303b7be0b8" args="(ConstString &amp;SoundName, ConstString &amp;FilePath, bool Stream)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="../../dc/d2f/classphys_1_1Sound.html">Sound</a> * phys::SoundManager::CreateSound </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>SoundName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>FilePath</em>, </td>
         </tr>
         <tr>
@@ -649,7 +649,7 @@ cAudio::IListener *&nbsp;</td><td class="memItemRight" valign="bottom"><b>AudioL
 <div class="memdoc">
 
 <p>Inherited Initializer. </p>
-<p>Written to allow the class to compile, this currently does nothing, but could be used to run code Use <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#aa0fc07170611851f3fa888c8e28d99df" title="Initializes the Manager.">InitializeManager()</a> instead. </p>
+<p>Written to allow the class to compile, this currently does nothing, but could be used to run code Use <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a735ca3ad1554d70623ac60f38ca4cefc" title="Initializes the Manager.">InitializeManager()</a> instead. </p>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
 
@@ -657,14 +657,14 @@ cAudio::IListener *&nbsp;</td><td class="memItemRight" valign="bottom"><b>AudioL
 
 </div>
 </div>
-<a class="anchor" id="aa0fc07170611851f3fa888c8e28d99df"></a><!-- doxytag: member="phys::SoundManager::InitializeManager" ref="aa0fc07170611851f3fa888c8e28d99df" args="(String &amp;DeviceName, int OutputFrequency=&#45;1, int EAXEffectSlots=4)" -->
+<a class="anchor" id="a735ca3ad1554d70623ac60f38ca4cefc"></a><!-- doxytag: member="phys::SoundManager::InitializeManager" ref="a735ca3ad1554d70623ac60f38ca4cefc" args="(ConstString &amp;DeviceName, int OutputFrequency=&#45;1, int EAXEffectSlots=4)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void phys::SoundManager::InitializeManager </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>DeviceName</em>, </td>
         </tr>
         <tr>
@@ -708,7 +708,7 @@ cAudio::IListener *&nbsp;</td><td class="memItemRight" valign="bottom"><b>AudioL
 <li><a class="el" href="../../d4/dc5/soundmanager_8cpp_source.html">soundmanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:18 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:22 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

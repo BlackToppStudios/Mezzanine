@@ -105,67 +105,68 @@
 <a name="l00075"></a>00075 <span class="preprocessor">#include &lt;string&gt;</span>
 <a name="l00076"></a>00076 
 <a name="l00077"></a>00077 <span class="keyword">using namespace </span>std;
-<a name="l00078"></a>00078 <span class="comment"></span>
-<a name="l00079"></a>00079 <span class="comment">/// Forward declaration for compatibility</span>
-<a name="l00080"></a>00080 <span class="comment"></span><span class="keyword">namespace </span>Ogre
-<a name="l00081"></a>00081 {
-<a name="l00082"></a>00082     <span class="keyword">class </span>RenderWindow;
-<a name="l00083"></a>00083 }
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 <span class="keyword">namespace </span>phys
-<a name="l00086"></a>00086 {
-<a name="l00087"></a>00087     <span class="comment">//Forward Declarations should go here</span>
-<a name="l00088"></a>00088     <span class="keyword">class </span>World;
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090     <span class="keyword">namespace </span>crossplatform
-<a name="l00091"></a>00091     {<span class="comment"></span>
-<a name="l00092"></a>00092 <span class="comment">        /// @internal</span>
-<a name="l00093"></a>00093 <span class="comment">        /// @brief Returns a string with a path/filename to the default Plugins config file</span>
-<a name="l00094"></a>00094 <span class="comment">        /// @details Plugins.cfg is the file that determines which graphics plugins are loaded.</span>
-<a name="l00095"></a>00095 <span class="comment">        /// This is a feature of the graphics subsystem and is generally not needed outside</span>
-<a name="l00096"></a>00096 <span class="comment">        /// of engine code.</span>
-<a name="l00097"></a>00097 <span class="comment">        /// @return A string which contains the path and filename of the plugins file</span>
-<a name="l00098"></a>00098 <span class="comment"></span>        <span class="keywordtype">string</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a8f7321f409f1f2a5fa07881ae22fcc2d" title="Returns a string with a path/filename to the default Plugins config file.">GetPluginsDotCFG</a>();
-<a name="l00099"></a>00099 <span class="comment"></span>
-<a name="l00100"></a>00100 <span class="comment">        /// @internal</span>
-<a name="l00101"></a>00101 <span class="comment">        /// @brief Returns a string with a path/filename to the default Graphics Subsytem settings file</span>
-<a name="l00102"></a>00102 <span class="comment">        /// @details Settings.cfg is the file that determines how graphics settings are configured by default.</span>
-<a name="l00103"></a>00103 <span class="comment">        /// This is a feature of the graphics subsystem and is generally not needed outside of engine code.</span>
-<a name="l00104"></a>00104 <span class="comment">        /// @return A string which contains the path and filename of the graphics setts file</span>
-<a name="l00105"></a>00105 <span class="comment"></span>        <span class="keywordtype">string</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a2d43f3aa5a485564c3f375b36a08152f" title="Returns a string with a path/filename to the default Graphics Subsytem settings file.">GetSettingsDotCFG</a>();
-<a name="l00106"></a>00106 <span class="comment"></span>
-<a name="l00107"></a>00107 <span class="comment">        /// @brief Gets the Default Data Directory</span>
-<a name="l00108"></a>00108 <span class="comment">        /// @details The directory returned by this function can be used to easily graphics objects. In general</span>
-<a name="l00109"></a>00109 <span class="comment">        /// the Graphics subsystem can easily open files in this location with just their filename</span>
-<a name="l00110"></a>00110 <span class="comment">        /// @return A string containing the path to the default Data Directory.</span>
-<a name="l00111"></a>00111 <span class="comment"></span>        <span class="keywordtype">string</span> PHYS_LIB <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#ae7b1d4b6dac634392c6224f26ab85001" title="Gets the Default Data Directory.">GetDataDirectory</a>();
-<a name="l00112"></a>00112 <span class="comment"></span>
-<a name="l00113"></a>00113 <span class="comment">        /// @internal</span>
-<a name="l00114"></a>00114 <span class="comment">        /// @brief This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)</span>
-<a name="l00115"></a>00115 <span class="comment">        /// @details This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)</span>
-<a name="l00116"></a>00116 <span class="comment">        /// This returns a named parameter list with valid settings to use Ogre rendering on a pre-existing SDL context</span>
-<a name="l00117"></a>00117 <span class="comment">        /// @warning This is an engine internal, and shouldn&#39;t be used anywhere else. For all practical purposes is return gibberish</span>
-<a name="l00118"></a>00118 <span class="comment"></span>        <span class="keywordtype">void</span>* <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a596ed780d507e681d9261d26b64a8ed9" title="This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)...">GetSDLOgreBinder</a>();
-<a name="l00119"></a>00119 <span class="comment"></span>
-<a name="l00120"></a>00120 <span class="comment">        /// @brief Pauses the program for a given period of time.</span>
-<a name="l00121"></a>00121 <span class="comment">        /// @details Pauses the program for a given period of time.</span>
-<a name="l00122"></a>00122 <span class="comment">        /// @param WaitTime The amount of time in milliseconds to wait</span>
-<a name="l00123"></a>00123 <span class="comment"></span>        <span class="keywordtype">void</span> PHYS_LIB <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab525e3abf3625b83954e2d55a5869d18" title="Pauses the program for a given period of time.">WaitMilliseconds</a>(<span class="keyword">const</span> Whole &amp;WaitTime);
-<a name="l00124"></a>00124 <span class="comment"></span>
-<a name="l00125"></a>00125 <span class="comment">        /// @brief Renders the current world contents to the screen.</span>
-<a name="l00126"></a>00126 <span class="comment">        /// @details This makes use of World internals to Render to the screen, So it is advised against calling this directly.</span>
-<a name="l00127"></a>00127 <span class="comment">        /// Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop</span>
-<a name="l00128"></a>00128 <span class="comment">        /// at the aproppriate times. Currently this references Ogre systems, that makes this internal</span>
-<a name="l00129"></a>00129 <span class="comment">        /// Handles the actual cross platform swapping of graphics buffers.</span>
-<a name="l00130"></a>00130 <span class="comment">        /// @param TheWorld This is a pointer to the World to be rendered.</span>
-<a name="l00131"></a>00131 <span class="comment">        /// @param TheWorld A pointer to the game window to be update to be rendered. This is considered an internal component</span>
-<a name="l00132"></a>00132 <span class="comment"></span>        <span class="keywordtype">void</span> PHYS_LIB <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a11ab7359564519dc966f997c98109f6e" title="Renders the current world contents to the screen.">RenderPhysWorld</a>(World *TheWorld, Ogre::RenderWindow* TheOgreWindow);
-<a name="l00133"></a>00133     }
-<a name="l00134"></a>00134 }
-<a name="l00135"></a>00135 <span class="preprocessor">#endif</span>
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="comment">// \internal</span>
+<a name="l00080"></a>00080 <span class="comment">// Forward declaration for compatibility</span>
+<a name="l00081"></a>00081 <span class="keyword">namespace </span>Ogre
+<a name="l00082"></a>00082 {
+<a name="l00083"></a>00083     <span class="keyword">class </span>RenderWindow;
+<a name="l00084"></a>00084 }
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 <span class="keyword">namespace </span>phys
+<a name="l00087"></a>00087 {
+<a name="l00088"></a>00088     <span class="comment">//Forward Declarations should go here</span>
+<a name="l00089"></a>00089     <span class="keyword">class </span>World;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091     <span class="keyword">namespace </span>crossplatform
+<a name="l00092"></a>00092     {<span class="comment"></span>
+<a name="l00093"></a>00093 <span class="comment">        /// @internal</span>
+<a name="l00094"></a>00094 <span class="comment">        /// @brief Returns a string with a path/filename to the default Plugins config file</span>
+<a name="l00095"></a>00095 <span class="comment">        /// @details Plugins.cfg is the file that determines which graphics plugins are loaded.</span>
+<a name="l00096"></a>00096 <span class="comment">        /// This is a feature of the graphics subsystem and is generally not needed outside</span>
+<a name="l00097"></a>00097 <span class="comment">        /// of engine code.</span>
+<a name="l00098"></a>00098 <span class="comment">        /// @return A string which contains the path and filename of the plugins file</span>
+<a name="l00099"></a>00099 <span class="comment"></span>        <span class="keywordtype">string</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a8f7321f409f1f2a5fa07881ae22fcc2d" title="Returns a string with a path/filename to the default Plugins config file.">GetPluginsDotCFG</a>();
+<a name="l00100"></a>00100 <span class="comment"></span>
+<a name="l00101"></a>00101 <span class="comment">        /// @internal</span>
+<a name="l00102"></a>00102 <span class="comment">        /// @brief Returns a string with a path/filename to the default Graphics Subsytem settings file</span>
+<a name="l00103"></a>00103 <span class="comment">        /// @details Settings.cfg is the file that determines how graphics settings are configured by default.</span>
+<a name="l00104"></a>00104 <span class="comment">        /// This is a feature of the graphics subsystem and is generally not needed outside of engine code.</span>
+<a name="l00105"></a>00105 <span class="comment">        /// @return A string which contains the path and filename of the graphics setts file</span>
+<a name="l00106"></a>00106 <span class="comment"></span>        <span class="keywordtype">string</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a2d43f3aa5a485564c3f375b36a08152f" title="Returns a string with a path/filename to the default Graphics Subsytem settings file.">GetSettingsDotCFG</a>();
+<a name="l00107"></a>00107 <span class="comment"></span>
+<a name="l00108"></a>00108 <span class="comment">        /// @brief Gets the Default Data Directory</span>
+<a name="l00109"></a>00109 <span class="comment">        /// @details The directory returned by this function can be used to easily graphics objects. In general</span>
+<a name="l00110"></a>00110 <span class="comment">        /// the Graphics subsystem can easily open files in this location with just their filename</span>
+<a name="l00111"></a>00111 <span class="comment">        /// @return A string containing the path to the default Data Directory.</span>
+<a name="l00112"></a>00112 <span class="comment"></span>        <span class="keywordtype">string</span> PHYS_LIB <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#ae7b1d4b6dac634392c6224f26ab85001" title="Gets the Default Data Directory.">GetDataDirectory</a>();
+<a name="l00113"></a>00113 <span class="comment"></span>
+<a name="l00114"></a>00114 <span class="comment">        /// @internal</span>
+<a name="l00115"></a>00115 <span class="comment">        /// @brief This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)</span>
+<a name="l00116"></a>00116 <span class="comment">        /// @details This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)</span>
+<a name="l00117"></a>00117 <span class="comment">        /// This returns a named parameter list with valid settings to use Ogre rendering on a pre-existing SDL context</span>
+<a name="l00118"></a>00118 <span class="comment">        /// @warning This is an engine internal, and shouldn&#39;t be used anywhere else. For all practical purposes is return gibberish</span>
+<a name="l00119"></a>00119 <span class="comment"></span>        <span class="keywordtype">void</span>* <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a596ed780d507e681d9261d26b64a8ed9" title="This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)...">GetSDLOgreBinder</a>();
+<a name="l00120"></a>00120 <span class="comment"></span>
+<a name="l00121"></a>00121 <span class="comment">        /// @brief Pauses the program for a given period of time.</span>
+<a name="l00122"></a>00122 <span class="comment">        /// @details Pauses the program for a given period of time.</span>
+<a name="l00123"></a>00123 <span class="comment">        /// @param WaitTime The amount of time in milliseconds to wait</span>
+<a name="l00124"></a>00124 <span class="comment"></span>        <span class="keywordtype">void</span> PHYS_LIB <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab525e3abf3625b83954e2d55a5869d18" title="Pauses the program for a given period of time.">WaitMilliseconds</a>(<span class="keyword">const</span> Whole &amp;WaitTime);
+<a name="l00125"></a>00125 <span class="comment"></span>
+<a name="l00126"></a>00126 <span class="comment">        /// @brief Renders the current world contents to the screen.</span>
+<a name="l00127"></a>00127 <span class="comment">        /// @details This makes use of World internals to Render to the screen, So it is advised against calling this directly.</span>
+<a name="l00128"></a>00128 <span class="comment">        /// Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop</span>
+<a name="l00129"></a>00129 <span class="comment">        /// at the aproppriate times. Currently this references Ogre systems, that makes this internal</span>
+<a name="l00130"></a>00130 <span class="comment">        /// Handles the actual cross platform swapping of graphics buffers.</span>
+<a name="l00131"></a>00131 <span class="comment">        /// @param TheWorld This is a pointer to the World to be rendered.</span>
+<a name="l00132"></a>00132 <span class="comment">        /// @param TheWorld A pointer to the game window to be update to be rendered. This is considered an internal component</span>
+<a name="l00133"></a>00133 <span class="comment"></span>        <span class="keywordtype">void</span> PHYS_LIB <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a11ab7359564519dc966f997c98109f6e" title="Renders the current world contents to the screen.">RenderPhysWorld</a>(World *TheWorld, Ogre::RenderWindow* TheOgreWindow);
+<a name="l00134"></a>00134     }
+<a name="l00135"></a>00135 }
+<a name="l00136"></a>00136 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -81,7 +81,7 @@
 <a name="l00051"></a>00051 {
 <a name="l00052"></a>00052     <span class="keyword">namespace </span>UI
 <a name="l00053"></a>00053     {
-<a name="l00054"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#aa6b5402a62e493d70ff4b04d11ca6fcb">00054</a>         <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#aa6b5402a62e493d70ff4b04d11ca6fcb" title="Internal constructor.">MarkupText::MarkupText</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Text, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
+<a name="l00054"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a00e09eb3d72ff569b41f0bc42a396707">00054</a>         <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a00e09eb3d72ff569b41f0bc42a396707" title="Internal constructor.">MarkupText::MarkupText</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Text, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
 <a name="l00055"></a>00055             : Parent(Layer),
 <a name="l00056"></a>00056               RelPosition(Position),
 <a name="l00057"></a>00057               RelSize(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
@@ -89,7 +89,7 @@
 <a name="l00059"></a>00059         {
 <a name="l00060"></a>00060             Manager = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ab7888bf9286df602490c30df6382fde9" title="This gets the UIManager from the manager list.">GetUIManager</a>();
 <a name="l00061"></a>00061 
-<a name="l00062"></a>00062             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Window = Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
+<a name="l00062"></a>00062             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html" title="This is a container widget capable of holding any other widget.">Window</a> = Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
 <a name="l00063"></a>00063             GMarkup = Parent-&gt;<a class="code" href="../../da/d48/classphys_1_1UILayer.html#a0f1d04779794d4401714b0d8fa90cab5" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createMarkupText(Glyph,Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>,Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>,Text);
 <a name="l00064"></a>00064         }
 <a name="l00065"></a>00065 
@@ -98,168 +98,188 @@
 <a name="l00068"></a>00068             Parent-&gt;<a class="code" href="../../da/d48/classphys_1_1UILayer.html#a0f1d04779794d4401714b0d8fa90cab5" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;destroyMarkupText(GMarkup);
 <a name="l00069"></a>00069         }
 <a name="l00070"></a>00070 
-<a name="l00071"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#afa64067f890466ad4844c4836e7667fd">00071</a>         <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#afa64067f890466ad4844c4836e7667fd" title="Gets the name of this markup text.">MarkupText::GetName</a>()
+<a name="l00071"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ac5c38c21af2fbc3533697cacfec8fdc3">00071</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ac5c38c21af2fbc3533697cacfec8fdc3" title="Sets the visibility of this markup text.">MarkupText::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
 <a name="l00072"></a>00072         {
-<a name="l00073"></a>00073             <span class="keywordflow">return</span> Name;
+<a name="l00073"></a>00073             GMarkup-&gt;SetVisible(Visible);
 <a name="l00074"></a>00074         }
 <a name="l00075"></a>00075 
-<a name="l00076"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#af5d9184959b56996e9727e2d7ccf8f22">00076</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#af5d9184959b56996e9727e2d7ccf8f22" title="Sets the text displayed within the markup text.">MarkupText::SetText</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Text)
+<a name="l00076"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a17873359c7387926c7e759665ad4312d">00076</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a17873359c7387926c7e759665ad4312d" title="Gets the visibility of this markup text.">MarkupText::IsVisible</a>()
 <a name="l00077"></a>00077         {
-<a name="l00078"></a>00078             GMarkup-&gt;text(Text);
+<a name="l00078"></a>00078             <span class="keywordflow">return</span> GMarkup-&gt;IsVisible();
 <a name="l00079"></a>00079         }
 <a name="l00080"></a>00080 
-<a name="l00081"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#af5d8a7e6ca03e15fc488608c28a54c1e">00081</a>         <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#af5d8a7e6ca03e15fc488608c28a54c1e" title="Gets the text displayed within the markup text.">MarkupText::GetText</a>()
+<a name="l00081"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a223df1155960fd6a4ddde7a43e87fa09">00081</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a223df1155960fd6a4ddde7a43e87fa09" title="Forces this markup text to be shown.">MarkupText::Show</a>()
 <a name="l00082"></a>00082         {
-<a name="l00083"></a>00083             <span class="keywordflow">return</span> GMarkup-&gt;text();
+<a name="l00083"></a>00083             GMarkup-&gt;Show();
 <a name="l00084"></a>00084         }
 <a name="l00085"></a>00085 
-<a name="l00086"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a6e12c59a15a110b74e8cf725cac82a29">00086</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a6e12c59a15a110b74e8cf725cac82a29" title="Sets the Default glyph index to be used with this markup text.">MarkupText::SetDefaultGlyphIndex</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> DefaultGlyphIndex)
+<a name="l00086"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ad0a4b1d27341426d08d367c4891c23f9">00086</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ad0a4b1d27341426d08d367c4891c23f9" title="Forces this markup text to hide.">MarkupText::Hide</a>()
 <a name="l00087"></a>00087         {
-<a name="l00088"></a>00088             Glyphs = DefaultGlyphIndex;
-<a name="l00089"></a>00089             GMarkup-&gt;SetDefaultGlyphIndex(DefaultGlyphIndex);
-<a name="l00090"></a>00090         }
-<a name="l00091"></a>00091 
-<a name="l00092"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a02872d0b9828b34e9b2ceec82cce237b">00092</a>         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a02872d0b9828b34e9b2ceec82cce237b" title="Gets the Default glyph index in use by this markup text.">MarkupText::GetDefaultGlyphIndex</a>()
-<a name="l00093"></a>00093         {
-<a name="l00094"></a>00094             <span class="keywordflow">return</span> Glyphs;
-<a name="l00095"></a>00095         }
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097         <span class="comment">/*void MarkupText::HorizontallyAlign(UI::TextHorizontalAlign Align)</span>
-<a name="l00098"></a>00098 <span class="comment">        {</span>
-<a name="l00099"></a>00099 <span class="comment">            Gorilla::TextAlignment HA;</span>
-<a name="l00100"></a>00100 <span class="comment">            switch (Align)</span>
-<a name="l00101"></a>00101 <span class="comment">            {</span>
-<a name="l00102"></a>00102 <span class="comment">                case UI::Left:</span>
-<a name="l00103"></a>00103 <span class="comment">                    HA = Gorilla::TextAlign_Left;</span>
-<a name="l00104"></a>00104 <span class="comment">                    break;</span>
-<a name="l00105"></a>00105 <span class="comment">                case UI::Right:</span>
-<a name="l00106"></a>00106 <span class="comment">                    HA = Gorilla::TextAlign_Right;</span>
-<a name="l00107"></a>00107 <span class="comment">                    break;</span>
-<a name="l00108"></a>00108 <span class="comment">                case UI::Middle:</span>
-<a name="l00109"></a>00109 <span class="comment">                    HA = Gorilla::TextAlign_Centre;</span>
-<a name="l00110"></a>00110 <span class="comment">                    break;</span>
-<a name="l00111"></a>00111 <span class="comment">                default:</span>
-<a name="l00112"></a>00112 <span class="comment">                    return;</span>
-<a name="l00113"></a>00113 <span class="comment">            }</span>
-<a name="l00114"></a>00114 <span class="comment">            GMarkup-&gt;align(HA);</span>
-<a name="l00115"></a>00115 <span class="comment">        }</span>
-<a name="l00116"></a>00116 <span class="comment"></span>
-<a name="l00117"></a>00117 <span class="comment">        void MarkupText::VerticallyAlign(UI::TextVerticalAlign Align)</span>
+<a name="l00088"></a>00088             GMarkup-&gt;Hide();
+<a name="l00089"></a>00089         }
+<a name="l00090"></a>00090 
+<a name="l00091"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#afa64067f890466ad4844c4836e7667fd">00091</a>         <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#afa64067f890466ad4844c4836e7667fd" title="Gets the name of this markup text.">MarkupText::GetName</a>()
+<a name="l00092"></a>00092         {
+<a name="l00093"></a>00093             <span class="keywordflow">return</span> Name;
+<a name="l00094"></a>00094         }
+<a name="l00095"></a>00095 
+<a name="l00096"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#af5d9184959b56996e9727e2d7ccf8f22">00096</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#af5d9184959b56996e9727e2d7ccf8f22" title="Sets the text displayed within the markup text.">MarkupText::SetText</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Text)
+<a name="l00097"></a>00097         {
+<a name="l00098"></a>00098             GMarkup-&gt;text(Text);
+<a name="l00099"></a>00099         }
+<a name="l00100"></a>00100 
+<a name="l00101"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#af5d8a7e6ca03e15fc488608c28a54c1e">00101</a>         <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#af5d8a7e6ca03e15fc488608c28a54c1e" title="Gets the text displayed within the markup text.">MarkupText::GetText</a>()
+<a name="l00102"></a>00102         {
+<a name="l00103"></a>00103             <span class="keywordflow">return</span> GMarkup-&gt;text();
+<a name="l00104"></a>00104         }
+<a name="l00105"></a>00105 
+<a name="l00106"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a6e12c59a15a110b74e8cf725cac82a29">00106</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a6e12c59a15a110b74e8cf725cac82a29" title="Sets the Default glyph index to be used with this markup text.">MarkupText::SetDefaultGlyphIndex</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> DefaultGlyphIndex)
+<a name="l00107"></a>00107         {
+<a name="l00108"></a>00108             Glyphs = DefaultGlyphIndex;
+<a name="l00109"></a>00109             GMarkup-&gt;SetDefaultGlyphIndex(DefaultGlyphIndex);
+<a name="l00110"></a>00110         }
+<a name="l00111"></a>00111 
+<a name="l00112"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a02872d0b9828b34e9b2ceec82cce237b">00112</a>         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a02872d0b9828b34e9b2ceec82cce237b" title="Gets the Default glyph index in use by this markup text.">MarkupText::GetDefaultGlyphIndex</a>()
+<a name="l00113"></a>00113         {
+<a name="l00114"></a>00114             <span class="keywordflow">return</span> Glyphs;
+<a name="l00115"></a>00115         }
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117         <span class="comment">/*void MarkupText::HorizontallyAlign(UI::TextHorizontalAlign Align)</span>
 <a name="l00118"></a>00118 <span class="comment">        {</span>
-<a name="l00119"></a>00119 <span class="comment">            Gorilla::VerticalAlignment VA;</span>
+<a name="l00119"></a>00119 <span class="comment">            Gorilla::TextAlignment HA;</span>
 <a name="l00120"></a>00120 <span class="comment">            switch (Align)</span>
 <a name="l00121"></a>00121 <span class="comment">            {</span>
-<a name="l00122"></a>00122 <span class="comment">                case UI::Top:</span>
-<a name="l00123"></a>00123 <span class="comment">                    VA = Gorilla::VerticalAlign_Top;</span>
+<a name="l00122"></a>00122 <span class="comment">                case UI::Left:</span>
+<a name="l00123"></a>00123 <span class="comment">                    HA = Gorilla::TextAlign_Left;</span>
 <a name="l00124"></a>00124 <span class="comment">                    break;</span>
-<a name="l00125"></a>00125 <span class="comment">                case UI::Bottom:</span>
-<a name="l00126"></a>00126 <span class="comment">                    VA = Gorilla::VerticalAlign_Bottom;</span>
+<a name="l00125"></a>00125 <span class="comment">                case UI::Right:</span>
+<a name="l00126"></a>00126 <span class="comment">                    HA = Gorilla::TextAlign_Right;</span>
 <a name="l00127"></a>00127 <span class="comment">                    break;</span>
-<a name="l00128"></a>00128 <span class="comment">                case UI::Center:</span>
-<a name="l00129"></a>00129 <span class="comment">                    VA = Gorilla::VerticalAlign_Middle;</span>
+<a name="l00128"></a>00128 <span class="comment">                case UI::Middle:</span>
+<a name="l00129"></a>00129 <span class="comment">                    HA = Gorilla::TextAlign_Centre;</span>
 <a name="l00130"></a>00130 <span class="comment">                    break;</span>
 <a name="l00131"></a>00131 <span class="comment">                default:</span>
 <a name="l00132"></a>00132 <span class="comment">                    return;</span>
 <a name="l00133"></a>00133 <span class="comment">            }</span>
-<a name="l00134"></a>00134 <span class="comment">            GMarkup-&gt;vertical_align(VA);</span>
-<a name="l00135"></a>00135 <span class="comment">        }*/</span>
-<a name="l00136"></a>00136 
-<a name="l00137"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ab78ebccb8ab629ef1858cf48f8b505a0">00137</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ab78ebccb8ab629ef1858cf48f8b505a0" title="Sets the relative top left position of this markup text.">MarkupText::SetPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
-<a name="l00138"></a>00138         {
-<a name="l00139"></a>00139             RelPosition = Position;
-<a name="l00140"></a>00140             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrDim = Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
-<a name="l00141"></a>00141             GMarkup-&gt;left(CurrDim.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * RelPosition.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00142"></a>00142             GMarkup-&gt;top(CurrDim.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * RelPosition.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00143"></a>00143         }
-<a name="l00144"></a>00144 
-<a name="l00145"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a9d92f03e1cad181a5d8f20f3f95cf7cc">00145</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a9d92f03e1cad181a5d8f20f3f95cf7cc" title="Gets the relative top left position of this markup text.">MarkupText::GetPosition</a>()
-<a name="l00146"></a>00146         {
-<a name="l00147"></a>00147             <span class="keywordflow">return</span> RelPosition;
-<a name="l00148"></a>00148         }
-<a name="l00149"></a>00149 
-<a name="l00150"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a95ce98aec4946447e5da951911bfe628">00150</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a95ce98aec4946447e5da951911bfe628" title="Sets the top left position of this markup text in pixels.">MarkupText::SetActualPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
-<a name="l00151"></a>00151         {
-<a name="l00152"></a>00152             GMarkup-&gt;left(Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00153"></a>00153             GMarkup-&gt;top(Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00154"></a>00154         }
-<a name="l00155"></a>00155 
-<a name="l00156"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a1e5bfba8d1686cb4188793fd695c7090">00156</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a1e5bfba8d1686cb4188793fd695c7090" title="Gets the top left position of this markup text in pixels.">MarkupText::GetActualPosition</a>()
-<a name="l00157"></a>00157         {
-<a name="l00158"></a>00158             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GMarkup-&gt;left(), GMarkup-&gt;top());
-<a name="l00159"></a>00159             <span class="keywordflow">return</span> Pos;
-<a name="l00160"></a>00160         }
-<a name="l00161"></a>00161 
-<a name="l00162"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a4e7ebb993d6c553a3734efc5cae896f3">00162</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a4e7ebb993d6c553a3734efc5cae896f3" title="Sets the maximum relative size of this markup text.">MarkupText::SetMaxSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
-<a name="l00163"></a>00163         {
-<a name="l00164"></a>00164             RelSize = Size;
-<a name="l00165"></a>00165             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrDim = Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
-<a name="l00166"></a>00166             GMarkup-&gt;left(CurrDim.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * RelSize.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00167"></a>00167             GMarkup-&gt;top(CurrDim.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * RelSize.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00134"></a>00134 <span class="comment">            GMarkup-&gt;align(HA);</span>
+<a name="l00135"></a>00135 <span class="comment">        }</span>
+<a name="l00136"></a>00136 <span class="comment"></span>
+<a name="l00137"></a>00137 <span class="comment">        void MarkupText::VerticallyAlign(UI::TextVerticalAlign Align)</span>
+<a name="l00138"></a>00138 <span class="comment">        {</span>
+<a name="l00139"></a>00139 <span class="comment">            Gorilla::VerticalAlignment VA;</span>
+<a name="l00140"></a>00140 <span class="comment">            switch (Align)</span>
+<a name="l00141"></a>00141 <span class="comment">            {</span>
+<a name="l00142"></a>00142 <span class="comment">                case UI::Top:</span>
+<a name="l00143"></a>00143 <span class="comment">                    VA = Gorilla::VerticalAlign_Top;</span>
+<a name="l00144"></a>00144 <span class="comment">                    break;</span>
+<a name="l00145"></a>00145 <span class="comment">                case UI::Bottom:</span>
+<a name="l00146"></a>00146 <span class="comment">                    VA = Gorilla::VerticalAlign_Bottom;</span>
+<a name="l00147"></a>00147 <span class="comment">                    break;</span>
+<a name="l00148"></a>00148 <span class="comment">                case UI::Center:</span>
+<a name="l00149"></a>00149 <span class="comment">                    VA = Gorilla::VerticalAlign_Middle;</span>
+<a name="l00150"></a>00150 <span class="comment">                    break;</span>
+<a name="l00151"></a>00151 <span class="comment">                default:</span>
+<a name="l00152"></a>00152 <span class="comment">                    return;</span>
+<a name="l00153"></a>00153 <span class="comment">            }</span>
+<a name="l00154"></a>00154 <span class="comment">            GMarkup-&gt;vertical_align(VA);</span>
+<a name="l00155"></a>00155 <span class="comment">        }*/</span>
+<a name="l00156"></a>00156 
+<a name="l00157"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ab78ebccb8ab629ef1858cf48f8b505a0">00157</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ab78ebccb8ab629ef1858cf48f8b505a0" title="Sets the relative top left position of this markup text.">MarkupText::SetPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
+<a name="l00158"></a>00158         {
+<a name="l00159"></a>00159             RelPosition = Position;
+<a name="l00160"></a>00160             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrDim = Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
+<a name="l00161"></a>00161             GMarkup-&gt;left(CurrDim.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * RelPosition.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
+<a name="l00162"></a>00162             GMarkup-&gt;top(CurrDim.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * RelPosition.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00163"></a>00163         }
+<a name="l00164"></a>00164 
+<a name="l00165"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a9d92f03e1cad181a5d8f20f3f95cf7cc">00165</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a9d92f03e1cad181a5d8f20f3f95cf7cc" title="Gets the relative top left position of this markup text.">MarkupText::GetPosition</a>()
+<a name="l00166"></a>00166         {
+<a name="l00167"></a>00167             <span class="keywordflow">return</span> RelPosition;
 <a name="l00168"></a>00168         }
 <a name="l00169"></a>00169 
-<a name="l00170"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ae68fd261f2dc9494a16e3089c7a35b8a">00170</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ae68fd261f2dc9494a16e3089c7a35b8a" title="Gets the maximum relative size of this markup text.">MarkupText::GetMaxSize</a>()
+<a name="l00170"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a95ce98aec4946447e5da951911bfe628">00170</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a95ce98aec4946447e5da951911bfe628" title="Sets the top left position of this markup text in pixels.">MarkupText::SetActualPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
 <a name="l00171"></a>00171         {
-<a name="l00172"></a>00172             <span class="keywordflow">return</span> RelSize;
-<a name="l00173"></a>00173         }
-<a name="l00174"></a>00174 
-<a name="l00175"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#aca214ea8e68d56c6a0747f9854fa5034">00175</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#aca214ea8e68d56c6a0747f9854fa5034" title="Sets the maximum size of this markup text in pixels.">MarkupText::SetMaxActualSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
-<a name="l00176"></a>00176         {
-<a name="l00177"></a>00177             GMarkup-&gt;width(Size.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
-<a name="l00178"></a>00178             GMarkup-&gt;height(Size.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00179"></a>00179         }
-<a name="l00180"></a>00180 
-<a name="l00181"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a4a742f4d64038ded68c5480f4cf3e017">00181</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a4a742f4d64038ded68c5480f4cf3e017" title="Gets the maximum size of this markup text in pixels.">MarkupText::GetMaxActualSize</a>()
-<a name="l00182"></a>00182         {
-<a name="l00183"></a>00183             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GMarkup-&gt;width(), GMarkup-&gt;height());
-<a name="l00184"></a>00184             <span class="keywordflow">return</span> Pos;
-<a name="l00185"></a>00185         }
-<a name="l00186"></a>00186 
-<a name="l00187"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a65662c49802fa5b82a04ac387b55493f">00187</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a65662c49802fa5b82a04ac387b55493f" title="Sets the priority this markup text should be rendered with.">MarkupText::SetRenderPriority</a>(UI::RenderPriority Priority)
-<a name="l00188"></a>00188         {
-<a name="l00189"></a>00189             Gorilla::RenderPriority RP;
-<a name="l00190"></a>00190             <span class="keywordflow">switch</span>(Priority)
-<a name="l00191"></a>00191             {
-<a name="l00192"></a>00192                 <span class="keywordflow">case</span> UI::RP_Low:
-<a name="l00193"></a>00193                     RP = Gorilla::RP_Low;
-<a name="l00194"></a>00194                     <span class="keywordflow">break</span>;
-<a name="l00195"></a>00195                 <span class="keywordflow">case</span> UI::RP_Medium:
-<a name="l00196"></a>00196                     RP = Gorilla::RP_Medium;
-<a name="l00197"></a>00197                     <span class="keywordflow">break</span>;
-<a name="l00198"></a>00198                 <span class="keywordflow">case</span> UI::RP_High:
-<a name="l00199"></a>00199                     RP = Gorilla::RP_High;
-<a name="l00200"></a>00200                     <span class="keywordflow">break</span>;
-<a name="l00201"></a>00201                 <span class="keywordflow">default</span>:
-<a name="l00202"></a>00202                     <span class="keywordflow">break</span>;
-<a name="l00203"></a>00203             }
-<a name="l00204"></a>00204             GMarkup-&gt;RenderPriority(RP);
+<a name="l00172"></a>00172             GMarkup-&gt;left(Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
+<a name="l00173"></a>00173             GMarkup-&gt;top(Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00174"></a>00174         }
+<a name="l00175"></a>00175 
+<a name="l00176"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a1e5bfba8d1686cb4188793fd695c7090">00176</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a1e5bfba8d1686cb4188793fd695c7090" title="Gets the top left position of this markup text in pixels.">MarkupText::GetActualPosition</a>()
+<a name="l00177"></a>00177         {
+<a name="l00178"></a>00178             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GMarkup-&gt;left(), GMarkup-&gt;top());
+<a name="l00179"></a>00179             <span class="keywordflow">return</span> Pos;
+<a name="l00180"></a>00180         }
+<a name="l00181"></a>00181 
+<a name="l00182"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a4e7ebb993d6c553a3734efc5cae896f3">00182</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a4e7ebb993d6c553a3734efc5cae896f3" title="Sets the maximum relative size of this markup text.">MarkupText::SetMaxSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
+<a name="l00183"></a>00183         {
+<a name="l00184"></a>00184             RelSize = Size;
+<a name="l00185"></a>00185             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrDim = Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
+<a name="l00186"></a>00186             GMarkup-&gt;left(CurrDim.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> * RelSize.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
+<a name="l00187"></a>00187             GMarkup-&gt;top(CurrDim.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> * RelSize.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00188"></a>00188         }
+<a name="l00189"></a>00189 
+<a name="l00190"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ae68fd261f2dc9494a16e3089c7a35b8a">00190</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#ae68fd261f2dc9494a16e3089c7a35b8a" title="Gets the maximum relative size of this markup text.">MarkupText::GetMaxSize</a>()
+<a name="l00191"></a>00191         {
+<a name="l00192"></a>00192             <span class="keywordflow">return</span> RelSize;
+<a name="l00193"></a>00193         }
+<a name="l00194"></a>00194 
+<a name="l00195"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#aca214ea8e68d56c6a0747f9854fa5034">00195</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#aca214ea8e68d56c6a0747f9854fa5034" title="Sets the maximum size of this markup text in pixels.">MarkupText::SetMaxActualSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
+<a name="l00196"></a>00196         {
+<a name="l00197"></a>00197             GMarkup-&gt;width(Size.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
+<a name="l00198"></a>00198             GMarkup-&gt;height(Size.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00199"></a>00199         }
+<a name="l00200"></a>00200 
+<a name="l00201"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a4a742f4d64038ded68c5480f4cf3e017">00201</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a4a742f4d64038ded68c5480f4cf3e017" title="Gets the maximum size of this markup text in pixels.">MarkupText::GetMaxActualSize</a>()
+<a name="l00202"></a>00202         {
+<a name="l00203"></a>00203             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GMarkup-&gt;width(), GMarkup-&gt;height());
+<a name="l00204"></a>00204             <span class="keywordflow">return</span> Pos;
 <a name="l00205"></a>00205         }
 <a name="l00206"></a>00206 
-<a name="l00207"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a86afb23309534d86ed9675170b321874">00207</a>         UI::RenderPriority <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a86afb23309534d86ed9675170b321874" title="Gets the priority this markup text should be rendered with.">MarkupText::GetRenderPriority</a>()
+<a name="l00207"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a65662c49802fa5b82a04ac387b55493f">00207</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a65662c49802fa5b82a04ac387b55493f" title="Sets the priority this markup text should be rendered with.">MarkupText::SetRenderPriority</a>(UI::RenderPriority Priority)
 <a name="l00208"></a>00208         {
-<a name="l00209"></a>00209             Gorilla::RenderPriority RP = this-&gt;GMarkup-&gt;RenderPriority();
-<a name="l00210"></a>00210             <span class="keywordflow">switch</span>(RP)
+<a name="l00209"></a>00209             Gorilla::RenderPriority RP;
+<a name="l00210"></a>00210             <span class="keywordflow">switch</span>(Priority)
 <a name="l00211"></a>00211             {
-<a name="l00212"></a>00212                 <span class="keywordflow">case</span> Gorilla::RP_Low:
-<a name="l00213"></a>00213                     <span class="keywordflow">return</span> UI::RP_Low;
+<a name="l00212"></a>00212                 <span class="keywordflow">case</span> UI::RP_Low:
+<a name="l00213"></a>00213                     RP = Gorilla::RP_Low;
 <a name="l00214"></a>00214                     <span class="keywordflow">break</span>;
-<a name="l00215"></a>00215                 <span class="keywordflow">case</span> Gorilla::RP_Medium:
-<a name="l00216"></a>00216                     <span class="keywordflow">return</span> UI::RP_Medium;
+<a name="l00215"></a>00215                 <span class="keywordflow">case</span> UI::RP_Medium:
+<a name="l00216"></a>00216                     RP = Gorilla::RP_Medium;
 <a name="l00217"></a>00217                     <span class="keywordflow">break</span>;
-<a name="l00218"></a>00218                 <span class="keywordflow">case</span> Gorilla::RP_High:
-<a name="l00219"></a>00219                     <span class="keywordflow">return</span> UI::RP_High;
+<a name="l00218"></a>00218                 <span class="keywordflow">case</span> UI::RP_High:
+<a name="l00219"></a>00219                     RP = Gorilla::RP_High;
 <a name="l00220"></a>00220                     <span class="keywordflow">break</span>;
 <a name="l00221"></a>00221                 <span class="keywordflow">default</span>:
 <a name="l00222"></a>00222                     <span class="keywordflow">break</span>;
 <a name="l00223"></a>00223             }
-<a name="l00224"></a>00224             <span class="keywordflow">return</span> UI::RP_Medium;
+<a name="l00224"></a>00224             GMarkup-&gt;RenderPriority(RP);
 <a name="l00225"></a>00225         }
-<a name="l00226"></a>00226     }<span class="comment">//UI</span>
-<a name="l00227"></a>00227 }<span class="comment">//phys</span>
-<a name="l00228"></a>00228 
-<a name="l00229"></a>00229 <span class="preprocessor">#endif</span>
+<a name="l00226"></a>00226 
+<a name="l00227"></a><a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a86afb23309534d86ed9675170b321874">00227</a>         UI::RenderPriority <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html#a86afb23309534d86ed9675170b321874" title="Gets the priority this markup text should be rendered with.">MarkupText::GetRenderPriority</a>()
+<a name="l00228"></a>00228         {
+<a name="l00229"></a>00229             Gorilla::RenderPriority RP = this-&gt;GMarkup-&gt;RenderPriority();
+<a name="l00230"></a>00230             <span class="keywordflow">switch</span>(RP)
+<a name="l00231"></a>00231             {
+<a name="l00232"></a>00232                 <span class="keywordflow">case</span> Gorilla::RP_Low:
+<a name="l00233"></a>00233                     <span class="keywordflow">return</span> UI::RP_Low;
+<a name="l00234"></a>00234                     <span class="keywordflow">break</span>;
+<a name="l00235"></a>00235                 <span class="keywordflow">case</span> Gorilla::RP_Medium:
+<a name="l00236"></a>00236                     <span class="keywordflow">return</span> UI::RP_Medium;
+<a name="l00237"></a>00237                     <span class="keywordflow">break</span>;
+<a name="l00238"></a>00238                 <span class="keywordflow">case</span> Gorilla::RP_High:
+<a name="l00239"></a>00239                     <span class="keywordflow">return</span> UI::RP_High;
+<a name="l00240"></a>00240                     <span class="keywordflow">break</span>;
+<a name="l00241"></a>00241                 <span class="keywordflow">default</span>:
+<a name="l00242"></a>00242                     <span class="keywordflow">break</span>;
+<a name="l00243"></a>00243             }
+<a name="l00244"></a>00244             <span class="keywordflow">return</span> UI::RP_Medium;
+<a name="l00245"></a>00245         }
+<a name="l00246"></a>00246     }<span class="comment">//UI</span>
+<a name="l00247"></a>00247 }<span class="comment">//phys</span>
+<a name="l00248"></a>00248 
+<a name="l00249"></a>00249 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
