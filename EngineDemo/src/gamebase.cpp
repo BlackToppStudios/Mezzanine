@@ -16,7 +16,8 @@
 
 using namespace phys;
 using namespace std;
-//Create the World Globally! and set it to hold some actors
+
+//Create the World.... Globally! and set it to hold some actors
 World *TheWorld;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
@@ -29,7 +30,7 @@ int main(int argc, char **argv)
     }catch( exception x){
         cerr << "Could not create world:" << x.what();
         return 1;
-        //could not created world
+        //could not create the perfect worldending program
     }
 
     #ifdef PHYSDEBUG
@@ -532,7 +533,12 @@ void LoadContent()
 
 
 
-        //ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+        ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
+        pugi::xml_document TestDoc;
+        pugi::xml_parse_result ParsedXML = TestDoc.load( *XMLptr );
+
+
+
         //phys::xml::TestXML(XMLptr);
 
         /*
