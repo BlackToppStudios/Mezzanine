@@ -51,6 +51,7 @@
 #include "uilistbox.h"
 #include "uiscrollbar.h"
 #include "uilinelist.h"
+#include "uiwindow.h"
 
 #include "graphicsmanager.h"
 #include "world.h"
@@ -386,6 +387,12 @@ namespace phys
                         delete List;
                         return;
                     }
+                    case UI::Widget::Window:
+                    {
+                        UI::Window* Win = static_cast<UI::Window*> (ToBeDestroyed);
+                        delete Win;
+                        return;
+                    }
                     default:
                         return;
                 }
@@ -419,6 +426,13 @@ namespace phys
         UI::ListBox* LB = new UI::ListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,this);
         Widgets.push_back(LB);
         return LB;
+    }
+
+    UI::Window* UILayer::CreateWidgetWindow(ConstString& Name, Vector2 Position, Vector2 Size)
+    {
+        UI::Window* Win = new UI::Window(Name,Position,Size,this);
+        Widgets.push_back(Win);
+        return Win;
     }
 
     UI::Button* UILayer::CheckButtonMouseIsOver()

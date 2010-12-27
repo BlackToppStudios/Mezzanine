@@ -50,6 +50,9 @@
 #include "uibutton.h"
 #include "uitextbutton.h"
 #include "uiscrollbar.h"
+#include "uilistbox.h"
+#include "uibuttonlistbox.h"
+#include "uicheckbox.h"
 #include "inputquerytool.h"
 #include "metacode.h"
 #include "world.h"
@@ -105,7 +108,31 @@ namespace phys
 
         void Window::Update(bool Force)
         {
-
+            if(!Force)
+                SubWidgetUpdate();
+            MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
+            if(HoveredButton)
+            {
+            }
+            else if(HoveredSubWidget)
+            {
+                if(MetaCode::BUTTON_PRESSING == State)
+                {
+                    SubWidgetFocus = HoveredSubWidget;
+                }
+            }
+            if(SubWidgetFocus && (SubWidgetFocus != HoveredSubWidget))
+            {
+                SubWidgetFocusUpdate(true);
+            }
+            else if(MetaCode::BUTTON_DOWN == State && Force)
+            {
+                SubWidgetFocusUpdate(Force);
+            }
+            if(MetaCode::BUTTON_LIFTING == State)
+            {
+                SubWidgetFocus = NULL;
+            }
         }
 
         void Window::SetLocation(Vector2 &Position)
@@ -136,69 +163,100 @@ namespace phys
         void Window::SetArea(Vector2 &Size)
         {
             Vector2 OldSize = WindowBack->GetActualSize();
+            Vector2 Position = WindowBack->GetActualPosition();
             WindowBack->SetActualSize(Size);
             for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {
                 (*it).Offset = CalculateOffset(Size,OldSize,(*it).Offset,(*it).Anchor);
+                if((*it).Tether != RT_TetherNone)
+                    (*it).Object->SetActualSize(CalculateSize(Size,OldSize,(*it).Object->GetActualSize(),(*it).Tether));
+                (*it).Object->SetActualPosition(Position+(*it).Offset);
             }
             for( std::vector<OffsetRectangleInfo>::iterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
             {
                 (*it).Offset = CalculateOffset(Size,OldSize,(*it).Offset,(*it).Anchor);
+                if((*it).Tether != RT_TetherNone)
+                    (*it).Object->SetActualSize(CalculateSize(Size,OldSize,(*it).Object->GetActualSize(),(*it).Tether));
+                (*it).Object->SetActualPosition(Position+(*it).Offset);
             }
             for( std::vector<OffsetCaptionInfo>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
             {
                 (*it).Offset = CalculateOffset(Size,OldSize,(*it).Offset,(*it).Anchor);
+                if((*it).Tether != RT_TetherNone)
+                    (*it).Object->SetActualSize(CalculateSize(Size,OldSize,(*it).Object->GetActualSize(),(*it).Tether));
+                (*it).Object->SetActualPosition(Position+(*it).Offset);
             }
             for( std::vector<OffsetMarkupTextInfo>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
             {
                 (*it).Offset = CalculateOffset(Size,OldSize,(*it).Offset,(*it).Anchor);
+                //if((*it).Tether != RT_TetherNone)
+                //    (*it).Object->SetActualSize(CalculateSize(Size,OldSize,(*it).Object->GetActualSize(),(*it).Tether));
+                (*it).Object->SetActualPosition(Position+(*it).Offset);
             }
             for( std::vector<OffsetWidgetInfo>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
             {
                 (*it).Offset = CalculateOffset(Size,OldSize,(*it).Offset,(*it).Anchor);
+                if((*it).Tether != RT_TetherNone)
+                    (*it).Object->SetActualSize(CalculateSize(Size,OldSize,(*it).Object->GetActualSize(),(*it).Tether));
+                (*it).Object->SetActualPosition(Position+(*it).Offset);
             }
         }
 
-        Vector2 Window::CalculateOffset(Vector2 NewSize, Vector2 OldSize, Vector2 Offset, UI::ResizeableAnchor Anchor)
+        Vector2 Window::CalculateOffset(Vector2 NewSize, Vector2 OldSize, Vector2 EleOffset, UI::ResizeableAnchor Anchor)
         {
             Vector2 NewOffset;
             switch (Anchor)
             {
                 case RA_AnchorTopLeft:
                 {
-                    NewOffset = Offset;
+                    NewOffset = EleOffset;
                     break;
                 }
                 case RA_AnchorTop:
                 {
+                    NewOffset.X = EleOffset.X + ((NewSize.X - OldSize.X) * 0.5);
+                    NewOffset.Y = EleOffset.Y;
                     break;
                 }
                 case RA_AnchorTopRight:
                 {
+                    NewOffset.X = EleOffset.X + (NewSize.X - OldSize.X);
+                    NewOffset.Y = EleOffset.Y;
                     break;
                 }
                 case RA_AnchorLeft:
                 {
+                    NewOffset.X = EleOffset.X;
+                    NewOffset.Y = EleOffset.Y + ((NewSize.Y - OldSize.Y) * 0.5);
                     break;
                 }
                 case RA_AnchorMiddle:
                 {
+                    NewOffset.X = EleOffset.X + ((NewSize.X - OldSize.X) * 0.5);
+                    NewOffset.Y = EleOffset.Y + ((NewSize.Y - OldSize.Y) * 0.5);
                     break;
                 }
                 case RA_AnchorRight:
                 {
+                    NewOffset.X = EleOffset.X + (NewSize.X - OldSize.X);
+                    NewOffset.Y = EleOffset.Y + ((NewSize.Y - OldSize.Y) * 0.5);
                     break;
                 }
                 case RA_AnchorBottomLeft:
                 {
+                    NewOffset.X = EleOffset.X;
+                    NewOffset.Y = EleOffset.Y + (NewSize.Y - OldSize.Y);
                     break;
                 }
                 case RA_AnchorBottom:
                 {
+                    NewOffset.X = EleOffset.X + ((NewSize.X - OldSize.X) * 0.5);
+                    NewOffset.Y = EleOffset.Y + (NewSize.Y - OldSize.Y);
                     break;
                 }
                 case RA_AnchorBottomRight:
                 {
+                    NewOffset = EleOffset + (NewSize - OldSize);
                     break;
                 }
                 default:
@@ -207,11 +265,44 @@ namespace phys
             return NewOffset;
         }
 
+        Vector2 Window::CalculateSize(Vector2 NewSize, Vector2 OldSize, Vector2 EleSize, UI::ResizeableTether Tether)
+        {
+            Vector2 NewEleSize;
+            switch (Tether)
+            {
+                case RT_TetherBoth:
+                {
+                    NewEleSize = EleSize + (NewSize - OldSize);
+                    break;
+                }
+                case RT_TetherNone:
+                {
+                    NewEleSize = EleSize;
+                    break;
+                }
+                case RT_TetherHorizontal:
+                {
+                    NewEleSize.X = EleSize.X + (NewSize.X - OldSize.X);
+                    NewEleSize.Y = EleSize.Y;
+                    break;
+                }
+                case RT_TetherVertical:
+                {
+                    NewEleSize.X = EleSize.X;
+                    NewEleSize.Y = EleSize.Y + (NewSize.Y - OldSize.Y);
+                    break;
+                }
+                default:
+                    return NewEleSize;
+            }
+            return NewEleSize;
+        }
+
         void Window::SetVisible(bool visible)
         {
             if(Visible == visible)
                 return;
-            WindowTitle->SetVisible(visible);
+            //WindowTitle->SetVisible(visible);
             WindowBack->SetVisible(visible);
             for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {
@@ -245,7 +336,7 @@ namespace phys
         {
             if(Visible)
                 return;
-            WindowTitle->Show();
+            //WindowTitle->Show();
             WindowBack->Show();
             for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {
@@ -274,7 +365,7 @@ namespace phys
         {
             if(!Visible)
                 return;
-            WindowTitle->Hide();
+            //WindowTitle->Hide();
             WindowBack->Hide();
             for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {
@@ -301,7 +392,45 @@ namespace phys
 
         bool Window::CheckMouseHover()
         {
-
+            if(!Visible)
+                return false;
+            if(HoveredButton)
+            {
+                if(HoveredButton->CheckMouseHover())
+                    return true;
+            }
+            if(HoveredSubWidget)
+            {
+                if(HoveredSubWidget->CheckMouseHover())
+                    return true;
+            }
+            for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+            {
+                if((*it).Object->CheckMouseHover())
+                {
+                    HoveredSubWidget = NULL;
+                    HoveredButton = (*it).Object;
+                    return true;
+                }
+            }
+            for( std::vector<OffsetWidgetInfo>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+            {
+                if((*it).Object->CheckMouseHover())
+                {
+                    HoveredSubWidget = (*it).Object;
+                    HoveredButton = NULL;
+                    return true;
+                }
+            }
+            if(WindowBack->CheckMouseHover())
+            {
+                HoveredSubWidget = NULL;
+                HoveredButton = NULL;
+                return true;
+            }
+            HoveredSubWidget = NULL;
+            HoveredButton = NULL;
+            return false;
         }
 
         void Window::SetPosition(Vector2 Position)
@@ -348,6 +477,278 @@ namespace phys
         Vector2 Window::GetActualSize()
         {
             return RelSize * Manager->GetWindowDimensions();
+        }
+
+        Button* Window::CreateButton(ConstString& Name, Vector2 Position, Vector2 Size)
+        {
+            Vector2 Offset = Position - RelPosition;
+            OffsetButtonInfo button(new Button(Name, Position, Size, Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Buttons.push_back(button);
+            return button.Object;
+        }
+
+        TextButton* Window::CreateTextButton(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, ConstString Text)
+        {
+            Vector2 Offset = Position - RelPosition;
+            TextButton* tbutton = new TextButton(Name, Position, Size, Glyph, Text, Parent);
+            OffsetButtonInfo tbuttoninfo(tbutton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Buttons.push_back(tbuttoninfo);
+            return tbutton;
+        }
+
+        Button* Window::GetButton(ConstString& Name)
+        {
+            for ( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+            {
+                if ( Name == (*it).Object->GetName() )
+                {
+                    Button* button = (*it).Object;
+                    return button;
+                }
+            }
+            return 0;
+        }
+
+        Button* Window::GetButton(Whole Index)
+        {
+            return Buttons[Index].Object;
+        }
+
+        Whole Window::GetNumButtons()
+        {
+            return Buttons.size();
+        }
+
+        void Window::DestroyButton(Button* ToBeDestroyed)
+        {
+            for ( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+            {
+                if ( ToBeDestroyed == (*it).Object )
+                {
+                    delete ToBeDestroyed;
+                    Buttons.erase(it);
+                    return;
+                }
+            }
+        }
+
+        Rectangle* Window::CreateRectangle(Vector2 Position, Vector2 Size)
+        {
+            Vector2 Offset = Position - RelPosition;
+            OffsetRectangleInfo rectangle(new Rectangle(Position,Size,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Rectangles.push_back(rectangle);
+            return rectangle.Object;
+        }
+
+        Rectangle* Window::GetRectangle(Whole Index)
+        {
+            return Rectangles[Index].Object;
+        }
+
+        Whole Window::GetNumRectangles()
+        {
+            return Rectangles.size();
+        }
+
+        void Window::DestroyRectangle(Rectangle* ToBeDestroyed)
+        {
+            for ( std::vector<OffsetRectangleInfo>::iterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
+            {
+                if ( ToBeDestroyed == (*it).Object )
+                {
+                    delete ToBeDestroyed;
+                    Rectangles.erase(it);
+                    return;
+                }
+            }
+        }
+
+        Caption* Window::CreateCaption(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
+        {
+            Vector2 Offset = Position - RelPosition;
+            OffsetCaptionInfo caption(new Caption(Name,Position,Size,Glyph,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Captions.push_back(caption);
+            return caption.Object;
+        }
+
+        Caption* Window::GetCaption(ConstString& Name)
+        {
+            for ( std::vector<OffsetCaptionInfo>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
+            {
+                if ( Name == (*it).Object->GetName() )
+                {
+                    Caption* caption = (*it).Object;
+                    return caption;
+                }
+            }
+            return 0;
+        }
+
+        Caption* Window::GetCaption(Whole Index)
+        {
+            return Captions[Index].Object;
+        }
+
+        Whole Window::GetNumCaptions()
+        {
+            return Captions.size();
+        }
+
+        void Window::DestroyCaption(Caption* ToBeDestroyed)
+        {
+            for ( std::vector<OffsetCaptionInfo>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
+            {
+                if ( ToBeDestroyed == (*it).Object )
+                {
+                    delete ToBeDestroyed;
+                    Captions.erase(it);
+                    return;
+                }
+            }
+        }
+
+        MarkupText* Window::CreateMarkupText(ConstString& Name, Vector2 Position, Whole Glyph, String Text)
+        {
+            Vector2 Offset = Position - RelPosition;
+            OffsetMarkupTextInfo markup(new MarkupText(Name,Position,Glyph,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            MarkupTexts.push_back(markup);
+            return markup.Object;
+        }
+
+        MarkupText* Window::GetMarkupText(ConstString& Name)
+        {
+            for ( std::vector<OffsetMarkupTextInfo>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
+            {
+                if ( Name == (*it).Object->GetName() )
+                {
+                    MarkupText* markup = (*it).Object;
+                    return markup;
+                }
+            }
+            return 0;
+        }
+
+        MarkupText* Window::GetMarkupText(Whole Index)
+        {
+            return MarkupTexts[Index].Object;
+        }
+
+        Whole Window::GetNumMarkupTexts()
+        {
+            return MarkupTexts.size();
+        }
+
+        void Window::DestroyMarkupText(MarkupText* ToBeDestroyed)
+        {
+            for ( std::vector<OffsetMarkupTextInfo>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
+            {
+                if ( ToBeDestroyed == (*it).Object )
+                {
+                    delete ToBeDestroyed;
+                    MarkupTexts.erase(it);
+                    return;
+                }
+            }
+        }
+
+        Widget* Window::GetWidget(ConstString& Name)
+        {
+            for ( std::vector<OffsetWidgetInfo>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+            {
+                if ( Name == (*it).Object->GetName() )
+                {
+                    Widget* widget = (*it).Object;
+                    return widget;
+                }
+            }
+            return 0;
+        }
+
+        Widget* Window::GetWidget(Whole Index)
+        {
+            return Widgets[Index].Object;
+        }
+
+        Whole Window::GetNumWidgets()
+        {
+            return Widgets.size();
+        }
+
+        void Window::DestroyWidget(Widget* ToBeDestroyed)
+        {
+            for ( std::vector<OffsetWidgetInfo>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+            {
+                if ( ToBeDestroyed == (*it).Object )
+                {
+                    Widgets.erase(it);
+                    Widget::WidgetType Type = ToBeDestroyed->GetType();
+                    switch (Type)
+                    {
+                        case Widget::Scrollbar:
+                        {
+                            UI::Scrollbar* Scroll = static_cast<UI::Scrollbar*> (ToBeDestroyed);
+                            delete Scroll;
+                            return;
+                        }
+                        case Widget::CheckBox:
+                        {
+                            UI::CheckBox* Check = static_cast<UI::CheckBox*> (ToBeDestroyed);
+                            delete Check;
+                            return;
+                        }
+                        case Widget::ButtonListBox:
+                        {
+                            UI::ButtonListBox* ButtonList = static_cast<UI::ButtonListBox*> (ToBeDestroyed);
+                            delete ButtonList;
+                            return;
+                        }
+                        case Widget::ListBox:
+                        {
+                            UI::ListBox* List = static_cast<UI::ListBox*> (ToBeDestroyed);
+                            delete List;
+                            return;
+                        }
+                        default:
+                            return;
+                    }
+                }
+            }
+        }
+
+        UI::Scrollbar* Window::CreateScrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::ScrollbarStyle Style)
+        {
+            Vector2 Offset = Position - RelPosition;
+            UI::Scrollbar* Scroll = new UI::Scrollbar(Name,Position,Size,Style,Parent);
+            OffsetWidgetInfo ScrollInfo(Scroll,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Widgets.push_back(ScrollInfo);
+            return Scroll;
+        }
+
+        UI::CheckBox* Window::CreateCheckBox(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText)
+        {
+            Vector2 Offset = Position - RelPosition;
+            UI::CheckBox* Check = new UI::CheckBox(Name,Position,Size,Glyph,LabelText,Parent);
+            OffsetWidgetInfo CheckInfo(Check,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Widgets.push_back(CheckInfo);
+            return Check;
+        }
+
+        UI::ButtonListBox* Window::CreateButtonListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
+        {
+            Vector2 Offset = Position - RelPosition;
+            UI::ButtonListBox* BLB = new UI::ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
+            OffsetWidgetInfo BLBInfo(BLB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Widgets.push_back(BLBInfo);
+            return BLB;
+        }
+
+        UI::ListBox* Window::CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
+        {
+            Vector2 Offset = Position - RelPosition;
+            UI::ListBox* LB = new UI::ListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
+            OffsetWidgetInfo LBInfo(LB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Widgets.push_back(LBInfo);
+            return LB;
         }
     }//UI
 }//phys
