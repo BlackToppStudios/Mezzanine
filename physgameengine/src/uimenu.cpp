@@ -41,6 +41,7 @@
 #define _uimenu_cpp
 
 #include "uimenu.h"
+#include "uiwindow.h"
 
 namespace phys
 {

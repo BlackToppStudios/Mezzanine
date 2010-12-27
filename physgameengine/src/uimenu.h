@@ -42,13 +42,25 @@
 
 #include "uiwidget.h"
 
+#include <stack>
+#include <vector>
+
 namespace phys
 {
     namespace UI
     {
+        class MenuWindow;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Menu
+        /// @headerfile uimenu.h
+        /// @brief This class is
+        /// @details
+        ///////////////////////////////////////
         class Menu : public Widget
         {
             protected:
+                MenuWindow* RootWindow;
+                std::stack<MenuWindow*,std::vector<MenuWindow*> > MenuStack;
             public:
                 Menu(ConstString name, UILayer* Layer);
                 ~Menu();
