@@ -302,7 +302,7 @@ namespace phys
         {
             if(Visible == visible)
                 return;
-            WindowTitle->SetVisible(visible);
+            //WindowTitle->SetVisible(visible);
             WindowBack->SetVisible(visible);
             for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {
@@ -336,7 +336,7 @@ namespace phys
         {
             if(Visible)
                 return;
-            WindowTitle->Show();
+            //WindowTitle->Show();
             WindowBack->Show();
             for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {
@@ -365,7 +365,7 @@ namespace phys
         {
             if(!Visible)
                 return;
-            WindowTitle->Hide();
+            //WindowTitle->Hide();
             WindowBack->Hide();
             for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {

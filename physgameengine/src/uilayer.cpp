@@ -51,6 +51,7 @@
 #include "uilistbox.h"
 #include "uiscrollbar.h"
 #include "uilinelist.h"
+#include "uiwindow.h"
 
 #include "graphicsmanager.h"
 #include "world.h"
@@ -388,8 +389,8 @@ namespace phys
                     }
                     case UI::Widget::Window:
                     {
-                        UI::Window* List = static_cast<UI::Window*> (ToBeDestroyed);
-                        delete List;
+                        UI::Window* Win = static_cast<UI::Window*> (ToBeDestroyed);
+                        delete Win;
                         return;
                     }
                     default:
@@ -427,7 +428,7 @@ namespace phys
         return LB;
     }
 
-    UI::Window* UILayer::CreateWindow(ConstString& Name, Vector2 Position, Vector2 Size)
+    UI::Window* UILayer::CreateWidgetWindow(ConstString& Name, Vector2 Position, Vector2 Size)
     {
         UI::Window* Win = new UI::Window(Name,Position,Size,this);
         Widgets.push_back(Win);

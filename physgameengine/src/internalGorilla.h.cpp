@@ -1,27 +1,27 @@
 /*
     Gorilla
     -------
-
+    
     Copyright (c) 2010 Robin Southern
-
+                                                                                  
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
-
+                                                                                  
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
-
+                                                                                  
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
-
+    THE SOFTWARE. 
+    
 */
 
 #ifndef GORILLA_H_CPP
@@ -42,7 +42,7 @@
 
 namespace Gorilla
 {
-
+ 
  class Silverback;
  class TextureAtlas;
  class LayerContainer;
@@ -55,7 +55,7 @@ namespace Gorilla
  class QuadList;
  class Caption;
  class MarkupText;
-
+ 
  template<typename T> struct VectorType
  {
 #if OGRE_VERSION <= 67077 // If the version is less than or equal to 1.6.5
@@ -64,7 +64,7 @@ namespace Gorilla
   typedef typename Ogre::vector<T>::type type;
 #endif
  };
-
+ 
  namespace Colours
  {
   enum Colour
@@ -127,13 +127,13 @@ namespace Gorilla
          Convert three/four RGBA values into an Ogre::ColourValue
  */
  Ogre::ColourValue rgb(Ogre::uchar r, Ogre::uchar g, Ogre::uchar b, Ogre::uchar a = 255);
-
+ 
  /*! function. webcolour
      desc.
          Turn a webcolour from the Gorilla::Colours::Colour enum into an Ogre::ColourValue
  */
  Ogre::ColourValue webcolour(Colours::Colour, Ogre::Real alpha = 1.0);
-
+ 
  /*! enum. Gradient
      desc.
          Directions for background gradients
@@ -148,8 +148,8 @@ namespace Gorilla
  /*! enum. Border
      desc.
          Border Directions
-
-
+         
+         
          +---------------------+
          |\       NORTH       /|
          | \                 / |
@@ -172,7 +172,7 @@ namespace Gorilla
   Border_East  = 2,
   Border_West  = 3
  };
-
+ 
  /*! enum. QuadCorner
      desc.
          Names of each corner/vertex of a Quad
@@ -184,7 +184,7 @@ namespace Gorilla
   BottomRight = 2,
   BottomLeft  = 3
  };
-
+ 
  /*! enum. TextAlignment
      desc.
          Horizontal text alignment for captions.
@@ -195,7 +195,7 @@ namespace Gorilla
   TextAlign_Right,  // Place the text to the right of left (X = left - text_width)
   TextAlign_Centre, // Place the text centered at left (X = left - (text_width / 2 ) )
  };
-
+ 
  /*! enum. VerticalAlignment
      desc.
          Vertical text alignment for captions.
@@ -220,29 +220,29 @@ namespace Gorilla
  */
  template<typename T> class buffer
  {
-
+   
   public:
-
+   
    inline buffer() : mBuffer(0), mUsed(0), mCapacity(0)
    { // no code.
    }
-
+  
    inline ~buffer()
    {
     if (mBuffer && mCapacity)
      OGRE_FREE(mBuffer, Ogre::MEMCATEGORY_GEOMETRY);
    }
-
+   
    inline size_t size() const
    {
     return mUsed;
    }
-
+   
    inline size_t capacity() const
    {
     return mCapacity;
    }
-
+   
    inline T& operator[](size_t index)
    {
     return *(mBuffer + index);
@@ -262,16 +262,16 @@ namespace Gorilla
    {
     return *(mBuffer + index);
    }
-
+   
    inline void remove_all()
    {
     mUsed = 0;
    }
-
+    
    inline void resize(size_t new_capacity)
    {
     T* new_buffer = (T*) OGRE_MALLOC(sizeof(T) * new_capacity, Ogre::MEMCATEGORY_GEOMETRY);
-
+    
     if (mUsed != 0)
     {
      if (mUsed < new_capacity)  // Copy all
@@ -279,12 +279,12 @@ namespace Gorilla
      else if (mUsed >= new_capacity) // Copy some
       std::copy(mBuffer, mBuffer + new_capacity, new_buffer);
     }
-
+    
     OGRE_FREE(mBuffer, Ogre::MEMCATEGORY_GEOMETRY);
     mCapacity = new_capacity;
     mBuffer = new_buffer;
    }
-
+   
    inline void push_back(const T& value)
    {
     if (mUsed == mCapacity)
@@ -292,35 +292,35 @@ namespace Gorilla
     *(mBuffer + mUsed) = value;
     mUsed++;
    }
-
+   
    inline void pop_back()
    {
     if (mUsed != 0)
      mUsed--;
    }
-
+   
    inline void erase(size_t index)
    {
     *(mBuffer + index) = *(mBuffer + mUsed - 1);
     mUsed--;
    }
-
+   
    inline  T* first()
    {
     return mBuffer;
    }
-
+   
    inline T* last()
    {
     return mBuffer + mUsed;
    }
-
+   
   protected:
-
+   
    T*     mBuffer;
    size_t mUsed, mCapacity;
  };
-
+ 
  /*! struct. Vertex
      desc.
          Structure for a single vertex.
@@ -331,7 +331,7 @@ namespace Gorilla
   Ogre::ColourValue colour;
   Ogre::Vector2 uv;
  };
-
+ 
  /*! struct. Kerning
      desc.
          Distances between two characters next to each other.
@@ -342,25 +342,25 @@ namespace Gorilla
   Ogre::uint character;
   Ogre::Real kerning;
  };
-
+ 
  /*! struct. Glyph
      desc.
          Texture and size information about a single character loaded from a TextureAtlas.
  */
  class Glyph : public Ogre::GeneralAllocatedObject
  {
-
+   
   public:
-
+   
    Glyph() : uvTop(0), uvBottom(0), uvWidth(0), uvHeight(0), uvLeft(0), uvRight(0), glyphWidth(0), glyphHeight(0), glyphAdvance(0) {}
-
+   
   ~Glyph() {}
-
+   
    Ogre::Vector2    texCoords[4];
    Ogre::Real uvTop, uvBottom, uvWidth, uvHeight, uvLeft, uvRight,
                        glyphWidth, glyphHeight, glyphAdvance;
    buffer<Kerning> kerning;
-
+   
    // Get kerning value of a character to the right of another.
    // Ab -- get the kerning value of b, pass on A.
    inline const Ogre::Real getKerning(char left_of) const
@@ -374,7 +374,7 @@ namespace Gorilla
     }
     return 0;
    }
-
+   
  };
 
  /*! class. Sprite
@@ -383,106 +383,106 @@ namespace Gorilla
  */
  class Sprite : public Ogre::GeneralAllocatedObject
  {
-
+   
   public:
 
    Sprite() {}
-
+   
   ~Sprite() {}
-
+   
    Ogre::Real uvTop, uvLeft, uvRight, uvBottom, spriteWidth, spriteHeight;
    Ogre::Vector2    texCoords[4];
-
+   
  };
-
+ 
  /* class. Silverback
     desc.
         Main singleton class for Gorilla
  */
  class Silverback : public Ogre::Singleton<Silverback>, public Ogre::GeneralAllocatedObject, public Ogre::FrameListener
  {
-
+   
   public:
-
+   
    /*! constructor. Silverback
        desc.
            Silverback constructor.
    */
    Silverback();
-
+   
    /*! destructor. Silverback
        desc.
            Silverback destructor.
    */
   ~Silverback();
-
+   
    /*! function. loadAtlas
        desc.
-           Create a TextureAtlas from a ".gorilla" file.
-
+           Create a TextureAtlas from a ".gorilla" file. 
+           
            Name is the name of the TextureAtlas, as well as the first part of the filename
            of the gorilla file; i.e. name.gorilla, the gorilla file can be loaded from a different
-           resource group if you give that name as the second argument, otherwise it will assume
+           resource group if you give that name as the second argument, otherwise it will assume 
            to be "General".
    */
    void loadAtlas(const Ogre::String& name, const Ogre::String& group = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
+   
    /*! function. createScreen
        desc.
            Create a Screen using a Viewport and a name of a previously loaded TextureAtlas.
            Both must exist. The screen will register itself as a RenderQueueListener to the
            SceneManager that has the Camera which is tied to the Viewport.
        note.
-           Each screen is considered a new batch. To reduce your batch count in Gorilla,
+           Each screen is considered a new batch. To reduce your batch count in Gorilla, 
            reduce the number of screens you use.
    */
    Screen* createScreen(Ogre::Viewport*, const Ogre::String& atlas);
-
+   
    /*! function. destroyScreen
        desc.
            Destroy an existing screen, its layers and the contents of those layers.
    */
    void destroyScreen(Screen*);
-
+   
    /*! function. createScreenRenderable
    */
    ScreenRenderable* createScreenRenderable(const Ogre::Vector2& maxSize, const Ogre::String& atlas);
-
+   
    /*! function. destroyScreen
        desc.
            Destroy an existing screen, its layers and the contents of those layers.
    */
    void destroyScreenRenderable(ScreenRenderable*);
-
+   
    /*! function. frameStarted
        desc.
            Call ScreenRenderable draw
    */
    bool frameStarted(const Ogre::FrameEvent& evt);
-
+   
   protected:
-
+   
    std::map<Ogre::String, TextureAtlas*>  mAtlases;
    std::vector<Screen*>                   mScreens;
    std::vector<ScreenRenderable*>         mScreenRenderables;
-
+   
  };
-
+ 
  /*! class. GlyphData
      desc.
          Collection of glyphs of the same size.
  */
  class GlyphData : public Ogre::GeneralAllocatedObject
  {
-
+   
   friend class TextureAtlas;
-
+   
    public:
-
+    
     GlyphData();
-
+    
    ~GlyphData();
-
+    
     /*! function. getGlyph
         desc.
             Get a glyph (character information) from a specific character.
@@ -497,7 +497,7 @@ namespace Gorilla
       return mGlyphs[safe_character];
      return 0;
     }
-
+    
     std::vector<Glyph*>  mGlyphs;
     Ogre::uint           mRangeBegin, mRangeEnd;
     Ogre::Real           mSpaceLength,
@@ -505,9 +505,9 @@ namespace Gorilla
                          mBaseline,
                          mLetterSpacing,
                          mMonoWidth;
-
+   
  };
-
+ 
  /*! class. TextureAtlas
      desc.
           The TextureAtlas file represents a .gorilla file which contains all the needed information that
@@ -516,15 +516,15 @@ namespace Gorilla
  */
  class TextureAtlas : public Ogre::GeneralAllocatedObject
  {
-
+   
    friend class Silverback;
-
+   
    public:
-
+    
     Ogre::MaterialPtr createOrGet2DMasterMaterial();
-
+    
     Ogre::MaterialPtr createOrGet3DMasterMaterial();
-
+    
     /*! function. getTexture
         desc.
             Get the texture assigned to this TextureAtlas
@@ -533,7 +533,7 @@ namespace Gorilla
     {
      return mTexture;
     }
-
+    
     /*! function. getMaterial
         desc.
             Get the material assigned to this TextureAtlas
@@ -542,7 +542,7 @@ namespace Gorilla
     {
      return m2DMaterial;
     }
-
+    
     /*! function. getMaterial
         desc.
             Get the material assigned to this TextureAtlas
@@ -567,7 +567,7 @@ namespace Gorilla
     {
      return m3DMaterial->getName();
     }
-
+    
     inline GlyphData* getGlyphData(Ogre::uint index) const
     {
      std::map<Ogre::uint, GlyphData*>::const_iterator it = mGlyphData.find(index);
@@ -575,7 +575,7 @@ namespace Gorilla
       return 0;
      return (*it).second;
     }
-
+    
     /*! function. getSprite
         desc.
             Get a sprite (portion of a texture) from a name.
@@ -590,7 +590,7 @@ namespace Gorilla
       return 0;
      return (*it).second;
     }
-
+    
     /*! function. getGlyphKerning
         desc.
             Get the UV information for a designated white pixel in the texture.
@@ -601,19 +601,19 @@ namespace Gorilla
     {
      return mWhitePixel;
     }
-
+    
     /*! function. getGlyphKerning
         desc.
             Get the X coordinate for a designated white pixel in the texture.
         note.
             Units are in relative coordinates (0..1)
-
+ 
     */
     inline Ogre::Real getWhitePixelX() const
     {
      return mWhitePixel.x;
     }
-
+    
     /*! function. getGlyphKerning
         desc.
             Get the Y coordinate for a designated white pixel in the texture.
@@ -624,7 +624,7 @@ namespace Gorilla
     {
      return mWhitePixel.y;
     }
-
+    
     /*! function. getTextureSize
         desc.
             Get the size of the texture.
@@ -642,7 +642,7 @@ namespace Gorilla
     {
      return 1.0f / Ogre::Real(mTexture->getWidth());
     }
-
+    
     /*! function. getTextureSize
         desc.
             Get the reciprocal of the height of the texture.
@@ -660,11 +660,11 @@ namespace Gorilla
     {
      return m2DPass;
     }
-
+    
     /*! function. getGlyphMonoWidth
         desc.
             Reset the ten markup colours used in the MarkupText, by default these are:
-
+           
              0 = 255, 255, 255
              1 = 0, 0, 0
              2 = 204, 204, 204
@@ -677,7 +677,7 @@ namespace Gorilla
              9 = 13,  13,  13
     */
     void refreshMarkupColours();
-
+    
     /*! function. setMarkupColour
         desc.
             Change one of the ten markup colours.
@@ -685,7 +685,7 @@ namespace Gorilla
             colour_palette_index must be between or equal to 0 and 9.
     */
     void setMarkupColour(Ogre::uint colour_palette_index, const Ogre::ColourValue&);
-
+    
     /*! function. getMarkupColour
         desc.
             Get one of the ten markup colours.
@@ -693,13 +693,13 @@ namespace Gorilla
             colour_palette_index must be between or equal to 0 and 9.
     */
     Ogre::ColourValue getMarkupColour(Ogre::uint colour_palette_index);
-
+    
    protected:
-
+    
     TextureAtlas(const Ogre::String& gorillaFile, const Ogre::String& group);
-
+    
    ~TextureAtlas();
-
+    
     void  _reset();
     void  _load(const Ogre::String& gorillaFile, const Ogre::String& groupName);
     void  _loadTexture(Ogre::ConfigFile::SettingsMultiMap*);
@@ -709,7 +709,7 @@ namespace Gorilla
     void  _create2DMaterial();
     void  _create3DMaterial();
     void  _calculateCoordinates();
-
+   
     Ogre::TexturePtr                  mTexture;
     Ogre::MaterialPtr                 m2DMaterial, m3DMaterial;
     Ogre::Pass*                       m2DPass, *m3DPass;
@@ -718,48 +718,48 @@ namespace Gorilla
     Ogre::Vector2                     mWhitePixel;
     Ogre::Vector2                     mInverseTextureSize;
     Ogre::ColourValue                 mMarkupColour[10];
-
+    
   };
-
+  
   class LayerContainer
   {
-
+    
    public:
-
+    
     LayerContainer(TextureAtlas*);
-
+    
     virtual ~LayerContainer();
-
+    
     /*! function. createLayer
         desc.
             Create a layer for drawing on to.
-
+            
             Index represents the z-order, 0 being the layer drawn first and 15
             the layer drawn last. Layers drawn after another layer will appear
             to be top than the other.
-
+            
         note.
             Index must be between or equal to 0 and 15. Any other value will cause
             a very nasty crash.
     */
     Layer*  createLayer(Ogre::uint index = 0);
-
+    
     /*! function. destroyLayer
         desc.
             Destroy a layer and it's contents.
     */
     void   destroy(Layer* layer);
-
+    
     /*! function. getAtlas
         desc.
             Get atlas assigned to this LayerContainer
     */
     TextureAtlas* getAtlas() const { return mAtlas; }
-
+    
     virtual Ogre::Real getTexelOffsetX() const { return 0.0f; }
-
+    
     virtual Ogre::Real getTexelOffsetY() const { return 0.0f; }
-
+    
     /*! function. _createVertexBuffer
         desc.
             Create the vertex buffer
@@ -774,19 +774,19 @@ namespace Gorilla
 
     /*! function. _resizeVertexBuffer
         desc.
-            Resize the vertex buffer to the greatest nearest power
+            Resize the vertex buffer to the greatest nearest power 
             of 2 of requestedSize.
     */
     void _resizeVertexBuffer(size_t requestedSize);
-
+    
     /* function. _recalculateIndexes
        desc.
-           Clear mIndexes, mIndexVertices and mIndexRedraw,
+           Clear mIndexes, mIndexVertices and mIndexRedraw, 
            and from mLayers fill them out again. A full redraw
            is required.
     */
     void _recalculateIndexes();
-
+    
     /*! function. _redrawIndex
         desc.
             Redraw all layers of an index.
@@ -795,7 +795,7 @@ namespace Gorilla
             or not.
     */
     void _redrawIndex(Ogre::uint id, bool force);
-
+    
     /*! function. _redrawAllIndexes
         desc.
             Redraw all layers of all indexes
@@ -804,71 +804,72 @@ namespace Gorilla
             or not.
     */
     void _redrawAllIndexes(bool force = false);
-
+    
     /*! function. _redrawAllIndexes
         desc.
             Redraw a redraw of an index on the next call of _renderVertices
     */
     void _requestIndexRedraw(Ogre::uint index);
-
+    
     /*! function. _renderVertices
         desc.
             Bundle up mIndexData (redraw any if needed) then copy them
-            into mVertexBuffer, and update mRenderOpPtr with the new
+            into mVertexBuffer, and update mRenderOpPtr with the new 
             vertex count.
     */
     void _renderVertices(bool force = false);
-
+    
     /*! function. renderOnce
         desc.
             Draw the vertices from mVertexBuffer into Ogre.
     */
     virtual void renderOnce() = 0;
-
+    
     virtual void _transform(buffer<Vertex>& vertices, size_t begin, size_t end) {}
-
+    
    protected:
-
+    
     /// mLayers -- Master copy of all layers of this Target.
     std::vector<Layer*>     mLayers;
-
+    
     struct IndexData : public Ogre::GeneralAllocatedObject
     {
      std::vector<Layer*>    mLayers;
      buffer<Vertex>         mVertices;
      bool                   mRedrawNeeded;
     };
-
+    
     /// mIndexes -- Copies pointers to Layers arranged their index.
     std::map< Ogre::uint, IndexData* >  mIndexData;
-
+    
     /// mIndexRedrawNeeded -- An index (not sure what) needs to be redrawn.
     bool  mIndexRedrawNeeded;
-
+    
     /// mRedrawAll -- All indexes need to be redrawn regardless of state.
     bool  mIndexRedrawAll;
-
+    
     /// mVertexBuffer -- Compiled layers of all indexes go into here for rendering directly to the screen or scene.
     Ogre::HardwareVertexBufferSharedPtr   mVertexBuffer;
-
+    
     /// mVertexBufferSize -- How much the VertexBuffer can hold.
     size_t  mVertexBufferSize;
-
+    
     /// mRenderOpPtr -- Pointer to the RenderOperation (Not owned by LayerContainer)
     Ogre::RenderOperation*  mRenderOpPtr;
-
+    
     /// Atlas assigned to this LayerContainer
     TextureAtlas*  mAtlas;
-
+    
   };
-
+  
+  
   class Screen : public LayerContainer, public Ogre::RenderQueueListener, public Ogre::GeneralAllocatedObject
   {
    public:
-
+    
     friend class Silverback;
     friend class Layer;
-
+    
     /*! desc. getTexelOffsetX
             Helper function to get horizontal texel offset.
     */
@@ -878,39 +879,39 @@ namespace Gorilla
             Helper function to get vertical texel offset.
     */
     inline Ogre::Real getTexelOffsetY() const { return mRenderSystem->getVerticalTexelOffset(); }
-
+    
     /*! desc. getWidth
             Get screen height in pixels.
     */
     inline Ogre::Real getWidth() const { return mWidth; }
-
+    
     /*! desc. getHeight
             Get screen height in pixels.
     */
     inline Ogre::Real getHeight() const { return mHeight; }
-
+    
     /*! desc. isVisible
             Is the screen and it's contents visible or not?
         note.
             If the screen is hidden, then it is not rendered which decrease the batch count by one.
     */
     inline bool isVisible() const { return mIsVisible; }
-
+    
     /*! desc. setVisible
             Show or hide the screen.
     */
     inline void setVisible(bool value) { mIsVisible = value;}
-
+    
     /*! desc. hide
             Hide the screen and the all of layers within it.
     */
     inline void hide() { mIsVisible = false;}
-
+    
     /*! desc. show
             Show the screen and the visible layers within it.
     */
     inline void show() { mIsVisible = true;}
-
+    
 #if OGRE_NO_VIEWPORT_ORIENTATIONMODE == 1
     inline void setOrientation(Ogre::OrientationMode o)
     {
@@ -924,34 +925,34 @@ namespace Gorilla
     }
 #endif
    protected:
-
+    
     /*! constructor. Screen
         desc.
             Use Silverback::createScreen
     */
     Screen(Ogre::Viewport*, TextureAtlas*);
-
+    
     /*! destructor. Screen
         desc.
             Use Silverback::destroyScreen
     */
    ~Screen();
-
+    
     // Internal -- Not used, but required by renderQueueListener
     void renderQueueStarted(Ogre::uint8, const Ogre::String&, bool&) {}
-
+    
     // Internal -- Called by Ogre to render the screen.
     void renderQueueEnded(Ogre::uint8 queueGroupId, const Ogre::String& invocation, bool& repeatThisInvocation);
-
+    
     // Internal -- Prepares RenderSystem for rendering.
     void _prepareRenderSystem();
-
+    
     // Internal -- Renders mVertexData to screen.
     void renderOnce();
-
+    
     // Internal -- Used to transform vertices using units of pixels into screen coordinates.
     void _transform(buffer<Vertex>& vertices, size_t begin, size_t end);
-
+    
     Ogre::RenderOperation mRenderOp;
     Ogre::SceneManager*   mSceneMgr;
     Ogre::RenderSystem*   mRenderSystem;
@@ -963,26 +964,27 @@ namespace Gorilla
 #endif
     Ogre::Vector3         mScale;
     bool                  mIsVisible;
+    bool                  mCanRender;
     Ogre::Matrix4         mVertexTransform;
-
+    
   };
-
+  
   class ScreenRenderable : public LayerContainer, public Ogre::SimpleRenderable
   {
-
+   
    public:
-
+    
     ScreenRenderable(const Ogre::Vector2& maxSize, TextureAtlas*);
-
+    
    ~ScreenRenderable();
-
+    
     void frameStarted();
     void renderOnce();
     void _transform(buffer<Vertex>& vertices, size_t begin, size_t end);
     void calculateBoundingBox();
 
     Ogre::Real getBoundingRadius(void) const { return mBox.getMaximum().squaredLength(); }
-
+  
     Ogre::Real getSquaredViewDepth(const Ogre::Camera* cam) const
     {
      Ogre::Vector3 min, max, mid, dist;
@@ -992,27 +994,27 @@ namespace Gorilla
      dist = cam->getDerivedPosition() - mid;
      return dist.squaredLength();
     }
-
+    
    protected:
-
+    
     Ogre::SceneManager*   mSceneMgr;
     Ogre::RenderSystem*   mRenderSystem;
     Ogre::Viewport*       mViewport;
     Ogre::Vector2         mMaxSize;
-
+    
   };
-
+  
   /*! class. Layer
       desc.
           Text
   */
   class Layer : public Ogre::GeneralAllocatedObject
   {
-
+   
    friend class LayerContainer;
-
+   
    public:
-
+    
     typedef Gorilla::VectorType<Rectangle*>::type            Rectangles;
     typedef Ogre::VectorIterator<Rectangles>                 RectangleIterator;
     typedef Gorilla::VectorType<Polygon*>::type              Polygons;
@@ -1025,7 +1027,7 @@ namespace Gorilla
     typedef Ogre::VectorIterator<Captions>                   CaptionIterator;
     typedef Gorilla::VectorType<MarkupText*>::type           MarkupTexts;
     typedef Ogre::VectorIterator<MarkupTexts>                MarkupTextIterator;
-
+    
     /*! function. isVisible
         desc.
             Is the layer being drawn on screen or not?
@@ -1034,7 +1036,7 @@ namespace Gorilla
     {
      return mVisible;
     }
-
+    
     /*! function. setVisible
         desc.
             Show or hide the layer
@@ -1046,7 +1048,7 @@ namespace Gorilla
      mVisible = isVisible;
      _markDirty();
     }
-
+    
     /*! function. show
         desc.
             Show the layer
@@ -1070,15 +1072,15 @@ namespace Gorilla
      mVisible = false;
      _markDirty();
     }
-
+    
     /*! function. setAlphaModifier
         desc.
             Set's a modifier to the alpha component of all colours of the vertices that make up this layer
         note.
             Final alpha value of all vertices in this layer is the following:
-
+              
              final_alpha = vertex_alpha * alphaModifier;
-
+            
             Alpha modifier should be between 0.0 and 1.0
     */
     void setAlphaModifier(const Ogre::Real& alphaModifier)
@@ -1086,7 +1088,7 @@ namespace Gorilla
      mAlphaModifier = alphaModifier;
      _markDirty();
     }
-
+    
     /*! function. getAlphaModifier
         desc.
             Set's a modifier to the alpha component of all colours of the vertices that make up this layer
@@ -1095,13 +1097,13 @@ namespace Gorilla
     {
      return mAlphaModifier;
     }
-
+    
     /*! function. createRectangle
         desc.
             Creates a rectangle.
     */
     Rectangle*         createRectangle(Ogre::Real left, Ogre::Real top, Ogre::Real width = 100, Ogre::Real height = 100);
-
+    
     /*! function. createRectangle
         desc.
             Creates a rectangle.
@@ -1110,19 +1112,19 @@ namespace Gorilla
     {
      return createRectangle(position.x, position.y, size.x, size.y);
     }
-
+    
     /*! function. destroyRectangle
         desc.
             Removes a rectangle from the layer and *deletes* it.
     */
     void               destroyRectangle(Rectangle*);
-
+    
     /*! function. destroyAllRectangles
         desc.
             Removes all rectangles from the layer and *deletes* them.
     */
     void               destroyAllRectangles();
-
+    
     /*! function. getRectangles
         desc.
             Get an iterator to all the rectangles in this layer.
@@ -1131,25 +1133,25 @@ namespace Gorilla
     {
      return RectangleIterator(mRectangles.begin(), mRectangles.end());
     }
-
+    
     /*! function. createPolygon
         desc.
             Creates a regular polygon.
     */
     Polygon*         createPolygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius = 100, Ogre::uint sides = 6);
-
+    
     /*! function. destroyPolygon
         desc.
             Removes a polygon from the layer and *deletes* it.
     */
     void               destroyPolygon(Polygon*);
-
+    
     /*! function. destroyAllPolygons
         desc.
             Removes all polygons from the layer and *deletes* them.
     */
     void               destroyAllPolygons();
-
+    
     /*! function. getPolygons
         desc.
             Get an iterator to all the polygons in this layer.
@@ -1158,26 +1160,26 @@ namespace Gorilla
     {
      return PolygonIterator(mPolygons.begin(), mPolygons.end());
     }
-
-
+    
+    
     /*! function. createLineList
         desc.
             Creates a line list.
     */
     LineList*         createLineList();
-
+    
     /*! function. destroyLineList
         desc.
             Removes a line list from the layer and *deletes* it.
     */
     void               destroyLineList(LineList*);
-
+    
     /*! function. destroyAllLineLists
         desc.
             Removes all line lists from the layer and *deletes* them.
     */
     void               destroyAllLineLists();
-
+    
     /*! function. getLineLists
         desc.
             Get an iterator to all the line lists in this layer.
@@ -1186,25 +1188,25 @@ namespace Gorilla
     {
      return LineListIterator(mLineLists.begin(), mLineLists.end());
     }
-
+    
     /*! function. createQuadList
         desc.
             Creates a quad list.
     */
     QuadList*         createQuadList();
-
+    
     /*! function. destroyQuadList
         desc.
             Removes a quad list from the layer and *deletes* it.
     */
     void               destroyQuadList(QuadList*);
-
+    
     /*! function. destroyAllQuadLists
         desc.
             Removes all quad lists from the layer and *deletes* them.
     */
     void               destroyAllQuadLists();
-
+    
     /*! function. getQuadLists
         desc.
             Get an iterator to all the quad lists in this layer.
@@ -1213,25 +1215,25 @@ namespace Gorilla
     {
      return QuadListIterator(mQuadLists.begin(), mQuadLists.end());
     }
-
+    
     /*! function. createCaption
         desc.
             Creates a caption
     */
     Caption*         createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text);
-
+    
     /*! function. destroyCaption
         desc.
             Removes a caption from the layer and *deletes* it.
     */
     void               destroyCaption(Caption*);
-
+    
     /*! function. destroyAllCaptions
         desc.
             Removes all caption from the layer and *deletes* them.
     */
     void               destroyAllCaptions();
-
+    
     /*! function. getCaptions
         desc.
             Get an iterator to all the quad lists in this layer.
@@ -1246,19 +1248,19 @@ namespace Gorilla
             Creates a markup text
     */
     MarkupText*         createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text);
-
+    
     /*! function. destroyMarkupText
         desc.
             Removes a markup text from the layer and *deletes* it.
     */
     void               destroyMarkupText(MarkupText*);
-
+    
     /*! function. destroyAllMarkupTexts
         desc.
             Removes all markup text from the layer and *deletes* them.
     */
     void               destroyAllMarkupTexts();
-
+    
     /*! function. getMarkupTexts
         desc.
             Get an iterator to all the quad lists in this layer.
@@ -1276,7 +1278,7 @@ namespace Gorilla
     {
      return mIndex;
     }
-
+    
     /*! function. _getSolidUV
         desc.
             Helper function to get a white pixel in the TextureAtlas.
@@ -1285,7 +1287,7 @@ namespace Gorilla
     {
      return mParent->getAtlas()->getWhitePixel();
     }
-
+    
     /*! function. _getSprite
         desc.
             Helper function to get a Sprite from the assigned texture atlas.
@@ -1294,7 +1296,7 @@ namespace Gorilla
     {
      return mParent->getAtlas()->getSprite(sprite_name);
     }
-
+    
     /*! function. _getGlyph
         desc.
             Helper function to get a Glyph from the assigned texture atlas.
@@ -1303,7 +1305,7 @@ namespace Gorilla
     {
      return mParent->getAtlas()->getGlyphData(id);
     }
-
+    
     /*! function. _getGlyph
         desc.
             Helper function to get the used texture size.
@@ -1312,7 +1314,7 @@ namespace Gorilla
     {
      return mParent->getAtlas()->getTextureSize();
     }
-
+    
     /*! function. _getAtlas
         desc.
             Helper function to get the used TextureAtlas.
@@ -1321,7 +1323,7 @@ namespace Gorilla
     {
      return mParent->getAtlas();
     }
-
+    
     /*! function. _getTexelX
         desc.
             Helper function to get the offset X texel coordinate.
@@ -1330,7 +1332,7 @@ namespace Gorilla
     {
      return mParent->getTexelOffsetX();
     }
-
+    
     /*! function. _getTexelX
         desc.
             Helper function to get the offset Y texel coordinate.
@@ -1339,7 +1341,7 @@ namespace Gorilla
     {
      return mParent->getTexelOffsetY();
     }
-
+    
     /*! function. _getMarkupColour
         desc.
             Helper function to get the markup colourvalue.
@@ -1348,7 +1350,7 @@ namespace Gorilla
     {
      return mParent->getAtlas()->getMarkupColour(index);
     }
-
+    
     /*! function. _markDirty
         desc.
             Make this layer redraw itself on the next time that
@@ -1357,15 +1359,15 @@ namespace Gorilla
             This shouldn't be needed to be called by the user.
     */
     void _markDirty();
-
+    
    protected:
-
+    
     void _render(buffer<Vertex>&, bool force = false);
 
     Layer(Ogre::uint index, LayerContainer*);
-
+    
    ~Layer();
-
+    
     Ogre::uint               mIndex;
     Rectangles               mRectangles;
     Polygons                 mPolygons;
@@ -1376,20 +1378,20 @@ namespace Gorilla
     LayerContainer*          mParent;
     bool                     mVisible;
     Ogre::Real               mAlphaModifier;
-
+    
   };
-
+  
   /*! class. Rectangle
       desc.
           Single rectangle with an optional border.
   */
   class Rectangle : public Ogre::GeneralAllocatedObject
   {
-
+   
    friend class Layer;
-
+   
    public:
-
+    
     /*! function. intersects
         desc.
             Does a set of coordinates lie within this rectangle?
@@ -1398,7 +1400,7 @@ namespace Gorilla
     {
      return ((coordinates.x >= mLeft && coordinates.x <= mRight) && (coordinates.y >= mTop && coordinates.y <= mBottom));
     }
-
+    
     /*! function. position
         desc.
             Get the position
@@ -1407,7 +1409,7 @@ namespace Gorilla
     {
      return Ogre::Vector2(mLeft, mTop);
     }
-
+    
     /*! function. position
         desc.
             Set the position
@@ -1426,8 +1428,8 @@ namespace Gorilla
      left(position.x);
      top(position.y);
     }
-
-    /*! function. left
+    
+    /*! function. left 
         desc.
             Get left position
     */
@@ -1436,7 +1438,7 @@ namespace Gorilla
      return mLeft;
     }
 
-    /*! function. left
+    /*! function. left 
         desc.
             Set left position
     */
@@ -1449,7 +1451,7 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
-    /*! function. top
+    /*! function. top 
         desc.
             Get top position
     */
@@ -1458,7 +1460,7 @@ namespace Gorilla
      return mTop;
     }
 
-    /*! function. top
+    /*! function. top 
         desc.
             Set top position
     */
@@ -1471,7 +1473,7 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
-    /*! function. width
+    /*! function. width 
         desc.
             Get the width
     */
@@ -1480,7 +1482,7 @@ namespace Gorilla
      return mRight - mLeft;
     }
 
-    /*! function. width
+    /*! function. width 
         desc.
             Set the width
     */
@@ -1491,7 +1493,7 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
-    /*! function. height
+    /*! function. height 
         desc.
             Get the height
     */
@@ -1500,7 +1502,7 @@ namespace Gorilla
      return mBottom - mTop;
     }
 
-    /*! function. height
+    /*! function. height 
         desc.
             Set the height
     */
@@ -1510,8 +1512,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. no_background
+    
+    /*! function. no_background 
         desc.
             Don't draw the background.
         note.
@@ -1525,7 +1527,7 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
-    /*! function. no_border
+    /*! function. no_border 
         desc.
             Don't draw the border.
         note.
@@ -1538,7 +1540,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. background_colour
         desc.
             Get a background colour of a specific corner.
@@ -1575,7 +1577,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. background_colour
         desc.
             Set a background colour to a specific corner.
@@ -1586,7 +1588,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. background_gradient
         desc.
             Set the background to a gradient.
@@ -1617,7 +1619,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. background_image
         desc.
             Set the background to a sprite from the texture atlas.
@@ -1651,16 +1653,16 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. background_image
         desc.
             Set the background to a sprite from the texture atlas, with clipping.
             Clipping is used for example with RPM meters on HUDs, where a portion
             of the sprite needs to be shown to indicate the RPM on the car.
-
+            
             widthClip  is a decimal percentage of the width of the sprite (0.0 none, 1.0 full)
             heightClip is a decimal percentage of the height of the sprite (0.0 none, 1.0 full)
-
+            
             You should use this with the width() and height() functions for a full effect.
         note.
             To remove the image pass on a null pointer.
@@ -1692,6 +1694,49 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
+    
+    /*! function. background_image
+        desc.
+            Set the background to a sprite from the texture atlas, with clipping.
+            Clipping is used for example with RPM meters on HUDs, where a portion
+            of the sprite needs to be shown to indicate the RPM on the car.
+            
+            widthClip  is a decimal percentage of the width of the sprite (0.0 none, 1.0 full)
+            heightClip is a decimal percentage of the height of the sprite (0.0 none, 1.0 full)
+            
+            You should use this with the width() and height() functions for a full effect.
+        note.
+            To remove the image pass on a null pointer.
+    */
+    void  background_image(const Ogre::String& sprite_name_or_none, Ogre::Real widthClip, Ogre::Real heightClip)
+    {
+     if (sprite_name_or_none.length() == 0 || sprite_name_or_none == "none")
+     {
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV();
+     }
+     else
+     {
+      Sprite* sprite = mLayer->_getSprite(sprite_name_or_none);
+      if (sprite == 0)
+      {
+#if GORILLA_USES_EXCEPTIONS == 1
+       OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Sprite name not found", __FUNC__ );
+#else
+       return;
+#endif
+      }
+      Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
+      texelOffsetX /= mLayer->_getTextureSize().x;
+      texelOffsetY /= mLayer->_getTextureSize().y;
+      mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
+      mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
+      mUV[1].x = mUV[2].x = sprite->uvLeft + ( (sprite->uvRight - sprite->uvLeft) * widthClip ) + texelOffsetX;
+      mUV[2].y = mUV[3].y = sprite->uvTop + ( (sprite->uvBottom - sprite->uvTop) * heightClip ) + texelOffsetY;
+     }
+     mDirty = true;
+     mLayer->_markDirty();
+    }
+
     /*! function. background_image
         desc.
             Set the background to a sprite from the texture atlas.
@@ -1715,7 +1760,7 @@ namespace Gorilla
        return;
 #endif
       }
-
+      
       Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
       texelOffsetX /= mLayer->_getTextureSize().x;
       texelOffsetY /= mLayer->_getTextureSize().y;
@@ -1727,7 +1772,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. border_colour
         desc.
             Get the border colour.
@@ -1739,7 +1784,7 @@ namespace Gorilla
 
     /*! function. border_colour
         desc.
-            Set all of border to one colour
+            Set all of border to one colour 
     */
     void  border_colour(const Ogre::ColourValue& bordercolour)
     {
@@ -1753,7 +1798,7 @@ namespace Gorilla
 
     /*! function. border_colour
         desc.
-            Set a border part to one colour.
+            Set a border part to one colour. 
     */
     void  border_colour(Border index, const Ogre::ColourValue& bordercolour)
     {
@@ -1761,10 +1806,10 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. border_colour
         desc.
-            Set all of border to one colour
+            Set all of border to one colour 
     */
     void  border_colour(Gorilla::Colours::Colour bordercolour)
     {
@@ -1778,7 +1823,7 @@ namespace Gorilla
 
     /*! function. border_colour
         desc.
-            Set a border part to one colour.
+            Set a border part to one colour. 
     */
     void  border_colour(Border index, Gorilla::Colours::Colour bordercolour)
     {
@@ -1786,7 +1831,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. border_width
         desc.
             Get the border width
@@ -1806,7 +1851,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. border
         desc.
             Set the border width and colour.
@@ -1821,7 +1866,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. border
         desc.
             Set the border width and specific colours for each part.
@@ -1836,7 +1881,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. border
         desc.
             Set the border width and colour.
@@ -1851,7 +1896,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. border
         desc.
             Set the border width and specific colours for each part.
@@ -1916,15 +1961,15 @@ namespace Gorilla
             This should not be needed to be called by the user.
     */
     void _redraw();
-
+    
    protected:
-
+    
     Rectangle(Ogre::Real left, Ogre::Real top, Ogre::Real width, Ogre::Real height, Layer* parent);
-
+    
    ~Rectangle() {}
-
+    
    protected:
-
+    
     Layer*             mLayer;
     Ogre::Real         mLeft, mTop, mRight, mBottom, mBorderWidth;
     Ogre::ColourValue  mBackgroundColour[4];
@@ -1935,19 +1980,19 @@ namespace Gorilla
     buffer<Vertex>     mVertices;
     Gorilla::RenderPriority mPriority;
   };
-
+  
   /*! class. Polygon
       desc.
           A regular n-sided polygon.
   */
   class Polygon : public Ogre::GeneralAllocatedObject
   {
-
+   
    friend class Layer;
-
+   
    public:
-
-    /*! function. left
+   
+    /*! function. left 
         desc.
             Get left position
     */
@@ -1956,7 +2001,7 @@ namespace Gorilla
      return mLeft;
     }
 
-    /*! function. left
+    /*! function. left 
         desc.
             Set left position
     */
@@ -1967,7 +2012,7 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
-    /*! function. left
+    /*! function. left 
         desc.
             Get left position
     */
@@ -1976,7 +2021,7 @@ namespace Gorilla
      return mTop;
     }
 
-    /*! function. left
+    /*! function. left 
         desc.
             Set left position
     */
@@ -1986,8 +2031,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. radius
+    
+    /*! function. radius 
         desc.
             Get the radius of the polygon
     */
@@ -1995,8 +2040,8 @@ namespace Gorilla
     {
      return mRadius;
     }
-
-    /*! function. radius
+    
+    /*! function. radius 
         desc.
             Set the radius of the polygon
     */
@@ -2006,8 +2051,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. sides
+    
+    /*! function. sides 
         desc.
             Get the number of sides the polygon has.
     */
@@ -2015,8 +2060,8 @@ namespace Gorilla
     {
      return mSides;
     }
-
-    /*! function. sides
+    
+    /*! function. sides 
         desc.
             Set the number of sides the polygon has.
         note.
@@ -2030,8 +2075,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. angle
+    
+    /*! function. angle 
         desc.
             Get the angle of the polygon
     */
@@ -2039,8 +2084,8 @@ namespace Gorilla
     {
      return mAngle;
     }
-
-    /*! function. angle
+    
+    /*! function. angle 
         desc.
             Set the angle of the polygon.
     */
@@ -2050,8 +2095,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. background_image
+    
+    /*! function. background_image 
         desc.
             Get the sprite used as a background image or null pointer
     */
@@ -2059,8 +2104,8 @@ namespace Gorilla
     {
      return mSprite;
     }
-
-    /*! function. background_image
+    
+    /*! function. background_image 
         desc.
             Set the sprite used as a background image or null pointer to clear.
     */
@@ -2070,8 +2115,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. background_image
+    
+    /*! function. background_image 
         desc.
             Set the sprite used as a background image from a string.
         note.
@@ -2083,12 +2128,12 @@ namespace Gorilla
       mSprite = 0;
      else
       mSprite = mLayer->_getSprite(name_or_none);
-
+     
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. background_colour
+    
+    /*! function. background_colour 
         desc.
             Get the background colour.
     */
@@ -2096,8 +2141,8 @@ namespace Gorilla
     {
      return mBackgroundColour;
     }
-
-    /*! function. background_colour
+    
+    /*! function. background_colour 
         desc.
             Set the background colour.
         note.
@@ -2109,8 +2154,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. border
+    
+    /*! function. border 
         desc.
             Set the border width and colour
     */
@@ -2121,8 +2166,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. border
+    
+    /*! function. border 
         desc.
             Set the border width and colour
     */
@@ -2142,7 +2187,7 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
-    /*! function. border_colour
+    /*! function. border_colour 
         desc.
             Get the border colour
     */
@@ -2150,8 +2195,8 @@ namespace Gorilla
     {
      return mBorderColour;
     }
-
-    /*! function. border_colour
+    
+    /*! function. border_colour 
         desc.
             Set the border colour
     */
@@ -2161,8 +2206,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. border_colour
+    
+    /*! function. border_colour 
         desc.
             Set the border colour
     */
@@ -2179,8 +2224,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. border_width
+    
+    /*! function. border_width 
         desc.
             Get the border width
     */
@@ -2188,8 +2233,8 @@ namespace Gorilla
     {
      return mBorderWidth;
     }
-
-    /*! function. border_width
+    
+    /*! function. border_width 
         desc.
             Set the border width
     */
@@ -2199,9 +2244,9 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
+    
 
-
-    /*! function. no_background
+    /*! function. no_background 
         desc.
             Don't draw the background.
         note.
@@ -2215,7 +2260,7 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
-    /*! function. no_border
+    /*! function. no_border 
         desc.
             Don't draw the border.
         note.
@@ -2278,14 +2323,14 @@ namespace Gorilla
             This should not be needed to be called by the user.
     */
     void  _redraw();
-
+    
     protected:
-
-
+    
+     
     Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t sides, Layer* parent);
-
+    
    ~Polygon() {}
-
+    
     Layer*             mLayer;
     Ogre::Real         mLeft, mTop, mRadius, mBorderWidth;
     Ogre::Radian       mAngle;
@@ -2298,20 +2343,20 @@ namespace Gorilla
     Gorilla::RenderPriority mPriority;
 
   };
-
+  
   class LineList : public Ogre::GeneralAllocatedObject
   {
-
+   
    friend class Layer;
-
+   
    public:
-
+    
     /*! function. begin
         desc.
             Clear lines and start again
     */
     void  begin(Ogre::Real lineThickness = 1.0f, const Ogre::ColourValue& colour = Ogre::ColourValue::White);
-
+    
     /*! function. begin
         desc.
             Clear lines and start again
@@ -2320,19 +2365,19 @@ namespace Gorilla
     {
      begin(lineThickness, webcolour(colour));
     }
-
+    
     /*! function. position
         desc.
             Extent the list to x and y.
     */
     void  position(Ogre::Real x, Ogre::Real y);
-
+    
     /*! function. position
         desc.
             Extent the list to given coordinates.
     */
     void  position(const Ogre::Vector2&);
-
+    
     /*! function. end
         desc.
             Stop line drawing and calculate vertices.
@@ -2390,15 +2435,15 @@ namespace Gorilla
             This should not be needed to be called by the user.
     */
     void  _redraw();
-
+    
    protected:
-
+    
     LineList(Layer* parent);
-
+    
    ~LineList() {}
-
+    
    protected:
-
+    
     Layer*                mLayer;
     Ogre::Real            mThickness;
     Ogre::ColourValue     mColour;
@@ -2409,36 +2454,36 @@ namespace Gorilla
     buffer<Vertex>        mVertices;
     Gorilla::RenderPriority mPriority;
   };
-
+  
   /*! class. QuadList
       desc.
           "ManualObject" like class to quickly draw rectangles, gradients, sprites and borders.
   */
   class QuadList : public Ogre::GeneralAllocatedObject
   {
-
+   
    friend class Layer;
-
+   
    public:
-
+    
     /*! function. begin
         desc.
             Clear everything and start again
     */
     void  begin();
-
+    
     /*! function. rectangle
         desc.
             Draw a rectangle sized w,h at x,y
     */
     void  rectangle(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, const Ogre::ColourValue = Ogre::ColourValue::White);
-
+    
     /*! function. gradient
         desc.
             Draw a gradient rectangle sized w,h at x,y
     */
     void  gradient(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, Gradient gradient, const Ogre::ColourValue& colourA = Ogre::ColourValue::White, const Ogre::ColourValue& colourB = Ogre::ColourValue::White);
-
+    
     /*! function. gradient
         desc.
             Draw a gradient rectangle sized w,h at x,y
@@ -2447,19 +2492,19 @@ namespace Gorilla
     {
      this->gradient(x,y,w,h,gradient, webcolour(colourA), webcolour(colourB));
     }
-
+    
     /*! function. sprite
         desc.
             Draw a sprite sized w,h at x,y
     */
     void  sprite(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, Sprite*);
-
+    
     /*! function. border
         desc.
             Draw a border sized w,h at x,y of a thickness
     */
     void  border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, Ogre::Real thickness, const Ogre::ColourValue& = Ogre::ColourValue::White);
-
+    
     /*! function. border
         desc.
             Draw a border sized w,h at x,y of a thickness
@@ -2468,13 +2513,13 @@ namespace Gorilla
     {
      border(x,y,w,h,thickness, webcolour(colour));
     }
-
+    
     /*! function. border
         desc.
             Draw a border sized w,h at x,y of a thickness
     */
     void  border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, Ogre::Real thickness, const Ogre::ColourValue& northColour, const Ogre::ColourValue& eastColour, const Ogre::ColourValue& southColour, const Ogre::ColourValue& westColour);
-
+    
     /*! function. border
         desc.
             Draw a border sized w,h at x,y of a thickness
@@ -2483,19 +2528,19 @@ namespace Gorilla
     {
      border(x,y,w,h,thickness, webcolour(northColour), webcolour(eastColour), webcolour(southColour), webcolour(westColour));
     }
-
+    
     /*! function. glyph
         desc.
             Draw a glpyh
     */
     void  glyph(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, unsigned char character, const Ogre::ColourValue& colour);
-
+    
     /*! function. glyph
         desc.
             Draw a glyph with a custom size.
     */
     void  glyph(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, unsigned char character, const Ogre::ColourValue& colour);
-
+    
     /*! function. glyph
         desc.
             Draw a glpyh
@@ -2504,7 +2549,7 @@ namespace Gorilla
     {
      glyph(glyphDataIndex,x,y,character, webcolour(colour));
     }
-
+    
     /*! function. glyph
         desc.
             Draw a glyph with a custom size.
@@ -2513,7 +2558,7 @@ namespace Gorilla
     {
      glyph(glyphDataIndex, x,y,w,h, character, webcolour(colour));
     }
-
+    
     /*! function. end
         desc.
             Stop drawing and calculate vertices.
@@ -2563,20 +2608,20 @@ namespace Gorilla
     }
 
     void  _redraw();
-
+    
    protected:
-
+    
     QuadList(Layer*);
-
+    
     ~QuadList() {}
-
+    
     struct Quad
     {
      Ogre::Vector2        mPosition[4];
      Ogre::Vector2        mUV[4];
      Ogre::ColourValue    mColour[4];
     };
-
+    
     Ogre::Vector2         mWhiteUV;
     Layer*                mLayer;
     buffer<Quad>          mQuads;
@@ -2586,18 +2631,39 @@ namespace Gorilla
     Gorilla::RenderPriority mPriority;
 
   };
-
+  
   /* class. Caption
      desc.
          A single line piece of text
   */
   class Caption : public Ogre::GeneralAllocatedObject
   {
-
+    
    friend class Layer;
-
+   
    public:
-
+    
+    /*! function. font
+        desc.
+            Changes the font to a different Glyph index.
+        note.
+             If the font index does not exist, an exception may be thrown.
+    */
+    void font(size_t font_index)
+    {
+     mGlyphData      = mLayer->_getGlyphData(font_index);
+     if (mGlyphData == 0)
+     {
+       mDirty        = false;
+   #if GORILLA_USES_EXCEPTIONS == 1
+       OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Glyph data not found", __FUNC__ );
+   #else
+       return;
+   #endif
+     }
+     mDirty = true;
+     mLayer->_markDirty();
+    }
     /*! function. intersects
         desc.
             Does a set of coordinates lie within this caption?
@@ -2606,7 +2672,7 @@ namespace Gorilla
     {
      return ((coordinates.x >= mLeft && coordinates.x <= mLeft + mWidth) && (coordinates.y >= mTop && coordinates.y <= mTop + mHeight));
     }
-
+    
     /*! function. top
         desc.
             Get where the text should be drawn vertically.
@@ -2649,7 +2715,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. size
         desc.
             Set the maximum width and height of the text can draw into.
@@ -2670,7 +2736,7 @@ namespace Gorilla
     {
      return mWidth;
     }
-
+    
     /*! function. width
         desc.
             Set the maximum width of the text can draw into.
@@ -2681,7 +2747,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. height
         desc.
             Get the maximum height of the text can draw into.
@@ -2690,7 +2756,7 @@ namespace Gorilla
     {
      return mHeight;
     }
-
+    
     /*! function. height
         desc.
             Set the maximum height of the text can draw into.
@@ -2701,7 +2767,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. caption
         desc.
             Get the text indented to show.
@@ -2710,7 +2776,7 @@ namespace Gorilla
     {
      return mText;
     }
-
+    
     /*! function. alignment
         desc.
             Set the text to show.
@@ -2721,7 +2787,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. alignment
         desc.
             Get the alignment of text.
@@ -2730,7 +2796,7 @@ namespace Gorilla
     {
      return mAlignment;
     }
-
+    
     /*! function. alignment
         desc.
             Set the alignment of text.
@@ -2741,7 +2807,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. alignment
         desc.
             Get the vertical alignment of text.
@@ -2750,7 +2816,7 @@ namespace Gorilla
     {
      return mVerticalAlign;
     }
-
+    
     /*! function. vertical_align
         desc.
             Set the vertical alignment of text.
@@ -2761,7 +2827,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. clipped_left_index
         desc.
             Get the index (character position), of the first character that could not be drawn due to the limits
@@ -2774,7 +2840,7 @@ namespace Gorilla
     {
      return mClippedLeftIndex;
     }
-
+    
     /*! function. clipped_right_index
         desc.
             Get the index (character position), of the first character that could not be drawn due to the limits
@@ -2787,7 +2853,7 @@ namespace Gorilla
     {
      return mClippedRightIndex;
     }
-
+    
     /*! function. colour
         desc.
             Get the text colour.
@@ -2796,7 +2862,7 @@ namespace Gorilla
     {
      return mColour;
     }
-
+    
     /*! function. colour
         desc.
             Set the text colour.
@@ -2807,7 +2873,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. colour
         desc.
             Set the text colour.
@@ -2818,7 +2884,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. background
         desc.
             Get the background colour
@@ -2827,7 +2893,7 @@ namespace Gorilla
     {
      return mBackground;
     }
-
+    
     /*! function. background
         desc.
             Set the background colour
@@ -2838,7 +2904,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. background
         desc.
             Set the background colour
@@ -2852,8 +2918,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-    /*! function. no_background
+    
+    /*! function. no_background 
         desc.
             Don't draw the background.
         note.
@@ -2899,13 +2965,6 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
-    void SetGlyphIndex(Ogre::uint glyphDataIndex)
-    {
-     mGlyphData = mLayer->_getGlyphData(glyphDataIndex);
-     mDirty = true;
-     mLayer->_markDirty();
-    }
-
     void  RenderPriority(Gorilla::RenderPriority Priority)
     {
      mPriority = Priority;
@@ -2933,17 +2992,17 @@ namespace Gorilla
             This shouldn't be need to be called by the user.
     */
     void               _redraw();
-
+    
    protected:
-
+    
     void               _calculateDrawSize(Ogre::Vector2& size);
-
+    
     Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& caption, Layer* parent);
-
+    
    ~Caption() {}
-
+    
    protected:
-
+    
     Layer*                mLayer;
     GlyphData*            mGlyphData;
     Ogre::Real            mLeft, mTop, mWidth, mHeight;
@@ -2958,7 +3017,7 @@ namespace Gorilla
     Gorilla::RenderPriority mPriority;
     Ogre::Real            mCursorOffset;
   };
-
+  
   /* class. Caption
      desc.
          A multi-line collection of text formatted by a light markup language, that can
@@ -2966,11 +3025,11 @@ namespace Gorilla
   */
   class MarkupText : public Ogre::GeneralAllocatedObject
   {
-
+    
    friend class Layer;
-
+   
    public:
-
+    
     /*! function. top
         desc.
             Get where the text should be drawn vertically.
@@ -3013,8 +3072,8 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
-
+    
+    
     /*! function. size
         desc.
             Set the maximum width and height of the text can draw into.
@@ -3035,7 +3094,7 @@ namespace Gorilla
     {
      return mWidth;
     }
-
+    
     /*! function. width
         desc.
             Set the maximum width of the text can draw into.
@@ -3046,7 +3105,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. height
         desc.
             Get the maximum height of the text can draw into.
@@ -3055,7 +3114,7 @@ namespace Gorilla
     {
      return mHeight;
     }
-
+    
     /*! function. height
         desc.
             Set the maximum height of the text can draw into.
@@ -3066,7 +3125,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. caption
         desc.
             Get the text indented to show.
@@ -3075,7 +3134,7 @@ namespace Gorilla
     {
      return mText;
     }
-
+    
     /*! function. alignment
         desc.
             Set the text to show.
@@ -3087,7 +3146,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. background
         desc.
             Get the background colour
@@ -3096,7 +3155,7 @@ namespace Gorilla
     {
      return mBackground;
     }
-
+    
     /*! function. background
         desc.
             Set the background colour
@@ -3107,7 +3166,7 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
+    
     /*! function. background
         desc.
             Set the background colour
@@ -3178,17 +3237,17 @@ namespace Gorilla
             This shouldn't be need to be called by the user.
     */
     void               _redraw();
-
+    
     void               _calculateCharacters();
-
+    
    protected:
-
+    
     MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& text, Layer* parent);
-
+    
    ~MarkupText() {}
-
+    
    protected:
-
+    
     struct Character
     {
      Ogre::Vector2        mPosition[4];
@@ -3196,7 +3255,7 @@ namespace Gorilla
      Ogre::ColourValue    mColour;
      size_t               mIndex;
     };
-
+    
     Layer*                mLayer;
     GlyphData*            mDefaultGlyphData;
     Ogre::Real            mLeft, mTop, mWidth, mHeight;

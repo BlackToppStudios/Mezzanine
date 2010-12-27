@@ -274,7 +274,7 @@ namespace phys
             /// @param Name The name of the Window.
             /// @param Position The top left position of the Window.
             /// @param Size The size of the Window.
-            UI::Window* CreateWindow(ConstString& Name, Vector2 Position, Vector2 Size);
+            UI::Window* CreateWidgetWindow(ConstString& Name, Vector2 Position, Vector2 Size);
             ///////////////////////////////////////////////////////////////////////////////
             // UI Element and Widget Checks
             ///////////////////////////////////////

@@ -24,10 +24,10 @@ else(${PhysDebug})
 endif(${PhysDebug})
 
 option(PhysProfile "Executables will gather runtime statistics" OFF)
-if(${PhysDebug})
+if(${PhysProfile})
 		message ("${PROJECT_NAME} - Enabling gcc profiling")
 		set(CommonBuildFlags "${CommonBuildFlags} -pg")
-endif(${PhysDebug})
+endif(${PhysProfile})
 
 
 

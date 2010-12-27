@@ -145,7 +145,7 @@ namespace phys
         void Caption::SetGlyphIndex(Whole GlyphIndex)
         {
             Glyphs = GlyphIndex;
-            GorillaCaption->SetGlyphIndex(GlyphIndex);
+            GorillaCaption->font(GlyphIndex);
         }
 
         Whole Caption::GetGlyphIndex()
