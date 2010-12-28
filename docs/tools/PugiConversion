@@ -16,30 +16,30 @@ PugiConfigFile="PugiSrc/pugiconfig.hpp"
 
 #Output Files
 OutDir="./"
-NewHFile="xml.h"
-NewCppFile="xml.cpp"
+NewHFile="$OutDir/xml.h"
+NewCppFile="$OutDir/xml.cpp"
 
-# The Copyright notices, and other string to search for
-PugiEndCopyright="/**\n * Copyright (c) 2006-2010 Arseny Kapoulkine\n *\n * Permission is hereby granted, free of charge, to any person\n * obtaining a copy of this software and associated documentation\n * files (the \"Software\"), to deal in the Software without\n * restriction, including without limitation the rights to use,\n * copy, modify, merge, publish, distribute, sublicense, and/or sell\n * copies of the Software, and to permit persons to whom the\n * Software is furnished to do so, subject to the following\n * conditions:\n *\n * The above copyright notice and this permission notice shall be\n * included in all copies or substantial portions of the Software.\n * \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\n * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\n * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\n * OTHER DEALINGS IN THE SOFTWARE.\n */"
+#Some other variables we will be using
+Hardstring="This should not be found on any lineasdfasdfasdfasdf"	# this Should not appear in any of the Files, if it does, change it.
+PugiConfigGrabUntil="#endif"						# The Copyright notices, and other string to search for in the PugiConfig File
+				#This next line uses grep to get the line number of the token we are searching for and then sends the results to
+				#sed to strip of the : and the token appended to the value we want.
+PugiConfigGrabLineCount=`grep "$PugiConfigGrabUntil" $PugiConfigFile -n | sed s/":$PugiConfigGrabUntil"//g`
 
-PugiBeginCopyright="'/**
- * pugixml parser - version 1.0
- * --------------------------------------------------------
- * Copyright (C) 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
- * Report bugs and download new versions at http://pugixml.org/
- *
- * This library is distributed under the MIT License. See notice at the end
- * of this file.
- *
- * This work is based on the pugxml parser, which is:
- * Copyright (C) 2003, by Kristen Wegner (kristen@tima.net)
- */'"
-
-#This Does  a number a number of transformations on the PugiConfig file before dumping the complete converted parts into the new headerfile
-#	- removes Extra Copyright notices (Since this is at the begining we will remove the end copyright)
+#This Does a number of transformations on the PugiConfig file before dumping the complete converted parts into the new headerfile
+#	- removes Extra Copyright notices (Since this is at the begining we will remove the end copyright) by simply not grabbing it.
 #	- Replaces series of 4 spaces with tabs (seems to be an issue with the original source Files)
-sed -e 's/$PugiEndCopyright//g' $PugiConfigFile  > $NewHFile
-#;s/'    '/'	'/g
+#	- Appends a Newline to the file
+head -n$PugiConfigGrabLineCount $PugiConfigFile | sed  s/'    '/'	'/g > $NewHFile
+
+PugiHeaderGrabUntil="*/"						# This ends the copyright header in the pugiheader file
+PugiHeaderGrabLineCount=`grep "$PugiHeaderGrabUntil" $PugiHFile -n | SOMEnumberfilterhere`
+echo $PugiHeaderGrabLineCount
+
+#This Does a number of transformations on the PugiHeader file before appending the complete converted parts onto the new headerfile
+#	- Replaces series of 4 spaces with tabs (seems to be an issue with the original source Files)
+#	- Appends the results to the results of the Config Transformation
+#sed -e s/'    '/'	'/g >> $NewHFile
 
 
 
