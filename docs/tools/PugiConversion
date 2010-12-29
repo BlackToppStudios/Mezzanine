@@ -24,7 +24,7 @@ Hardstring="This should not be found on any lineasdfasdfasdfasdf"	# this Should 
 PugiConfigGrabUntil="#endif"						# The Copyright notices, and other string to search for in the PugiConfig File
 				#This next line uses grep to get the line number of the token we are searching for and then sends the results to
 				#sed to strip of the : and the token appended to the value we want.
-PugiConfigGrabLineCount=`grep "$PugiConfigGrabUntil" $PugiConfigFile -n | sed s/":$PugiConfigGrabUntil"//g`
+PugiConfigGrabLineCount=`grep "$PugiConfigGrabUntil" $PugiConfigFile -n | head -n1 | sed s/:.*//g`
 
 #This Does a number of transformations on the PugiConfig file before dumping the complete converted parts into the new headerfile
 #	- removes Extra Copyright notices (Since this is at the begining we will remove the end copyright) by simply not grabbing it.
@@ -33,8 +33,9 @@ PugiConfigGrabLineCount=`grep "$PugiConfigGrabUntil" $PugiConfigFile -n | sed s/
 head -n$PugiConfigGrabLineCount $PugiConfigFile | sed  s/'    '/'	'/g > $NewHFile
 
 PugiHeaderGrabUntil="*/"						# This ends the copyright header in the pugiheader file
-PugiHeaderGrabLineCount=`grep "$PugiHeaderGrabUntil" $PugiHFile -n | SOMEnumberfilterhere`
-echo $PugiHeaderGrabLineCount
+PugiHeaderGrabLineCount=`grep "$PugiHeaderGrabUntil" $PugiHFile -n | head -n1 | sed s/:.*//g`
+PugiHeaderTotalLineCount=`grep "$Hardstring" $PugiHFile -vc`
+echo $PugiHeaderTotalLineCount
 
 #This Does a number of transformations on the PugiHeader file before appending the complete converted parts onto the new headerfile
 #	- Replaces series of 4 spaces with tabs (seems to be an issue with the original source Files)
