@@ -1,18 +1,18 @@
 //© Copyright 2010 Joseph Toppi and John Blackwood
 /* This file is part of The PhysGame Engine.
 
-    The PhysGame Engine is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	The PhysGame Engine is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    The PhysGame Engine is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	The PhysGame Engine is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>. 
+	You should have received a copy of the GNU General Public License
+	along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>. 
 */
 /* The original authors have included a copy of the license specified above in the
    'Docs' folder. See 'gpl.txt'
@@ -23,12 +23,12 @@
    However there are some practical restrictions, so if your project involves
    any of the following you should contact us and we will try to work something
    out:
-    - DRM or Copy Protection of any kind(except Copyrights)
-    - Software Patents You Do Not Wish to Freely License
-    - Any Kind of Linking to Non-GPL licensed Works
-    - Are Currently In Violation of Another Copyright Holder's GPL License
-    - If You want to change our code and not add a few hundred MB of stuff to 
-        your distribution
+	- DRM or Copy Protection of any kind(except Copyrights)
+	- Software Patents You Do Not Wish to Freely License
+	- Any Kind of Linking to Non-GPL licensed Works
+	- Are Currently In Violation of Another Copyright Holder's GPL License
+	- If You want to change our code and not add a few hundred MB of stuff to 
+		your distribution
 
    These and other limitations could cause serious legal problems if you ignore
    them, so it is best to simply contact us or the Free Software Foundation, if
@@ -44,14 +44,14 @@
  *
  * Pugixml parser - version 1.0
  * --------------------------------------------------------
- * Copyright (C) 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
+ * Copyright © 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
  * Report bugs and download new versions at http://pugixml.org/
  *
  * This library is distributed under the MIT License. See notice at the end
  * of this file.
  *
  * This work is based on the pugxml parser, which is:
- * Copyright (C) 2003, by Kristen Wegner (kristen@tima.net)
+ * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
 #ifndef HEADER_PUGICONFIG_HPP

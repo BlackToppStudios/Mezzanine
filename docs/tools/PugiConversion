@@ -13,49 +13,52 @@ E_MISSINGPUGIXML=3
 PugiCppFile="PugiSrc/pugixml.cpp"
 PugiHFile="PugiSrc/pugixml.hpp"
 PugiConfigFile="PugiSrc/pugiconfig.hpp"
+PugiTempHFile="PugiSrc/temp.hpp"
 
 #Output Files
 OutDir="../../physgameengine/src"
-NewHFile="$OutDir/xml.h"
-NewCppFile="$OutDir/xml.cpp"
+NewHFileOnly="xml.h"
+NewCppFileOnly="xml.cpp"
+NewHFile="$OutDir/$NewHFileOnly"
+NewCppFile="$OutDir/$NewCppFileOnly"
 
 #Some other variables we will be using
 Hardstring="This should not be found on any lineasdfasdfasdfasdf"	# this Should not appear in any of the Files, if it does, change it.
+OurLicenseFile="fileheader.txt"
 OurCopyright="\n * Software, Files, Libraries and all other items referenced in this clause refers only\n * to the contents of this file and associated documentation.\n *\n"
 IncompleteCopyright1=" * Copyright (c) 2006-2010 Arseny Kapoulkine"
 CompleteCopyright1="$OurCopyright * Copyright © 2006-2010 Arseny Kapoulkine"
 IncompleteCopyright2=" * pugixml parser - version 1.0"
 CompleteCopyright2="$OurCopyright * Pugixml parser - version 1.0"
 
+#Make the Files to begin appending Source code to.
+cat  $OurLicenseFile > $NewCppFile
+cat  $OurLicenseFile > $PugiTempHFile
 
-cat fileheader.txt > $NewHFile
-
+# This lops of the end copyright because we can use the ending from the other file we are merging with
 PugiConfigGrabUntil="#endif"						# The Copyright notices, and other string to search for in the PugiConfig File
 				#This next line uses grep to get the line number of the token we are searching for and then sends the results to
 				#sed to strip of the : and the token appended to the value we want.
 PugiConfigGrabLineCount=`grep "$PugiConfigGrabUntil" $PugiConfigFile -n | head -n1 | sed s/:.*//g`
+head -n$PugiConfigGrabLineCount $PugiConfigFile  >> $PugiTempHFile
 
-#This Does a number of transformations on the PugiConfig file before dumping the complete converted parts into the new headerfile
-#	- removes Extra Copyright notices (Since this is at the begining we will remove the end copyright) by simply not grabbing it.
-#	- Replaces series of 4 spaces with tabs (seems to be an issue with the original source Files)
-#	- Appends a notice to Arseny's Copyright that it only covers items arseny wrote.
-head -n$PugiConfigGrabLineCount $PugiConfigFile | sed  -e s/'    '/'	'/g -e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g -e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g >> $NewHFile
-
-
-
+# This Lops of the first copyright notice by ommision (since this is the last part of the file we will keep the tail copyright) and appends the results to the results of the Config Transformation
 PugiHeaderGrabUntil="*/"						# This ends the copyright header in the pugiheader file
 PugiHeaderGrabLineCount=`grep "$PugiHeaderGrabUntil" $PugiHFile -n | head -n1 | sed s/:.*//g`
 PugiHeaderTotalLineCount=`grep "$Hardstring" $PugiHFile -vc`
 PugiHeaderTailLineCount=$[PugiHeaderTotalLineCount-PugiHeaderGrabLineCount]
+tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"'//g  >> $PugiTempHFile
 
-#This Does a number of transformations on the PugiHeader file before appending the complete converted parts onto the new headerfile
-#	- Lops of the first copyright notice by ommision (since this is the last part of the file we will keep the tail copyright)
+#This Does a number of transformations on the PugiHeader file before placing the complete converted parts onto the new headerfile
 #	- Replaces series of 4 spaces with tabs (seems to be an issue with the original source Files)
 #	- Remove reference to old filenames
 #	- Appends a notice to Arseny's Copyright that it only covers items arseny wrote.
-#	- Appends the results to the results of the Config Transformation
-tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'    '/'	'/g  -e s/'#include "pugiconfig.hpp"'//g -e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g -e s/"$IncompxleteCopyright2"/"$CompleteCopyright2"/g >> $NewHFile
+#	- clean up CopyRight Symbols as (c) is meaningless in some jurisdications (as per RMS)
+#	- Put the results in the final place they belong
+cat $PugiTempHFile | sed  -e s/'    '/'	'/g -e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g -e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g -e s/\([cC]\)/©/g > $NewHFile
+
+# This does mostly the same thing that the header transfortmation does, a bunch of cleanup and putting the code where it belongs
+cat $PugiCppFile | sed -e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g -e s/'    '/'	'/g -e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g -e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g -e s/\([C]\)/©/g > $NewCppFile
 
 
-# replace (C) with ©
 
