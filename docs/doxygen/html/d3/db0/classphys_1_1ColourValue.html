@@ -55,12 +55,16 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/db0/classphys_1_1ColourValue.html#a28ee2493cd6a7bb8bc4104d223e3e709">ColourValue</a> (<a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> red, <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> green, <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> blue, <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> alpha)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Alpha constructor.  <a href="#a28ee2493cd6a7bb8bc4104d223e3e709"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/db0/classphys_1_1ColourValue.html#a8a004962cde5fd3063dd845be4256fa9">ColourValue</a> (Ogre::ColourValue OgreValues)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a> constructor.  <a href="#a8a004962cde5fd3063dd845be4256fa9"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ogre constructor.  <a href="#a8a004962cde5fd3063dd845be4256fa9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc37cfdba61d80ad23765cea5c858751"></a><!-- doxytag: member="phys::ColourValue::~ColourValue" ref="adc37cfdba61d80ad23765cea5c858751" args="()" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/db0/classphys_1_1ColourValue.html#adc37cfdba61d80ad23765cea5c858751">~ColourValue</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Ogre::ColourValue&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/db0/classphys_1_1ColourValue.html#a7a2978ebc5a7e04e02279664f1ea4a86">GetOgreColourValue</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates and returns an <a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a> <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> class with values equal to this one.  <a href="#a7a2978ebc5a7e04e02279664f1ea4a86"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates and returns an Ogre <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> class with values equal to this one.  <a href="#a7a2978ebc5a7e04e02279664f1ea4a86"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/db0/classphys_1_1ColourValue.html#a4615835cadb51c814ef87377ac2fbc8c">operator==</a> (const <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Equality Comparison Operator.  <a href="#a4615835cadb51c814ef87377ac2fbc8c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/db0/classphys_1_1ColourValue.html#a06b52ce51b723ea733f2b067b03530a5">operator!=</a> (const <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Inequality Comparison Operator.  <a href="#a06b52ce51b723ea733f2b067b03530a5"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32b5411b9b87f92a6626f3f4d5f0a158"></a><!-- doxytag: member="phys::ColourValue::Red" ref="a32b5411b9b87f92a6626f3f4d5f0a158" args="" -->
@@ -196,11 +200,11 @@ Public Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p><a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a> constructor. </p>
+<p>Ogre constructor. </p>
 <p>Internal use only. Constructs a colourvalue class from an ogre colourvalue. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>OgreValues</em>&nbsp;</td><td>The <a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a> <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> class to base this class on. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>OgreValues</em>&nbsp;</td><td>The Ogre <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> class to base this class on. </td></tr>
   </table>
   </dd>
 </dl>
@@ -225,11 +229,67 @@ Public Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Creates and returns an <a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a> <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> class with values equal to this one. </p>
+<p>Creates and returns an Ogre <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> class with values equal to this one. </p>
 <p>This function is intended for internal use only. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an <a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a> <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> class that has values equal to this one. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an Ogre <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> class that has values equal to this one. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d0/d77/colourvalue_8cpp_source.html#l00073">73</a> of file <a class="el" href="../../d0/d77/colourvalue_8cpp_source.html">colourvalue.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a06b52ce51b723ea733f2b067b03530a5"></a><!-- doxytag: member="phys::ColourValue::operator!=" ref="a06b52ce51b723ea733f2b067b03530a5" args="(const ColourValue &amp;Colour)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::ColourValue::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html">ColourValue</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Colour</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Inequality Comparison Operator. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Colour</em>&nbsp;</td><td>This is another <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> to compare with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d0/d77/colourvalue_8cpp_source.html#l00090">90</a> of file <a class="el" href="../../d0/d77/colourvalue_8cpp_source.html">colourvalue.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4615835cadb51c814ef87377ac2fbc8c"></a><!-- doxytag: member="phys::ColourValue::operator==" ref="a4615835cadb51c814ef87377ac2fbc8c" args="(const ColourValue &amp;Colour)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::ColourValue::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html">ColourValue</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Colour</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Equality Comparison Operator. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Colour</em>&nbsp;</td><td>This is another <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> to compare with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d0/d77/colourvalue_8cpp_source.html#l00083">83</a> of file <a class="el" href="../../d0/d77/colourvalue_8cpp_source.html">colourvalue.cpp</a>.</p>
 
 </div>
 </div>
@@ -238,7 +298,7 @@ Public Attributes</h2></td></tr>
 <li><a class="el" href="../../d0/d77/colourvalue_8cpp_source.html">colourvalue.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:14 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:18 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

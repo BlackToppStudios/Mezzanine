@@ -71,41 +71,68 @@
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _uiwidget_cpp</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;uiwidget.h&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="keyword">namespace </span>phys
-<a name="l00047"></a>00047 {
-<a name="l00048"></a>00048     <span class="keyword">namespace </span>UI
-<a name="l00049"></a>00049     {
-<a name="l00050"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a270ffcb858d43bbf94b0ce2089a10607">00050</a>         <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a270ffcb858d43bbf94b0ce2089a10607" title="Standard initialization constructor.">Widget::Widget</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* parent)
-<a name="l00051"></a>00051             : Parent(parent),
-<a name="l00052"></a>00052               RelPosition(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
-<a name="l00053"></a>00053               RelSize(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
-<a name="l00054"></a>00054               Name(name)
-<a name="l00055"></a>00055         {
-<a name="l00056"></a>00056             Manager = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ab7888bf9286df602490c30df6382fde9" title="This gets the UIManager from the manager list.">GetUIManager</a>();
-<a name="l00057"></a>00057         }
-<a name="l00058"></a>00058 
-<a name="l00059"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a95bde61e93544334b376938274617d15">00059</a>         <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a95bde61e93544334b376938274617d15" title="Standard destructor.">Widget::~Widget</a>()
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;uibutton.h&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 <span class="keyword">namespace </span>phys
+<a name="l00048"></a>00048 {
+<a name="l00049"></a>00049     <span class="keyword">namespace </span>UI
+<a name="l00050"></a>00050     {
+<a name="l00051"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a270ffcb858d43bbf94b0ce2089a10607">00051</a>         <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a270ffcb858d43bbf94b0ce2089a10607" title="Standard initialization constructor.">Widget::Widget</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; name, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* parent)
+<a name="l00052"></a>00052             : Parent(parent),
+<a name="l00053"></a>00053               HoveredButton(NULL),
+<a name="l00054"></a>00054               HoveredSubWidget(NULL),
+<a name="l00055"></a>00055               SubWidgetFocus(NULL),
+<a name="l00056"></a>00056               Visible(true),
+<a name="l00057"></a>00057               RelPosition(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
+<a name="l00058"></a>00058               RelSize(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(0,0)),
+<a name="l00059"></a>00059               Name(name)
 <a name="l00060"></a>00060         {
-<a name="l00061"></a>00061         }
-<a name="l00062"></a>00062 
-<a name="l00063"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a3aba1def8a818fe71cd2209a4350468c">00063</a>         Widget::WidgetType <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a3aba1def8a818fe71cd2209a4350468c" title="Gets the type of widget this is.">Widget::GetType</a>()
-<a name="l00064"></a>00064         {
-<a name="l00065"></a>00065             <span class="keywordflow">return</span> Type;
+<a name="l00061"></a>00061             Manager = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ab7888bf9286df602490c30df6382fde9" title="This gets the UIManager from the manager list.">GetUIManager</a>();
+<a name="l00062"></a>00062         }
+<a name="l00063"></a>00063 
+<a name="l00064"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a95bde61e93544334b376938274617d15">00064</a>         <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a95bde61e93544334b376938274617d15" title="Standard destructor.">Widget::~Widget</a>()
+<a name="l00065"></a>00065         {
 <a name="l00066"></a>00066         }
 <a name="l00067"></a>00067 
-<a name="l00068"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a35d6e7ce60a9b295d8659345627cf7e0">00068</a>         <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a35d6e7ce60a9b295d8659345627cf7e0" title="Gets the name of this widget.">Widget::GetName</a>()
+<a name="l00068"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a3472e5d0f8281e704d67d419980cd918">00068</a>         <span class="keywordtype">void</span> <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a3472e5d0f8281e704d67d419980cd918" title="For use with sub-widget update/automation.">Widget::SubWidgetUpdate</a>(<span class="keywordtype">bool</span> Force)
 <a name="l00069"></a>00069         {
-<a name="l00070"></a>00070             <span class="keywordflow">return</span> Name;
-<a name="l00071"></a>00071         }
-<a name="l00072"></a>00072     }<span class="comment">//UI</span>
-<a name="l00073"></a>00073 }<span class="comment">//phys</span>
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075 <span class="preprocessor">#endif</span>
+<a name="l00070"></a>00070             <span class="keywordflow">if</span>(HoveredSubWidget)
+<a name="l00071"></a>00071                 HoveredSubWidget-&gt;<a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a1806425fcd684c2f0d50cd0ef4a6b0da" title="For use with widget update/automation.">Update</a>(Force);
+<a name="l00072"></a>00072         }
+<a name="l00073"></a>00073 
+<a name="l00074"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a4a7e18c48a7cd230fd4a0aa274c6a654">00074</a>         <span class="keywordtype">void</span> <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a4a7e18c48a7cd230fd4a0aa274c6a654" title="For use with sub-widget update/automation when the mouse isn&amp;#39;t hovered.">Widget::SubWidgetFocusUpdate</a>(<span class="keywordtype">bool</span> Force)
+<a name="l00075"></a>00075         {
+<a name="l00076"></a>00076             <span class="keywordflow">if</span>(SubWidgetFocus)
+<a name="l00077"></a>00077                 SubWidgetFocus-&gt;<a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a1806425fcd684c2f0d50cd0ef4a6b0da" title="For use with widget update/automation.">Update</a>(Force);
+<a name="l00078"></a>00078         }
+<a name="l00079"></a>00079 
+<a name="l00080"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a76337b279bd372ce225f94ab1da191ea">00080</a>         Widget::WidgetType <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a76337b279bd372ce225f94ab1da191ea" title="Gets the type of widget this is.">Widget::GetType</a>()<span class="keyword"> const</span>
+<a name="l00081"></a>00081 <span class="keyword">        </span>{
+<a name="l00082"></a>00082             <span class="keywordflow">return</span> Type;
+<a name="l00083"></a>00083         }
+<a name="l00084"></a>00084 
+<a name="l00085"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a35d6e7ce60a9b295d8659345627cf7e0">00085</a>         <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a35d6e7ce60a9b295d8659345627cf7e0" title="Gets the name of this widget.">Widget::GetName</a>()
+<a name="l00086"></a>00086         {
+<a name="l00087"></a>00087             <span class="keywordflow">return</span> Name;
+<a name="l00088"></a>00088         }
+<a name="l00089"></a>00089 
+<a name="l00090"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#ab563c13db418e4c3ff0a0dd766550251">00090</a>         <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#ab563c13db418e4c3ff0a0dd766550251" title="Gets the hovered button within this widget, if any.">Widget::GetHoveredButton</a>()
+<a name="l00091"></a>00091         {
+<a name="l00092"></a>00092             <span class="keywordflow">return</span> HoveredButton;
+<a name="l00093"></a>00093         }
+<a name="l00094"></a>00094 
+<a name="l00095"></a><a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a38764b73bc6087e2611660735840ba3f">00095</a>         <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html#a38764b73bc6087e2611660735840ba3f" title="Gets the hovered sub-widget within this widget, if any.">Widget::GetHoveredSubWidget</a>()
+<a name="l00096"></a>00096         {
+<a name="l00097"></a>00097             <span class="keywordflow">return</span> HoveredSubWidget;
+<a name="l00098"></a>00098         }
+<a name="l00099"></a>00099     }<span class="comment">//UI</span>
+<a name="l00100"></a>00100 }<span class="comment">//phys</span>
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

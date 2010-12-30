@@ -42,7 +42,9 @@ void \hyperlink{classphys_1_1UIScreen_af9ea18cf145e31b90dbe02faed758343}{Hide} (
 \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ \hyperlink{classphys_1_1UIScreen_a661f461325f3a67169ce0c4ee107c8eb}{GetLayer} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Gets an already created layer by name. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ \hyperlink{classphys_1_1UIScreen_a8b9aeb4599c47d2b4ea0a1c5d5e6f210}{GetLayer} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
-\begin{DoxyCompactList}\small\item\em Gets an already created layer by index. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets an already created layer by it's index. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ \hyperlink{classphys_1_1UIScreen_ab558b5405a1f64d7558e34a217bfc28d}{GetLayerbyZorder} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Zorder)
+\begin{DoxyCompactList}\small\item\em Gets an already created layer by it's Zorder. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UIScreen_a87c4cf832f36af0182483814fec30f88}{GetNumLayers} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of layers created and stored in this class. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1UIScreen_ac1d9dfc0b8d9b3720f1447dcc93d8b55}{DestroyLayer} (\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
@@ -126,7 +128,7 @@ Returns the button the mouse is over, or NULL if there are none.
 \end{DoxyReturn}
 
 
-Definition at line 144 of file uiscreen.cpp.
+Definition at line 157 of file uiscreen.cpp.
 
 \hypertarget{classphys_1_1UIScreen_a00befef8c7bce9e8d149e6ba03419a53}{
 \index{phys::UIScreen@{phys::UIScreen}!CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}}
@@ -146,7 +148,7 @@ Returns the widget the mouse is over, or NULL if there are none.
 \end{DoxyReturn}
 
 
-Definition at line 160 of file uiscreen.cpp.
+Definition at line 173 of file uiscreen.cpp.
 
 \hypertarget{classphys_1_1UIScreen_a14c3256bda81d40553ff065993fcbe77}{
 \index{phys::UIScreen@{phys::UIScreen}!CreateLayer@{CreateLayer}}
@@ -168,7 +170,7 @@ A GUI layer is exactly that, a layer of GUI objects. You can have multiple GUI l
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000024}{Todo}]add an exception here or maybe log entry, some notification it failed. \end{Desc}
+\item[\hyperlink{todo__todo000028}{Todo}]add an exception here or maybe log entry, some notification it failed. \end{Desc}
 
 
 
@@ -193,7 +195,7 @@ Destroy's a previously created layer.
 \item[{\em Name}]The name of the layer to be destroyed. \end{DoxyParams}
 
 
-Definition at line 129 of file uiscreen.cpp.
+Definition at line 142 of file uiscreen.cpp.
 
 \hypertarget{classphys_1_1UIScreen_a8b9aeb4599c47d2b4ea0a1c5d5e6f210}{
 \index{phys::UIScreen@{phys::UIScreen}!GetLayer@{GetLayer}}
@@ -206,7 +208,7 @@ Definition at line 129 of file uiscreen.cpp.
 \label{d9/de8/classphys_1_1UIScreen_a8b9aeb4599c47d2b4ea0a1c5d5e6f210}
 
 
-Gets an already created layer by index. 
+Gets an already created layer by it's index. 
 
 \begin{DoxyReturn}{Returns}
 Returns a pointer to the layer at the specified index. 
@@ -234,6 +236,26 @@ Returns a pointer to the layer of the specified name.
 
 
 Definition at line 103 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_ab558b5405a1f64d7558e34a217bfc28d}{
+\index{phys::UIScreen@{phys::UIScreen}!GetLayerbyZorder@{GetLayerbyZorder}}
+\index{GetLayerbyZorder@{GetLayerbyZorder}!phys::UIScreen@{phys::UIScreen}}
+\subsubsection[{GetLayerbyZorder}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UILayer} $\ast$ phys::UIScreen::GetLayerbyZorder (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Zorder}
+\end{DoxyParamCaption}
+)}}
+\label{d9/de8/classphys_1_1UIScreen_ab558b5405a1f64d7558e34a217bfc28d}
+
+
+Gets an already created layer by it's Zorder. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the layer with the specified Zorder. 
+\end{DoxyReturn}
+
+
+Definition at line 129 of file uiscreen.cpp.
 
 \hypertarget{classphys_1_1UIScreen_aee363edcdc7d21197e4103668011f8fb}{
 \index{phys::UIScreen@{phys::UIScreen}!GetName@{GetName}}
@@ -273,7 +295,7 @@ Returns the number of layers this class is storing.
 \end{DoxyReturn}
 
 
-Definition at line 124 of file uiscreen.cpp.
+Definition at line 137 of file uiscreen.cpp.
 
 \hypertarget{classphys_1_1UIScreen_a8f64052f7bb0b6be2f55c73f31bfea29}{
 \index{phys::UIScreen@{phys::UIScreen}!IsVisible@{IsVisible}}

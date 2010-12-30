@@ -67,8 +67,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c9c3d0cd1d02acdc626266ee485f51f"></a><!-- doxytag: member="phys::ParticleEffect::~ParticleEffect" ref="a8c9c3d0cd1d02acdc626266ee485f51f" args="()" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d69/classphys_1_1ParticleEffect.html#a8c9c3d0cd1d02acdc626266ee485f51f">~ParticleEffect</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d69/classphys_1_1ParticleEffect.html#a0e1a6f5fe489fc6e82c91df50fdab3c4">GetName</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the name of this particle effect.  <a href="#a0e1a6f5fe489fc6e82c91df50fdab3c4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d69/classphys_1_1ParticleEffect.html#a4e953f59bd989c7e5e59d26adf9fd60a">GetName</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the name of this particle effect.  <a href="#a4e953f59bd989c7e5e59d26adf9fd60a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee95ac9b688885361d3066a5a4b83965"></a><!-- doxytag: member="phys::ParticleEffect::EnableParticleEffect" ref="aee95ac9b688885361d3066a5a4b83965" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d69/classphys_1_1ParticleEffect.html#aee95ac9b688885361d3066a5a4b83965">EnableParticleEffect</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enables the particle effect, allowing it to render. <br/></td></tr>
@@ -88,7 +88,8 @@ Ogre::SceneNode *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="e
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pointer to the manager that created this class. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d69/classphys_1_1ParticleEffect.html#a6db9d28bd448a131448276ee03de1e6d">Node</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6db9d28bd448a131448276ee03de1e6d"></a><!-- doxytag: member="phys::ParticleEffect::Node" ref="a6db9d28bd448a131448276ee03de1e6d" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions. </p>
@@ -171,7 +172,7 @@ Friends</h2></td></tr>
 <p>This constructor should not be called on manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>System</em>&nbsp;</td><td>Pointer to the <a class="el" href="../../d1/ddd/namespaceOgre.html" title="Forward declaration for compatibility.">Ogre</a> ParticleSystem this class is based on. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>System</em>&nbsp;</td><td>Pointer to the Ogre ParticleSystem this class is based on. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>manager</em>&nbsp;</td><td>Pointer to the manager that this particle effect is to be used in. </td></tr>
   </table>
   </dd>
@@ -182,12 +183,12 @@ Friends</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a0e1a6f5fe489fc6e82c91df50fdab3c4"></a><!-- doxytag: member="phys::ParticleEffect::GetName" ref="a0e1a6f5fe489fc6e82c91df50fdab3c4" args="()" -->
+<a class="anchor" id="a4e953f59bd989c7e5e59d26adf9fd60a"></a><!-- doxytag: member="phys::ParticleEffect::GetName" ref="a4e953f59bd989c7e5e59d26adf9fd60a" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp; phys::ParticleEffect::GetName </td>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp; phys::ParticleEffect::GetName </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -200,26 +201,9 @@ Friends</h2></td></tr>
 <p>Gets the name of this particle effect. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name given to this particle effect. </dd></dl>
 
-<p>Implements <a class="el" href="../../df/dbd/classphys_1_1Attachable.html#ad1a9bbd300fe21c5cc7e5aa7e2c95b85">phys::Attachable</a>.</p>
+<p>Implements <a class="el" href="../../df/dbd/classphys_1_1Attachable.html#a56d2f5a6f17c14ff0c1d9906d17b0f52">phys::Attachable</a>.</p>
 
 <p>Definition at line <a class="el" href="../../d8/da7/particleeffect_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../d8/da7/particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="a6db9d28bd448a131448276ee03de1e6d"></a><!-- doxytag: member="phys::ParticleEffect::Node" ref="a6db9d28bd448a131448276ee03de1e6d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">friend class <a class="el" href="../../d0/ddc/classphys_1_1Node.html">Node</a><code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p><b>For internal use only.</b></p>
-
-<p>Definition at line <a class="el" href="../../de/dda/particleeffect_8h_source.html#l00067">67</a> of file <a class="el" href="../../de/dda/particleeffect_8h_source.html">particleeffect.h</a>.</p>
 
 </div>
 </div>
@@ -228,7 +212,7 @@ Friends</h2></td></tr>
 <li><a class="el" href="../../d8/da7/particleeffect_8cpp_source.html">particleeffect.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:17 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:21 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

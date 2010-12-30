@@ -76,7 +76,8 @@
 
 using namespace std;
 
-/// Forward declaration for compatibility
+// \internal
+// Forward declaration for compatibility
 namespace Ogre
 {
     class RenderWindow;

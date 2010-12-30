@@ -17,7 +17,7 @@
     
     <description>
       <!-- This is a description of the level -->
-      This is a sampled XML file, and not actually a level. But we tried.
+      This is a sample XML file, and not actually a level. But we tried.
     </description>
   
   </meta>
@@ -51,27 +51,34 @@
   <camera x="1" y="1" z="-5" looksatx="1" looksaty="1" looksatz="-5" ortho="true" />
 
   <!--  Actors are used to build the level they have the following attributes:
-  Type: “throwable" for an object that can be thrown and interact with physics and “Terrain" for an object that is stationary
-  Model: the Filename of the 3d mesh to use for the graphics
-  modelresourcegroup: The place to get the Model data from. “Default" to grab from the pool of resources that ship with Catch!, or omit this option to have models come from this level.
-  Shape: the physics shape to load from disk.
+  type:	"Moveable" For an object that can move and interact with physics. By default this is throwable.
+		“Terrain" for an object that is stationary but will interact with physics. This can never be throwable.
+		"GraphicsOnly" for an object with no physics interations, but can be seen. By default this is not throwable.
+  throwable: This is a yes/no or true/false property to determine whether or not a given actor with interact with the user's mouse while it is in the starting area.
+  collisions: This disables collisions with all other actors but still allows interaction with
+  name: A unique name for the actor. If you do not include one, one will assigned.
+  model: the Filename of the 3d mesh to use for the graphics
+  modelresourcegroup: The place to get the Model data from. "Default" to grab from the pool of resources that ship with Catch!, or omit this option to have models come from this level.
+  shape: he physics shape to load from disk.
   shaperesourcegroup: Same idea as the modelresource group, but affects the shape attribute instead
-  bounciness: A 0 to 1 number to define bounciness 0 is not bouncy, like a ball of clay, and 1 is perfectly bouncy. Defaults to 0 if unused
-  friction: 1 is will stop immediately when sliding, with 0 is frictionless. This defaults to .25 if unused -->
-  <Actor type="throwable" model="robot.mesh" shape="RobotDecomp3.bullet" x="2" y="2" />
+  bounciness: A 0 to 1 number to define bounciness 0 is not bouncy, like a ball of clay, and 1 is perfectly bouncy. Defaults to .25 if unused
+  friction: 2 is will stop immediately when sliding, 0 is frictionless. This defaults to .5 if unused. (1.7 is a tire on concrete, teflon is .04) -->
+  <Actor type="Moveable" name="Robot" model="robot.mesh" shape="RobotDecomp3.bullet" x="2" y="2" />
 
   <!-- If a model is supplied but a shape is not a physicsshapelevel must be provided. This uses the routines to generate physics shapes from graphics data 1 is really rough and 4 is pixel perfect. -->   
-  <Actor type="throwable" model="robot.mesh" physicsshapelevel="1" x="10" y="2" />
-  <Actor type="throwable" model="robot.mesh" physicsshapelevel="4" x="5" y="5" />
+  <Actor type="Moveable" model="robot.mesh" collisions="false" name="RobotSimple" physicsshapelevel="1" x="10" y="2" />
+  <Actor type="Moveable" model="robot.mesh" name="RobotPrecise" physicsshapelevel="4" x="5" y="5" />
   <Actor type="terrain" modelresourcegroup="default" model="plane.mesh" shape="plane.bullet" shaperesourcegroup="Default" startx="0" starty="0" />
 
-  <!-- to Win the game all pieces must be in the ending area
+  
+
+  <!-- To Win the game all pieces must be in the ending area
   EndConditions
-  EveryThingAtRest - Level Ends when all parts are off stage or so many points a reached
-  PointsReached - Level Ends when points are above a certain amount (use the PointsEnd attribute to define this.) or the same as EveryThingAtRest
+  	EveryThingAtRest - Level Ends when all parts are off stage or so many points a reached
+  	PointsReached - Level Ends when points are above a certain amount (use the PointsEnd attribute to define this.) or the same as EveryThingAtRest
   WinConditions - The player wins if the game if
-  StillInPlay - A percentage of the starting area object are still in play (Use the InPlayPercentage Attribute)
-  PointsReached - When points are above a certain amount (use the PointsWin attribute to define this).		-->
+  	StillInPlay - A percentage of the starting area object are still in play (Use the InPlayPercentage Attribute)
+  	PointsReached - When points are above a certain amount (use the PointsWin attribute to define this).		-->
   <goal endcondition="EveryThingAtRest" wincondition="stillinplay" InPlayPercentage="80"/>
   
 </level>     

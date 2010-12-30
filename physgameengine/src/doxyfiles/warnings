@@ -5,6 +5,7 @@
 /home/dev/physgame/physgameengine/src/constraint.h:332: warning: Compound phys::SliderConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:238: warning: Compound phys::HingeConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:166: warning: Compound phys::Generic6DofConstraint is not documented.
+/home/dev/physgame/physgameengine/src/uilinelist.h:67: warning: Compound phys::UI::LineList is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:297: warning: Compound phys::Point2PointConstraint is not documented.
 /home/dev/physgame/physgameengine/src/actorragdoll.cpp:49: warning: documented function `phys::ActorRagDoll::ActorRagDoll' was not declared or defined.
 /home/dev/physgame/physgameengine/src/actorragdoll.cpp:53: warning: documented function `phys::ActorRagDoll::~ActorRagDoll' was not declared or defined.
@@ -21,11 +22,11 @@
 /home/dev/physgame/physgameengine/src/attachable.h:66: warning: The following parameters of phys::Attachable::SetElementType(Attachable::AttachableElement Type) are not documented:
   parameter 'Type'
 /home/dev/physgame/physgameengine/src/camera.h:70: warning: Member ProjectionType (enumeration) of class phys::Camera is not documented.
-/home/dev/physgame/physgameengine/src/camera.h:185: warning: argument 'Enabled' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
-/home/dev/physgame/physgameengine/src/camera.h:185: warning: argument 'Target' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
-/home/dev/physgame/physgameengine/src/camera.h:185: warning: argument 'Offset' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
-/home/dev/physgame/physgameengine/src/camera.h:185: warning: argument 'Enabled' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
-/home/dev/physgame/physgameengine/src/camera.h:185: warning: argument 'Target' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
+/home/dev/physgame/physgameengine/src/camera.h:188: warning: argument 'Enabled' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
+/home/dev/physgame/physgameengine/src/camera.h:188: warning: argument 'Target' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
+/home/dev/physgame/physgameengine/src/camera.h:188: warning: argument 'Offset' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
+/home/dev/physgame/physgameengine/src/camera.h:188: warning: argument 'Enabled' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
+/home/dev/physgame/physgameengine/src/camera.h:188: warning: argument 'Target' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
 /home/dev/physgame/physgameengine/src/cameramanager.h:79: warning: Member FindCamera(String Name) (function) of class phys::CameraManager is not documented.
 /home/dev/physgame/physgameengine/src/cameramanager.h:75: warning: Member Viewports (variable) of class phys::CameraManager is not documented.
 /home/dev/physgame/physgameengine/src/cameramanager.h:76: warning: Member SManager (variable) of class phys::CameraManager is not documented.
@@ -139,6 +140,7 @@
 /home/dev/physgame/physgameengine/src/node.h:128: warning: argument 'Position' of command @param is not found in the argument list of phys::Node::SetOrientation(Quaternion Orientation)
 /home/dev/physgame/physgameengine/src/node.h:128: warning: The following parameters of phys::Node::SetOrientation(Quaternion Orientation) are not documented:
   parameter 'Orientation'
+/home/dev/physgame/physgameengine/src/resourceinputstream.h:98: warning: Member operator>>(T &Data) (function) of class phys::ResourceInputStream is not documented.
 /home/dev/physgame/physgameengine/src/scenemanager.h:73: warning: Member SceneManagerType (enumeration) of class phys::SceneManager is not documented.
 /home/dev/physgame/physgameengine/src/scenemanager.h:89: warning: argument 'world' of command @param is not found in the argument list of phys::SceneManager::SceneManager(const String &Name, SceneManager::SceneManagerType ManagerType)
 /home/dev/physgame/physgameengine/src/scenemanager.h:206: warning: The following parameters of phys::SceneManager::CreateOrbitingNode(const String &Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack) are not documented:
@@ -158,27 +160,25 @@
 /home/dev/physgame/physgameengine/src/soundmanager.h:151: warning: The following parameters of phys::SoundManager::AddSoundToSoundSet(String SoundSetName, Sound *SoundInst) are not documented:
   parameter 'SoundSetName'
   parameter 'SoundInst'
-/home/dev/physgame/physgameengine/src/uilayer.h:79: warning: Member GorillaLayer (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:80: warning: Member Parent (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:81: warning: Member Manager (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:82: warning: Member Name (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:83: warning: Member Buttons (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:84: warning: Member Rectangles (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:85: warning: Member Captions (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:86: warning: Member MarkupTexts (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:87: warning: Member Widgets (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:225: warning: argument 'Name' of command @param is not found in the argument list of phys::UILayer::CreateCheckBox(String &name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText)
-/home/dev/physgame/physgameengine/src/uilayer.h:225: warning: The following parameters of phys::UILayer::CreateCheckBox(String &name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText) are not documented:
-  parameter 'name'
-/home/dev/physgame/physgameengine/src/uilayer.h:102: warning: argument 'Visable' of command @param is not found in the argument list of phys::UILayer::SetVisible(bool Visible)
-/home/dev/physgame/physgameengine/src/uilayer.h:102: warning: The following parameters of phys::UILayer::SetVisible(bool Visible) are not documented:
+/home/dev/physgame/physgameengine/src/uilayer.h:84: warning: Member GorillaLayer (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:85: warning: Member Parent (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:86: warning: Member Manager (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:87: warning: Member Name (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:88: warning: Member Buttons (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:89: warning: Member Rectangles (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:90: warning: Member Captions (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:91: warning: Member MarkupTexts (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:92: warning: Member LineLists (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:93: warning: Member Widgets (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:108: warning: argument 'Visable' of command @param is not found in the argument list of phys::UILayer::SetVisible(bool Visible)
+/home/dev/physgame/physgameengine/src/uilayer.h:108: warning: The following parameters of phys::UILayer::SetVisible(bool Visible) are not documented:
   parameter 'Visible'
 /home/dev/physgame/physgameengine/src/uimanager.h:84: warning: Member HoverChecks() (function) of class phys::UIManager is not documented.
-/home/dev/physgame/physgameengine/src/uimanager.h:85: warning: Member WidgetControlUpdate() (function) of class phys::UIManager is not documented.
+/home/dev/physgame/physgameengine/src/uimanager.h:85: warning: Member WidgetFocusUpdate() (function) of class phys::UIManager is not documented.
 /home/dev/physgame/physgameengine/src/uimanager.h:79: warning: Member Screens (variable) of class phys::UIManager is not documented.
 /home/dev/physgame/physgameengine/src/uimanager.h:80: warning: Member HoveredButton (variable) of class phys::UIManager is not documented.
 /home/dev/physgame/physgameengine/src/uimanager.h:81: warning: Member HoveredWidget (variable) of class phys::UIManager is not documented.
-/home/dev/physgame/physgameengine/src/uimanager.h:82: warning: Member WidgetControl (variable) of class phys::UIManager is not documented.
+/home/dev/physgame/physgameengine/src/uimanager.h:82: warning: Member WidgetFocus (variable) of class phys::UIManager is not documented.
 /home/dev/physgame/physgameengine/src/uimanager.h:83: warning: Member InputQueryer (variable) of class phys::UIManager is not documented.
 /home/dev/physgame/physgameengine/src/uiscreen.h:74: warning: Member GorillaScreen (variable) of class phys::UIScreen is not documented.
 /home/dev/physgame/physgameengine/src/uiscreen.h:75: warning: Member Manager (variable) of class phys::UIScreen is not documented.
@@ -187,8 +187,8 @@
 /home/dev/physgame/physgameengine/src/uiscreen.h:79: warning: argument 'manager' of command @param is not found in the argument list of phys::UIScreen::UIScreen(const String &name, Gorilla::Screen *GScreen)
 /home/dev/physgame/physgameengine/src/uiscreen.h:79: warning: The following parameters of phys::UIScreen::UIScreen(const String &name, Gorilla::Screen *GScreen) are not documented:
   parameter 'name'
-/home/dev/physgame/physgameengine/src/uiscreen.h:116: warning: argument 'Name' of command @param is not found in the argument list of phys::UIScreen::DestroyLayer(UILayer *Layer)
-/home/dev/physgame/physgameengine/src/uiscreen.h:116: warning: The following parameters of phys::UIScreen::DestroyLayer(UILayer *Layer) are not documented:
+/home/dev/physgame/physgameengine/src/uiscreen.h:119: warning: argument 'Name' of command @param is not found in the argument list of phys::UIScreen::DestroyLayer(UILayer *Layer)
+/home/dev/physgame/physgameengine/src/uiscreen.h:119: warning: The following parameters of phys::UIScreen::DestroyLayer(UILayer *Layer) are not documented:
   parameter 'Layer'
 /home/dev/physgame/physgameengine/src/uiscreen.h:88: warning: argument 'Visable' of command @param is not found in the argument list of phys::UIScreen::SetVisible(bool Visible)
 /home/dev/physgame/physgameengine/src/uiscreen.h:88: warning: The following parameters of phys::UIScreen::SetVisible(bool Visible) are not documented:
@@ -201,7 +201,7 @@
 /home/dev/physgame/physgameengine/src/vector2.h:83: warning: argument 'temp' of command @param is not found in the argument list of phys::Vector2::ExtractOgreVector2(Ogre::Vector2 Ours)
 /home/dev/physgame/physgameengine/src/vector2.h:83: warning: The following parameters of phys::Vector2::ExtractOgreVector2(Ogre::Vector2 Ours) are not documented:
   parameter 'Ours'
-/home/dev/physgame/physgameengine/src/crossplatform.h:125: warning: The following parameters of phys::crossplatform::RenderPhysWorld(World *TheWorld, Ogre::RenderWindow *TheOgreWindow) are not documented:
+/home/dev/physgame/physgameengine/src/crossplatform.h:126: warning: The following parameters of phys::crossplatform::RenderPhysWorld(World *TheWorld, Ogre::RenderWindow *TheOgreWindow) are not documented:
   parameter 'TheOgreWindow'
 /home/dev/physgame/physgameengine/src/eventmanager.cpp:69: warning: Member PhysSDLFilter(const SDL_Event *event) (function) of namespace phys::internal is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:74: warning: Member GorillaRectangle (variable) of class phys::UI::Button is not documented.
@@ -216,23 +216,35 @@
 /home/dev/physgame/physgameengine/src/uibutton.h:83: warning: Member RelPosition (variable) of class phys::UI::Button is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:84: warning: Member RelSize (variable) of class phys::UI::Button is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:85: warning: Member Name (variable) of class phys::UI::Button is not documented.
-/home/dev/physgame/physgameengine/src/uibutton.h:128: warning: The following parameters of phys::UI::Button::SetBorder(Real Width, ColourValue &Colour) are not documented:
+/home/dev/physgame/physgameengine/src/uibutton.h:138: warning: The following parameters of phys::UI::Button::SetBorder(Real Width, ColourValue &Colour) are not documented:
   parameter 'Width'
-/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:60: warning: Member BoxBack (variable) of class phys::UI::ButtonListBox is not documented.
-/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:62: warning: Member Selections (variable) of class phys::UI::ButtonListBox is not documented.
-/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:63: warning: Member VisableSelections (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:63: warning: Member BoxBack (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:66: warning: Member Selected (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:67: warning: Member Selections (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:68: warning: Member VisibleSelections (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:69: warning: Member AutoHideScroll (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:70: warning: Member LastScrollValue (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:71: warning: Member SelectionDist (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:72: warning: Member BorderWidth (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:73: warning: Member TGlyph (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:74: warning: Member NumVisible (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:75: warning: Member TSize (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:76: warning: Member BorderColour (variable) of class phys::UI::ButtonListBox is not documented.
+/home/dev/physgame/physgameengine/src/uibuttonlistbox.h:114: warning: The following parameters of phys::UI::ButtonListBox::AddSelection(ConstString &name, ConstString &BackgroundSprite="", ConstString &TextLabel="") are not documented:
+  parameter 'name'
 /home/dev/physgame/physgameengine/src/uicaption.h:76: warning: Member GorillaCaption (variable) of class phys::UI::Caption is not documented.
 /home/dev/physgame/physgameengine/src/uicaption.h:77: warning: Member GorillaRectangle (variable) of class phys::UI::Caption is not documented.
 /home/dev/physgame/physgameengine/src/uicaption.h:78: warning: Member Parent (variable) of class phys::UI::Caption is not documented.
 /home/dev/physgame/physgameengine/src/uicaption.h:79: warning: Member Manager (variable) of class phys::UI::Caption is not documented.
 /home/dev/physgame/physgameengine/src/uicaption.h:80: warning: Member Glyphs (variable) of class phys::UI::Caption is not documented.
-/home/dev/physgame/physgameengine/src/uicaption.h:81: warning: Member RelPosition (variable) of class phys::UI::Caption is not documented.
-/home/dev/physgame/physgameengine/src/uicaption.h:82: warning: Member RelSize (variable) of class phys::UI::Caption is not documented.
-/home/dev/physgame/physgameengine/src/uicaption.h:83: warning: Member Name (variable) of class phys::UI::Caption is not documented.
-/home/dev/physgame/physgameengine/src/uicaption.h:85: warning: argument 'Name' of command @param is not found in the argument list of phys::UI::Caption::Caption(String &name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer *Layer)
-/home/dev/physgame/physgameengine/src/uicaption.h:85: warning: The following parameters of phys::UI::Caption::Caption(String &name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer *Layer) are not documented:
+/home/dev/physgame/physgameengine/src/uicaption.h:81: warning: Member MouseHover (variable) of class phys::UI::Caption is not documented.
+/home/dev/physgame/physgameengine/src/uicaption.h:82: warning: Member RelPosition (variable) of class phys::UI::Caption is not documented.
+/home/dev/physgame/physgameengine/src/uicaption.h:83: warning: Member RelSize (variable) of class phys::UI::Caption is not documented.
+/home/dev/physgame/physgameengine/src/uicaption.h:84: warning: Member Name (variable) of class phys::UI::Caption is not documented.
+/home/dev/physgame/physgameengine/src/uicaption.h:86: warning: argument 'Name' of command @param is not found in the argument list of phys::UI::Caption::Caption(ConstString &name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer *Layer)
+/home/dev/physgame/physgameengine/src/uicaption.h:86: warning: The following parameters of phys::UI::Caption::Caption(ConstString &name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer *Layer) are not documented:
   parameter 'name'
-/home/dev/physgame/physgameengine/src/uicaption.h:108: warning: argument 'Returns' of command @param is not found in the argument list of phys::UI::Caption::GetGlyphIndex()
+/home/dev/physgame/physgameengine/src/uicaption.h:132: warning: argument 'Returns' of command @param is not found in the argument list of phys::UI::Caption::GetGlyphIndex()
 /home/dev/physgame/physgameengine/src/uicheckbox.h:70: warning: Member SetSpriteSet(std::pair< std::string, std::string > &SpriteSet) (function) of class phys::UI::CheckBox is not documented.
 /home/dev/physgame/physgameengine/src/uicheckbox.h:62: warning: Member Box (variable) of class phys::UI::CheckBox is not documented.
 /home/dev/physgame/physgameengine/src/uicheckbox.h:63: warning: Member Label (variable) of class phys::UI::CheckBox is not documented.
@@ -240,15 +252,43 @@
 /home/dev/physgame/physgameengine/src/uicheckbox.h:67: warning: Member GlyphIndex (variable) of class phys::UI::CheckBox is not documented.
 /home/dev/physgame/physgameengine/src/uicheckbox.h:68: warning: Member Checked (variable) of class phys::UI::CheckBox is not documented.
 /home/dev/physgame/physgameengine/src/uicheckbox.h:69: warning: Member CheckLock (variable) of class phys::UI::CheckBox is not documented.
-/home/dev/physgame/physgameengine/src/uicheckbox.h:75: warning: The following parameters of phys::UI::CheckBox::CheckBox(String &name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText, UILayer *Layer) are not documented:
+/home/dev/physgame/physgameengine/src/uicheckbox.h:75: warning: The following parameters of phys::UI::CheckBox::CheckBox(ConstString &name, Vector2 Position, Vector2 Size, Whole Glyph, ConstString &LabelText, UILayer *Layer) are not documented:
   parameter 'Glyph'
   parameter 'LabelText'
-/home/dev/physgame/physgameengine/src/uicheckbox.h:104: warning: argument 'Unchecked' of command @param is not found in the argument list of phys::UI::CheckBox::SetCheckedSprite(String &Checked, String &Hovered="")
-/home/dev/physgame/physgameengine/src/uicheckbox.h:104: warning: The following parameters of phys::UI::CheckBox::SetCheckedSprite(String &Checked, String &Hovered="") are not documented:
+/home/dev/physgame/physgameengine/src/uicheckbox.h:117: warning: argument 'Unchecked' of command @param is not found in the argument list of phys::UI::CheckBox::SetCheckedSprite(ConstString &Checked, ConstString &Hovered="")
+/home/dev/physgame/physgameengine/src/uicheckbox.h:117: warning: The following parameters of phys::UI::CheckBox::SetCheckedSprite(ConstString &Checked, ConstString &Hovered="") are not documented:
   parameter 'Checked'
-/home/dev/physgame/physgameengine/src/uicheckbox.h:90: warning: argument 'Label' of command @param is not found in the argument list of phys::UI::CheckBox::SetLabelText(String &LabelText)
-/home/dev/physgame/physgameengine/src/uicheckbox.h:90: warning: The following parameters of phys::UI::CheckBox::SetLabelText(String &LabelText) are not documented:
+/home/dev/physgame/physgameengine/src/uicheckbox.h:103: warning: argument 'Label' of command @param is not found in the argument list of phys::UI::CheckBox::SetLabelText(String &LabelText)
+/home/dev/physgame/physgameengine/src/uicheckbox.h:103: warning: The following parameters of phys::UI::CheckBox::SetLabelText(String &LabelText) are not documented:
   parameter 'LabelText'
+/home/dev/physgame/physgameengine/src/uilinelist.h:69: warning: Member GLineList (variable) of class phys::UI::LineList is not documented.
+/home/dev/physgame/physgameengine/src/uilinelist.h:70: warning: Member Parent (variable) of class phys::UI::LineList is not documented.
+/home/dev/physgame/physgameengine/src/uilinelist.h:71: warning: Member Manager (variable) of class phys::UI::LineList is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:64: warning: Member BoxBack (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:67: warning: Member Selected (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:68: warning: Member HoveredCaption (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:69: warning: Member Selections (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:70: warning: Member VisibleSelections (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:71: warning: Member AutoHideScroll (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:72: warning: Member LastScrollValue (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:73: warning: Member SelectionDist (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:74: warning: Member NumVisible (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:75: warning: Member THAlign (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:76: warning: Member TVAlign (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:77: warning: Member TGlyph (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:78: warning: Member TSize (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:79: warning: Member TTColour (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:80: warning: Member TBGColour (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:81: warning: Member SelectColour (variable) of class phys::UI::ListBox is not documented.
+/home/dev/physgame/physgameengine/src/uilistbox.h:89: warning: argument 'ScrollbarStyle' of command @param is not found in the argument list of phys::UI::ListBox::ListBox(ConstString &name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer *Layer)
+/home/dev/physgame/physgameengine/src/uilistbox.h:89: warning: The following parameters of phys::UI::ListBox::ListBox(ConstString &name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer *Layer) are not documented:
+  parameter 'ScrollStyle'
+/home/dev/physgame/physgameengine/src/uilistbox.h:129: warning: argument 'TextLabel' of command @param is not found in the argument list of phys::UI::ListBox::AddSelection(ConstString &name, ConstString &Text, ConstString &BackgroundSprite="")
+/home/dev/physgame/physgameengine/src/uilistbox.h:129: warning: The following parameters of phys::UI::ListBox::AddSelection(ConstString &name, ConstString &Text, ConstString &BackgroundSprite="") are not documented:
+  parameter 'name'
+  parameter 'Text'
+/home/dev/physgame/physgameengine/src/uilistbox.h:119: warning: The following parameters of phys::UI::ListBox::SetMoreTemplateParameters(ColourValue TextColour=ColourValue(0.0, 0.0, 0.0, 1.0), ColourValue BackgroundColour=ColourValue(1.0, 1.0, 1.0, 1.0), UI::TextHorizontalAlign HorAlign=UI::Txt_Middle, UI::TextVerticalAlign VertAlign=UI::Txt_Center) are not documented:
+  parameter 'TextColour'
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:72: warning: Member GMarkup (variable) of class phys::UI::MarkupText is not documented.
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:73: warning: Member Parent (variable) of class phys::UI::MarkupText is not documented.
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:74: warning: Member Manager (variable) of class phys::UI::MarkupText is not documented.
@@ -256,43 +296,58 @@
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:76: warning: Member RelPosition (variable) of class phys::UI::MarkupText is not documented.
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:77: warning: Member RelSize (variable) of class phys::UI::MarkupText is not documented.
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:78: warning: Member Name (variable) of class phys::UI::MarkupText is not documented.
-/home/dev/physgame/physgameengine/src/uimarkuptext.h:80: warning: argument 'Name' of command @param is not found in the argument list of phys::UI::MarkupText::MarkupText(String &name, Vector2 Position, Whole Glyph, String Text, UILayer *Layer)
-/home/dev/physgame/physgameengine/src/uimarkuptext.h:80: warning: The following parameters of phys::UI::MarkupText::MarkupText(String &name, Vector2 Position, Whole Glyph, String Text, UILayer *Layer) are not documented:
+/home/dev/physgame/physgameengine/src/uimarkuptext.h:80: warning: argument 'Name' of command @param is not found in the argument list of phys::UI::MarkupText::MarkupText(ConstString &name, Vector2 Position, Whole Glyph, String Text, UILayer *Layer)
+/home/dev/physgame/physgameengine/src/uimarkuptext.h:80: warning: The following parameters of phys::UI::MarkupText::MarkupText(ConstString &name, Vector2 Position, Whole Glyph, String Text, UILayer *Layer) are not documented:
   parameter 'name'
+/home/dev/physgame/physgameengine/src/uimenu.h:65: warning: Member Menu(ConstString name, UILayer *Layer) (function) of class phys::UI::Menu is not documented.
+/home/dev/physgame/physgameengine/src/uimenu.h:62: warning: Member RootWindow (variable) of class phys::UI::Menu is not documented.
+/home/dev/physgame/physgameengine/src/uimenu.h:63: warning: Member MenuStack (variable) of class phys::UI::Menu is not documented.
+/home/dev/physgame/physgameengine/src/uimenuwindow.h:61: warning: Member ParentWindow (variable) of class phys::UI::MenuWindow is not documented.
+/home/dev/physgame/physgameengine/src/uimenuwindow.h:62: warning: Member ChildWindows (variable) of class phys::UI::MenuWindow is not documented.
 /home/dev/physgame/physgameengine/src/uirectangle.h:71: warning: Member GRectangle (variable) of class phys::UI::Rectangle is not documented.
 /home/dev/physgame/physgameengine/src/uirectangle.h:72: warning: Member Parent (variable) of class phys::UI::Rectangle is not documented.
 /home/dev/physgame/physgameengine/src/uirectangle.h:73: warning: Member Manager (variable) of class phys::UI::Rectangle is not documented.
 /home/dev/physgame/physgameengine/src/uirectangle.h:74: warning: Member RelPosition (variable) of class phys::UI::Rectangle is not documented.
 /home/dev/physgame/physgameengine/src/uirectangle.h:75: warning: Member RelSize (variable) of class phys::UI::Rectangle is not documented.
 /home/dev/physgame/physgameengine/src/uirectangle.h:76: warning: Member MouseHover (variable) of class phys::UI::Rectangle is not documented.
-/home/dev/physgame/physgameengine/src/uirectangle.h:98: warning: The following parameters of phys::UI::Rectangle::SetBorder(Real Width, ColourValue &Colour) are not documented:
+/home/dev/physgame/physgameengine/src/uirectangle.h:108: warning: The following parameters of phys::UI::Rectangle::SetBorder(Real Width, ColourValue &Colour) are not documented:
   parameter 'Width'
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:71: warning: Member BarStyle (enumeration) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:79: warning: Member Scroller (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:80: warning: Member ScrollBack (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:81: warning: Member UpLeftButton (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:82: warning: Member DownRightButton (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:83: warning: Member HoveredButton (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:84: warning: Member HoveredBack (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:85: warning: Member ScrollBackOffset (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:86: warning: Member UpLeftButtonOffset (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:87: warning: Member DownRightButtonOffset (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:88: warning: Member ScrollerUpperLimit (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:89: warning: Member ScrollerLowerLimit (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:90: warning: Member ScrollerValue (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:91: warning: Member IncrementDistance (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:92: warning: Member ScrollStyle (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:93: warning: Member Horizontal (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:94: warning: Member ScrollerLock (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:95: warning: Member UpLeftLock (variable) of class phys::UI::Scrollbar is not documented.
-/home/dev/physgame/physgameengine/src/uiscrollbar.h:96: warning: Member DownRightLock (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:72: warning: Member Scroller (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:73: warning: Member ScrollBack (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:74: warning: Member UpLeftButton (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:75: warning: Member DownRightButton (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:76: warning: Member HoveredButton (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:77: warning: Member HoveredBack (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:78: warning: Member ScrollBackOffset (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:79: warning: Member UpLeftButtonOffset (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:80: warning: Member DownRightButtonOffset (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:81: warning: Member ScrollerUpperLimit (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:82: warning: Member ScrollerLowerLimit (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:83: warning: Member ScrollerValue (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:84: warning: Member IncrementDistance (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:85: warning: Member ScrollStyle (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:86: warning: Member Horizontal (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:87: warning: Member ScrollerLock (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:88: warning: Member ScrollBackLock (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:89: warning: Member UpLeftLock (variable) of class phys::UI::Scrollbar is not documented.
+/home/dev/physgame/physgameengine/src/uiscrollbar.h:90: warning: Member DownRightLock (variable) of class phys::UI::Scrollbar is not documented.
 /home/dev/physgame/physgameengine/src/uitextbutton.h:60: warning: Member GorillaButton (variable) of class phys::UI::TextButton is not documented.
-/home/dev/physgame/physgameengine/src/uiwidget.h:63: warning: Member WidgetType (enumeration) of class phys::UI::Widget is not documented.
-/home/dev/physgame/physgameengine/src/uiwidget.h:70: warning: Member Manager (variable) of class phys::UI::Widget is not documented.
-/home/dev/physgame/physgameengine/src/uiwidget.h:71: warning: Member Parent (variable) of class phys::UI::Widget is not documented.
-/home/dev/physgame/physgameengine/src/uiwidget.h:72: warning: Member RelPosition (variable) of class phys::UI::Widget is not documented.
-/home/dev/physgame/physgameengine/src/uiwidget.h:73: warning: Member RelSize (variable) of class phys::UI::Widget is not documented.
-/home/dev/physgame/physgameengine/src/uiwidget.h:74: warning: Member Type (variable) of class phys::UI::Widget is not documented.
-/home/dev/physgame/physgameengine/src/uiwidget.h:75: warning: Member Name (variable) of class phys::UI::Widget is not documented.
-/home/dev/physgame/physgameengine/src/uiwidget.h:79: warning: The following parameters of phys::UI::Widget::Widget(const String &name, UILayer *parent) are not documented:
+/home/dev/physgame/physgameengine/src/uiwidget.h:64: warning: Member WidgetType (enumeration) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:78: warning: Member Manager (variable) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:79: warning: Member Parent (variable) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:80: warning: Member HoveredButton (variable) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:81: warning: Member HoveredSubWidget (variable) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:82: warning: Member SubWidgetFocus (variable) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:83: warning: Member Visible (variable) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:84: warning: Member RelPosition (variable) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:85: warning: Member RelSize (variable) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:86: warning: Member Type (variable) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:87: warning: Member Name (variable) of class phys::UI::Widget is not documented.
+/home/dev/physgame/physgameengine/src/uiwidget.h:95: warning: The following parameters of phys::UI::Widget::Widget(const String &name, UILayer *parent) are not documented:
   parameter 'name'
+/home/dev/physgame/physgameengine/src/uiwindow.h:76: warning: Member WindowBack (variable) of class phys::UI::Window is not documented.
+/home/dev/physgame/physgameengine/src/uiwindow.h:78: warning: Member Buttons (variable) of class phys::UI::Window is not documented.
+/home/dev/physgame/physgameengine/src/uiwindow.h:79: warning: Member Rectangles (variable) of class phys::UI::Window is not documented.
+/home/dev/physgame/physgameengine/src/uiwindow.h:80: warning: Member Captions (variable) of class phys::UI::Window is not documented.
+/home/dev/physgame/physgameengine/src/uiwindow.h:81: warning: Member MarkupTexts (variable) of class phys::UI::Window is not documented.
+/home/dev/physgame/physgameengine/src/uiwindow.h:82: warning: Member Widgets (variable) of class phys::UI::Window is not documented.

@@ -196,8 +196,8 @@
 <a name="l00166"></a>00166     <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5" title="Pulls System and Window manager Events from the all the subsystems for use in the EventManager...">EventManager::UpdateSystemEvents</a>()
 <a name="l00167"></a>00167     {
 <a name="l00168"></a>00168         this-&gt;PreProcessSDLEvents();
-<a name="l00169"></a>00169         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime Event logging Function.">Log</a>(<span class="stringliteral">&quot;WM EventCount Pending:&quot;</span>);
-<a name="l00170"></a>00170         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime Event logging Function.">Log</a>(SDL_WmEvents.size());<span class="comment"></span>
+<a name="l00169"></a>00169         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WM EventCount Pending:&quot;</span>);
+<a name="l00170"></a>00170         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(SDL_WmEvents.size());<span class="comment"></span>
 <a name="l00171"></a>00171 <span class="comment">        /// @todo make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)</span>
 <a name="l00172"></a>00172 <span class="comment"></span>    }
 <a name="l00173"></a>00173 
@@ -478,7 +478,7 @@
 <a name="l00448"></a>00448         }
 <a name="l00449"></a>00449 
 <a name="l00450"></a>00450         <span class="keywordflow">if</span> (ItFailed)
-<a name="l00451"></a>00451             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported Polling Check on this Platform&quot;</span>);
+<a name="l00451"></a>00451             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception. It streams any thrown object to the log...">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported Polling Check on this Platform&quot;</span>);
 <a name="l00452"></a>00452     }
 <a name="l00453"></a>00453 
 <a name="l00454"></a>00454     <span class="keywordtype">void</span> <a class="code" href="../../da/dde/classphys_1_1EventManager.html#adaf7d5346932506ed43f893eb071fd39" title="Removes Events from the list(s) of what needs to be polled.">EventManager::RemovePollingCheck</a>(<span class="keyword">const</span> MetaCode &amp;InputToStopPolling)
@@ -537,9 +537,9 @@
 <a name="l00507"></a>00507         }
 <a name="l00508"></a>00508 
 <a name="l00509"></a>00509         <span class="keywordflow">if</span> (!supported)
-<a name="l00510"></a>00510             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported Polling Check on this Platform, Cannot Remove&quot;</span>);
+<a name="l00510"></a>00510             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception. It streams any thrown object to the log...">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported Polling Check on this Platform, Cannot Remove&quot;</span>);
 <a name="l00511"></a>00511         <span class="keywordflow">if</span> (ItFailed)
-<a name="l00512"></a>00512             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception currently.">LogAndThrow</a>(<span class="stringliteral">&quot;Polling Check did not exist, Cannot Remove&quot;</span>);
+<a name="l00512"></a>00512             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception. It streams any thrown object to the log...">LogAndThrow</a>(<span class="stringliteral">&quot;Polling Check did not exist, Cannot Remove&quot;</span>);
 <a name="l00513"></a>00513     }
 <a name="l00514"></a>00514 
 <a name="l00515"></a>00515 
@@ -703,7 +703,7 @@
 <a name="l00673"></a>00673 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -279,7 +279,7 @@
 <a name="l00249"></a>00249     }
 <a name="l00250"></a>00250 
 <a name="l00251"></a>00251     <span class="keywordtype">void</span> <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#aeae24cc1087ad174d406a7a5117d0aed" title="Sets the origin for the area effect.">AreaEffect::SetLocation</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Location)
-<a name="l00252"></a><a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a31a961aa88c3ba879155f9441dc1da91">00252</a>     {
+<a name="l00252"></a><a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a6395eeec0a3aec2385027cca35cf15cb">00252</a>     {
 <a name="l00253"></a>00253         <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#ae730c591bf929404f337d71d4119bde8" title="The object representing the AE field itself.">Ghost</a>-&gt;getWorldTransform().setOrigin(Location.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
 <a name="l00254"></a>00254     }
 <a name="l00255"></a>00255 
@@ -289,7 +289,7 @@
 <a name="l00259"></a>00259         <span class="keywordflow">return</span> Loc;
 <a name="l00260"></a>00260     }
 <a name="l00261"></a>00261 
-<a name="l00262"></a><a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a72a9673c926ce876df630c4aecfc09f6">00262</a>     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a31a961aa88c3ba879155f9441dc1da91" title="Gets the Area Effects name.">AreaEffect::GetName</a>()
+<a name="l00262"></a><a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a72a9673c926ce876df630c4aecfc09f6">00262</a>     <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a6395eeec0a3aec2385027cca35cf15cb" title="Gets the Area Effects name.">AreaEffect::GetName</a>()
 <a name="l00263"></a>00263     {
 <a name="l00264"></a>00264         <span class="keywordflow">return</span> <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a1cf5a878eb22b30a166f5b065944a986" title="The name of the Area Effect.">Name</a>;
 <a name="l00265"></a>00265     }
@@ -355,7 +355,7 @@
 <a name="l00325"></a>00325             <span class="keywordflow">for</span> ( CurrIt = Current-&gt;begin() ; CurrIt != Current-&gt;end() ; CurrIt++ )
 <a name="l00326"></a><a class="code" href="../../d4/d8a/classphys_1_1GravityField.html#a9093176e954b4c631d0757a553971cfd">00326</a>             {
 <a name="l00327"></a>00327                 Act = (*CurrIt);
-<a name="l00328"></a>00328                 <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a3008e8e90236141ca4c21a9580e6f5de" title="World pointer simply to enable the effects of this class to be as diverse as the engine features...">TheWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime Event logging Function.">Log</a>(Act);
+<a name="l00328"></a>00328                 <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a3008e8e90236141ca4c21a9580e6f5de" title="World pointer simply to enable the effects of this class to be as diverse as the engine features...">TheWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(Act);
 <a name="l00329"></a>00329             }
 <a name="l00330"></a><a class="code" href="../../d4/d8a/classphys_1_1GravityField.html#ae41a656b247a2982da2e1ae666c605d0">00330</a>         }
 <a name="l00331"></a>00331     }
@@ -411,7 +411,7 @@
 <a name="l00381"></a>00381 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

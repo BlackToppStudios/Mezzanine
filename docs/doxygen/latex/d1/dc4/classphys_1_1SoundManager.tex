@@ -28,9 +28,9 @@ void \hyperlink{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{Ini
 \begin{DoxyCompactList}\small\item\em Inherited Initializer. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{DoMainLoopItems} ()
 \begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SoundManager_aa0fc07170611851f3fa888c8e28d99df}{InitializeManager} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&DeviceName, int OutputFrequency=-\/1, int EAXEffectSlots=4)
+void \hyperlink{classphys_1_1SoundManager_a735ca3ad1554d70623ac60f38ca4cefc}{InitializeManager} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&DeviceName, int OutputFrequency=-\/1, int EAXEffectSlots=4)
 \begin{DoxyCompactList}\small\item\em Initializes the Manager. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Sound}{Sound} $\ast$ \hyperlink{classphys_1_1SoundManager_ac9e68fef909b72110e9b68ff2674bcbb}{CreateSound} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&SoundName, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&FilePath, bool Stream)
+\hyperlink{classphys_1_1Sound}{Sound} $\ast$ \hyperlink{classphys_1_1SoundManager_a4504934e7a6a75045f0a8d303b7be0b8}{CreateSound} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&SoundName, \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&FilePath, bool Stream)
 \begin{DoxyCompactList}\small\item\em Creates a sound instance from a file that can be used to play sounds. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Sound}{Sound} $\ast$ \hyperlink{classphys_1_1SoundManager_aa039c3d7a5ee961be0934a58fd3826fa}{CreateSoundFromMemory} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&SoundName, const char $\ast$Data, int Size, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Extension)
 \begin{DoxyCompactList}\small\item\em Creates a sound instance from a memory buffer. \item\end{DoxyCompactList}\item 
@@ -166,17 +166,17 @@ Internally the Physgame engine currently uses cAudio to process 3d sound. It has
 
 Definition at line 194 of file soundmanager.cpp.
 
-\hypertarget{classphys_1_1SoundManager_ac9e68fef909b72110e9b68ff2674bcbb}{
+\hypertarget{classphys_1_1SoundManager_a4504934e7a6a75045f0a8d303b7be0b8}{
 \index{phys::SoundManager@{phys::SoundManager}!CreateSound@{CreateSound}}
 \index{CreateSound@{CreateSound}!phys::SoundManager@{phys::SoundManager}}
 \subsubsection[{CreateSound}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sound} $\ast$ phys::SoundManager::CreateSound (
 \begin{DoxyParamCaption}
-\item[{{\bf String} \&}]{ SoundName, }
-\item[{{\bf String} \&}]{ FilePath, }
+\item[{{\bf ConstString} \&}]{ SoundName, }
+\item[{{\bf ConstString} \&}]{ FilePath, }
 \item[{bool}]{ Stream}
 \end{DoxyParamCaption}
 )}}
-\label{d1/dc4/classphys_1_1SoundManager_ac9e68fef909b72110e9b68ff2674bcbb}
+\label{d1/dc4/classphys_1_1SoundManager_a4504934e7a6a75045f0a8d303b7be0b8}
 
 
 Creates a sound instance from a file that can be used to play sounds. 
@@ -481,7 +481,7 @@ Definition at line 186 of file soundmanager.cpp.
 
 Inherited Initializer. 
 
-Written to allow the class to compile, this currently does nothing, but could be used to run code Use \hyperlink{classphys_1_1SoundManager_aa0fc07170611851f3fa888c8e28d99df}{InitializeManager()} instead. 
+Written to allow the class to compile, this currently does nothing, but could be used to run code Use \hyperlink{classphys_1_1SoundManager_a735ca3ad1554d70623ac60f38ca4cefc}{InitializeManager()} instead. 
 
 Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
 
@@ -489,17 +489,17 @@ Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed
 
 Definition at line 61 of file soundmanager.cpp.
 
-\hypertarget{classphys_1_1SoundManager_aa0fc07170611851f3fa888c8e28d99df}{
+\hypertarget{classphys_1_1SoundManager_a735ca3ad1554d70623ac60f38ca4cefc}{
 \index{phys::SoundManager@{phys::SoundManager}!InitializeManager@{InitializeManager}}
 \index{InitializeManager@{InitializeManager}!phys::SoundManager@{phys::SoundManager}}
 \subsubsection[{InitializeManager}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundManager::InitializeManager (
 \begin{DoxyParamCaption}
-\item[{{\bf String} \&}]{ DeviceName, }
+\item[{{\bf ConstString} \&}]{ DeviceName, }
 \item[{int}]{ OutputFrequency = {\ttfamily -\/1}, }
 \item[{int}]{ EAXEffectSlots = {\ttfamily 4}}
 \end{DoxyParamCaption}
 )}}
-\label{d1/dc4/classphys_1_1SoundManager_aa0fc07170611851f3fa888c8e28d99df}
+\label{d1/dc4/classphys_1_1SoundManager_a735ca3ad1554d70623ac60f38ca4cefc}
 
 
 Initializes the Manager. 

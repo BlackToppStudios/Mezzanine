@@ -76,6 +76,8 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../.
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the button the mouse is hovering over.  <a href="#acd08dba5be95182a6c923ed698822277"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html">UI::Widget</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#a5772b611b6881eb98932f4b400b44d09">GetHoveredWidget</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the Widget the mouse is hovering over.  <a href="#a5772b611b6881eb98932f4b400b44d09"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html">UI::Widget</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#a99694297814d2e82ec507c6f4d6bec1a">GetWidgetFocus</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the current widget being controlled.  <a href="#a99694297814d2e82ec507c6f4d6bec1a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIScreen</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#a7cad638d86489e03fa2599185514b58c">CreateScreen</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Screen, const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Atlas, const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Viewport=&quot;DefaultViewport&quot;)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates an internal HUD screen.  <a href="#a7cad638d86489e03fa2599185514b58c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIScreen</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#a8cd693c7ec9c458fcc4169eea0d7b4db">GetScreen</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Name)</td></tr>
@@ -109,8 +111,8 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../.
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5beaafe73c68d39eb84463033941057"></a><!-- doxytag: member="phys::UIManager::HoverChecks" ref="ae5beaafe73c68d39eb84463033941057" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><b>HoverChecks</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33dc4ba5174693c6dbc14cb6ca9f9a2b"></a><!-- doxytag: member="phys::UIManager::WidgetControlUpdate" ref="a33dc4ba5174693c6dbc14cb6ca9f9a2b" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>WidgetControlUpdate</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae0b6d575ea583154ca0257fb40d5ae7"></a><!-- doxytag: member="phys::UIManager::WidgetFocusUpdate" ref="aae0b6d575ea583154ca0257fb40d5ae7" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>WidgetFocusUpdate</b> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c5b8c7e3c4c7b03847b1af18bea02a"></a><!-- doxytag: member="phys::UIManager::Silver" ref="ab4c5b8c7e3c4c7b03847b1af18bea02a" args="" -->
@@ -122,8 +124,8 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <a class="el" href="../../d8/d88/classphys_1_1UI_1_1Button.html">UI::Button</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>HoveredButton</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3bcf192e061273695e99a85484c5056a"></a><!-- doxytag: member="phys::UIManager::HoveredWidget" ref="a3bcf192e061273695e99a85484c5056a" args="" -->
 <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html">UI::Widget</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>HoveredWidget</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab99d10c888ad3fb1cc3aebd9e497ce7a"></a><!-- doxytag: member="phys::UIManager::WidgetControl" ref="ab99d10c888ad3fb1cc3aebd9e497ce7a" args="" -->
-<a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html">UI::Widget</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>WidgetControl</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a932c928b9246717725c264326660bd6d"></a><!-- doxytag: member="phys::UIManager::WidgetFocus" ref="a932c928b9246717725c264326660bd6d" args="" -->
+<a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html">UI::Widget</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>WidgetFocus</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ae28b65bf930af50026f410b449d43b"></a><!-- doxytag: member="phys::UIManager::InputQueryer" ref="a0ae28b65bf930af50026f410b449d43b" args="" -->
 <a class="el" href="../../da/d96/classphys_1_1InputQueryTool.html">InputQueryTool</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>InputQueryer</b></td></tr>
 </table>
@@ -197,7 +199,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p>This is called automatically once every frame. Should only be called on manually if you need more then one check per frame. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the button clicked if there is one, NULL if not. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00216">216</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00226">226</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -220,7 +222,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p>This is called automatically once every frame. Should only be called on manually if you need more then one check per frame. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the widget clicked if there is one, NULL if not. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00232">232</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00242">242</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -266,7 +268,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00145">145</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00155">155</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -295,7 +297,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00178">178</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00188">188</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -318,7 +320,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p>This check will look through both standalone buttons and widget buttons. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the button, or NULL if it's not over any visable buttons. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00135">135</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -338,10 +340,10 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <div class="memdoc">
 
 <p>Gets the Widget the mouse is hovering over. </p>
-<p>If the button found during button checks belongs to a widget, this will get that widget. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the button, or NULL if it's not over any visable buttons. </dd></dl>
+<p>If the widget found during widget checks belongs to a widget, this will get that widget. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the widget, or NULL if it's not over any visable buttons. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00145">145</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -363,7 +365,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p>Gets the input queryer used for automation in this subsystem. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the <a class="el" href="../../da/d96/classphys_1_1InputQueryTool.html" title="This provides a number of utilities for getting input information.">InputQueryTool</a> used to query input events for this subsystem. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00267">267</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00277">277</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -386,7 +388,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p>Searches all screens and gets the named Layer. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the named layer if found, NULL if not. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00205">205</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00215">215</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -408,7 +410,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p>Gets the number of screens created and stored in this manager. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of screens this manager is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00173">173</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00183">183</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -431,7 +433,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p>Gets an already created screen by name. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the screen of the specified name. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00154">154</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00164">164</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -454,7 +456,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p>Gets an already created screen by index. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the screen at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00168">168</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00178">178</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -477,7 +479,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p><b>For internal use only.</b></p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the internal silverback class. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00275">275</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00285">285</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -501,7 +503,30 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00272">272</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00282">282</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a99694297814d2e82ec507c6f4d6bec1a"></a><!-- doxytag: member="phys::UIManager::GetWidgetFocus" ref="a99694297814d2e82ec507c6f4d6bec1a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html">UI::Widget</a> * phys::UIManager::GetWidgetFocus </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the current widget being controlled. </p>
+<p>The widget control is used mostly for manipulating widgets while the mouse is not currently hovering over them, such as the click and drag action of scrollbars and resizing windows. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the currently controlled widget, or NULL if none are being controlled this frame. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00150">150</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -523,10 +548,10 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p>Gets the current window dimensions. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the current window dimensions. </dd></dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000023">Todo:</a></b></dt><dd>This is the second occurance of needing to specify the namespace to declare data without any apparent reason. If possible a pattern/explaination should be found. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000027">Todo:</a></b></dt><dd>This is the second occurance of needing to specify the namespace to declare data without any apparent reason. If possible a pattern/explaination should be found. </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00258">258</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00268">268</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -554,7 +579,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00130">130</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00135">135</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -577,7 +602,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <p>This should only be called on after this manager does it's main loop items for best results. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the mouse is over a visable UI element, false if not. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00248">248</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d90/uimanager_8cpp_source.html#l00258">258</a> of file <a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -586,7 +611,7 @@ std::vector&lt; <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIS
 <li><a class="el" href="../../d4/d90/uimanager_8cpp_source.html">uimanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:18 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:22 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

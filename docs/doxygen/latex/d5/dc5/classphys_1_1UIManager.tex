@@ -40,6 +40,8 @@ void \hyperlink{classphys_1_1UIManager_afda4422105d6ab353fd40410adffbc0a}{LoadGo
 \begin{DoxyCompactList}\small\item\em Gets the button the mouse is hovering over. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIManager_a5772b611b6881eb98932f4b400b44d09}{GetHoveredWidget} ()
 \begin{DoxyCompactList}\small\item\em Gets the Widget the mouse is hovering over. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIManager_a99694297814d2e82ec507c6f4d6bec1a}{GetWidgetFocus} ()
+\begin{DoxyCompactList}\small\item\em Gets the current widget being controlled. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UIScreen}{UIScreen} $\ast$ \hyperlink{classphys_1_1UIManager_a7cad638d86489e03fa2599185514b58c}{CreateScreen} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Screen, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Atlas, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Viewport=\char`\"{}DefaultViewport\char`\"{})
 \begin{DoxyCompactList}\small\item\em Creates an internal HUD screen. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UIScreen}{UIScreen} $\ast$ \hyperlink{classphys_1_1UIManager_a8cd693c7ec9c458fcc4169eea0d7b4db}{GetScreen} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
@@ -79,9 +81,9 @@ void {\bfseries HoverChecks} ()}
 \label{d5/dc5/classphys_1_1UIManager_ae5beaafe73c68d39eb84463033941057}
 
 \item 
-\hypertarget{classphys_1_1UIManager_a33dc4ba5174693c6dbc14cb6ca9f9a2b}{
-void {\bfseries WidgetControlUpdate} ()}
-\label{d5/dc5/classphys_1_1UIManager_a33dc4ba5174693c6dbc14cb6ca9f9a2b}
+\hypertarget{classphys_1_1UIManager_aae0b6d575ea583154ca0257fb40d5ae7}{
+void {\bfseries WidgetFocusUpdate} ()}
+\label{d5/dc5/classphys_1_1UIManager_aae0b6d575ea583154ca0257fb40d5ae7}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
@@ -107,9 +109,9 @@ std::vector$<$ \hyperlink{classphys_1_1UIScreen}{UIScreen} $\ast$ $>$ {\bfseries
 \label{d5/dc5/classphys_1_1UIManager_a3bcf192e061273695e99a85484c5056a}
 
 \item 
-\hypertarget{classphys_1_1UIManager_ab99d10c888ad3fb1cc3aebd9e497ce7a}{
-\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ {\bfseries WidgetControl}}
-\label{d5/dc5/classphys_1_1UIManager_ab99d10c888ad3fb1cc3aebd9e497ce7a}
+\hypertarget{classphys_1_1UIManager_a932c928b9246717725c264326660bd6d}{
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ {\bfseries WidgetFocus}}
+\label{d5/dc5/classphys_1_1UIManager_a932c928b9246717725c264326660bd6d}
 
 \item 
 \hypertarget{classphys_1_1UIManager_a0ae28b65bf930af50026f410b449d43b}{
@@ -182,7 +184,7 @@ Returns the button clicked if there is one, NULL if not.
 \end{DoxyReturn}
 
 
-Definition at line 216 of file uimanager.cpp.
+Definition at line 226 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_ab9840b483409d3453a67931b4d858d1b}{
 \index{phys::UIManager@{phys::UIManager}!CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}}
@@ -202,7 +204,7 @@ Returns the widget clicked if there is one, NULL if not.
 \end{DoxyReturn}
 
 
-Definition at line 232 of file uimanager.cpp.
+Definition at line 242 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_a7cad638d86489e03fa2599185514b58c}{
 \index{phys::UIManager@{phys::UIManager}!CreateScreen@{CreateScreen}}
@@ -224,7 +226,7 @@ Screens are the base set of renderable UI you can use, allowing you to switch en
 \item[{\em Screen}]The name to be given to the screen. \item[{\em Atlas}]The name of a previously loaded Gorilla file to be used with this screen. \item[{\em Viewport}]The name of the viewport to create this screen in. \end{DoxyParams}
 
 
-Definition at line 145 of file uimanager.cpp.
+Definition at line 155 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_a5afab78f58a6531fc18771f5a4eeccf8}{
 \index{phys::UIManager@{phys::UIManager}!DestroyScreen@{DestroyScreen}}
@@ -244,7 +246,7 @@ Destroying a screen will also destroy all of it's layers, and everything contain
 \item[{\em Screen}]The screen to be destroyed. \end{DoxyParams}
 
 
-Definition at line 178 of file uimanager.cpp.
+Definition at line 188 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_acd08dba5be95182a6c923ed698822277}{
 \index{phys::UIManager@{phys::UIManager}!GetHoveredButton@{GetHoveredButton}}
@@ -264,7 +266,7 @@ Returns a pointer to the button, or NULL if it's not over any visable buttons.
 \end{DoxyReturn}
 
 
-Definition at line 135 of file uimanager.cpp.
+Definition at line 140 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_a5772b611b6881eb98932f4b400b44d09}{
 \index{phys::UIManager@{phys::UIManager}!GetHoveredWidget@{GetHoveredWidget}}
@@ -279,12 +281,12 @@ Definition at line 135 of file uimanager.cpp.
 
 Gets the Widget the mouse is hovering over. 
 
-If the button found during button checks belongs to a widget, this will get that widget. \begin{DoxyReturn}{Returns}
-Returns a pointer to the button, or NULL if it's not over any visable buttons. 
+If the widget found during widget checks belongs to a widget, this will get that widget. \begin{DoxyReturn}{Returns}
+Returns a pointer to the widget, or NULL if it's not over any visable buttons. 
 \end{DoxyReturn}
 
 
-Definition at line 140 of file uimanager.cpp.
+Definition at line 145 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_a7b88d0fe2271cdceccf879eaba1b1a64}{
 \index{phys::UIManager@{phys::UIManager}!GetInputQueryer@{GetInputQueryer}}
@@ -304,7 +306,7 @@ Returns a pointer to the \hyperlink{classphys_1_1InputQueryTool}{InputQueryTool}
 \end{DoxyReturn}
 
 
-Definition at line 267 of file uimanager.cpp.
+Definition at line 277 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_ad80ed1716853f6e09cadc5f896e875e8}{
 \index{phys::UIManager@{phys::UIManager}!GetLayer@{GetLayer}}
@@ -324,7 +326,7 @@ Returns the named layer if found, NULL if not.
 \end{DoxyReturn}
 
 
-Definition at line 205 of file uimanager.cpp.
+Definition at line 215 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_a3bd28c361f6fc79a182ebd3ec0a26ec7}{
 \index{phys::UIManager@{phys::UIManager}!GetNumScreens@{GetNumScreens}}
@@ -344,7 +346,7 @@ Returns the number of screens this manager is storing.
 \end{DoxyReturn}
 
 
-Definition at line 173 of file uimanager.cpp.
+Definition at line 183 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_a8cd693c7ec9c458fcc4169eea0d7b4db}{
 \index{phys::UIManager@{phys::UIManager}!GetScreen@{GetScreen}}
@@ -364,7 +366,7 @@ Returns a pointer to the screen of the specified name.
 \end{DoxyReturn}
 
 
-Definition at line 154 of file uimanager.cpp.
+Definition at line 164 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_a6083b86b2e240cc316e8ca87479d15a8}{
 \index{phys::UIManager@{phys::UIManager}!GetScreen@{GetScreen}}
@@ -384,7 +386,7 @@ Returns a pointer to the screen at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 168 of file uimanager.cpp.
+Definition at line 178 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_a21623edd39c3e23de29f4cf3ed6e490a}{
 \index{phys::UIManager@{phys::UIManager}!GetSilverbackPointer@{GetSilverbackPointer}}
@@ -406,7 +408,7 @@ Returns a pointer to the internal silverback class.
 \end{DoxyInternal}
 
 
-Definition at line 275 of file uimanager.cpp.
+Definition at line 285 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_ab8fe74564ca5dc09cbe4b1cc2c007e79}{
 \index{phys::UIManager@{phys::UIManager}!GetType@{GetType}}
@@ -430,7 +432,27 @@ Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3
 
 
 
-Definition at line 272 of file uimanager.cpp.
+Definition at line 282 of file uimanager.cpp.
+
+\hypertarget{classphys_1_1UIManager_a99694297814d2e82ec507c6f4d6bec1a}{
+\index{phys::UIManager@{phys::UIManager}!GetWidgetFocus@{GetWidgetFocus}}
+\index{GetWidgetFocus@{GetWidgetFocus}!phys::UIManager@{phys::UIManager}}
+\subsubsection[{GetWidgetFocus}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Widget} $\ast$ phys::UIManager::GetWidgetFocus (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d5/dc5/classphys_1_1UIManager_a99694297814d2e82ec507c6f4d6bec1a}
+
+
+Gets the current widget being controlled. 
+
+The widget control is used mostly for manipulating widgets while the mouse is not currently hovering over them, such as the click and drag action of scrollbars and resizing windows. \begin{DoxyReturn}{Returns}
+Returns a pointer to the currently controlled widget, or NULL if none are being controlled this frame. 
+\end{DoxyReturn}
+
+
+Definition at line 150 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_ae56846a64d8ce312aa36a749d15619df}{
 \index{phys::UIManager@{phys::UIManager}!GetWindowDimensions@{GetWindowDimensions}}
@@ -451,12 +473,12 @@ Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the current win
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000023}{Todo}]This is the second occurance of needing to specify the namespace to declare data without any apparent reason. If possible a pattern/explaination should be found. \end{Desc}
+\item[\hyperlink{todo__todo000027}{Todo}]This is the second occurance of needing to specify the namespace to declare data without any apparent reason. If possible a pattern/explaination should be found. \end{Desc}
 
 
 
 
-Definition at line 258 of file uimanager.cpp.
+Definition at line 268 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_afda4422105d6ab353fd40410adffbc0a}{
 \index{phys::UIManager@{phys::UIManager}!LoadGorilla@{LoadGorilla}}
@@ -476,7 +498,7 @@ Loads a Gorilla file for use with this manager.
 \item[{\em Name}]The name of the file to be loaded, not including the extension. \end{DoxyParams}
 
 
-Definition at line 130 of file uimanager.cpp.
+Definition at line 135 of file uimanager.cpp.
 
 \hypertarget{classphys_1_1UIManager_a38bc8d2ed1930a8ff6e82ef5f991dbe1}{
 \index{phys::UIManager@{phys::UIManager}!MouseIsInUISystem@{MouseIsInUISystem}}
@@ -496,7 +518,7 @@ Returns true if the mouse is over a visable UI element, false if not.
 \end{DoxyReturn}
 
 
-Definition at line 248 of file uimanager.cpp.
+Definition at line 258 of file uimanager.cpp.
 
 
 

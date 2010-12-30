@@ -84,8 +84,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets whether this actors current shape has been saved or not.  <a href="#ace1d04b4fbb21823cde3feee83d17c2f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#ac60e1ebd1a08882234a6d04aff745260">SetBasicCollisionParams</a> (<a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Friction, <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Restitution)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the basic parameters for more realistic collision behavior.  <a href="#ac60e1ebd1a08882234a6d04aff745260"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a708ec161f50833323294aa7ddceee776">SetAnimation</a> (<a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;AnimationName, bool Loop)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the animation for this object.  <a href="#a708ec161f50833323294aa7ddceee776"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a1c84866a23fdf7598462839dddae3240">SetAnimation</a> (<a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;AnimationName, bool Loop)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the animation for this object.  <a href="#a1c84866a23fdf7598462839dddae3240"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a72203a9c7befd1ab606ff69af4183849">EnableAnimation</a> (bool Enable)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enables the animation if one is set.  <a href="#a72203a9c7befd1ab606ff69af4183849"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#ac98f9fdae0da939e352f8fcff217457c">IsAnimated</a> ()</td></tr>
@@ -212,7 +212,8 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../.
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stores whether or not the current physics shape has been saved in the manager. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a6db9d28bd448a131448276ee03de1e6d">Node</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6db9d28bd448a131448276ee03de1e6d"></a><!-- doxytag: member="phys::ActorBase::Node" ref="a6db9d28bd448a131448276ee03de1e6d" args="" -->
+class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54042fcfa7ab444a50ec79cbe3395356"></a><!-- doxytag: member="phys::ActorBase::ActorContainerBase" ref="a54042fcfa7ab444a50ec79cbe3395356" args="" -->
 class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ActorContainerBase</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a139cf05ac01161b7071c8a037c841683"></a><!-- doxytag: member="phys::ActorBase::PhysicsManager" ref="a139cf05ac01161b7071c8a037c841683" args="" -->
@@ -492,7 +493,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ResourceManager</b><
 <p>This is a helper function that will create a motionstate for the class. This is called on by the constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em><a class="el" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physicsl objects, such as lights, cameras, ribbon trails...">Node</a></em>&nbsp;</td><td>The node to be syncronized with physics data. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em><a class="el" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a></em>&nbsp;</td><td>The node to be syncronized with physics data. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>InitPosition</em>&nbsp;</td><td>The starting location for the object that will be given this motionstate. </td></tr>
   </table>
   </dd>
@@ -537,7 +538,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ResourceManager</b><
 <p>This is a helper function that will create a motionstate for the class. This is called on by the constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em><a class="el" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physicsl objects, such as lights, cameras, ribbon trails...">Node</a></em>&nbsp;</td><td>The node to be syncronized with physics data. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em><a class="el" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a></em>&nbsp;</td><td>The node to be syncronized with physics data. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>InitPosition</em>&nbsp;</td><td>The starting location for the object that will be given this motionstate. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>InitOrientation</em>&nbsp;</td><td>The starting orientation for the object that will be given this motionstate. </td></tr>
   </table>
@@ -568,7 +569,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ResourceManager</b><
 <p>This is a helper function that will create a motionstate for the class. This is called on by the constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em><a class="el" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physicsl objects, such as lights, cameras, ribbon trails...">Node</a></em>&nbsp;</td><td>The node to be syncronized with physics data. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em><a class="el" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a></em>&nbsp;</td><td>The node to be syncronized with physics data. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1186,14 +1187,14 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ResourceManager</b><
 
 </div>
 </div>
-<a class="anchor" id="a708ec161f50833323294aa7ddceee776"></a><!-- doxytag: member="phys::ActorBase::SetAnimation" ref="a708ec161f50833323294aa7ddceee776" args="(String &amp;AnimationName, bool Loop)" -->
+<a class="anchor" id="a1c84866a23fdf7598462839dddae3240"></a><!-- doxytag: member="phys::ActorBase::SetAnimation" ref="a1c84866a23fdf7598462839dddae3240" args="(ConstString &amp;AnimationName, bool Loop)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void phys::ActorBase::SetAnimation </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td>
           <td class="paramname"> <em>AnimationName</em>, </td>
         </tr>
         <tr>
@@ -1667,29 +1668,12 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>ResourceManager</b><
 
 </div>
 </div>
-<hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="a6db9d28bd448a131448276ee03de1e6d"></a><!-- doxytag: member="phys::ActorBase::Node" ref="a6db9d28bd448a131448276ee03de1e6d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">friend class <a class="el" href="../../d0/ddc/classphys_1_1Node.html">Node</a><code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p><b>For internal use only.</b></p>
-
-<p>Definition at line <a class="el" href="../../da/dd1/actorbase_8h_source.html#l00087">87</a> of file <a class="el" href="../../da/dd1/actorbase_8h_source.html">actorbase.h</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../da/dd1/actorbase_8h_source.html">actorbase.h</a></li>
 <li><a class="el" href="../../d6/d42/actorbase_8cpp_source.html">actorbase.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Dec 7 2010 12:06:12 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:16 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

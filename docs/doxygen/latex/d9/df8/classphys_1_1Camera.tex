@@ -30,10 +30,10 @@ enum {\bfseries ProjectionType} \{ {\bfseries Orthographic},
 \hyperlink{classphys_1_1Camera_a863e7b7a0fb4db7969014d8391b5ca30}{Camera} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1CameraManager}{CameraManager} $\ast$Manager)
 \begin{DoxyCompactList}\small\item\em Basic \hyperlink{classphys_1_1Camera}{Camera} Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Camera_a0510d4f9bf6fb195115272cbd116e8dd}{Camera} (Ogre::Camera $\ast$\hyperlink{classphys_1_1Camera}{Camera}, \hyperlink{classphys_1_1CameraManager}{CameraManager} $\ast$Manager)
-\begin{DoxyCompactList}\small\item\em \hyperlink{namespaceOgre}{Ogre} Cam Constructor. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Ogre Cam Constructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Camera_aa45f340a6f7ba0970aa2602a928463ea}{$\sim$Camera} ()
 \begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1Camera_aee08e3932237c76d2b59652878f2bdf6}{GetName} ()
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1Camera_adf1ca87e0189ad26095eee95704cf77b}{GetName} ()
 \begin{DoxyCompactList}\small\item\em Gets the camera's set name. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Camera_ac3a8ffec5fa70fa4981fc25815fdc8a3}{SetCameraType} (ProjectionType Type)
 \begin{DoxyCompactList}\small\item\em Sets the type of projection to be used with this camera. \item\end{DoxyCompactList}\item 
@@ -88,7 +88,10 @@ class {\bfseries World}}
 \label{d9/df8/classphys_1_1Camera_a7b4bcdf992c21ae83363f25df05b1d25}
 
 \item 
-class \hyperlink{classphys_1_1Camera_a6db9d28bd448a131448276ee03de1e6d}{Node}
+\hypertarget{classphys_1_1Camera_a6db9d28bd448a131448276ee03de1e6d}{
+class {\bfseries Node}}
+\label{d9/df8/classphys_1_1Camera_a6db9d28bd448a131448276ee03de1e6d}
+
 \item 
 \hypertarget{classphys_1_1Camera_afae5bf9a900e8c5bc70c9332785e8465}{
 class {\bfseries CameraManager}}
@@ -135,7 +138,7 @@ Definition at line 47 of file camera.cpp.
 \label{d9/df8/classphys_1_1Camera_a0510d4f9bf6fb195115272cbd116e8dd}
 
 
-\hyperlink{namespaceOgre}{Ogre} Cam Constructor. 
+Ogre Cam Constructor. 
 
 This is for internal use only and shouldn't be called manually. 
 
@@ -222,15 +225,15 @@ This will cast a ray from the camera to the viewport and return it.
 
 Definition at line 161 of file camera.cpp.
 
-\hypertarget{classphys_1_1Camera_aee08e3932237c76d2b59652878f2bdf6}{
+\hypertarget{classphys_1_1Camera_adf1ca87e0189ad26095eee95704cf77b}{
 \index{phys::Camera@{phys::Camera}!GetName@{GetName}}
 \index{GetName@{GetName}!phys::Camera@{phys::Camera}}
-\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::Camera::GetName (
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& phys::Camera::GetName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d9/df8/classphys_1_1Camera_aee08e3932237c76d2b59652878f2bdf6}
+\label{d9/df8/classphys_1_1Camera_adf1ca87e0189ad26095eee95704cf77b}
 
 
 Gets the camera's set name. 
@@ -240,7 +243,7 @@ Returns a string containing the camera's name.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classphys_1_1Attachable_ad1a9bbd300fe21c5cc7e5aa7e2c95b85}{phys::Attachable}.
+Implements \hyperlink{classphys_1_1Attachable_a56d2f5a6f17c14ff0c1d9906d17b0f52}{phys::Attachable}.
 
 
 
@@ -561,20 +564,6 @@ This function will zoom in the camera by the amount specified.
 
 
 Definition at line 185 of file camera.cpp.
-
-
-
-\subsection{Friends And Related Function Documentation}
-\hypertarget{classphys_1_1Camera_a6db9d28bd448a131448276ee03de1e6d}{
-\index{phys::Camera@{phys::Camera}!Node@{Node}}
-\index{Node@{Node}!phys::Camera@{phys::Camera}}
-\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}friend class {\bf Node}\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
-\label{d9/df8/classphys_1_1Camera_a6db9d28bd448a131448276ee03de1e6d}
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 84 of file camera.h.
 
 
 

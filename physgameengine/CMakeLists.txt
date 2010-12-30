@@ -103,6 +103,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/world.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/xml.h"
 
 #######################################
 # A complete listing of our source files
@@ -176,6 +177,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/world.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/xml.cpp"
 )
 
 ###############################################################################
