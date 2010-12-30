@@ -41,19 +41,195 @@
 #define _uimenu_cpp
 
 #include "uimenu.h"
-#include "uiwindow.h"
+#include "uimenuwindow.h"
+
+#include "uimanager.h"
+#include "inputquerytool.h"
+#include "metacode.h"
+#include "world.h"
 
 namespace phys
 {
     namespace UI
     {
-        Menu::Menu(ConstString name, UILayer* Layer)
-            : Widget(name,Layer)
+        Menu::Menu(ConstString name, Vector2 Position, Vector2 Size, UILayer* Layer)
+            : Widget(name,Layer),
+              HideSubWindows(true)
         {
+            Type = Widget::Menu;
+            RelPosition = Vector2(0,0);
+            RelSize = Vector2(0,0);
+
+            ConstString NewName = name+"root";
+            RootWindow = new MenuWindow(NewName,Position,Size,this,Parent);
+            MenuStack.push_back(RootWindow);
         }
 
         Menu::~Menu()
         {
+            delete RootWindow;
+            MenuStack.clear();
+        }
+
+        void Menu::Update(bool Force)
+        {
+            if(!Force)
+                SubWidgetUpdate();
+            MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
+            if(HoveredSubWidget)
+            {
+                Button* button = HoveredSubWidget->GetHoveredButton();
+                if(button && State == MetaCode::BUTTON_PRESSING)
+                {
+                    MenuWindow* MenWin = static_cast<MenuWindow*>(HoveredSubWidget);
+                    MenuWindow* ChildMenWin = MenWin->GetWindowOfAccessButton(button);
+                    if(ChildMenWin)
+                    {
+                        if(HideSubWindows)
+                            MenuStack.back()->Hide();
+                        MenuStack.push_back(ChildMenWin);
+                        ChildMenWin->Show();
+                        return;
+                    }
+                    else if(button == MenWin->GetBackButton())
+                    {
+                        MenWin->Hide();
+                        MenuStack.pop_back();
+                        if(!MenuStack.back()->IsVisible())
+                            MenuStack.back()->Show();
+                        return;
+                    }
+                }
+                if(MetaCode::BUTTON_PRESSING == State)
+                {
+                    SubWidgetFocus = HoveredSubWidget;
+                }
+            }
+            if(SubWidgetFocus && (SubWidgetFocus != HoveredSubWidget))
+            {
+                SubWidgetFocusUpdate(true);
+            }
+            else if(MetaCode::BUTTON_DOWN == State && Force)
+            {
+                SubWidgetFocusUpdate(Force);
+            }
+            if(MetaCode::BUTTON_LIFTING == State)
+            {
+                SubWidgetFocus = NULL;
+            }
+        }
+
+        void Menu::SetVisible(bool visible)
+        {
+            if(HideSubWindows)
+            {
+                MenuStack.back()->SetVisible(visible);
+            }else{
+                for( std::vector<MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
+                {
+                    (*it)->SetVisible(visible);
+                }
+            }
+            Visible = visible;
+        }
+
+        bool Menu::IsVisible()
+        {
+            return Visible;
+        }
+
+        void Menu::Show()
+        {
+            if(HideSubWindows)
+            {
+                MenuStack.back()->Show();
+            }else{
+                for( std::vector<MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
+                {
+                    (*it)->Show();
+                }
+            }
+            Visible = true;
+        }
+
+        void Menu::Hide()
+        {
+            if(HideSubWindows)
+            {
+                MenuStack.back()->Hide();
+            }else{
+                for( std::vector<MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
+                {
+                    (*it)->Hide();
+                }
+            }
+            Visible = false;
+        }
+
+        void Menu::SetAutoHideSubWindows(bool AutoHide)
+        {
+            HideSubWindows = AutoHide;
+        }
+
+        bool Menu::CheckMouseHover()
+        {
+            if(MenuStack.back()->CheckMouseHover())
+            {
+                HoveredSubWidget = MenuStack.back();
+                return true;
+            }
+            HoveredSubWidget = NULL;
+            return false;
+        }
+
+        void Menu::SetPosition(Vector2 Position)
+        {
+            MenuStack.back()->SetPosition(Position);
+        }
+
+        Vector2 Menu::GetPosition()
+        {
+            return MenuStack.back()->GetPosition();
+        }
+
+        void Menu::SetActualPosition(Vector2 Position)
+        {
+            MenuStack.back()->SetActualPosition(Position);
+        }
+
+        Vector2 Menu::GetActualPosition()
+        {
+            return MenuStack.back()->GetActualPosition();
+        }
+
+        void Menu::SetSize(Vector2 Size)
+        {
+            MenuStack.back()->SetSize(Size);
+        }
+
+        Vector2 Menu::GetSize()
+        {
+            return MenuStack.back()->GetSize();
+        }
+
+        void Menu::SetActualSize(Vector2 Size)
+        {
+            MenuStack.back()->SetActualSize(Size);
+        }
+
+        Vector2 Menu::GetActualSize()
+        {
+            return MenuStack.back()->GetActualSize();
+        }
+
+        MenuWindow* Menu::GetRootWindow()
+        {
+            return RootWindow;
+        }
+
+        MenuWindow* Menu::GetTopWindow()
+        {
+            return MenuStack.back();
         }
     }//UI
 }//phys

@@ -165,6 +165,12 @@ namespace phys
                 /// @brief Gets an already created button by index.
                 /// @return Returns a pointer to the button at the specified index.
                 Button* GetButton(Whole Index);
+                /// @brief Gets the OffsetButtonInfo of an already created button by name.
+                /// @return Returns a reference to the button of the specified name.
+                OffsetButtonInfo* GetOffsetButtonInfo(ConstString& Name);
+                /// @brief Gets the OffsetButtonInfo of an already created button by index.
+                /// @return Returns a reference to the button at the specified index.
+                OffsetButtonInfo* GetOffsetButtonInfo(Whole Index);
                 /// @brief Gets the number of buttons created and stored in this class.
                 /// @return Returns the number of buttons this class is storing.
                 Whole GetNumButtons();
@@ -180,6 +186,9 @@ namespace phys
                 /// @brief Gets an already created rectangle by index.
                 /// @return Returns a pointer to the rectangle at the specified index.
                 Rectangle* GetRectangle(Whole Index);
+                /// @brief Gets the OffsetRectangleInfo of an already created rectangle by index.
+                /// @return Returns a reference to the rectangle at the specified index.
+                OffsetRectangleInfo* GetOffsetRectangleInfo(Whole Index);
                 /// @brief Gets the number of rectangles created and stored in this class.
                 /// @return Returns the number of rectangles this class is storing.
                 Whole GetNumRectangles();
@@ -201,6 +210,12 @@ namespace phys
                 /// @brief Gets an already created caption by index.
                 /// @return Returns a pointer to the caption at the specified index.
                 Caption* GetCaption(Whole Index);
+                /// @brief Gets the OffsetCaptionInfo of an already created caption by name.
+                /// @return Returns a reference to the caption of the specified name.
+                OffsetCaptionInfo* GetOffsetCaptionInfo(ConstString& Name);
+                /// @brief Gets the OffsetCaptionInfo of an already created caption by index.
+                /// @return Returns a reference to the caption at the specified index.
+                OffsetCaptionInfo* GetOffsetCaptionInfo(Whole Index);
                 /// @brief Gets the number of captions created and stored in this class.
                 /// @return Returns the number of captions this class is storing.
                 Whole GetNumCaptions();
@@ -221,6 +236,12 @@ namespace phys
                 /// @brief Gets an already created markup text by index.
                 /// @return Returns a pointer to the markup text at the specified index.
                 MarkupText* GetMarkupText(Whole Index);
+                /// @brief Gets the OffsetMarkupTextInfo of an already created markup text by name.
+                /// @return Returns a reference to the markup text of the specified name.
+                OffsetMarkupTextInfo* GetOffsetMarkupTextInfo(ConstString& Name);
+                /// @brief Gets the OffsetMarkupTextInfo of an already created markup text by index.
+                /// @return Returns a reference to the markup text at the specified index.
+                OffsetMarkupTextInfo* GetOffsetMarkupTextInfo(Whole Index);
                 /// @brief Gets the number of markup texts created and stored in this class.
                 /// @return Returns the number of markup texts this class is storing.
                 Whole GetNumMarkupTexts();
@@ -236,6 +257,12 @@ namespace phys
                 /// @brief Gets an already created widget by index.
                 /// @return Returns a pointer to the widget at the specified index.
                 Widget* GetWidget(Whole Index);
+                /// @brief Gets the OffsetWidgetInfo of an already created widget by name.
+                /// @return Returns a reference to the widget of the specified name.
+                OffsetWidgetInfo* GetOffsetWidgetInfo(ConstString& Name);
+                /// @brief Gets the OffsetWidgetInfo of an already created widget by index.
+                /// @return Returns a reference to the widget at the specified index.
+                OffsetWidgetInfo* GetOffsetWidgetInfo(Whole Index);
                 /// @brief Gets the number of widgets created and stored in this class.
                 /// @return Returns the number of widgets this class is storing.
                 Whole GetNumWidgets();

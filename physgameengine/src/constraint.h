@@ -122,7 +122,13 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1) = 0;
     };
 
-    class PHYS_LIB ConeTwistConstraint: public TypedConstraint
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class ConeTwistConstraint
+    /// @headerfile constraint.h
+    /// @brief
+    /// @details
+    ///////////////////////////////////////
+    class PHYS_LIB ConeTwistConstraint : public TypedConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -162,7 +168,13 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1);
     };
 
-    class PHYS_LIB Generic6DofConstraint: public TypedConstraint
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class Generic6DofConstraint
+    /// @headerfile constraint.h
+    /// @brief
+    /// @details
+    ///////////////////////////////////////
+    class PHYS_LIB Generic6DofConstraint : public TypedConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -208,7 +220,13 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1);
     };
 
-    class PHYS_LIB Generic6DofSpringConstraint: public Generic6DofConstraint
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class Generic6DofSpringConstraint
+    /// @headerfile constraint.h
+    /// @brief
+    /// @details
+    ///////////////////////////////////////
+    class PHYS_LIB Generic6DofSpringConstraint : public Generic6DofConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -234,7 +252,13 @@ namespace phys
             void EnableSpring(int Index, bool Enable);
     };
 
-    class PHYS_LIB HingeConstraint: public TypedConstraint
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class HingeConstraint
+    /// @headerfile constraint.h
+    /// @brief
+    /// @details
+    ///////////////////////////////////////
+    class PHYS_LIB HingeConstraint : public TypedConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -275,7 +299,13 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1);
     };
 
-    class PHYS_LIB Hinge2Constraint: public Generic6DofSpringConstraint
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class Hinge2Constraint
+    /// @headerfile constraint.h
+    /// @brief
+    /// @details
+    ///////////////////////////////////////
+    class PHYS_LIB Hinge2Constraint : public Generic6DofSpringConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -293,7 +323,13 @@ namespace phys
             void SetLowerLimit(Real Ang1Min);
     };
 
-    class PHYS_LIB Point2PointConstraint: public TypedConstraint
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class Point2PointConstraint
+    /// @headerfile constraint.h
+    /// @brief
+    /// @details
+    ///////////////////////////////////////
+    class PHYS_LIB Point2PointConstraint : public TypedConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -328,7 +364,13 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1);
     };
 
-    class PHYS_LIB SliderConstraint: public TypedConstraint
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class SliderConstraint
+    /// @headerfile constraint.h
+    /// @brief
+    /// @details
+    ///////////////////////////////////////
+    class PHYS_LIB SliderConstraint : public TypedConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.
@@ -388,7 +430,13 @@ namespace phys
             virtual Real GetParam(int num, int axis=-1);
     };
 
-    class PHYS_LIB UniversalConstraint: public Generic6DofConstraint
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class UniversalConstraint
+    /// @headerfile constraint.h
+    /// @brief
+    /// @details
+    ///////////////////////////////////////
+    class PHYS_LIB UniversalConstraint : public Generic6DofConstraint
     {
         protected:
             /// @brief Bullet constraint that this class encapsulates.

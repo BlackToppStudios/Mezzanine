@@ -359,8 +359,8 @@ namespace phys
         {
             if ( ToBeDestroyed == (*it) )
             {
-                Widgets.erase(it);
-                UI::Widget::WidgetType Type = ToBeDestroyed->GetType();
+                delete ToBeDestroyed;
+                /*UI::Widget::WidgetType Type = ToBeDestroyed->GetType();
                 switch (Type)
                 {
                     case UI::Widget::Scrollbar:
@@ -395,7 +395,8 @@ namespace phys
                     }
                     default:
                         return;
-                }
+                }*/
+                Widgets.erase(it);
             }
         }
     }

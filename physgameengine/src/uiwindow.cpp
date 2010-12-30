@@ -514,6 +514,25 @@ namespace phys
             return Buttons[Index].Object;
         }
 
+        OffsetButtonInfo* Window::GetOffsetButtonInfo(ConstString& Name)
+        {
+            for ( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+            {
+                if ( Name == (*it).Object->GetName() )
+                {
+                    OffsetButtonInfo* Offset = &(*it);
+                    return Offset;
+                }
+            }
+            return 0;
+        }
+
+        OffsetButtonInfo* Window::GetOffsetButtonInfo(Whole Index)
+        {
+            OffsetButtonInfo* Offset = &Buttons[Index];
+            return Offset;
+        }
+
         Whole Window::GetNumButtons()
         {
             return Buttons.size();
@@ -543,6 +562,12 @@ namespace phys
         Rectangle* Window::GetRectangle(Whole Index)
         {
             return Rectangles[Index].Object;
+        }
+
+        OffsetRectangleInfo* Window::GetOffsetRectangleInfo(Whole Index)
+        {
+            OffsetRectangleInfo* Offset = &Rectangles[Index];
+            return Offset;
         }
 
         Whole Window::GetNumRectangles()
@@ -589,6 +614,25 @@ namespace phys
             return Captions[Index].Object;
         }
 
+        OffsetCaptionInfo* Window::GetOffsetCaptionInfo(ConstString& Name)
+        {
+            for ( std::vector<OffsetCaptionInfo>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
+            {
+                if ( Name == (*it).Object->GetName() )
+                {
+                    OffsetCaptionInfo* Offset = &(*it);
+                    return Offset;
+                }
+            }
+            return 0;
+        }
+
+        OffsetCaptionInfo* Window::GetOffsetCaptionInfo(Whole Index)
+        {
+            OffsetCaptionInfo* Offset = &Captions[Index];
+            return Offset;
+        }
+
         Whole Window::GetNumCaptions()
         {
             return Captions.size();
@@ -633,6 +677,25 @@ namespace phys
             return MarkupTexts[Index].Object;
         }
 
+        OffsetMarkupTextInfo* Window::GetOffsetMarkupTextInfo(ConstString& Name)
+        {
+            for ( std::vector<OffsetMarkupTextInfo>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
+            {
+                if ( Name == (*it).Object->GetName() )
+                {
+                    OffsetMarkupTextInfo* Offset = &(*it);
+                    return Offset;
+                }
+            }
+            return 0;
+        }
+
+        OffsetMarkupTextInfo* Window::GetOffsetMarkupTextInfo(Whole Index)
+        {
+            OffsetMarkupTextInfo* Offset = &MarkupTexts[Index];
+            return Offset;
+        }
+
         Whole Window::GetNumMarkupTexts()
         {
             return MarkupTexts.size();
@@ -669,6 +732,25 @@ namespace phys
             return Widgets[Index].Object;
         }
 
+        OffsetWidgetInfo* Window::GetOffsetWidgetInfo(ConstString& Name)
+        {
+            for ( std::vector<OffsetWidgetInfo>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+            {
+                if ( Name == (*it).Object->GetName() )
+                {
+                    OffsetWidgetInfo* Offset = &(*it);
+                    return Offset;
+                }
+            }
+            return 0;
+        }
+
+        OffsetWidgetInfo* Window::GetOffsetWidgetInfo(Whole Index)
+        {
+            OffsetWidgetInfo* Offset = &Widgets[Index];
+            return Offset;
+        }
+
         Whole Window::GetNumWidgets()
         {
             return Widgets.size();
@@ -680,8 +762,8 @@ namespace phys
             {
                 if ( ToBeDestroyed == (*it).Object )
                 {
-                    Widgets.erase(it);
-                    Widget::WidgetType Type = ToBeDestroyed->GetType();
+                    delete (*it).Object;
+                    /*Widget::WidgetType Type = ToBeDestroyed->GetType();
                     switch (Type)
                     {
                         case Widget::Scrollbar:
@@ -710,7 +792,8 @@ namespace phys
                         }
                         default:
                             return;
-                    }
+                    }*/
+                    Widgets.erase(it);
                 }
             }
         }

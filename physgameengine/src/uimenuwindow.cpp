@@ -41,15 +41,19 @@
 #define _uimenuwindow_cpp
 
 #include "uimenuwindow.h"
+#include "uimenu.h"
+#include "uibutton.h"
 #include "uilayer.h"
 
 namespace phys
 {
     namespace UI
     {
-        MenuWindow::MenuWindow(ConstString& Name, Vector2 Position, Vector2 Size, UILayer* Layer)
+        MenuWindow::MenuWindow(ConstString& Name, Vector2 Position, Vector2 Size, UI::Menu* TheMenu, UILayer* Layer)
             : Window(Name,Position,Size,Layer),
-              ParentWindow(NULL)
+              BackButton(NULL),
+              ParentWindow(NULL),
+              MasterMenu(TheMenu)
         {
         }
 
@@ -57,7 +61,7 @@ namespace phys
         {
             while(!ChildWindows.empty())
             {
-                UI::MenuWindow* window = ChildWindows.back();
+                UI::MenuWindow* window = ChildWindows.back().second;
                 delete window;
                 ChildWindows.pop_back();
             }
@@ -68,42 +72,80 @@ namespace phys
             return ParentWindow;
         }
 
-        MenuWindow* MenuWindow::CreateChildMenuWindow(ConstString& Name, Vector2 Position, Vector2 Size)
+        Button* MenuWindow::CreateBackButton(Vector2 Position, Vector2 Size)
         {
-            MenuWindow* MenWin = new MenuWindow(Name,Position,Size,Parent);
-            ChildWindows.push_back(MenWin);
+            if(!BackButton)
+            {
+                BackButton = new Button(Name+"back",Position,Size,Parent);
+                Vector2 Offset = Position - RelPosition;
+                OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+                Buttons.push_back(backbuttonoff);
+                return BackButton;
+            }
+        }
+
+        Button* MenuWindow::GetBackButton()
+        {
+            return BackButton;
+        }
+
+        MenuWindow* MenuWindow::GetWindowOfAccessButton(Button* Accessor)
+        {
+            for( std::vector<std::pair<Button*,MenuWindow*> >::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+            {
+                if(Accessor == (*it).first)
+                {
+                    MenuWindow* MenWin = (*it).second;
+                    return MenWin;
+                }
+            }
+            return 0;
+        }
+
+        MenuWindow* MenuWindow::CreateChildMenuWindow(ConstString& Name, Vector2 WinPosition, Vector2 WinSize, Vector2 ButPosition, Vector2 ButSize)
+        {
+            MenuWindow* MenWin = new MenuWindow(Name,WinPosition,WinSize,MasterMenu,Parent);
+            MenWin->ParentWindow = this;
+            Button* MenBut = this->CreateButton(Name+"button",ButPosition,ButSize);
+            ChildWindows.push_back(std::pair<Button*,MenuWindow*>(MenBut,MenWin));
+            Vector2 Offset = ButPosition - RelPosition;
+            OffsetButtonInfo buttonoff(MenBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Buttons.push_back(buttonoff);
+            MenWin->Hide();
             return MenWin;
         }
 
-        MenuWindow* MenuWindow::GetMenuWindow(ConstString& Name)
+        MenuWindow* MenuWindow::GetChildMenuWindow(ConstString& Name)
         {
-            for ( std::vector<MenuWindow*>::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+            for ( std::vector<std::pair<Button*,MenuWindow*> >::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
             {
-                if ( Name == (*it)->GetName() )
+                if ( Name == (*it).second->GetName() )
                 {
-                    MenuWindow* menuwindow = (*it);
+                    MenuWindow* menuwindow = (*it).second;
                     return menuwindow;
                 }
             }
             return 0;
         }
 
-        MenuWindow* MenuWindow::GetMenuWindow(Whole Index)
+        MenuWindow* MenuWindow::GetChildMenuWindow(Whole Index)
         {
-            return ChildWindows[Index];
+            return ChildWindows[Index].second;
         }
 
-        Whole MenuWindow::GetNumMenuWindows()
+        Whole MenuWindow::GetNumChildMenuWindows()
         {
             return ChildWindows.size();
         }
 
         void MenuWindow::DestroyChildMenuWindow(MenuWindow* ToBeDestroyed)
         {
-            for ( std::vector<MenuWindow*>::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+            for ( std::vector<std::pair<Button*,MenuWindow*> >::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
             {
-                if ( ToBeDestroyed == (*it) )
+                if ( ToBeDestroyed == (*it).second )
                 {
+                    Button* But = (*it).first;
+                    DestroyButton(But);
                     delete ToBeDestroyed;
                     ChildWindows.erase(it);
                     return;
