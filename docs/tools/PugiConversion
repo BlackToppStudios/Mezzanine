@@ -3,7 +3,7 @@
 # This expects the PugiXML source files to be in the subdirectory call PugiSrc
 
 # This script isn't magic, it was designed with version 1.0 of PugiXML in mind. If new features have been added, then new commands
-# will need to be add to rename those as well.
+# will need to be add to rename those as well. That being said, I did try to code it in such a way 
 
 #error codes - These match the Header prepending tool
 E_BADARGS=1
@@ -31,15 +31,19 @@ IncompleteCopyright1=" * Copyright (c) 2006-2010 Arseny Kapoulkine"
 CompleteCopyright1="$OurCopyright * Copyright © 2006-2010 Arseny Kapoulkine"
 IncompleteCopyright2=" * pugixml parser - version 1.0"
 CompleteCopyright2="$OurCopyright * Pugixml parser - version 1.0"
+CopyrightAccidentalDoxyTags='\/\*\*'
+CopyrightCleantags='\/\*'
 
 #Namespace Variables
 PugiUsingNamespace="using namespace pugi"
 PugiNamespace="namespace pugi"
-OurUsingNamespace="using namespace std; using namespace phys::xml"
+#OurUsingNamespace="using namespace phys::xml"
+#OurUsingNamespace="using namespace phys"
+OurUsingNamespace="using namespace xml"
 OurNamespace="namespace xml"
-OurExtraNamespace="
-namespace phys
-{"
+#OurExtraNamespace="
+#namespace phys
+#{"
 OurExtraNamespaceClosing="
 } // \phys 
 "
@@ -47,7 +51,7 @@ OurExtraNamespaceClosing="
 
 #Make the Files to begin appending Source code to.
 echo "`cat  $OurLicenseFile` $OurExtraNamespace" > $NewCppFile
-echo "`cat  $OurLicenseFile` $OurExtraNamespace" > $PugiTempHFile
+cat  $OurLicenseFile > $PugiTempHFile
 
 # This lops of the end copyright because we can use the ending from the other file we are merging with
 PugiConfigGrabUntil="#endif"						# The Copyright notices, and other string to search for in the PugiConfig File
@@ -72,10 +76,10 @@ tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"
 #		HEADER_PUGIXML_HPP -> _xml_h
 #		HEADER_PUGICONFIG_HPP	-> _xmlconfig_h
 #	- Put the results in the final place they belong
-cat $PugiTempHFile | sed  	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/\([cC]\)/©/g 	-e s/HEADER_PUGIXML_HPP/_xml_h/g 	-e s/HEADER_PUGICONFIG_HPP/_xmlconfig_h/g	-e s/PUGIXML_/XML_/g 	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	-e s/"$PugiNamespace"/"$OurNamespace"/g > $NewHFile
+echo "`cat $PugiTempHFile` $OurExtraNamespace" | sed  	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/\([cC]\)/©/g 	-e s/HEADER_PUGIXML_HPP/_xml_h/g 	-e s/HEADER_PUGICONFIG_HPP/_xmlconfig_h/g	-e s/PUGIXML_/XML_/g 	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	-e s/"$PugiNamespace"/"$OurNamespace"/g > $NewHFile
 
 # This does mostly the same thing that the header transfortmation does, a bunch of cleanup and putting the code where it belongs
-cat $PugiCppFile | sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g 	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g -e s/\([C]\)/©/g 	-e s/PUGIXML_/XML_/g	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	-e s/"$PugiNamespace"/"$OurNamespace"/g	>> $NewCppFile
+cat $PugiCppFile | sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g 	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/\([C]\)/©/g 	-e s/PUGIXML_/XML_/g	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	-e s/"$PugiNamespace"/"$OurNamespace"/g	>> $NewCppFile
 
 echo "$OurExtraNamespaceClosing" >> $NewCppFile
 echo "$OurExtraNamespaceClosing" >> $NewHFile

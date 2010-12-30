@@ -531,13 +531,9 @@ void LoadContent()
         TheWorld->Log("Testing streaming on test.xml with phys::xml::Document");
         #endif
 
-
-
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
-        pugi::xml_document TestDoc;
-        pugi::xml_parse_result ParsedXML = TestDoc.load( *XMLptr );
-
-
+        xml::xml_document TestDoc;
+        xml::xml_parse_result ParsedXML = TestDoc.load( *XMLptr );
 
         //phys::xml::TestXML(XMLptr);
 
