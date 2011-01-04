@@ -34,10 +34,10 @@
 */
 /*
  *
-c * Software, Files, Libraries and all other items referenced in this clause refers only
-c * to the contents of this file and associated documentation.
-c *
-c * Pugixml parser - version 1.0
+ * Software, Files, Libraries and all other items referenced in this clause refers only
+ * to the contents of this file and associated documentation.
+ *
+ * Pugixml parser - version 1.0
  * --------------------------------------------------------
  * Copyright © 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
  * Report bugs and download new versions at http://pugixml.org/
@@ -958,10 +958,10 @@ namespace std
 #endif
 /*
  *
-c * Software, Files, Libraries and all other items referenced in this clause refers only
-c * to the contents of this file and associated documentation.
-c *
-c * Copyright © 2006-2010 Arseny Kapoulkine
+ * Software, Files, Libraries and all other items referenced in this clause refers only
+ * to the contents of this file and associated documentation.
+ *
+ * Copyright © 2006-2010 Arseny Kapoulkine
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation

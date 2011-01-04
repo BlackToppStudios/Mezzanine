@@ -105,14 +105,16 @@ function FixNamespaces
 
 	OIFS="$IFS"
 	IFS=$'\n'
-	FileContent=`cat $1` #( $(< "$1" ) )
-	
-	echo -E "$FileContent" > $1.txt.cpp
+	FileContent=`cat $1`
+
+	FileContent=`echo "$FileContent" | sed -e 's/\(^?$\)/ /'`
+	#echo -E "$FileContent" > $1.txt2.cpp
 
 	for fn in $FileContent; do
-		LineCount=$[LineCount+1]
-		echo -E "$fn" >> $1.txt2.cpp
+		#LineCount=$[LineCount+1]
+		#echo $LineCount : $fn
 		if [ $LookingForEndBracket -eq -1 ]; then
+			#echo "Looking for namespace"
 			#looking for Namespace
 			if [ "$fn" = "${fn/$2/asdf}" ]; then
 				#Line has no match in it, so we send it to temp file
@@ -123,6 +125,7 @@ function FixNamespaces
 				echo -E "$3" >> $TempFileName
 			fi
 		else
+			#echo "Looking for bracket"
 			echo -E "$fn" >> $TempFileName
 			#We are looking for a Brackets now
 			if [ "$fn" != "${fn/$LB/asdf}" ]; then
@@ -145,9 +148,8 @@ function FixNamespaces
 	IFS="$OIFS"
 }
 
-FixNamespaces $NewCppFile "$PugiNamespace" "$OurExtraNamespace $OurNamespace" "$OurExtraNamespaceClosing"
 FixNamespaces $NewHFile "$PugiNamespace" "$OurExtraNamespace $OurNamespace" "$OurExtraNamespaceClosing"
-
+FixNamespaces $NewCppFile "$PugiNamespace" "$OurExtraNamespace $OurNamespace" "$OurExtraNamespaceClosing"
 
 
 set +f
