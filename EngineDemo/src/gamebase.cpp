@@ -532,8 +532,8 @@ void LoadContent()
         #endif
 
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
-        xml::xml_document TestDoc;
-        xml::xml_parse_result ParsedXML = TestDoc.load( *XMLptr );
+        xml::Document TestDoc;
+        xml::Parse_Result ParsedXML = TestDoc.load( *XMLptr );
 
         //phys::xml::TestXML(XMLptr);
 
