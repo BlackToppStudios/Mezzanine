@@ -71,6 +71,7 @@ namespace phys
         class ListBox;
         class LineList;
         class Window;
+        class Menu;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class UILayer
@@ -275,6 +276,13 @@ namespace phys
             /// @param Position The top left position of the Window.
             /// @param Size The size of the Window.
             UI::Window* CreateWidgetWindow(ConstString& Name, Vector2 Position, Vector2 Size);
+            /// @brief Creates a Menu within this layer.
+            /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+            /// @return Returns a pointer to the created Menu.
+            /// @param Name The name of the Menu.
+            /// @param Position The top left position of the Menu.
+            /// @param Size The size of the Menu.
+            UI::Menu* CreateMenu(ConstString Name, Vector2 Position, Vector2 Size);
             ///////////////////////////////////////////////////////////////////////////////
             // UI Element and Widget Checks
             ///////////////////////////////////////

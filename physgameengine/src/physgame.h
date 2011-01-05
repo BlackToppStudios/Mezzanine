@@ -96,6 +96,8 @@
 #include "uilistbox.h"
 #include "uimanager.h"
 #include "uimarkuptext.h"
+#include "uimenu.h"
+#include "uimenuwindow.h"
 #include "uirectangle.h"
 #include "uiscreen.h"
 #include "uiscrollbar.h"

@@ -176,9 +176,11 @@ namespace phys
             if(MenuStack.back()->CheckMouseHover())
             {
                 HoveredSubWidget = MenuStack.back();
+                HoveredButton = HoveredSubWidget->GetHoveredButton();
                 return true;
             }
             HoveredSubWidget = NULL;
+            HoveredButton = NULL;
             return false;
         }
 

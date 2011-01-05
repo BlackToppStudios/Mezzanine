@@ -52,6 +52,7 @@
 #include "uiscrollbar.h"
 #include "uilinelist.h"
 #include "uiwindow.h"
+#include "uimenu.h"
 
 #include "graphicsmanager.h"
 #include "world.h"
@@ -434,6 +435,13 @@ namespace phys
         UI::Window* Win = new UI::Window(Name,Position,Size,this);
         Widgets.push_back(Win);
         return Win;
+    }
+
+    UI::Menu* UILayer::CreateMenu(ConstString Name, Vector2 Position, Vector2 Size)
+    {
+        UI::Menu* Men = new UI::Menu(Name,Position,Size,this);
+        Widgets.push_back(Men);
+        return Men;
     }
 
     UI::Button* UILayer::CheckButtonMouseIsOver()
