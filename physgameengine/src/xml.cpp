@@ -4775,43 +4775,43 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	std::string XML_FUNCTION as_utf8(const wchar_t* str) 
+	std::string PHYS_LIB as_utf8(const wchar_t* str) 
 	{ 
 		assert(str); 
  
 		return as_utf8_impl(str, wcslen(str)); 
 	} 
  
-	std::string XML_FUNCTION as_utf8(const std::wstring& str) 
+	std::string PHYS_LIB as_utf8(const std::wstring& str) 
 	{ 
 		return as_utf8_impl(str.c_str(), str.size()); 
 	} 
 	 
-	std::wstring XML_FUNCTION as_wide(const char* str) 
+	std::wstring PHYS_LIB as_wide(const char* str) 
 	{ 
 		assert(str); 
  
 		return as_wide_impl(str, strlen(str)); 
 	} 
 	 
-	std::wstring XML_FUNCTION as_wide(const std::string& str) 
+	std::wstring PHYS_LIB as_wide(const std::string& str) 
 	{ 
 		return as_wide_impl(str.c_str(), str.size()); 
 	} 
 #endif 
  
-	void XML_FUNCTION set_memory_management_functions(allocation_function allocate, deallocation_function deallocate) 
+	void PHYS_LIB set_memory_management_functions(allocation_function allocate, deallocation_function deallocate) 
 	{ 
 		global_allocate = allocate; 
 		global_deallocate = deallocate; 
 	} 
  
-	allocation_function XML_FUNCTION get_memory_allocation_function() 
+	allocation_function PHYS_LIB get_memory_allocation_function() 
 	{ 
 		return global_allocate; 
 	} 
  
-	deallocation_function XML_FUNCTION get_memory_deallocation_function() 
+	deallocation_function PHYS_LIB get_memory_deallocation_function() 
 	{ 
 		return global_deallocate; 
 	} 

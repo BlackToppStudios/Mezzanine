@@ -72,17 +72,17 @@
 // #define XML_NO_EXCEPTIONS 
  
 // Set this to control attributes for public classes/functions, i.e.: 
-// #define XML_API __declspec(dllexport) // to export all public symbols from DLL 
-// #define XML_CLASS __declspec(dllimport) // to import all classes from DLL 
-// #define XML_FUNCTION __fastcall // to set calling conventions to all public functions to fastcall 
-// In absence of XML_CLASS/XML_FUNCTION definitions XML_API is used instead 
+// #define PHYS_LIB __declspec(dllexport) // to export all public symbols from DLL 
+// #define PHYS_LIB __declspec(dllimport) // to import all classes from DLL 
+// #define PHYS_LIB __fastcall // to set calling conventions to all public functions to fastcall 
+// In absence of PHYS_LIB/PHYS_LIB definitions PHYS_LIB is used instead 
  
 #endif 
  
 #ifndef _H 
 #define _H 
  
- 
+#include "crossplatform.h" 
  
 #ifndef XML_NO_STL 
 namespace std 
@@ -130,18 +130,18 @@ namespace std
 #endif 
  
 // If no API is defined, assume default 
-#ifndef XML_API 
-#   define XML_API 
+#ifndef PHYS_LIB 
+#   define PHYS_LIB 
 #endif 
  
 // If no API for classes is defined, assume default 
-#ifndef XML_CLASS 
-#   define XML_CLASS XML_API 
+#ifndef PHYS_LIB 
+#   define PHYS_LIB PHYS_LIB 
 #endif 
  
 // If no API for functions is defined, assume default 
-#ifndef XML_FUNCTION 
-#   define XML_FUNCTION XML_API 
+#ifndef PHYS_LIB 
+#   define PHYS_LIB PHYS_LIB 
 #endif 
  
 #include <stddef.h> 
@@ -286,7 +286,7 @@ namespace phys
 	#endif 
  
 	// Writer interface for node printing (see Node::print) 
-	class XML_CLASS Writer 
+	class PHYS_LIB Writer 
 	{ 
 	public: 
 		virtual ~Writer() {} 
@@ -296,7 +296,7 @@ namespace phys
 	}; 
  
 	// Writer implementation for FILE* 
-	class XML_CLASS Writer_File: public Writer 
+	class PHYS_LIB Writer_File: public Writer 
 	{ 
 	public: 
 		// Construct writer from a FILE* object; void* is used to avoid header dependencies on stdio 
@@ -310,7 +310,7 @@ namespace phys
  
 	#ifndef XML_NO_STL 
 	// Writer implementation for streams 
-	class XML_CLASS Writer_Stream: public Writer 
+	class PHYS_LIB Writer_Stream: public Writer 
 	{ 
 	public: 
 		// Construct writer from an output stream object 
@@ -326,7 +326,7 @@ namespace phys
 	#endif 
  
 	// A light-weight handle for manipulating attributes in DOM tree 
-	class XML_CLASS Attribute 
+	class PHYS_LIB Attribute 
 	{ 
 		friend class Attribute_Iterator; 
 		friend class Node; 
@@ -403,12 +403,12 @@ namespace phys
  
 #ifdef __BORLANDC__ 
 	// Borland C++ workaround 
-	bool XML_FUNCTION operator&&(const Attribute& lhs, bool rhs); 
-	bool XML_FUNCTION operator||(const Attribute& lhs, bool rhs); 
+	bool PHYS_LIB operator&&(const Attribute& lhs, bool rhs); 
+	bool PHYS_LIB operator||(const Attribute& lhs, bool rhs); 
 #endif 
  
 	// A light-weight handle for manipulating nodes in DOM tree 
-	class XML_CLASS Node 
+	class PHYS_LIB Node 
 	{ 
 		friend class Attribute_Iterator; 
 		friend class Node_Iterator; 
@@ -627,12 +627,12 @@ namespace phys
  
 #ifdef __BORLANDC__ 
 	// Borland C++ workaround 
-	bool XML_FUNCTION operator&&(const Node& lhs, bool rhs); 
-	bool XML_FUNCTION operator||(const Node& lhs, bool rhs); 
+	bool PHYS_LIB operator&&(const Node& lhs, bool rhs); 
+	bool PHYS_LIB operator||(const Node& lhs, bool rhs); 
 #endif 
  
 	// Child node iterator (a bidirectional iterator over a collection of Node) 
-	class XML_CLASS Node_Iterator 
+	class PHYS_LIB Node_Iterator 
 	{ 
 		friend class Node; 
  
@@ -674,7 +674,7 @@ namespace phys
 	}; 
  
 	// Attribute iterator (a bidirectional iterator over a collection of Attribute) 
-	class XML_CLASS Attribute_Iterator 
+	class PHYS_LIB Attribute_Iterator 
 	{ 
 		friend class Node; 
  
@@ -716,7 +716,7 @@ namespace phys
 	}; 
  
 	// Abstract tree walker class (see Node::traverse) 
-	class XML_CLASS Tree_Walker 
+	class PHYS_LIB Tree_Walker 
 	{ 
 		friend class Node; 
  
@@ -765,7 +765,7 @@ namespace phys
 	}; 
  
 	// Parsing result 
-	struct XML_CLASS Parse_Result 
+	struct PHYS_LIB Parse_Result 
 	{ 
 		// Parsing status (see Parse_Status) 
 		Parse_Status status; 
@@ -787,7 +787,7 @@ namespace phys
 	}; 
  
 	// Document class (DOM tree root) 
-	class XML_CLASS Document: public Node 
+	class PHYS_LIB Document: public Node 
 	{ 
 	private: 
 		char_t* _buffer; 
@@ -869,7 +869,7 @@ namespace phys
 	}; 
  
 	// XPath parsing result 
-	struct XML_CLASS xpath_parse_result 
+	struct PHYS_LIB xpath_parse_result 
 	{ 
 		// Error message (0 if no error) 
 		const char* error; 
@@ -888,7 +888,7 @@ namespace phys
 	}; 
  
 	// A single XPath variable 
-	class XML_CLASS xpath_variable 
+	class PHYS_LIB xpath_variable 
 	{ 
 		friend class xpath_variable_set; 
  
@@ -923,7 +923,7 @@ namespace phys
 	}; 
  
 	// A set of XPath variables 
-	class XML_CLASS xpath_variable_set 
+	class PHYS_LIB xpath_variable_set 
 	{ 
 	private: 
 		xpath_variable* _data[64]; 
@@ -954,7 +954,7 @@ namespace phys
 	}; 
  
 	// A compiled XPath query object 
-	class XML_CLASS xpath_query 
+	class PHYS_LIB xpath_query 
 	{ 
 	private: 
 		void* _impl; 
@@ -1014,7 +1014,7 @@ namespace phys
 	 
 	#ifndef XML_NO_EXCEPTIONS 
 	// XPath exception class 
-	class XML_CLASS xpath_exception: public std::exception 
+	class PHYS_LIB xpath_exception: public std::exception 
 	{ 
 	private: 
 		xpath_parse_result _result; 
@@ -1032,7 +1032,7 @@ namespace phys
 	#endif 
 	 
 	// XPath node class (either Node or Attribute) 
-	class XML_CLASS xpath_node 
+	class PHYS_LIB xpath_node 
 	{ 
 	private: 
 		Node _node; 
@@ -1068,12 +1068,12 @@ namespace phys
  
 #ifdef __BORLANDC__ 
 	// Borland C++ workaround 
-	bool XML_FUNCTION operator&&(const xpath_node& lhs, bool rhs); 
-	bool XML_FUNCTION operator||(const xpath_node& lhs, bool rhs); 
+	bool PHYS_LIB operator&&(const xpath_node& lhs, bool rhs); 
+	bool PHYS_LIB operator||(const xpath_node& lhs, bool rhs); 
 #endif 
  
 	// A fixed-size collection of XPath nodes 
-	class XML_CLASS xpath_node_set 
+	class PHYS_LIB xpath_node_set 
 	{ 
 	public: 
 		// Collection type 
@@ -1136,12 +1136,12 @@ namespace phys
  
 #ifndef XML_NO_STL 
 	// Convert wide string to UTF8 
-	std::basic_string<char, std::char_traits<char>, std::allocator<char> > XML_FUNCTION as_utf8(const wchar_t* str); 
-	std::basic_string<char, std::char_traits<char>, std::allocator<char> > XML_FUNCTION as_utf8(const std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >& str); 
+	std::basic_string<char, std::char_traits<char>, std::allocator<char> > PHYS_LIB as_utf8(const wchar_t* str); 
+	std::basic_string<char, std::char_traits<char>, std::allocator<char> > PHYS_LIB as_utf8(const std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >& str); 
 	 
 	// Convert UTF8 to wide string 
-	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > XML_FUNCTION as_wide(const char* str); 
-	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > XML_FUNCTION as_wide(const std::basic_string<char, std::char_traits<char>, std::allocator<char> >& str); 
+	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > PHYS_LIB as_wide(const char* str); 
+	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > PHYS_LIB as_wide(const std::basic_string<char, std::char_traits<char>, std::allocator<char> >& str); 
 #endif 
  
 	// Memory allocation function interface; returns pointer to allocated memory or NULL on failure 
@@ -1151,11 +1151,11 @@ namespace phys
 	typedef void (*deallocation_function)(void* ptr); 
  
 	// Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. 
-	void XML_FUNCTION set_memory_management_functions(allocation_function allocate, deallocation_function deallocate); 
+	void PHYS_LIB set_memory_management_functions(allocation_function allocate, deallocation_function deallocate); 
 	 
 	// Get current memory management functions 
-	allocation_function XML_FUNCTION get_memory_allocation_function(); 
-	deallocation_function XML_FUNCTION get_memory_deallocation_function(); 
+	allocation_function PHYS_LIB get_memory_allocation_function(); 
+	deallocation_function PHYS_LIB get_memory_deallocation_function(); 
 } 
 } // \phys
  
@@ -1163,8 +1163,8 @@ namespace phys
 namespace std 
 { 
 	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier) 
-	std::bidirectional_iterator_tag XML_FUNCTION _Iter_cat(const pugi::Node_Iterator&); 
-	std::bidirectional_iterator_tag XML_FUNCTION _Iter_cat(const pugi::Attribute_Iterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const pugi::Node_Iterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const pugi::Attribute_Iterator&); 
 } 
 #endif 
  
@@ -1172,8 +1172,8 @@ namespace std
 namespace std 
 { 
 	// Workarounds for (non-standard) iterator category detection 
-	std::bidirectional_iterator_tag XML_FUNCTION __iterator_category(const pugi::Node_Iterator&); 
-	std::bidirectional_iterator_tag XML_FUNCTION __iterator_category(const pugi::Attribute_Iterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const pugi::Node_Iterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const pugi::Attribute_Iterator&); 
 } 
 #endif 
  

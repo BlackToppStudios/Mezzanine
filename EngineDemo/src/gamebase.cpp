@@ -535,16 +535,14 @@ void LoadContent()
         xml::Document TestDoc;
         xml::Parse_Result ParsedXML = TestDoc.load( *XMLptr );
 
+
         //phys::xml::TestXML(XMLptr);
 
         /*
 
         String temp;
         xml::Document TestXMLDoc("Test");
-
-
         *XMLptr >> TestXMLDoc;
-
         TheWorld->LogStream << "XMLDoc:" << endl << TestXMLDoc << endl << "/XMLDoc";*/
 
         #ifdef PHYSDEBUG

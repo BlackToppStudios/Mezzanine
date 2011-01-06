@@ -239,7 +239,7 @@ if(${WIN32})
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
 	)
 
-	add_definitions( -DWINDOWS )
+	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
