@@ -434,10 +434,10 @@ void MakeGUI()
     TIcon->SetBackgroundSprite("TimerLogo");
 
     UI::Button* MenuButton = HUD->CreateButton( "Menu", Vector2(0.008, 0.922), Vector2(0.16, 0.065));
-    MenuButton->SetBackgroundSprite("MenuButton");
+    MenuButton->SetBackgroundSprite("MenuButtonHiRes");
 
-    UI::Button* StoreButton = HUD->CreateButton( "Store", Vector2(0.922, 0.922), Vector2(0.065, 0.065));
-    StoreButton->SetBackgroundSprite("StoreButton");
+    UI::Button* StoreButton = HUD->CreateButton( "Store", Vector2(0.922, 0.922), Vector2(0.06, 0.065));
+    StoreButton->SetBackgroundSprite("StoreButtonHiRes");
 
     UI::Rectangle* StoreText = HUD->CreateRectangle( Vector2(0.767, 0.922), Vector2(0.14, 0.065));
     StoreText->SetBackgroundSprite("StoreText");
@@ -451,7 +451,8 @@ void MakeGUI()
 
     //Build the ItemShop Layer
     UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", Vector2(0.25, 0.11), Vector2(0.5, 0.78125));
-    ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.27, 0.5),Vector2(0.46, 0.38),0.0025,UI::SB_Separate);
+    ItemShopWindow->GetWindowBack()->SetBackgroundSprite("WindowVertBack");
+    //UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.27, 0.5),Vector2(0.46, 0.38),0.0025,UI::SB_Separate);
     ItemShop->Hide();
     //End of ItemShop Layer
 

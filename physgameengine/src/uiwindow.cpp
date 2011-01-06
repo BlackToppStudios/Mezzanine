@@ -390,6 +390,11 @@ namespace phys
             Visible = false;
         }
 
+        Rectangle* Window::GetWindowBack()
+        {
+            return WindowBack;
+        }
+
         bool Window::CheckMouseHover()
         {
             if(!Visible)
