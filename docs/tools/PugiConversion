@@ -95,26 +95,25 @@ cat $PugiCppFile | sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\
 function FixNamespaces
 {
 	TempFileName="$1.tmp"
-	echo "" > $TempFileName
+	echo -n "" > $TempFileName
 	LB="{"						#The character that begins a codeblock
 	RB="}"						#The character that ends a codeblock
 	LookingForEndBracket=-1	#if this is set to -1 then we are looking for the line of code to start search for our bracket at.
 								#if this is set to a positive number, then it is the amount of unclosed left brackets we have found.
 
 	LineCount=0
-
 	OIFS="$IFS"
 	IFS=$'\n'
 	FileContent=`cat $1`
 
-	FileContent=`echo "$FileContent" | sed -e 's/\(^?$\)/ /'`
+	#echo -E "$FileContent" > $1.txt.cpp
+	FileContent=`echo -E "$FileContent" | sed -e 's/\(.*$\)/\1 /'`
 	#echo -E "$FileContent" > $1.txt2.cpp
 
 	for fn in $FileContent; do
 		#LineCount=$[LineCount+1]
-		#echo $LineCount : $fn
+		#echo $LineCount #: $fn
 		if [ $LookingForEndBracket -eq -1 ]; then
-			#echo "Looking for namespace"
 			#looking for Namespace
 			if [ "$fn" = "${fn/$2/asdf}" ]; then
 				#Line has no match in it, so we send it to temp file
@@ -125,7 +124,6 @@ function FixNamespaces
 				echo -E "$3" >> $TempFileName
 			fi
 		else
-			#echo "Looking for bracket"
 			echo -E "$fn" >> $TempFileName
 			#We are looking for a Brackets now
 			if [ "$fn" != "${fn/$LB/asdf}" ]; then
@@ -140,7 +138,6 @@ function FixNamespaces
 					echo -E "$4" >> $TempFileName
 				fi
 			fi
-			#LookingForEndBracket=-1
 		fi
 	done
 
@@ -151,5 +148,28 @@ function FixNamespaces
 FixNamespaces $NewHFile "$PugiNamespace" "$OurExtraNamespace $OurNamespace" "$OurExtraNamespaceClosing"
 FixNamespaces $NewCppFile "$PugiNamespace" "$OurExtraNamespace $OurNamespace" "$OurExtraNamespaceClosing"
 
+#This will replace all the old PugiXML names in the file providesd in $1 with the new BTS phys::xml names
+function FixNames
+{
+	FileContent=`cat $1`
+	TempFileName="$1.tmp"
+	echo -E "$FileContent" > $TempFileName
 
+	#A clean line to copy and paste 
+	#FileContent=`echo -E "$FileContent" | sed -e 's/needle/replacement/'`
+	
+	#This is the list of items to find/replace to convert the Pugi API into Physgame API
+	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)\([a-z]*\)_\(.\)/\U\1\L\2\U\3/g'`
+
+	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)/\U\1/g'`
+
+	
+	echo -E "$FileContent" > $1
+	#	mv $TempFileName $1
+}
+
+FixNames $NewHFile
+FixNames $NewCppFile
+
+#we unset this, so we will set it again, even though on *Most* systems this isn't required
 set +f
