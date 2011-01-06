@@ -1991,7 +1991,9 @@ kerning_125 90 -1
 
 [Sprites]
 MenuButton 3 976 168 45
+MenuButtonHiRes 519 521 349 94
 StoreButton 301 973 53 45
+StoreButtonHiRes 883 521 110 94
 StoreText 186 973 107 45
 ScoreText 7 912 110 45
 CashText 9 857 91 45
@@ -1999,3 +2001,4 @@ ScoreCashArea 129 913 80 45
 TimerLogo 222 912 49 48
 TimerDropLogo 222 856 49 48
 TimerArea 276 912 82 48
+WindowVertBack 1024 0 500 600

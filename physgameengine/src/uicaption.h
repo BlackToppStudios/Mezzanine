@@ -147,9 +147,11 @@ namespace phys
                 /// @param Name The name of the sprite to set as the background.
                 virtual void SetBackgroundSprite(const String& Name);
                 /// @brief Aligns the text of the caption.
+                /// @details Default value for this is UI::Txt_Middle.
                 /// @param Align The enum value representing the horizontal alignment to be set.
                 virtual void HorizontallyAlign(UI::TextHorizontalAlign Align);
                 /// @brief Aligns the text of the caption.
+                /// @details Default value for this is UI::Txt_Center.
                 /// @param Align The enum value representing the vertical alignment to be set.
                 virtual void VerticallyAlign(UI::TextVerticalAlign Align);
                 /// @brief Sets the relative top left position of this caption.

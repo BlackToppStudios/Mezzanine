@@ -102,7 +102,7 @@ bool PostRender()
     }
 
     // Update the timer
-    UI::Caption* Timer = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer")->GetCaption("Timer");
+    UI::Caption* Timer = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("Timer");
     std::stringstream time;
     Whole TotalSeconds = gametime/1000;
     Whole Minutes = TotalSeconds/60;
@@ -122,15 +122,15 @@ bool PostRender()
     Timer->SetText(time.str());
 
     // Update the score
-    UI::Caption* ScoreAmount = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("HUDLayer")->GetCaption("ScoreArea");
+    UI::Caption* ScoreAmount = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("ScoreArea");
     std::stringstream Score;
     Score << CurrScore;
     String ScoreOut = Score.str();
     ScoreAmount->SetText(ScoreOut);
 
     // Update Stat information
-    UI::Caption* CurFPS = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("CurFPS");
-    UI::Caption* AvFPS = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("AvFPS");
+    UI::Caption* CurFPS = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("CurFPS");
+    UI::Caption* AvFPS = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("AvFPS");
     std::stringstream CFPSstream;
     std::stringstream AFPSstream;
     CFPSstream << TheWorld->GetGraphicsManager()->GetLastFPS();
@@ -206,37 +206,38 @@ bool PostUI()
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
-        UI::Button* MouseButton = NULL;
-        UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
-        for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
+        if(TheWorld->GetUIManager()->MouseIsInUISystem())
         {
-            UILayer* Layer = Screen->GetLayer(x);
-            MouseButton = Layer->CheckButtonMouseIsOver();
+            UI::Button* MouseButton = TheWorld->GetUIManager()->GetHoveredButton();
+            if(!MouseButton)
+                MouseButton = TheWorld->GetUIManager()->GetHoveredWidget()->GetHoveredButton();
             if(MouseButton)
             {
-                break;
-            }
-        }
-        if(MouseButton)
-        {
-            if("Store" == MouseButton->GetName())
-            {
-                UILayer* Layer = Screen->GetLayer("ItemShopLayer");
-                Layer->Show();
-            }
-            if("Menu" == MouseButton->GetName())
-            {
-                UILayer* Layer = Screen->GetLayer("MenuLayer");
-                Layer->Show();
-            }
-            if("Return" == MouseButton->GetName())
-            {
-                UILayer* Layer = Screen->GetLayer("MenuLayer");
-                Layer->Hide();
-            }
-            if("Exit" == MouseButton->GetName())
-            {
-                return false;
+                MetaCode::ButtonState State = Queryer.GetMouseButtonState(1);
+                if("Store" == MouseButton->GetName())
+                {
+                    String ItemShopL = "ItemShopLayer";
+                    UILayer* Layer = TheWorld->GetUIManager()->GetLayer(ItemShopL);
+                    if(MetaCode::BUTTON_PRESSING == State)
+                        Layer->SetVisible(!Layer->GetVisible());
+                }
+                else if("Menu" == MouseButton->GetName())
+                {
+                    String MenuL = "MenuLayer";
+                    UILayer* Layer = TheWorld->GetUIManager()->GetLayer(MenuL);
+                    if(MetaCode::BUTTON_PRESSING == State)
+                        Layer->SetVisible(!Layer->GetVisible());
+                }
+                else if("Return" == MouseButton->GetName())
+                {
+                    String MenuL = "MenuLayer";
+                    UILayer* Layer = TheWorld->GetUIManager()->GetLayer(MenuL);
+                    Layer->Hide();
+                }
+                else if("Exit" == MouseButton->GetName())
+                {
+                    return false;
+                }
             }
         }else{
             #ifdef PHYSDEBUG
@@ -407,7 +408,8 @@ void LoadContent()
 
 void MakeGUI()
 {
-    String DefaultScreen = "DefaultScreen";
+    String MainMenuScreen = "MainMenuScreen";
+    String GameScreen = "GameScreen";
     String MenuLayer = "MenuLayer";
     String HUDLayer = "HUDLayer";
     String ItemShopLayer = "ItemShopLayer";
@@ -415,7 +417,7 @@ void MakeGUI()
     UIManager* GUI = TheWorld->GetUIManager();
     GUI->LoadGorilla("Catch!");
 
-    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "Catch!");
+    UIScreen* Screen = GUI->CreateScreen(GameScreen, "Catch!");
     UILayer* Menu = Screen->CreateLayer(MenuLayer, 10);
     UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 4);
     UILayer* Stats = Screen->CreateLayer(StatsLayer, 1);
@@ -423,128 +425,64 @@ void MakeGUI()
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
 
+    //Build the Game Screen
     //Build the HUD layer
     UI::Caption* Timer = HUD->CreateCaption( "Timer", Vector2(0.8995, 0.006), Vector2(0.0965, 0.06), 20, "0:00");
-    Timer->HorizontallyAlign(UI::Txt_Middle);
-    Timer->VerticallyAlign(UI::Txt_Center);
     Timer->SetBackgroundSprite("TimerArea");
 
     UI::Rectangle* TIcon = HUD->CreateRectangle( Vector2(0.8515, 0.006), Vector2(0.0482, 0.06));
     TIcon->SetBackgroundSprite("TimerLogo");
 
-    UI::Button* MenuButton = HUD->CreateButton( "Menu", Vector2(0.008, 0.922), Vector2(0.16, 0.06));
-    MenuButton->SetBackgroundSprite("MenuButton");
+    UI::Button* MenuButton = HUD->CreateButton( "Menu", Vector2(0.008, 0.922), Vector2(0.16, 0.065));
+    MenuButton->SetBackgroundSprite("MenuButtonHiRes");
 
-    UI::Button* StoreButton = HUD->CreateButton( "Store", Vector2(0.922, 0.922), Vector2(0.065, 0.065));
-    StoreButton->SetBackgroundSprite("StoreButton");
+    UI::Button* StoreButton = HUD->CreateButton( "Store", Vector2(0.922, 0.922), Vector2(0.06, 0.065));
+    StoreButton->SetBackgroundSprite("StoreButtonHiRes");
 
     UI::Rectangle* StoreText = HUD->CreateRectangle( Vector2(0.767, 0.922), Vector2(0.14, 0.065));
     StoreText->SetBackgroundSprite("StoreText");
 
     UI::Caption* ScoreAmount = HUD->CreateCaption( "ScoreArea", Vector2(0.135, 0.006), Vector2(0.15, 0.065), 20, "0");
-    //ScoreAmount->SetBackgroundSprite("ScoreCashArea");
     ScoreAmount->SetBackgroundColour(Transparent);
-    ScoreAmount->HorizontallyAlign(UI::Txt_Middle);
-    ScoreAmount->VerticallyAlign(UI::Txt_Center);
 
     UI::Rectangle* ScoreText = HUD->CreateRectangle( Vector2(0.008, 0.006), Vector2(0.12, 0.06));
     ScoreText->SetBackgroundSprite("ScoreText");
+    //End of HUD Layer
 
-    /*ColourValue Buttons(0.1,0.8,0.1,1.0);
-    ColourValue ScrollBackground(0.9,0.6,0.6,0.5);
-    ColourValue ScrollBarColour(0.2,0.2,0.2,1.0);
-    ColourValue BoxBack(0.45,0.025,0.45,1.0);
-    ColourValue Blue(0.0,0.0,0.5,1.0);
-    UI::ListBox* LBTest = HUD->CreateListBox("Test", Vector2(0.25,0.25), Vector2(0.4,0.3), 0.025, UI::Separate);
-    //LBTest->GetBoxBack()->SetBackgroundColour(BoxBack);
-    LBTest->GetVertScroll()->GetUpLeftButton()->SetBackgroundColour(Buttons);
-    LBTest->GetVertScroll()->GetDownRightButton()->SetBackgroundColour(Buttons);
-    LBTest->GetVertScroll()->GetScrollBack()->SetBackgroundColour(ScrollBackground);
-    LBTest->GetVertScroll()->GetScroller()->SetBackgroundColour(ScrollBarColour);
-    LBTest->SetBasicTemplateParameters(Vector2(0.4,0.05),16);
-    LBTest->EnableBackgroundSelector(Blue);
-    LBTest->AddSelection("Test1","Test1");
-    LBTest->AddSelection("Test2","Test2");
-    LBTest->AddSelection("Test3","Test3");
-    LBTest->AddSelection("Test4","Test4");
-    LBTest->AddSelection("Test5","Test5");
-    LBTest->AddSelection("Test6","Test6");
-    LBTest->AddSelection("Test7","Test7");
-    LBTest->AddSelection("Test8","Test8");
-    LBTest->AddSelection("Test9","Test9");
-    */ /*
-    UI::ButtonListBox* BLBTest = HUD->CreateButtonListBox("Test", Vector2(0.25,0.25), Vector2(0.4,0.3), 0.025, UI::Separate);
-    BLBTest->GetBoxBack()->SetBackgroundColour(BoxBack);
-    BLBTest->GetVertScroll()->GetUpLeftButton()->SetBackgroundColour(Buttons);
-    BLBTest->GetVertScroll()->GetDownRightButton()->SetBackgroundColour(Buttons);
-    BLBTest->GetVertScroll()->GetScrollBack()->SetBackgroundColour(ScrollBackground);
-    BLBTest->GetVertScroll()->GetScroller()->SetBackgroundColour(ScrollBarColour);
-    BLBTest->SetTemplateParameters(Vector2(0.4,0.05),16);
-    BLBTest->EnableBorderSelector(5,Blue);
-    (BLBTest->AddSelection("Test1"))->SetBackgroundColour(Buttons);
-    Buttons.Alpha = 0.9;
-    (BLBTest->AddSelection("Test2"))->SetBackgroundColour(Buttons);
-    Buttons.Alpha = 0.8;
-    (BLBTest->AddSelection("Test3"))->SetBackgroundColour(Buttons);
-    Buttons.Alpha = 0.7;
-    (BLBTest->AddSelection("Test4"))->SetBackgroundColour(Buttons);
-    Buttons.Alpha = 0.6;
-    (BLBTest->AddSelection("Test5"))->SetBackgroundColour(Buttons);
-    Buttons.Alpha = 0.5;
-    (BLBTest->AddSelection("Test6"))->SetBackgroundColour(Buttons);
-    Buttons.Alpha = 0.4;
-    (BLBTest->AddSelection("Test7"))->SetBackgroundColour(Buttons);
-    Buttons.Alpha = 0.3;
-    (BLBTest->AddSelection("Test8"))->SetBackgroundColour(Buttons);
-    Buttons.Alpha = 0.2;
-    (BLBTest->AddSelection("Test9"))->SetBackgroundColour(Buttons);
-    */
     //Build the ItemShop Layer
+    UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", Vector2(0.25, 0.11), Vector2(0.5, 0.78125));
+    ItemShopWindow->GetWindowBack()->SetBackgroundSprite("WindowVertBack");
+    //UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.27, 0.5),Vector2(0.46, 0.38),0.0025,UI::SB_Separate);
     ItemShop->Hide();
+    //End of ItemShop Layer
 
     //Build the Menu Layer
-    UI::Rectangle* MenuBackground = Menu->CreateRectangle( Vector2(0.25, 0.15),
-                                                         Vector2(0.5, 0.7) );
-    ColourValue MenuColours(0.4,0.8,0.3,1.0);
-    MenuBackground->SetBackgroundColour(MenuColours);
-
-    UI::TextButton* ReturnButton = Menu->CreateTextButton( "Return", Vector2(0.30, 0.61),
-                                            Vector2(0.4, 0.08),
-                                            18, "Return to Game");
-    ReturnButton->HorizontallyAlign(UI::Txt_Middle);
-    ReturnButton->VerticallyAlign(UI::Txt_Center);
-    ColourValue ReturnColours(0.6,0.2,0.2,1.0);
-    ReturnButton->SetBackgroundColour(ReturnColours);
-
-    UI::TextButton* ExitButton = Menu->CreateTextButton( "Exit", Vector2(0.30, 0.73),
-                                            Vector2(0.4, 0.08),
-                                            18, "Exit Game");
-    ExitButton->HorizontallyAlign(UI::Txt_Middle);
-    ExitButton->VerticallyAlign(UI::Txt_Center);
-    ColourValue ExitColours(0.6,0.2,0.2,1.0);
-    ExitButton->SetBackgroundColour(ExitColours);
+    ColourValue Black(0.0,0.0,0.0,1.0);
+    UI::Menu* GameMenu = Menu->CreateMenu( "GameMenu", Vector2(0.25, 0.15), Vector2(0.5, 0.7));
+    UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "Return", Vector2(0.30, 0.61), Vector2(0.4, 0.08));
+    ReturnButton->SetBackgroundColour(Black);
+    UI::Button* ExitButton = GameMenu->GetRootWindow()->CreateButton( "Exit", Vector2(0.30, 0.73), Vector2(0.4, 0.08));
+    ExitButton->SetBackgroundColour(Black);
     Menu->Hide();
+    //End of Menu Layer
 
-    //Misc Extra's
+    //Build the Stats Layer
     UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", Vector2(0.16, 0.06), Vector2(0.06, 0.065), 14, "0.0");
     CurFPS->SetBackgroundColour(Transparent);
     CurFPS->HorizontallyAlign(UI::Txt_Left);
-    CurFPS->VerticallyAlign(UI::Txt_Center);
 
     UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", Vector2(0.008, 0.06), Vector2(0.15, 0.065), 14, "Current FPS: ");
     CurFPSText->SetBackgroundColour(Transparent);
     CurFPSText->HorizontallyAlign(UI::Txt_Left);
-    CurFPSText->VerticallyAlign(UI::Txt_Center);
 
     UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", Vector2(0.16, 0.105), Vector2(0.06, 0.065), 14, "0.0");
     AvFPS->SetBackgroundColour(Transparent);
     AvFPS->HorizontallyAlign(UI::Txt_Left);
-    AvFPS->VerticallyAlign(UI::Txt_Center);
 
     UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", Vector2(0.008, 0.105), Vector2(0.15, 0.065), 14, "Average FPS: ");
     AvFPSText->SetBackgroundColour(Transparent);
     AvFPSText->HorizontallyAlign(UI::Txt_Left);
-    AvFPSText->VerticallyAlign(UI::Txt_Center);
-    //Stats->Hide();
+    //End of Stats Layer
+    //End of Game Screen
 }
 #endif

@@ -94,7 +94,10 @@ namespace phys
         {
             HoveredWidget = CheckWidgetMouseIsOver();
             if(HoveredWidget)
+            {
+                //HoveredButton = HoveredWidget->GetHoveredButton();
                 HoveredWidget->Update();
+            }
         }
     }
 
@@ -109,7 +112,7 @@ namespace phys
             }
             else if(MetaCode::BUTTON_DOWN == State)
             {
-                if(HoveredWidget != WidgetFocus)
+                if(HoveredWidget != WidgetFocus && WidgetFocus)
                     WidgetFocus->Update(true);
             }
             else if(MetaCode::BUTTON_LIFTING == State)

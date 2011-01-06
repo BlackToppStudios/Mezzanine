@@ -56,6 +56,8 @@ namespace phys
             GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,GorillaRectangle->left(),GorillaRectangle->top(),Text);
             GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
             GorillaButton->background(Ogre::ColourValue(0,0,0,0));
+            GorillaButton->align(Gorilla::TextAlign_Centre);
+            GorillaButton->vertical_align(Gorilla::VerticalAlign_Middle);
         }
 
         TextButton::~TextButton()

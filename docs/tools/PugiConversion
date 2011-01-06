@@ -158,7 +158,7 @@ function FixNames
 	#FileContent=`echo -E "$FileContent" | sed -e 's/needle/replacement/'`
 
 	#This is the list of items to find/replace to convert the Pugi API into Physgame API
-	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)\([a-z]*_\)\(.\)/\U\1\L\2\U\3/g'`		#Adjust the names of two word type to use CamelCase
+	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)\([a-z]*\)_\(.\)/\U\1\L\2\U\3/g'`		#Adjust the names of two word type to use CamelCase
 	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)/\U\1/g'`							#Adjust the names of two word type to use CamelCase
 	FileContent=`echo -E "$FileContent" | sed -e 's/XML_CLASS/PHYS_LIB/g'`					#These configure the XML API to be exported to a DLL on windows
 	FileContent=`echo -E "$FileContent" | sed -e 's/XML_FUNCTION/PHYS_LIB/g'`

@@ -264,8 +264,20 @@ namespace phys
             /// @brief Bullet constraint that this class encapsulates.
             btHingeConstraint* Hinge;
         public:
-            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotInA, Vector3 PivotInB, Vector3 AxisInA, Vector3 AxisInB, bool UseReferenceA);
-            HingeConstraint(ActorRigid* ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA);
+            /// @brief
+            /// @param AxisInA The orientation for the axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param AxisInB The orientation for the axis(for ActorB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
+            /// This simply controls whether or not it should use ActorA's local space instead.
+            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotInA, Vector3 PivotInB, Vector3 AxisInA, Vector3 AxisInB, bool UseReferenceA=false);
+            /// @brief
+            /// @param AxisInA The axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
+            /// This simply controls whether or not it should use ActorA's local space instead.
+            HingeConstraint(ActorRigid* ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA=false);
+            /// @brief
+            /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
+            /// This simply controls whether or not it should use ActorA's local space instead.
             HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA=false);
             /// @brief Internal constructor.
             /// @details Constructs this class around a pre-built bullet constraint.  This is an internal only constructor and shouldn't be called manually.

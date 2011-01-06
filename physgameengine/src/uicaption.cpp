@@ -66,6 +66,8 @@ namespace phys
             GorillaCaption->size(Size.X * Window.X, Size.Y * Window.Y);
             GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
             GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
+            GorillaCaption->align(Gorilla::TextAlign_Centre);
+            GorillaCaption->vertical_align(Gorilla::VerticalAlign_Middle);
         }
 
         Caption::~Caption()

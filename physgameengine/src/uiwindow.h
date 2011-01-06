@@ -109,6 +109,9 @@ namespace phys
                 virtual void Show();
                 /// @brief Forces this window to hide.
                 virtual void Hide();
+                /// @brief Gets the background object of this window.
+                /// @return Returns a pointer to the rectangle that is the background for this window.
+                virtual Rectangle* GetWindowBack();
                 /// @brief Checks to see if the current mouse position is over this window.
                 /// @return Returns a bool value, true if the mouse is over this window, false if it's not.
                 virtual bool CheckMouseHover();
