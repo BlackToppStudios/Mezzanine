@@ -159,8 +159,8 @@ function FixNames
 	#FileContent=`echo -E "$FileContent" | sed -e 's/needle/replacement/'`
 	
 	#This is the list of items to find/replace to convert the Pugi API into Physgame API
-	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)\([a-z]*_\)\(.\)/\U\1\L\2\U\3/g'`
-#xml_(.)([a-z]*_)(.)
+	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)\([a-z]*\)_\(.\)/\U\1\L\2\U\3/g'`
+
 	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)/\U\1/g'`
 
 	
