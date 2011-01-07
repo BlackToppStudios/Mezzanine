@@ -535,11 +535,34 @@ void LoadContent()
         xml::Document TestDoc;
         xml::Parse_Result ParsedXML = TestDoc.load( *XMLptr );
 
+        TheWorld->LogStream << "xml::status_ok :" << xml::status_ok << endl
+                            << "xml::status_file_not_found :" << xml::status_file_not_found << endl
+                            << "xml::status_io_error :" << xml::status_io_error << endl
+                            << "xml::status_out_of_memory :" << xml::status_out_of_memory << endl
+                            << "xml::status_unrecognized_tag :" << xml::status_unrecognized_tag << endl
+                            << "xml::status_bad_pi :" << xml::status_bad_pi << endl
+                            << "xml::status_bad_comment :" << xml::status_bad_comment << endl
+                            << "xml::status_bad_cdata :" << xml::status_bad_cdata << endl
+                            << "xml::status_bad_doctype :" << xml::status_bad_doctype << endl
+                            << "xml::status_bad_pcdata :" << xml::status_bad_pcdata << endl
+                            << "xml::status_bad_start_element :" << xml::status_bad_start_element << endl
+                            << "xml::status_bad_attribute :" << xml::status_bad_attribute << endl
+                            << "xml::status_bad_end_element :" << xml::status_bad_end_element << endl
+                            << "xml::status_end_element_mismatch :" << xml::status_end_element_mismatch << endl;
+
+        if(ParsedXML.status == xml::status_ok )
+        {
+                TheWorld->Log("Successfully loaded and parsed test.xml");
+        }else{
+            TheWorld->LogStream << "Failed to load and parse test.xml. With Status :" << ParsedXML.status;
+
+        }
+
+
 
         //phys::xml::TestXML(XMLptr);
 
         /*
-
         String temp;
         xml::Document TestXMLDoc("Test");
         *XMLptr >> TestXMLDoc;

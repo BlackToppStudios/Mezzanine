@@ -100,14 +100,13 @@ namespace phys
                     #ifdef PHYSDEBUG
                     World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via current location seek logic");
                     #endif
-                    // No need to do safety checks here, seekpos will do them
                     return this->seekpos(this->GetCurrentLocation()+off,which);
 
                 case ios_base::end :
                     #ifdef PHYSDEBUG
                     World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via end seek logic");
                     #endif
-                    return this->seekpos(this->OgreStream->size()-off, which);
+                    return this->seekpos((this->OgreStream->size()-1)+off, which);
 
                 default:
                     return -1;
@@ -120,7 +119,7 @@ namespace phys
             #ifdef PHYSDEBUG
             World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::seekpos()");
             #endif
-            if (ios_base::in & which)
+            if (ios_base::out & which)
                 { return -1; }
 
             if(this->CheckStream(sp))
@@ -191,6 +190,7 @@ namespace phys
                 return BytesRetrieved;
             }else{
                 #ifdef PHYSDEBUG
+
                 World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() and returning EOF"; World::GetWorldPointer()->Log();
                 #endif
                 return traits_type::eof();
