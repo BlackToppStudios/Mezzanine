@@ -28,7 +28,7 @@
 <h1>crossplatformexport.h</h1>  </div>
 </div>
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
+<a href="../../d5/d4d/crossplatformexport_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">//© Copyright 2010 BlackTopp Studios Inc.</span>
 <a name="l00002"></a>00002 <span class="comment">/* This file is part of The PhysGame Engine.</span>
 <a name="l00003"></a>00003 <span class="comment"></span>
 <a name="l00004"></a>00004 <span class="comment">    The PhysGame Engine is free software: you can redistribute it and/or modify</span>
@@ -69,18 +69,75 @@
 <a name="l00039"></a>00039 <span class="comment">*/</span>
 <a name="l00040"></a>00040 <span class="preprocessor">#ifndef _crossplatformexports_h</span>
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _crossplatformexports_h</span>
-<a name="l00042"></a>00042 <span class="preprocessor"></span>
-<a name="l00043"></a>00043 <span class="comment">//Used to define whether a class is exported as part of the shared library when compiled</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#ifdef WINDOWS</span>
-<a name="l00045"></a>00045 <span class="preprocessor"></span><span class="preprocessor">#define PHYS_LIB __declspec(dllexport)</span>
-<a name="l00046"></a>00046 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00047"></a>00047 <span class="preprocessor"></span><span class="preprocessor">#define PHYS_LIB</span>
-<a name="l00048"></a>00048 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00049"></a>00049 <span class="preprocessor"></span>
-<a name="l00050"></a>00050 <span class="preprocessor">#endif</span>
+<a name="l00042"></a>00042 <span class="preprocessor"></span><span class="comment"></span>
+<a name="l00043"></a>00043 <span class="comment">/**</span>
+<a name="l00044"></a>00044 <span class="comment">    @file crossplatformexport.h</span>
+<a name="l00045"></a>00045 <span class="comment">    @brief This file is used on some platforms to determine what data should be read and written to and from a shared/dynamic library.</span>
+<a name="l00046"></a>00046 <span class="comment">    @details Currently this file uses __declspec(dllexport) and __declspec(dllimport) on the windows platform to control what</span>
+<a name="l00047"></a>00047 <span class="comment">    is imported from or exported to the Physgame DLL. If WINDOWS if defined then PHYS_LIB will be set to either &quot;__declspec(dllexport)&quot;</span>
+<a name="l00048"></a>00048 <span class="comment">    or &quot;__declspec(dllimport)&quot;. Every Class, template, function variable, and other item intended to be in physgame is tagged with</span>
+<a name="l00049"></a>00049 <span class="comment">    PHYS_LIB. \n \n</span>
+<a name="l00050"></a>00050 <span class="comment"></span>
+<a name="l00051"></a>00051 <span class="comment">    During compilation of the Physgame engine __declspec(dllexport) tells the compiler that a given item (a function, class, template,</span>
+<a name="l00052"></a>00052 <span class="comment">    etc...), should be included in the dll and made available for use in games (or whatever kind of applicaitons use Physgame). This</span>
+<a name="l00053"></a>00053 <span class="comment">    header sets PHYS_LIB to __declspec(dllexport) if EXPORTINGPHYSGAMEDLL is set. If Physgame is compiled using the cmake build</span>
+<a name="l00054"></a>00054 <span class="comment">    provided then this is handle automatically. If the cmake build is not used, then this file will attempt to detect if the platform</span>
+<a name="l00055"></a>00055 <span class="comment">    it is running on is windows or not. It is preferable that you configure your build environment to define WINDOWS and EXPORTINGPHYSGAMEDLL</span>
+<a name="l00056"></a>00056 <span class="comment">    if you are compiling this on windows without the provided cmake build. \n \n</span>
+<a name="l00057"></a>00057 <span class="comment"></span>
+<a name="l00058"></a>00058 <span class="comment">    Compilation of applications using Physgame __declspec(dllimport), tells the compiler what to expect from the dll and may make</span>
+<a name="l00059"></a>00059 <span class="comment">    optimizations available with some compilers. This is automatically set if you use the cmake build, if you aren&#39;t this file will</span>
+<a name="l00060"></a>00060 <span class="comment">    attempt to determine if you are running windows. It is best to set the build envirnoment of your game or applciation to define</span>
+<a name="l00061"></a>00061 <span class="comment">    WINDOWS, if possible copy of our cmake builds for Catch! or the EngineDemo. \n \n</span>
+<a name="l00062"></a>00062 <span class="comment"></span>
+<a name="l00063"></a>00063 <span class="comment">    The Macro PHYS_LIB is declared as empty if WINDOWS is not defined, as should be the case if LINUX or MACOSX is defined. \n \n</span>
+<a name="l00064"></a>00064 <span class="comment"></span>
+<a name="l00065"></a>00065 <span class="comment"></span>
+<a name="l00066"></a>00066 <span class="comment">*/</span>
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 <span class="comment">// Check for other nonwindows OS</span>
+<a name="l00069"></a>00069 <span class="preprocessor">#ifdef LINUX</span>
+<a name="l00070"></a>00070 <span class="preprocessor"></span><span class="preprocessor">    #define NONWINDOWS</span>
+<a name="l00071"></a>00071 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00072"></a>00072 <span class="preprocessor"></span>
+<a name="l00073"></a>00073 <span class="preprocessor">#ifdef MACOSX</span>
+<a name="l00074"></a>00074 <span class="preprocessor"></span><span class="preprocessor">    #define NONWINDOWS</span>
+<a name="l00075"></a>00075 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00076"></a>00076 <span class="preprocessor"></span>
+<a name="l00077"></a>00077 <span class="comment">//Check for windows, but not in a way that overides what is passed on the command prompt</span>
+<a name="l00078"></a>00078 <span class="preprocessor">#ifndef NONWINDOWS</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span><span class="preprocessor">    #ifdef __WIN32__</span>
+<a name="l00080"></a>00080 <span class="preprocessor"></span><span class="preprocessor">    #define WINDOWS</span>
+<a name="l00081"></a>00081 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
+<a name="l00082"></a>00082 <span class="preprocessor"></span>
+<a name="l00083"></a>00083 <span class="preprocessor">    #ifdef _WIN32</span>
+<a name="l00084"></a>00084 <span class="preprocessor"></span><span class="preprocessor">    #define WINDOWS</span>
+<a name="l00085"></a>00085 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
+<a name="l00086"></a>00086 <span class="preprocessor"></span>
+<a name="l00087"></a>00087 <span class="preprocessor">    #ifdef __CYGWIN32__</span>
+<a name="l00088"></a>00088 <span class="preprocessor"></span><span class="preprocessor">    #define WINDOWS</span>
+<a name="l00089"></a>00089 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
+<a name="l00090"></a>00090 <span class="preprocessor"></span>
+<a name="l00091"></a>00091 <span class="preprocessor">    #ifdef _MSC_VER</span>
+<a name="l00092"></a>00092 <span class="preprocessor"></span><span class="preprocessor">    #define WINDOWS</span>
+<a name="l00093"></a>00093 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
+<a name="l00094"></a>00094 <span class="preprocessor"></span><span class="preprocessor">#endif // \NONWINDOWS</span>
+<a name="l00095"></a>00095 <span class="preprocessor"></span>
+<a name="l00096"></a>00096 <span class="comment">//Used to define whether a class is exported as part of the shared library when compiled</span>
+<a name="l00097"></a>00097 <span class="preprocessor">#ifdef WINDOWS</span>
+<a name="l00098"></a>00098 <span class="preprocessor"></span><span class="preprocessor">    #ifdef EXPORTINGPHYSGAMEDLL</span>
+<a name="l00099"></a>00099 <span class="preprocessor"></span><span class="preprocessor">        #define PHYS_LIB __declspec(dllexport)</span>
+<a name="l00100"></a>00100 <span class="preprocessor"></span><span class="preprocessor">    #else</span>
+<a name="l00101"></a>00101 <span class="preprocessor"></span><span class="preprocessor">        #define PHYS_LIB __declspec(dllimport)</span>
+<a name="l00102"></a>00102 <span class="preprocessor"></span><span class="preprocessor">    #endif      // \MAKINGPHYSGAMEDLL</span>
+<a name="l00103"></a>00103 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00104"></a>00104 <span class="preprocessor"></span><span class="preprocessor">    #define PHYS_LIB</span>
+<a name="l00105"></a>00105 <span class="preprocessor"></span><span class="preprocessor">#endif  // \WINDOWS</span>
+<a name="l00106"></a>00106 <span class="preprocessor"></span>
+<a name="l00107"></a>00107 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 7 2011 13:05:49 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
