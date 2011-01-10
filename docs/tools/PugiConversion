@@ -158,20 +158,36 @@ function FixNames
 	#FileContent=`echo -E "$FileContent" | sed -e 's/needle/replacement/'`
 
 	#This is the list of items to find/replace to convert the Pugi API into Physgame API
+	FileContent=`echo -E "$FileContent" | sed -e 's|///|////|g'`								#removed doxygen documentations
+
 	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)\([a-z]*\)_\(.\)/\U\1\L\2\U\3/g'`		#Adjust the names of two word type to use CamelCase
-	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)/\U\1/g'`							#Adjust the names of two word type to use CamelCase
+	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)/\U\1/g'`							#Adjust the names of one word type to use CamelCase
+
 	FileContent=`echo -E "$FileContent" | sed -e 's/XML_CLASS/PHYS_LIB/g'`					#These configure the XML API to be exported to a DLL on windows
 	FileContent=`echo -E "$FileContent" | sed -e 's/XML_FUNCTION/PHYS_LIB/g'`
 	FileContent=`echo -E "$FileContent" | sed -e 's/XML_API/PHYS_LIB/g'`
 
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_ok/StatusOk/g'`										#Status and error codes
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_file_not_found/StatusFileNotFound/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_io_error/StatusIOError/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_out_of_memory/StatusOutOfMemory/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_unrecognized_tag/StatusUnrecognizedTag/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_pi/StatusBadPi/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_comment/StatusBadComment/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_cdata/StatusBadCdata/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_doctype/StatusBadDoctype/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_pcdata/StatusBadPcdata/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_start_element/StatusBadStartElement/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_attribute/StatusBadAttribute/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_end_element/StatusBadEndElement/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_end_element_mismatch/StatusEndElementMismatch/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_internal_error/StatusInternalError/g'`
 	echo -E "$FileContent" > $1
 	#	mv $TempFileName $1
 }
 
 FixNames $NewHFile
 FixNames $NewCppFile
-
-
 
 #we unset this, so we will set it again, even though on *Most* systems this isn't required
 set +f

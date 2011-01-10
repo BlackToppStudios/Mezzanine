@@ -229,23 +229,23 @@ namespace
  
 namespace 
 { 
-	static const size_t Memory_Page_size = 32768; 
+	static const size_t MemoryPage_size = 32768; 
  
-	static const uintptr_t Memory_Page_alignment = 32; 
-	static const uintptr_t Memory_Page_pointer_mask = ~(Memory_Page_alignment - 1); 
-	static const uintptr_t Memory_Page_name_allocated_mask = 16; 
-	static const uintptr_t Memory_Page_value_allocated_mask = 8; 
-	static const uintptr_t Memory_Page_type_mask = 7; 
+	static const uintptr_t MemoryPage_alignment = 32; 
+	static const uintptr_t MemoryPage_pointer_mask = ~(MemoryPage_alignment - 1); 
+	static const uintptr_t MemoryPage_name_allocated_mask = 16; 
+	static const uintptr_t MemoryPage_value_allocated_mask = 8; 
+	static const uintptr_t MemoryPage_type_mask = 7; 
  
 	struct Allocator; 
  
-	struct Memory_Page 
+	struct MemoryPage 
 	{ 
-		static Memory_Page* construct(void* memory) 
+		static MemoryPage* construct(void* memory) 
 		{ 
 			if (!memory) return 0; //$ redundant, left for performance 
  
-			Memory_Page* result = static_cast<Memory_Page*>(memory); 
+			MemoryPage* result = static_cast<MemoryPage*>(memory); 
  
 			result->allocator = 0; 
 			result->memory = 0; 
@@ -261,8 +261,8 @@ namespace
  
 		void* memory; 
  
-		Memory_Page* prev; 
-		Memory_Page* next; 
+		MemoryPage* prev; 
+		MemoryPage* next; 
  
 		size_t busy_size; 
 		size_t freed_size; 
@@ -270,7 +270,7 @@ namespace
 		char data[1]; 
 	}; 
  
-	struct Memory_String_header 
+	struct MemoryString_header 
 	{ 
 		uint16_t page_offset; // offset from page->data 
 		uint16_t full_size; // 0 if string occupies whole page 
@@ -278,23 +278,23 @@ namespace
  
 	struct Allocator 
 	{ 
-		Allocator(Memory_Page* root): _root(root), _busy_size(root->busy_size) 
+		Allocator(MemoryPage* root): _root(root), _busy_size(root->busy_size) 
 		{ 
 		} 
  
-		Memory_Page* allocate_page(size_t data_size) 
+		MemoryPage* allocate_page(size_t data_size) 
 		{ 
-			size_t size = offsetof(Memory_Page, data) + data_size; 
+			size_t size = offsetof(MemoryPage, data) + data_size; 
  
 			// allocate block with some alignment, leaving memory for worst-case padding 
-			void* memory = global_allocate(size + Memory_Page_alignment); 
+			void* memory = global_allocate(size + MemoryPage_alignment); 
 			if (!memory) return 0; 
  
 			// align upwards to page boundary 
-			void* page_memory = reinterpret_cast<void*>((reinterpret_cast<uintptr_t>(memory) + (Memory_Page_alignment - 1)) & ~(Memory_Page_alignment - 1)); 
+			void* page_memory = reinterpret_cast<void*>((reinterpret_cast<uintptr_t>(memory) + (MemoryPage_alignment - 1)) & ~(MemoryPage_alignment - 1)); 
  
 			// prepare page structure 
-			Memory_Page* page = Memory_Page::construct(page_memory); 
+			MemoryPage* page = MemoryPage::construct(page_memory); 
  
 			page->memory = memory; 
 			page->allocator = _root->allocator; 
@@ -302,16 +302,16 @@ namespace
 			return page; 
 		} 
  
-		static void deallocate_page(Memory_Page* page) 
+		static void deallocate_page(MemoryPage* page) 
 		{ 
 			global_deallocate(page->memory); 
 		} 
  
-		void* allocate_memory_oob(size_t size, Memory_Page*& out_page); 
+		void* allocate_memory_oob(size_t size, MemoryPage*& out_page); 
  
-		void* allocate_memory(size_t size, Memory_Page*& out_page) 
+		void* allocate_memory(size_t size, MemoryPage*& out_page) 
 		{ 
-			if (_busy_size + size > Memory_Page_size) return allocate_memory_oob(size, out_page); 
+			if (_busy_size + size > MemoryPage_size) return allocate_memory_oob(size, out_page); 
  
 			void* buf = _root->data + _busy_size; 
  
@@ -322,7 +322,7 @@ namespace
 			return buf; 
 		} 
  
-		void deallocate_memory(void* ptr, size_t size, Memory_Page* page) 
+		void deallocate_memory(void* ptr, size_t size, MemoryPage* page) 
 		{ 
 			if (page == _root) page->busy_size = _busy_size; 
  
@@ -360,13 +360,13 @@ namespace
 		char_t* allocate_string(size_t length) 
 		{ 
 			// allocate memory for string and header block 
-			size_t size = sizeof(Memory_String_header) + length * sizeof(char_t); 
+			size_t size = sizeof(MemoryString_header) + length * sizeof(char_t); 
 			 
 			// round size up to pointer alignment boundary 
 			size_t full_size = (size + (sizeof(void*) - 1)) & ~(sizeof(void*) - 1); 
  
-			Memory_Page* page; 
-			Memory_String_header* header = static_cast<Memory_String_header*>(allocate_memory(full_size, page)); 
+			MemoryPage* page; 
+			MemoryString_header* header = static_cast<MemoryString_header*>(allocate_memory(full_size, page)); 
  
 			if (!header) return 0; 
  
@@ -386,11 +386,11 @@ namespace
 		void deallocate_string(char_t* string) 
 		{ 
 			// get header 
-			Memory_String_header* header = reinterpret_cast<Memory_String_header*>(string) - 1; 
+			MemoryString_header* header = reinterpret_cast<MemoryString_header*>(string) - 1; 
  
 			// deallocate 
-			size_t page_offset = offsetof(Memory_Page, data) + header->page_offset; 
-			Memory_Page* page = reinterpret_cast<Memory_Page*>(reinterpret_cast<char*>(header) - page_offset); 
+			size_t page_offset = offsetof(MemoryPage, data) + header->page_offset; 
+			MemoryPage* page = reinterpret_cast<MemoryPage*>(reinterpret_cast<char*>(header) - page_offset); 
  
 			// if full_size == 0 then this string occupies the whole page 
 			size_t full_size = header->full_size == 0 ? page->busy_size : header->full_size; 
@@ -398,15 +398,15 @@ namespace
 			deallocate_memory(header, full_size, page); 
 		} 
  
-		Memory_Page* _root; 
+		MemoryPage* _root; 
 		size_t _busy_size; 
 	}; 
  
-	XML_NO_INLINE void* Allocator::allocate_memory_oob(size_t size, Memory_Page*& out_page) 
+	XML_NO_INLINE void* Allocator::allocate_memory_oob(size_t size, MemoryPage*& out_page) 
 	{ 
-		const size_t large_allocation_threshold = Memory_Page_size / 4; 
+		const size_t large_allocation_threshold = MemoryPage_size / 4; 
  
-		Memory_Page* page = allocate_page(size <= large_allocation_threshold ? Memory_Page_size : size); 
+		MemoryPage* page = allocate_page(size <= large_allocation_threshold ? MemoryPage_size : size); 
 		if (!page) return 0; 
  
 		if (size <= large_allocation_threshold) 
@@ -445,137 +445,137 @@ namespace
 namespace phys
 { namespace xml
 { 
-	/// A 'name=value' XML attribute structure. 
-	struct Attribute_Struct 
+	//// A 'name=value' XML attribute structure. 
+	struct AttributeStruct 
 	{ 
-		/// Default ctor 
-		Attribute_Struct(Memory_Page* page): header(reinterpret_cast<uintptr_t>(page)), name(0), value(0), prev_attribute_c(0), next_attribute(0) 
+		//// Default ctor 
+		AttributeStruct(MemoryPage* page): header(reinterpret_cast<uintptr_t>(page)), name(0), value(0), prev_attribute_c(0), next_attribute(0) 
 		{ 
 		} 
  
 		uintptr_t header; 
  
-		char_t* name;	///< Pointer to attribute name. 
-		char_t*	value;	///< Pointer to attribute value. 
+		char_t* name;	////< Pointer to attribute name. 
+		char_t*	value;	////< Pointer to attribute value. 
  
-		Attribute_Struct* prev_attribute_c;	///< Previous attribute (cyclic list) 
-		Attribute_Struct* next_attribute;	///< Next attribute 
+		AttributeStruct* prev_attribute_c;	////< Previous attribute (cyclic list) 
+		AttributeStruct* next_attribute;	////< Next attribute 
 	}; 
  
-	/// An XML document tree node. 
-	struct Node_Struct 
+	//// An XML document tree node. 
+	struct NodeStruct 
 	{ 
-		/// Default ctor 
-		/// \param type - node type 
-		Node_Struct(Memory_Page* page, Node_Type type): header(reinterpret_cast<uintptr_t>(page) | (type - 1)), parent(0), name(0), value(0), first_child(0), prev_sibling_c(0), next_sibling(0), first_attribute(0) 
+		//// Default ctor 
+		//// \param type - node type 
+		NodeStruct(MemoryPage* page, NodeType type): header(reinterpret_cast<uintptr_t>(page) | (type - 1)), parent(0), name(0), value(0), first_child(0), prev_sibling_c(0), next_sibling(0), first_attribute(0) 
 		{ 
 		} 
  
 		uintptr_t header; 
  
-		Node_Struct*		parent;					///< Pointer to parent 
+		NodeStruct*		parent;					////< Pointer to parent 
  
-		char_t*					name;					///< Pointer to element name. 
-		char_t*					value;					///< Pointer to any associated string data. 
+		char_t*					name;					////< Pointer to element name. 
+		char_t*					value;					////< Pointer to any associated string data. 
  
-		Node_Struct*		first_child;			///< First child 
+		NodeStruct*		first_child;			////< First child 
 		 
-		Node_Struct*		prev_sibling_c;			///< Left brother (cyclic list) 
-		Node_Struct*		next_sibling;			///< Right brother 
+		NodeStruct*		prev_sibling_c;			////< Left brother (cyclic list) 
+		NodeStruct*		next_sibling;			////< Right brother 
 		 
-		Attribute_Struct*	first_attribute;		///< First attribute 
+		AttributeStruct*	first_attribute;		////< First attribute 
 	}; 
 } 
 } // \phys
  
 namespace 
 { 
-	struct Document_Struct: public Node_Struct, public Allocator 
+	struct DocumentStruct: public NodeStruct, public Allocator 
 	{ 
-		Document_Struct(Memory_Page* page): Node_Struct(page, node_document), Allocator(page), buffer(0) 
+		DocumentStruct(MemoryPage* page): NodeStruct(page, node_document), Allocator(page), buffer(0) 
 		{ 
 		} 
  
 		const char_t* buffer; 
 	}; 
  
-	static inline Allocator& get_allocator(const Node_Struct* node) 
+	static inline Allocator& get_allocator(const NodeStruct* node) 
 	{ 
 		assert(node); 
  
-		return *reinterpret_cast<Memory_Page*>(node->header & Memory_Page_pointer_mask)->allocator; 
+		return *reinterpret_cast<MemoryPage*>(node->header & MemoryPage_pointer_mask)->allocator; 
 	} 
 } 
  
 // Low-level DOM operations 
 namespace 
 { 
-	inline Attribute_Struct* allocate_attribute(Allocator& alloc) 
+	inline AttributeStruct* allocate_attribute(Allocator& alloc) 
 	{ 
-		Memory_Page* page; 
-		void* memory = alloc.allocate_memory(sizeof(Attribute_Struct), page); 
+		MemoryPage* page; 
+		void* memory = alloc.allocate_memory(sizeof(AttributeStruct), page); 
  
-		return new (memory) Attribute_Struct(page); 
+		return new (memory) AttributeStruct(page); 
 	} 
  
-	inline Node_Struct* allocate_node(Allocator& alloc, Node_Type type) 
+	inline NodeStruct* allocate_node(Allocator& alloc, NodeType type) 
 	{ 
-		Memory_Page* page; 
-		void* memory = alloc.allocate_memory(sizeof(Node_Struct), page); 
+		MemoryPage* page; 
+		void* memory = alloc.allocate_memory(sizeof(NodeStruct), page); 
  
-		return new (memory) Node_Struct(page, type); 
+		return new (memory) NodeStruct(page, type); 
 	} 
  
-	inline void destroy_attribute(Attribute_Struct* a, Allocator& alloc) 
+	inline void destroy_attribute(AttributeStruct* a, Allocator& alloc) 
 	{ 
 		uintptr_t header = a->header; 
  
-		if (header & Memory_Page_name_allocated_mask) alloc.deallocate_string(a->name); 
-		if (header & Memory_Page_value_allocated_mask) alloc.deallocate_string(a->value); 
+		if (header & MemoryPage_name_allocated_mask) alloc.deallocate_string(a->name); 
+		if (header & MemoryPage_value_allocated_mask) alloc.deallocate_string(a->value); 
  
-		alloc.deallocate_memory(a, sizeof(Attribute_Struct), reinterpret_cast<Memory_Page*>(header & Memory_Page_pointer_mask)); 
+		alloc.deallocate_memory(a, sizeof(AttributeStruct), reinterpret_cast<MemoryPage*>(header & MemoryPage_pointer_mask)); 
 	} 
  
-	inline void destroy_node(Node_Struct* n, Allocator& alloc) 
+	inline void destroy_node(NodeStruct* n, Allocator& alloc) 
 	{ 
 		uintptr_t header = n->header; 
  
-		if (header & Memory_Page_name_allocated_mask) alloc.deallocate_string(n->name); 
-		if (header & Memory_Page_value_allocated_mask) alloc.deallocate_string(n->value); 
+		if (header & MemoryPage_name_allocated_mask) alloc.deallocate_string(n->name); 
+		if (header & MemoryPage_value_allocated_mask) alloc.deallocate_string(n->value); 
  
-		for (Attribute_Struct* attr = n->first_attribute; attr; ) 
+		for (AttributeStruct* attr = n->first_attribute; attr; ) 
 		{ 
-			Attribute_Struct* next = attr->next_attribute; 
+			AttributeStruct* next = attr->next_attribute; 
  
 			destroy_attribute(attr, alloc); 
  
 			attr = next; 
 		} 
  
-		for (Node_Struct* child = n->first_child; child; ) 
+		for (NodeStruct* child = n->first_child; child; ) 
 		{ 
-			Node_Struct* next = child->next_sibling; 
+			NodeStruct* next = child->next_sibling; 
  
 			destroy_node(child, alloc); 
  
 			child = next; 
 		} 
  
-		alloc.deallocate_memory(n, sizeof(Node_Struct), reinterpret_cast<Memory_Page*>(header & Memory_Page_pointer_mask)); 
+		alloc.deallocate_memory(n, sizeof(NodeStruct), reinterpret_cast<MemoryPage*>(header & MemoryPage_pointer_mask)); 
 	} 
  
-	XML_NO_INLINE Node_Struct* append_node(Node_Struct* node, Allocator& alloc, Node_Type type = node_element) 
+	XML_NO_INLINE NodeStruct* append_node(NodeStruct* node, Allocator& alloc, NodeType type = node_element) 
 	{ 
-		Node_Struct* child = allocate_node(alloc, type); 
+		NodeStruct* child = allocate_node(alloc, type); 
 		if (!child) return 0; 
  
 		child->parent = node; 
  
-		Node_Struct* first_child = node->first_child; 
+		NodeStruct* first_child = node->first_child; 
 			 
 		if (first_child) 
 		{ 
-			Node_Struct* last_child = first_child->prev_sibling_c; 
+			NodeStruct* last_child = first_child->prev_sibling_c; 
  
 			last_child->next_sibling = child; 
 			child->prev_sibling_c = last_child; 
@@ -590,16 +590,16 @@ namespace
 		return child; 
 	} 
  
-	XML_NO_INLINE Attribute_Struct* append_attribute_ll(Node_Struct* node, Allocator& alloc) 
+	XML_NO_INLINE AttributeStruct* append_attribute_ll(NodeStruct* node, Allocator& alloc) 
 	{ 
-		Attribute_Struct* a = allocate_attribute(alloc); 
+		AttributeStruct* a = allocate_attribute(alloc); 
 		if (!a) return 0; 
  
-		Attribute_Struct* first_attribute = node->first_attribute; 
+		AttributeStruct* first_attribute = node->first_attribute; 
  
 		if (first_attribute) 
 		{ 
-			Attribute_Struct* last_attribute = first_attribute->prev_attribute_c; 
+			AttributeStruct* last_attribute = first_attribute->prev_attribute_c; 
  
 			last_attribute->next_attribute = a; 
 			a->prev_attribute_c = last_attribute; 
@@ -1411,7 +1411,7 @@ namespace
 		if (source_length == 0) 
 		{ 
 			// empty string and null pointer are equivalent, so just deallocate old memory 
-			Allocator* alloc = reinterpret_cast<Memory_Page*>(header & Memory_Page_pointer_mask)->allocator; 
+			Allocator* alloc = reinterpret_cast<MemoryPage*>(header & MemoryPage_pointer_mask)->allocator; 
  
 			if (header & header_mask) alloc->deallocate_string(dest); 
 			 
@@ -1430,7 +1430,7 @@ namespace
 		} 
 		else 
 		{ 
-			Allocator* alloc = reinterpret_cast<Memory_Page*>(header & Memory_Page_pointer_mask)->allocator; 
+			Allocator* alloc = reinterpret_cast<MemoryPage*>(header & MemoryPage_pointer_mask)->allocator; 
  
 			// allocate new buffer 
 			char_t* buf = alloc->allocate_string(source_length + 1); 
@@ -1912,9 +1912,9 @@ namespace
 		} 
 	} 
  
-	inline Parse_Result make_parse_result(Parse_Status status, ptrdiff_t offset = 0) 
+	inline ParseResult make_parse_result(ParseStatus status, ptrdiff_t offset = 0) 
 	{ 
-		Parse_Result result; 
+		ParseResult result; 
 		result.status = status; 
 		result.offset = offset; 
  
@@ -1930,7 +1930,7 @@ namespace
 		// Parser utilities. 
 		#define SKIPWS()			{ while (IS_CHARTYPE(*s, ct_space)) ++s; } 
 		#define OPTSET(OPT)			( optmsk & OPT ) 
-		#define PUSHNODE(TYPE)		{ cursor = append_node(cursor, alloc, TYPE); if (!cursor) THROW_ERROR(status_out_of_memory, s); } 
+		#define PUSHNODE(TYPE)		{ cursor = append_node(cursor, alloc, TYPE); if (!cursor) THROW_ERROR(StatusOutOfMemory, s); } 
 		#define POPNODE()			{ cursor = cursor->parent; } 
 		#define SCANFOR(X)			{ while (*s != 0 && !(X)) ++s; } 
 		#define SCANWHILE(X)		{ while ((X)) ++s; } 
@@ -1956,7 +1956,7 @@ namespace
 				// quoted string 
 				char_t ch = *s++; 
 				SCANFOR(*s == ch); 
-				if (!*s) THROW_ERROR(status_bad_doctype, s); 
+				if (!*s) THROW_ERROR(StatusBadDoctype, s); 
  
 				s++; 
 			} 
@@ -1965,7 +1965,7 @@ namespace
 				// <? ... ?> 
 				s += 2; 
 				SCANFOR(s[0] == '?' && s[1] == '>'); // no need for ENDSWITH because ?> can't terminate proper doctype 
-				if (!*s) THROW_ERROR(status_bad_doctype, s); 
+				if (!*s) THROW_ERROR(StatusBadDoctype, s); 
  
 				s += 2; 
 			} 
@@ -1973,11 +1973,11 @@ namespace
 			{ 
 				s += 4; 
 				SCANFOR(s[0] == '-' && s[1] == '-' && s[2] == '>'); // no need for ENDSWITH because --> can't terminate proper doctype 
-				if (!*s) THROW_ERROR(status_bad_doctype, s); 
+				if (!*s) THROW_ERROR(StatusBadDoctype, s); 
  
 				s += 4; 
 			} 
-			else THROW_ERROR(status_bad_doctype, s); 
+			else THROW_ERROR(StatusBadDoctype, s); 
  
 			return s; 
 		} 
@@ -2004,7 +2004,7 @@ namespace
 				else s++; 
 			} 
  
-			THROW_ERROR(status_bad_doctype, s); 
+			THROW_ERROR(StatusBadDoctype, s); 
  
 			return s; 
 		} 
@@ -2043,12 +2043,12 @@ namespace
 				else s++; 
 			} 
  
-			if (!toplevel || endch != '>') THROW_ERROR(status_bad_doctype, s); 
+			if (!toplevel || endch != '>') THROW_ERROR(StatusBadDoctype, s); 
  
 			return s; 
 		} 
  
-		char_t* parse_exclamation(char_t* s, Node_Struct* cursor, unsigned int optmsk, char_t endch) 
+		char_t* parse_exclamation(char_t* s, NodeStruct* cursor, unsigned int optmsk, char_t endch) 
 		{ 
 			// parse node contents, starting with exclamation mark 
 			++s; 
@@ -2071,13 +2071,13 @@ namespace
 					{ 
 						s = strconv_comment(s, endch); 
  
-						if (!s) THROW_ERROR(status_bad_comment, cursor->value); 
+						if (!s) THROW_ERROR(StatusBadComment, cursor->value); 
 					} 
 					else 
 					{ 
 						// Scan for terminating '-->'. 
 						SCANFOR(s[0] == '-' && s[1] == '-' && ENDSWITH(s[2], '>')); 
-						CHECK_ERROR(status_bad_comment, s); 
+						CHECK_ERROR(StatusBadComment, s); 
  
 						if (OPTSET(parse_comments)) 
 							*s = 0; // Zero-terminate this segment at the first terminating '-'. 
@@ -2085,7 +2085,7 @@ namespace
 						s += (s[2] == '>' ? 3 : 2); // Step over the '\0->'. 
 					} 
 				} 
-				else THROW_ERROR(status_bad_comment, s); 
+				else THROW_ERROR(StatusBadComment, s); 
 			} 
 			else if (*s == '[') 
 			{ 
@@ -2103,13 +2103,13 @@ namespace
 						{ 
 							s = strconv_cdata(s, endch); 
  
-							if (!s) THROW_ERROR(status_bad_cdata, cursor->value); 
+							if (!s) THROW_ERROR(StatusBadCdata, cursor->value); 
 						} 
 						else 
 						{ 
 							// Scan for terminating ']]>'. 
 							SCANFOR(s[0] == ']' && s[1] == ']' && ENDSWITH(s[2], '>')); 
-							CHECK_ERROR(status_bad_cdata, s); 
+							CHECK_ERROR(StatusBadCdata, s); 
  
 							*s++ = 0; // Zero-terminate this segment. 
 						} 
@@ -2118,20 +2118,20 @@ namespace
 					{ 
 						// Scan for terminating ']]>'. 
 						SCANFOR(s[0] == ']' && s[1] == ']' && ENDSWITH(s[2], '>')); 
-						CHECK_ERROR(status_bad_cdata, s); 
+						CHECK_ERROR(StatusBadCdata, s); 
  
 						++s; 
 					} 
  
 					s += (s[1] == '>' ? 2 : 1); // Step over the last ']>'. 
 				} 
-				else THROW_ERROR(status_bad_cdata, s); 
+				else THROW_ERROR(StatusBadCdata, s); 
 			} 
 			else if (s[0] == 'D' && s[1] == 'O' && s[2] == 'C' && s[3] == 'T' && s[4] == 'Y' && s[5] == 'P' && ENDSWITH(s[6], 'E')) 
 			{ 
 				s -= 2; 
  
-				if (cursor->parent) THROW_ERROR(status_bad_doctype, s); 
+				if (cursor->parent) THROW_ERROR(StatusBadDoctype, s); 
  
 				char_t* mark = s + 9; 
  
@@ -2151,17 +2151,17 @@ namespace
 					POPNODE(); 
 				} 
 			} 
-			else if (*s == 0 && endch == '-') THROW_ERROR(status_bad_comment, s); 
-			else if (*s == 0 && endch == '[') THROW_ERROR(status_bad_cdata, s); 
-			else THROW_ERROR(status_unrecognized_tag, s); 
+			else if (*s == 0 && endch == '-') THROW_ERROR(StatusBadComment, s); 
+			else if (*s == 0 && endch == '[') THROW_ERROR(StatusBadCdata, s); 
+			else THROW_ERROR(StatusUnrecognizedTag, s); 
  
 			return s; 
 		} 
  
-		char_t* parse_question(char_t* s, Node_Struct*& ref_cursor, unsigned int optmsk, char_t endch) 
+		char_t* parse_question(char_t* s, NodeStruct*& ref_cursor, unsigned int optmsk, char_t endch) 
 		{ 
 			// load into registers 
-			Node_Struct* cursor = ref_cursor; 
+			NodeStruct* cursor = ref_cursor; 
 			char_t ch = 0; 
  
 			// parse node contents, starting with question mark 
@@ -2170,10 +2170,10 @@ namespace
 			// read PI target 
 			char_t* target = s; 
  
-			if (!IS_CHARTYPE(*s, ct_start_symbol)) THROW_ERROR(status_bad_pi, s); 
+			if (!IS_CHARTYPE(*s, ct_start_symbol)) THROW_ERROR(StatusBadPi, s); 
  
 			SCANWHILE(IS_CHARTYPE(*s, ct_symbol)); 
-			CHECK_ERROR(status_bad_pi, s); 
+			CHECK_ERROR(StatusBadPi, s); 
  
 			// determine node type; stricmp / strcasecmp is not portable 
 			bool declaration = (target[0] | ' ') == 'x' && (target[1] | ' ') == 'm' && (target[2] | ' ') == 'l' && target + 3 == s; 
@@ -2183,7 +2183,7 @@ namespace
 				if (declaration) 
 				{ 
 					// disallow non top-level declarations 
-					if (cursor->parent) THROW_ERROR(status_bad_pi, s); 
+					if (cursor->parent) THROW_ERROR(StatusBadPi, s); 
  
 					PUSHNODE(node_declaration); 
 				} 
@@ -2200,7 +2200,7 @@ namespace
 				if (ch == '?') 
 				{ 
 					// empty node 
-					if (!ENDSWITH(*s, '>')) THROW_ERROR(status_bad_pi, s); 
+					if (!ENDSWITH(*s, '>')) THROW_ERROR(StatusBadPi, s); 
 					s += (*s == '>'); 
  
 					POPNODE(); 
@@ -2213,7 +2213,7 @@ namespace
 					char_t* value = s; 
  
 					SCANFOR(s[0] == '?' && ENDSWITH(s[1], '>')); 
-					CHECK_ERROR(status_bad_pi, s); 
+					CHECK_ERROR(StatusBadPi, s); 
  
 					if (declaration) 
 					{ 
@@ -2234,13 +2234,13 @@ namespace
 						s += (*s == '>'); 
 					} 
 				} 
-				else THROW_ERROR(status_bad_pi, s); 
+				else THROW_ERROR(StatusBadPi, s); 
 			} 
 			else 
 			{ 
 				// scan for tag end 
 				SCANFOR(s[0] == '?' && ENDSWITH(s[1], '>')); 
-				CHECK_ERROR(status_bad_pi, s); 
+				CHECK_ERROR(StatusBadPi, s); 
  
 				s += (s[1] == '>' ? 2 : 1); 
 			} 
@@ -2251,13 +2251,13 @@ namespace
 			return s; 
 		} 
  
-		void parse(char_t* s, Node_Struct* xmldoc, unsigned int optmsk, char_t endch) 
+		void parse(char_t* s, NodeStruct* xmldoc, unsigned int optmsk, char_t endch) 
 		{ 
 			strconv_attribute_t strconv_attribute = get_strconv_attribute(optmsk); 
 			strconv_pcdata_t strconv_pcdata = get_strconv_pcdata(optmsk); 
 			 
 			char_t ch = 0; 
-			Node_Struct* cursor = xmldoc; 
+			NodeStruct* cursor = xmldoc; 
 			char_t* mark = s; 
  
 			while (*s != 0) 
@@ -2289,21 +2289,21 @@ namespace
 						 
 								if (IS_CHARTYPE(*s, ct_start_symbol)) // <... #... 
 								{ 
-									Attribute_Struct* a = append_attribute_ll(cursor, alloc); // Make space for this attribute. 
-									if (!a) THROW_ERROR(status_out_of_memory, s); 
+									AttributeStruct* a = append_attribute_ll(cursor, alloc); // Make space for this attribute. 
+									if (!a) THROW_ERROR(StatusOutOfMemory, s); 
  
 									a->name = s; // Save the offset. 
  
 									SCANWHILE(IS_CHARTYPE(*s, ct_symbol)); // Scan for a terminator. 
-									CHECK_ERROR(status_bad_attribute, s); //$ redundant, left for performance 
+									CHECK_ERROR(StatusBadAttribute, s); //$ redundant, left for performance 
  
 									ENDSEG(); // Save char in 'ch', terminate & step over. 
-									CHECK_ERROR(status_bad_attribute, s); //$ redundant, left for performance 
+									CHECK_ERROR(StatusBadAttribute, s); //$ redundant, left for performance 
  
 									if (IS_CHARTYPE(ch, ct_space)) 
 									{ 
 										SKIPWS(); // Eat any whitespace. 
-										CHECK_ERROR(status_bad_attribute, s); //$ redundant, left for performance 
+										CHECK_ERROR(StatusBadAttribute, s); //$ redundant, left for performance 
  
 										ch = *s; 
 										++s; 
@@ -2321,16 +2321,16 @@ namespace
  
 											s = strconv_attribute(s, ch); 
 										 
-											if (!s) THROW_ERROR(status_bad_attribute, a->value); 
+											if (!s) THROW_ERROR(StatusBadAttribute, a->value); 
  
 											// After this line the loop continues from the start; 
 											// Whitespaces, / and > are ok, symbols and EOF are wrong, 
 											// everything else will be detected 
-											if (IS_CHARTYPE(*s, ct_start_symbol)) THROW_ERROR(status_bad_attribute, s); 
+											if (IS_CHARTYPE(*s, ct_start_symbol)) THROW_ERROR(StatusBadAttribute, s); 
 										} 
-										else THROW_ERROR(status_bad_attribute, s); 
+										else THROW_ERROR(StatusBadAttribute, s); 
 									} 
-									else THROW_ERROR(status_bad_attribute, s); 
+									else THROW_ERROR(StatusBadAttribute, s); 
 								} 
 								else if (*s == '/') 
 								{ 
@@ -2347,7 +2347,7 @@ namespace
 										POPNODE(); 
 										break; 
 									} 
-									else THROW_ERROR(status_bad_start_element, s); 
+									else THROW_ERROR(StatusBadStartElement, s); 
 								} 
 								else if (*s == '>') 
 								{ 
@@ -2359,14 +2359,14 @@ namespace
 								{ 
 									break; 
 								} 
-								else THROW_ERROR(status_bad_start_element, s); 
+								else THROW_ERROR(StatusBadStartElement, s); 
 							} 
  
 							// !!! 
 						} 
 						else if (ch == '/') // '<#.../' 
 						{ 
-							if (!ENDSWITH(*s, '>')) THROW_ERROR(status_bad_start_element, s); 
+							if (!ENDSWITH(*s, '>')) THROW_ERROR(StatusBadStartElement, s); 
  
 							POPNODE(); // Pop. 
  
@@ -2377,26 +2377,26 @@ namespace
 							// we stepped over null terminator, backtrack & handle closing tag 
 							--s; 
 							 
-							if (endch != '>') THROW_ERROR(status_bad_start_element, s); 
+							if (endch != '>') THROW_ERROR(StatusBadStartElement, s); 
 						} 
-						else THROW_ERROR(status_bad_start_element, s); 
+						else THROW_ERROR(StatusBadStartElement, s); 
 					} 
 					else if (*s == '/') 
 					{ 
 						++s; 
  
 						char_t* name = cursor->name; 
-						if (!name) THROW_ERROR(status_end_element_mismatch, s); 
+						if (!name) THROW_ERROR(StatusEndElementMismatch, s); 
 						 
 						while (IS_CHARTYPE(*s, ct_symbol)) 
 						{ 
-							if (*s++ != *name++) THROW_ERROR(status_end_element_mismatch, s); 
+							if (*s++ != *name++) THROW_ERROR(StatusEndElementMismatch, s); 
 						} 
  
 						if (*name) 
 						{ 
-							if (*s == 0 && name[0] == endch && name[1] == 0) THROW_ERROR(status_bad_end_element, s); 
-							else THROW_ERROR(status_end_element_mismatch, s); 
+							if (*s == 0 && name[0] == endch && name[1] == 0) THROW_ERROR(StatusBadEndElement, s); 
+							else THROW_ERROR(StatusEndElementMismatch, s); 
 						} 
 							 
 						POPNODE(); // Pop. 
@@ -2405,11 +2405,11 @@ namespace
  
 						if (*s == 0) 
 						{ 
-							if (endch != '>') THROW_ERROR(status_bad_end_element, s); 
+							if (endch != '>') THROW_ERROR(StatusBadEndElement, s); 
 						} 
 						else 
 						{ 
-							if (*s != '>') THROW_ERROR(status_bad_end_element, s); 
+							if (*s != '>') THROW_ERROR(StatusBadEndElement, s); 
 							++s; 
 						} 
 					} 
@@ -2418,14 +2418,14 @@ namespace
 						s = parse_question(s, cursor, optmsk, endch); 
  
 						assert(cursor); 
-						if ((cursor->header & Memory_Page_type_mask) + 1 == node_declaration) goto LOC_ATTRIBUTES; 
+						if ((cursor->header & MemoryPage_type_mask) + 1 == node_declaration) goto LOC_ATTRIBUTES; 
 					} 
 					else if (*s == '!') // '<!...' 
 					{ 
 						s = parse_exclamation(s, cursor, optmsk, endch); 
 					} 
-					else if (*s == 0 && endch == '?') THROW_ERROR(status_bad_pi, s); 
-					else THROW_ERROR(status_unrecognized_tag, s); 
+					else if (*s == 0 && endch == '?') THROW_ERROR(StatusBadPi, s); 
+					else THROW_ERROR(StatusUnrecognizedTag, s); 
 				} 
 				else 
 				{ 
@@ -2465,18 +2465,18 @@ namespace
 			} 
  
 			// check that last tag is closed 
-			if (cursor != xmldoc) THROW_ERROR(status_end_element_mismatch, s); 
+			if (cursor != xmldoc) THROW_ERROR(StatusEndElementMismatch, s); 
 		} 
  
-		static Parse_Result parse(char_t* buffer, size_t length, Node_Struct* root, unsigned int optmsk) 
+		static ParseResult parse(char_t* buffer, size_t length, NodeStruct* root, unsigned int optmsk) 
 		{ 
-			Document_Struct* xmldoc = static_cast<Document_Struct*>(root); 
+			DocumentStruct* xmldoc = static_cast<DocumentStruct*>(root); 
  
 			// store buffer for offset_debug 
 			xmldoc->buffer = buffer; 
  
 			// early-out for empty documents 
-			if (length == 0) return make_parse_result(status_ok); 
+			if (length == 0) return make_parse_result(StatusOk); 
  
 			// create parser on stack 
 			Parser parser(*xmldoc); 
@@ -2493,7 +2493,7 @@ namespace
 				parser.parse(buffer, xmldoc, optmsk, endch); 
 			} 
  
-			Parse_Result result = make_parse_result(static_cast<Parse_Status>(error), parser.error_offset ? parser.error_offset - buffer : 0); 
+			ParseResult result = make_parse_result(static_cast<ParseStatus>(error), parser.error_offset ? parser.error_offset - buffer : 0); 
 			assert(result.offset >= 0 && static_cast<size_t>(result.offset) <= length); 
  
 			// update allocator state 
@@ -2503,7 +2503,7 @@ namespace
 			if (result && endch == '<') 
 			{ 
 				// there's no possible well-formed document with < at the end 
-				return make_parse_result(status_unrecognized_tag, length); 
+				return make_parse_result(StatusUnrecognizedTag, length); 
 			} 
  
 			return result; 
@@ -2658,17 +2658,17 @@ namespace
 	} 
 #endif 
  
-	class Buffered_Writer 
+	class BufferedWriter 
 	{ 
-		Buffered_Writer(const Buffered_Writer&); 
-		Buffered_Writer& operator=(const Buffered_Writer&); 
+		BufferedWriter(const BufferedWriter&); 
+		BufferedWriter& operator=(const BufferedWriter&); 
  
 	public: 
-		Buffered_Writer(Writer& writer, Encoding user_encoding): writer(writer), bufsize(0), encoding(get_write_encoding(user_encoding)) 
+		BufferedWriter(Writer& writer, Encoding user_encoding): writer(writer), bufsize(0), encoding(get_write_encoding(user_encoding)) 
 		{ 
 		} 
  
-		~Buffered_Writer() 
+		~BufferedWriter() 
 		{ 
 			flush(); 
 		} 
@@ -2848,7 +2848,7 @@ namespace
 		} 
 	} 
  
-	void text_output_escaped(Buffered_Writer& writer, const char_t* s, chartypex_t type) 
+	void text_output_escaped(BufferedWriter& writer, const char_t* s, chartypex_t type) 
 	{ 
 		while (*s) 
 		{ 
@@ -2889,7 +2889,7 @@ namespace
 		} 
 	} 
  
-	void text_output_cdata(Buffered_Writer& writer, const char_t* s) 
+	void text_output_cdata(BufferedWriter& writer, const char_t* s) 
 	{ 
 		do 
 		{ 
@@ -2911,7 +2911,7 @@ namespace
 		while (*s); 
 	} 
  
-	void node_output_attributes(Buffered_Writer& writer, const Node& node) 
+	void node_output_attributes(BufferedWriter& writer, const Node& node) 
 	{ 
 		const char_t* default_name = XML_TEXT(":anonymous"); 
  
@@ -2927,7 +2927,7 @@ namespace
 		} 
 	} 
  
-	void node_output(Buffered_Writer& writer, const Node& node, const char_t* indent, unsigned int flags, unsigned int depth) 
+	void node_output(BufferedWriter& writer, const Node& node, const char_t* indent, unsigned int flags, unsigned int depth) 
 	{ 
 		const char_t* default_name = XML_TEXT(":anonymous"); 
  
@@ -3060,7 +3060,7 @@ namespace
 	{ 
 		for (Node child = node.first_child(); child; child = child.next_sibling()) 
 		{ 
-			Node_Type type = child.type(); 
+			NodeType type = child.type(); 
  
 			if (type == node_declaration) return true; 
 			if (type == node_element) return false; 
@@ -3069,7 +3069,7 @@ namespace
 		return false; 
 	} 
  
-	inline bool allow_insert_child(Node_Type parent, Node_Type child) 
+	inline bool allow_insert_child(NodeType parent, NodeType child) 
 	{ 
 		if (parent != node_document && parent != node_element) return false; 
 		if (child == node_document || child == node_null) return false; 
@@ -3132,7 +3132,7 @@ namespace
 	} 
  
 	// we need to get length of entire file to load it in memory; the only (relatively) sane way to do it is via seek/tell trick 
-	Parse_Status get_file_size(FILE* file, size_t& out_result) 
+	ParseStatus get_file_size(FILE* file, size_t& out_result) 
 	{ 
 	#if defined(_MSC_VER) && _MSC_VER >= 1400 
 		// there are 64-bit versions of fseek/ftell, let's use them 
@@ -3158,28 +3158,28 @@ namespace
 	#endif 
  
 		// check for I/O errors 
-		if (length < 0) return status_io_error; 
+		if (length < 0) return StatusIOError; 
 		 
 		// check for overflow 
 		size_t result = static_cast<size_t>(length); 
  
-		if (static_cast<length_type>(result) != length) return status_out_of_memory; 
+		if (static_cast<length_type>(result) != length) return StatusOutOfMemory; 
  
 		// finalize 
 		out_result = result; 
  
-		return status_ok; 
+		return StatusOk; 
 	} 
  
-	Parse_Result load_file_impl(Document& doc, FILE* file, unsigned int options, Encoding encoding) 
+	ParseResult load_file_impl(Document& doc, FILE* file, unsigned int options, Encoding encoding) 
 	{ 
-		if (!file) return make_parse_result(status_file_not_found); 
+		if (!file) return make_parse_result(StatusFileNotFound); 
  
 		// get file size (can result in I/O errors) 
 		size_t size = 0; 
-		Parse_Status size_status = get_file_size(file, size); 
+		ParseStatus size_status = get_file_size(file, size); 
  
-		if (size_status != status_ok) 
+		if (size_status != StatusOk) 
 		{ 
 			fclose(file); 
 			return make_parse_result(size_status); 
@@ -3191,7 +3191,7 @@ namespace
 		if (!contents) 
 		{ 
 			fclose(file); 
-			return make_parse_result(status_out_of_memory); 
+			return make_parse_result(StatusOutOfMemory); 
 		} 
  
 		// read file in memory 
@@ -3201,14 +3201,14 @@ namespace
 		if (read_size != size) 
 		{ 
 			global_deallocate(contents); 
-			return make_parse_result(status_io_error); 
+			return make_parse_result(StatusIOError); 
 		} 
 		 
 		return doc.load_buffer_inplace_own(contents, size, options, encoding); 
 	} 
  
 #ifndef XML_NO_STL 
-	template <typename T> Parse_Result load_stream_impl(Document& doc, std::basic_istream<T>& stream, unsigned int options, Encoding encoding) 
+	template <typename T> ParseResult load_stream_impl(Document& doc, std::basic_istream<T>& stream, unsigned int options, Encoding encoding) 
 	{ 
 		// get length of remaining data in stream 
 		typename std::basic_istream<T>::pos_type pos = stream.tellg(); 
@@ -3216,21 +3216,21 @@ namespace
 		std::streamoff length = stream.tellg() - pos; 
 		stream.seekg(pos); 
  
-		if (stream.fail() || pos < 0) return make_parse_result(status_io_error); 
+		if (stream.fail() || pos < 0) return make_parse_result(StatusIOError); 
  
 		// guard against huge files 
 		size_t read_length = static_cast<size_t>(length); 
  
-		if (static_cast<std::streamsize>(read_length) != length || length < 0) return make_parse_result(status_out_of_memory); 
+		if (static_cast<std::streamsize>(read_length) != length || length < 0) return make_parse_result(StatusOutOfMemory); 
  
 		// read stream data into memory (guard against stream exceptions with buffer holder) 
 		buffer_holder buffer(global_allocate((read_length > 0 ? read_length : 1) * sizeof(T)), global_deallocate); 
-		if (!buffer.data) return make_parse_result(status_out_of_memory); 
+		if (!buffer.data) return make_parse_result(StatusOutOfMemory); 
  
 		stream.read(static_cast<T*>(buffer.data), static_cast<std::streamsize>(read_length)); 
  
 		// read may set failbit | eofbit in case gcount() is less than read_length (i.e. line ending conversion), so check for other I/O errors 
-		if (stream.bad()) return make_parse_result(status_io_error); 
+		if (stream.bad()) return make_parse_result(StatusIOError); 
  
 		// load data from buffer 
 		size_t actual_length = static_cast<size_t>(stream.gcount()); 
@@ -3289,25 +3289,25 @@ namespace
 namespace phys
 { namespace xml
 { 
-	Writer_File::Writer_File(void* file): file(file) 
+	WriterFile::WriterFile(void* file): file(file) 
 	{ 
 	} 
  
-	void Writer_File::write(const void* data, size_t size) 
+	void WriterFile::write(const void* data, size_t size) 
 	{ 
 		fwrite(data, size, 1, static_cast<FILE*>(file)); 
 	} 
  
 #ifndef XML_NO_STL 
-	Writer_Stream::Writer_Stream(std::basic_ostream<char, std::char_traits<char> >& stream): narrow_stream(&stream), wide_stream(0) 
+	WriterStream::WriterStream(std::basic_ostream<char, std::char_traits<char> >& stream): narrow_stream(&stream), wide_stream(0) 
 	{ 
 	} 
  
-	Writer_Stream::Writer_Stream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream): narrow_stream(0), wide_stream(&stream) 
+	WriterStream::WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream): narrow_stream(0), wide_stream(&stream) 
 	{ 
 	} 
  
-	void Writer_Stream::write(const void* data, size_t size) 
+	void WriterStream::write(const void* data, size_t size) 
 	{ 
 		if (narrow_stream) 
 		{ 
@@ -3324,25 +3324,25 @@ namespace phys
 	} 
 #endif 
  
-	Tree_Walker::Tree_Walker(): _depth(0) 
+	TreeWalker::TreeWalker(): _depth(0) 
 	{ 
 	} 
 	 
-	Tree_Walker::~Tree_Walker() 
+	TreeWalker::~TreeWalker() 
 	{ 
 	} 
  
-	int Tree_Walker::depth() const 
+	int TreeWalker::depth() const 
 	{ 
 		return _depth; 
 	} 
  
-	bool Tree_Walker::begin(Node&) 
+	bool TreeWalker::begin(Node&) 
 	{ 
 		return true; 
 	} 
  
-	bool Tree_Walker::end(Node&) 
+	bool TreeWalker::end(Node&) 
 	{ 
 		return true; 
 	} 
@@ -3351,7 +3351,7 @@ namespace phys
 	{ 
 	} 
  
-	Attribute::Attribute(Attribute_Struct* attr): _attr(attr) 
+	Attribute::Attribute(AttributeStruct* attr): _attr(attr) 
 	{ 
 	} 
  
@@ -3477,10 +3477,10 @@ namespace phys
  
 	size_t Attribute::hash_value() const 
 	{ 
-		return static_cast<size_t>(reinterpret_cast<uintptr_t>(_attr) / sizeof(Attribute_Struct)); 
+		return static_cast<size_t>(reinterpret_cast<uintptr_t>(_attr) / sizeof(AttributeStruct)); 
 	} 
  
-	Attribute_Struct* Attribute::internal_object() const 
+	AttributeStruct* Attribute::internal_object() const 
 	{ 
 		return _attr; 
 	} 
@@ -3519,14 +3519,14 @@ namespace phys
 	{ 
 		if (!_attr) return false; 
 		 
-		return strcpy_insitu(_attr->name, _attr->header, Memory_Page_name_allocated_mask, rhs); 
+		return strcpy_insitu(_attr->name, _attr->header, MemoryPage_name_allocated_mask, rhs); 
 	} 
 		 
 	bool Attribute::set_value(const char_t* rhs) 
 	{ 
 		if (!_attr) return false; 
  
-		return strcpy_insitu(_attr->value, _attr->header, Memory_Page_value_allocated_mask, rhs); 
+		return strcpy_insitu(_attr->value, _attr->header, MemoryPage_value_allocated_mask, rhs); 
 	} 
  
 	bool Attribute::set_value(int rhs) 
@@ -3595,7 +3595,7 @@ namespace phys
 	{ 
 	} 
  
-	Node::Node(Node_Struct* p): _root(p) 
+	Node::Node(NodeStruct* p): _root(p) 
 	{ 
 	} 
 	 
@@ -3669,9 +3669,9 @@ namespace phys
 		return (_root && _root->name) ? _root->name : XML_TEXT(""); 
 	} 
  
-	Node_Type Node::type() const 
+	NodeType Node::type() const 
 	{ 
-		return _root ? static_cast<Node_Type>((_root->header & Memory_Page_type_mask) + 1) : node_null; 
+		return _root ? static_cast<NodeType>((_root->header & MemoryPage_type_mask) + 1) : node_null; 
 	} 
 	 
 	const char_t* Node::value() const 
@@ -3683,7 +3683,7 @@ namespace phys
 	{ 
 		if (!_root) return Node(); 
  
-		for (Node_Struct* i = _root->first_child; i; i = i->next_sibling) 
+		for (NodeStruct* i = _root->first_child; i; i = i->next_sibling) 
 			if (i->name && strequal(name, i->name)) return Node(i); 
  
 		return Node(); 
@@ -3693,7 +3693,7 @@ namespace phys
 	{ 
 		if (!_root) return Attribute(); 
  
-		for (Attribute_Struct* i = _root->first_attribute; i; i = i->next_attribute) 
+		for (AttributeStruct* i = _root->first_attribute; i; i = i->next_attribute) 
 			if (i->name && strequal(name, i->name)) 
 				return Attribute(i); 
 		 
@@ -3704,7 +3704,7 @@ namespace phys
 	{ 
 		if (!_root) return Node(); 
 		 
-		for (Node_Struct* i = _root->next_sibling; i; i = i->next_sibling) 
+		for (NodeStruct* i = _root->next_sibling; i; i = i->next_sibling) 
 			if (i->name && strequal(name, i->name)) return Node(i); 
  
 		return Node(); 
@@ -3722,7 +3722,7 @@ namespace phys
 	{ 
 		if (!_root) return Node(); 
 		 
-		for (Node_Struct* i = _root->prev_sibling_c; i->next_sibling; i = i->prev_sibling_c) 
+		for (NodeStruct* i = _root->prev_sibling_c; i->next_sibling; i = i->prev_sibling_c) 
 			if (i->name && strequal(name, i->name)) return Node(i); 
  
 		return Node(); 
@@ -3745,18 +3745,18 @@ namespace phys
 	{ 
 		if (!_root) return Node(); 
  
-		Memory_Page* page = reinterpret_cast<Memory_Page*>(_root->header & Memory_Page_pointer_mask); 
+		MemoryPage* page = reinterpret_cast<MemoryPage*>(_root->header & MemoryPage_pointer_mask); 
  
-		return Node(static_cast<Document_Struct*>(page->allocator)); 
+		return Node(static_cast<DocumentStruct*>(page->allocator)); 
 	} 
  
 	const char_t* Node::child_value() const 
 	{ 
 		if (!_root) return XML_TEXT(""); 
 		 
-		for (Node_Struct* i = _root->first_child; i; i = i->next_sibling) 
+		for (NodeStruct* i = _root->first_child; i; i = i->next_sibling) 
 		{ 
-			Node_Type type = static_cast<Node_Type>((i->header & Memory_Page_type_mask) + 1); 
+			NodeType type = static_cast<NodeType>((i->header & MemoryPage_type_mask) + 1); 
  
 			if (i->value && (type == node_pcdata || type == node_cdata)) 
 				return i->value; 
@@ -3797,7 +3797,7 @@ namespace phys
 		case node_pi: 
 		case node_declaration: 
 		case node_element: 
-			return strcpy_insitu(_root->name, _root->header, Memory_Page_name_allocated_mask, rhs); 
+			return strcpy_insitu(_root->name, _root->header, MemoryPage_name_allocated_mask, rhs); 
  
 		default: 
 			return false; 
@@ -3813,7 +3813,7 @@ namespace phys
 		case node_pcdata: 
 		case node_comment: 
 		case node_doctype: 
-			return strcpy_insitu(_root->value, _root->header, Memory_Page_value_allocated_mask, rhs); 
+			return strcpy_insitu(_root->value, _root->header, MemoryPage_value_allocated_mask, rhs); 
  
 		default: 
 			return false; 
@@ -3839,7 +3839,7 @@ namespace phys
  
 		a.set_name(name); 
 		 
-		Attribute_Struct* head = _root->first_attribute; 
+		AttributeStruct* head = _root->first_attribute; 
  
 		if (head) 
 		{ 
@@ -3860,7 +3860,7 @@ namespace phys
 		if ((type() != node_element && type() != node_declaration) || attr.empty()) return Attribute(); 
 		 
 		// check that attribute belongs to *this 
-		Attribute_Struct* cur = attr._attr; 
+		AttributeStruct* cur = attr._attr; 
  
 		while (cur->prev_attribute_c->next_attribute) cur = cur->prev_attribute_c; 
  
@@ -3888,7 +3888,7 @@ namespace phys
 		if ((type() != node_element && type() != node_declaration) || attr.empty()) return Attribute(); 
 		 
 		// check that attribute belongs to *this 
-		Attribute_Struct* cur = attr._attr; 
+		AttributeStruct* cur = attr._attr; 
  
 		while (cur->prev_attribute_c->next_attribute) cur = cur->prev_attribute_c; 
  
@@ -3951,7 +3951,7 @@ namespace phys
 		return result; 
 	} 
  
-	Node Node::append_child(Node_Type type) 
+	Node Node::append_child(NodeType type) 
 	{ 
 		if (!allow_insert_child(this->type(), type)) return Node(); 
 		 
@@ -3962,7 +3962,7 @@ namespace phys
 		return n; 
 	} 
  
-	Node Node::prepend_child(Node_Type type) 
+	Node Node::prepend_child(NodeType type) 
 	{ 
 		if (!allow_insert_child(this->type(), type)) return Node(); 
 		 
@@ -3971,7 +3971,7 @@ namespace phys
  
 		n._root->parent = _root; 
  
-		Node_Struct* head = _root->first_child; 
+		NodeStruct* head = _root->first_child; 
  
 		if (head) 
 		{ 
@@ -3989,7 +3989,7 @@ namespace phys
 		return n; 
 	} 
  
-	Node Node::insert_child_before(Node_Type type, const Node& node) 
+	Node Node::insert_child_before(NodeType type, const Node& node) 
 	{ 
 		if (!allow_insert_child(this->type(), type)) return Node(); 
 		if (!node._root || node._root->parent != _root) return Node(); 
@@ -4013,7 +4013,7 @@ namespace phys
 		return n; 
 	} 
  
-	Node Node::insert_child_after(Node_Type type, const Node& node) 
+	Node Node::insert_child_after(NodeType type, const Node& node) 
 	{ 
 		if (!allow_insert_child(this->type(), type)) return Node(); 
 		if (!node._root || node._root->parent != _root) return Node(); 
@@ -4119,7 +4119,7 @@ namespace phys
 		if (!_root || !a._attr) return false; 
  
 		// check that attribute belongs to *this 
-		Attribute_Struct* attr = a._attr; 
+		AttributeStruct* attr = a._attr; 
  
 		while (attr->prev_attribute_c->next_attribute) attr = attr->prev_attribute_c; 
  
@@ -4160,10 +4160,10 @@ namespace phys
 	{ 
 		if (!_root) return Node(); 
 		 
-		for (Node_Struct* i = _root->first_child; i; i = i->next_sibling) 
+		for (NodeStruct* i = _root->first_child; i; i = i->next_sibling) 
 			if (i->name && strequal(name, i->name)) 
 			{ 
-				for (Attribute_Struct* a = i->first_attribute; a; a = a->next_attribute) 
+				for (AttributeStruct* a = i->first_attribute; a; a = a->next_attribute) 
 					if (strequal(attr_name, a->name) && strequal(attr_value, a->value)) 
 						return Node(i); 
 			} 
@@ -4175,8 +4175,8 @@ namespace phys
 	{ 
 		if (!_root) return Node(); 
 		 
-		for (Node_Struct* i = _root->first_child; i; i = i->next_sibling) 
-			for (Attribute_Struct* a = i->first_attribute; a; a = a->next_attribute) 
+		for (NodeStruct* i = _root->first_child; i; i = i->next_sibling) 
+			for (AttributeStruct* a = i->first_attribute; a; a = a->next_attribute) 
 				if (strequal(attr_name, a->name) && strequal(attr_value, a->value)) 
 					return Node(i); 
  
@@ -4239,7 +4239,7 @@ namespace phys
 			return found.parent().first_element_by_path(next_segment, delimiter); 
 		else 
 		{ 
-			for (Node_Struct* j = found._root->first_child; j; j = j->next_sibling) 
+			for (NodeStruct* j = found._root->first_child; j; j = j->next_sibling) 
 			{ 
 				if (j->name && strequalrange(j->name, path_segment, static_cast<size_t>(path_segment_end - path_segment))) 
 				{ 
@@ -4253,7 +4253,7 @@ namespace phys
 		} 
 	} 
  
-	bool Node::traverse(Tree_Walker& walker) 
+	bool Node::traverse(TreeWalker& walker) 
 	{ 
 		walker._depth = -1; 
 		 
@@ -4303,10 +4303,10 @@ namespace phys
  
 	size_t Node::hash_value() const 
 	{ 
-		return static_cast<size_t>(reinterpret_cast<uintptr_t>(_root) / sizeof(Node_Struct)); 
+		return static_cast<size_t>(reinterpret_cast<uintptr_t>(_root) / sizeof(NodeStruct)); 
 	} 
  
-	Node_Struct* Node::internal_object() const 
+	NodeStruct* Node::internal_object() const 
 	{ 
 		return _root; 
 	} 
@@ -4315,7 +4315,7 @@ namespace phys
 	{ 
 		if (!_root) return; 
  
-		Buffered_Writer buffered_writer(writer, encoding); 
+		BufferedWriter buffered_writer(writer, encoding); 
  
 		node_output(buffered_writer, *this, indent, flags, depth); 
 	} 
@@ -4323,14 +4323,14 @@ namespace phys
 #ifndef XML_NO_STL 
 	void Node::print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding encoding, unsigned int depth) const 
 	{ 
-		Writer_Stream writer(stream); 
+		WriterStream writer(stream); 
  
 		print(writer, indent, flags, encoding, depth); 
 	} 
  
 	void Node::print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int depth) const 
 	{ 
-		Writer_Stream writer(stream); 
+		WriterStream writer(stream); 
  
 		print(writer, indent, flags, encoding_wchar, depth); 
 	} 
@@ -4338,11 +4338,11 @@ namespace phys
  
 	ptrdiff_t Node::offset_debug() const 
 	{ 
-		Node_Struct* r = root()._root; 
+		NodeStruct* r = root()._root; 
  
 		if (!r) return -1; 
  
-		const char_t* buffer = static_cast<Document_Struct*>(r)->buffer; 
+		const char_t* buffer = static_cast<DocumentStruct*>(r)->buffer; 
  
 		if (!buffer) return -1; 
  
@@ -4354,13 +4354,13 @@ namespace phys
 		case node_element: 
 		case node_declaration: 
 		case node_pi: 
-			return (_root->header & Memory_Page_name_allocated_mask) ? -1 : _root->name - buffer; 
+			return (_root->header & MemoryPage_name_allocated_mask) ? -1 : _root->name - buffer; 
  
 		case node_pcdata: 
 		case node_cdata: 
 		case node_comment: 
 		case node_doctype: 
-			return (_root->header & Memory_Page_value_allocated_mask) ? -1 : _root->value - buffer; 
+			return (_root->header & MemoryPage_value_allocated_mask) ? -1 : _root->value - buffer; 
  
 		default: 
 			return -1; 
@@ -4379,159 +4379,159 @@ namespace phys
 	} 
 #endif 
  
-	Node_Iterator::Node_Iterator() 
+	NodeIterator::NodeIterator() 
 	{ 
 	} 
  
-	Node_Iterator::Node_Iterator(const Node& node): _wrap(node), _parent(node.parent()) 
+	NodeIterator::NodeIterator(const Node& node): _wrap(node), _parent(node.parent()) 
 	{ 
 	} 
  
-	Node_Iterator::Node_Iterator(Node_Struct* ref, Node_Struct* parent): _wrap(ref), _parent(parent) 
+	NodeIterator::NodeIterator(NodeStruct* ref, NodeStruct* parent): _wrap(ref), _parent(parent) 
 	{ 
 	} 
  
-	bool Node_Iterator::operator==(const Node_Iterator& rhs) const 
+	bool NodeIterator::operator==(const NodeIterator& rhs) const 
 	{ 
 		return _wrap._root == rhs._wrap._root && _parent._root == rhs._parent._root; 
 	} 
 	 
-	bool Node_Iterator::operator!=(const Node_Iterator& rhs) const 
+	bool NodeIterator::operator!=(const NodeIterator& rhs) const 
 	{ 
 		return _wrap._root != rhs._wrap._root || _parent._root != rhs._parent._root; 
 	} 
  
-	Node& Node_Iterator::operator*() 
+	Node& NodeIterator::operator*() 
 	{ 
 		assert(_wrap._root); 
 		return _wrap; 
 	} 
  
-	Node* Node_Iterator::operator->() 
+	Node* NodeIterator::operator->() 
 	{ 
 		assert(_wrap._root); 
 		return &_wrap; 
 	} 
  
-	const Node_Iterator& Node_Iterator::operator++() 
+	const NodeIterator& NodeIterator::operator++() 
 	{ 
 		assert(_wrap._root); 
 		_wrap._root = _wrap._root->next_sibling; 
 		return *this; 
 	} 
  
-	Node_Iterator Node_Iterator::operator++(int) 
+	NodeIterator NodeIterator::operator++(int) 
 	{ 
-		Node_Iterator temp = *this; 
+		NodeIterator temp = *this; 
 		++*this; 
 		return temp; 
 	} 
  
-	const Node_Iterator& Node_Iterator::operator--() 
+	const NodeIterator& NodeIterator::operator--() 
 	{ 
 		_wrap = _wrap._root ? _wrap.previous_sibling() : _parent.last_child(); 
 		return *this; 
 	} 
  
-	Node_Iterator Node_Iterator::operator--(int) 
+	NodeIterator NodeIterator::operator--(int) 
 	{ 
-		Node_Iterator temp = *this; 
+		NodeIterator temp = *this; 
 		--*this; 
 		return temp; 
 	} 
  
-	Attribute_Iterator::Attribute_Iterator() 
+	AttributeIterator::AttributeIterator() 
 	{ 
 	} 
  
-	Attribute_Iterator::Attribute_Iterator(const Attribute& attr, const Node& parent): _wrap(attr), _parent(parent) 
+	AttributeIterator::AttributeIterator(const Attribute& attr, const Node& parent): _wrap(attr), _parent(parent) 
 	{ 
 	} 
  
-	Attribute_Iterator::Attribute_Iterator(Attribute_Struct* ref, Node_Struct* parent): _wrap(ref), _parent(parent) 
+	AttributeIterator::AttributeIterator(AttributeStruct* ref, NodeStruct* parent): _wrap(ref), _parent(parent) 
 	{ 
 	} 
  
-	bool Attribute_Iterator::operator==(const Attribute_Iterator& rhs) const 
+	bool AttributeIterator::operator==(const AttributeIterator& rhs) const 
 	{ 
 		return _wrap._attr == rhs._wrap._attr && _parent._root == rhs._parent._root; 
 	} 
 	 
-	bool Attribute_Iterator::operator!=(const Attribute_Iterator& rhs) const 
+	bool AttributeIterator::operator!=(const AttributeIterator& rhs) const 
 	{ 
 		return _wrap._attr != rhs._wrap._attr || _parent._root != rhs._parent._root; 
 	} 
  
-	Attribute& Attribute_Iterator::operator*() 
+	Attribute& AttributeIterator::operator*() 
 	{ 
 		assert(_wrap._attr); 
 		return _wrap; 
 	} 
  
-	Attribute* Attribute_Iterator::operator->() 
+	Attribute* AttributeIterator::operator->() 
 	{ 
 		assert(_wrap._attr); 
 		return &_wrap; 
 	} 
  
-	const Attribute_Iterator& Attribute_Iterator::operator++() 
+	const AttributeIterator& AttributeIterator::operator++() 
 	{ 
 		assert(_wrap._attr); 
 		_wrap._attr = _wrap._attr->next_attribute; 
 		return *this; 
 	} 
  
-	Attribute_Iterator Attribute_Iterator::operator++(int) 
+	AttributeIterator AttributeIterator::operator++(int) 
 	{ 
-		Attribute_Iterator temp = *this; 
+		AttributeIterator temp = *this; 
 		++*this; 
 		return temp; 
 	} 
  
-	const Attribute_Iterator& Attribute_Iterator::operator--() 
+	const AttributeIterator& AttributeIterator::operator--() 
 	{ 
 		_wrap = _wrap._attr ? _wrap.previous_attribute() : _parent.last_attribute(); 
 		return *this; 
 	} 
  
-	Attribute_Iterator Attribute_Iterator::operator--(int) 
+	AttributeIterator AttributeIterator::operator--(int) 
 	{ 
-		Attribute_Iterator temp = *this; 
+		AttributeIterator temp = *this; 
 		--*this; 
 		return temp; 
 	} 
  
-	Parse_Result::Parse_Result(): status(status_internal_error), offset(0), encoding(encoding_auto) 
+	ParseResult::ParseResult(): status(StatusInternalError), offset(0), encoding(encoding_auto) 
 	{ 
 	} 
  
-	Parse_Result::operator bool() const 
+	ParseResult::operator bool() const 
 	{ 
-		return status == status_ok; 
+		return status == StatusOk; 
 	} 
  
-	const char* Parse_Result::description() const 
+	const char* ParseResult::description() const 
 	{ 
 		switch (status) 
 		{ 
-		case status_ok: return "No error"; 
+		case StatusOk: return "No error"; 
  
-		case status_file_not_found: return "File was not found"; 
-		case status_io_error: return "Error reading from file/stream"; 
-		case status_out_of_memory: return "Could not allocate memory"; 
-		case status_internal_error: return "Internal error occurred"; 
+		case StatusFileNotFound: return "File was not found"; 
+		case StatusIOError: return "Error reading from file/stream"; 
+		case StatusOutOfMemory: return "Could not allocate memory"; 
+		case StatusInternalError: return "Internal error occurred"; 
  
-		case status_unrecognized_tag: return "Could not determine tag type"; 
+		case StatusUnrecognizedTag: return "Could not determine tag type"; 
  
-		case status_bad_pi: return "Error parsing document declaration/processing instruction"; 
-		case status_bad_comment: return "Error parsing comment"; 
-		case status_bad_cdata: return "Error parsing CDATA section"; 
-		case status_bad_doctype: return "Error parsing document type declaration"; 
-		case status_bad_pcdata: return "Error parsing PCDATA section"; 
-		case status_bad_start_element: return "Error parsing start element tag"; 
-		case status_bad_attribute: return "Error parsing element attribute"; 
-		case status_bad_end_element: return "Error parsing end element tag"; 
-		case status_end_element_mismatch: return "Start-end tags mismatch"; 
+		case StatusBadPi: return "Error parsing document declaration/processing instruction"; 
+		case StatusBadComment: return "Error parsing comment"; 
+		case StatusBadCdata: return "Error parsing CDATA section"; 
+		case StatusBadDoctype: return "Error parsing document type declaration"; 
+		case StatusBadPcdata: return "Error parsing PCDATA section"; 
+		case StatusBadStartElement: return "Error parsing start element tag"; 
+		case StatusBadAttribute: return "Error parsing element attribute"; 
+		case StatusBadEndElement: return "Error parsing end element tag"; 
+		case StatusEndElementMismatch: return "Start-end tags mismatch"; 
  
 		default: return "Unknown error"; 
 		} 
@@ -4564,22 +4564,22 @@ namespace phys
 	void Document::create() 
 	{ 
 		// initialize sentinel page 
-		STATIC_ASSERT(offsetof(Memory_Page, data) + sizeof(Document_Struct) + Memory_Page_alignment <= sizeof(_memory)); 
+		STATIC_ASSERT(offsetof(MemoryPage, data) + sizeof(DocumentStruct) + MemoryPage_alignment <= sizeof(_memory)); 
  
 		// align upwards to page boundary 
-		void* page_memory = reinterpret_cast<void*>((reinterpret_cast<uintptr_t>(_memory) + (Memory_Page_alignment - 1)) & ~(Memory_Page_alignment - 1)); 
+		void* page_memory = reinterpret_cast<void*>((reinterpret_cast<uintptr_t>(_memory) + (MemoryPage_alignment - 1)) & ~(MemoryPage_alignment - 1)); 
  
 		// prepare page structure 
-		Memory_Page* page = Memory_Page::construct(page_memory); 
+		MemoryPage* page = MemoryPage::construct(page_memory); 
  
-		page->busy_size = Memory_Page_size; 
+		page->busy_size = MemoryPage_size; 
  
 		// allocate new root 
-		_root = new (page->data) Document_Struct(page); 
+		_root = new (page->data) DocumentStruct(page); 
 		_root->prev_sibling_c = _root; 
  
 		// setup sentinel page 
-		page->allocator = static_cast<Document_Struct*>(_root); 
+		page->allocator = static_cast<DocumentStruct*>(_root); 
 	} 
  
 	void Document::destroy() 
@@ -4594,13 +4594,13 @@ namespace phys
 		// destroy dynamic storage, leave sentinel page (it's in static memory) 
 		if (_root) 
 		{ 
-			Memory_Page* root_page = reinterpret_cast<Memory_Page*>(_root->header & Memory_Page_pointer_mask); 
+			MemoryPage* root_page = reinterpret_cast<MemoryPage*>(_root->header & MemoryPage_pointer_mask); 
 			assert(root_page && !root_page->prev && !root_page->memory); 
  
 			// destroy all pages 
-			for (Memory_Page* page = root_page->next; page; ) 
+			for (MemoryPage* page = root_page->next; page; ) 
 			{ 
-				Memory_Page* next = page->next; 
+				MemoryPage* next = page->next; 
  
 				Allocator::deallocate_page(page); 
  
@@ -4617,14 +4617,14 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	Parse_Result Document::load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding encoding) 
+	ParseResult Document::load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding encoding) 
 	{ 
 		reset(); 
  
 		return load_stream_impl(*this, stream, options, encoding); 
 	} 
  
-	Parse_Result Document::load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options) 
+	ParseResult Document::load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options) 
 	{ 
 		reset(); 
  
@@ -4632,7 +4632,7 @@ namespace phys
 	} 
 #endif 
  
-	Parse_Result Document::load(const char_t* contents, unsigned int options) 
+	ParseResult Document::load(const char_t* contents, unsigned int options) 
 	{ 
 		// Force native encoding (skip autodetection) 
 	#ifdef XML_WCHAR_MODE 
@@ -4644,7 +4644,7 @@ namespace phys
 		return load_buffer(contents, strlength(contents) * sizeof(char_t), options, encoding); 
 	} 
  
-	Parse_Result Document::load_file(const char* path, unsigned int options, Encoding encoding) 
+	ParseResult Document::load_file(const char* path, unsigned int options, Encoding encoding) 
 	{ 
 		reset(); 
  
@@ -4653,7 +4653,7 @@ namespace phys
 		return load_file_impl(*this, file, options, encoding); 
 	} 
  
-	Parse_Result Document::load_file(const wchar_t* path, unsigned int options, Encoding encoding) 
+	ParseResult Document::load_file(const wchar_t* path, unsigned int options, Encoding encoding) 
 	{ 
 		reset(); 
  
@@ -4662,7 +4662,7 @@ namespace phys
 		return load_file_impl(*this, file, options, encoding); 
 	} 
  
-	Parse_Result Document::load_buffer_impl(void* contents, size_t size, unsigned int options, Encoding encoding, bool is_mutable, bool own) 
+	ParseResult Document::load_buffer_impl(void* contents, size_t size, unsigned int options, Encoding encoding, bool is_mutable, bool own) 
 	{ 
 		reset(); 
  
@@ -4676,13 +4676,13 @@ namespace phys
 		char_t* buffer = 0; 
 		size_t length = 0; 
  
-		if (!convert_buffer(buffer, length, buffer_encoding, contents, size, is_mutable)) return make_parse_result(status_out_of_memory); 
+		if (!convert_buffer(buffer, length, buffer_encoding, contents, size, is_mutable)) return make_parse_result(StatusOutOfMemory); 
 		 
 		// delete original buffer if we performed a conversion 
 		if (own && buffer != contents && contents) global_deallocate(contents); 
  
 		// parse 
-		Parse_Result res = Parser::parse(buffer, length, _root, options); 
+		ParseResult res = Parser::parse(buffer, length, _root, options); 
  
 		// remember encoding 
 		res.encoding = buffer_encoding; 
@@ -4693,17 +4693,17 @@ namespace phys
 		return res; 
 	} 
  
-	Parse_Result Document::load_buffer(const void* contents, size_t size, unsigned int options, Encoding encoding) 
+	ParseResult Document::load_buffer(const void* contents, size_t size, unsigned int options, Encoding encoding) 
 	{ 
 		return load_buffer_impl(const_cast<void*>(contents), size, options, encoding, false, false); 
 	} 
  
-	Parse_Result Document::load_buffer_inplace(void* contents, size_t size, unsigned int options, Encoding encoding) 
+	ParseResult Document::load_buffer_inplace(void* contents, size_t size, unsigned int options, Encoding encoding) 
 	{ 
 		return load_buffer_impl(contents, size, options, encoding, true, false); 
 	} 
 		 
-	Parse_Result Document::load_buffer_inplace_own(void* contents, size_t size, unsigned int options, Encoding encoding) 
+	ParseResult Document::load_buffer_inplace_own(void* contents, size_t size, unsigned int options, Encoding encoding) 
 	{ 
 		return load_buffer_impl(contents, size, options, encoding, true, true); 
 	} 
@@ -4712,7 +4712,7 @@ namespace phys
 	{ 
 		if (flags & format_write_bom) write_bom(writer, get_write_encoding(encoding)); 
  
-		Buffered_Writer buffered_writer(writer, encoding); 
+		BufferedWriter buffered_writer(writer, encoding); 
  
 		if (!(flags & format_no_declaration) && !has_declaration(*this)) 
 		{ 
@@ -4726,14 +4726,14 @@ namespace phys
 #ifndef XML_NO_STL 
 	void Document::save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding encoding) const 
 	{ 
-		Writer_Stream writer(stream); 
+		WriterStream writer(stream); 
  
 		save(writer, indent, flags, encoding); 
 	} 
  
 	void Document::save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags) const 
 	{ 
-		Writer_Stream writer(stream); 
+		WriterStream writer(stream); 
  
 		save(writer, indent, flags, encoding_wchar); 
 	} 
@@ -4744,7 +4744,7 @@ namespace phys
 		FILE* file = fopen(path, "wb"); 
 		if (!file) return false; 
  
-		Writer_File writer(file); 
+		WriterFile writer(file); 
 		save(writer, indent, flags, encoding); 
  
 		fclose(file); 
@@ -4757,7 +4757,7 @@ namespace phys
 		FILE* file = open_file_wide(path, L"wb"); 
 		if (!file) return false; 
  
-		Writer_File writer(file); 
+		WriterFile writer(file); 
 		save(writer, indent, flags, encoding); 
  
 		fclose(file); 
@@ -4767,8 +4767,8 @@ namespace phys
  
 	Node Document::document_element() const 
 	{ 
-		for (Node_Struct* i = _root->first_child; i; i = i->next_sibling) 
-			if ((i->header & Memory_Page_type_mask) + 1 == node_element) 
+		for (NodeStruct* i = _root->first_child; i; i = i->next_sibling) 
+			if ((i->header & MemoryPage_type_mask) + 1 == node_element) 
 				return Node(i); 
  
 		return Node(); 
@@ -4822,12 +4822,12 @@ namespace phys
 namespace std 
 { 
 	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier) 
-	std::bidirectional_iterator_tag _Iter_cat(const Node_Iterator&) 
+	std::bidirectional_iterator_tag _Iter_cat(const NodeIterator&) 
 	{ 
 		return std::bidirectional_iterator_tag(); 
 	} 
  
-	std::bidirectional_iterator_tag _Iter_cat(const Attribute_Iterator&) 
+	std::bidirectional_iterator_tag _Iter_cat(const AttributeIterator&) 
 	{ 
 		return std::bidirectional_iterator_tag(); 
 	} 
@@ -4838,12 +4838,12 @@ namespace std
 namespace std 
 { 
 	// Workarounds for (non-standard) iterator category detection 
-	std::bidirectional_iterator_tag __iterator_category(const Node_Iterator&) 
+	std::bidirectional_iterator_tag __iterator_category(const NodeIterator&) 
 	{ 
 		return std::bidirectional_iterator_tag(); 
 	} 
  
-	std::bidirectional_iterator_tag __iterator_category(const Attribute_Iterator&) 
+	std::bidirectional_iterator_tag __iterator_category(const AttributeIterator&) 
 	{ 
 		return std::bidirectional_iterator_tag(); 
 	} 
@@ -5557,21 +5557,21 @@ namespace
  
 	const void* document_order(const xpath_node& xnode) 
 	{ 
-		Node_Struct* node = xnode.node().internal_object(); 
+		NodeStruct* node = xnode.node().internal_object(); 
  
 		if (node) 
 		{ 
-			if (node->name && (node->header & Memory_Page_name_allocated_mask) == 0) return node->name; 
-			if (node->value && (node->header & Memory_Page_value_allocated_mask) == 0) return node->value; 
+			if (node->name && (node->header & MemoryPage_name_allocated_mask) == 0) return node->name; 
+			if (node->value && (node->header & MemoryPage_value_allocated_mask) == 0) return node->value; 
 			return 0; 
 		} 
  
-		Attribute_Struct* attr = xnode.attribute().internal_object(); 
+		AttributeStruct* attr = xnode.attribute().internal_object(); 
  
 		if (attr) 
 		{ 
-			if ((attr->header & Memory_Page_name_allocated_mask) == 0) return attr->name; 
-			if ((attr->header & Memory_Page_value_allocated_mask) == 0) return attr->value; 
+			if ((attr->header & MemoryPage_name_allocated_mask) == 0) return attr->name; 
+			if ((attr->header & MemoryPage_value_allocated_mask) == 0) return attr->value; 
 			return 0; 
 		} 
  

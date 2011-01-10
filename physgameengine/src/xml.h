@@ -175,7 +175,7 @@ namespace phys
 { namespace xml
 { 
 	// Tree node types 
-	enum Node_Type 
+	enum NodeType 
 	{ 
 		node_null,		  // Empty (null) node handle 
 		node_document,		// A document tree's absolute root 
@@ -268,13 +268,13 @@ namespace phys
 	const unsigned int format_default = format_indent; 
 		 
 	// Forward declarations 
-	struct Attribute_Struct; 
-	struct Node_Struct; 
+	struct AttributeStruct; 
+	struct NodeStruct; 
  
-	class Node_Iterator; 
-	class Attribute_Iterator; 
+	class NodeIterator; 
+	class AttributeIterator; 
  
-	class Tree_Walker; 
+	class TreeWalker; 
 	 
 	class Node; 
  
@@ -296,11 +296,11 @@ namespace phys
 	}; 
  
 	// Writer implementation for FILE* 
-	class PHYS_LIB Writer_File: public Writer 
+	class PHYS_LIB WriterFile: public Writer 
 	{ 
 	public: 
 		// Construct writer from a FILE* object; void* is used to avoid header dependencies on stdio 
-		Writer_File(void* file); 
+		WriterFile(void* file); 
  
 		virtual void write(const void* data, size_t size); 
  
@@ -310,12 +310,12 @@ namespace phys
  
 	#ifndef XML_NO_STL 
 	// Writer implementation for streams 
-	class PHYS_LIB Writer_Stream: public Writer 
+	class PHYS_LIB WriterStream: public Writer 
 	{ 
 	public: 
 		// Construct writer from an output stream object 
-		Writer_Stream(std::basic_ostream<char, std::char_traits<char> >& stream); 
-		Writer_Stream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream); 
+		WriterStream(std::basic_ostream<char, std::char_traits<char> >& stream); 
+		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream); 
  
 		virtual void write(const void* data, size_t size); 
  
@@ -328,20 +328,20 @@ namespace phys
 	// A light-weight handle for manipulating attributes in DOM tree 
 	class PHYS_LIB Attribute 
 	{ 
-		friend class Attribute_Iterator; 
+		friend class AttributeIterator; 
 		friend class Node; 
  
 	private: 
-		Attribute_Struct* _attr; 
+		AttributeStruct* _attr; 
 	 
-		typedef Attribute_Struct* Attribute::*unspecified_bool_type; 
+		typedef AttributeStruct* Attribute::*unspecified_bool_type; 
  
 	public: 
 		// Default constructor. Constructs an empty attribute. 
 		Attribute(); 
 		 
 		// Constructs attribute from internal pointer 
-		explicit Attribute(Attribute_Struct* attr); 
+		explicit Attribute(AttributeStruct* attr); 
  
 		// Safe bool conversion operator 
 		operator unspecified_bool_type() const; 
@@ -398,7 +398,7 @@ namespace phys
 		size_t hash_value() const; 
  
 		// Get internal pointer 
-		Attribute_Struct* internal_object() const; 
+		AttributeStruct* internal_object() const; 
 	}; 
  
 #ifdef __BORLANDC__ 
@@ -410,20 +410,20 @@ namespace phys
 	// A light-weight handle for manipulating nodes in DOM tree 
 	class PHYS_LIB Node 
 	{ 
-		friend class Attribute_Iterator; 
-		friend class Node_Iterator; 
+		friend class AttributeIterator; 
+		friend class NodeIterator; 
  
 	protected: 
-		Node_Struct* _root; 
+		NodeStruct* _root; 
  
-		typedef Node_Struct* Node::*unspecified_bool_type; 
+		typedef NodeStruct* Node::*unspecified_bool_type; 
  
 	public: 
 		// Default constructor. Constructs an empty node. 
 		Node(); 
  
 		// Constructs node from internal pointer 
-		explicit Node(Node_Struct* p); 
+		explicit Node(NodeStruct* p); 
  
 		// Safe bool conversion operator 
 		operator unspecified_bool_type() const; 
@@ -443,7 +443,7 @@ namespace phys
 		bool empty() const; 
  
 		// Get node type 
-		Node_Type type() const; 
+		NodeType type() const; 
  
 		// Get node name/value, or "" if node is empty or it has no name/value 
 		const char_t* name() const; 
@@ -496,10 +496,10 @@ namespace phys
 		Attribute insert_copy_before(const Attribute& proto, const Attribute& attr); 
  
 		// Add child node with specified type. Returns added node, or empty node on errors. 
-		Node append_child(Node_Type type = node_element); 
-		Node prepend_child(Node_Type type = node_element); 
-		Node insert_child_after(Node_Type type, const Node& node); 
-		Node insert_child_before(Node_Type type, const Node& node); 
+		Node append_child(NodeType type = node_element); 
+		Node prepend_child(NodeType type = node_element); 
+		Node insert_child_after(NodeType type, const Node& node); 
+		Node insert_child_before(NodeType type, const Node& node); 
  
 		// Add child element with specified name. Returns added node, or empty node on errors. 
 		Node append_child(const char_t* name); 
@@ -581,8 +581,8 @@ namespace phys
 		// Search for a node by path consisting of node names and . or .. elements. 
 		Node first_element_by_path(const char_t* path, char_t delimiter = '/') const; 
  
-		// Recursively traverse subtree with Tree_Walker 
-		bool traverse(Tree_Walker& walker); 
+		// Recursively traverse subtree with TreeWalker 
+		bool traverse(TreeWalker& walker); 
 	 
 	#ifndef XML_NO_XPATH 
 		// Select single node by evaluating XPath query. Returns first node from the resulting node set. 
@@ -604,13 +604,13 @@ namespace phys
 	#endif 
  
 		// Child nodes iterators 
-		typedef Node_Iterator iterator; 
+		typedef NodeIterator iterator; 
  
 		iterator begin() const; 
 		iterator end() const; 
  
 		// Attribute iterators 
-		typedef Attribute_Iterator attribute_iterator; 
+		typedef AttributeIterator attribute_iterator; 
  
 		attribute_iterator attributes_begin() const; 
 		attribute_iterator attributes_end() const; 
@@ -622,7 +622,7 @@ namespace phys
 		size_t hash_value() const; 
  
 		// Get internal pointer 
-		Node_Struct* internal_object() const; 
+		NodeStruct* internal_object() const; 
 	}; 
  
 #ifdef __BORLANDC__ 
@@ -632,7 +632,7 @@ namespace phys
 #endif 
  
 	// Child node iterator (a bidirectional iterator over a collection of Node) 
-	class PHYS_LIB Node_Iterator 
+	class PHYS_LIB NodeIterator 
 	{ 
 		friend class Node; 
  
@@ -640,7 +640,7 @@ namespace phys
 		Node _wrap; 
 		Node _parent; 
  
-		Node_Iterator(Node_Struct* ref, Node_Struct* parent); 
+		NodeIterator(NodeStruct* ref, NodeStruct* parent); 
  
 	public: 
 		// Iterator traits 
@@ -654,27 +654,27 @@ namespace phys
 	#endif 
  
 		// Default constructor 
-		Node_Iterator(); 
+		NodeIterator(); 
  
 		// Construct an iterator which points to the specified node 
-		Node_Iterator(const Node& node); 
+		NodeIterator(const Node& node); 
  
 		// Iterator operators 
-		bool operator==(const Node_Iterator& rhs) const; 
-		bool operator!=(const Node_Iterator& rhs) const; 
+		bool operator==(const NodeIterator& rhs) const; 
+		bool operator!=(const NodeIterator& rhs) const; 
  
 		Node& operator*(); 
 		Node* operator->(); 
  
-		const Node_Iterator& operator++(); 
-		Node_Iterator operator++(int); 
+		const NodeIterator& operator++(); 
+		NodeIterator operator++(int); 
  
-		const Node_Iterator& operator--(); 
-		Node_Iterator operator--(int); 
+		const NodeIterator& operator--(); 
+		NodeIterator operator--(int); 
 	}; 
  
 	// Attribute iterator (a bidirectional iterator over a collection of Attribute) 
-	class PHYS_LIB Attribute_Iterator 
+	class PHYS_LIB AttributeIterator 
 	{ 
 		friend class Node; 
  
@@ -682,7 +682,7 @@ namespace phys
 		Attribute _wrap; 
 		Node _parent; 
  
-		Attribute_Iterator(Attribute_Struct* ref, Node_Struct* parent); 
+		AttributeIterator(AttributeStruct* ref, NodeStruct* parent); 
  
 	public: 
 		// Iterator traits 
@@ -696,27 +696,27 @@ namespace phys
 	#endif 
  
 		// Default constructor 
-		Attribute_Iterator(); 
+		AttributeIterator(); 
  
 		// Construct an iterator which points to the specified attribute 
-		Attribute_Iterator(const Attribute& attr, const Node& parent); 
+		AttributeIterator(const Attribute& attr, const Node& parent); 
  
 		// Iterator operators 
-		bool operator==(const Attribute_Iterator& rhs) const; 
-		bool operator!=(const Attribute_Iterator& rhs) const; 
+		bool operator==(const AttributeIterator& rhs) const; 
+		bool operator!=(const AttributeIterator& rhs) const; 
  
 		Attribute& operator*(); 
 		Attribute* operator->(); 
  
-		const Attribute_Iterator& operator++(); 
-		Attribute_Iterator operator++(int); 
+		const AttributeIterator& operator++(); 
+		AttributeIterator operator++(int); 
  
-		const Attribute_Iterator& operator--(); 
-		Attribute_Iterator operator--(int); 
+		const AttributeIterator& operator--(); 
+		AttributeIterator operator--(int); 
 	}; 
  
 	// Abstract tree walker class (see Node::traverse) 
-	class PHYS_LIB Tree_Walker 
+	class PHYS_LIB TreeWalker 
 	{ 
 		friend class Node; 
  
@@ -728,8 +728,8 @@ namespace phys
 		int depth() const; 
 	 
 	public: 
-		Tree_Walker(); 
-		virtual ~Tree_Walker(); 
+		TreeWalker(); 
+		virtual ~TreeWalker(); 
  
 		// Callback that is called when traversal begins 
 		virtual bool begin(Node& node); 
@@ -741,34 +741,34 @@ namespace phys
 		virtual bool end(Node& node); 
 	}; 
  
-	// Parsing status, returned as part of Parse_Result object 
-	enum Parse_Status 
+	// Parsing status, returned as part of ParseResult object 
+	enum ParseStatus 
 	{ 
-		status_ok = 0,			  // No error 
+		StatusOk = 0,			  // No error 
  
-		status_file_not_found,	  // File was not found during load_file() 
-		status_io_error,			// Error reading from file/stream 
-		status_out_of_memory,	   // Could not allocate memory 
-		status_internal_error,	  // Internal error occurred 
+		StatusFileNotFound,	  // File was not found during load_file() 
+		StatusIOError,			// Error reading from file/stream 
+		StatusOutOfMemory,	   // Could not allocate memory 
+		StatusInternalError,	  // Internal error occurred 
  
-		status_unrecognized_tag,	// Parser could not determine tag type 
+		StatusUnrecognizedTag,	// Parser could not determine tag type 
  
-		status_bad_pi,			  // Parsing error occurred while parsing document declaration/processing instruction 
-		status_bad_comment,		 // Parsing error occurred while parsing comment 
-		status_bad_cdata,		   // Parsing error occurred while parsing CDATA section 
-		status_bad_doctype,		 // Parsing error occurred while parsing document type declaration 
-		status_bad_pcdata,		  // Parsing error occurred while parsing PCDATA section 
-		status_bad_start_element,   // Parsing error occurred while parsing start element tag 
-		status_bad_attribute,	   // Parsing error occurred while parsing element attribute 
-		status_bad_end_element,	 // Parsing error occurred while parsing end element tag 
-		status_end_element_mismatch // There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag) 
+		StatusBadPi,			  // Parsing error occurred while parsing document declaration/processing instruction 
+		StatusBadComment,		 // Parsing error occurred while parsing comment 
+		StatusBadCdata,		   // Parsing error occurred while parsing CDATA section 
+		StatusBadDoctype,		 // Parsing error occurred while parsing document type declaration 
+		StatusBadPcdata,		  // Parsing error occurred while parsing PCDATA section 
+		StatusBadStartElement,   // Parsing error occurred while parsing start element tag 
+		StatusBadAttribute,	   // Parsing error occurred while parsing element attribute 
+		StatusBadEndElement,	 // Parsing error occurred while parsing end element tag 
+		StatusEndElementMismatch // There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag) 
 	}; 
  
 	// Parsing result 
-	struct PHYS_LIB Parse_Result 
+	struct PHYS_LIB ParseResult 
 	{ 
-		// Parsing status (see Parse_Status) 
-		Parse_Status status; 
+		// Parsing status (see ParseStatus) 
+		ParseStatus status; 
  
 		// Last parsed offset (in char_t units from start of input data) 
 		ptrdiff_t offset; 
@@ -777,7 +777,7 @@ namespace phys
 		Encoding encoding; 
  
 		// Default constructor, initializes object to failed state 
-		Parse_Result(); 
+		ParseResult(); 
  
 		// Cast to bool operator 
 		operator bool() const; 
@@ -801,7 +801,7 @@ namespace phys
 		void create(); 
 		void destroy(); 
  
-		Parse_Result load_buffer_impl(void* contents, size_t size, unsigned int options, Encoding encoding, bool is_mutable, bool own); 
+		ParseResult load_buffer_impl(void* contents, size_t size, unsigned int options, Encoding encoding, bool is_mutable, bool own); 
  
 	public: 
 		// Default constructor, makes empty document 
@@ -818,27 +818,27 @@ namespace phys
  
 	#ifndef XML_NO_STL 
 		// Load document from stream. 
-		Parse_Result load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
-		Parse_Result load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = parse_default); 
+		ParseResult load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
+		ParseResult load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = parse_default); 
 	#endif 
  
 		// Load document from zero-terminated string. No encoding conversions are applied. 
-		Parse_Result load(const char_t* contents, unsigned int options = parse_default); 
+		ParseResult load(const char_t* contents, unsigned int options = parse_default); 
  
 		// Load document from file 
-		Parse_Result load_file(const char* path, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
-		Parse_Result load_file(const wchar_t* path, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
+		ParseResult load_file(const char* path, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
+		ParseResult load_file(const wchar_t* path, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
  
 		// Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns. 
-		Parse_Result load_buffer(const void* contents, size_t size, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
+		ParseResult load_buffer(const void* contents, size_t size, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed. 
-		Parse_Result load_buffer_inplace(void* contents, size_t size, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
+		ParseResult load_buffer_inplace(void* contents, size_t size, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore). 
-		Parse_Result load_buffer_inplace_own(void* contents, size_t size, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
+		ParseResult load_buffer_inplace_own(void* contents, size_t size, unsigned int options = parse_default, Encoding encoding = encoding_auto); 
  
 		// Save XML document to writer (semantics is slightly different from Node::print, see documentation for details). 
 		void save(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding encoding = encoding_auto) const; 
@@ -1163,8 +1163,8 @@ namespace phys
 namespace std 
 { 
 	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier) 
-	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const pugi::Node_Iterator&); 
-	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const pugi::Attribute_Iterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const pugi::NodeIterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const pugi::AttributeIterator&); 
 } 
 #endif 
  
@@ -1172,8 +1172,8 @@ namespace std
 namespace std 
 { 
 	// Workarounds for (non-standard) iterator category detection 
-	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const pugi::Node_Iterator&); 
-	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const pugi::Attribute_Iterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const pugi::NodeIterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const pugi::AttributeIterator&); 
 } 
 #endif 
  
