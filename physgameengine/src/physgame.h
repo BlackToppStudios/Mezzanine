@@ -45,7 +45,7 @@
 /// @brief A single file that includes all of the physgame engine
 /// @details This file exists solely to make it easier for others to include
 /// parts of the physgame engine in their project with out needing to know or
-/// care about the internals of our projects.
+/// care about the internals of our project.
 ///////////////////////////////////////////////////////////////////////////////
 
 // We put headers in our headers so we can include while we include
@@ -111,5 +111,6 @@
 #include "worldgetset.h"
 #include "worldquerytool.h"
 #include "xml.h"
+#include "xmldoc.h"
 
 #endif

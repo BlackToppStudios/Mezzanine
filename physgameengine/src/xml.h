@@ -83,6 +83,7 @@
 #define _H 
  
 #include "crossplatform.h" 
+#include "xmldoc.h" 
  
 #ifndef XML_NO_STL 
 namespace std 
