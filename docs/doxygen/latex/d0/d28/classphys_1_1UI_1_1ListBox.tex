@@ -14,7 +14,7 @@ This is a widget for displaying a list of captions in a box.
 Inheritance diagram for phys::UI::ListBox:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{d0/d28/classphys_1_1UI_1_1ListBox}
+\includegraphics[height=2cm]{d0/d28/classphys_1_1UI_1_1ListBox}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -204,16 +204,7 @@ Definition at line 61 of file uilistbox.h.
 \hypertarget{classphys_1_1UI_1_1ListBox_ad81b7dfb1e67bbaa3ea42082f64c3d83}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!ListBox@{ListBox}}
 \index{ListBox@{ListBox}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{ListBox}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::ListBox::ListBox (
-\begin{DoxyParamCaption}
-\item[{{\bf ConstString} \&}]{ name, }
-\item[{{\bf Vector2}}]{ Position, }
-\item[{{\bf Vector2}}]{ Size, }
-\item[{{\bf Real}}]{ ScrollbarWidth, }
-\item[{UI::ScrollbarStyle}]{ ScrollStyle, }
-\item[{{\bf UILayer} $\ast$}]{ Layer}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{ListBox}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::ListBox::ListBox ({\bf ConstString} \& {\em name}, \/  {\bf Vector2} {\em Position}, \/  {\bf Vector2} {\em Size}, \/  {\bf Real} {\em ScrollbarWidth}, \/  UI::ScrollbarStyle {\em ScrollStyle}, \/  {\bf UILayer} $\ast$ {\em Layer})}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_ad81b7dfb1e67bbaa3ea42082f64c3d83}
 
 
@@ -238,13 +229,7 @@ Definition at line 59 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_aa6069fc3690e09142033886d9d7b0b3a}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!AddSelection@{AddSelection}}
 \index{AddSelection@{AddSelection}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{AddSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::ListBox::AddSelection (
-\begin{DoxyParamCaption}
-\item[{{\bf ConstString} \&}]{ name, }
-\item[{{\bf ConstString} \&}]{ Text, }
-\item[{{\bf ConstString} \&}]{ BackgroundSprite = {\ttfamily \char`\"{}\char`\"{}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{AddSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::ListBox::AddSelection ({\bf ConstString} \& {\em name}, \/  {\bf ConstString} \& {\em Text}, \/  {\bf ConstString} \& {\em BackgroundSprite} = {\ttfamily \char`\"{}\char`\"{}})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_aa6069fc3690e09142033886d9d7b0b3a}
 
 
@@ -260,11 +245,7 @@ Definition at line 301 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a789faeb98d98bb4d4d89cae8c53d4bc0}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!CheckMouseHover@{CheckMouseHover}}
 \index{CheckMouseHover@{CheckMouseHover}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::ListBox::CheckMouseHover (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::ListBox::CheckMouseHover ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a789faeb98d98bb4d4d89cae8c53d4bc0}
 
 
@@ -281,34 +262,10 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259d
 
 Definition at line 250 of file uilistbox.cpp.
 
-\hypertarget{classphys_1_1UI_1_1ListBox_a295acf830ed17c78a59e5ba871a5a234}{
-\index{phys::UI::ListBox@{phys::UI::ListBox}!DestroySelection@{DestroySelection}}
-\index{DestroySelection@{DestroySelection}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{DestroySelection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::DestroySelection (
-\begin{DoxyParamCaption}
-\item[{{\bf Caption} $\ast$}]{ ToBeDestroyed}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d0/d28/classphys_1_1UI_1_1ListBox_a295acf830ed17c78a59e5ba871a5a234}
-
-
-Destroys a selectable caption. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em ToBeDestroyed}]A pointer to the caption you want destroyed and removed from this list. \end{DoxyParams}
-
-
-Definition at line 331 of file uilistbox.cpp.
-
 \hypertarget{classphys_1_1UI_1_1ListBox_a3aa3bfaee473b7590692e8707dada68d}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!DestroySelection@{DestroySelection}}
 \index{DestroySelection@{DestroySelection}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{DestroySelection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::DestroySelection (
-\begin{DoxyParamCaption}
-\item[{{\bf String} \&}]{ ToBeDestroyed}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{DestroySelection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::DestroySelection ({\bf String} \& {\em ToBeDestroyed})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a3aa3bfaee473b7590692e8707dada68d}
 
 
@@ -321,14 +278,26 @@ Destroys a selectable caption.
 
 Definition at line 345 of file uilistbox.cpp.
 
+\hypertarget{classphys_1_1UI_1_1ListBox_a295acf830ed17c78a59e5ba871a5a234}{
+\index{phys::UI::ListBox@{phys::UI::ListBox}!DestroySelection@{DestroySelection}}
+\index{DestroySelection@{DestroySelection}!phys::UI::ListBox@{phys::UI::ListBox}}
+\subsubsection[{DestroySelection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::DestroySelection ({\bf Caption} $\ast$ {\em ToBeDestroyed})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d0/d28/classphys_1_1UI_1_1ListBox_a295acf830ed17c78a59e5ba871a5a234}
+
+
+Destroys a selectable caption. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]A pointer to the caption you want destroyed and removed from this list. \end{DoxyParams}
+
+
+Definition at line 331 of file uilistbox.cpp.
+
 \hypertarget{classphys_1_1UI_1_1ListBox_acfdef9f77e87bd38634273559c47b3af}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!EnableBackgroundSelector@{EnableBackgroundSelector}}
 \index{EnableBackgroundSelector@{EnableBackgroundSelector}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{EnableBackgroundSelector}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::EnableBackgroundSelector (
-\begin{DoxyParamCaption}
-\item[{{\bf ColourValue} \&}]{ Colour}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{EnableBackgroundSelector}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::EnableBackgroundSelector ({\bf ColourValue} \& {\em Colour})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_acfdef9f77e87bd38634273559c47b3af}
 
 
@@ -344,11 +313,7 @@ Definition at line 371 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a44046453283fb2c54e10dc868705352a}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetActualPosition@{GetActualPosition}}
 \index{GetActualPosition@{GetActualPosition}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ListBox::GetActualPosition (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ListBox::GetActualPosition ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a44046453283fb2c54e10dc868705352a}
 
 
@@ -368,11 +333,7 @@ Definition at line 404 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a23133ed4a98994d838acee4c6a981e04}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetActualSize@{GetActualSize}}
 \index{GetActualSize@{GetActualSize}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ListBox::GetActualSize (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ListBox::GetActualSize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a23133ed4a98994d838acee4c6a981e04}
 
 
@@ -392,11 +353,7 @@ Definition at line 438 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a087fba492ebd70a58d2772fccbfec466}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetBoxBack@{GetBoxBack}}
 \index{GetBoxBack@{GetBoxBack}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{GetBoxBack}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ phys::UI::ListBox::GetBoxBack (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetBoxBack}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ phys::UI::ListBox::GetBoxBack ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a087fba492ebd70a58d2772fccbfec466}
 
 
@@ -412,11 +369,7 @@ Definition at line 448 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_af688db0628a5588865a890584f754b02}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetPosition@{GetPosition}}
 \index{GetPosition@{GetPosition}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ListBox::GetPosition (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ListBox::GetPosition ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_af688db0628a5588865a890584f754b02}
 
 
@@ -436,11 +389,7 @@ Definition at line 390 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a729f4ef3e0bc10bf8e96f20a83767484}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetSelected@{GetSelected}}
 \index{GetSelected@{GetSelected}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{GetSelected}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::ListBox::GetSelected (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetSelected}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::ListBox::GetSelected ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a729f4ef3e0bc10bf8e96f20a83767484}
 
 
@@ -456,11 +405,7 @@ Definition at line 443 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a1a5f9c44430387cc96744411bea9e978}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetSelection@{GetSelection}}
 \index{GetSelection@{GetSelection}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{GetSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::ListBox::GetSelection (
-\begin{DoxyParamCaption}
-\item[{{\bf ConstString} \&}]{ Name}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::ListBox::GetSelection ({\bf ConstString} \& {\em Name})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a1a5f9c44430387cc96744411bea9e978}
 
 
@@ -479,11 +424,7 @@ Definition at line 318 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a7af2cced185d63be6a62d5122c700d81}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetSize@{GetSize}}
 \index{GetSize@{GetSize}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ListBox::GetSize (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ListBox::GetSize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a7af2cced185d63be6a62d5122c700d81}
 
 
@@ -503,11 +444,7 @@ Definition at line 421 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a9f62475c3a81772407af38076363060e}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!GetVertScroll@{GetVertScroll}}
 \index{GetVertScroll@{GetVertScroll}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{GetVertScroll}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Scrollbar} $\ast$ phys::UI::ListBox::GetVertScroll (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetVertScroll}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Scrollbar} $\ast$ phys::UI::ListBox::GetVertScroll ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a9f62475c3a81772407af38076363060e}
 
 
@@ -523,11 +460,7 @@ Definition at line 453 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a638f19eb6e5a0bd3291fab1ebaccc84f}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!IsVisible@{IsVisible}}
 \index{IsVisible@{IsVisible}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::ListBox::IsVisible (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::ListBox::IsVisible ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a638f19eb6e5a0bd3291fab1ebaccc84f}
 
 
@@ -547,11 +480,7 @@ Definition at line 225 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a0c135a797957bd6a78d62e3658443457}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetActualPosition@{SetActualPosition}}
 \index{SetActualPosition@{SetActualPosition}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetActualPosition (
-\begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Position}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetActualPosition ({\bf Vector2} {\em Position})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a0c135a797957bd6a78d62e3658443457}
 
 
@@ -571,11 +500,7 @@ Definition at line 395 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a90dfe556f5ec947834f90604f746d7ae}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetActualSize@{SetActualSize}}
 \index{SetActualSize@{SetActualSize}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetActualSize (
-\begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetActualSize ({\bf Vector2} {\em Size})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a90dfe556f5ec947834f90604f746d7ae}
 
 
@@ -595,11 +520,7 @@ Definition at line 426 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a60fc5c1907df6d83217b25c2c8f15f48}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetAutoHideScroll@{SetAutoHideScroll}}
 \index{SetAutoHideScroll@{SetAutoHideScroll}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{SetAutoHideScroll}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetAutoHideScroll (
-\begin{DoxyParamCaption}
-\item[{bool}]{ AutoHide}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetAutoHideScroll}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetAutoHideScroll (bool {\em AutoHide})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a60fc5c1907df6d83217b25c2c8f15f48}
 
 
@@ -615,12 +536,7 @@ Definition at line 364 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a7a11b1add663691b268749aece4c47eb}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetBasicTemplateParameters@{SetBasicTemplateParameters}}
 \index{SetBasicTemplateParameters@{SetBasicTemplateParameters}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{SetBasicTemplateParameters}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetBasicTemplateParameters (
-\begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Size, }
-\item[{{\bf Whole}}]{ Glyph}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetBasicTemplateParameters}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetBasicTemplateParameters ({\bf Vector2} {\em Size}, \/  {\bf Whole} {\em Glyph})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a7a11b1add663691b268749aece4c47eb}
 
 
@@ -636,14 +552,7 @@ Definition at line 283 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a6a0e26a5ab9fa2c58a7eb8288e2d0b5a}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetMoreTemplateParameters@{SetMoreTemplateParameters}}
 \index{SetMoreTemplateParameters@{SetMoreTemplateParameters}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{SetMoreTemplateParameters}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetMoreTemplateParameters (
-\begin{DoxyParamCaption}
-\item[{{\bf ColourValue}}]{ TextColour = {\ttfamily {\bf ColourValue}(0.0,0.0,0.0,1.0)}, }
-\item[{{\bf ColourValue}}]{ BackgroundColour = {\ttfamily {\bf ColourValue}(1.0,1.0,1.0,1.0)}, }
-\item[{UI::TextHorizontalAlign}]{ HorAlign = {\ttfamily UI::Txt\_\-Middle}, }
-\item[{UI::TextVerticalAlign}]{ VertAlign = {\ttfamily UI::Txt\_\-Center}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetMoreTemplateParameters}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetMoreTemplateParameters ({\bf ColourValue} {\em TextColour} = {\ttfamily {\bf ColourValue}(0.0,0.0,0.0,1.0)}, \/  {\bf ColourValue} {\em BackgroundColour} = {\ttfamily {\bf ColourValue}(1.0,1.0,1.0,1.0)}, \/  UI::TextHorizontalAlign {\em HorAlign} = {\ttfamily UI::Txt\_\-Middle}, \/  UI::TextVerticalAlign {\em VertAlign} = {\ttfamily UI::Txt\_\-Center})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a6a0e26a5ab9fa2c58a7eb8288e2d0b5a}
 
 
@@ -659,11 +568,7 @@ Definition at line 293 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_afda3635a154c2700a952b899eae71abf}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetPosition@{SetPosition}}
 \index{SetPosition@{SetPosition}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetPosition (
-\begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Position}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetPosition ({\bf Vector2} {\em Position})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_afda3635a154c2700a952b899eae71abf}
 
 
@@ -683,11 +588,7 @@ Definition at line 381 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_ad2ae9ef2452eaec18049f523a528861f}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetSelectionDistance@{SetSelectionDistance}}
 \index{SetSelectionDistance@{SetSelectionDistance}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{SetSelectionDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetSelectionDistance (
-\begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ Dist}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetSelectionDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetSelectionDistance ({\bf Real} {\em Dist})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_ad2ae9ef2452eaec18049f523a528861f}
 
 
@@ -703,11 +604,7 @@ Definition at line 359 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_a536c2ffeec4758db3b784772275bc77b}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetSize@{SetSize}}
 \index{SetSize@{SetSize}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetSize (
-\begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetSize ({\bf Vector2} {\em Size})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a536c2ffeec4758db3b784772275bc77b}
 
 
@@ -727,11 +624,7 @@ Definition at line 409 of file uilistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ListBox_abb3c87bf6669100296c1fa4f4913ea33}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetVisible@{SetVisible}}
 \index{SetVisible@{SetVisible}!phys::UI::ListBox@{phys::UI::ListBox}}
-\subsubsection[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetVisible (
-\begin{DoxyParamCaption}
-\item[{bool}]{ visible}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetVisible (bool {\em visible})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_abb3c87bf6669100296c1fa4f4913ea33}
 
 

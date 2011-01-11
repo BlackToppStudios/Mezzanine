@@ -78,6 +78,12 @@
 ///////////////////////////////////////
 
 
+/// @enum phys::xml::ParseStatus
+/// @brief These statuses are used to help determine if and what kind of the issue the XML parser had.
+
+/// @var phys::xml::ParseStatus::StatusOk
+/// @brief This is returned to indicated there where no issues parsing the XML document
+
 
 #endif
 
