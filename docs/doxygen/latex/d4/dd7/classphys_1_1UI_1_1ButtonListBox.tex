@@ -14,7 +14,7 @@ This is a widget for displaying a list of buttons in a box.
 Inheritance diagram for phys::UI::ButtonListBox:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2cm]{d4/dd7/classphys_1_1UI_1_1ButtonListBox}
+\includegraphics[height=2.000000cm]{d4/dd7/classphys_1_1UI_1_1ButtonListBox}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -182,7 +182,16 @@ Definition at line 60 of file uibuttonlistbox.h.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a1360d155570a277a169b54a6c85ace0d}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!ButtonListBox@{ButtonListBox}}
 \index{ButtonListBox@{ButtonListBox}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{ButtonListBox}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::ButtonListBox::ButtonListBox ({\bf ConstString} \& {\em name}, \/  {\bf Vector2} {\em Position}, \/  {\bf Vector2} {\em Size}, \/  {\bf Real} {\em ScrollbarWidth}, \/  UI::ScrollbarStyle {\em ScrollStyle}, \/  {\bf UILayer} $\ast$ {\em Layer})}}
+\subsubsection[{ButtonListBox}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::ButtonListBox::ButtonListBox (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ name, }
+\item[{{\bf Vector2}}]{ Position, }
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Real}}]{ ScrollbarWidth, }
+\item[{UI::ScrollbarStyle}]{ ScrollStyle, }
+\item[{{\bf UILayer} $\ast$}]{ Layer}
+\end{DoxyParamCaption}
+)}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a1360d155570a277a169b54a6c85ace0d}
 
 
@@ -207,7 +216,13 @@ Definition at line 60 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_afc976097cd2b1a039882e07272f9a464}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!AddSelection@{AddSelection}}
 \index{AddSelection@{AddSelection}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{AddSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::ButtonListBox::AddSelection ({\bf ConstString} \& {\em name}, \/  {\bf ConstString} \& {\em BackgroundSprite} = {\ttfamily \char`\"{}\char`\"{}}, \/  {\bf ConstString} \& {\em TextLabel} = {\ttfamily \char`\"{}\char`\"{}})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{AddSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::ButtonListBox::AddSelection (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ name, }
+\item[{{\bf ConstString} \&}]{ BackgroundSprite = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{{\bf ConstString} \&}]{ TextLabel = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_afc976097cd2b1a039882e07272f9a464}
 
 
@@ -228,7 +243,11 @@ Definition at line 291 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_aaa8b11b174a0475cadee3d3349ef1a58}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!CheckMouseHover@{CheckMouseHover}}
 \index{CheckMouseHover@{CheckMouseHover}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::ButtonListBox::CheckMouseHover ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::ButtonListBox::CheckMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_aaa8b11b174a0475cadee3d3349ef1a58}
 
 
@@ -245,26 +264,14 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259d
 
 Definition at line 248 of file uibuttonlistbox.cpp.
 
-\hypertarget{classphys_1_1UI_1_1ButtonListBox_a2717ab6e1ad39bb7db634a97c4f4157a}{
-\index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!DestroySelection@{DestroySelection}}
-\index{DestroySelection@{DestroySelection}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{DestroySelection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::DestroySelection ({\bf String} \& {\em ToBeDestroyed})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a2717ab6e1ad39bb7db634a97c4f4157a}
-
-
-Destroys a selectable button. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em ToBeDestroyed}]A string naming the button you want destroyed and removed from this list. \end{DoxyParams}
-
-
-Definition at line 338 of file uibuttonlistbox.cpp.
-
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a4ac91d2219d9fa471976bd482dc909b4}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!DestroySelection@{DestroySelection}}
 \index{DestroySelection@{DestroySelection}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{DestroySelection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::DestroySelection ({\bf Button} $\ast$ {\em ToBeDestroyed})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{DestroySelection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::DestroySelection (
+\begin{DoxyParamCaption}
+\item[{{\bf Button} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a4ac91d2219d9fa471976bd482dc909b4}
 
 
@@ -277,10 +284,35 @@ Destroys a selectable button.
 
 Definition at line 324 of file uibuttonlistbox.cpp.
 
+\hypertarget{classphys_1_1UI_1_1ButtonListBox_a2717ab6e1ad39bb7db634a97c4f4157a}{
+\index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!DestroySelection@{DestroySelection}}
+\index{DestroySelection@{DestroySelection}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
+\subsubsection[{DestroySelection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::DestroySelection (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a2717ab6e1ad39bb7db634a97c4f4157a}
+
+
+Destroys a selectable button. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]A string naming the button you want destroyed and removed from this list. \end{DoxyParams}
+
+
+Definition at line 338 of file uibuttonlistbox.cpp.
+
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a6369d985a45f635d0cd9e9860da407aa}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!EnableBorderSelector@{EnableBorderSelector}}
 \index{EnableBorderSelector@{EnableBorderSelector}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{EnableBorderSelector}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::EnableBorderSelector ({\bf Real} {\em Width}, \/  {\bf ColourValue} \& {\em Colour})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{EnableBorderSelector}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::EnableBorderSelector (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Width, }
+\item[{{\bf ColourValue} \&}]{ Colour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a6369d985a45f635d0cd9e9860da407aa}
 
 
@@ -296,7 +328,11 @@ Definition at line 364 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_addc5d7c6ab2a48ffa0d4b2e46c20d9a5}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetActualPosition@{GetActualPosition}}
 \index{GetActualPosition@{GetActualPosition}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ButtonListBox::GetActualPosition ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ButtonListBox::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_addc5d7c6ab2a48ffa0d4b2e46c20d9a5}
 
 
@@ -316,7 +352,11 @@ Definition at line 399 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a77d992f8858bf9b9eeb190dd1ea8a4fd}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetActualSize@{GetActualSize}}
 \index{GetActualSize@{GetActualSize}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ButtonListBox::GetActualSize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ButtonListBox::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a77d992f8858bf9b9eeb190dd1ea8a4fd}
 
 
@@ -336,7 +376,11 @@ Definition at line 433 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a043ce9d76af4538043551bf508811b12}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetBoxBack@{GetBoxBack}}
 \index{GetBoxBack@{GetBoxBack}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{GetBoxBack}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ phys::UI::ButtonListBox::GetBoxBack ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetBoxBack}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ phys::UI::ButtonListBox::GetBoxBack (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a043ce9d76af4538043551bf508811b12}
 
 
@@ -352,7 +396,11 @@ Definition at line 443 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_ab7834542f8940adba8df6b1eace92e95}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetPosition@{GetPosition}}
 \index{GetPosition@{GetPosition}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ButtonListBox::GetPosition ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ButtonListBox::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_ab7834542f8940adba8df6b1eace92e95}
 
 
@@ -372,7 +420,11 @@ Definition at line 385 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a2774799b087576f9085c0d713c129e76}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetSelected@{GetSelected}}
 \index{GetSelected@{GetSelected}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{GetSelected}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::ButtonListBox::GetSelected ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetSelected}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::ButtonListBox::GetSelected (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a2774799b087576f9085c0d713c129e76}
 
 
@@ -388,7 +440,11 @@ Definition at line 438 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a88796d75b2677b0a8e5d70fcf3677348}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetSelection@{GetSelection}}
 \index{GetSelection@{GetSelection}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{GetSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::ButtonListBox::GetSelection ({\bf ConstString} \& {\em Name})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::ButtonListBox::GetSelection (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a88796d75b2677b0a8e5d70fcf3677348}
 
 
@@ -407,7 +463,11 @@ Definition at line 311 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a0084510b0b9c53761e5b4a45f65604ab}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetSize@{GetSize}}
 \index{GetSize@{GetSize}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ButtonListBox::GetSize ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::ButtonListBox::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a0084510b0b9c53761e5b4a45f65604ab}
 
 
@@ -427,7 +487,11 @@ Definition at line 416 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_ad0988e4abe0daef3b9949e42c6dfc5fd}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!GetVertScroll@{GetVertScroll}}
 \index{GetVertScroll@{GetVertScroll}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{GetVertScroll}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Scrollbar} $\ast$ phys::UI::ButtonListBox::GetVertScroll ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetVertScroll}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Scrollbar} $\ast$ phys::UI::ButtonListBox::GetVertScroll (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_ad0988e4abe0daef3b9949e42c6dfc5fd}
 
 
@@ -443,7 +507,11 @@ Definition at line 448 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a1282a1494079e47b48c8e3296b1a8bb0}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!IsVisible@{IsVisible}}
 \index{IsVisible@{IsVisible}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::ButtonListBox::IsVisible ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::ButtonListBox::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a1282a1494079e47b48c8e3296b1a8bb0}
 
 
@@ -463,7 +531,11 @@ Definition at line 223 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a84547b5097342c7edf12a407a4208352}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetActualPosition@{SetActualPosition}}
 \index{SetActualPosition@{SetActualPosition}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetActualPosition ({\bf Vector2} {\em Position})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a84547b5097342c7edf12a407a4208352}
 
 
@@ -483,7 +555,11 @@ Definition at line 390 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_affb1419eac8fd0818c6afabf4ee21065}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetActualSize@{SetActualSize}}
 \index{SetActualSize@{SetActualSize}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetActualSize ({\bf Vector2} {\em Size})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_affb1419eac8fd0818c6afabf4ee21065}
 
 
@@ -503,7 +579,11 @@ Definition at line 421 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_ab5caa7d6bd929875bb8ca1278743ff40}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetAutoHideScroll@{SetAutoHideScroll}}
 \index{SetAutoHideScroll@{SetAutoHideScroll}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{SetAutoHideScroll}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetAutoHideScroll (bool {\em AutoHide})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetAutoHideScroll}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetAutoHideScroll (
+\begin{DoxyParamCaption}
+\item[{bool}]{ AutoHide}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_ab5caa7d6bd929875bb8ca1278743ff40}
 
 
@@ -519,7 +599,11 @@ Definition at line 357 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a9a45fe4192092b76bb879b281c29d431}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetPosition@{SetPosition}}
 \index{SetPosition@{SetPosition}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetPosition ({\bf Vector2} {\em Position})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetPosition (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a9a45fe4192092b76bb879b281c29d431}
 
 
@@ -539,7 +623,11 @@ Definition at line 376 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a85a4c25d78b8fa81ae7031ad127958bd}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetSelectionDistance@{SetSelectionDistance}}
 \index{SetSelectionDistance@{SetSelectionDistance}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{SetSelectionDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetSelectionDistance ({\bf Real} {\em Dist})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetSelectionDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetSelectionDistance (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Dist}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a85a4c25d78b8fa81ae7031ad127958bd}
 
 
@@ -555,7 +643,11 @@ Definition at line 352 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_a527f2c332225a04e147264dd80e4a6c1}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetSize@{SetSize}}
 \index{SetSize@{SetSize}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetSize ({\bf Vector2} {\em Size})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetSize (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_a527f2c332225a04e147264dd80e4a6c1}
 
 
@@ -575,7 +667,12 @@ Definition at line 404 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_adafec2d6141603bcfe6002e217fa476f}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetTemplateParameters@{SetTemplateParameters}}
 \index{SetTemplateParameters@{SetTemplateParameters}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{SetTemplateParameters}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetTemplateParameters ({\bf Vector2} {\em Size}, \/  {\bf Whole} {\em Glyph})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetTemplateParameters}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetTemplateParameters (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector2}}]{ Size, }
+\item[{{\bf Whole}}]{ Glyph}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_adafec2d6141603bcfe6002e217fa476f}
 
 
@@ -591,7 +688,11 @@ Definition at line 281 of file uibuttonlistbox.cpp.
 \hypertarget{classphys_1_1UI_1_1ButtonListBox_acee378e954050801fa8fffe835441bf4}{
 \index{phys::UI::ButtonListBox@{phys::UI::ButtonListBox}!SetVisible@{SetVisible}}
 \index{SetVisible@{SetVisible}!phys::UI::ButtonListBox@{phys::UI::ButtonListBox}}
-\subsubsection[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetVisible (bool {\em visible})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ButtonListBox::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{ visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d4/dd7/classphys_1_1UI_1_1ButtonListBox_acee378e954050801fa8fffe835441bf4}
 
 

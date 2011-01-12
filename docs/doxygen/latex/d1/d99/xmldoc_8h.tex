@@ -7,12 +7,25 @@
 The Doxygen documentation and minor tools to assist with the XML system.  
 
 
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespacephys}{phys}
+
+
+\begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
+
+\item 
+namespace \hyperlink{namespacephys_1_1xml}{phys::xml}
+
+
+\begin{DoxyCompactList}\small\item\em This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate. \item\end{DoxyCompactList}
+
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The Doxygen documentation and minor tools to assist with the XML system. Our XML Parser IS a copy of PugiXML. It is simply the fastest, most stable, most reliable, feature rich, and robust XML parser we were aware of. We are using it with permission per it's included license. See the licenses folder, in either the docs folder, or the data/common folder. \par
- \par
- The one drawback PugiXML had was that it has a completely different naming convention from our code. So we created a script ( docs/tools/PugiConversion) to covert version 1.1 and hopefully future versions to out naming convention. This process is why the doxygen documention for the XML parser exist here instead of \hyperlink{xml_8h}{xml.h}. 
+The Doxygen documentation and minor tools to assist with the XML system. The integration process for PugiXML requires that our changes all be stored in shell script. This is not condusive to good clean documentation and is why the doxygen documention for the XML parser exist here instead of \hyperlink{xml_8h}{xml.h}. 
 
 Definition in file \hyperlink{xmldoc_8h_source}{xmldoc.h}.
 

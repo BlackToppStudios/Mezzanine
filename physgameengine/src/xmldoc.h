@@ -56,35 +56,86 @@
 
 #ifndef _xmldoc_h
 #define _xmldoc_h
+namespace phys
+{
 
-///////////////////////////////////////////////////////////////////////////////
-/// @file xmldoc.h
-/// @brief The Doxygen documentation and minor tools to assist with the XML system
-/// @details Our XML Parser IS a copy of PugiXML. It is simply the fastest,
-/// most stable, most reliable, feature rich, and robust XML parser we were
-/// aware of. We are using it with permission per it's included license. See the
-/// licenses folder, in either the docs folder, or the data/common folder. \n \n
-/// The one drawback PugiXML had was that it has a completely different naming
-/// convention from our code. So we created a script ( docs/tools/PugiConversion)
-/// to covert version 1.1 and hopefully future versions to out naming convention.
-/// This process is why the doxygen documention for the XML parser exist here
-/// instead of xml.h.
-///////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @namespace phys::xml
+    /// @brief This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate.
+    /// @details Our XML Parser IS a copy of PugiXML. It is simply the fastest,
+    /// most stable, most reliable, feature rich, and robust XML parser we were
+    /// aware of. We are using it with permission per it's included license. See the
+    /// licenses folder, in either the docs folder, or the data/common folder. \n \n
+    /// This XML parser uses an 'in place' design. It attmempts to load all of an XML document to one contiguous location in
+    /// in memory, then create a tree of meta data that reference the already loaded document text. In testing this has been shown to be extremely fast.
+    /// See pugixml.org for more details on the performace. \n \n
+    /// The one drawback PugiXML had was that it has a completely different naming
+    /// convention from our code. So we created a script ( docs/tools/PugiConversion)
+    /// to covert version 1.1 and hopefully future versions to out naming convention.
+    ///////////////////////////////////////
+    namespace xml
+    {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @file xmldoc.h
+        /// @brief The Doxygen documentation and minor tools to assist with the XML system
+        /// @details The integration process for PugiXML requires that our changes all be stored in shell script.
+        /// This is not condusive to good clean documentation  and is why the doxygen documention for the XML parser exist here
+        /// instead of xml.h.
+        ///////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////
-/// @file xml.h
-/// @brief This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate.
-/// @details See xmldoc.h for additional details.
-///////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @file xml.h
+        /// @brief This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate.
+        /// @details See xmldoc.h for additional details.
+        ///////////////////////////////////////
 
 
-/// @enum phys::xml::ParseStatus
-/// @brief These statuses are used to help determine if and what kind of the issue the XML parser had.
+        /// @enum ParseStatus
+        /// @brief These statuses are used to help determine what issues, if any the parser had. the XML parser had.
 
-/// @var phys::xml::ParseStatus::StatusOk
-/// @brief This is returned to indicated there where no issues parsing the XML document
+        /// @var StatusOk
+        /// @brief This is returned to indicated there where no issues parsing the XML document
 
+        /// @var StatusFileNotFound
+        /// @brief File was not found during a loading from filename attempt.
 
+        /// @var StatusIOError
+        /// @brief Error reading from file or stream.
+
+        /// @var StatusOutOfMemory
+        /// @brief Could not allocate memory.
+
+        /// @var StatusInternalError
+        /// @brief An unkown error, currently nothing should be able to return this status
+
+        /// @var StatusUnrecognizedTag
+        /// @brief The parser could not determine type of tag.
+
+        /// @var StatusBadPi
+        /// @brief Parsing error occurred while parsing document declaration/processing instruction.
+
+        /// @var StatusBadComment
+        /// @brief Parsing error occurred while parsing comment.
+
+        /// @var StatusBadCdata
+        /// @brief Parsing error occurred while parsing CDATA section.
+
+        /// @var StatusBadDoctype
+        /// @brief Parsing error occurred while parsing document type declaration.
+
+        /// @var StatusBadPcdata
+        /// @brief Parsing error occurred while parsing PCDATA section.
+
+        /// @var StatusBadAttribute
+        /// @brief Parsing error occurred while parsing element attribute.
+
+        /// @var StatusBadEndElement
+        /// @brief Parsing error occurred while parsing end element tag.
+
+        /// @var StatusEndElementMismatch
+        /// @brief There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag).
+    }
+}
 #endif
 
 /*
