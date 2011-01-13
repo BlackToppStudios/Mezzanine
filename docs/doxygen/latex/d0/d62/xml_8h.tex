@@ -31,7 +31,7 @@ class \hyperlink{classphys_1_1xml_1_1AttributeIterator}{phys::xml::AttributeIter
 class \hyperlink{classphys_1_1xml_1_1TreeWalker}{phys::xml::TreeWalker}
 \item 
 struct \hyperlink{structphys_1_1xml_1_1ParseResult}{phys::xml::ParseResult}
-\item 
+\begin{DoxyCompactList}\small\item\em All the information needed to troubleshoot a Parsing error. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1Document}{phys::xml::Document}
 \item 
 struct \hyperlink{structphys_1_1xml_1_1xpath__parse__result}{phys::xml::xpath\_\-parse\_\-result}
@@ -127,40 +127,40 @@ enum {\bfseries NodeType} \{ \par
  \}
 \item 
 enum {\bfseries Encoding} \{ \par
-{\bfseries encoding\_\-auto}, 
-{\bfseries encoding\_\-utf8}, 
-{\bfseries encoding\_\-utf16\_\-le}, 
-{\bfseries encoding\_\-utf16\_\-be}, 
+{\bfseries DocumentEncoding\_\-auto}, 
+{\bfseries DocumentEncoding\_\-utf8}, 
+{\bfseries DocumentEncoding\_\-utf16\_\-le}, 
+{\bfseries DocumentEncoding\_\-utf16\_\-be}, 
 \par
-{\bfseries encoding\_\-utf16}, 
-{\bfseries encoding\_\-utf32\_\-le}, 
-{\bfseries encoding\_\-utf32\_\-be}, 
-{\bfseries encoding\_\-utf32}, 
+{\bfseries DocumentEncoding\_\-utf16}, 
+{\bfseries DocumentEncoding\_\-utf32\_\-le}, 
+{\bfseries DocumentEncoding\_\-utf32\_\-be}, 
+{\bfseries DocumentEncoding\_\-utf32}, 
 \par
-{\bfseries encoding\_\-wchar}
+{\bfseries DocumentEncoding\_\-wchar}
  \}
 \item 
 enum \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{phys::xml::ParseStatus} \{ \par
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa9ea9b3eecb4bb9f01745c94150982560}{phys::xml::StatusOk} =  0, 
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6f0279c8ce0103b77edcf3ce91fa64b4}{phys::xml::StatusFileNotFound}, 
-{\bfseries StatusIOError}, 
-{\bfseries StatusOutOfMemory}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa63f6d040311f50c1234a8eb873a0a95c}{phys::xml::StatusIOError}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fac2a8163c9a8e285153d2a96b011bd49f}{phys::xml::StatusOutOfMemory}, 
 \par
-{\bfseries StatusInternalError}, 
-{\bfseries StatusUnrecognizedTag}, 
-{\bfseries StatusBadPi}, 
-{\bfseries StatusBadComment}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa458daab0a01f8dd3d0d85b4e41b9e187}{phys::xml::StatusInternalError}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fabe0f4590debfa56c7e3a4c8da261b106}{phys::xml::StatusUnrecognizedTag}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa55afc9de133574f5c9376493c8e6fe09}{phys::xml::StatusBadPi}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa8f3864efd7b684ae57a8a7886a23f19a}{phys::xml::StatusBadComment}, 
 \par
-{\bfseries StatusBadCdata}, 
-{\bfseries StatusBadDoctype}, 
-{\bfseries StatusBadPcdata}, 
-{\bfseries StatusBadStartElement}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa18f36b8d712a6bbc716f90af8659df22}{phys::xml::StatusBadCdata}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa22f9163dc29ca7017022e4ce96c97ef9}{phys::xml::StatusBadDoctype}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fab30b3a432145b0e9c6595e75da773628}{phys::xml::StatusBadPcdata}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fadbc5b334b4215ce2332073de46c58155}{phys::xml::StatusBadStartElement}, 
 \par
-{\bfseries StatusBadAttribute}, 
-{\bfseries StatusBadEndElement}, 
-{\bfseries StatusEndElementMismatch}
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fac5fdddc5cc4d127aa5c53efb85846ccf}{phys::xml::StatusBadAttribute}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa72532447020c081f343c4a719add7450}{phys::xml::StatusBadEndElement}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6b8d817142e0898ad9b1c61cfa54b8ea}{phys::xml::StatusEndElementMismatch}
  \}
-\begin{DoxyCompactList}\small\item\em These statuses are used to help determine if and what kind of the issue the XML parser had. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em These statuses are used to help determine what issues, if any the parser had. the XML parser had. \item\end{DoxyCompactList}\item 
 enum {\bfseries xpath\_\-value\_\-type} \{ \par
 {\bfseries xpath\_\-type\_\-none}, 
 {\bfseries xpath\_\-type\_\-node\_\-set}, 

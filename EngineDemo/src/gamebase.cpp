@@ -553,11 +553,11 @@ void LoadContent()
 
 
 
-        if(ParsedXML.status == xml::StatusOk )
+        if(ParsedXML.Status)
         {
-                TheWorld->Log("Successfully loaded and parsed test.xml");
+            TheWorld->Log("Successfully loaded and parsed test.xml");
         }else{
-            TheWorld->LogStream << "Failed to load and parse test.xml. With Status :" << ParsedXML.status;
+            TheWorld->LogStream << "Failed to load and parse test.xml. With Status :" << ParsedXML.Status;
         }
 
         //phys::xml::TestXML(XMLptr);

@@ -1037,63 +1037,63 @@ namespace
 		return *reinterpret_cast<unsigned char*>(&ui) == 1; 
 	} 
  
-	Encoding get_wchar_encoding() 
+	Encoding get_wchar_DocumentEncoding() 
 	{ 
 		STATIC_ASSERT(sizeof(wchar_t) == 2 || sizeof(wchar_t) == 4); 
  
 		if (sizeof(wchar_t) == 2) 
-			return is_little_endian() ? encoding_utf16_le : encoding_utf16_be; 
+			return is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
 		else  
-			return is_little_endian() ? encoding_utf32_le : encoding_utf32_be; 
+			return is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
 	} 
  
-	Encoding guess_buffer_encoding(uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3) 
+	Encoding guess_buffer_DocumentEncoding(uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3) 
 	{ 
 		// look for BOM in first few bytes 
-		if (d0 == 0 && d1 == 0 && d2 == 0xfe && d3 == 0xff) return encoding_utf32_be; 
-		if (d0 == 0xff && d1 == 0xfe && d2 == 0 && d3 == 0) return encoding_utf32_le; 
-		if (d0 == 0xfe && d1 == 0xff) return encoding_utf16_be; 
-		if (d0 == 0xff && d1 == 0xfe) return encoding_utf16_le; 
-		if (d0 == 0xef && d1 == 0xbb && d2 == 0xbf) return encoding_utf8; 
+		if (d0 == 0 && d1 == 0 && d2 == 0xfe && d3 == 0xff) return DocumentEncoding_utf32_be; 
+		if (d0 == 0xff && d1 == 0xfe && d2 == 0 && d3 == 0) return DocumentEncoding_utf32_le; 
+		if (d0 == 0xfe && d1 == 0xff) return DocumentEncoding_utf16_be; 
+		if (d0 == 0xff && d1 == 0xfe) return DocumentEncoding_utf16_le; 
+		if (d0 == 0xef && d1 == 0xbb && d2 == 0xbf) return DocumentEncoding_utf8; 
  
-		// look for <, <? or <?xm in various encodings 
-		if (d0 == 0 && d1 == 0 && d2 == 0 && d3 == 0x3c) return encoding_utf32_be; 
-		if (d0 == 0x3c && d1 == 0 && d2 == 0 && d3 == 0) return encoding_utf32_le; 
-		if (d0 == 0 && d1 == 0x3c && d2 == 0 && d3 == 0x3f) return encoding_utf16_be; 
-		if (d0 == 0x3c && d1 == 0 && d2 == 0x3f && d3 == 0) return encoding_utf16_le; 
-		if (d0 == 0x3c && d1 == 0x3f && d2 == 0x78 && d3 == 0x6d) return encoding_utf8; 
+		// look for <, <? or <?xm in various DocumentEncodings 
+		if (d0 == 0 && d1 == 0 && d2 == 0 && d3 == 0x3c) return DocumentEncoding_utf32_be; 
+		if (d0 == 0x3c && d1 == 0 && d2 == 0 && d3 == 0) return DocumentEncoding_utf32_le; 
+		if (d0 == 0 && d1 == 0x3c && d2 == 0 && d3 == 0x3f) return DocumentEncoding_utf16_be; 
+		if (d0 == 0x3c && d1 == 0 && d2 == 0x3f && d3 == 0) return DocumentEncoding_utf16_le; 
+		if (d0 == 0x3c && d1 == 0x3f && d2 == 0x78 && d3 == 0x6d) return DocumentEncoding_utf8; 
  
 		// look for utf16 < followed by node name (this may fail, but is better than utf8 since it's zero terminated so early) 
-		if (d0 == 0 && d1 == 0x3c) return encoding_utf16_be; 
-		if (d0 == 0x3c && d1 == 0) return encoding_utf16_le; 
+		if (d0 == 0 && d1 == 0x3c) return DocumentEncoding_utf16_be; 
+		if (d0 == 0x3c && d1 == 0) return DocumentEncoding_utf16_le; 
  
 		// no known BOM detected, assume utf8 
-		return encoding_utf8; 
+		return DocumentEncoding_utf8; 
 	} 
  
-	Encoding get_buffer_encoding(Encoding encoding, const void* contents, size_t size) 
+	Encoding get_buffer_DocumentEncoding(Encoding DocumentEncoding, const void* contents, size_t size) 
 	{ 
-		// replace wchar encoding with utf implementation 
-		if (encoding == encoding_wchar) return get_wchar_encoding(); 
+		// replace wchar DocumentEncoding with utf implementation 
+		if (DocumentEncoding == DocumentEncoding_wchar) return get_wchar_DocumentEncoding(); 
  
-		// replace utf16 encoding with utf16 with specific endianness 
-		if (encoding == encoding_utf16) return is_little_endian() ? encoding_utf16_le : encoding_utf16_be; 
+		// replace utf16 DocumentEncoding with utf16 with specific endianness 
+		if (DocumentEncoding == DocumentEncoding_utf16) return is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
  
-		// replace utf32 encoding with utf32 with specific endianness 
-		if (encoding == encoding_utf32) return is_little_endian() ? encoding_utf32_le : encoding_utf32_be; 
+		// replace utf32 DocumentEncoding with utf32 with specific endianness 
+		if (DocumentEncoding == DocumentEncoding_utf32) return is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
  
-		// only do autodetection if no explicit encoding is requested 
-		if (encoding != encoding_auto) return encoding; 
+		// only do autodetection if no explicit DocumentEncoding is requested 
+		if (DocumentEncoding != DocumentEncoding_auto) return DocumentEncoding; 
  
-		// skip encoding autodetection if input buffer is too small 
-		if (size < 4) return encoding_utf8; 
+		// skip DocumentEncoding autodetection if input buffer is too small 
+		if (size < 4) return DocumentEncoding_utf8; 
  
-		// try to guess encoding (based on XML specification, Appendix F.1) 
+		// try to guess DocumentEncoding (based on XML specification, Appendix F.1) 
 		const uint8_t* data = static_cast<const uint8_t*>(contents); 
  
 		DMC_VOLATILE uint8_t d0 = data[0], d1 = data[1], d2 = data[2], d3 = data[3]; 
  
-		return guess_buffer_encoding(d0, d1, d2, d3); 
+		return guess_buffer_DocumentEncoding(d0, d1, d2, d3); 
 	} 
  
 	bool get_mutable_buffer(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable) 
@@ -1120,8 +1120,8 @@ namespace
 #ifdef XML_WCHAR_MODE 
 	inline bool need_endian_swap_utf(Encoding le, Encoding re) 
 	{ 
-		return (le == encoding_utf16_be && re == encoding_utf16_le) || (le == encoding_utf16_le && re == encoding_utf16_be) || 
-			   (le == encoding_utf32_be && re == encoding_utf32_le) || (le == encoding_utf32_le && re == encoding_utf32_be); 
+		return (le == DocumentEncoding_utf16_be && re == DocumentEncoding_utf16_le) || (le == DocumentEncoding_utf16_le && re == DocumentEncoding_utf16_be) || 
+			   (le == DocumentEncoding_utf32_be && re == DocumentEncoding_utf32_le) || (le == DocumentEncoding_utf32_le && re == DocumentEncoding_utf32_be); 
 	} 
  
 	bool convert_buffer_endian_swap(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable) 
@@ -1210,41 +1210,41 @@ namespace
 		return true; 
 	} 
  
-	bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding encoding, const void* contents, size_t size, bool is_mutable) 
+	bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable) 
 	{ 
-		// get native encoding 
-		Encoding wchar_encoding = get_wchar_encoding(); 
+		// get native DocumentEncoding 
+		Encoding wchar_DocumentEncoding = get_wchar_DocumentEncoding(); 
  
 		// fast path: no conversion required 
-		if (encoding == wchar_encoding) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
+		if (DocumentEncoding == wchar_DocumentEncoding) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
  
 		// only endian-swapping is required 
-		if (need_endian_swap_utf(encoding, wchar_encoding)) return convert_buffer_endian_swap(out_buffer, out_length, contents, size, is_mutable); 
+		if (need_endian_swap_utf(DocumentEncoding, wchar_DocumentEncoding)) return convert_buffer_endian_swap(out_buffer, out_length, contents, size, is_mutable); 
  
-		// source encoding is utf8 
-		if (encoding == encoding_utf8) return convert_buffer_utf8(out_buffer, out_length, contents, size); 
+		// source DocumentEncoding is utf8 
+		if (DocumentEncoding == DocumentEncoding_utf8) return convert_buffer_utf8(out_buffer, out_length, contents, size); 
  
-		// source encoding is utf16 
-		if (encoding == encoding_utf16_be || encoding == encoding_utf16_le) 
+		// source DocumentEncoding is utf16 
+		if (DocumentEncoding == DocumentEncoding_utf16_be || DocumentEncoding == DocumentEncoding_utf16_le) 
 		{ 
-			Encoding native_encoding = is_little_endian() ? encoding_utf16_le : encoding_utf16_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
  
-			return (native_encoding == encoding) ? 
+			return (native_DocumentEncoding == DocumentEncoding) ? 
 				convert_buffer_utf16(out_buffer, out_length, contents, size, opt_false()) : 
 				convert_buffer_utf16(out_buffer, out_length, contents, size, opt_true()); 
 		} 
  
-		// source encoding is utf32 
-		if (encoding == encoding_utf32_be || encoding == encoding_utf32_le) 
+		// source DocumentEncoding is utf32 
+		if (DocumentEncoding == DocumentEncoding_utf32_be || DocumentEncoding == DocumentEncoding_utf32_le) 
 		{ 
-			Encoding native_encoding = is_little_endian() ? encoding_utf32_le : encoding_utf32_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
  
-			return (native_encoding == encoding) ? 
+			return (native_DocumentEncoding == DocumentEncoding) ? 
 				convert_buffer_utf32(out_buffer, out_length, contents, size, opt_false()) : 
 				convert_buffer_utf32(out_buffer, out_length, contents, size, opt_true()); 
 		} 
  
-		assert(!"Invalid encoding"); 
+		assert(!"Invalid DocumentEncoding"); 
 		return false; 
 	} 
 #else 
@@ -1292,32 +1292,32 @@ namespace
 		return true; 
 	} 
  
-	bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding encoding, const void* contents, size_t size, bool is_mutable) 
+	bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable) 
 	{ 
 		// fast path: no conversion required 
-		if (encoding == encoding_utf8) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
+		if (DocumentEncoding == DocumentEncoding_utf8) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
  
-		// source encoding is utf16 
-		if (encoding == encoding_utf16_be || encoding == encoding_utf16_le) 
+		// source DocumentEncoding is utf16 
+		if (DocumentEncoding == DocumentEncoding_utf16_be || DocumentEncoding == DocumentEncoding_utf16_le) 
 		{ 
-			Encoding native_encoding = is_little_endian() ? encoding_utf16_le : encoding_utf16_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
  
-			return (native_encoding == encoding) ? 
+			return (native_DocumentEncoding == DocumentEncoding) ? 
 				convert_buffer_utf16(out_buffer, out_length, contents, size, opt_false()) : 
 				convert_buffer_utf16(out_buffer, out_length, contents, size, opt_true()); 
 		} 
  
-		// source encoding is utf32 
-		if (encoding == encoding_utf32_be || encoding == encoding_utf32_le) 
+		// source DocumentEncoding is utf32 
+		if (DocumentEncoding == DocumentEncoding_utf32_be || DocumentEncoding == DocumentEncoding_utf32_le) 
 		{ 
-			Encoding native_encoding = is_little_endian() ? encoding_utf32_le : encoding_utf32_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
  
-			return (native_encoding == encoding) ? 
+			return (native_DocumentEncoding == DocumentEncoding) ? 
 				convert_buffer_utf32(out_buffer, out_length, contents, size, opt_false()) : 
 				convert_buffer_utf32(out_buffer, out_length, contents, size, opt_true()); 
 		} 
  
-		assert(!"Invalid encoding"); 
+		assert(!"Invalid DocumentEncoding"); 
 		return false; 
 	} 
 #endif 
@@ -1912,10 +1912,10 @@ namespace
 		} 
 	} 
  
-	inline ParseResult make_parse_result(ParseStatus status, ptrdiff_t offset = 0) 
+	inline ParseResult make_parse_result(ParseStatus Status, ptrdiff_t offset = 0) 
 	{ 
 		ParseResult result; 
-		result.status = status; 
+		result.Status = Status; 
 		result.offset = offset; 
  
 		return result; 
@@ -2511,31 +2511,31 @@ namespace
 	}; 
  
 	// Output facilities 
-	Encoding get_write_native_encoding() 
+	Encoding get_write_native_DocumentEncoding() 
 	{ 
 	#ifdef XML_WCHAR_MODE 
-		return get_wchar_encoding(); 
+		return get_wchar_DocumentEncoding(); 
 	#else 
-		return encoding_utf8; 
+		return DocumentEncoding_utf8; 
 	#endif 
 	} 
  
-	Encoding get_write_encoding(Encoding encoding) 
+	Encoding get_write_DocumentEncoding(Encoding DocumentEncoding) 
 	{ 
-		// replace wchar encoding with utf implementation 
-		if (encoding == encoding_wchar) return get_wchar_encoding(); 
+		// replace wchar DocumentEncoding with utf implementation 
+		if (DocumentEncoding == DocumentEncoding_wchar) return get_wchar_DocumentEncoding(); 
  
-		// replace utf16 encoding with utf16 with specific endianness 
-		if (encoding == encoding_utf16) return is_little_endian() ? encoding_utf16_le : encoding_utf16_be; 
+		// replace utf16 DocumentEncoding with utf16 with specific endianness 
+		if (DocumentEncoding == DocumentEncoding_utf16) return is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
  
-		// replace utf32 encoding with utf32 with specific endianness 
-		if (encoding == encoding_utf32) return is_little_endian() ? encoding_utf32_le : encoding_utf32_be; 
+		// replace utf32 DocumentEncoding with utf32 with specific endianness 
+		if (DocumentEncoding == DocumentEncoding_utf32) return is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
  
-		// only do autodetection if no explicit encoding is requested 
-		if (encoding != encoding_auto) return encoding; 
+		// only do autodetection if no explicit DocumentEncoding is requested 
+		if (DocumentEncoding != DocumentEncoding_auto) return DocumentEncoding; 
  
-		// assume utf8 encoding 
-		return encoding_utf8; 
+		// assume utf8 DocumentEncoding 
+		return DocumentEncoding_utf8; 
 	} 
  
 #ifdef XML_WCHAR_MODE 
@@ -2547,10 +2547,10 @@ namespace
 		return (sizeof(wchar_t) == 2 && (unsigned)(static_cast<uint16_t>(data[length - 1]) - 0xD800) < 0x400) ? length - 1 : length; 
 	} 
  
-	size_t convert_buffer(char* result, const char_t* data, size_t length, Encoding encoding) 
+	size_t convert_buffer(char* result, const char_t* data, size_t length, Encoding DocumentEncoding) 
 	{ 
 		// only endian-swapping is required 
-		if (need_endian_swap_utf(encoding, get_wchar_encoding())) 
+		if (need_endian_swap_utf(DocumentEncoding, get_wchar_DocumentEncoding())) 
 		{ 
 			convert_wchar_endian_swap(reinterpret_cast<char_t*>(result), data, length); 
  
@@ -2558,7 +2558,7 @@ namespace
 		} 
 	 
 		// convert to utf8 
-		if (encoding == encoding_utf8) 
+		if (DocumentEncoding == DocumentEncoding_utf8) 
 		{ 
 			uint8_t* dest = reinterpret_cast<uint8_t*>(result); 
  
@@ -2570,7 +2570,7 @@ namespace
 		} 
  
 		// convert to utf16 
-		if (encoding == encoding_utf16_be || encoding == encoding_utf16_le) 
+		if (DocumentEncoding == DocumentEncoding_utf16_be || DocumentEncoding == DocumentEncoding_utf16_le) 
 		{ 
 			uint16_t* dest = reinterpret_cast<uint16_t*>(result); 
  
@@ -2578,15 +2578,15 @@ namespace
 			uint16_t* end = utf_decoder<utf16_writer>::decode_utf32_block(reinterpret_cast<const uint32_t*>(data), length, dest); 
  
 			// swap if necessary 
-			Encoding native_encoding = is_little_endian() ? encoding_utf16_le : encoding_utf16_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
  
-			if (native_encoding != encoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
+			if (native_DocumentEncoding != DocumentEncoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
  
 			return static_cast<size_t>(end - dest) * sizeof(uint16_t); 
 		} 
  
 		// convert to utf32 
-		if (encoding == encoding_utf32_be || encoding == encoding_utf32_le) 
+		if (DocumentEncoding == DocumentEncoding_utf32_be || DocumentEncoding == DocumentEncoding_utf32_le) 
 		{ 
 			uint32_t* dest = reinterpret_cast<uint32_t*>(result); 
  
@@ -2594,14 +2594,14 @@ namespace
 			uint32_t* end = utf_decoder<utf32_writer>::decode_utf16_block(reinterpret_cast<const uint16_t*>(data), length, dest); 
  
 			// swap if necessary 
-			Encoding native_encoding = is_little_endian() ? encoding_utf32_le : encoding_utf32_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
  
-			if (native_encoding != encoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
+			if (native_DocumentEncoding != DocumentEncoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
  
 			return static_cast<size_t>(end - dest) * sizeof(uint32_t); 
 		} 
  
-		assert(!"Invalid encoding"); 
+		assert(!"Invalid DocumentEncoding"); 
 		return 0; 
 	} 
 #else 
@@ -2621,9 +2621,9 @@ namespace
 		return length; 
 	} 
  
-	size_t convert_buffer(char* result, const char_t* data, size_t length, Encoding encoding) 
+	size_t convert_buffer(char* result, const char_t* data, size_t length, Encoding DocumentEncoding) 
 	{ 
-		if (encoding == encoding_utf16_be || encoding == encoding_utf16_le) 
+		if (DocumentEncoding == DocumentEncoding_utf16_be || DocumentEncoding == DocumentEncoding_utf16_le) 
 		{ 
 			uint16_t* dest = reinterpret_cast<uint16_t*>(result); 
  
@@ -2631,14 +2631,14 @@ namespace
 			uint16_t* end = utf_decoder<utf16_writer>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest); 
  
 			// swap if necessary 
-			Encoding native_encoding = is_little_endian() ? encoding_utf16_le : encoding_utf16_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
  
-			if (native_encoding != encoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
+			if (native_DocumentEncoding != DocumentEncoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
  
 			return static_cast<size_t>(end - dest) * sizeof(uint16_t); 
 		} 
  
-		if (encoding == encoding_utf32_be || encoding == encoding_utf32_le) 
+		if (DocumentEncoding == DocumentEncoding_utf32_be || DocumentEncoding == DocumentEncoding_utf32_le) 
 		{ 
 			uint32_t* dest = reinterpret_cast<uint32_t*>(result); 
  
@@ -2646,14 +2646,14 @@ namespace
 			uint32_t* end = utf_decoder<utf32_writer>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest); 
  
 			// swap if necessary 
-			Encoding native_encoding = is_little_endian() ? encoding_utf32_le : encoding_utf32_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
  
-			if (native_encoding != encoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
+			if (native_DocumentEncoding != DocumentEncoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
  
 			return static_cast<size_t>(end - dest) * sizeof(uint32_t); 
 		} 
  
-		assert(!"Invalid encoding"); 
+		assert(!"Invalid DocumentEncoding"); 
 		return 0; 
 	} 
 #endif 
@@ -2664,7 +2664,7 @@ namespace
 		BufferedWriter& operator=(const BufferedWriter&); 
  
 	public: 
-		BufferedWriter(Writer& writer, Encoding user_encoding): writer(writer), bufsize(0), encoding(get_write_encoding(user_encoding)) 
+		BufferedWriter(Writer& writer, Encoding user_DocumentEncoding): writer(writer), bufsize(0), DocumentEncoding(get_write_DocumentEncoding(user_DocumentEncoding)) 
 		{ 
 		} 
  
@@ -2684,12 +2684,12 @@ namespace
 			if (size == 0) return; 
  
 			// fast path, just write data 
-			if (encoding == get_write_native_encoding()) 
+			if (DocumentEncoding == get_write_native_DocumentEncoding()) 
 				writer.write(data, size * sizeof(char_t)); 
 			else 
 			{ 
 				// convert chunk 
-				size_t result = convert_buffer(scratch, data, size, encoding); 
+				size_t result = convert_buffer(scratch, data, size, DocumentEncoding); 
 				assert(result <= sizeof(scratch)); 
  
 				// write data 
@@ -2707,7 +2707,7 @@ namespace
 				// handle large chunks 
 				if (length > bufcapacity) 
 				{ 
-					if (encoding == get_write_native_encoding()) 
+					if (DocumentEncoding == get_write_native_DocumentEncoding()) 
 					{ 
 						// fast path, can just write data chunk 
 						writer.write(data, length * sizeof(char_t)); 
@@ -2816,35 +2816,35 @@ namespace
  
 		Writer& writer; 
 		size_t bufsize; 
-		Encoding encoding; 
+		Encoding DocumentEncoding; 
 	}; 
  
-	void write_bom(Writer& writer, Encoding encoding) 
+	void write_bom(Writer& writer, Encoding DocumentEncoding) 
 	{ 
-		switch (encoding) 
+		switch (DocumentEncoding) 
 		{ 
-		case encoding_utf8: 
+		case DocumentEncoding_utf8: 
 			writer.write("\xef\xbb\xbf", 3); 
 			break; 
  
-		case encoding_utf16_be: 
+		case DocumentEncoding_utf16_be: 
 			writer.write("\xfe\xff", 2); 
 			break; 
  
-		case encoding_utf16_le: 
+		case DocumentEncoding_utf16_le: 
 			writer.write("\xff\xfe", 2); 
 			break; 
  
-		case encoding_utf32_be: 
+		case DocumentEncoding_utf32_be: 
 			writer.write("\x00\x00\xfe\xff", 4); 
 			break; 
  
-		case encoding_utf32_le: 
+		case DocumentEncoding_utf32_le: 
 			writer.write("\xff\xfe\x00\x00", 4); 
 			break; 
  
 		default: 
-			assert(!"Invalid encoding"); 
+			assert(!"Invalid DocumentEncoding"); 
 		} 
 	} 
  
@@ -3171,18 +3171,18 @@ namespace
 		return StatusOk; 
 	} 
  
-	ParseResult load_file_impl(Document& doc, FILE* file, unsigned int options, Encoding encoding) 
+	ParseResult load_file_impl(Document& doc, FILE* file, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		if (!file) return make_parse_result(StatusFileNotFound); 
  
 		// get file size (can result in I/O errors) 
 		size_t size = 0; 
-		ParseStatus size_status = get_file_size(file, size); 
+		ParseStatus size_Status = get_file_size(file, size); 
  
-		if (size_status != StatusOk) 
+		if (size_Status != StatusOk) 
 		{ 
 			fclose(file); 
-			return make_parse_result(size_status); 
+			return make_parse_result(size_Status); 
 		} 
 		 
 		// allocate buffer for the whole file 
@@ -3204,11 +3204,11 @@ namespace
 			return make_parse_result(StatusIOError); 
 		} 
 		 
-		return doc.load_buffer_inplace_own(contents, size, options, encoding); 
+		return doc.load_buffer_inplace_own(contents, size, options, DocumentEncoding); 
 	} 
  
 #ifndef XML_NO_STL 
-	template <typename T> ParseResult load_stream_impl(Document& doc, std::basic_istream<T>& stream, unsigned int options, Encoding encoding) 
+	template <typename T> ParseResult load_stream_impl(Document& doc, std::basic_istream<T>& stream, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		// get length of remaining data in stream 
 		typename std::basic_istream<T>::pos_type pos = stream.tellg(); 
@@ -3236,7 +3236,7 @@ namespace
 		size_t actual_length = static_cast<size_t>(stream.gcount()); 
 		assert(actual_length <= read_length); 
  
-		return doc.load_buffer_inplace_own(buffer.release(), actual_length * sizeof(T), options, encoding); 
+		return doc.load_buffer_inplace_own(buffer.release(), actual_length * sizeof(T), options, DocumentEncoding); 
 	} 
 #endif 
  
@@ -4311,28 +4311,28 @@ namespace phys
 		return _root; 
 	} 
  
-	void Node::print(Writer& writer, const char_t* indent, unsigned int flags, Encoding encoding, unsigned int depth) const 
+	void Node::print(Writer& writer, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int depth) const 
 	{ 
 		if (!_root) return; 
  
-		BufferedWriter buffered_writer(writer, encoding); 
+		BufferedWriter buffered_writer(writer, DocumentEncoding); 
  
 		node_output(buffered_writer, *this, indent, flags, depth); 
 	} 
  
 #ifndef XML_NO_STL 
-	void Node::print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding encoding, unsigned int depth) const 
+	void Node::print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int depth) const 
 	{ 
 		WriterStream writer(stream); 
  
-		print(writer, indent, flags, encoding, depth); 
+		print(writer, indent, flags, DocumentEncoding, depth); 
 	} 
  
 	void Node::print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int depth) const 
 	{ 
 		WriterStream writer(stream); 
  
-		print(writer, indent, flags, encoding_wchar, depth); 
+		print(writer, indent, flags, DocumentEncoding_wchar, depth); 
 	} 
 #endif 
  
@@ -4501,18 +4501,18 @@ namespace phys
 		return temp; 
 	} 
  
-	ParseResult::ParseResult(): status(StatusInternalError), offset(0), encoding(encoding_auto) 
+	ParseResult::ParseResult(): Status(StatusInternalError), offset(0), DocumentEncoding(DocumentEncoding_auto) 
 	{ 
 	} 
  
 	ParseResult::operator bool() const 
 	{ 
-		return status == StatusOk; 
+		return Status == StatusOk; 
 	} 
  
 	const char* ParseResult::description() const 
 	{ 
-		switch (status) 
+		switch (Status) 
 		{ 
 		case StatusOk: return "No error"; 
  
@@ -4617,66 +4617,66 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	ParseResult Document::load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding encoding) 
+	ParseResult Document::load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		reset(); 
  
-		return load_stream_impl(*this, stream, options, encoding); 
+		return load_stream_impl(*this, stream, options, DocumentEncoding); 
 	} 
  
 	ParseResult Document::load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options) 
 	{ 
 		reset(); 
  
-		return load_stream_impl(*this, stream, options, encoding_wchar); 
+		return load_stream_impl(*this, stream, options, DocumentEncoding_wchar); 
 	} 
 #endif 
  
 	ParseResult Document::load(const char_t* contents, unsigned int options) 
 	{ 
-		// Force native encoding (skip autodetection) 
+		// Force native DocumentEncoding (skip autodetection) 
 	#ifdef XML_WCHAR_MODE 
-		Encoding encoding = encoding_wchar; 
+		Encoding DocumentEncoding = DocumentEncoding_wchar; 
 	#else 
-		Encoding encoding = encoding_utf8; 
+		Encoding DocumentEncoding = DocumentEncoding_utf8; 
 	#endif 
  
-		return load_buffer(contents, strlength(contents) * sizeof(char_t), options, encoding); 
+		return load_buffer(contents, strlength(contents) * sizeof(char_t), options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_file(const char* path, unsigned int options, Encoding encoding) 
+	ParseResult Document::load_file(const char* path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		reset(); 
  
 		FILE* file = fopen(path, "rb"); 
  
-		return load_file_impl(*this, file, options, encoding); 
+		return load_file_impl(*this, file, options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_file(const wchar_t* path, unsigned int options, Encoding encoding) 
+	ParseResult Document::load_file(const wchar_t* path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		reset(); 
  
 		FILE* file = open_file_wide(path, L"rb"); 
  
-		return load_file_impl(*this, file, options, encoding); 
+		return load_file_impl(*this, file, options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_buffer_impl(void* contents, size_t size, unsigned int options, Encoding encoding, bool is_mutable, bool own) 
+	ParseResult Document::load_buffer_impl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own) 
 	{ 
 		reset(); 
  
 		// check input buffer 
 		assert(contents || size == 0); 
  
-		// get actual encoding 
-		Encoding buffer_encoding = get_buffer_encoding(encoding, contents, size); 
+		// get actual DocumentEncoding 
+		Encoding buffer_DocumentEncoding = get_buffer_DocumentEncoding(DocumentEncoding, contents, size); 
  
 		// get private buffer 
 		char_t* buffer = 0; 
 		size_t length = 0; 
  
-		if (!convert_buffer(buffer, length, buffer_encoding, contents, size, is_mutable)) return make_parse_result(StatusOutOfMemory); 
+		if (!convert_buffer(buffer, length, buffer_DocumentEncoding, contents, size, is_mutable)) return make_parse_result(StatusOutOfMemory); 
 		 
 		// delete original buffer if we performed a conversion 
 		if (own && buffer != contents && contents) global_deallocate(contents); 
@@ -4684,8 +4684,8 @@ namespace phys
 		// parse 
 		ParseResult res = Parser::parse(buffer, length, _root, options); 
  
-		// remember encoding 
-		res.encoding = buffer_encoding; 
+		// remember DocumentEncoding 
+		res.DocumentEncoding = buffer_DocumentEncoding; 
  
 		// grab onto buffer if it's our buffer, user is responsible for deallocating contens himself 
 		if (own || buffer != contents) _buffer = buffer; 
@@ -4693,26 +4693,26 @@ namespace phys
 		return res; 
 	} 
  
-	ParseResult Document::load_buffer(const void* contents, size_t size, unsigned int options, Encoding encoding) 
+	ParseResult Document::load_buffer(const void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		return load_buffer_impl(const_cast<void*>(contents), size, options, encoding, false, false); 
+		return load_buffer_impl(const_cast<void*>(contents), size, options, DocumentEncoding, false, false); 
 	} 
  
-	ParseResult Document::load_buffer_inplace(void* contents, size_t size, unsigned int options, Encoding encoding) 
+	ParseResult Document::load_buffer_inplace(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		return load_buffer_impl(contents, size, options, encoding, true, false); 
+		return load_buffer_impl(contents, size, options, DocumentEncoding, true, false); 
 	} 
 		 
-	ParseResult Document::load_buffer_inplace_own(void* contents, size_t size, unsigned int options, Encoding encoding) 
+	ParseResult Document::load_buffer_inplace_own(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		return load_buffer_impl(contents, size, options, encoding, true, true); 
+		return load_buffer_impl(contents, size, options, DocumentEncoding, true, true); 
 	} 
  
-	void Document::save(Writer& writer, const char_t* indent, unsigned int flags, Encoding encoding) const 
+	void Document::save(Writer& writer, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
-		if (flags & format_write_bom) write_bom(writer, get_write_encoding(encoding)); 
+		if (flags & format_write_bom) write_bom(writer, get_write_DocumentEncoding(DocumentEncoding)); 
  
-		BufferedWriter buffered_writer(writer, encoding); 
+		BufferedWriter buffered_writer(writer, DocumentEncoding); 
  
 		if (!(flags & format_no_declaration) && !has_declaration(*this)) 
 		{ 
@@ -4724,41 +4724,41 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	void Document::save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding encoding) const 
+	void Document::save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
 		WriterStream writer(stream); 
  
-		save(writer, indent, flags, encoding); 
+		save(writer, indent, flags, DocumentEncoding); 
 	} 
  
 	void Document::save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags) const 
 	{ 
 		WriterStream writer(stream); 
  
-		save(writer, indent, flags, encoding_wchar); 
+		save(writer, indent, flags, DocumentEncoding_wchar); 
 	} 
 #endif 
  
-	bool Document::save_file(const char* path, const char_t* indent, unsigned int flags, Encoding encoding) const 
+	bool Document::save_file(const char* path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
 		FILE* file = fopen(path, "wb"); 
 		if (!file) return false; 
  
 		WriterFile writer(file); 
-		save(writer, indent, flags, encoding); 
+		save(writer, indent, flags, DocumentEncoding); 
  
 		fclose(file); 
  
 		return true; 
 	} 
  
-	bool Document::save_file(const wchar_t* path, const char_t* indent, unsigned int flags, Encoding encoding) const 
+	bool Document::save_file(const wchar_t* path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
 		FILE* file = open_file_wide(path, L"wb"); 
 		if (!file) return false; 
  
 		WriterFile writer(file); 
-		save(writer, indent, flags, encoding); 
+		save(writer, indent, flags, DocumentEncoding); 
  
 		fclose(file); 
  

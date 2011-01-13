@@ -90,8 +90,8 @@ namespace phys
         ///////////////////////////////////////
 
 
-        /// @enum ParseStatus
         /// @brief These statuses are used to help determine what issues, if any the parser had. the XML parser had.
+        /// @enum ParseStatus
 
         /// @var StatusOk
         /// @brief This is returned to indicated there where no issues parsing the XML document
@@ -126,6 +126,9 @@ namespace phys
         /// @var StatusBadPcdata
         /// @brief Parsing error occurred while parsing PCDATA section.
 
+        /// @var StatusBadStartElement
+        /// @brief Parsing error occurred while parsing start element tag .
+
         /// @var StatusBadAttribute
         /// @brief Parsing error occurred while parsing element attribute.
 
@@ -134,6 +137,33 @@ namespace phys
 
         /// @var StatusEndElementMismatch
         /// @brief There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag).
+
+
+        /// @struct ParseResult
+        /// @brief All the information needed to troubleshoot a Parsing error.
+
+        // @var ParseResult::Status
+        // @memberof ParseResult
+		// @brief Parsing status ( see \ref ParseStatus ) yyyyyy
+		//ParseStatus Status;
+
+		// Last parsed offset (in char_t units from start of input data)
+		//ptrdiff_t offset;
+
+		// Source document encoding
+		//Encoding encoding;
+
+		// Default constructor, initializes object to failed state
+		//ParseResult();
+
+		// Cast to bool operator
+		//operator bool() const;
+
+		// Get error description
+		//const char* description() const;
+
+
+
     }
 }
 #endif
