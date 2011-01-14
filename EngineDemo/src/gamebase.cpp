@@ -11,7 +11,6 @@
 #include <string>
 #include <iostream>
 #include <fstream>            //Only used for testing
-
 #define PHYSDEBUG
 
 using namespace phys;
@@ -533,18 +532,40 @@ void LoadContent()
 
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         xml::Document TestDoc;
-        xml::Parse_Result ParsedXML = TestDoc.load( *XMLptr );
+        xml::ParseResult ParsedXML = TestDoc.load( *XMLptr );
+
+        TheWorld->LogStream << "xml::StatusOk :" << xml::StatusOk << endl
+                            << "xml::StatusFileNotFound :" << xml::StatusFileNotFound << endl
+                            << "xml::StatusIOError :" << xml::StatusIOError << endl
+                            << "xml::StatusOutOfMemory :" << xml::StatusOutOfMemory << endl
+                            << "xml::StatusInternalError :" << xml::StatusInternalError << endl
+                            << "xml::StatusUnrecognizedTag :" << xml::StatusUnrecognizedTag << endl
+                            << "xml::StatusBadPi :" << xml::StatusBadPi << endl
+                            << "xml::StatusBadComment :" << xml::StatusBadComment << endl
+                            << "xml::StatusBadCdata :" << xml::StatusBadCdata << endl
+                            << "xml::StatusBadDoctype :" << xml::StatusBadDoctype << endl
+                            << "xml::StatusBadPcdata :" << xml::StatusBadPcdata << endl
+                            << "xml::StatusBadStartElement :" << xml::StatusBadStartElement << endl
+                            << "xml::StatusBadAttribute :" << xml::StatusBadAttribute << endl
+                            << "xml::StatusBadEndElement :" << xml::StatusBadEndElement << endl
+                            << "xml::StatusEndElementMismatch :" << xml::StatusEndElementMismatch << endl
+                            ;
+
+
+
+        if(ParsedXML.Status)
+        {
+            TheWorld->Log("Successfully loaded and parsed test.xml");
+        }else{
+            TheWorld->LogStream << "Failed to load and parse test.xml. With Status :" << ParsedXML.Status;
+        }
 
         //phys::xml::TestXML(XMLptr);
 
         /*
-
         String temp;
         xml::Document TestXMLDoc("Test");
-
-
         *XMLptr >> TestXMLDoc;
-
         TheWorld->LogStream << "XMLDoc:" << endl << TestXMLDoc << endl << "/XMLDoc";*/
 
         #ifdef PHYSDEBUG

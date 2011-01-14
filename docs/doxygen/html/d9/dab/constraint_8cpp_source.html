@@ -360,104 +360,104 @@
 <a name="l00330"></a>00330 <span class="comment">    /////////////////////////////////////////</span>
 <a name="l00331"></a>00331 <span class="comment"></span>    <span class="comment">// Hinge Constraint Functions</span>
 <a name="l00332"></a>00332 
-<a name="l00333"></a>00333     HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotInA, Vector3 PivotInB, Vector3 AxisInA, Vector3 AxisInB, <span class="keywordtype">bool</span> UseReferenceA) : TypedConstraint (ActorA, ActorB)
+<a name="l00333"></a><a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#a079d149580bb7f60e09532a938352141">00333</a>     <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#a079d149580bb7f60e09532a938352141">HingeConstraint::HingeConstraint</a>(<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorA, <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorB, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> PivotInA, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> PivotInB, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> AxisInA, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> AxisInB, <span class="keywordtype">bool</span> UseReferenceA) : <a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a> (ActorA, ActorB)
 <a name="l00334"></a>00334     {
-<a name="l00335"></a>00335         btVector3 tempA(AxisInA.GetBulletVector3());
-<a name="l00336"></a>00336         btVector3 tempB(AxisInB.GetBulletVector3());
-<a name="l00337"></a>00337         Hinge = <span class="keyword">new</span> btHingeConstraint(*<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#a5e4251df846e7afbab2e49039530a140" title="First rigid body the constraint applies to.">BodyA</a>, *<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#ab90a86274d18f45628e91a76d28c8278" title="Second rigid body the constraint applies to(if applicable).">BodyB</a>, PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, bool(UseReferenceA));
+<a name="l00335"></a>00335         btVector3 tempA(AxisInA.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00336"></a>00336         btVector3 tempB(AxisInB.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00337"></a>00337         <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a> = <span class="keyword">new</span> btHingeConstraint(*<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#a5e4251df846e7afbab2e49039530a140" title="First rigid body the constraint applies to.">BodyA</a>, *<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#ab90a86274d18f45628e91a76d28c8278" title="Second rigid body the constraint applies to(if applicable).">BodyB</a>, PivotInA.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>(), PivotInB.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>(), tempA, tempB, bool(UseReferenceA));
 <a name="l00338"></a>00338         <a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#a31527f4782a0861fd6fd4bb7e201b23f" title="Bullet constraint that this class encapsulates.">ConstraintBase</a> = Hinge;
 <a name="l00339"></a>00339     }
 <a name="l00340"></a>00340 
-<a name="l00341"></a>00341     HingeConstraint::HingeConstraint(ActorRigid* ActorA, Vector3 PivotInA, Vector3 AxisInA, <span class="keywordtype">bool</span> UseReferenceA) : TypedConstraint (ActorA)
+<a name="l00341"></a><a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#aa49fe941387343b75d26a3603aafe09e">00341</a>     <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#a079d149580bb7f60e09532a938352141">HingeConstraint::HingeConstraint</a>(<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorA, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> PivotInA, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> AxisInA, <span class="keywordtype">bool</span> UseReferenceA) : <a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a> (ActorA)
 <a name="l00342"></a>00342     {
-<a name="l00343"></a>00343         btVector3 tempA(AxisInA.GetBulletVector3());
-<a name="l00344"></a>00344         Hinge = <span class="keyword">new</span> btHingeConstraint(*<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#a5e4251df846e7afbab2e49039530a140" title="First rigid body the constraint applies to.">BodyA</a>, PivotInA.GetBulletVector3(), tempA, bool(UseReferenceA));
+<a name="l00343"></a>00343         btVector3 tempA(AxisInA.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00344"></a>00344         <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a> = <span class="keyword">new</span> btHingeConstraint(*<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#a5e4251df846e7afbab2e49039530a140" title="First rigid body the constraint applies to.">BodyA</a>, PivotInA.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>(), tempA, bool(UseReferenceA));
 <a name="l00345"></a>00345         <a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#a31527f4782a0861fd6fd4bb7e201b23f" title="Bullet constraint that this class encapsulates.">ConstraintBase</a> = Hinge;
 <a name="l00346"></a>00346     }
 <a name="l00347"></a>00347 
-<a name="l00348"></a>00348     HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, <span class="keywordtype">bool</span> UseReferenceA) : TypedConstraint (ActorA, ActorB)
+<a name="l00348"></a><a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#acf99af18e95c5b42119d91aff8a02a2a">00348</a>     <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#a079d149580bb7f60e09532a938352141">HingeConstraint::HingeConstraint</a>(<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorA, <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>* ActorB, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> VectorA, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> VectorB, <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> QuaternionA, <a class="code" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> QuaternionB, <span class="keywordtype">bool</span> UseReferenceA) : <a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html" title="This is the base class for all constraints supported.">TypedConstraint</a> (ActorA, ActorB)
 <a name="l00349"></a>00349     {
-<a name="l00350"></a>00350         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
-<a name="l00351"></a>00351         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
-<a name="l00352"></a>00352         Hinge = <span class="keyword">new</span> btHingeConstraint(*<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#a5e4251df846e7afbab2e49039530a140" title="First rigid body the constraint applies to.">BodyA</a>, *<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#ab90a86274d18f45628e91a76d28c8278" title="Second rigid body the constraint applies to(if applicable).">BodyB</a>, transa, transb, UseReferenceA);
+<a name="l00350"></a>00350         btTransform transa(QuaternionA.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a30944ae1fe905ee4f5c946c9a0b354f7" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>(), VectorA.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00351"></a>00351         btTransform transb(QuaternionB.<a class="code" href="../../df/d8c/classphys_1_1Quaternion.html#a30944ae1fe905ee4f5c946c9a0b354f7" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>(), VectorB.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00352"></a>00352         <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a> = <span class="keyword">new</span> btHingeConstraint(*<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#a5e4251df846e7afbab2e49039530a140" title="First rigid body the constraint applies to.">BodyA</a>, *<a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#ab90a86274d18f45628e91a76d28c8278" title="Second rigid body the constraint applies to(if applicable).">BodyB</a>, transa, transb, UseReferenceA);
 <a name="l00353"></a>00353         <a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#a31527f4782a0861fd6fd4bb7e201b23f" title="Bullet constraint that this class encapsulates.">ConstraintBase</a> = Hinge;
 <a name="l00354"></a>00354     }
 <a name="l00355"></a>00355 
-<a name="l00356"></a><a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#ab326e7128413aa3b737b726b3513c8df">00356</a>     HingeConstraint::HingeConstraint(btHingeConstraint* Constraint)
+<a name="l00356"></a><a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#ab326e7128413aa3b737b726b3513c8df">00356</a>     <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#a079d149580bb7f60e09532a938352141">HingeConstraint::HingeConstraint</a>(btHingeConstraint* Constraint)
 <a name="l00357"></a>00357     {
-<a name="l00358"></a>00358         Hinge = Constraint;
+<a name="l00358"></a>00358         <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a> = Constraint;
 <a name="l00359"></a>00359         <a class="code" href="../../d1/d17/classphys_1_1TypedConstraint.html#a31527f4782a0861fd6fd4bb7e201b23f" title="Bullet constraint that this class encapsulates.">ConstraintBase</a> = Constraint;
 <a name="l00360"></a>00360     }
 <a name="l00361"></a>00361 
 <a name="l00362"></a><a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#af97da06f82fa1903bb20393760f4ae34">00362</a>     <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#af97da06f82fa1903bb20393760f4ae34" title="Class destructor.">HingeConstraint::~HingeConstraint</a>()
 <a name="l00363"></a>00363     {
-<a name="l00364"></a>00364         <span class="keyword">delete</span> Hinge;
+<a name="l00364"></a>00364         <span class="keyword">delete</span> <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>;
 <a name="l00365"></a>00365     }
 <a name="l00366"></a>00366 
 <a name="l00367"></a>00367     <span class="keywordtype">void</span> HingeConstraint::SetAPivotLocation(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Location)
 <a name="l00368"></a>00368     {
-<a name="l00369"></a>00369         this-&gt;Hinge-&gt;getAFrame().setOrigin(Location.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
+<a name="l00369"></a>00369         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;getAFrame().setOrigin(Location.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#adf4129007ee41f5a03e97502f2df9c41" title="Gets a Bullet vector3.">GetBulletVector3</a>());
 <a name="l00370"></a>00370     }
 <a name="l00371"></a>00371 
 <a name="l00372"></a>00372     <span class="keywordtype">void</span> HingeConstraint::SetBPivotLocation(Vector3 Location)
 <a name="l00373"></a>00373     {
-<a name="l00374"></a>00374         this-&gt;Hinge-&gt;getBFrame().setOrigin(Location.GetBulletVector3());
+<a name="l00374"></a>00374         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;getBFrame().setOrigin(Location.GetBulletVector3());
 <a name="l00375"></a>00375     }
 <a name="l00376"></a>00376 
 <a name="l00377"></a>00377     <span class="keywordtype">void</span> HingeConstraint::SetAngularOnly(<span class="keywordtype">bool</span> AngularOnly)
 <a name="l00378"></a>00378     {
-<a name="l00379"></a>00379         this-&gt;Hinge-&gt;setAngularOnly(AngularOnly);
+<a name="l00379"></a>00379         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;setAngularOnly(AngularOnly);
 <a name="l00380"></a>00380     }
 <a name="l00381"></a>00381 
 <a name="l00382"></a>00382     <span class="keywordtype">void</span> HingeConstraint::EnableAngularMotor(<span class="keywordtype">bool</span> EnableMotor, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TargetVelocity, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> MaxMotorImpulse)
 <a name="l00383"></a>00383     {
-<a name="l00384"></a>00384         this-&gt;Hinge-&gt;enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse);
+<a name="l00384"></a>00384         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;enableAngularMotor(EnableMotor, TargetVelocity, MaxMotorImpulse);
 <a name="l00385"></a>00385     }
 <a name="l00386"></a>00386 
 <a name="l00387"></a>00387     <span class="keywordtype">void</span> HingeConstraint::EnableMotor(<span class="keywordtype">bool</span> EnableMotor)
 <a name="l00388"></a>00388     {
-<a name="l00389"></a>00389         this-&gt;Hinge-&gt;enableMotor(EnableMotor);
+<a name="l00389"></a>00389         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;enableMotor(EnableMotor);
 <a name="l00390"></a>00390     }
 <a name="l00391"></a>00391 
 <a name="l00392"></a>00392     <span class="keywordtype">void</span> HingeConstraint::SetMaxMotorImpulse(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> MaxMotorImpulse)
 <a name="l00393"></a>00393     {
-<a name="l00394"></a>00394         this-&gt;Hinge-&gt;setMaxMotorImpulse(MaxMotorImpulse);
+<a name="l00394"></a>00394         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;setMaxMotorImpulse(MaxMotorImpulse);
 <a name="l00395"></a>00395     }
 <a name="l00396"></a>00396 
 <a name="l00397"></a>00397     <span class="keywordtype">void</span> HingeConstraint::SetMotorTarget(Quaternion QuatAInB, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Dt)
 <a name="l00398"></a>00398     {
-<a name="l00399"></a>00399         this-&gt;Hinge-&gt;setMotorTarget(QuatAInB.GetBulletQuaternion(), Dt);
+<a name="l00399"></a>00399         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;setMotorTarget(QuatAInB.GetBulletQuaternion(), Dt);
 <a name="l00400"></a>00400     }
 <a name="l00401"></a>00401 
 <a name="l00402"></a>00402     <span class="keywordtype">void</span> HingeConstraint::SetMotorTarget(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TargetAngle, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Dt)
 <a name="l00403"></a>00403     {
-<a name="l00404"></a>00404         this-&gt;Hinge-&gt;setMotorTarget(TargetAngle, Dt);
+<a name="l00404"></a>00404         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;setMotorTarget(TargetAngle, Dt);
 <a name="l00405"></a>00405     }
 <a name="l00406"></a>00406 
 <a name="l00407"></a>00407     <span class="keywordtype">void</span> HingeConstraint::SetLimit(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Low, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> High, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Softness, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> BiasFactor, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> RelaxationFactor)
 <a name="l00408"></a>00408     {
-<a name="l00409"></a>00409         this-&gt;Hinge-&gt;setLimit(Low, High, Softness, BiasFactor, RelaxationFactor);
+<a name="l00409"></a>00409         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;setLimit(Low, High, Softness, BiasFactor, RelaxationFactor);
 <a name="l00410"></a>00410     }
 <a name="l00411"></a>00411 
 <a name="l00412"></a>00412     <span class="keywordtype">void</span> HingeConstraint::SetAxis(Vector3 AxisInA)
 <a name="l00413"></a>00413     {
 <a name="l00414"></a>00414         btVector3 temp(AxisInA.GetBulletVector3());
-<a name="l00415"></a>00415         this-&gt;Hinge-&gt;setAxis(temp);
+<a name="l00415"></a>00415         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;setAxis(temp);
 <a name="l00416"></a>00416     }
 <a name="l00417"></a>00417 
 <a name="l00418"></a>00418     <span class="keywordtype">void</span> HingeConstraint::SetUseFrameOffset(<span class="keywordtype">bool</span> FrameOffset)
 <a name="l00419"></a>00419     {
-<a name="l00420"></a>00420         this-&gt;Hinge-&gt;setUseFrameOffset(FrameOffset);
+<a name="l00420"></a>00420         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;setUseFrameOffset(FrameOffset);
 <a name="l00421"></a>00421     }
 <a name="l00422"></a>00422 
 <a name="l00423"></a><a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#adec79d062d67532e3521eaae6b49f877">00423</a>     <span class="keywordtype">void</span> <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#adec79d062d67532e3521eaae6b49f877" title="Provides override of constraint parameters.">HingeConstraint::SetParam</a>(<span class="keywordtype">int</span> num, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> value, <span class="keywordtype">int</span> axis)
 <a name="l00424"></a>00424     {
-<a name="l00425"></a>00425         this-&gt;Hinge-&gt;setParam(num, value, axis);
+<a name="l00425"></a>00425         this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;setParam(num, value, axis);
 <a name="l00426"></a>00426     }
 <a name="l00427"></a>00427 
 <a name="l00428"></a><a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#a7e8c001ee6291bf457c9860124cacaf8">00428</a>     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#a7e8c001ee6291bf457c9860124cacaf8" title="Gets value of constraint parameters.">HingeConstraint::GetParam</a>(<span class="keywordtype">int</span> num, <span class="keywordtype">int</span> axis)
 <a name="l00429"></a>00429     {
-<a name="l00430"></a>00430         <span class="keywordflow">return</span> this-&gt;Hinge-&gt;getParam(num, axis);
+<a name="l00430"></a>00430         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d3/d0d/classphys_1_1HingeConstraint.html#afa4e4f1595d6420f21449d5e3b730f49" title="Bullet constraint that this class encapsulates.">Hinge</a>-&gt;getParam(num, axis);
 <a name="l00431"></a>00431     }
 <a name="l00432"></a>00432 <span class="comment"></span>
 <a name="l00433"></a>00433 <span class="comment">    /////////////////////////////////////////</span>
@@ -798,7 +798,7 @@
 <a name="l00768"></a>00768 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:39 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

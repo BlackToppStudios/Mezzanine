@@ -1,0 +1,85 @@
+\hypertarget{structphys_1_1xml_1_1xpath__parse__result}{
+\section{phys::xml::xpath\_\-parse\_\-result Struct Reference}
+\label{d3/d82/structphys_1_1xml_1_1xpath__parse__result}\index{phys::xml::xpath\_\-parse\_\-result@{phys::xml::xpath\_\-parse\_\-result}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structphys_1_1xml_1_1xpath__parse__result_a8d76f84208d53049832837761bed2aa2}{
+\hyperlink{structphys_1_1xml_1_1xpath__parse__result_a8d76f84208d53049832837761bed2aa2}{xpath\_\-parse\_\-result} ()}
+\label{d3/d82/structphys_1_1xml_1_1xpath__parse__result_a8d76f84208d53049832837761bed2aa2}
+
+\begin{DoxyCompactList}\small\item\em Default constructor, initializes object to failed state. \item\end{DoxyCompactList}\item 
+\hyperlink{structphys_1_1xml_1_1xpath__parse__result_a6dcc7705327a53c40d27951f1fa135e8}{operator bool} () const 
+\begin{DoxyCompactList}\small\item\em Cast to bool operator. \item\end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{structphys_1_1xml_1_1xpath__parse__result_ad4a6c1b6f5b15a51f363eb1ba80ba328}{description} () const 
+\begin{DoxyCompactList}\small\item\em Uses the Status member to create a text description. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structphys_1_1xml_1_1xpath__parse__result_aa22bdd4bda9b88bf8fabfe0a6da3f0f8}{
+const char $\ast$ {\bfseries error}}
+\label{d3/d82/structphys_1_1xml_1_1xpath__parse__result_aa22bdd4bda9b88bf8fabfe0a6da3f0f8}
+
+\item 
+\hypertarget{structphys_1_1xml_1_1xpath__parse__result_a56213a26c0e24a7f2d1212ff6095bc51}{
+ptrdiff\_\-t {\bfseries offset}}
+\label{d3/d82/structphys_1_1xml_1_1xpath__parse__result_a56213a26c0e24a7f2d1212ff6095bc51}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 875 of file xml.h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structphys_1_1xml_1_1xpath__parse__result_ad4a6c1b6f5b15a51f363eb1ba80ba328}{
+\index{phys::xml::xpath\_\-parse\_\-result@{phys::xml::xpath\_\-parse\_\-result}!description@{description}}
+\index{description@{description}!phys::xml::xpath_parse_result@{phys::xml::xpath\_\-parse\_\-result}}
+\subsubsection[{description}]{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ phys::xml::xpath\_\-parse\_\-result::description (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d3/d82/structphys_1_1xml_1_1xpath__parse__result_ad4a6c1b6f5b15a51f363eb1ba80ba328}
+
+
+Uses the Status member to create a text description. 
+
+\begin{DoxyReturn}{Returns}
+A const char$\ast$ with a brief error description based on the \hyperlink{structphys_1_1xml_1_1ParseResult_a1bf9dfeebdb07656723bbaf18ab612b5}{ParseResult::Status} 
+\end{DoxyReturn}
+
+
+Definition at line 9243 of file xml.cpp.
+
+\hypertarget{structphys_1_1xml_1_1xpath__parse__result_a6dcc7705327a53c40d27951f1fa135e8}{
+\index{phys::xml::xpath\_\-parse\_\-result@{phys::xml::xpath\_\-parse\_\-result}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!phys::xml::xpath_parse_result@{phys::xml::xpath\_\-parse\_\-result}}
+\subsubsection[{operator bool}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::xpath\_\-parse\_\-result::operator bool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d3/d82/structphys_1_1xml_1_1xpath__parse__result_a6dcc7705327a53c40d27951f1fa135e8}
+
+
+Cast to bool operator. 
+
+\begin{DoxyReturn}{Returns}
+This returns true if the \hyperlink{structphys_1_1xml_1_1ParseResult_a1bf9dfeebdb07656723bbaf18ab612b5}{ParseResult::Status} member is set to ParseStatus::StatusOk, otherwise this returns false. 
+\end{DoxyReturn}
+
+
+Definition at line 9239 of file xml.cpp.
+
+
+
+The documentation for this struct was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{xml_8h}{xml.h}\item 
+xml.cpp\end{DoxyCompactItemize}

@@ -68,7 +68,7 @@ PugiHeaderGrabUntil="*/"						# This ends the copyright header in the pugiheader
 PugiHeaderGrabLineCount=`grep "$PugiHeaderGrabUntil" $PugiHFile -n | head -n1 | sed s/:.*//g`
 PugiHeaderTotalLineCount=`grep "$Hardstring" $PugiHFile -vc`
 PugiHeaderTailLineCount=$[PugiHeaderTotalLineCount-PugiHeaderGrabLineCount]
-tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"'//g  >> $PugiTempHFile
+tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"'/'#include "crossplatform.h"\n#include "xmldoc.h"'/g  >> $PugiTempHFile
 
 #This Does a number of transformations on the PugiHeader file before placing the complete converted parts onto the new headerfile
 #	- Replaces series of 4 spaces with tabs (seems to be an issue with the original source Files)
@@ -78,7 +78,6 @@ tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"
 #	- Replace multiple inclusion with names matching our own
 #		HEADER_PUGIXML_HPP -> _xml_h
 #		HEADER_PUGICONFIG_HPP	-> _xmlconfig_h
-#	- Add //// to each blank line (to work around using newlines as a delimiter and dropping some later on)
 #	- Put the results in the final place they belong
 cat $PugiTempHFile | sed  	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/\([cC]\)/©/g 	-e s/HEADER_PUGIXML_HPP/_xml_h/g 	-e s/HEADER_PUGICONFIG_HPP/_xmlconfig_h/g	-e s/PUGIXML_/XML_/g 	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	> $NewHFile
 
@@ -157,13 +156,47 @@ function FixNames
 
 	#A clean line to copy and paste 
 	#FileContent=`echo -E "$FileContent" | sed -e 's/needle/replacement/'`
-	
+
 	#This is the list of items to find/replace to convert the Pugi API into Physgame API
-	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)\([a-z]*\)_\(.\)/\U\1\L\2\U\3/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|///|////|g'`								#removed doxygen documentations
 
-	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)/\U\1/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)\([a-z]*\)_\(.\)/\U\1\L\2\U\3/g'`		#Adjust the names of two word type to use CamelCase
+	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)/\U\1/g'`							#Adjust the names of one word type to use CamelCase
 
-	
+	FileContent=`echo -E "$FileContent" | sed -e 's/XML_CLASS/PHYS_LIB/g'`					#These configure the XML API to be exported to a DLL on windows
+	FileContent=`echo -E "$FileContent" | sed -e 's/XML_FUNCTION/PHYS_LIB/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/XML_API/PHYS_LIB/g'`
+
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_ok/StatusOk/g'`										#Status and error codes
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_file_not_found/StatusFileNotFound/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_io_error/StatusIOError/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_out_of_memory/StatusOutOfMemory/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_unrecognized_tag/StatusUnrecognizedTag/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_pi/StatusBadPi/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_comment/StatusBadComment/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_cdata/StatusBadCdata/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_doctype/StatusBadDoctype/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_pcdata/StatusBadPcdata/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_start_element/StatusBadStartElement/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_attribute/StatusBadAttribute/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_end_element/StatusBadEndElement/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_end_element_mismatch/StatusEndElementMismatch/g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/status_internal_error/StatusInternalError/g'`
+
+	FileContent=`echo -E "$FileContent" | sed -e 's/status/Status/g'`							#Fix member ParseStatus.Status
+	FileContent=`echo -E "$FileContent" | sed -e 's/encoding/DocumentEncoding/g'`			#Fix member ParseStatus.DocumentEncoding
+	#FileContent=`echo -E "$FileContent" | sed -e 's/offset/Offset/g'`							#Fix member ParseStatus.Offset
+
+
+																						#Documentation that could not be put in xmldoc.h
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Parsing Status (see ParseStatus)|/// @brief Parsing status ( see @ref ParseStatus )|g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Last parsed offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Source document DocumentEncoding|/// @brief Source document encoding ( see @ref Encoding )|g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Default constructor, initializes object to failed state|/// @brief Default constructor, initializes object to failed state.|g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Cast to bool operator|/// @brief Cast to bool operator \\n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Get error description |/// @brief Uses the Status member to create a text description. \\n		/// @return A const char* with a brief error description based on the ParseResult::Status |g'`
+	#FileContent=`echo -E "$FileContent" | sed -e 's|||g'`
+
 	echo -E "$FileContent" > $1
 	#	mv $TempFileName $1
 }

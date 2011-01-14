@@ -60,7 +60,7 @@
 
 /// @todo Make main page in documentation with wiki link and lisitng of required steps (build target and OS define), and dependencies required to build this.
 
-//Unremark one of these when not compiling with code::blocks
+//Unremark one of these when not compiling with code::blocks or cmake
 //#define LINUX
 //#define MACOSX
 //#define WINDOWS

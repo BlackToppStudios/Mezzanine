@@ -104,6 +104,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/world.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xml.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.h"
 
 #######################################
 # A complete listing of our source files
@@ -239,7 +240,7 @@ if(${WIN32})
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
 	)
 
-	add_definitions( -DWINDOWS )
+	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 

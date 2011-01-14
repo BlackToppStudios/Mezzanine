@@ -1,0 +1,17 @@
+\hypertarget{namespacexml}{
+\section{xml Namespace Reference}
+\label{d8/dd3/namespacexml}\index{xml@{xml}}
+}
+
+
+This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate.  
+
+
+
+
+\subsection{Detailed Description}
+This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate. Our XML Parser IS a copy of PugiXML. It is simply the fastest, most stable, most reliable, feature rich, and robust XML parser we were aware of. We are using it with permission per it's included license. See the licenses folder, in either the docs folder, or the data/common folder. \par
+ \par
+ This XML parser uses an 'in place' design. It attmempts to load all of an XML document to one contiguous location in in memory, then create a tree of meta data that reference the already loaded document text. In testing this has been shown to be extremely fast. See pugixml.org for more details on the performace. \par
+ \par
+ The one drawback PugiXML had was that it has a completely different naming convention from our code. So we created a script ( docs/tools/PugiConversion) to covert version 1.1 and hopefully future versions to out naming convention. 

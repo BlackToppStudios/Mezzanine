@@ -124,204 +124,207 @@
 <a name="l00094"></a>00094         {
 <a name="l00095"></a>00095             HoveredWidget = <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab9840b483409d3453a67931b4d858d1b" title="Searches all visable screens and layers to see if a widget was clicked.">CheckWidgetMouseIsOver</a>();
 <a name="l00096"></a>00096             <span class="keywordflow">if</span>(HoveredWidget)
-<a name="l00097"></a>00097                 HoveredWidget-&gt;Update();
-<a name="l00098"></a>00098         }
-<a name="l00099"></a>00099     }
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101     <span class="keywordtype">void</span> UIManager::WidgetFocusUpdate()
-<a name="l00102"></a>00102     {
-<a name="l00103"></a>00103         <span class="keywordflow">if</span>(HoveredWidget || WidgetFocus)
-<a name="l00104"></a>00104         {
-<a name="l00105"></a>00105             <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">MetaCode::ButtonState</a> State = InputQueryer-&gt;GetMouseButtonState(1);
-<a name="l00106"></a>00106             <span class="keywordflow">if</span>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d">MetaCode::BUTTON_PRESSING</a> == State)
-<a name="l00107"></a>00107             {
-<a name="l00108"></a>00108                 WidgetFocus = HoveredWidget;
-<a name="l00109"></a>00109             }
-<a name="l00110"></a>00110             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a> == State)
-<a name="l00111"></a>00111             {
-<a name="l00112"></a>00112                 <span class="keywordflow">if</span>(HoveredWidget != WidgetFocus)
-<a name="l00113"></a>00113                     WidgetFocus-&gt;Update(<span class="keyword">true</span>);
-<a name="l00114"></a>00114             }
-<a name="l00115"></a>00115             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a6b5564408703517f36debd8c423e2dee">MetaCode::BUTTON_LIFTING</a> == State)
-<a name="l00116"></a>00116             {
-<a name="l00117"></a>00117                 <span class="keywordflow">if</span>(HoveredWidget != WidgetFocus)
-<a name="l00118"></a>00118                     WidgetFocus-&gt;Update(<span class="keyword">true</span>);
-<a name="l00119"></a>00119                 WidgetFocus = NULL;
-<a name="l00120"></a>00120             }
-<a name="l00121"></a>00121         }
-<a name="l00122"></a>00122     }
-<a name="l00123"></a>00123 
-<a name="l00124"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#af04e60c4f09c114ec3bf32babdb64ab7">00124</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#af04e60c4f09c114ec3bf32babdb64ab7" title="Inherited from ManagerBase.">UIManager::Initialize</a>()
-<a name="l00125"></a>00125     {
-<a name="l00126"></a>00126     }
-<a name="l00127"></a>00127 
-<a name="l00128"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a972abedcd4343dc5966580f2f82494a8">00128</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a972abedcd4343dc5966580f2f82494a8" title="Inherited from ManagerBase.">UIManager::DoMainLoopItems</a>()
-<a name="l00129"></a>00129     {
-<a name="l00130"></a>00130         InputQueryer-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#a9779d812418f1fddb0880df0c607242b" title="This gathers any user-input/event data that might be queryed.">GatherEvents</a>();
-<a name="l00131"></a>00131         HoverChecks();
-<a name="l00132"></a>00132         WidgetFocusUpdate();
-<a name="l00133"></a>00133     }
-<a name="l00134"></a>00134 
-<a name="l00135"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#afda4422105d6ab353fd40410adffbc0a">00135</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#afda4422105d6ab353fd40410adffbc0a" title="Loads a Gorilla file for use with this manager.">UIManager::LoadGorilla</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
-<a name="l00136"></a>00136     {
-<a name="l00137"></a>00137         <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab4c5b8c7e3c4c7b03847b1af18bea02a" title="Pointer for the Gorilla core class, where this manager gets it&amp;#39;s functionality.">Silver</a>-&gt;loadAtlas(Name);
-<a name="l00138"></a>00138     }
-<a name="l00139"></a>00139 
-<a name="l00140"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#acd08dba5be95182a6c923ed698822277">00140</a>     <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#acd08dba5be95182a6c923ed698822277" title="Gets the button the mouse is hovering over.">UIManager::GetHoveredButton</a>()
-<a name="l00141"></a>00141     {
-<a name="l00142"></a>00142         <span class="keywordflow">return</span> HoveredButton;
-<a name="l00143"></a>00143     }
-<a name="l00144"></a>00144 
-<a name="l00145"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a5772b611b6881eb98932f4b400b44d09">00145</a>     <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a5772b611b6881eb98932f4b400b44d09" title="Gets the Widget the mouse is hovering over.">UIManager::GetHoveredWidget</a>()
-<a name="l00146"></a>00146     {
-<a name="l00147"></a>00147         <span class="keywordflow">return</span> HoveredWidget;
-<a name="l00148"></a>00148     }
-<a name="l00149"></a>00149 
-<a name="l00150"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a99694297814d2e82ec507c6f4d6bec1a">00150</a>     <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a99694297814d2e82ec507c6f4d6bec1a" title="Gets the current widget being controlled.">UIManager::GetWidgetFocus</a>()
-<a name="l00151"></a>00151     {
-<a name="l00152"></a>00152         <span class="keywordflow">return</span> WidgetFocus;
-<a name="l00153"></a>00153     }
-<a name="l00154"></a>00154 
-<a name="l00155"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a7cad638d86489e03fa2599185514b58c">00155</a>     <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a7cad638d86489e03fa2599185514b58c" title="Creates an internal HUD screen.">UIManager::CreateScreen</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Screen, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Atlas, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Viewport)
-<a name="l00156"></a>00156     {
-<a name="l00157"></a>00157         Ogre::Viewport* OgrePort = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a33ab68866da54b7f8f766d5d29171fb7" title="This gets the CameraManager from the manager list.">GetCameraManager</a>()-&gt;<a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#ac1b9928181ee006fea42152f3ea406cb" title="Gets the internal Ogre viewport.">GetOgreViewport</a>(Viewport);
-<a name="l00158"></a>00158         Gorilla::Screen* guiscreen = <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab4c5b8c7e3c4c7b03847b1af18bea02a" title="Pointer for the Gorilla core class, where this manager gets it&amp;#39;s functionality.">Silver</a>-&gt;createScreen(OgrePort, Atlas);
-<a name="l00159"></a>00159         <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* physscreen = <span class="keyword">new</span> <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>(Screen, guiscreen);
-<a name="l00160"></a>00160         Screens.push_back(physscreen);
-<a name="l00161"></a>00161         <span class="keywordflow">return</span> physscreen;
-<a name="l00162"></a>00162     }
-<a name="l00163"></a>00163 
-<a name="l00164"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a8cd693c7ec9c458fcc4169eea0d7b4db">00164</a>     <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a8cd693c7ec9c458fcc4169eea0d7b4db" title="Gets an already created screen by name.">UIManager::GetScreen</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
-<a name="l00165"></a>00165     {
-<a name="l00166"></a>00166         std::vector&lt;UIScreen*&gt;::iterator it = Screens.begin();
-<a name="l00167"></a>00167         <span class="keywordflow">for</span> ( std::vector&lt;UIScreen*&gt;::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
-<a name="l00168"></a>00168         {
-<a name="l00169"></a>00169             <span class="keywordflow">if</span> ( Name == (*it)-&gt;GetName() )
-<a name="l00170"></a>00170             {
-<a name="l00171"></a>00171                 <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* Screen = (*it);
-<a name="l00172"></a>00172                 <span class="keywordflow">return</span> Screen;
-<a name="l00173"></a>00173             }
-<a name="l00174"></a>00174         }
-<a name="l00175"></a>00175         <span class="keywordflow">return</span> 0;
-<a name="l00176"></a>00176     }
-<a name="l00177"></a>00177 
-<a name="l00178"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a6083b86b2e240cc316e8ca87479d15a8">00178</a>     <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a8cd693c7ec9c458fcc4169eea0d7b4db" title="Gets an already created screen by name.">UIManager::GetScreen</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00179"></a>00179     {
-<a name="l00180"></a>00180         <span class="keywordflow">return</span> Screens[Index];
-<a name="l00181"></a>00181     }
-<a name="l00182"></a>00182 
-<a name="l00183"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a3bd28c361f6fc79a182ebd3ec0a26ec7">00183</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a3bd28c361f6fc79a182ebd3ec0a26ec7" title="Gets the number of screens created and stored in this manager.">UIManager::GetNumScreens</a>()
-<a name="l00184"></a>00184     {
-<a name="l00185"></a>00185         <span class="keywordflow">return</span> Screens.size();
-<a name="l00186"></a>00186     }
-<a name="l00187"></a>00187 
-<a name="l00188"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a5afab78f58a6531fc18771f5a4eeccf8">00188</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a5afab78f58a6531fc18771f5a4eeccf8" title="Deletes a screen and removes all trace of it from the manager.">UIManager::DestroyScreen</a>(<a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* Screen)
-<a name="l00189"></a>00189     {
-<a name="l00190"></a>00190         <span class="keywordflow">if</span>(Screens.empty())
-<a name="l00191"></a>00191             <span class="keywordflow">return</span>;
-<a name="l00192"></a>00192         <span class="keywordflow">for</span>( std::vector&lt;UIScreen*&gt;::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
-<a name="l00193"></a>00193         {
-<a name="l00194"></a>00194             <span class="keywordflow">if</span>( Screen == (*it) )
-<a name="l00195"></a>00195             {
-<a name="l00196"></a>00196                 <span class="keyword">delete</span> (*it);
-<a name="l00197"></a>00197                 Screens.erase(it);
-<a name="l00198"></a>00198                 <span class="keywordflow">return</span>;
-<a name="l00199"></a>00199             }
-<a name="l00200"></a>00200         }
-<a name="l00201"></a>00201     }
-<a name="l00202"></a>00202 
-<a name="l00203"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a97555e02aad6c85cac6bf67fbe074cd1">00203</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a97555e02aad6c85cac6bf67fbe074cd1" title="Deletes all screens stored in this manager.">UIManager::DestroyAllScreens</a>()
-<a name="l00204"></a>00204     {
-<a name="l00205"></a>00205         <span class="keywordflow">if</span>(Screens.empty())
-<a name="l00206"></a>00206             <span class="keywordflow">return</span>;
-<a name="l00207"></a>00207         <span class="keywordflow">for</span>( std::vector&lt;UIScreen*&gt;::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
-<a name="l00208"></a>00208         {
-<a name="l00209"></a>00209             <span class="keyword">delete</span> (*it);
-<a name="l00210"></a>00210         }
-<a name="l00211"></a>00211         Screens.clear();
-<a name="l00212"></a>00212         <span class="keywordflow">return</span>;
-<a name="l00213"></a>00213     }
-<a name="l00214"></a>00214 
-<a name="l00215"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ad80ed1716853f6e09cadc5f896e875e8">00215</a>     <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ad80ed1716853f6e09cadc5f896e875e8" title="Searches all screens and gets the named Layer.">UIManager::GetLayer</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
-<a name="l00216"></a>00216     {
-<a name="l00217"></a>00217         <span class="keywordflow">for</span>( <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> x=0 ; x &lt; Screens.size() ; x++ )
-<a name="l00218"></a>00218         {
-<a name="l00219"></a>00219             <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer = Screens[x]-&gt;GetLayer(Name);
-<a name="l00220"></a>00220             <span class="keywordflow">if</span>(NULL!=Layer)
-<a name="l00221"></a>00221                 <span class="keywordflow">return</span> Layer;
-<a name="l00222"></a>00222         }
-<a name="l00223"></a>00223         <span class="keywordflow">return</span> 0;
-<a name="l00224"></a>00224     }
-<a name="l00225"></a>00225 
-<a name="l00226"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#aa1022fcbe8e1efc7a383b2eff834a152">00226</a>     <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#aa1022fcbe8e1efc7a383b2eff834a152" title="Searches all visable screens and layers to see if a button was clicked.">UIManager::CheckButtonMouseIsOver</a>()
-<a name="l00227"></a>00227     {
-<a name="l00228"></a>00228         <span class="keywordflow">for</span>( <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> x=0 ; x &lt; Screens.size() ; x++ )
-<a name="l00229"></a>00229         {
-<a name="l00230"></a>00230             <span class="keywordflow">if</span>( Screens[x]-&gt;IsVisible() )
-<a name="l00231"></a>00231             {
-<a name="l00232"></a>00232                 <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* button = Screens[x]-&gt;CheckButtonMouseIsOver();
-<a name="l00233"></a>00233                 <span class="keywordflow">if</span>(button)
-<a name="l00234"></a>00234                 {
-<a name="l00235"></a>00235                     <span class="keywordflow">return</span> button;
-<a name="l00236"></a>00236                 }
-<a name="l00237"></a>00237             }
-<a name="l00238"></a>00238         }
-<a name="l00239"></a>00239         <span class="keywordflow">return</span> 0;
-<a name="l00240"></a>00240     }
-<a name="l00241"></a>00241 
-<a name="l00242"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab9840b483409d3453a67931b4d858d1b">00242</a>     <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab9840b483409d3453a67931b4d858d1b" title="Searches all visable screens and layers to see if a widget was clicked.">UIManager::CheckWidgetMouseIsOver</a>()
-<a name="l00243"></a>00243     {
-<a name="l00244"></a>00244         <span class="keywordflow">for</span>( <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> x=0 ; x &lt; Screens.size() ; x++ )
-<a name="l00245"></a>00245         {
-<a name="l00246"></a>00246             <span class="keywordflow">if</span>( Screens[x]-&gt;IsVisible() )
-<a name="l00247"></a>00247             {
-<a name="l00248"></a>00248                 <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* widget = Screens[x]-&gt;CheckWidgetMouseIsOver();
-<a name="l00249"></a>00249                 <span class="keywordflow">if</span>(widget)
-<a name="l00250"></a>00250                 {
-<a name="l00251"></a>00251                     <span class="keywordflow">return</span> widget;
-<a name="l00252"></a>00252                 }
-<a name="l00253"></a>00253             }
-<a name="l00254"></a>00254         }
-<a name="l00255"></a>00255         <span class="keywordflow">return</span> 0;
-<a name="l00256"></a>00256     }
-<a name="l00257"></a>00257 
-<a name="l00258"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a38bc8d2ed1930a8ff6e82ef5f991dbe1">00258</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a38bc8d2ed1930a8ff6e82ef5f991dbe1" title="Checks to see if the mouse is over a UI element.">UIManager::MouseIsInUISystem</a>()
-<a name="l00259"></a>00259     {
-<a name="l00260"></a>00260         <span class="keywordflow">if</span>(HoveredButton || HoveredWidget || WidgetFocus)
-<a name="l00261"></a>00261         {
-<a name="l00262"></a>00262             <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00263"></a>00263         }<span class="keywordflow">else</span>{
-<a name="l00264"></a>00264             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00265"></a>00265         }
-<a name="l00266"></a>00266     }
-<a name="l00267"></a>00267 
-<a name="l00268"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df">00268</a>     <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">UIManager::GetWindowDimensions</a>()
-<a name="l00269"></a>00269     {<span class="comment"></span>
-<a name="l00270"></a>00270 <span class="comment">        /// @todo This is the second occurance of needing to specify the namespace to declare data</span>
-<a name="l00271"></a>00271 <span class="comment">        /// without any apparent reason.  If possible a pattern/explaination should be found.</span>
-<a name="l00272"></a>00272 <span class="comment"></span>        <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">phys::GraphicsManager</a>* Graphics = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#addfd62fbc444ca4c2aba40768d1b284e" title="This gets the World that this manager is working with.">GetGameWorld</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a15f968adb5d841da6c5eb51607a8f525" title="This gets the GraphicsManager from the manager list.">GetGraphicsManager</a>();
-<a name="l00273"></a>00273         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Window((<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)Graphics-&gt;<a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9e1ce1f9f8bcff7712fd5beaf7cf2337" title="Gets the Width of the Rendering Area.">getRenderWidth</a>(),(Real)Graphics-&gt;<a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a38ee0f8a8a7d8ba861b1c6cfe579443e" title="Gets the Height of the Rendering Area.">getRenderHeight</a>());
-<a name="l00274"></a>00274         <span class="keywordflow">return</span> Window;
-<a name="l00275"></a>00275     }
-<a name="l00276"></a>00276 
-<a name="l00277"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a7b88d0fe2271cdceccf879eaba1b1a64">00277</a>     <a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html" title="This provides a number of utilities for getting input information.">InputQueryTool</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a7b88d0fe2271cdceccf879eaba1b1a64" title="Gets the input queryer used for automation in this subsystem.">UIManager::GetInputQueryer</a>()
-<a name="l00278"></a>00278     {
-<a name="l00279"></a>00279         <span class="keywordflow">return</span> InputQueryer;
-<a name="l00280"></a>00280     }
-<a name="l00281"></a>00281 
-<a name="l00282"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab8fe74564ca5dc09cbe4b1cc2c007e79">00282</a>     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab8fe74564ca5dc09cbe4b1cc2c007e79" title="Gets the type of manager that this manager is.">UIManager::GetType</a>()<span class="keyword"> const</span>
-<a name="l00283"></a>00283 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::UIManager; }
+<a name="l00097"></a>00097             {
+<a name="l00098"></a>00098                 <span class="comment">//HoveredButton = HoveredWidget-&gt;GetHoveredButton();</span>
+<a name="l00099"></a>00099                 HoveredWidget-&gt;Update();
+<a name="l00100"></a>00100             }
+<a name="l00101"></a>00101         }
+<a name="l00102"></a>00102     }
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104     <span class="keywordtype">void</span> UIManager::WidgetFocusUpdate()
+<a name="l00105"></a>00105     {
+<a name="l00106"></a>00106         <span class="keywordflow">if</span>(HoveredWidget || WidgetFocus)
+<a name="l00107"></a>00107         {
+<a name="l00108"></a>00108             <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">MetaCode::ButtonState</a> State = InputQueryer-&gt;GetMouseButtonState(1);
+<a name="l00109"></a>00109             <span class="keywordflow">if</span>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d">MetaCode::BUTTON_PRESSING</a> == State)
+<a name="l00110"></a>00110             {
+<a name="l00111"></a>00111                 WidgetFocus = HoveredWidget;
+<a name="l00112"></a>00112             }
+<a name="l00113"></a>00113             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a> == State)
+<a name="l00114"></a>00114             {
+<a name="l00115"></a>00115                 <span class="keywordflow">if</span>(HoveredWidget != WidgetFocus &amp;&amp; WidgetFocus)
+<a name="l00116"></a>00116                     WidgetFocus-&gt;Update(<span class="keyword">true</span>);
+<a name="l00117"></a>00117             }
+<a name="l00118"></a>00118             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a6b5564408703517f36debd8c423e2dee">MetaCode::BUTTON_LIFTING</a> == State)
+<a name="l00119"></a>00119             {
+<a name="l00120"></a>00120                 <span class="keywordflow">if</span>(HoveredWidget != WidgetFocus)
+<a name="l00121"></a>00121                     WidgetFocus-&gt;Update(<span class="keyword">true</span>);
+<a name="l00122"></a>00122                 WidgetFocus = NULL;
+<a name="l00123"></a>00123             }
+<a name="l00124"></a>00124         }
+<a name="l00125"></a>00125     }
+<a name="l00126"></a>00126 
+<a name="l00127"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#af04e60c4f09c114ec3bf32babdb64ab7">00127</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#af04e60c4f09c114ec3bf32babdb64ab7" title="Inherited from ManagerBase.">UIManager::Initialize</a>()
+<a name="l00128"></a>00128     {
+<a name="l00129"></a>00129     }
+<a name="l00130"></a>00130 
+<a name="l00131"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a972abedcd4343dc5966580f2f82494a8">00131</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a972abedcd4343dc5966580f2f82494a8" title="Inherited from ManagerBase.">UIManager::DoMainLoopItems</a>()
+<a name="l00132"></a>00132     {
+<a name="l00133"></a>00133         InputQueryer-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#a9779d812418f1fddb0880df0c607242b" title="This gathers any user-input/event data that might be queryed.">GatherEvents</a>();
+<a name="l00134"></a>00134         HoverChecks();
+<a name="l00135"></a>00135         WidgetFocusUpdate();
+<a name="l00136"></a>00136     }
+<a name="l00137"></a>00137 
+<a name="l00138"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#afda4422105d6ab353fd40410adffbc0a">00138</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#afda4422105d6ab353fd40410adffbc0a" title="Loads a Gorilla file for use with this manager.">UIManager::LoadGorilla</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
+<a name="l00139"></a>00139     {
+<a name="l00140"></a>00140         <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab4c5b8c7e3c4c7b03847b1af18bea02a" title="Pointer for the Gorilla core class, where this manager gets it&amp;#39;s functionality.">Silver</a>-&gt;loadAtlas(Name);
+<a name="l00141"></a>00141     }
+<a name="l00142"></a>00142 
+<a name="l00143"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#acd08dba5be95182a6c923ed698822277">00143</a>     <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#acd08dba5be95182a6c923ed698822277" title="Gets the button the mouse is hovering over.">UIManager::GetHoveredButton</a>()
+<a name="l00144"></a>00144     {
+<a name="l00145"></a>00145         <span class="keywordflow">return</span> HoveredButton;
+<a name="l00146"></a>00146     }
+<a name="l00147"></a>00147 
+<a name="l00148"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a5772b611b6881eb98932f4b400b44d09">00148</a>     <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a5772b611b6881eb98932f4b400b44d09" title="Gets the Widget the mouse is hovering over.">UIManager::GetHoveredWidget</a>()
+<a name="l00149"></a>00149     {
+<a name="l00150"></a>00150         <span class="keywordflow">return</span> HoveredWidget;
+<a name="l00151"></a>00151     }
+<a name="l00152"></a>00152 
+<a name="l00153"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a99694297814d2e82ec507c6f4d6bec1a">00153</a>     <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a99694297814d2e82ec507c6f4d6bec1a" title="Gets the current widget being controlled.">UIManager::GetWidgetFocus</a>()
+<a name="l00154"></a>00154     {
+<a name="l00155"></a>00155         <span class="keywordflow">return</span> WidgetFocus;
+<a name="l00156"></a>00156     }
+<a name="l00157"></a>00157 
+<a name="l00158"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a7cad638d86489e03fa2599185514b58c">00158</a>     <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a7cad638d86489e03fa2599185514b58c" title="Creates an internal HUD screen.">UIManager::CreateScreen</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Screen, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Atlas, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Viewport)
+<a name="l00159"></a>00159     {
+<a name="l00160"></a>00160         Ogre::Viewport* OgrePort = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a33ab68866da54b7f8f766d5d29171fb7" title="This gets the CameraManager from the manager list.">GetCameraManager</a>()-&gt;<a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#ac1b9928181ee006fea42152f3ea406cb" title="Gets the internal Ogre viewport.">GetOgreViewport</a>(Viewport);
+<a name="l00161"></a>00161         Gorilla::Screen* guiscreen = <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab4c5b8c7e3c4c7b03847b1af18bea02a" title="Pointer for the Gorilla core class, where this manager gets it&amp;#39;s functionality.">Silver</a>-&gt;createScreen(OgrePort, Atlas);
+<a name="l00162"></a>00162         <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* physscreen = <span class="keyword">new</span> <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>(Screen, guiscreen);
+<a name="l00163"></a>00163         Screens.push_back(physscreen);
+<a name="l00164"></a>00164         <span class="keywordflow">return</span> physscreen;
+<a name="l00165"></a>00165     }
+<a name="l00166"></a>00166 
+<a name="l00167"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a8cd693c7ec9c458fcc4169eea0d7b4db">00167</a>     <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a8cd693c7ec9c458fcc4169eea0d7b4db" title="Gets an already created screen by name.">UIManager::GetScreen</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
+<a name="l00168"></a>00168     {
+<a name="l00169"></a>00169         std::vector&lt;UIScreen*&gt;::iterator it = Screens.begin();
+<a name="l00170"></a>00170         <span class="keywordflow">for</span> ( std::vector&lt;UIScreen*&gt;::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+<a name="l00171"></a>00171         {
+<a name="l00172"></a>00172             <span class="keywordflow">if</span> ( Name == (*it)-&gt;GetName() )
+<a name="l00173"></a>00173             {
+<a name="l00174"></a>00174                 <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* Screen = (*it);
+<a name="l00175"></a>00175                 <span class="keywordflow">return</span> Screen;
+<a name="l00176"></a>00176             }
+<a name="l00177"></a>00177         }
+<a name="l00178"></a>00178         <span class="keywordflow">return</span> 0;
+<a name="l00179"></a>00179     }
+<a name="l00180"></a>00180 
+<a name="l00181"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a6083b86b2e240cc316e8ca87479d15a8">00181</a>     <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a8cd693c7ec9c458fcc4169eea0d7b4db" title="Gets an already created screen by name.">UIManager::GetScreen</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00182"></a>00182     {
+<a name="l00183"></a>00183         <span class="keywordflow">return</span> Screens[Index];
+<a name="l00184"></a>00184     }
+<a name="l00185"></a>00185 
+<a name="l00186"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a3bd28c361f6fc79a182ebd3ec0a26ec7">00186</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a3bd28c361f6fc79a182ebd3ec0a26ec7" title="Gets the number of screens created and stored in this manager.">UIManager::GetNumScreens</a>()
+<a name="l00187"></a>00187     {
+<a name="l00188"></a>00188         <span class="keywordflow">return</span> Screens.size();
+<a name="l00189"></a>00189     }
+<a name="l00190"></a>00190 
+<a name="l00191"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a5afab78f58a6531fc18771f5a4eeccf8">00191</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a5afab78f58a6531fc18771f5a4eeccf8" title="Deletes a screen and removes all trace of it from the manager.">UIManager::DestroyScreen</a>(<a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* Screen)
+<a name="l00192"></a>00192     {
+<a name="l00193"></a>00193         <span class="keywordflow">if</span>(Screens.empty())
+<a name="l00194"></a>00194             <span class="keywordflow">return</span>;
+<a name="l00195"></a>00195         <span class="keywordflow">for</span>( std::vector&lt;UIScreen*&gt;::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+<a name="l00196"></a>00196         {
+<a name="l00197"></a>00197             <span class="keywordflow">if</span>( Screen == (*it) )
+<a name="l00198"></a>00198             {
+<a name="l00199"></a>00199                 <span class="keyword">delete</span> (*it);
+<a name="l00200"></a>00200                 Screens.erase(it);
+<a name="l00201"></a>00201                 <span class="keywordflow">return</span>;
+<a name="l00202"></a>00202             }
+<a name="l00203"></a>00203         }
+<a name="l00204"></a>00204     }
+<a name="l00205"></a>00205 
+<a name="l00206"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a97555e02aad6c85cac6bf67fbe074cd1">00206</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a97555e02aad6c85cac6bf67fbe074cd1" title="Deletes all screens stored in this manager.">UIManager::DestroyAllScreens</a>()
+<a name="l00207"></a>00207     {
+<a name="l00208"></a>00208         <span class="keywordflow">if</span>(Screens.empty())
+<a name="l00209"></a>00209             <span class="keywordflow">return</span>;
+<a name="l00210"></a>00210         <span class="keywordflow">for</span>( std::vector&lt;UIScreen*&gt;::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+<a name="l00211"></a>00211         {
+<a name="l00212"></a>00212             <span class="keyword">delete</span> (*it);
+<a name="l00213"></a>00213         }
+<a name="l00214"></a>00214         Screens.clear();
+<a name="l00215"></a>00215         <span class="keywordflow">return</span>;
+<a name="l00216"></a>00216     }
+<a name="l00217"></a>00217 
+<a name="l00218"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ad80ed1716853f6e09cadc5f896e875e8">00218</a>     <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ad80ed1716853f6e09cadc5f896e875e8" title="Searches all screens and gets the named Layer.">UIManager::GetLayer</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
+<a name="l00219"></a>00219     {
+<a name="l00220"></a>00220         <span class="keywordflow">for</span>( <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> x=0 ; x &lt; Screens.size() ; x++ )
+<a name="l00221"></a>00221         {
+<a name="l00222"></a>00222             <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer = Screens[x]-&gt;GetLayer(Name);
+<a name="l00223"></a>00223             <span class="keywordflow">if</span>(NULL!=Layer)
+<a name="l00224"></a>00224                 <span class="keywordflow">return</span> Layer;
+<a name="l00225"></a>00225         }
+<a name="l00226"></a>00226         <span class="keywordflow">return</span> 0;
+<a name="l00227"></a>00227     }
+<a name="l00228"></a>00228 
+<a name="l00229"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#aa1022fcbe8e1efc7a383b2eff834a152">00229</a>     <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#aa1022fcbe8e1efc7a383b2eff834a152" title="Searches all visable screens and layers to see if a button was clicked.">UIManager::CheckButtonMouseIsOver</a>()
+<a name="l00230"></a>00230     {
+<a name="l00231"></a>00231         <span class="keywordflow">for</span>( <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> x=0 ; x &lt; Screens.size() ; x++ )
+<a name="l00232"></a>00232         {
+<a name="l00233"></a>00233             <span class="keywordflow">if</span>( Screens[x]-&gt;IsVisible() )
+<a name="l00234"></a>00234             {
+<a name="l00235"></a>00235                 <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* button = Screens[x]-&gt;CheckButtonMouseIsOver();
+<a name="l00236"></a>00236                 <span class="keywordflow">if</span>(button)
+<a name="l00237"></a>00237                 {
+<a name="l00238"></a>00238                     <span class="keywordflow">return</span> button;
+<a name="l00239"></a>00239                 }
+<a name="l00240"></a>00240             }
+<a name="l00241"></a>00241         }
+<a name="l00242"></a>00242         <span class="keywordflow">return</span> 0;
+<a name="l00243"></a>00243     }
+<a name="l00244"></a>00244 
+<a name="l00245"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab9840b483409d3453a67931b4d858d1b">00245</a>     <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab9840b483409d3453a67931b4d858d1b" title="Searches all visable screens and layers to see if a widget was clicked.">UIManager::CheckWidgetMouseIsOver</a>()
+<a name="l00246"></a>00246     {
+<a name="l00247"></a>00247         <span class="keywordflow">for</span>( <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> x=0 ; x &lt; Screens.size() ; x++ )
+<a name="l00248"></a>00248         {
+<a name="l00249"></a>00249             <span class="keywordflow">if</span>( Screens[x]-&gt;IsVisible() )
+<a name="l00250"></a>00250             {
+<a name="l00251"></a>00251                 <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* widget = Screens[x]-&gt;CheckWidgetMouseIsOver();
+<a name="l00252"></a>00252                 <span class="keywordflow">if</span>(widget)
+<a name="l00253"></a>00253                 {
+<a name="l00254"></a>00254                     <span class="keywordflow">return</span> widget;
+<a name="l00255"></a>00255                 }
+<a name="l00256"></a>00256             }
+<a name="l00257"></a>00257         }
+<a name="l00258"></a>00258         <span class="keywordflow">return</span> 0;
+<a name="l00259"></a>00259     }
+<a name="l00260"></a>00260 
+<a name="l00261"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a38bc8d2ed1930a8ff6e82ef5f991dbe1">00261</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a38bc8d2ed1930a8ff6e82ef5f991dbe1" title="Checks to see if the mouse is over a UI element.">UIManager::MouseIsInUISystem</a>()
+<a name="l00262"></a>00262     {
+<a name="l00263"></a>00263         <span class="keywordflow">if</span>(HoveredButton || HoveredWidget || WidgetFocus)
+<a name="l00264"></a>00264         {
+<a name="l00265"></a>00265             <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00266"></a>00266         }<span class="keywordflow">else</span>{
+<a name="l00267"></a>00267             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00268"></a>00268         }
+<a name="l00269"></a>00269     }
+<a name="l00270"></a>00270 
+<a name="l00271"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df">00271</a>     <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">UIManager::GetWindowDimensions</a>()
+<a name="l00272"></a>00272     {<span class="comment"></span>
+<a name="l00273"></a>00273 <span class="comment">        /// @todo This is the second occurance of needing to specify the namespace to declare data</span>
+<a name="l00274"></a>00274 <span class="comment">        /// without any apparent reason.  If possible a pattern/explaination should be found.</span>
+<a name="l00275"></a>00275 <span class="comment"></span>        <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">phys::GraphicsManager</a>* Graphics = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#addfd62fbc444ca4c2aba40768d1b284e" title="This gets the World that this manager is working with.">GetGameWorld</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a15f968adb5d841da6c5eb51607a8f525" title="This gets the GraphicsManager from the manager list.">GetGraphicsManager</a>();
+<a name="l00276"></a>00276         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Window((<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)Graphics-&gt;<a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9e1ce1f9f8bcff7712fd5beaf7cf2337" title="Gets the Width of the Rendering Area.">getRenderWidth</a>(),(Real)Graphics-&gt;<a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a38ee0f8a8a7d8ba861b1c6cfe579443e" title="Gets the Height of the Rendering Area.">getRenderHeight</a>());
+<a name="l00277"></a>00277         <span class="keywordflow">return</span> Window;
+<a name="l00278"></a>00278     }
+<a name="l00279"></a>00279 
+<a name="l00280"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a7b88d0fe2271cdceccf879eaba1b1a64">00280</a>     <a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html" title="This provides a number of utilities for getting input information.">InputQueryTool</a>* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a7b88d0fe2271cdceccf879eaba1b1a64" title="Gets the input queryer used for automation in this subsystem.">UIManager::GetInputQueryer</a>()
+<a name="l00281"></a>00281     {
+<a name="l00282"></a>00282         <span class="keywordflow">return</span> InputQueryer;
+<a name="l00283"></a>00283     }
 <a name="l00284"></a>00284 
-<a name="l00285"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a21623edd39c3e23de29f4cf3ed6e490a">00285</a>     Gorilla::Silverback* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a21623edd39c3e23de29f4cf3ed6e490a" title="Gets the internal silverback pointer.">UIManager::GetSilverbackPointer</a>()
-<a name="l00286"></a>00286     {
-<a name="l00287"></a>00287         <span class="keywordflow">return</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab4c5b8c7e3c4c7b03847b1af18bea02a" title="Pointer for the Gorilla core class, where this manager gets it&amp;#39;s functionality.">Silver</a>;
-<a name="l00288"></a>00288     }
-<a name="l00289"></a>00289 }<span class="comment">//phys</span>
-<a name="l00290"></a>00290 
-<a name="l00291"></a>00291 <span class="preprocessor">#endif</span>
+<a name="l00285"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab8fe74564ca5dc09cbe4b1cc2c007e79">00285</a>     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab8fe74564ca5dc09cbe4b1cc2c007e79" title="Gets the type of manager that this manager is.">UIManager::GetType</a>()<span class="keyword"> const</span>
+<a name="l00286"></a>00286 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::UIManager; }
+<a name="l00287"></a>00287 
+<a name="l00288"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a21623edd39c3e23de29f4cf3ed6e490a">00288</a>     Gorilla::Silverback* <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#a21623edd39c3e23de29f4cf3ed6e490a" title="Gets the internal silverback pointer.">UIManager::GetSilverbackPointer</a>()
+<a name="l00289"></a>00289     {
+<a name="l00290"></a>00290         <span class="keywordflow">return</span> <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab4c5b8c7e3c4c7b03847b1af18bea02a" title="Pointer for the Gorilla core class, where this manager gets it&amp;#39;s functionality.">Silver</a>;
+<a name="l00291"></a>00291     }
+<a name="l00292"></a>00292 }<span class="comment">//phys</span>
+<a name="l00293"></a>00293 
+<a name="l00294"></a>00294 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Dec 27 2010 13:22:15 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:39 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

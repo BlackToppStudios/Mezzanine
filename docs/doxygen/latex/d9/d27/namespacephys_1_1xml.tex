@@ -1,0 +1,364 @@
+\hypertarget{namespacephys_1_1xml}{
+\section{phys::xml Namespace Reference}
+\label{d9/d27/namespacephys_1_1xml}\index{phys::xml@{phys::xml}}
+}
+
+
+This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct}
+\item 
+struct \hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct}
+\item 
+class \hyperlink{classphys_1_1xml_1_1Writer}{Writer}
+\item 
+class \hyperlink{classphys_1_1xml_1_1WriterFile}{WriterFile}
+\item 
+class \hyperlink{classphys_1_1xml_1_1WriterStream}{WriterStream}
+\item 
+class \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}
+\item 
+class \hyperlink{classphys_1_1xml_1_1Node}{Node}
+\item 
+class \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator}
+\item 
+class \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator}
+\item 
+class \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker}
+\item 
+struct \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult}
+\begin{DoxyCompactList}\small\item\em All the information needed to troubleshoot a Parsing error. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1xml_1_1Document}{Document}
+\item 
+struct \hyperlink{structphys_1_1xml_1_1xpath__parse__result}{xpath\_\-parse\_\-result}
+\item 
+class \hyperlink{classphys_1_1xml_1_1xpath__variable}{xpath\_\-variable}
+\item 
+class \hyperlink{classphys_1_1xml_1_1xpath__variable__set}{xpath\_\-variable\_\-set}
+\item 
+class \hyperlink{classphys_1_1xml_1_1xpath__query}{xpath\_\-query}
+\item 
+class \hyperlink{classphys_1_1xml_1_1xpath__exception}{xpath\_\-exception}
+\item 
+class \hyperlink{classphys_1_1xml_1_1xpath__node}{xpath\_\-node}
+\item 
+class \hyperlink{classphys_1_1xml_1_1xpath__node__set}{xpath\_\-node\_\-set}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespacephys_1_1xml_a1c4e03e90e7c8e526508111dd1935d33}{
+typedef XML\_\-CHAR {\bfseries char\_\-t}}
+\label{d9/d27/namespacephys_1_1xml_a1c4e03e90e7c8e526508111dd1935d33}
+
+\item 
+\hypertarget{namespacephys_1_1xml_ad721463bf480c1c4e80d423b28eff231}{
+typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR $>$, std::allocator$<$ XML\_\-CHAR $>$ $>$ {\bfseries string\_\-t}}
+\label{d9/d27/namespacephys_1_1xml_ad721463bf480c1c4e80d423b28eff231}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}{
+typedef void $\ast$($\ast$ {\bfseries allocation\_\-function} )(size\_\-t size)}
+\label{d9/d27/namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a042e00af30d526d7d17bc4aaa3e7c592}{
+typedef void($\ast$ {\bfseries deallocation\_\-function} )(void $\ast$ptr)}
+\label{d9/d27/namespacephys_1_1xml_a042e00af30d526d7d17bc4aaa3e7c592}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries NodeType} \{ \par
+{\bfseries node\_\-null}, 
+{\bfseries node\_\-document}, 
+{\bfseries node\_\-element}, 
+{\bfseries node\_\-pcdata}, 
+\par
+{\bfseries node\_\-cdata}, 
+{\bfseries node\_\-comment}, 
+{\bfseries node\_\-pi}, 
+{\bfseries node\_\-declaration}, 
+\par
+{\bfseries node\_\-doctype}
+ \}
+\item 
+enum {\bfseries Encoding} \{ \par
+{\bfseries DocumentEncoding\_\-auto}, 
+{\bfseries DocumentEncoding\_\-utf8}, 
+{\bfseries DocumentEncoding\_\-utf16\_\-le}, 
+{\bfseries DocumentEncoding\_\-utf16\_\-be}, 
+\par
+{\bfseries DocumentEncoding\_\-utf16}, 
+{\bfseries DocumentEncoding\_\-utf32\_\-le}, 
+{\bfseries DocumentEncoding\_\-utf32\_\-be}, 
+{\bfseries DocumentEncoding\_\-utf32}, 
+\par
+{\bfseries DocumentEncoding\_\-wchar}
+ \}
+\item 
+enum \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{ParseStatus} \{ \par
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa9ea9b3eecb4bb9f01745c94150982560}{StatusOk} =  0, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6f0279c8ce0103b77edcf3ce91fa64b4}{StatusFileNotFound}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa63f6d040311f50c1234a8eb873a0a95c}{StatusIOError}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fac2a8163c9a8e285153d2a96b011bd49f}{StatusOutOfMemory}, 
+\par
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa458daab0a01f8dd3d0d85b4e41b9e187}{StatusInternalError}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fabe0f4590debfa56c7e3a4c8da261b106}{StatusUnrecognizedTag}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa55afc9de133574f5c9376493c8e6fe09}{StatusBadPi}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa8f3864efd7b684ae57a8a7886a23f19a}{StatusBadComment}, 
+\par
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa18f36b8d712a6bbc716f90af8659df22}{StatusBadCdata}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa22f9163dc29ca7017022e4ce96c97ef9}{StatusBadDoctype}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fab30b3a432145b0e9c6595e75da773628}{StatusBadPcdata}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fadbc5b334b4215ce2332073de46c58155}{StatusBadStartElement}, 
+\par
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fac5fdddc5cc4d127aa5c53efb85846ccf}{StatusBadAttribute}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa72532447020c081f343c4a719add7450}{StatusBadEndElement}, 
+\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6b8d817142e0898ad9b1c61cfa54b8ea}{StatusEndElementMismatch}
+ \}
+\begin{DoxyCompactList}\small\item\em These statuses are used to help determine what issues, if any the parser had. the XML parser had. \item\end{DoxyCompactList}\item 
+enum {\bfseries xpath\_\-value\_\-type} \{ \par
+{\bfseries xpath\_\-type\_\-none}, 
+{\bfseries xpath\_\-type\_\-node\_\-set}, 
+{\bfseries xpath\_\-type\_\-number}, 
+{\bfseries xpath\_\-type\_\-string}, 
+\par
+{\bfseries xpath\_\-type\_\-boolean}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespacephys_1_1xml_aa9bd5708205af50b8b9c739d44859b8f}{
+std::string PHYS\_\-LIB {\bfseries as\_\-utf8} (const wchar\_\-t $\ast$str)}
+\label{d9/d27/namespacephys_1_1xml_aa9bd5708205af50b8b9c739d44859b8f}
+
+\item 
+\hypertarget{namespacephys_1_1xml_aee269289d6244419edd4b81c2586b387}{
+std::string PHYS\_\-LIB {\bfseries as\_\-utf8} (const std::wstring \&str)}
+\label{d9/d27/namespacephys_1_1xml_aee269289d6244419edd4b81c2586b387}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a4c075685a28bbb5a441228b6ef28da99}{
+std::wstring PHYS\_\-LIB {\bfseries as\_\-wide} (const char $\ast$str)}
+\label{d9/d27/namespacephys_1_1xml_a4c075685a28bbb5a441228b6ef28da99}
+
+\item 
+\hypertarget{namespacephys_1_1xml_adc79965f6aaccea720c9aca7309eada4}{
+std::wstring PHYS\_\-LIB {\bfseries as\_\-wide} (const std::string \&str)}
+\label{d9/d27/namespacephys_1_1xml_adc79965f6aaccea720c9aca7309eada4}
+
+\item 
+\hypertarget{namespacephys_1_1xml_af0fc777b09fb1cdc32f2992d1f5e2306}{
+void PHYS\_\-LIB {\bfseries set\_\-memory\_\-management\_\-functions} (allocation\_\-function allocate, deallocation\_\-function deallocate)}
+\label{d9/d27/namespacephys_1_1xml_af0fc777b09fb1cdc32f2992d1f5e2306}
+
+\item 
+\hypertarget{namespacephys_1_1xml_ab410aa42cb0ed412ad7b6f573ae21cf4}{
+allocation\_\-function PHYS\_\-LIB {\bfseries get\_\-memory\_\-allocation\_\-function} ()}
+\label{d9/d27/namespacephys_1_1xml_ab410aa42cb0ed412ad7b6f573ae21cf4}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a00bf38e865e9cd95e3624b3b8b9d7bc9}{
+deallocation\_\-function PHYS\_\-LIB {\bfseries get\_\-memory\_\-deallocation\_\-function} ()}
+\label{d9/d27/namespacephys_1_1xml_a00bf38e865e9cd95e3624b3b8b9d7bc9}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a444b819ff7da13d6da817a71ebcbc30d}{
+std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ PHYS\_\-LIB {\bfseries as\_\-utf8} (const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&str)}
+\label{d9/d27/namespacephys_1_1xml_a444b819ff7da13d6da817a71ebcbc30d}
+
+\item 
+\hypertarget{namespacephys_1_1xml_af41ba8af3ca7a47c95124ba5e0347501}{
+std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ PHYS\_\-LIB {\bfseries as\_\-wide} (const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&str)}
+\label{d9/d27/namespacephys_1_1xml_af41ba8af3ca7a47c95124ba5e0347501}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespacephys_1_1xml_af314970463b7be68809dcc1dcdc0a490}{
+const unsigned int {\bfseries parse\_\-minimal} = 0x0000}
+\label{d9/d27/namespacephys_1_1xml_af314970463b7be68809dcc1dcdc0a490}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a97d216891f6a01ac5f55aca3a5599830}{
+const unsigned int {\bfseries parse\_\-pi} = 0x0001}
+\label{d9/d27/namespacephys_1_1xml_a97d216891f6a01ac5f55aca3a5599830}
+
+\item 
+\hypertarget{namespacephys_1_1xml_ab706a4f00bc8abe3ac224394df56f354}{
+const unsigned int {\bfseries parse\_\-comments} = 0x0002}
+\label{d9/d27/namespacephys_1_1xml_ab706a4f00bc8abe3ac224394df56f354}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a670bb64322a756b39c5b23413f00f6e1}{
+const unsigned int {\bfseries parse\_\-cdata} = 0x0004}
+\label{d9/d27/namespacephys_1_1xml_a670bb64322a756b39c5b23413f00f6e1}
+
+\item 
+\hypertarget{namespacephys_1_1xml_ab417d04b168665d53eb615ef4576c612}{
+const unsigned int {\bfseries parse\_\-ws\_\-pcdata} = 0x0008}
+\label{d9/d27/namespacephys_1_1xml_ab417d04b168665d53eb615ef4576c612}
+
+\item 
+\hypertarget{namespacephys_1_1xml_ab006f38b0cb2a1a394b282b3ac6a55d8}{
+const unsigned int {\bfseries parse\_\-escapes} = 0x0010}
+\label{d9/d27/namespacephys_1_1xml_ab006f38b0cb2a1a394b282b3ac6a55d8}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a1f79781a10053699798e9318d6f68c8a}{
+const unsigned int {\bfseries parse\_\-eol} = 0x0020}
+\label{d9/d27/namespacephys_1_1xml_a1f79781a10053699798e9318d6f68c8a}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a3fc1010f3ede7aae963bf0e23b10b3ae}{
+const unsigned int {\bfseries parse\_\-wconv\_\-attribute} = 0x0040}
+\label{d9/d27/namespacephys_1_1xml_a3fc1010f3ede7aae963bf0e23b10b3ae}
+
+\item 
+\hypertarget{namespacephys_1_1xml_afd07ef0583e306ab76620327ae52e27d}{
+const unsigned int {\bfseries parse\_\-wnorm\_\-attribute} = 0x0080}
+\label{d9/d27/namespacephys_1_1xml_afd07ef0583e306ab76620327ae52e27d}
+
+\item 
+\hypertarget{namespacephys_1_1xml_ac2843cd7714bca69663866319949b3a3}{
+const unsigned int {\bfseries parse\_\-declaration} = 0x0100}
+\label{d9/d27/namespacephys_1_1xml_ac2843cd7714bca69663866319949b3a3}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a67cc3ab7951cf52f01def23202be5c65}{
+const unsigned int {\bfseries parse\_\-doctype} = 0x0200}
+\label{d9/d27/namespacephys_1_1xml_a67cc3ab7951cf52f01def23202be5c65}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a3577ef966e9065bd045078a0c5043810}{
+const unsigned int {\bfseries parse\_\-default} = parse\_\-cdata $|$ parse\_\-escapes $|$ parse\_\-wconv\_\-attribute $|$ parse\_\-eol}
+\label{d9/d27/namespacephys_1_1xml_a3577ef966e9065bd045078a0c5043810}
+
+\item 
+\hypertarget{namespacephys_1_1xml_aaba58896bffc421dc0db032c7eabdb8d}{
+const unsigned int {\bfseries parse\_\-full} = parse\_\-default $|$ parse\_\-pi $|$ parse\_\-comments $|$ parse\_\-declaration $|$ parse\_\-doctype}
+\label{d9/d27/namespacephys_1_1xml_aaba58896bffc421dc0db032c7eabdb8d}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a643d303936cdd3d4d5b95fa4b2705a2a}{
+const unsigned int {\bfseries format\_\-indent} = 0x01}
+\label{d9/d27/namespacephys_1_1xml_a643d303936cdd3d4d5b95fa4b2705a2a}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a6a123ecad19078afaa10b47459c12720}{
+const unsigned int {\bfseries format\_\-write\_\-bom} = 0x02}
+\label{d9/d27/namespacephys_1_1xml_a6a123ecad19078afaa10b47459c12720}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a2f8b589f26166c8e744e26a208a4aa81}{
+const unsigned int {\bfseries format\_\-raw} = 0x04}
+\label{d9/d27/namespacephys_1_1xml_a2f8b589f26166c8e744e26a208a4aa81}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a6293fa2924378187e6f8e2d5d48a1079}{
+const unsigned int {\bfseries format\_\-no\_\-declaration} = 0x08}
+\label{d9/d27/namespacephys_1_1xml_a6293fa2924378187e6f8e2d5d48a1079}
+
+\item 
+\hypertarget{namespacephys_1_1xml_a0bad653e27a327962dc6df17757aeb1f}{
+const unsigned int {\bfseries format\_\-default} = format\_\-indent}
+\label{d9/d27/namespacephys_1_1xml_a0bad653e27a327962dc6df17757aeb1f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate. Our XML Parser IS a copy of PugiXML. It is simply the fastest, most stable, most reliable, feature rich, and robust XML parser we were aware of. We are using it with permission per it's included license. See the licenses folder, in either the docs folder, or the data/common folder. \par
+ \par
+ This XML parser uses an 'in place' design. It attmempts to load all of an XML document to one contiguous location in in memory, then create a tree of meta data that reference the already loaded document text. In testing this has been shown to be extremely fast. See pugixml.org for more details on the performace. \par
+ \par
+ The one drawback PugiXML had was that it has a completely different naming convention from our code. So we created a script ( docs/tools/PugiConversion) to covert version 1.1 and hopefully future versions to out naming convention. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{
+\index{phys::xml@{phys::xml}!ParseStatus@{ParseStatus}}
+\index{ParseStatus@{ParseStatus}!phys::xml@{phys::xml}}
+\subsubsection[{ParseStatus}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::xml::ParseStatus}}}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}
+
+
+These statuses are used to help determine what issues, if any the parser had. the XML parser had. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{StatusOk@{StatusOk}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusOk@{StatusOk}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa9ea9b3eecb4bb9f01745c94150982560}{
+StatusOk}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa9ea9b3eecb4bb9f01745c94150982560}
+}]This is returned to indicated there where no issues parsing the XML document. \index{StatusFileNotFound@{StatusFileNotFound}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusFileNotFound@{StatusFileNotFound}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6f0279c8ce0103b77edcf3ce91fa64b4}{
+StatusFileNotFound}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6f0279c8ce0103b77edcf3ce91fa64b4}
+}]File was not found during a loading from filename attempt. \index{StatusIOError@{StatusIOError}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusIOError@{StatusIOError}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa63f6d040311f50c1234a8eb873a0a95c}{
+StatusIOError}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa63f6d040311f50c1234a8eb873a0a95c}
+}]Error reading from file or stream. \index{StatusOutOfMemory@{StatusOutOfMemory}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusOutOfMemory@{StatusOutOfMemory}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fac2a8163c9a8e285153d2a96b011bd49f}{
+StatusOutOfMemory}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fac2a8163c9a8e285153d2a96b011bd49f}
+}]Could not allocate memory. \index{StatusInternalError@{StatusInternalError}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusInternalError@{StatusInternalError}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa458daab0a01f8dd3d0d85b4e41b9e187}{
+StatusInternalError}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa458daab0a01f8dd3d0d85b4e41b9e187}
+}]An unkown error, currently nothing should be able to return this status. \index{StatusUnrecognizedTag@{StatusUnrecognizedTag}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusUnrecognizedTag@{StatusUnrecognizedTag}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fabe0f4590debfa56c7e3a4c8da261b106}{
+StatusUnrecognizedTag}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fabe0f4590debfa56c7e3a4c8da261b106}
+}]The parser could not determine type of tag. \index{StatusBadPi@{StatusBadPi}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadPi@{StatusBadPi}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa55afc9de133574f5c9376493c8e6fe09}{
+StatusBadPi}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa55afc9de133574f5c9376493c8e6fe09}
+}]Parsing error occurred while parsing document declaration/processing instruction. \index{StatusBadComment@{StatusBadComment}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadComment@{StatusBadComment}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa8f3864efd7b684ae57a8a7886a23f19a}{
+StatusBadComment}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa8f3864efd7b684ae57a8a7886a23f19a}
+}]Parsing error occurred while parsing comment. \index{StatusBadCdata@{StatusBadCdata}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadCdata@{StatusBadCdata}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa18f36b8d712a6bbc716f90af8659df22}{
+StatusBadCdata}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa18f36b8d712a6bbc716f90af8659df22}
+}]Parsing error occurred while parsing CDATA section. \index{StatusBadDoctype@{StatusBadDoctype}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadDoctype@{StatusBadDoctype}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa22f9163dc29ca7017022e4ce96c97ef9}{
+StatusBadDoctype}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa22f9163dc29ca7017022e4ce96c97ef9}
+}]Parsing error occurred while parsing document type declaration. \index{StatusBadPcdata@{StatusBadPcdata}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadPcdata@{StatusBadPcdata}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fab30b3a432145b0e9c6595e75da773628}{
+StatusBadPcdata}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fab30b3a432145b0e9c6595e75da773628}
+}]Parsing error occurred while parsing PCDATA section. \index{StatusBadStartElement@{StatusBadStartElement}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadStartElement@{StatusBadStartElement}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fadbc5b334b4215ce2332073de46c58155}{
+StatusBadStartElement}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fadbc5b334b4215ce2332073de46c58155}
+}]Parsing error occurred while parsing start element tag . \index{StatusBadAttribute@{StatusBadAttribute}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadAttribute@{StatusBadAttribute}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fac5fdddc5cc4d127aa5c53efb85846ccf}{
+StatusBadAttribute}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fac5fdddc5cc4d127aa5c53efb85846ccf}
+}]Parsing error occurred while parsing element attribute. \index{StatusBadEndElement@{StatusBadEndElement}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadEndElement@{StatusBadEndElement}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa72532447020c081f343c4a719add7450}{
+StatusBadEndElement}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa72532447020c081f343c4a719add7450}
+}]Parsing error occurred while parsing end element tag. \index{StatusEndElementMismatch@{StatusEndElementMismatch}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusEndElementMismatch@{StatusEndElementMismatch}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6b8d817142e0898ad9b1c61cfa54b8ea}{
+StatusEndElementMismatch}
+\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6b8d817142e0898ad9b1c61cfa54b8ea}
+}]There was a mismatch of start-\/end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag). \end{description}
+\end{Desc}
+
+
+
+Definition at line 746 of file xml.h.
+
