@@ -456,11 +456,15 @@ void MakeGUI()
     UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", Vector2(0.25, 0.11), Vector2(0.5, 0.78125));
     ItemShopWindow->GetWindowBack()->SetBackgroundSprite("WindowVertBack");
 
-    UI::Rectangle* TestBack = ItemShopWindow->CreateRectangle(Vector2(0.3,0.3),Vector2(0.4,0.4));
-    TestBack->SetBackgroundColour(TransBlack);
+    //UI::Rectangle* TestBack = ItemShopWindow->CreateRectangle(Vector2(0.3,0.3),Vector2(0.4,0.4));
+    //TestBack->SetBackgroundColour(TransBlack);
 
-    UI::MarkupText* TestMarkup = ItemShopWindow->CreateMarkupText("TestMarkup",Vector2(0.4,0.4),14,"Test1");
-    //UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.27, 0.5),Vector2(0.46, 0.38),0.0025,UI::SB_Separate);
+    //UI::MarkupText* TestMarkup = ItemShopWindow->CreateMarkupText("TestMarkup",Vector2(0.4,0.4),14,"Test1");
+
+    UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.28,0.54),Vector2(0.44,0.32),0.02,UI::SB_Separate);
+    ItemShopList->SetAutoHideScroll(false);
+    ItemShopList->GetBoxBack()->SetBackgroundColour(TransBlack);
+    ItemShopList->GetVertScroll()->GetScrollBack()->SetBackgroundColour(TransBlack);
     ItemShop->Hide();
     //End of ItemShop Layer
 
