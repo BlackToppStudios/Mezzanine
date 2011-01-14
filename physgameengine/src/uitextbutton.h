@@ -66,7 +66,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
                 /// @param Layer Pointer to the Layer that created this button.
-                TextButton(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer);
+                TextButton(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
                 ~TextButton();
                 /// @brief Sets the visibility of this button.
@@ -95,25 +95,25 @@ namespace phys
                 virtual void VerticallyAlign(UI::TextVerticalAlign Align);
                 /// @brief Sets the relative top left position of this button.
                 /// @param Position A Vector2 representing the location of this button.
-                virtual void SetPosition(Vector2 Position);
+                virtual void SetPosition(const Vector2 Position);
                 /// @brief Gets the relative top left position of this button.
                 /// @return Returns a Vector2 representing the location of this button.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this button in pixels.
                 /// @param Position A Vector2 representing the location of this button.
-                virtual void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(const Vector2 Position);
                 /// @brief Gets the top left position of this button in pixels.
                 /// @return Returns a Vector2 representing the location of this button.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this button.
                 /// @param Size A vector2 representing the size of this button.
-                virtual void SetSize(Vector2 Size);
+                virtual void SetSize(const Vector2 Size);
                 /// @brief Gets the relative size of this button.
                 /// @return Returns a vector2 representing the size of this button.
                 virtual Vector2 GetSize();
                 /// @brief Sets the size of this button in pixels.
                 /// @param Size A vector2 representing the size of this button.
-                virtual void SetActualSize(Vector2 Size);
+                virtual void SetActualSize(const Vector2 Size);
                 /// @brief Gets the size of this button in pixels.
                 /// @return Returns a vector2 representing the size of this button.
                 virtual Vector2 GetActualSize();

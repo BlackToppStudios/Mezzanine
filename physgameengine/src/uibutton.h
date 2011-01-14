@@ -89,7 +89,7 @@ namespace phys
                 /// @param Position The top left position of the button.
                 /// @param Size The size of the Button.
                 /// @param Layer Pointer to the Layer that created this button.
-                Button(ConstString& name, Vector2 Position, Vector2 Size, UILayer* Layer);
+                Button(ConstString& name, const Vector2 Position, const Vector2 Size, UILayer* Layer);
                 /// @brief Class destructor.
                 virtual ~Button();
                 /// @brief Sets the visibility of this button.
@@ -121,7 +121,7 @@ namespace phys
                 virtual bool GetMouseHover();
                 /// @brief Sets the background colour of the button.
                 /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBackgroundColour(ColourValue& Colour);
+                virtual void SetBackgroundColour(const ColourValue& Colour);
                 /// @brief Sets the background image(if provided in the atlas) of the button.
                 /// @param Name The name of the sprite to set as the background.
                 virtual void SetBackgroundSprite(const String& Name);
@@ -137,30 +137,30 @@ namespace phys
                 virtual void EnableUserSprite(bool Enable);
                 /// @brief Enables a border and sets it's colour.
                 /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBorder(Real Width, ColourValue& Colour);
+                virtual void SetBorder(const Real Width, const ColourValue& Colour);
                 /// @brief Disables any border set on this rectangle if one is currently set.
                 virtual void NoBorder();
                 /// @brief Sets the relative top left position of this button.
                 /// @param Position A Vector2 representing the location of this button.
-                virtual void SetPosition(Vector2 Position);
+                virtual void SetPosition(const Vector2 Position);
                 /// @brief Gets the relative top left position of this button.
                 /// @return Returns a Vector2 representing the location of this button.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this button in pixels.
                 /// @param Position A Vector2 representing the location of this button.
-                virtual void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(const Vector2 Position);
                 /// @brief Gets the top left position of this button in pixels.
                 /// @return Returns a Vector2 representing the location of this button.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this button.
                 /// @param Size A vector2 representing the size of this button.
-                virtual void SetSize(Vector2 Size);
+                virtual void SetSize(const Vector2 Size);
                 /// @brief Gets the relative size of this button.
                 /// @return Returns a vector2 representing the size of this button.
                 virtual Vector2 GetSize();
                 /// @brief Sets the size of this button in pixels.
                 /// @param Size A vector2 representing the size of this button.
-                virtual void SetActualSize(Vector2 Size);
+                virtual void SetActualSize(const Vector2 Size);
                 /// @brief Gets the size of this button in pixels.
                 /// @return Returns a vector2 representing the size of this button.
                 virtual Vector2 GetActualSize();

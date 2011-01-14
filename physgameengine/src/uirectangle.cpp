@@ -52,7 +52,7 @@ namespace phys
 {
     namespace UI
     {
-        Rectangle::Rectangle(Vector2 Position, Vector2 Size, UILayer* Layer)
+        Rectangle::Rectangle(const Vector2 Position, const Vector2 Size, UILayer* Layer)
             : Parent(Layer),
               MouseHover(false),
               RelPosition(Position),
@@ -108,7 +108,7 @@ namespace phys
             return MouseHover;
         }
 
-        void Rectangle::SetBackgroundColour(ColourValue& Colour)
+        void Rectangle::SetBackgroundColour(const ColourValue& Colour)
         {
             GRectangle->background_colour(Colour.GetOgreColourValue());
         }
@@ -119,7 +119,7 @@ namespace phys
             GRectangle->background_image(GSprite);
         }
 
-        void Rectangle::SetBorder(Real Width, ColourValue& Colour)
+        void Rectangle::SetBorder(const Real Width, const ColourValue& Colour)
         {
             GRectangle->border(Width, Colour.GetOgreColourValue());
         }
@@ -129,7 +129,7 @@ namespace phys
             GRectangle->no_border();
         }
 
-        void Rectangle::SetPosition(Vector2 Position)
+        void Rectangle::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Manager->GetWindowDimensions();
@@ -141,7 +141,7 @@ namespace phys
             return RelPosition;
         }
 
-        void Rectangle::SetActualPosition(Vector2 Position)
+        void Rectangle::SetActualPosition(const Vector2 Position)
         {
             GRectangle->position(Position.GetOgreVector2());
         }
@@ -152,7 +152,7 @@ namespace phys
             return Pos;
         }
 
-        void Rectangle::SetSize(Vector2 Size)
+        void Rectangle::SetSize(const Vector2 Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
@@ -165,7 +165,7 @@ namespace phys
             return RelSize;
         }
 
-        void Rectangle::SetActualSize(Vector2 Size)
+        void Rectangle::SetActualSize(const Vector2 Size)
         {
             GRectangle->width(Size.X);
             GRectangle->height(Size.Y);

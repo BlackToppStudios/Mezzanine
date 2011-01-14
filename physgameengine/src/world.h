@@ -316,7 +316,7 @@ namespace phys
             /// @details This also commits any outstanding log messages that are waiting in the World::LogStream, and any outstanding
             /// Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the
             /// Only ones to produce meaningul log messages.
-            template <class T> void PHYS_LIB  Log(T Message)
+            template <class T> void Log(T Message)
                 { this->LogString(ToString(Message)); }
 
             /// @brief Force any outstanding logs to be commited to logs

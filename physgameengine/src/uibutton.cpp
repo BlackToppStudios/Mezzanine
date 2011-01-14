@@ -51,7 +51,7 @@ namespace phys
 {
     namespace UI
     {
-        Button::Button(ConstString& name, Vector2 Position, Vector2 Size, UILayer* Layer)
+        Button::Button(ConstString& name, const Vector2 Position, const Vector2 Size, UILayer* Layer)
             : Parent(Layer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
@@ -138,7 +138,7 @@ namespace phys
             return MouseHover;
         }
 
-        void Button::SetBackgroundColour(ColourValue& Colour)
+        void Button::SetBackgroundColour(const ColourValue& Colour)
         {
             GorillaRectangle->background_colour(Colour.GetOgreColourValue());
         }
@@ -172,7 +172,7 @@ namespace phys
             }
         }
 
-        void Button::SetBorder(Real Width, ColourValue& Colour)
+        void Button::SetBorder(const Real Width, const ColourValue& Colour)
         {
             GorillaRectangle->border(Width, Colour.GetOgreColourValue());
         }
@@ -182,7 +182,7 @@ namespace phys
             GorillaRectangle->no_border();
         }
 
-        void Button::SetPosition(Vector2 Position)
+        void Button::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Manager->GetWindowDimensions();
@@ -195,7 +195,7 @@ namespace phys
             return RelPosition;
         }
 
-        void Button::SetActualPosition(Vector2 Position)
+        void Button::SetActualPosition(const Vector2 Position)
         {
             GorillaRectangle->left(Position.X);
             GorillaRectangle->top(Position.Y);
@@ -207,7 +207,7 @@ namespace phys
             return Pos;
         }
 
-        void Button::SetSize(Vector2 Size)
+        void Button::SetSize(const Vector2 Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
@@ -220,7 +220,7 @@ namespace phys
             return RelSize;
         }
 
-        void Button::SetActualSize(Vector2 Size)
+        void Button::SetActualSize(const Vector2 Size)
         {
             GorillaRectangle->width(Size.X);
             GorillaRectangle->height(Size.Y);

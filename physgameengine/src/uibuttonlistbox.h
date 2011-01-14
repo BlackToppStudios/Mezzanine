@@ -110,7 +110,7 @@ namespace phys
                 /// @details This function needs to be called before adding any selections to this widget.
                 /// @param Size The size for all buttons in this widget.
                 /// @param Glyph The Glyph set to be used for any and all Text Buttons created.  Glyphs are defined in your .gorilla file.
-                virtual void SetTemplateParameters(Vector2 Size, Whole Glyph);
+                virtual void SetTemplateParameters(Vector2 Size, const Whole Glyph);
                 /// @brief Adds a selectable button to the list to be displayed.
                 /// @param BackgroundSprite Optional, name of the sprite to set as it's background.  Ignored if the string is empty.
                 /// @param TextLabel Optional, will create a text button instead of a regular button and set it's text.  Ignored if
@@ -132,41 +132,41 @@ namespace phys
                 /// @brief Sets the distance apart(and from the sides of box) the Selections will be from each other.
                 /// @details This function expects a relative value to the screen size(0.0 to 1.0).  This value defaults to 0.025.
                 /// @param Dist A relative value for the distance to be used when determining the positions of Selections.
-                virtual void SetSelectionDistance(Real Dist);
+                virtual void SetSelectionDistance(const Real Dist);
                 /// @brief Eanbles or disables the scrollbar autohide.
                 /// @param AutoHide A bool indicating whether or not to auto hide the scrollbar.
                 virtual void SetAutoHideScroll(bool AutoHide);
                 /// @brief Enables the setting of a border on the button you select.
                 /// @param Width The width of the border in pixels.
                 /// @param Colour The colour of the border.
-                virtual void EnableBorderSelector(Real Width, ColourValue &Colour);
+                virtual void EnableBorderSelector(const Real Width, const ColourValue &Colour);
                 /// @brief Disables borders on currently selected buttons if one was enabled.
                 virtual void DisableBorderSelector();
                 /// @brief Sets the relative position of this Button List Box.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this Button List Box.
-                virtual void SetPosition(Vector2 Position);
+                virtual void SetPosition(const Vector2 Position);
                 /// @brief Gets the relative position of this Button List Box.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative position of this Button List Box.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this Button List Box.
                 /// @param Position A vector2 representing the pixel position of this Button List Box.
-                virtual void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(const Vector2 Position);
                 /// @brief Sets the pixel position of this Button List Box.
                 /// @return Returns a vector2 representing the pixel position of this Button List Box.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this Button List Box.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this Button List Box.
-                virtual void SetSize(Vector2 Size);
+                virtual void SetSize(const Vector2 Size);
                 /// @brief Gets the relative size of this Button List Box.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative size of this Button List Box.
                 virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this Button List Box.
                 /// @param Size A vector2 representing the pixel size of this Button List Box.
-                virtual void SetActualSize(Vector2 Size);
+                virtual void SetActualSize(const Vector2 Size);
                 /// @brief Sets the pixel size of this Button List Box.
                 /// @return Returns a vector2 representing the pixel size of this Button List Box.
                 virtual Vector2 GetActualSize();

@@ -53,7 +53,7 @@ namespace phys
 {
     namespace UI
     {
-        CheckBox::CheckBox(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, ConstString &LabelText, UILayer* Layer)
+        CheckBox::CheckBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, ConstString &LabelText, UILayer* Layer)
             : Widget(name,Layer),
               GlyphIndex(Glyph),
               Checked(false),
@@ -68,8 +68,9 @@ namespace phys
             {
                 Label = NULL;
             }else{
-                Position.X+=Size.X;
-                Label = new MarkupText(Name+"CM",Position,GlyphIndex,LabelText,Layer);
+                Vector2 Adjusted = Position;
+                Adjusted.X = Position.X + Size.X;
+                Label = new MarkupText(Name+"CM",Adjusted,GlyphIndex,LabelText,Layer);
             }
         }
 
@@ -225,14 +226,15 @@ namespace phys
             //CheckedHovered = Hovered;
         }
 
-        void CheckBox::SetPosition(Vector2 Position)
+        void CheckBox::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
             Box->SetPosition(Position);
             if(Label)
             {
-                Position.X+=Box->GetSize().X;
-                Label->SetPosition(Position);
+                Vector2 Adjusted = Position;
+                Adjusted.X+=Box->GetSize().X;
+                Label->SetPosition(Adjusted);
             }
         }
 
@@ -241,14 +243,15 @@ namespace phys
             return RelPosition;
         }
 
-        void CheckBox::SetActualPosition(Vector2 Position)
+        void CheckBox::SetActualPosition(const Vector2 Position)
         {
             RelPosition = Position / Manager->GetWindowDimensions();
             Box->SetActualPosition(Position);
             if(Label)
             {
-                Position.X+=Box->GetSize().X;
-                Label->SetActualPosition(Position);
+                Vector2 Adjusted = Position;
+                Adjusted.X+=Box->GetActualSize().X;
+                Label->SetActualPosition(Adjusted);
             }
         }
 
@@ -257,14 +260,15 @@ namespace phys
             return RelPosition * Manager->GetWindowDimensions();
         }
 
-        void CheckBox::SetSize(Vector2 Size)
+        void CheckBox::SetSize(const Vector2 Size)
         {
             RelSize = Size;
             Box->SetSize(Size);
             if(Label)
             {
-                Size.X+=Box->GetPosition().X;
-                Label->SetPosition(Size);
+                Vector2 Adjusted = Size;
+                Adjusted.X+=Box->GetPosition().X;
+                Label->SetPosition(Adjusted);
             }
         }
 
@@ -273,14 +277,15 @@ namespace phys
             return RelSize;
         }
 
-        void CheckBox::SetActualSize(Vector2 Size)
+        void CheckBox::SetActualSize(const Vector2 Size)
         {
             RelSize = Size / Manager->GetWindowDimensions();
             Box->SetActualSize(Size);
             if(Label)
             {
-                Size.X+=Box->GetActualPosition().X;
-                Label->SetActualPosition(Size);
+                Vector2 Adjusted = Size;
+                Adjusted.X+=Box->GetActualPosition().X;
+                Label->SetActualPosition(Adjusted);
             }
         }
 

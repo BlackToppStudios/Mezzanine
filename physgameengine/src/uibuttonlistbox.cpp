@@ -57,7 +57,7 @@ namespace phys
 {
     namespace UI
     {
-        ButtonListBox::ButtonListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer* Layer)
+        ButtonListBox::ButtonListBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer* Layer)
             : Widget(name,Layer),
               Selected(NULL),
               AutoHideScroll(true),
@@ -278,7 +278,7 @@ namespace phys
             return false;
         }
 
-        void ButtonListBox::SetTemplateParameters(Vector2 Size, Whole Glyph)
+        void ButtonListBox::SetTemplateParameters(Vector2 Size, const Whole Glyph)
         {
             if(Size.X > RelSize.X)
                 Size.X = RelSize.X;
@@ -349,7 +349,7 @@ namespace phys
             }
         }
 
-        void ButtonListBox::SetSelectionDistance(Real Dist)
+        void ButtonListBox::SetSelectionDistance(const Real Dist)
         {
             SelectionDist = Dist;
         }
@@ -361,7 +361,7 @@ namespace phys
                 VertScroll->Show();
         }
 
-        void ButtonListBox::EnableBorderSelector(Real Width, ColourValue &Colour)
+        void ButtonListBox::EnableBorderSelector(const Real Width, const ColourValue &Colour)
         {
             BorderWidth = Width;
             BorderColour = Colour;
@@ -373,7 +373,7 @@ namespace phys
             BorderColour = ColourValue(0,0,0,0);
         }
 
-        void ButtonListBox::SetPosition(Vector2 Position)
+        void ButtonListBox::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
             Vector2 ScrollOffset = VertScroll->GetPosition() - RelPosition;
@@ -387,7 +387,7 @@ namespace phys
             return RelPosition;
         }
 
-        void ButtonListBox::SetActualPosition(Vector2 Position)
+        void ButtonListBox::SetActualPosition(const Vector2 Position)
         {
             RelPosition = Position / Manager->GetWindowDimensions();
             Vector2 ScrollOffset = VertScroll->GetActualPosition() - RelPosition * Manager->GetWindowDimensions();
@@ -401,7 +401,7 @@ namespace phys
             return RelPosition * Manager->GetWindowDimensions();
         }
 
-        void ButtonListBox::SetSize(Vector2 Size)
+        void ButtonListBox::SetSize(const Vector2 Size)
         {
             RelSize = Size;
             BoxBack->SetSize(Size);
@@ -418,7 +418,7 @@ namespace phys
             return RelSize;
         }
 
-        void ButtonListBox::SetActualSize(Vector2 Size)
+        void ButtonListBox::SetActualSize(const Vector2 Size)
         {
             RelSize = Size / Manager->GetWindowDimensions();
             BoxBack->SetActualSize(Size);

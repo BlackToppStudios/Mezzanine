@@ -66,7 +66,7 @@ namespace phys
         /// Texts have no background functionality, but they use a light markup language to accomplish
         /// special effects with the text.
         ///////////////////////////////////////
-        class MarkupText
+        class PHYS_LIB MarkupText
         {
             protected:
                 Gorilla::MarkupText* GMarkup;
@@ -83,7 +83,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
                 /// @param Layer Pointer to the layer that created this markup text.
-                MarkupText(ConstString& name, Vector2 Position, Whole Glyph, String Text, UILayer* Layer);
+                MarkupText(ConstString& name, const Vector2 Position, const Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
                 virtual ~MarkupText();
                 /// @brief Sets the visibility of this markup text.
@@ -110,7 +110,7 @@ namespace phys
                 /// glyph is uses with it's markup language.  This simply defines which to use when one isn't
                 /// specified.
                 /// @param DefaultGlyphIndex The index of the glyph to use with this markup text.
-                virtual void SetDefaultGlyphIndex(Whole DefaultGlyphIndex);
+                virtual void SetDefaultGlyphIndex(const Whole DefaultGlyphIndex);
                 /// @brief Gets the Default glyph index in use by this markup text.
                 /// @details The glyph index is defined in your gorilla file.
                 /// @return Returns a Whole representing the index of the glyph in use by this markup text.
@@ -123,25 +123,25 @@ namespace phys
                 void VerticallyAlign(UI::TextVerticalAlign Align);*/
                 /// @brief Sets the relative top left position of this markup text.
                 /// @param Position A Vector2 representing the location of this markup text.
-                virtual void SetPosition(Vector2 Position);
+                virtual void SetPosition(const Vector2 Position);
                 /// @brief Gets the relative top left position of this markup text.
                 /// @return Returns a Vector2 representing the location of this markup text.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this markup text in pixels.
                 /// @param Position A Vector2 representing the location of this markup text.
-                virtual void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(const Vector2 Position);
                 /// @brief Gets the top left position of this markup text in pixels.
                 /// @return Returns a Vector2 representing the location of this markup text.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the maximum relative size of this markup text.
                 /// @param Size A vector2 representing the maximum size of this markup text.
-                virtual void SetMaxSize(Vector2 Size);
+                virtual void SetMaxSize(const Vector2 Size);
                 /// @brief Gets the maximum relative size of this markup text.
                 /// @return Returns a vector2 representing the maximum size of this markup text.
                 virtual Vector2 GetMaxSize();
                 /// @brief Sets the maximum size of this markup text in pixels.
                 /// @param Size A vector2 representing the maximum size of this markup text.
-                virtual void SetMaxActualSize(Vector2 Size);
+                virtual void SetMaxActualSize(const Vector2 Size);
                 /// @brief Gets the maximum size of this markup text in pixels.
                 /// @return Returns a vector2 representing the maximum size of this markup text.
                 virtual Vector2 GetMaxActualSize();

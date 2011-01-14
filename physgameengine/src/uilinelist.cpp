@@ -84,27 +84,27 @@ namespace phys
             GLineList->Hide();
         }
 
-        void LineList::Begin(Whole Thickness, ColourValue& Colour)
+        void LineList::Begin(Whole Thickness, const ColourValue& Colour)
         {
             GLineList->begin((Real)Thickness, Colour.GetOgreColourValue());
         }
 
-        void LineList::AddPoint(Real X, Real Y)
+        void LineList::AddPoint(const Real X, const Real Y)
         {
             AddPoint(Vector2(X,Y));
         }
 
-        void LineList::AddPoint(Vector2 Position)
+        void LineList::AddPoint(const Vector2 Position)
         {
             GLineList->position((Position * Manager->GetWindowDimensions()).GetOgreVector2());
         }
 
-        void LineList::AddActualPoint(Real X, Real Y)
+        void LineList::AddActualPoint(const Real X, const Real Y)
         {
             AddActualPoint(Vector2(X,Y));
         }
 
-        void LineList::AddActualPoint(Vector2 Position)
+        void LineList::AddActualPoint(const Vector2 Position)
         {
             GLineList->position(Position.GetOgreVector2());
         }

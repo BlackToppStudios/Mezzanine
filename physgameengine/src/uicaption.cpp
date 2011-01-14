@@ -52,7 +52,7 @@ namespace phys
 {
     namespace UI
     {
-        Caption::Caption(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
+        Caption::Caption(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, UILayer* Layer)
             : Parent(Layer),
               MouseHover(false),
               RelPosition(Position),
@@ -133,7 +133,7 @@ namespace phys
             return GorillaCaption->text();
         }
 
-        void Caption::SetTextColour(ColourValue& TextColour)
+        void Caption::SetTextColour(const ColourValue& TextColour)
         {
             GorillaCaption->colour(TextColour.GetOgreColourValue());
         }
@@ -144,7 +144,7 @@ namespace phys
             return Col;
         }
 
-        void Caption::SetGlyphIndex(Whole GlyphIndex)
+        void Caption::SetGlyphIndex(const Whole GlyphIndex)
         {
             Glyphs = GlyphIndex;
             GorillaCaption->font(GlyphIndex);
@@ -165,7 +165,7 @@ namespace phys
             return (Whole)GorillaCaption->GetCursorOffset();
         }
 
-        void Caption::SetBackgroundColour(ColourValue& Colour)
+        void Caption::SetBackgroundColour(const ColourValue& Colour)
         {
             GorillaRectangle->background_colour(Colour.GetOgreColourValue());
         }
@@ -217,7 +217,7 @@ namespace phys
             GorillaCaption->vertical_align(VA);
         }
 
-        void Caption::SetPosition(Vector2 Position)
+        void Caption::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Manager->GetWindowDimensions();
@@ -232,7 +232,7 @@ namespace phys
             return RelPosition;
         }
 
-        void Caption::SetActualPosition(Vector2 Position)
+        void Caption::SetActualPosition(const Vector2 Position)
         {
             GorillaCaption->left(Position.X);
             GorillaCaption->top(Position.Y);
@@ -246,7 +246,7 @@ namespace phys
             return Pos;
         }
 
-        void Caption::SetSize(Vector2 Size)
+        void Caption::SetSize(const Vector2 Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
@@ -261,7 +261,7 @@ namespace phys
             return RelSize;
         }
 
-        void Caption::SetActualSize(Vector2 Size)
+        void Caption::SetActualSize(const Vector2 Size)
         {
             GorillaCaption->width(Size.X);
             GorillaCaption->height(Size.Y);

@@ -63,7 +63,7 @@ namespace phys
         /// doesn't have a position or size.  The position functions exist only to create additional
         /// points for the lines to connect.
         ///////////////////////////////////////
-        class LineList
+        class PHYS_LIB LineList
         {
             protected:
                 Gorilla::LineList* GLineList;
@@ -90,21 +90,21 @@ namespace phys
                 /// clear the current list of lines and start a new list.
                 /// @param Thickness The thickness of the line to draw in pixels.
                 /// @param Colour The colour of the line.
-                void Begin(Whole Thickness, ColourValue& Colour);
+                void Begin(Whole Thickness, const ColourValue& Colour);
                 /// @brief Adds a new point/line to the list via 2 reals.
                 /// @param X Relative coordinate on the X vector.
                 /// @param Y Relative coordinate on the Y vector.
-                void AddPoint(Real X, Real Y);
+                void AddPoint(const Real X, const Real Y);
                 /// @brief Adds a new point/line to the list via a vector2.
                 /// @param Position A vector2 representing the relative position on screen.
-                void AddPoint(Vector2 Position);
+                void AddPoint(const Vector2 Position);
                 /// @brief Adds a new point/line to the list via 2 reals.
                 /// @param X Coordinate on the X vector.
                 /// @param Y Coordinate on the Y vector.
-                void AddActualPoint(Real X, Real Y);
+                void AddActualPoint(const Real X, const Real Y);
                 /// @brief Adds a new point/line to the list via a vector2.
                 /// @param Position A vector2 representing the position on screen.
-                void AddActualPoint(Vector2 Position);
+                void AddActualPoint(const Vector2 Position);
                 /// @brief Finalizes the list and prepares it for rendering.
                 /// @param Closed Whether or not the line list connects back to it's starting position.  If
                 /// true this will create one last line connecting the last provided position with the first.

@@ -52,7 +52,7 @@ namespace phys
 {
     namespace UI
     {
-        Menu::Menu(ConstString name, Vector2 Position, Vector2 Size, UILayer* Layer)
+        Menu::Menu(ConstString name, const Vector2 Position, const Vector2 Size, UILayer* Layer)
             : Widget(name,Layer),
               HideSubWindows(true)
         {
@@ -184,7 +184,7 @@ namespace phys
             return false;
         }
 
-        void Menu::SetPosition(Vector2 Position)
+        void Menu::SetPosition(const Vector2 Position)
         {
             MenuStack.back()->SetPosition(Position);
         }
@@ -194,7 +194,7 @@ namespace phys
             return MenuStack.back()->GetPosition();
         }
 
-        void Menu::SetActualPosition(Vector2 Position)
+        void Menu::SetActualPosition(const Vector2 Position)
         {
             MenuStack.back()->SetActualPosition(Position);
         }
@@ -204,7 +204,7 @@ namespace phys
             return MenuStack.back()->GetActualPosition();
         }
 
-        void Menu::SetSize(Vector2 Size)
+        void Menu::SetSize(const Vector2 Size)
         {
             MenuStack.back()->SetSize(Size);
         }
@@ -214,7 +214,7 @@ namespace phys
             return MenuStack.back()->GetSize();
         }
 
-        void Menu::SetActualSize(Vector2 Size)
+        void Menu::SetActualSize(const Vector2 Size)
         {
             MenuStack.back()->SetActualSize(Size);
         }

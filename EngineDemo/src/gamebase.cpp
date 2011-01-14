@@ -144,6 +144,18 @@ bool PostRender()
 
     }
 
+    // Update Stat information
+    UI::Caption* CurFPS = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("CurFPS");
+    UI::Caption* AvFPS = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("AvFPS");
+    std::stringstream CFPSstream;
+    std::stringstream AFPSstream;
+    CFPSstream << TheWorld->GetGraphicsManager()->GetLastFPS();
+    AFPSstream << TheWorld->GetGraphicsManager()->GetAverageFPS();
+    String CFPS = CFPSstream.str();
+    String AFPS = AFPSstream.str();
+    CurFPS->SetText(CFPS);
+    AvFPS->SetText(AFPS);
+
     // Turn on the Wireframe
     if (30000<gametime)
         { TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(1); }
@@ -701,13 +713,19 @@ void MakeGUI()
     String MenuLayer = "MenuLayer";
     String HUDLayer = "HUDLayer";
     String ItemShopLayer = "ItemShopLayer";
+    String StatsLayer = "StatsLayer";
     UIManager* GUI = TheWorld->GetUIManager();
     GUI->LoadGorilla("dejavu");
 
     UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "dejavu");
-    UILayer* Menu = Screen->CreateLayer(MenuLayer, 2);
-    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 1);
+    UILayer* Menu = Screen->CreateLayer(MenuLayer, 3);
+    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 2);
+    UILayer* Stats = Screen->CreateLayer(StatsLayer, 1);
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
+
+    ColourValue Transparent(0.0,0.0,0.0,0.0);
+    ColourValue Black(0.0,0.0,0.0,1.0);
+    ColourValue TransBlack(0.0,0.0,0.0,0.3);
 
     //Build the HUD layer
     UI::TextButton* MenuButton = HUD->CreateTextButton( "Menu", Vector2(0.0, 0.92),
@@ -743,6 +761,24 @@ void MakeGUI()
     Colours = ColourValue(0.6,0.2,0.2,1.0);
     ExitButton->SetBackgroundColour(Colours);
     Menu->Hide();
+
+    //Build the Stats Layer
+    UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", Vector2(0.16, 0.06), Vector2(0.06, 0.065), 14, "0.0");
+    CurFPS->SetBackgroundColour(Transparent);
+    CurFPS->HorizontallyAlign(UI::Txt_Left);
+
+    UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", Vector2(0.008, 0.06), Vector2(0.15, 0.065), 14, "Current FPS: ");
+    CurFPSText->SetBackgroundColour(Transparent);
+    CurFPSText->HorizontallyAlign(UI::Txt_Left);
+
+    UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", Vector2(0.16, 0.105), Vector2(0.06, 0.065), 14, "0.0");
+    AvFPS->SetBackgroundColour(Transparent);
+    AvFPS->HorizontallyAlign(UI::Txt_Left);
+
+    UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", Vector2(0.008, 0.105), Vector2(0.15, 0.065), 14, "Average FPS: ");
+    AvFPSText->SetBackgroundColour(Transparent);
+    AvFPSText->HorizontallyAlign(UI::Txt_Left);
+    //End of Stats Layer
 }
 //*/
 #endif

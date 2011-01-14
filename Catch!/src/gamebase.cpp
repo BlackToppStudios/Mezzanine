@@ -208,30 +208,31 @@ bool PostUI()
     {
         if(TheWorld->GetUIManager()->MouseIsInUISystem())
         {
-            UI::Button* MouseButton = TheWorld->GetUIManager()->GetHoveredButton();
-            if(!MouseButton)
-                MouseButton = TheWorld->GetUIManager()->GetHoveredWidget()->GetHoveredButton();
+            UIManager* UIMan = TheWorld->GetUIManager();
+            UI::Button* MouseButton = UIMan->GetHoveredButton();
+            if(!MouseButton && UIMan->GetHoveredWidget())
+                MouseButton = UIMan->GetHoveredWidget()->GetHoveredButton();
             if(MouseButton)
             {
                 MetaCode::ButtonState State = Queryer.GetMouseButtonState(1);
                 if("Store" == MouseButton->GetName())
                 {
                     String ItemShopL = "ItemShopLayer";
-                    UILayer* Layer = TheWorld->GetUIManager()->GetLayer(ItemShopL);
+                    UILayer* Layer = UIMan->GetLayer(ItemShopL);
                     if(MetaCode::BUTTON_PRESSING == State)
                         Layer->SetVisible(!Layer->GetVisible());
                 }
                 else if("Menu" == MouseButton->GetName())
                 {
                     String MenuL = "MenuLayer";
-                    UILayer* Layer = TheWorld->GetUIManager()->GetLayer(MenuL);
+                    UILayer* Layer = UIMan->GetLayer(MenuL);
                     if(MetaCode::BUTTON_PRESSING == State)
                         Layer->SetVisible(!Layer->GetVisible());
                 }
                 else if("Return" == MouseButton->GetName())
                 {
                     String MenuL = "MenuLayer";
-                    UILayer* Layer = TheWorld->GetUIManager()->GetLayer(MenuL);
+                    UILayer* Layer = UIMan->GetLayer(MenuL);
                     Layer->Hide();
                 }
                 else if("Exit" == MouseButton->GetName())
@@ -424,6 +425,8 @@ void MakeGUI()
     UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
+    ColourValue Black(0.0,0.0,0.0,1.0);
+    ColourValue TransBlack(0.0,0.0,0.0,0.3);
 
     //Build the Game Screen
     //Build the HUD layer
@@ -452,17 +455,40 @@ void MakeGUI()
     //Build the ItemShop Layer
     UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", Vector2(0.25, 0.11), Vector2(0.5, 0.78125));
     ItemShopWindow->GetWindowBack()->SetBackgroundSprite("WindowVertBack");
-    //UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.27, 0.5),Vector2(0.46, 0.38),0.0025,UI::SB_Separate);
+
+    //UI::Rectangle* TestBack = ItemShopWindow->CreateRectangle(Vector2(0.3,0.3),Vector2(0.4,0.4));
+    //TestBack->SetBackgroundColour(TransBlack);
+
+    //UI::MarkupText* TestMarkup = ItemShopWindow->CreateMarkupText("TestMarkup",Vector2(0.4,0.4),14,"Test1");
+
+    UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.28,0.54),Vector2(0.44,0.32),0.02,UI::SB_Separate);
+    ItemShopList->SetAutoHideScroll(false);
+    ItemShopList->GetBoxBack()->SetBackgroundColour(TransBlack);
+    ItemShopList->GetVertScroll()->GetScrollBack()->SetBackgroundColour(TransBlack);
     ItemShop->Hide();
     //End of ItemShop Layer
 
     //Build the Menu Layer
-    ColourValue Black(0.0,0.0,0.0,1.0);
-    UI::Menu* GameMenu = Menu->CreateMenu( "GameMenu", Vector2(0.25, 0.15), Vector2(0.5, 0.7));
-    UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "Return", Vector2(0.30, 0.61), Vector2(0.4, 0.08));
+    UI::Menu* GameMenu = Menu->CreateMenu( "GameMenu", Vector2(0.35, 0.27), Vector2(0.3, 0.45));
+    UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "Return", Vector2(0.37, 0.56), Vector2(0.26, 0.05));
     ReturnButton->SetBackgroundColour(Black);
-    UI::Button* ExitButton = GameMenu->GetRootWindow()->CreateButton( "Exit", Vector2(0.30, 0.73), Vector2(0.4, 0.08));
+
+    UI::Button* ExitButton = GameMenu->GetRootWindow()->CreateButton( "Exit", Vector2(0.37, 0.64), Vector2(0.26, 0.05));
     ExitButton->SetBackgroundColour(Black);
+
+    UI::MenuWindow* VideoSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("VideoSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), Vector2(0.37, 0.32), Vector2(0.26, 0.05));
+    UI::Button* VideoAccess = GameMenu->GetRootWindow()->GetButton("VideoSettingsbutton");
+    VideoAccess->SetBackgroundColour(Black);
+
+    UI::Button* VideoBack = VideoSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));
+    VideoBack->SetBackgroundColour(Black);
+
+    UI::MenuWindow* SoundSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("SoundSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), Vector2(0.37, 0.40), Vector2(0.26, 0.05));
+    UI::Button* SoundAccess = GameMenu->GetRootWindow()->GetButton("SoundSettingsbutton");
+    SoundAccess->SetBackgroundColour(Black);
+
+    UI::Button* SoundBack = SoundSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));
+    SoundBack->SetBackgroundColour(Black);
     Menu->Hide();
     //End of Menu Layer
 

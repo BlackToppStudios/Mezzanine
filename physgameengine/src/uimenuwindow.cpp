@@ -49,7 +49,7 @@ namespace phys
 {
     namespace UI
     {
-        MenuWindow::MenuWindow(ConstString& Name, Vector2 Position, Vector2 Size, UI::Menu* TheMenu, UILayer* Layer)
+        MenuWindow::MenuWindow(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::Menu* TheMenu, UILayer* Layer)
             : Window(Name,Position,Size,Layer),
               BackButton(NULL),
               ParentWindow(NULL),
@@ -72,9 +72,9 @@ namespace phys
             return ParentWindow;
         }
 
-        Button* MenuWindow::CreateBackButton(Vector2 Position, Vector2 Size)
+        Button* MenuWindow::CreateBackButton(const Vector2 Position, const Vector2 Size)
         {
-            if(!BackButton)
+            if(!BackButton && ParentWindow)
             {
                 BackButton = new Button(Name+"back",Position,Size,Parent);
                 Vector2 Offset = Position - RelPosition;
@@ -82,6 +82,7 @@ namespace phys
                 Buttons.push_back(backbuttonoff);
                 return BackButton;
             }
+            return 0;
         }
 
         Button* MenuWindow::GetBackButton()
@@ -102,7 +103,7 @@ namespace phys
             return 0;
         }
 
-        MenuWindow* MenuWindow::CreateChildMenuWindow(ConstString& Name, Vector2 WinPosition, Vector2 WinSize, Vector2 ButPosition, Vector2 ButSize)
+        MenuWindow* MenuWindow::CreateChildMenuWindow(ConstString& Name, const Vector2 WinPosition, const Vector2 WinSize, const Vector2 ButPosition, const Vector2 ButSize)
         {
             MenuWindow* MenWin = new MenuWindow(Name,WinPosition,WinSize,MasterMenu,Parent);
             MenWin->ParentWindow = this;
@@ -128,7 +129,7 @@ namespace phys
             return 0;
         }
 
-        MenuWindow* MenuWindow::GetChildMenuWindow(Whole Index)
+        MenuWindow* MenuWindow::GetChildMenuWindow(const Whole Index)
         {
             return ChildWindows[Index].second;
         }

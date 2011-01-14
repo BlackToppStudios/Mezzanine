@@ -79,7 +79,7 @@ namespace phys
                 /// @param Position The top left position of the rectangle.
                 /// @param Size The size of the rectangle.
                 /// @param Layer Pointer to the parent Layer that created this rectangle.
-                Rectangle(Vector2 Position, Vector2 Size, UILayer* Layer);
+                Rectangle(const Vector2 Position, const Vector2 Size, UILayer* Layer);
                 /// @brief Class destructor.
                 ~Rectangle();
                 /// @brief Sets the visibility of this rectangle.
@@ -101,36 +101,36 @@ namespace phys
                 virtual bool GetMouseHover();
                 /// @brief Sets the background colour of the rectangle.
                 /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBackgroundColour(ColourValue& Colour);
+                virtual void SetBackgroundColour(const ColourValue& Colour);
                 /// @brief Sets the background image(if provided in the atlas) of the rectangle.
                 /// @param Name The name of the sprite to set as the background.
                 virtual void SetBackgroundSprite(const String& Name);
                 /// @brief Enables a border and sets it's colour.
                 /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBorder(Real Width, ColourValue& Colour);
+                virtual void SetBorder(const Real Width, const ColourValue& Colour);
                 /// @brief Disables any border set on this rectangle if one is currently set.
                 virtual void NoBorder();
                 /// @brief Sets the relative top left position of this rectangle.
                 /// @param Position A Vector2 representing the location of this rectangle.
-                virtual void SetPosition(Vector2 Position);
+                virtual void SetPosition(const Vector2 Position);
                 /// @brief Gets the relative top left position of this rectangle.
                 /// @return Returns a Vector2 representing the location of this rectangle.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this rectangle in pixels.
                 /// @param Position A Vector2 representing the location of this rectangle.
-                virtual void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(const Vector2 Position);
                 /// @brief Gets the top left position of this rectangle in pixels.
                 /// @return Returns a Vector2 representing the location of this rectangle.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this rectangle.
                 /// @param Size A vector2 representing the size of this rectangle.
-                virtual void SetSize(Vector2 Size);
+                virtual void SetSize(const Vector2 Size);
                 /// @brief Gets the relative size of this rectangle.
                 /// @return Returns a vector2 representing the size of this rectangle.
                 virtual Vector2 GetSize();
                 /// @brief Sets the size of this rectangle in pixels.
                 /// @param Size A vector2 representing the size of this rectangle.
-                virtual void SetActualSize(Vector2 Size);
+                virtual void SetActualSize(const Vector2 Size);
                 /// @brief Gets the size of this rectangle in pixels.
                 /// @return Returns a vector2 representing the size of this rectangle.
                 virtual Vector2 GetActualSize();
