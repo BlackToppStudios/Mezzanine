@@ -616,8 +616,8 @@ namespace phys
 		attribute_iterator attributes_begin() const; 
 		attribute_iterator attributes_end() const; 
  
-		// Get node offset in parsed file/string (in char_t units) for debugging purposes 
-		ptrdiff_t offset_debug() const; 
+		// Get node Offset in parsed file/string (in char_t units) for debugging purposes 
+		ptrdiff_t Offset_debug() const; 
  
 		// Get hash value (unique for handles to the same object) 
 		size_t hash_value() const; 
@@ -772,7 +772,7 @@ namespace phys
 		ParseStatus Status; 
  
 		/// @brief Last parsed offset (in char_t units from start of input data) 
-		ptrdiff_t offset; 
+		ptrdiff_t Offset; 
  
 		/// @brief Source document encoding ( see @ref Encoding ) 
 		Encoding DocumentEncoding; 
@@ -877,8 +877,8 @@ namespace phys
 		// Error message (0 if no error) 
 		const char* error; 
  
-		// Last parsed offset (in char_t units from string start) 
-		ptrdiff_t offset; 
+		// Last parsed Offset (in char_t units from string start) 
+		ptrdiff_t Offset; 
  
 		/// @brief Default constructor, initializes object to failed state. 
 		xpath_parse_result(); 

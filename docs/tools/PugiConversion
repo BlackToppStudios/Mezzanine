@@ -185,12 +185,12 @@ function FixNames
 
 	FileContent=`echo -E "$FileContent" | sed -e 's/status/Status/g'`							#Fix member ParseStatus.Status
 	FileContent=`echo -E "$FileContent" | sed -e 's/encoding/DocumentEncoding/g'`			#Fix member ParseStatus.DocumentEncoding
-	#FileContent=`echo -E "$FileContent" | sed -e 's/offset/Offset/g'`							#Fix member ParseStatus.Offset
-
+	FileContent=`echo -E "$FileContent" | sed -e 's/offset\([^o]\)/Offset\1/g'`					#Fix member ParseStatus.Offset
+#	FileContent=`echo -E "$FileContent" | sed -e 's/Offset/Offset/g'`							#Fix member ParseStatus.Offset
 
 																						#Documentation that could not be put in xmldoc.h
 	FileContent=`echo -E "$FileContent" | sed -e 's|// Parsing Status (see ParseStatus)|/// @brief Parsing status ( see @ref ParseStatus )|g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Last parsed offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Last parsed Offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|g'`
 	FileContent=`echo -E "$FileContent" | sed -e 's|// Source document DocumentEncoding|/// @brief Source document encoding ( see @ref Encoding )|g'`
 	FileContent=`echo -E "$FileContent" | sed -e 's|// Default constructor, initializes object to failed state|/// @brief Default constructor, initializes object to failed state.|g'`
 	FileContent=`echo -E "$FileContent" | sed -e 's|// Cast to bool operator|/// @brief Cast to bool operator \\n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|g'`

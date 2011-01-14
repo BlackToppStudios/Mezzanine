@@ -272,7 +272,7 @@ namespace
  
 	struct MemoryString_header 
 	{ 
-		uint16_t page_offset; // offset from page->data 
+		uint16_t page_Offset; // Offset from page->data 
 		uint16_t full_size; // 0 if string occupies whole page 
 	}; 
  
@@ -371,13 +371,13 @@ namespace
 			if (!header) return 0; 
  
 			// setup header 
-			ptrdiff_t page_offset = reinterpret_cast<char*>(header) - page->data; 
+			ptrdiff_t page_Offset = reinterpret_cast<char*>(header) - page->data; 
  
-			assert(page_offset >= 0 && page_offset < (1 << 16)); 
-			header->page_offset = static_cast<uint16_t>(page_offset); 
+			assert(page_Offset >= 0 && page_Offset < (1 << 16)); 
+			header->page_Offset = static_cast<uint16_t>(page_Offset); 
  
 			// full_size == 0 for large strings that occupy the whole page 
-			assert(full_size < (1 << 16) || (page->busy_size == full_size && page_offset == 0)); 
+			assert(full_size < (1 << 16) || (page->busy_size == full_size && page_Offset == 0)); 
 			header->full_size = static_cast<uint16_t>(full_size < (1 << 16) ? full_size : 0); 
  
 			return reinterpret_cast<char_t*>(header + 1); 
@@ -389,8 +389,8 @@ namespace
 			MemoryString_header* header = reinterpret_cast<MemoryString_header*>(string) - 1; 
  
 			// deallocate 
-			size_t page_offset = offsetof(MemoryPage, data) + header->page_offset; 
-			MemoryPage* page = reinterpret_cast<MemoryPage*>(reinterpret_cast<char*>(header) - page_offset); 
+			size_t page_Offset = offsetof(MemoryPage, data) + header->page_Offset; 
+			MemoryPage* page = reinterpret_cast<MemoryPage*>(reinterpret_cast<char*>(header) - page_Offset); 
  
 			// if full_size == 0 then this string occupies the whole page 
 			size_t full_size = header->full_size == 0 ? page->busy_size : header->full_size; 
@@ -1912,11 +1912,11 @@ namespace
 		} 
 	} 
  
-	inline ParseResult make_parse_result(ParseStatus Status, ptrdiff_t offset = 0) 
+	inline ParseResult make_parse_result(ParseStatus Status, ptrdiff_t Offset = 0) 
 	{ 
 		ParseResult result; 
 		result.Status = Status; 
-		result.offset = offset; 
+		result.Offset = Offset; 
  
 		return result; 
 	} 
@@ -1924,7 +1924,7 @@ namespace
 	struct Parser 
 	{ 
 		Allocator alloc; 
-		char_t* error_offset; 
+		char_t* error_Offset; 
 		jmp_buf error_handler; 
 		 
 		// Parser utilities. 
@@ -1935,10 +1935,10 @@ namespace
 		#define SCANFOR(X)			{ while (*s != 0 && !(X)) ++s; } 
 		#define SCANWHILE(X)		{ while ((X)) ++s; } 
 		#define ENDSEG()			{ ch = *s; *s = 0; ++s; } 
-		#define THROW_ERROR(err, m)	error_offset = m, longjmp(error_handler, err) 
+		#define THROW_ERROR(err, m)	error_Offset = m, longjmp(error_handler, err) 
 		#define CHECK_ERROR(err, m)	{ if (*s == 0) THROW_ERROR(err, m); } 
 		 
-		Parser(const Allocator& alloc): alloc(alloc), error_offset(0) 
+		Parser(const Allocator& alloc): alloc(alloc), error_Offset(0) 
 		{ 
 		} 
  
@@ -2064,7 +2064,7 @@ namespace
 					if (OPTSET(parse_comments)) 
 					{ 
 						PUSHNODE(node_comment); // Append a new node on the tree. 
-						cursor->value = s; // Save the offset. 
+						cursor->value = s; // Save the Offset. 
 					} 
  
 					if (OPTSET(parse_eol) && OPTSET(parse_comments)) 
@@ -2097,7 +2097,7 @@ namespace
 					if (OPTSET(parse_cdata)) 
 					{ 
 						PUSHNODE(node_cdata); // Append a new node on the tree. 
-						cursor->value = s; // Save the offset. 
+						cursor->value = s; // Save the Offset. 
  
 						if (OPTSET(parse_eol)) 
 						{ 
@@ -2292,7 +2292,7 @@ namespace
 									AttributeStruct* a = append_attribute_ll(cursor, alloc); // Make space for this attribute. 
 									if (!a) THROW_ERROR(StatusOutOfMemory, s); 
  
-									a->name = s; // Save the offset. 
+									a->name = s; // Save the Offset. 
  
 									SCANWHILE(IS_CHARTYPE(*s, ct_symbol)); // Scan for a terminator. 
 									CHECK_ERROR(StatusBadAttribute, s); //$ redundant, left for performance 
@@ -2317,7 +2317,7 @@ namespace
 										{ 
 											ch = *s; // Save quote char to avoid breaking on "''" -or- '""'. 
 											++s; // Step over the quote. 
-											a->value = s; // Save the offset. 
+											a->value = s; // Save the Offset. 
  
 											s = strconv_attribute(s, ch); 
 										 
@@ -2429,7 +2429,7 @@ namespace
 				} 
 				else 
 				{ 
-					mark = s; // Save this offset while searching for a terminator. 
+					mark = s; // Save this Offset while searching for a terminator. 
  
 					SKIPWS(); // Eat whitespace if no genuine PCDATA here. 
  
@@ -2443,7 +2443,7 @@ namespace
 					if (cursor->parent) 
 					{ 
 						PUSHNODE(node_pcdata); // Append a new node on the tree. 
-						cursor->value = s; // Save the offset. 
+						cursor->value = s; // Save the Offset. 
  
 						s = strconv_pcdata(s); 
 								 
@@ -2472,7 +2472,7 @@ namespace
 		{ 
 			DocumentStruct* xmldoc = static_cast<DocumentStruct*>(root); 
  
-			// store buffer for offset_debug 
+			// store buffer for Offset_debug 
 			xmldoc->buffer = buffer; 
  
 			// early-out for empty documents 
@@ -2493,8 +2493,8 @@ namespace
 				parser.parse(buffer, xmldoc, optmsk, endch); 
 			} 
  
-			ParseResult result = make_parse_result(static_cast<ParseStatus>(error), parser.error_offset ? parser.error_offset - buffer : 0); 
-			assert(result.offset >= 0 && static_cast<size_t>(result.offset) <= length); 
+			ParseResult result = make_parse_result(static_cast<ParseStatus>(error), parser.error_Offset ? parser.error_Offset - buffer : 0); 
+			assert(result.Offset >= 0 && static_cast<size_t>(result.Offset) <= length); 
  
 			// update allocator state 
 			*static_cast<Allocator*>(xmldoc) = parser.alloc; 
@@ -4336,7 +4336,7 @@ namespace phys
 	} 
 #endif 
  
-	ptrdiff_t Node::offset_debug() const 
+	ptrdiff_t Node::Offset_debug() const 
 	{ 
 		NodeStruct* r = root()._root; 
  
@@ -4501,7 +4501,7 @@ namespace phys
 		return temp; 
 	} 
  
-	ParseResult::ParseResult(): Status(StatusInternalError), offset(0), DocumentEncoding(DocumentEncoding_auto) 
+	ParseResult::ParseResult(): Status(StatusInternalError), Offset(0), DocumentEncoding(DocumentEncoding_auto) 
 	{ 
 	} 
  
@@ -8159,7 +8159,7 @@ namespace
 		void throw_error(const char* message) 
 		{ 
 			_result->error = message; 
-			_result->offset = _lexer.current_pos() - _query; 
+			_result->Offset = _lexer.current_pos() - _query; 
  
 		#ifdef XML_NO_EXCEPTIONS 
 			longjmp(_error_handler, 1); 
@@ -9232,7 +9232,7 @@ namespace phys
 		return xpath_first(_begin, _end, _type); 
 	} 
  
-	xpath_parse_result::xpath_parse_result(): error("Internal error"), offset(0) 
+	xpath_parse_result::xpath_parse_result(): error("Internal error"), Offset(0) 
 	{ 
 	} 
  
