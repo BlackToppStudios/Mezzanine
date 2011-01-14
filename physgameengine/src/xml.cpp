@@ -4510,7 +4510,7 @@ namespace phys
 		return Status == StatusOk; 
 	} 
  
-	const char* ParseResult::description() const 
+	const char* ParseResult::Description() const 
 	{ 
 		switch (Status) 
 		{ 
@@ -9240,7 +9240,7 @@ namespace phys
 	{ 
 		return error == 0; 
 	} 
-	const char* xpath_parse_result::description() const 
+	const char* xpath_parse_result::Description() const 
 	{ 
 		return error ? error : "No error"; 
 	} 

@@ -786,7 +786,7 @@ namespace phys
  
 		/// @brief Uses the Status member to create a text description. 
 		/// @return A const char* with a brief error description based on the ParseResult::Status 
-		const char* description() const; 
+		const char* Description() const; 
 	}; 
  
 	// Document class (DOM tree root) 
@@ -889,7 +889,7 @@ namespace phys
  
 		/// @brief Uses the Status member to create a text description. 
 		/// @return A const char* with a brief error description based on the ParseResult::Status 
-		const char* description() const; 
+		const char* Description() const; 
 	}; 
  
 	// A single XPath variable 
